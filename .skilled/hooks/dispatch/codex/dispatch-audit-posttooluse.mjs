@@ -5,14 +5,13 @@
 // STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
 // PostToolUse `exec|Bash` matcher group.
 // PostToolUse(exec) CLI dispatch audit trail for Codex CLI -- the Codex sibling of
-// the Claude dispatch-audit hook. Observes a completed exec call, recognizes an
-// `opencode run` / `claude -p` / `codex exec` dispatch shape, and appends one
-// redacted, size-rotated JSONL audit line through the SAME shared dispatch-audit
-// primitives both runtimes use, tagged runtime:'codex'. Strictly observational --
-// unlike the sibling PreToolUse preflight lint, it must never emit a
-// permissionDecision, since a post-execution audit has no business affecting a
-// result that already exists. FAILS OPEN -- any missing payload, parse error, or
-// audit-path failure exits 0 with no output.
+// the Claude dispatch-audit hook. Observes a completed exec call and hands it to the
+// SAME shared dispatch-audit core both runtimes use, which resolves the command into
+// a dispatch shape and appends one redacted, size-rotated JSONL audit line tagged
+// runtime:'codex'. Strictly observational -- unlike the sibling PreToolUse preflight
+// lint, it must never emit a permissionDecision, since a post-execution audit has no
+// business affecting a result that already exists. FAILS OPEN -- any missing payload,
+// parse error, or audit-path failure exits 0 with no output.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -23,12 +22,9 @@ import { join } from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import {
-  DISPATCH_SHAPES,
   DEFAULT_LOG_RELATIVE_PATH,
   isAuditDisabled,
-  extractDispatchMeta,
-  buildAuditLine,
-  appendAuditLog,
+  recordDispatch,
 } from '../lib/dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -63,9 +59,6 @@ async function main() {
   const command = toolInput?.command;
   if (typeof command !== 'string' || command.length === 0) return done();
 
-  const shape = DISPATCH_SHAPES.find((candidate) => candidate.test.test(command));
-  if (!shape) return done();
-
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
   const logPath = join(projectDir, DEFAULT_LOG_RELATIVE_PATH);
 
@@ -78,17 +71,16 @@ async function main() {
       .filter((part) => typeof part === 'string')
       .join('\n') || undefined);
 
-  const meta = extractDispatchMeta(command, { outputText, metadataObj: toolResponse });
-  const line = buildAuditLine({
-    ts: new Date().toISOString(),
+  recordDispatch({
+    command,
+    logPath,
     runtime: 'codex',
     sessionID: payload?.session_id ?? null,
     callID: payload?.tool_use_id ?? null,
-    skill: shape.skill,
-    command,
-    ...meta,
+    outputText,
+    metadataObj: toolResponse,
+    env: process.env,
   });
-  if (line) appendAuditLog(logPath, line);
 
   return done();
 }

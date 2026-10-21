@@ -1,0 +1,21 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is round 4, the last: report only a P0 or P1 that changes a result, makes a documented claim false, breaks a test or would do damage, with a probe or file:line that shows it.
+
+Your round-3 verdict is `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-all-r3.txt`. Since then three commits (`git log --oneline 1da140c77f..HEAD`, `git diff 1da140c77f..HEAD -- .skilled`):
+- a bare `not` now negates a Pi executor mention (your N02 PARTIAL);
+- the stdin check counts pipes into a CLI and passes only when no more runs lack a redirect than there are pipes (your N03 PARTIAL);
+- the heredoc delimiter grammar accepts any shell word, quoted or bare, with the closing line regex-escaped (your N07, N08 and new P2).
+Recorded and not fixed, because none is a regression against the base and each is a further heredoc or quoting shape: `<<$'END-MARK'` (N04), a heredoc fed to `env bash` (N05), `echo "$(codex exec task)"` in the audit (N06).
+
+Check the three changes: is each round-3 item now closed; does any change move a verdict on a command it should not (for example a bare-word delimiter swallowing a line that is not a heredoc, `<<` inside quotes, `cat <<EOF;` or `cmd <<EOF | other`, a pipe count fooled by a pipe into a non-dispatch, or `not` blocking a request that clearly names the executor positively). You may run small `node --input-type=module -e` probes importing `.skilled/hooks/dispatch/lib/*.mjs` with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin. Do not run vitest or node:test; your sandbox cannot create their temp directories.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<round-3 item> | CLOSED|OPEN | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1 | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL

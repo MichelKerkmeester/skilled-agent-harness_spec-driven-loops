@@ -1,0 +1,17 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is an operator-approved seventh round, limited to the two P1s of your round-6 verdict (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-r6.txt`): `do not use opencode, use codex, or use cli-devin` and `cannot use cli-devin` both authorized cli-devin.
+
+Commit: `git show HEAD -- .skilled/hooks/dispatch/pi/`. In `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, `isUsableMention` now: normalizes curly apostrophes; widens `NEGATION_PATTERN` (modal negations, refusal verbs, no/nor/neither/nobody/no one/none); keeps a negation across a comma that is followed by a further comma or an and/or before the mention; denies a mention right after an exclusion phrase (instead of, rather than, except, other than, no, without, ...); denies a mention followed in its sentence by a refusal (forbidden, banned, is not, must not, must never, ...). Policy: a phrasing that cannot be read safely as a request does not authorize; `not opencode, use cli-devin` still does. The test file's 'Pi refusal phrasings' table holds 54 deny and 13 allow rows.
+
+Judge: are both round-6 P1s closed? Then look for a P0 or P1 of the same kind: a refusal of the dispatched executor that this logic still authorizes, or a clearly positive request for it that it now denies in a way that blocks normal use (a fail-closed deny of an odd or ambiguous phrasing is acceptable and at most P2). Trace phrasings by reading the code, or copy the functions' logic into a `node --input-type=module -e` probe. Do not run vitest or node:test.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<round-6 P1 phrasing> | CLOSED|OPEN | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <exact phrasing> | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL

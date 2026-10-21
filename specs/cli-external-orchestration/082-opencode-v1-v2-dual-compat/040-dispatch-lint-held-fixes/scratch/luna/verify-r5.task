@@ -1,0 +1,20 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is an operator-approved fifth round, limited to the three P1s of your round-4 verdict (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-r4.txt`). Report only a P0 or P1 that these three commits introduce or leave open, with a probe or file:line that shows it.
+
+Commits: `git log --oneline da4d25f72e..HEAD`, `git diff da4d25f72e..HEAD -- .skilled`.
+1. Pi negation is scoped to the mention's clause: a comma or the words but/instead/rather start a new clause. `not opencode, use cli-devin` must authorize cli-devin; `not /deep:review --executor cli-devin` must stay denied.
+2. A pipe counts toward the stdin budget only when the command it feeds is a headless dispatch: `printf x | pi --version; opencode run -m p/m "b"` must fail the stdin check.
+3. A `<<'WORD'` (or `<<WORD`) inside a quoted span starts no heredoc: `echo "<<'ENDMARK'"` + newline + `codex exec task </dev/null` + newline + `ENDMARK` must resolve to cli-codex, for plain and hyphenated words.
+
+For each: CLOSED or OPEN with evidence. Then check that each change does not open a hole of P1 weight: for 1, a negation the clause split now drops for the mention it really governs (for example `do not, under any circumstances, use cli-devin`); for 2, a pipe into a real dispatch that no longer counts; for 3, a real heredoc that now goes unread (an apostrophe or quote earlier in the command, a heredoc after a closed quoted span). Small `node --input-type=module -e` probes importing `.skilled/hooks/dispatch/lib/*.mjs` are fine with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin; the Pi file is TypeScript, judge it by reading. Do not run vitest or node:test.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<round-4 P1> | CLOSED|OPEN | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL

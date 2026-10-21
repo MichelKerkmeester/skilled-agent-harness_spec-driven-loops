@@ -1,0 +1,69 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T09:25:55.652Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (201 tests | 8 failed) 540ms
+   ❯ Pi refusal phrasings (114)
+     × Use cli-devin. Never use devin. 3ms
+     × Use cli-devin. Never use cli-devin. 0ms
+     × Use cli-devin. Do not run Devin. 0ms
+     × Use cli-devin. Skip devin, use codex. 0ms
+   ❯ Pi next-sentence retraction across aliases (5)
+     × claude -p "task" 0ms
+     × codex exec "task" 0ms
+     × opencode run "task" 0ms
+     × cursor-agent -p "task" 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Never use devin.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Never use cli-devin.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Do not run Devin.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Skip devin, use codex.
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:325:49
+    323|     ['Use cli-devin. Then report back.', false],
+    324|   ])('%s', (userText, expected) => {
+    325|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    326|   });
+    327| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi next-sentence retraction across aliases > claude -p "task"
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi next-sentence retraction across aliases > codex exec "task"
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi next-sentence retraction across aliases > opencode run "task"
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi next-sentence retraction across aliases > cursor-agent -p "task"
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:360:38
+    358|     ['devin -p "task"', 'Use cli-devin. Never use codex.', false],
+    359|   ])('%s', (command, rawText, expected) => {
+    360|     expect(denied(command, rawText)).toBe(expected);
+       |                                      ^
+    361|   });
+    362| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 193 passed (201)
+   Start at  11:25:54
+   Duration  668ms (tests 89%, transform 7%, import 4%)
+
+b28-retraction-alias: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

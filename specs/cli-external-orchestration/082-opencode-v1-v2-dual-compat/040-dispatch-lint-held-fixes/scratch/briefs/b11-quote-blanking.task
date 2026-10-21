@@ -1,0 +1,31 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Fix two gaps in one function, `blankQuotedSpans` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, plus tests.
+
+Problem:
+1. ANSI-C quoting: in `$'it\'s --model p/m </dev/null'` a backslash escapes the next character, so `\'` does not end the span. The function ends the span at that `\'`, leaves ` --model p/m </dev/null` unblanked, and the stdin and model checks pass on prompt text.
+2. A quoted heredoc delimiter is kept only when it matches `[A-Za-z_][A-Za-z0-9_]*`. Bash accepts any quoted word, so `<<'END-MARK'` is blanked to `<<''` and the stdin check wrongly fails a dispatch whose stdin is that heredoc.
+
+Fix:
+1. When `$'` opens a span, read to the matching `'` and skip the character after every backslash; blank the span to `''` (drop the `$` too or keep it, either is fine as long as no text inside survives). An unterminated `$'` is left as it is today for an unterminated `'`.
+2. After `<<` or `<<-` and optional spaces, keep a quoted delimiter of any non-empty run of characters other than the quote and a newline: `'...'` or `"..."`.
+Update the comment above the function so it stays accurate and short.
+
+Tests: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, at the end of the test named 'stdin and model checks ignore flags and redirects inside a quoted prompt', add:
+  assert.equal(stdin(String.raw`opencode run $'it\'s --model p/m </dev/null'`), false);
+  assert.equal(model(String.raw`opencode run $'it\'s --model p/m </dev/null'`), false);
+  assert.equal(stdin(`opencode run -m p/m <<'END-MARK'\nprompt\nEND-MARK`), true);
+  assert.equal(stdin(`opencode run -m p/m <<"END MARK"\nprompt\nEND MARK`), true);
+Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

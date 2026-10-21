@@ -78,6 +78,26 @@ const EXECUTOR_BASENAMES = new Set([
   'jev-mcp',
 ]);
 const OPENCODE_EXECUTOR_RE = /^opencode\d*$/;
+// One binary-basename-to-skill table, shared by `directExecutor`'s classification and the
+// exported `executorSkill` lookup so the two can never name one executor differently. It also
+// carries the alias spellings (`cursor`, `claude-code`) another caller may hold for the same
+// binary; `isExecutorBasename` stays the only gate on what may actually run, so a key here
+// never widens what `directExecutor` accepts.
+const EXECUTOR_SKILLS = new Map([
+  ['claude', 'cli-claude-code'],
+  ['claude-code', 'cli-claude-code'],
+  ['codex', 'cli-codex'],
+  ['devin', 'cli-devin'],
+  ['cursor-agent', 'cli-cursor'],
+  ['cursor', 'cli-cursor'],
+  ['pi', 'cli-pi'],
+  ['hermes', 'cli-hermes'],
+  ['jev', 'cli-classifier'],
+  ['jev-mcp', 'cli-classifier'],
+]);
+// OpenCode's basenames vary by major version (`opencode`, `opencode2`), so a pattern rather
+// than a map key owns its skill name.
+const OPENCODE_SKILL = 'cli-opencode';
 const PRINT_FLAGS = new Set(['-p', '--print']);
 // Hermes's equivalents of a print flag, scoped to the hermes branch so `-q` on any other
 // command (grep, curl) never reads as dispatch evidence.
@@ -91,6 +111,29 @@ function basename(value) {
 
 function isExecutorBasename(value) {
   return OPENCODE_EXECUTOR_RE.test(value) || EXECUTOR_BASENAMES.has(value);
+}
+
+/**
+ * Resolve the skill one executor spelling belongs to, so two names for the same CLI compare
+ * equal. Accepts every shape a caller can hold: a binary basename (`cursor-agent`), a skill
+ * name (`cli-cursor`) and a packet folder name (`cli-jev`), in any case.
+ * @param {unknown} name - executor name as the caller writes it.
+ * @returns {string | null} the owning skill name, or null when the name is not an executor.
+ */
+export function executorSkill(name) {
+  if (typeof name !== 'string') return null;
+  const value = name.trim().toLowerCase();
+  if (value === '') return null;
+  // Shape-derived names resolve first: they are the registry's own spellings.
+  const shape = DISPATCH_SHAPES.find((entry) => (
+    entry.skill === value || basename(entry.packetPath) === value
+  ));
+  if (shape) return shape.skill;
+  // cursor-agent's skill is cli-cursor, so the prefixed spelling of that one binary does not
+  // follow from the map and needs its own entry.
+  if (value === 'cli-cursor-agent') return EXECUTOR_SKILLS.get('cursor-agent');
+  if (OPENCODE_EXECUTOR_RE.test(value)) return OPENCODE_SKILL;
+  return EXECUTOR_SKILLS.get(value) ?? null;
 }
 
 function isAssignmentToken(token) {
@@ -243,14 +286,14 @@ function directExecutor(tokens) {
   if (!isExecutorBasename(binary)) return null;
 
   if (OPENCODE_EXECUTOR_RE.test(binary) && tokens[start.index + 1]?.value === 'run') {
-    return 'cli-opencode';
+    return OPENCODE_SKILL;
   }
   // `exec` is Codex's headless subcommand and takes no print flag, so its presence alone
   // is the dispatch evidence; demanding a print flag here recorded no codex run at all.
-  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') return 'cli-codex';
+  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') return EXECUTOR_SKILLS.get(binary);
   if (binary === 'claude' || binary === 'devin' || binary === 'cursor-agent' || binary === 'pi') {
     return tokens.slice(start.index + 1).some((token) => PRINT_FLAGS.has(token.value))
-      ? `cli-${binary === 'cursor-agent' ? 'cursor' : binary === 'claude' ? 'claude-code' : binary}`
+      ? EXECUTOR_SKILLS.get(binary)
       : null;
   }
   if (binary === 'hermes') {
@@ -259,17 +302,17 @@ function directExecutor(tokens) {
     const hasQueryFlag = rest.some((token) => HERMES_QUERY_FLAGS.has(token.value));
     // `hermes chat` plus a query flag, or the top-level `-z` oneshot, dispatches; a bare
     // `hermes chat`, `hermes status` or `hermes skills list` does not.
-    if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return 'cli-hermes';
+    if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return EXECUTOR_SKILLS.get(binary);
     return null;
   }
   // Jev's judgment subcommands are its headless forms. `jev --version`, `jev auth status` and
   // `jev install-skills` are management commands, not dispatches; `jev-mcp` is classified so the
   // packet's host-only rule can refuse a shell start, which is the misuse rather than the use.
   if (binary === 'jev' || binary === 'jev-mcp') {
-    if (binary === 'jev-mcp') return 'cli-classifier';
+    if (binary === 'jev-mcp') return EXECUTOR_SKILLS.get(binary);
     const subcommand = tokens[start.index + 1]?.value;
     return subcommand === 'noul' || subcommand === 'choice' || subcommand === 'score' || subcommand === 'run'
-      ? 'cli-classifier'
+      ? EXECUTOR_SKILLS.get(binary)
       : null;
   }
   return null;
@@ -283,11 +326,30 @@ function hasDispatchText(value) {
   return (
     /\bopencode\d*\s+run\b/.test(value)
     || /\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
-    || /\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
+    || /\bcodex\s+exec\b/.test(value)
     || /\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b/.test(value)
     || /\bhermes\b[^\n;&|]*\s-z\b/.test(value)
     || /\bjev\s+(?:noul|choice|score|run)\b/.test(value)
   );
+}
+
+// The text one expansion token stands for: a command substitution split across words runs
+// from its opening token to the token that closes it (`$(codex`, `exec`, `task)`), while a
+// plain `$X` or `${X}` opens nothing and stands alone.
+function expansionText(tokens, index) {
+  const opening = tokens[index].value;
+  const dollarAt = opening.indexOf('$(');
+  const backtickAt = opening.indexOf('`');
+  if (dollarAt === -1 && backtickAt === -1) return opening;
+  const closesOnDollar = dollarAt !== -1 && (backtickAt === -1 || dollarAt < backtickAt);
+  const isClosed = (text) => (closesOnDollar
+    ? text.includes(')')
+    : text.split('`').length > 2);
+  let text = opening;
+  for (let cursor = index + 1; cursor < tokens.length && !isClosed(text); cursor += 1) {
+    text += ` ${tokens[cursor].value}`;
+  }
+  return text;
 }
 
 function hasDispatchEvidence(tokens, commandHasPrintFlag) {
@@ -306,7 +368,13 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // carries a print-shaped flag and a variable but runs mkdir, not a dispatch.
   const start = commandStart(tokens);
   const variableExecutor = hasPrintFlag && !start.opaque && Boolean(tokens[start.index]?.expanded);
-  const expandedDispatch = tokens.some((token) => token.expanded && hasDispatchText(token.value));
+  // An unquoted expansion is split on its spaces, so the token carries only its first word
+  // (`$(codex`); read that substitution through its closing token with it, or a bare
+  // `$(codex exec task)` stays invisible while its quoted form is caught. Stop at the close
+  // rather than taking the rest of the segment, because a plain `$X` opens no substitution
+  // and the words after it are ordinary arguments (`echo $X codex exec` dispatches nothing).
+  const expandedDispatch = tokens.some((token, index) => token.expanded
+    && hasDispatchText(expansionText(tokens, index)));
   return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
 }
 
@@ -352,12 +420,19 @@ export function inspectDispatch(command) {
 
 /**
  * Recognize a completed Bash command as a CLI dispatch, or fast-exit on anything else.
+ *
+ * Resolution runs through the same resolver the preflight decides with, so a dispatch
+ * behind an exec wrapper (`nohup`, `command`, `env`, `timeout`, `perl -e ... --`, a
+ * subshell) or a shell `-c` payload is recorded as well as one at the head of the command.
+ * Matching only the direct shape left such a dispatch linted before it ran and absent from
+ * the audit trail afterwards, because the preflight unwraps and this walk did not.
+ *
  * @param {unknown} command - raw command text from the tool call.
  * @returns {{ skill: string } | null} the matched dispatch shape's skill name, or null.
  */
 export function matchDispatchShape(command) {
-  const inspected = inspectDispatch(command);
-  return inspected.kind === 'direct' ? { skill: inspected.executor } : null;
+  const [first] = resolveDispatchPackets(command);
+  return first ? { skill: first.skill } : null;
 }
 
 // A shell wrapper hides a real dispatch inside a quoted argument, where the tokenizer
@@ -367,6 +442,14 @@ export function matchDispatchShape(command) {
 // and is unescaped the way the shell would before it is inspected.
 const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:-[a-z]*c|--command)\s+(?:'([^']*)'|"((?:\\[\s\S]|[^"\\])*)")/;
 
+// The payload a shell wrapper match stands for, already unescaped the way the shell would
+// before it hands the text to the child.
+function shellPayloadText(match) {
+  if (match[1] !== undefined) return match[1];
+  // Inside double quotes the shell drops a backslash only before $ ` " \ and a newline.
+  return match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1');
+}
+
 /**
  * Return the command a shell wrapper runs, or null when the text has no wrapper.
  * @param {string} command - text that may hold a `bash -c '<cmd>'` style wrapper.
@@ -374,10 +457,23 @@ const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:
  */
 function shellPayload(command) {
   const match = command.match(SHELL_WRAPPER);
-  if (!match) return null;
-  if (match[1] !== undefined) return match[1];
-  // Inside double quotes the shell drops a backslash only before $ ` " \ and a newline.
-  return match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1');
+  return match ? shellPayloadText(match) : null;
+}
+
+/**
+ * Return the wrapper's payload only when the wrapper heads the segment.
+ *
+ * `inspectDispatch` already unwraps shell payloads internally, so its direct verdict can
+ * describe a command one level below the text it was given. Callers that need the text the
+ * executor receives unwrap again; the head check keeps a wrapper spelled INSIDE a prompt
+ * (`opencode run "bash -c x"`) as prompt text instead of treating it as the dispatcher.
+ * @param {string} command - one shell segment.
+ * @returns {string | null} the head wrapper's payload, or null.
+ */
+function headShellPayload(command) {
+  const match = command.match(SHELL_WRAPPER);
+  if (!match || command.slice(0, match.index).trim() !== '') return null;
+  return shellPayloadText(match);
 }
 
 /**
@@ -388,9 +484,7 @@ function shellPayload(command) {
 function shellPayloads(command) {
   const payloads = [];
   for (const match of command.matchAll(new RegExp(SHELL_WRAPPER.source, 'g'))) {
-    payloads.push(match[1] !== undefined
-      ? match[1]
-      : match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1'));
+    payloads.push(shellPayloadText(match));
   }
   return payloads;
 }
@@ -440,11 +534,211 @@ const MAX_UNWRAP_DEPTH = 4;
  * @param {string} command - raw command text.
  * @returns {{skill: string, packetPath: string} | null}
  */
-// A heredoc body is data the call WRITES, never commands the call runs, so a dispatch
-// inside one must not be read as a dispatch. Stripping it first is what separates
-// "write a script that dispatches" from "dispatch".
+// A heredoc body is usually data the call WRITES, so a dispatch inside one must not be read
+// as a dispatch: stripping it first is what separates "write a script that dispatches" from
+// "dispatch". The body is commands the call RUNS when the same call also feeds it to a shell
+// (`bash <<EOF`, `cat <<EOF | sh`) or writes it to a script it then runs
+// (`cat > run.sh <<EOF` ... `bash run.sh`). Those two shapes resolved to nothing, so a
+// dispatch inside them skipped every hard rule. Stripping keeps the written case;
+// executedHeredocBodies recovers the run one.
+//
+// A herestring (`<<<"x"`) is not a heredoc, so `<<` must not be adjacent to another `<`.
+// A delimiter is any word bash accepts, not just an identifier: `END-MARK`, `'END MARK'` and
+// `"END MARK"` all close their body, and missing that closing line read the written text as
+// commands, which audited an `exec` line inside a notes file as a dispatch that never ran.
+const HEREDOC_INTRODUCER_PATTERN = String.raw`(?<!<)<<(?!<)-?\s*(?:'([^'\n]+)'|"([^"\n]+)"|([^\s'"<>;&|()]+))`;
+const HEREDOC_INTRODUCER = new RegExp(HEREDOC_INTRODUCER_PATTERN, 'g');
+
+// The delimiter is whichever alternative matched: single-quoted, double-quoted or bare.
+function heredocDelimiter(match) {
+  return match[1] ?? match[2] ?? match[3];
+}
+
+// The closing-line match is built from the delimiter, so a delimiter carrying regex
+// metacharacters (`END.MARK`) must be escaped or it would close on a line bash would not.
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Whether the character at `index` sits inside a single- or double-quoted span opened
+// between `from` and `index`. Inside double quotes a backslash escapes the next character;
+// inside single quotes nothing does; outside quotes a backslash escapes too, so `\"` stays
+// literal and opens no span.
+function insideQuotedSpan(command, from, index) {
+  let quote = null;
+  for (let cursor = from; cursor < index; cursor += 1) {
+    const character = command[cursor];
+    if (quote === "'") {
+      if (character === "'") quote = null;
+      continue;
+    }
+    if (character === '\\') {
+      cursor += 1;
+    } else if (quote === '"') {
+      if (character === '"') quote = null;
+    } else if (character === "'" || character === '"') {
+      quote = character;
+    }
+  }
+  return quote !== null;
+}
+
+// The introducers on one line share the bodies that follow it: each body ends at its own
+// closing line, so they are read together and the scan resumes after the last one.
+//
+// A `<<` inside a quoted span is text the command quotes, not an operator the shell reads,
+// so it starts no group. Reading it as one stripped the real command lines that followed
+// until the quoted word's closing line, and a dispatch among them resolved to no packet.
+// A skipped introducer advances only the search cursor: the quote scan keeps its origin, so
+// an open span before the skip still quotes the candidates after it.
+function heredocGroups(command) {
+  const groups = [];
+  let searchFrom = 0;
+  let scanFrom = 0;
+  for (;;) {
+    HEREDOC_INTRODUCER.lastIndex = searchFrom;
+    const introducer = HEREDOC_INTRODUCER.exec(command);
+    if (!introducer) return groups;
+    if (insideQuotedSpan(command, scanFrom, introducer.index)) {
+      searchFrom = introducer.index + introducer[0].length;
+      continue;
+    }
+    const introducerEnd = introducer.index + introducer[0].length;
+    const lineBreak = command.indexOf('\n', introducerEnd);
+    if (lineBreak === -1) return groups;
+    const introducers = [introducer];
+    HEREDOC_INTRODUCER.lastIndex = introducerEnd;
+    let next = HEREDOC_INTRODUCER.exec(command);
+    while (next && next.index < lineBreak) {
+      if (!insideQuotedSpan(command, scanFrom, next.index)) introducers.push(next);
+      next = HEREDOC_INTRODUCER.exec(command);
+    }
+    let bodySearchFrom = lineBreak + 1;
+    const bodies = [];
+    let missing = null;
+    for (const candidate of introducers) {
+      const closing = new RegExp(`^[ \\t]*${escapeRegExp(heredocDelimiter(candidate))}[ \\t]*$`, 'm')
+        .exec(command.slice(bodySearchFrom));
+      if (!closing) {
+        // No closing line: drop this introducer and keep scanning after it.
+        missing = candidate;
+        break;
+      }
+      const bodyEnd = bodySearchFrom + closing.index;
+      const regionEnd = bodyEnd + closing[0].length;
+      bodies.push({ start: bodySearchFrom, end: bodyEnd, regionEnd });
+      bodySearchFrom = regionEnd + 1;
+    }
+    if (missing) {
+      searchFrom = missing.index + missing[0].length;
+      continue;
+    }
+    groups.push({
+      lineStart: command.lastIndexOf('\n', introducer.index) + 1,
+      lineBreak,
+      introducers,
+      bodies,
+    });
+    searchFrom = bodies[bodies.length - 1].regionEnd + 1;
+    scanFrom = searchFrom;
+  }
+}
+
 function stripHeredocBodies(command) {
-  return command.replace(/<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1[\s\S]*?^\s*\2\s*$/gm, '<<HEREDOC');
+  let stripped = '';
+  let cursor = 0;
+  for (const group of heredocGroups(command)) {
+    stripped += command.slice(cursor, group.lineStart);
+    let lineCursor = group.lineStart;
+    for (const introducer of group.introducers) {
+      stripped += command.slice(lineCursor, introducer.index) + '<<HEREDOC';
+      lineCursor = introducer.index + introducer[0].length;
+    }
+    stripped += command.slice(lineCursor, group.lineBreak) + '\n';
+    cursor = group.bodies[group.bodies.length - 1].regionEnd;
+  }
+  return stripped + command.slice(cursor);
+}
+
+const HEREDOC_SHELLS = new Set(['bash', 'sh', 'zsh', 'dash']);
+// The introducing line writes the body to a file with either `cat > PATH` (also `>>`, and the
+// `cat <<EOF > PATH` order once the introducer is removed) or `tee PATH` (also `tee -a`).
+const HEREDOC_WRITE_PATTERNS = [
+  /(?:^|[\s;&|()])(?:[^\s;&|()]*\/)?cat\s+(?:-[A-Za-z-]+\s+)*(?:>>?)\s*(?:"([^"]+)"|'([^']+)'|([^\s;&|()<>]+))/,
+  /(?:^|[\s;&|()])(?:[^\s;&|()]*\/)?tee\s+(?:-[A-Za-z-]+\s+)*(?:"([^"]+)"|'([^']+)'|([^\s;&|()<>]+))/,
+];
+
+// `./run.sh` and `run.sh` are the same file, and a quoted path is the same path.
+function comparablePath(value) {
+  return value.replace(/^(['"])([\s\S]*)\1$/, '$2').replace(/^\.\//, '');
+}
+
+function commandWords(text) {
+  return tokenizeShell(text).segments.flat();
+}
+
+// `bash <<EOF` and `sh -s <<EOF` read the body from stdin, so every argument before the `<<`
+// is a flag: `bash script.sh <<EOF` feeds the body to the SCRIPT, not to the shell.
+// `cat <<EOF | sh` reaches a shell through a pipe instead.
+function heredocFeedsShell(prefix, restOfLine) {
+  const words = commandWords(prefix);
+  let index = 0;
+  while (index < words.length && isAssignmentToken(words[index])) index += 1;
+  const commandWord = words[index];
+  if (commandWord && HEREDOC_SHELLS.has(basename(commandWord.value))
+    && words.slice(index + 1).every((word) => word.value.startsWith('-'))) {
+    return true;
+  }
+  return /\|\s*(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\b/.test(restOfLine);
+}
+
+// The file the introducing line writes the body to, or null when it writes no file.
+function heredocWriteTarget(introducingLine) {
+  const withoutIntroducers = introducingLine
+    .replace(new RegExp(HEREDOC_INTRODUCER_PATTERN, 'g'), '');
+  for (const pattern of HEREDOC_WRITE_PATTERNS) {
+    const match = withoutIntroducers.match(pattern);
+    const target = match && (match[1] ?? match[2] ?? match[3]);
+    if (target) return comparablePath(target);
+  }
+  return null;
+}
+
+// `bash run.sh`, `source run.sh`, `. run.sh`, `./run.sh` and a bare `run.sh` all run the file.
+function heredocRunsPath(tail, target) {
+  return shellSegments(tail).some((segment) => {
+    const words = commandWords(segment);
+    if (words.length === 0) return false;
+    if (words.length >= 2 && HEREDOC_SHELLS.has(basename(words[0].value))) {
+      if (comparablePath(words[1].value) === target) return true;
+    }
+    if (words.length >= 2 && (words[0].value === 'source' || words[0].value === '.')) {
+      if (comparablePath(words[1].value) === target) return true;
+    }
+    return comparablePath(words[0].value) === target;
+  });
+}
+
+// Every heredoc body the same call runs, in command order. A body that is only written stays
+// out: no shell is fed it, and no later part of the call runs the file it was written to.
+// Bodies queued on one line are read in order; only the last is the command's stdin, so only
+// its body can be run or written. Earlier bodies on that line are data.
+function executedHeredocBodies(command) {
+  const bodies = [];
+  for (const group of heredocGroups(command)) {
+    const last = group.introducers[group.introducers.length - 1];
+    const body = group.bodies[group.bodies.length - 1];
+    const introducingLine = command.slice(group.lineStart, group.lineBreak);
+    const writeTarget = heredocWriteTarget(introducingLine);
+    const feedsShell = heredocFeedsShell(
+      command.slice(group.lineStart, group.introducers[0].index),
+      command.slice(last.index + last[0].length, group.lineBreak),
+    );
+    const runsWritten = writeTarget !== null
+      && heredocRunsPath(command.slice(body.regionEnd), writeTarget);
+    if (feedsShell || runsWritten) bodies.push(command.slice(body.start, body.end));
+  }
+  return bodies;
 }
 
 // Split on shell separators that sit outside quotes. A wrapper unwrap is anchored to the
@@ -487,11 +781,19 @@ const REDIRECTION = /\s(?:\d?>>?|\d?<|&>>?|\d?>&\d?)\s*(?:"[^"]*"|'[^']*'|[^\s;&
 // Redirection stripping is a LAST resort, never a first step: the pattern is not
 // quote-aware, so running it up front ate the closing quote of a `bash -c "... </dev/null"`
 // payload and broke the unwrap it was meant to help.
+//
+// The returned `text` is the command as the executor finally receives it, after every
+// unwrap, so a caller reading flags or redirects tests the real arguments rather than the
+// quoted wrapper payload that merely contains them.
 function resolveSegment(segment, redirectionsStripped = false) {
   let current = segment;
   for (let depth = 0; depth <= MAX_UNWRAP_DEPTH; depth += 1) {
     const inspected = inspectDispatch(current);
-    if (inspected.kind === 'direct') return inspected.executor;
+    if (inspected.kind === 'direct') {
+      const head = headShellPayload(current);
+      if (head !== null) { current = head; continue; }
+      return { skill: inspected.executor, text: current };
+    }
     // Ambiguous means the tokenizer saw dispatch evidence inside ONE segment but could not
     // pin one executor. Match the shape list against that segment only: matching the whole
     // command is what made a call that merely quotes a dispatch read as one.
@@ -506,7 +808,8 @@ function resolveSegment(segment, redirectionsStripped = false) {
       const unquoted = current
         .replace(/'(?:\\.|[^'\\])*'/g, "''")
         .replace(/"(?:\\.|[^"\\])*"/g, '""');
-      return DISPATCH_SHAPES.find((d) => d.test.test(unquoted))?.skill || null;
+      const skill = DISPATCH_SHAPES.find((d) => d.test.test(unquoted))?.skill || null;
+      return skill ? { skill, text: current } : null;
     }
     const shell = shellPayload(current);
     if (shell !== null) { current = shell; continue; }
@@ -523,15 +826,84 @@ function resolveSegment(segment, redirectionsStripped = false) {
   return null;
 }
 
-export function resolveDispatchPacket(command) {
-  const entryFor = (skill) => DISPATCH_SHAPES.find((d) => d.skill === skill) || null;
+/**
+ * Resolve every dispatch in a command chain to the packet whose rules govern it.
+ *
+ * A shell chain can hold more than one dispatch -- `opencode run ... && pi -p ...` is two
+ * calls governed by two different packets. Returning only the first one let the preflight
+ * evaluate cli-opencode's rules for the whole chain, so a later executor's own hard rules
+ * (a missing `--offline`, say) were never checked at all. Every dispatch has to be checked
+ * against its own packet, so this returns each one in command order, deduplicated to the
+ * first position where its skill appears.
+ *
+ * @param {string} command - raw command text.
+ * @returns {Array<{skill: string, packetPath: string}>} one entry per distinct dispatch, in command order.
+ */
+export function resolveDispatchPackets(command) {
+  return resolvePacketList(command, true, true).map(({ entry }) => entry);
+}
+
+/**
+ * Resolve every dispatch together with the argument text it was resolved from.
+ *
+ * `resolveDispatchPackets` answers WHICH packet governs; a rule check also needs the text
+ * that packet's executor actually receives. A wrapper's quoted payload is the dispatcher's
+ * text, not the executor's, so a rule testing the raw command reads a prompt's words as
+ * flags. Each `text` here has already been unwrapped (shell `-c`, `nohup`, `env`, a
+ * heredoc body) for exactly that reason.
+ *
+ * It returns every dispatch, repeats of one executor included, because a chain can run the
+ * same CLI twice and each run passes its own flags and redirects.
+ *
+ * @param {string} command - raw command text.
+ * @returns {Array<{entry: object, text: string}>} one item per dispatch, in command order.
+ */
+export function resolveDispatchCommands(command) {
+  return resolvePacketList(command, true, false);
+}
+
+// An executed heredoc body is resolved one level down: a heredoc inside that body is data the
+// inner call writes unless that inner call runs it too, and reading it there would need the
+// same evidence this level already refuses to assume.
+//
+// `distinct` keeps one entry per skill when the caller only needs the governing packets, and
+// keeps every dispatch when the caller needs each run's own arguments.
+function resolvePacketList(command, readExecutedHeredocs, distinct) {
   const raw = typeof command === 'string' ? command : '';
-  if (!raw) return null;
+  if (!raw) return [];
+  const dispatches = [];
+  const seen = new Set();
+  const add = (resolved) => {
+    if (!resolved || (distinct && seen.has(resolved.skill))) return;
+    const entry = DISPATCH_SHAPES.find((d) => d.skill === resolved.skill);
+    if (!entry) return;
+    seen.add(resolved.skill);
+    dispatches.push({ entry, text: resolved.text });
+  };
   for (const segment of shellSegments(stripHeredocBodies(raw))) {
-    const skill = resolveSegment(segment);
-    if (skill) return entryFor(skill);
+    add(resolveSegment(segment));
   }
-  return null;
+  if (readExecutedHeredocs) {
+    for (const body of executedHeredocBodies(raw)) {
+      for (const resolved of resolvePacketList(body, false, distinct)) {
+        add({ skill: resolved.entry.skill, text: resolved.text });
+      }
+    }
+  }
+  return dispatches;
+}
+
+/**
+ * Resolve a command to the first packet whose rules govern it, or null when nothing does.
+ *
+ * The first result is what the single-packet callers need; callers that evaluate rules
+ * for a whole chain use `resolveDispatchPackets` instead.
+ *
+ * @param {string} command - raw command text.
+ * @returns {{skill: string, packetPath: string} | null}
+ */
+export function resolveDispatchPacket(command) {
+  return resolveDispatchPackets(command)[0] ?? null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

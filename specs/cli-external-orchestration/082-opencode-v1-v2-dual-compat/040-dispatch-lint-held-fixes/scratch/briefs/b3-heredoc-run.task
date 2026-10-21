@@ -1,0 +1,35 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its tests.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, `resolveDispatchPackets` strips every heredoc body (`stripHeredocBodies`) before it resolves segments, because a heredoc body is usually data the call writes. That is right for a heredoc that is only written, but two shapes run the body as commands in the same call, and both currently resolve to nothing, so the dispatch inside skips every hard rule:
+- a heredoc fed to a shell: `bash <<'EOF'` ... `EOF`, `sh -s <<EOF`, or `cat <<'EOF' | sh`;
+- a heredoc written to a file that the same command later runs: `cat > run.sh <<'EOF'` ... `EOF` then `bash run.sh` (also `sh`, `zsh`, `dash`, `source run.sh`, `. run.sh`, or `./run.sh`; `tee run.sh <<EOF` and `cat <<EOF > run.sh` write a file the same way).
+
+Fix, inside `resolveDispatchPackets` only, plus small private helpers placed next to `stripHeredocBodies`:
+1. Find each heredoc in the raw command: its introducing line (the text from the start of that line up to the `<<`, plus the rest of that line after the delimiter word), its delimiter, and its body. Handle `<<EOF`, `<<-EOF`, `<<'EOF'` and `<<"EOF"`, the same grammar `stripHeredocBodies` already matches.
+2. A heredoc body is executed when either:
+   a. the introducing line runs a shell interpreter on stdin: its command word (after any `VAR=value` prefixes) has basename `bash`, `sh`, `zsh` or `dash` and every argument before the `<<` is a flag (`-s`, `-x`, `-e` and the like) or `--`; or the rest of the introducing line pipes into one of those shells (`| bash`, `| sh -s`);
+   b. the introducing line writes the body to a file (`cat > PATH`, `cat >> PATH`, `cat <<EOF > PATH`, `tee PATH`, `tee -a PATH`), and a later part of the same command, after the heredoc's closing delimiter line, runs that same path as `bash PATH`, `sh PATH`, `zsh PATH`, `dash PATH`, `source PATH`, `. PATH`, `PATH` or `./PATH`. Compare paths after removing surrounding quotes and a leading `./`.
+3. For each executed body, resolve it with `resolveDispatchPackets(body)` (one level of recursion is enough; do not recurse into a heredoc found inside a body) and add its entries after the segment results, keeping the no-duplicates rule.
+4. A heredoc that is only written, or fed to a non-shell program such as `python3 - <<'PY'`, `node <<EOF` or `cat <<EOF`, stays unresolved, exactly as today.
+5. Update the comment above `stripHeredocBodies` so it states both halves: a written heredoc is data, and a heredoc a shell runs in the same call is a command.
+
+Tests, in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, in the test named 'a dispatch is resolved from the command, not from text that merely contains one':
+- Move the existing row `['heredoc then running the script', ...]` from `doNotGovern` to `govern`, and change the comment above it so it no longer says running the script is not dispatching.
+- Add to `govern`: `['heredoc fed to bash', \`bash <<'EOF'\n${dispatch} </dev/null\nEOF\`]`, `['heredoc piped to sh', \`cat <<'EOF' | sh\n${dispatch} </dev/null\nEOF\`]`, `['heredoc script made executable and run', \`cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nchmod +x run.sh && ./run.sh\`]`, `['heredoc teed then sourced', \`tee run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nsource run.sh\`]`.
+- Add to `doNotGovern`: `['heredoc script written, another script run', \`cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nbash other.sh\`]`, `['heredoc fed to node', \`node <<'EOF'\nconsole.log("${dispatch}")\nEOF\`]`.
+Keep every other row as it is.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

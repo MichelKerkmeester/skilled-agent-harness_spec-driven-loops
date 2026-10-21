@@ -1,0 +1,26 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to the heredoc scan in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, plus tests.
+
+Problem: `heredocGroups` finds introducers with `HEREDOC_INTRODUCER` on the raw text, so a `<<'WORD'` inside a quoted prompt is read as a heredoc. In `echo "<<'ENDMARK'"` + newline + `codex exec task </dev/null` + newline + `ENDMARK`, the real `codex exec` line is taken as a heredoc body and stripped, so it resolves to no packet and skips every hard rule. The same holds for a hyphenated word such as `END-MARK`.
+
+Fix: in `heredocGroups`, skip an introducer that sits inside a single- or double-quoted span. Decide that by scanning the text from where the current search started (the start of the command, or just after the previous group's last body) up to the introducer, tracking whether a `'` or `"` span is open; inside double quotes a backslash escapes the next character, inside single quotes nothing does. A skipped introducer is not part of any group; keep scanning after it. Introducers outside quotes behave exactly as today. Update the comments so they stay accurate.
+
+Tests, in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, next to the test 'returns the unwrapped text each dispatch was resolved from', one `it('reads a heredoc operator inside a quoted prompt as text', ...)`:
+- `resolveDispatchPackets` of `echo "<<'ENDMARK'"\nc\nENDMARK` where c is `codex exec task </dev/null` returns `['cli-codex']` (map to `.skill`);
+- the same with `END-MARK` in both places returns `['cli-codex']`;
+- `resolveDispatchPackets` of `cat > notes.md <<'ENDMARK'\ncodex exec task </dev/null\nENDMARK` still returns `[]`.
+Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/lib/
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

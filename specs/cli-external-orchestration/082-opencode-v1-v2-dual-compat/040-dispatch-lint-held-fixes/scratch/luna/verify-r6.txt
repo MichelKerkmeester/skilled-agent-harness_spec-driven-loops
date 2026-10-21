@@ -1,0 +1,6 @@
+VERDICTS
+round-5 P1 | CLOSED | `do not, under any circumstances, use cli-devin` remains denied by the negation scan and deny-matrix case (`.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:169`, `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:133`).
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:173 | P1 | `do not use opencode, use codex, or use cli-devin` | The first comma clears `do not`, authorizing the final member of the negated list. | Preserve negation across coordinated `and`/`or` lists; release it only at a confirmed clause boundary.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:43 | P1 | `cannot use cli-devin` | `cannot` and `can't` are not recognized, so the prohibited mention is treated as authorization. | Recognize modal negations such as `cannot` and `can't`.
+VERDICT: FAIL

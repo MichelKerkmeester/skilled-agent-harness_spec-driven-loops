@@ -16,12 +16,15 @@ import {
   KILL_SWITCH_ENV,
   appendAuditLog,
   buildAuditLine,
+  executorSkill,
   extractDispatchMeta,
   inspectDispatch,
   isAuditDisabled,
   matchDispatchShape,
   recordDispatch,
+  resolveDispatchCommands,
   resolveDispatchPacket,
+  resolveDispatchPackets,
 } from './dispatch-audit.mjs';
 import { evaluate } from './dispatch-rule-checks.mjs';
 import {
@@ -352,6 +355,13 @@ describe('matchDispatchShape', () => {
     expect(matchDispatchShape('ls -la && echo done')).toBeNull();
   });
 
+  it('resolves an exec-wrapped dispatch and still refuses text the call only writes', () => {
+    expect(matchDispatchShape('nohup opencode run -m p/m "hi" </dev/null')).toEqual({ skill: 'cli-opencode' });
+    expect(matchDispatchShape("perl -e 'alarm 300; exec @ARGV' -- codex exec task </dev/null")).toEqual({ skill: 'cli-codex' });
+    expect(matchDispatchShape("cat > run.sh <<'EOF'\nopencode run -m p/m x\nEOF")).toBeNull();
+    expect(matchDispatchShape('command -v opencode')).toBeNull();
+  });
+
   it('fast-exits non-string or empty input without throwing', () => {
     expect(matchDispatchShape(undefined)).toBeNull();
     expect(matchDispatchShape(null)).toBeNull();
@@ -392,6 +402,10 @@ describe('inspectDispatch', () => {
     ['alias-shaped command', 'alias d=devin; d -p task', { kind: 'ambiguous' }],
     ['command substitution', '$(devin -p task)', { kind: 'ambiguous' }],
     ['quoted command substitution', 'echo "$(devin -p task)"', { kind: 'ambiguous' }],
+    ['quoted codex substitution', 'echo "$(codex exec task)"', { kind: 'ambiguous' }],
+    ['codex substitution', '$(codex exec task)', { kind: 'ambiguous' }],
+    ['backtick codex substitution', 'echo "`codex exec task`"', { kind: 'ambiguous' }],
+    ['variable then executor words', 'echo $X codex exec', { kind: 'none' }],
     ['unknown wrapper', 'unknown-wrapper devin -p task', { kind: 'ambiguous' }],
     ['variable prompt', 'devin -p "$TASK"', { kind: 'ambiguous' }],
     ['print flag beside a variable argument', 'mkdir -p "$DIR"', { kind: 'none' }],
@@ -450,6 +464,50 @@ describe('resolveDispatchPacket', () => {
   it('does not unwrap a name lookup', () => {
     expect(resolveDispatchPacket('command -v opencode')).toBeNull();
   });
+
+  it('resolves every dispatch in a chain, once each, in command order', () => {
+    expect(
+      resolveDispatchPackets('opencode run -m p/m "a" </dev/null && pi --offline -p "b" </dev/null').map((e) => e.skill),
+    ).toEqual(['cli-opencode', 'cli-pi']);
+    expect(
+      resolveDispatchPackets('opencode run -m p/m "a" ; opencode run -m p/m "b"').map((e) => e.skill),
+    ).toEqual(['cli-opencode']);
+    expect(resolveDispatchPackets('git status')).toEqual([]);
+    expect(resolveDispatchPackets(undefined)).toEqual([]);
+    expect(resolveDispatchPacket('opencode run -m p/m "a" && pi -p "b"')?.skill).toBe('cli-opencode');
+  });
+
+  it('returns the unwrapped text each dispatch was resolved from', () => {
+    const commands = resolveDispatchCommands(String.raw`bash -c "opencode run -m p/m 'x' </dev/null"`);
+    expect(commands).toHaveLength(1);
+    expect(commands[0].entry.skill).toBe('cli-opencode');
+    expect(commands[0].text).toBe("opencode run -m p/m 'x' </dev/null");
+  });
+
+  it('reads a heredoc operator inside a quoted prompt as text', () => {
+    const quoted = `echo "<<'ENDMARK'"
+codex exec task </dev/null
+ENDMARK`;
+    expect(resolveDispatchPackets(quoted).map(({ skill }) => skill)).toEqual(['cli-codex']);
+
+    const hyphenated = `echo "<<'END-MARK'"
+codex exec task </dev/null
+END-MARK`;
+    expect(resolveDispatchPackets(hyphenated).map(({ skill }) => skill)).toEqual(['cli-codex']);
+
+    const written = `cat > notes.md <<'ENDMARK'
+codex exec task </dev/null
+ENDMARK`;
+    expect(resolveDispatchPackets(written)).toEqual([]);
+  });
+
+  it('keeps each repeated executor as its own dispatch command', () => {
+    const command = 'opencode run -m p/m "a" </dev/null && opencode run "b"';
+    const commands = resolveDispatchCommands(command);
+    expect(commands).toHaveLength(2);
+    expect(commands.every(({ entry }) => entry.skill === 'cli-opencode')).toBe(true);
+    expect(resolveDispatchPackets(command)).toHaveLength(1);
+  });
 });
 
 // ── DISPATCH_SHAPES (single source of truth shared with the lint twin) ─────────────────────────
@@ -501,6 +559,41 @@ describe('DISPATCH_SHAPES', () => {
     expect(skillFor('jev --version')).toBeNull();
     expect(skillFor('jev auth status')).toBeNull();
     expect(skillFor('jev install-skills --global')).toBeNull();
+  });
+});
+
+// ── executorSkill ────────────────────────────────────────────────────────────────────────────
+
+describe('executorSkill', () => {
+  it('maps every spelling of one executor to its skill and returns null otherwise', () => {
+    // Binary names, skill names and packet folder names all reach this lookup, so every pairing
+    // has to land on one skill or two callers read a single CLI as two different executors.
+    const cases = [
+      ['claude', 'cli-claude-code'],
+      ['CLI-CLAUDE-CODE', 'cli-claude-code'],
+      ['claude-code', 'cli-claude-code'],
+      ['codex', 'cli-codex'],
+      ['cli-codex', 'cli-codex'],
+      ['opencode', 'cli-opencode'],
+      ['opencode2', 'cli-opencode'],
+      ['cli-opencode', 'cli-opencode'],
+      ['devin', 'cli-devin'],
+      ['pi', 'cli-pi'],
+      ['cursor-agent', 'cli-cursor'],
+      ['cursor', 'cli-cursor'],
+      ['cli-cursor', 'cli-cursor'],
+      ['hermes', 'cli-hermes'],
+      ['jev', 'cli-classifier'],
+      ['jev-mcp', 'cli-classifier'],
+      ['cli-jev', 'cli-classifier'],
+      ['cli-classifier', 'cli-classifier'],
+    ];
+    for (const [name, skill] of cases) expect(executorSkill(name), name).toBe(skill);
+
+    // A non-executor name is never coerced onto a skill, because callers read null as
+    // "not this executor" rather than falling back to some default.
+    expect(executorSkill('git')).toBeNull();
+    expect(executorSkill('')).toBeNull();
   });
 });
 

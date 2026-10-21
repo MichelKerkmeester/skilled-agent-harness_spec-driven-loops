@@ -1,0 +1,45 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (208 tests | 6 failed | 87 skipped) 12ms
+   ❯ Pi refusal phrasings (121)
+     × $(echo ")" cli-devin) 3ms
+     × $(echo '\)' cli-devin) 0ms
+     × $(echo \) cli-devin) 0ms
+     × $(echo "a)b" `true` cli-devin) 0ms
+     × $(echo "$(true)" ")" cli-devin) 0ms
+     × $(echo "`" "`" ")" cli-devin) 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo ")" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo '\)' cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo \) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "a)b" `true` cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "$(true)" ")" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`" "`" ")" cli-devin)
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:335:49
+    333|     ['Use cli-devin. Then report back.', false],
+    334|   ])('%s', (userText, expected) => {
+    335|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    336|   });
+    337| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 115 passed | 87 skipped (208)
+   Start at  11:29:09
+   Duration  162ms (transform 54%, import 29%, tests 14%, worker 2%)
+
+b29-expansion-quotes: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

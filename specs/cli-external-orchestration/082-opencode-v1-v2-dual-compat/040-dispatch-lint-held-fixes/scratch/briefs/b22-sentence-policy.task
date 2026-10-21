@@ -1,0 +1,29 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change: replace the layered negation reading in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` with one sentence-wide refusal policy, then align the tests and one README row.
+
+The operator's policy: a sentence that names the executor authorizes only when it contains no negation or refusal word anywhere, before or after the mention. The only exceptions are the two tested reset forms `not <other executor>, use <executor>` and `not <other executor> but <executor>`. A false deny is acceptable (fail closed); the operator writes the request as its own sentence.
+
+Code changes (simplify; do not layer more cases):
+1. Delete `negationReachesMention`, `exclusionPhraseBeforeMention`, `refusalAfterMention`, and the constants only they use (`NEGATION_CLAUSE_EXECUTOR_PATTERN`, `NEGATION_CLAUSE_IMPERATIVE_PATTERN`, `NEGATION_CLAUSE_LIST_JOINER_PATTERN`, `EXCLUSION_PHRASE_PATTERN`, `POST_MENTION_REFUSAL_PATTERN`, `DEEP_LOOP_PREFIX_PATTERN`). Keep `mentionTokenEnd` and `DEEP_LOOP_PHRASE_END_PATTERN` if the reset check needs them; delete them otherwise.
+2. Replace `NEGATION_PATTERN` with one `REFUSAL_PATTERN`, whole words or phrases, case-insensitive, holding the union of the current sets: don't, dont, do not, never, avoid, without, not, cannot, can't, can not, mustn't, must not, shouldn't, should not, won't, will not, stop, skip, refuse, ban, drop, forget, exclude, excluding, nobody, no one, none, no, nor, neither, instead of, rather than, except, other than, apart from, aside from, besides, forbidden, banned, disallowed, prohibited, off-limits, off limits, plus any word ending in `n't` (isn't, didn't, wouldn't, ...).
+3. `isUsableMention(userText, mentionIndex)`: normalize `’` and `‘` to `'` (same length); find the sentence: from just after the last newline, `;`, `.`, `!` or `?` before the mention to just before the next one after it (or the text end). Keep the quote check (with the in-word apostrophe handling) and the expansion check. If the sentence does not match `REFUSAL_PATTERN`, the mention is usable. If it does, it is usable only when the sentence, trimmed, is exactly a reset form: `not <word>, use <mention token>` or `not <word> but <mention token>` (case-insensitive), where <word> is a single executor name (`cli-...`, opencode, claude, codex, devin, cursor, cursor-agent, pi, hermes, jev) that is not the mentioned executor, and nothing but the mention token (for a `/deep:` mention, the phrase through its `--executor cli-X` value) follows. Otherwise it is not usable. Rewrite the JSDoc to state this policy in three or four lines, including that a fail-closed false deny is accepted.
+
+Tests in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`:
+- Rows whose expected value the policy flips from allowed to denied: change `false` to `true` and append ` (policy deny)` to the row name. In the `Pi dispatch deny matrix`: 'negated executor then a new imperative', 'never one executor then run another', "don't one executor then try another", 'never one executor then launch another', 'avoid one executor then prefer another'. In 'Pi refusal phrasings' (rows are [raw text, denied]; mark these by adding a short comment line above them saying they are policy denies): "don't use codex, use cli-devin and opencode", 'not opencode, use cli-devin, not codex', 'use cli-devin, not opencode', 'use cli-devin instead of opencode', 'use cli-devin rather than codex', 'do not use opencode, use cli-devin'.
+- Add to 'Pi refusal phrasings' as denied (true): 'You are forbidden from using cli-devin', 'cli-devin, do not use it', and, under a comment saying it is a fail-closed deny accepted by policy, 'Use cli-devin, it is not forbidden'.
+- Keep every other row and its expected value. If any other row's expected value no longer holds, report it instead of changing it.
+
+README: in `.skilled/hooks/dispatch/README.md`, in the `pi/dispatch-preflight-lint.ts` row, add one sentence: a sentence that names the executor authorizes only when it carries no negation or refusal word (the two `not <other>, use <executor>` / `not <other> but <executor>` forms excepted), so an odd double negative such as `use cli-devin, it is not forbidden` is a fail-closed deny accepted by policy, and the operator writes the request as its own sentence.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/hooks/dispatch/README.md
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts, .skilled/hooks/dispatch/README.md
+
+Return report: what you changed (file and line), every row whose expected value you changed, then each verification command with its result.

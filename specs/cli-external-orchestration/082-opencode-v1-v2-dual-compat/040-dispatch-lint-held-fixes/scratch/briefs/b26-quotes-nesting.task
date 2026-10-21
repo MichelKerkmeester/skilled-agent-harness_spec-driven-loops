@@ -1,0 +1,38 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to how `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` reads quotes and command substitutions in the user's text, plus tests.
+
+Problems: `use “cli-devin”` authorizes, because curly double quotes are not read as quotes. `$(echo $(true) cli-devin)` authorizes, because `isInsideExpansion` compares the last `$(` with the last `)`, so a closed inner substitution hides the still-open outer one.
+
+Fix:
+1. Quotes: where `isUsableMention` normalizes curly apostrophes, also normalize the curly and low double quotes `“`, `”`, `„`, `‟` to `"` and the curly and low single quotes `‘`, `’`, `‚`, `‛` to `'` (one character each, so indexes hold), before the in-word apostrophe handling and the quote check. So a curly-quoted mention is inside a quote, and a mixed pair (`“cli-devin"`) is too.
+2. Substitutions: rewrite `isInsideExpansion` to scan the text before the index once, keeping a depth: `$(` opens one level, a `(` while depth > 0 opens one more, a `)` while depth > 0 closes one; a backtick toggles a separate open flag. The index is inside an expansion when depth > 0 or a backtick span is open. Update its comment.
+
+Tests: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add to 'Pi refusal phrasings' (rows are [raw text, denied]):
+denied (true):
+  'use “cli-devin”'
+  'use ‘cli-devin’'
+  'say “run /deep:review --executor cli-devin”'
+  'use “cli-devin"'
+  'use "cli-devin”'
+  'use „cli-devin“'
+  '$(echo $(true) cli-devin)'
+  '$(echo $(echo $(true)) cli-devin)'
+  '$(a $(b) $(c) cli-devin)'
+  '$(echo (1) cli-devin)'
+allowed (false):
+  '$(true) and then use cli-devin'
+  'the “fast” path: use cli-devin'
+Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: what you changed (file and line), then the verification command with its pass and fail counts.

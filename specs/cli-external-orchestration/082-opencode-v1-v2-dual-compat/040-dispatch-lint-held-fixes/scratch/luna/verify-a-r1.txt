@@ -1,0 +1,14 @@
+VERDICTS
+b09-hooks-dispatch-006 | FIXED | `dispatch-audit.mjs:333-335` reads command substitutions; the new cases fail against base (`scratch/mutation/b1-codex-expansion.txt:12-23`).
+b09-hooks-dispatch-N03 | FIXED | `dispatch-audit.mjs:668-695` returns packets found across the command chain; the added chain test fails against base (`scratch/mutation/b2-every-dispatch.txt:10-20`).
+b09-hooks-dispatch-N05 | PARTIAL | `dispatch-audit.mjs:488,555-563` recovers common executed heredocs, and the added test fails against base (`scratch/mutation/b3-heredoc-run.txt:13-23`); however, `<<<"text"` before a real heredoc still hides that heredoc and its dispatch.
+b09-hooks-dispatch-N06 | FIXED | `dispatch-audit.mjs:390-392` routes audit matching through the resolver; the wrapper test fails against base (`scratch/mutation/b4-audit-match.txt:10-21`).
+
+NEW
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs:574 | P1 | Honor heredoc redirection order | In `bash <<FIRST <<SECOND`, a dispatch in FIRST is resolved even when SECOND replaces stdin with `true`, so a command that dispatches nothing is classified as a dispatch. | Parse queued heredocs together and inspect only the body delivered to the shell.
+
+TESTS
+`PATH=/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin:$PATH .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"` | 0/1 (EPERM creating Vitest’s temporary SSR directory; no tests executed)
+`PATH=/Users/michelkerkme/.nvm/versions/node/v26.8.2/bin:$PATH node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | 30/9 (the nine failures hit EPERM creating test temp directories; the worktree also has unstaged changes to these rule-check files)
+
+VERDICT: FAIL

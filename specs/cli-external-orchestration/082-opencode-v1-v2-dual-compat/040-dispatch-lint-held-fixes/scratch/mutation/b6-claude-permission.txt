@@ -1,0 +1,31 @@
+✖ permission-mode check sees claude print mode behind other flags (0.835125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.269
+
+✖ failing tests:
+
+test at .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:140:1
+✖ permission-mode check sees claude print mode behind other flags (0.835125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:144:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+b6-claude-permission: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs)

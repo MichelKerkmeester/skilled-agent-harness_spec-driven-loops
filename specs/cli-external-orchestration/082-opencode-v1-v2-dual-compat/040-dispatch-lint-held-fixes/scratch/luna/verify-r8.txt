@@ -1,0 +1,11 @@
+VERDICTS
+You are forbidden from using cli-devin | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:46 includes “forbidden” in `REFUSAL_PATTERN`.
+cli-devin, do not use it | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:46 includes “do not” in `REFUSAL_PATTERN`.
+Use cli-devin, it is not forbidden | POLICY-P2 | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:46 matches “not”, denying this positive request as the policy permits.
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:46 | P1 | “forbid cli-devin” | “forbid” is absent from the refusal set, so this explicit refusal authorizes the executor. | Include the base refusal form “forbid” in the pattern.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:55 | P1 | “not opencode; use cli-devin” | The semicolon splits one sentence and drops its refusal; newlines and abbreviation periods such as `i.e.` can also reset the sentence context and authorize. | Preserve refusal context across intra-sentence separators, line breaks, and abbreviation periods.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:208 | P1 | “not claude, use cli-claude-code” | `claude` resolves to `cli-claude-code` (`dispatch-audit.mjs:48`), but normalization leaves them unequal, so the reset exception authorizes the refused executor. | Compare canonical executor identities using the dispatch alias mapping.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:136 | P1 | “use “cli-devin”” | The quote scanner recognizes only ASCII quotes, so a smart double-quoted mention authorizes. | Recognize paired curly double quotes as quote delimiters.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:160 | P1 | “$(echo $(true) cli-devin)” | The last inner `)` masks the still-open outer expansion, so its mention authorizes. | Track nested command-substitution depth when checking expansion context.
+VERDICT: FAIL

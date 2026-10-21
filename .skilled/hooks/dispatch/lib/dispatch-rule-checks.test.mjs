@@ -10,7 +10,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
+import { readHardRules, evaluate, evaluateDispatch, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
 import {
   clearOpencodeVersionCache,
@@ -102,6 +102,58 @@ test('stdin-redirect-required covers every headless CLI shape, not just opencode
   assert.equal(CHECKS['stdin-redirect-required']('npm test'), true); // not a dispatch → n/a
 });
 
+test('stdin and model checks ignore flags and redirects inside a quoted prompt', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+  const model = CHECKS['explicit-model-required'];
+
+  // The prompt names both things the checks look for; the dispatch passes neither.
+  const promptOnly = 'opencode run "fix it --model p/m </dev/null"';
+  assert.equal(stdin(promptOnly), false);
+  assert.equal(model(promptOnly), false);
+
+  for (const cmd of [
+    'opencode run -m p/m "fix it" </dev/null',
+    `bash -c "opencode run -m p/m 'fix it' </dev/null"`,
+    'nohup opencode run --model p/m "x" </dev/null',
+    'opencode run -m "$MODEL" "x" </dev/null',
+  ]) {
+    assert.equal(stdin(cmd), true, `stdin handled: ${cmd}`);
+    assert.equal(model(cmd), true, `model passed: ${cmd}`);
+  }
+
+  assert.equal(stdin(`opencode run -m p/m <<'EOF'\nprompt\nEOF`), true);
+  assert.equal(stdin('cat p.md | opencode run -m p/m'), true);
+  assert.equal(stdin('opencode run -m p/m "use </dev/null in your answer"'), false);
+  // In ANSI-C quoting a backslash escapes the next character, so `\'` does not end the span.
+  assert.equal(stdin(String.raw`opencode run $'it\'s --model p/m </dev/null'`), false);
+  assert.equal(model(String.raw`opencode run $'it\'s --model p/m </dev/null'`), false);
+  // Any quoted heredoc delimiter is syntax, not a prompt, whatever characters it holds.
+  assert.equal(stdin(`opencode run -m p/m <<'END-MARK'\nprompt\nEND-MARK`), true);
+  assert.equal(stdin(`opencode run -m p/m <<"END MARK"\nprompt\nEND MARK`), true);
+});
+
+test('each repeated dispatch is held to the stdin and model checks on its own', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+  const model = CHECKS['explicit-model-required'];
+  const complete = 'opencode run -m p/m "a" </dev/null && opencode run -m p/m "b" </dev/null';
+
+  // The second run has a model but no redirect; the first run's redirect cannot close its stdin.
+  assert.equal(stdin('opencode run -m p/m "a" </dev/null && opencode run -m p/m "b"'), false);
+  // A pipe closes stdin for the run it feeds, never for every run in the chain: the earlier run
+  // with no redirect and no pipe still fails, and redirecting it leaves the pipe to cover the fed run.
+  assert.equal(stdin('opencode run -m p/m "a" && printf x | opencode run -m p/m "b"'), false);
+  assert.equal(stdin('opencode run -m p/m "a" </dev/null && printf x | opencode run -m p/m "b"'), true);
+  // A pipe into a command that is not a headless dispatch (`pi --version`) closes no stdin, so
+  // it must not cover the unredirected run later in the chain.
+  assert.equal(CHECKS['stdin-redirect-required']('printf x | pi --version; opencode run -m p/m "b"'), false);
+  assert.equal(CHECKS['stdin-redirect-required']('printf x | pi --offline -m p/m -p "a"; opencode run -m p/m "b" </dev/null'), true);
+  // The second run has a redirect but no model; the first run's -m cannot stand in for it.
+  assert.equal(model('opencode run -m p/m "a" </dev/null && opencode run "b" </dev/null'), false);
+
+  assert.equal(stdin(complete), true);
+  assert.equal(model(complete), true);
+});
+
 test('availability checks pass for a resolvable binary and never refuse without PATH', () => {
   // `sh` is on PATH anywhere this suite can run, so it stands in for a present binary.
   const present = CHECKS['command-v-pi-required'];
@@ -135,6 +187,20 @@ test('other checks discriminate correctly', () => {
   assert.deepEqual(ids('opencode run -m p/m --command memory/search "/memory:search q" </dev/null'), []);
   assert.deepEqual(ids('opencode run -m p/m "x" --share </dev/null'), ['share-requires-confirmation']);
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
+});
+
+test('permission-mode check sees claude print mode behind other flags', () => {
+  const check = CHECKS['non-interactive-permission-mode-risk'];
+
+  // Flags before the print flag are still a print-mode dispatch, so the bypass rule applies.
+  assert.equal(check('claude --model sonnet -p "x"'), false);
+  assert.equal(check('claude --model sonnet --print "x"'), false);
+  assert.equal(check('claude --model sonnet -p --dangerously-skip-permissions "x"'), true);
+  assert.equal(check('claude --model sonnet --permission-mode bypassPermissions -p "x"'), true);
+
+  // The plain shapes and non-print commands keep their old answers.
+  assert.equal(check('claude -p "x"'), false);
+  assert.equal(check('claude --version'), true);
 });
 
 test('appliesTo evaluates only rules for the resolved version', () => {
@@ -496,6 +562,24 @@ test('pi dispatches need --offline and a provider-qualified model', () => {
   assert.deepEqual(ids('git status'), []); // not a pi dispatch
 });
 
+// One command line can hold two dispatches, and each answers to its own packet. Reading only
+// the first one held the pi half of this chain to cli-opencode's rules, which say nothing about
+// `--offline`, so the second executor's own rule never ran.
+test('evaluateDispatch holds every dispatch in a chain to its own packet', () => {
+  const skillsRoot = path.resolve(HERE, '../../../skills');
+  const chain = 'opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null';
+
+  const verdicts = evaluateDispatch(chain, skillsRoot);
+  const pi = verdicts.find((verdict) => verdict.skill === 'cli-pi');
+  assert.ok(pi, `no cli-pi verdict for the chain: ${JSON.stringify(verdicts)}`);
+  assert.ok(
+    pi.violations.some((violation) => violation.id === 'pi-offline-required'),
+    `pi-offline-required absent from ${JSON.stringify(pi.violations.map((v) => v.id))}`,
+  );
+  // A command that dispatches nothing resolves to nothing, which is how the callers fast-exit.
+  assert.deepEqual(evaluateDispatch('git status', skillsRoot), []);
+});
+
 // Each of these spellings reached the runtime unflagged while its sibling was caught, so the
 // rule read as enforced while the equals form and the unquoted prompt walked straight past.
 test('predicate bypasses: equals-form flags and unquoted slash prompts are caught', () => {
@@ -813,16 +897,30 @@ test('a dispatch is resolved from the command, not from text that merely contain
     // A redirect whose target is a quoted variable is what every capture in the playbook
     // uses, and it made the tokenizer lose the command.
     ['output captured to a variable path', `OUT=/tmp/o.txt\n${dispatch} > "$OUT"`],
+    // Writing a heredoc is data, but a body the same call runs is that call's command list.
+    // Two shapes run it: fed to a shell, and written to a script the call then runs. Reading
+    // neither let a dispatch inside them skip every hard rule.
+    ['heredoc fed to bash', `bash <<'EOF'\n${dispatch} </dev/null\nEOF`],
+    ['heredoc piped to sh', `cat <<'EOF' | sh\n${dispatch} </dev/null\nEOF`],
+    ['heredoc script made executable and run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nchmod +x run.sh && ./run.sh`],
+    ['hyphenated heredoc fed to bash', `bash <<'END-MARK'\n${dispatch} </dev/null\nEND-MARK`],
+    ['heredoc teed then sourced', `tee run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nsource run.sh`],
+    ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
+    ['heredoc after a herestring', `cat <<<"x"\nbash <<'EOF'\n${dispatch} </dev/null\nEOF`],
+    ['second heredoc on a line is the stdin', `bash <<'ONE' <<'TWO'\ntrue\nONE\n${dispatch} </dev/null\nTWO`],
   ];
   for (const [label, cmd] of govern) {
     assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-hermes', `should govern (${label}): ${cmd}`);
   }
 
   const doNotGovern = [
-    // A heredoc body is data the call writes, never commands it runs. Writing a script that
-    // dispatches is not dispatching, and refusing it blocked real work.
+    // A heredoc body the call only writes is data: no shell is fed it, and no later part of
+    // the call runs the file it was written to.
+    ['first heredoc on a line is replaced', `bash <<'ONE' <<'TWO'\n${dispatch} </dev/null\nONE\ntrue\nTWO`],
     ['heredoc writing a script', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF`],
-    ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
+    ['heredoc with a hyphenated word written to a file', `cat > notes.md <<END-MARK\n${dispatch} </dev/null\nEND-MARK`],
+    ['heredoc script written, another script run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nbash other.sh`],
+    ['heredoc fed to node', `node <<'EOF'\nconsole.log("${dispatch}")\nEOF`],
     ['heredoc documenting it', `python3 - <<'PY'\nshape = "${dispatch}"\nPY`],
     ['prose quoting it', `echo "the ${dispatch} form is auditable"`],
     ['grep for the text', `grep -rn "${dispatch}" docs/`],

@@ -1,0 +1,34 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs (7 tests | 1 failed) 1557ms
+   ❯ Codex dispatch preflight lint (4)
+     × lints the second dispatch in a chain against its own packet 296ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs > Codex dispatch preflight lint > lints the second dispatch in a chain against its own packet
+AssertionError: expected '' to contain 'pi-offline-required'
+
+- Expected
++ Received
+
+- pi-offline-required
+
+ ❯ .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:74:27
+     72|     });
+     73|     expect(result.status).toBe(0);
+     74|     expect(result.stdout).toContain('pi-offline-required');
+       |                           ^
+     75|   });
+     76| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  07:37:33
+   Duration  1.66s (tests 99%, transform 1%)
+
+b8-lint-every-dispatch: exit 1 against the base sources (.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs)

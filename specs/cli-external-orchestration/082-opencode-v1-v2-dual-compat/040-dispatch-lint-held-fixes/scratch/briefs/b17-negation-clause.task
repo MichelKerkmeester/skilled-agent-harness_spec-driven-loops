@@ -1,0 +1,24 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to one function, plus test rows.
+
+Problem: `isUsableMention` in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` treats a mention as negated when `NEGATION_PATTERN` matches anywhere earlier in its sentence. Since a bare `not` was added, `not opencode, use cli-devin` denies a cli-devin dispatch: the `not` belongs to `opencode`, not to `cli-devin`.
+
+Fix: measure the negation within the mention's own clause, not its whole sentence. The clause starts after the last of: the sentence delimiters already used (newline, `;`, `.`, `!`, `?`), a comma, or one of the whole words `but`, `instead`, `rather` (case-insensitive) before the mention. Test `NEGATION_PATTERN` only on the text from that clause start to the mention. Keep the quote and expansion checks as they are. Update the function's comment so it stays accurate. Change nothing else.
+
+Tests: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add to the `Pi dispatch deny matrix` table, next to the other negation rows:
+  ['negation of a different executor before a comma', 'devin -p "task"', 'not opencode, use cli-devin', false],
+  ['negation of a different executor before but', 'devin -p "task"', 'not opencode but cli-devin', false],
+  ['negation in the same clause as a deep-loop executor', 'devin -p "task"', 'please, not /deep:review --executor cli-devin', true],
+Every existing row must keep passing, including 'bare not before a deep-loop executor', 'negated deep-loop executor' and 'negated mode mention'.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: the changed lines, then the verification command with its pass and fail counts.

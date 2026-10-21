@@ -1,0 +1,17 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a documentation editor. Make one change to one table row.
+
+In `.skilled/hooks/dispatch/README.md`, the `pi/dispatch-preflight-lint.ts` row of the files table already states the sentence-wide refusal policy. Append one sentence to that row's description: Known gap: a quote inside a backtick inside a double-quoted substitution resets the outer quote state, so `` $(echo "`printf ")"`" cli-devin) `` still authorizes cli-devin; the engine before the sentence policy let it through too. Keep the table row on one line, and keep the backticks inside the inline code span readable (use a double-backtick code span as shown). Change nothing else.
+
+Never name spec paths, phases, or task, review or finding ids in the README.
+
+VERIFICATION (from the worktree root):
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/hooks/dispatch/README.md
+git diff --stat   (only the README)
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/README.md
+
+Return report: the changed line, then the verification output.

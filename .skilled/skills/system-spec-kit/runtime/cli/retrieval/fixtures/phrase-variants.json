@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7345befc2f08f8fa816ce2b30b4bc8d99c9418ced71fdf17d27e45b7a38f109e",
+  "manifestHash": "3ceef2a78307dfb519c00e335a2b9b8b284177d0653ebfcdc7286a3b950cd09b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36751,6 +36751,18 @@
     "dispatch inspector classification": [
       "dispatch inspector classification"
     ],
+    "dispatch lint held fixes": [
+      "dispatch lint held fixes"
+    ],
+    "dispatch lint held fixes implementation summary": [
+      "dispatch lint held fixes implementation summary"
+    ],
+    "dispatch lint held fixes plan": [
+      "dispatch lint held fixes plan"
+    ],
+    "dispatch lint held fixes tasks": [
+      "dispatch lint held fixes tasks"
+    ],
     "dispatch mandate removal closure": [
       "dispatch mandate removal closure"
     ],
@@ -36807,6 +36819,9 @@
     ],
     "dispatch research iteration": [
       "dispatch research iteration"
+    ],
+    "dispatch resolver every executor": [
+      "dispatch resolver every executor"
     ],
     "dispatch result envelopes": [
       "dispatch result envelopes"
@@ -50886,6 +50901,9 @@
     "help printer test": [
       "help printer test"
     ],
+    "heredoc script dispatch": [
+      "heredoc script dispatch"
+    ],
     "hermes agent": [
       "hermes agent"
     ],
@@ -51972,6 +51990,9 @@
     ],
     "hooks lib": [
       "hooks lib"
+    ],
+    "hooks node test ci": [
+      "hooks node test ci"
     ],
     "hooks readme plain voice": [
       "hooks readme plain voice"
@@ -57771,6 +57792,9 @@
     ],
     "llmgateway mimo v2 6 pro": [
       "llmgateway mimo-v2.6-pro"
+    ],
+    "llmgateway v2 default": [
+      "llmgateway v2 default"
     ],
     "llms txt specification": [
       "llms txt specification"
@@ -72460,11 +72484,17 @@
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
     ],
+    "phase 40 dispatch lint held fixes": [
+      "phase 40 dispatch lint held fixes"
+    ],
     "phase 41 goal held fixes": [
       "phase 41 goal held fixes"
     ],
     "phase 42 hooks and plugins held fixes": [
       "phase 42 hooks and plugins held fixes"
+    ],
+    "phase 43 v2 default model": [
+      "phase 43 v2 default model"
     ],
     "phase 44 skill advisor stress ci": [
       "phase 44 skill advisor stress ci"
@@ -73573,6 +73603,9 @@
     ],
     "pi dispatch authorization": [
       "Pi dispatch authorization"
+    ],
+    "pi dispatch authorization bypass": [
+      "pi dispatch authorization bypass"
     ],
     "pi dispatch cli pi": [
       "pi dispatch cli-pi"
@@ -108852,6 +108885,18 @@
     ],
     "v2 bridge plugin effects tasks": [
       "v2 bridge plugin effects tasks"
+    ],
+    "v2 default model and follow ups": [
+      "v2 default model and follow ups"
+    ],
+    "v2 default model and follow ups implementation summary": [
+      "v2 default model and follow ups implementation summary"
+    ],
+    "v2 default model and follow ups plan": [
+      "v2 default model and follow ups plan"
+    ],
+    "v2 default model and follow ups tasks": [
+      "v2 default model and follow ups tasks"
     ],
     "v3 0 0 0 release notes": [
       "v3.0.0.0 release notes"

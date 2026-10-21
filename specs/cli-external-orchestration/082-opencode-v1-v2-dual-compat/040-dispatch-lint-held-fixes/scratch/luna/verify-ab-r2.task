@@ -1,0 +1,30 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing.
+
+Review the commits `f14f449a6e..HEAD` (run `git log --oneline f14f449a6e..HEAD` and `git diff f14f449a6e..HEAD -- .skilled`). Your previous verdict is `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-a-r1.txt`: N05 was PARTIAL (a herestring before a real heredoc hid it) and one new P1 (with two heredocs on one line, the first body was read as stdin). The newest commit addresses both. The full text of each finding is in `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md` §3.
+
+Judge these findings:
+- b09-hooks-dispatch-006 (P0): a Codex dispatch inside a command substitution classified as `none`.
+- b09-hooks-dispatch-N03 (P1): the resolver returned only the first dispatch in a chain. Judge only the resolver; wiring the preflight adapters comes in a later commit.
+- b09-hooks-dispatch-N05 (P1): a heredoc the same call runs was stripped as data. Re-check the herestring and two-heredocs shapes.
+- b09-hooks-dispatch-N06 (P2): the audit matched only direct dispatches while the preflight unwraps wrappers.
+- b09-hooks-dispatch-N07 and N08 (P2): the Codex and Devin audit hooks matched the raw registry, so a dispatch inside heredoc data was logged.
+- b09-hooks-dispatch-012 (P1): `non-interactive-permission-mode-risk` missed `claude --model sonnet -p "x"`.
+- b09-hooks-dispatch-N04 (P1): the stdin and model checks read quoted prompt text as real flags and redirects.
+
+For each finding: FIXED / PARTIAL / NOT FIXED with file:line evidence, and whether its new test fails on the old code (recorded in `040-dispatch-lint-held-fixes/scratch/mutation/*.txt`; check one yourself if you doubt it). Then look for regressions: a command that now resolves or classifies as a dispatch although it dispatches nothing, a quoted span the new quote blanking gets wrong (escaped quotes, `$'...'`, a quoted heredoc delimiter), or a verdict that moved without a finding saying the old one was wrong. `040-dispatch-lint-held-fixes/scratch/corpus-diff-b7.txt` is the corpus diff after the N04 change; its four `rules:` rows come from test strings the corpus extractor un-escaped, so in those strings the `</dev/null` really sits inside quotes.
+
+Standards: sk-code's review baseline (`.skilled/skills/sk-code/` code-review mode: P0 blocker = exploitable bypass or data loss; P1 = correctness bug, spec mismatch, must-fix gate; P2 = everything else). Comment hygiene: comments must not carry spec paths, phase numbers or task, review or finding ids.
+
+Judge the committed code only; the working tree may hold an uncommitted change from the next fix. Your sandbox cannot create the temp directories vitest and node:test need, so do not run the suites; the operator runs them. You may run small `node -e` probes that import `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` or `dispatch-rule-checks.mjs` and print results, with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<finding id> | FIXED|PARTIAL|NOT FIXED | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <rule> | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL

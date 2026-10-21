@@ -1,0 +1,28 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs (124 tests | 1 failed | 123 skipped) 4ms
+   ❯ executorSkill (1)
+     × maps every spelling of one executor to its skill and returns null otherwise 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > executorSkill > maps every spelling of one executor to its skill and returns null otherwise
+TypeError: executorSkill is not a function
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:591:47
+    589|       ['cli-classifier', 'cli-classifier'],
+    590|     ];
+    591|     for (const [name, skill] of cases) expect(executorSkill(name), nam…
+       |                                               ^
+    592|
+    593|     // A non-executor name is never coerced onto a skill, because call…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 123 skipped (124)
+   Start at  10:35:08
+   Duration  155ms (transform 56%, import 34%, tests 6%, worker 4%)
+
+b23-executor-skill: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-audit.mjs)

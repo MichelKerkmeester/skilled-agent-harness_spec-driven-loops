@@ -1,0 +1,35 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs (122 tests | 1 failed | 121 skipped) 6ms
+   ❯ resolveDispatchPacket (11)
+     × keeps each repeated executor as its own dispatch command 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > resolveDispatchPacket > keeps each repeated executor as its own dispatch command
+AssertionError: expected [ { entry: { …(3) }, …(1) } ] to have a length of 2 but got 1
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:489:22
+    487|     const command = 'opencode run -m p/m "a" </dev/null && opencode ru…
+    488|     const commands = resolveDispatchCommands(command);
+    489|     expect(commands).toHaveLength(2);
+       |                      ^
+    490|     expect(commands.every(({ entry }) => entry.skill === 'cli-opencode…
+    491|     expect(resolveDispatchPackets(command)).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 121 skipped (122)
+   Start at  07:43:37
+   Duration  151ms (transform 53%, import 34%, tests 10%, worker 3%)
+
+b12-every-repeat-audit: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-audit.mjs)

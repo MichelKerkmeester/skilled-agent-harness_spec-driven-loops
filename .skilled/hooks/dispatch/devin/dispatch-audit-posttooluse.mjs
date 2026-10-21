@@ -6,12 +6,12 @@
 // arrays and nested matcher groups in .devin/hooks.v1.json.
 //
 // PostToolUse(exec) CLI dispatch audit trail for Devin CLI -- the Devin sibling of
-// the Codex/Claude dispatch-audit hook. Observes a completed exec call, recognizes
-// an `opencode run` / `claude -p` / `codex exec` dispatch shape, and appends
-// one redacted, size-rotated JSONL audit line through the shared dispatch-audit
-// primitives, tagged runtime:'devin'. Strictly observational -- never emits a
-// permissionDecision. FAILS OPEN -- any missing payload, parse error, or
-// audit-path failure exits 0 with no output.
+// the Codex/Claude dispatch-audit hook. Observes a completed exec call and hands it
+// to the shared dispatch-audit core, which resolves the command into a dispatch
+// shape and appends one redacted, size-rotated JSONL audit line tagged
+// runtime:'devin'. Strictly observational -- never emits a permissionDecision.
+// FAILS OPEN -- any missing payload, parse error, or audit-path failure exits 0
+// with no output.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -22,12 +22,9 @@ import { join } from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import {
-  DISPATCH_SHAPES,
   DEFAULT_LOG_RELATIVE_PATH,
   isAuditDisabled,
-  extractDispatchMeta,
-  buildAuditLine,
-  appendAuditLog,
+  recordDispatch,
 } from '../lib/dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -59,9 +56,6 @@ async function main() {
   const command = toolInput?.command;
   if (typeof command !== 'string' || command.length === 0) return done();
 
-  const shape = DISPATCH_SHAPES.find((candidate) => candidate.test.test(command));
-  if (!shape) return done();
-
   // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
   const workspaceCwd = payload?.cwd;
   const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
@@ -76,17 +70,16 @@ async function main() {
     .filter((part) => typeof part === 'string')
     .join('\n') || undefined;
 
-  const meta = extractDispatchMeta(command, { outputText, metadataObj: toolResponse });
-  const line = buildAuditLine({
-    ts: new Date().toISOString(),
+  recordDispatch({
+    command,
+    logPath,
     runtime: 'devin',
     sessionID: payload?.session_id ?? null,
     callID: payload?.tool_use_id ?? null,
-    skill: shape.skill,
-    command,
-    ...meta,
+    outputText,
+    metadataObj: toolResponse,
+    env: process.env,
   });
-  if (line) appendAuditLog(logPath, line);
 
   return done();
 }

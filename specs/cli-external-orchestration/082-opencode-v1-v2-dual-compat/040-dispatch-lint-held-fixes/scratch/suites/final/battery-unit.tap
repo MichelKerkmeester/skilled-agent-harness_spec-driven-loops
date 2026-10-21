@@ -1,0 +1,316 @@
+TAP version 13
+# Subtest: R1: v1 every plugin file discovered and loaded passes both legs
+ok 1 - R1: v1 every plugin file discovered and loaded passes both legs
+  ---
+  duration_ms: 1.19525
+  type: 'test'
+  ...
+# Subtest: R2: v1 a file missing from the debug config fails plugin-discovered naming it
+ok 2 - R2: v1 a file missing from the debug config fails plugin-discovered naming it
+  ---
+  duration_ms: 0.197042
+  type: 'test'
+  ...
+# Subtest: R3: v1 a harness failure fails plugin-load naming the plugin and its detail
+ok 3 - R3: v1 a harness failure fails plugin-load naming the plugin and its detail
+  ---
+  duration_ms: 0.093375
+  type: 'test'
+  ...
+# Subtest: R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered
+ok 4 - R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered
+  ---
+  duration_ms: 0.063375
+  type: 'test'
+  ...
+# Subtest: R5: v1 a plugin with no harness line degrades plugin-load naming it
+ok 5 - R5: v1 a plugin with no harness line degrades plugin-load naming it
+  ---
+  duration_ms: 0.067125
+  type: 'test'
+  ...
+# Subtest: R6: v2 every plugin active on a stable read passes plugin-active
+ok 6 - R6: v2 every plugin active on a stable read passes plugin-active
+  ---
+  duration_ms: 0.173084
+  type: 'test'
+  ...
+# Subtest: R7: v2 an entry with a failed status fails plugin-active naming plugin and status
+ok 7 - R7: v2 an entry with a failed status fails plugin-active naming plugin and status
+  ---
+  duration_ms: 0.079375
+  type: 'test'
+  ...
+# Subtest: R8: v2 counts that never stabilise degrade plugin-active with the counts
+ok 8 - R8: v2 counts that never stabilise degrade plugin-active with the counts
+  ---
+  duration_ms: 0.132416
+  type: 'test'
+  ...
+# Subtest: R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed
+ok 9 - R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed
+  ---
+  duration_ms: 3.520417
+  type: 'test'
+  ...
+# Subtest: R10: family v2 requested with only a v1 candidate skips and exits 3
+ok 10 - R10: family v2 requested with only a v1 candidate skips and exits 3
+  ---
+  duration_ms: 1.513709
+  type: 'test'
+  ...
+# Subtest: R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass
+ok 11 - R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass
+  ---
+  duration_ms: 2.729208
+  type: 'test'
+  ...
+# Subtest: R12: zero plugin files fails
+ok 12 - R12: zero plugin files fails
+  ---
+  duration_ms: 1.349625
+  type: 'test'
+  ...
+# Subtest: R13: --out to an unwritable path exits 2
+ok 13 - R13: --out to an unwritable path exits 2
+  ---
+  duration_ms: 2.379334
+  type: 'test'
+  ...
+# Subtest: R14: an unknown argument exits 2 with usage on stderr
+ok 14 - R14: an unknown argument exits 2 with usage on stderr
+  ---
+  duration_ms: 0.281584
+  type: 'test'
+  ...
+# Subtest: R15: v2 a plugin file with no entry under the root fails naming the file
+ok 15 - R15: v2 a plugin file with no entry under the root fails naming the file
+  ---
+  duration_ms: 0.096
+  type: 'test'
+  ...
+# Subtest: R16: --out <file> and --root <dir> parse the same as the = forms
+ok 16 - R16: --out <file> and --root <dir> parse the same as the = forms
+  ---
+  duration_ms: 0.2965
+  type: 'test'
+  ...
+# Subtest: R17: --out as the last argument is a usage error
+ok 17 - R17: --out as the last argument is a usage error
+  ---
+  duration_ms: 0.067333
+  type: 'test'
+  ...
+# Subtest: R18: a spaced value that is itself a flag is a usage error, the = form is kept
+ok 18 - R18: a spaced value that is itself a flag is a usage error, the = form is kept
+  ---
+  duration_ms: 0.081834
+  type: 'test'
+  ...
+# Subtest: C1: v2 lists a nested project and allows the ancestor folder and the built-ins
+ok 19 - C1: v2 lists a nested project and allows the ancestor folder and the built-ins
+  ---
+  duration_ms: 6.307917
+  type: 'test'
+  ...
+# Subtest: C2: v2 without the ancestor folder fails naming the ancestor command, then passes
+ok 20 - C2: v2 without the ancestor folder fails naming the ancestor command, then passes
+  ---
+  duration_ms: 4.58375
+  type: 'test'
+  ...
+# Subtest: C3: v1 does not walk up, so an ancestor command and a built-in are both strays
+ok 21 - C3: v1 does not walk up, so an ancestor command and a built-in are both strays
+  ---
+  duration_ms: 4.863625
+  type: 'test'
+  ...
+# Subtest: C4: v2 fails when a project command file is missing from the listing
+ok 22 - C4: v2 fails when a project command file is missing from the listing
+  ---
+  duration_ms: 3.357041
+  type: 'test'
+  ...
+# Subtest: C5: a listing that did not parse fails command-listed on either family
+ok 23 - C5: a listing that did not parse fails command-listed on either family
+  ---
+  duration_ms: 2.446084
+  type: 'test'
+  ...
+# Subtest: C6: a command file in the global config folder is allowed on both families
+ok 24 - C6: a command file in the global config folder is allowed on both families
+  ---
+  duration_ms: 3.93
+  type: 'test'
+  ...
+# Subtest: C7: both command folder spellings are read, with slashed names and a followed link
+ok 25 - C7: both command folder spellings are read, with slashed names and a followed link
+  ---
+  duration_ms: 1.872959
+  type: 'test'
+  ...
+# Subtest: C8: v2 a command listing that never settles degrades command-listed
+ok 26 - C8: v2 a command listing that never settles degrades command-listed
+  ---
+  duration_ms: 2.6215
+  type: 'test'
+  ...
+# Subtest: C9: mcpServerNames reads both config shapes and refuses a non-array
+ok 27 - C9: mcpServerNames reads both config shapes and refuses a non-array
+  ---
+  duration_ms: 0.1105
+  type: 'test'
+  ...
+# Subtest: C10: v2 passes when the listing carries a prompt from a configured MCP server
+ok 28 - C10: v2 passes when the listing carries a prompt from a configured MCP server
+  ---
+  duration_ms: 4.172041
+  type: 'test'
+  ...
+# Subtest: C11: an unconfigured server prefix and an unprefixed stray both fail
+ok 29 - C11: an unconfigured server prefix and an unprefixed stray both fail
+  ---
+  duration_ms: 2.931125
+  type: 'test'
+  ...
+# Subtest: C12: legsForV2 with an unreadable config degrades an MCP prompt and still fails a stray
+ok 30 - C12: legsForV2 with an unreadable config degrades an MCP prompt and still fails a stray
+  ---
+  duration_ms: 5.711541
+  type: 'test'
+  ...
+# Subtest: C13: legsForV2 with an unreadable config and a stray keeps the stray a failure
+ok 31 - C13: legsForV2 with an unreadable config and a stray keeps the stray a failure
+  ---
+  duration_ms: 7.491792
+  type: 'test'
+  ...
+# Subtest: parity: the battery parser and the deep-loop resolver agree on one shared list
+ok 32 - parity: the battery parser and the deep-loop resolver agree on one shared list
+  ---
+  duration_ms: 0.17075
+  type: 'test'
+  ...
+# Subtest: parity: every shared corpus entry keeps its expected family
+ok 33 - parity: every shared corpus entry keeps its expected family
+  ---
+  duration_ms: 0.072208
+  type: 'test'
+  ...
+# Subtest: adversarial: path-qualified, prerelease and joined output answer the pinned families
+ok 34 - adversarial: path-qualified, prerelease and joined output answer the pinned families
+  ---
+  duration_ms: 0.049791
+  type: 'test'
+  ...
+# Subtest: adversarial: CRLF and joined version output read as v1, empty and garbage as unknown
+ok 35 - adversarial: CRLF and joined version output read as v1, empty and garbage as unknown
+  ---
+  duration_ms: 0.025417
+  type: 'test'
+  ...
+# Subtest: adversarial: empty version output is skipped and the family reports SKIP
+ok 36 - adversarial: empty version output is skipped and the family reports SKIP
+  ---
+  duration_ms: 1.82525
+  type: 'test'
+  ...
+# Subtest: adversarial: a probe error skips the candidate instead of assuming it
+ok 37 - adversarial: a probe error skips the candidate instead of assuming it
+  ---
+  duration_ms: 0.0715
+  type: 'test'
+  ...
+# Subtest: adversarial: a root without .opencode/plugins fails naming the root
+ok 38 - adversarial: a root without .opencode/plugins fails naming the root
+  ---
+  duration_ms: 0.462583
+  type: 'test'
+  ...
+# Subtest: adversarial: a root with spaces and $(id) reaches the collectors as one string
+ok 39 - adversarial: a root with spaces and $(id) reaches the collectors as one string
+  ---
+  duration_ms: 2.571209
+  type: 'test'
+  ...
+# Subtest: probe count: three candidates sharing one path probe each distinct path once
+ok 40 - probe count: three candidates sharing one path probe each distinct path once
+  ---
+  duration_ms: 4.896208
+  type: 'test'
+  ...
+# Subtest: a broken symlink in the plugin folder fails plugin-discovered naming it
+ok 41 - a broken symlink in the plugin folder fails plugin-discovered naming it
+  ---
+  duration_ms: 1.994458
+  type: 'test'
+  ...
+# Subtest: real readV2: the password reaches no result, stream or leftover file and the fake server is gone
+ok 42 - real readV2: the password reaches no result, stream or leftover file and the fake server is gone
+  ---
+  duration_ms: 4359.87475
+  type: 'test'
+  ...
+# Subtest: nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root
+ok 43 - nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root
+  ---
+  duration_ms: 2.11375
+  type: 'test'
+  ...
+# Subtest: nested: v2ServerEnv isolates a nested root and leaves a plain root alone
+ok 44 - nested: v2ServerEnv isolates a nested root and leaves a plain root alone
+  ---
+  duration_ms: 2.167375
+  type: 'test'
+  ...
+# Subtest: nested: real readV2 under an outer checkout passes plugin-active with an isolated line
+ok 45 - nested: real readV2 under an outer checkout passes plugin-active with an isolated line
+  ---
+  duration_ms: 4357.202791
+  type: 'test'
+  ...
+# Subtest: nested: real readV2 through a symlinked alias of a nested root isolates and passes plugin-active
+ok 46 - nested: real readV2 through a symlinked alias of a nested root isolates and passes plugin-active
+  ---
+  duration_ms: 4366.743042
+  type: 'test'
+  ...
+# Subtest: nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root
+ok 47 - nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root
+  ---
+  duration_ms: 2.033083
+  type: 'test'
+  ...
+# Subtest: nested: a caller switch survives on a plain root and is overridden on a nested root
+ok 48 - nested: a caller switch survives on a plain root and is overridden on a nested root
+  ---
+  duration_ms: 1.833958
+  type: 'test'
+  ...
+# Subtest: nested: an isolated read that still carries ancestor entries fails plugin-active and command-listed
+ok 49 - nested: an isolated read that still carries ancestor entries fails plugin-active and command-listed
+  ---
+  duration_ms: 4363.269208
+  type: 'test'
+  ...
+# Subtest: nested: allowedCommandSources allows ancestor commands only when the read is not isolated
+ok 50 - nested: allowedCommandSources allows ancestor commands only when the read is not isolated
+  ---
+  duration_ms: 3.888541
+  type: 'test'
+  ...
+# Subtest: nested: an isolated read builds the command allowlist from the root, not the caller config folder
+ok 51 - nested: an isolated read builds the command allowlist from the root, not the caller config folder
+  ---
+  duration_ms: 6.084417
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19576.376416

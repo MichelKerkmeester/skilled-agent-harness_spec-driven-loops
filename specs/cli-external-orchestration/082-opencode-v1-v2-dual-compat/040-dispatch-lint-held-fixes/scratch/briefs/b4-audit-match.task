@@ -1,0 +1,27 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its test.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, `matchDispatchShape` (the audit's classifier, used by `recordDispatch`) accepts only what `inspectDispatch` calls `direct`. The preflight decides with `resolveDispatchPacket`, which also unwraps exec wrappers (`nohup`, `command`, `env`, `timeout`, `perl -e ... --`, a subshell) and shell `-c` payloads. So `nohup opencode run -m p/m "hi" </dev/null` is linted before it runs but never recorded after.
+
+Fix: make `matchDispatchShape(command)` return `{ skill }` of the first entry `resolveDispatchPackets(command)` returns, or `null` when it returns none. Keep its JSDoc and update it to say it resolves the way the preflight does. Change nothing else.
+
+Test, in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, inside `describe('matchDispatchShape', ...)`, add one `it` that asserts:
+- `matchDispatchShape('nohup opencode run -m p/m "hi" </dev/null')` equals `{ skill: 'cli-opencode' }`;
+- `matchDispatchShape("perl -e 'alarm 300; exec @ARGV' -- codex exec task </dev/null")` equals `{ skill: 'cli-codex' }`;
+- `matchDispatchShape("cat > run.sh <<'EOF'\nopencode run -m p/m x\nEOF")` is `null`;
+- `matchDispatchShape('command -v opencode')` is `null`.
+Every existing `matchDispatchShape` and `recordDispatch` test must keep passing unchanged.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

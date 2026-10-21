@@ -1,0 +1,30 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change: hold each repeated dispatch of one executor to the stdin and model checks on its own, plus tests.
+
+Problem: `resolvePacketList` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` keeps only the first dispatch per skill (the `seen` set), so `resolveDispatchCommands` drops a second `opencode run` in a chain. And `dispatchArgumentText` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` joins every dispatch's text, so one dispatch's `</dev/null` or `-m` satisfies the check for another. `opencode run -m p/m "a" </dev/null && opencode run "b"` therefore passes both `stdin-redirect-required` and `explicit-model-required`, although the second run has neither.
+
+Fix:
+1. In `dispatch-audit.mjs`, give `resolvePacketList` a third parameter `distinct`. When true it keeps today's one-entry-per-skill behaviour; when false it returns every dispatch in command order, repeats of one skill included (an exact duplicate of the same text from the same position need not be filtered; just do not drop by skill). Pass it through the heredoc recursion. `resolveDispatchPackets` passes `true` (its output must not change); `resolveDispatchCommands` passes `false`. Update `resolveDispatchCommands`'s JSDoc to say it returns every dispatch, repeats of one executor included.
+2. In `dispatch-rule-checks.mjs`, replace `dispatchArgumentText` with `dispatchArgumentTexts(command)`: the blanked text of each resolved dispatch, in order, or `[blankQuotedSpans(command)]` when nothing resolves. Update its comment.
+3. `stdin-redirect-required`: keep the first line (not a headless shape → true) and the whole-command pipe check as they are. Otherwise take the texts that match a `HEADLESS_DISPATCH_SHAPES` shape (when none match, use the whole blanked command as the one text); the check passes only when EVERY such text has `STDIN_REDIRECT`, or for a Hermes chat text `HERMES_STDIN_HANDLED`.
+4. `explicit-model-required`: keep the first line. Take the texts matching `/\bopencode\d*\s+run\b/` (when none match, use the whole blanked command); the check passes only when every such text has `-m` or `--model`.
+
+Tests:
+- In `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, next to the test 'returns the unwrapped text each dispatch was resolved from', one `it`: `resolveDispatchCommands('opencode run -m p/m "a" </dev/null && opencode run "b"')` has length 2, both `cli-opencode`; `resolveDispatchPackets` of the same command has length 1.
+- In `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, one `test('each repeated dispatch is held to the stdin and model checks on its own', ...)`: `CHECKS['stdin-redirect-required']('opencode run -m p/m "a" </dev/null && opencode run -m p/m "b"')` is false; `CHECKS['explicit-model-required']('opencode run -m p/m "a" </dev/null && opencode run "b" </dev/null')` is false; for `opencode run -m p/m "a" </dev/null && opencode run -m p/m "b" </dev/null` both are true.
+Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/lib/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

@@ -1,0 +1,22 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change plus one test row.
+
+Problem: `NEGATION_PATTERN` in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` recognizes `do not` but not a bare `not`, so the user text `not /deep:review --executor cli-devin` (or `not cli-devin`) still authorizes a cli-devin dispatch.
+
+Fix: add a bare `not` (word-bounded) to `NEGATION_PATTERN`. Change nothing else.
+
+Test: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add to the `Pi dispatch deny matrix` table, next to the other deep-loop rows:
+  ['bare not before a deep-loop executor', 'devin -p "task"', 'not /deep:review --executor cli-devin', true],
+Every existing row must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: the changed lines, then the verification command with its pass and fail counts.

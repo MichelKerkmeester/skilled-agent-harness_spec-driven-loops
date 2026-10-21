@@ -1,0 +1,15 @@
+VERDICTS
+b09-hooks-dispatch-006 | FIXED | dispatch-audit.mjs:333 checks expanded commands with the Codex shape at :286; the new cases fail on base (scratch/mutation/b1-codex-expansion.txt:41).
+b09-hooks-dispatch-N03 | PARTIAL | dispatch-audit.mjs:778 deduplicates by skill, dropping later same-skill calls; the mixed-skill test fails on base (scratch/mutation/b2-every-dispatch.txt:28).
+b09-hooks-dispatch-N05 | FIXED | dispatch-audit.mjs:503 excludes herestrings, and :631 processes only the last queued heredoc; base mutation evidence is at scratch/mutation/b3b-heredoc-order.txt:39,42-45.
+b09-hooks-dispatch-N06 | FIXED | dispatch-audit.mjs:390 resolves audit matches through the shared resolver; the new test fails on base (scratch/mutation/b4-audit-match.txt:37).
+b09-hooks-dispatch-N07 | FIXED | codex/dispatch-audit-posttooluse.mjs:74 routes commands through recordDispatch, which uses the resolver at dispatch-audit.mjs:1021; base tests fail (scratch/mutation/b5-adapter-audit.txt:57).
+b09-hooks-dispatch-N08 | FIXED | devin/dispatch-audit-posttooluse.mjs:73 routes commands through recordDispatch, which uses the resolver at dispatch-audit.mjs:1021; base tests fail (scratch/mutation/b5-adapter-audit.txt:57).
+b09-hooks-dispatch-012 | FIXED | dispatch-rule-checks.mjs:119,359 recognizes Claude print mode after preceding flags; the new test fails on base (scratch/mutation/b6-claude-permission.txt:31).
+b09-hooks-dispatch-N04 | PARTIAL | dispatch-rule-checks.mjs:70 closes a single-quoted span at the first apostrophe, so `$'it\'s --model p/m </dev/null'` still makes both checks pass; the ordinary-quote test fails on base (scratch/mutation/b7-quoted-args.txt:35).
+
+NEW
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:61 | P1 | stdin-redirect-required | A valid quoted heredoc delimiter such as `END-MARK` is blanked to `<<''`, so the stdin check rejects a dispatch with heredoc input | Preserve legal shell heredoc delimiters when blanking quoted spans.
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs:715 | P2 | dispatch resolver classification | The fallback resolves `unknown-wrapper devin -p task` and malformed `devin -p "unterminated` as Devin dispatches, though neither runs Devin | Require a well-formed command-position executor or a recognized wrapper before resolving a skill.
+
+VERDICT: FAIL

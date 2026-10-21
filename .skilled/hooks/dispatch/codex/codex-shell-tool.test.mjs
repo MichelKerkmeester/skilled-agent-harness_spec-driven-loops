@@ -63,6 +63,16 @@ describe('Codex dispatch preflight lint', () => {
     expect(result.status).toBe(0);
     expect(result.stdout).toBe('');
   });
+
+  it('lints the second dispatch in a chain against its own packet', () => {
+    const result = runHook(LINT, {
+      tool_name: 'exec',
+      cwd: REPO_ROOT,
+      tool_input: { command: 'opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null' },
+    });
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain('pi-offline-required');
+  });
 });
 
 describe('Codex dispatch audit', () => {
@@ -85,6 +95,22 @@ describe('Codex dispatch audit', () => {
       expect(existsSync(logPath)).toBe(true);
       const line = JSON.parse(readFileSync(logPath, 'utf8').trim().split('\n').pop());
       expect(line.runtime).toBe('codex');
+    } finally {
+      rmSync(projectDir, { recursive: true, force: true });
+    }
+  });
+
+  it('ignores a dispatch that is only heredoc data', () => {
+    const projectDir = mkdtempSync(join(tmpdir(), 'codex-dispatch-audit-'));
+    try {
+      const result = runHook(AUDIT, {
+        tool_name: 'Bash',
+        cwd: projectDir,
+        session_id: 'heredoc-session',
+        tool_input: { command: "cat > run.sh <<'EOF'\nopencode run -m p/m x\nEOF" },
+      });
+      expect(result.status).toBe(0);
+      expect(existsSync(join(projectDir, '.skilled', 'logs', 'cli-dispatch-audit.log'))).toBe(false);
     } finally {
       rmSync(projectDir, { recursive: true, force: true });
     }

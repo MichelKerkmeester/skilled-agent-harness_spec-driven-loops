@@ -1,0 +1,31 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its tests.
+
+Problem: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, the `tool_call` handler decides with `audit.inspectDispatch(command)` and returns at once on `none`. `inspectDispatch` reads only the command word, so a dispatch behind an exec wrapper (`command codex exec task`, `nohup opencode run ...`, `timeout 60 devin -p x`, `perl -e '...' -- pi -p x`) or a heredoc a shell runs is `none`: it skips the authorization gate and every hard rule, although `audit.resolveDispatchPackets(command)` resolves it. The handler also evaluates only one packet's rules.
+
+Fix, in the `tool_call` handler only:
+1. After `inspectDispatch`, call `audit.resolveDispatchPackets(command)`. Derive the effective classification:
+   - `inspection.kind === 'none'` and exactly one resolved packet: treat it as `direct`, with that packet's `skill` as the dispatch skill;
+   - `inspection.kind === 'none'` and more than one resolved packet: treat it as `ambiguous`;
+   - `inspection.kind === 'direct'` and a resolved packet whose skill differs from `inspection.executor`: treat it as `ambiguous`;
+   - otherwise keep the inspection as it is. Return early only when the effective kind is `none`.
+2. Pass the effective kind and skill to `shouldDenyPiDispatch`. Do not change `shouldDenyPiDispatch`.
+3. Replace the single-packet rule lookup with `lint.evaluateDispatch(event.input.command, join(ctx.cwd, '.skilled', 'skills'))`, and build the block and advisory reasons from its per-packet results in the same wording the handler uses today (`Dispatch blocked by ${skill} hard-rule(s):` and `Dispatch advisory for ${skill}:`), one block per packet. With one packet the text must be exactly what it is today.
+
+Tests, in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, inside `describe('registered Pi extension boundary', ...)` (it already stubs `devin` and `pi` on PATH; add `codex` and `opencode` to that stub list if a new test needs them):
+- `it.each` over `command codex exec task </dev/null`, `nohup opencode run -m p/m "task" </dev/null`, `timeout 60 devin -p "task" </dev/null` and `perl -e 'alarm 60; exec @ARGV' -- pi --offline -m p/m -p "task" </dev/null`: with raw text `run the task`, `result?.block` is `true`.
+- With raw text `dispatch via cli-devin`, `timeout 60 devin -p "task" </dev/null` is allowed (`result` is `undefined`), and `timeout 60 devin -p "task"` is blocked with a reason containing `[stdin-redirect-required]`.
+- A heredoc a shell runs, `bash <<'EOF'` + newline + `devin -p "task" </dev/null` + newline + `EOF`, with raw text `run the task`, is blocked.
+Keep every existing test unchanged.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

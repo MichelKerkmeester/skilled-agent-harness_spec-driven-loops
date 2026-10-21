@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch lint held fixes",
+      "phase 40 dispatch lint held fixes",
+      "pi dispatch authorization bypass",
+      "dispatch resolver every executor",
+      "heredoc script dispatch",
+      "dispatch lint held fixes plan",
+      "dispatch lint held fixes tasks",
+      "dispatch lint held fixes implementation summary"
+    ],
+    "key_topics": [
+      "dispatch",
+      "lint",
+      "held",
+      "phase",
+      "authorization",
+      "bypass",
+      "resolver",
+      "every",
+      "executor",
+      "heredoc",
+      "script",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".opencode/plugins/cli-dispatch-audit.js",
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "scratch/corpus-diff.txt",
+      ".skilled/hooks/dispatch/README.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      "scratch/corpus-diff.mjs",
+      "scratch/mutation/b1-codex-expansion.txt",
+      "scratch/mutation/b2-every-dispatch.txt",
+      "scratch/mutation/b3-heredoc-run.txt",
+      "scratch/mutation/b4-audit-match.txt",
+      "scratch/mutation/b5-adapter-audit.txt",
+      "scratch/mutation/b6-claude-permission.txt",
+      "scratch/mutation/b7-quoted-args.txt",
+      "scratch/mutation/b8-lint-every-dispatch.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-diff.txt",
+        "kind": "file",
+        "path": "scratch/corpus-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-diff.mjs",
+        "kind": "file",
+        "path": "scratch/corpus-diff.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "b1-codex-expansion.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b1-codex-expansion.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b2-every-dispatch.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b2-every-dispatch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b3-heredoc-run.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b3-heredoc-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b4-audit-match.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b4-audit-match.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b5-adapter-audit.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b5-adapter-audit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b6-claude-permission.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b6-claude-permission.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b7-quoted-args.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b7-quoted-args.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b8-lint-every-dispatch.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b8-lint-every-dispatch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi preflight decides with `inspectDispatch`, which returns `none` for `echo \"$(codex exec task)\"` (its expansion check wants a print flag Codex does not have) and for wrapped calls such as `nohup opencode run ...` or `command codex exec task`, so those dispatches skip authorization and every hard rule",
+    "created_at": "2026-10-21T04:55:14Z",
+    "last_save_at": "2026-10-21T09:38:22.220Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f53ff6c0949b6ea7d7e60fd736bac789d93d3e968e46c3ff1e5c1645f6ba80c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2a75bff37234d619c81b9f0d065b1de56ca81d666fc8bcc1384179f6a65b4260",
+      "plan.md": "c6f41077336c2ca7b0d34250609d1384f1c680ddd22e02749ce8979e097db120",
+      "tasks.md": "44059d76d8606d7ffcd542251daac4184817828ff344f0c1ed95c617d2a5c701",
+      "implementation-summary.md": "98859f8faa529dcee47681d541ca36365b1ae9b4f471cd0c4f97e559afd29edd"
+    },
+    "last_active_at": null
+  }
+}

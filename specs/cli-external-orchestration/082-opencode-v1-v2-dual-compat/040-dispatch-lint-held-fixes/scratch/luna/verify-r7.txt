@@ -1,0 +1,10 @@
+VERDICTS
+do not use opencode, use codex, or use cli-devin | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:187 keeps the negation open across the trailing comma and “or,” so cli-devin remains denied.
+cannot use cli-devin | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:43 now includes “cannot,” which negationReachesMention carries to the mention.
+
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:43 | P1 | You are forbidden from using cli-devin | “Forbidden” is not recognized before the mention, so the refusal authorizes the executor. | Recognize pre-mention refusal forms such as “forbidden from using.”
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:55 | P1 | cli-devin, do not use it | The post-mention pattern misses a plain “do not use” directive, so this refusal authorizes the executor. | Add constrained post-mention refusal directives.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:55 | P1 | Use cli-devin, it is not forbidden | The broad “is not” match treats this clear positive request as a refusal and blocks it. | Make post-mention refusal matching polarity-aware.
+
+VERDICT: FAIL

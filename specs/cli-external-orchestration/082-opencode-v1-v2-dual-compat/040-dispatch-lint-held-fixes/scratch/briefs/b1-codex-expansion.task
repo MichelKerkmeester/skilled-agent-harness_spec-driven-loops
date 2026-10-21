@@ -1,0 +1,26 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its test.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, `hasDispatchText` (around line 282) decides whether an expanded token such as `"$(codex exec task)"` holds a dispatch. Its Codex line requires a `-p`/`--print` flag after `codex exec`, but Codex has no print flag: `directExecutor` and the `DISPATCH_SHAPES` entry both treat `codex exec` alone as the dispatch. So `inspectDispatch('echo "$(codex exec task)"')` returns `{ kind: 'none' }`, and the Pi preflight, which returns early on `none`, lets that Codex run skip authorization and every hard rule.
+
+Fix: change only the Codex line in `hasDispatchText` to match `codex exec` without a print flag, the same shape `DISPATCH_SHAPES` uses (`/\bcodex\s+exec\b/`). Change no other line of the function and no other function.
+
+Test: in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, add rows to the existing `it.each` table in `describe('inspectDispatch', ...)`, next to the `quoted command substitution` row:
+- `['quoted codex substitution', 'echo "$(codex exec task)"', { kind: 'ambiguous' }]`
+- `['codex substitution', '$(codex exec task)', { kind: 'ambiguous' }]`
+- `['backtick codex substitution', 'echo "`codex exec task`"', { kind: 'ambiguous' }]` (write the backticks so the string literal is valid JavaScript)
+Keep every existing row unchanged.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

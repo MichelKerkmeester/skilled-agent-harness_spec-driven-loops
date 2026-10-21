@@ -18,6 +18,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
+import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. RULE LOADING
@@ -47,6 +48,107 @@ export function readHardRules(skillMdPath) {
 // A check returning false means the rule is VIOLATED and should be surfaced.
 
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
+// A pipe feeding a headless CLI (`... | opencode run`) closes inherited stdin for the run it
+// feeds, not for the whole chain. The pipe is shell syntax around the dispatch, so it is read
+// from the whole command, unquoted, with this global copy. The CLI-name prefix also matches
+// commands that are not dispatches (`pi --version`), so a match counts only when the command
+// it feeds is itself a headless dispatch: one pipe closes stdin for one run, so each run that
+// closes no stdin of its own must be covered by one.
+const PIPE_FED_DISPATCH = /\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/g;
+
+// A prompt is an argument, not syntax: a quoted span is text the CLI receives, so a flag or
+// redirect spelled inside one is not evidence the dispatch passes it. Blank the span contents
+// and keep the quotes, leaving only the command's own argument structure. In ANSI-C `$'...'`
+// a backslash escapes the next character, so only an unescaped quote ends the span.
+// A quoted heredoc delimiter is syntax rather than prompt text -- `<<'EOF'` is exactly what
+// the stdin rule looks for -- so a quoted word of any shape after `<<` or `<<-` survives.
+function blankQuotedSpans(command) {
+  let result = '';
+  for (let index = 0; index < command.length; index += 1) {
+    if (command[index] === '<') {
+      const heredoc = /^<<-?\s*(?:'[^'\n]+'|"[^"\n]+")/.exec(command.slice(index));
+      if (heredoc) {
+        result += heredoc[0];
+        index += heredoc[0].length - 1;
+        continue;
+      }
+    }
+    const character = command[index];
+    if (character === '$' && command[index + 1] === "'") {
+      let cursor = index + 2;
+      let closed = false;
+      while (cursor < command.length) {
+        // ANSI-C quoting: a backslash escapes the next character, so `\'` stays inside.
+        if (command[cursor] === '\\' && cursor + 1 < command.length) {
+          cursor += 2;
+          continue;
+        }
+        if (command[cursor] === "'") {
+          closed = true;
+          break;
+        }
+        cursor += 1;
+      }
+      if (!closed) {
+        result += character;
+        continue;
+      }
+      result += "''";
+      index = cursor;
+      continue;
+    }
+    if (character === "'") {
+      const end = command.indexOf("'", index + 1);
+      if (end === -1) {
+        result += character;
+        continue;
+      }
+      result += "''";
+      index = end;
+      continue;
+    }
+    if (character === '"') {
+      let cursor = index + 1;
+      let closed = false;
+      while (cursor < command.length) {
+        // A backslash-escaped quote inside a double-quoted span is part of the span.
+        if (command[cursor] === '\\' && cursor + 1 < command.length) {
+          cursor += 2;
+          continue;
+        }
+        if (command[cursor] === '"') {
+          closed = true;
+          break;
+        }
+        cursor += 1;
+      }
+      if (!closed) {
+        result += character;
+        continue;
+      }
+      result += '""';
+      index = cursor;
+      continue;
+    }
+    result += character;
+  }
+  return result;
+}
+
+// The texts the stdin and model checks read: each resolved dispatch's own blanked arguments,
+// in command order, so one dispatch's flag or redirect cannot answer for another. When
+// nothing resolves the whole blanked command is the one text. Quotes are blanked either way,
+// so a prompt cannot lend a check a flag or redirect the dispatch never passed.
+function dispatchArgumentTexts(command) {
+  const dispatches = resolveDispatchCommands(command);
+  const texts = dispatches.length > 0
+    ? dispatches.map((dispatch) => dispatch.text)
+    : [command];
+  return texts.map(blankQuotedSpans);
+}
+
+// Claude's print-mode shape, shared by the headless list below and the permission-mode check.
+const CLAUDE_PRINT = /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/;
 
 // Every headless CLI here inherits the parent terminal's stdin and can hang
 // indefinitely with no output, which reads as a slow model rather than a deadlock.
@@ -55,7 +157,7 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 const HEADLESS_DISPATCH_SHAPES = [
   /\bopencode\d*\s+run\b/,
   /\bpi\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
-  /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
+  CLAUDE_PRINT,
   /\bcodex\s+exec\b/,
   /\bdevin\s+(?:[^|;&]*\s)?-p\b/,
   /\bcursor-agent\s+(?:[^|;&]*\s)?-p\b/,
@@ -154,19 +256,39 @@ export const CHECKS = {
   // and hang at 0% CPU, emitting nothing at all.
   'stdin-redirect-required': (cmd) => {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
-    if (STDIN_REDIRECT.test(cmd)) return true; // stdin handled
-    // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin.
-    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(cmd)) return true;
+    // The pipe count is the budget of runs whose stdin the shell closes for them; it is counted
+    // on the whole blanked command because the pipe is syntax around the dispatch, not part of it.
+    // Only a pipe whose fed command is itself a headless dispatch closes stdin: `| pi --version`
+    // matches the pipe pattern but leaves the later `opencode run`'s inherited stdin open.
+    const blanked = blankQuotedSpans(cmd);
+    const pipeFed = [...blanked.matchAll(PIPE_FED_DISPATCH)].filter((match) => {
+      const fed = blanked.slice(match.index + 1).match(/^[^;|&\n]*/)[0];
+      return HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(fed));
+    }).length;
+    // Every dispatch answers for its own stdin: a redirect on one run cannot close stdin on
+    // a later run that has none. When no resolved text carries a headless shape, the whole
+    // command is the one text, so a shape the resolver did not name is still checked.
+    const texts = dispatchArgumentTexts(cmd);
+    const headless = texts.filter((text) => HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(text)));
+    const held = headless.length > 0 ? headless : [blankQuotedSpans(cmd)];
     // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
-    if (HERMES_CHAT.test(cmd) && HERMES_STDIN_HANDLED.test(cmd)) return true;
-    return false;
+    const unclosed = held.filter((text) => !STDIN_REDIRECT.test(text)
+      && !(HERMES_CHAT.test(text) && HERMES_STDIN_HANDLED.test(text)));
+    // One pipe can feed only one run, so more unclosed runs than pipes means at least one run
+    // inherits an open stdin and can hang with no output.
+    return unclosed.length <= pipeFed;
   },
   // Without an explicit model the run falls back to the configured default; when that
   // provider is out of quota the 429 retries forever and emits nothing, which looks
   // exactly like a deadlock.
   'explicit-model-required': (cmd) => {
     if (!/\bopencode\d*\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
-    return /(^|\s)(-m|--model)(\s|=)/.test(cmd);
+    // Every opencode run in the chain must name its own model: one run's -m cannot cover
+    // a later run that falls back to the configured default.
+    const texts = dispatchArgumentTexts(cmd);
+    const runs = texts.filter((text) => /\bopencode\d*\s+run\b/.test(text));
+    const held = runs.length > 0 ? runs : [blankQuotedSpans(cmd)];
+    return held.every((text) => /(^|\s)(-m|--model)(\s|=)/.test(text));
   },
   // A bare top-level `--agent general` is rejected by opencode at runtime. Both spellings
   // count: `--agent=general` reached the runtime unflagged while `--agent general` did not.
@@ -284,7 +406,7 @@ export const CHECKS = {
   'command-v-jev-required': binaryOnPathCheck('jev', /\bjev\s+/),
   // Non-interactive claude -p with a Bash-heavy prompt and no permission bypass can deadlock.
   'non-interactive-permission-mode-risk': (cmd) => {
-    if (!/\bclaude\s+-p\b|\bclaude\s+--print\b/.test(cmd)) return true;
+    if (!CLAUDE_PRINT.test(cmd)) return true;
     return /--dangerously-skip-permissions|--permission-mode\s+bypassPermissions/.test(cmd);
   },
 };
@@ -362,4 +484,30 @@ export function evaluate(command, rules, options = {}) {
     }
   }
   return violations;
+}
+
+/**
+ * Evaluate every dispatch in a command chain against its own packet's hard rules.
+ *
+ * A chain such as `opencode run ... && pi -p ...` is two dispatches governed by two packets,
+ * and reading only the first packet held the second executor to the wrong rule set: cli-opencode
+ * declares nothing about `--offline`, so the pi half of that chain was never checked at all.
+ * Each resolved dispatch is therefore measured against the rules beside the SKILL.md of the
+ * packet that governs it, and a packet that declares no rules contributes nothing.
+ *
+ * @param {string} command - raw command text.
+ * @param {string} skillsRoot - directory holding the `cli-*` packets.
+ * @param {Object} [options] - forwarded to `evaluate` (checks, context, version).
+ * @returns {Array<{skill: string, violations: Array<object>}>} one item per packet with at
+ *   least one violation, in command order; empty when nothing resolves or nothing is violated.
+ */
+export function evaluateDispatch(command, skillsRoot, options = {}) {
+  const verdicts = [];
+  for (const { skill, packetPath } of resolveDispatchPackets(command)) {
+    const rules = readHardRules(path.join(skillsRoot, packetPath, 'SKILL.md'));
+    if (rules.length === 0) continue; // packet declares nothing → nothing to enforce here
+    const violations = evaluate(command, rules, options);
+    if (violations.length > 0) verdicts.push({ skill, violations });
+  }
+  return verdicts;
 }

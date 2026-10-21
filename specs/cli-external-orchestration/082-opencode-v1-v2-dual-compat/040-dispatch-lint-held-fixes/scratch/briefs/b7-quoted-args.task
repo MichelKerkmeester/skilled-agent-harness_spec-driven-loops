@@ -1,0 +1,33 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change across two files, plus its tests.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, the checks `stdin-redirect-required` and `explicit-model-required` test raw regexes against the whole command text. Text inside a quoted prompt therefore counts as a real redirect or flag: `opencode run "fix it --model p/m </dev/null"` passes both checks although the command has no model flag and does not redirect stdin.
+
+Fix:
+1. In `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, add and export `resolveDispatchCommands(command)`. It returns, in command order and without duplicate skills, `{ entry, text }` for every dispatch `resolveDispatchPackets` finds, where `entry` is the `DISPATCH_SHAPES` entry and `text` is the command text the dispatch was resolved from AFTER unwrapping (the `current` string inside `resolveSegment` at the moment it resolved: for `bash -c "opencode run ... </dev/null"` that is the inner payload; for `nohup opencode run ...` it is `opencode run ...`). Do this by having `resolveSegment` return `{ skill, text }` internally and adapting its callers; `resolveDispatchPackets` and `resolveDispatchPacket` must return exactly what they return today. For an executed heredoc body, `text` is the body's own resolved text.
+2. In `dispatch-rule-checks.mjs`, import `resolveDispatchCommands` and add a private helper that returns the argument text to test: the `text` of every resolved dispatch joined by newlines, or the whole command when none resolves, with the contents of every single- and double-quoted span blanked (keep the quote characters, drop what is between them; a backslash-escaped quote inside a double-quoted span does not end it). Do not blank a quoted heredoc delimiter: the word right after `<<` or `<<-` (as in `<<'EOF'`) stays.
+3. In `stdin-redirect-required`, keep the applicability test (`HEADLESS_DISPATCH_SHAPES`) on the raw command, and test `STDIN_REDIRECT` and `HERMES_STDIN_HANDLED` against the helper's text. Test the pipe-into-the-CLI pattern against the whole command with quoted spans blanked.
+4. In `explicit-model-required`, keep the applicability test on the raw command and test the `-m`/`--model` pattern against the helper's text.
+Leave every other check alone.
+
+Tests, in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, one new `test(...)` that asserts through `CHECKS`:
+- `stdin-redirect-required` and `explicit-model-required` both return `false` for `opencode run "fix it --model p/m </dev/null"`;
+- both return `true` for `opencode run -m p/m "fix it" </dev/null`, for `bash -c "opencode run -m p/m 'fix it' </dev/null"`, for `nohup opencode run --model p/m "x" </dev/null`, and for `opencode run -m "$MODEL" "x" </dev/null`;
+- `stdin-redirect-required` returns `true` for `opencode run -m p/m <<'EOF'` + newline + `prompt` + newline + `EOF`, and for `cat p.md | opencode run -m p/m`;
+- `stdin-redirect-required` returns `false` for `opencode run -m p/m "use </dev/null in your answer"`.
+And in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, one `it` in `describe('resolveDispatchPacket', ...)` asserting `resolveDispatchCommands(String.raw\`bash -c "opencode run -m p/m 'x' </dev/null"\`)` has one item whose `entry.skill` is `'cli-opencode'` and whose `text` is `opencode run -m p/m 'x' </dev/null`.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

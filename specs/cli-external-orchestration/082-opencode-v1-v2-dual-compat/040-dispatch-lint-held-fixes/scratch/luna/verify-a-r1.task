@@ -1,0 +1,29 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing.
+
+Review the four commits `f14f449a6e..237e6f863b` (run `git log --oneline f14f449a6e..237e6f863b` and `git diff f14f449a6e..237e6f863b -- .skilled`). They fix these held findings, whose full text is in `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md` §3 and `.../039-sk-code-opencode-alignment-audit/scratch/luna/confirm-b09-hooks-dispatch.txt`:
+- b09-hooks-dispatch-006 (P0): a Codex dispatch inside a command substitution classified as `none`.
+- b09-hooks-dispatch-N03 (P1): the resolver returned only the first dispatch in a chain. This batch adds `resolveDispatchPackets`; wiring the adapters to it comes in a later batch, so judge only the resolver here.
+- b09-hooks-dispatch-N05 (P1): a heredoc the same call runs was stripped as data.
+- b09-hooks-dispatch-N06 (P2): the audit matched only direct dispatches while the preflight unwraps wrappers.
+
+For each finding answer: is it fixed (FIXED / PARTIAL / NOT FIXED), with file:line evidence; does its new test fail on the old code (the phase records that in `040-dispatch-lint-held-fixes/scratch/mutation/*.txt`; check one yourself if you doubt it). Then look for regressions: a command that now resolves or classifies as a dispatch although it dispatches nothing, or one that stopped resolving. `040-dispatch-lint-held-fixes/scratch/corpus-diff.mjs` compares the engine before and after over 260 commands; you may run it as `node specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/corpus-diff.mjs <before-root> <after-root>` only if you first build a before-root by `git archive f14f449a6e .skilled/hooks/dispatch | tar -x -C <a temp dir>`, and remove the temp dir afterwards. Also judge the heredoc parser against shapes such as a herestring `<<<"text"` before a real heredoc, `<<EOF` inside quotes, and two heredocs on one line.
+
+Standards: sk-code's review baseline (`.skilled/skills/sk-code/` code-review mode: P0 blocker = exploitable bypass or data loss; P1 = correctness bug, spec mismatch, must-fix gate; P2 = everything else). Comment hygiene: comments must not carry spec paths, phase numbers or task, review or finding ids.
+
+Run, from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH:
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<finding id> | FIXED|PARTIAL|NOT FIXED | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <rule> | <defect> | <remedy>
+TESTS
+<command> | <pass>/<fail>
+VERDICT: PASS (no P0 or P1 open) or FAIL

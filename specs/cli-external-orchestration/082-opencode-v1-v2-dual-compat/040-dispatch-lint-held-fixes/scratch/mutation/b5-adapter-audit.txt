@@ -1,0 +1,57 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs (2 tests | 1 failed) 72ms
+   ❯ Devin dispatch audit (2)
+     × ignores a dispatch that is only heredoc data 35ms
+ ❯ .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs (6 tests | 1 failed) 675ms
+   ❯ Codex dispatch audit (3)
+     × ignores a dispatch that is only heredoc data 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs > Codex dispatch audit > ignores a dispatch that is only heredoc data
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:103:90
+    101|       });
+    102|       expect(result.status).toBe(0);
+    103|       expect(existsSync(join(projectDir, '.skilled', 'logs', 'cli-disp…
+       |                                                                                          ^
+    104|     } finally {
+    105|       rmSync(projectDir, { recursive: true, force: true });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs > Devin dispatch audit > ignores a dispatch that is only heredoc data
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs:78:90
+     76|       });
+     77|       expect(result.status).toBe(0);
+     78|       expect(existsSync(join(projectDir, '.skilled', 'logs', 'cli-disp…
+       |                                                                                          ^
+     79|     } finally {
+     80|       rmSync(projectDir, { recursive: true, force: true });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 6 passed (8)
+   Start at  07:15:32
+   Duration  774ms (tests 96%, transform 2%, import 1%, worker 1%)
+
+b5-adapter-audit: exit 1 against the base sources (.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs)

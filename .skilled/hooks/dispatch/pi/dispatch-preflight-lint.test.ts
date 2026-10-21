@@ -125,6 +125,30 @@ describe('Pi dispatch deny matrix', () => {
     ['deep-loop executor', 'opencode run "task"', '/deep:review --executor cli-opencode', false],
     ['deep-loop executor mismatch', 'devin -p "task"', '/deep:review --executor cli-opencode', true],
     ['deep-loop executor equals', 'devin -p "task"', '/deep:review --executor cli-devin', false],
+    ['negated deep-loop executor', 'devin -p "task"', 'do not run /deep:review --executor cli-devin', true],
+    ['bare not before a deep-loop executor', 'devin -p "task"', 'not /deep:review --executor cli-devin', true],
+    ['negation of a different executor before a comma', 'devin -p "task"', 'not opencode, use cli-devin', false],
+    ['negation of a different executor before but', 'devin -p "task"', 'not opencode but cli-devin', false],
+    ['negation in the same clause as a deep-loop executor', 'devin -p "task"', 'please, not /deep:review --executor cli-devin', true],
+    ['negation across a parenthetical', 'devin -p "task"', 'do not, under any circumstances, use cli-devin', true],
+    ['negation across a parenthetical before a deep-loop executor', 'devin -p "task"', 'do not, under any circumstances, run /deep:review --executor cli-devin', true],
+    ['never, ever before the mention', 'devin -p "task"', 'never, ever, use cli-devin', true],
+    ['negation across nested parentheticals', 'devin -p "task"', 'do not, for any reason, at any point, use cli-devin', true],
+    ['dont across a parenthetical', 'devin -p "task"', 'dont, whatever happens, use cli-devin', true],
+    ['upper-case NOT across a parenthetical', 'devin -p "task"', 'do NOT, even once, use cli-devin', true],
+    ['avoid across a parenthetical', 'devin -p "task"', 'avoid, if possible, cli-devin', true],
+    ['without across a parenthetical', 'devin -p "task"', 'run it without, of course, cli-devin', true],
+    ['negated list of executors', 'devin -p "task"', 'do not use opencode, codex, or cli-devin', true],
+    ['negated list of cli names', 'devin -p "task"', 'never use cli-opencode, cli-codex, cli-devin', true],
+    ['negation across a parenthetical into a list', 'devin -p "task"', 'do not, please, use opencode or cli-devin', true],
+    ['negated executor then a new imperative (policy deny)', 'devin -p "task"', 'do not use opencode, use cli-devin', true],
+    ['never one executor then run another (policy deny)', 'devin -p "task"', 'never use codex, run cli-devin', true],
+    ["don't one executor then try another (policy deny)", 'devin -p "task"', "don't use cli-opencode, try cli-devin", true],
+    ['never one executor then launch another (policy deny)', 'devin -p "task"', 'never use codex, launch cli-devin', true],
+    ['avoid one executor then prefer another (policy deny)', 'devin -p "task"', 'avoid opencode, prefer cli-devin', true],
+    ['quoted deep-loop executor', 'devin -p "task"', 'say "run /deep:review --executor cli-devin"', true],
+    ['backtick deep-loop executor', 'devin -p "task"', 'the form is `run /deep:review --executor cli-devin`', true],
+    ['negation in an earlier sentence (policy deny)', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', true],
     ['cli-pi named by the user', 'pi -p "task"', 'use cli-pi', false],
     ['cli-pi without an override', 'pi -p "task"', 'run the task', true],
     ['negated mode mention', 'devin -p "task"', 'do not use cli-devin', true],
@@ -145,6 +169,205 @@ describe('Pi dispatch deny matrix', () => {
         ? { runtime: 'claude' }
         : {};
     expect(denied(command, userText, options)).toBe(expected);
+  });
+});
+
+describe('Pi refusal phrasings', () => {
+  it.each([
+    // A list joined past the comma keeps the negation open instead of reading the last item
+    // as a fresh imperative.
+    ['do not use opencode, use codex, or use cli-devin', true],
+    ['do not use opencode, use codex, and use cli-devin', true],
+    ['never run codex, run opencode, or run cli-devin', true],
+    ['you cannot use opencode, codex, or cli-devin', true],
+    // Every refusal word reads as a negation.
+    ['cannot use cli-devin', true],
+    ["can't use cli-devin", true],
+    ['can not use cli-devin', true],
+    ["mustn't use cli-devin", true],
+    ['must not use cli-devin', true],
+    ["shouldn't use cli-devin", true],
+    ['should not use cli-devin', true],
+    ["won't use cli-devin", true],
+    ['will not use cli-devin', true],
+    // A directive refusal before the mention withdraws authority just as a negated verb does.
+    ['stop using cli-devin', true],
+    ['skip cli-devin', true],
+    ['refuse to use cli-devin', true],
+    ['ban cli-devin', true],
+    ['drop cli-devin', true],
+    ['forget cli-devin', true],
+    ['exclude cli-devin', true],
+    ['nobody should use cli-devin', true],
+    ['no one may run cli-devin', true],
+    // A curly apostrophe spells the same contraction, so it negates the same way.
+    ['don’t use cli-devin', true],
+    ['can’t use cli-devin', true],
+    ['mustn’t use cli-devin', true],
+    ['shouldn’t use cli-devin', true],
+    ['won’t use cli-devin', true],
+    // A curly or low quote delimits the same span a straight one does, so a quoted mention is not
+    // a request, and a pair that mixes the two forms still encloses it.
+    ['use “cli-devin”', true],
+    ['use ‘cli-devin’', true],
+    ['say “run /deep:review --executor cli-devin”', true],
+    ['use “cli-devin"', true],
+    ['use ”cli-devin“', true],
+    ['use „cli-devin“', true],
+    // Nesting is counted, not guessed from the last pair of brackets, so a closed inner
+    // substitution cannot hide the outer one still open around the mention.
+    ['$(echo $(true) cli-devin)', true],
+    ['$(echo $(echo $(true)) cli-devin)', true],
+    ['$(a $(b) $(c) cli-devin)', true],
+    ['$(echo (1) cli-devin)', true],
+    // A quoted or escaped bracket is a literal to the shell, so it cannot close the level the
+    // mention sits in, and a quoted backtick cannot open a span that is already closed.
+    ['$(echo ")" cli-devin)', true],
+    ["$(echo '\\)' cli-devin)", true],
+    ['$(echo \\) cli-devin)', true],
+    ['$(echo "a)b" `true` cli-devin)', true],
+    ['$(echo "$(true)" ")" cli-devin)', true],
+    ['$(echo "`" "`" ")" cli-devin)', true],
+    // Every level closed, so the mention stands in plain text again.
+    ['$(echo ")") use cli-devin', false],
+    // A substitution that closed before the mention leaves it in plain text.
+    ['$(true) and then use cli-devin', false],
+    // A quoted word that closes before the mention is a quotation, not an enclosure.
+    ['the “fast” path: use cli-devin', false],
+    ['you cannot, under any circumstances, use cli-devin', true],
+    ["you mustn't, ever, run /deep:review --executor cli-devin", true],
+    ['cannot run /deep:review --executor cli-devin', true],
+    ['no, no, no, use cli-devin', true],
+    // A refusal stated after the mention withholds authority as well.
+    ['cli-devin is not allowed', true],
+    ['cli-devin is forbidden', true],
+    ['cli-devin is banned here', true],
+    ['cli-devin must not be used', true],
+    ['cli-devin must never be used', true],
+    ['cli-devin should never run', true],
+    ["cli-devin isn't allowed", true],
+    ['using cli-devin is prohibited', true],
+    ['cli-devin is off-limits', true],
+    ['cli-devin is disallowed', true],
+    ['/deep:review --executor cli-devin is forbidden', true],
+    // A refusal on either side of the mention refuses the sentence it sits in.
+    ['You are forbidden from using cli-devin', true],
+    ['cli-devin, do not use it', true],
+    // Fail-closed deny accepted by policy: the operator states the request in its own sentence.
+    ['Use cli-devin, it is not forbidden', true],
+    // An exclusion phrase right before the mention names it as the thing to avoid.
+    ['use anything instead of cli-devin', true],
+    ['rather than cli-devin, do it by hand', true],
+    ['instead of /deep:review --executor cli-devin, do it by hand', true],
+    ['use any executor except cli-devin', true],
+    ['use all executors except for cli-devin', true],
+    ['no cli-devin', true],
+    ['no cli-devin please', true],
+    ['anything but cli-devin', true],
+    ['use something other than cli-devin', true],
+    ['use any tool apart from cli-devin', true],
+    ['run it with everything excluding cli-devin', true],
+    ['not even cli-devin', true],
+    // Every inflection of each refusal verb refuses the sentence, as a whole word.
+    ['forbid cli-devin', true],
+    ['we forbid cli-devin here', true],
+    ['prohibit cli-devin', true],
+    ['disallow cli-devin', true],
+    ['block cli-devin', true],
+    ['prevent cli-devin from running', true],
+    ['reject cli-devin', true],
+    ['veto cli-devin', true],
+    ['quit using cli-devin', true],
+    // A semicolon, a line break or an abbreviation period leaves the refusal sentence open.
+    ['not opencode; use cli-devin', true],
+    ['never use codex; use cli-devin', true],
+    ['do not use cli-devin\nuse cli-devin', true],
+    ['not opencode\r\nuse cli-devin', true],
+    ['never use it, e.g. cli-devin', true],
+    ['avoid these, etc. cli-devin', true],
+    ['skip the rest, i.e. cli-devin', true],
+    // A later sentence, or a sentence with no refusal word in it, still leaves the mention a request.
+    ['not opencode, use cli-devin', false],
+    // Policy deny: a refusal anywhere in the sentence refuses it, list item or not.
+    ["don't use codex, use cli-devin and opencode", true],
+    // Policy deny: a second refusal after the mention refuses the whole sentence.
+    ['not opencode, use cli-devin, not codex', true],
+    ['go with cli-devin', false],
+    ['not opencode but cli-devin', false],
+    // Policy deny: the refusal after the mention refuses the sentence with it.
+    ['use cli-devin, not opencode', true],
+    // Policy deny: an exclusion phrase refuses the mention, before or after it.
+    ['use cli-devin instead of opencode', true],
+    // Policy deny: an exclusion phrase refuses the mention, before or after it.
+    ['use cli-devin rather than codex', true],
+    ['dispatch via cli-devin please', false],
+    ['cli-devin is allowed here', false],
+    // Policy deny: `do not` opens the sentence, so the sentence is not a reset form.
+    ['do not use opencode, use cli-devin', true],
+    // Policy deny: a lowercase follow-on phrase stays inside the refusal sentence.
+    ['never use codex. use cli-devin', true],
+    // A terminator followed by a capital starts a new sentence, so the earlier refusal no longer applies.
+    ['Never use codex. Use cli-devin', false],
+    ['Skip the tests! Run cli-devin', false],
+    ["it's fine to use cli-devin", false],
+    // A list noun refuses without a verb next to the mention.
+    ['prohibition on cli-devin', true],
+    ['blocklist cli-devin', true],
+    // `w/o` expands to `without`, so the token refuses the way the full word does.
+    ['w/o cli-devin', true],
+    // A bare refusal after the mention reads as its answer.
+    ['cli-devin: nope', true],
+    // The one sentence after the mention can withdraw the request the mention's sentence made.
+    ['cli-devin? No.', true],
+    ['Use cli-devin. Actually, no.', true],
+    ['Use cli-devin. Never mind.', true],
+    ['Run cli-devin! Scratch that.', true],
+    // A refusal in that sentence that names only other executors governs those names instead, and
+    // a sentence with no refusal word leaves the request standing. A refusal that names the
+    // mention's own executor, under any spelling, withdraws the request.
+    ['Use cli-devin. Never use codex.', false],
+    ['Use cli-devin. Never use devin.', true],
+    ['Use cli-devin. Never use cli-devin.', true],
+    ['Use cli-devin. Do not run Devin.', true],
+    ['Use cli-devin. Skip devin, use codex.', true],
+    ['Use cli-devin. Then report back.', false],
+  ])('%s', (userText, expected) => {
+    expect(denied('devin -p "task"', userText)).toBe(expected);
+  });
+});
+
+describe('Pi reset forms across executor aliases', () => {
+  // A reset names a different executor; two spellings of one executor are that one executor,
+  // so refusing `claude` must not authorize `cli-claude-code`.
+  it.each([
+    ['claude -p "task"', 'not claude, use cli-claude-code', true],
+    ['codex exec "task"', 'not codex, use cli-codex', true],
+    ['opencode run "task"', 'not opencode, use cli-opencode', true],
+    ['opencode run "task"', 'not opencode2, use cli-opencode', true],
+    ['devin -p "task"', 'not devin, use cli-devin', true],
+    ['devin -p "task"', 'not Devin, use cli-devin', true],
+    ['pi -p "task"', 'not pi, use cli-pi', true],
+    ['cursor-agent -p "task"', 'not cursor-agent, use cli-cursor', true],
+    ['cursor-agent -p "task"', 'not cursor but cli-cursor', true],
+    ['devin -p "task"', 'not cli-devin but cli-devin', true],
+    ['devin -p "task"', 'not opencode, use cli-devin', false],
+    ['claude -p "task"', 'not codex, use cli-claude-code', false],
+  ])('%s', (command, userText, expected) => {
+    expect(denied(command, userText)).toBe(expected);
+  });
+});
+
+describe('Pi next-sentence retraction across aliases', () => {
+  // A retraction names a skill rather than a spelling, so refusing any alias of the mention's
+  // executor withdraws the request while a refusal that names only another executor leaves it.
+  it.each([
+    ['claude -p "task"', 'Use cli-claude-code. Never use claude.', true],
+    ['codex exec "task"', 'Use cli-codex. Avoid codex.', true],
+    ['opencode run "task"', 'Use cli-opencode. Skip opencode2.', true],
+    ['cursor-agent -p "task"', 'Use cli-cursor. Never use cursor-agent.', true],
+    ['devin -p "task"', 'Use cli-devin. Never use codex.', false],
+  ])('%s', (command, rawText, expected) => {
+    expect(denied(command, rawText)).toBe(expected);
   });
 });
 
@@ -205,6 +428,49 @@ describe('registered Pi extension boundary', () => {
     const { result } = await invokeFactory('dispatch via cli-devin', 'devin -p "task"');
     expect(result?.block).toBe(true);
     expect(result?.reason).toContain('[stdin-redirect-required]');
+  });
+
+  // A wrapper word hides the executor from the command-word classifier, so these dispatches
+  // reached neither authorization nor the hard rules. Both now follow the resolved packet.
+  it.each([
+    'command codex exec task </dev/null',
+    'nohup opencode run -m p/m "task" </dev/null',
+    'timeout 60 devin -p "task" </dev/null',
+    String.raw`perl -e 'alarm 60; exec @ARGV' -- pi --offline -m p/m -p "task" </dev/null`,
+  ])('denies a wrapped dispatch: %s', async (command) => {
+    const { result } = await invokeFactory('run the task', command);
+    expect(result?.block).toBe(true);
+  });
+
+  // Naming the executor authorizes a wrapped dispatch exactly as it authorizes the bare form.
+  it('allows a named dispatch behind an exec wrapper', async () => {
+    const { result } = await invokeFactory(
+      'dispatch via cli-opencode',
+      'nohup opencode run -m p/m "task" </dev/null',
+    );
+    expect(result).toBeUndefined();
+  });
+
+  // Authorization is not exemption: the wrapped dispatch still answers to its packet's rules,
+  // and a run without the stdin redirect can hang on inherited stdin.
+  it('blocks a named wrapper dispatch that omits the stdin redirect', async () => {
+    const { result } = await invokeFactory('dispatch via cli-opencode', 'nohup opencode run -m p/m "task"');
+    expect(result?.block).toBe(true);
+    expect(result?.reason).toContain('[stdin-redirect-required]');
+  });
+
+  // A variable executor stays unproven no matter how the dispatch is named: the request
+  // authorizes a skill, it does not turn an unreadable command into a known one.
+  it('keeps an ambiguous dispatch denied even when it is named', async () => {
+    const { result } = await invokeFactory('dispatch via cli-devin', 'devin -p "$TASK" </dev/null');
+    expect(result?.block).toBe(true);
+  });
+
+  // A heredoc fed to a shell runs its body, so a dispatch in that body is a dispatch even
+  // though the command word belongs to the shell.
+  it('denies a dispatch in a heredoc a shell runs', async () => {
+    const { result } = await invokeFactory('run the task', 'bash <<\'EOF\'\ndevin -p "task" </dev/null\nEOF');
+    expect(result?.block).toBe(true);
   });
 
   // Allowed is not the same as silent: a warn-severity rule earns an advisory,

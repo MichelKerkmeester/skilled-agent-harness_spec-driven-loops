@@ -1,0 +1,255 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (208 tests | 100 failed | 87 skipped) 15ms
+   ❯ Pi refusal phrasings (121)
+     × you cannot use opencode, codex, or cli-devin 3ms
+     × cannot use cli-devin 0ms
+     × can not use cli-devin 0ms
+     × must not use cli-devin 1ms
+     × should not use cli-devin 0ms
+     × will not use cli-devin 0ms
+     × stop using cli-devin 0ms
+     × skip cli-devin 0ms
+     × refuse to use cli-devin 0ms
+     × ban cli-devin 0ms
+     × drop cli-devin 0ms
+     × forget cli-devin 0ms
+     × exclude cli-devin 0ms
+     × nobody should use cli-devin 0ms
+     × no one may run cli-devin 0ms
+     × don’t use cli-devin 0ms
+     × can’t use cli-devin 0ms
+     × mustn’t use cli-devin 0ms
+     × shouldn’t use cli-devin 0ms
+     × won’t use cli-devin 0ms
+     × use “cli-devin” 0ms
+     × use ‘cli-devin’ 0ms
+     × say “run /deep:review --executor cli-devin” 0ms
+     × use “cli-devin" 0ms
+     × use ”cli-devin“ 0ms
+     × use „cli-devin“ 0ms
+     × $(echo $(true) cli-devin) 0ms
+     × $(echo $(echo $(true)) cli-devin) 0ms
+     × $(a $(b) $(c) cli-devin) 0ms
+     × $(echo (1) cli-devin) 0ms
+     × $(echo ")" cli-devin) 0ms
+     × $(echo '\)' cli-devin) 0ms
+     × $(echo \) cli-devin) 0ms
+     × $(echo "a)b" `true` cli-devin) 0ms
+     × $(echo "$(true)" ")" cli-devin) 0ms
+     × $(echo "`" "`" ")" cli-devin) 0ms
+     × you cannot, under any circumstances, use cli-devin 0ms
+     × you mustn't, ever, run /deep:review --executor cli-devin 0ms
+     × cannot run /deep:review --executor cli-devin 0ms
+     × no, no, no, use cli-devin 0ms
+     × cli-devin is not allowed 0ms
+     × cli-devin is forbidden 0ms
+     × cli-devin is banned here 0ms
+     × cli-devin must not be used 0ms
+     × cli-devin must never be used 0ms
+     × cli-devin should never run 0ms
+     × cli-devin isn't allowed 0ms
+     × using cli-devin is prohibited 0ms
+     × cli-devin is off-limits 0ms
+     × cli-devin is disallowed 0ms
+     × /deep:review --executor cli-devin is forbidden 0ms
+     × You are forbidden from using cli-devin 0ms
+     × cli-devin, do not use it 0ms
+     × Use cli-devin, it is not forbidden 0ms
+     × use anything instead of cli-devin 0ms
+     × rather than cli-devin, do it by hand 0ms
+     × instead of /deep:review --executor cli-devin, do it by hand 0ms
+     × use any executor except cli-devin 0ms
+     × use all executors except for cli-devin 0ms
+     × no cli-devin 0ms
+     × no cli-devin please 0ms
+     × anything but cli-devin 0ms
+     × use something other than cli-devin 0ms
+     × use any tool apart from cli-devin 0ms
+     × run it with everything excluding cli-devin 0ms
+     × not even cli-devin 0ms
+     × forbid cli-devin 0ms
+     × we forbid cli-devin here 0ms
+     × prohibit cli-devin 0ms
+     × disallow cli-devin 0ms
+     × block cli-devin 0ms
+     × prevent cli-devin from running 0ms
+     × reject cli-devin 0ms
+     × veto cli-devin 0ms
+     × quit using cli-devin 0ms
+     × not opencode; use cli-devin 0ms
+     × never use codex; use cli-devin 0ms
+     × do not use cli-devin
+use cli-devin 0ms
+     × not opencode
+use cli-devin 0ms
+     × never use it, e.g. cli-devin 0ms
+     × avoid these, etc. cli-devin 0ms
+     × skip the rest, i.e. cli-devin 0ms
+     × not opencode, use cli-devin, not codex 0ms
+     × use cli-devin, not opencode 0ms
+     × use cli-devin instead of opencode 0ms
+     × use cli-devin rather than codex 0ms
+     × never use codex. use cli-devin 0ms
+     × it's fine to use cli-devin 0ms
+     × prohibition on cli-devin 0ms
+     × blocklist cli-devin 0ms
+     × w/o cli-devin 0ms
+     × cli-devin: nope 0ms
+     × cli-devin? No. 0ms
+     × Use cli-devin. Actually, no. 0ms
+     × Use cli-devin. Never mind. 0ms
+     × Run cli-devin! Scratch that. 0ms
+     × Use cli-devin. Never use devin. 0ms
+     × Use cli-devin. Never use cli-devin. 0ms
+     × Use cli-devin. Do not run Devin. 0ms
+     × Use cli-devin. Skip devin, use codex. 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 100 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > you cannot use opencode, codex, or cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cannot use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > can not use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > must not use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > should not use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > will not use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > stop using cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > skip cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > refuse to use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > ban cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > drop cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > forget cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > exclude cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > nobody should use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > no one may run cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > don’t use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > can’t use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > mustn’t use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > shouldn’t use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > won’t use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use “cli-devin”
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use ‘cli-devin’
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > say “run /deep:review --executor cli-devin”
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use “cli-devin"
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use ”cli-devin“
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use „cli-devin“
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo $(true) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo $(echo $(true)) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(a $(b) $(c) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo (1) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo ")" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo '\)' cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo \) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "a)b" `true` cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "$(true)" ")" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`" "`" ")" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > you cannot, under any circumstances, use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > you mustn't, ever, run /deep:review --executor cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cannot run /deep:review --executor cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > no, no, no, use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin is not allowed
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin is forbidden
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin is banned here
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin must not be used
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin must never be used
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin should never run
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin isn't allowed
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > using cli-devin is prohibited
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin is off-limits
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin is disallowed
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > /deep:review --executor cli-devin is forbidden
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > You are forbidden from using cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin, do not use it
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin, it is not forbidden
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use anything instead of cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > rather than cli-devin, do it by hand
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > instead of /deep:review --executor cli-devin, do it by hand
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use any executor except cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use all executors except for cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > no cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > no cli-devin please
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > anything but cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use something other than cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use any tool apart from cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > run it with everything excluding cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not even cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > forbid cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > we forbid cli-devin here
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > prohibit cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > disallow cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > block cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > prevent cli-devin from running
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > reject cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > veto cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > quit using cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not opencode; use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > never use codex; use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > do not use cli-devin
+use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not opencode
+use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > never use it, e.g. cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > avoid these, etc. cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > skip the rest, i.e. cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not opencode, use cli-devin, not codex
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use cli-devin, not opencode
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use cli-devin instead of opencode
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use cli-devin rather than codex
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > never use codex. use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > prohibition on cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > blocklist cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > w/o cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin: nope
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin? No.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Actually, no.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Never mind.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Run cli-devin! Scratch that.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Never use devin.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Never use cli-devin.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Do not run Devin.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Skip devin, use codex.
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:335:49
+    333|     ['Use cli-devin. Then report back.', false],
+    334|   ])('%s', (userText, expected) => {
+    335|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    336|   });
+    337| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/100]⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > it's fine to use cli-devin
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:335:49
+    333|     ['Use cli-devin. Then report back.', false],
+    334|   ])('%s', (userText, expected) => {
+    335|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    336|   });
+    337| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/100]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  100 failed | 21 passed | 87 skipped (208)
+   Start at  11:29:10
+   Duration  304ms (transform 49%, import 33%, tests 16%, worker 2%)
+
+b29-expansion-quotes-vs-base: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)
