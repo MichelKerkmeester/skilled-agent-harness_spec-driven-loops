@@ -12,7 +12,7 @@ stage: routing
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.4.0.1
+version: 1.4.1.0
 ---
 
 # CLI Dispatch Preflight Authorization
@@ -24,8 +24,8 @@ version: 1.4.0.1
 The dispatch preflight authorization surface decides, before a Bash tool call runs, whether a command is an external-CLI dispatch and — under Pi — whether that dispatch is authorized. It is built on one shared, runtime-neutral inspector consumed by every dispatch hook:
 
 - Shared inspector: `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` (`inspectDispatch` / `matchDispatchShape`). `inspectDispatch` tokenizes a bounded shell command without evaluating it and returns one of three classifications: `direct` (exactly one proven command-position executor), `ambiguous` (an executor-shaped candidate that cannot be pinned to a single direct executor — variable/alias/substitution/unknown-wrapper/multi-segment forms), or `none` (no dispatch evidence). A shell `-c` wrapper (`bash`, `sh`, `zsh`, `dash`) is unwrapped and classified by the command it runs, and a variable counts as an executor only in command position, so `mkdir -p "$DIR"` is `none`.
-- Pi authorization gate: `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` (`shouldDenyPiDispatch`, wired via the `tool_call` handler). It maps the inspector's `kind` to an allow/deny decision: `none` → no-op (not a dispatch), `ambiguous` → deny (the command does not prove one direct executor), `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override).
-- Cross-runtime consumers: the same shared inspector feeds the Claude, Codex, and Devin dispatch hooks (`dispatch-preflight-lint.mjs` and `dispatch-audit-posttooluse.mjs` under each runtime folder) and the observational audit trail (`matchDispatchShape`, which records only `direct` dispatches). A classification change in the shared inspector therefore changes behavior for all four inspector runtimes at once.
+- Pi authorization gate: `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` (`shouldDenyPiDispatch`, wired via the `tool_call` handler). It resolves the command first: a `none` reading that resolves to exactly one packet (a wrapper such as `command` or `nohup` in front of `codex exec` or `opencode run`, or a heredoc a shell runs) is gated as a direct dispatch of that packet, several packets read as ambiguous, and an ambiguous reading is never upgraded. It then maps the kind to an allow/deny decision: `none` → no-op (not a dispatch), `ambiguous` → deny (the command does not prove one direct executor), `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override), and that override counts only when it is not quoted, not inside backticks and not negated earlier in its sentence.
+- Cross-runtime consumers: the same shared inspector feeds the Claude, Codex, and Devin dispatch hooks (`dispatch-preflight-lint.mjs` and `dispatch-audit-posttooluse.mjs` under each runtime folder) and the observational audit trail (`matchDispatchShape`, which records the first packet the shared resolver names). A classification change in the shared inspector therefore changes behavior for all four inspector runtimes at once.
 
 **Quote-safe executor normalization.** A quoted command-position token still names the binary the shell will run, so `"devin" -p x` invokes `devin` exactly as the bare form does. The inspector classifies such a quote-safe executor as `direct` (by exact basename membership), identical to its unquoted twin. Because exact basename membership admits only a real executor name, multi-word quoted prose (`"devin -p task"` as a single token) and a quoted token used as an argument (`echo "devin" -p "hi"`) correctly remain `none`. This closes a path where a quoted executor previously classified as `none`, evading both the Pi authorization gate and the audit trail.
 

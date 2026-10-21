@@ -1,0 +1,27 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is round 3 of at most 4: report only what is real, with a command or file:line that shows it.
+
+Review the commits `f14f449a6e..2cac0da1fa` (`git log --oneline f14f449a6e..2cac0da1fa`, `git diff f14f449a6e..2cac0da1fa -- .skilled .opencode`). Judge the committed code only; the working tree may hold an uncommitted docs edit. Your round-2 verdict is `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-ab-r2.txt`. Since then:
+- N03: the preflight adapters (Claude, Codex, Devin, the OpenCode plugin `.opencode/plugins/cli-dispatch-audit.js`, the Pi extension) now call `evaluateDispatch`; and `resolveDispatchCommands` keeps repeats of one executor while the stdin and model checks require each dispatch to pass its own redirect and model (your same-skill PARTIAL).
+- N04: `$'...'` spans honour backslash escapes (your PARTIAL) and any quoted heredoc delimiter survives blanking (your new P1).
+- N01 (P0): the Pi extension resolves the command; a `none` reading with one resolved packet is gated as direct, several read as ambiguous, ambiguous is never upgraded.
+- N02 (P0): a `/deep:* --executor cli-X` mention authorizes only when not quoted, not in backticks and not negated in its sentence.
+- Your round-2 P2 (fallback resolves `unknown-wrapper devin -p task` and `devin -p "unterminated`) is recorded, not fixed: that is the preflight's existing fail-closed reading, which the audit now shares.
+Full finding text: `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md` §3. Mutation evidence: `040-dispatch-lint-held-fixes/scratch/mutation/*.txt`; corpus diffs: `040-dispatch-lint-held-fixes/scratch/corpus-diff-*.txt` (the latest is corpus-diff-b12.txt; its four `rules:` rows are corpus strings whose escapes the extractor dropped, so the `</dev/null` there really sits inside quotes).
+
+Give a verdict for every finding: b09-hooks-dispatch-006, N01, N02, 012, N03, N04, N05, N06, N07, N08. Then regressions: a command that now dispatches-or-not differently without a finding saying the old verdict was wrong; a single-packet deny or advisory text that is no longer byte-identical; a Pi command that now passes authorization it did not pass before.
+
+Standards: sk-code's review baseline (`.skilled/skills/sk-code/` code-review mode: P0 = exploitable bypass or data loss; P1 = correctness bug, spec mismatch, must-fix gate; P2 = everything else). Comments must not carry spec paths, phase numbers or task, review or finding ids.
+
+Your sandbox cannot create the temp directories vitest and node:test need, so do not run the suites; the operator runs them. Small `node --input-type=module -e` probes importing `.skilled/hooks/dispatch/lib/*.mjs` are fine, with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<finding id> | FIXED|PARTIAL|NOT FIXED | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <rule> | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL
