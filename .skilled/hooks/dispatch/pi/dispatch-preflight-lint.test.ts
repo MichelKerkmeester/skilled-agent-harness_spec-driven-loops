@@ -287,6 +287,27 @@ describe('Pi refusal phrasings', () => {
   });
 });
 
+describe('Pi reset forms across executor aliases', () => {
+  // A reset names a different executor; two spellings of one executor are that one executor,
+  // so refusing `claude` must not authorize `cli-claude-code`.
+  it.each([
+    ['claude -p "task"', 'not claude, use cli-claude-code', true],
+    ['codex exec "task"', 'not codex, use cli-codex', true],
+    ['opencode run "task"', 'not opencode, use cli-opencode', true],
+    ['opencode run "task"', 'not opencode2, use cli-opencode', true],
+    ['devin -p "task"', 'not devin, use cli-devin', true],
+    ['devin -p "task"', 'not Devin, use cli-devin', true],
+    ['pi -p "task"', 'not pi, use cli-pi', true],
+    ['cursor-agent -p "task"', 'not cursor-agent, use cli-cursor', true],
+    ['cursor-agent -p "task"', 'not cursor but cli-cursor', true],
+    ['devin -p "task"', 'not cli-devin but cli-devin', true],
+    ['devin -p "task"', 'not opencode, use cli-devin', false],
+    ['claude -p "task"', 'not codex, use cli-claude-code', false],
+  ])('%s', (command, userText, expected) => {
+    expect(denied(command, userText)).toBe(expected);
+  });
+});
+
 describe('registered Pi extension boundary', () => {
   // The tool_call path runs every hard rule, the binary availability checks included, and
   // those read PATH. A CI runner has no devin or pi, so a dispatch these tests allow would

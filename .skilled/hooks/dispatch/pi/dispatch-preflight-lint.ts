@@ -8,6 +8,7 @@
 
 import { join } from 'node:path';
 
+import { executorSkill } from '../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs';
 import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
@@ -47,7 +48,9 @@ const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|avoids|avoid
 const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|devin|cursor|pi|hermes|jev)';
 // The only sentences that both refuse and still authorize: `not <other>, use <executor>` and
 // `not <other> but <executor>`, matched whole so a further clause or list item refuses again.
-const RESET_FORM_PATTERN = new RegExp(`^not\\s+(${EXECUTOR_NAME_SOURCE})\\s*(?:,\\s*use\\s+|but\\s+)(\\S.*)$`, 'i');
+// The refused name is any single word, because the registry below decides which words are
+// executor spellings (`opencode2`, `cli-jev`) and which are not.
+const RESET_FORM_PATTERN = new RegExp(`^not\\s+(\\S+)\\s*(?:,\\s*use\\s+|but\\s+)(\\S.*)$`, 'i');
 // A mention authorizes the name its token ends with: a `/deep:` phrase ends with the `cli-*`
 // its `--executor` value names.
 const MENTION_EXECUTOR_PATTERN = new RegExp(`(${EXECUTOR_NAME_SOURCE})$`, 'i');
@@ -198,18 +201,19 @@ function mentionSentence(text: string, mentionIndex: number): string {
   return text.slice(start, end);
 }
 
-/** `cli-devin` and `devin` name one executor, so a reset never crosses between the two forms. */
-function normalizedExecutor(name: string): string {
-  return name.trim().toLowerCase().replace(/^cli-/, '');
-}
-
-/** True only for a whole sentence that is `not <other>, use <mention>` or `not <other> but <mention>`. */
+/** True only for a whole sentence that is `not <other>, use <mention>` or `not <other> but <mention>`
+ * where the two names resolve to different executors. Every spelling of one executor (`claude`,
+ * `claude-code`, `cli-claude-code`) resolves to one skill, so refusing any spelling refuses the
+ * mention: the reset never crosses between aliases. A name the registry does not map proves no
+ * different executor, so it fails closed. */
 function isResetForm(sentence: string, mentionToken: string): boolean {
   const match = RESET_FORM_PATTERN.exec(sentence);
   if (!match) return false;
   if (match[2].trim().toLowerCase() !== mentionToken.trim().toLowerCase()) return false;
   const mentioned = MENTION_EXECUTOR_PATTERN.exec(mentionToken)?.[1] ?? mentionToken;
-  return normalizedExecutor(match[1]) !== normalizedExecutor(mentioned);
+  const otherSkill = executorSkill(match[1]);
+  const mentionedSkill = executorSkill(mentioned);
+  return otherSkill !== null && mentionedSkill !== null && otherSkill !== mentionedSkill;
 }
 
 /** A mention authorizes only inside a sentence that carries no negation or refusal word, before
