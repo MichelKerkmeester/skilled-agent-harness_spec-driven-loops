@@ -102,14 +102,21 @@ function appendPluginLog(logPath, maxBytes, detail) {
  * signaling remains disabled until the host can prove a session-owned PID;
  * the workspace-scoped server PID is not sufficient ownership evidence.
  *
- * Best-effort and bounded: subprocesses wait at most eight seconds and hook
- * failures never escape into startup or teardown.
+ * Best-effort and bounded: subprocesses wait at most the 8-second timeout plus
+ * the 250 ms kill grace period, and hook failures never escape into startup or
+ * teardown.
  *
  * Plugin signature follows opencode's plugin API: a default-exported async
  * factory that returns lifecycle hooks.
  *
  * @param {{ directory?: string, worktree?: string }} [input] - Plugin context.
- * @param {{ spawn?: Function, spawnSync?: Function, writeDiagnostic?: Function }} [overrides] - Test seams.
+ * @param {{
+ *   spawn?: Function,
+ *   spawnSync?: Function,
+ *   writeDiagnostic?: Function,
+ *   processTimeoutMs?: number,
+ *   processKillGraceMs?: number,
+ * }} [overrides] - Test seams.
  * @returns {Promise<Object>} Hooks object for the OpenCode plugin loader.
  */
 async function sessionCleanupPlugin(input = {}, overrides = {}) {
@@ -123,6 +130,8 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
   const projectDir = input.worktree || input.directory || REPO_ROOT;
   const runSync = overrides.spawnSync || spawnSync;
   const runAsync = overrides.spawn || spawn;
+  const processTimeoutMs = positiveInteger(overrides.processTimeoutMs, PROCESS_TIMEOUT_MS);
+  const processKillGraceMs = positiveInteger(overrides.processKillGraceMs, PROCESS_KILL_GRACE_MS);
   const logPath = process.env.SESSION_CLEANUP_LOG_PATH
     || process.env.CLAUDE_SESSION_CLEANUP_LOG_PATH
     || DEFAULT_LOG_PATH;
@@ -151,11 +160,11 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
       let stderrBytes = 0;
       let settled = false;
       let killTimer = null;
+      let timeoutTimer = null;
 
       const finish = (result) => {
         if (settled) return;
         settled = true;
-        if (killTimer) clearTimeout(killTimer);
         if (result.error || result.signal
           || (typeof result.status === 'number' && result.status !== 0)) {
           const reason = result.error?.message
@@ -165,12 +174,29 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
         resolveResult(result);
       };
 
+      const clearKillTimers = () => {
+        if (killTimer) clearTimeout(killTimer);
+        if (timeoutTimer) clearTimeout(timeoutTimer);
+        killTimer = null;
+        timeoutTimer = null;
+      };
+
+      // A child may ignore SIGTERM, so only a real close cancels the escalation.
+      const escalateKill = () => {
+        if (killTimer) return;
+        killTimer = setTimeout(() => {
+          child?.kill?.('SIGKILL');
+        }, processKillGraceMs);
+        killTimer.unref?.();
+      };
+
       const capture = (stream, append) => {
         stream?.setEncoding?.('utf8');
         stream?.on?.('data', (chunk) => {
           if (settled) return;
           append(String(chunk));
           if (stdoutBytes > MAX_CAPTURE_BYTES * 2 || stderrBytes > MAX_CAPTURE_BYTES * 2) {
+            escalateKill();
             child?.kill?.('SIGTERM');
             finish({
               error: new Error('ENOBUFS'),
@@ -189,7 +215,7 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
           env,
           maxBuffer: MAX_CAPTURE_BYTES * 2,
           stdio: 'pipe',
-          timeout: PROCESS_TIMEOUT_MS,
+          timeout: processTimeoutMs,
         }) || {};
       } catch (error) {
         writeDiagnostic(`[session-cleanup] ${operation} launch failed: ${error?.message || error}`);
@@ -210,12 +236,14 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
         finish({ error, signal: null, status: null, stderr, stdout });
       });
       child.once?.('close', (status, signal) => {
+        clearKillTimers();
         finish({ signal, status, stderr, stdout });
       });
 
-      // A child that ignores SIGTERM must not leave the prompt transform waiting
-      // beyond the guard timeout, so the deadline settles the promise regardless.
-      killTimer = setTimeout(() => {
+      // The spawn timeout sends SIGTERM at processTimeoutMs; if the child ignores
+      // it, this deadline SIGKILLs and settles rather than leaving the transform
+      // waiting past the real bound.
+      timeoutTimer = setTimeout(() => {
         child?.kill?.('SIGKILL');
         finish({
           error: new Error('ETIMEDOUT'),
@@ -224,8 +252,8 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
           stderr,
           stdout,
         });
-      }, PROCESS_TIMEOUT_MS + PROCESS_KILL_GRACE_MS);
-      killTimer.unref?.();
+      }, processTimeoutMs + processKillGraceMs);
+      timeoutTimer.unref?.();
     });
   }
 

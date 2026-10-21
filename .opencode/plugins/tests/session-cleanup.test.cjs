@@ -45,11 +45,15 @@ function successfulResult(overrides = {}) {
   };
 }
 
-function fakeChild() {
+function fakeChild({ onKill } = {}) {
   const child = new EventEmitter();
   child.stdout = new EventEmitter();
   child.stderr = new EventEmitter();
-  child.kill = () => {};
+  child.killSignals = [];
+  child.kill = (signal) => {
+    child.killSignals.push(signal);
+    onKill?.(signal);
+  };
   return child;
 }
 
@@ -235,12 +239,38 @@ describe('session-cleanup plugin lifecycle', () => {
     await hooks['experimental.chat.system.transform']({ sessionID: 'concurrent-session' }, output);
   });
 
-  test('caps startup warning output before system-context injection', async () => {
+  test('caps overflowing startup output and escalates when SIGTERM is ignored', { timeout: 2000 }, async () => {
     const plugin = await loadPlugin();
+    let overflowChild;
+    let releaseSigkill;
+    const sigkillSent = new Promise((resolve) => {
+      const fallback = setTimeout(() => resolve(false), 500);
+      releaseSigkill = () => {
+        clearTimeout(fallback);
+        resolve(true);
+      };
+    });
+
     const hooks = await plugin({}, {
-      spawn() {
-        const child = fakeChild();
-        setImmediate(() => finishChild(child, { stderr: 'x'.repeat(20_000) }));
+      processKillGraceMs: 20,
+      processTimeoutMs: 5000,
+      spawn(command, args) {
+        const child = fakeChild({
+          onKill(signal) {
+            if (signal !== 'SIGKILL') return;
+            releaseSigkill();
+            setImmediate(() => finishChild(child, { signal: 'SIGKILL', status: null }));
+          },
+        });
+        if (args[0] === WORKTREE_GUARD_PATH) {
+          overflowChild = child;
+          setImmediate(() => {
+            child.stderr.emit('data', 'x'.repeat(20_000));
+            child.stderr.emit('data', 'still writing after SIGTERM\n');
+          });
+        } else {
+          setImmediate(() => finishChild(child));
+        }
         return child;
       },
       spawnSync() {
@@ -249,12 +279,69 @@ describe('session-cleanup plugin lifecycle', () => {
       writeDiagnostic() {},
     });
 
-    await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'bounded' } } } });
+    await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'overflow' } } } });
     const output = { system: [] };
-    await hooks['experimental.chat.system.transform']({ sessionID: 'bounded' }, output);
+    await hooks['experimental.chat.system.transform']({ sessionID: 'overflow' }, output);
 
+    assert.ok(overflowChild, 'the overflowing guard ran');
+    assert.equal(overflowChild.killSignals[0], 'SIGTERM');
+    assert.equal(
+      overflowChild.killSignals.filter((signal) => signal === 'SIGTERM').length,
+      1,
+      'capture stops after the cap and sends SIGTERM once',
+    );
     assert.equal(output.system.length, 1);
     assert.ok(output.system[0].length < 4200);
+
+    assert.equal(await sigkillSent, true, 'SIGKILL follows SIGTERM');
+    assert.deepEqual(overflowChild.killSignals, ['SIGTERM', 'SIGKILL']);
+  });
+
+  test('keeps the timeout kill armed after an early process error', { timeout: 2000 }, async () => {
+    const plugin = await loadPlugin();
+    let slowChild;
+    let releaseSigkill;
+    const sigkillSent = new Promise((resolve) => {
+      const fallback = setTimeout(() => resolve(false), 500);
+      releaseSigkill = () => {
+        clearTimeout(fallback);
+        resolve(true);
+      };
+    });
+
+    const hooks = await plugin({}, {
+      processKillGraceMs: 20,
+      processTimeoutMs: 30,
+      spawn(command, args) {
+        const child = fakeChild({
+          onKill(signal) {
+            if (signal !== 'SIGKILL') return;
+            releaseSigkill();
+            setImmediate(() => finishChild(child, { signal: 'SIGKILL', status: null }));
+          },
+        });
+        if (args[0] === WORKTREE_GUARD_PATH) {
+          slowChild = child;
+          setTimeout(() => child.kill('SIGTERM'), 10);
+          setImmediate(() => child.emit('error', new Error('early failure')));
+        } else {
+          setImmediate(() => finishChild(child));
+        }
+        return child;
+      },
+      spawnSync() {
+        return successfulResult();
+      },
+      writeDiagnostic() {},
+    });
+
+    await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'timeout' } } } });
+    const output = { system: [] };
+    await hooks['experimental.chat.system.transform']({ sessionID: 'timeout' }, output);
+
+    assert.ok(slowChild, 'the slow guard ran');
+    assert.equal(await sigkillSent, true, 'SIGKILL follows SIGTERM');
+    assert.deepEqual(slowChild.killSignals, ['SIGTERM', 'SIGKILL']);
   });
 
   for (const [name, result] of [
