@@ -116,6 +116,9 @@ Batch 12 (the inventory scanner, its tests and the plugin architecture doc) wait
 | Drift guards | All 4 passed |
 | New tests on old code | Archive escape test fails without the guard; goal-slice escape test 24 pass and 1 fail; all three scanner tests fail on the old scanner |
 | Luna rounds | Per-batch verdicts in `scratch/luna/` |
+| Recursive strict validation of 082 | `RESULT: PASSED` for all 40 folders |
+| CI, first push `f6f3e254e1` | 13 runs green, including OpenCode Plugin Tests 39524217239, OpenCode Dual-Version Battery 39524217313 and Spec-Kit Check 39524217338. sk-doc Script Tests 39524217329 failed: its README verdict baseline still expected the tier warning on the seven hook READMEs. Skill Advisor Stress Tests 39524217211 failed on the same four `sa-034` cases it already failed on before this phase (run 39462324507 at `7584ad70b7`) |
+| CI, after the baseline fix `e42bdbeaf2` | All 13 runs green: sk-doc Script Tests 39526699904, OpenCode Plugin Tests 39526699974, Changed Packet Validation 39526699918, Advisory Checks 39526699910, Command Tree Parity 39526699919, Dispatch Enforcement Guard 39526699942, Gate Inputs 39526699914, Markdown Link Integrity 39526699901, Message Contract 39526699999, Playbook Operator Contract 39526699921, Rule Canary Sync 39526699973, sk-doc Rename Harness 39526699911, Trigger Index Rebuild 39526699927 |
 <!-- /ANCHOR:verification -->
 
 ---
