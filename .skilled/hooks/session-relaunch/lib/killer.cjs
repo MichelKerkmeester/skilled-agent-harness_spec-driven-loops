@@ -350,6 +350,58 @@ function removeOwnMutex(mutexPath, mutexInode, token) {
     }
     if (owner.trim().split(/\s+/)[1] !== token) return;
   }
+
+  // Removing by path lets a contender swap its own mutex under this name after
+  // the ownership check. Renaming first keeps the path from naming the directory
+  // about to be removed, and the token is read again from the renamed directory.
+  const stalePath = `${mutexPath}.stale-${process.pid}-${randomUUID()}`;
+  try {
+    fs.renameSync(mutexPath, stalePath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+
+  if (token !== null) {
+    let renamedOwner = '';
+    try {
+      renamedOwner = fs.readFileSync(path.join(stalePath, 'owner'), 'utf8');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    if (renamedOwner.trim().split(/\s+/)[1] !== token) {
+      try {
+        fs.renameSync(stalePath, mutexPath);
+      } catch (error) {
+        // A path a contender has taken again leaves the rename for the stale sweep.
+        if (error.code !== 'EEXIST' && error.code !== 'ENOTEMPTY' && error.code !== 'ENOENT') {
+          throw error;
+        }
+      }
+      return;
+    }
+  }
+
+  fs.rmSync(stalePath, { recursive: true, force: true });
+}
+
+// An owner write can fail while the directory is still ours, so removal waits
+// for a matching inode and no owner file.
+function removeOwnerlessMutex(mutexPath, mutexInode) {
+  let stats;
+  try {
+    stats = fs.statSync(mutexPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+  if (stats.ino !== mutexInode) return;
+  try {
+    fs.statSync(path.join(mutexPath, 'owner'));
+    return;
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
   fs.rmSync(mutexPath, { recursive: true, force: true });
 }
 
@@ -412,7 +464,9 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
       try {
         fs.writeFileSync(mutexOwnerPath, `${process.pid} ${mutexToken}\n`, { flag: 'wx' });
       } catch (error) {
-        removeOwnMutex(mutexPath, mutexInode, null);
+        // An EEXIST owner write means the directory is no longer ours; any other
+        // failure still needs the inode and owner checks before removal.
+        if (error.code !== 'EEXIST') removeOwnerlessMutex(mutexPath, mutexInode);
         throw error;
       }
       mutexHeld = true;
