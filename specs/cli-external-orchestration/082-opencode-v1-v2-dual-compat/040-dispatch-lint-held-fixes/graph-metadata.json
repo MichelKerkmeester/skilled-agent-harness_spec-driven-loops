@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The Pi preflight decides with `inspectDispatch`, which returns `none` for `echo \"$(codex exec task)\"` (its expansion check wants a print flag Codex does not have) and for wrapped calls such as `nohup opencode run ...` or `command codex exec task`, so those dispatches skip authorization and every hard rule",
     "created_at": "2026-10-21T04:55:14Z",
-    "last_save_at": "2026-10-21T06:17:20.169Z",
+    "last_save_at": "2026-10-21T07:23:22.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fcb3ca0d502b5da55720a8ee75c6906c6c7bcdfce2271013c1c9ebcd9b5d0ac",
+    "source_fingerprint": "sha256:910766ae6348448d6ad23c5a2fb952966f4ef0f62e082a87c9545c1e4cef2e2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6e3c0ff239767a1b63bd9e30dc617960d667371d7d4471f4cc90fea6766c775",
       "plan.md": "c6f41077336c2ca7b0d34250609d1384f1c680ddd22e02749ce8979e097db120",
-      "tasks.md": "bc906ecd02021fcb8d8808fc9c898670b62a2c003e7425083e8069e2280caeee",
-      "implementation-summary.md": "261a2b176856a7baf3d3b843434302634b6366fa165ebc123b2f6cbbd686f750"
+      "tasks.md": "ec7661592efa175a490afe1415988b433b7fb6d9da6d3fbd369da9ea5a81c2bd",
+      "implementation-summary.md": "b04fb4822219ecfb555c979a30d2c2c4e1c1ab2e26161a414565fb5b375e83c1"
     },
     "last_active_at": null
   }

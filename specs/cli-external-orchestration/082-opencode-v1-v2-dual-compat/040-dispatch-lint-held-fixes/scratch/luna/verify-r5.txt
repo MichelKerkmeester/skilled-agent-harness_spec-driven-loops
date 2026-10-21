@@ -1,0 +1,7 @@
+VERDICTS
+“not opencode, use cli-devin” authorization | CLOSED | The comma clause split permits this mention while `not /deep:review --executor cli-devin` remains denied (`.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:170-180`, tests `:128-132`).
+Pipe into `pi --version` counted toward stdin budget | CLOSED | Probe returned `false` for the requested command and `true` for pipes feeding real OpenCode and Pi dispatches (`.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:264-267`).
+Quoted heredoc text strips the following dispatch | CLOSED | Probes resolved both quoted delimiter forms and a heredoc after a closed quote to `cli-codex`; the write-only heredoc remained unresolved (`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:559`, tests `:486-500`).
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:170 | P1 | `do not, under any circumstances, use cli-devin` is treated as authorization because the comma clears the negation before the mention | Preserve negation across parenthetical commas and reset it only at an actual clause boundary.
+VERDICT: FAIL
