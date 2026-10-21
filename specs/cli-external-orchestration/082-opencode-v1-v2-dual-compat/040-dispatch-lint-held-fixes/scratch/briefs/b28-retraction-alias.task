@@ -1,0 +1,20 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to the next-sentence retraction in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, plus test rows.
+
+Problem: `isUsableMention` keeps the authorization when the next sentence refuses but `namesExecutor` finds any executor in it. So `Use cli-devin. Never use devin.` authorizes cli-devin, although the next sentence refuses the same executor under its alias.
+
+Fix: replace `namesExecutor` with a helper that returns the set of skills the sentence names (each `cli-` word and each word, mapped through `executorSkill`, dropping nulls). Work out the dispatched mention's skill the same way (`executorSkill` of the executor the mention token ends with). The next sentence revokes the authorization when it matches `REFUSAL_PATTERN` and either names no skill or names the mention's skill. Keep it when the refusal names only other executors. If the mention's skill cannot be resolved, revoke (fail closed). Update the JSDoc and comments.
+
+Tests: add to 'Pi refusal phrasings' as denied (true): 'Use cli-devin. Never use devin.', 'Use cli-devin. Never use cli-devin.', 'Use cli-devin. Do not run Devin.', 'Use cli-devin. Skip devin, use codex.'. Add a describe 'Pi next-sentence retraction across aliases' with an `it.each` of [command, raw text, denied] using the file's `denied` helper: ['claude -p "task"', 'Use cli-claude-code. Never use claude.', true], ['codex exec "task"', 'Use cli-codex. Avoid codex.', true], ['opencode run "task"', 'Use cli-opencode. Skip opencode2.', true], ['cursor-agent -p "task"', 'Use cli-cursor. Never use cursor-agent.', true], ['devin -p "task"', 'Use cli-devin. Never use codex.', false]. Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: what you changed (file and line), every row that flipped, then the verification command with its pass and fail counts.

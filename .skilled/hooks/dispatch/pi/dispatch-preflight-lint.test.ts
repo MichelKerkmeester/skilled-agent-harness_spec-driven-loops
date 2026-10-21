@@ -312,9 +312,14 @@ describe('Pi refusal phrasings', () => {
     ['Use cli-devin. Actually, no.', true],
     ['Use cli-devin. Never mind.', true],
     ['Run cli-devin! Scratch that.', true],
-    // A refusal in that sentence that names an executor governs that name instead, and a
-    // sentence with no refusal word leaves the request standing.
+    // A refusal in that sentence that names only other executors governs those names instead, and
+    // a sentence with no refusal word leaves the request standing. A refusal that names the
+    // mention's own executor, under any spelling, withdraws the request.
     ['Use cli-devin. Never use codex.', false],
+    ['Use cli-devin. Never use devin.', true],
+    ['Use cli-devin. Never use cli-devin.', true],
+    ['Use cli-devin. Do not run Devin.', true],
+    ['Use cli-devin. Skip devin, use codex.', true],
     ['Use cli-devin. Then report back.', false],
   ])('%s', (userText, expected) => {
     expect(denied('devin -p "task"', userText)).toBe(expected);
@@ -339,6 +344,20 @@ describe('Pi reset forms across executor aliases', () => {
     ['claude -p "task"', 'not codex, use cli-claude-code', false],
   ])('%s', (command, userText, expected) => {
     expect(denied(command, userText)).toBe(expected);
+  });
+});
+
+describe('Pi next-sentence retraction across aliases', () => {
+  // A retraction names a skill rather than a spelling, so refusing any alias of the mention's
+  // executor withdraws the request while a refusal that names only another executor leaves it.
+  it.each([
+    ['claude -p "task"', 'Use cli-claude-code. Never use claude.', true],
+    ['codex exec "task"', 'Use cli-codex. Avoid codex.', true],
+    ['opencode run "task"', 'Use cli-opencode. Skip opencode2.', true],
+    ['cursor-agent -p "task"', 'Use cli-cursor. Never use cursor-agent.', true],
+    ['devin -p "task"', 'Use cli-devin. Never use codex.', false],
+  ])('%s', (command, rawText, expected) => {
+    expect(denied(command, rawText)).toBe(expected);
   });
 });
 

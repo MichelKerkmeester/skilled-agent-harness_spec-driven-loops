@@ -1,0 +1,20 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to `isInsideExpansion` in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, plus test rows.
+
+Problem: the depth scan counts every `(`, `)` and backtick, so a quoted or escaped one changes the depth: in `$(echo ")" cli-devin)` the quoted `)` closes the level and the mention inside the substitution authorizes.
+
+Fix: while scanning, track shell quote and escape state as well as depth. A backslash outside single quotes escapes the next character. Inside single quotes nothing is special until the closing `'`. Inside double quotes only `$(`, a backtick and a backslash are special (a `$(` inside double quotes still opens a level; its own quotes are tracked inside it). A quoted or escaped `(`, `)` or backtick never changes the depth or the backtick flag. Call it with the text where in-word apostrophes are already neutralized (the `quoteProbe` text `isUsableMention` builds), so `don't` does not open a quote. Keep the result rule: inside when depth > 0 or a backtick span is open. Update its comment.
+
+Tests: add to 'Pi refusal phrasings' as denied (true): '$(echo ")" cli-devin)', "$(echo '\\)' cli-devin)", '$(echo \\) cli-devin)', '$(echo "a)b" `true` cli-devin)', '$(echo "$(true)" ")" cli-devin)', '$(echo "`" "`" ")" cli-devin)'; and as allowed (false): '$(echo ")") use cli-devin'. (In the TypeScript source the second row reads `"$(echo '\\)' cli-devin)"` so the string holds one backslash; the third holds one backslash before the `)`.) Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: what you changed (file and line), every row that flipped, then the verification command with its pass and fail counts.

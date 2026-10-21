@@ -240,13 +240,26 @@ function followingSentence(text: string, mentionIndex: number): string {
   return text.slice(start, end);
 }
 
-/** True when a sentence names an executor: a `cli-` word, or any word the registry maps to a skill.
- * A refusal that names an executor governs that name rather than the sentence before it, so
- * `Use cli-devin. Never use codex.` still asks for `cli-devin`. Every alias spelling decides it,
- * because `executorSkill` resolves them all to one skill. */
-function namesExecutor(sentence: string): boolean {
-  if (/\bcli-/i.test(sentence)) return true;
-  return sentence.split(/[^\w-]+/).some((word) => word !== '' && executorSkill(word) !== null);
+/** The skills a sentence names, one entry per executor spelling the registry resolves. A word it
+ * does not map contributes nothing, so an unknown `cli-` word cannot stand in for a named
+ * executor. Every alias spelling resolves to the one skill it belongs to, which is what lets a
+ * retraction compare names rather than spellings. */
+function namedSkills(sentence: string): Set<string> {
+  const skills = new Set<string>();
+  for (const word of sentence.split(/[^\w-]+/)) {
+    if (word === '') continue;
+    const skill = executorSkill(word);
+    if (skill !== null) skills.add(skill);
+  }
+  return skills;
+}
+
+/** The skill a mention authorizes: the executor its token ends with, after the punctuation that
+ * closed the sentence is set aside. A token whose ending the registry does not resolve leaves the
+ * mention with no skill, so a retraction cannot prove it names another executor. */
+function mentionSkill(mentionToken: string): string | null {
+  const token = mentionToken.replace(/[^\w-]+$/, '');
+  return executorSkill(MENTION_EXECUTOR_PATTERN.exec(token)?.[1] ?? token);
 }
 
 /** True only for a whole sentence that is `not <other>, use <mention>` or `not <other> but <mention>`
@@ -269,13 +282,15 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
  * exceptions. A false deny is accepted, so `use cli-devin, it is not forbidden` stays refused:
  * the operator writes the request as its own sentence. The operator can also withdraw a request
  * one sentence later, so the one sentence that follows the mention's own is read too: when it
- * carries a refusal and names no executor, the mention is not usable. Only that one sentence is
- * read, and a refusal there that names an executor governs that name instead, so
- * `Use cli-devin. Never use codex.` stays a request for `cli-devin`. Every curly and low quote
- * reads as the straight quote it stands in for, so a mention the operator quoted is refused
- * whichever form the pair mixes, and an apostrophe inside a word is a contraction rather than a
- * delimiter. The substitution swaps one character for one character, so indexes into the
- * original text still address the same characters. */
+ * carries a refusal and either names no executor or names the mention's own executor, the mention
+ * is not usable. Only that one sentence is read, and a refusal there that names only other
+ * executors governs those names instead, so `Use cli-devin. Never use codex.` stays a request for
+ * `cli-devin` while `Use cli-devin. Never use devin.` does not: both spellings are one skill. A
+ * mention whose own skill cannot be resolved is retracted too, so the rule fails closed. Every
+ * curly and low quote reads as the straight quote it stands in for, so a mention the operator
+ * quoted is refused whichever form the pair mixes, and an apostrophe inside a word is a
+ * contraction rather than a delimiter. The substitution swaps one character for one character, so
+ * indexes into the original text still address the same characters. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
   const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
@@ -285,7 +300,11 @@ function isUsableMention(userText: string, mentionIndex: number): boolean {
     if (!isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)))) return false;
   }
   const retraction = followingSentence(text, mentionIndex).trim();
-  return retraction === '' || !REFUSAL_PATTERN.test(retraction) || namesExecutor(retraction);
+  if (retraction === '' || !REFUSAL_PATTERN.test(retraction)) return true;
+  const mention = mentionSkill(text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)));
+  if (mention === null) return false;
+  const retracted = namedSkills(retraction);
+  return retracted.size > 0 && !retracted.has(mention);
 }
 
 function hasExplicitModeOverride(userText: string, skill: string): boolean {
