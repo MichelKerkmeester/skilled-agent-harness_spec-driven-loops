@@ -48,6 +48,11 @@ export function readHardRules(skillMdPath) {
 // A check returning false means the rule is VIOLATED and should be surfaced.
 
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
+// A pipe feeding a headless CLI (`... | opencode run`) closes inherited stdin for the run it
+// feeds, not for the whole chain. The pipe is shell syntax around the dispatch, so it is read
+// from the whole command, unquoted, and its matches are counted with this global copy: one pipe
+// closes stdin for one run, so each run that closes no stdin of its own must be covered by one.
+const PIPE_FED_DISPATCH = /\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/g;
 
 // A prompt is an argument, not syntax: a quoted span is text the CLI receives, so a flag or
 // redirect spelled inside one is not evidence the dispatch passes it. Blank the span contents
@@ -249,9 +254,9 @@ export const CHECKS = {
   // and hang at 0% CPU, emitting nothing at all.
   'stdin-redirect-required': (cmd) => {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
-    // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin. The pipe is
-    // shell syntax around the dispatch, so it is read from the whole command, unquoted.
-    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(blankQuotedSpans(cmd))) return true;
+    // The pipe count is the budget of runs whose stdin the shell closes for them; it is counted
+    // on the whole blanked command because the pipe is syntax around the dispatch, not part of it.
+    const pipeFed = (blankQuotedSpans(cmd).match(PIPE_FED_DISPATCH) || []).length;
     // Every dispatch answers for its own stdin: a redirect on one run cannot close stdin on
     // a later run that has none. When no resolved text carries a headless shape, the whole
     // command is the one text, so a shape the resolver did not name is still checked.
@@ -259,8 +264,11 @@ export const CHECKS = {
     const headless = texts.filter((text) => HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(text)));
     const held = headless.length > 0 ? headless : [blankQuotedSpans(cmd)];
     // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
-    return held.every((text) => STDIN_REDIRECT.test(text)
-      || (HERMES_CHAT.test(text) && HERMES_STDIN_HANDLED.test(text)));
+    const unclosed = held.filter((text) => !STDIN_REDIRECT.test(text)
+      && !(HERMES_CHAT.test(text) && HERMES_STDIN_HANDLED.test(text)));
+    // One pipe can feed only one run, so more unclosed runs than pipes means at least one run
+    // inherits an open stdin and can hang with no output.
+    return unclosed.length <= pipeFed;
   },
   // Without an explicit model the run falls back to the configured default; when that
   // provider is out of quota the 429 retries forever and emits nothing, which looks

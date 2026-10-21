@@ -139,6 +139,10 @@ test('each repeated dispatch is held to the stdin and model checks on its own', 
 
   // The second run has a model but no redirect; the first run's redirect cannot close its stdin.
   assert.equal(stdin('opencode run -m p/m "a" </dev/null && opencode run -m p/m "b"'), false);
+  // A pipe closes stdin for the run it feeds, never for every run in the chain: the earlier run
+  // with no redirect and no pipe still fails, and redirecting it leaves the pipe to cover the fed run.
+  assert.equal(stdin('opencode run -m p/m "a" && printf x | opencode run -m p/m "b"'), false);
+  assert.equal(stdin('opencode run -m p/m "a" </dev/null && printf x | opencode run -m p/m "b"'), true);
   // The second run has a redirect but no model; the first run's -m cannot stand in for it.
   assert.equal(model('opencode run -m p/m "a" </dev/null && opencode run "b" </dev/null'), false);
 
