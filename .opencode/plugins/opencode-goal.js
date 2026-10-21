@@ -1004,6 +1004,8 @@ function statusCodeFromError(error) {
     error?.response?.status,
   ];
   for (const candidate of candidates) {
+    if (candidate === null || candidate === undefined) continue;
+    if (typeof candidate === 'string' && candidate.trim() === '') continue;
     const numeric = Number(candidate);
     if (Number.isFinite(numeric)) return Math.trunc(numeric);
   }
