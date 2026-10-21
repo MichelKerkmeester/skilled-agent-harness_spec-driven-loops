@@ -121,6 +121,8 @@ spec_folder_suffix() {
     ' -- "$relaunch_core" "$spec_folder"
   ); then
     printf '%s' "$suffix"
+  else
+    printf '%s\n' 'warning: could not build the spec-folder suffix; relaunching without it' >&2
   fi
 }
 
