@@ -27,7 +27,7 @@ A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime si
 
 A sixth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate): an unrelated concept from the AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is standalone and opt-in**: it is installed only by its own `install-hooks.sh`, and the repository's primary hook, `.skilled/scripts/git-hooks/pre-commit`, carries its own inline comment-hygiene gate and never calls this folder's hook. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
-A session-relaunch concern, documented in [session-relaunch/](./session-relaunch/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Hermes sessions started through skilled-loop. Cursor and Devin join the same loop on the `/speckit:handoff` command trigger only. The nudge fires only inside skilled-loop, and the sourced `.skilled/bin/skilled-loop-shell.sh` shim starts every plain interactive runtime launch under the nearest wrapper, a symlinked `.skilled` included. Each hop adds a line to a gitignored hop history, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
+A session-relaunch concern, documented in [session-relaunch/](./session-relaunch/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Hermes sessions started through skilled-loop. Cursor and Devin join the same loop on the `/speckit:handoff` command trigger only. Inside skilled-loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction. The sourced `.skilled/bin/skilled-loop-shell.sh` shim starts every plain interactive runtime launch under the nearest wrapper, a symlinked `.skilled` included. Each hop adds a line to a gitignored hop history, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
 
 ### Full index
 
@@ -153,7 +153,7 @@ hooks/
 |   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/)
 +-- session-relaunch/              # Claude, Pi, OpenCode, Codex and Hermes context nudge and relaunch adapters
 |   +-- bin/session-relaunch.cjs
-|   +-- claude/context-nudge.mjs, stop-arm.mjs
+|   +-- claude/compact-pointer.mjs, context-nudge.mjs, stop-arm.mjs
 |   +-- codex/context-nudge.mjs, prompt-seed.mjs, shared.mjs, stop-arm.mjs
 |   +-- hermes/context-nudge.mjs, session-end-arm.mjs
 |   +-- pi/session-relaunch.ts, session-relaunch.test.ts
@@ -186,7 +186,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`) | `classifier-injection-screen.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
 | `goal` | cursor, devin, pi (symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
-| session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit and stop-arm on Stop. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Hermes: `context-nudge.mjs` and `session-end-arm.mjs`, bridged by the repo-guards plugin on `pre_llm_call`, `post_api_request` and `on_session_end`. Cursor and Devin run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
+| session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop and compact-pointer on SessionStart after a compaction. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Hermes: `context-nudge.mjs` and `session-end-arm.mjs`, bridged by the repo-guards plugin on `pre_llm_call`, `post_api_request` and `on_session_end`. Cursor and Devin run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
 

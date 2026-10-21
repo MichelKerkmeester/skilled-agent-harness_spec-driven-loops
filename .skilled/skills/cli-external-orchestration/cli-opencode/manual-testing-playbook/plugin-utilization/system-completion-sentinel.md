@@ -1,7 +1,7 @@
 ---
 title: "CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-completion-sentinel plugin for `CO-051`. It focuses on the advisory appended when a completion claim names a spec folder with an incomplete checklist."
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2
@@ -32,7 +32,7 @@ Operators run the exact prompt and command sequence for `CO-051` and confirm the
 - Evidence requirements: The new advisory line in `effects.txt`, the final reply in `events.jsonl`, and the exit status.
 - Desired user-visible outcome: A PASS or FAIL verdict naming the advisory line and the packet it cites.
 - Pass/fail: PASS if an advisory line names the packet; FAIL if no advisory is written.
-- Failure triage: Clear `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` before each version's run (the block restores the original at cleanup), or the second advisory for the same packet is suppressed. On v2 `session.execution.succeeded` is aliased to `session.idle`.
+- Failure triage: Clear the sentinel's advisory dedup file under the gitignored completion-sentinel state folder before each version's run (the block restores the original at cleanup), or the second advisory for the same packet is suppressed. On v2 `session.execution.succeeded` is aliased to `session.idle`.
 
 ---
 

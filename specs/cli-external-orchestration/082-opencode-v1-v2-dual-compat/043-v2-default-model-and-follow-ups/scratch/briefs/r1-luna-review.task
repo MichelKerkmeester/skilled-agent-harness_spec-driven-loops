@@ -1,0 +1,16 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory). READ-ONLY review: do not write, create or delete any file and run no git write.
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (read spec.md and tasks.md for the scope)
+
+TASK: review the commit range d76353d242..HEAD (git log --oneline d76353d242..HEAD; git diff d76353d242..HEAD) against the phase scope. Check each:
+1. Runtime: an unpinned cli-opencode lineage gets opencode-go/deepseek-v4.1-flash on OpenCode 1 and llmgateway/deepseek-v4.1-flash on OpenCode 2 (.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs), and the new tests would fail without the change.
+2. Docs (cli-opencode SKILL.md, README, references, playbook, assets, .hermes copy): every claim of "the default model" names the right version; no stale claim that v2 defaults to opencode-go; v1 unchanged (opencode-go, --variant max); remaining opencode-go# lines are justified (dated records, variant comparisons, route rows).
+3. cli-opencode/scripts/tests/default-model-id.test.cjs asserts both defaults and that they differ.
+4. .opencode/plugins/tests/v2-bridge.test.cjs: the timeout makes a missing announcement fail fast, and nothing else in the test changed behaviour.
+5. Spec-gate README "Shell writes" row, plugin-utilization/system-spec-gate.md, and .opencode/plugins/README.md probe sentence are accurate against the code and the evidence in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024*/scratch/v2-events/README.txt.
+6. The dispatch-guard.cjs, post-edit-router.cjs and trigger-index-rebuild.yml changes are comment-only and the new comments match the code exactly (thresholds, behaviour). Comments must carry no spec paths, packet/phase numbers or ids.
+7. .github/workflows/hooks-node-tests.yml: selection matches every non-vitest *.test.{mjs,cjs,js} under .skilled/hooks outside node_modules, fails closed on zero files, is blocking, path filters cover what the tests read, and it follows the repo's other workflows (pinned actions, permissions).
+8. The resolution notes in 006, 036 and goal.md are accurate.
+
+Severity: P0 broken/wrong behaviour, P1 inaccurate claim or missing required coverage, P2 minor. Cite file:line for each finding with the evidence you ran or read. Do not report style preferences.
+
+Return report: verdict PASS (no P0/P1) or FAIL, then findings ranked by severity.

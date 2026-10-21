@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -70,7 +70,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
@@ -149,7 +149,7 @@ opencode run \
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
   --format json \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   "<prompt>" 2>/dev/null | while IFS= read -r line; do
     type=$(echo "$line" | jq -r '.type')
     case "$type" in
@@ -189,7 +189,7 @@ opencode run \
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
   --agent deep-review \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "Run iteration 3 of the deep-review loop for the approved spec folder. State file: review/deep-review-state.jsonl."
 ```
@@ -227,7 +227,7 @@ opencode run \
 # From a session in repo A, dispatch into repo B's runtime
 cd /path/to/other-repo && opencode2 run --standalone \
   --agent general \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
 ```

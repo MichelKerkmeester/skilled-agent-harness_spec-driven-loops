@@ -1,0 +1,28 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK: two doc corrections. Docs only.
+
+1. Spec gate shell writes, a known limit (operator decision: document it, do not block it). With `SYSTEM_SPEC_GATE_ENFORCE=1` the spec gate refuses an Edit or Write with no bound spec folder, but a shell command that writes a file (for example `echo hi > dir/file.txt`) is not refused, on OpenCode 1 or 2. The core only resolves a target path for the edit and write tools, so a shell command carries no path for it to check. A live run on 2026-10-20 recorded this on both versions (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch/live-runs/shell-legs.txt`, section "spec-gate shell leg"). Before writing, read `.skilled/hooks/spec-gate/README.md` sections 2 and 7 and the spec-gate core under `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/` to confirm how a shell call is handled, and state only what the code does.
+   - In `.skilled/hooks/spec-gate/README.md` section 7 (BOUNDARIES AND FLOW), add one table row, `Shell writes`, stating the limit, that it holds on every runtime whose shell tool the gate sees, and that the operator chose to keep it as a known limit rather than parse shell redirects.
+   - In `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-spec-gate.md`, the sentence that calls the bash leg "a known separate path" should say plainly that a shell write is not refused with the gate enforced, on either version, and cite the README row.
+2. `.opencode/plugins/README.md` around line 73 says: "On 2026-10-20 a probe plugin on a private OpenCode 2.0.32 host received `session.created` and `session.deleted` under those names ...". The evidence is `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/scratch/v2-events/README.txt` (read it): those events came from sessions created and removed through the server API. A session started by `opencode2 run` does not receive `session.created` from OpenCode 2 itself, which is why the bridge synthesizes one (see the bridge section of the same README). Reword the sentence so it says which sessions the probe observed and that `opencode2 run` sessions get the bridge's synthesized event, and cite the evidence file path once. Keep the rest of the paragraph.
+
+Docs follow sk-doc rules already used in these files: plain sentences, no new headings.
+
+ALLOWED WRITE PATHS:
+- .skilled/hooks/spec-gate/README.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-spec-gate.md
+- .opencode/plugins/README.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+git diff --stat
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package cli-external-orchestration/cli-opencode
+
+Return report: each change as before and after text, and both verify outputs.

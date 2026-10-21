@@ -74,6 +74,61 @@ test('history lists archived goals and leaves active state untouched', async () 
   assert.equal(await helpers.readGoal('session-history', { stateDir }), null);
 }));
 
+test(
+  'replacing and clearing a goal leaves both records in history',
+  async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
+    const ctx = { sessionID: 'session-replace-clear' };
+
+    const first = await plugin.tool.opencode_goal.execute(
+      { action: 'set', objective: 'Goal A before replacement' },
+      ctx,
+    );
+    assert.match(first, /STATUS=OK ACTION=set/);
+    assert.match(first, /mutation=created/);
+
+    const second = await plugin.tool.opencode_goal.execute(
+      { action: 'set', objective: 'Goal B replacing A' },
+      ctx,
+    );
+    assert.match(second, /STATUS=OK ACTION=set/);
+    assert.match(second, /mutation=replaced/);
+
+    const beforeClear = await helpers.readGoal(ctx.sessionID, { stateDir });
+    assert.ok(beforeClear);
+
+    const cleared = await plugin.tool.opencode_goal.execute({ action: 'clear' }, ctx);
+    assert.match(cleared, /STATUS=OK ACTION=clear/);
+    assert.equal(await helpers.readGoal(ctx.sessionID, { stateDir }), null);
+
+    const history = await plugin.tool.opencode_goal.execute({ action: 'history' }, {});
+    assert.match(history, /STATUS=OK ACTION=history/);
+    assert.match(history, /archive_count=2/);
+
+    const recordsByIndex = new Map();
+    for (const line of history.split('\n')) {
+      const match = /^archive_(\d+)_(goal_id|status|objective|file)=(.*)$/.exec(line);
+      if (!match) continue;
+      const record = recordsByIndex.get(match[1]) || {};
+      record[match[2]] = JSON.parse(match[3]);
+      recordsByIndex.set(match[1], record);
+    }
+    const records = [...recordsByIndex.values()];
+    assert.equal(records.length, 2);
+    const replaceRecord = records.find(
+      (record) => record.objective === 'Goal A before replacement',
+    );
+    const clearedRecord = records.find((record) => record.objective === 'Goal B replacing A');
+    assert.equal(replaceRecord?.status, 'active');
+    assert.equal(clearedRecord?.status, 'cleared');
+    assert.notEqual(replaceRecord?.goal_id, clearedRecord?.goal_id);
+    const clearedArchive = JSON.parse(
+      await readFile(join(stateDir, '.archive', clearedRecord.file), 'utf8'),
+    );
+    assert.equal(clearedArchive.revision, beforeClear.revision + 1);
+  }),
+);
+
 test('doctor and health report counts, log sizes, last sweep, and orphan candidates read-only', async () => withState(async ({ helpers, stateDir }) => {
   const archiveDir = join(stateDir, '.archive');
   await mkdir(archiveDir, { recursive: true, mode: 0o700 });
@@ -193,12 +248,47 @@ test('env caps configure new goals and status exposes remaining budgets', async 
 
 test('provider-limit detection accepts 429 variants and quota patterns only', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const cases = [
-    { name: 'strict-number', error: { name: 'APIError', data: { statusCode: 429 } }, limited: true },
-    { name: 'string-code', error: { name: 'APIError', data: { statusCode: '429' } }, limited: true },
+    {
+      name: 'strict-number',
+      error: { name: 'APIError', data: { statusCode: 429 } },
+      limited: true,
+    },
+    {
+      name: 'string-code',
+      error: { name: 'APIError', data: { statusCode: '429' } },
+      limited: true,
+    },
     { name: 'other-class-status', error: { name: 'ProviderError', status: 429 }, limited: true },
-    { name: 'quota-message', error: { name: 'ProviderError', message: 'insufficient quota for this request' }, limited: true },
-    { name: 'non-limit-status', error: { name: 'ProviderError', statusCode: 400, message: 'bad request' }, limited: false },
-    { name: 'non-limit-message', error: { name: 'ProviderAuthError', data: { message: 'bad key' } }, limited: false },
+    {
+      name: 'null-before-status',
+      error: { name: 'ProviderError', statusCode: null, status: 429 },
+      limited: true,
+    },
+    {
+      name: 'empty-before-status',
+      error: { name: 'ProviderError', statusCode: '', status: 429 },
+      limited: true,
+    },
+    {
+      name: 'false-before-status',
+      error: { name: 'ProviderError', statusCode: false, status: 429 },
+      limited: true,
+    },
+    {
+      name: 'quota-message',
+      error: { name: 'ProviderError', message: 'insufficient quota for this request' },
+      limited: true,
+    },
+    {
+      name: 'non-limit-status',
+      error: { name: 'ProviderError', statusCode: 400, message: 'bad request' },
+      limited: false,
+    },
+    {
+      name: 'non-limit-message',
+      error: { name: 'ProviderAuthError', data: { message: 'bad key' } },
+      limited: false,
+    },
   ];
 
   for (const testCase of cases) {

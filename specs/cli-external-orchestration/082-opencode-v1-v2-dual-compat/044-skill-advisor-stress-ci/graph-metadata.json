@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor stress ci",
+      "phase 44 skill advisor stress ci",
+      "sa-034 default is not a function",
+      "skill advisor stress ci plan",
+      "skill advisor stress ci tasks",
+      "skill advisor stress ci implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "stress",
+      "phase",
+      "sa-034",
+      "default",
+      "function",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "github"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph-diagnostic-redaction.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
+      "scratch/after/stress-after.txt",
+      "scratch/after/plugins.txt",
+      "scratch/after/battery-v1.txt",
+      "scratch/after/battery-v2.txt",
+      "scratch/mutation/m1-call-default-directly.txt",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".github/workflows/skill-advisor-stress.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugins-folder-purity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-bridge-stress.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-consumption.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-diagnostic-redaction.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph-diagnostic-redaction.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-plugin.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stress-after.txt",
+        "kind": "file",
+        "path": "scratch/after/stress-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugins.txt",
+        "kind": "file",
+        "path": "scratch/after/plugins.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v1.txt",
+        "kind": "file",
+        "path": "scratch/after/battery-v1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v2.txt",
+        "kind": "file",
+        "path": "scratch/after/battery-v2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m1-call-default-directly.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m1-call-default-directly.txt",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Advisor Stress Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.github/workflows/skill-advisor-stress.yml` has failed every run since 2026-10-19, last green at `be234e6f94` and first red at `fe1f8a9a53`",
+    "created_at": "2026-10-21T07:18:04Z",
+    "last_save_at": "2026-10-21T07:49:56.611Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a96e9364b381afcbe59c79be1a8c7a0527e030f18cb44fd48ac44a76e8a19413",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c1f5028dbc6397de91bbb1cfa707a853b9bdce38022a8f838c6bed9020625f87",
+      "plan.md": "cf58342f4d552786e2bf6e22791bcdfccf10dd0c59f11481b6b9c514e1cc9092",
+      "tasks.md": "492159d31982934ca04f1abbde5406af1f4cac707630b317cf92751efc693234",
+      "implementation-summary.md": "4a250636ebbca2062e8389e3075ba29430acdf330e3ad64e2e600f4ed4ad0a8d"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "HERMES-030 -- Shared goal core bound by Hermes session id"
 description: "Confirm a Hermes session binds the packet named by HERMES_SPEC_FOLDER through the shared goal core under its own session id and renders the core's goal in its prompt, for `HERMES-030`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-030 -- Shared goal core bound by Hermes session id
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-The `repo-guards` plugin binds the packet named by `HERMES_SPEC_FOLDER` through `goal.cjs bind --runtime hermes --session <id>` when the session has no goal yet. Whichever runs first binds: the goal section, which Hermes renders before `on_session_start` fires, or that hook. The section then carries the brief the core renders for the session, the same `[active_goal:...]` block the Cursor and Devin adapters inject, and falls back to the packet's objective slice from `goal.cjs packet` only when the core cannot serve the session. The record lives under the gitignored `.skilled/skills/.state/goal/`.
+The `repo-guards` plugin binds the packet named by `HERMES_SPEC_FOLDER` through `goal.cjs bind --runtime hermes --session <id> --workspace <repo root>` when the session has no goal yet. Whichever runs first binds: the goal section, which Hermes renders before `on_session_start` fires, or that hook. The section then carries the brief the core renders for the session, the same `[active_goal:...]` block the Cursor and Devin adapters inject, and falls back to the packet's objective slice from `goal.cjs packet` only when the core cannot serve the session. The record lives under the gitignored `.skilled/skills/.state/goal/`.
 
 ### Why This Matters
 
@@ -54,7 +54,7 @@ HERMES_SPEC_FOLDER=specs/cli-external-orchestration/071-cli-hermes-creation HERM
 echo $?
 cat out.txt
 SID=$(grep -o "session_id: [0-9_a-f]*" err.txt | cut -d" " -f2)
-node .skilled/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | head -4
+node .skilled/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" --workspace "$PWD" | head -4
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

@@ -65,6 +65,24 @@ function historyLines(sandbox) {
   return fs.readFileSync(historyPath, 'utf8').split('\n').filter(Boolean);
 }
 
+function seedHistory(sandbox, count) {
+  const historyPath = path.join(stateDirectory(sandbox), 'hop-history.log');
+  fs.mkdirSync(path.dirname(historyPath), { recursive: true });
+  const lines = [];
+  for (let index = 1; index <= count; index += 1) {
+    lines.push([
+      new Date(Date.UTC(2024, 0, index)).toISOString(),
+      'claimed',
+      'claude',
+      `hop ${index}`,
+      sandbox.repoRoot,
+      `goal ${index}`,
+      'handoff.md',
+    ].join('\t'));
+  }
+  fs.writeFileSync(historyPath, `${lines.join('\n')}\n`);
+}
+
 function writeNote(sandbox, fileName = 'handoff.md') {
   const handoffPath = path.join(stateDirectory(sandbox), 'handoffs', fileName);
   fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
@@ -167,6 +185,33 @@ test('history prints the latest lines and says when no hop is recorded yet', (t)
   assert.match(printed[0], new RegExp(GOAL.replace('.', '\\.')));
 });
 
+test('a zero count reads no history lines', (t) => {
+  const sandbox = createSandbox(t);
+  seedHistory(sandbox, 3);
+  assert.deepEqual(hopHistory.readHistory({ env: sandbox.env, last: 0 }), []);
+});
+
+test('a negative count reads the default number of newest lines', (t) => {
+  const sandbox = createSandbox(t);
+  const seeded = hopHistory.DEFAULT_HISTORY_LINES + 3;
+  seedHistory(sandbox, seeded);
+
+  const lines = hopHistory.readHistory({ env: sandbox.env, last: -5 });
+  assert.equal(lines.length, hopHistory.DEFAULT_HISTORY_LINES);
+  assert.match(lines[0], new RegExp(`goal ${seeded - hopHistory.DEFAULT_HISTORY_LINES + 1}\\b`));
+  assert.match(lines.at(-1), new RegExp(`goal ${seeded}\\b`));
+});
+
+test('a whole count reads that many of the newest lines', (t) => {
+  const sandbox = createSandbox(t);
+  seedHistory(sandbox, 5);
+
+  const lines = hopHistory.readHistory({ env: sandbox.env, last: 2 });
+  assert.equal(lines.length, 2);
+  assert.match(lines[0], /goal 4\b/);
+  assert.match(lines[1], /goal 5\b/);
+});
+
 test('history rejects a --last value that is not a positive whole number', (t) => {
   const sandbox = createSandbox(t);
   const result = runCli(sandbox, ['history', '--last', 'zero']);
@@ -199,4 +244,39 @@ test('a killer timeout records a timed-out line', async (t) => {
   const fields = historyLines(sandbox)[0].split('\t');
   assert.equal(fields[1], 'timed-out');
   assert.equal(fields[5], GOAL);
+});
+
+test('keep outside the loop records a note-kept line and prints the claim command', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox);
+
+  const kept = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(kept.status, 0, kept.stderr);
+  assert.match(kept.stdout, /note kept; this session cannot relaunch, so keep working/);
+  assert.ok(kept.stdout.includes(`claim '${handoffPath}' --session '${SESSION_ID}'`), kept.stdout);
+  assert.deepEqual(historyLines(sandbox).map((line) => line.split('\t')[1]), ['note-kept']);
+
+  const inside = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(inside.status, 0, inside.stderr);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const refused = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(refused.status, 2);
+  assert.match(refused.stderr, /runs under skilled-loop; run prepare instead/);
+  assert.equal(historyLines(sandbox).length, 2);
+});
+
+test('history adds an open-notes line until the note is claimed', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox, '20261020T040936Z-session-.md');
+
+  const open = runCli(sandbox, ['history']);
+  assert.equal(open.status, 0, open.stderr);
+  assert.match(open.stdout, /no hop recorded yet/);
+  assert.match(
+    open.stdout,
+    /^open notes: 1 handoff note not claimed yet, oldest 20261020T040936Z-session-\.md$/m,
+  );
+
+  runCli(sandbox, ['claim', handoffPath, '--session', 'receiver-0001']);
+  assert.equal(runCli(sandbox, ['history']).stdout.includes('open notes:'), false);
 });

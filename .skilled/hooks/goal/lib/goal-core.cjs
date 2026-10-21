@@ -776,7 +776,10 @@ function writeJsonAtomic(targetPath, record) {
   }
 }
 
-/** Fail-open read: any missing file, invalid scope, or parse error returns null. */
+/**
+ * Fail-open read: only a missing file falls through; any other read or parse error
+ * returns null.
+ */
 function readGoalRecordForScope(goalScope) {
   for (const path of [goalScope.statePath, goalScope.legacyScopedStatePath].filter(Boolean)) {
     try {
@@ -785,8 +788,9 @@ function readGoalRecordForScope(goalScope) {
       if (!parsed || typeof parsed !== 'object') return null;
       parsed.status = upgradeStatus(parsed.status);
       return parsed;
-    } catch {
-      continue;
+    } catch (error) {
+      if (error?.code === 'ENOENT') continue;
+      return null;
     }
   }
   return null;
@@ -1538,6 +1542,7 @@ function listArchivedGoals(rawOptions = {}) {
             const filePath = join(dir, entry.name);
             try {
               const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
+              if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
               const sizeBytes = statSync(filePath).size;
               return { filename: entry.name, goal: parsed, sizeBytes };
             } catch {

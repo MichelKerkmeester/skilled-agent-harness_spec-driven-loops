@@ -428,6 +428,55 @@ test('runChecks: redacts keyworded secret-shaped assignments in finding stdout',
   assert.match(findings[0].stdout, /\[REDACTED\]/);
 });
 
+test('redactSecrets: redacts the token carried by an Authorization bearer scheme', () => {
+  const redacted = router.redactSecrets('request failed: Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.abc');
+  assert.equal(redacted, 'request failed: Authorization: Bearer [REDACTED]');
+});
+
+test('redactSecrets: redacts the token after a bare bearer scheme, keeps the scheme word, and leaves a short word alone', () => {
+  assert.equal(router.redactSecrets('Bearer sk-live-abc123456789'), 'Bearer [REDACTED]');
+  assert.equal(router.redactSecrets('bearer abc123456789'), 'bearer [REDACTED]', 'the scheme word is case-insensitive');
+  assert.equal(router.redactSecrets('Bearer token'), 'Bearer token', 'a word shorter than 8 characters after the scheme is not a token');
+});
+
+test('redactSecrets: leaves ordinary prose after a bearer scheme alone', () => {
+  assert.equal(
+    router.redactSecrets('Bearer authentication is required'),
+    'Bearer authentication is required',
+    'a run with no digit and no -._~+/= is a word, not a token',
+  );
+  assert.equal(router.redactSecrets('bearer credentials'), 'bearer credentials');
+});
+
+test('redactSecrets: redacts an alphabet-only mixed-case base64 token after a bearer scheme', () => {
+  assert.equal(
+    router.redactSecrets('Authorization: Bearer YWFhYWFhYWFhYWFh'),
+    'Authorization: Bearer [REDACTED]',
+    'a 16-character base64 token carries no digit or symbol, so its case is the only signal',
+  );
+});
+
+test('redactSecrets: a capitalised prose word after a bearer scheme stays readable', () => {
+  assert.equal(
+    router.redactSecrets('Bearer Authentication is required'),
+    'Bearer Authentication is required',
+    'a capital only at the start of a run below the length floor is capitalisation, not mixed case',
+  );
+});
+
+test('redactSecrets: still redacts a JWT-shaped token and a hex token after a bearer scheme', () => {
+  const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dBjftJeZ4CVPmB92K27uhbUJU1p1r_wW1gFWFOEjXk';
+  assert.equal(router.redactSecrets(`Authorization: Bearer ${jwt}`), 'Authorization: Bearer [REDACTED]');
+
+  const hex = '9f86d081884c7d659a2feaa0c55ad015';
+  assert.equal(hex.length, 32);
+  assert.equal(router.redactSecrets(`Bearer ${hex}`), 'Bearer [REDACTED]');
+});
+
+test('redactSecrets: still redacts a keyworded secret-shaped assignment', () => {
+  assert.equal(router.redactSecrets('api_key: sk-thisisalonglivetoken123456'), 'api_key: [REDACTED]');
+});
+
 test('runChecks: real check-comment-hygiene.sh flags a live ADR reference (repo-root integration)', () => {
   // Must live inside REPO_ROOT: resolveDispatch treats an outside-root path as
   // no-match by design, and the real checker install this test targets only

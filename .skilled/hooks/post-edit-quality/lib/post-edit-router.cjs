@@ -84,6 +84,38 @@ const DEFAULT_MIN_CHECKER_MS = 300;
 // checker's stdout is not needlessly mangled.
 const SECRET_PATTERN = /((?:api[_-]?key|access[_-]?key|secret|token|password|passwd|bearer|authorization)\s*[:=]\s*)['"]?([A-Za-z0-9\-_.]{8,})['"]?/gi;
 
+// A scheme that names itself in front of the credential is why the assignment
+// pattern above misses both `Authorization: Bearer <token>` and a bare
+// `Bearer <token>`: the span after the keyword is the scheme word, and the
+// token sits one space further on, so the requirement for an unbroken value is
+// never met. Anchor on the scheme instead and keep it readable while only the
+// token is replaced, so a finding still says which scheme it carried.
+//
+// The 8-character length floor alone cannot tell a token from prose, since
+// "Bearer authentication" clears it, so the run after the scheme also has to
+// look unlike a word in one of two ways: it carries a character the ordinary
+// word alphabet lacks -- a digit or one of -._~+/= -- or it reaches at least 16
+// characters and carries an uppercase letter past its first, which is what
+// random base64 and opaque tokens do and what a merely capitalised word does
+// not. A run matching neither shape is prose and stays readable. So redaction
+// is narrower than the scheme suggests: a base64 or opaque token redacts when
+// it carries a digit or symbol or reaches 16 characters with an uppercase
+// letter past its first, while an all-lowercase run without either, such as
+// `Bearer abcdefghijklmnop`, or a merely capitalised word, stays readable by
+// design. A JWT still redacts on its dots alone. The
+// scheme word is spelled out rather than matched under the `i` flag, because
+// folding would also make the uppercase test true of a lowercase run.
+const BEARER_SCHEME_WORD = '[Bb][Ee][Aa][Rr][Ee][Rr]';
+const BEARER_RUN_CHARS = 'A-Za-z0-9\\-._~+/=';
+const BEARER_RUN = `[${BEARER_RUN_CHARS}]`;
+const BEARER_TOKEN_SHAPE = `[0-9\\-._~+/=]|(?=${BEARER_RUN}{16})${BEARER_RUN}{1,}[A-Z]`;
+const BEARER_SCHEME_PATTERN = new RegExp(
+  `\\b(${BEARER_SCHEME_WORD}\\s+['"]?)`
+  + `(?=${BEARER_RUN}*(?:${BEARER_TOKEN_SHAPE}))`
+  + `(${BEARER_RUN}{8,})`,
+  'g',
+);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS -- path + scope resolution
 // ─────────────────────────────────────────────────────────────────────────────
@@ -259,8 +291,9 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Redact secret-shaped assignments in finding text before it is logged or
- * surfaced, leaving the keyworded prefix so the finding still names its field.
+ * Redact secret-shaped assignments and bearer-scheme tokens in finding text
+ * before it is logged or surfaced, leaving the keyworded or scheme prefix so
+ * the finding still names its field.
  *
  * @param {string} text
  * @returns {string}
@@ -268,7 +301,10 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
 function redactSecrets(text) {
   if (typeof text !== 'string' || !text) return text;
   SECRET_PATTERN.lastIndex = 0;
-  return text.replace(SECRET_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`);
+  BEARER_SCHEME_PATTERN.lastIndex = 0;
+  return text
+    .replace(SECRET_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`)
+    .replace(BEARER_SCHEME_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`);
 }
 
 /**

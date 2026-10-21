@@ -34,6 +34,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
 | `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
 | `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
+| `hooks-node-tests.yml` | Provisions every listed tree and runs the hook suites written for `node --test`, the ones the vitest config skips, plus the hook installer test. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `message-contract.yml` | Holds each pushed commit message, each new branch name and each pull request description to the sk-git templates, so neither a missing hook nor a skipped hook turns the check off. A fork's branch names and a Dependabot pull request's description are not checked. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
@@ -65,7 +66,7 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
 | `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
-| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
+| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `hooks-node-tests.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed and blocks only when head fails a rule the base did not. On push it diffs against the previous tip |
 | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. The pre-commit hook runs the same checkers on every commit |
 | `dependabot-auto-merge.yml` | no | yes, Dependabot only | Acts only on Dependabot's own pull requests |

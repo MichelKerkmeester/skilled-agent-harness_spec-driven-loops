@@ -1,0 +1,10 @@
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci (pre-approved, skip Gate 3)
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci (your current directory). Read-only review: do not edit any file.
+
+ROLE: Findings-first code reviewer, sk-code standards.
+
+CONTEXT: The Skill Advisor Stress Tests workflow (.github/workflows/skill-advisor-stress.yml) has failed since commit 32e1f92687, which changed `.opencode/plugins/system-skill-advisor.js` to `export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin)`. dualPlugin (`.opencode/plugins/lib/v2-bridge.js`) returns `{ id, setup, server }`. The stress test called the default export as a function, so the 4 sa-034 tests failed with `TypeError: default is not a function` (60/64). The uncommitted fix (see `git diff`) changes only `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts`: it calls `.server(...)` and adds a test pinning the export shape. After the fix the suite passes 65/65 locally (64 plus the new test). Reverting the `.server` call brings the 4 failures back.
+
+ACTION: Decide whether the fix is on the right side: is the harness the thing that's wrong, and is the plugin's dual-export contract (`.opencode/plugins/tests/opencode-plugins-folder-purity.vitest.ts`) correct? Look for any other stress or runtime test under `.skilled/skills/system-skill-advisor/runtime` that imports a plugin default export the same broken way, by grepping for imports of `plugins/`. Also check that the new test's comment states what the test actually catches, that the file follows sk-code TypeScript test conventions, and that the comments contain no ids or paths.
+
+FORMAT: Start with a line `VERDICT: PASS` or `VERDICT: FAIL`. Then list findings as `P0|P1|P2 file:line — claim — evidence`. If there are none, say so.

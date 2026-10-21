@@ -33,6 +33,11 @@ const SUBCOMMANDS = {
     syntax: 'should-relaunch --loop-id <loop-id>',
     summary: 'Print the relaunch decision as JSON; exits 0 to relaunch and 1 to stay.',
   },
+  keep: {
+    syntax: 'keep --handoff <handoff-path> [--session <session-id>] [--runtime <runtime>]',
+    summary: 'Outside a loop, validate the note, record it in the hop history and print the'
+      + ' claim command for after auto-compaction.',
+  },
   claim: {
     syntax: 'claim <handoff-path> [--session <session-id>]',
     summary: 'Mark an open note claimed and print its body.',
@@ -333,6 +338,42 @@ function printHandoffBody(filePath) {
   process.stdout.write(`${body}${body ? '\n' : ''}`);
 }
 
+function sessionIdFor(options, runtime) {
+  const sessionId = options['--session']
+    || (runtime === 'claude' ? process.env.CLAUDE_CODE_SESSION_ID : undefined);
+  if (!sessionId) {
+    const sessionSource = runtime === 'claude'
+      ? '--session or CLAUDE_CODE_SESSION_ID'
+      : '--session';
+    throw new Error(`session id is required through ${sessionSource}`);
+  }
+  return sessionId;
+}
+
+// prepare and keep accept the same note, so they share one check of it.
+function validatedNote(options, runtime) {
+  if (!options['--handoff']) throw new Error('--handoff is required');
+  const handoffPath = handoffPathWithinRepo(options['--handoff']);
+  const sessionId = sessionIdFor(options, runtime);
+  const validation = core.validateHandoff(handoffPath, { sessionId });
+  if (!validation.ok) throw new Error(validation.reason);
+
+  // An answer the note cannot carry forward would drop silently downstream.
+  let specFolder = '';
+  try {
+    const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
+    specFolder = typeof note.frontmatter.spec_folder === 'string'
+      ? note.frontmatter.spec_folder
+      : '';
+  } catch {}
+  if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
+    throw new Error(
+      'spec_folder must be the repo-relative packet path, none, or empty',
+    );
+  }
+  return { handoffPath, sessionId, specFolder };
+}
+
 function stateForLoop(loopId) {
   if (typeof loopId !== 'string' || !loopId.trim()) throw new Error('--loop-id is required');
   return core.readRelaunchFile(loopId);
@@ -362,32 +403,7 @@ function prepare(args) {
   // Inside the loop the exported runtime wins; outside it the flag names the runtime.
   const runtime = loopId ? envRuntime : (flagRuntime ?? envRuntime);
 
-  if (!options['--handoff']) throw new Error('--handoff is required');
-  const handoffPath = handoffPathWithinRepo(options['--handoff']);
-  const sessionId = options['--session']
-    || (runtime === 'claude' ? process.env.CLAUDE_CODE_SESSION_ID : undefined);
-  if (!sessionId) {
-    const sessionSource = runtime === 'claude'
-      ? '--session or CLAUDE_CODE_SESSION_ID'
-      : '--session';
-    throw new Error(`session id is required through ${sessionSource}`);
-  }
-  const validation = core.validateHandoff(handoffPath, { sessionId });
-  if (!validation.ok) throw new Error(validation.reason);
-
-  // An answer prepare cannot carry forward would drop silently downstream.
-  let specFolder = '';
-  try {
-    const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
-    specFolder = typeof note.frontmatter.spec_folder === 'string'
-      ? note.frontmatter.spec_folder
-      : '';
-  } catch {}
-  if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
-    throw new Error(
-      'spec_folder must be the repo-relative packet path, none, or empty',
-    );
-  }
+  const { handoffPath, sessionId, specFolder } = validatedNote(options, runtime);
 
   if (!loopId) {
     supersedeClaimedNotes(handoffPath, { sessionId });
@@ -451,6 +467,30 @@ function prepare(args) {
     '[session-relaunch] handoff prepared; stop now and end this turn.'
       + ' The loop ends this session when it goes idle and a fresh session continues from '
       + `${handoffPath}.\n`,
+  );
+  return 0;
+}
+
+// Outside the wrapper nothing can relaunch the session, so the note is kept for the same
+// session to claim after auto-compaction, and the hop history records that it was kept.
+function keep(args) {
+  if (process.env.SKILLED_LOOP_ID) {
+    throw new Error('this session runs under skilled-loop; run prepare instead');
+  }
+  const { options } = parseArgs(args, { flags: ['--handoff', '--session', '--runtime'] });
+  const runtime = options['--runtime'] ?? 'claude';
+  if (!LOOP_RUNTIMES.includes(runtime)) {
+    throw new Error(`--runtime must be one of ${LOOP_RUNTIMES.join(', ')}`);
+  }
+  const { handoffPath, sessionId } = validatedNote(options, runtime);
+  supersedeClaimedNotes(handoffPath, { sessionId });
+  hopHistory.recordHop('note-kept', handoffPath, { runtime });
+  process.stdout.write(
+    '[session-relaunch] note kept; this session cannot relaunch, so keep working.'
+      + ' After auto-compaction, run '
+      + `\`${nudge.claimCommandFor(handoffPath, sessionId, USAGE_PROGRAM)}\`,`
+      + ' continue its Remaining work, then run '
+      + `\`${nudge.completeCommandFor(handoffPath, USAGE_PROGRAM)}\`.\n`,
   );
   return 0;
 }
@@ -618,6 +658,8 @@ function history(args) {
   process.stdout.write(lines.length
     ? `${lines.join('\n')}\n`
     : `no hop recorded yet (${hopHistory.historyPath()})\n`);
+  const openLine = hopHistory.openNotesLine();
+  if (openLine !== null) process.stdout.write(`${openLine}\n`);
   return 0;
 }
 
@@ -639,6 +681,7 @@ function main(args = process.argv.slice(2)) {
   try {
     switch (command) {
       case 'prepare': return prepare(commandArgs);
+      case 'keep': return keep(commandArgs);
       case 'should-relaunch': return shouldRelaunch(commandArgs);
       case 'claim': return claim(commandArgs);
       case 'complete': return complete(commandArgs);

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d96947a7408f34c6dcaeaa60eef3e2b34ff692d5da70acc3e813dd4be6665614",
+  "manifestHash": "f0451c9a06541856bfd175eb5e8e01c975d0b16ebe246835d27e7f0344f2d93e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6779,6 +6779,9 @@
     "038 review and cli lineage number map": [
       "038-review-and-cli-lineage number map"
     ],
+    "039 held findings": [
+      "039 held findings"
+    ],
     "039 token aware chunking": [
       "039 token-aware chunking"
     ],
@@ -13172,6 +13175,9 @@
     ],
     "beancount removal": [
       "beancount removal"
+    ],
+    "bearer token redaction": [
+      "bearer token redaction"
     ],
     "before after doc patterns": [
       "before after doc patterns"
@@ -24967,6 +24973,9 @@
     ],
     "compact pi arbitration tasks": [
       "compact pi arbitration tasks"
+    ],
+    "compact pointer": [
+      "compact pointer"
     ],
     "compact wrapper coordination plan": [
       "compact wrapper coordination plan"
@@ -48168,6 +48177,9 @@
     "goal anatomy contract": [
       "goal anatomy contract"
     ],
+    "goal archive on replace and clear": [
+      "goal archive on replace and clear"
+    ],
     "goal asset templates": [
       "goal asset templates"
     ],
@@ -48254,6 +48266,9 @@
     ],
     "goal cjs packet": [
       "goal.cjs packet"
+    ],
+    "goal cli workspace required": [
+      "goal cli workspace required"
     ],
     "goal closure plan": [
       "goal closure plan"
@@ -48344,6 +48359,9 @@
     ],
     "goal core packet backed tasks": [
       "goal core packet backed tasks"
+    ],
+    "goal core parse error fallback": [
+      "goal core parse error fallback"
     ],
     "goal core plan": [
       "goal core plan"
@@ -48551,6 +48569,18 @@
     ],
     "goal hardening research": [
       "goal hardening research"
+    ],
+    "goal held fixes": [
+      "goal held fixes"
+    ],
+    "goal held fixes implementation summary": [
+      "goal held fixes implementation summary"
+    ],
+    "goal held fixes plan": [
+      "goal held fixes plan"
+    ],
+    "goal held fixes tasks": [
+      "goal held fixes tasks"
     ],
     "goal hook capability matrix": [
       "goal hook capability matrix"
@@ -51922,6 +51952,18 @@
     "hooks": [
       "hooks"
     ],
+    "hooks and plugins held fixes": [
+      "hooks and plugins held fixes"
+    ],
+    "hooks and plugins held fixes implementation summary": [
+      "hooks and plugins held fixes implementation summary"
+    ],
+    "hooks and plugins held fixes plan": [
+      "hooks and plugins held fixes plan"
+    ],
+    "hooks and plugins held fixes tasks": [
+      "hooks and plugins held fixes tasks"
+    ],
     "hooks before after injection bloat": [
       "hooks before after injection bloat"
     ],
@@ -51930,6 +51972,9 @@
     ],
     "hooks lib": [
       "hooks lib"
+    ],
+    "hooks node test ci": [
+      "hooks node test ci"
     ],
     "hooks readme plain voice": [
       "hooks readme plain voice"
@@ -57729,6 +57774,9 @@
     ],
     "llmgateway mimo v2 6 pro": [
       "llmgateway mimo-v2.6-pro"
+    ],
+    "llmgateway v2 default": [
+      "llmgateway v2 default"
     ],
     "llms txt specification": [
       "llms txt specification"
@@ -69494,6 +69542,24 @@
     "outranked routing phrases": [
       "outranked routing phrases"
     ],
+    "outside loop handoff": [
+      "outside loop handoff"
+    ],
+    "outside loop handoff acceptance criteria": [
+      "outside loop handoff acceptance criteria"
+    ],
+    "outside loop handoff implementation summary": [
+      "outside loop handoff implementation summary"
+    ],
+    "outside loop handoff note": [
+      "outside loop handoff note"
+    ],
+    "outside loop handoff plan": [
+      "outside loop handoff plan"
+    ],
+    "outside loop handoff tasks": [
+      "outside loop handoff tasks"
+    ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
@@ -72007,6 +72073,9 @@
     "phase 18 create sh unknown options": [
       "phase 18 create sh unknown options"
     ],
+    "phase 18 outside loop handoff": [
+      "phase 18 outside loop handoff"
+    ],
     "phase 18 plan": [
       "phase 18 plan"
     ],
@@ -72396,6 +72465,18 @@
     ],
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
+    ],
+    "phase 41 goal held fixes": [
+      "phase 41 goal held fixes"
+    ],
+    "phase 42 hooks and plugins held fixes": [
+      "phase 42 hooks and plugins held fixes"
+    ],
+    "phase 43 v2 default model": [
+      "phase 43 v2 default model"
+    ],
+    "phase 44 skill advisor stress ci": [
+      "phase 44 skill advisor stress ci"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
@@ -87226,6 +87307,9 @@
     "sa 011 idempotent derived sync": [
       "sa-011 idempotent derived sync"
     ],
+    "sa 034 default is not a function": [
+      "sa-034 default is not a function"
+    ],
     "safe code removal plan": [
       "safe code removal plan"
     ],
@@ -89724,6 +89808,9 @@
     ],
     "session relaunch hook": [
       "session relaunch hook"
+    ],
+    "session relaunch keep command": [
+      "session relaunch keep command"
     ],
     "session relaunch lanes": [
       "session relaunch lanes"
@@ -96203,6 +96290,15 @@
     "skill advisor stress ci": [
       "skill advisor stress ci"
     ],
+    "skill advisor stress ci implementation summary": [
+      "skill advisor stress ci implementation summary"
+    ],
+    "skill advisor stress ci plan": [
+      "skill advisor stress ci plan"
+    ],
+    "skill advisor stress ci tasks": [
+      "skill advisor stress ci tasks"
+    ],
     "skill advisor stress coverage": [
       "skill_advisor stress coverage"
     ],
@@ -101575,6 +101671,9 @@
     "stderr tag tasks": [
       "stderr tag tasks"
     ],
+    "stdin byte cap": [
+      "stdin byte cap"
+    ],
     "stdin close shutdown handler": [
       "stdin close shutdown handler"
     ],
@@ -103968,6 +104067,9 @@
     "system spec kit 2 8 4 0": [
       "system-spec-kit 2.8.4.0"
     ],
+    "system spec kit 2 8 5 0": [
+      "system-spec-kit 2.8.5.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -104399,6 +104501,9 @@
     ],
     "system spec kit v2 8 4 0": [
       "system-spec-kit v2.8.4.0"
+    ],
+    "system spec kit v2 8 5 0": [
+      "system-spec-kit v2.8.5.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -108756,6 +108861,18 @@
     ],
     "v2 bridge plugin effects tasks": [
       "v2 bridge plugin effects tasks"
+    ],
+    "v2 default model and follow ups": [
+      "v2 default model and follow ups"
+    ],
+    "v2 default model and follow ups implementation summary": [
+      "v2 default model and follow ups implementation summary"
+    ],
+    "v2 default model and follow ups plan": [
+      "v2 default model and follow ups plan"
+    ],
+    "v2 default model and follow ups tasks": [
+      "v2 default model and follow ups tasks"
     ],
     "v3 0 0 0 release notes": [
       "v3.0.0.0 release notes"

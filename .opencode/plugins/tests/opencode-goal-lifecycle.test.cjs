@@ -9,7 +9,7 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const { access, mkdir, mkdtemp, readFile, readdir, rename, rm, utimes, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
-const { dirname, join } = require('node:path');
+const { basename, dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const { readContinuationEntries, restoreEnv } = require('./helpers/continuation-log.cjs');
@@ -122,6 +122,32 @@ async function createLifecycleGoal(helpers, stateDir) {
     goalIdFactory: () => 'event-goal',
     tokenBudget: 100,
   });
+}
+
+async function writePacketGoal(root, rel) {
+  const dir = join(root, rel);
+  await mkdir(dir, { recursive: true });
+  await mkdir(join(root, '.git'), { recursive: true });
+  await writeFile(join(dir, 'goal.md'), [
+    '---',
+    'title: "Goal: fixture"',
+    '_memory:',
+    '  continuity:',
+    '    session_dedup:',
+    '      session_id: "SECRET"',
+    '---',
+    '<!-- ANCHOR:directive -->',
+    '**Objective:** Ship it.',
+    '<!-- /ANCHOR:directive -->',
+    '<!-- ANCHOR:completion -->',
+    '- [ ] REBIND_CRITERION',
+    '<!-- /ANCHOR:completion -->',
+    '<!-- ANCHOR:log -->',
+    '| Item | State | Evidence |',
+    '|---|---|---|',
+    '<!-- /ANCHOR:log -->',
+    '',
+  ].join('\n'), 'utf8');
 }
 
 test('session.created keeps an active goal intact', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
@@ -906,6 +932,33 @@ test('session.deleted archives an existing goal file exactly', async () => withS
   assert.deepEqual(JSON.parse(archiveTargetRaw), JSON.parse(archiveSourceRaw));
 }));
 
+test(
+  'session.deleted archives a second goal for the same session without overwriting',
+  async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+    const sessionID = 'session-archive-repeat';
+    const archivePlugin = await pluginModule.default.server({}, { stateDir });
+    await helpers.setGoal(sessionID, 'Archive the first goal for this session', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'archive-repeat-first-goal',
+    });
+    await archivePlugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+
+    await helpers.setGoal(sessionID, 'Archive the second goal for this session', {
+      stateDir,
+      nowMs: 2000,
+      goalIdFactory: () => 'archive-repeat-second-goal',
+    });
+    await archivePlugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+
+    assert.equal(await fileExists(helpers.goalPathForSession(sessionID, { stateDir })), false);
+    const history = await archivePlugin.tool.opencode_goal.execute({ action: 'history' }, {});
+    assert.match(history, /archive_count=2/);
+    assert.match(history, /archive_\d+_goal_id="archive-repeat-first-goal"/);
+    assert.match(history, /archive_\d+_goal_id="archive-repeat-second-goal"/);
+  }),
+);
+
 test('session.deleted archives a long session id without probing an impossible legacy filename', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const sessionID = `session-${'d'.repeat(140)}`;
   const archivePlugin = await pluginModule.default.server({}, { stateDir });
@@ -920,6 +973,211 @@ test('session.deleted archives a long session id without probing an impossible l
   const archivePath = join(stateDir, '.archive', `${helpers.sessionKeyForSession(sessionID)}.json`);
   assert.equal(JSON.parse(await readFile(archivePath, 'utf8')).goalId, 'long-archive-goal');
 }));
+
+test(
+  'history lists every distinct snapshot of a goal rebound through three packets',
+  async () => withState(async ({ helpers, stateDir }) => {
+    await writePacketGoal(stateDir, 'specs/t/001-first');
+    await writePacketGoal(stateDir, 'specs/t/002-second');
+    await writePacketGoal(stateDir, 'specs/t/003-third');
+    const ctx = { sessionID: 'session-rebind-snapshots', messageID: 'm1', agent: 'build' };
+    const bindOpts = { stateDir, directory: stateDir };
+    const first = await helpers.executeGoalAction(
+      { action: 'bind', packetPath: 'specs/t/001-first' },
+      ctx,
+      { ...bindOpts, nowMs: 1000 },
+    );
+    assert.match(String(first), /mutation=bound/);
+    const goalId = (await helpers.readGoal(ctx.sessionID, bindOpts)).goalId;
+    const second = await helpers.executeGoalAction(
+      { action: 'bind', packetPath: 'specs/t/002-second' },
+      ctx,
+      { ...bindOpts, nowMs: 2000 },
+    );
+    assert.match(String(second), /mutation=rebound/);
+    const third = await helpers.executeGoalAction(
+      { action: 'bind', packetPath: 'specs/t/003-third' },
+      ctx,
+      { ...bindOpts, nowMs: 3000 },
+    );
+    assert.match(String(third), /mutation=rebound/);
+    assert.equal((await helpers.readGoal(ctx.sessionID, bindOpts)).goalId, goalId);
+    const archiveDir = join(stateDir, '.archive');
+    const snapshotNames = (await readdir(archiveDir)).filter((name) => name.endsWith('.json'));
+    assert.equal(snapshotNames.length, 2, 'one snapshot per replaced record');
+    const history = String(await helpers.executeGoalAction({ action: 'history' }, ctx, bindOpts));
+    assert.match(history, /archive_count=2/);
+    assert.equal(
+      history.split(`goal_id="${goalId}"`).length - 1,
+      2,
+      'both snapshots share one goal id but differ in content',
+    );
+  }),
+);
+
+test(
+  'a rebind archives the goal another process wrote just before the lock',
+  async () => withState(async ({ helpers, stateDir }) => {
+    await writePacketGoal(stateDir, 'specs/t/100-rebind-race-a');
+    await writePacketGoal(stateDir, 'specs/t/101-rebind-race-b');
+    await writePacketGoal(stateDir, 'specs/t/102-rebind-race-c');
+    const ctx = { sessionID: 'session-rebind-race', messageID: 'm1', agent: 'build' };
+    const bindOpts = { stateDir, directory: stateDir };
+    await helpers.executeGoalAction(
+      { action: 'bind', packetPath: 'specs/t/100-rebind-race-a' },
+      ctx,
+      { ...bindOpts, nowMs: 1000 },
+    );
+    const activePath = helpers.goalPathForSession(ctx.sessionID, bindOpts);
+    const fsPromises = require('node:fs/promises');
+    const originalSymlink = fsPromises.symlink;
+    let injected = false;
+    fsPromises.symlink = async (target, path) => {
+      if (!injected && basename(String(path)).startsWith('.lock-')) {
+        injected = true;
+        const record = JSON.parse(await readFile(activePath, 'utf8'));
+        record.goalId = 'rebind-race-other-process';
+        record.packetPath = 'specs/t/101-rebind-race-b';
+        record.updatedAtMs = 2000;
+        record.updatedAt = new Date(2000).toISOString();
+        await writeFile(activePath, `${JSON.stringify(record, null, 2)}\n`, 'utf8');
+      }
+      return originalSymlink(target, path);
+    };
+    require('node:module').syncBuiltinESMExports();
+    try {
+      const rebound = await helpers.executeGoalAction(
+        { action: 'bind', packetPath: 'specs/t/102-rebind-race-c' },
+        ctx,
+        { ...bindOpts, nowMs: 3000 },
+      );
+      assert.match(String(rebound), /mutation=rebound/);
+    } finally {
+      fsPromises.symlink = originalSymlink;
+      require('node:module').syncBuiltinESMExports();
+    }
+    assert.equal(injected, true, 'the rebind acquired the mutation lock');
+    const history = String(await helpers.executeGoalAction({ action: 'history' }, ctx, bindOpts));
+    assert.match(history, /goal_id="rebind-race-other-process"/);
+  }),
+);
+
+test(
+  'the archive moves the active file so the record there at that instant is archived',
+  async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+    const sessionID = 'session-move-race';
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
+    await helpers.setGoal(sessionID, 'Archive the goal the move captured', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'move-race-goal',
+    });
+    const activePath = helpers.goalPathForSession(sessionID, { stateDir });
+    const replacement = {
+      ...JSON.parse(await readFile(activePath, 'utf8')),
+      goalId: 'move-race-replacement',
+      objective: 'The replacement written while the archive moves the file',
+      updatedAtMs: 2000,
+      updatedAt: new Date(2000).toISOString(),
+    };
+    const replacementRaw = `${JSON.stringify(replacement, null, 2)}\n`;
+    const fsPromises = require('node:fs/promises');
+    const originalRename = fsPromises.rename;
+    let moved = false;
+    fsPromises.rename = async (from, to) => {
+      if (!moved && String(from) === activePath) {
+        moved = true;
+        await writeFile(activePath, replacementRaw, 'utf8');
+      }
+      return originalRename(from, to);
+    };
+    require('node:module').syncBuiltinESMExports();
+    try {
+      await plugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+    } finally {
+      fsPromises.rename = originalRename;
+      require('node:module').syncBuiltinESMExports();
+    }
+    assert.equal(moved, true, 'the archive moved the active file instead of linking it');
+    assert.equal(await fileExists(activePath), false, 'no active path is left for a later unlink');
+    const archiveDir = join(stateDir, '.archive');
+    const entries = await readdir(archiveDir);
+    assert.deepEqual(entries, [`${helpers.sessionKeyForSession(sessionID)}.json`]);
+    const archivedRaw = await readFile(join(archiveDir, entries[0]), 'utf8');
+    assert.deepEqual(JSON.parse(archivedRaw), replacement);
+    assert.equal(entries.some((name) => name.endsWith('.tmp-')), false);
+    assert.equal(
+      entries.some((name) => name.startsWith('.tmp-')),
+      false,
+      'no staging file is left',
+    );
+    assert.equal(
+      entries.some((name) => name.startsWith('.tmp-') && name.endsWith('.json')),
+      false,
+      'a staging name never looks like an archive to the history listing',
+    );
+  }),
+);
+
+test(
+  'a goal written while the archive restore runs survives with the moved copy',
+  async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+    const sessionID = 'session-restore-race';
+    const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
+    await helpers.setGoal(sessionID, 'Keep every byte when the archive cannot place', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => 'restore-race-goal',
+    });
+    const activePath = helpers.goalPathForSession(sessionID, { stateDir });
+    const movedRaw = await readFile(activePath, 'utf8');
+    const newRecord = {
+      ...JSON.parse(movedRaw),
+      goalId: 'restore-race-new',
+      objective: 'A new goal owns the active path',
+      updatedAtMs: 2000,
+      updatedAt: new Date(2000).toISOString(),
+    };
+    const newActiveRaw = `${JSON.stringify(newRecord, null, 2)}\n`;
+    const archiveDir = join(stateDir, '.archive');
+    const fsPromises = require('node:fs/promises');
+    const originalLink = fsPromises.link;
+    let newGoalWritten = false;
+    fsPromises.link = async (from, to) => {
+      if (dirname(String(to)) === archiveDir) {
+        if (!newGoalWritten) {
+          newGoalWritten = true;
+          await writeFile(activePath, newActiveRaw, 'utf8');
+        }
+        const occupied = new Error('archive candidate occupied');
+        occupied.code = 'EEXIST';
+        throw occupied;
+      }
+      return originalLink(from, to);
+    };
+    require('node:module').syncBuiltinESMExports();
+    try {
+      await plugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+    } finally {
+      fsPromises.link = originalLink;
+      require('node:module').syncBuiltinESMExports();
+    }
+    assert.equal(newGoalWritten, true, 'every archive candidate was refused');
+    assert.equal(
+      await readFile(activePath, 'utf8'),
+      newActiveRaw,
+      'the new goal keeps the active path',
+    );
+    const entries = await readdir(archiveDir);
+    const movedNames = entries.filter((name) => name.startsWith('.tmp-'));
+    assert.equal(movedNames.length, 1, 'the moved copy stays in the archive folder');
+    assert.equal(await readFile(join(archiveDir, movedNames[0]), 'utf8'), movedRaw);
+    assert.equal(
+      entries.some((name) => name.startsWith('.tmp-') && name.endsWith('.json')),
+      false,
+    );
+  }),
+);
 
 test('history migrates a legacy archive and reports an occupied duplicate exactly once', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const sessionID = 'session-legacy-archive';
@@ -1088,6 +1346,32 @@ test('archive pruning removes old archived files and keeps recent files', async 
   });
   assert.equal(await fileExists(oldArchivePath), false);
   assert.equal(await fileExists(recentArchivePath), true);
+}));
+
+test('archive pruning skips staged files', async () => withState(async ({ helpers, stateDir }) => {
+  const archiveDir = join(stateDir, '.archive');
+  await mkdir(archiveDir, { recursive: true, mode: 0o700 });
+  const stagedPath = join(archiveDir, '.tmp-staged-goal');
+  const oldArchivePath = join(archiveDir, 'old-archive-with-stage.json');
+  await writeFile(stagedPath, '{"goalId":"staged"}\n', 'utf8');
+  await writeFile(oldArchivePath, '{"goalId":"old"}\n', 'utf8');
+  const oldArchiveDate = new Date(Date.now() - (120 * 24 * 60 * 60 * 1000));
+  await utimes(stagedPath, oldArchiveDate, oldArchiveDate);
+  await utimes(oldArchivePath, oldArchiveDate, oldArchiveDate);
+  await helpers.setGoal('session-archive-prune-stage', 'Trigger staged prune', {
+    stateDir,
+    goalIdFactory: () => 'archive-prune-stage-goal',
+  });
+  const pruneStageModule = await importFreshPlugin('archive-prune-stage');
+  const pruneStagePlugin = await pruneStageModule.default.server({}, { stateDir });
+  await pruneStagePlugin.event({
+    event: {
+      type: 'session.deleted',
+      properties: { sessionID: 'session-archive-prune-stage' },
+    },
+  });
+  assert.equal(await fileExists(oldArchivePath), false);
+  assert.equal(await fileExists(stagedPath), true);
 }));
 
 test('archive prune throttling runs pruning once in a throttle window', async () => {

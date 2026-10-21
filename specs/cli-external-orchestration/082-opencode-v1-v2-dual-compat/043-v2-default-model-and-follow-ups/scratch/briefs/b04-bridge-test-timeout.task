@@ -1,0 +1,26 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change):
+In `.opencode/plugins/lib/v2-bridge.js`, the event stream calls `announceSession(...)` so a session gets one synthesized `session.created`. If that stream announcement is removed, several tests in `.opencode/plugins/tests/v2-bridge.test.cjs` wait on a promise that never settles, and the whole suite hangs instead of failing. Give every session-announcement test a node:test timeout so that mutation fails cleanly. The tests are the ones from "a session event before session.created announces the session first" through "session.deleted allows the same session to be announced again" (roughly lines 438 to 805), plus any other test in the file that awaits an announcement. Use the node:test options argument, e.g. `test('name', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {...})`, with one named constant near the top of the file and a one-line comment saying why (a missing announcement must fail the test instead of hanging the suite). Pick a value well above the slowest passing run of these tests (measure it) and no more than 5000 ms.
+
+Do not change `v2-bridge.js` except temporarily for the check below.
+
+Check: temporarily remove the stream's announcement in `v2-bridge.js` (the `await announceSession(...)` calls inside the event subscription handler, not the transform path), run the verify command under an alarm, and confirm it now ends with failures rather than being killed by the alarm. Then restore `v2-bridge.js` exactly (`git diff .opencode/plugins/lib/v2-bridge.js` must print nothing) and run the verify command again.
+
+Code standards: read the whole test file first and match its style. Never put finding ids, task ids, spec paths, phase numbers or packet numbers in a comment or a test name.
+
+ALLOWED WRITE PATHS:
+- .opencode/plugins/tests/v2-bridge.test.cjs
+- .opencode/plugins/lib/v2-bridge.js (temporary mutation only; must end unchanged)
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+perl -e 'alarm 120; exec @ARGV' node --test --test-reporter=tap .opencode/plugins/tests/v2-bridge.test.cjs 2>&1 | grep -E '^# (tests|pass|fail)'; echo "exit=$?"
+
+Return report: the timeout value and how you measured it, the tests you gave it to, the verify output with the mutation in place (counts and how long it took) and after restoring, and the output of git diff --stat.

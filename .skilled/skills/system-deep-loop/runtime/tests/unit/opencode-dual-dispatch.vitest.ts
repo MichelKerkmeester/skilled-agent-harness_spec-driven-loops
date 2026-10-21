@@ -383,6 +383,38 @@ describe('OpenCode lineage builders', () => {
     expect(withoutEffort.cwd).toBe(process.cwd());
   });
 
+  it('applies the OpenCode 1 default model to an unpinned lineage', () => {
+    const binDir = createTempDirectory();
+    writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);
+    const result = fanoutRun.buildLineageCommand(
+      { kind: 'cli-opencode' },
+      PROMPT,
+      'danger-full-access',
+      'bypassPermissions',
+      { env: envWithPath(binDir) },
+    );
+
+    expect(result.args).toContain('--model');
+    expect(result.args).toContain('opencode-go/deepseek-v4.1-flash');
+    expect(result.args).toContain('--variant');
+    expect(result.args).toContain('max');
+  });
+
+  it('applies the OpenCode 2 default model to an unpinned lineage', () => {
+    const binDir = createTempDirectory();
+    writeVersionStub(binDir, 'opencode2', VERSION_2_OUTPUT);
+    const result = fanoutRun.buildLineageCommand(
+      { kind: 'cli-opencode' },
+      PROMPT,
+      'danger-full-access',
+      'bypassPermissions',
+      { env: envWithPath(binDir) },
+    );
+
+    expect(result.args).toContain('-m');
+    expect(result.args).toContain('llmgateway/deepseek-v4.1-flash#max');
+  });
+
   it('D3 preserves the native v1 argv', () => {
     const binDir = createTempDirectory();
     writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);

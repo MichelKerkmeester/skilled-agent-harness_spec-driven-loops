@@ -15,6 +15,10 @@
 // alongside `edit` as an edit event, or a write escapes quality checking
 // entirely. The `write` case pins that contract; `edit` is the positive
 // control; `read` is the negative control that must stay silent.
+//
+// The payload may name the edited file under any of three aliases, and a host
+// that sends a non-string value under the first one must not thereby lose the
+// path it did send -- a silently skipped file is the failure mode.
 
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
@@ -66,11 +70,11 @@ function makeFixtureProject() {
   return projectDir;
 }
 
-function runHook(projectDir, toolName) {
+function runHook(projectDir, toolName, toolInput = { file_path: 'src/app.js' }) {
   const payload = {
     tool_name: toolName,
     cwd: projectDir,
-    tool_input: { file_path: 'src/app.js' },
+    tool_input: toolInput,
   };
 
   const env = { ...process.env };
@@ -142,4 +146,18 @@ test('read payload is not an edit event', (t) => {
     `a read must not carry an edit advisory; stdout was: ${JSON.stringify(result.stdout)}`,
   );
   assert.ok(!result.stdout.includes('COMMENT HYGIENE WARNING'), 'raw stdout must stay free of the edit advisory');
+});
+
+test('non-string file_path does not hide a later path alias', (t) => {
+  const projectDir = makeFixtureProject();
+  t.after(() => rmSync(projectDir, { recursive: true, force: true }));
+
+  const result = runHook(projectDir, 'edit', { file_path: 123, filePath: 'src/app.js' });
+
+  assert.equal(result.status, 0, `hook must stay fail-open; stderr: ${result.stderr}`);
+  const context = additionalContext(result.stdout);
+  assert.ok(
+    context.includes('COMMENT HYGIENE WARNING'),
+    `a valid filePath must survive a non-string file_path; stdout was: ${JSON.stringify(result.stdout)}`,
+  );
 });

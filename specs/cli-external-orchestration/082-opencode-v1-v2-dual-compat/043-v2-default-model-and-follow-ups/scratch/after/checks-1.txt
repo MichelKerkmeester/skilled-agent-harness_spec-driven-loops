@@ -1,0 +1,25 @@
+## cli-opencode script tests
+default-model-id.test.cjs # pass 5 # fail 0
+opencode-setup-classify.test.cjs # pass 2 # fail 0
+opencode2-models-form.test.cjs # pass 15 # fail 1
+## plugin suite
+# tests 516
+# pass 516
+# fail 0
+## hooks node:test
+# tests 856
+# pass 856
+# fail 0
+## install-hooks
+PASS 4
+## playbook validator
+PASS package=cli-external-orchestration/cli-opencode tier=FAIL_CLOSED scenarios=72 categories=14 operator=72 routing_gold_excluded=0 violations=0 warnings=0
+## markdown links
+check-markdown-links: 7784 files, 14193 links checked, 0 broken
+OK — 0 broken markdown links.
+## hermes
+PASS: 68 Hermes skill copies in sync
+## actionlint
+actionlint-ok
+## gate inputs
+RESULT: PASSED

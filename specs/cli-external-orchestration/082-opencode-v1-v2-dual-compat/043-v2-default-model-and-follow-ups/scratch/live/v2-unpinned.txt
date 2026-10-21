@@ -1,0 +1,8 @@
+bin=opencode2
+model=undefined
+effort=undefined
+command=opencode2 "run" "--standalone" "-m" "llmgateway/deepseek-v4.1-flash#max" "--format" "json" "--auto" "Reply with the single word OK. Do not use any tools."
+exit=0
+signal=null
+text=OK
+stderr_tail=

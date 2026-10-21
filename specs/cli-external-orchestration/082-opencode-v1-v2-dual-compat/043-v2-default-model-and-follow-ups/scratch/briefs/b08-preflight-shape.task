@@ -1,0 +1,20 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change): `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs` test "the provider pre-flight block checks OpenCode 2 through a standalone listing" now fails, because in `.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` (section "Provider Auth Pre-Flight (smart fallback)", the OpenCode 2 fenced block) the llmgateway line was rewritten as a compound `... && DEFAULT_OK=1 && LLMGATEWAY_OK=1 || { DEFAULT_OK=0; LLMGATEWAY_OK=0; }`. The test (read its helpers `providerCheckIndex` and `standaloneListingProblem`) expects each provider check in the simple shape `printf '%s\n' "$V2_MODELS" | grep '^<provider>/' >/dev/null && <VAR>=1 || <VAR>=0`.
+
+Fix the doc, not the test: restore the llmgateway line to the simple shape setting `LLMGATEWAY_OK`, keep the opencode-go line as it is, and add a separate line after them that sets `DEFAULT_OK=$LLMGATEWAY_OK` with a short trailing comment saying the OpenCode 2 default is on LLM Gateway. Keep the echo line and the decision table as they are. Keep the column alignment of the block.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+for f in .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/*.test.cjs; do node --test --test-reporter=tap $f 2>&1 | grep -E '^(not ok|# (pass|fail))'; done
+
+Return report: the block before and after, and the verify output.

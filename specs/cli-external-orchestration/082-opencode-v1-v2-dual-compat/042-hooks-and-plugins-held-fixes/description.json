@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
+  "description": "Phase 42: hooks-and-plugins-held-fixes",
+  "keywords": [
+    "phase",
+    "hooks-and-plugins-held-fixes"
+  ],
+  "lastUpdated": "2026-10-21T04:53:46.227Z",
+  "specId": "042",
+  "folderSlug": "hooks-and-plugins-held-fixes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

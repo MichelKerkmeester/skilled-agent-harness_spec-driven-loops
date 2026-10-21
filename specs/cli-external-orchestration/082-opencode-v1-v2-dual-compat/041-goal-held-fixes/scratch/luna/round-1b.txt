@@ -1,0 +1,14 @@
+a9a6f2fc68 | PASS
+fe63af3f0a | PASS
+d43b94c624 | FAIL
+651ca91307 | PASS
+P1 | .opencode/plugins/opencode-goal.js:1522 | If another process replaces the active file after `link()` and before `unlink()`, this removes the new goal while the archive retains the old file | Serialize cross-process mutations or ensure removal cannot target a replacement
+P1 | .opencode/plugins/opencode-goal.js:1710 | Rebinding the same goal from packet A to B to C writes distinct snapshots with the same `goalId`; history dedupes by session and goal ID, hiding the older snapshot | Deduplicate exact aliases instead, or include snapshot version in the identity
+P2 | .opencode/plugins/opencode-goal.js:1524 | A crash after writing `.tmp-….json` can leave a valid temp file that history accepts as an archive | Use a temp suffix outside `.json`, or exclude temp names from history
+P2 | .opencode/plugins/opencode-goal.js:1713 | The new JSDoc line is 104 characters, over the 100-character limit | Wrap the return description
+P2 | .opencode/plugins/tests/opencode-goal-state.test.cjs:191 | The test title is 127 characters and its call at line 223 is 110 | Shorten the title and wrap the call
+P2 | .opencode/plugins/opencode-goal.js:1502 | Added lines 1502, 1506, 1509, 1572, and 1938 exceed 100 characters | Wrap the signature and expressions
+P2 | .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:909 | The new test declaration is 158 characters | Shorten or wrap the declaration
+P2 | .skilled/hooks/goal/bin/goal.cjs:410 | The new guard line is 158 characters | Split the error construction and print call
+P2 | .skilled/hooks/goal/bin/goal.test.cjs:197 | The new CLI argument line is 102 characters | Wrap the argument array
+VERDICT: FAIL

@@ -391,11 +391,15 @@ const NUDGE_CASES = [
     check: (text) => assert.equal(text, ''),
   },
   {
-    // Outside the wrapper nothing can relaunch the session, so a nudge could only end
-    // in a manual hand-off; the session keeps working instead.
-    name: 'a nudge stays silent outside skilled-loop at a fill above the threshold',
+    // Outside the wrapper nothing can relaunch the session, so the nudge asks for a note
+    // the session keeps through auto-compaction, and never for prepare.
+    name: 'a nudge outside skilled-loop asks for keep and never prepare',
     setup: ({ env }) => { delete env.SKILLED_LOOP_ID; },
-    check: (text) => assert.equal(text, ''),
+    check: (text, runtime) => {
+      assert.ok(text.includes(` keep --handoff `), text);
+      assert.ok(text.includes(`--runtime '${runtime}'`), text);
+      assert.equal(text.includes(' prepare --handoff'), false, text);
+    },
   },
   {
     name: 'a nudge stays silent at the hop cap',

@@ -8,7 +8,15 @@
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { test } = require('node:test');
-const { access, mkdtemp, readFile, readdir, rename, rm, writeFile } = require('node:fs/promises');
+const {
+  access, lstat, lutimes, mkdtemp, readFile, readdir, rename, rm, symlink, unlink, writeFile,
+} = require('node:fs/promises');
+// The dead-owner test needs the pid of a process that has already exited.
+const { spawnSync } = require('node:child_process');
+// The wrapped readFile below mutates the live builtin, so it needs the module
+// object itself plus the call that re-points the ESM named exports at it.
+const fsp = require('node:fs/promises');
+const { syncBuiltinESMExports } = require('node:module');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -61,6 +69,18 @@ async function fileExists(path) {
   // existing path rather than the EISDIR error a readFile probe raises.
   try {
     await access(path);
+    return true;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return false;
+    throw error;
+  }
+}
+
+async function lockEntryExists(lockPath) {
+  // A lock entry is a symlink whose target is a bare pid, which is not a path
+  // anyone can reach: only a link-aware stat reports on the entry itself.
+  try {
+    await lstat(lockPath);
     return true;
   } catch (error) {
     if (error?.code === 'ENOENT') return false;
@@ -183,6 +203,159 @@ test('long session ids clear without probing an impossible legacy filename', asy
   await assert.doesNotReject(() => helpers.clearGoal(longSessionID, { stateDir }));
   assert.equal(await helpers.readGoal(longSessionID, { stateDir }), null);
 }));
+
+test(
+  'accountUsage keeps a goal another process wrote after the read',
+  async () => withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-concurrent-writer';
+    const scratchStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-other-process-'));
+    let writtenGoal;
+    try {
+      writtenGoal = await helpers.setGoal(sessionID, 'Survive a goal written mid-mutation', {
+        stateDir: scratchStateDir,
+        nowMs: 5100,
+        goalIdFactory: () => 'concurrent-writer-goal',
+      });
+    } finally {
+      await rm(scratchStateDir, { recursive: true, force: true });
+    }
+
+    const goalPath = helpers.goalPathForSession(sessionID, { stateDir });
+    const realReadFile = fsp.readFile;
+    let injected = false;
+    fsp.readFile = async (path, ...rest) => {
+      if (!injected && path === goalPath) {
+        injected = true;
+        // Another process lands a goal between the mutation's read and its write.
+        await fsp.writeFile(goalPath, `${JSON.stringify(writtenGoal, null, 2)}\n`, { mode: 0o600 });
+        const error = new Error(`ENOENT: no such file or directory, open '${goalPath}'`);
+        error.code = 'ENOENT';
+        error.path = goalPath;
+        throw error;
+      }
+      return realReadFile.call(fsp, path, ...rest);
+    };
+    syncBuiltinESMExports();
+
+    try {
+      const usageResult = await helpers.accountUsage(
+        sessionID,
+        'any-goal-id',
+        { tokenDelta: 5 },
+        { stateDir },
+      );
+      assert.equal(usageResult, null);
+    } finally {
+      fsp.readFile = realReadFile;
+      syncBuiltinESMExports();
+    }
+
+    assert.equal(injected, true);
+    assert.equal(await fileExists(goalPath), true);
+    const storedGoal = await helpers.readGoal(sessionID, { stateDir });
+    assert.equal(storedGoal.goalId, 'concurrent-writer-goal');
+
+    await helpers.clearGoal(sessionID, { stateDir });
+    assert.equal(await fileExists(goalPath), false);
+  }),
+);
+
+test('a lock held by another process makes a mutation wait for it', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-held';
+    const lockPath = join(stateDir, `.lock-${helpers.sessionKeyForSession(sessionID)}`);
+    const goalPath = helpers.goalPathForSession(sessionID, { stateDir });
+    // The live pid is this test's own, so the owner reads as alive and nothing
+    // breaks the entry out from under the wait this test is measuring.
+    await symlink(String(process.pid), lockPath);
+
+    const pending = helpers.setGoal(sessionID, 'Wait for the other process to release the lock', {
+      stateDir,
+    });
+    // The assertion below is the real check, but a rejection landing during the
+    // wait would otherwise surface as an unhandled rejection first.
+    pending.catch(() => undefined);
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    assert.equal(
+      await fileExists(goalPath),
+      false,
+      'the mutation waited while another holder owned the lock',
+    );
+
+    await unlink(lockPath);
+    const goal = await pending;
+    assert.equal(goal.objective, 'Wait for the other process to release the lock');
+    assert.equal(
+      await fileExists(goalPath),
+      true,
+      'the mutation wrote its goal once the lock was free',
+    );
+  })
+));
+
+test('a stale lock is broken instead of blocking the mutation', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-stale';
+    const lockPath = join(stateDir, `.lock-${helpers.sessionKeyForSession(sessionID)}`);
+    // A live owner leaves age as the only reason to break the entry.
+    await symlink(String(process.pid), lockPath);
+    const abandonedSeconds = (Date.now() - 200_000) / 1000;
+    await lutimes(lockPath, abandonedSeconds, abandonedSeconds);
+
+    const startedAtMs = Date.now();
+    const goal = await helpers.setGoal(sessionID, 'Break a lock its holder abandoned', {
+      stateDir,
+    });
+    const elapsedMs = Date.now() - startedAtMs;
+
+    assert.equal(goal.sessionId, sessionID);
+    assert.ok(
+      elapsedMs < 5_000,
+      `the stale lock was broken after ${elapsedMs}ms, under the timeout`,
+    );
+    assert.equal(await lockEntryExists(lockPath), false, 'the broken lock entry is gone');
+  })
+));
+
+test('a lock left by a dead owner is broken without waiting for it to age', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-orphaned';
+    const lockPath = join(stateDir, `.lock-${helpers.sessionKeyForSession(sessionID)}`);
+    // A child that exits immediately gives a pid that is certainly not running,
+    // which is the state a run that crashed mid-write leaves behind.
+    const exited = spawnSync(process.execPath, ['-e', ''], { stdio: 'ignore' });
+    assert.equal(exited.status, 0, 'the short-lived child exited cleanly');
+    await symlink(String(exited.pid), lockPath);
+
+    const startedAtMs = Date.now();
+    const goal = await helpers.setGoal(sessionID, 'Break a lock its dead owner left', {
+      stateDir,
+    });
+    const elapsedMs = Date.now() - startedAtMs;
+
+    assert.equal(goal.sessionId, sessionID);
+    assert.ok(
+      elapsedMs < 1_000,
+      `the dead owner's lock was broken after ${elapsedMs}ms, well under a second`,
+    );
+    assert.equal(await lockEntryExists(lockPath), false, 'the broken lock entry is gone');
+  })
+));
+
+test('a finished mutation leaves no lock entry in the state directory', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-release';
+    await helpers.setGoal(sessionID, 'Release the lock when the mutation ends', { stateDir });
+    await helpers.clearGoal(sessionID, { stateDir });
+
+    const entries = await readdir(stateDir);
+    assert.deepEqual(
+      entries.filter((name) => name.startsWith('.lock-')),
+      [],
+      'the released lock left nothing in the state directory',
+    );
+  })
+));
 
 test('valid legacy active state migrates byte-for-byte to the digest path', async () => withState(async ({ helpers, stateDir }) => {
   const sessionID = 'session-legacy-active';

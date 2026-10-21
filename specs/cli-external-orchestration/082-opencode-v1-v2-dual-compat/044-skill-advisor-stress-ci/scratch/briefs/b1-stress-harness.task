@@ -1,0 +1,18 @@
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci (pre-approved, skip Gate 3)
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci (your current directory)
+
+ROLE: You fix one test file.
+
+CONTEXT: `.opencode/plugins/system-skill-advisor.js` now ends with `export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin);`. dualPlugin (in `.opencode/plugins/lib/v2-bridge.js`) returns a plain object `{ id, setup, server }`, where `server` is the OpenCode 1 plugin function `(input, options) => hooks`. That object shape is the repo's dual-export contract and must not change. The stress test `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts` still calls the default export as a function (`MkSkillAdvisorPlugin({ directory: process.cwd() }, options)` inside `makePlugin`), so all four sa-034 tests fail with `TypeError: default is not a function`. The unit suite already calls `pluginModule.default.server({ directory }, ...)`.
+
+ACTION: In that one stress test file only:
+1. Rename the default import to a name that says it is the dual-export object (for example `skillAdvisorPlugin`).
+2. In `makePlugin`, call its `server` function: `skillAdvisorPlugin.server({ directory: process.cwd() }, options)`.
+3. Add one new `it(...)` at the top of the `describe` block that asserts the default export keeps the dual-export shape: `id` equals 'system-skill-advisor', and `setup` and `server` are functions. This test fails if the stress harness ever goes back to treating the default as a function-only export.
+Keep the file's existing header, comment style and indentation. No other edits.
+
+ALLOWED WRITE PATHS: .skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts
+
+BANNED OPERATIONS: editing any other file; changing the plugin or v2-bridge; git commit, push, branch, stash or reset; installs; running opencode or opencode2; writing outside the worktree.
+
+FORMAT: When done, reply with the diff of the file and one line saying what changed.

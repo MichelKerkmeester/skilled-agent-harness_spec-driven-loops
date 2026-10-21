@@ -1,0 +1,29 @@
+## cli-opencode script tests
+default-model-id.test.cjs # pass 5 # fail 0
+opencode-setup-classify.test.cjs # pass 2 # fail 0
+opencode2-models-form.test.cjs # pass 16 # fail 0
+## plugin suite
+# tests 516
+# pass 516
+# fail 0
+## hooks node:test
+files 29
+# tests 856
+# pass 856
+# fail 0
+## install-hooks
+PASS 4 (four cases)
+## playbook validator
+PASS package=cli-external-orchestration/cli-opencode scenarios=72 violations=0 warnings=0
+## markdown links
+OK — 0 broken markdown links.
+## hermes
+PASS: 68 Hermes skill copies in sync
+## actionlint
+actionlint-ok
+## gate inputs
+RESULT: PASSED
+## deep-loop vitest (fanout-run, opencode-dual-dispatch, executor-config)
+Test Files 3 passed (3); Tests 299 passed (299); baseline 273 for fanout-run + executor-config, plus 26 in opencode-dual-dispatch
+## sk-doc script tests
+37 PASS in run 1; test_rename_tooling_fixture_harness.py failed only while live dispatches wrote into the worktree (see sk-doc-tests-run1-concurrent.txt); rerun on a quiet worktree: Ran 4 tests, OK, EXIT=0 (sk-doc-rename-harness-quiet.txt)

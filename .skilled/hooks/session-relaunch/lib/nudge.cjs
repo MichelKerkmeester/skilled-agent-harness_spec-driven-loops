@@ -40,6 +40,12 @@ const FINISH_INSTEAD_INSTRUCTION = ' If the remaining work fits in a few more st
   + ' and skip these steps.'
   + ' Otherwise do these steps now, before any other work,'
   + ' so a fresh session continues before auto-compaction has to:';
+// Outside the wrapper nothing can relaunch the session, but a note still keeps what the
+// compaction summary loses, so the session writes one, keeps it, and carries on.
+const OUTSIDE_LOOP_INSTRUCTION = ' This session runs outside the skilled-loop wrapper, so it'
+  + ' cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize.'
+  + ' If the remaining work fits in a few more steps, finish it instead and skip these steps.'
+  + ' Otherwise do these steps now, before any other work:';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -61,6 +67,13 @@ function commandPrefix(cliPath) {
 function completeCommandFor(notePath, cliPath) {
   const pathValue = String(notePath ?? '<handoff-path>');
   return `${commandPrefix(cliPath)} complete ${shellQuote(pathValue)}`;
+}
+
+/** Build the command that claims a handoff note for a session. */
+function claimCommandFor(notePath, sessionId, cliPath) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  return `${commandPrefix(cliPath)} claim ${shellQuote(pathValue)}`
+    + ` --session ${shellQuote(String(sessionId ?? ''))}`;
 }
 
 // A window override can push the measured ratio far past 1, so the literal percentage
@@ -117,9 +130,11 @@ function handoffText({
   const specValue = folder ?? '';
   const command = commandPrefix(cliPath);
   const context = contextSentence(ratio);
-  const opening = context === null
-    ? `${SEED_PREFIX} Write a handoff note before auto-compaction.`
-    : context + FINISH_INSTEAD_INSTRUCTION;
+  const inLoop = Boolean(loopId);
+  let opening = `${SEED_PREFIX} Write a handoff note before auto-compaction.`;
+  if (context !== null) {
+    opening = context + (inLoop ? FINISH_INSTEAD_INSTRUCTION : OUTSIDE_LOOP_INSTRUCTION);
+  }
   // The sections asked for are the ones validateHandoff enforces, so prepare accepts the note.
   const sectionList = core.HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', ');
   const lines = [
@@ -151,14 +166,21 @@ function handoffText({
     lines.push(`${step}. When a spec packet is bound to this session, ${saveStep}`);
     step += 1;
   }
-  lines.push(
-    `${step}. Then run: ${command} prepare --handoff ${shellQuote(pathValue)}`
-      + ` --session ${shellQuote(sessionValue)} --runtime ${shellQuote(runtime)}`,
-  );
-  lines.push(
-    `${step + 1}. Stop once it exits 0; the loop ends this session and relaunches `
-      + 'with a claim seed.',
-  );
+  const noteArguments = `--handoff ${shellQuote(pathValue)}`
+    + ` --session ${shellQuote(sessionValue)} --runtime ${shellQuote(runtime)}`;
+  if (inLoop) {
+    lines.push(`${step}. Then run: ${command} prepare ${noteArguments}`);
+    lines.push(
+      `${step + 1}. Stop once it exits 0; the loop ends this session and relaunches `
+        + 'with a claim seed.',
+    );
+  } else {
+    lines.push(`${step}. Then run: ${command} keep ${noteArguments}`);
+    lines.push(
+      `${step + 1}. Keep working in this session once it exits 0. After auto-compaction, `
+        + 'claim the note with the command keep prints before you continue.',
+    );
+  }
   lines.push(
     'Exception: skip these steps only when the operator has told this session not to hand off;'
       + ' then keep working, and auto-compaction stays the fallback.',
@@ -167,12 +189,9 @@ function handoffText({
 }
 
 /** Build the claim, resume, and completion instructions for a seed prompt. */
-function seedText({ notePath, specFolder, sessionId, cliPath } = {}) {
+function seedText({ notePath, specFolder, sessionId, cliPath, afterCompaction = false } = {}) {
   const pathValue = String(notePath ?? '<handoff-path>');
-  const sessionValue = String(sessionId ?? '');
-  const command = commandPrefix(cliPath);
-  const claimCommand = `${command} claim ${shellQuote(pathValue)}`
-    + ` --session ${shellQuote(sessionValue)}`;
+  const claimCommand = claimCommandFor(pathValue, sessionId, cliPath);
   const completeCommand = completeCommandFor(pathValue, cliPath);
   const gateWasSkipped = specFolder === 'none';
   const continueStep = gateWasSkipped ? 4 : 3;
@@ -183,7 +202,10 @@ function seedText({ notePath, specFolder, sessionId, cliPath } = {}) {
   }
 
   const lines = [
-    '[session-relaunch] This session was opened to continue a handoff note. Work it in order:',
+    afterCompaction
+      ? '[session-relaunch] This session was compacted after it wrote a handoff note, which'
+        + ' keeps the detail the summary dropped. Work it in order:'
+      : '[session-relaunch] This session was opened to continue a handoff note. Work it in order:',
     `1. Run \`${claimCommand}\`; it prints the note body.`,
     readInstruction,
   ];
@@ -413,8 +435,9 @@ function handoffPending({ sessionId, env = process.env } = {}) {
 
 // Only the skilled-loop wrapper can end a session and relaunch it with a claim seed.
 // Outside it, prepare can only print a manual claim command and exit 3, so a nudge
-// there turns a working session into one that stops and waits for a hand-off nobody
-// runs. Unset or empty reads as outside, the same test prepare applies.
+// there that asked for prepare would turn a working session into one that stops and
+// waits for a hand-off nobody runs. Unset or empty reads as outside, the same test
+// prepare applies.
 /** Report whether this session runs under the skilled-loop wrapper. */
 function insideLoop(env = process.env) {
   return Boolean(env?.SKILLED_LOOP_ID);
@@ -442,8 +465,9 @@ function nextLevel({ ratio, threshold, state } = {}) {
 
 /**
  * Decide whether an adapter should nudge now, in the order every adapter applies:
- * the threshold, the wrapper, a handoff this session already prepared, the hop cap,
- * then the level.
+ * the threshold, then inside the wrapper a handoff this session already prepared and
+ * the hop cap, or outside it a note this session already has open, then the level.
+ * Outside the wrapper the nudge asks for a note only, and its reason says so.
  * The state file is read only once the ratio reaches the threshold.
  *
  * @param {Object} options - Fill ratio and session state.
@@ -466,15 +490,20 @@ function nudgeDecision({
   const knownLevel = Number.isInteger(level) && level >= 0 ? level : undefined;
   const quiet = (reason) => ({ nudge: false, level: knownLevel ?? 0, reason });
   if (!(Number(ratio) >= Number(threshold))) return quiet('below-threshold');
-  if (!insideLoop(env)) return quiet('outside-loop');
-  if (handoffPending({ sessionId, env })) return quiet('handoff-pending');
-  if (hopLimitReached(env)) return quiet('hop-limit');
+  const inLoop = insideLoop(env);
+  if (inLoop && handoffPending({ sessionId, env })) return quiet('handoff-pending');
+  if (inLoop && hopLimitReached(env)) return quiet('hop-limit');
+  // Outside the wrapper no record marks the work as done, so the session's own open
+  // note does: once it is written, a re-nudge would only ask for it again.
+  if (!inLoop && openNotePathFor({ repoRoot: resolveRepoRoot(env), sessionId }) !== null) {
+    return quiet('note-open');
+  }
 
   const current = knownLevel ?? readState(sessionId, env);
   if (resume && current >= 1) return { nudge: true, level: current, reason: 'resume' };
   const next = nextLevel({ ratio, threshold, state: current });
   return next.nudge
-    ? { nudge: true, level: next.level, reason: 'threshold' }
+    ? { nudge: true, level: next.level, reason: inLoop ? 'threshold' : 'outside-loop' }
     : { nudge: false, level: next.level, reason: 'level-spent' };
 }
 
@@ -532,12 +561,14 @@ module.exports = {
   handoffText,
   seedText,
   completeCommandFor,
+  claimCommandFor,
   isSeedPrompt,
   specFolderFromSeed,
   notePathFromSeed,
   resolveRepoRoot,
   handoffDir,
   plannedNotePath,
+  openNotePathFor,
   handoffPending,
   armedRecordStillCurrent,
   hopLimitReached,

@@ -1066,6 +1066,16 @@
             "timeout": 10,
             "fallback": "envelope",
             "async": true
+          },
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 7,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
           }
         ],
         "codex": [

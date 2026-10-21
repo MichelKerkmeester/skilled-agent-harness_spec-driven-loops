@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups",
+  "description": "v2 default model and follow-ups",
+  "keywords": [
+    "default",
+    "model",
+    "follow-ups"
+  ],
+  "lastUpdated": "2026-10-21T07:17:07.131Z",
+  "specId": "043",
+  "folderSlug": "v2-default-model-and-follow-ups",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

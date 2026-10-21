@@ -23,16 +23,21 @@
 
 const {
   appendFileSync,
+  closeSync,
+  linkSync,
   mkdirSync,
+  openSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   renameSync,
   rmdirSync,
   statSync,
   unlinkSync,
   writeFileSync,
 } = require('node:fs');
-const { isAbsolute, join } = require('node:path');
+const { randomUUID } = require('node:crypto');
+const { isAbsolute, join, relative, sep } = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -47,6 +52,12 @@ const WARN_LOG_MAX_BYTES_ENV = 'SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
 const REJECT_MODE_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
+const LOOP_STATE_LOCK_SUFFIX = '.lock';
+const LOOP_STATE_LOCK_BREAK_SUFFIX = '.break';
+const LOOP_STATE_LOCK_RETRY_MS = 10;
+const LOOP_STATE_LOCK_TIMEOUT_MS = 2000;
+const LOOP_STATE_LOCK_STALE_MS = 10000;
+const LOOP_STATE_LOCK_TEMP_REGEX = /\.lock(?:\.break)?\.tmp-(\d+)-[0-9a-f-]+$/;
 const LOOP_STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 
 // Retention/cleanup env vars, mirroring the opencode-goal.js sweep/archive/prune
@@ -155,24 +166,57 @@ function mismatchDetail(subagentType, registryModes, declaredMode) {
 const STATE_CONFIG_PATH_REGEX = /(?:^|\n)\s*-?\s*Config:\s*(\S+)/i;
 
 /**
+ * Test whether one real path is a descendant of another.
+ *
+ * @param {string} realPath - fully resolved candidate path
+ * @param {string} realRoot - fully resolved root path
+ * @returns {boolean} true when the candidate sits inside the root
+ */
+function isWithinRoot(realPath, realRoot) {
+  const relativePath = relative(realRoot, realPath);
+  return relativePath !== ''
+    && !isAbsolute(relativePath)
+    && relativePath !== '..'
+    && !relativePath.startsWith(`..${sep}`);
+}
+
+/**
  * Resolve the deep-loop config artifact a prompt's "Config:" line names.
  *
+ * Rejecting a literal '..' only blocks the naive escape: any absolute path
+ * would still pass, so a prompt could borrow the command-driven exemption with
+ * any JSON file on the machine carrying a `mode` string and a numeric
+ * `maxIterations`. The config therefore has to live inside the project, and
+ * both sides are resolved through their real paths so a symlink planted inside
+ * the project cannot back the exemption with a file that lives outside it.
+ *
  * @param {string} promptText - raw args.prompt value
- * @param {string} projectDir - project root used to resolve relative paths
- * @returns {string|null} absolute config path, or null when absent or traversing
+ * @param {string} projectDir - project root; relative config paths resolve against it
+ * @returns {string|null} real config path inside the project, or null when the
+ *   project root or the file is missing, or the file resolves outside the project
  */
 function resolveCommandConfigPath(promptText, projectDir) {
   const match = STATE_CONFIG_PATH_REGEX.exec(promptText || '');
   if (!match) return null;
   const rawPath = match[1].trim();
-  if (!rawPath || rawPath.includes('..')) return null;
-  return isAbsolute(rawPath) ? rawPath : join(projectDir || '.', rawPath);
+  if (!rawPath || !projectDir || rawPath.includes('..')) return null;
+
+  try {
+    const realProjectDir = realpathSync(projectDir);
+    const candidatePath = isAbsolute(rawPath) ? rawPath : join(realProjectDir, rawPath);
+    const realConfigPath = realpathSync(candidatePath);
+    return isWithinRoot(realConfigPath, realProjectDir) ? realConfigPath : null;
+  } catch (_) {
+    // A missing project root or config file cannot back an iteration exemption.
+    return null;
+  }
 }
 
 /**
  * Decide whether a prompt looks like a command-owned iteration pack: an
- * in-bounds iteration marker plus a Config: path whose JSON has the deep-loop
- * config shape. It checks shape only, not where the file came from.
+ * in-bounds iteration marker plus a Config: path resolving to a real deep-loop
+ * config that lives inside the project. It checks shape and project ownership,
+ * not who wrote the file.
  *
  * @param {string} promptText - raw args.prompt value
  * @param {string} projectDir - project root used to resolve relative paths
@@ -308,6 +352,280 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
 }
 
 /**
+ * Sleep synchronously without spinning a CPU core.
+ *
+ * @param {number} milliseconds - wait duration
+ * @returns {void}
+ */
+function sleepSync(milliseconds) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+}
+
+/**
+ * Read a loop-state lock's recorded owner. Acquisition installs the record
+ * atomically with the lock, so content without both a pid and a token can only
+ * be corruption; its age, not an owner probe, has to decide staleness.
+ *
+ * @param {string} lockPath - per-session lock or break-lock path
+ * @returns {{ pid: number|null, token: string|null }} recorded owner, or nulls
+ */
+function readLoopStateLock(lockPath) {
+  try {
+    const match = /^(\d+)\s+(\S+)\s*$/.exec(readFileSync(lockPath, 'utf8').trim());
+    if (!match) return { pid: null, token: null };
+    const pid = Number(match[1]);
+    if (!Number.isSafeInteger(pid) || pid <= 0) return { pid: null, token: null };
+    return { pid, token: match[2] };
+  } catch (_) {
+    return { pid: null, token: null };
+  }
+}
+
+/**
+ * Probe whether a lock owner's pid still refers to a running process.
+ *
+ * @param {number|null} pid - recorded owner pid
+ * @returns {boolean} true unless the kernel reports the pid gone
+ */
+function processIsAlive(pid) {
+  if (!Number.isSafeInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    // EPERM names a live process owned by another user; only ESRCH proves death.
+    return error.code !== 'ESRCH';
+  }
+}
+
+/**
+ * Decide whether a lock may be removed. A readable owner is authoritative and
+ * only its death makes the lock stale; unreadable content (corruption, since
+ * acquisition installs the record atomically) falls back to the stale window.
+ *
+ * @param {{ pid: number|null, token: string|null }} owner - recorded owner
+ * @param {number} ageMs - lock file age
+ * @returns {boolean} true when the lock is abandoned
+ */
+function loopStateLockIsStale(owner, ageMs) {
+  if (owner.pid !== null) return !processIsAlive(owner.pid);
+  return ageMs > LOOP_STATE_LOCK_STALE_MS;
+}
+
+/**
+ * Create a lock file with this process's pid and a fresh token. The record is
+ * written to a private temp file and hard-linked into place, so the lock path
+ * is never visible without a complete owner record and a held lock reports
+ * EEXIST from the link rather than from the initial create.
+ *
+ * @param {string} lockPath - per-session lock or break-lock path
+ * @returns {string|null} this process's token, or null when the path is already held
+ */
+function createLoopStateLock(lockPath) {
+  const token = randomUUID();
+  const tempPath = `${lockPath}.tmp-${process.pid}-${token}`;
+  const descriptor = openSync(tempPath, 'wx', 0o600);
+  try {
+    writeFileSync(descriptor, `${process.pid} ${token}\n`, 'utf8');
+  } catch (error) {
+    closeSync(descriptor);
+    try { unlinkSync(tempPath); } catch (_ignored) { /* best-effort cleanup */ }
+    throw error;
+  }
+  closeSync(descriptor);
+  try {
+    linkSync(tempPath, lockPath);
+  } catch (error) {
+    if (error && error.code === 'EEXIST') return null;
+    throw error;
+  } finally {
+    try { unlinkSync(tempPath); } catch (_ignored) { /* best-effort cleanup */ }
+  }
+  return token;
+}
+
+/**
+ * Remove a lock this process created once its update is complete. Only the
+ * owner whose token still sits in the file may remove it, so a stalled process
+ * that lost a per-session lock cannot delete its breaker's lock, and a breaker
+ * that lost the break lock cannot delete the next breaker's.
+ *
+ * @param {string} lockPath - per-session lock or break-lock path
+ * @param {string} token - token returned by acquisition
+ * @returns {void}
+ */
+function releaseLoopStateLock(lockPath, token) {
+  const owner = readLoopStateLock(lockPath);
+  if (owner.pid !== process.pid || owner.token !== token) return;
+  try {
+    unlinkSync(lockPath);
+  } catch (_) {
+    // Fail open: a lost lock is recovered through the dead-owner break path.
+  }
+}
+
+/**
+ * Take the break lock that serializes lock removal, retiring one whose breaker
+ * died so a crashed breaker cannot block every later contender.
+ *
+ * Retiring an abandoned break lock is left as the whole attempt's progress:
+ * returning null makes the retiring contender wait a retry before it competes for
+ * the fresh lock, which narrows but does not close a race that needs a breaker to
+ * have died while holding the break lock.
+ *
+ * @param {string} breakPath - break-lock path
+ * @param {number} now - current clock in ms
+ * @returns {string|null} this process's break-lock token, or null when another
+ *   live breaker holds it
+ */
+function acquireLoopStateBreakLock(breakPath, now) {
+  let token;
+  try {
+    token = createLoopStateLock(breakPath);
+  } catch (_) {
+    return null;
+  }
+  if (token) return token;
+
+  let breakStats;
+  try {
+    breakStats = statSync(breakPath);
+  } catch (_) {
+    // The prior breaker released it between the create and the stat; retry later.
+    return null;
+  }
+  const owner = readLoopStateLock(breakPath);
+  if (!loopStateLockIsStale(owner, now - breakStats.mtimeMs)) return null;
+  try {
+    unlinkSync(breakPath);
+  } catch (_) {
+    // Another contender retired it first; this attempt made no progress either way.
+  }
+  return null;
+}
+
+/**
+ * Remove a per-session lock that is abandoned, under a `<lockPath>.break` mutex
+ * so only one contender removes it at a time.
+ *
+ * Breaking by rename cannot work: a claimed lock has to be renamed back when it
+ * turns out to be a live replacement, and a contender can create a fresh lock
+ * between that rename and the restore, leaving two owners updating one state. A
+ * break lock installed by a hard link is never moved out from under a live
+ * contender unless its breaker has died or its record is unreadable and older
+ * than the stale window, in which case another process retires it, and the
+ * per-session lock is unlinked only after a re-read held by the break lock
+ * still finds it abandoned, so a live owner keeps its lock.
+ *
+ * Staleness is judged by owner liveness: a readable owner whose pid is dead is
+ * abandoned immediately, while unreadable content (corruption, since acquisition
+ * installs the record atomically) falls back to the stale window. The same rule
+ * retires a break lock whose breaker died.
+ *
+ * Remaining limit: a pid reused by an unrelated process makes a dead owner look
+ * alive, which only delays acquisition until it times out. The break-lock
+ * retirement race is a second limit: two contenders that both judge the same
+ * breaker dead can interleave so one removes the fresh break lock the other
+ * created.
+ *
+ * @param {string} lockPath - per-session lock path
+ * @param {number} now - current clock in ms
+ * @returns {void}
+ */
+function breakAbandonedLoopStateLock(lockPath, now) {
+  const breakPath = `${lockPath}${LOOP_STATE_LOCK_BREAK_SUFFIX}`;
+  const breakToken = acquireLoopStateBreakLock(breakPath, now);
+  if (!breakToken) return;
+
+  try {
+    let lockStats;
+    try {
+      lockStats = statSync(lockPath);
+    } catch (_) {
+      // Its owner released it before the break lock was taken.
+      return;
+    }
+    const owner = readLoopStateLock(lockPath);
+    if (!loopStateLockIsStale(owner, now - lockStats.mtimeMs)) return;
+    try {
+      unlinkSync(lockPath);
+    } catch (_) {
+      // Fail open: an unremovable lock is judged again on the next attempt.
+    }
+  } finally {
+    releaseLoopStateLock(breakPath, breakToken);
+  }
+}
+
+/**
+ * Take the per-session loop-state lock, waiting briefly when another hook
+ * process holds it. A lock whose owner died is removed through the break lock,
+ * so contenders that all judge it abandoned cannot each remove it and update the
+ * state at once. Acquisition always retries the atomic link and never installs
+ * the per-session lock itself by renaming.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} lockPath - per-session lock path
+ * @returns {string|null} this process's lock token, or null when acquisition timed out
+ */
+function acquireLoopStateLock(stateDir, lockPath) {
+  try {
+    mkdirSync(stateDir, { recursive: true });
+  } catch (_) {
+    return null;
+  }
+
+  const deadline = Date.now() + LOOP_STATE_LOCK_TIMEOUT_MS;
+  for (;;) {
+    if (Date.now() >= deadline) return null;
+
+    let token;
+    try {
+      token = createLoopStateLock(lockPath);
+    } catch (_) {
+      return null;
+    }
+    if (token) return token;
+
+    // This judgement only decides whether a break is worth attempting; the break
+    // re-judges under the break lock before it unlinks anything.
+    let lockStats;
+    try {
+      lockStats = statSync(lockPath);
+    } catch (_) {
+      // The prior holder released it between attempts; retry the create now.
+      continue;
+    }
+
+    const owner = readLoopStateLock(lockPath);
+    if (loopStateLockIsStale(owner, Date.now() - lockStats.mtimeMs)) {
+      breakAbandonedLoopStateLock(lockPath, Date.now());
+    }
+
+    if (Date.now() >= deadline) return null;
+    sleepSync(LOOP_STATE_LOCK_RETRY_MS);
+  }
+}
+
+/**
+ * Extract one target's dispatch entry, defaulting a missing session or target
+ * to a zero count so the locked and unlocked paths report counts alike.
+ *
+ * @param {object} state - parsed session state
+ * @param {string} targetAgent - resolved loop-executor identity
+ * @returns {{ dispatches: object, entry: { count?: number } }} dispatches map and target entry
+ */
+function readDispatchEntry(state, targetAgent) {
+  const dispatches = state.dispatches && typeof state.dispatches === 'object'
+    ? state.dispatches
+    : {};
+  const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
+    ? dispatches[targetAgent]
+    : { count: 0 };
+  return { dispatches, entry };
+}
+
+/**
  * Record one dispatch to a loop-executor target and return the updated
  * non-command-driven count for that target in this session.
  *
@@ -318,25 +636,40 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
  * @returns {{ count: number, persisted: boolean }} updated count and persistence status
  */
 function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
-  const state = readLoopState(stateDir, sessionID);
-  const dispatches = state.dispatches && typeof state.dispatches === 'object'
-    ? state.dispatches
-    : {};
-  const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
-    ? dispatches[targetAgent]
-    : { count: 0 };
+  // Concurrent hook processes share one state file, so the read-modify-write
+  // needs mutual exclusion or one hand-off overwrites another's increment.
+  const lockPath = `${loopStatePath(stateDir, sessionID)}${LOOP_STATE_LOCK_SUFFIX}`;
+  const lockToken = acquireLoopStateLock(stateDir, lockPath);
+  if (!lockToken) {
+    // An unlocked update would race the lock holder and can lose an increment,
+    // so report the count already on disk and leave persistence to a later hook.
+    const { entry } = readDispatchEntry(readLoopState(stateDir, sessionID), targetAgent);
+    return {
+      count: (entry.count || 0) + (commandDriven ? 0 : 1),
+      persisted: false,
+    };
+  }
 
-  if (!commandDriven) entry.count = (entry.count || 0) + 1;
-  entry.lastCommandDriven = commandDriven;
-  entry.lastTimestamp = new Date().toISOString();
-  dispatches[targetAgent] = entry;
+  try {
+    const { dispatches, entry } = readDispatchEntry(
+      readLoopState(stateDir, sessionID),
+      targetAgent,
+    );
 
-  const persisted = writeLoopStateAtomic(stateDir, sessionID, {
-    sessionId: sessionID,
-    dispatches,
-  });
+    if (!commandDriven) entry.count = (entry.count || 0) + 1;
+    entry.lastCommandDriven = commandDriven;
+    entry.lastTimestamp = new Date().toISOString();
+    dispatches[targetAgent] = entry;
 
-  return { count: entry.count, persisted };
+    const persisted = writeLoopStateAtomic(stateDir, sessionID, {
+      sessionId: sessionID,
+      dispatches,
+    });
+
+    return { count: entry.count, persisted };
+  } finally {
+    releaseLoopStateLock(lockPath, lockToken);
+  }
 }
 
 /**
@@ -572,6 +905,31 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
         continue;
       }
 
+      const lockTempMatch = LOOP_STATE_LOCK_TEMP_REGEX.exec(entry.name);
+      if (lockTempMatch) {
+        // A creator killed between writing its temp file and linking it leaves this
+        // behind, and its dead embedded pid proves it is not in flight. Age alone
+        // only makes the file eligible for removal: a creator paused past that
+        // window loses its temp file and then skips its update when the link fails.
+        try {
+          const fileStats = statSync(sourcePath);
+          const tempPid = Number(lockTempMatch[1]);
+          if (!processIsAlive(tempPid) || now - fileStats.mtimeMs > LOOP_STATE_LOCK_STALE_MS) {
+            unlinkSync(sourcePath);
+          }
+        } catch (_) {
+          // Fail open on a single entry; the rest of the sweep pass still runs.
+        }
+        continue;
+      }
+
+      if (entry.name.endsWith(LOOP_STATE_LOCK_SUFFIX)) {
+        // The sweep removes a lock on the same owner-liveness rule as acquisition:
+        // age alone only decides for content that names no readable owner.
+        breakAbandonedLoopStateLock(sourcePath, now);
+        continue;
+      }
+
       if (!entry.name.endsWith('.json')) continue;
       try {
         const candidateStats = statSync(sourcePath);
@@ -663,7 +1021,7 @@ function evaluateDispatch(request = {}) {
 
     // -- Check 2: loop-like repeated hand-off to a command-owned loop executor --
     if (LOOP_EXECUTOR_AGENTS.has(targetAgent) && sessionID) {
-      const commandDriven = isCommandDrivenIteration(prompt, projectDir);
+      const commandDriven = isCommandDrivenIteration(prompt, projectDir || process.cwd());
       const { count, persisted } = recordLoopDispatch(
         stateDir,
         sessionID,

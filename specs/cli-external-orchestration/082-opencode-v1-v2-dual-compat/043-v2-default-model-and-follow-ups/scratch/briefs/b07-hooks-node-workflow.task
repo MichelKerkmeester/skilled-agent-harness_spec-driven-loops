@@ -1,0 +1,30 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change): the hook tree has 29 test files written for `node --test` (every `*.test.mjs`, `*.test.cjs` and `*.test.js` under `.skilled/hooks`, outside `node_modules`, that does not import vitest) plus the shell test `.skilled/hooks/git/install-hooks.test.sh`, and no CI job runs any of them. (`.github/workflows/dispatch-enforcement-guard.yml` runs only `dispatch-rule-checks.test.mjs` and the vitest tree; `.skilled/hooks/vitest.config.ts` explains that it skips the node:test files because they "run on their own".) Add a blocking workflow that runs them.
+
+Create `.github/workflows/hooks-node-tests.yml`, modelled on `.github/workflows/opencode-plugin-tests.yml` (read it first and copy its pinned action SHAs, its Node 22 setup, its header-comment style and its provisioning step exactly):
+- name: `Hook Node Tests`. Triggers: `pull_request` and `push` on `[main, 'skilled/**']`, with path filters `.skilled/**`, `.opencode/**`, `.pi/**`, `.claude/**`, `.codex/**`, `.cursor/**`, `.devin/**`, `.hermes/**`, `.env.example` and the workflow file itself. `permissions: contents: read`. One job, `timeout-minutes: 20`.
+- A header comment saying why it exists (the hook node:test suites and the installer test ran in no workflow, so a hook regression reached main unseen).
+- Steps: checkout; setup node 22; the same provisioning step as the plugin-test workflow; set a git identity (`git config --global user.name` / `user.email` with a CI placeholder) because the installer test makes commits in temporary repositories; a step that collects the node:test files with a fail-closed guard (if none are found, `::error::` and exit 1), excluding files that import vitest by the same rule the vitest config uses, prints how many it found, and runs them with `node --test`; a step that runs `bash .skilled/hooks/git/install-hooks.test.sh`.
+
+Then add the workflow to `.github/workflows/README.md` in both places other workflows appear: the contents table in section 2 (one row describing it) and the "Push versus pull-request coverage" table (add it to the row for path-filtered workflows that run on push and pull request, keeping that row's alphabetical order).
+
+Repository rules for workflows: `.github/scripts/check-gate-inputs.sh` requires every path filter that names `.skilled` to also name `.opencode` in the same filter, and every literal repository path a step runs to resolve. Run it and fix anything it reports.
+
+ALLOWED WRITE PATHS:
+- .github/workflows/hooks-node-tests.yml
+- .github/workflows/README.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+actionlint .github/workflows/hooks-node-tests.yml && echo actionlint-ok
+bash .github/scripts/check-gate-inputs.sh; echo "gate-inputs exit=$?"
+and run the collect-and-test step's script locally exactly as written in the workflow (in bash) and report its file count and the `# pass` / `# fail` lines; then run `bash .skilled/hooks/git/install-hooks.test.sh | tail -2`.
+
+Return report: the workflow file content, the README rows you added, and every verify output.

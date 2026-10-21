@@ -1,0 +1,20 @@
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci (pre-approved, skip Gate 3)
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci (your current directory)
+
+ROLE: You fix three test files and reword one comment.
+
+CONTEXT: `.opencode/plugins/system-skill-advisor.js` default-exports `dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin)`. That is a plain object `{ id, setup, server }`, and `server(input, options)` is the OpenCode 1 plugin function that returns hooks. Three runtime tests still call the default export itself as a function, so they fail with `TypeError: default is not a function` or `MkSkillAdvisorPlugin is not a function`:
+- `.skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` (import at line 16, calls at lines 62 and 83)
+- `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-diagnostic-redaction.vitest.ts` (import at line 10, call at line 54)
+- `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` (`const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;` at line 24, calls at lines 137, 183 and 195)
+
+ACTION:
+1. In each of the three files, call the plugin through `.server(...)` on the default export with the same arguments. For the first two files, rename the default import to `skillAdvisorPlugin` and call `skillAdvisorPlugin.server(...)`. For `system-skill-advisor-plugin.vitest.ts`, change line 24 to bind the server function: `const MkSkillAdvisorPlugin = skillAdvisorPlugin.default.server;`. Leave its call sites as they are, unless TypeScript or the tests then need otherwise.
+2. In `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts`, replace the two comment lines above the test `keeps the dual-export object shape on the default export`. The new comment must say only what the test asserts: that the default export keeps the dual-export `id`, `setup` and `server` fields that both OpenCode versions load. It must not claim to catch a harness that calls the default directly, because the behavioural tests catch that.
+Keep each file's existing style and indentation. Make no other edits, and don't put ids or paths in comments.
+
+ALLOWED WRITE PATHS: the four files named above, and nothing else.
+
+BANNED OPERATIONS: editing any other file; changing the plugin or v2-bridge; git commit, push, branch, stash or reset; installs; running opencode or opencode2; writing outside the worktree.
+
+FORMAT: When done, reply with `git diff --stat` and one line per file saying what changed.

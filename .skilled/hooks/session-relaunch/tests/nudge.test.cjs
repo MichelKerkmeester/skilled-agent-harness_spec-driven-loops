@@ -62,6 +62,9 @@ const SEED_STEP_THREE = [
   'treat it as empty.',
 ].join(' ');
 
+// Inside the wrapper the nudge asks for prepare, so these cases name a loop.
+const LOOP_ID = 'handoff-text-loop';
+
 test('handoff text includes the note, frontmatter, all four sections and prepare command', () => {
   const text = handoffText({
     notePath: NOTE_PATH,
@@ -69,6 +72,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
     specFolder: SPEC_FOLDER,
     runtime: 'pi',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
   });
 
   assert.ok(text.includes(NOTE_PATH));
@@ -120,6 +124,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
     specFolder: '',
     runtime: 'opencode',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
   });
   const unboundSteps = unbound.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
@@ -138,6 +143,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
     specFolder: 'none',
     runtime: 'opencode',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
   });
   const skippedSteps = skipped.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
@@ -153,6 +159,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
     specFolder: undefined,
     runtime: 'opencode',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
   });
   const unspecifiedSteps = unspecified.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
@@ -168,6 +175,7 @@ test('handoff text opens the ratio nudge imperatively and keeps the exception la
     specFolder: SPEC_FOLDER,
     runtime: 'pi',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
     ratio: 0.25,
   });
   const lines = text.split('\n');
@@ -180,6 +188,32 @@ test('handoff text opens the ratio nudge imperatively and keeps the exception la
   assert.equal(lines[lines.length - 1], OPERATOR_EXCEPTION_LINE);
 });
 
+test('handoff text outside the wrapper asks for keep, never prepare, and keeps the note shape', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'claude',
+    cliPath: CLI_PATH,
+    loopId: '',
+    ratio: 0.82,
+  });
+  const lines = text.split('\n');
+  assert.match(lines[0], /outside the skilled-loop wrapper, so it cannot relaunch/);
+  assert.match(text, /^   loop_id: $/m);
+  for (const section of ['Goal', 'Done', 'Remaining work', 'In-flight state']) {
+    assert.ok(text.includes(`## ${section}`), `missing ${section} section`);
+  }
+  assert.equal(text.includes(' prepare --handoff'), false, text);
+  assert.ok(text.includes(
+    `keep --handoff '${NOTE_PATH}' --session '${SESSION_ID}' --runtime 'claude'`,
+  ), text);
+  const steps = lines.filter((line) => /^\d+\./.test(line));
+  assert.ok(steps[1].includes('/speckit:save'));
+  assert.match(steps[steps.length - 1], /Keep working in this session once it exits 0/);
+  assert.equal(lines[lines.length - 1], OPERATOR_EXCEPTION_LINE);
+});
+
 test('handoff text names a ratio past the configured window instead of the raw percentage', () => {
   const pastWindow = handoffText({
     notePath: NOTE_PATH,
@@ -187,6 +221,7 @@ test('handoff text names a ratio past the configured window instead of the raw p
     specFolder: SPEC_FOLDER,
     runtime: 'pi',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
     ratio: 668.24,
   });
   assert.equal(
@@ -202,6 +237,7 @@ test('handoff text names a ratio past the configured window instead of the raw p
     specFolder: SPEC_FOLDER,
     runtime: 'pi',
     cliPath: CLI_PATH,
+    loopId: LOOP_ID,
     ratio: 0.83,
   });
   assert.equal(
@@ -1013,7 +1049,7 @@ test('nudgeDecision folds the threshold, the wrapper, a live handoff, the hop ca
   );
   assert.deepEqual(
     nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env: outsideLoop }),
-    { nudge: false, level: 0, reason: 'outside-loop' },
+    { nudge: true, level: 1, reason: 'outside-loop' },
   );
   assert.deepEqual(
     nudgeDecision({
@@ -1022,7 +1058,35 @@ test('nudgeDecision folds the threshold, the wrapper, a live handoff, the hop ca
       sessionId: SESSION_ID,
       env: { ...outsideLoop, SKILLED_LOOP_ID: '' },
     }),
-    { nudge: false, level: 0, reason: 'outside-loop' },
+    { nudge: true, level: 1, reason: 'outside-loop' },
+  );
+  // An open note this session already wrote silences the nudge outside the loop.
+  const noteRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'nudge-note-open-'));
+  t.after(() => fs.rmSync(noteRoot, { recursive: true, force: true }));
+  const noteDir = path.join(noteRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs');
+  fs.mkdirSync(noteDir, { recursive: true });
+  const withNoteRoot = { ...outsideLoop, SESSION_RELAUNCH_REPO_ROOT: noteRoot };
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env: withNoteRoot }),
+    { nudge: true, level: 1, reason: 'outside-loop' },
+  );
+  fs.writeFileSync(
+    path.join(noteDir, `20261021T080000Z-${SESSION_ID.slice(0, 8)}.md`),
+    `---\nstatus: open\nsession_id: ${SESSION_ID}\n---\n`,
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env: withNoteRoot }),
+    { nudge: false, level: 0, reason: 'note-open' },
+  );
+  // The hop cap belongs to the wrapper, so it never silences a session outside it.
+  assert.deepEqual(
+    nudgeDecision({
+      ratio: 0.81,
+      threshold: 0.8,
+      sessionId: SESSION_ID,
+      env: { ...outsideLoop, SESSION_RELAUNCH_MAX_HOPS: '0' },
+    }),
+    { nudge: true, level: 1, reason: 'outside-loop' },
   );
   assert.deepEqual(
     nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env }),

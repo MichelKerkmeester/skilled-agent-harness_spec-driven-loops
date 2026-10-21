@@ -1,0 +1,23 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change, comment only): in `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, the JSDoc above the break-lock function (around lines 508-520) says a break lock "is never moved out from under a live contender unless its breaker has died, in which case another process retires it". The code (`loopStateLockIsStale`, used on the break lock) also retires a break lock whose content is unreadable once it is older than `LOOP_STATE_LOCK_STALE_MS`.
+
+Replace "unless its breaker has died, in which case another process retires it," with exactly:
+
+unless its breaker has died or its record is unreadable and older than the stale window, in which case another process retires it,
+
+Re-wrap only that paragraph to the comment's existing width. Change no code. Add no ids, spec paths or phase numbers.
+
+ALLOWED WRITE PATHS:
+- .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs
+
+BANNED OPERATIONS:
+- any git write (commit, push, stash, checkout, reset, branch, rebase)
+- any package install or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify: node --check .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs && git diff --stat ; for f in $(ls .skilled/hooks/task-dispatch/**/*.test.cjs .skilled/hooks/task-dispatch/*.test.cjs 2>/dev/null); do node --test --test-reporter=tap $f 2>&1 | grep -E '^# (pass|fail)'; done
+
+Return report: the diff of the file and the verify output.

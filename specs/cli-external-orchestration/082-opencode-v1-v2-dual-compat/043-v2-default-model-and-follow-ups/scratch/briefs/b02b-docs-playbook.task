@@ -1,0 +1,37 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+THE DECISION (from the operator, 2026-10-21): cli-opencode now has a per-version default model.
+- OpenCode 1: `opencode-go/deepseek-v4.1-flash` at `--variant max` (unchanged). Form: `opencode run --model opencode-go/deepseek-v4.1-flash --variant max ...`.
+- OpenCode 2: `llmgateway/deepseek-v4.1-flash` at `#max` (DevPass, LLM Gateway). Form: `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#max ...`. Reason: OpenCode 2 lists no `opencode-go` provider unless it is logged in to it separately (`opencode2 providers login opencode-go`), so the v1 default fails on a typical v2 install, while `llmgateway` is listed.
+
+HOW TO APPLY IT:
+1. Every OpenCode 2 dispatch example that shows the DEFAULT dispatch and today reads `-m opencode-go/deepseek-v4.1-flash#<level>` becomes `-m llmgateway/deepseek-v4.1-flash#<level>`. Keep the level as written.
+2. Do NOT change OpenCode 1 forms (`--model opencode-go/deepseek-v4.1-flash`, `--variant ...`). They keep opencode-go.
+3. Do NOT change text that describes the opencode-go route itself rather than the default dispatch, for example a roster row about `opencode-go/deepseek-v4.1-flash` saying what its v2 form is. There, keep `-m opencode-go/deepseek-v4.1-flash#max` and add, once per such row, that v2 needs its own opencode-go login.
+4. Prose that says what the default is must state both versions. Never say the default is the same on both versions.
+5. A v2 pre-flight or provider check for the default now checks the `llmgateway/` prefix, not `opencode-go/`.
+Before editing, list every line in your files that contains `opencode-go/deepseek-v4.1-flash` (rg -n), classify each as v1-form, v2-default-dispatch, route-description or prose-default, and edit only the last three as above.
+
+TASK: apply the decision to the cli-opencode playbook and prompt templates listed under ALLOWED WRITE PATHS. Scenario files that compare providers or variants on purpose (for example `multi-provider/variant-levels-comparison.md`) keep any v2 opencode-go line that is part of the comparison, and say that it needs a v2 opencode-go login. Do not change any dated record (a line that starts with `Coverage note (`), and do not edit anything under `changelog/` or `benchmark/`.
+
+Also fix the two warnings the playbook package validator prints for this package:
+1. HAND_TYPED_CENSUS in `manual-testing-playbook/manual-testing-playbook.md`: the overview sentence "This playbook provides 72 deterministic scenarios across 14 categories ..." hand-types the total. Reword it so it states no total scenario or category count (the validator derives them), keeping the rest of the paragraph.
+2. BACKTICK_PATH_UNRESOLVED in `manual-testing-playbook/plugin-utilization/system-completion-sentinel.md` line 35: `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` is gitignored runtime state, so no base resolves it. Reword so the dedup file is described without a backticked path (for example: the sentinel's advisory dedup file under the gitignored completion-sentinel state folder), keeping the instruction.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/**/*.md (any scenario or root file, not changelog or benchmark)
+- .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package cli-external-orchestration/cli-opencode
+and
+rg -n "opencode-go/deepseek-v4.1-flash#" .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook .skilled/skills/cli-external-orchestration/cli-opencode/assets
+
+Return report: each file you changed, every remaining `opencode-go/deepseek-v4.1-flash#` line with the reason it stays, and the validator's summary line (it must show violations=0 warnings=0).

@@ -1,0 +1,33 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change):
+The operator decided that on OpenCode 2 the cli-opencode default model is `llmgateway/deepseek-v4.1-flash`, because OpenCode 2 lists no `opencode-go` provider unless it is logged in separately. On OpenCode 1 the default stays `opencode-go/deepseek-v4.1-flash`.
+
+In `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `buildOpencodeLineageCommand` falls back to `OPENCODE_DEFAULT_MODEL` (`opencode-go/deepseek-v4.1-flash`) for both majors. Add a named constant `OPENCODE_V2_DEFAULT_MODEL = 'llmgateway/deepseek-v4.1-flash'` next to `OPENCODE_DEFAULT_MODEL`, export it in the same export list as `OPENCODE_DEFAULT_MODEL`, and make an unpinned lineage use it when `opencode.version` is not `'v1'`. The fallback must be chosen after the binary is resolved, so move the `const model = ...` line accordingly. A pinned `lineage.model` is never replaced. The flash max pin (`pinReasoningEffortForModel`) still applies, so the v2 argv becomes `-m llmgateway/deepseek-v4.1-flash#max`. Update the comment above the defaults to say why OpenCode 2 has its own fallback.
+
+Tests:
+1. In `.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts`, add one test that builds an unpinned `{ kind: 'cli-opencode' }` lineage against the v1 stub and asserts the argv carries `--model opencode-go/deepseek-v4.1-flash` and `--variant max`, and one that builds it against the v2 stub and asserts `-m`, `llmgateway/deepseek-v4.1-flash#max`. Follow the D1/D2 tests' stubs and style.
+2. In `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`, the 'unpinned lineage fallbacks match their packets' describe lists one case per constant. Add a case for `OPENCODE_V2_DEFAULT_MODEL` with packet `cli-opencode`, family `DeepSeek V4.1 Flash` and pattern `/deepseek-v4\.1-flash/`.
+
+Code standards: read each whole file first and match its style, naming and comment density. A comment states the durable WHY only. Never put finding ids, task ids, spec paths, phase numbers or packet numbers in a comment or a test name.
+
+The new tests must pass with your change and fail if it is reverted. Before you finish, revert your source change in fanout-run.cjs temporarily, run the dual-dispatch test, confirm the new v2 test fails, restore the change and run again. Report both.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+- .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts
+- .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/opencode-dual-dispatch.vitest.ts 2>&1 | tail -6
+and
+cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/fanout-run.vitest.ts -t 'unpinned lineage fallbacks' 2>&1 | tail -6
+
+Return report: the files you changed, the name of each test you added, the pass and fail counts from both verify commands, and the result of the revert check.

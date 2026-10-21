@@ -12,6 +12,7 @@ import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
 const childProcess = require('node:child_process');
+const fs = require('node:fs');
 const core = require('../hooks/session-relaunch/lib/relaunch-core.cjs');
 const contextUsage = require('../hooks/session-relaunch/lib/context-usage.cjs');
 const nudge = require('../hooks/session-relaunch/lib/nudge.cjs');
@@ -27,6 +28,38 @@ const KILLER_PATH = require.resolve('../hooks/session-relaunch/lib/killer.cjs');
 // Both the nudge and the seed read a note through the core's one classification:
 // a note that is missing or cannot be parsed proves nothing was written or claimed.
 const NOTE_NOT_WRITTEN = new Set(['missing', 'invalid']);
+
+// message.part.updated fires for every streamed part, so a flags read per event
+// would parse the same file many times per turn. A stat is enough to notice the
+// edit that changes the answer, and a missing file is a stable answer too.
+// The cache rereads the file whenever mtime, ctime, size or inode changes. A
+// rewrite that changes none of them within the filesystem's timestamp resolution
+// is served stale until the next change.
+let flagsCache = null;
+
+function flagsConfig() {
+  const configPath = hookFlags.configPath();
+  let stat = null;
+  try {
+    stat = fs.statSync(configPath);
+  } catch {}
+  const mtimeMs = stat ? stat.mtimeMs : null;
+  const ctimeMs = stat ? stat.ctimeMs : null;
+  const size = stat ? stat.size : null;
+  const ino = stat ? stat.ino : null;
+  if (
+    flagsCache
+    && flagsCache.path === configPath
+    && flagsCache.mtimeMs === mtimeMs
+    && flagsCache.ctimeMs === ctimeMs
+    && flagsCache.size === size
+    && flagsCache.ino === ino
+  ) return flagsCache.config;
+
+  const config = hookFlags.loadConfigFile(configPath);
+  flagsCache = { path: configPath, mtimeMs, ctimeMs, size, ino, config };
+  return config;
+}
 
 function positiveNumber(value) {
   const number = Number(value);
@@ -114,9 +147,7 @@ function queueNudge(state, sessionID, fillTokens, windowTokens, directory) {
   }
 
   const ratio = contextUsage.fillRatio(fillTokens, windowTokens);
-  const threshold = nudge.relaunchThreshold(
-    hookFlags.loadConfigFile(hookFlags.configPath()),
-  );
+  const threshold = nudge.relaunchThreshold(flagsConfig());
   state.pendingUsage = null;
   if (ratio < threshold) return;
 
@@ -193,8 +224,7 @@ function sessionRelaunchPlugin(ctx = {}) {
 
   function isEnabled() {
     try {
-      const config = hookFlags.loadConfigFile(hookFlags.configPath());
-      return hookFlags.isHookEnabled(CONCERN, process.env, config);
+      return hookFlags.isHookEnabled(CONCERN, process.env, flagsConfig());
     } catch {
       return false;
     }

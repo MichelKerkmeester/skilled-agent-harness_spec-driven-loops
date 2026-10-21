@@ -30,6 +30,9 @@ const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
 // Devin's file-mutating tools: edit patches a file, write creates or overwrites one.
 const DEVIN_EDIT_TOOLS = new Set(['edit', 'write']);
 
+// The file-path aliases a payload may use, in the order they are trusted.
+const FILE_PATH_FIELDS = ['file_path', 'filePath', 'path'];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -40,8 +43,14 @@ function remainingMs(startedAt, budgetMs) {
 
 function filePathFrom(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') return undefined;
-  const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  return typeof candidate === 'string' && candidate ? candidate : undefined;
+  // The first string alias wins, not the first truthy one: a non-string
+  // file_path (a number, an object) is not a path at all, and letting it
+  // shadow the alias order would silently drop a valid filePath or path.
+  for (const field of FILE_PATH_FIELDS) {
+    const candidate = toolInput[field];
+    if (typeof candidate === 'string' && candidate) return candidate;
+  }
+  return undefined;
 }
 
 function buildCommentHygieneFinding(finding, filePath) {

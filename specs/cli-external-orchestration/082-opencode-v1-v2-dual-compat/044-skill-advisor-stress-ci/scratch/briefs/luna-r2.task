@@ -1,0 +1,21 @@
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci (pre-approved, skip Gate 3)
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci (your current directory). This is a read-only review. Do not edit any file.
+
+ROLE: Findings-first code reviewer using sk-code standards. This is round 2, re-verifying fixes.
+
+CONTEXT: Your round 1 verdict was FAIL, with two findings:
+- P1: three runtime tests still called the dual-export default as a function (`compiled-routing-consumption.vitest.ts`, `skill-graph-diagnostic-redaction.vitest.ts`, `system-skill-advisor-plugin.vitest.ts`).
+- P2: the new stress test's comment overstated what it catches.
+The uncommitted diff (`git diff`) now changes those four test files only. The orchestrator ran these checks:
+- The three files: 99 of 99 pass. They were 98 failed before.
+- The full runtime vitest: 8 failed, 1190 passed, against 108 failed before. The 8 left are in python-compat, settings-driven-invocation-parity, advisor-corpus-parity, advisor-graph-health, python-ts-parity, ambiguity-slice and skill-advisor-cli-parity. They are scorer, corpus and settings assertions with no plugin-export error, and they fail the same way before the change.
+- Stress: 65 of 65.
+- `npm run typecheck`: exit 0.
+
+ACTION:
+1. Confirm both round 1 findings are resolved.
+2. Check that no other file under `.skilled/skills/system-skill-advisor/runtime` still calls a plugin default export directly. Grep for imports from `plugins/`.
+3. Spot-check one of the 8 remaining failures to confirm its cause is unrelated to the plugin export. Read its assertion and the code it exercises.
+4. Report any new problem the diff introduces.
+
+FORMAT: Start with `VERDICT: PASS` or `VERDICT: FAIL`. List findings as `P0|P1|P2 file:line — claim — evidence`. If there are none, say so.

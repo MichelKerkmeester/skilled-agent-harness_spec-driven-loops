@@ -1,5 +1,5 @@
 {
-  "corpusHash": "895b3012ce63eb44ad17fd3d2bcb853d14747f0be0fd5d17934eca0834c2eb9e",
+  "corpusHash": "80af78551bafe76c16c8521cbf4efbf381a0c3225adc9104aeac93af31788cad",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25492,
+  "includedPathCount": 25514,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8067,6 +8067,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.5.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -9016,6 +9017,22 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -10396,6 +10413,11 @@
     "specs/hooks/023-session-relaunch-loop/017-hop-history/plan.md",
     "specs/hooks/023-session-relaunch-loop/017-hop-history/spec.md",
     "specs/hooks/023-session-relaunch-loop/017-hop-history/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/plan.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/spec.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25523,7 +25545,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d96947a7408f34c6dcaeaa60eef3e2b34ff692d5da70acc3e813dd4be6665614",
+  "manifestHash": "f0451c9a06541856bfd175eb5e8e01c975d0b16ebe246835d27e7f0344f2d93e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26642,6 +26664,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch",
       "reason": "excluded directory"
     },
@@ -27427,6 +27465,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/017-hop-history/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/scratch",
       "reason": "excluded directory"
     },
     {

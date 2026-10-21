@@ -198,6 +198,34 @@ async function status(hooks) {
   return hooks.tool.spec_kit_skill_advisor_status.execute({});
 }
 
+// The plugin's queue deadline timer is unref'd like its bridge timers, so the
+// guard keeps a ref'd timer live while the test awaits the plugin's own deadline.
+function settleWithin(promise, label, ms = 2000) {
+  let timer;
+  const guard = new Promise((resolve, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} did not settle within ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, guard]).finally(() => clearTimeout(timer));
+}
+
+async function holdAdvisorChildren(bridgeTimeoutMs) {
+  const calls = [];
+  const hooks = await makePlugin({
+    bridgeTimeoutMs,
+    spawnOverride: (binary, args, options) => {
+      const child = fakeChild({ manual: true });
+      calls.push({ binary, args, options, child });
+      return child;
+    },
+  });
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  const complete = (index) => {
+    calls[index].child.stdout.emit('data', cliEnvelope({ freshness: 'live' }));
+    calls[index].child.emit('close', 0);
+  };
+  return { hooks, calls, flush, complete };
+}
+
 function writeFixtureFile(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, content);
@@ -232,6 +260,41 @@ function makeAdvisorFixture(sourceName = '.skilled') {
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill-graph.json'), '{"skills":[]}\n');
   writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite'), 'sqlite-v1');
   return { root, advisorRoot, restoreDbDirEnv };
+}
+
+// The plugin reads every source file through its own node:fs binding, which a
+// CommonJS stub cannot replace, so read counting uses a second module instance
+// whose fs import is wrapped.
+let signatureProbePluginPromise;
+
+function loadSignatureProbePlugin() {
+  signatureProbePluginPromise ??= (async () => {
+    const pluginUrl = `${pathToFileURL(fs.realpathSync(PLUGIN_PATH)).href}?signature-read-probe`;
+    const stubSource = `
+import * as fs from 'node:fs';
+export const readFileSync = (...args) => {
+  globalThis.__advisorSignatureReads?.push(String(args[0]));
+  return fs.readFileSync(...args);
+};
+export const existsSync = (...args) => fs.existsSync(...args);
+export const readdirSync = (...args) => fs.readdirSync(...args);
+export const realpathSync = (...args) => fs.realpathSync(...args);
+export const statSync = (...args) => fs.statSync(...args);
+`;
+    registerHooks({
+      resolve(specifier, context, nextResolve) {
+        if (specifier === 'node:fs' && context.parentURL === pluginUrl) {
+          return {
+            url: `data:text/javascript,${encodeURIComponent(stubSource)}`,
+            shortCircuit: true,
+          };
+        }
+        return nextResolve(specifier, context);
+      },
+    });
+    return import(pluginUrl);
+  })();
+  return signatureProbePluginPromise;
 }
 
 function compiledRouteSummary(targets, overrides = {}) {
@@ -627,6 +690,233 @@ test('session deletion prevents an in-flight completion from repopulating cache'
   assert.match(await status(hooks), /cache_entries=0/);
 });
 
+test('concurrent unique advisor lookups keep at most two CLI children live', async () => {
+  const calls = [];
+  let liveChildren = 0;
+  let maxLiveChildren = 0;
+  const hooks = await makePlugin({
+    spawnOverride: (binary, args, options) => {
+      const child = fakeChild({ manual: true });
+      calls.push({ binary, args, options, child });
+      liveChildren += 1;
+      maxLiveChildren = Math.max(maxLiveChildren, liveChildren);
+      child.once('close', () => {
+        liveChildren -= 1;
+      });
+      return child;
+    },
+  });
+  const pending = Array.from({ length: 5 }, (_, index) => runPrompt(hooks, {
+    sessionID: 'advisor-concurrency-session',
+    prompt: `unique concurrency prompt ${index}`,
+  }));
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  const waitForCalls = async (expected) => {
+    for (let attempt = 0; attempt < 100 && calls.length < expected; attempt += 1) {
+      await flush();
+    }
+    assert.equal(calls.length, expected);
+  };
+  const release = (index) => {
+    calls[index].child.stdout.emit('data', cliEnvelope({ freshness: 'live', recommendations: [] }));
+    calls[index].child.emit('close', 0);
+  };
+
+  await flush();
+  assert.equal(calls.length, 2);
+  assert.equal(maxLiveChildren, 2);
+
+  release(0);
+  await waitForCalls(3);
+  assert.equal(liveChildren, 2);
+
+  release(1);
+  await waitForCalls(4);
+  assert.equal(liveChildren, 2);
+
+  release(2);
+  await waitForCalls(5);
+  assert.equal(liveChildren, 2);
+
+  release(3);
+  await flush();
+  assert.equal(liveChildren, 1);
+
+  release(4);
+  const outputs = await Promise.all(pending);
+  assert.equal(maxLiveChildren, 2);
+  for (const output of outputs) {
+    assert.equal(output.system.length, 1);
+  }
+});
+
+test('a queued lookup fails open at its queue deadline while the granted runs stay live', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(400);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'queue-deadline-held',
+    prompt: `held slot prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 2);
+
+  const queueSettled = [false, false, false];
+  const queued = [0, 1, 2].map((index) => {
+    const pending = runPrompt(hooks, {
+      sessionID: `queue-deadline-${index}`,
+      prompt: `queued lookup prompt ${index}`,
+    });
+    const record = () => { queueSettled[index] = true; };
+    pending.then(record, record);
+    return pending;
+  });
+  await flush();
+  assert.equal(calls.length, 2, 'queued lookups must not spawn while both slots are held');
+
+  // The queue waits before the held runs release, so the third queued lookup's
+  // deadline lands inside the granted runs rather than at the same instant.
+  await new Promise((resolve) => setTimeout(resolve, 40));
+  assert.deepEqual(queueSettled, [false, false, false]);
+
+  complete(0);
+  complete(1);
+  const heldOutputs = await Promise.all(held);
+  for (const output of heldOutputs) {
+    assert.notEqual(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  }
+  await flush();
+  assert.equal(calls.length, 4, 'the first two queued lookups start once the slots free');
+
+  const timedOut = await settleWithin(queued[2], 'third queued lookup');
+  await flush();
+  assert.equal(timedOut.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  assert.match(await status(hooks), /last_error_code=QUEUE_TIMEOUT/);
+  assert.deepEqual(queueSettled, [false, false, true]);
+  assert.equal(calls.length, 4, 'a lookup past its queue deadline never spawns');
+
+  complete(2);
+  complete(3);
+  await Promise.all(queued.slice(0, 2));
+});
+
+test('a queued lookup for a deleted session fails open on deletion', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(60_000);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'deletion-held',
+    prompt: `deletion held prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 2);
+
+  const queued = runPrompt(hooks, {
+    sessionID: 'deletion-queued',
+    prompt: 'deletion queued prompt',
+  });
+  await flush();
+  assert.equal(calls.length, 2, 'a queued lookup holds no slot and spawns no child');
+
+  await hooks.event({
+    event: { type: 'session.deleted', properties: { info: { id: 'deletion-queued' } } },
+  });
+
+  const output = await settleWithin(queued, 'queued lookup for a deleted session');
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  assert.match(await status(hooks), /last_error_code=SESSION_DELETED/);
+  assert.equal(calls.length, 2, 'the deleted session lookup never spawns');
+
+  complete(0);
+  complete(1);
+  const heldOutputs = await Promise.all(held);
+  for (const heldOutput of heldOutputs) {
+    assert.notEqual(heldOutput.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  }
+});
+
+test('a queue deadline leaves both slots free for later lookups', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(400);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'deadline-held',
+    prompt: `deadline held prompt ${index}`,
+  }));
+  await flush();
+
+  const queued = [0, 1, 2].map((index) => runPrompt(hooks, {
+    sessionID: `deadline-queued-${index}`,
+    prompt: `deadline queued prompt ${index}`,
+  }));
+  await flush();
+  await new Promise((resolve) => setTimeout(resolve, 40));
+
+  complete(0);
+  complete(1);
+  const heldOutputs = await Promise.all(held);
+  for (const output of heldOutputs) {
+    assert.match(output.system[0], /^Advisor:/);
+    assert.notEqual(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  }
+  await flush();
+  assert.equal(calls.length, 4);
+
+  const timedOut = await settleWithin(queued[2], 'queued lookup at its deadline');
+  assert.equal(timedOut.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+
+  // Both granted runs still hold their slots at the third deadline, so their
+  // release is what has to leave the slot count at zero.
+  complete(2);
+  complete(3);
+  await Promise.all(queued.slice(0, 2));
+
+  const after = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: `deadline-after-${index}`,
+    prompt: `deadline after queue prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 6, 'both slots accept the next lookups without waiting');
+
+  complete(4);
+  complete(5);
+  await Promise.all(after);
+});
+
+test('a slot freed past a waiter deadline fails the lookup open without spawning', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(60_000);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'overdue-held',
+    prompt: `overdue held prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 2);
+
+  const queued = runPrompt(hooks, {
+    sessionID: 'overdue-queued',
+    prompt: 'overdue queued prompt',
+  });
+  await flush();
+  assert.equal(calls.length, 2, 'a queued lookup holds no slot and spawns no child');
+
+  // Move the monotonic clock past the waiter's deadline without letting its timer
+  // run, then free a slot: a late grant must fail the waiter open instead of starting it.
+  const realNow = performance.now;
+  performance.now = () => realNow.call(performance) + 60_001;
+  try {
+    complete(0);
+    await flush();
+    assert.equal(calls.length, 2, 'the overdue waiter never starts');
+
+    const output = await settleWithin(queued, 'overdue queued lookup');
+    assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+    assert.match(await status(hooks), /last_error_code=QUEUE_TIMEOUT/);
+  } finally {
+    performance.now = realNow;
+  }
+
+  complete(1);
+  await Promise.all(held);
+});
+
 test('cache TTL starts when CLI work completes', async () => {
   const calls = [];
   const children = [
@@ -958,4 +1248,92 @@ test('concurrent transforms reserve delivery before commit so only one may deliv
   });
   assert.equal(third.shouldDeliver, false);
   assert.equal(third.duplicate, true);
+});
+
+test('consecutive signatures over unchanged files hash each source file once', async () => {
+  const { root, advisorRoot, restoreDbDirEnv } = makeAdvisorFixture();
+  const reads = [];
+  try {
+    const pluginModule = await loadSignatureProbePlugin();
+    globalThis.__advisorSignatureReads = reads;
+    const children = [
+      fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
+      fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
+    ];
+    const calls = [];
+    const hooks = await pluginModule.default.server({ directory: root }, {
+      spawnOverride: spawnSequence(children, calls),
+    });
+
+    await runPrompt(hooks, { prompt: 'first signature', sessionID: 'signature-read-session' });
+    await runPrompt(hooks, { prompt: 'second signature', sessionID: 'signature-read-session' });
+
+    assert.equal(calls.length, 2, 'distinct prompts should each compute the signature');
+    const counts = new Map();
+    for (const filePath of reads) {
+      if (filePath.startsWith(`${root}${path.sep}`)) {
+        counts.set(filePath, (counts.get(filePath) ?? 0) + 1);
+      }
+    }
+    const skillRoot = path.join(root, '.skilled', 'skills');
+    const trackedFiles = [
+      path.join(skillRoot, 'demo', 'SKILL.md'),
+      path.join(skillRoot, 'demo', 'graph-metadata.json'),
+      path.join(skillRoot, 'system-spec-kit', 'SKILL.md'),
+      path.join(advisorRoot, 'scripts', 'skill_advisor.py'),
+      path.join(advisorRoot, 'scripts', 'skill_advisor_runtime.py'),
+      path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'),
+      path.join(advisorRoot, 'scripts', 'skill-graph.json'),
+      path.join(advisorRoot, 'database', 'skill-graph.sqlite'),
+    ];
+    for (const filePath of trackedFiles) {
+      assert.equal(
+        counts.get(filePath),
+        1,
+        `${filePath} should be read once across two signatures`,
+      );
+    }
+  } finally {
+    delete globalThis.__advisorSignatureReads;
+    fs.rmSync(root, { recursive: true, force: true });
+    restoreDbDirEnv();
+  }
+});
+
+test('changing one source file changes the signature without rehashing unchanged files', async () => {
+  const { root, restoreDbDirEnv } = makeAdvisorFixture();
+  const reads = [];
+  try {
+    const pluginModule = await loadSignatureProbePlugin();
+    globalThis.__advisorSignatureReads = reads;
+    const children = Array.from(
+      { length: 3 },
+      () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
+    );
+    const calls = [];
+    const hooks = await pluginModule.default.server({ directory: root }, {
+      cacheTTLMs: 60_000,
+      spawnOverride: spawnSequence(children, calls),
+    });
+    const prompt = { prompt: 'same prompt', sessionID: 'signature-change-session' };
+    const demoSkill = path.join(root, '.skilled', 'skills', 'demo', 'SKILL.md');
+
+    await runPrompt(hooks, prompt);
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 1, 'unchanged sources keep the cached advice');
+
+    const readsBeforeChange = reads.length;
+    writeFixtureFile(demoSkill, '# Demo changed\n');
+
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 2, 'changed content must produce a new signature');
+
+    const rehashed = reads.slice(readsBeforeChange)
+      .filter((filePath) => filePath.startsWith(`${root}${path.sep}`));
+    assert.deepEqual(rehashed, [demoSkill], 'only the changed file is read again');
+  } finally {
+    delete globalThis.__advisorSignatureReads;
+    fs.rmSync(root, { recursive: true, force: true });
+    restoreDbDirEnv();
+  }
 });

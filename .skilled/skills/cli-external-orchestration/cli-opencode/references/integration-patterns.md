@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -92,7 +92,7 @@ On OpenCode 2 (2.0.32), the same dispatch rides `max` on the model id as `#max`,
 ```bash
 cd "$REPO_ROOT" && opencode2 run \
   --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --agent general \
   --format json \
   "<prompt-from-template>" 2>&1
@@ -234,7 +234,7 @@ On OpenCode 2 (2.0.32), the same translation as use case 1 applies:
 ```bash
 cd "$REPO_ROOT" && opencode2 run \
   --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --agent general \
   --format json \
   "<prompt-from-template>" 2>&1
@@ -399,7 +399,7 @@ On OpenCode 2 (2.0.32), the same dispatch adds `--standalone` and rides `max` on
 ```bash
 timeout 720 opencode2 run \
   --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --auto \
   "$(cat prompt.md)" \
   </dev/null \

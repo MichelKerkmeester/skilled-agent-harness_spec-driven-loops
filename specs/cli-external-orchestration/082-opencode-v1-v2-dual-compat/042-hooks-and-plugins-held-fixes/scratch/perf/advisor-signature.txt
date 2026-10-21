@@ -1,0 +1,13 @@
+# advisorSourceSignature timing
+
+Workspace: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/184-hooks-and-plugins-held-fixes
+
+Method: one advisorSourceSignature call per sample, 50 samples after 5 warm-up calls, median reported.
+The plugin source was substituted at its real module URL so relative imports resolved the same way for
+both builds. The "before" source was an unmodified copy of the file under /tmp, deleted after the run.
+
+before (uncached, reads and hashes every file): median 2.181 ms (min 1.370, max 6.337)
+after  (stat-keyed digest cache):               median 0.235 ms (min 0.163, max 0.460)
+
+The first signature in a process still pays the before cost; the median describes the repeat lookups
+that reuse the module-level digest cache.

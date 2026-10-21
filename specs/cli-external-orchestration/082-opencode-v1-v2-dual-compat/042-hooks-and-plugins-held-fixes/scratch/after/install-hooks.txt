@@ -1,0 +1,5 @@
+PASS  installs into the main checkout's hooks folder
+PASS  installs from a linked worktree's copy
+PASS  honours a custom core.hooksPath
+PASS  the default hooks folder stays untouched under core.hooksPath
+PASS 4

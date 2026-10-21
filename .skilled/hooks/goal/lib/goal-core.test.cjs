@@ -58,10 +58,13 @@ function scopedOpts(runtime, sessionId, workspace = stateDir) {
 }
 
 function runCli(args, envOverrides = {}) {
+  // Session actions require an explicit workspace. The repository root is the
+  // scope these tests used before the flag became mandatory.
+  const scopedArgs = args.includes('--workspace') ? args : [...args, '--workspace', process.cwd()];
   try {
     const stdout = execFileSync(
       'node',
-      [CLI_PATH, '--runtime', 'cli', '--session', 'default-session', ...args],
+      [CLI_PATH, '--runtime', 'cli', '--session', 'default-session', ...scopedArgs],
       {
         env: { ...process.env, OPENCODE_GOAL_STATE_DIR: stateDir, OPENCODE_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
         encoding: 'utf8',
@@ -250,6 +253,41 @@ test('legacy singleton state is diagnostic-only and never a scoped read fallback
   assert.equal(stats.legacyStatePresent, true);
   assert.equal(stats.activeStateFileCount, 0);
   assert.equal(stats.archiveFileCount, 1);
+});
+
+test('a malformed current record never falls through to the legacy scoped record', () => {
+  const workspace = join(stateDir, 'legacy-scope-workspace');
+  mkdirSync(join(workspace, '.skilled', 'skills'), { recursive: true });
+  const options = {
+    stateDir: join(workspace, '.skilled', 'skills', '.state', 'goal'),
+    scope: { runtime: 'pi', sessionId: 'legacy-scope-session', workspace },
+  };
+  const scope = core.resolveGoalScope(options);
+  assert.ok(
+    scope.legacyScopedStatePath,
+    'the workspace-default root exposes the legacy scoped path',
+  );
+  mkdirSync(scope.stateDir, { recursive: true });
+
+  const legacy = {
+    goalId: 'goal-legacy-scoped',
+    objective: 'Inherited objective',
+    status: 'active',
+  };
+  writeFileSync(scope.legacyScopedStatePath, `${JSON.stringify(legacy)}\n`, { mode: 0o600 });
+  writeFileSync(scope.statePath, '{not json', { mode: 0o600 });
+  assert.equal(
+    core.readGoalRecord(options),
+    null,
+    'a malformed current record fails the whole read',
+  );
+
+  rmSync(scope.statePath);
+  assert.equal(
+    core.readGoalRecord(options).goalId,
+    legacy.goalId,
+    'a missing current record still reads the legacy one',
+  );
 });
 
 test('explicit legacy migration binds one validated scope and quarantines the source', () => {
@@ -521,6 +559,20 @@ test('completeGoal archives the record as completed and removes active state', (
 test('clearGoal with no active goal is a no-op that does not throw', () => {
   assert.doesNotThrow(() => core.clearGoal(opts()));
   assert.equal(core.showGoal(opts()), null);
+});
+
+test('listArchivedGoals skips archive files whose JSON is not a plain object', () => {
+  const options = scopedOpts('pi', 'archive-non-object');
+  const { record } = core.setGoal({ objective: 'Ship the widget', runtime: 'pi' }, options);
+  core.clearGoal(options);
+  const { archiveDir } = core.resolveGoalScope(options);
+  writeFileSync(join(archiveDir, 'non-object-null.json'), 'null', { mode: 0o600 });
+  writeFileSync(join(archiveDir, 'non-object-array.json'), '[]', { mode: 0o600 });
+
+  const archived = core.listArchivedGoals(options);
+  assert.equal(archived.length, 1);
+  assert.equal(archived[0].goal.goalId, record.goalId);
+  assert.equal(archived[0].goal.status, 'cleared');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

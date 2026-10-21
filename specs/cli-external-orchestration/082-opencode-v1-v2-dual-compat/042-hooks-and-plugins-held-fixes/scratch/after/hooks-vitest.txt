@@ -1,0 +1,10 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/184-hooks-and-plugins-held-fixes
+
+{"timestamp":"2026-10-21T06:04:57.150Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+
+ Test Files  6 passed (6)
+      Tests  217 passed (217)
+   Start at  08:04:56
+   Duration  796ms (tests 77%, transform 17%, import 5%, worker 1%)
+

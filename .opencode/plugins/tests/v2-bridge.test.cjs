@@ -6,6 +6,9 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
+// A missing session announcement must fail these tests instead of hanging the suite.
+const ANNOUNCEMENT_TIMEOUT_MS = 1000;
+
 function createV2Context() {
   const registrations = [];
   const toolHooks = new Map();
@@ -435,7 +438,7 @@ test('session.deleted clears the session event alias state', async () => {
   assert.equal(receivedEvents.filter((event) => event.type === 'session.idle').length, 2);
 });
 
-test('a session event before session.created announces the session first', async () => {
+test('a session event before session.created announces the session first', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const receivedEvents = await forwardEventsToV1([
     { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
   ]);
@@ -450,7 +453,7 @@ test('a session event before session.created announces the session first', async
   });
 });
 
-test('a later session.created does not announce an already announced session', async () => {
+test('a later session.created does not announce an already announced session', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const receivedEvents = await forwardEventsToV1([
     { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
     { type: 'session.created', data: { sessionID: 'ses_a' } },
@@ -466,7 +469,7 @@ test('a later session.created does not announce an already announced session', a
   ]);
 });
 
-test('a leading session.created is delivered once without a synthesized duplicate', async () => {
+test('a leading session.created is delivered once without a synthesized duplicate', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const receivedEvents = await forwardEventsToV1([
     { type: 'session.created', data: { sessionID: 'ses_b', parentID: 'ses_parent' } },
     { type: 'session.execution.started', data: { sessionID: 'ses_b' } },
@@ -486,7 +489,7 @@ test('a leading session.created is delivered once without a synthesized duplicat
   );
 });
 
-test('a system transform before the stream announces its session once', async () => {
+test('a system transform before the stream announces its session once', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const receivedEvents = [];
@@ -538,7 +541,7 @@ test('a system transform before the stream announces its session once', async ()
   }
 });
 
-test('a system transform waits for an announcement the stream already started', async () => {
+test('a system transform waits for an announcement the stream already started', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const order = [];
@@ -592,7 +595,7 @@ test('a system transform waits for an announcement the stream already started', 
   }
 });
 
-test('a system transform waits for a real session.created already being delivered', async () => {
+test('a system transform waits for a real session.created already being delivered', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const receivedEvents = [];
@@ -654,7 +657,7 @@ test('a system transform waits for a real session.created already being delivere
   }
 });
 
-test('session.deleted waits for an in-flight announcement of the same session', async () => {
+test('session.deleted waits for an in-flight announcement of the same session', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const receivedEvents = [];
@@ -719,7 +722,7 @@ test('session.deleted waits for an in-flight announcement of the same session', 
   }
 });
 
-test('an event failure during context announcement is reported at cleanup', async () => {
+test('an event failure during context announcement is reported at cleanup', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   const eventError = new Error('event hook failed');
@@ -744,7 +747,7 @@ test('an event failure during context announcement is reported at cleanup', asyn
   await assert.rejects(cleanup(), (error) => error === eventError);
 });
 
-test('a tool named constructor reaches the plugin as a plain string', async () => {
+test('a tool named constructor reaches the plugin as a plain string', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
   let receivedPair;
@@ -769,7 +772,7 @@ test('a tool named constructor reaches the plugin as a plain string', async () =
   await cleanup();
 });
 
-test('a transform without an event hook does not synthesize an event', async () => {
+test('a transform without an event hook does not synthesize an event', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();
   let transformed = false;
@@ -788,7 +791,7 @@ test('a transform without an event hook does not synthesize an event', async () 
   }
 });
 
-test('session.deleted allows the same session to be announced again', async () => {
+test('session.deleted allows the same session to be announced again', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const receivedEvents = await forwardEventsToV1([
     { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
     { type: 'session.deleted', data: { sessionID: 'ses_a' } },
@@ -968,7 +971,7 @@ test('a non-user inbox item maps to nothing beyond the original event', async ()
   ]);
 });
 
-test('setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events', async () => {
+test('setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events', { timeout: ANNOUNCEMENT_TIMEOUT_MS }, async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { z } = await import('zod');
   const { context, registrations, toolHooks, sessionHooks } = createV2Context();

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hooks and plugins held fixes",
+      "phase 42 hooks and plugins held fixes",
+      "039 held findings",
+      "bearer token redaction",
+      "stdin byte cap",
+      "hooks and plugins held fixes plan",
+      "hooks and plugins held fixes tasks",
+      "hooks and plugins held fixes implementation summary"
+    ],
+    "key_topics": [
+      "hooks",
+      "plugins",
+      "held",
+      "phase",
+      "findings",
+      "bearer",
+      "token",
+      "redaction",
+      "stdin",
+      "byte",
+      "cap",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs",
+      ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+      ".skilled/hooks/git/install-hooks.test.sh",
+      ".skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs",
+      ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".opencode/plugins/tests/system-spec-gate.test.cjs",
+      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      ".opencode/plugins/tests/session-cleanup.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/hop-history.test.cjs",
+      ".skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".skilled/hooks/git/install-hooks.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-task-dispatch-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.test.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/git/install-hooks.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-gate.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-spec-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-cleanup.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hop-history.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/hop-history.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/git/install-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 039 confirmed seven P1 and nine P2 findings in the hook tree and the OpenCode plugins whose fixes change behaviour, so it held them",
+    "created_at": "2026-10-21T04:53:45Z",
+    "last_save_at": "2026-10-21T06:30:33.458Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a224c88bef406a03c0cc8ac64e6fb3f9d8aaddf2a60a120184ae55b4169a69dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "44a43138121c7704e0414d53b18bc39abd67344206a9de8d22c64f01ca77c31f",
+      "plan.md": "392738fe70c068b1956eb1fbf72ee494c631256661b17bf782afee4dc9b0d7db",
+      "tasks.md": "7b32c2001a12381e5858d4a8afcbdf1f275227ee5755e7a5e1f6c281c40691b7",
+      "implementation-summary.md": "f5e3b18f9bb144c8bd6cb9b29159fb43b014843739fd0405512f5da69979952c"
+    },
+    "last_active_at": null
+  }
+}

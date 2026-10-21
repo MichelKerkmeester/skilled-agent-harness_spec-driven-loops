@@ -21,7 +21,7 @@ import * as skillAdvisorRender from '../../../../plugins/lib/skill-advisor-rende
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
 import { SETUP_WORDING as HOOK_SETUP_WORDING } from '../../hooks/claude/user-prompt-submit.js';
 
-const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
+const MkSkillAdvisorPlugin = skillAdvisorPlugin.default.server;
 
 type PluginFallbackResult = NonNullable<Parameters<typeof renderAdvisorFallbackDirective>[1]>;
 type PluginFallbackRenderer = (

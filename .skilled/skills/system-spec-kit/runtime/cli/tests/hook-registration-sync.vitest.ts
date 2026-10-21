@@ -103,7 +103,7 @@ describe('sync-hook-registrations.cjs', () => {
       expect(enforce!.bindings[runtime]?.length, runtime).toBeGreaterThan(0);
     }
     const bindingCount = registry.hooks.reduce((total, hook) => total + Object.values(hook.bindings).reduce((sum, list) => sum + list.length, 0), 0);
-    expect(bindingCount).toBe(98);
+    expect(bindingCount).toBe(99);
   });
 
   it('detaches a background binding on Cursor the way the project-dir runtimes do', () => {

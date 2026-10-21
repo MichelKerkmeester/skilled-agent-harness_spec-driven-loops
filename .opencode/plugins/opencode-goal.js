@@ -9,7 +9,8 @@
 
 import { createHash, randomUUID } from 'node:crypto';
 import {
-  appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink, writeFile,
+  appendFile, link, lstat, mkdir, open, readFile, readdir, readlink, rename, stat, symlink,
+  unlink, writeFile,
 } from 'node:fs/promises';
 import { dirname, join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -66,7 +67,21 @@ const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
 const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 const MIN_PROMPT_BUDGET_CHARS = 3;
 const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
+// Removing a record is a mutator's explicit choice, never a side effect of it
+// finding nothing: a mutator that reports "no goal" must leave whatever another
+// process wrote after the read in place.
+const DELETE_GOAL = Symbol('delete-goal');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+// A mutation lock is a symlink in the state root whose target is the owner's
+// pid, so `symlink` is the atomic test-and-set and the entry names whoever left
+// it behind. The timeout and stale age copy the shared core's lock so both
+// behave alike.
+const GOAL_LOCK_TIMEOUT_MS = 10_000;
+const GOAL_LOCK_STALE_MS = 120_000;
+const GOAL_LOCK_RETRY_MS = 25;
+// A state root that refuses a lock entry refuses every write too, so these keep
+// the error the write itself would have raised.
+const UNLOCKABLE_GOAL_STATE_CODES = new Set(['EACCES', 'EPERM', 'EROFS']);
 // The name an error prints is the name an operator will go and set, so it is
 // the concern's canonical variable rather than one of its accepted aliases.
 const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
@@ -171,6 +186,8 @@ const VALID_STATUSES = new Set([
   'usage_limited',
   'budget_limited',
   'complete',
+  // `cleared` exists only on archived records; no live goal transitions to it.
+  'cleared',
 ]);
 const STATUS_TRANSITIONS = Object.freeze({
   active: new Set(['active', 'paused', 'complete']),
@@ -1004,6 +1021,10 @@ function statusCodeFromError(error) {
     error?.response?.status,
   ];
   for (const candidate of candidates) {
+    const numericCandidate = typeof candidate === 'number'
+      ? Number.isFinite(candidate)
+      : typeof candidate === 'string' && /^\d+$/.test(candidate.trim());
+    if (!numericCandidate) continue;
     const numeric = Number(candidate);
     if (Number.isFinite(numeric)) return Math.trunc(numeric);
   }
@@ -1470,6 +1491,8 @@ async function pruneArchive(rawOptions = {}) {
     const entries = await readdir(archiveDir, { withFileTypes: true });
     await Promise.all(entries.map(async (entry) => {
       if (!entry.isFile()) return;
+      // A staged goal keeps its old mtime, so pruning here would delete it.
+      if (entry.name.startsWith('.tmp-')) return;
       const path = join(archiveDir, entry.name);
       try {
         const fileStats = await stat(path);
@@ -1493,6 +1516,101 @@ async function maybePruneArchive(rawOptions = {}) {
   await pruneArchive(options);
 }
 
+async function placeArchiveRecord(
+  sessionID,
+  record,
+  options,
+  { sourcePath = null, canonical = true } = {},
+) {
+  const archiveDir = await ensureGoalArchiveDir(options);
+  const sessionKey = sessionKeyForSession(sessionID);
+  // Both paths stage through one file inside the archive folder. A named
+  // source is moved here first, so the file archived is whatever sits at the
+  // active path at that instant and no step here unlinks the active path.
+  // A staging name never ends in `.json`, so a crash cannot leave a file the
+  // history listing would read as an archive.
+  const tempPath = join(archiveDir, `.tmp-${randomUUID()}`);
+  let payload = `${JSON.stringify(record, null, 2)}\n`;
+  let goalId = record.goalId;
+  if (sourcePath) await rename(sourcePath, tempPath);
+  else await writeFile(tempPath, payload, { mode: 0o600 });
+
+  const dropTemp = async () => {
+    await unlink(tempPath).catch((error) => {
+      if (error?.code !== 'ENOENT') writeDebugStderr('placeArchiveRecord.unlinkTemp', error);
+    });
+  };
+  const restoreTemp = async () => {
+    if (!sourcePath) {
+      await dropTemp();
+      return;
+    }
+    try {
+      await link(tempPath, sourcePath);
+    } catch (error) {
+      // EEXIST means a new goal owns the active path now; any other failure
+      // means the restore could not run. Either way the moved file stays put
+      // so the record it holds is never lost, and the reason is logged.
+      writeDebugStderr('placeArchiveRecord.restore', error);
+      return;
+    }
+    await dropTemp();
+  };
+
+  try {
+    if (sourcePath) {
+      // The stored bytes, not the caller's record, decide the duplicate check
+      // and the digest: another process may have written this file after the
+      // caller read it.
+      payload = await readFile(tempPath, 'utf8');
+      try {
+        const movedGoal = JSON.parse(payload);
+        if (movedGoal?.goalId) goalId = movedGoal.goalId;
+      } catch {
+        // A file that does not parse still archives under the caller's id.
+      }
+    }
+    const digest = createHash('sha256').update(payload, 'utf8').digest('hex').slice(0, 16);
+    const candidates = [];
+    if (canonical) candidates.push(join(archiveDir, `${sessionKey}.json`));
+    candidates.push(join(archiveDir, `${sessionKey}.${normalizeGoalID(goalId)}.${digest}.json`));
+    const goalIdCandidate = candidates[candidates.length - 1];
+    if (canonical
+      && dirname(resolvePath(goalIdCandidate)) !== resolvePath(archiveDir)) {
+      // An id that walks out of the archive folder loses its id here. A
+      // snapshot-only caller keeps refusing instead of renaming the record.
+      candidates.push(join(archiveDir, `${sessionKey}.${digest}.json`));
+    }
+
+    for (const candidate of candidates) {
+      if (dirname(resolvePath(candidate)) !== resolvePath(archiveDir)) {
+        writeDebugStderr(
+          'placeArchiveRecord',
+          new Error('archive target escapes its archive folder'),
+        );
+        continue;
+      }
+      try {
+        await link(tempPath, candidate);
+      } catch (error) {
+        if (error?.code !== 'EEXIST') throw error;
+        const existing = await readFile(candidate, 'utf8').catch((readError) => {
+          if (readError?.code === 'ENOENT') return null;
+          throw readError;
+        });
+        if (existing === null || existing !== payload) continue;
+      }
+      await dropTemp();
+      return candidate;
+    }
+    await restoreTemp();
+    return null;
+  } catch (error) {
+    await restoreTemp();
+    throw error;
+  }
+}
+
 async function archiveGoalStateFile(sessionID, rawOptions = {}) {
   const sweepArchiveStaleBeforeMs = Number.isFinite(rawOptions.sweepArchiveStaleBeforeMs)
     ? Math.trunc(rawOptions.sweepArchiveStaleBeforeMs)
@@ -1507,9 +1625,14 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
       return null;
     }
     const archiveDir = await ensureGoalArchiveDir(options);
-    const archivePath = join(archiveDir, `${sessionKeyForSession(normalizedSessionID)}.json`);
+    let archivePath;
     try {
-      await rename(sourcePath, archivePath);
+      archivePath = await placeArchiveRecord(
+        normalizedSessionID,
+        currentGoal,
+        options,
+        { sourcePath },
+      );
     } catch (error) {
       if (error?.code === 'ENOENT') return null;
       await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
@@ -1517,6 +1640,15 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
         eventType: 'session.deleted',
         sid: normalizedSessionID,
         error: redactEvidence(error?.message || 'archive failed', DEFAULT_MAX_REASON_CHARS),
+      }, options);
+      return null;
+    }
+    if (!archivePath) {
+      await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+        type: 'event_error',
+        eventType: 'session.deleted',
+        sid: normalizedSessionID,
+        error: redactEvidence('archive failed', DEFAULT_MAX_REASON_CHARS),
       }, options);
       return null;
     }
@@ -1638,7 +1770,12 @@ async function listArchivedGoalRecords(rawOptions = {}) {
   return candidates
     .sort((a, b) => Number(b.canonical) - Number(a.canonical) || b.mtimeMs - a.mtimeMs)
     .filter((record) => {
-      const identity = `${record.goal.sessionId}\u0000${record.goal.goalId}`;
+      // Identity is the record's content, not its goal id: a rebound goal
+      // keeps one id across distinct snapshots, and one record stored under a
+      // legacy and a canonical name is one row. Only byte-identical records
+      // collapse.
+      const identity = `${record.goal.sessionId}\u0000${record.goal.goalId}\u0000`
+        + JSON.stringify(record.goal);
       if (identities.has(identity)) return false;
       identities.add(identity);
       return true;
@@ -1694,19 +1831,168 @@ async function inspectGoalHealth(rawOptions = {}) {
 }
 
 /**
- * Mutate a session goal through the in-process write queue.
+ * Read the owner pid a lock entry names, or null when it names nothing usable.
+ *
+ * The target is written by the process holding the lock, so anything that is
+ * not a positive integer pid means the entry predates this format or was
+ * written by something else, and the age rule stays the only way to break it.
+ *
+ * @param {string} target - The entry's symlink target
+ * @returns {number|null} Owner pid, or null when the target is not one
+ */
+function parseLockOwnerPid(target) {
+  const text = typeof target === 'string' ? target.trim() : '';
+  if (!/^\d+$/.test(text)) return null;
+  const pid = Number(text);
+  return Number.isSafeInteger(pid) && pid > 0 ? pid : null;
+}
+
+/**
+ * Report whether a pid still answers the zero signal.
+ *
+ * A zero signal delivers nothing and only asks the kernel whether the pid
+ * exists. EPERM means it exists under another owner, which is alive enough: a
+ * live holder that stays locked keeps waiting rather than being broken.
+ *
+ * @param {number} pid - Pid named by a lock entry
+ * @returns {boolean} True when the process is still running
+ */
+function isLockOwnerAlive(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error?.code !== 'ESRCH';
+  }
+}
+
+/**
+ * Remove a lock entry, treating an already-gone entry as removed.
+ *
+ * @param {string} lockPath - Lock entry to remove
+ * @returns {Promise<boolean>} True when the entry is gone afterwards
+ */
+async function removeLockEntry(lockPath) {
+  try {
+    await unlink(lockPath);
+    return true;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return true;
+    // Another process may hold a lock this one cannot remove, which the age
+    // rule cannot fix either, so report it and let the caller wait.
+    writeDebugStderr('withGoalMutationLock.break', error);
+    return false;
+  }
+}
+
+/**
+ * Break a lock entry whose owner is gone, or whose owner has held it too long.
+ *
+ * A crashed run leaves its entry behind, and the owner it names no longer
+ * answers: breaking that at once is what keeps one crash from failing every
+ * mutation for the whole stale window. An owner that still answers keeps the
+ * age rule, and an entry that disappeared under us counts as broken so the
+ * caller retries immediately instead of waiting out a retry delay.
+ *
+ * @param {string} lockPath - Lock entry a failed acquire found in place
+ * @returns {Promise<boolean>} True when the caller may retry at once
+ */
+async function breakAbandonedLock(lockPath) {
+  let target = null;
+  try {
+    target = await readlink(lockPath);
+  } catch (error) {
+    if (error?.code === 'ENOENT') return true;
+  }
+  const ownerPid = parseLockOwnerPid(target);
+  if (ownerPid !== null && !isLockOwnerAlive(ownerPid)) return removeLockEntry(lockPath);
+  try {
+    if (Date.now() - (await lstat(lockPath)).mtimeMs > GOAL_LOCK_STALE_MS) {
+      return removeLockEntry(lockPath);
+    }
+  } catch (error) {
+    if (error?.code === 'ENOENT') return true;
+  }
+  return false;
+}
+
+/**
+ * Run a session mutation while holding that session's cross-process lock.
+ *
+ * The in-process queue cannot serialize two OpenCode processes, so a read and
+ * a write interleaved across them could lose whichever goal was written last
+ * before it was archived. The lock entry names this process as its owner and is
+ * removed here, so nothing outlives the mutation; an entry whose named owner is
+ * gone is broken at once rather than waited out, so a crashed run cannot hold a
+ * session's mutations hostage.
+ *
+ * @param {string} sessionID - Normalized OpenCode session id
+ * @param {Object} options - Normalized state helper options
+ * @param {Function} operation - Mutation to run while the lock is held
+ * @returns {Promise<*>} The operation's result
+ */
+async function withGoalMutationLock(sessionID, options, operation) {
+  await ensureGoalStateDir(options);
+  const lockPath = join(options.stateDir, `.lock-${sessionKeyForSession(sessionID)}`);
+  const deadlineMs = Date.now() + GOAL_LOCK_TIMEOUT_MS;
+  let locked = false;
+  while (true) {
+    try {
+      await symlink(String(process.pid), lockPath);
+      locked = true;
+      break;
+    } catch (error) {
+      if (error?.code !== 'EEXIST') {
+        // Let the operation fail on its own terms instead of reporting a lock
+        // error its caller never had a chance to avoid.
+        if (UNLOCKABLE_GOAL_STATE_CODES.has(error?.code)) break;
+        const message = `Failed to acquire goal-state mutation lock: ${error.message}`;
+        throw new GoalError('GOAL_LOCK_FAILED', message);
+      }
+    }
+    if (await breakAbandonedLock(lockPath)) continue;
+    if (Date.now() >= deadlineMs) {
+      throw new GoalError('GOAL_LOCK_TIMEOUT', 'Timed out waiting for a goal-state mutation lock');
+    }
+    await new Promise((resolve) => setTimeout(resolve, GOAL_LOCK_RETRY_MS));
+  }
+  try {
+    return await operation();
+  } finally {
+    if (locked) {
+      try {
+        await unlink(lockPath);
+      } catch (error) {
+        // A reaper may have removed a lock this process already considers stale.
+        if (error?.code !== 'ENOENT') writeDebugStderr('withGoalMutationLock.release', error);
+      }
+    }
+  }
+}
+
+/**
+ * Mutate a session goal under the in-process queue and a cross-process lock.
+ *
+ * The queue serializes writers inside this process and the lock covers the
+ * others, so the read and the write stay atomic across processes. A mutator
+ * therefore removes a record by returning the DELETE_GOAL sentinel; null and
+ * undefined both mean "no change" and write nothing.
  *
  * @param {string} sessionID - OpenCode session id
  * @param {Function} mutator - Function receiving the current goal
  * @param {Object} [rawOptions] - State helper options
- * @returns {Promise<Object|null>} Mutated goal, or null after delete
+ * @returns {Promise<Object|null>} Mutated goal, the current goal when unchanged,
+ * or null after a delete
  */
 async function enqueueGoalMutation(sessionID, rawOptions = {}, operation) {
   const options = normalizeOptions(rawOptions);
   const normalizedSessionID = requireSessionID(sessionID);
   const queueKey = `${options.stateDir}:${sessionKeyForSession(normalizedSessionID)}`;
   const previous = mutationQueues.get(queueKey) || Promise.resolve();
-  const run = previous.catch(() => undefined).then(() => operation(normalizedSessionID, options));
+  const runOperation = () => operation(normalizedSessionID, options);
+  const run = previous.catch(() => undefined).then(
+    () => withGoalMutationLock(normalizedSessionID, options, runOperation),
+  );
 
   mutationQueues.set(queueKey, run);
   try {
@@ -1720,8 +2006,8 @@ async function mutateGoal(sessionID, mutator, rawOptions = {}) {
   return enqueueGoalMutation(sessionID, rawOptions, async (normalizedSessionID, options) => {
     const current = await readGoal(normalizedSessionID, options);
     const next = await mutator(current);
-    if (next === null) return deleteGoalFile(normalizedSessionID, options);
-    if (next === undefined) return current;
+    if (next === DELETE_GOAL) return deleteGoalFile(normalizedSessionID, options);
+    if (next === null || next === undefined) return current;
     const revision = Math.max(current?.revision || 0, next?.revision || 0) + 1;
     return writeGoalAtomic({ ...next, revision }, options);
   });
@@ -1793,13 +2079,32 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
   const requestedBudget = normalizeTokenBudget(rawOptions.tokenBudget);
   let mutation = 'created';
 
-  const goal = await mutateGoal(sessionID, (current) => {
+  // A replaced record stays in the archive, as the runtime-neutral core keeps
+  // it, so history holds every goal this session ever had. Archiving is
+  // best-effort: a failed write never blocks the replacement itself.
+  const archiveReplaced = async (current) => {
+    if (!current) return;
+    try {
+      const archivedPath = await placeArchiveRecord(sessionID, current, options);
+      if (!archivedPath) {
+        writeDebugStderr(
+          'setGoal.archiveReplaced',
+          new Error('archive target escapes its archive folder'),
+        );
+      }
+    } catch (error) {
+      writeDebugStderr('setGoal.archiveReplaced', error);
+    }
+  };
+
+  const goal = await mutateGoal(sessionID, async (current) => {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
     const promptFields = buildEnhancedGoalPrompt(sanitizedObjective, options);
     if (current && current.objective === sanitizedObjective) {
       if (current.status !== 'active' && current.status !== 'paused') {
         mutation = 'replaced';
+        await archiveReplaced(current);
         return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
       }
       mutation = 'refreshed';
@@ -1821,6 +2126,7 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
       };
     }
     mutation = current ? 'replaced' : 'created';
+    if (current) await archiveReplaced(current);
     return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
   }, options);
   if (goal && typeof goal === 'object') {
@@ -1855,29 +2161,28 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
   let mutation = 'bound';
   // A rebind to a different packet keeps the prior record in the archive, as
   // the runtime-neutral core does, so both implementations keep one history.
-  const prior = await readGoal(sessionID, options);
-  if (prior && prior.packetPath && prior.packetPath !== packet.packetPath) {
-    const archiveDir = await ensureGoalArchiveDir(options);
-    // The goal id is read from state any process on this machine can edit, and it
-    // keeps path separators and `..`, so the snapshot must land directly in the
-    // archive folder or not at all.
-    const snapshotPath = join(
-      archiveDir,
-      `${sessionKeyForSession(sessionID)}.${normalizeGoalID(prior.goalId)}.json`,
-    );
-    if (dirname(resolvePath(snapshotPath)) !== resolvePath(archiveDir)) {
-      writeDebugStderr(
-        'bindGoal.archivePrior',
-        new Error('archive target escapes its archive folder'),
-      );
-    } else {
-      await writeFile(snapshotPath, `${JSON.stringify(prior, null, 2)}\n`, { mode: 0o600 })
-        .catch((error) => {
-          writeDebugStderr('bindGoal.archivePrior', error);
-        });
+  const goal = await mutateGoal(sessionID, async (current) => {
+    if (current && current.packetPath && current.packetPath !== packet.packetPath) {
+      // The goal id is read from state any process on this machine can edit, and it
+      // keeps path separators and `..`, so the snapshot must land directly in the
+      // archive folder or not at all.
+      try {
+        const snapshotPath = await placeArchiveRecord(
+          sessionID,
+          current,
+          options,
+          { canonical: false },
+        );
+        if (!snapshotPath) {
+          writeDebugStderr(
+            'bindGoal.archivePrior',
+            new Error('archive target escapes its archive folder'),
+          );
+        }
+      } catch (error) {
+        writeDebugStderr('bindGoal.archivePrior', error);
+      }
     }
-  }
-  const goal = await mutateGoal(sessionID, (current) => {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
     const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
@@ -1938,7 +2243,34 @@ function resendPending(goal, rawOptions = {}) {
  * @returns {Promise<null>} Null after deletion
  */
 async function clearGoal(sessionID, rawOptions = {}) {
-  return mutateGoal(sessionID, () => null, rawOptions);
+  const options = normalizeOptions(rawOptions);
+  return mutateGoal(sessionID, async (current) => {
+    if (current) {
+      const timestamp = nowMs(options);
+      const clearedRecord = {
+        ...current,
+        revision: (Number.isFinite(current.revision) ? current.revision : 0) + 1,
+        status: 'cleared',
+        updatedAtMs: timestamp,
+        updatedAt: isoFromMs(timestamp),
+      };
+      // Same best-effort contract as the replace path: the record is archived
+      // as cleared so history keeps it, and a failed write never blocks the
+      // delete that follows.
+      try {
+        const archivedPath = await placeArchiveRecord(sessionID, clearedRecord, options);
+        if (!archivedPath) {
+          writeDebugStderr(
+            'clearGoal.archiveCleared',
+            new Error('archive target escapes its archive folder'),
+          );
+        }
+      } catch (error) {
+        writeDebugStderr('clearGoal.archiveCleared', error);
+      }
+    }
+    return DELETE_GOAL;
+  }, options);
 }
 
 async function markGoalStatus(sessionID, status, rawOptions = {}) {
@@ -2465,8 +2797,23 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
 function renderContinuationPrompt(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
-  const objective = sanitizeInlineText(goal?.objective, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
-  const goalPrompt = sanitizePromptText(goal?.goalPrompt || goal?.objective, options.maxGoalPromptChars);
+  let objectiveSource = goal?.objective;
+  let promptSource = goal?.goalPrompt || goal?.objective;
+  // A bound goal continues the packet as it is now, so criteria edited after
+  // the bind reach the next turn. An unreadable packet falls back to the
+  // stored copy, because a continuation must still say what it continues.
+  if (typeof goal?.packetPath === 'string' && goal.packetPath) {
+    const packet = resolvePacketGoalForRecord(goal, rawOptions);
+    if (packet) {
+      objectiveSource = packet.objectiveSlice;
+      promptSource = buildEnhancedGoalPrompt(packet.objectiveSlice, options).goalPrompt;
+    }
+  }
+  const objective = sanitizeInlineText(
+    objectiveSource,
+    Math.min(options.maxObjectiveChars, objectivePreviewLimit),
+  );
+  const goalPrompt = sanitizePromptText(promptSource, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal?.lastVerifierReason || 'not verified complete', DEFAULT_MAX_REASON_CHARS);
   return clampText([
     '[active_goal_continuation]',

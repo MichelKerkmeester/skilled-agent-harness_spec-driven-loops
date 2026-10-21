@@ -1,0 +1,9 @@
+PASS. `bindGoal` now snapshots `current` inside the mutation callback. The session lock covers the read, archive and replacement write ([`opencode-goal.js`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/183-goal-held-fixes/.opencode/plugins/opencode-goal.js:1911), [`opencode-goal.js`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/183-goal-held-fixes/.opencode/plugins/opencode-goal.js:1924), [`opencode-goal.js`](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/183-goal-held-fixes/.opencode/plugins/opencode-goal.js:2081)).
+
+By static code tracing, the new test would fail on the old implementation: it changes the active record immediately before lock acquisition, then checks that history contains the injected goal ID ([test](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/183-goal-held-fixes/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1035), [assertion](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/183-goal-held-fixes/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1061)). The old code read and archived `prior` before acquiring the lock.
+
+The diff scan found no remaining archive-then-replace or archive-then-delete path outside its mutation lock. Tests were not run, as instructed. The worktree showed no changes.
+
+Nothing is required from you.
+
+VERDICT: PASS

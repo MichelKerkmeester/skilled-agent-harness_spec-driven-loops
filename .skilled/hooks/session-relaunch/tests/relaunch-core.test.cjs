@@ -490,8 +490,34 @@ test('arm changes pending to armed, records the live cwd, and a re-arm restamps 
   // wrapper checks restarts with the killer that replaces it, from the live cwd.
   const later = new Date(NOW.getTime() + 5000);
   const repeated = arm({ loopId: LOOP_ID, cwd: '/tmp/later-cwd', env: sandbox.env, now: later });
-  assert.deepEqual(repeated, { ...armed, armedAt: later.toISOString(), cwd: '/tmp/later-cwd' });
+  assert.equal(repeated.armedAt, later.toISOString());
+  assert.equal(repeated.cwd, '/tmp/later-cwd');
+  assert.notEqual(repeated.armId, armed.armId);
   assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), repeated);
+});
+
+test('arm stamps a fresh armId on every arm even in the same millisecond', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'pending',
+    loopId: LOOP_ID,
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'claude',
+    name: null,
+    cwd: '/tmp/old-cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
+  });
+  const first = arm({ loopId: LOOP_ID, cwd: '/tmp/cwd', env: sandbox.env, now: NOW });
+  const second = arm({ loopId: LOOP_ID, cwd: '/tmp/cwd', env: sandbox.env, now: NOW });
+
+  assert.equal(typeof first.armId, 'string');
+  assert.ok(first.armId.length > 0);
+  assert.equal(second.armedAt, first.armedAt);
+  assert.notEqual(second.armId, first.armId);
+  assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), second);
 });
 
 test('a re-arm makes an armed record older than the age limit relaunchable again', (t) => {
@@ -563,6 +589,46 @@ test('unarm records disarmed status and the supplied reason', (t) => {
   const record = unarm({ loopId: LOOP_ID, env: sandbox.env, reason: 'killer-timeout', now: NOW });
   assert.equal(record.status, 'disarmed');
   assert.equal(record.disarmReason, 'killer-timeout');
+});
+
+test('unarm leaves the record armed when expectedArmId is stale', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    armedAt: NOW.toISOString(),
+    armId: 'arm-current-0001',
+  });
+
+  assert.equal(unarm({
+    loopId: LOOP_ID,
+    env: sandbox.env,
+    reason: 'killer-timeout',
+    expectedArmId: 'arm-stale-0001',
+    now: NOW,
+  }), null);
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).status, 'armed');
+});
+
+test('unarm disarms the record when expectedArmId matches', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    armedAt: NOW.toISOString(),
+    armId: 'arm-current-0001',
+  });
+
+  const record = unarm({
+    loopId: LOOP_ID,
+    env: sandbox.env,
+    reason: 'killer-timeout',
+    expectedArmId: 'arm-current-0001',
+    now: NOW,
+  });
+  assert.equal(record.status, 'disarmed');
+  assert.equal(record.armId, 'arm-current-0001');
+  assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), record);
 });
 
 test('readRelaunchFile returns the parsed record or null when absent', (t) => {

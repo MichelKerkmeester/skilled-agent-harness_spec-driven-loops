@@ -19,6 +19,7 @@ const { afterEach, beforeEach, test } = require('node:test');
 const { promisify } = require('node:util');
 
 const CLI_PATH = join(__dirname, 'goal.cjs');
+const WORKSPACE = process.cwd();
 const execFileAsync = promisify(execFile);
 
 let stateDir;
@@ -31,8 +32,15 @@ afterEach(() => {
   rmSync(stateDir, { recursive: true, force: true });
 });
 
+// Session actions require an explicit workspace. The repository root is the
+// scope these tests used before the flag became mandatory, so injecting it
+// keeps every scope key identical.
+function withWorkspace(args) {
+  return args.includes('--workspace') ? args : [...args, '--workspace', WORKSPACE];
+}
+
 // A failed action exits 1 and still prints its envelope, so read stdout either way.
-function runCliWithStatus(args) {
+function runCliRawWithStatus(args) {
   try {
     const stdout = execFileSync('node', [CLI_PATH, ...args], {
       env: {
@@ -48,12 +56,16 @@ function runCliWithStatus(args) {
   }
 }
 
+function runCliWithStatus(args) {
+  return runCliRawWithStatus(withWorkspace(args));
+}
+
 function runCli(args) {
   return runCliWithStatus(args).stdout;
 }
 
 async function runCliAsync(args) {
-  const result = await execFileAsync('node', [CLI_PATH, ...args], {
+  const result = await execFileAsync('node', [CLI_PATH, ...withWorkspace(args)], {
     env: {
       ...process.env,
       OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
@@ -178,4 +190,26 @@ test('an unknown leading flag fails instead of becoming an objective', () => {
   assert.match(budgeted.stdout, /^STATUS=OK ACTION=set/m);
   assert.equal(budgeted.status, 0);
   assert.equal(field(runCli([...binding, 'show']), 'objective'), '"Ship it"');
+});
+
+test('session actions without a workspace fail with MISSING_WORKSPACE and write nothing', () => {
+  for (const action of [['show'], ['set', 'x']]) {
+    const { stdout, status } = runCliRawWithStatus([
+      '--runtime',
+      'cli',
+      '--session',
+      's',
+      ...action,
+    ]);
+    assert.match(stdout, /^STATUS=FAIL ACTION=(show|set)/m);
+    assert.equal(status, 1);
+    assert.equal(field(stdout, 'code'), 'MISSING_WORKSPACE');
+  }
+  assert.deepEqual(readdirSync(stateDir), []);
+});
+
+test('packet reads still run without a workspace flag', () => {
+  const { stdout, status } = runCliRawWithStatus(['packet', 'specs/t/missing']);
+  assert.equal(field(stdout, 'code'), 'PACKET_GOAL_NOT_FOUND');
+  assert.equal(status, 1);
 });
