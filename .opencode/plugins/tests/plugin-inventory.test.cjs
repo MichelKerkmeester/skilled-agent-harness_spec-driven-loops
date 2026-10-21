@@ -305,6 +305,22 @@ test('a comparison on a reassigned alias is reported as unscanned', () => {
   assert.deepEqual(unscannedEventChecks(source), ["t === 'a.before'"]);
 });
 
+// A name built from a rewritten alias inherits that uncertainty, so its comparison is reported too.
+test('a comparison on a name built from a reassigned alias is reported as unscanned', () => {
+  const source = `let t = event.type; const u = t; if (u === 'a.x') {} t = 0;`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ["u === 'a.x'"]);
+});
+
+// An argument that can be nothing leaves a default holding the event type in place.
+test('a possibly-undefined argument keeps an event-type parameter default in play', () => {
+  const source =
+    `let maybe; const pick = (kindType = event.type) => { if (kindType === 'r.event') {} };` +
+    ` pick(maybe);`;
+  assert.deepEqual(handledEventNames(source), ['r.event']);
+  assert.deepEqual(unscannedEventChecks(source), []);
+});
+
 // Destructuring binds the type field in parameters and in defaults too.
 test('a destructured type field is read in parameters and with defaults', () => {
   const source =

@@ -239,6 +239,22 @@ function parameterIndex(fn, identifier) {
   );
 }
 
+// A literal, a template with no holes and a freshly built object or function cannot be nothing, so
+// each of those rules out the default; any other expression may evaluate to nothing instead.
+const DEFINED_EXPRESSION_TYPES = new Set([
+  'ArrayExpression',
+  'ObjectExpression',
+  'FunctionExpression',
+  'ArrowFunctionExpression',
+  'ClassExpression',
+]);
+
+function isProvablyDefined(node) {
+  if (node.type === 'Literal') return true;
+  if (node.type === 'TemplateLiteral') return node.expressions.length === 0;
+  return DEFINED_EXPRESSION_TYPES.has(node.type);
+}
+
 // The default expression is what the function reads when the call leaves the parameter empty.
 function parameterDefault(fn, identifier) {
   const parameter = fn.params[parameterIndex(fn, identifier)];
@@ -333,6 +349,16 @@ function isEventTypeParameter(binding, context) {
         }
         if (argument.type === 'SpreadElement') return true;
         if (position === index && containsEventType(argument, context)) return true;
+        // An argument that can be nothing leaves a default holding the event type in place, so a
+        // parameter that is not provably given a value keeps reading as the type.
+        if (
+          position === index &&
+          defaultExpression !== null &&
+          containsEventType(defaultExpression, context) &&
+          !isProvablyDefined(argument)
+        ) {
+          return true;
+        }
       }
     }
     return false;
@@ -642,7 +668,8 @@ function collectWrittenBindings(context) {
 
 // A local binding can carry the type field too, including one destructured out of it, but only
 // while that binding is never rewritten; an alias can also be built from another alias. A binding
-// that is rewritten cannot name an event, so it is kept apart for the comparison reader to report.
+// that is rewritten cannot name an event, so it is kept apart for the comparison reader to report,
+// and a binding built from a rewritten alias inherits that uncertainty.
 function collectEventTypeAliases(context) {
   const aliases = new Set();
   const rewritten = new Set();
@@ -656,13 +683,12 @@ function collectEventTypeAliases(context) {
       if (aliases.has(binding) || rewritten.has(binding)) continue;
 
       const declarator = binding.declarator;
-      const fromInit =
-        declarator !== null &&
-        binding.node === declarator.id &&
-        isEventType(declarator.init, context);
-      if (!fromInit && !context.typeBindings.has(binding)) continue;
+      const declaredName = declarator !== null && binding.node === declarator.id;
+      const fromInit = declaredName && isEventType(declarator.init, context);
+      const fromRewritten = declaredName && containsRewrittenAlias(declarator.init, context);
+      if (!fromInit && !fromRewritten && !context.typeBindings.has(binding)) continue;
 
-      if (context.written.has(binding)) rewritten.add(binding);
+      if (context.written.has(binding) || fromRewritten) rewritten.add(binding);
       else aliases.add(binding);
       changed = true;
     }
