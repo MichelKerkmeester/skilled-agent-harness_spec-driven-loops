@@ -1,0 +1,16 @@
+# scenario sk-git-preflight-advisory, run 2026-10-21T12:21:07Z in worktree 190, HEAD eb0c18f7e9
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+git-preflight v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+  • [add-pathspec-matches-nothing] This pathspec matches no files — nothing will be staged, and git won't say so. Check the path and working directory.
+["bash","completed","fatal: pathspec 'no-such-path-preflight-probe.txt' did not match any files\n"]
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/graph-metadata.json
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+git-preflight v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+  • [add-pathspec-matches-nothing] This pathspec matches no files — nothing will be staged, and git won't say so. Check the path and working directory.
+["shell","completed","fatal: pathspec 'no-such-path-preflight-probe.txt' did not match any files\n"]
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/graph-metadata.json
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md
+?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/
+# block exit 0

@@ -1,0 +1,12 @@
+# scenario mcp-route-guard, run 2026-10-21T12:16:36Z in worktree 190, HEAD eb0c18f7e9
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+mcp-route-guard v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+mcp-route-guard v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+["mobbin_ping","completed","pong-stub"]
+mcp-route-guard.log (new): 2026-10-21T12:16:49.562Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+["execute","completed","pong-stub\n\nLogs:\n\"pong-stub\""]
+mcp-route-guard.log: 2026-10-21T12:17:16.615Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+0
+0
+# block exit 0

@@ -1,0 +1,50 @@
+Suites rerun in worktree 188 at HEAD eb0c18f7e9, 2026-10-21, with --test-reporter=tap where node:test
+
+plugins 1
+battery 0
+hooks-node 0
+install-hooks 0
+hooks-vitest 0
+rule-checks 0
+audit-vitest 0
+worktree-naming 0
+pi-pi-cache-optimizer 0
+pi-pi-fast-mode-w-subagent-support 0
+default-model 0
+models-form 0
+DONE
+
+plugins: # tests 516 # pass 515 # fail 1 
+plugins-rerun: # tests 516 # pass 516 # fail 0 
+battery: # tests 51 # pass 51 # fail 0 
+hooks-node: # tests 870 # pass 870 # fail 0 
+rule-checks: # tests 42 # pass 42 # fail 0 
+default-model: # tests 5 # pass 5 # fail 0 
+models-form: # tests 16 # pass 16 # fail 0 
+hooks-node files: 29 files
+hooks-vitest:       Tests  401 passed (401)
+audit-vitest:       Tests  124 passed (124)
+purity:       Tests  1 passed (1)
+worktree-naming: worktree-naming tests: PASS=162 FAIL=0
+install-hooks: PASS 4
+pi-cache-optimizer: ℹ tests 118 ℹ pass 118 ℹ fail 0 
+pi-fast-mode:       Tests  81 passed (81)
+
+First plugin run failure:
+not ok 394 - cache TTL starts when CLI work completes
+  ---
+  duration_ms: 115.576917
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/188-relaunch-takeover-lock-identity/.opencode/plugins/tests/system-skill-advisor.test.cjs:920:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    entry should retain the full TTL after completion
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-

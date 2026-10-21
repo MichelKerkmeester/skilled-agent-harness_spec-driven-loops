@@ -1,0 +1,13 @@
+# scenario session-cleanup, run 2026-10-21T12:18:22Z in worktree 190, HEAD eb0c18f7e9
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+baseline v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-21T14:18:41+0200 action=skip reason=no-session-pid
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+baseline v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-21T14:18:41+0200 action=skip reason=no-session-pid
+2026-10-21T14:18:53+0200 action=skip reason=no-session-pid
+0
+0
+# block exit 0
