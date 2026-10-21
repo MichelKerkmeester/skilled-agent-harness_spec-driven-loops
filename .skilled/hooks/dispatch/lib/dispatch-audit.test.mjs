@@ -483,6 +483,23 @@ describe('resolveDispatchPacket', () => {
     expect(commands[0].text).toBe("opencode run -m p/m 'x' </dev/null");
   });
 
+  it('reads a heredoc operator inside a quoted prompt as text', () => {
+    const quoted = `echo "<<'ENDMARK'"
+codex exec task </dev/null
+ENDMARK`;
+    expect(resolveDispatchPackets(quoted).map(({ skill }) => skill)).toEqual(['cli-codex']);
+
+    const hyphenated = `echo "<<'END-MARK'"
+codex exec task </dev/null
+END-MARK`;
+    expect(resolveDispatchPackets(hyphenated).map(({ skill }) => skill)).toEqual(['cli-codex']);
+
+    const written = `cat > notes.md <<'ENDMARK'
+codex exec task </dev/null
+ENDMARK`;
+    expect(resolveDispatchPackets(written)).toEqual([]);
+  });
+
   it('keeps each repeated executor as its own dispatch command', () => {
     const command = 'opencode run -m p/m "a" </dev/null && opencode run "b"';
     const commands = resolveDispatchCommands(command);

@@ -1,0 +1,37 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs (123 tests | 1 failed | 122 skipped) 6ms
+   ❯ resolveDispatchPacket (12)
+     × reads a heredoc operator inside a quoted prompt as text 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > resolveDispatchPacket > reads a heredoc operator inside a quoted prompt as text
+AssertionError: expected [] to deeply equal [ 'cli-codex' ]
+
+- Expected
++ Received
+
+- [
+-   "cli-codex",
+- ]
++ []
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:490:70
+    488| codex exec task </dev/null
+    489| ENDMARK`;
+    490|     expect(resolveDispatchPackets(quoted).map(({ skill }) => skill)).t…
+       |                                                                      ^
+    491|
+    492|     const hyphenated = `echo "<<'END-MARK'"
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 122 skipped (123)
+   Start at  09:18:28
+   Duration  118ms (transform 52%, import 35%, tests 11%, worker 3%)
+
+b19-quoted-heredoc: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-audit.mjs)

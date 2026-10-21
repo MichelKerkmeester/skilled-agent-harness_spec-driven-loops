@@ -517,15 +517,49 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// Whether the character at `index` sits inside a single- or double-quoted span opened
+// between `from` and `index`. Inside double quotes a backslash escapes the next character;
+// inside single quotes nothing does; outside quotes a backslash escapes too, so `\"` stays
+// literal and opens no span.
+function insideQuotedSpan(command, from, index) {
+  let quote = null;
+  for (let cursor = from; cursor < index; cursor += 1) {
+    const character = command[cursor];
+    if (quote === "'") {
+      if (character === "'") quote = null;
+      continue;
+    }
+    if (character === '\\') {
+      cursor += 1;
+    } else if (quote === '"') {
+      if (character === '"') quote = null;
+    } else if (character === "'" || character === '"') {
+      quote = character;
+    }
+  }
+  return quote !== null;
+}
+
 // The introducers on one line share the bodies that follow it: each body ends at its own
 // closing line, so they are read together and the scan resumes after the last one.
+//
+// A `<<` inside a quoted span is text the command quotes, not an operator the shell reads,
+// so it starts no group. Reading it as one stripped the real command lines that followed
+// until the quoted word's closing line, and a dispatch among them resolved to no packet.
+// A skipped introducer advances only the search cursor: the quote scan keeps its origin, so
+// an open span before the skip still quotes the candidates after it.
 function heredocGroups(command) {
   const groups = [];
   let searchFrom = 0;
+  let scanFrom = 0;
   for (;;) {
     HEREDOC_INTRODUCER.lastIndex = searchFrom;
     const introducer = HEREDOC_INTRODUCER.exec(command);
     if (!introducer) return groups;
+    if (insideQuotedSpan(command, scanFrom, introducer.index)) {
+      searchFrom = introducer.index + introducer[0].length;
+      continue;
+    }
     const introducerEnd = introducer.index + introducer[0].length;
     const lineBreak = command.indexOf('\n', introducerEnd);
     if (lineBreak === -1) return groups;
@@ -533,7 +567,7 @@ function heredocGroups(command) {
     HEREDOC_INTRODUCER.lastIndex = introducerEnd;
     let next = HEREDOC_INTRODUCER.exec(command);
     while (next && next.index < lineBreak) {
-      introducers.push(next);
+      if (!insideQuotedSpan(command, scanFrom, next.index)) introducers.push(next);
       next = HEREDOC_INTRODUCER.exec(command);
     }
     let bodySearchFrom = lineBreak + 1;
@@ -563,6 +597,7 @@ function heredocGroups(command) {
       bodies,
     });
     searchFrom = bodies[bodies.length - 1].regionEnd + 1;
+    scanFrom = searchFrom;
   }
 }
 
