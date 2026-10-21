@@ -170,8 +170,9 @@ function resolveCommandConfigPath(promptText, projectDir) {
 }
 
 /**
- * Decide whether a prompt is a real command-owned iteration pack: an in-bounds
- * iteration marker plus a Config: path that resolves to a deep-loop config.
+ * Decide whether a prompt looks like a command-owned iteration pack: an
+ * in-bounds iteration marker plus a Config: path whose JSON has the deep-loop
+ * config shape. It checks shape only, not where the file came from.
  *
  * @param {string} promptText - raw args.prompt value
  * @param {string} projectDir - project root used to resolve relative paths

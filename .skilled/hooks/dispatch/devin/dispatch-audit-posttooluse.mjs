@@ -7,7 +7,7 @@
 //
 // PostToolUse(exec) CLI dispatch audit trail for Devin CLI -- the Devin sibling of
 // the Codex/Claude dispatch-audit hook. Observes a completed exec call, recognizes
-// an `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends
+// an `opencode run` / `claude -p` / `codex exec` dispatch shape, and appends
 // one redacted, size-rotated JSONL audit line through the shared dispatch-audit
 // primitives, tagged runtime:'devin'. Strictly observational -- never emits a
 // permissionDecision. FAILS OPEN -- any missing payload, parse error, or

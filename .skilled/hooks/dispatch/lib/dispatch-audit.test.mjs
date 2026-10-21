@@ -4,12 +4,12 @@
 // Run with the pinned binary, because `npx vitest` resolves a different copy:
 // .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
 
-import { describe, it, expect, vi } from 'vitest';
-
 import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { describe, it, expect, vi } from 'vitest';
 
 import {
   DISPATCH_SHAPES,
