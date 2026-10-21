@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes",
+  "description": "Fix the dispatch lint and audit findings held for the operator",
+  "keywords": [
+    "dispatch",
+    "lint",
+    "audit",
+    "findings",
+    "held",
+    "operator"
+  ],
+  "lastUpdated": "2026-10-21T04:55:14.832Z",
+  "specId": "040",
+  "folderSlug": "dispatch-lint-held-fixes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,238 @@
+TAP version 13
+# Subtest: reads the real hard rules from the sidecar beside each SKILL.md
+ok 1 - reads the real hard rules from the sidecar beside each SKILL.md
+  ---
+  duration_ms: 1.797208
+  type: 'test'
+  ...
+# Subtest: CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+ok 2 - CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+  ---
+  duration_ms: 3.077958
+  type: 'test'
+  ...
+# Subtest: stdin-redirect-required covers every headless CLI shape, not just opencode run
+ok 3 - stdin-redirect-required covers every headless CLI shape, not just opencode run
+  ---
+  duration_ms: 0.551083
+  type: 'test'
+  ...
+# Subtest: availability checks pass for a resolvable binary and never refuse without PATH
+ok 4 - availability checks pass for a resolvable binary and never refuse without PATH
+  ---
+  duration_ms: 0.129291
+  type: 'test'
+  ...
+# Subtest: AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+ok 5 - AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+  ---
+  duration_ms: 0.698541
+  type: 'test'
+  ...
+# Subtest: other checks discriminate correctly
+ok 6 - other checks discriminate correctly
+  ---
+  duration_ms: 0.276292
+  type: 'test'
+  ...
+# Subtest: appliesTo evaluates only rules for the resolved version
+ok 7 - appliesTo evaluates only rules for the resolved version
+  ---
+  duration_ms: 0.086667
+  type: 'test'
+  ...
+# Subtest: rules without appliesTo apply to both versions
+ok 8 - rules without appliesTo apply to both versions
+  ---
+  duration_ms: 0.054292
+  type: 'test'
+  ...
+# Subtest: a rule without appliesTo stays blocking when the version is unknown
+ok 9 - a rule without appliesTo stays blocking when the version is unknown
+  ---
+  duration_ms: 0.081166
+  type: 'test'
+  ...
+# Subtest: unknown evaluation preserves shared severity and warns version-specific rules
+ok 10 - unknown evaluation preserves shared severity and warns version-specific rules
+  ---
+  duration_ms: 0.093083
+  type: 'test'
+  ...
+# Subtest: v2 slash-command fixture warns with session.command and never blocks
+ok 11 - v2 slash-command fixture warns with session.command and never blocks
+  ---
+  duration_ms: 0.197292
+  type: 'test'
+  ...
+# Subtest: evaluate resolves quoted, wrapped, and path-qualified OpenCode executors
+ok 12 - evaluate resolves quoted, wrapped, and path-qualified OpenCode executors
+  ---
+  duration_ms: 41.898459
+  type: 'test'
+  ...
+# Subtest: evaluate probes one fake binary once across two evaluations
+ok 13 - evaluate probes one fake binary once across two evaluations
+  ---
+  duration_ms: 21.776917
+  type: 'test'
+  ...
+# Subtest: a path-qualified executable outside PATH stays unknown and never runs
+ok 14 - a path-qualified executable outside PATH stays unknown and never runs
+  ---
+  duration_ms: 1.32175
+  type: 'test'
+  ...
+# Subtest: a path-qualified executable on PATH resolves its version
+ok 15 - a path-qualified executable on PATH resolves its version
+  ---
+  duration_ms: 27.196625
+  type: 'test'
+  ...
+# Subtest: a symlinked path-qualified executable spawns the trusted path, not the symlink
+ok 16 - a symlinked path-qualified executable spawns the trusted path, not the symlink
+  ---
+  duration_ms: 123.627875
+  type: 'test'
+  ...
+# Subtest: OPENCODE_BIN makes a path-qualified executable trusted
+ok 17 - OPENCODE_BIN makes a path-qualified executable trusted
+  ---
+  duration_ms: 25.791917
+  type: 'test'
+  ...
+# Subtest: a path-qualified missing file stays unknown
+ok 18 - a path-qualified missing file stays unknown
+  ---
+  duration_ms: 0.406083
+  type: 'test'
+  ...
+# Subtest: the async resolver times out a probe that never exits
+ok 19 - the async resolver times out a probe that never exits
+  ---
+  duration_ms: 3002.724166
+  type: 'test'
+  ...
+# Subtest: the shared version corpus pins the parser to each expected family
+ok 20 - the shared version corpus pins the parser to each expected family
+  ---
+  duration_ms: 0.17375
+  type: 'test'
+  ...
+# Subtest: SUPPORTED_FAMILIES is the frozen list of supported families
+ok 21 - SUPPORTED_FAMILIES is the frozen list of supported families
+  ---
+  duration_ms: 0.045417
+  type: 'test'
+  ...
+# Subtest: opencode2 run is evaluated by the hard-rule engine
+ok 22 - opencode2 run is evaluated by the hard-rule engine
+  ---
+  duration_ms: 0.05375
+  type: 'test'
+  ...
+# Subtest: every runtime with a preflight adapter has it registered
+ok 23 - every runtime with a preflight adapter has it registered
+  ---
+  duration_ms: 2.207417
+  type: 'test'
+  ...
+# Subtest: pi dispatches need --offline and a provider-qualified model
+ok 24 - pi dispatches need --offline and a provider-qualified model
+  ---
+  duration_ms: 0.355833
+  type: 'test'
+  ...
+# Subtest: predicate bypasses: equals-form flags and unquoted slash prompts are caught
+ok 25 - predicate bypasses: equals-form flags and unquoted slash prompts are caught
+  ---
+  duration_ms: 0.164875
+  type: 'test'
+  ...
+# Subtest: hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+ok 26 - hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+  ---
+  duration_ms: 0.060375
+  type: 'test'
+  ...
+# Subtest: hermes rules discriminate on the flags the packet contract pins
+ok 27 - hermes rules discriminate on the flags the packet contract pins
+  ---
+  duration_ms: 0.721792
+  type: 'test'
+  ...
+# Subtest: the negative-control marker only counts when the guard process allows it
+ok 28 - the negative-control marker only counts when the guard process allows it
+  ---
+  duration_ms: 0.0955
+  type: 'test'
+  ...
+# Subtest: fail-open: a check that throws never produces a violation
+ok 29 - fail-open: a check that throws never produces a violation
+  ---
+  duration_ms: 0.050708
+  type: 'test'
+  ...
+# Subtest: readHardRules reads the sibling sidecar and fails open on malformed input
+ok 30 - readHardRules reads the sibling sidecar and fails open on malformed input
+  ---
+  duration_ms: 8.904625
+  type: 'test'
+  ...
+# Subtest: severity maps error and block to a blocking violation; anything else advises
+ok 31 - severity maps error and block to a blocking violation; anything else advises
+  ---
+  duration_ms: 0.139917
+  type: 'test'
+  ...
+# Subtest: every runtime dispatch shape resolves to its skill (mutation-proof)
+ok 32 - every runtime dispatch shape resolves to its skill (mutation-proof)
+  ---
+  duration_ms: 0.8355
+  type: 'test'
+  ...
+# Subtest: a dispatch is resolved from the command, not from text that merely contains one
+ok 33 - a dispatch is resolved from the command, not from text that merely contains one
+  ---
+  duration_ms: 1.487333
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+ok 34 - ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+  ---
+  duration_ms: 0.754959
+  type: 'test'
+  ...
+# Subtest: a jev dispatch is governed from the command, and mentions of it are not
+ok 35 - a jev dispatch is governed from the command, and mentions of it are not
+  ---
+  duration_ms: 0.164416
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every cli packet declares at least one rule
+ok 36 - ENFORCEMENT GUARD: every cli packet declares at least one rule
+  ---
+  duration_ms: 0.841208
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list
+ok 37 - ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list
+  ---
+  duration_ms: 0.827416
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+ok 38 - ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+  ---
+  duration_ms: 0.704
+  type: 'test'
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3321.576709

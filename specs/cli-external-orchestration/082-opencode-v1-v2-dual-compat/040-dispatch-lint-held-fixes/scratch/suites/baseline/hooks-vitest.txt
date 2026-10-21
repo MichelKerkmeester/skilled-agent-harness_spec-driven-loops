@@ -1,0 +1,10 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T04:57:08.660Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+
+ Test Files  6 passed (6)
+      Tests  217 passed (217)
+   Start at  06:57:07
+   Duration  1.38s (tests 83%, transform 13%, import 3%, worker 1%)
+
