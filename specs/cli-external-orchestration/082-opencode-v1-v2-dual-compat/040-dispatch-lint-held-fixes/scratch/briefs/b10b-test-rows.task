@@ -1,0 +1,17 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to two test rows.
+
+In `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, in the `Pi dispatch deny matrix` table, the rows 'quoted deep-loop executor' and 'backtick deep-loop executor' put `/deep:` right after the quote or backtick. The executor pattern needs whitespace before `/deep:`, so those rows pass even without the quote and expansion checks, and prove nothing. Put the word `run ` inside the quote and the backticks:
+- 'quoted deep-loop executor': raw text `say "run /deep:review --executor cli-devin"`
+- 'backtick deep-loop executor': raw text `` the form is `run /deep:review --executor cli-devin` `` (keep the backticks escaped as they are now)
+Change nothing else.
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: the two changed lines, then the verification command with its pass and fail counts.

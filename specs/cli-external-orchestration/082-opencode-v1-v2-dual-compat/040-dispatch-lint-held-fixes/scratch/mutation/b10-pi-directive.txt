@@ -1,0 +1,40 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T05:47:23.439Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (50 tests | 3 failed) 447ms
+   ❯ Pi dispatch deny matrix (23)
+     × negated deep-loop executor 3ms
+     × quoted deep-loop executor 0ms
+     × backtick deep-loop executor 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negated deep-loop executor
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > quoted deep-loop executor
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > backtick deep-loop executor
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:151:48
+    149|         ? { runtime: 'claude' }
+    150|         : {};
+    151|     expect(denied(command, userText, options)).toBe(expected);
+       |                                                ^
+    152|   });
+    153| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 47 passed (50)
+   Start at  07:47:22
+   Duration  559ms (tests 88%, transform 7%, import 4%)
+
+b10-pi-directive: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

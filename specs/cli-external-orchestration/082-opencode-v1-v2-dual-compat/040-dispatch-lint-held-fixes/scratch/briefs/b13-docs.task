@@ -1,0 +1,34 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a documentation editor. Make one change: bring three docs in line with the dispatch behaviour now in code. Edit only the sentences named below, keep each file's voice, table shape and line structure, and add no new sections.
+
+What changed in code (read `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, `lib/dispatch-rule-checks.mjs` and `pi/dispatch-preflight-lint.ts` to confirm before writing):
+- `resolveDispatchPackets` returns every packet a command dispatches to, in order (a chain, a wrapper, a shell `-c`, a heredoc a shell runs); `resolveDispatchCommands` returns every dispatch with its unwrapped text, repeats of one executor included.
+- `matchDispatchShape` (the audit) records the first packet that resolver names, so wrapped and shell-run dispatches the preflight lints are recorded too, and a dispatch inside heredoc data is not. The Codex and Devin audit adapters now go through `recordDispatch` like Claude's.
+- `evaluateDispatch(command, skillsRoot)` holds every resolved dispatch to its own packet's rules; the Claude, Codex and Devin preflight adapters, the OpenCode plugin and the Pi extension all use it.
+- `stdin-redirect-required` and `explicit-model-required` read each dispatch's own arguments with quoted spans blanked: every dispatch in a chain needs its own redirect and model, and a flag or redirect inside a quoted prompt does not count.
+- The Pi extension also resolves the command: a `none` reading that resolves to exactly one packet (a wrapper such as `command` or `nohup` in front of `codex exec` or `opencode run`, or a heredoc a shell runs) is gated as a direct dispatch of that packet; several packets read as ambiguous; an ambiguous reading is never upgraded. A `/deep:* --executor cli-X` override counts only when it is not quoted, not inside backticks and not negated earlier in its sentence.
+
+Edits:
+1. `.skilled/hooks/dispatch/README.md`:
+   - the `stdin-redirect-required` and `explicit-model-required` rows of the checks table: add that each dispatch in a chain needs its own, and that text inside a quoted prompt does not count;
+   - the `lib/dispatch-rule-checks.mjs` row: name `evaluateDispatch`;
+   - the `lib/dispatch-audit.mjs` row: name `resolveDispatchPackets` and `resolveDispatchCommands` and say `matchDispatchShape` records what the resolver names;
+   - the `claude/dispatch-preflight-lint.mjs`, `codex/` and `devin/` row: say each dispatch in a chain is evaluated against its own packet's rules;
+   - the `pi/dispatch-preflight-lint.ts` row: say a wrapped or shell-run dispatch is resolved before authorization and every resolved packet's rules are evaluated.
+2. `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md`:
+   - the "Pi authorization gate" bullet: add the resolved-packet rule and the stricter `/deep:*` override rule;
+   - the "Cross-runtime consumers" bullet: replace "(`matchDispatchShape`, which records only `direct` dispatches)" with a phrase saying it records the first packet the shared resolver names.
+3. `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md`, the "Shared core" bullet: say the dispatch is recognized through the same resolver the preflight uses, so a dispatch inside heredoc data is not logged and one inside a heredoc a shell runs is.
+
+Never name spec paths, phases, or task, review or finding ids in these docs.
+
+VERIFICATION (from the worktree root):
+git diff --stat   (exactly the three files above)
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/hooks/dispatch/README.md   (if that script exists; report its result, or say it does not exist)
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/README.md, .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md, .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md
+
+Return report: each edit (file and line, old phrase and new phrase), then the verification output.

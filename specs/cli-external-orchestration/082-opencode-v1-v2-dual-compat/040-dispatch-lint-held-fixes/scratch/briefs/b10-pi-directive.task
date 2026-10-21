@@ -1,0 +1,28 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its tests.
+
+Problem: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, `deepLoopExecutors` collects every `/deep:... --executor cli-X` match in the user's text, and `shouldDenyPiDispatch` treats any match as the user naming that executor. It does not apply the checks `hasExplicitModeOverride` applies to a plain `cli-X` mention, so `do not run /deep:review --executor cli-devin`, `"/deep:review --executor cli-devin"` or `` `/deep:review --executor cli-devin` `` still authorizes a cli-devin dispatch.
+
+Fix:
+1. Extract the usability test inside `hasExplicitModeOverride` (not inside a quote, not inside an expansion, no negation word earlier in the same sentence) into one private helper, and use it from both `hasExplicitModeOverride` and `deepLoopExecutors`. Keep `hasExplicitModeOverride`'s own token checks (`=` and `$`) where they are.
+2. In `deepLoopExecutors`, count a match only when the helper says the `/deep:` mention is usable, measured at the index of the `/deep:` text. A backtick span counts as an expansion, as it already does for the plain mention.
+Do not change `shouldDenyPiDispatch` or any other function.
+
+Tests, in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add rows to the `Pi dispatch deny matrix` `it.each` table:
+- `['negated deep-loop executor', 'devin -p "task"', 'do not run /deep:review --executor cli-devin', true]`
+- `['quoted deep-loop executor', 'devin -p "task"', 'say "/deep:review --executor cli-devin"', true]`
+- `['backtick deep-loop executor', 'devin -p "task"', 'the form is \`/deep:review --executor cli-devin\`', true]` (escape the backticks so the string literal is valid TypeScript)
+- `['negation in an earlier sentence', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', false]`
+Keep every existing row; the existing `deep-loop executor` rows must still pass.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

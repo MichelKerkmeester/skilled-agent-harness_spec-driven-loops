@@ -156,6 +156,22 @@ function tokenStart(text: string, index: number): number {
   return cursor;
 }
 
+/** A mention authorizes only where the user states it literally: quoted text, expansions and
+ * negated sentences describe an executor without requesting it. */
+function isUsableMention(userText: string, mentionIndex: number): boolean {
+  const sentenceStart = Math.max(
+    userText.lastIndexOf('\n', mentionIndex),
+    userText.lastIndexOf(';', mentionIndex),
+    userText.lastIndexOf('.', mentionIndex),
+    userText.lastIndexOf('!', mentionIndex),
+    userText.lastIndexOf('?', mentionIndex),
+  ) + 1;
+  const preceding = userText.slice(sentenceStart, mentionIndex);
+  return !isInsideQuote(userText, mentionIndex) &&
+    !isInsideExpansion(userText, mentionIndex) &&
+    !NEGATION_PATTERN.test(preceding);
+}
+
 function hasExplicitModeOverride(userText: string, skill: string): boolean {
   const escapedSkill = skill.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`(?:^|[^A-Za-z0-9_-])${escapedSkill}(?:$|[^A-Za-z0-9_-])`, 'g');
@@ -167,19 +183,9 @@ function hasExplicitModeOverride(userText: string, skill: string): boolean {
     const mentionIndex = match.index + (match[0].startsWith(skill) ? 0 : match[0].length - skill.length - 1);
     const start = tokenStart(userText, mentionIndex);
     const token = userText.slice(start, mentionIndex + skill.length);
-    const sentenceStart = Math.max(
-      userText.lastIndexOf('\n', mentionIndex),
-      userText.lastIndexOf(';', mentionIndex),
-      userText.lastIndexOf('.', mentionIndex),
-      userText.lastIndexOf('!', mentionIndex),
-      userText.lastIndexOf('?', mentionIndex),
-    ) + 1;
-    const preceding = userText.slice(sentenceStart, mentionIndex);
-    const usable = !isInsideQuote(userText, mentionIndex) &&
-      !isInsideExpansion(userText, mentionIndex) &&
+    const usable = isUsableMention(userText, mentionIndex) &&
       !token.includes('=') &&
-      !token.startsWith('$') &&
-      !NEGATION_PATTERN.test(preceding);
+      !token.startsWith('$');
     if (usable) return true;
     cursor = match.index + match[0].length;
   }
@@ -190,7 +196,8 @@ function deepLoopExecutors(userText: string): string[] {
   const executors: string[] = [];
   DEEP_LOOP_EXECUTOR_PATTERN.lastIndex = 0;
   for (let match = DEEP_LOOP_EXECUTOR_PATTERN.exec(userText); match; match = DEEP_LOOP_EXECUTOR_PATTERN.exec(userText)) {
-    executors.push(match[1]);
+    const deepIndex = match.index + match[0].indexOf('/deep:');
+    if (isUsableMention(userText, deepIndex)) executors.push(match[1]);
   }
   DEEP_LOOP_EXECUTOR_PATTERN.lastIndex = 0;
   return executors;
