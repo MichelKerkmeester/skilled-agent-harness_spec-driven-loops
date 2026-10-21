@@ -135,8 +135,24 @@ describe('Pi prompt advisor bridge', () => {
         cwd: process.cwd(),
         hook_event_name: 'UserPromptSubmit',
       },
-      { runtime: 'pi' },
+      { runtime: 'pi', writeDiagnostic: expect.any(Function) },
     );
+  });
+
+  it('keeps the advisor diagnostic line off Pi stderr', async () => {
+    const stderrWrite = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    try {
+      await registeredInputHandler()(
+        { text: 'review this function' },
+        { cwd: findRepositoryRoot() },
+      );
+      const diagnosticWrites = stderrWrite.mock.calls.filter(([chunk]) =>
+        String(chunk).includes('"runtime":"pi"'),
+      );
+      expect(diagnosticWrites).toEqual([]);
+    } finally {
+      stderrWrite.mockRestore();
+    }
   });
 
   it('passes setup wording through to the timed-out fallback directive', async () => {

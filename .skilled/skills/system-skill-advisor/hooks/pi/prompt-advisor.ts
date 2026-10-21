@@ -253,7 +253,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
             cwd?: string;
             hook_event_name?: string;
           },
-          dependencies?: { runtime?: "pi" },
+          dependencies?: { runtime?: "pi"; writeDiagnostic?: (line: string) => void },
         ) => Promise<AdvisorEnvelope | Record<string, unknown>>;
         renderAdvisorFallbackDirective?: (options?: { setupWording?: boolean }) => string;
         SETUP_WORDING?: RegExp;
@@ -268,7 +268,10 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
                 cwd: ctx.cwd,
                 hook_event_name: "UserPromptSubmit",
               },
-              { runtime: "pi" },
+              // The hook runs inside Pi's own process, so its default stderr
+              // diagnostic would draw over Pi's input line. The record is
+              // still persisted to disk by the hook.
+              { runtime: "pi", writeDiagnostic: () => {} },
             ).then((output) => ({ timedOut: false as const, output })),
             new Promise<{ timedOut: true }>((resolve) => {
               const budgetMs = advisorBudgetMs();

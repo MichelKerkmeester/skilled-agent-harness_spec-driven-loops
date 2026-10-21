@@ -22,7 +22,8 @@
     "system-skill-advisor/034-doctor-command-guidance",
     "system-skill-advisor/035-doctor-command-routing",
     "system-skill-advisor/036-routing-and-launcher-hardening",
-    "system-skill-advisor/037-advisor-daemon-memory"
+    "system-skill-advisor/037-advisor-daemon-memory",
+    "system-skill-advisor/038-pi-advisor-diagnostic-stderr"
   ],
   "manual": {
     "depends_on": [],
