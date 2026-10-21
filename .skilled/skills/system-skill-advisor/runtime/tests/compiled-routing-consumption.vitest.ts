@@ -13,7 +13,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const mockedChild = vi.hoisted(() => ({ spawn: vi.fn() }));
 vi.mock('node:child_process', () => ({ spawn: mockedChild.spawn }));
 
-import MkSkillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
+import skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
 
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 
@@ -59,7 +59,7 @@ function mockAdvisorChild(stdout: string) {
 }
 
 async function makePlugin(options: Record<string, unknown> = {}) {
-  return await MkSkillAdvisorPlugin({ directory: process.cwd() } as never, {
+  return await skillAdvisorPlugin.server({ directory: process.cwd() } as never, {
     sourceSignatureOverride: 'fixed-signature',
     cacheTTLMs: 60_000,
     ...options,
@@ -80,7 +80,7 @@ describe('plugin renders the served compiled outcome into system-context', () =>
     vi.clearAllMocks();
     delete process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED;
     delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
-    const reset = await MkSkillAdvisorPlugin({ directory: process.cwd() } as never, {} as never);
+    const reset = await skillAdvisorPlugin.server({ directory: process.cwd() } as never, {} as never);
     await reset.event?.({ event: { type: 'server.instance.disposed', properties: { directory: process.cwd() } } } as never);
   });
   afterEach(() => { delete process.env[FLAG]; });
