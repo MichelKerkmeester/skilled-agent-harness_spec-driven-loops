@@ -14,6 +14,7 @@ from typing import Dict, List, Optional
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'shared' / 'scripts'))
 from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+from package_skill import skill_folder_id  # type: ignore  # noqa: E402
 
 
 COMPILED_ROUTING_MARKERS = (
@@ -110,7 +111,7 @@ def check_compiled_routing_state(
                 str(manifest_cli),
                 'freshness',
                 '--hub',
-                skill_path.name,
+                skill_folder_id(skill_path),
                 '--skill-root',
                 str(skill_path.resolve()),
             ],

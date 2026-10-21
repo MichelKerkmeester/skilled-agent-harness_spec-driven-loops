@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -158,6 +158,7 @@ Extensions declare extra semantics in place. They do not create extra directory 
 | `transform-verbs` | Verb routing that changes target mode by wording frame. | The hub routes phrases such as applying a transformation versus auditing whether it should happen. |
 | `deprecated-modes` | Retired modes kept as redirects or shims. | A public mode remains as replacement guidance without active packet routing. |
 | `transport-axis` | `packetKind: "transport"` entries that bridge to an external tool's CLI/MCP surface. | A mode drives an external tool (its CLI/MCP), stays `mutatesWorkspace:false` + `routingClass:"metadata"`, forbids Write/Edit/Task, and pairs with a workflow mode before any effecting operation. Every listed transport must be a registered `packetKind:"transport"` mode. |
+| `repo-root-hub` | `repoPaths`, the top-level entries of a repository whose root is the hub. | The hub is a repository root that also holds repository files, such as spec packets, exports or a built plugin. The parent-hub checker and the package validator skip each listed entry and read the hub id from the folder name in kebab case, so a folder named `Product Owner` stands for `product-owner`. An entry is a plain top-level name, never a packet, a nested path or a file the hub root owns. |
 
 A hub with no extensions is the pure two-tier core. Add only the extension needed for real routing semantics.
 

@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/068-hub-repo-folder-exemption",
+  "description": "Let a parent hub at a repository root declare its repo folders so the skilled checkers skip them",
+  "keywords": [
+    "let",
+    "parent",
+    "hub",
+    "repository",
+    "root",
+    "declare",
+    "repo",
+    "folders",
+    "skilled",
+    "checkers",
+    "skip",
+    "them"
+  ],
+  "lastUpdated": "2026-10-20T17:23:34.557Z",
+  "specId": "068",
+  "folderSlug": "hub-repo-folder-exemption",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

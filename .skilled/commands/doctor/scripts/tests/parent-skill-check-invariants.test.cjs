@@ -683,6 +683,60 @@ test('3f fails when transports[] lists a mode that is not a registered transport
   assert.equal(status, 1, output);
 });
 
+// A hub at a repository root: the folder is named for people, and spec
+// packets beside the hub carry their own graph-metadata.json files.
+function buildRepoRootHub(repoPaths) {
+  const hub = buildHub();
+  const repoRoot = path.join(path.dirname(hub), 'Demo Hub');
+  fs.renameSync(hub, repoRoot);
+  editJson(repoRoot, 'mode-registry.json', (r) => { r.extensions = { 'repo-root-hub': { repoPaths } }; });
+  fs.mkdirSync(path.join(repoRoot, 'specs', '001-packet'), { recursive: true });
+  writeJson(path.join(repoRoot, 'specs', '001-packet', 'graph-metadata.json'), { packet_id: '001-packet' });
+  writeJson(path.join(repoRoot, 'specs', '001-packet', 'description.json'), { specFolder: '001-packet' });
+  fs.mkdirSync(path.join(repoRoot, 'export'));
+  return repoRoot;
+}
+
+test('a repo-root hub that declares its repo folders passes, with its id read in kebab case', () => {
+  const hub = buildRepoRootHub(['specs', 'export']);
+  const { status, output } = runChecker(hub);
+  assert.equal(status, 0, output);
+  for (const id of ['1a', '1b', '2a', '2b', '3f', '6a']) assertLine(output, 'PASS', id);
+  assertLine(output, 'PASS', '1b', 'matches directory name');
+});
+
+test('a repo-root hub still fails 2a on a graph-metadata.json in a folder it did not declare', () => {
+  const hub = buildRepoRootHub(['export']);
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '2a', 'specs');
+  assertLine(output, 'FAIL', '6a', 'specs');
+  assert.equal(status, 1, output);
+});
+
+test('without the extension a hub in a "Demo Hub" folder fails 1b on the folder name', () => {
+  const hub = buildRepoRootHub(['specs', 'export']);
+  editJson(hub, 'mode-registry.json', (r) => { delete r.extensions; });
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '1b', 'directory name "Demo Hub"');
+  assert.equal(status, 1, output);
+});
+
+test('3f fails when repoPaths names a packet, a hub file or a nested path', () => {
+  const hub = buildRepoRootHub(['specs', 'export', 'pkg-alpha', 'SKILL.md', 'specs/001-packet']);
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '3f', '"pkg-alpha" is part of the hub');
+  assertLine(output, 'FAIL', '3f', '"SKILL.md" is part of the hub');
+  assertLine(output, 'FAIL', '3f', 'not a plain top-level name');
+  assert.equal(status, 1, output);
+});
+
+test('3f fails when the repo-root-hub extension has no repoPaths', () => {
+  const hub = buildRepoRootHub([]);
+  const { status, output } = runChecker(hub);
+  assertLine(output, 'FAIL', '3f', 'non-empty repoPaths');
+  assert.equal(status, 1, output);
+});
+
 test('3d fails when a mode has no packetSkillName', () => {
   const hub = buildHub();
   editJson(hub, 'mode-registry.json', (r) => { delete r.modes[0].packetSkillName; });

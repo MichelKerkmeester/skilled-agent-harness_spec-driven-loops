@@ -509,13 +509,53 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
     return True, "Resources valid", warnings
 
 
+# A hub at a repository root declares this mode-registry extension. Its
+# repoPaths name the top-level entries that belong to the repository, such as
+# spec packets and exports, so no check here reads them as part of the skill.
+REPO_ROOT_HUB_EXTENSION = 'repo-root-hub'
+
+
+def _repo_root_hub(skill_path: Path) -> Optional[Dict[str, object]]:
+    """Return the repo-root-hub declaration of a hub, or None when it has none."""
+    try:
+        registry = json.loads((skill_path / 'mode-registry.json').read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return None
+    extensions = registry.get('extensions') if isinstance(registry, dict) else None
+    if not isinstance(extensions, dict) or REPO_ROOT_HUB_EXTENSION not in extensions:
+        return None
+    declaration = extensions[REPO_ROOT_HUB_EXTENSION]
+    return declaration if isinstance(declaration, dict) else {}
+
+
+def repo_root_paths(skill_path: Path) -> frozenset:
+    """Return the top-level names a repo-root hub declares as repository entries."""
+    declaration = _repo_root_hub(skill_path) or {}
+    listed = declaration.get('repoPaths')
+    return frozenset(p for p in listed if isinstance(p, str)) if isinstance(listed, list) else frozenset()
+
+
+def skill_folder_id(skill_path: Path) -> str:
+    """Return the id a skill's folder stands for.
+
+    A repository folder is named for people ("Product Owner"), so a repo-root hub
+    stands for its folder name in kebab case. Every other skill stands for its
+    folder name as it is.
+    """
+    if _repo_root_hub(skill_path) is None:
+        return skill_path.name
+    return re.sub(r'[^a-z0-9]+', '-', skill_path.name.lower()).strip('-')
+
+
 def _is_python_package_directory(path: Path) -> bool:
     """Return whether a directory is an importable Python package."""
     return path.is_dir() and (path / '__init__.py').is_file()
 
 
-def _is_exempt_package_path(path: Path, relative_path: Path) -> bool:
+def _is_exempt_package_path(path: Path, relative_path: Path, repo_paths: frozenset = frozenset()) -> bool:
     """Return whether a package path keeps a tool- or interpreter-owned name."""
+    if relative_path.parts and relative_path.parts[0] in repo_paths:
+        return True
     if any(part.startswith('.') for part in relative_path.parts):
         return True
     if any(part in EXEMPT_SUBTREES for part in relative_path.parts):
@@ -561,10 +601,11 @@ def validate_generated_paths(skill_path: Path) -> Tuple[bool, str, List[str]]:
         debt-tolerant reads and are promoted by strict validation and packaging.
     """
     warnings = []
+    repo_paths = repo_root_paths(skill_path)
 
     for path in sorted(skill_path.rglob('*')):
         relative_path = path.relative_to(skill_path)
-        if _is_exempt_package_path(path, relative_path):
+        if _is_exempt_package_path(path, relative_path, repo_paths):
             continue
 
         slug = path.name if path.is_dir() else path.name.split('.')[0]
@@ -635,10 +676,14 @@ def _iter_versioned_docs(skill_path: Path):
     Walks with pruning so node_modules and scratch are never entered, and skips
     symlinks, which the engine's walker does not follow either.
     """
+    repo_paths = repo_root_paths(skill_path)
     for dirpath, dirnames, filenames in os.walk(skill_path):
-        dirnames[:] = sorted(d for d in dirnames if d not in VERSION_SKIPPED_DIRS)
         dirs = Path(dirpath).relative_to(skill_path).parts
+        skipped = VERSION_SKIPPED_DIRS | (repo_paths if not dirs else frozenset())
+        dirnames[:] = sorted(d for d in dirnames if d not in skipped)
         for name in sorted(filenames):
+            if not dirs and name in repo_paths:
+                continue
             file = Path(dirpath) / name
             if name.endswith('.md') and not file.is_symlink() and _is_versioned_doc(dirs, name):
                 yield file
@@ -782,11 +827,12 @@ def validate_name_matches_folder(skill_path: Path, parsed_frontmatter: Dict[str,
     """
     warnings = []
     
-    folder_name = skill_path.name
+    folder_name = skill_folder_id(skill_path)
     frontmatter_name = parsed_frontmatter.get('name', '')
     
     if folder_name != frontmatter_name:
-        return False, f"Frontmatter name '{frontmatter_name}' must match folder name '{folder_name}'", warnings
+        named = 'kebab-case folder name' if folder_name != skill_path.name else 'folder name'
+        return False, f"Frontmatter name '{frontmatter_name}' must match {named} '{folder_name}'", warnings
     
     return True, "Name matches folder", warnings
 
@@ -817,7 +863,11 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     all_warnings = []
     skill_md = skill_path / 'SKILL.md'
 
-    unsupported_roots = find_unsupported_root_dirs(skill_path)
+    repo_paths = repo_root_paths(skill_path)
+    unsupported_roots = [
+        root for root in find_unsupported_root_dirs(skill_path)
+        if root.relative_to(skill_path).parts[0] not in repo_paths
+    ]
     if unsupported_roots:
         return False, f"Unsupported catalog/playbook root: {unsupported_roots[0]}", all_warnings
 
@@ -968,6 +1018,7 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
     try:
         with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
             zip_resolved = zip_filename.resolve()
+            repo_paths = repo_root_paths(skill_path)
             file_count = 0
             for file_path in skill_path.rglob('*'):
                 if file_path.is_file():
@@ -976,6 +1027,9 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
                         continue
 
                     rel_parts = file_path.relative_to(skill_path).parts
+                    # A repo-root hub ships the skill, not the repository around it.
+                    if rel_parts[0] in repo_paths:
+                        continue
                     # Hidden ancestors and cache directories contain non-distributable files.
                     if any(part.startswith('.') or part == '__pycache__' for part in rel_parts):
                         continue

@@ -17,6 +17,12 @@
  * fields, so the checks are family-agnostic: they run FULL on every hub and
  * only demand extension-specific fields when the hub declares that extension.
  *
+ * A hub can sit at a repository root, beside repository files such as spec
+ * packets and exports. It declares the repo-root-hub extension, listing those
+ * top-level entries in repoPaths. The identity walk and the child-directory
+ * check then skip them, and the hub id is the folder name in kebab case, since
+ * a repository folder is named for people ("Product Owner") rather than tools.
+ *
  * Usage:
  *   node parent-skill-check.cjs [parent-skill-dir]
  *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # advisory findings as WARN
@@ -98,6 +104,14 @@ const NON_MUTATING_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 // Tools a command may grant beyond its mode without escalating it (3k).
 // TodoWrite edits only the agent's own task list, never the workspace.
 const NON_CAPABILITY_TOOLS = ['TodoWrite'];
+
+// The extension a hub at a repository root declares, and the files a hub root
+// owns, which repoPaths can never name.
+const REPO_ROOT_HUB_EXTENSION = 'repo-root-hub';
+const HUB_ROOT_FILES = new Set([
+  'SKILL.md', 'ROUTER.md', 'README.md', 'mode-registry.json', 'hub-router.json', 'description.json',
+  'graph-metadata.json', 'leaf-manifest.json', 'leaf-aliases.json', 'changelog', 'manual-testing-playbook',
+]);
 
 // Directories allowed at a hub root without being a registered packet.
 const DIRECTORY_ALLOWLIST = new Set([
@@ -196,6 +210,29 @@ function isPlainObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+// "Product Owner" -> "product-owner".
+function kebabCase(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+// The repo-root-hub declaration, read before the identity check needs it. A
+// malformed registry or extension reads as undeclared here, and 3a or 3f reports it.
+function readRepoRootHub(target) {
+  let registry;
+  try {
+    registry = readJson(path.join(target, 'mode-registry.json'));
+  } catch {
+    return { declared: false, repoPaths: new Set() };
+  }
+  const extensions = isPlainObject(registry) && isPlainObject(registry.extensions) ? registry.extensions : {};
+  if (!Object.prototype.hasOwnProperty.call(extensions, REPO_ROOT_HUB_EXTENSION)) {
+    return { declared: false, repoPaths: new Set() };
+  }
+  const declaration = extensions[REPO_ROOT_HUB_EXTENSION];
+  const listed = isPlainObject(declaration) && Array.isArray(declaration.repoPaths) ? declaration.repoPaths : [];
+  return { declared: true, repoPaths: new Set(listed.filter((p) => typeof p === 'string')) };
+}
+
 function describeJson(value) {
   if (value === null) return 'null';
   return Array.isArray(value) ? 'an array' : typeof value;
@@ -237,7 +274,8 @@ function isSymlink(p) {
 }
 
 // Recursively collect every regular file whose name is in `names`, keyed by name.
-function collectFilesNamed(dir, names) {
+// `skipTopLevel` names entries directly under `dir` that are never entered.
+function collectFilesNamed(dir, names, skipTopLevel = new Set()) {
   const found = new Map(names.map((name) => [name, []]));
   const stack = [dir];
   while (stack.length > 0) {
@@ -250,6 +288,7 @@ function collectFilesNamed(dir, names) {
     }
     for (const entry of entries) {
       const full = path.join(current, entry.name);
+      if (current === dir && skipTopLevel.has(entry.name)) continue;
       if (entry.isDirectory()) {
         stack.push(full);
       } else if (entry.isFile() && found.has(entry.name)) {
@@ -373,7 +412,7 @@ function loadModule(file) {
 
 function checkIdentity(ctx) {
   const { target, basename } = ctx;
-  const found = collectFilesNamed(target, ['graph-metadata.json', 'description.json']);
+  const found = collectFilesNamed(target, ['graph-metadata.json', 'description.json'], ctx.repoRootHub.repoPaths);
   const metaFiles = found.get('graph-metadata.json');
   const hubMeta = path.join(target, 'graph-metadata.json');
 
@@ -394,7 +433,10 @@ function checkIdentity(ctx) {
       if (meta.skill_id === basename) {
         pass(`1b: hub skill_id "${meta.skill_id}" matches directory name`);
       } else {
-        fail(`1b: hub skill_id "${meta.skill_id}" does not match directory name "${basename}"`);
+        const named = ctx.repoRootHub.declared
+          ? `the kebab-case directory name "${basename}"`
+          : `directory name "${basename}"`;
+        fail(`1b: hub skill_id "${meta.skill_id}" does not match ${named}`);
       }
       if (ALLOWED_FAMILIES.includes(meta.family)) {
         pass(`1c: hub family "${meta.family}" is in the allowed set`);
@@ -451,6 +493,7 @@ function loadRegistry(ctx) {
     surfaceAxis: declares('surface-axis'),
     transportAxis: declares('transport-axis'),
     commandSubworkflows: declares('command-subworkflows'),
+    repoRootHub: declares(REPO_ROOT_HUB_EXTENSION),
   };
   ctx.rawModes = Array.isArray(value.modes) ? value.modes : [];
   ctx.modes = ctx.rawModes.filter(isPlainObject);
@@ -840,6 +883,23 @@ function commandSubworkflowIssues(ctx, commandSubworkflows) {
 }
 
 // 3f: extensions-consistency: a declared extension activates its fields.
+// 3f: repoPaths must name plain top-level entries that belong to the repository,
+// never a packet or a file the hub root owns, or the walk would skip the skill itself.
+function repoRootHubIssues(ctx, declaration) {
+  if (!isPlainObject(declaration) || !Array.isArray(declaration.repoPaths) || declaration.repoPaths.length === 0) {
+    return [`${REPO_ROOT_HUB_EXTENSION} extension must be an object with a non-empty repoPaths array`];
+  }
+  const issues = [];
+  for (const entry of declaration.repoPaths) {
+    if (typeof entry !== 'string' || entry.length === 0 || /[\\/]/.test(entry) || entry.startsWith('.')) {
+      issues.push(`${REPO_ROOT_HUB_EXTENSION} repoPaths entry ${JSON.stringify(entry)} is not a plain top-level name`);
+    } else if (ctx.registeredPackets.has(entry) || HUB_ROOT_FILES.has(entry)) {
+      issues.push(`${REPO_ROOT_HUB_EXTENSION} repoPaths entry "${entry}" is part of the hub, not the repository`);
+    }
+  }
+  return issues;
+}
+
 function checkExtensions(ctx) {
   if (!ctx.registry) return;
   const { extensions, ext } = ctx;
@@ -873,6 +933,11 @@ function checkExtensions(ctx) {
       fail('3f: advisor-projection extension must declare a driftGuard test path');
       extOk = false;
     }
+  }
+  if (ext.repoRootHub) {
+    const issues = repoRootHubIssues(ctx, extensions[REPO_ROOT_HUB_EXTENSION]);
+    for (const issue of issues) fail(`3f: ${issue}`);
+    if (issues.length > 0) extOk = false;
   }
   const commandSubworkflows = Array.isArray(ctx.registry.commandSubworkflows)
     ? ctx.registry.commandSubworkflows
@@ -1353,7 +1418,8 @@ function checkDirectoryConsistency(ctx) {
       .filter((e) => e.isDirectory())
       .map((e) => e.name);
   } catch { /* the target was proven readable before any check ran */ }
-  const unregistered = childDirs.filter((d) => !DIRECTORY_ALLOWLIST.has(d) && !ctx.registeredPackets.has(d) && !d.startsWith('.'));
+  const unregistered = childDirs.filter((d) => !DIRECTORY_ALLOWLIST.has(d) && !ctx.registeredPackets.has(d)
+    && !ctx.repoRootHub.repoPaths.has(d) && !d.startsWith('.'));
   if (childDirs.length === 0) {
     info('6a: no child directories to reconcile');
   } else if (unregistered.length === 0) {
@@ -1893,12 +1959,17 @@ function checkVersionParity(ctx) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function createContext(target) {
+  const repoRootHub = readRepoRootHub(target);
   return {
     target,
-    basename: path.basename(target),
+    repoRootHub,
+    basename: repoRootHub.declared ? kebabCase(path.basename(target)) : path.basename(target),
     registry: null,
     extensions: {},
-    ext: { runtimeLoop: false, advisorProjection: false, surfaceAxis: false, transportAxis: false, commandSubworkflows: false },
+    ext: {
+      runtimeLoop: false, advisorProjection: false, surfaceAxis: false, transportAxis: false, commandSubworkflows: false,
+      repoRootHub: false,
+    },
     rawModes: [],
     modes: [],
     registryModeSet: new Set(),

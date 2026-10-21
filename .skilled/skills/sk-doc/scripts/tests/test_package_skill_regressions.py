@@ -4,6 +4,7 @@ Regression tests for package_skill.py validation behavior.
 """
 
 import importlib.util
+import json
 from pathlib import Path
 
 
@@ -460,3 +461,52 @@ def test_rules_section_ignores_level_three_rules_subsection():
     )
     _valid, _message, warnings = module.validate_rules_section(content)
     assert warnings == []
+
+
+def _declare_repo_root_hub(skill_path, repo_paths):
+    (skill_path / "mode-registry.json").write_text(
+        json.dumps({"skill": "demo-hub", "extensions": {"repo-root-hub": {"repoPaths": repo_paths}}}),
+        encoding="utf-8",
+    )
+
+
+def test_repo_root_hub_folder_id_is_kebab_case(tmp_path):
+    module = _load_module()
+    skill_path = tmp_path / "Demo Hub"
+    skill_path.mkdir()
+    assert module.skill_folder_id(skill_path) == "Demo Hub"
+
+    _declare_repo_root_hub(skill_path, ["specs"])
+    assert module.skill_folder_id(skill_path) == "demo-hub"
+    valid, message, _warnings = module.validate_name_matches_folder(skill_path, {"name": "demo-hub"})
+    assert valid is True, message
+
+
+def test_repo_root_hub_name_mismatch_names_the_kebab_folder(tmp_path):
+    module = _load_module()
+    skill_path = tmp_path / "Demo Hub"
+    skill_path.mkdir()
+    _declare_repo_root_hub(skill_path, ["specs"])
+
+    valid, message, _warnings = module.validate_name_matches_folder(skill_path, {"name": "other-hub"})
+    assert valid is False
+    assert "kebab-case folder name 'demo-hub'" in message
+
+
+def test_repo_root_hub_paths_skip_the_naming_and_version_walks(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "demo-skill")
+    for folder in ("specs", "drafts"):
+        (skill_path / folder / "run_suite").mkdir(parents=True)
+        (skill_path / folder / "run_suite" / "notes.md").write_text("---\ntitle: x\n---\n", encoding="utf-8")
+    (skill_path / "SYNC.md").write_text("---\ntitle: x\n---\n", encoding="utf-8")
+    _declare_repo_root_hub(skill_path, ["specs", "SYNC.md"])
+
+    _valid, _message, warnings = module.validate_generated_paths(skill_path)
+    assert any("drafts/run_suite" in warning for warning in warnings)
+    assert not any("specs" in warning for warning in warnings)
+
+    versioned = {str(p.relative_to(skill_path)) for p in module._iter_versioned_docs(skill_path)}
+    assert "drafts/run_suite/notes.md" in versioned
+    assert "specs/run_suite/notes.md" not in versioned
+    assert "SYNC.md" not in versioned
