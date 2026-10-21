@@ -152,7 +152,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 39 | 039-sk-code-opencode-alignment-audit/ | Review every tracked file under `.opencode/plugins` and the hook tree `.opencode/hooks` links to against sk-code's SKILLED surface, fix each confirmed finding or record why it stays, and leave one review row per file | Complete; 21 behaviour-change P0/P1 findings wait on the operator |
 | 41 | 041-goal-held-fixes/ | Fix the goal plugin and goal core findings 039 held for the operator: explicit delete, archive on replace and clear, unique archive names, the continuation objective, status code parsing, the core read and archive listing, and a required `--workspace` | Complete |
 | 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | Complete |
-| 44 | 044-skill-advisor-stress-ci/ | Make the Skill Advisor Stress Tests workflow pass again: its OpenCode plugin stress test still calls the plugin's default export as a function, which the dual-export object no longer is | In Progress |
+| 44 | 044-skill-advisor-stress-ci/ | Make the Skill Advisor Stress Tests workflow pass again: its OpenCode plugin stress test still calls the plugin's default export as a function, which the dual-export object no longer is | Complete |
 
 ### Phase Transition Rules
 
