@@ -21,7 +21,8 @@
     "system-skill-advisor/033-advisor-status-truthfulness",
     "system-skill-advisor/034-doctor-command-guidance",
     "system-skill-advisor/035-doctor-command-routing",
-    "system-skill-advisor/036-routing-and-launcher-hardening"
+    "system-skill-advisor/036-routing-and-launcher-hardening",
+    "system-skill-advisor/037-advisor-daemon-memory"
   ],
   "manual": {
     "depends_on": [],

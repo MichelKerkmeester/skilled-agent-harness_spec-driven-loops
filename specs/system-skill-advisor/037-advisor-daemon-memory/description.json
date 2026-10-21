@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skill-advisor/037-advisor-daemon-memory",
+  "description": "Advisor daemon memory footprint",
+  "keywords": [
+    "advisor",
+    "daemon",
+    "memory",
+    "footprint"
+  ],
+  "lastUpdated": "2026-10-21T09:51:14.551Z",
+  "specId": "037",
+  "folderSlug": "advisor-daemon-memory",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

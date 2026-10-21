@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default",
+  "description": "Phase 1: hf-model-server-idle-default",
+  "keywords": [
+    "phase",
+    "hf-model-server-idle-default"
+  ],
+  "lastUpdated": "2026-10-21T09:51:15.380Z",
+  "specId": "001",
+  "folderSlug": "hf-model-server-idle-default",
+  "parentChain": [
+    "system-skill-advisor",
+    "037-advisor-daemon-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

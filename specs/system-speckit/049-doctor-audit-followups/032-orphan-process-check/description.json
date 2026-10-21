@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/032-orphan-process-check",
+  "description": "Phase 32: orphan-process-check",
+  "keywords": [
+    "phase",
+    "orphan-process-check"
+  ],
+  "lastUpdated": "2026-10-21T09:51:18.044Z",
+  "specId": "032",
+  "folderSlug": "orphan-process-check",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
