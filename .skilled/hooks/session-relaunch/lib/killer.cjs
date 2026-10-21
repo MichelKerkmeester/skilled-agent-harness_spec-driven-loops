@@ -585,8 +585,10 @@ async function supervise(options, environment, signalTracker) {
     // Past the cap the wrapper declines the record, so a signal here would end a session
     // that no relaunch follows. The record is unarmed and its note left for the operator's
     // own claim instead; the handoff guard keeps this from disarming a note a later prepare
-    // armed, because that note still needs its own killer. No notification is raised: with
-    // no relaunch pending, the manual claim is already what the session was told to do.
+    // armed, because that note still needs its own killer. A re-arm of the same note keeps
+    // the path and only stamps a new armedAt, so the arm time is part of that guard too. No
+    // notification is raised: with no relaunch pending, the manual claim is already what the
+    // session was told to do.
     if (recordReachedHopLimit(record, environment)) {
       const handoffPath = typeof record.handoff === 'string' ? record.handoff : '';
       if (handoffPath) {
@@ -595,6 +597,7 @@ async function supervise(options, environment, signalTracker) {
           reason: 'hop-cap',
           expectedStatus: 'armed',
           expectedHandoff: handoffPath,
+          expectedArmedAt: record.armedAt,
           env: environment,
         });
       }
@@ -609,7 +612,8 @@ async function supervise(options, environment, signalTracker) {
     // once the target has exited, which can take the whole grace period after the signal.
     // Freshness is therefore judged at the end of that period, with the wrapper's own rule,
     // so a session is never ended for a relaunch the wrapper will refuse as stale. The note
-    // stays open for a fresh prepare or the operator's own claim.
+    // stays open for a fresh prepare or the operator's own claim; a re-arm of the same note
+    // keeps the path and only stamps a new armedAt, so the guard includes the arm time.
     if (!nudge.armedRecordStillCurrent(record, environment, Date.now() + SIGNAL_WAIT_MS)) {
       const handoffPath = typeof record.handoff === 'string' ? record.handoff : '';
       if (handoffPath) {
@@ -618,6 +622,7 @@ async function supervise(options, environment, signalTracker) {
           reason: 'stale',
           expectedStatus: 'armed',
           expectedHandoff: handoffPath,
+          expectedArmedAt: record.armedAt,
           env: environment,
         });
       }
