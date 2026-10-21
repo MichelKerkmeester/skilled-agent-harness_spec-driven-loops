@@ -999,13 +999,45 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       : null,
   };
 
-  function acquireAdvisorRunSlot() {
+  function acquireAdvisorRunSlot(sessionID, timeoutMs) {
     if (state.activeAdvisorRuns < MAX_CONCURRENT_ADVISOR_RUNS) {
       state.activeAdvisorRuns += 1;
-      return Promise.resolve(true);
+      return Promise.resolve({ granted: true });
     }
     return new Promise((resolve) => {
-      state.advisorRunWaiters.push(resolve);
+      const waiter = {
+        sessionID,
+        settled: false,
+        timer: null,
+        grant() {
+          if (waiter.settled) {
+            // The deadline already answered this caller, so the slot has to go
+            // to the next waiter instead of disappearing with nobody holding it.
+            releaseAdvisorRunSlot();
+            return;
+          }
+          waiter.settled = true;
+          clearTimeout(waiter.timer);
+          resolve({ granted: true });
+        },
+        deny(error) {
+          if (waiter.settled) {
+            return;
+          }
+          waiter.settled = true;
+          clearTimeout(waiter.timer);
+          const index = state.advisorRunWaiters.indexOf(waiter);
+          if (index !== -1) {
+            state.advisorRunWaiters.splice(index, 1);
+          }
+          resolve({ granted: false, error });
+        },
+      };
+      // Queue time counts against the same budget as the run, or a backlog makes
+      // the host transform wait far past the bridge timeout it was promised.
+      waiter.timer = setTimeout(() => waiter.deny('QUEUE_TIMEOUT'), timeoutMs);
+      waiter.timer.unref?.();
+      state.advisorRunWaiters.push(waiter);
     });
   }
 
@@ -1013,7 +1045,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     const next = state.advisorRunWaiters.shift();
     if (next) {
       // Hand the slot straight to the oldest waiter so the live count never dips.
-      next(true);
+      next.grant();
       return;
     }
     state.activeAdvisorRuns = Math.max(0, state.activeAdvisorRuns - 1);
@@ -1022,7 +1054,17 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   // A reset must release queued callers, or their host transforms never settle.
   function cancelAdvisorRunWaiters() {
     while (state.advisorRunWaiters.length > 0) {
-      state.advisorRunWaiters.shift()(false);
+      state.advisorRunWaiters.shift().deny('RUNTIME_RESET');
+    }
+  }
+
+  // Queued transforms for a deleted session fail open now instead of holding a
+  // queue position until their deadline.
+  function cancelAdvisorRunWaitersForSession(sessionID) {
+    for (const waiter of [...state.advisorRunWaiters]) {
+      if (waiter.sessionID === sessionID) {
+        waiter.deny('SESSION_DELETED');
+      }
     }
   }
 
@@ -1035,15 +1077,22 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
    * @param {Object} params - CLI invocation parameters
    * @param {string} params.projectDir - Working directory for the advisor CLI subprocess
    * @param {string} params.prompt - Prompt passed to the advisor CLI
+   * @param {string} params.sessionID - Session that owns the queued slot request
    * @param {Object} params.options - Normalized plugin options
    * @param {string} params.options.nodeBinary - Node binary used to spawn the advisor CLI
-   * @param {number} params.options.bridgeTimeoutMs - Timeout before SIGTERM is sent
+   * @param {number} params.options.bridgeTimeoutMs - Timeout before SIGTERM is sent, and the queue wait bound
    * @returns {Promise<Object>} Rendered response with `brief`, `status`, and `metadata`
    */
-  async function runAdvisorCli({ projectDir, prompt, options }) {
-    const granted = await acquireAdvisorRunSlot();
-    if (!granted) {
-      return { brief: null, status: 'fail_open', error: 'RUNTIME_RESET', metadata: {} };
+  async function runAdvisorCli({ projectDir, prompt, sessionID, options }) {
+    const slot = await acquireAdvisorRunSlot(sessionID, options.bridgeTimeoutMs);
+    if (!slot.granted) {
+      // A reset already reported itself; only a queue-side denial still needs the
+      // fail-open signal the other non-delivering paths leave in status.
+      if (slot.error !== 'RUNTIME_RESET') {
+        state.lastBridgeStatus = 'fail_open';
+        state.lastErrorCode = slot.error;
+      }
+      return { brief: null, status: 'fail_open', error: slot.error, metadata: {} };
     }
     try {
       return await invokeAdvisorCli({ projectDir, prompt, options });
@@ -1212,7 +1261,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
     state.cacheMisses += 1;
     const epochAtStart = state.epoch;
-    const promise = runAdvisorCli({ projectDir, prompt, options }).finally(() => {
+    const promise = runAdvisorCli({ projectDir, prompt, sessionID, options }).finally(() => {
       if (state.inFlight.get(key) === promise) {
         state.inFlight.delete(key);
       }
@@ -1496,6 +1545,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         // A deleted session never returns, so its epoch entry would otherwise
         // accumulate one leak per deleted session on a long-lived host.
         state.directiveEpochBySession.delete(sessionID);
+        cancelAdvisorRunWaitersForSession(sessionID);
         if (options.enabled) {
           await observeShadowDeliveryForRuntime(null, eventPayload, sessionID, 'compact', false);
         }

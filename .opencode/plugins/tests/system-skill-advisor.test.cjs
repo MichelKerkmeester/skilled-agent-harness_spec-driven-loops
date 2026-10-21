@@ -198,6 +198,34 @@ async function status(hooks) {
   return hooks.tool.spec_kit_skill_advisor_status.execute({});
 }
 
+// The plugin's queue deadline timer is unref'd like its bridge timers, so the
+// guard keeps a ref'd timer live while the test awaits the plugin's own deadline.
+function settleWithin(promise, label, ms = 2000) {
+  let timer;
+  const guard = new Promise((resolve, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} did not settle within ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, guard]).finally(() => clearTimeout(timer));
+}
+
+async function holdAdvisorChildren(bridgeTimeoutMs) {
+  const calls = [];
+  const hooks = await makePlugin({
+    bridgeTimeoutMs,
+    spawnOverride: (binary, args, options) => {
+      const child = fakeChild({ manual: true });
+      calls.push({ binary, args, options, child });
+      return child;
+    },
+  });
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  const complete = (index) => {
+    calls[index].child.stdout.emit('data', cliEnvelope({ freshness: 'live' }));
+    calls[index].child.emit('close', 0);
+  };
+  return { hooks, calls, flush, complete };
+}
+
 function writeFixtureFile(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, content);
@@ -720,6 +748,136 @@ test('concurrent unique advisor lookups keep at most two CLI children live', asy
   for (const output of outputs) {
     assert.equal(output.system.length, 1);
   }
+});
+
+test('a queued lookup fails open at its queue deadline while the granted runs stay live', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(400);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'queue-deadline-held',
+    prompt: `held slot prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 2);
+
+  const queueSettled = [false, false, false];
+  const queued = [0, 1, 2].map((index) => {
+    const pending = runPrompt(hooks, {
+      sessionID: `queue-deadline-${index}`,
+      prompt: `queued lookup prompt ${index}`,
+    });
+    const record = () => { queueSettled[index] = true; };
+    pending.then(record, record);
+    return pending;
+  });
+  await flush();
+  assert.equal(calls.length, 2, 'queued lookups must not spawn while both slots are held');
+
+  // The queue waits before the held runs release, so the third queued lookup's
+  // deadline lands inside the granted runs rather than at the same instant.
+  await new Promise((resolve) => setTimeout(resolve, 40));
+  assert.deepEqual(queueSettled, [false, false, false]);
+
+  complete(0);
+  complete(1);
+  const heldOutputs = await Promise.all(held);
+  for (const output of heldOutputs) {
+    assert.notEqual(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  }
+  await flush();
+  assert.equal(calls.length, 4, 'the first two queued lookups start once the slots free');
+
+  const timedOut = await settleWithin(queued[2], 'third queued lookup');
+  await flush();
+  assert.equal(timedOut.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  assert.match(await status(hooks), /last_error_code=QUEUE_TIMEOUT/);
+  assert.deepEqual(queueSettled, [false, false, true]);
+  assert.equal(calls.length, 4, 'a lookup past its queue deadline never spawns');
+
+  complete(2);
+  complete(3);
+  await Promise.all(queued.slice(0, 2));
+});
+
+test('a queued lookup for a deleted session fails open on deletion', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(60_000);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'deletion-held',
+    prompt: `deletion held prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 2);
+
+  const queued = runPrompt(hooks, {
+    sessionID: 'deletion-queued',
+    prompt: 'deletion queued prompt',
+  });
+  await flush();
+  assert.equal(calls.length, 2, 'a queued lookup holds no slot and spawns no child');
+
+  await hooks.event({
+    event: { type: 'session.deleted', properties: { info: { id: 'deletion-queued' } } },
+  });
+
+  const output = await settleWithin(queued, 'queued lookup for a deleted session');
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  assert.match(await status(hooks), /last_error_code=SESSION_DELETED/);
+  assert.equal(calls.length, 2, 'the deleted session lookup never spawns');
+
+  complete(0);
+  complete(1);
+  const heldOutputs = await Promise.all(held);
+  for (const heldOutput of heldOutputs) {
+    assert.notEqual(heldOutput.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  }
+});
+
+test('a queue deadline leaves both slots free for later lookups', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(400);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'deadline-held',
+    prompt: `deadline held prompt ${index}`,
+  }));
+  await flush();
+
+  const queued = [0, 1, 2].map((index) => runPrompt(hooks, {
+    sessionID: `deadline-queued-${index}`,
+    prompt: `deadline queued prompt ${index}`,
+  }));
+  await flush();
+  await new Promise((resolve) => setTimeout(resolve, 40));
+
+  complete(0);
+  complete(1);
+  const heldOutputs = await Promise.all(held);
+  for (const output of heldOutputs) {
+    assert.match(output.system[0], /^Advisor:/);
+    assert.notEqual(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  }
+  await flush();
+  assert.equal(calls.length, 4);
+
+  const timedOut = await settleWithin(queued[2], 'queued lookup at its deadline');
+  assert.equal(timedOut.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+
+  // Both granted runs still hold their slots at the third deadline, so their
+  // release is what has to leave the slot count at zero.
+  complete(2);
+  complete(3);
+  await Promise.all(queued.slice(0, 2));
+
+  const after = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: `deadline-after-${index}`,
+    prompt: `deadline after queue prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 6, 'both slots accept the next lookups without waiting');
+
+  complete(4);
+  complete(5);
+  await Promise.all(after);
 });
 
 test('cache TTL starts when CLI work completes', async () => {
