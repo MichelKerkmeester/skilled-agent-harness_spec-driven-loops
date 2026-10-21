@@ -32,9 +32,9 @@ const NOTE_NOT_WRITTEN = new Set(['missing', 'invalid']);
 // message.part.updated fires for every streamed part, so a flags read per event
 // would parse the same file many times per turn. A stat is enough to notice the
 // edit that changes the answer, and a missing file is a stable answer too.
-// mtime and size alone repeat across a same-size rewrite that sets mtime back,
-// so the identity also carries ctime, which moves on every write and cannot be
-// restored from user space, and the inode, which changes when the file is replaced.
+// The cache rereads the file whenever mtime, ctime, size or inode changes. A
+// rewrite that changes none of them within the filesystem's timestamp resolution
+// is served stale until the next change.
 let flagsCache = null;
 
 function flagsConfig() {
