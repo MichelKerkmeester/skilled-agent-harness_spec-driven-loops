@@ -1,5 +1,5 @@
 {
-  "manifestHash": "222b462c58b4f803cef34ed6f06a9b9450390748dbf739eecf7536941fc90bd3",
+  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44518,6 +44518,18 @@
     "final state sweep tasks": [
       "final state sweep tasks"
     ],
+    "final two version proof": [
+      "final two version proof"
+    ],
+    "final two version proof implementation summary": [
+      "final two version proof implementation summary"
+    ],
+    "final two version proof plan": [
+      "final two version proof plan"
+    ],
+    "final two version proof tasks": [
+      "final two version proof tasks"
+    ],
     "finalization log md": [
       "finalization-log.md"
     ],
@@ -57516,6 +57528,9 @@
     ],
     "live owner skip": [
       "live owner skip"
+    ],
+    "live plugin matrix 17 of 17": [
+      "live plugin matrix 17 of 17"
     ],
     "live plugin playbook": [
       "live plugin playbook"
@@ -72498,6 +72513,9 @@
     ],
     "phase 44 skill advisor stress ci": [
       "phase 44 skill advisor stress ci"
+    ],
+    "phase 46 final two version proof": [
+      "phase 46 final two version proof"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
