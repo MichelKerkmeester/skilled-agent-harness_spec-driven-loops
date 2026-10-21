@@ -342,17 +342,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/codex-watchdog/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -400,17 +392,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/git-hooks-check/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -448,17 +432,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/git-primary-reconcile/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -466,17 +442,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/git-worktree-guard/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -504,17 +472,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/hook-install/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -532,17 +492,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/permission-policy/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -560,17 +512,9 @@
       "document_type": "readme",
       "file": ".skilled/hooks/session-cleanup/README.md",
       "return_code": 0,
-      "total_issues": 1,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
-          "message": "importance_tier \"reference\" is not in the shared list",
-          "severity": "warning",
-          "type": "frontmatter_value_outside_list"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
