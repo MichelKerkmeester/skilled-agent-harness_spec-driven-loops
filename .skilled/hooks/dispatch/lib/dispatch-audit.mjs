@@ -498,13 +498,75 @@ const MAX_UNWRAP_DEPTH = 4;
 // (`cat > run.sh <<EOF` ... `bash run.sh`). Those two shapes resolved to nothing, so a
 // dispatch inside them skipped every hard rule. Stripping keeps the written case;
 // executedHeredocBodies recovers the run one.
-function stripHeredocBodies(command) {
-  return command.replace(/<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1[\s\S]*?^\s*\2\s*$/gm, '<<HEREDOC');
+//
+// A herestring (`<<<"x"`) is not a heredoc, so `<<` must not be adjacent to another `<`.
+const HEREDOC_INTRODUCER = /(?<!<)<<(?!<)-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/g;
+
+// The introducers on one line share the bodies that follow it: each body ends at its own
+// closing line, so they are read together and the scan resumes after the last one.
+function heredocGroups(command) {
+  const groups = [];
+  let searchFrom = 0;
+  for (;;) {
+    HEREDOC_INTRODUCER.lastIndex = searchFrom;
+    const introducer = HEREDOC_INTRODUCER.exec(command);
+    if (!introducer) return groups;
+    const introducerEnd = introducer.index + introducer[0].length;
+    const lineBreak = command.indexOf('\n', introducerEnd);
+    if (lineBreak === -1) return groups;
+    const introducers = [introducer];
+    HEREDOC_INTRODUCER.lastIndex = introducerEnd;
+    let next = HEREDOC_INTRODUCER.exec(command);
+    while (next && next.index < lineBreak) {
+      introducers.push(next);
+      next = HEREDOC_INTRODUCER.exec(command);
+    }
+    let bodySearchFrom = lineBreak + 1;
+    const bodies = [];
+    let missing = null;
+    for (const candidate of introducers) {
+      const closing = new RegExp(`^[ \\t]*${candidate[2]}[ \\t]*$`, 'm')
+        .exec(command.slice(bodySearchFrom));
+      if (!closing) {
+        // No closing line: drop this introducer and keep scanning after it.
+        missing = candidate;
+        break;
+      }
+      const bodyEnd = bodySearchFrom + closing.index;
+      const regionEnd = bodyEnd + closing[0].length;
+      bodies.push({ start: bodySearchFrom, end: bodyEnd, regionEnd });
+      bodySearchFrom = regionEnd + 1;
+    }
+    if (missing) {
+      searchFrom = missing.index + missing[0].length;
+      continue;
+    }
+    groups.push({
+      lineStart: command.lastIndexOf('\n', introducer.index) + 1,
+      lineBreak,
+      introducers,
+      bodies,
+    });
+    searchFrom = bodies[bodies.length - 1].regionEnd + 1;
+  }
 }
 
-// The `<<EOF`, `<<-EOF`, `<<'EOF'` and `<<"EOF"` grammar stripHeredocBodies matches, read one
-// heredoc at a time so the introducing line, the body and the lines after it stay available.
-const HEREDOC_INTRODUCER = /<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/g;
+function stripHeredocBodies(command) {
+  let stripped = '';
+  let cursor = 0;
+  for (const group of heredocGroups(command)) {
+    stripped += command.slice(cursor, group.lineStart);
+    let lineCursor = group.lineStart;
+    for (const introducer of group.introducers) {
+      stripped += command.slice(lineCursor, introducer.index) + '<<HEREDOC';
+      lineCursor = introducer.index + introducer[0].length;
+    }
+    stripped += command.slice(lineCursor, group.lineBreak) + '\n';
+    cursor = group.bodies[group.bodies.length - 1].regionEnd;
+  }
+  return stripped + command.slice(cursor);
+}
+
 const HEREDOC_SHELLS = new Set(['bash', 'sh', 'zsh', 'dash']);
 // The introducing line writes the body to a file with either `cat > PATH` (also `>>`, and the
 // `cat <<EOF > PATH` order once the introducer is removed) or `tee PATH` (also `tee -a`).
@@ -539,10 +601,10 @@ function heredocFeedsShell(prefix, restOfLine) {
 
 // The file the introducing line writes the body to, or null when it writes no file.
 function heredocWriteTarget(introducingLine) {
-  const withoutIntroducer = introducingLine
-    .replace(/<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/, '');
+  const withoutIntroducers = introducingLine
+    .replace(/(?<!<)<<(?!<)-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/g, '');
   for (const pattern of HEREDOC_WRITE_PATTERNS) {
-    const match = withoutIntroducer.match(pattern);
+    const match = withoutIntroducers.match(pattern);
     const target = match && (match[1] ?? match[2] ?? match[3]);
     if (target) return comparablePath(target);
   }
@@ -566,33 +628,24 @@ function heredocRunsPath(tail, target) {
 
 // Every heredoc body the same call runs, in command order. A body that is only written stays
 // out: no shell is fed it, and no later part of the call runs the file it was written to.
+// Bodies queued on one line are read in order; only the last is the command's stdin, so only
+// its body can be run or written. Earlier bodies on that line are data.
 function executedHeredocBodies(command) {
   const bodies = [];
-  let searchFrom = 0;
-  for (;;) {
-    HEREDOC_INTRODUCER.lastIndex = searchFrom;
-    const introducer = HEREDOC_INTRODUCER.exec(command);
-    if (!introducer) return bodies;
-    const lineStart = command.lastIndexOf('\n', introducer.index) + 1;
-    const introducerEnd = introducer.index + introducer[0].length;
-    const lineBreak = command.indexOf('\n', introducerEnd);
-    if (lineBreak === -1) return bodies;
-    const closing = new RegExp(`^[ \\t]*${introducer[2]}[ \\t]*$`, 'm')
-      .exec(command.slice(lineBreak + 1));
-    if (!closing) return bodies;
-    const bodyStart = lineBreak + 1;
-    const bodyEnd = bodyStart + closing.index;
-    const regionEnd = bodyEnd + closing[0].length;
-    const introducingLine = command.slice(lineStart, lineBreak);
+  for (const group of heredocGroups(command)) {
+    const last = group.introducers[group.introducers.length - 1];
+    const body = group.bodies[group.bodies.length - 1];
+    const introducingLine = command.slice(group.lineStart, group.lineBreak);
     const writeTarget = heredocWriteTarget(introducingLine);
     const feedsShell = heredocFeedsShell(
-      command.slice(lineStart, introducer.index),
-      command.slice(introducerEnd, lineBreak),
+      command.slice(group.lineStart, group.introducers[0].index),
+      command.slice(last.index + last[0].length, group.lineBreak),
     );
-    const runsWritten = writeTarget !== null && heredocRunsPath(command.slice(regionEnd), writeTarget);
-    if (feedsShell || runsWritten) bodies.push(command.slice(bodyStart, bodyEnd));
-    searchFrom = regionEnd;
+    const runsWritten = writeTarget !== null
+      && heredocRunsPath(command.slice(body.regionEnd), writeTarget);
+    if (feedsShell || runsWritten) bodies.push(command.slice(body.start, body.end));
   }
+  return bodies;
 }
 
 // Split on shell separators that sit outside quotes. A wrapper unwrap is anchored to the

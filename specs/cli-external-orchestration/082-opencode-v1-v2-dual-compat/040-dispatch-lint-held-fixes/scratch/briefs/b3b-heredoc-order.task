@@ -1,0 +1,31 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Fix two defects a reviewer found in the executed-heredoc parser, plus tests.
+
+Context: `executedHeredocBodies` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` finds heredocs a shell runs. A reviewer found:
+1. A herestring is read as a heredoc. `HEREDOC_INTRODUCER` (and the same grammar in `stripHeredocBodies` and `heredocWriteTarget`) matches the `<<"text"` inside `<<<"text"`, finds no closing line for the delimiter `text`, and the loop then RETURNS, so a real heredoc later in the command is never read: `cat <<<"x"` + newline + `bash <<'EOF'` + newline + a dispatch + newline + `EOF` resolves to nothing.
+2. Several heredocs on one line are read as if each body started on the next line, and every one of them is treated as stdin. The shell reads the bodies in order after that line, and only the LAST heredoc on a line is the command's stdin; an earlier one is replaced. So `bash <<FIRST <<SECOND` with a dispatch in FIRST and `true` in SECOND runs nothing, yet resolves as a dispatch.
+
+Fix:
+1. Make the heredoc grammar refuse a herestring: `<<` must not be preceded or followed by another `<` (use `(?<!<)<<(?!<)`). Apply the same change to `HEREDOC_INTRODUCER`, the pattern inside `stripHeredocBodies` and the one in `heredocWriteTarget`, so all three agree.
+2. When a delimiter has no closing line, skip that introducer and keep scanning from just after it, instead of returning.
+3. Read all heredoc introducers on one line together: their bodies follow that line one after another, each ending at its own closing line. Only the last introducer on the line can feed a shell or a write target; earlier bodies on that line are data. Continue scanning after the last body's closing line.
+Keep each comment accurate and short.
+
+Tests, in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, in the test named 'a dispatch is resolved from the command, not from text that merely contains one':
+- add to `govern`: `['heredoc after a herestring', \`cat <<<"x"\nbash <<'EOF'\n${dispatch} </dev/null\nEOF\`]` and `['second heredoc on a line is the stdin', \`bash <<'ONE' <<'TWO'\ntrue\nONE\n${dispatch} </dev/null\nTWO\`]`;
+- add to `doNotGovern`: `['first heredoc on a line is replaced', \`bash <<'ONE' <<'TWO'\n${dispatch} </dev/null\nONE\ntrue\nTWO\`]`.
+Every other row must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

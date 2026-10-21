@@ -859,6 +859,8 @@ test('a dispatch is resolved from the command, not from text that merely contain
     ['heredoc script made executable and run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nchmod +x run.sh && ./run.sh`],
     ['heredoc teed then sourced', `tee run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nsource run.sh`],
     ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
+    ['heredoc after a herestring', `cat <<<"x"\nbash <<'EOF'\n${dispatch} </dev/null\nEOF`],
+    ['second heredoc on a line is the stdin', `bash <<'ONE' <<'TWO'\ntrue\nONE\n${dispatch} </dev/null\nTWO`],
   ];
   for (const [label, cmd] of govern) {
     assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-hermes', `should govern (${label}): ${cmd}`);
@@ -867,6 +869,7 @@ test('a dispatch is resolved from the command, not from text that merely contain
   const doNotGovern = [
     // A heredoc body the call only writes is data: no shell is fed it, and no later part of
     // the call runs the file it was written to.
+    ['first heredoc on a line is replaced', `bash <<'ONE' <<'TWO'\n${dispatch} </dev/null\nONE\ntrue\nTWO`],
     ['heredoc writing a script', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF`],
     ['heredoc script written, another script run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nbash other.sh`],
     ['heredoc fed to node', `node <<'EOF'\nconsole.log("${dispatch}")\nEOF`],
