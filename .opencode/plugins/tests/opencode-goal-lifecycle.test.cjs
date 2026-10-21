@@ -1030,10 +1030,10 @@ test(
     );
     const activePath = helpers.goalPathForSession(ctx.sessionID, bindOpts);
     const fsPromises = require('node:fs/promises');
-    const originalMkdir = fsPromises.mkdir;
+    const originalSymlink = fsPromises.symlink;
     let injected = false;
-    fsPromises.mkdir = async (target, options) => {
-      if (!injected && basename(String(target)).startsWith('.lock-')) {
+    fsPromises.symlink = async (target, path) => {
+      if (!injected && basename(String(path)).startsWith('.lock-')) {
         injected = true;
         const record = JSON.parse(await readFile(activePath, 'utf8'));
         record.goalId = 'rebind-race-other-process';
@@ -1042,7 +1042,7 @@ test(
         record.updatedAt = new Date(2000).toISOString();
         await writeFile(activePath, `${JSON.stringify(record, null, 2)}\n`, 'utf8');
       }
-      return originalMkdir(target, options);
+      return originalSymlink(target, path);
     };
     require('node:module').syncBuiltinESMExports();
     try {
@@ -1053,7 +1053,7 @@ test(
       );
       assert.match(String(rebound), /mutation=rebound/);
     } finally {
-      fsPromises.mkdir = originalMkdir;
+      fsPromises.symlink = originalSymlink;
       require('node:module').syncBuiltinESMExports();
     }
     assert.equal(injected, true, 'the rebind acquired the mutation lock');

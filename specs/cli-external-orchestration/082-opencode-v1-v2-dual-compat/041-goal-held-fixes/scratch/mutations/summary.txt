@@ -14,3 +14,4 @@ m-lock # pass 35 # fail 2
 m-prune # pass 41 # fail 1 
 m-revision # pass 8 # fail 1 
 m-bind # pass 0 # fail 1 
+m-deadowner # pass 37 # fail 1 

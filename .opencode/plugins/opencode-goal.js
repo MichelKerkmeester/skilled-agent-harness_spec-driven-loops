@@ -9,7 +9,8 @@
 
 import { createHash, randomUUID } from 'node:crypto';
 import {
-  appendFile, link, mkdir, open, readFile, readdir, rename, rmdir, stat, unlink, writeFile,
+  appendFile, link, lstat, mkdir, open, readFile, readdir, readlink, rename, stat, symlink,
+  unlink, writeFile,
 } from 'node:fs/promises';
 import { dirname, join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -71,14 +72,15 @@ const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
 // process wrote after the read in place.
 const DELETE_GOAL = Symbol('delete-goal');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
-// A mutation lock is a directory in the state root, so `mkdir` is the atomic
-// test-and-set. The timeout and stale age copy the shared core's lock so both
+// A mutation lock is a symlink in the state root whose target is the owner's
+// pid, so `symlink` is the atomic test-and-set and the entry names whoever left
+// it behind. The timeout and stale age copy the shared core's lock so both
 // behave alike.
 const GOAL_LOCK_TIMEOUT_MS = 10_000;
 const GOAL_LOCK_STALE_MS = 120_000;
 const GOAL_LOCK_RETRY_MS = 25;
-// A state root that refuses a lock directory refuses every write too, so these
-// keep the error the write itself would have raised.
+// A state root that refuses a lock entry refuses every write too, so these keep
+// the error the write itself would have raised.
 const UNLOCKABLE_GOAL_STATE_CODES = new Set(['EACCES', 'EPERM', 'EROFS']);
 // The name an error prints is the name an operator will go and set, so it is
 // the concern's canonical variable rather than one of its accepted aliases.
@@ -1829,12 +1831,100 @@ async function inspectGoalHealth(rawOptions = {}) {
 }
 
 /**
+ * Read the owner pid a lock entry names, or null when it names nothing usable.
+ *
+ * The target is written by the process holding the lock, so anything that is
+ * not a positive integer pid means the entry predates this format or was
+ * written by something else, and the age rule stays the only way to break it.
+ *
+ * @param {string} target - The entry's symlink target
+ * @returns {number|null} Owner pid, or null when the target is not one
+ */
+function parseLockOwnerPid(target) {
+  const text = typeof target === 'string' ? target.trim() : '';
+  if (!/^\d+$/.test(text)) return null;
+  const pid = Number(text);
+  return Number.isSafeInteger(pid) && pid > 0 ? pid : null;
+}
+
+/**
+ * Report whether a pid still answers the zero signal.
+ *
+ * A zero signal delivers nothing and only asks the kernel whether the pid
+ * exists. EPERM means it exists under another owner, which is alive enough: a
+ * live holder that stays locked keeps waiting rather than being broken.
+ *
+ * @param {number} pid - Pid named by a lock entry
+ * @returns {boolean} True when the process is still running
+ */
+function isLockOwnerAlive(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error?.code !== 'ESRCH';
+  }
+}
+
+/**
+ * Remove a lock entry, treating an already-gone entry as removed.
+ *
+ * @param {string} lockPath - Lock entry to remove
+ * @returns {Promise<boolean>} True when the entry is gone afterwards
+ */
+async function removeLockEntry(lockPath) {
+  try {
+    await unlink(lockPath);
+    return true;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return true;
+    // Another process may hold a lock this one cannot remove, which the age
+    // rule cannot fix either, so report it and let the caller wait.
+    writeDebugStderr('withGoalMutationLock.break', error);
+    return false;
+  }
+}
+
+/**
+ * Break a lock entry whose owner is gone, or whose owner has held it too long.
+ *
+ * A crashed run leaves its entry behind, and the owner it names no longer
+ * answers: breaking that at once is what keeps one crash from failing every
+ * mutation for the whole stale window. An owner that still answers keeps the
+ * age rule, and an entry that disappeared under us counts as broken so the
+ * caller retries immediately instead of waiting out a retry delay.
+ *
+ * @param {string} lockPath - Lock entry a failed acquire found in place
+ * @returns {Promise<boolean>} True when the caller may retry at once
+ */
+async function breakAbandonedLock(lockPath) {
+  let target = null;
+  try {
+    target = await readlink(lockPath);
+  } catch (error) {
+    if (error?.code === 'ENOENT') return true;
+  }
+  const ownerPid = parseLockOwnerPid(target);
+  if (ownerPid !== null && !isLockOwnerAlive(ownerPid)) return removeLockEntry(lockPath);
+  try {
+    if (Date.now() - (await lstat(lockPath)).mtimeMs > GOAL_LOCK_STALE_MS) {
+      return removeLockEntry(lockPath);
+    }
+  } catch (error) {
+    if (error?.code === 'ENOENT') return true;
+  }
+  return false;
+}
+
+/**
  * Run a session mutation while holding that session's cross-process lock.
  *
  * The in-process queue cannot serialize two OpenCode processes, so a read and
  * a write interleaved across them could lose whichever goal was written last
- * before it was archived. The lock directory is created and removed here, so
- * nothing outlives the mutation.
+ * before it was archived. The lock entry names this process as its owner and is
+ * removed here, so nothing outlives the mutation; an entry whose named owner is
+ * gone is broken at once rather than waited out, so a crashed run cannot hold a
+ * session's mutations hostage.
  *
  * @param {string} sessionID - Normalized OpenCode session id
  * @param {Object} options - Normalized state helper options
@@ -1848,7 +1938,7 @@ async function withGoalMutationLock(sessionID, options, operation) {
   let locked = false;
   while (true) {
     try {
-      await mkdir(lockPath, { mode: 0o700 });
+      await symlink(String(process.pid), lockPath);
       locked = true;
       break;
     } catch (error) {
@@ -1860,14 +1950,7 @@ async function withGoalMutationLock(sessionID, options, operation) {
         throw new GoalError('GOAL_LOCK_FAILED', message);
       }
     }
-    try {
-      if (Date.now() - (await stat(lockPath)).mtimeMs > GOAL_LOCK_STALE_MS) {
-        await rmdir(lockPath);
-        continue;
-      }
-    } catch (error) {
-      if (error?.code === 'ENOENT') continue;
-    }
+    if (await breakAbandonedLock(lockPath)) continue;
     if (Date.now() >= deadlineMs) {
       throw new GoalError('GOAL_LOCK_TIMEOUT', 'Timed out waiting for a goal-state mutation lock');
     }
@@ -1878,7 +1961,7 @@ async function withGoalMutationLock(sessionID, options, operation) {
   } finally {
     if (locked) {
       try {
-        await rmdir(lockPath);
+        await unlink(lockPath);
       } catch (error) {
         // A reaper may have removed a lock this process already considers stale.
         if (error?.code !== 'ENOENT') writeDebugStderr('withGoalMutationLock.release', error);
