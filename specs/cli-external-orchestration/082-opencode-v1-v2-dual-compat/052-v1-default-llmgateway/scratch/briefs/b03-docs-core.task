@@ -1,0 +1,41 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (one change: move the stated cli-opencode default to llmgateway in the core docs):
+
+FACTS (the operator decided this on 2026-10-21):
+- The cli-opencode default model is now `llmgateway/deepseek-v4.1-flash` (LLM Gateway, DevPass) on BOTH OpenCode versions.
+- OpenCode 1 dispatches it as `--model llmgateway/deepseek-v4.1-flash --variant max`. OpenCode 2 dispatches it as `-m llmgateway/deepseek-v4.1-flash#max` (unchanged).
+- Why: the opencode-go Go-plan quota is spent, so an OpenCode 1 dispatch on opencode-go hangs on "Go usage limit exceeded"; OpenCode 2 lists no opencode-go provider; one provider now serves both versions.
+- `opencode-go` stays a documented, selectable provider with its models. Only the DEFAULT moves. Do not delete opencode-go rows, sections or the opencode-go route; only stop calling it the default and stop using it in the canonical default command.
+- Example commands that show the skill default dispatch on OpenCode 1 (`--model opencode-go/deepseek-v4.1-flash`) change to `--model llmgateway/deepseek-v4.1-flash`. Commands whose point is the opencode-go provider itself (a provider check like `opencode models opencode-go`, a variant-range test of opencode-go) keep it.
+- Never edit lines inside `changelog/` or `benchmark/`, and never edit a line starting `Coverage note (2026-04-26):` (dated records).
+
+Files and what to change in each:
+- `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`: the Default Invocation section (around line 158), the provider summary (around line 180) and the pinned-default rule (around line 216) all state one default for both versions, with each version's syntax. Every `--model` selector in the Default Invocation section must be `--model llmgateway/deepseek-v4.1-flash`; every `-m` selector must be `-m llmgateway/deepseek-v4.1-flash#max`.
+- `.skilled/skills/cli-external-orchestration/cli-opencode/README.md`: lines ~80, ~107, ~272, ~284 and any other place that names opencode-go as the default or uses it in the default command.
+- `.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md`: in the `### opencode-go` table, change the `✓` cell of the `opencode-go/deepseek-v4.1-flash` row so it is no longer the default (use `—` or whatever the other non-default rows use) and drop "the OpenCode 1 mode default" from its description; in the `### llmgateway` table, the `llmgateway/deepseek-v4.1-flash` row keeps the single `✓` and its description says it is the default on both versions. Fix the intro text (~line 66), the Default model row (~line 114), the example (~121, ~164) and the variant table row (~148).
+- `.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md`: ~141, ~162, ~217, ~269, ~299. The pre-flight "Default available" row must check llmgateway for both versions. Keep line ~114 (a flag example) only if it is just an illustration of the flag; otherwise switch it.
+- `.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md` and `.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md`: any sentence calling opencode-go the OpenCode 1 default.
+
+Read each whole file before editing it. Keep the existing voice, sentence shape and table layout. Make the smallest edit that tells the truth.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/README.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+grep -n "opencode-go/deepseek-v4.1-flash" .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md .skilled/skills/cli-external-orchestration/cli-opencode/README.md .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md .skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
+and for each remaining hit, state in your report why it is not a default claim.
+
+Return report: each file changed, a one-line summary per file, and the verify output with your reason per remaining hit.

@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -173,12 +173,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written",
     "created_at": "2026-10-21T07:17:06Z",
-    "last_save_at": "2026-10-21T09:55:33.824Z",
+    "last_save_at": "2026-10-21T19:33:43.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62396c961f2dea80f93bc3e05f9413b595ee01ce426010ae38de6751490d1c1c",
+    "source_fingerprint": "sha256:5d24b24c1d79f8b022ecbeab5b18380da3ab4a6dc16b6359a62617aa4d3899d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1cbd468eca2f50039cfec3f2ec2dc209a0a85821e78e8a34a2f1a31543d2a4bb",
+      "spec.md": "fea94ba8cf41bd05537b75a56f7b1a3d5490a627325d66dd8ec73beb3d1c52d8",
       "plan.md": "384d6e44f9817f8906b86a7a38961ff87414ea3eddfff8da6ce35032abdd8bb8",
-      "tasks.md": "3b1aad4a873b43e5ff41bf8d3f0a34b660302aacecb60ade53cba2e05b2c571e",
-      "implementation-summary.md": "5a9f96b92b6db85d9d4e23dd6de6e76665878127bbb3377dbecc188f7f73e6ca"
+      "tasks.md": "33e92718e71218f64b7039c06bfc96c4b07eff4cf13b891c740728326235148d",
+      "implementation-summary.md": "b10ff5c5480f749ca1c584ec933f000eba6bdb3fc665897279714dbcbc24ba5e"
     },
     "last_active_at": null
   }

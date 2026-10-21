@@ -1,0 +1,24 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (one change: reword nine version notes):
+The cli-opencode default model `llmgateway/deepseek-v4.1-flash` is now the default on BOTH OpenCode versions (`--model ... --variant max` on OpenCode 1, `-m ...#max` on OpenCode 2). Nine playbook lines still call it "the OpenCode 2 default", which implies OpenCode 1 has a different default. Find them with:
+grep -rn "the OpenCode 2 default" .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook
+
+In each hit, change only that clause so it says llmgateway/deepseek-v4.1-flash is the default on both versions, for example: "`llmgateway/deepseek-v4.1-flash` is the default on both versions (DevPass), while `opencode-go/` stays selectable and needs its own v2 login". Keep the rest of each line unchanged. Read each line before editing.
+
+ALLOWED WRITE PATHS:
+- the files under .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook that the grep above lists
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+grep -rn "the OpenCode 2 default" .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook
+(expect no output) and
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook 2>&1 | tail -2
+
+Return report: the files changed and both verify outputs.

@@ -119,7 +119,7 @@ The orchestrator took the baseline and ran one live v2 probe that settled the wo
 
 1. **Native lineages stop on a side-by-side install.** With both binaries in `~/.local/bin`, the resolver picks `opencode2`, so every native lineage refuses until `OPENCODE_BIN=opencode` is set. The v2 route, `session.command`, needs a session id and is outside this phase.
 2. **Every cli-opencode lineage on this machine now goes to v2.** That follows the frozen binary order. Set `OPENCODE_BIN=opencode` to keep v1.
-3. **v2 has no opencode-go model here.** The runtime default `opencode-go/deepseek-v4.1-flash` fails on v2 until that credential is added to v2. Carried to 007 (decision 12). **Resolved in 043:** an unpinned v2 lineage now defaults to `llmgateway/deepseek-v4.1-flash`; v1 keeps `opencode-go`.
+3. **v2 has no opencode-go model here.** The runtime default `opencode-go/deepseek-v4.1-flash` fails on v2 until that credential is added to v2. Carried to 007 (decision 12). **Resolved in 043:** an unpinned v2 lineage now defaults to `llmgateway/deepseek-v4.1-flash`; v1 keeps `opencode-go`. **Updated in 052:** OpenCode 1 also defaults to `llmgateway/deepseek-v4.1-flash` (`--variant max`), because the opencode-go quota is spent; opencode-go stays selectable.
 4. **v2 wraps the prompt in quotes.** A v2 lineage prompt reaches the model inside literal double quotes. The model still followed it. Carried to 011 (decision 6).
 5. **Spawn by name.** The dispatch spawns the resolved name, not the realpath, so a binary swapped between the build and the spawn would run unprobed. The window is the length of one build.
 <!-- /ANCHOR:limitations -->

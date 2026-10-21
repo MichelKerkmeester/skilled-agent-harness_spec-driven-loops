@@ -1,0 +1,36 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (exactly one change):
+The operator decided that the cli-opencode default model is `llmgateway/deepseek-v4.1-flash` on BOTH OpenCode versions. OpenCode 1 used `opencode-go/deepseek-v4.1-flash`, but the opencode-go quota is spent, and OpenCode 2 lists no opencode-go provider. One default now serves both.
+
+In `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`:
+- Set `OPENCODE_DEFAULT_MODEL = 'llmgateway/deepseek-v4.1-flash'`.
+- Delete the constant `OPENCODE_V2_DEFAULT_MODEL` and its entry in the module.exports list.
+- In `buildOpencodeLineageCommand`, make the fallback `lineage.model || OPENCODE_DEFAULT_MODEL` with no version split.
+- Rewrite the comment block above the defaults that explains the split ("The OpenCode fallback splits by major ...") so it says why one fallback serves both: OpenCode 2 lists no opencode-go provider, and llmgateway serves the same model on both majors. Keep it to two or three lines.
+Do NOT touch any other opencode-go literal in the file (the route tables and the flash-max pin list stay; opencode-go remains a supported provider).
+
+Tests:
+1. `.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts`: the test 'applies the OpenCode 1 default model to an unpinned lineage' must now expect `llmgateway/deepseek-v4.1-flash` (still with `--model`, `--variant`, `max`), and add one assertion that the argv does not contain `opencode-go/deepseek-v4.1-flash`. Leave the OpenCode 2 test as is.
+2. `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`: in the 'unpinned lineage fallbacks match their packets' table, delete the `OPENCODE_V2_DEFAULT_MODEL` row.
+
+Code standards: read each whole file first and match its style and comment density. A comment states the durable WHY only. Never put finding ids, task ids, spec paths, phase numbers or packet numbers in a comment or a test name.
+
+Revert check: temporarily restore the old opencode-go value of `OPENCODE_DEFAULT_MODEL`, run the dual-dispatch test, confirm the OpenCode 1 default test fails, restore your change and rerun. Report both.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+- .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts
+- .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/opencode-dual-dispatch.vitest.ts tests/unit/fanout-run.vitest.ts 2>&1 | tail -8
+
+Return report: the files you changed, the verify output's pass and fail counts, and the revert check result.

@@ -153,7 +153,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 40 | 040-dispatch-lint-held-fixes/ | Fix the ten dispatch-hook findings 039 held for the operator: wrapped, substituted and heredoc-run dispatches reach Pi authorization and every rule, every dispatch in a chain is linted, quoted text never satisfies a rule, and the audit records what the preflight resolves | Complete |
 | 41 | 041-goal-held-fixes/ | Fix the goal plugin and goal core findings 039 held for the operator: explicit delete, archive on replace and clear, unique archive names, the continuation objective, status code parsing, the core read and archive listing, and a required `--workspace` | Complete |
 | 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | Complete |
-| 43 | 043-v2-default-model-and-follow-ups/ | Make `llmgateway/deepseek-v4.1-flash` the OpenCode 2 default model, put the hook node:test suites in a blocking CI job, and close the 035, 037 and 042 doc and comment follow-ups | In Progress |
+| 43 | 043-v2-default-model-and-follow-ups/ | Make `llmgateway/deepseek-v4.1-flash` the OpenCode 2 default model, put the hook node:test suites in a blocking CI job, and close the 035, 037 and 042 doc and comment follow-ups | Complete |
 | 44 | 044-skill-advisor-stress-ci/ | Make the Skill Advisor Stress Tests workflow pass again: its OpenCode plugin stress test still calls the plugin's default export as a function, which the dual-export object no longer is | Complete |
 | 45 | 045-relaunch-takeover-lock-identity/ | Prove takeover mutex ownership with an owner token as well as the inode, rename before removing and keep a contender's directory, so Hook Node Tests passes on Linux | Complete |
 | 46 | 046-final-two-version-proof/ | Run the live plugin playbook for all 17 plugins on OpenCode 1.19.3 and 2.0.32, rerun every tracked suite, validate the packet and record CI on the final main commit | Complete |
@@ -161,6 +161,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 48 | 048-skilled-loop-shared-nudge-formatter/ | Build the relaunch seed's spec-folder suffix through the shared core formatter, warn on stderr when that call fails, and prove the ownership with a test that fails on the old hand-written function | Complete |
 | 49 | 049-review-rows-reconciliation/ | Reconcile the 039 review with the fixes from phases 040 to 042, add rows for the four hook files added after the audit, and recompute the totals from the rows | Pending |
 | 50 | 050-sk-doc-ci-outside-failures/ | Clear the two defects another session's commits left in sk-doc's checks - a validator import that fails under importlib and a catalog row that names AGENTS.md as plain text - so sk-doc Script Tests is green on main | Complete |
+| 52 | 052-v1-default-llmgateway/ | Make llmgateway/deepseek-v4.1-flash the OpenCode 1 default too, so both versions share one default, prove an unpinned dispatch live on each version and close 043 | Complete |
 
 ### Phase Transition Rules
 
@@ -218,4 +219,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 047-diagram-corpus-ci | 048-skilled-loop-shared-nudge-formatter | The operator approved closing 039's last open P1 on 2026-10-21 | `048/implementation-summary.md`; suffix compare 8/8, skilled-loop 111/111, Hook Node 872/872 |
 | 048-skilled-loop-shared-nudge-formatter | 049-review-rows-reconciliation | 048's P1 fix is on main and its review row names the commit | `check-review-rows.mjs` exits 0 against review.md |
 | 049-review-rows-reconciliation | 050-sk-doc-ci-outside-failures | The operator approved fixing main's red sk-doc Script Tests on 2026-10-21 | `050/implementation-summary.md`; sk-doc Script Tests passes on CI at the pushed commit |
+| 050-sk-doc-ci-outside-failures | 052-v1-default-llmgateway | The operator chose llmgateway for the OpenCode 1 default on 2026-10-21 because the opencode-go quota is spent | `052/implementation-summary.md`; both unpinned live dispatches exit 0 and reply |
 <!-- /ANCHOR:phase-map -->

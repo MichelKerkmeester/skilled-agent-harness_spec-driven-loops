@@ -1,0 +1,11 @@
+2026-10-21T19:09:36Z
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+bin=opencode
+lineage.model=undefined (unpinned)
+resolved.model=undefined
+argv="opencode" "run" "--model" "llmgateway/deepseek-v4.1-flash" "--format" "json" "--dir" "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway" "--dangerously-skip-permissions" "--variant" "max" "Reply with the single word OK. Do not use any tools."
+exit=0
+signal=null
+text=OK
+stdout_events=3
+stderr_tail=

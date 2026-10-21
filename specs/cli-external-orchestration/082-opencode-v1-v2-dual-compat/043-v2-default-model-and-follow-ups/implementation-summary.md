@@ -11,9 +11,8 @@ _memory:
     last_updated_at: "2026-10-21T09:30:00Z"
     last_updated_by: "group-043-worker"
     recent_action: "Built, verified and Luna-reviewed the v2 default model and follow-ups"
-    next_safe_action: "Fix the inode-only takeover check in session-relaunch lib/killer.cjs, then rerun Hook Node Tests; rerun the OpenCode 1 unpinned dispatch once the opencode-go quota resets"
+    next_safe_action: "Fix the inode-only takeover check in session-relaunch lib/killer.cjs, then rerun Hook Node Tests"
     blockers:
-      - "OpenCode 1 live dispatch: opencode-go reports Go usage limit exceeded"
       - "Hook Node Tests red on Linux: session-relaunch killer inode-only takeover check"
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-043-v2-default-model-and-follow-ups"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "OpenCode 2 default provider: llmgateway (operator, 2026-10-21)"
@@ -119,7 +118,7 @@ CI on `db82fdfd62`: Hook Node Tests 39577580180 failure (both attempts); passed:
 | actionlint, check-gate-inputs.sh | PASS |
 | Bridge timeout mutation | Mutated: exit 1 in 4 s, 11 fail, 3 cancelled by timeout (before: killed by the 120 s alarm). Restored: diff empty, 51/51 |
 | Live unpinned dispatch, OpenCode 2 | PASS: built `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#max`, exit 0, replied OK (`scratch/live/v2-unpinned.txt`) |
-| Live unpinned dispatch, OpenCode 1 | BLOCKED: built the expected `opencode run --model opencode-go/deepseek-v4.1-flash --variant max`, but opencode-go returned `Go usage limit exceeded` and 1.19.3 hung until the alarm (`scratch/live/v1-unpinned.txt`, `v1-probe-errors.txt`) |
+| Live unpinned dispatch, OpenCode 1 | PASS via 052: built `opencode run --model llmgateway/deepseek-v4.1-flash --variant max`, exit 0, replied OK (`../052-v1-default-llmgateway/scratch/live/v1-unpinned.txt`). In this phase it was BLOCKED: opencode-go returned `Go usage limit exceeded` and 1.19.3 hung until the alarm (`scratch/live/v1-unpinned.txt`, `v1-probe-errors.txt`) |
 | Luna review | Round 1 FAIL (4 P1, 1 P2), fixed in `9f2c2529ce`. Round 2 FAIL (2 P1 on packet-doc accuracy, 1 P2 whitespace), fixed in `1c5a576c40`. Round 3 FAIL (3 P1, 1 P2, all packet-doc accuracy), fixed in `05783e32d5`. Round 4 FAIL (2 P1): the CI-coverage overclaim in the problem statement, fixed after it, and the CO-012 high versus max mismatch, recorded as Known Limitation 4. The 4-round stop rule ends review there. The OpenCode 1 live run is classed recorded-blocked in every round |
 | Hook Node Tests on CI | FAIL at `db82fdfd62`, run 39577580180, attempts 1 and 2: 854 tests, 851 pass, 1 fail, 2 skipped, so the installer step did not run. The one failure is `killer.test.cjs:2065`, a Linux-only defect the new job surfaced (Known Limitation 5). The other 19 workflows on that commit passed |
 <!-- /ANCHOR:verification -->
@@ -129,7 +128,7 @@ CI on `db82fdfd62`: Hook Node Tests 39577580180 failure (both attempts); passed:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **OpenCode 1 live dispatch not yet proven.** The opencode-go account is over its usage limit, so the unpinned v1 run cannot exit 0 until it resets. This phase did not change the v1 default; the unit tests pin its argv. OpenCode 1.19.3 also hangs on that error instead of exiting, which a caller only sees as a timeout.
+1. **OpenCode 1 live dispatch not yet proven.** The opencode-go account is over its usage limit, so the unpinned v1 run cannot exit 0 until it resets. This phase did not change the v1 default; the unit tests pin its argv. OpenCode 1.19.3 also hangs on that error instead of exiting, which a caller only sees as a timeout. **Resolved in 052:** with the operator's approval the OpenCode 1 default moved to `llmgateway/deepseek-v4.1-flash` (`--variant max`) because that quota is spent, so an unpinned v1 dispatch builds `"opencode" "run" "--model" "llmgateway/deepseek-v4.1-flash" ... "--variant" "max"` and exits 0 with a reply (`../052-v1-default-llmgateway/scratch/live/v1-unpinned.txt`), and opencode-go stays a selectable provider.
 2. **The pre-flight check reads shell text, not a shell parse** (036 Known Limitation 7, recorded again). It still misses an escaped delimiter before `#`, treats a backslash followed by spaces as a continuation, and accepts a `printf` whose format prints other text or a `printf -v` variable. Each needs a crafted line inside the skill's own block, and that block is run live.
 3. **The shell-write gap stays open by choice.** The spec gate cannot refuse a file written by a shell command; the operator kept it as a known limit.
 4. **CO-012 says `high` but runs `max`.** The variant-levels scenario calls `high` its verified upper point and `max` unverified, yet its step 2 commands pass `--variant max` and `#max` and label the result HIGH, while the roster pins this route to `max`. That mismatch predates this phase, which only edited the scenario's provider notes; aligning it means choosing the comparison's upper point, so it is left for the playbook's owner.
