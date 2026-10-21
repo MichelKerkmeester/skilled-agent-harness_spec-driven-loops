@@ -1,0 +1,17 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is an operator-approved sixth round, limited to the P1 of your round-5 verdict (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-r5.txt`): `do not, under any circumstances, use cli-devin` was treated as authorization.
+
+Commit: `git show HEAD -- .skilled/hooks/dispatch/pi/`. In `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, `isUsableMention` now scopes a negation to its sentence (punctuation or but/instead/rather), and `negationReachesMention` lets a comma end the last negation only when the text between the negation and the comma names an executor AND the text after the comma starts a new imperative (use, run, try, pick, choose, call, dispatch, launch, prefer, switch, go). In-word apostrophes no longer count as quotes. The test file's `Pi dispatch deny matrix` holds the phrasing table.
+
+Judge: is the round-5 P1 closed? Then, by reading the code and tracing phrasings by hand (the file is TypeScript; you may also copy the two functions' logic into a `node --input-type=module -e` probe), look for a P0 or P1 of the same kind: a negation of the executor being dispatched that this logic drops (so the dispatch is authorized), or a clearly positive request for that executor that it now denies. Try phrasings beyond the table: other parentheticals, other negation words, lists with `and`/`or`, imperatives after commas inside a negated list (`do not use opencode, use codex, or use cli-devin`), questions, multiple sentences. Do not run vitest or node:test.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+round-5 P1 | CLOSED|OPEN | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <exact phrasing> | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL
