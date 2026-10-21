@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal held fixes",
+      "phase 41 goal held fixes",
+      "goal archive on replace and clear",
+      "goal core parse error fallback",
+      "goal cli workspace required",
+      "goal held fixes plan",
+      "goal held fixes tasks",
+      "goal held fixes implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "held",
+      "phase",
+      "archive",
+      "replace",
+      "clear",
+      "core",
+      "parse",
+      "error",
+      "fallback",
+      "cli",
+      "workspace"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/hooks/goal/bin/goal.cjs",
+      ".skilled/hooks/goal/lib/goal-core.test.cjs",
+      ".skilled/hooks/goal/bin/goal.test.cjs",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plugin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The OpenCode goal plugin deletes a goal whenever a mutator returns `null`, although several event mutators return `null` only to mean that no goal exists, so a goal another process just wrote can be removed",
+    "created_at": "2026-10-21T04:56:30Z",
+    "last_save_at": "2026-10-21T04:59:39.748Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:529f1b7f98f737a068a6261cacb560100309b57d954c26470e2725755ac47bc0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "475441a5e9199f755dd951f11ee5c76b73147530f2c3f75a04d18b27c2daa8f1",
+      "plan.md": "0c75debe5cf1dd79e2865d35a26aa9eb12ad1d0556b9cc4daf7580c68f551207",
+      "tasks.md": "3d47a5f09b3cbd42581e678c2d9aaa0e2e3a150aafa5849c4deefbe51a4452f4",
+      "implementation-summary.md": "c2f5d8f2d59ea0239b93c088b3b781305687001a398f71b7ec0a2fe17c0bf69e"
+    },
+    "last_active_at": null
+  }
+}

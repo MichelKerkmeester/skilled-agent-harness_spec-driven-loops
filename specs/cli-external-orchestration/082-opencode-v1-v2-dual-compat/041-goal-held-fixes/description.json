@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes",
+  "description": "Fix the goal plugin and goal core findings the alignment audit held for the operator",
+  "keywords": [
+    "goal",
+    "plugin",
+    "core",
+    "findings",
+    "alignment",
+    "audit",
+    "held",
+    "operator"
+  ],
+  "lastUpdated": "2026-10-21T04:56:30.560Z",
+  "specId": "041",
+  "folderSlug": "goal-held-fixes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
