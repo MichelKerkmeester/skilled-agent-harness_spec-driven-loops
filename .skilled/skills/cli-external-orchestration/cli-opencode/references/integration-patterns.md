@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -79,7 +79,7 @@ On OpenCode 1 (1.19.3):
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent general \
   --variant max \
   --format json \
@@ -155,7 +155,7 @@ On OpenCode 1 (1.19.3):
 ```bash
 opencode run \
   --port 4096 \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent deep-research \
   --variant max \
   --format json \
@@ -221,7 +221,7 @@ On OpenCode 1 (1.19.3):
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent general \
   --variant max \
   --format json \
@@ -384,7 +384,7 @@ On OpenCode 1 (1.19.3):
 
 ```bash
 timeout 720 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --pure \
   --dangerously-skip-permissions \
