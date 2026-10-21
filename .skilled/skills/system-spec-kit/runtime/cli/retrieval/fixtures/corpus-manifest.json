@@ -1,5 +1,5 @@
 {
-  "corpusHash": "78e889c9e9e8cf431a5b09f194a0cf9ed4bbc14bf3315afda4dae9efb7fa3998",
+  "corpusHash": "8865a07a3925431a3c633fbf539a071f23e2e60435724da52e17e707821a194c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25526,
+  "includedPathCount": 25545,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -15817,6 +15817,19 @@
     "specs/system-skill-advisor/036-routing-and-launcher-hardening/plan.md",
     "specs/system-skill-advisor/036-routing-and-launcher-hardening/spec.md",
     "specs/system-skill-advisor/036-routing-and-launcher-hardening/tasks.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/acceptance-criteria.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/decision-record.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/implementation-summary.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/plan.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/spec.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/tasks.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/acceptance-criteria.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/decision-record.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/implementation-summary.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/plan.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/spec.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/tasks.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -25455,6 +25468,12 @@
     "specs/system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/decision-record.md",
+    "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -25557,7 +25576,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
+  "manifestHash": "8d7bf72d2a03e4269767d37c6ccb357f9df1e859e59062e75d00c178c73472da",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29852,6 +29871,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -32305,6 +32332,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/scratch",
       "reason": "excluded directory"
     },
     {

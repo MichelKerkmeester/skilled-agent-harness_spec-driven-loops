@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7205,
-    "ok": 14773,
+    "ok": 14792,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25526,
+  "documentsScanned": 25545,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
+  "manifestHash": "8d7bf72d2a03e4269767d37c6ccb357f9df1e859e59062e75d00c178c73472da",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37252,
+      "ok": 37280,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72406,6 +72406,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -74859,6 +74867,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/scratch",
       "reason": "excluded directory"
     },
     {
