@@ -906,6 +906,30 @@ test('session.deleted archives an existing goal file exactly', async () => withS
   assert.deepEqual(JSON.parse(archiveTargetRaw), JSON.parse(archiveSourceRaw));
 }));
 
+test('session.deleted archives a second goal for the same session without overwriting', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const sessionID = 'session-archive-repeat';
+  const archivePlugin = await pluginModule.default.server({}, { stateDir });
+  await helpers.setGoal(sessionID, 'Archive the first goal for this session', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'archive-repeat-first-goal',
+  });
+  await archivePlugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+
+  await helpers.setGoal(sessionID, 'Archive the second goal for this session', {
+    stateDir,
+    nowMs: 2000,
+    goalIdFactory: () => 'archive-repeat-second-goal',
+  });
+  await archivePlugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+
+  assert.equal(await fileExists(helpers.goalPathForSession(sessionID, { stateDir })), false);
+  const history = await archivePlugin.tool.opencode_goal.execute({ action: 'history' }, {});
+  assert.match(history, /archive_count=2/);
+  assert.match(history, /archive_\d+_goal_id="archive-repeat-first-goal"/);
+  assert.match(history, /archive_\d+_goal_id="archive-repeat-second-goal"/);
+}));
+
 test('session.deleted archives a long session id without probing an impossible legacy filename', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const sessionID = `session-${'d'.repeat(140)}`;
   const archivePlugin = await pluginModule.default.server({}, { stateDir });

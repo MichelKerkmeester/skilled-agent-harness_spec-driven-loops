@@ -1499,6 +1499,60 @@ async function maybePruneArchive(rawOptions = {}) {
   await pruneArchive(options);
 }
 
+async function placeArchiveRecord(sessionID, record, options, { sourcePath = null, canonical = true } = {}) {
+  const archiveDir = await ensureGoalArchiveDir(options);
+  const sessionKey = sessionKeyForSession(sessionID);
+  const payload = `${JSON.stringify(record, null, 2)}\n`;
+  const digest = createHash('sha256').update(JSON.stringify(record), 'utf8').digest('hex').slice(0, 16);
+  const candidates = [];
+  if (canonical) candidates.push(join(archiveDir, `${sessionKey}.json`));
+  candidates.push(join(archiveDir, `${sessionKey}.${normalizeGoalID(record.goalId)}.${digest}.json`));
+
+  for (const candidate of candidates) {
+    if (dirname(resolvePath(candidate)) !== resolvePath(archiveDir)) {
+      writeDebugStderr(
+        'placeArchiveRecord',
+        new Error('archive target escapes its archive folder'),
+      );
+      continue;
+    }
+    try {
+      if (sourcePath) {
+        await link(sourcePath, candidate);
+        await unlink(sourcePath);
+      } else {
+        const tempPath = join(archiveDir, `.tmp-${randomUUID()}.json`);
+        try {
+          await writeFile(tempPath, payload, { mode: 0o600 });
+          await link(tempPath, candidate);
+        } finally {
+          await unlink(tempPath).catch((error) => {
+            if (error?.code !== 'ENOENT') writeDebugStderr('placeArchiveRecord.unlinkTemp', error);
+          });
+        }
+      }
+      return candidate;
+    } catch (error) {
+      if (error?.code !== 'EEXIST') throw error;
+      if (candidate === candidates[candidates.length - 1]) {
+        const existing = await readFile(candidate, 'utf8').catch((readError) => {
+          if (readError?.code === 'ENOENT') return null;
+          throw readError;
+        });
+        if (existing !== null && existing === payload) {
+          if (sourcePath) {
+            await unlink(sourcePath).catch((unlinkError) => {
+              if (unlinkError?.code !== 'ENOENT') throw unlinkError;
+            });
+          }
+          return candidate;
+        }
+      }
+    }
+  }
+  return null;
+}
+
 async function archiveGoalStateFile(sessionID, rawOptions = {}) {
   const sweepArchiveStaleBeforeMs = Number.isFinite(rawOptions.sweepArchiveStaleBeforeMs)
     ? Math.trunc(rawOptions.sweepArchiveStaleBeforeMs)
@@ -1513,9 +1567,9 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
       return null;
     }
     const archiveDir = await ensureGoalArchiveDir(options);
-    const archivePath = join(archiveDir, `${sessionKeyForSession(normalizedSessionID)}.json`);
+    let archivePath;
     try {
-      await rename(sourcePath, archivePath);
+      archivePath = await placeArchiveRecord(normalizedSessionID, currentGoal, options, { sourcePath });
     } catch (error) {
       if (error?.code === 'ENOENT') return null;
       await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
@@ -1523,6 +1577,15 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
         eventType: 'session.deleted',
         sid: normalizedSessionID,
         error: redactEvidence(error?.message || 'archive failed', DEFAULT_MAX_REASON_CHARS),
+      }, options);
+      return null;
+    }
+    if (!archivePath) {
+      await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+        type: 'event_error',
+        eventType: 'session.deleted',
+        sid: normalizedSessionID,
+        error: redactEvidence('archive failed', DEFAULT_MAX_REASON_CHARS),
       }, options);
       return null;
     }
@@ -1868,24 +1931,19 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
   // the runtime-neutral core does, so both implementations keep one history.
   const prior = await readGoal(sessionID, options);
   if (prior && prior.packetPath && prior.packetPath !== packet.packetPath) {
-    const archiveDir = await ensureGoalArchiveDir(options);
     // The goal id is read from state any process on this machine can edit, and it
     // keeps path separators and `..`, so the snapshot must land directly in the
     // archive folder or not at all.
-    const snapshotPath = join(
-      archiveDir,
-      `${sessionKeyForSession(sessionID)}.${normalizeGoalID(prior.goalId)}.json`,
-    );
-    if (dirname(resolvePath(snapshotPath)) !== resolvePath(archiveDir)) {
-      writeDebugStderr(
-        'bindGoal.archivePrior',
-        new Error('archive target escapes its archive folder'),
-      );
-    } else {
-      await writeFile(snapshotPath, `${JSON.stringify(prior, null, 2)}\n`, { mode: 0o600 })
-        .catch((error) => {
-          writeDebugStderr('bindGoal.archivePrior', error);
-        });
+    try {
+      const snapshotPath = await placeArchiveRecord(sessionID, prior, options, { canonical: false });
+      if (!snapshotPath) {
+        writeDebugStderr(
+          'bindGoal.archivePrior',
+          new Error('archive target escapes its archive folder'),
+        );
+      }
+    } catch (error) {
+      writeDebugStderr('bindGoal.archivePrior', error);
     }
   }
   const goal = await mutateGoal(sessionID, (current) => {
