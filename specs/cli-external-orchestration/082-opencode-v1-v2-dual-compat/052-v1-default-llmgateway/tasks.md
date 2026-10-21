@@ -63,7 +63,7 @@ contextType: "general"
 - [x] T016 Rerun the plugin, hook node:test and deep-loop vitest suites: 516/516, 872/872 over 29 files, and 299/299 (`scratch/after/plugins.tap`, `hooks-node.tap`, `deep-loop-vitest.txt`)
 - [x] T017 Rerun the cli-opencode script tests at 22/22, the playbook validator at 72 scenarios with 0 violations and 0 warnings, and the Hermes sync check at 68 in sync (`scratch/after/`)
 - [x] T018 Run strict validation of this folder: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway --strict` - `RESULT: PASSED`
-- [ ] T019 Push to main and record CI, with the commit hash and every workflow's run id (`implementation-summary.md`) (the commit is recorded after push)
+- [x] T019 Push to main and record CI: pushed `af1a18709f`, 18/18 workflows success, run ids in implementation-summary.md (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -71,10 +71,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] Every task except T019 is marked `[x]`
+- [x] Every task is marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [ ] T019 closes once the push lands and its CI is recorded
+- [x] T019 closed: pushed `af1a18709f`, 18/18 workflows success, run ids in implementation-summary.md
 <!-- /ANCHOR:completion -->
 
 ---

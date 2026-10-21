@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-21T19:30:00Z"
     last_updated_by: "deepseek-v4.1-flash-high"
     recent_action: "Wrote the packet and closed the 043, 006 and 036 records; both live dispatches replied OK"
-    next_safe_action: "Push to main, then record the commit hash and every workflow's run id in this file"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -125,7 +125,7 @@ The order was runtime first, then tests, then docs, then the records this phase 
 | Live unpinned dispatch, OpenCode 2 | PASS: built `"opencode2" "run" "--standalone" "-m" "llmgateway/deepseek-v4.1-flash#max" "--format" "json" "--auto" "Reply with the single word OK. Do not use any tools."`, exit 0, `signal=null`, reply OK (`scratch/live/v2-unpinned.txt`) |
 | Read-only review | PASS: no P0, no P1, two P2s, both fixed (`scratch/briefs/r1-review.task`) |
 | Strict validation of this folder | `validate.sh 052-v1-default-llmgateway --strict` - `RESULT: PASSED` |
-| CI at the pushed commit | Recorded after push: the commit hash and every workflow's run id go in this row |
+| CI at the pushed commit | PASS: the four commits reached origin/main as `a2b54ae673`..`af1a18709f` on 2026-10-21, and 18 of 18 workflows on `af1a18709f` concluded success: 39663888607 OpenCode Plugin Tests; 39663888575 Runtime No-Spec-Import Guard; 39663888549 Gate Inputs; 39663888548 Hook Node Tests; 39663888547 Rule Canary Sync; 39663888463 OpenCode Dual-Version Battery; 39663888453 Advisory Checks; 39663888451 Markdown Link Integrity; 39663888397 Trigger Index Rebuild; 39663888328 Message Contract; 39663888281 Changed Packet Validation; 39663888268 Playbook Operator Contract; 39663888248 Routing Registry Drift Guard; 39663888236 Deep-Loop Runtime Tests; 39663888233 sk-doc Script Tests; 39663888216 Skill Doc Frontmatter; 39663888192 Dispatch Enforcement Guard; 39663888191 Command Tree Parity. Recursive strict validation of the parent before the push covered 52 folders and printed `RESULT: PASSED` |
 
 Both live runs were built by the fan-out runtime with no model pinned, so the model in each argv is the fallback this phase set, and each ran under `perl -e 'alarm 180; exec @ARGV'` so a hang would have ended the proof rather than the session.
 <!-- /ANCHOR:verification -->
@@ -136,9 +136,8 @@ Both live runs were built by the fan-out runtime with no model pinned, so the mo
 ## Known Limitations
 
 1. **The `opencode-go` route is not proven live.** Its quota is spent, so a dispatch that names it on OpenCode 1 still hangs on `Go usage limit exceeded` and exits 142 after an alarm. The provider stays documented because the route is real and will work when the quota resets; this phase only stopped defaulting to it.
-2. **CI is not recorded yet.** The commit hash and the workflow run ids are the one open task, so this file's CI row is the only claim here that is written after the work rather than measured by it.
-3. **The docs state the default; nothing enforces the prose.** The default-model test holds each provider table's default marker and the syntax `SKILL.md` pins, so a switched default fails there, but a sentence elsewhere that describes the default wrongly would pass every check and only a review would catch it.
-4. **The playbook's dated records now describe a past state.** The 2026-04-26 coverage notes and the 2026-05-04 incident still name `opencode-go` as the default because that is what was true when they were written. A reader who takes them as current would be wrong, and the dated prefix is what tells them apart.
+2. **The docs state the default; nothing enforces the prose.** The default-model test holds each provider table's default marker and the syntax `SKILL.md` pins, so a switched default fails there, but a sentence elsewhere that describes the default wrongly would pass every check and only a review would catch it.
+3. **The playbook's dated records now describe a past state.** The 2026-04-26 coverage notes and the 2026-05-04 incident still name `opencode-go` as the default because that is what was true when they were written. A reader who takes them as current would be wrong, and the dated prefix is what tells them apart.
 <!-- /ANCHOR:limitations -->
 
 ---

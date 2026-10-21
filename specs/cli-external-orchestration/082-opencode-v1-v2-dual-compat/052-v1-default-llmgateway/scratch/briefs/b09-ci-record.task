@@ -1,0 +1,32 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (one change: record CI for the pushed commit and close task T019).
+
+FACTS: the phase's four commits reached origin/main as `a2b54ae673`..`af1a18709f` on 2026-10-21. All 18 workflows on `af1a18709f` concluded success:
+39663888607 OpenCode Plugin Tests; 39663888575 Runtime No-Spec-Import Guard; 39663888549 Gate Inputs; 39663888548 Hook Node Tests; 39663888547 Rule Canary Sync; 39663888463 OpenCode Dual-Version Battery; 39663888453 Advisory Checks; 39663888451 Markdown Link Integrity; 39663888397 Trigger Index Rebuild; 39663888328 Message Contract; 39663888281 Changed Packet Validation; 39663888268 Playbook Operator Contract; 39663888248 Routing Registry Drift Guard; 39663888236 Deep-Loop Runtime Tests; 39663888233 sk-doc Script Tests; 39663888216 Skill Doc Frontmatter; 39663888192 Dispatch Enforcement Guard; 39663888191 Command Tree Parity.
+Recursive strict validation of the parent before the push: 52 folders, RESULT: PASSED.
+
+EDIT in `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/`:
+1. `implementation-summary.md`: the "CI at the pushed commit" row (~line 128) becomes PASS with the commit, "18 of 18 workflows success" and every run id with its workflow name. Known Limitation 2 ("CI is not recorded yet", ~line 139) is removed and the remaining limitations renumbered (if it was the only one, write "None."). In the continuity block set `next_safe_action` to "None: phase complete" and keep `completion_pct: 100`.
+2. `tasks.md`: mark T019 `[x]` with evidence "pushed `af1a18709f`, 18/18 workflows success, run ids in implementation-summary.md"; change the checklist lines "Every task except T019 is marked `[x]`" to "Every task is marked `[x]`" and "T019 closes once the push lands and its CI is recorded" to `[x]` with the same evidence.
+3. `spec.md`: mark REQ-006 / SC-003 met only if the file has an evidence or status column for them; otherwise leave spec.md unchanged.
+Read each file before editing. Edit nothing else.
+
+ALLOWED WRITE PATHS:
+- specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/implementation-summary.md
+- specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/tasks.md
+- specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/spec.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+grep -n "Recorded after push\|\[ \]" specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/tasks.md specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/implementation-summary.md
+(expect no output) and
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway --strict 2>&1 | tail -4
+
+Return report: the changed lines and both verify outputs.
