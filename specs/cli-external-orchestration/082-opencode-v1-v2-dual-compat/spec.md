@@ -160,6 +160,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 47 | 047-diagram-corpus-ci/ | Bring the Diagram Corpus workflow back to green by moving the diagram scripts README into the 1.2 version era the metadata family requires and telling the next reader to set the major.minor by hand | Complete |
 | 48 | 048-skilled-loop-shared-nudge-formatter/ | Build the relaunch seed's spec-folder suffix through the shared core formatter, warn on stderr when that call fails, and prove the ownership with a test that fails on the old hand-written function | Complete |
 | 49 | 049-review-rows-reconciliation/ | Reconcile the 039 review with the fixes from phases 040 to 042, add rows for the four hook files added after the audit, and recompute the totals from the rows | Pending |
+| 50 | 050-sk-doc-ci-outside-failures/ | Clear the two defects another session's commits left in sk-doc's checks - a validator import that fails under importlib and a catalog row that names AGENTS.md as plain text - so sk-doc Script Tests is green on main | In Progress |
 
 ### Phase Transition Rules
 
@@ -216,4 +217,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 046-final-two-version-proof | 047-diagram-corpus-ci | The operator asked on 2026-10-21 to fix Diagram Corpus, red on main since 2026-10-18 | `047/implementation-summary.md`; Diagram Corpus passes on CI at the pushed commit |
 | 047-diagram-corpus-ci | 048-skilled-loop-shared-nudge-formatter | The operator approved closing 039's last open P1 on 2026-10-21 | `048/implementation-summary.md`; suffix compare 8/8, skilled-loop 111/111, Hook Node 872/872 |
 | 048-skilled-loop-shared-nudge-formatter | 049-review-rows-reconciliation | 048's P1 fix is on main and its review row names the commit | `check-review-rows.mjs` exits 0 against review.md |
+| 049-review-rows-reconciliation | 050-sk-doc-ci-outside-failures | The operator approved fixing main's red sk-doc Script Tests on 2026-10-21 | `050/implementation-summary.md`; sk-doc Script Tests passes on CI at the pushed commit |
 <!-- /ANCHOR:phase-map -->

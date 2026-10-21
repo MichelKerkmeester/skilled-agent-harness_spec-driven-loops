@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk doc ci outside failures",
+      "phase 50 sk doc ci outside failures",
+      "sk doc ci outside failures plan",
+      "sk doc ci outside failures tasks",
+      "sk doc ci outside failures implementation summary"
+    ],
+    "key_topics": [
+      "doc",
+      "outside",
+      "failures",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet",
+      "fifth",
+      "goal",
+      "criterion"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_skill_package.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_create_skill_contract.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_catalog_package.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no P0",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet's fifth goal criterion asks for green CI on the final main commit, and sk-doc Script Tests was red on main",
+    "created_at": "2026-10-21T17:36:21Z",
+    "last_save_at": "2026-10-21T17:52:34.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:337294a7f6ff5abe64a7d9a513ae06a6c2be819c7558e48c60b409f22ea8a752",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d9257667d5bbda9938fa107f69b8945e0d93635242029eff303672e2962ce37b",
+      "plan.md": "24bf725052295de64974e17b83bd31656955e73dee313a53829a49633f13d31f",
+      "tasks.md": "bcdfeb20d749aaeee9f3975bfc75ce54dc2a2bb95c5cd36571bb19c9e5ac9f59",
+      "implementation-summary.md": "3be56c6c55f8b3bc609c45733ee42c7d41ab8143b735b6a97b71cbcf959a6f66"
+    },
+    "last_active_at": null
+  }
+}

@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'shared' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
 from package_skill import skill_folder_id  # type: ignore  # noqa: E402
 

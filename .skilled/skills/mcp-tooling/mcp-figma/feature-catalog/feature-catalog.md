@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma-ds-cli"
   - "feature catalog"
 last_updated: "2026-06-14"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-figma: Feature Catalog
@@ -68,7 +68,7 @@ Bring up and maintain the link between the terminal and Figma Desktop. Safe plug
 | Daemon diagnose | Diagnoses daemon/token issues (e.g. "Unauthorized") | READ-ONLY | `figma-ds-cli daemon diagnose` |
 | Daemon start / stop / restart | Brings the local daemon up, down, or recycles it | MUTATING (app-level) | `figma-ds-cli daemon start [--force] \| stop \| restart` |
 | Daemon reconnect | Re-establishes the Desktop link without a full restart | MUTATING (app-level) | `figma-ds-cli daemon reconnect` |
-| init-agent (off by default) | Writes `AGENTS.md` + `.cursor/rules/figma-cli.mdc` into the repo root; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
+| init-agent (off by default) | Writes the target repo's agent instructions file (AGENTS) + `.cursor/rules/figma-cli.mdc` into its root; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
 
 See [`connect-and-daemon/connect-and-daemon.md`](../feature-catalog/connect-and-daemon/connect-and-daemon.md) for the safe-vs-yolo gate, the daemon model, and the token-handling rules.
 
