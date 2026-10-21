@@ -64,7 +64,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185. Each was a launcher of about 53 MB and an advisor server of 62 to 100 MB, about 400 MB together. A bare Node process measures 47 MB, so most of the launcher's footprint is the runtime, not its logic. Ollama is now off on this machine, so `EMBEDDINGS_PROVIDER=auto` falls back to the local Hugging Face model server. That server stays loaded for good, because `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN` defaults to `0`.
+On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185. Each was a launcher of about 53 MB and an advisor server of 62 to 100 MB, about 400 MB together. A bare Node process measures 47 MB, so most of the launcher's footprint is the runtime, not its logic. Ollama is now off on this machine, so `EMBEDDINGS_PROVIDER=auto` falls back to the local Hugging Face model server. That server stayed loaded for good, because `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN` defaulted to `0` until phase 1 set it to 10 minutes.
 
 ### Purpose
 An idle checkout costs as little memory as the advisor can safely allow, without slowing the first answer after a quiet spell more than a cold start already does.
@@ -105,7 +105,7 @@ The files each phase expects to touch. Each child's plan owns the detailed list.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-hf-model-server-idle-default/ | Give the resident model server a default idle timeout so it unloads when nothing embeds | Pending |
+| 1 | 001-hf-model-server-idle-default/ | Give the resident model server a default idle timeout so it unloads when nothing embeds | Complete |
 | 2 | 002-lighter-advisor-launcher/ | Measure the launcher, then fold its job into the advisor server or record a no-go | Pending |
 
 ### Phase Transition Rules

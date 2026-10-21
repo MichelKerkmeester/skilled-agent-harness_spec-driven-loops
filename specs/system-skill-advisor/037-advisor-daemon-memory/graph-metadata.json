@@ -34,7 +34,7 @@
       "three"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       ".skilled/bin/lib/model-server-supervision.cjs",
@@ -98,16 +98,16 @@
     ],
     "causal_summary": "On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185",
     "created_at": "2026-10-21T09:51:14Z",
-    "last_save_at": "2026-10-21T09:56:27.818Z",
+    "last_save_at": "2026-10-21T11:34:30.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ef56c6381b9cb53707d50e70dacf59c48755541a1b4f90e24b4f5db9250e9a83",
+    "source_fingerprint": "sha256:84bfd257010dfbd51443ddcc55d0a27cc8e0f4645cdb8ee55e97618235ad1870",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "437008e1a88779e48dff7558d07624c1b9c9c88df484c84ee1074436c2aee116"
+      "spec.md": "a453c317287824d2f1022d55a2e1410c9cd57bfbf00219e439b7b97cc3277d7e"
     },
     "last_active_at": null
   }

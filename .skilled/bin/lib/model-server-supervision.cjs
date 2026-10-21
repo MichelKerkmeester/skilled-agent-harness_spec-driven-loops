@@ -34,6 +34,8 @@ const DEFAULT_CRASH_LOOP_MAX_DEATHS = 3;
 const DEFAULT_CRASH_LOOP_WINDOW_MS = 60000;
 const DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS = 250;
 const DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS = 5000;
+// A sub-second reload is cheaper than holding hundreds of MB idle.
+const DEFAULT_MODEL_SERVER_IDLE_TIMEOUT_MIN = 10;
 const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
 // Canonical short default for the empty-environment fallback (neither HF_EMBED_SERVER_URL nor
 // SPECKIT_IPC_SOCKET_DIR set) — the same directory both opencode.json and .claude/mcp.json
@@ -223,9 +225,9 @@ function getModelServerWatchdogConfig(env = process.env, warn = defaultLog) {
 
 function getModelServerIdleConfig(env = process.env) {
   const rawIdleMin = env.SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN;
-  const idleMin = rawIdleMin === undefined || rawIdleMin === null || String(rawIdleMin).trim() === ''
-    ? 0
-    : Number.parseFloat(String(rawIdleMin).trim());
+  const rawIdleMinText = rawIdleMin === undefined || rawIdleMin === null ? '' : String(rawIdleMin).trim();
+  const parsedIdleMin = rawIdleMinText === '' ? DEFAULT_MODEL_SERVER_IDLE_TIMEOUT_MIN : Number(rawIdleMinText);
+  const idleMin = Number.isFinite(parsedIdleMin) ? parsedIdleMin : DEFAULT_MODEL_SERVER_IDLE_TIMEOUT_MIN;
   const enabled = Number.isFinite(idleMin) && idleMin > 0;
   return {
     enabled,

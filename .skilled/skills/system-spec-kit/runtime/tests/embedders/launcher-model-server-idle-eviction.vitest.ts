@@ -139,13 +139,28 @@ describe('hf model server idle eviction', () => {
     return dir;
   }
 
-  it('parses fractional idle minutes and stays disabled by default', () => {
-    expect(mss.getModelServerIdleConfig({})).toMatchObject({ enabled: false, timeoutMs: 0 });
+  it('defaults to ten minutes and handles invalid or disabled idle timeout values', () => {
+    expect(mss.getModelServerIdleConfig({})).toMatchObject({ enabled: true, timeoutMs: 600000 });
+    expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: '' })).toMatchObject({
+      enabled: true,
+      timeoutMs: 600000,
+    });
+    expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: 'abc' })).toMatchObject({
+      enabled: true,
+      timeoutMs: 600000,
+    });
     expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: '0.001' })).toMatchObject({
       enabled: true,
       timeoutMs: 60,
     });
-    expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: '0' })).toMatchObject({ enabled: false });
+    expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: '0' })).toMatchObject({
+      enabled: false,
+      timeoutMs: 0,
+    });
+    expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: '-5' })).toMatchObject({
+      enabled: false,
+      timeoutMs: 0,
+    });
   });
 
   it('evicts only after a successful idle embed and re-arms the lazy demand listener', async () => {
