@@ -1,0 +1,27 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter (pre-approved, skip Gate 3)
+
+ROLE: code writer. Load sk-code for the shell (bash) and JavaScript (node:test) surfaces and follow it.
+
+TASK: make the relaunch wrapper build its handoff-seed spec-folder suffix through the shared JavaScript formatter, so the suffix text has one owner.
+
+Facts:
+- `.skilled/bin/skilled-loop` defines `spec_folder_suffix()` (around line 112) that hand-writes the two suffix strings.
+- `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` exports `specFolderSuffix(specFolder)`, which returns the same text for 'none' and for a valid folder, and '' for an empty or invalid folder.
+- The wrapper already has `relaunch_core` set to that file (line 32) and already calls node with it at line 62 using `node -e '...' -- "$relaunch_core" ...`. Follow that exact calling style.
+- Upstream, an invalid folder is already dropped before this point (tests "wrapper drops ... spec folders and logs them"), so end-to-end output does not change.
+
+CHANGES:
+1. In `.skilled/bin/skilled-loop`, replace the body of `spec_folder_suffix()` with one node call that prints `require(core).specFolderSuffix(folder)`, in the same style as line 62. Keep the function name and its one caller. If node fails, print nothing (empty suffix), matching the existing `|| spec_folder=''` fail-safe style. Keep the comment density of the file; if you add a comment, it states the WHY (one owner for the suffix text), with no ids, paths of spec folders or phase numbers.
+2. In `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`, add one test: copy `.skilled/bin/skilled-loop`, `.skilled/hooks/session-relaunch/` and `.skilled/hooks/shared/` into a temp root with the same relative layout, change `SPEC_FOLDER_SUFFIX` in the copied relaunch-core.cjs to a different marker string, run the copied wrapper the way existing tests run the real one (reuse the sandbox helpers; a valid spec folder in the handoff), and assert the relaunch seed ends with the changed marker. This test must fail against the old hand-written function. Clean up the temp root in t.after.
+
+ALLOWED WRITE PATHS:
+- .skilled/bin/skilled-loop
+- .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+
+BANNED OPERATIONS:
+- No git commit, push, branch, stash, reset, checkout or merge.
+- No writes outside the allowed paths. No edits to relaunch-core.cjs or nudge.cjs.
+- No installs, no network, no opencode or pi service commands.
+
+VERIFY before you finish: run `node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` and `bash -n .skilled/bin/skilled-loop`, and print both results. Finish with a short list of what you changed.

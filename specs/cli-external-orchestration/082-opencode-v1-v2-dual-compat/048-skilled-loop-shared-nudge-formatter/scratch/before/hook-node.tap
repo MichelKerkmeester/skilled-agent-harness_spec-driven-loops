@@ -1,0 +1,5233 @@
+files 29
+TAP version 13
+# Subtest: a flagged page prints one PostToolUse advisory line
+ok 1 - a flagged page prints one PostToolUse advisory line
+  ---
+  duration_ms: 511.805583
+  type: 'test'
+  ...
+# Subtest: an attacker heading never reaches the advisory
+ok 2 - an attacker heading never reaches the advisory
+  ---
+  duration_ms: 885.930292
+  type: 'test'
+  ...
+# Subtest: a content block array is screened as fetched text
+ok 3 - a content block array is screened as fetched text
+  ---
+  duration_ms: 393.655541
+  type: 'test'
+  ...
+# Subtest: JEV_FEATURE_INJECTION_SCREEN=0 prints nothing and starts no noul call
+ok 4 - JEV_FEATURE_INJECTION_SCREEN=0 prints nothing and starts no noul call
+  ---
+  duration_ms: 67.974042
+  type: 'test'
+  ...
+# Subtest: a Bash payload prints nothing and spawns nothing
+ok 5 - a Bash payload prints nothing and spawns nothing
+  ---
+  duration_ms: 92.393083
+  type: 'test'
+  ...
+# Subtest: malformed stdin exits 0 with no output
+ok 6 - malformed stdin exits 0 with no output
+  ---
+  duration_ms: 79.721208
+  type: 'test'
+  ...
+# Subtest: a flagged page prints one PostToolUse advisory line
+ok 7 - a flagged page prints one PostToolUse advisory line
+  ---
+  duration_ms: 504.273541
+  type: 'test'
+  ...
+# Subtest: a tool_response object is screened through its content field
+ok 8 - a tool_response object is screened through its content field
+  ---
+  duration_ms: 891.501625
+  type: 'test'
+  ...
+# Subtest: another tool payload prints nothing and spawns nothing
+ok 9 - another tool payload prints nothing and spawns nothing
+  ---
+  duration_ms: 117.148333
+  type: 'test'
+  ...
+# Subtest: JEV_FEATURE_INJECTION_SCREEN=0 prints nothing and starts no noul call
+ok 10 - JEV_FEATURE_INJECTION_SCREEN=0 prints nothing and starts no noul call
+  ---
+  duration_ms: 127.843375
+  type: 'test'
+  ...
+# Subtest: SYSTEM_INJECTION_SCREEN_DISABLED=1 prints nothing and spawns nothing
+ok 11 - SYSTEM_INJECTION_SCREEN_DISABLED=1 prints nothing and spawns nothing
+  ---
+  duration_ms: 82.703542
+  type: 'test'
+  ...
+# Subtest: malformed stdin exits 0 with no output
+ok 12 - malformed stdin exits 0 with no output
+  ---
+  duration_ms: 75.667792
+  type: 'test'
+  ...
+# Subtest: a bare string reads as the fetched text
+ok 13 - a bare string reads as the fetched text
+  ---
+  duration_ms: 0.497167
+  type: 'test'
+  ...
+# Subtest: a block array joins its text blocks and drops the blocks that carry none
+ok 14 - a block array joins its text blocks and drops the blocks that carry none
+  ---
+  duration_ms: 0.147958
+  type: 'test'
+  ...
+# Subtest: every known text field of an object payload is read
+ok 15 - every known text field of an object payload is read
+  ---
+  duration_ms: 0.101417
+  type: 'test'
+  ...
+# Subtest: an object content block array is read when no text field is present
+ok 16 - an object content block array is read when no text field is present
+  ---
+  duration_ms: 0.083125
+  type: 'test'
+  ...
+# Subtest: a payload shape that carries no text reads as none
+ok 17 - a payload shape that carries no text reads as none
+  ---
+  duration_ms: 0.097375
+  type: 'test'
+  ...
+# Subtest: a gate that is not ready adds no advisory and screens nothing
+ok 18 - a gate that is not ready adds no advisory and screens nothing
+  ---
+  duration_ms: 0.459458
+  type: 'test'
+  ...
+# Subtest: blank text adds no advisory and never asks the gate
+ok 19 - blank text adds no advisory and never asks the gate
+  ---
+  duration_ms: 0.208459
+  type: 'test'
+  ...
+# Subtest: a ready gate with no flagged section adds no advisory
+ok 20 - a ready gate with no flagged section adds no advisory
+  ---
+  duration_ms: 0.464167
+  type: 'test'
+  ...
+# Subtest: one flagged section returns exactly the advisory line
+ok 21 - one flagged section returns exactly the advisory line
+  ---
+  duration_ms: 0.307208
+  type: 'test'
+  ...
+# Subtest: a section whose two answers mean 0.75 is flagged
+ok 22 - a section whose two answers mean 0.75 is flagged
+  ---
+  duration_ms: 2.0775
+  type: 'test'
+  ...
+# Subtest: answers on opposite sides of the flag line earn a third call that joins the mean
+ok 23 - answers on opposite sides of the flag line earn a third call that joins the mean
+  ---
+  duration_ms: 0.279208
+  type: 'test'
+  ...
+# Subtest: an unreadable answer of the pair leaves the section unmeasured and unflagged
+ok 24 - an unreadable answer of the pair leaves the section unmeasured and unflagged
+  ---
+  duration_ms: 0.213167
+  type: 'test'
+  ...
+# Subtest: a required third answer that cannot be read leaves the section unmeasured
+ok 25 - a required third answer that cannot be read leaves the section unmeasured
+  ---
+  duration_ms: 0.156917
+  type: 'test'
+  ...
+# Subtest: a straddling pair that outlasts the budget is unmeasured
+ok 26 - a straddling pair that outlasts the budget is unmeasured
+  ---
+  duration_ms: 20.971625
+  type: 'test'
+  ...
+# Subtest: empty and whitespace-only text makes no call
+ok 27 - empty and whitespace-only text makes no call
+  ---
+  duration_ms: 0.240667
+  type: 'test'
+  ...
+# Subtest: twenty sections screen twelve and leave eight unchecked
+ok 28 - twenty sections screen twelve and leave eight unchecked
+  ---
+  duration_ms: 0.569084
+  type: 'test'
+  ...
+# Subtest: one huge single-line page is capped per section and in total
+ok 29 - one huge single-line page is capped per section and in total
+  ---
+  duration_ms: 0.59
+  type: 'test'
+  ...
+# Subtest: a short section merges into the next and the last short section into the previous
+ok 30 - a short section merges into the next and the last short section into the previous
+  ---
+  duration_ms: 0.183084
+  type: 'test'
+  ...
+# Subtest: a section over sixty lines is cut into sixty-line pieces
+ok 31 - a section over sixty lines is cut into sixty-line pieces
+  ---
+  duration_ms: 0.346959
+  type: 'test'
+  ...
+# Subtest: a whitespace-only section is dropped instead of screened
+ok 32 - a whitespace-only section is dropped instead of screened
+  ---
+  duration_ms: 0.157916
+  type: 'test'
+  ...
+# Subtest: a spent budget leaves every remaining section unchecked
+ok 33 - a spent budget leaves every remaining section unchecked
+  ---
+  duration_ms: 0.082792
+  type: 'test'
+  ...
+# Subtest: reads the real hard rules from the sidecar beside each SKILL.md
+ok 34 - reads the real hard rules from the sidecar beside each SKILL.md
+  ---
+  duration_ms: 17.949083
+  type: 'test'
+  ...
+# Subtest: CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+ok 35 - CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+  ---
+  duration_ms: 21.908625
+  type: 'test'
+  ...
+# Subtest: stdin-redirect-required covers every headless CLI shape, not just opencode run
+ok 36 - stdin-redirect-required covers every headless CLI shape, not just opencode run
+  ---
+  duration_ms: 2.709
+  type: 'test'
+  ...
+# Subtest: stdin and model checks ignore flags and redirects inside a quoted prompt
+ok 37 - stdin and model checks ignore flags and redirects inside a quoted prompt
+  ---
+  duration_ms: 3.621084
+  type: 'test'
+  ...
+# Subtest: each repeated dispatch is held to the stdin and model checks on its own
+ok 38 - each repeated dispatch is held to the stdin and model checks on its own
+  ---
+  duration_ms: 0.431834
+  type: 'test'
+  ...
+# Subtest: availability checks pass for a resolvable binary and never refuse without PATH
+ok 39 - availability checks pass for a resolvable binary and never refuse without PATH
+  ---
+  duration_ms: 0.423625
+  type: 'test'
+  ...
+# Subtest: AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+ok 40 - AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+  ---
+  duration_ms: 1.664333
+  type: 'test'
+  ...
+# Subtest: other checks discriminate correctly
+ok 41 - other checks discriminate correctly
+  ---
+  duration_ms: 0.742041
+  type: 'test'
+  ...
+# Subtest: permission-mode check sees claude print mode behind other flags
+ok 42 - permission-mode check sees claude print mode behind other flags
+  ---
+  duration_ms: 0.462916
+  type: 'test'
+  ...
+# Subtest: appliesTo evaluates only rules for the resolved version
+ok 43 - appliesTo evaluates only rules for the resolved version
+  ---
+  duration_ms: 0.259125
+  type: 'test'
+  ...
+# Subtest: rules without appliesTo apply to both versions
+ok 44 - rules without appliesTo apply to both versions
+  ---
+  duration_ms: 0.1065
+  type: 'test'
+  ...
+# Subtest: a rule without appliesTo stays blocking when the version is unknown
+ok 45 - a rule without appliesTo stays blocking when the version is unknown
+  ---
+  duration_ms: 0.201709
+  type: 'test'
+  ...
+# Subtest: unknown evaluation preserves shared severity and warns version-specific rules
+ok 46 - unknown evaluation preserves shared severity and warns version-specific rules
+  ---
+  duration_ms: 0.173542
+  type: 'test'
+  ...
+# Subtest: v2 slash-command fixture warns with session.command and never blocks
+ok 47 - v2 slash-command fixture warns with session.command and never blocks
+  ---
+  duration_ms: 0.636458
+  type: 'test'
+  ...
+# Subtest: evaluate resolves quoted, wrapped, and path-qualified OpenCode executors
+ok 48 - evaluate resolves quoted, wrapped, and path-qualified OpenCode executors
+  ---
+  duration_ms: 509.144834
+  type: 'test'
+  ...
+# Subtest: evaluate probes one fake binary once across two evaluations
+ok 49 - evaluate probes one fake binary once across two evaluations
+  ---
+  duration_ms: 759.79475
+  type: 'test'
+  ...
+# Subtest: a path-qualified executable outside PATH stays unknown and never runs
+ok 50 - a path-qualified executable outside PATH stays unknown and never runs
+  ---
+  duration_ms: 6.456583
+  type: 'test'
+  ...
+# Subtest: a path-qualified executable on PATH resolves its version
+ok 51 - a path-qualified executable on PATH resolves its version
+  ---
+  duration_ms: 127.134209
+  type: 'test'
+  ...
+# Subtest: a symlinked path-qualified executable spawns the trusted path, not the symlink
+ok 52 - a symlinked path-qualified executable spawns the trusted path, not the symlink
+  ---
+  duration_ms: 207.040958
+  type: 'test'
+  ...
+# Subtest: OPENCODE_BIN makes a path-qualified executable trusted
+ok 53 - OPENCODE_BIN makes a path-qualified executable trusted
+  ---
+  duration_ms: 62.75
+  type: 'test'
+  ...
+# Subtest: a path-qualified missing file stays unknown
+ok 54 - a path-qualified missing file stays unknown
+  ---
+  duration_ms: 0.937542
+  type: 'test'
+  ...
+# Subtest: the async resolver times out a probe that never exits
+ok 55 - the async resolver times out a probe that never exits
+  ---
+  duration_ms: 3012.945417
+  type: 'test'
+  ...
+# Subtest: the shared version corpus pins the parser to each expected family
+ok 56 - the shared version corpus pins the parser to each expected family
+  ---
+  duration_ms: 0.440833
+  type: 'test'
+  ...
+# Subtest: SUPPORTED_FAMILIES is the frozen list of supported families
+ok 57 - SUPPORTED_FAMILIES is the frozen list of supported families
+  ---
+  duration_ms: 0.1045
+  type: 'test'
+  ...
+# Subtest: opencode2 run is evaluated by the hard-rule engine
+ok 58 - opencode2 run is evaluated by the hard-rule engine
+  ---
+  duration_ms: 0.13575
+  type: 'test'
+  ...
+# Subtest: every runtime with a preflight adapter has it registered
+ok 59 - every runtime with a preflight adapter has it registered
+  ---
+  duration_ms: 3.431334
+  type: 'test'
+  ...
+# Subtest: pi dispatches need --offline and a provider-qualified model
+ok 60 - pi dispatches need --offline and a provider-qualified model
+  ---
+  duration_ms: 1.197875
+  type: 'test'
+  ...
+# Subtest: evaluateDispatch holds every dispatch in a chain to its own packet
+ok 61 - evaluateDispatch holds every dispatch in a chain to its own packet
+  ---
+  duration_ms: 2563.516291
+  type: 'test'
+  ...
+# Subtest: predicate bypasses: equals-form flags and unquoted slash prompts are caught
+ok 62 - predicate bypasses: equals-form flags and unquoted slash prompts are caught
+  ---
+  duration_ms: 0.73825
+  type: 'test'
+  ...
+# Subtest: hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+ok 63 - hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+  ---
+  duration_ms: 0.378292
+  type: 'test'
+  ...
+# Subtest: hermes rules discriminate on the flags the packet contract pins
+ok 64 - hermes rules discriminate on the flags the packet contract pins
+  ---
+  duration_ms: 2.346458
+  type: 'test'
+  ...
+# Subtest: the negative-control marker only counts when the guard process allows it
+ok 65 - the negative-control marker only counts when the guard process allows it
+  ---
+  duration_ms: 0.70475
+  type: 'test'
+  ...
+# Subtest: fail-open: a check that throws never produces a violation
+ok 66 - fail-open: a check that throws never produces a violation
+  ---
+  duration_ms: 0.182833
+  type: 'test'
+  ...
+# Subtest: readHardRules reads the sibling sidecar and fails open on malformed input
+ok 67 - readHardRules reads the sibling sidecar and fails open on malformed input
+  ---
+  duration_ms: 18.133042
+  type: 'test'
+  ...
+# Subtest: severity maps error and block to a blocking violation; anything else advises
+ok 68 - severity maps error and block to a blocking violation; anything else advises
+  ---
+  duration_ms: 0.172375
+  type: 'test'
+  ...
+# Subtest: every runtime dispatch shape resolves to its skill (mutation-proof)
+ok 69 - every runtime dispatch shape resolves to its skill (mutation-proof)
+  ---
+  duration_ms: 0.5485
+  type: 'test'
+  ...
+# Subtest: a dispatch is resolved from the command, not from text that merely contains one
+ok 70 - a dispatch is resolved from the command, not from text that merely contains one
+  ---
+  duration_ms: 2.112208
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+ok 71 - ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+  ---
+  duration_ms: 2.139791
+  type: 'test'
+  ...
+# Subtest: a jev dispatch is governed from the command, and mentions of it are not
+ok 72 - a jev dispatch is governed from the command, and mentions of it are not
+  ---
+  duration_ms: 0.629792
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every cli packet declares at least one rule
+ok 73 - ENFORCEMENT GUARD: every cli packet declares at least one rule
+  ---
+  duration_ms: 2.416
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list
+ok 74 - ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list
+  ---
+  duration_ms: 2.487375
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+ok 75 - ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+  ---
+  duration_ms: 2.526916
+  type: 'test'
+  ...
+# Subtest: mutating without explicit runtime and session identity writes nothing
+ok 76 - mutating without explicit runtime and session identity writes nothing
+  ---
+  duration_ms: 76.324167
+  type: 'test'
+  ...
+# Subtest: session identity without a runtime namespace fails without writing
+ok 77 - session identity without a runtime namespace fails without writing
+  ---
+  duration_ms: 57.613708
+  type: 'test'
+  ...
+# Subtest: explicit session bindings keep CLI goals independent
+ok 78 - explicit session bindings keep CLI goals independent
+  ---
+  duration_ms: 242.976792
+  type: 'test'
+  ...
+# Subtest: aggregate diagnostics expose counts without raw session identities
+ok 79 - aggregate diagnostics expose counts without raw session identities
+  ---
+  duration_ms: 135.810833
+  type: 'test'
+  ...
+# Subtest: legacy inspect and migrate require an explicit target and are repeat-safe
+ok 80 - legacy inspect and migrate require an explicit target and are repeat-safe
+  ---
+  duration_ms: 1078.893
+  type: 'test'
+  ...
+# Subtest: legacy archive preserves malformed bytes without requiring session identity
+ok 81 - legacy archive preserves malformed bytes without requiring session identity
+  ---
+  duration_ms: 79.719167
+  type: 'test'
+  ...
+# Subtest: same-scope concurrent writers leave one valid record and no temp files
+ok 82 - same-scope concurrent writers leave one valid record and no temp files
+  ---
+  duration_ms: 641.737417
+  type: 'test'
+  ...
+# Subtest: an unknown leading flag fails instead of becoming an objective
+ok 83 - an unknown leading flag fails instead of becoming an objective
+  ---
+  duration_ms: 352.817583
+  type: 'test'
+  ...
+# Subtest: session actions without a workspace fail with MISSING_WORKSPACE and write nothing
+ok 84 - session actions without a workspace fail with MISSING_WORKSPACE and write nothing
+  ---
+  duration_ms: 176.707
+  type: 'test'
+  ...
+# Subtest: packet reads still run without a workspace flag
+ok 85 - packet reads still run without a workspace flag
+  ---
+  duration_ms: 105.846542
+  type: 'test'
+  ...
+# Subtest: injects the active_goal brief as agent_message when a goal is active
+ok 86 - injects the active_goal brief as agent_message when a goal is active
+  ---
+  duration_ms: 109.671542
+  type: 'test'
+  ...
+# Subtest: records a turn touch when injecting an active goal
+ok 87 - records a turn touch when injecting an active goal
+  ---
+  duration_ms: 90.234125
+  type: 'test'
+  ...
+# Subtest: two Cursor sessions inject only their own active goal
+ok 88 - two Cursor sessions inject only their own active goal
+  ---
+  duration_ms: 192.405542
+  type: 'test'
+  ...
+# Subtest: conversation_id is the supported fallback when session_id is absent
+ok 89 - conversation_id is the supported fallback when session_id is absent
+  ---
+  duration_ms: 98.023792
+  type: 'test'
+  ...
+# Subtest: no-op when no goal is set
+ok 90 - no-op when no goal is set
+  ---
+  duration_ms: 66.87025
+  type: 'test'
+  ...
+# Subtest: legacy-only state never injects into a Cursor session
+ok 91 - legacy-only state never injects into a Cursor session
+  ---
+  duration_ms: 72.472042
+  type: 'test'
+  ...
+# Subtest: no-op when the active goal is paused
+ok 92 - no-op when the active goal is paused
+  ---
+  duration_ms: 716.358792
+  type: 'test'
+  ...
+# Subtest: no-op when the goal plugin is disabled, even with an active goal
+ok 93 - no-op when the goal plugin is disabled, even with an active goal
+  ---
+  duration_ms: 98.345666
+  type: 'test'
+  ...
+# Subtest: no-op when the goal is cleared
+ok 94 - no-op when the goal is cleared
+  ---
+  duration_ms: 183.47025
+  type: 'test'
+  ...
+# Subtest: fails open on malformed stdin (not JSON)
+ok 95 - fails open on malformed stdin (not JSON)
+  ---
+  duration_ms: 82.419125
+  type: 'test'
+  ...
+# Subtest: fails open on empty stdin
+ok 96 - fails open on empty stdin
+  ---
+  duration_ms: 62.426791
+  type: 'test'
+  ...
+# Subtest: missing Cursor identity fails open without selecting a goal
+ok 97 - missing Cursor identity fails open without selecting a goal
+  ---
+  duration_ms: 105.588834
+  type: 'test'
+  ...
+# Subtest: fails open (never throws) when the shared state file is corrupt JSON
+ok 98 - fails open (never throws) when the shared state file is corrupt JSON
+  ---
+  duration_ms: 81.109584
+  type: 'test'
+  ...
+# Subtest: the Cursor command is fail-closed for management and only ever invokes the session-free packet read
+ok 99 - the Cursor command is fail-closed for management and only ever invokes the session-free packet read
+  ---
+  duration_ms: 8.5225
+  type: 'test'
+  ...
+# Subtest: a bound packet injects the resend reminder until the slice is marked resent
+ok 100 - a bound packet injects the resend reminder until the slice is marked resent
+  ---
+  duration_ms: 247.330834
+  type: 'test'
+  ...
+# Subtest: emits the brief as additionalContext for an active goal and keeps the event name
+ok 101 - emits the brief as additionalContext for an active goal and keeps the event name
+  ---
+  duration_ms: 109.494875
+  type: 'test'
+  ...
+# Subtest: a bound packet renders from the file without frontmatter and carries the reminder while unresent
+ok 102 - a bound packet renders from the file without frontmatter and carries the reminder while unresent
+  ---
+  duration_ms: 194.410042
+  type: 'test'
+  ...
+# Subtest: emits an empty object with no goal, with a paused goal, when disabled, and on malformed stdin
+ok 103 - emits an empty object with no goal, with a paused goal, when disabled, and on malformed stdin
+  ---
+  duration_ms: 406.846333
+  type: 'test'
+  ...
+# Subtest: missing session identity returns no goal and mutations write nothing
+ok 104 - missing session identity returns no goal and mutations write nothing
+  ---
+  duration_ms: 6.748792
+  type: 'test'
+  ...
+# Subtest: blank and oversized session identities fail without exposing their values
+ok 105 - blank and oversized session identities fail without exposing their values
+  ---
+  duration_ms: 9.846875
+  type: 'test'
+  ...
+# Subtest: invalid runtime namespaces fail before any state is written
+ok 106 - invalid runtime namespaces fail before any state is written
+  ---
+  duration_ms: 1.144042
+  type: 'test'
+  ...
+# Subtest: scope paths hash canonical workspace, runtime, and session identity
+ok 107 - scope paths hash canonical workspace, runtime, and session identity
+  ---
+  duration_ms: 2.981916
+  type: 'test'
+  ...
+# Subtest: two sessions keep independent goals through lifecycle mutations
+ok 108 - two sessions keep independent goals through lifecycle mutations
+  ---
+  duration_ms: 114.153625
+  type: 'test'
+  ...
+# Subtest: runtime and workspace namespaces cannot collide
+ok 109 - runtime and workspace namespaces cannot collide
+  ---
+  duration_ms: 7.492542
+  type: 'test'
+  ...
+# Subtest: nested workspace paths canonicalize to one repository scope
+ok 110 - nested workspace paths canonicalize to one repository scope
+  ---
+  duration_ms: 2.114917
+  type: 'test'
+  ...
+# Subtest: same explicit state root keeps different workspaces isolated
+ok 111 - same explicit state root keeps different workspaces isolated
+  ---
+  duration_ms: 22.815917
+  type: 'test'
+  ...
+# Subtest: legacy singleton state is diagnostic-only and never a scoped read fallback
+ok 112 - legacy singleton state is diagnostic-only and never a scoped read fallback
+  ---
+  duration_ms: 41.71
+  type: 'test'
+  ...
+# Subtest: a malformed current record never falls through to the legacy scoped record
+ok 113 - a malformed current record never falls through to the legacy scoped record
+  ---
+  duration_ms: 22.337667
+  type: 'test'
+  ...
+# Subtest: explicit legacy migration binds one validated scope and quarantines the source
+ok 114 - explicit legacy migration binds one validated scope and quarantines the source
+  ---
+  duration_ms: 26.363875
+  type: 'test'
+  ...
+# Subtest: legacy migration refuses an occupied target without changing either record
+ok 115 - legacy migration refuses an occupied target without changing either record
+  ---
+  duration_ms: 15.345125
+  type: 'test'
+  ...
+# Subtest: malformed legacy state cannot migrate but can be archived byte-for-byte
+ok 116 - malformed legacy state cannot migrate but can be archived byte-for-byte
+  ---
+  duration_ms: 23.159291
+  type: 'test'
+  ...
+# Subtest: malformed scoped state fails open and can be replaced with valid state
+ok 117 - malformed scoped state fails open and can be replaced with valid state
+  ---
+  duration_ms: 25.144
+  type: 'test'
+  ...
+# Subtest: setGoal creates a record and showGoal reads it back
+ok 118 - setGoal creates a record and showGoal reads it back
+  ---
+  duration_ms: 14.198333
+  type: 'test'
+  ...
+# Subtest: setGoal with unchanged objective on an active goal refreshes rather than replaces
+ok 119 - setGoal with unchanged objective on an active goal refreshes rather than replaces
+  ---
+  duration_ms: 24.939625
+  type: 'test'
+  ...
+# Subtest: setGoal with a different objective on an active goal replaces it
+ok 120 - setGoal with a different objective on an active goal replaces it
+  ---
+  duration_ms: 50.81225
+  type: 'test'
+  ...
+# Subtest: hostile stored goal ids remain contained during replace, clear, and complete
+ok 121 - hostile stored goal ids remain contained during replace, clear, and complete
+  ---
+  duration_ms: 105.160875
+  type: 'test'
+  ...
+# Subtest: hostile legacy goal ids remain contained during migration quarantine
+ok 122 - hostile legacy goal ids remain contained during migration quarantine
+  ---
+  duration_ms: 26.207125
+  type: 'test'
+  ...
+# Subtest: archive namespaces that resolve outside the state root fail closed
+ok 123 - archive namespaces that resolve outside the state root fail closed
+  ---
+  duration_ms: 20.84225
+  type: 'test'
+  ...
+# Subtest: cross-process recordTurn mutations preserve every update
+ok 124 - cross-process recordTurn mutations preserve every update
+  ---
+  duration_ms: 1246.620708
+  type: 'test'
+  ...
+# Subtest: cross-process clear and complete serialize to one terminal archive
+ok 125 - cross-process clear and complete serialize to one terminal archive
+  ---
+  duration_ms: 854.042333
+  type: 'test'
+  ...
+# Subtest: cross-process legacy migration preserves the successful target
+ok 126 - cross-process legacy migration preserves the successful target
+  ---
+  duration_ms: 869.56875
+  type: 'test'
+  ...
+# Subtest: Claude command discovery excludes the OpenCode-only goal router
+ok 127 - Claude command discovery excludes the OpenCode-only goal router
+  ---
+  duration_ms: 1.392875
+  type: 'test'
+  ...
+# Subtest: writeJsonAtomic never leaves a .tmp file behind on success
+ok 128 - writeJsonAtomic never leaves a .tmp file behind on success
+  ---
+  duration_ms: 17.788084
+  type: 'test'
+  ...
+# Subtest: scoped active state is written at mode 0600
+ok 129 - scoped active state is written at mode 0600
+  ---
+  duration_ms: 12.130708
+  type: 'test'
+  ...
+# Subtest: clearGoal archives the record before removing the active state file
+ok 130 - clearGoal archives the record before removing the active state file
+  ---
+  duration_ms: 117.337708
+  type: 'test'
+  ...
+# Subtest: completeGoal archives the record as completed and removes active state
+ok 131 - completeGoal archives the record as completed and removes active state
+  ---
+  duration_ms: 38.042875
+  type: 'test'
+  ...
+# Subtest: clearGoal with no active goal is a no-op that does not throw
+ok 132 - clearGoal with no active goal is a no-op that does not throw
+  ---
+  duration_ms: 5.967875
+  type: 'test'
+  ...
+# Subtest: listArchivedGoals skips archive files whose JSON is not a plain object
+ok 133 - listArchivedGoals skips archive files whose JSON is not a plain object
+  ---
+  duration_ms: 41.051875
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief markers and field lines match the opencode-goal template shape
+ok 134 - renderGoalBrief markers and field lines match the opencode-goal template shape
+  ---
+  duration_ms: 2.955084
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief embeds the parameterized Role line for the given runtime label
+ok 135 - renderGoalBrief embeds the parameterized Role line for the given runtime label
+  ---
+  duration_ms: 1.266375
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief parameterizes a different runtime label
+ok 136 - renderGoalBrief parameterizes a different runtime label
+  ---
+  duration_ms: 1.075083
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief relabels the Role line to the reading runtime, not the set-time runtime
+ok 137 - renderGoalBrief relabels the Role line to the reading runtime, not the set-time runtime
+  ---
+  duration_ms: 2.060625
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief sanitizes a hostile runtime label so it cannot break the block
+ok 138 - renderGoalBrief sanitizes a hostile runtime label so it cannot break the block
+  ---
+  duration_ms: 2.305166
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief returns empty string for a non-active goal
+ok 139 - renderGoalBrief returns empty string for a non-active goal
+  ---
+  duration_ms: 1.066625
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief falls back to the compact block under a tight char budget
+ok 140 - renderGoalBrief falls back to the compact block under a tight char budget
+  ---
+  duration_ms: 1.361083
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText redacts a forged [/active_goal] marker in user text
+ok 141 - normalizeUserAuthoredText redacts a forged [/active_goal] marker in user text
+  ---
+  duration_ms: 1.568834
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText folds a homoglyph role token before the role guard
+ok 142 - normalizeUserAuthoredText folds a homoglyph role token before the role guard
+  ---
+  duration_ms: 5.374333
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText redacts instruction-override phrasing
+ok 143 - normalizeUserAuthoredText redacts instruction-override phrasing
+  ---
+  duration_ms: 1.333917
+  type: 'test'
+  ...
+# Subtest: normalizeUserAuthoredText downgrades triple-backtick fences
+ok 144 - normalizeUserAuthoredText downgrades triple-backtick fences
+  ---
+  duration_ms: 1.443125
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns met for explicit, on-topic completion evidence
+ok 145 - verifyGoalHeuristic returns met for explicit, on-topic completion evidence
+  ---
+  duration_ms: 1.925458
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence contains blocking language
+ok 146 - verifyGoalHeuristic returns not-met when evidence contains blocking language
+  ---
+  duration_ms: 1.375208
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence carries a bare fail count
+ok 147 - verifyGoalHeuristic returns not-met when evidence carries a bare fail count
+  ---
+  duration_ms: 0.919333
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence carries a plural failures count
+ok 148 - verifyGoalHeuristic returns not-met when evidence carries a plural failures count
+  ---
+  duration_ms: 2.601834
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic does not treat a zero fail count as blocking
+ok 149 - verifyGoalHeuristic does not treat a zero fail count as blocking
+  ---
+  duration_ms: 2.195791
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when evidence carries a bare fails verdict
+ok 150 - verifyGoalHeuristic returns not-met when evidence carries a bare fails verdict
+  ---
+  duration_ms: 0.956208
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns unclear for short or off-topic evidence
+ok 151 - verifyGoalHeuristic returns unclear for short or off-topic evidence
+  ---
+  duration_ms: 1.005292
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic reads the transcript tail, so a long transcript ending in completion evidence is met
+ok 152 - verifyGoalHeuristic reads the transcript tail, so a long transcript ending in completion evidence is met
+  ---
+  duration_ms: 1.549125
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic returns not-met when the tail of a long transcript carries blocking language
+ok 153 - verifyGoalHeuristic returns not-met when the tail of a long transcript carries blocking language
+  ---
+  duration_ms: 4.639125
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic does not return met when the assistant stated a blocker before a conclusive tail
+ok 154 - verifyGoalHeuristic does not return met when the assistant stated a blocker before a conclusive tail
+  ---
+  duration_ms: 2.206333
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic ignores blocking language that appears only outside the assistant text
+ok 155 - verifyGoalHeuristic ignores blocking language that appears only outside the assistant text
+  ---
+  duration_ms: 2.72725
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic keeps the truncated reason for a short transcript that itself ends in ellipsis
+ok 156 - verifyGoalHeuristic keeps the truncated reason for a short transcript that itself ends in ellipsis
+  ---
+  duration_ms: 1.599042
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic never reports a long transcript as truncated unless its own tail says so
+ok 157 - verifyGoalHeuristic never reports a long transcript as truncated unless its own tail says so
+  ---
+  duration_ms: 4.702333
+  type: 'test'
+  ...
+# Subtest: CLI set/show/clear roundtrip produces matching envelopes
+ok 158 - CLI set/show/clear roundtrip produces matching envelopes
+  ---
+  duration_ms: 377.885667
+  type: 'test'
+  ...
+# Subtest: CLI complete/pause/resume/history/doctor all return STATUS=OK envelopes
+ok 159 - CLI complete/pause/resume/history/doctor all return STATUS=OK envelopes
+  ---
+  duration_ms: 551.120708
+  type: 'test'
+  ...
+# Subtest: CLI --budget validation rejects non-positive-integer values
+ok 160 - CLI --budget validation rejects non-positive-integer values
+  ---
+  duration_ms: 62.764833
+  type: 'test'
+  ...
+# Subtest: CLI --budget validation rejects zero and negative values
+ok 161 - CLI --budget validation rejects zero and negative values
+  ---
+  duration_ms: 115.160792
+  type: 'test'
+  ...
+# Subtest: CLI set with only a budget flag and empty objective fails with INVALID_OBJECTIVE
+ok 162 - CLI set with only a budget flag and empty objective fails with INVALID_OBJECTIVE
+  ---
+  duration_ms: 54.975125
+  type: 'test'
+  ...
+# Subtest: CLI honors OPENCODE_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED
+ok 163 - CLI honors OPENCODE_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED
+  ---
+  duration_ms: 62.123125
+  type: 'test'
+  ...
+# Subtest: CLI bare text falls through to set, mirroring the /goal-opencode router
+ok 164 - CLI bare text falls through to set, mirroring the /goal-opencode router
+  ---
+  duration_ms: 128.39025
+  type: 'test'
+  ...
+# Subtest: bindGoal derives the objective from the packet and renders without frontmatter
+ok 165 - bindGoal derives the objective from the packet and renders without frontmatter
+  ---
+  duration_ms: 131.001291
+  type: 'test'
+  ...
+# Subtest: a bound session renders the file as it is now, not the copy stored at bind time
+ok 166 - a bound session renders the file as it is now, not the copy stored at bind time
+  ---
+  duration_ms: 51.307791
+  type: 'test'
+  ...
+# Subtest: a bound record whose goal.md is gone injects nothing and does not fall back
+ok 167 - a bound record whose goal.md is gone injects nothing and does not fall back
+  ---
+  duration_ms: 18.506041
+  type: 'test'
+  ...
+# Subtest: bindGoal refuses paths outside the workspace and packets without a goal document
+ok 168 - bindGoal refuses paths outside the workspace and packets without a goal document
+  ---
+  duration_ms: 8.062625
+  type: 'test'
+  ...
+# Subtest: resend is pending after a durable change and settles after noteResent, never after a log append
+ok 169 - resend is pending after a durable change and settles after noteResent, never after a log append
+  ---
+  duration_ms: 35.796459
+  type: 'test'
+  ...
+# Subtest: appendGoalLog refuses to touch the durable slice and keeps the frontmatter intact
+ok 170 - appendGoalLog refuses to touch the durable slice and keeps the frontmatter intact
+  ---
+  duration_ms: 18.165208
+  type: 'test'
+  ...
+# Subtest: unbindGoal drops the pointer and the record renders from its stored copy again
+ok 171 - unbindGoal drops the pointer and the record renders from its stored copy again
+  ---
+  duration_ms: 19.297958
+  type: 'test'
+  ...
+# Subtest: two sessions bound to one packet keep separate records and resend state
+ok 172 - two sessions bound to one packet keep separate records and resend state
+  ---
+  duration_ms: 26.614375
+  type: 'test'
+  ...
+# Subtest: CLI bind, resent, log and unbind return STATUS=OK envelopes with packet fields
+ok 173 - CLI bind, resent, log and unbind return STATUS=OK envelopes with packet fields
+  ---
+  duration_ms: 265.196584
+  type: 'test'
+  ...
+# Subtest: CLI packet reads a packet goal without a bound session and without frontmatter
+ok 174 - CLI packet reads a packet goal without a bound session and without frontmatter
+  ---
+  duration_ms: 91.997625
+  type: 'test'
+  ...
+# Subtest: two writers through an alias and the real path serialize on one lock and both rows land
+ok 175 - two writers through an alias and the real path serialize on one lock and both rows land
+  ---
+  duration_ms: 256.736666
+  type: 'test'
+  ...
+# Subtest: a rebind to a different packet archives the prior record
+ok 176 - a rebind to a different packet archives the prior record
+  ---
+  duration_ms: 25.111541
+  type: 'test'
+  ...
+# Subtest: show reports packet_state=missing with a hint once the bound document is gone
+ok 177 - show reports packet_state=missing with a hint once the bound document is gone
+  ---
+  duration_ms: 64.428125
+  type: 'test'
+  ...
+# Subtest: a text objective past the cap is reported as truncated, not silently clamped
+ok 178 - a text objective past the cap is reported as truncated, not silently clamped
+  ---
+  duration_ms: 64.772917
+  type: 'test'
+  ...
+# Subtest: a CRLF goal document keeps CRLF after a log append
+ok 179 - a CRLF goal document keeps CRLF after a log append
+  ---
+  duration_ms: 22.688291
+  type: 'test'
+  ...
+# Subtest: appendPacketLog appends without a session record
+ok 180 - appendPacketLog appends without a session record
+  ---
+  duration_ms: 13.337583
+  type: 'test'
+  ...
+# Subtest: CLI packet-log appends without a session and neutralizes pipes and anchor markup in the row
+ok 181 - CLI packet-log appends without a session and neutralizes pipes and anchor markup in the row
+  ---
+  duration_ms: 81.570916
+  type: 'test'
+  ...
+# Subtest: the packet lock root follows the workspace, not the record store, so divergent state dirs still contend
+ok 182 - the packet lock root follows the workspace, not the record store, so divergent state dirs still contend
+  ---
+  duration_ms: 231.70025
+  type: 'test'
+  ...
+# Subtest: a bound brief renders criteria as their own field, one per line
+ok 183 - a bound brief renders criteria as their own field, one per line
+  ---
+  duration_ms: 15.040208
+  type: 'test'
+  ...
+# Subtest: a criteria list past the preview budget drops whole items and says how many
+ok 184 - a criteria list past the preview budget drops whole items and says how many
+  ---
+  duration_ms: 12.104541
+  type: 'test'
+  ...
+# Subtest: the compact block still carries the criteria field
+ok 185 - the compact block still carries the criteria field
+  ---
+  duration_ms: 14.478708
+  type: 'test'
+  ...
+# Subtest: a log append refuses a goal document that is not valid UTF-8 and leaves it byte-identical
+ok 186 - a log append refuses a goal document that is not valid UTF-8 and leaves it byte-identical
+  ---
+  duration_ms: 7.835375
+  type: 'test'
+  ...
+# Subtest: a text set with a new objective drops the packet pointer, and re-setting the same one keeps it
+ok 187 - a text set with a new objective drops the packet pointer, and re-setting the same one keeps it
+  ---
+  duration_ms: 33.5715
+  type: 'test'
+  ...
+# Subtest: the kill switch freezes the session-free library paths too, not just the commands
+ok 188 - the kill switch freezes the session-free library paths too, not just the commands
+  ---
+  duration_ms: 3.284958
+  type: 'test'
+  ...
+# Subtest: a record written under the old status word is read back under the current one
+ok 189 - a record written under the old status word is read back under the current one
+  ---
+  duration_ms: 9.3475
+  type: 'test'
+  ...
+# Subtest: no projection carries the frontmatter
+ok 190 - no projection carries the frontmatter
+  ---
+  duration_ms: 8.030875
+  type: 'test'
+  ...
+# Subtest: the durable slice stops at the log anchor and the chat slice drops markup
+ok 191 - the durable slice stops at the log anchor and the chat slice drops markup
+  ---
+  duration_ms: 21.868167
+  type: 'test'
+  ...
+# Subtest: the chat slice drops dividers and heading section numbers but keeps the title, tables and bullets
+ok 192 - the chat slice drops dividers and heading section numbers but keeps the title, tables and bullets
+  ---
+  duration_ms: 3.080083
+  type: 'test'
+  ...
+# Subtest: a nested packet gets the binding sentence and a singular one does not
+ok 193 - a nested packet gets the binding sentence and a singular one does not
+  ---
+  duration_ms: 25.908916
+  type: 'test'
+  ...
+# Subtest: the slice hash ignores log edits and reflow but not a criterion change
+ok 194 - the slice hash ignores log edits and reflow but not a criterion change
+  ---
+  duration_ms: 2.016709
+  type: 'test'
+  ...
+# Subtest: paths outside the workspace and missing documents read as unbound
+ok 195 - paths outside the workspace and missing documents read as unbound
+  ---
+  duration_ms: 11.782083
+  type: 'test'
+  ...
+# Subtest: a fence with trailing whitespace still hides the frontmatter, and an unclosed opener yields no slice
+ok 196 - a fence with trailing whitespace still hides the frontmatter, and an unclosed opener yields no slice
+  ---
+  duration_ms: 8.61875
+  type: 'test'
+  ...
+# Subtest: a symlinked packet that resolves outside the workspace reads as unbound
+ok 197 - a symlinked packet that resolves outside the workspace reads as unbound
+  ---
+  duration_ms: 17.300458
+  type: 'test'
+  ...
+# Subtest: a goal.md symlink that leaves the workspace reads as unbound, and one inside still reads
+ok 198 - a goal.md symlink that leaves the workspace reads as unbound, and one inside still reads
+  ---
+  duration_ms: 45.765625
+  type: 'test'
+  ...
+# Subtest: a missing packet under a symlinked parent that leaves the workspace reads as outside
+ok 199 - a missing packet under a symlinked parent that leaves the workspace reads as outside
+  ---
+  duration_ms: 11.722833
+  type: 'test'
+  ...
+# Subtest: a file that opens with many comments and no fence splits in linear time
+ok 200 - a file that opens with many comments and no fence splits in linear time
+  ---
+  duration_ms: 2.428917
+  type: 'test'
+  ...
+# Subtest: a CR-only document still hides its frontmatter
+ok 201 - a CR-only document still hides its frontmatter
+  ---
+  duration_ms: 8.405542
+  type: 'test'
+  ...
+# Subtest: the projection carries the packet real path and no file handle fields
+ok 202 - the projection carries the packet real path and no file handle fields
+  ---
+  duration_ms: 13.66625
+  type: 'test'
+  ...
+# Subtest: the reminder names the runtime command that records the resend
+ok 203 - the reminder names the runtime command that records the resend
+  ---
+  duration_ms: 1.367833
+  type: 'test'
+  ...
+# Subtest: the reminder stays one line when a path or command carries a line break
+ok 204 - the reminder stays one line when a path or command carries a line break
+  ---
+  duration_ms: 4.102584
+  type: 'test'
+  ...
+# Subtest: resolveWorkspaceRoot walks up from a subdirectory to the repository root
+ok 205 - resolveWorkspaceRoot walks up from a subdirectory to the repository root
+  ---
+  duration_ms: 11.112417
+  type: 'test'
+  ...
+# Subtest: an objective splits into the packet sentence and whole criteria
+ok 206 - an objective splits into the packet sentence and whole criteria
+  ---
+  duration_ms: 13.812083
+  type: 'test'
+  ...
+# Subtest: a plain objective with no criteria heading stays whole
+ok 207 - a plain objective with no criteria heading stays whole
+  ---
+  duration_ms: 5.881291
+  type: 'test'
+  ...
+# Subtest: a criteria budget drops whole items and counts what it left
+ok 208 - a criteria budget drops whole items and counts what it left
+  ---
+  duration_ms: 9.208375
+  type: 'test'
+  ...
+# Subtest: a phase child goal carries no budget, matching the validator
+ok 209 - a phase child goal carries no budget, matching the validator
+  ---
+  duration_ms: 39.534
+  type: 'test'
+  ...
+# Subtest: a parent goal is ok up to the one 4000-character limit and over only past it
+ok 210 - a parent goal is ok up to the one 4000-character limit and over only past it
+  ---
+  duration_ms: 37.548667
+  type: 'test'
+  ...
+# Subtest: a phase parent nested inside another packet is budgeted, as the validator budgets it
+ok 211 - a phase parent nested inside another packet is budgeted, as the validator budgets it
+  ---
+  duration_ms: 46.227292
+  type: 'test'
+  ...
+# Subtest: a plain phase child stays unbudgeted and a top-level packet keeps its budget
+ok 212 - a plain phase child stays unbudgeted and a top-level packet keeps its budget
+  ---
+  duration_ms: 66.265042
+  type: 'test'
+  ...
+# Subtest: the generator-hardening switch decides which child folders make a phase parent
+ok 213 - the generator-hardening switch decides which child folders make a phase parent
+  ---
+  duration_ms: 43.877625
+  type: 'test'
+  ...
+# Subtest: a nested folder whose spec declares the phase level is budgeted before it has children
+ok 214 - a nested folder whose spec declares the phase level is budgeted before it has children
+  ---
+  duration_ms: 40.203583
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi
+ok 215 - renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi
+  ---
+  duration_ms: 63.048583
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief returns empty string when no goal is active
+ok 216 - renderGoalBrief returns empty string when no goal is active
+  ---
+  duration_ms: 4.899875
+  type: 'test'
+  ...
+# Subtest: renderGoalBrief returns empty string for a paused goal
+ok 217 - renderGoalBrief returns empty string for a paused goal
+  ---
+  duration_ms: 30.309916
+  type: 'test'
+  ...
+# Subtest: isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state
+ok 218 - isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state
+  ---
+  duration_ms: 1.16575
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: short evidence is unclear
+ok 219 - verifyGoalHeuristic: short evidence is unclear
+  ---
+  duration_ms: 1.5775
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: blocking language is not-met even with completion words present
+ok 220 - verifyGoalHeuristic: blocking language is not-met even with completion words present
+  ---
+  duration_ms: 1.7115
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: explicit completion tied to the objective is met
+ok 221 - verifyGoalHeuristic: explicit completion tied to the objective is met
+  ---
+  duration_ms: 1.527125
+  type: 'test'
+  ...
+# Subtest: verifyGoalHeuristic: completion language with no objective-specific evidence stays unclear
+ok 222 - verifyGoalHeuristic: completion language with no objective-specific evidence stays unclear
+  ---
+  duration_ms: 0.963
+  type: 'test'
+  ...
+# Subtest: the module default-exports a single factory function
+ok 223 - the module default-exports a single factory function
+  ---
+  duration_ms: 37.249125
+  type: 'test'
+  ...
+# Subtest: the factory registers lifecycle handlers and the native goal-pi command
+ok 224 - the factory registers lifecycle handlers and the native goal-pi command
+  ---
+  duration_ms: 9.9875
+  type: 'test'
+  ...
+# Subtest: two Pi input contexts inject only their own active goal
+ok 225 - two Pi input contexts inject only their own active goal
+  ---
+  duration_ms: 34.9755
+  type: 'test'
+  ...
+# Subtest: same Pi session resumes its goal while a new session starts unbound
+ok 226 - same Pi session resumes its goal while a new session starts unbound
+  ---
+  duration_ms: 19.38075
+  type: 'test'
+  ...
+# Subtest: turn_end in one Pi session leaves the other session byte-equivalent
+ok 227 - turn_end in one Pi session leaves the other session byte-equivalent
+  ---
+  duration_ms: 49.689333
+  type: 'test'
+  ...
+# Subtest: turn_end sends its verify nudge without continuing the running turn
+ok 228 - turn_end sends its verify nudge without continuing the running turn
+  ---
+  duration_ms: 18.972
+  type: 'test'
+  ...
+# Subtest: turn_end judges a tool-heavy turn by its message, not its longer tool output
+ok 229 - turn_end judges a tool-heavy turn by its message, not its longer tool output
+  ---
+  duration_ms: 28.726666
+  type: 'test'
+  ...
+# Subtest: missing Pi identity fails open without selecting or writing a goal
+ok 230 - missing Pi identity fails open without selecting or writing a goal
+  ---
+  duration_ms: 13.011875
+  type: 'test'
+  ...
+# Subtest: legacy-only state never injects into a Pi session
+ok 231 - legacy-only state never injects into a Pi session
+  ---
+  duration_ms: 7.673833
+  type: 'test'
+  ...
+# Subtest: native goal-pi management writes and shows the current Pi session only
+ok 232 - native goal-pi management writes and shows the current Pi session only
+  ---
+  duration_ms: 139.187125
+  type: 'test'
+  ...
+# Subtest: native goal-pi management binds pause, resume, complete, and history to one session
+ok 233 - native goal-pi management binds pause, resume, complete, and history to one session
+  ---
+  duration_ms: 1146.412084
+  type: 'test'
+  ...
+# Subtest: native goal-pi management migrates legacy state only to the current session
+ok 234 - native goal-pi management migrates legacy state only to the current session
+  ---
+  duration_ms: 133.229459
+  type: 'test'
+  ...
+# Subtest: native binding overrides user-supplied scope flags
+ok 235 - native binding overrides user-supplied scope flags
+  ---
+  duration_ms: 103.009917
+  type: 'test'
+  ...
+# Subtest: native goal-pi management rejects missing identity without writing
+ok 236 - native goal-pi management rejects missing identity without writing
+  ---
+  duration_ms: 83.553958
+  type: 'test'
+  ...
+# Subtest: the Pi prompt fallback never invokes the unbound manage CLI
+ok 237 - the Pi prompt fallback never invokes the unbound manage CLI
+  ---
+  duration_ms: 10.325875
+  type: 'test'
+  ...
+# [mcp-route-guard] 18/18 assertions passed
+# Subtest: .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
+ok 12 - .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
+  ---
+  duration_ms: 458.3675
+  type: 'test'
+  ...
+# Subtest: edit payload reaches post-edit quality
+ok 239 - edit payload reaches post-edit quality
+  ---
+  duration_ms: 488.390667
+  type: 'test'
+  ...
+# Subtest: read payload is not an edit event
+ok 240 - read payload is not an edit event
+  ---
+  duration_ms: 78.479833
+  type: 'test'
+  ...
+# Subtest: non-string file_path does not hide a later path alias
+ok 241 - non-string file_path does not hide a later path alias
+  ---
+  duration_ms: 802.402334
+  type: 'test'
+  ...
+# Subtest: write payload reaches post-edit quality
+ok 242 - write payload reaches post-edit quality
+  ---
+  duration_ms: 493.958375
+  type: 'test'
+  ...
+# Subtest: edit payload reaches post-edit quality
+ok 243 - edit payload reaches post-edit quality
+  ---
+  duration_ms: 121.649625
+  type: 'test'
+  ...
+# Subtest: read payload is not an edit event
+ok 244 - read payload is not an edit event
+  ---
+  duration_ms: 739.727459
+  type: 'test'
+  ...
+# Subtest: non-string file_path does not hide a later path alias
+ok 245 - non-string file_path does not hide a later path alias
+  ---
+  duration_ms: 257.871792
+  type: 'test'
+  ...
+# Subtest: claude: a well-formed seed adds the claim command and resumes the carried packet
+ok 246 - claude: a well-formed seed adds the claim command and resumes the carried packet
+  ---
+  duration_ms: 76.91725
+  type: 'test'
+  ...
+# Subtest: claude: a seed with a relative note path adds nothing
+ok 247 - claude: a seed with a relative note path adds nothing
+  ---
+  duration_ms: 62.38425
+  type: 'test'
+  ...
+# Subtest: claude: a seed carrying an invalid spec folder claims without resuming it
+ok 248 - claude: a seed carrying an invalid spec folder claims without resuming it
+  ---
+  duration_ms: 58.062083
+  type: 'test'
+  ...
+# Subtest: claude: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+ok 249 - claude: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+  ---
+  duration_ms: 89.710709
+  type: 'test'
+  ...
+# Subtest: claude: a nudge drops an invalid spec folder instead of writing it into the note
+ok 250 - claude: a nudge drops an invalid spec folder instead of writing it into the note
+  ---
+  duration_ms: 99.646542
+  type: 'test'
+  ...
+# Subtest: claude: a nudge stays silent while this session has a pending handoff
+ok 251 - claude: a nudge stays silent while this session has a pending handoff
+  ---
+  duration_ms: 98.447667
+  type: 'test'
+  ...
+# Subtest: claude: a nudge outside skilled-loop asks for keep and never prepare
+ok 252 - claude: a nudge outside skilled-loop asks for keep and never prepare
+  ---
+  duration_ms: 87.873167
+  type: 'test'
+  ...
+# Subtest: claude: a nudge stays silent at the hop cap
+ok 253 - claude: a nudge stays silent at the hop cap
+  ---
+  duration_ms: 519.141125
+  type: 'test'
+  ...
+# Subtest: claude: an arm turns this session's pending record armed from the live cwd and starts one killer
+ok 254 - claude: an arm turns this session's pending record armed from the live cwd and starts one killer
+  ---
+  duration_ms: 304.416125
+  type: 'test'
+  ...
+# Subtest: claude: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+ok 255 - claude: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+  ---
+  duration_ms: 163.331583
+  type: 'test'
+  ...
+# Subtest: claude: an arm leaves a pending record from another session untouched
+ok 256 - claude: an arm leaves a pending record from another session untouched
+  ---
+  duration_ms: 35.070917
+  type: 'test'
+  ...
+# Subtest: claude: an arm leaves a pending record prepared for another runtime untouched
+ok 257 - claude: an arm leaves a pending record prepared for another runtime untouched
+  ---
+  duration_ms: 43.777042
+  type: 'test'
+  ...
+# Subtest: claude: an arm leaves the record pending when no process below the loop is found
+ok 258 - claude: an arm leaves the record pending when no process below the loop is found
+  ---
+  duration_ms: 67.751417
+  type: 'test'
+  ...
+# Subtest: codex: a well-formed seed adds the claim command and resumes the carried packet
+ok 259 - codex: a well-formed seed adds the claim command and resumes the carried packet
+  ---
+  duration_ms: 68.82325
+  type: 'test'
+  ...
+# Subtest: codex: a seed with a relative note path adds nothing
+ok 260 - codex: a seed with a relative note path adds nothing
+  ---
+  duration_ms: 60.346584
+  type: 'test'
+  ...
+# Subtest: codex: a seed carrying an invalid spec folder claims without resuming it
+ok 261 - codex: a seed carrying an invalid spec folder claims without resuming it
+  ---
+  duration_ms: 82.882292
+  type: 'test'
+  ...
+# Subtest: codex: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+ok 262 - codex: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+  ---
+  duration_ms: 98.55325
+  type: 'test'
+  ...
+# Subtest: codex: a nudge drops an invalid spec folder instead of writing it into the note
+ok 263 - codex: a nudge drops an invalid spec folder instead of writing it into the note
+  ---
+  duration_ms: 106.32525
+  type: 'test'
+  ...
+# Subtest: codex: a nudge stays silent while this session has a pending handoff
+ok 264 - codex: a nudge stays silent while this session has a pending handoff
+  ---
+  duration_ms: 136.361958
+  type: 'test'
+  ...
+# Subtest: codex: a nudge outside skilled-loop asks for keep and never prepare
+ok 265 - codex: a nudge outside skilled-loop asks for keep and never prepare
+  ---
+  duration_ms: 188.533291
+  type: 'test'
+  ...
+# Subtest: codex: a nudge stays silent at the hop cap
+ok 266 - codex: a nudge stays silent at the hop cap
+  ---
+  duration_ms: 83.97825
+  type: 'test'
+  ...
+# Subtest: codex: an arm turns this session's pending record armed from the live cwd and starts one killer
+ok 267 - codex: an arm turns this session's pending record armed from the live cwd and starts one killer
+  ---
+  duration_ms: 56.125667
+  type: 'test'
+  ...
+# Subtest: codex: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+ok 268 - codex: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+  ---
+  duration_ms: 71.820334
+  type: 'test'
+  ...
+# Subtest: codex: an arm leaves a pending record from another session untouched
+ok 269 - codex: an arm leaves a pending record from another session untouched
+  ---
+  duration_ms: 66.637417
+  type: 'test'
+  ...
+# Subtest: codex: an arm leaves a pending record prepared for another runtime untouched
+ok 270 - codex: an arm leaves a pending record prepared for another runtime untouched
+  ---
+  duration_ms: 51.327292
+  type: 'test'
+  ...
+# Subtest: codex: an arm leaves the record pending when no process below the loop is found
+ok 271 - codex: an arm leaves the record pending when no process below the loop is found
+  ---
+  duration_ms: 129.598084
+  type: 'test'
+  ...
+# Subtest: hermes: a well-formed seed adds the claim command and resumes the carried packet
+ok 272 - hermes: a well-formed seed adds the claim command and resumes the carried packet
+  ---
+  duration_ms: 128.244458
+  type: 'test'
+  ...
+# Subtest: hermes: a seed with a relative note path adds nothing
+ok 273 - hermes: a seed with a relative note path adds nothing
+  ---
+  duration_ms: 96.807667
+  type: 'test'
+  ...
+# Subtest: hermes: a seed carrying an invalid spec folder claims without resuming it
+ok 274 - hermes: a seed carrying an invalid spec folder claims without resuming it
+  ---
+  duration_ms: 177.107542
+  type: 'test'
+  ...
+# Subtest: hermes: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+ok 275 - hermes: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+  ---
+  duration_ms: 167.308
+  type: 'test'
+  ...
+# Subtest: hermes: a nudge drops an invalid spec folder instead of writing it into the note
+ok 276 - hermes: a nudge drops an invalid spec folder instead of writing it into the note
+  ---
+  duration_ms: 101.762541
+  type: 'test'
+  ...
+# Subtest: hermes: a nudge stays silent while this session has a pending handoff
+ok 277 - hermes: a nudge stays silent while this session has a pending handoff
+  ---
+  duration_ms: 154.072083
+  type: 'test'
+  ...
+# Subtest: hermes: a nudge outside skilled-loop asks for keep and never prepare
+ok 278 - hermes: a nudge outside skilled-loop asks for keep and never prepare
+  ---
+  duration_ms: 104.36925
+  type: 'test'
+  ...
+# Subtest: hermes: a nudge stays silent at the hop cap
+ok 279 - hermes: a nudge stays silent at the hop cap
+  ---
+  duration_ms: 101.813084
+  type: 'test'
+  ...
+# Subtest: hermes: an arm turns this session's pending record armed from the live cwd and starts one killer
+ok 280 - hermes: an arm turns this session's pending record armed from the live cwd and starts one killer
+  ---
+  duration_ms: 57.052
+  type: 'test'
+  ...
+# Subtest: hermes: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+ok 281 - hermes: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+  ---
+  duration_ms: 50.942125
+  type: 'test'
+  ...
+# Subtest: hermes: an arm leaves a pending record from another session untouched
+ok 282 - hermes: an arm leaves a pending record from another session untouched
+  ---
+  duration_ms: 35.641
+  type: 'test'
+  ...
+# Subtest: hermes: an arm leaves a pending record prepared for another runtime untouched
+ok 283 - hermes: an arm leaves a pending record prepared for another runtime untouched
+  ---
+  duration_ms: 32.696667
+  type: 'test'
+  ...
+# Subtest: hermes: an arm leaves the record pending when no process below the loop is found
+ok 284 - hermes: an arm leaves the record pending when no process below the loop is found
+  ---
+  duration_ms: 33.665792
+  type: 'test'
+  ...
+# Subtest: opencode: a well-formed seed adds the claim command and resumes the carried packet
+ok 285 - opencode: a well-formed seed adds the claim command and resumes the carried packet
+  ---
+  duration_ms: 509.720875
+  type: 'test'
+  ...
+# Subtest: opencode: a seed with a relative note path adds nothing
+ok 286 - opencode: a seed with a relative note path adds nothing
+  ---
+  duration_ms: 10.128542
+  type: 'test'
+  ...
+# Subtest: opencode: a seed carrying an invalid spec folder claims without resuming it
+ok 287 - opencode: a seed carrying an invalid spec folder claims without resuming it
+  ---
+  duration_ms: 13.894583
+  type: 'test'
+  ...
+# Subtest: opencode: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+ok 288 - opencode: a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+  ---
+  duration_ms: 84.757209
+  type: 'test'
+  ...
+# Subtest: opencode: a nudge drops an invalid spec folder instead of writing it into the note
+ok 289 - opencode: a nudge drops an invalid spec folder instead of writing it into the note
+  ---
+  duration_ms: 100.426708
+  type: 'test'
+  ...
+# Subtest: opencode: a nudge stays silent while this session has a pending handoff
+ok 290 - opencode: a nudge stays silent while this session has a pending handoff
+  ---
+  duration_ms: 78.799667
+  type: 'test'
+  ...
+# Subtest: opencode: a nudge outside skilled-loop asks for keep and never prepare
+ok 291 - opencode: a nudge outside skilled-loop asks for keep and never prepare
+  ---
+  duration_ms: 117.79725
+  type: 'test'
+  ...
+# Subtest: opencode: a nudge stays silent at the hop cap
+ok 292 - opencode: a nudge stays silent at the hop cap
+  ---
+  duration_ms: 13.964792
+  type: 'test'
+  ...
+# Subtest: opencode: an arm turns this session's pending record armed from the live cwd and starts one killer
+ok 293 - opencode: an arm turns this session's pending record armed from the live cwd and starts one killer
+  ---
+  duration_ms: 89.025708
+  type: 'test'
+  ...
+# Subtest: opencode: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+ok 294 - opencode: a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+  ---
+  duration_ms: 124.902292
+  type: 'test'
+  ...
+# Subtest: opencode: an arm leaves a pending record from another session untouched
+ok 295 - opencode: an arm leaves a pending record from another session untouched
+  ---
+  duration_ms: 46.717
+  type: 'test'
+  ...
+# Subtest: opencode: an arm leaves a pending record prepared for another runtime untouched
+ok 296 - opencode: an arm leaves a pending record prepared for another runtime untouched
+  ---
+  duration_ms: 20.0755
+  type: 'test'
+  ...
+# Subtest: claude/context-nudge.mjs does nothing when imported
+ok 297 - claude/context-nudge.mjs does nothing when imported
+  ---
+  duration_ms: 357.91675
+  type: 'test'
+  ...
+# Subtest: claude/stop-arm.mjs does nothing when imported
+ok 298 - claude/stop-arm.mjs does nothing when imported
+  ---
+  duration_ms: 370.248833
+  type: 'test'
+  ...
+# Subtest: codex/context-nudge.mjs does nothing when imported
+ok 299 - codex/context-nudge.mjs does nothing when imported
+  ---
+  duration_ms: 353.435167
+  type: 'test'
+  ...
+# Subtest: codex/prompt-seed.mjs does nothing when imported
+ok 300 - codex/prompt-seed.mjs does nothing when imported
+  ---
+  duration_ms: 356.842666
+  type: 'test'
+  ...
+# Subtest: codex/stop-arm.mjs does nothing when imported
+ok 301 - codex/stop-arm.mjs does nothing when imported
+  ---
+  duration_ms: 359.438
+  type: 'test'
+  ...
+# Subtest: hermes/context-nudge.mjs does nothing when imported
+ok 302 - hermes/context-nudge.mjs does nothing when imported
+  ---
+  duration_ms: 365.513625
+  type: 'test'
+  ...
+# Subtest: hermes/session-end-arm.mjs does nothing when imported
+ok 303 - hermes/session-end-arm.mjs does nothing when imported
+  ---
+  duration_ms: 356.078792
+  type: 'test'
+  ...
+# Subtest: context-nudge fires at 0.80, suppresses the same level, and fires again at +0.05
+ok 304 - context-nudge fires at 0.80, suppresses the same level, and fires again at +0.05
+  ---
+  duration_ms: 225.688959
+  type: 'test'
+  ...
+# Subtest: context-nudge carries the payload spec_folder into the note frontmatter
+ok 305 - context-nudge carries the payload spec_folder into the note frontmatter
+  ---
+  duration_ms: 84.752209
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing below the configured threshold
+ok 306 - context-nudge emits nothing below the configured threshold
+  ---
+  duration_ms: 71.557458
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing while this session already has a prepared handoff
+ok 307 - context-nudge emits nothing while this session already has a prepared handoff
+  ---
+  duration_ms: 96.963666
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing at the hop limit
+ok 308 - context-nudge emits nothing at the hop limit
+  ---
+  duration_ms: 71.186708
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing when the relaunch concern is disabled
+ok 309 - context-nudge emits nothing when the relaunch concern is disabled
+  ---
+  duration_ms: 86.402542
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing when session_id fails the charset gate
+ok 310 - context-nudge emits nothing when session_id fails the charset gate
+  ---
+  duration_ms: 778.884417
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit relaunch seed receives claim and completion instructions
+ok 311 - UserPromptSubmit relaunch seed receives claim and completion instructions
+  ---
+  duration_ms: 162.909583
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed resumes its carried packet folder
+ok 312 - UserPromptSubmit seed resumes its carried packet folder
+  ---
+  duration_ms: 77.493
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed carries Gate 3 Skip without a resume command
+ok 313 - UserPromptSubmit seed carries Gate 3 Skip without a resume command
+  ---
+  duration_ms: 82.789709
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed without a suffix has no resume or Skip instruction
+ok 314 - UserPromptSubmit seed without a suffix has no resume or Skip instruction
+  ---
+  duration_ms: 70.022041
+  type: 'test'
+  ...
+# Subtest: stop-arm arms a matching pending record, starts the killer lock, and prints nothing
+ok 315 - stop-arm arms a matching pending record, starts the killer lock, and prints nothing
+  ---
+  duration_ms: 357.703958
+  type: 'test'
+  ...
+# Subtest: stop-arm defers pending state when background tasks exist and logs the reason
+ok 316 - stop-arm defers pending state when background tasks exist and logs the reason
+  ---
+  duration_ms: 223.038791
+  type: 'test'
+  ...
+# Subtest: stop-arm logs missing-transcript-path and leaves the record pending
+ok 317 - stop-arm logs missing-transcript-path and leaves the record pending
+  ---
+  duration_ms: 114.965542
+  type: 'test'
+  ...
+# Subtest: stop-arm logs an async killer spawn error and leaves the record armed
+ok 318 - stop-arm logs an async killer spawn error and leaves the record armed
+  ---
+  duration_ms: 243.849291
+  type: 'test'
+  ...
+# Subtest: stop-arm logs a synchronous killer spawn throw and leaves the record armed
+ok 319 - stop-arm logs a synchronous killer spawn throw and leaves the record armed
+  ---
+  duration_ms: 358.692417
+  type: 'test'
+  ...
+# Subtest: context-nudge plans the handoff note under the resolved repo root
+ok 320 - context-nudge plans the handoff note under the resolved repo root
+  ---
+  duration_ms: 310.642209
+  type: 'test'
+  ...
+# Subtest: context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+ok 321 - context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+  ---
+  duration_ms: 109.436
+  type: 'test'
+  ...
+# Subtest: context-nudge keeps the default threshold when the env switch is invalid
+ok 322 - context-nudge keeps the default threshold when the env switch is invalid
+  ---
+  duration_ms: 170.627125
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed claims the absolute note path it carries
+ok 323 - UserPromptSubmit seed claims the absolute note path it carries
+  ---
+  duration_ms: 67.265917
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed with a relative note path emits nothing
+ok 324 - UserPromptSubmit seed with a relative note path emits nothing
+  ---
+  duration_ms: 89.0555
+  type: 'test'
+  ...
+# Subtest: stop-arm makes no change without SKILLED_LOOP_ID and prints nothing
+ok 325 - stop-arm makes no change without SKILLED_LOOP_ID and prints nothing
+  ---
+  duration_ms: 121.121
+  type: 'test'
+  ...
+# Subtest: stop-arm spawns exactly one killer across repeated Stop payloads on a pending record
+ok 326 - stop-arm spawns exactly one killer across repeated Stop payloads on a pending record
+  ---
+  duration_ms: 320.285083
+  type: 'test'
+  ...
+# Subtest: stop-arm respawns one killer for an armed record whose killer is gone
+ok 327 - stop-arm respawns one killer for an armed record whose killer is gone
+  ---
+  duration_ms: 303.828209
+  type: 'test'
+  ...
+# Subtest: stop-arm without CLAUDE_PID targets the loop child, never the hook parent
+ok 328 - stop-arm without CLAUDE_PID targets the loop child, never the hook parent
+  ---
+  duration_ms: 263.754625
+  type: 'test'
+  ...
+# Subtest: stop-arm keeps a CLAUDE_PID inside the loop and drops one outside it
+ok 329 - stop-arm keeps a CLAUDE_PID inside the loop and drops one outside it
+  ---
+  duration_ms: 449.213125
+  type: 'test'
+  ...
+# Subtest: stop-arm leaves the record pending when no process below the loop can be found
+ok 330 - stop-arm leaves the record pending when no process below the loop can be found
+  ---
+  duration_ms: 132.7925
+  type: 'test'
+  ...
+# Subtest: stop-arm defers an armed record with a dead killer while background tasks run
+ok 331 - stop-arm defers an armed record with a dead killer while background tasks run
+  ---
+  duration_ms: 61.02125
+  type: 'test'
+  ...
+# Subtest: context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none
+ok 332 - context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none
+  ---
+  duration_ms: 68.62175
+  type: 'test'
+  ...
+# Subtest: compact-pointer points a compacted session at its open note and resets the nudge level
+ok 333 - compact-pointer points a compacted session at its open note and resets the nudge level
+  ---
+  duration_ms: 81.198375
+  type: 'test'
+  ...
+# Subtest: compact-pointer adds nothing on a fresh start or when no note is open
+ok 334 - compact-pointer adds nothing on a fresh start or when no note is open
+  ---
+  duration_ms: 148.045125
+  type: 'test'
+  ...
+# Subtest: compact-pointer leaves a note alone while its hop is prepared
+ok 335 - compact-pointer leaves a note alone while its hop is prepared
+  ---
+  duration_ms: 79.564209
+  type: 'test'
+  ...
+# Subtest: context-nudge fires at threshold once and again at threshold plus 0.05
+ok 336 - context-nudge fires at threshold once and again at threshold plus 0.05
+  ---
+  duration_ms: 242.580333
+  type: 'test'
+  ...
+# Subtest: context-nudge carries the payload spec_folder into the note frontmatter
+ok 337 - context-nudge carries the payload spec_folder into the note frontmatter
+  ---
+  duration_ms: 89.510375
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing while this session already has a prepared handoff
+ok 338 - context-nudge emits nothing while this session already has a prepared handoff
+  ---
+  duration_ms: 82.252375
+  type: 'test'
+  ...
+# Subtest: context-nudge emits nothing at the hop limit
+ok 339 - context-nudge emits nothing at the hop limit
+  ---
+  duration_ms: 78.856
+  type: 'test'
+  ...
+# Subtest: Codex registrations assign each event a unique adapter
+ok 340 - Codex registrations assign each event a unique adapter
+  ---
+  duration_ms: 19.266417
+  type: 'test'
+  ...
+# Subtest: PostToolUse adapter ignores UserPromptSubmit seed prompts
+ok 341 - PostToolUse adapter ignores UserPromptSubmit seed prompts
+  ---
+  duration_ms: 65.618083
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed passes its carried folder to seedText
+ok 342 - UserPromptSubmit seed passes its carried folder to seedText
+  ---
+  duration_ms: 194.400417
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit adapter nudges when a non-seed prompt crosses threshold
+ok 343 - UserPromptSubmit adapter nudges when a non-seed prompt crosses threshold
+  ---
+  duration_ms: 636.919
+  type: 'test'
+  ...
+# Subtest: Stop arms a matching pending record and spawns the killer with its transcript
+ok 344 - Stop arms a matching pending record and spawns the killer with its transcript
+  ---
+  duration_ms: 412.534875
+  type: 'test'
+  ...
+# Subtest: Stop leaves a pending record untouched when the session does not match
+ok 345 - Stop leaves a pending record untouched when the session does not match
+  ---
+  duration_ms: 121.83875
+  type: 'test'
+  ...
+# Subtest: Stop leaves a record for another loop untouched
+ok 346 - Stop leaves a record for another loop untouched
+  ---
+  duration_ms: 74.275708
+  type: 'test'
+  ...
+# Subtest: Stop ignores an armed record whose killer lock owner is alive
+ok 347 - Stop ignores an armed record whose killer lock owner is alive
+  ---
+  duration_ms: 105.758375
+  type: 'test'
+  ...
+# Subtest: Stop respawns one killer for an armed record whose killer is gone
+ok 348 - Stop respawns one killer for an armed record whose killer is gone
+  ---
+  duration_ms: 329.8335
+  type: 'test'
+  ...
+# Subtest: the kill switch silences Codex prompt and stop adapters
+ok 349 - the kill switch silences Codex prompt and stop adapters
+  ---
+  duration_ms: 244.403667
+  type: 'test'
+  ...
+# Subtest: Stop leaves the record pending when no ancestor matches the loop
+ok 350 - Stop leaves the record pending when no ancestor matches the loop
+  ---
+  duration_ms: 332.972666
+  type: 'test'
+  ...
+# Subtest: Stop signals the loop child it finds above a transient shell, and arms nothing without one
+ok 351 - Stop signals the loop child it finds above a transient shell, and arms nothing without one
+  ---
+  duration_ms: 186.667958
+  type: 'test'
+  ...
+# Subtest: Stop arms only a payload that names the Stop event
+ok 352 - Stop arms only a payload that names the Stop event
+  ---
+  duration_ms: 275.537541
+  type: 'test'
+  ...
+# Subtest: Stop leaves the record armed and logs when the killer spawn fails
+ok 353 - Stop leaves the record armed and logs when the killer spawn fails
+  ---
+  duration_ms: 264.5165
+  type: 'test'
+  ...
+# Subtest: Stop logs an async killer spawn error and leaves the record armed
+ok 354 - Stop logs an async killer spawn error and leaves the record armed
+  ---
+  duration_ms: 258.849333
+  type: 'test'
+  ...
+# Subtest: context-nudge plans the handoff note under the resolved repo root
+ok 355 - context-nudge plans the handoff note under the resolved repo root
+  ---
+  duration_ms: 142.830084
+  type: 'test'
+  ...
+# Subtest: context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+ok 356 - context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+  ---
+  duration_ms: 160.446791
+  type: 'test'
+  ...
+# Subtest: context-nudge keeps the default threshold when the env switch is invalid
+ok 357 - context-nudge keeps the default threshold when the env switch is invalid
+  ---
+  duration_ms: 127.877208
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed claims the absolute note path it carries
+ok 358 - UserPromptSubmit seed claims the absolute note path it carries
+  ---
+  duration_ms: 96.297041
+  type: 'test'
+  ...
+# Subtest: UserPromptSubmit seed with a relative note path emits nothing
+ok 359 - UserPromptSubmit seed with a relative note path emits nothing
+  ---
+  duration_ms: 88.002792
+  type: 'test'
+  ...
+# Subtest: readClaudeFill uses the last main-chain usage, not sidechain or cumulative usage
+ok 360 - readClaudeFill uses the last main-chain usage, not sidechain or cumulative usage
+  ---
+  duration_ms: 16.279791
+  type: 'test'
+  ...
+# Subtest: resolveWindow gives SESSION_RELAUNCH_WINDOW_TOKENS precedence over settings
+ok 361 - resolveWindow gives SESSION_RELAUNCH_WINDOW_TOKENS precedence over settings
+  ---
+  duration_ms: 32.378583
+  type: 'test'
+  ...
+# Subtest: resolveWindow prefers settings.local.json over project and home settings
+ok 362 - resolveWindow prefers settings.local.json over project and home settings
+  ---
+  duration_ms: 22.082208
+  type: 'test'
+  ...
+# Subtest: resolveWindow uses project settings.json before the home setting
+ok 363 - resolveWindow uses project settings.json before the home setting
+  ---
+  duration_ms: 14.481583
+  type: 'test'
+  ...
+# Subtest: resolveWindow treats settings read errors as absent
+ok 364 - resolveWindow treats settings read errors as absent
+  ---
+  duration_ms: 19.685833
+  type: 'test'
+  ...
+# Subtest: resolveWindow falls back to the home Claude setting
+ok 365 - resolveWindow falls back to the home Claude setting
+  ---
+  duration_ms: 24.650291
+  type: 'test'
+  ...
+# Subtest: resolveWindow selects a one-million-token window for a model containing [1m]
+ok 366 - resolveWindow selects a one-million-token window for a model containing [1m]
+  ---
+  duration_ms: 6.822375
+  type: 'test'
+  ...
+# Subtest: resolveWindow defaults to a 200000-token window
+ok 367 - resolveWindow defaults to a 200000-token window
+  ---
+  duration_ms: 6.338292
+  type: 'test'
+  ...
+# Subtest: readClaudeFill finds a complete entry at the end of a long transcript
+ok 368 - readClaudeFill finds a complete entry at the end of a long transcript
+  ---
+  duration_ms: 11.249459
+  type: 'test'
+  ...
+# Subtest: readClaudeFill widens the tail past a final row larger than the default tail
+ok 369 - readClaudeFill widens the tail past a final row larger than the default tail
+  ---
+  duration_ms: 19.862375
+  type: 'test'
+  ...
+# Subtest: readClaudeFill treats transcript read errors as absent
+ok 370 - readClaudeFill treats transcript read errors as absent
+  ---
+  duration_ms: 3.606125
+  type: 'test'
+  ...
+# Subtest: fillRatio divides plainly and returns zero for a zero window
+ok 371 - fillRatio divides plainly and returns zero for a zero window
+  ---
+  duration_ms: 0.275375
+  type: 'test'
+  ...
+# Subtest: fillFromPiUsage reads the assistant usage payload captured from Pi
+ok 372 - fillFromPiUsage reads the assistant usage payload captured from Pi
+  ---
+  duration_ms: 0.123792
+  type: 'test'
+  ...
+# Subtest: fillFromOpenCodeTokens reads the completed assistant tokens captured from OpenCode
+ok 373 - fillFromOpenCodeTokens reads the completed assistant tokens captured from OpenCode
+  ---
+  duration_ms: 0.04225
+  type: 'test'
+  ...
+# Subtest: Pi and OpenCode usage helpers treat missing fields as zero
+ok 374 - Pi and OpenCode usage helpers treat missing fields as zero
+  ---
+  duration_ms: 0.036875
+  type: 'test'
+  ...
+# Subtest: readCodexUsage selects the latest token_count and its last input usage
+ok 375 - readCodexUsage selects the latest token_count and its last input usage
+  ---
+  duration_ms: 16.666041
+  type: 'test'
+  ...
+# Subtest: readCodexUsage widens the tail past a final row larger than the default tail
+ok 376 - readCodexUsage widens the tail past a final row larger than the default tail
+  ---
+  duration_ms: 21.19175
+  type: 'test'
+  ...
+# Subtest: readCodexUsage treats missing rollout files as absent
+ok 377 - readCodexUsage treats missing rollout files as absent
+  ---
+  duration_ms: 8.105375
+  type: 'test'
+  ...
+# Subtest: resolveCodexWindow prefers the shared override to the rollout window
+ok 378 - resolveCodexWindow prefers the shared override to the rollout window
+  ---
+  duration_ms: 0.119
+  type: 'test'
+  ...
+# Subtest: resolveWindow reads the repository settings from a subdirectory cwd
+ok 379 - resolveWindow reads the repository settings from a subdirectory cwd
+  ---
+  duration_ms: 30.046708
+  type: 'test'
+  ...
+# Subtest: resolveWindow stops at the repository boundary and walks nowhere outside a repository
+ok 380 - resolveWindow stops at the repository boundary and walks nowhere outside a repository
+  ---
+  duration_ms: 28.509708
+  type: 'test'
+  ...
+# Subtest: Hermes captured payload fixtures retain shapes and redact identifiers
+ok 381 - Hermes captured payload fixtures retain shapes and redact identifiers
+  ---
+  duration_ms: 13.03875
+  type: 'test'
+  ...
+# Subtest: Hermes usage counts input and cache tokens, not output tokens
+ok 382 - Hermes usage counts input and cache tokens, not output tokens
+  ---
+  duration_ms: 0.575042
+  type: 'test'
+  ...
+# Subtest: seed first turn receives the handoff instructions and carried folder
+ok 383 - seed first turn receives the handoff instructions and carried folder
+  ---
+  duration_ms: 57.421792
+  type: 'test'
+  ...
+# Subtest: context nudge fires once at threshold and once at threshold plus five points
+ok 384 - context nudge fires once at threshold and once at threshold plus five points
+  ---
+  duration_ms: 224.175833
+  type: 'test'
+  ...
+# Subtest: context nudge stays quiet while this session already has a prepared handoff
+ok 385 - context nudge stays quiet while this session already has a prepared handoff
+  ---
+  duration_ms: 82.972292
+  type: 'test'
+  ...
+# Subtest: context nudge stays quiet at the hop limit
+ok 386 - context nudge stays quiet at the hop limit
+  ---
+  duration_ms: 68.087959
+  type: 'test'
+  ...
+# Subtest: reported and default Hermes windows identify their source
+ok 387 - reported and default Hermes windows identify their source
+  ---
+  duration_ms: 813.397583
+  type: 'test'
+  ...
+# Subtest: the session relaunch kill switch silences the context adapter
+ok 388 - the session relaunch kill switch silences the context adapter
+  ---
+  duration_ms: 160.156375
+  type: 'test'
+  ...
+# Subtest: session end arms only a matching pending Hermes loop and detaches its killer
+ok 389 - session end arms only a matching pending Hermes loop and detaches its killer
+  ---
+  duration_ms: 59.791416
+  type: 'test'
+  ...
+# Subtest: session end respawns one killer for an armed record whose killer is gone
+ok 390 - session end respawns one killer for an armed record whose killer is gone
+  ---
+  duration_ms: 44.286875
+  type: 'test'
+  ...
+# Subtest: session end signals the loop child it finds above a transient shell, and arms nothing without one
+ok 391 - session end signals the loop child it finds above a transient shell, and arms nothing without one
+  ---
+  duration_ms: 70.699292
+  type: 'test'
+  ...
+# Subtest: session end still runs when the hook is started through a linked directory
+ok 392 - session end still runs when the hook is started through a linked directory
+  ---
+  duration_ms: 63.755834
+  type: 'test'
+  ...
+# Subtest: session end arms only on a matching or absent event name
+ok 393 - session end arms only on a matching or absent event name
+  ---
+  duration_ms: 47.634083
+  type: 'test'
+  ...
+# Subtest: session end leaves the record armed and logs when the spawn throws
+ok 394 - session end leaves the record armed and logs when the spawn throws
+  ---
+  duration_ms: 76.720792
+  type: 'test'
+  ...
+# Subtest: session end keeps the record armed on an asynchronous spawn error
+ok 395 - session end keeps the record armed on an asynchronous spawn error
+  ---
+  duration_ms: 56.886834
+  type: 'test'
+  ...
+# Subtest: context nudge plans the handoff note under the resolved repo root
+ok 396 - context nudge plans the handoff note under the resolved repo root
+  ---
+  duration_ms: 94.675958
+  type: 'test'
+  ...
+# Subtest: context nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+ok 397 - context nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+  ---
+  duration_ms: 91.539167
+  type: 'test'
+  ...
+# Subtest: context nudge keeps the default threshold when the env switch is invalid
+ok 398 - context nudge keeps the default threshold when the env switch is invalid
+  ---
+  duration_ms: 111.10475
+  type: 'test'
+  ...
+# Subtest: a seed with a relative or untrimmed handoff path gets no context
+ok 399 - a seed with a relative or untrimmed handoff path gets no context
+  ---
+  duration_ms: 365.220042
+  type: 'test'
+  ...
+# Subtest: a seed path with a literal backslash round-trips unchanged
+ok 400 - a seed path with a literal backslash round-trips unchanged
+  ---
+  duration_ms: 78.418959
+  type: 'test'
+  ...
+# Subtest: session end ignores mismatched, non-Hermes, and disabled records
+ok 401 - session end ignores mismatched, non-Hermes, and disabled records
+  ---
+  duration_ms: 84.589875
+  type: 'test'
+  ...
+# Subtest: a relaunch decision records a hand-over line with the note goal and hop number
+ok 402 - a relaunch decision records a hand-over line with the note goal and hop number
+  ---
+  duration_ms: 124.9
+  type: 'test'
+  ...
+# Subtest: a declined relaunch records nothing
+ok 403 - a declined relaunch records nothing
+  ---
+  duration_ms: 121.762625
+  type: 'test'
+  ...
+# Subtest: claim and complete record the receiving session picking the note up and finishing it
+ok 404 - claim and complete record the receiving session picking the note up and finishing it
+  ---
+  duration_ms: 913.988125
+  type: 'test'
+  ...
+# Subtest: history prints the latest lines and says when no hop is recorded yet
+ok 405 - history prints the latest lines and says when no hop is recorded yet
+  ---
+  duration_ms: 344.361917
+  type: 'test'
+  ...
+# Subtest: a zero count reads no history lines
+ok 406 - a zero count reads no history lines
+  ---
+  duration_ms: 27.41475
+  type: 'test'
+  ...
+# Subtest: a negative count reads the default number of newest lines
+ok 407 - a negative count reads the default number of newest lines
+  ---
+  duration_ms: 27.83375
+  type: 'test'
+  ...
+# Subtest: a whole count reads that many of the newest lines
+ok 408 - a whole count reads that many of the newest lines
+  ---
+  duration_ms: 20.842791
+  type: 'test'
+  ...
+# Subtest: history rejects a --last value that is not a positive whole number
+ok 409 - history rejects a --last value that is not a positive whole number
+  ---
+  duration_ms: 58.159542
+  type: 'test'
+  ...
+# Subtest: the hand-over notice stays off by default
+ok 410 - the hand-over notice stays off by default
+  ---
+  duration_ms: 223.302292
+  type: 'test'
+  ...
+# Subtest: the hand-over notice fires once the switch is set in the hook-flags file
+ok 411 - the hand-over notice fires once the switch is set in the hook-flags file
+  ---
+  duration_ms: 340.3515
+  type: 'test'
+  ...
+# Subtest: a killer timeout records a timed-out line
+ok 412 - a killer timeout records a timed-out line
+  ---
+  duration_ms: 71.346541
+  type: 'test'
+  ...
+# Subtest: keep outside the loop records a note-kept line and prints the claim command
+ok 413 - keep outside the loop records a note-kept line and prints the claim command
+  ---
+  duration_ms: 536.42325
+  type: 'test'
+  ...
+# Subtest: history adds an open-notes line until the note is claimed
+ok 414 - history adds an open-notes line until the note is claimed
+  ---
+  duration_ms: 343.922667
+  type: 'test'
+  ...
+# Subtest: ancestor walk stops when the process table repeats a pid
+ok 415 - ancestor walk stops when the process table repeats a pid
+  ---
+  duration_ms: 0.808584
+  type: 'test'
+  ...
+# Subtest: killer signals an idle target and releases its lock
+ok 416 - killer signals an idle target and releases its lock
+  ---
+  duration_ms: 1108.9905
+  type: 'test'
+  ...
+# Subtest: killer signals an idle armed target after --idle-ms without a transcript
+ok 417 - killer signals an idle armed target after --idle-ms without a transcript
+  ---
+  duration_ms: 386.458833
+  type: 'test'
+  ...
+# Subtest: killer never signals a target that is not a descendant of SKILLED_LOOP_ID
+ok 418 - killer never signals a target that is not a descendant of SKILLED_LOOP_ID
+  ---
+  duration_ms: 466.765666
+  type: 'test'
+  ...
+# Subtest: killer does not signal when the relaunch record is missing
+ok 419 - killer does not signal when the relaunch record is missing
+  ---
+  duration_ms: 499.062417
+  type: 'test'
+  ...
+# Subtest: killer refuses loop id 1 and leaves the target alive
+ok 420 - killer refuses loop id 1 and leaves the target alive
+  ---
+  duration_ms: 167.375541
+  type: 'test'
+  ...
+# Subtest: killer keeps the record armed when the target exits during its grace period
+ok 421 - killer keeps the record armed when the target exits during its grace period
+  ---
+  duration_ms: 1628.407625
+  type: 'test'
+  ...
+# Subtest: killer treats an EPERM liveness probe as a target that is already gone
+ok 422 - killer treats an EPERM liveness probe as a target that is already gone
+  ---
+  duration_ms: 248.136709
+  type: 'test'
+  ...
+# Subtest: killer times out on an active transcript, unarms and releases its lock
+ok 423 - killer times out on an active transcript, unarms and releases its lock
+  ---
+  duration_ms: 3230.581084
+  type: 'test'
+  ...
+# Subtest: a second killer respects the lock held by the first killer
+ok 424 - a second killer respects the lock held by the first killer
+  ---
+  duration_ms: 3095.628584
+  type: 'test'
+  ...
+# Subtest: killer logs and respects a lock held by a live owner
+ok 425 - killer logs and respects a lock held by a live owner
+  ---
+  duration_ms: 71.425541
+  type: 'test'
+  ...
+# Subtest: killer takes over a lock whose live owner recorded a past expiry
+ok 426 - killer takes over a lock whose live owner recorded a past expiry
+  ---
+  duration_ms: 531.933875
+  type: 'test'
+  ...
+# Subtest: killer leaves a lock that a contender claimed while it supervised
+ok 427 - killer leaves a lock that a contender claimed while it supervised
+  ---
+  duration_ms: 1589.515375
+  type: 'test'
+  ...
+# Subtest: killer removes its own lock when no contender claimed it
+ok 428 - killer removes its own lock when no contender claimed it
+  ---
+  duration_ms: 480.262542
+  type: 'test'
+  ...
+# Subtest: killer holds an empty lock younger than five seconds
+ok 429 - killer holds an empty lock younger than five seconds
+  ---
+  duration_ms: 71.86725
+  type: 'test'
+  ...
+# Subtest: killer holds a fresh directory at the lock path
+ok 430 - killer holds a fresh directory at the lock path
+  ---
+  duration_ms: 73.161625
+  type: 'test'
+  ...
+# Subtest: killer takes over a stale directory at the lock path
+ok 431 - killer takes over a stale directory at the lock path
+  ---
+  duration_ms: 422.13975
+  type: 'test'
+  ...
+# Subtest: killer logs target-gone when SIGTERM races with target exit
+ok 432 - killer logs target-gone when SIGTERM races with target exit
+  ---
+  duration_ms: 405.159875
+  type: 'test'
+  ...
+# Subtest: killer refuses to signal a disarmed record
+ok 433 - killer refuses to signal a disarmed record
+  ---
+  duration_ms: 378.844833
+  type: 'test'
+  ...
+# Subtest: killer unarms an armed record at the hop limit without signalling
+ok 434 - killer unarms an armed record at the hop limit without signalling
+  ---
+  duration_ms: 384.933875
+  type: 'test'
+  ...
+# Subtest: killer still signals an armed record below the hop limit
+ok 435 - killer still signals an armed record below the hop limit
+  ---
+  duration_ms: 408.523916
+  type: 'test'
+  ...
+# Subtest: killer logs a disarmed record before refusing a non-descendant target
+ok 436 - killer logs a disarmed record before refusing a non-descendant target
+  ---
+  duration_ms: 180.680542
+  type: 'test'
+  ...
+# Subtest: killer breaks a stale lock and proceeds
+ok 437 - killer breaks a stale lock and proceeds
+  ---
+  duration_ms: 451.561416
+  type: 'test'
+  ...
+# Subtest: killer timeout notification escapes a quoted handoff path
+ok 438 - killer timeout notification escapes a quoted handoff path
+  ---
+  duration_ms: 80.377209
+  type: 'test'
+  ...
+# Subtest: killer timeout notification uses the runtime seed form
+ok 439 - killer timeout notification uses the runtime seed form
+  ---
+  duration_ms: 76.607
+  type: 'test'
+  ...
+# Subtest: killer timeout notice carries the none spec-folder answer
+ok 440 - killer timeout notice carries the none spec-folder answer
+  ---
+  duration_ms: 76.581542
+  type: 'test'
+  ...
+# Subtest: killer timeout notice carries the empty spec-folder answer
+ok 441 - killer timeout notice carries the empty spec-folder answer
+  ---
+  duration_ms: 84.22725
+  type: 'test'
+  ...
+# Subtest: killer timeout notice omits an invalid hand-edited folder
+ok 442 - killer timeout notice omits an invalid hand-edited folder
+  ---
+  duration_ms: 81.721834
+  type: 'test'
+  ...
+# Subtest: killer timeout logs without notice when its record is missing
+ok 443 - killer timeout logs without notice when its record is missing
+  ---
+  duration_ms: 72.841084
+  type: 'test'
+  ...
+# Subtest: killer timeout keeps a re-prepared pending record and still logs and notifies
+ok 444 - killer timeout keeps a re-prepared pending record and still logs and notifies
+  ---
+  duration_ms: 126.603042
+  type: 'test'
+  ...
+# Subtest: killer timeout leaves a newer armed handoff to the killer that owns it
+ok 445 - killer timeout leaves a newer armed handoff to the killer that owns it
+  ---
+  duration_ms: 723.829958
+  type: 'test'
+  ...
+# Subtest: killer timeout leaves a re-armed record for the same handoff alone
+ok 446 - killer timeout leaves a re-armed record for the same handoff alone
+  ---
+  duration_ms: 725.048209
+  type: 'test'
+  ...
+# Subtest: killer timeout supersedes a re-arm that keeps the watched arm time
+ok 447 - killer timeout supersedes a re-arm that keeps the watched arm time
+  ---
+  duration_ms: 724.812834
+  type: 'test'
+  ...
+# Subtest: killer hop cap leaves a re-armed record for the same handoff alone
+ok 448 - killer hop cap leaves a re-armed record for the same handoff alone
+  ---
+  duration_ms: 236.620875
+  type: 'test'
+  ...
+# Subtest: killer stale branch leaves a re-armed record for the same handoff alone
+ok 449 - killer stale branch leaves a re-armed record for the same handoff alone
+  ---
+  duration_ms: 237.415375
+  type: 'test'
+  ...
+# Subtest: killer records a timeout when the transcript vanishes while it waits
+ok 450 - killer records a timeout when the transcript vanishes while it waits
+  ---
+  duration_ms: 1200.886
+  type: 'test'
+  ...
+# Subtest: killer survives one transient transcript stat failure and still signals
+ok 451 - killer survives one transient transcript stat failure and still signals
+  ---
+  duration_ms: 375.874875
+  type: 'test'
+  ...
+# Subtest: killer gives up when the transcript stays missing past the stat grace window
+ok 452 - killer gives up when the transcript stays missing past the stat grace window
+  ---
+  duration_ms: 1052.932792
+  type: 'test'
+  ...
+# Subtest: two killers cannot both claim the same stale lock
+ok 453 - two killers cannot both claim the same stale lock
+  ---
+  duration_ms: 2793.118916
+  type: 'test'
+  ...
+# Subtest: killer reclaims a takeover mutex whose recorded owner is dead
+ok 454 - killer reclaims a takeover mutex whose recorded owner is dead
+  ---
+  duration_ms: 452.236667
+  type: 'test'
+  ...
+# Subtest: killer leaves a takeover mutex to its live owner even when the directory is old
+ok 455 - killer leaves a takeover mutex to its live owner even when the directory is old
+  ---
+  duration_ms: 100.143666
+  type: 'test'
+  ...
+# Subtest: killer reclaims a takeover mutex whose live owner outlived the hold bound
+ok 456 - killer reclaims a takeover mutex whose live owner outlived the hold bound
+  ---
+  duration_ms: 503.603584
+  type: 'test'
+  ...
+# Subtest: killer sweeps old takeover and stale-lock leftovers but keeps a fresh one
+ok 457 - killer sweeps old takeover and stale-lock leftovers but keeps a fresh one
+  ---
+  duration_ms: 456.279792
+  type: 'test'
+  ...
+# Subtest: killer reclaims a stale takeover directory that holds extra files
+ok 458 - killer reclaims a stale takeover directory that holds extra files
+  ---
+  duration_ms: 466.161167
+  type: 'test'
+  ...
+# Subtest: killer reclaims a stale takeover directory while its rename waits
+ok 459 - killer reclaims a stale takeover directory while its rename waits
+  ---
+  duration_ms: 1366.819958
+  type: 'test'
+  ...
+# Subtest: killer releases a takeover directory that gained a stray file
+ok 460 - killer releases a takeover directory that gained a stray file
+  ---
+  duration_ms: 464.414791
+  type: 'test'
+  ...
+# Subtest: killer leaves a takeover directory a contender replaced while it was held
+ok 461 - killer leaves a takeover directory a contender replaced while it was held
+  ---
+  duration_ms: 460.200583
+  type: 'test'
+  ...
+# Subtest: killer leaves a replaced takeover directory even when its inode is reused
+ok 462 - killer leaves a replaced takeover directory even when its inode is reused
+  ---
+  duration_ms: 455.856291
+  type: 'test'
+  ...
+# Subtest: killer does not remove a takeover directory whose owner write lost the race
+ok 463 - killer does not remove a takeover directory whose owner write lost the race
+  ---
+  duration_ms: 110.847
+  type: 'test'
+  ...
+# Subtest: killer keeps a takeover directory a contender took over during an owner-write failure cleanup
+ok 464 - killer keeps a takeover directory a contender took over during an owner-write failure cleanup
+  ---
+  duration_ms: 113.090458
+  type: 'test'
+  ...
+# Subtest: killer restores a takeover directory swapped in after its ownership check
+ok 465 - killer restores a takeover directory swapped in after its ownership check
+  ---
+  duration_ms: 465.239958
+  type: 'test'
+  ...
+# Subtest: killer exits non-zero when the takeover owner cannot be read
+ok 466 - killer exits non-zero when the takeover owner cannot be read
+  ---
+  duration_ms: 122.125833
+  type: 'test'
+  ...
+# Subtest: killer keeps its result when the takeover removal throws
+ok 467 - killer keeps its result when the takeover removal throws
+  ---
+  duration_ms: 470.541667
+  type: 'test'
+  ...
+# Subtest: killer restores a permissive state directory to private mode
+ok 468 - killer restores a permissive state directory to private mode
+  ---
+  duration_ms: 162.135083
+  type: 'test'
+  ...
+# Subtest: the killer reads its ancestry through the core process-table reader
+ok 469 - the killer reads its ancestry through the core process-table reader
+  ---
+  duration_ms: 1.216958
+  type: 'test'
+  ...
+# Subtest: killer unarms an armed record past the age limit without signalling
+ok 470 - killer unarms an armed record past the age limit without signalling
+  ---
+  duration_ms: 394.6855
+  type: 'test'
+  ...
+# Subtest: killer unarms an armed record that will pass the age limit before the wrapper reads it without signalling
+ok 471 - killer unarms an armed record that will pass the age limit before the wrapper reads it without signalling
+  ---
+  duration_ms: 389.270792
+  type: 'test'
+  ...
+# Subtest: killer timeout notification fills the manual template from the environment it was given
+ok 472 - killer timeout notification fills the manual template from the environment it was given
+  ---
+  duration_ms: 83.774084
+  type: 'test'
+  ...
+# Subtest: killer timeout logs an unusable manual template before its plain notice
+ok 473 - killer timeout logs an unusable manual template before its plain notice
+  ---
+  duration_ms: 85.535875
+  type: 'test'
+  ...
+# Subtest: handoff text includes the note, frontmatter, all four sections and prepare command
+ok 474 - handoff text includes the note, frontmatter, all four sections and prepare command
+  ---
+  duration_ms: 3.78025
+  type: 'test'
+  ...
+# Subtest: handoff text opens the ratio nudge imperatively and keeps the exception last
+ok 475 - handoff text opens the ratio nudge imperatively and keeps the exception last
+  ---
+  duration_ms: 0.21425
+  type: 'test'
+  ...
+# Subtest: handoff text outside the wrapper asks for keep, never prepare, and keeps the note shape
+ok 476 - handoff text outside the wrapper asks for keep, never prepare, and keeps the note shape
+  ---
+  duration_ms: 0.195708
+  type: 'test'
+  ...
+# Subtest: handoff text names a ratio past the configured window instead of the raw percentage
+ok 477 - handoff text names a ratio past the configured window instead of the raw percentage
+  ---
+  duration_ms: 0.105833
+  type: 'test'
+  ...
+# Subtest: handoff text leaves the complete instruction to the seed text
+ok 478 - handoff text leaves the complete instruction to the seed text
+  ---
+  duration_ms: 0.148666
+  type: 'test'
+  ...
+# Subtest: handoff text keeps /speckit:save for the claude runtime only
+ok 479 - handoff text keeps /speckit:save for the claude runtime only
+  ---
+  duration_ms: 0.250459
+  type: 'test'
+  ...
+# Subtest: seed text claims the note, resumes only a bound spec folder, and completes the handoff
+ok 480 - seed text claims the note, resumes only a bound spec folder, and completes the handoff
+  ---
+  duration_ms: 0.130167
+  type: 'test'
+  ...
+# Subtest: seed text runs the real claim command with no placeholder explanation
+ok 481 - seed text runs the real claim command with no placeholder explanation
+  ---
+  duration_ms: 0.058916
+  type: 'test'
+  ...
+# Subtest: seed text carries the complete command the reminder builder returns
+ok 482 - seed text carries the complete command the reminder builder returns
+  ---
+  duration_ms: 0.098709
+  type: 'test'
+  ...
+# Subtest: isSeedPrompt recognizes the relaunch seed prefix only
+ok 483 - isSeedPrompt recognizes the relaunch seed prefix only
+  ---
+  duration_ms: 0.09175
+  type: 'test'
+  ...
+# Subtest: specFolderFromSeed reads only a valid carried folder and accepts suffixed seeds
+ok 484 - specFolderFromSeed reads only a valid carried folder and accepts suffixed seeds
+  ---
+  duration_ms: 0.150542
+  type: 'test'
+  ...
+# Subtest: specFolderFromSeed rejects specs/hooks/session-relaunch
+ok 485 - specFolderFromSeed rejects specs/hooks/session-relaunch
+  ---
+  duration_ms: 0.042583
+  type: 'test'
+  ...
+# Subtest: specFolderFromSeed rejects specs/hooks
+ok 486 - specFolderFromSeed rejects specs/hooks
+  ---
+  duration_ms: 0.025625
+  type: 'test'
+  ...
+# Subtest: specFolderFromSeed rejects specs/hooks/23-x
+ok 487 - specFolderFromSeed rejects specs/hooks/23-x
+  ---
+  duration_ms: 0.302459
+  type: 'test'
+  ...
+# Subtest: plannedNotePath resolves the repo root and stamps the session id
+ok 488 - plannedNotePath resolves the repo root and stamps the session id
+  ---
+  duration_ms: 14.736792
+  type: 'test'
+  ...
+# Subtest: plannedNotePath reuses the open note of the session for every later nudge
+ok 489 - plannedNotePath reuses the open note of the session for every later nudge
+  ---
+  duration_ms: 64.684583
+  type: 'test'
+  ...
+# Subtest: plannedNotePath reuses the newest open note when the session holds two
+ok 490 - plannedNotePath reuses the newest open note when the session holds two
+  ---
+  duration_ms: 680.520291
+  type: 'test'
+  ...
+# Subtest: plannedNotePath creates a private handoffs directory before naming a note in it
+ok 491 - plannedNotePath creates a private handoffs directory before naming a note in it
+  ---
+  duration_ms: 15.860916
+  type: 'test'
+  ...
+# Subtest: plannedNotePath stamps a new path when the handoffs hold a claimed note
+ok 492 - plannedNotePath stamps a new path when the handoffs hold a claimed note
+  ---
+  duration_ms: 19.021666
+  type: 'test'
+  ...
+# Subtest: plannedNotePath stamps a new path when the handoffs hold a done note
+ok 493 - plannedNotePath stamps a new path when the handoffs hold a done note
+  ---
+  duration_ms: 26.913625
+  type: 'test'
+  ...
+# Subtest: plannedNotePath stamps a new path when the handoffs hold a note of another session sharing the same eight-character prefix
+ok 494 - plannedNotePath stamps a new path when the handoffs hold a note of another session sharing the same eight-character prefix
+  ---
+  duration_ms: 83.234125
+  type: 'test'
+  ...
+# Subtest: plannedNotePath stamps a new path when the handoffs hold an unparseable note
+ok 495 - plannedNotePath stamps a new path when the handoffs hold an unparseable note
+  ---
+  duration_ms: 74.306416
+  type: 'test'
+  ...
+# Subtest: resolveRepoRoot anchors the note path on the repository that holds the hook
+ok 496 - resolveRepoRoot anchors the note path on the repository that holds the hook
+  ---
+  duration_ms: 1.255292
+  type: 'test'
+  ...
+# Subtest: resolveRepoRoot ignores the generic REPO_ROOT and an empty override
+ok 497 - resolveRepoRoot ignores the generic REPO_ROOT and an empty override
+  ---
+  duration_ms: 6.828417
+  type: 'test'
+  ...
+# Subtest: relaunchThreshold honors env over config, accepts (0, 1], else 0.8
+ok 498 - relaunchThreshold honors env over config, accepts (0, 1], else 0.8
+  ---
+  duration_ms: 0.138959
+  type: 'test'
+  ...
+# Subtest: notePathFromSeed returns the raw absolute path or null
+ok 499 - notePathFromSeed returns the raw absolute path or null
+  ---
+  duration_ms: 0.23375
+  type: 'test'
+  ...
+# Subtest: nextLevel nudges at the threshold and once more at threshold plus 0.05, then stays quiet
+ok 500 - nextLevel nudges at the threshold and once more at threshold plus 0.05, then stays quiet
+  ---
+  duration_ms: 0.182625
+  type: 'test'
+  ...
+# Subtest: validSessionId rejects shell metacharacters and accepts a safe session id
+ok 501 - validSessionId rejects shell metacharacters and accepts a safe session id
+  ---
+  duration_ms: 0.038041
+  type: 'test'
+  ...
+# Subtest: nudge state round-trips in the isolated runtime directory
+ok 502 - nudge state round-trips in the isolated runtime directory
+  ---
+  duration_ms: 9.506417
+  type: 'test'
+  ...
+# Subtest: writeState repairs a permissive state directory back to private mode
+ok 503 - writeState repairs a permissive state directory back to private mode
+  ---
+  duration_ms: 13.358042
+  type: 'test'
+  ...
+# Subtest: handoffPending is true for a pending record owned by this session
+ok 504 - handoffPending is true for a pending record owned by this session
+  ---
+  duration_ms: 18.723625
+  type: 'test'
+  ...
+# Subtest: handoffPending is true for an armed record owned by this session
+ok 505 - handoffPending is true for an armed record owned by this session
+  ---
+  duration_ms: 40.11225
+  type: 'test'
+  ...
+# Subtest: handoffPending is false for an armed record past the max age
+ok 506 - handoffPending is false for an armed record past the max age
+  ---
+  duration_ms: 57.18575
+  type: 'test'
+  ...
+# Subtest: handoffPending is true for an armed record inside the max age
+ok 507 - handoffPending is true for an armed record inside the max age
+  ---
+  duration_ms: 49.789584
+  type: 'test'
+  ...
+# Subtest: handoffPending follows an overridden max age for an armed record
+ok 508 - handoffPending follows an overridden max age for an armed record
+  ---
+  duration_ms: 38.253667
+  type: 'test'
+  ...
+# Subtest: handoffPending honors a max age saved in the hook config file, with the environment winning
+ok 509 - handoffPending honors a max age saved in the hook config file, with the environment winning
+  ---
+  duration_ms: 78.383166
+  type: 'test'
+  ...
+# Subtest: hopLimitReached compares the environment hop count with the wrapper hop cap
+ok 510 - hopLimitReached compares the environment hop count with the wrapper hop cap
+  ---
+  duration_ms: 0.323208
+  type: 'test'
+  ...
+# Subtest: hopLimitReached falls back to the wrapper defaults for a missing or unusable switch
+ok 511 - hopLimitReached falls back to the wrapper defaults for a missing or unusable switch
+  ---
+  duration_ms: 0.119
+  type: 'test'
+  ...
+# Subtest: hopLimitReached honors a cap saved in the hook config file, with the environment winning
+ok 512 - hopLimitReached honors a cap saved in the hook config file, with the environment winning
+  ---
+  duration_ms: 14.62675
+  type: 'test'
+  ...
+# Subtest: handoffPending is true for a pending record whatever its age
+ok 513 - handoffPending is true for a pending record whatever its age
+  ---
+  duration_ms: 33.011125
+  type: 'test'
+  ...
+# Subtest: handoffPending is false for a record owned by another session
+ok 514 - handoffPending is false for a record owned by another session
+  ---
+  duration_ms: 18.138458
+  type: 'test'
+  ...
+# Subtest: handoffPending is false without a loop id in the environment
+ok 515 - handoffPending is false without a loop id in the environment
+  ---
+  duration_ms: 13.10525
+  type: 'test'
+  ...
+# Subtest: handoffPending is false when the record cannot be read
+ok 516 - handoffPending is false when the record cannot be read
+  ---
+  duration_ms: 7.779125
+  type: 'test'
+  ...
+# Subtest: the nudge module exports the one CLI command every adapter prints
+ok 517 - the nudge module exports the one CLI command every adapter prints
+  ---
+  duration_ms: 0.098166
+  type: 'test'
+  ...
+# Subtest: handoff text leaves an unknown spec folder empty instead of a placeholder prepare rejects
+ok 518 - handoff text leaves an unknown spec folder empty instead of a placeholder prepare rejects
+  ---
+  duration_ms: 0.0745
+  type: 'test'
+  ...
+# Subtest: handoff text never writes an invalid spec folder into the note frontmatter
+ok 519 - handoff text never writes an invalid spec folder into the note frontmatter
+  ---
+  duration_ms: 0.924041
+  type: 'test'
+  ...
+# Subtest: normalizeSpecFolder keeps empty, none and a valid packet path, and drops the rest
+ok 520 - normalizeSpecFolder keeps empty, none and a valid packet path, and drops the rest
+  ---
+  duration_ms: 0.125625
+  type: 'test'
+  ...
+# Subtest: specFolderInput prefers the payload and falls back to SYSTEM_SPEC_FOLDER
+ok 521 - specFolderInput prefers the payload and falls back to SYSTEM_SPEC_FOLDER
+  ---
+  duration_ms: 0.297708
+  type: 'test'
+  ...
+# Subtest: seedInstructions returns the seed text for a well-formed seed and null otherwise
+ok 522 - seedInstructions returns the seed text for a well-formed seed and null otherwise
+  ---
+  duration_ms: 0.1155
+  type: 'test'
+  ...
+# Subtest: nudgeDecision folds the threshold, the wrapper, a live handoff, the hop cap and the level
+ok 523 - nudgeDecision folds the threshold, the wrapper, a live handoff, the hop cap and the level
+  ---
+  duration_ms: 44.159625
+  type: 'test'
+  ...
+# Subtest: nudgeDecision reads the persisted level when the caller passes none
+ok 524 - nudgeDecision reads the persisted level when the caller passes none
+  ---
+  duration_ms: 16.243834
+  type: 'test'
+  ...
+# Subtest: plannedNotePath leaves the target of a symlinked handoffs directory untouched
+ok 525 - plannedNotePath leaves the target of a symlinked handoffs directory untouched
+  ---
+  duration_ms: 7.158125
+  type: 'test'
+  ...
+# Subtest: handoffDir is the handoffs directory every reader shares, the one notes are planned in
+ok 526 - handoffDir is the handoffs directory every reader shares, the one notes are planned in
+  ---
+  duration_ms: 15.653417
+  type: 'test'
+  ...
+# Subtest: handoff text asks for exactly the sections the core validates
+ok 527 - handoff text asks for exactly the sections the core validates
+  ---
+  duration_ms: 0.253
+  type: 'test'
+  ...
+# Subtest: handoffPending is false for a record that names another loop
+ok 528 - handoffPending is false for a record that names another loop
+  ---
+  duration_ms: 43.478375
+  type: 'test'
+  ...
+# Subtest: stateDir and relaunchFilePath use the isolated runtime directory
+ok 529 - stateDir and relaunchFilePath use the isolated runtime directory
+  ---
+  duration_ms: 17.149334
+  type: 'test'
+  ...
+# Subtest: stateDir falls back to a per-user temp directory without a runtime dir
+ok 530 - stateDir falls back to a per-user temp directory without a runtime dir
+  ---
+  duration_ms: 5.359917
+  type: 'test'
+  ...
+# Subtest: ensureStateDir refuses a state path that is a symlink
+ok 531 - ensureStateDir refuses a state path that is a symlink
+  ---
+  duration_ms: 18.451917
+  type: 'test'
+  ...
+# Subtest: ensureStateDir refuses a state path that is a regular file
+ok 532 - ensureStateDir refuses a state path that is a regular file
+  ---
+  duration_ms: 24.400333
+  type: 'test'
+  ...
+# Subtest: ensureStateDir refuses a state directory owned by another user
+ok 533 - ensureStateDir refuses a state directory owned by another user
+  ---
+  duration_ms: 48.478125
+  type: 'test'
+  ...
+# Subtest: parseHandoff returns flat frontmatter and the four section bodies
+ok 534 - parseHandoff returns flat frontmatter and the four section bodies
+  ---
+  duration_ms: 65.041333
+  type: 'test'
+  ...
+# Subtest: parseHandoff rejects text without frontmatter fences
+ok 535 - parseHandoff rejects text without frontmatter fences
+  ---
+  duration_ms: 17.524042
+  type: 'test'
+  ...
+# Subtest: validateHandoff reports the path of a missing note
+ok 536 - validateHandoff reports the path of a missing note
+  ---
+  duration_ms: 8.52125
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a note whose status is not open
+ok 537 - validateHandoff rejects a note whose status is not open
+  ---
+  duration_ms: 25.424541
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a note from another session
+ok 538 - validateHandoff rejects a note from another session
+  ---
+  duration_ms: 44.052833
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a missing Goal section
+ok 539 - validateHandoff rejects a missing Goal section
+  ---
+  duration_ms: 41.187958
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a blank Goal section
+ok 540 - validateHandoff rejects a blank Goal section
+  ---
+  duration_ms: 38.78925
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a missing Done section
+ok 541 - validateHandoff rejects a missing Done section
+  ---
+  duration_ms: 28.135958
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a blank Done section
+ok 542 - validateHandoff rejects a blank Done section
+  ---
+  duration_ms: 42.773125
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a missing Remaining work section
+ok 543 - validateHandoff rejects a missing Remaining work section
+  ---
+  duration_ms: 51.947875
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a blank Remaining work section
+ok 544 - validateHandoff rejects a blank Remaining work section
+  ---
+  duration_ms: 43.803708
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a missing In-flight state section
+ok 545 - validateHandoff rejects a missing In-flight state section
+  ---
+  duration_ms: 39.405542
+  type: 'test'
+  ...
+# Subtest: validateHandoff rejects a blank In-flight state section
+ok 546 - validateHandoff rejects a blank In-flight state section
+  ---
+  duration_ms: 41.792875
+  type: 'test'
+  ...
+# Subtest: validateHandoff accepts a valid open note for the matching session
+ok 547 - validateHandoff accepts a valid open note for the matching session
+  ---
+  duration_ms: 15.99625
+  type: 'test'
+  ...
+# Subtest: claimHandoff moves an open note to claimed with claim metadata
+ok 548 - claimHandoff moves an open note to claimed with claim metadata
+  ---
+  duration_ms: 34.629042
+  type: 'test'
+  ...
+# Subtest: claimHandoff reports the path of a missing note
+ok 549 - claimHandoff reports the path of a missing note
+  ---
+  duration_ms: 10.990916
+  type: 'test'
+  ...
+# Subtest: claimHandoff throws when the note has already been claimed
+ok 550 - claimHandoff throws when the note has already been claimed
+  ---
+  duration_ms: 20.094167
+  type: 'test'
+  ...
+# Subtest: completeHandoff moves a claimed note to done with completion metadata
+ok 551 - completeHandoff moves a claimed note to done with completion metadata
+  ---
+  duration_ms: 55.735084
+  type: 'test'
+  ...
+# Subtest: completeHandoff reports the path of a missing note
+ok 552 - completeHandoff reports the path of a missing note
+  ---
+  duration_ms: 14.500833
+  type: 'test'
+  ...
+# Subtest: completeHandoff throws when the note is still open
+ok 553 - completeHandoff throws when the note is still open
+  ---
+  duration_ms: 25.163583
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed completes this session note and names its replacement
+ok 554 - supersedeClaimed completes this session note and names its replacement
+  ---
+  duration_ms: 69.551625
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed continues when one claimed note cannot be written
+ok 555 - supersedeClaimed continues when one claimed note cannot be written
+  ---
+  duration_ms: 188.848667
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed rejects a empty session id
+ok 556 - supersedeClaimed rejects a empty session id
+  ---
+  duration_ms: 31.75425
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed rejects a missing session id
+ok 557 - supersedeClaimed rejects a missing session id
+  ---
+  duration_ms: 25.603209
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed rejects a multi-line session id
+ok 558 - supersedeClaimed rejects a multi-line session id
+  ---
+  duration_ms: 37.683542
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed completes an open note this session wrote but never prepared
+ok 559 - supersedeClaimed completes an open note this session wrote but never prepared
+  ---
+  duration_ms: 40.597375
+  type: 'test'
+  ...
+# Subtest: claim and complete pin a permissive note to owner-only access
+ok 560 - claim and complete pin a permissive note to owner-only access
+  ---
+  duration_ms: 47.69025
+  type: 'test'
+  ...
+# Subtest: supersedeClaimed leaves unrelated and malformed notes untouched
+ok 561 - supersedeClaimed leaves unrelated and malformed notes untouched
+  ---
+  duration_ms: 54.145292
+  type: 'test'
+  ...
+# Subtest: preparePending writes the exact pending record shape
+ok 562 - preparePending writes the exact pending record shape
+  ---
+  duration_ms: 64.75775
+  type: 'test'
+  ...
+# Subtest: arm changes pending to armed, records the live cwd, and a re-arm restamps both
+ok 563 - arm changes pending to armed, records the live cwd, and a re-arm restamps both
+  ---
+  duration_ms: 108.695208
+  type: 'test'
+  ...
+# Subtest: arm stamps a fresh armId on every arm even in the same millisecond
+ok 564 - arm stamps a fresh armId on every arm even in the same millisecond
+  ---
+  duration_ms: 155.944167
+  type: 'test'
+  ...
+# Subtest: a re-arm makes an armed record older than the age limit relaunchable again
+ok 565 - a re-arm makes an armed record older than the age limit relaunchable again
+  ---
+  duration_ms: 137.246375
+  type: 'test'
+  ...
+# Subtest: arm returns null when no pending record exists
+ok 566 - arm returns null when no pending record exists
+  ---
+  duration_ms: 23.780667
+  type: 'test'
+  ...
+# Subtest: arm returns null for every status except pending and armed
+ok 567 - arm returns null for every status except pending and armed
+  ---
+  duration_ms: 274.902334
+  type: 'test'
+  ...
+# Subtest: arm returns null when the record cannot be read
+ok 568 - arm returns null when the record cannot be read
+  ---
+  duration_ms: 26.650042
+  type: 'test'
+  ...
+# Subtest: unarm records disarmed status and the supplied reason
+ok 569 - unarm records disarmed status and the supplied reason
+  ---
+  duration_ms: 34.36775
+  type: 'test'
+  ...
+# Subtest: unarm leaves the record armed when expectedArmId is stale
+ok 570 - unarm leaves the record armed when expectedArmId is stale
+  ---
+  duration_ms: 14.356334
+  type: 'test'
+  ...
+# Subtest: unarm disarms the record when expectedArmId matches
+ok 571 - unarm disarms the record when expectedArmId matches
+  ---
+  duration_ms: 27.036167
+  type: 'test'
+  ...
+# Subtest: readRelaunchFile returns the parsed record or null when absent
+ok 572 - readRelaunchFile returns the parsed record or null when absent
+  ---
+  duration_ms: 18.660333
+  type: 'test'
+  ...
+# Subtest: readRelaunchFile treats invalid JSON as absent and logs the loop id
+ok 573 - readRelaunchFile treats invalid JSON as absent and logs the loop id
+  ---
+  duration_ms: 34.072375
+  type: 'test'
+  ...
+# Subtest: readRelaunchFile still returns null when the corruption log write fails
+ok 574 - readRelaunchFile still returns null when the corruption log write fails
+  ---
+  duration_ms: 17.4665
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch declines when there is no record
+ok 575 - shouldRelaunch declines when there is no record
+  ---
+  duration_ms: 5.117875
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch declines a pending record
+ok 576 - shouldRelaunch declines a pending record
+  ---
+  duration_ms: 15.49775
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch accepts an armed record at exactly ten minutes old
+ok 577 - shouldRelaunch accepts an armed record at exactly ten minutes old
+  ---
+  duration_ms: 7.903084
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch declines a record armed in the future as stale
+ok 578 - shouldRelaunch declines a record armed in the future as stale
+  ---
+  duration_ms: 85.588917
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch declines an armed record one millisecond beyond ten minutes
+ok 579 - shouldRelaunch declines an armed record one millisecond beyond ten minutes
+  ---
+  duration_ms: 10.554292
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch accepts hop nine below the default cap
+ok 580 - shouldRelaunch accepts hop nine below the default cap
+  ---
+  duration_ms: 11.245667
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch declines hop ten at the default cap
+ok 581 - shouldRelaunch declines hop ten at the default cap
+  ---
+  duration_ms: 3.298292
+  type: 'test'
+  ...
+# Subtest: appendLog writes exactly one formatted line for every call
+ok 582 - appendLog writes exactly one formatted line for every call
+  ---
+  duration_ms: 29.386583
+  type: 'test'
+  ...
+# Subtest: appendLog restores private mode on an existing permissive log file
+ok 583 - appendLog restores private mode on an existing permissive log file
+  ---
+  duration_ms: 18.704459
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand places the quoted seed where each runtime expects it
+ok 584 - manualClaimCommand places the quoted seed where each runtime expects it
+  ---
+  duration_ms: 0.427167
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand carries packet and skip answers in the seed
+ok 585 - manualClaimCommand carries packet and skip answers in the seed
+  ---
+  duration_ms: 0.087542
+  type: 'test'
+  ...
+# Subtest: validSpecFolder requires a numbered leaf and rejects traversal and line breaks
+ok 586 - validSpecFolder requires a numbered leaf and rejects traversal and line breaks
+  ---
+  duration_ms: 0.05725
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand omits an unnumbered spec-folder answer
+ok 587 - manualClaimCommand omits an unnumbered spec-folder answer
+  ---
+  duration_ms: 0.034167
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand omits empty and invalid spec-folder answers
+ok 588 - manualClaimCommand omits empty and invalid spec-folder answers
+  ---
+  duration_ms: 0.033208
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand escapes shell-sensitive characters in the handoff path
+ok 589 - manualClaimCommand escapes shell-sensitive characters in the handoff path
+  ---
+  duration_ms: 0.026208
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand ignores inherited Object properties as runtime names
+ok 590 - manualClaimCommand ignores inherited Object properties as runtime names
+  ---
+  duration_ms: 0.157
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand closes double quotes around a single-quoted bang
+ok 591 - manualClaimCommand closes double quotes around a single-quoted bang
+  ---
+  duration_ms: 0.053625
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand preserves a bang path in interactive bash
+ok 592 - manualClaimCommand preserves a bang path in interactive bash
+  ---
+  duration_ms: 40.62
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand uses a single-token template and keeps its default otherwise
+ok 593 - manualClaimCommand uses a single-token template and keeps its default otherwise
+  ---
+  duration_ms: 0.210375
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand keeps dollar sequences literal inside the template fill
+ok 594 - manualClaimCommand keeps dollar sequences literal inside the template fill
+  ---
+  duration_ms: 0.1025
+  type: 'test'
+  ...
+# Subtest: appendLog keeps every line when eight processes append concurrently
+ok 595 - appendLog keeps every line when eight processes append concurrently
+  ---
+  duration_ms: 1563.715417
+  type: 'test'
+  ...
+# Subtest: appendLog starts the next event on its own line after a partial line
+ok 596 - appendLog starts the next event on its own line after a partial line
+  ---
+  duration_ms: 24.191042
+  type: 'test'
+  ...
+# Subtest: appendLog rejects a short write instead of reporting success
+ok 597 - appendLog rejects a short write instead of reporting success
+  ---
+  duration_ms: 7.863166
+  type: 'test'
+  ...
+# Subtest: findLoopChildPid selects the ancestor directly below the loop
+ok 598 - findLoopChildPid selects the ancestor directly below the loop
+  ---
+  duration_ms: 47.588417
+  type: 'test'
+  ...
+# Subtest: readProcessTable returns null instead of blocking on a stuck ps
+ok 599 - readProcessTable returns null instead of blocking on a stuck ps
+  ---
+  duration_ms: 2007.355875
+  type: 'test'
+  ...
+# Subtest: readProcessTable bounds the ps spawn with a timeout
+ok 600 - readProcessTable bounds the ps spawn with a timeout
+  ---
+  duration_ms: 0.808375
+  type: 'test'
+  ...
+# Subtest: liveKillerPid returns a live lock owner and null otherwise
+ok 601 - liveKillerPid returns a live lock owner and null otherwise
+  ---
+  duration_ms: 50.278333
+  type: 'test'
+  ...
+# Subtest: liveKillerPid ignores a lock whose recorded expiry has passed
+ok 602 - liveKillerPid ignores a lock whose recorded expiry has passed
+  ---
+  duration_ms: 5.312
+  type: 'test'
+  ...
+# Subtest: liveKillerPid ages out a legacy lock without an expiry field
+ok 603 - liveKillerPid ages out a legacy lock without an expiry field
+  ---
+  duration_ms: 5.132792
+  type: 'test'
+  ...
+# Subtest: liveKillerPid reads the killer lock once so a vanished lock reports no owner
+ok 604 - liveKillerPid reads the killer lock once so a vanished lock reports no owner
+  ---
+  duration_ms: 2.588833
+  type: 'test'
+  ...
+# Subtest: readLockState reports the owner and expiry from one read
+ok 605 - readLockState reports the owner and expiry from one read
+  ---
+  duration_ms: 7.343
+  type: 'test'
+  ...
+# Subtest: lockIsExpired keeps an unparseable lock
+ok 606 - lockIsExpired keeps an unparseable lock
+  ---
+  duration_ms: 3.885583
+  type: 'test'
+  ...
+# Subtest: manual claim commands balance their parentheses for every spec answer
+ok 607 - manual claim commands balance their parentheses for every spec answer
+  ---
+  duration_ms: 0.18
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch declines a fresh armed record that names no handoff or no cwd
+ok 608 - shouldRelaunch declines a fresh armed record that names no handoff or no cwd
+  ---
+  duration_ms: 2.264125
+  type: 'test'
+  ...
+# Subtest: claimHandoff updates a status key written with a space before the colon
+ok 609 - claimHandoff updates a status key written with a space before the colon
+  ---
+  duration_ms: 12.457083
+  type: 'test'
+  ...
+# Subtest: noteState classifies a note as missing, invalid, open, claimed or done
+ok 610 - noteState classifies a note as missing, invalid, open, claimed or done
+  ---
+  duration_ms: 10.05175
+  type: 'test'
+  ...
+# Subtest: resolveKillerTarget keeps a preferred pid inside the loop or walks to its child
+ok 611 - resolveKillerTarget keeps a preferred pid inside the loop or walks to its child
+  ---
+  duration_ms: 0.458625
+  type: 'test'
+  ...
+# Subtest: armableRecord gives every arm path one verdict, ownership before state
+ok 612 - armableRecord gives every arm path one verdict, ownership before state
+  ---
+  duration_ms: 4.254666
+  type: 'test'
+  ...
+# Subtest: the core owns the handoff sections and the runtime list as frozen exports
+ok 613 - the core owns the handoff sections and the runtime list as frozen exports
+  ---
+  duration_ms: 0.193416
+  type: 'test'
+  ...
+# Subtest: readProcessTable asks for the command column on request and honors a shorter bound
+ok 614 - readProcessTable asks for the command column on request and honors a shorter bound
+  ---
+  duration_ms: 367.877875
+  type: 'test'
+  ...
+# Subtest: manualClaimCommand reads the template from the environment it is given
+ok 615 - manualClaimCommand reads the template from the environment it is given
+  ---
+  duration_ms: 0.460375
+  type: 'test'
+  ...
+# Subtest: manualTemplateProblem names a template the manual command has to fall back from
+ok 616 - manualTemplateProblem names a template the manual command has to fall back from
+  ---
+  duration_ms: 0.21475
+  type: 'test'
+  ...
+# Subtest: payloadEventName applies each runtime's rule for a payload that names no event
+ok 617 - payloadEventName applies each runtime's rule for a payload that names no event
+  ---
+  duration_ms: 0.1955
+  type: 'test'
+  ...
+# Subtest: isEntrypoint matches a directly run or linked module and nothing else
+ok 618 - isEntrypoint matches a directly run or linked module and nothing else
+  ---
+  duration_ms: 3.595333
+  type: 'test'
+  ...
+# Subtest: shouldRelaunch reads a Date clock the way it reads epoch milliseconds
+ok 619 - shouldRelaunch reads a Date clock the way it reads epoch milliseconds
+  ---
+  duration_ms: 2.092292
+  type: 'test'
+  ...
+# Subtest: prepare exits zero under the loop with a Claude process that has no children
+ok 620 - prepare exits zero under the loop with a Claude process that has no children
+  ---
+  duration_ms: 444.910833
+  type: 'test'
+  ...
+# Subtest: prepare under the loop prints the prepared handoff and the stop instruction
+ok 621 - prepare under the loop prints the prepared handoff and the stop instruction
+  ---
+  duration_ms: 172.639334
+  type: 'test'
+  ...
+# Subtest: prepare declines at the hop limit without writing a relaunch record
+ok 622 - prepare declines at the hop limit without writing a relaunch record
+  ---
+  duration_ms: 296.034125
+  type: 'test'
+  ...
+# Subtest: prepare still arms a pending record below the hop limit
+ok 623 - prepare still arms a pending record below the hop limit
+  ---
+  duration_ms: 198.326792
+  type: 'test'
+  ...
+# Subtest: prepare records the runtime from SKILLED_LOOP_RUNTIME
+ok 624 - prepare records the runtime from SKILLED_LOOP_RUNTIME
+  ---
+  duration_ms: 269.719583
+  type: 'test'
+  ...
+# Subtest: prepare requires --session for Codex despite a Claude session env
+ok 625 - prepare requires --session for Codex despite a Claude session env
+  ---
+  duration_ms: 178.783125
+  type: 'test'
+  ...
+# Subtest: prepare accepts every runtime the wrapper can launch
+ok 626 - prepare accepts every runtime the wrapper can launch
+  ---
+  duration_ms: 2156.191208
+  type: 'test'
+  ...
+# Subtest: prepare exits two for an unknown SKILLED_LOOP_RUNTIME
+ok 627 - prepare exits two for an unknown SKILLED_LOOP_RUNTIME
+  ---
+  duration_ms: 145.996416
+  type: 'test'
+  ...
+# Subtest: prepare succeeds when its result log cannot be written
+ok 628 - prepare succeeds when its result log cannot be written
+  ---
+  duration_ms: 100.211916
+  type: 'test'
+  ...
+# Subtest: prepare exits two for an invalid handoff note
+ok 629 - prepare exits two for an invalid handoff note
+  ---
+  duration_ms: 61.515708
+  type: 'test'
+  ...
+# Subtest: prepare exits two for an invalid CLAUDE_PID under the loop
+ok 630 - prepare exits two for an invalid CLAUDE_PID under the loop
+  ---
+  duration_ms: 66.38875
+  type: 'test'
+  ...
+# Subtest: prepare exits two when CLAUDE_PID has a live bash child
+ok 631 - prepare exits two when CLAUDE_PID has a live bash child
+  ---
+  duration_ms: 284.039375
+  type: 'test'
+  ...
+# Subtest: prepare exits two for a live fish child of the Claude process
+ok 632 - prepare exits two for a live fish child of the Claude process
+  ---
+  duration_ms: 102.636584
+  type: 'test'
+  ...
+# Subtest: prepare exits two for a live -zsh child of the Claude process
+ok 633 - prepare exits two for a live -zsh child of the Claude process
+  ---
+  duration_ms: 96.326
+  type: 'test'
+  ...
+# Subtest: prepare checks the loop child, not a CLAUDE_PID outside the loop
+ok 634 - prepare checks the loop child, not a CLAUDE_PID outside the loop
+  ---
+  duration_ms: 105.065
+  type: 'test'
+  ...
+# Subtest: prepare refuses a live shell child when CLAUDE_PID is outside the loop
+ok 635 - prepare refuses a live shell child when CLAUDE_PID is outside the loop
+  ---
+  duration_ms: 94.185042
+  type: 'test'
+  ...
+# Subtest: prepare warns and prints the plain command when the template cannot be filled
+ok 636 - prepare warns and prints the plain command when the template cannot be filled
+  ---
+  duration_ms: 65.794792
+  type: 'test'
+  ...
+# Subtest: prepare prints a usable manual template without a warning
+ok 637 - prepare prints a usable manual template without a warning
+  ---
+  duration_ms: 64.361292
+  type: 'test'
+  ...
+# Subtest: prepare ignores an inherited Claude shell child for a Codex loop
+ok 638 - prepare ignores an inherited Claude shell child for a Codex loop
+  ---
+  duration_ms: 246.381375
+  type: 'test'
+  ...
+# Subtest: prepare refuses a live shell child of the Codex loop runtime
+ok 639 - prepare refuses a live shell child of the Codex loop runtime
+  ---
+  duration_ms: 213.284583
+  type: 'test'
+  ...
+# Subtest: prepare names the runtime when ps fails
+ok 640 - prepare names the runtime when ps fails
+  ---
+  duration_ms: 94.022958
+  type: 'test'
+  ...
+# Subtest: prepare gives up on a hung ps instead of stalling the hook
+ok 641 - prepare gives up on a hung ps instead of stalling the hook
+  ---
+  duration_ms: 2064.795875
+  type: 'test'
+  ...
+# Subtest: prepare refuses a live shell child without CLAUDE_PID
+ok 642 - prepare refuses a live shell child without CLAUDE_PID
+  ---
+  duration_ms: 200.555333
+  type: 'test'
+  ...
+# Subtest: prepare logs running-work-check-skipped when SKILLED_LOOP_ID has no ancestor
+ok 643 - prepare logs running-work-check-skipped when SKILLED_LOOP_ID has no ancestor
+  ---
+  duration_ms: 126.259083
+  type: 'test'
+  ...
+# Subtest: prepare exits three outside the loop and prints the manual claim command
+ok 644 - prepare exits three outside the loop and prints the manual claim command
+  ---
+  duration_ms: 60.47625
+  type: 'test'
+  ...
+# Subtest: prepare carries the none answer in the exit-three command
+ok 645 - prepare carries the none answer in the exit-three command
+  ---
+  duration_ms: 58.811958
+  type: 'test'
+  ...
+# Subtest: prepare carries the empty answer in the exit-three command
+ok 646 - prepare carries the empty answer in the exit-three command
+  ---
+  duration_ms: 61.746208
+  type: 'test'
+  ...
+# Subtest: prepare outside the loop refuses a spec folder it cannot carry
+ok 647 - prepare outside the loop refuses a spec folder it cannot carry
+  ---
+  duration_ms: 60.788334
+  type: 'test'
+  ...
+# Subtest: prepare under the loop refuses a spec folder it cannot carry
+ok 648 - prepare under the loop refuses a spec folder it cannot carry
+  ---
+  duration_ms: 63.598125
+  type: 'test'
+  ...
+# Subtest: prepare under the loop accepts a parent packet path spec folder answer
+ok 649 - prepare under the loop accepts a parent packet path spec folder answer
+  ---
+  duration_ms: 111.660458
+  type: 'test'
+  ...
+# Subtest: prepare under the loop accepts a child packet path spec folder answer
+ok 650 - prepare under the loop accepts a child packet path spec folder answer
+  ---
+  duration_ms: 108.79125
+  type: 'test'
+  ...
+# Subtest: prepare under the loop accepts a none spec folder answer
+ok 651 - prepare under the loop accepts a none spec folder answer
+  ---
+  duration_ms: 108.952916
+  type: 'test'
+  ...
+# Subtest: prepare under the loop accepts a empty spec folder answer
+ok 652 - prepare under the loop accepts a empty spec folder answer
+  ---
+  duration_ms: 108.505375
+  type: 'test'
+  ...
+# Subtest: nudge and CLI agree on the spec folder specs/hooks/001-example
+ok 653 - nudge and CLI agree on the spec folder specs/hooks/001-example
+  ---
+  duration_ms: 105.852209
+  type: 'test'
+  ...
+# Subtest: nudge and CLI agree on the spec folder specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop
+ok 654 - nudge and CLI agree on the spec folder specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop
+  ---
+  duration_ms: 109.330125
+  type: 'test'
+  ...
+# Subtest: nudge and CLI agree on the spec folder specs/hooks/session-relaunch
+ok 655 - nudge and CLI agree on the spec folder specs/hooks/session-relaunch
+  ---
+  duration_ms: 68.3295
+  type: 'test'
+  ...
+# Subtest: nudge and CLI agree on the spec folder specs/hooks/../001-example
+ok 656 - nudge and CLI agree on the spec folder specs/hooks/../001-example
+  ---
+  duration_ms: 61.008333
+  type: 'test'
+  ...
+# Subtest: prepare under the loop rejects specs/hooks/session-relaunch
+ok 657 - prepare under the loop rejects specs/hooks/session-relaunch
+  ---
+  duration_ms: 62.098459
+  type: 'test'
+  ...
+# Subtest: prepare under the loop rejects specs/hooks
+ok 658 - prepare under the loop rejects specs/hooks
+  ---
+  duration_ms: 57.670958
+  type: 'test'
+  ...
+# Subtest: prepare under the loop rejects specs/hooks/23-x
+ok 659 - prepare under the loop rejects specs/hooks/23-x
+  ---
+  duration_ms: 60.815375
+  type: 'test'
+  ...
+# Subtest: prepare resolves an absolute note under the CLI repository from a subdirectory
+ok 660 - prepare resolves an absolute note under the CLI repository from a subdirectory
+  ---
+  duration_ms: 70.853334
+  type: 'test'
+  ...
+# Subtest: prepare supersedes claimed notes under the loop and exits zero
+ok 661 - prepare supersedes claimed notes under the loop and exits zero
+  ---
+  duration_ms: 128.629875
+  type: 'test'
+  ...
+# Subtest: prepare supersedes claimed notes outside the loop and exits three
+ok 662 - prepare supersedes claimed notes outside the loop and exits three
+  ---
+  duration_ms: 72.437333
+  type: 'test'
+  ...
+# Subtest: prepare refusal leaves claimed notes untouched
+ok 663 - prepare refusal leaves claimed notes untouched
+  ---
+  duration_ms: 59.943083
+  type: 'test'
+  ...
+# Subtest: prepare names the selected runtime in its exit-three command
+ok 664 - prepare names the selected runtime in its exit-three command
+  ---
+  duration_ms: 64.37875
+  type: 'test'
+  ...
+# Subtest: prepare prints the hermes chat form as its exit-three command
+ok 665 - prepare prints the hermes chat form as its exit-three command
+  ---
+  duration_ms: 63.044292
+  type: 'test'
+  ...
+# Subtest: prepare --runtime hermes prints the hermes manual claim command
+ok 666 - prepare --runtime hermes prints the hermes manual claim command
+  ---
+  duration_ms: 63.554084
+  type: 'test'
+  ...
+# Subtest: prepare exits two for an unknown --runtime value
+ok 667 - prepare exits two for an unknown --runtime value
+  ---
+  duration_ms: 50.023708
+  type: 'test'
+  ...
+# Subtest: prepare exits two when --runtime conflicts with the loop runtime
+ok 668 - prepare exits two when --runtime conflicts with the loop runtime
+  ---
+  duration_ms: 58.45425
+  type: 'test'
+  ...
+# Subtest: should-relaunch exits zero and prints JSON for an armed fresh record
+ok 669 - should-relaunch exits zero and prints JSON for an armed fresh record
+  ---
+  duration_ms: 64.580834
+  type: 'test'
+  ...
+# Subtest: should-relaunch exits one and prints the pending decline reason as JSON
+ok 670 - should-relaunch exits one and prints the pending decline reason as JSON
+  ---
+  duration_ms: 59.424
+  type: 'test'
+  ...
+# Subtest: should-relaunch prints no-file JSON when the runtime directory is a file
+ok 671 - should-relaunch prints no-file JSON when the runtime directory is a file
+  ---
+  duration_ms: 53.962625
+  type: 'test'
+  ...
+# Subtest: claim exits zero and prints the claimed note body
+ok 672 - claim exits zero and prints the claimed note body
+  ---
+  duration_ms: 67.858458
+  type: 'test'
+  ...
+# Subtest: claim requires --session for Codex despite a Claude session env
+ok 673 - claim requires --session for Codex despite a Claude session env
+  ---
+  duration_ms: 55.88425
+  type: 'test'
+  ...
+# Subtest: complete exits zero for a claimed note
+ok 674 - complete exits zero for a claimed note
+  ---
+  duration_ms: 68.143708
+  type: 'test'
+  ...
+# Subtest: claim --help prints the claim usage on stdout and exits zero
+ok 675 - claim --help prints the claim usage on stdout and exits zero
+  ---
+  duration_ms: 58.736041
+  type: 'test'
+  ...
+# Subtest: -h after a subcommand prints the full usage listing
+ok 676 - -h after a subcommand prints the full usage listing
+  ---
+  duration_ms: 58.7105
+  type: 'test'
+  ...
+# Subtest: prepare usage names the outside-a-loop and hop-limit declines
+ok 677 - prepare usage names the outside-a-loop and hop-limit declines
+  ---
+  duration_ms: 54.299708
+  type: 'test'
+  ...
+# Subtest: no subcommand prints every subcommand syntax on stdout and exits zero
+ok 678 - no subcommand prints every subcommand syntax on stdout and exits zero
+  ---
+  duration_ms: 53.008792
+  type: 'test'
+  ...
+# Subtest: an unknown subcommand exits two and lists the commands on stderr
+ok 679 - an unknown subcommand exits two and lists the commands on stderr
+  ---
+  duration_ms: 57.137708
+  type: 'test'
+  ...
+# Subtest: complete names its usage line for an option it does not take
+ok 680 - complete names its usage line for an option it does not take
+  ---
+  duration_ms: 51.702125
+  type: 'test'
+  ...
+# Subtest: should-relaunch prints one no-file JSON line for a corrupt record
+ok 681 - should-relaunch prints one no-file JSON line for a corrupt record
+  ---
+  duration_ms: 68.604667
+  type: 'test'
+  ...
+# Subtest: should-relaunch accepts zero max hops and defaults invalid values
+ok 682 - should-relaunch accepts zero max hops and defaults invalid values
+  ---
+  duration_ms: 331.3915
+  type: 'test'
+  ...
+# Subtest: should-relaunch accepts zero max age and defaults invalid values
+ok 683 - should-relaunch accepts zero max age and defaults invalid values
+  ---
+  duration_ms: 306.644375
+  type: 'test'
+  ...
+# Subtest: consume exits zero and removes the relaunch file
+ok 684 - consume exits zero and removes the relaunch file
+  ---
+  duration_ms: 56.507792
+  type: 'test'
+  ...
+# Subtest: consume returns the handoff path and its spec folder
+ok 685 - consume returns the handoff path and its spec folder
+  ---
+  duration_ms: 65.981
+  type: 'test'
+  ...
+# Subtest: consume preserves a Gate 3 Skip as a valid spec-folder value
+ok 686 - consume preserves a Gate 3 Skip as a valid spec-folder value
+  ---
+  duration_ms: 56.766125
+  type: 'test'
+  ...
+# Subtest: consume leaves an empty spec folder unanswered without logging a drop
+ok 687 - consume leaves an empty spec folder unanswered without logging a drop
+  ---
+  duration_ms: 60.042042
+  type: 'test'
+  ...
+# Subtest: consume drops a spec folder invalidated after prepare
+ok 688 - consume drops a spec folder invalidated after prepare
+  ---
+  duration_ms: 166.660958
+  type: 'test'
+  ...
+# Subtest: consume logs a spec folder carried by any frontmatter line
+ok 689 - consume logs a spec folder carried by any frontmatter line
+  ---
+  duration_ms: 68.737459
+  type: 'test'
+  ...
+# Subtest: prepare logs supersede-failed when the handoffs directory cannot be read
+ok 690 - prepare logs supersede-failed when the handoffs directory cannot be read
+  ---
+  duration_ms: 116.044542
+  type: 'test'
+  ...
+# Subtest: consume prints JSON and exits zero when dropped-folder logging fails
+ok 691 - consume prints JSON and exits zero when dropped-folder logging fails
+  ---
+  duration_ms: 62.427833
+  type: 'test'
+  ...
+# Subtest: claim names a missing handoffs directory
+ok 692 - claim names a missing handoffs directory
+  ---
+  duration_ms: 57.782167
+  type: 'test'
+  ...
+# Subtest: claim reports a missing note inside the handoffs directory
+ok 693 - claim reports a missing note inside the handoffs directory
+  ---
+  duration_ms: 54.916583
+  type: 'test'
+  ...
+# Subtest: claim refuses a ../ handoff path outside the handoffs directory
+ok 694 - claim refuses a ../ handoff path outside the handoffs directory
+  ---
+  duration_ms: 57.529458
+  type: 'test'
+  ...
+# Subtest: consume keeps a valid answer from a note whose frontmatter no longer parses
+ok 695 - consume keeps a valid answer from a note whose frontmatter no longer parses
+  ---
+  duration_ms: 107.387292
+  type: 'test'
+  ...
+# Subtest: consume reports a missing note and a note that is no longer open
+ok 696 - consume reports a missing note and a note that is no longer open
+  ---
+  duration_ms: 153.003584
+  type: 'test'
+  ...
+# Subtest: claim refuses a note reached through a symlinked handoffs directory
+ok 697 - claim refuses a note reached through a symlinked handoffs directory
+  ---
+  duration_ms: 56.773959
+  type: 'test'
+  ...
+# Subtest: claim refuses a handoffs directory whose parent links outside the repository
+ok 698 - claim refuses a handoffs directory whose parent links outside the repository
+  ---
+  duration_ms: 58.993125
+  type: 'test'
+  ...
+# Subtest: bash: every interactive form finds the wrapper through a symlinked .skilled
+ok 699 - bash: every interactive form finds the wrapper through a symlinked .skilled
+  ---
+  duration_ms: 1577.361917
+  type: 'test'
+  ...
+# Subtest: bash: subcommands, print modes, version and help pass through
+ok 700 - bash: subcommands, print modes, version and help pass through
+  ---
+  duration_ms: 1143.466042
+  type: 'test'
+  ...
+# Subtest: bash: a directory with no .skilled above it resolves nothing
+ok 701 - bash: a directory with no .skilled above it resolves nothing
+  ---
+  duration_ms: 153.686791
+  type: 'test'
+  ...
+# Subtest: bash: a session already under the loop resolves nothing
+ok 702 - bash: a session already under the loop resolves nothing
+  ---
+  duration_ms: 128.173375
+  type: 'test'
+  ...
+# Subtest: bash: an unknown runtime resolves nothing
+ok 703 - bash: an unknown runtime resolves nothing
+  ---
+  duration_ms: 80.530958
+  type: 'test'
+  ...
+# Subtest: zsh: every interactive form finds the wrapper through a symlinked .skilled
+ok 704 - zsh: every interactive form finds the wrapper through a symlinked .skilled
+  ---
+  duration_ms: 697.21075
+  type: 'test'
+  ...
+# Subtest: zsh: subcommands, print modes, version and help pass through
+ok 705 - zsh: subcommands, print modes, version and help pass through
+  ---
+  duration_ms: 596.30725
+  type: 'test'
+  ...
+# Subtest: zsh: a directory with no .skilled above it resolves nothing
+ok 706 - zsh: a directory with no .skilled above it resolves nothing
+  ---
+  duration_ms: 94.746958
+  type: 'test'
+  ...
+# Subtest: zsh: a session already under the loop resolves nothing
+ok 707 - zsh: a session already under the loop resolves nothing
+  ---
+  duration_ms: 87.222084
+  type: 'test'
+  ...
+# Subtest: zsh: an unknown runtime resolves nothing
+ok 708 - zsh: an unknown runtime resolves nothing
+  ---
+  duration_ms: 25.484666
+  type: 'test'
+  ...
+# Subtest: bash: without a terminal the runtime function runs the binary directly
+ok 709 - bash: without a terminal the runtime function runs the binary directly
+  ---
+  duration_ms: 149.509208
+  type: 'test'
+  ...
+# Subtest: bash: on a terminal the runtime function hands the launch to the wrapper
+ok 710 - bash: on a terminal the runtime function hands the launch to the wrapper
+  ---
+  duration_ms: 358.614583
+  type: 'test'
+  ...
+# Subtest: bash: a wrapped hermes launch alone enables project plugins
+ok 711 - bash: a wrapped hermes launch alone enables project plugins
+  ---
+  duration_ms: 73.183333
+  type: 'test'
+  ...
+# Subtest: zsh: without a terminal the runtime function runs the binary directly
+ok 712 - zsh: without a terminal the runtime function runs the binary directly
+  ---
+  duration_ms: 52.962458
+  type: 'test'
+  ...
+# Subtest: zsh: on a terminal the runtime function hands the launch to the wrapper
+ok 713 - zsh: on a terminal the runtime function hands the launch to the wrapper
+  ---
+  duration_ms: 160.182083
+  type: 'test'
+  ...
+# Subtest: zsh: a wrapped hermes launch alone enables project plugins
+ok 714 - zsh: a wrapped hermes launch alone enables project plugins
+  ---
+  duration_ms: 81.203958
+  type: 'test'
+  ...
+# Subtest: second invocation uses only the seed and name, recorded cwd, and the same loop id
+ok 715 - second invocation uses only the seed and name, recorded cwd, and the same loop id
+  ---
+  duration_ms: 1530.948834
+  type: 'test'
+  ...
+# Subtest: devin runtime dispatch does not fall through to claude
+ok 716 - devin runtime dispatch does not fall through to claude
+  ---
+  duration_ms: 502.092291
+  type: 'test'
+  ...
+# Subtest: wrapper carries a valid spec folder in the relaunch seed
+ok 717 - wrapper carries a valid spec folder in the relaunch seed
+  ---
+  duration_ms: 1044.163125
+  type: 'test'
+  ...
+# Subtest: wrapper carries Gate 3 Skip in the relaunch seed
+ok 718 - wrapper carries Gate 3 Skip in the relaunch seed
+  ---
+  duration_ms: 817.979375
+  type: 'test'
+  ...
+# Subtest: wrapper leaves an empty spec folder unanswered without logging a drop
+ok 719 - wrapper leaves an empty spec folder unanswered without logging a drop
+  ---
+  duration_ms: 612.301833
+  type: 'test'
+  ...
+# Subtest: wrapper drops parent traversal spec folders and logs them
+ok 720 - wrapper drops parent traversal spec folders and logs them
+  ---
+  duration_ms: 613.705292
+  type: 'test'
+  ...
+# Subtest: wrapper drops spec-folder parent traversal spec folders and logs them
+ok 721 - wrapper drops spec-folder parent traversal spec folders and logs them
+  ---
+  duration_ms: 647.965584
+  type: 'test'
+  ...
+# Subtest: wrapper drops trailing parent traversal spec folders and logs them
+ok 722 - wrapper drops trailing parent traversal spec folders and logs them
+  ---
+  duration_ms: 644.488584
+  type: 'test'
+  ...
+# Subtest: wrapper drops shell metacharacters spec folders and logs them
+ok 723 - wrapper drops shell metacharacters spec folders and logs them
+  ---
+  duration_ms: 617.413292
+  type: 'test'
+  ...
+# Subtest: wrapper drops absolute spec folders and logs them
+ok 724 - wrapper drops absolute spec folders and logs them
+  ---
+  duration_ms: 602.731541
+  type: 'test'
+  ...
+# Subtest: wrapper drops carriage return spec folders and logs them
+ok 725 - wrapper drops carriage return spec folders and logs them
+  ---
+  duration_ms: 598.664833
+  type: 'test'
+  ...
+# Subtest: wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed
+ok 726 - wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed
+  ---
+  duration_ms: 606.968084
+  type: 'test'
+  ...
+# Subtest: name scanning stops at -- and relaunch omits the name option
+ok 727 - name scanning stops at -- and relaunch omits the name option
+  ---
+  duration_ms: 565.979667
+  type: 'test'
+  ...
+# Subtest: wrapper starts claude with no arguments under /bin/bash
+ok 728 - wrapper starts claude with no arguments under /bin/bash
+  ---
+  duration_ms: 267.580458
+  type: 'test'
+  ...
+# Subtest: wrapper defaults to claude when it has no arguments
+ok 729 - wrapper defaults to claude when it has no arguments
+  ---
+  duration_ms: 269.13675
+  type: 'test'
+  ...
+# Subtest: wrapper passes a single prompt argument to the default claude runtime
+ok 730 - wrapper passes a single prompt argument to the default claude runtime
+  ---
+  duration_ms: 261.796166
+  type: 'test'
+  ...
+# Subtest: wrapper exports runtime identity for each supported runtime
+ok 731 - wrapper exports runtime identity for each supported runtime
+  ---
+  duration_ms: 1880.864791
+  type: 'test'
+  ...
+# Subtest: Claude carries --model value before the seed and name on relaunch
+ok 732 - Claude carries --model value before the seed and name on relaunch
+  ---
+  duration_ms: 561.630959
+  type: 'test'
+  ...
+# Subtest: Claude carries --model=value as a normalized model flag on relaunch
+ok 733 - Claude carries --model=value as a normalized model flag on relaunch
+  ---
+  duration_ms: 566.46625
+  type: 'test'
+  ...
+# Subtest: wrapper exports the selected model to Claude across relaunches
+ok 734 - wrapper exports the selected model to Claude across relaunches
+  ---
+  duration_ms: 560.641084
+  type: 'test'
+  ...
+# Subtest: Claude does not inherit model or provider env without a model argument
+ok 735 - Claude does not inherit model or provider env without a model argument
+  ---
+  duration_ms: 553.712917
+  type: 'test'
+  ...
+# Subtest: model scanning stops at -- while carrying the model selected before it
+ok 736 - model scanning stops at -- while carrying the model selected before it
+  ---
+  duration_ms: 530.173416
+  type: 'test'
+  ...
+# Subtest: Claude keeps a multiword model as one relaunch argument
+ok 737 - Claude keeps a multiword model as one relaunch argument
+  ---
+  duration_ms: 598.2065
+  type: 'test'
+  ...
+# Subtest: Claude ignores --model when it has no value
+ok 738 - Claude ignores --model when it has no value
+  ---
+  duration_ms: 564.318375
+  type: 'test'
+  ...
+# Subtest: second invocation omits --name when the first launch had no name
+ok 739 - second invocation omits --name when the first launch had no name
+  ---
+  duration_ms: 572.245917
+  type: 'test'
+  ...
+# Subtest: pi relaunch carries provider and model before name and seed
+ok 740 - pi relaunch carries provider and model before name and seed
+  ---
+  duration_ms: 606.532334
+  type: 'test'
+  ...
+# Subtest: Pi normalizes extension aliases and preserves selection order on relaunch
+ok 741 - Pi normalizes extension aliases and preserves selection order on relaunch
+  ---
+  duration_ms: 597.463125
+  type: 'test'
+  ...
+# Subtest: Pi extension scanning stops at --
+ok 742 - Pi extension scanning stops at --
+  ---
+  duration_ms: 601.544625
+  type: 'test'
+  ...
+# Subtest: Pi does not carry -e when it has no value
+ok 743 - Pi does not carry -e when it has no value
+  ---
+  duration_ms: 602.205916
+  type: 'test'
+  ...
+# Subtest: wrapper exports the selected provider and model to Pi across relaunches
+ok 744 - wrapper exports the selected provider and model to Pi across relaunches
+  ---
+  duration_ms: 617.671042
+  type: 'test'
+  ...
+# Subtest: opencode carries -m before --prompt and never passes a resume flag
+ok 745 - opencode carries -m before --prompt and never passes a resume flag
+  ---
+  duration_ms: 1013.533958
+  type: 'test'
+  ...
+# Subtest: opencode normalizes --model m before --prompt on relaunch
+ok 746 - opencode normalizes --model m before --prompt on relaunch
+  ---
+  duration_ms: 559.523625
+  type: 'test'
+  ...
+# Subtest: opencode normalizes --model=m before --prompt on relaunch
+ok 747 - opencode normalizes --model=m before --prompt on relaunch
+  ---
+  duration_ms: 573.489167
+  type: 'test'
+  ...
+# Subtest: wrapper declines a stale armed record and logs the decline
+ok 748 - wrapper declines a stale armed record and logs the decline
+  ---
+  duration_ms: 397.032875
+  type: 'test'
+  ...
+# Subtest: wrapper pending print carries the consumed packet answer
+ok 749 - wrapper pending print carries the consumed packet answer
+  ---
+  duration_ms: 360.867
+  type: 'test'
+  ...
+# Subtest: wrapper pending print carries the consumed skip answer
+ok 750 - wrapper pending print carries the consumed skip answer
+  ---
+  duration_ms: 653.470208
+  type: 'test'
+  ...
+# Subtest: wrapper pending print carries the consumed empty answer
+ok 751 - wrapper pending print carries the consumed empty answer
+  ---
+  duration_ms: 379.365708
+  type: 'test'
+  ...
+# Subtest: wrapper prints a manual command when the hop cap declines a record
+ok 752 - wrapper prints a manual command when the hop cap declines a record
+  ---
+  duration_ms: 350.014791
+  type: 'test'
+  ...
+# Subtest: declined relaunch warns when the handoff path contains a line break
+ok 753 - declined relaunch warns when the handoff path contains a line break
+  ---
+  duration_ms: 246.146292
+  type: 'test'
+  ...
+# Subtest: codex disables the daemon on the first launch and each relaunch
+ok 754 - codex disables the daemon on the first launch and each relaunch
+  ---
+  duration_ms: 948.260917
+  type: 'test'
+  ...
+# Subtest: codex does not duplicate an operator-supplied --no-daemon option
+ok 755 - codex does not duplicate an operator-supplied --no-daemon option
+  ---
+  duration_ms: 590.835375
+  type: 'test'
+  ...
+# Subtest: multi-hop relaunches carry each runtime model and provider on every invocation
+ok 756 - multi-hop relaunches carry each runtime model and provider on every invocation
+  ---
+  duration_ms: 6199.291625
+  type: 'test'
+  ...
+# Subtest: wrapper returns the last runtime exit code and logs relaunch and decline events
+ok 757 - wrapper returns the last runtime exit code and logs relaunch and decline events
+  ---
+  duration_ms: 581.187792
+  type: 'test'
+  ...
+# Subtest: wrapper prints the manual command after runtime exit 130
+ok 758 - wrapper prints the manual command after runtime exit 130
+  ---
+  duration_ms: 380.721584
+  type: 'test'
+  ...
+# Subtest: wrapper names pi in the manual command after runtime exit 130
+ok 759 - wrapper names pi in the manual command after runtime exit 130
+  ---
+  duration_ms: 366.997709
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the claude manual claim command
+ok 760 - declined relaunch prints the claude manual claim command
+  ---
+  duration_ms: 371.786458
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the pi manual claim command
+ok 761 - declined relaunch prints the pi manual claim command
+  ---
+  duration_ms: 384.74825
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the opencode manual claim command
+ok 762 - declined relaunch prints the opencode manual claim command
+  ---
+  duration_ms: 377.501583
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the codex manual claim command
+ok 763 - declined relaunch prints the codex manual claim command
+  ---
+  duration_ms: 377.582375
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the cursor manual claim command
+ok 764 - declined relaunch prints the cursor manual claim command
+  ---
+  duration_ms: 445.546667
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the hermes manual claim command
+ok 765 - declined relaunch prints the hermes manual claim command
+  ---
+  duration_ms: 387.494625
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the devin manual claim command
+ok 766 - declined relaunch prints the devin manual claim command
+  ---
+  duration_ms: 398.556584
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $& handoff path identically
+ok 767 - wrapper and core fill a $& handoff path identically
+  ---
+  duration_ms: 402.770541
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $' handoff path identically
+ok 768 - wrapper and core fill a $' handoff path identically
+  ---
+  duration_ms: 377.070333
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $$ handoff path identically
+ok 769 - wrapper and core fill a $$ handoff path identically
+  ---
+  duration_ms: 386.533959
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $` handoff path identically
+ok 770 - wrapper and core fill a $` handoff path identically
+  ---
+  duration_ms: 388.796375
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $1 handoff path identically
+ok 771 - wrapper and core fill a $1 handoff path identically
+  ---
+  duration_ms: 361.919042
+  type: 'test'
+  ...
+# Subtest: wrapper printed argument preserves a bang path in interactive bash
+ok 772 - wrapper printed argument preserves a bang path in interactive bash
+  ---
+  duration_ms: 378.363041
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for short name before a flag
+ok 773 - wrapper does not carry flag-like values for short name before a flag
+  ---
+  duration_ms: 565.837209
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for equals name before a flag
+ok 774 - wrapper does not carry flag-like values for equals name before a flag
+  ---
+  duration_ms: 554.407916
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for long name before the end-of-options marker
+ok 775 - wrapper does not carry flag-like values for long name before the end-of-options marker
+  ---
+  duration_ms: 571.638125
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for model before a resume flag
+ok 776 - wrapper does not carry flag-like values for model before a resume flag
+  ---
+  duration_ms: 573.475209
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for equals model before a flag
+ok 777 - wrapper does not carry flag-like values for equals model before a flag
+  ---
+  duration_ms: 607.737291
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for model before the end-of-options marker
+ok 778 - wrapper does not carry flag-like values for model before the end-of-options marker
+  ---
+  duration_ms: 607.022916
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for short model before a resume flag
+ok 779 - wrapper does not carry flag-like values for short model before a resume flag
+  ---
+  duration_ms: 619.679416
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for short Pi extension before a resume flag
+ok 780 - wrapper does not carry flag-like values for short Pi extension before a resume flag
+  ---
+  duration_ms: 592.416209
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for equals Pi extension before a resume flag
+ok 781 - wrapper does not carry flag-like values for equals Pi extension before a resume flag
+  ---
+  duration_ms: 591.543334
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for long Pi extension before the end-of-options marker
+ok 782 - wrapper does not carry flag-like values for long Pi extension before the end-of-options marker
+  ---
+  duration_ms: 588.870708
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi space provider before a resume flag
+ok 783 - wrapper does not carry flag-like values for Pi space provider before a resume flag
+  ---
+  duration_ms: 565.064959
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi space provider before the end-of-options marker
+ok 784 - wrapper does not carry flag-like values for Pi space provider before the end-of-options marker
+  ---
+  duration_ms: 590.225333
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi equals provider before a resume flag
+ok 785 - wrapper does not carry flag-like values for Pi equals provider before a resume flag
+  ---
+  duration_ms: 562.125667
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi equals provider before the end-of-options marker
+ok 786 - wrapper does not carry flag-like values for Pi equals provider before the end-of-options marker
+  ---
+  duration_ms: 614.990125
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes space provider before a model option
+ok 787 - wrapper does not carry flag-like values for Hermes space provider before a model option
+  ---
+  duration_ms: 617.158541
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes space provider before the end-of-options marker
+ok 788 - wrapper does not carry flag-like values for Hermes space provider before the end-of-options marker
+  ---
+  duration_ms: 625.2115
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes equals provider before a resume flag
+ok 789 - wrapper does not carry flag-like values for Hermes equals provider before a resume flag
+  ---
+  duration_ms: 554.082709
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes equals provider before the end-of-options marker
+ok 790 - wrapper does not carry flag-like values for Hermes equals provider before the end-of-options marker
+  ---
+  duration_ms: 542.276417
+  type: 'test'
+  ...
+# Subtest: Pi resolves an extension path containing spaces on relaunch
+ok 791 - Pi resolves an extension path containing spaces on relaunch
+  ---
+  duration_ms: 595.955
+  type: 'test'
+  ...
+# Subtest: Pi keeps the missing-directory fallback path without a cd error
+ok 792 - Pi keeps the missing-directory fallback path without a cd error
+  ---
+  duration_ms: 598.609875
+  type: 'test'
+  ...
+# Subtest: wrapper escapes shell characters in the manual handoff path
+ok 793 - wrapper escapes shell characters in the manual handoff path
+  ---
+  duration_ms: 385.789917
+  type: 'test'
+  ...
+# Subtest: wrapper prints the manual command and declines a CR/LF handoff path
+ok 794 - wrapper prints the manual command and declines a CR/LF handoff path
+  ---
+  duration_ms: 388.569875
+  type: 'test'
+  ...
+# Subtest: wrapper preserves exit 130 and prints the manual command when consume fails
+ok 795 - wrapper preserves exit 130 and prints the manual command when consume fails
+  ---
+  duration_ms: 406.424417
+  type: 'test'
+  ...
+# Subtest: wrapper consumes an armed record and prints the manual command when cwd is missing
+ok 796 - wrapper consumes an armed record and prints the manual command when cwd is missing
+  ---
+  duration_ms: 408.487583
+  type: 'test'
+  ...
+# Subtest: wrapper warns and preserves the runtime exit code when the decider fails
+ok 797 - wrapper warns and preserves the runtime exit code when the decider fails
+  ---
+  duration_ms: 328.578417
+  type: 'test'
+  ...
+# Subtest: wrapper warns and consumes a relaunch record with invalid JSON
+ok 798 - wrapper warns and consumes a relaunch record with invalid JSON
+  ---
+  duration_ms: 392.986292
+  type: 'test'
+  ...
+# Subtest: wrapper warns and consumes a relaunch record with truncated parsed output
+ok 799 - wrapper warns and consumes a relaunch record with truncated parsed output
+  ---
+  duration_ms: 369.048875
+  type: 'test'
+  ...
+# Subtest: wrapper declines a relaunch record with an empty handoff path without a warning
+ok 800 - wrapper declines a relaunch record with an empty handoff path without a warning
+  ---
+  duration_ms: 293.115125
+  type: 'test'
+  ...
+# Subtest: wrapper warns without a stack when declined decision JSON is malformed
+ok 801 - wrapper warns without a stack when declined decision JSON is malformed
+  ---
+  duration_ms: 299.339791
+  type: 'test'
+  ...
+# Subtest: codex carries model and seed without resume options
+ok 802 - codex carries model and seed without resume options
+  ---
+  duration_ms: 3829.389333
+  type: 'test'
+  ...
+# Subtest: cursor carries model and seed without resume options
+ok 803 - cursor carries model and seed without resume options
+  ---
+  duration_ms: 2296.630625
+  type: 'test'
+  ...
+# Subtest: hermes carries model and seed without resume options
+ok 804 - hermes carries model and seed without resume options
+  ---
+  duration_ms: 7558.729042
+  type: 'test'
+  ...
+# Subtest: devin carries model and seed without resume options
+ok 805 - devin carries model and seed without resume options
+  ---
+  duration_ms: 2488.552583
+  type: 'test'
+  ...
+# Subtest: runtime first launch preserves argv except the Codex daemon default
+ok 806 - runtime first launch preserves argv except the Codex daemon default
+  ---
+  duration_ms: 1136.57025
+  type: 'test'
+  ...
+# Subtest: manual commands preserve carried flags and match automatic relaunch argv
+ok 807 - manual commands preserve carried flags and match automatic relaunch argv
+  ---
+  duration_ms: 8937.193084
+  type: 'test'
+  ...
+# Subtest: wrapper template and core command escape a special handoff path identically
+ok 808 - wrapper template and core command escape a special handoff path identically
+  ---
+  duration_ms: 389.881041
+  type: 'test'
+  ...
+# Subtest: wrapper reports an unusable manual template when a Claude model holds the placeholder
+ok 809 - wrapper reports an unusable manual template when a Claude model holds the placeholder
+  ---
+  duration_ms: 394.012875
+  type: 'test'
+  ...
+# Subtest: wrapper reports an unusable manual template when a Claude name holds the placeholder
+ok 810 - wrapper reports an unusable manual template when a Claude name holds the placeholder
+  ---
+  duration_ms: 384.701667
+  type: 'test'
+  ...
+# Subtest: wrapper reports an unusable manual template when a Pi provider holds the placeholder
+ok 811 - wrapper reports an unusable manual template when a Pi provider holds the placeholder
+  ---
+  duration_ms: 359.931917
+  type: 'test'
+  ...
+# Subtest: wrapper and CLI both print the manual command on stdout
+ok 812 - wrapper and CLI both print the manual command on stdout
+  ---
+  duration_ms: 416.1535
+  type: 'test'
+  ...
+# Subtest: cursor command-only launch relaunches the bare seed from the recorded cwd
+ok 813 - cursor command-only launch relaunches the bare seed from the recorded cwd
+  ---
+  duration_ms: 2250.640125
+  type: 'test'
+  ...
+# Subtest: cursor command-only declines print the manual command and never relaunch
+ok 814 - cursor command-only declines print the manual command and never relaunch
+  ---
+  duration_ms: 1888.113458
+  type: 'test'
+  ...
+# Subtest: cursor manual command reruns the runtime with the relaunch seed form
+ok 815 - cursor manual command reruns the runtime with the relaunch seed form
+  ---
+  duration_ms: 659.570542
+  type: 'test'
+  ...
+# Subtest: devin command-only launch relaunches the bare seed from the recorded cwd
+ok 816 - devin command-only launch relaunches the bare seed from the recorded cwd
+  ---
+  duration_ms: 2157.168792
+  type: 'test'
+  ...
+# Subtest: devin command-only declines print the manual command and never relaunch
+ok 817 - devin command-only declines print the manual command and never relaunch
+  ---
+  duration_ms: 1862.182959
+  type: 'test'
+  ...
+# Subtest: devin manual command reruns the runtime with the relaunch seed form
+ok 818 - devin manual command reruns the runtime with the relaunch seed form
+  ---
+  duration_ms: 620.023834
+  type: 'test'
+  ...
+# Subtest: wrapper consumes a pending decline record and preserves the runtime exit code
+ok 819 - wrapper consumes a pending decline record and preserves the runtime exit code
+  ---
+  duration_ms: 367.231208
+  type: 'test'
+  ...
+# Subtest: wrapper does not relaunch a claim for a missing note
+ok 820 - wrapper does not relaunch a claim for a missing note
+  ---
+  duration_ms: 396.216083
+  type: 'test'
+  ...
+# Subtest: wrapper does not relaunch a claim for a unparseable note
+ok 821 - wrapper does not relaunch a claim for a unparseable note
+  ---
+  duration_ms: 419.0135
+  type: 'test'
+  ...
+# Subtest: wrapper does not relaunch a claim for a already claimed note
+ok 822 - wrapper does not relaunch a claim for a already claimed note
+  ---
+  duration_ms: 427.620083
+  type: 'test'
+  ...
+# Subtest: wrapper declines a record without a cwd and keeps the runtime exit code
+ok 823 - wrapper declines a record without a cwd and keeps the runtime exit code
+  ---
+  duration_ms: 369.688833
+  type: 'test'
+  ...
+# Subtest: never-closed stdin resolves at the deadline with the bytes read, and the process exits
+ok 824 - never-closed stdin resolves at the deadline with the bytes read, and the process exits
+  ---
+  duration_ms: 3049.48875
+  type: 'test'
+  ...
+# Subtest: input that ends before the deadline comes back whole
+ok 825 - input that ends before the deadline comes back whole
+  ---
+  duration_ms: 43.422458
+  type: 'test'
+  ...
+# Subtest: a payload under maxBytes comes back whole
+ok 826 - a payload under maxBytes comes back whole
+  ---
+  duration_ms: 71.176
+  type: 'test'
+  ...
+# Subtest: a stream past maxBytes resolves empty before the deadline
+ok 827 - a stream past maxBytes resolves empty before the deadline
+  ---
+  duration_ms: 61.588292
+  type: 'test'
+  ...
+# Subtest: the default cap is 64 MiB
+ok 828 - the default cap is 64 MiB
+  ---
+  duration_ms: 107.051875
+  type: 'test'
+  ...
+# Subtest: enabled by default when no flag is set
+ok 829 - enabled by default when no flag is set
+  ---
+  duration_ms: 0.922417
+  type: 'test'
+  ...
+# Subtest: master switch disables every concern
+ok 830 - master switch disables every concern
+  ---
+  duration_ms: 0.155791
+  type: 'test'
+  ...
+# Subtest: canonical per-concern switch disables only that concern
+ok 831 - canonical per-concern switch disables only that concern
+  ---
+  duration_ms: 0.090875
+  type: 'test'
+  ...
+# Subtest: concernFlag derives the canonical env name
+ok 832 - concernFlag derives the canonical env name
+  ---
+  duration_ms: 0.094667
+  type: 'test'
+  ...
+# Subtest: legacy aliases still disable their concern
+ok 833 - legacy aliases still disable their concern
+  ---
+  duration_ms: 0.106125
+  type: 'test'
+  ...
+# Subtest: the preflight guard has its own switch, so silencing the audit log leaves it on
+ok 834 - the preflight guard has its own switch, so silencing the audit log leaves it on
+  ---
+  duration_ms: 0.078917
+  type: 'test'
+  ...
+# Subtest: truthy parsing is case/space-insensitive and strict about falsey
+ok 835 - truthy parsing is case/space-insensitive and strict about falsey
+  ---
+  duration_ms: 0.086667
+  type: 'test'
+  ...
+# Subtest: .mjs and .ts facades re-export identical behavior
+ok 836 - .mjs and .ts facades re-export identical behavior
+  ---
+  duration_ms: 40.129125
+  type: 'test'
+  ...
+# Subtest: config file disables a concern (master, canonical, and aliases)
+ok 837 - config file disables a concern (master, canonical, and aliases)
+  ---
+  duration_ms: 0.105958
+  type: 'test'
+  ...
+# Subtest: environment overrides the config file both ways
+ok 838 - environment overrides the config file both ways
+  ---
+  duration_ms: 0.092959
+  type: 'test'
+  ...
+# Subtest: explicit env without a config arg ignores the config file (test isolation)
+ok 839 - explicit env without a config arg ignores the config file (test isolation)
+  ---
+  duration_ms: 26.521
+  type: 'test'
+  ...
+# Subtest: loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed
+ok 840 - loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed
+  ---
+  duration_ms: 42.125667
+  type: 'test'
+  ...
+# Subtest: a missing config file is fail-open (empty object, no throw)
+ok 841 - a missing config file is fail-open (empty object, no throw)
+  ---
+  duration_ms: 0.689708
+  type: 'test'
+  ...
+# Subtest: live file path resolves via HOOK_FLAGS_CONFIG and env still wins
+ok 842 - live file path resolves via HOOK_FLAGS_CONFIG and env still wins
+  ---
+  duration_ms: 22.473416
+  type: 'test'
+  ...
+# Subtest: the shell mirror reads the config file of whichever source root the checkout carries
+ok 843 - the shell mirror reads the config file of whichever source root the checkout carries
+  ---
+  duration_ms: 429.527542
+  type: 'test'
+  ...
+# Subtest: isFlagOn reads a named switch with the kill-switch precedence
+ok 844 - isFlagOn reads a named switch with the kill-switch precedence
+  ---
+  duration_ms: 0.140333
+  type: 'test'
+  ...
+# Subtest: hook_flag_on reads a named switch from the environment first, then the config file
+ok 845 - hook_flag_on reads a named switch from the environment first, then the config file
+  ---
+  duration_ms: 655.241917
+  type: 'test'
+  ...
+# Subtest: a '\#' after a space or tab ends a value in every reader of the file
+ok 846 - a '\#' after a space or tab ends a value in every reader of the file
+  ---
+  duration_ms: 1235.849375
+  type: 'test'
+  ...
+# Subtest: a byte order mark before the first line hides nothing from any reader
+ok 847 - a byte order mark before the first line hides nothing from any reader
+  ---
+  duration_ms: 272.54225
+  type: 'test'
+  ...
+# Subtest: every reader trims only a value's edges and lets any set environment value answer
+ok 848 - every reader trims only a value's edges and lets any set environment value answer
+  ---
+  duration_ms: 1394.876042
+  type: 'test'
+  ...
+# Subtest: an example line uncommented as-is, trailing comment and all, disables its hook
+ok 849 - an example line uncommented as-is, trailing comment and all, disables its hook
+  ---
+  duration_ms: 66.230542
+  type: 'test'
+  ...
+# Subtest: every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+    # Subtest: classifier-injection-screen/claude
+    ok 1 - classifier-injection-screen/claude
+      ---
+      duration_ms: 0.705292
+      type: 'test'
+      ...
+    # Subtest: classifier-injection-screen/devin
+    ok 2 - classifier-injection-screen/devin
+      ---
+      duration_ms: 0.096833
+      type: 'test'
+      ...
+    # Subtest: dispatch/claude preflight
+    ok 3 - dispatch/claude preflight
+      ---
+      duration_ms: 0.058042
+      type: 'test'
+      ...
+    # Subtest: dispatch/codex preflight
+    ok 4 - dispatch/codex preflight
+      ---
+      duration_ms: 0.054667
+      type: 'test'
+      ...
+    # Subtest: dispatch/cursor preflight
+    ok 5 - dispatch/cursor preflight
+      ---
+      duration_ms: 0.076125
+      type: 'test'
+      ...
+    # Subtest: dispatch/devin preflight
+    ok 6 - dispatch/devin preflight
+      ---
+      duration_ms: 0.040875
+      type: 'test'
+      ...
+    # Subtest: dispatch/claude audit
+    ok 7 - dispatch/claude audit
+      ---
+      duration_ms: 0.097541
+      type: 'test'
+      ...
+    # Subtest: dispatch/codex audit
+    ok 8 - dispatch/codex audit
+      ---
+      duration_ms: 0.065833
+      type: 'test'
+      ...
+    # Subtest: dispatch/devin audit
+    ok 9 - dispatch/devin audit
+      ---
+      duration_ms: 0.062042
+      type: 'test'
+      ...
+    # Subtest: goal/cursor
+    ok 10 - goal/cursor
+      ---
+      duration_ms: 0.17075
+      type: 'test'
+      ...
+    # Subtest: goal/devin
+    ok 11 - goal/devin
+      ---
+      duration_ms: 0.042208
+      type: 'test'
+      ...
+    # Subtest: mcp-route-guard/cursor
+    ok 12 - mcp-route-guard/cursor
+      ---
+      duration_ms: 0.030666
+      type: 'test'
+      ...
+    # Subtest: task-dispatch/cursor
+    ok 13 - task-dispatch/cursor
+      ---
+      duration_ms: 0.041791
+      type: 'test'
+      ...
+    # Subtest: task-dispatch/claude fable
+    ok 14 - task-dispatch/claude fable
+      ---
+      duration_ms: 0.067375
+      type: 'test'
+      ...
+    # Subtest: git-preflight/shared
+    ok 15 - git-preflight/shared
+      ---
+      duration_ms: 0.023959
+      type: 'test'
+      ...
+    # Subtest: git-message-gate/shared
+    ok 16 - git-message-gate/shared
+      ---
+      duration_ms: 0.029375
+      type: 'test'
+      ...
+    # Subtest: sk-vision/devin
+    ok 17 - sk-vision/devin
+      ---
+      duration_ms: 0.01975
+      type: 'test'
+      ...
+    1..17
+ok 850 - every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+  ---
+  duration_ms: 3293.742875
+  type: 'test'
+  ...
+# Subtest: the Claude and Devin preflight lints still flag a dispatch sent on a normal payload
+ok 851 - the Claude and Devin preflight lints still flag a dispatch sent on a normal payload
+  ---
+  duration_ms: 2446.945209
+  type: 'test'
+  ...
+# Subtest: the Claude and Devin dispatch audits still record a dispatch sent on a normal payload
+ok 852 - the Claude and Devin dispatch audits still record a dispatch sent on a normal payload
+  ---
+  duration_ms: 124.490834
+  type: 'test'
+  ...
+# Subtest: the Cursor preflight, MCP route and Task guards still answer a normal payload
+ok 853 - the Cursor preflight, MCP route and Task guards still answer a normal payload
+  ---
+  duration_ms: 838.792333
+  type: 'test'
+  ...
+1..853
+# tests 870
+# suites 0
+# pass 870
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 94959.372541

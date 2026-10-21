@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: wrapper builds the relaunch seed suffix through the shared core formatter
+not ok 1 - wrapper builds the relaunch seed suffix through the shared core formatter
+  ---
+  duration_ms: 635.313667
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:511:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+    +   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-FQD0kg/handoff.md | Spec folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters (carried from the handoff; Gate 3 answered in the sending session)'
+    -   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-FQD0kg/handoff.md | Spec folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters (suffix owned by the copied core)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-FQD0kg/handoff.md | Spec folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters (suffix owned by the copied core)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-FQD0kg/handoff.md | Spec folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters (carried from the handoff; Gate 3 answered in the sending session)'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:522:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 704.424833

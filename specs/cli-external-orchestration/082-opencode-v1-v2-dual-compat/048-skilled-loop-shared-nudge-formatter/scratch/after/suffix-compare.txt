@@ -1,0 +1,8 @@
+none	shell=\ \|\ Spec\ folder:\ none\ \(Gate\ 3\ answered\ D\,\ Skip\,\ in\ the\ sending\ session\)	js=\ \|\ Spec\ folder:\ none\ \(Gate\ 3\ answered\ D\,\ Skip\,\ in\ the\ sending\ session\)	same
+specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat	shell=\ \|\ Spec\ folder:\ specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat\ \(carried\ from\ the\ handoff\;\ Gate\ 3\ answered\ in\ the\ sending\ session\)	js=\ \|\ Spec\ folder:\ specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat\ \(carried\ from\ the\ handoff\;\ Gate\ 3\ answered\ in\ the\ sending\ session\)	same
+specs/a/b/048-skilled-loop	shell=\ \|\ Spec\ folder:\ specs/a/b/048-skilled-loop\ \(carried\ from\ the\ handoff\;\ Gate\ 3\ answered\ in\ the\ sending\ session\)	js=\ \|\ Spec\ folder:\ specs/a/b/048-skilled-loop\ \(carried\ from\ the\ handoff\;\ Gate\ 3\ answered\ in\ the\ sending\ session\)	same
+''	shell=''	js=''	same
+not\ a\ folder	shell=''	js=''	same
+specs/x/../001-a	shell=''	js=''	same
+$'specs/a/001-b\nx'	shell=''	js=''	same
+specs/a/001-B	shell=''	js=''	same

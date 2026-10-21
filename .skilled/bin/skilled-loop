@@ -109,13 +109,18 @@ has_line_break() {
   [[ "$value" == *$'\r'* || "$value" == *$'\n'* ]]
 }
 
+# The core owns the suffix text, so the relaunch seed and the manual command cannot drift.
 spec_folder_suffix() {
   local spec_folder="$1"
-  if [[ "$spec_folder" == 'none' ]]; then
-    printf '%s' ' | Spec folder: none (Gate 3 answered D, Skip, in the sending session)'
-  elif [[ -n "$spec_folder" ]]; then
-    printf ' | Spec folder: %s (carried from the handoff; Gate 3 answered in the sending session)' \
-      "$spec_folder"
+  local suffix
+  if suffix=$(
+    node -e '
+      const [corePath, specFolder] = process.argv.slice(1);
+      const { specFolderSuffix } = require(corePath);
+      process.stdout.write(specFolderSuffix(specFolder));
+    ' -- "$relaunch_core" "$spec_folder"
+  ); then
+    printf '%s' "$suffix"
   fi
 }
 
