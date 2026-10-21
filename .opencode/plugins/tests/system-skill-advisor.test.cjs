@@ -234,6 +234,41 @@ function makeAdvisorFixture(sourceName = '.skilled') {
   return { root, advisorRoot, restoreDbDirEnv };
 }
 
+// The plugin reads every source file through its own node:fs binding, which a
+// CommonJS stub cannot replace, so read counting uses a second module instance
+// whose fs import is wrapped.
+let signatureProbePluginPromise;
+
+function loadSignatureProbePlugin() {
+  signatureProbePluginPromise ??= (async () => {
+    const pluginUrl = `${pathToFileURL(fs.realpathSync(PLUGIN_PATH)).href}?signature-read-probe`;
+    const stubSource = `
+import * as fs from 'node:fs';
+export const readFileSync = (...args) => {
+  globalThis.__advisorSignatureReads?.push(String(args[0]));
+  return fs.readFileSync(...args);
+};
+export const existsSync = (...args) => fs.existsSync(...args);
+export const readdirSync = (...args) => fs.readdirSync(...args);
+export const realpathSync = (...args) => fs.realpathSync(...args);
+export const statSync = (...args) => fs.statSync(...args);
+`;
+    registerHooks({
+      resolve(specifier, context, nextResolve) {
+        if (specifier === 'node:fs' && context.parentURL === pluginUrl) {
+          return {
+            url: `data:text/javascript,${encodeURIComponent(stubSource)}`,
+            shortCircuit: true,
+          };
+        }
+        return nextResolve(specifier, context);
+      },
+    });
+    return import(pluginUrl);
+  })();
+  return signatureProbePluginPromise;
+}
+
 function compiledRouteSummary(targets, overrides = {}) {
   return {
     outcome: 'route',
@@ -958,4 +993,92 @@ test('concurrent transforms reserve delivery before commit so only one may deliv
   });
   assert.equal(third.shouldDeliver, false);
   assert.equal(third.duplicate, true);
+});
+
+test('consecutive signatures over unchanged files hash each source file once', async () => {
+  const { root, advisorRoot, restoreDbDirEnv } = makeAdvisorFixture();
+  const reads = [];
+  try {
+    const pluginModule = await loadSignatureProbePlugin();
+    globalThis.__advisorSignatureReads = reads;
+    const children = [
+      fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
+      fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
+    ];
+    const calls = [];
+    const hooks = await pluginModule.default.server({ directory: root }, {
+      spawnOverride: spawnSequence(children, calls),
+    });
+
+    await runPrompt(hooks, { prompt: 'first signature', sessionID: 'signature-read-session' });
+    await runPrompt(hooks, { prompt: 'second signature', sessionID: 'signature-read-session' });
+
+    assert.equal(calls.length, 2, 'distinct prompts should each compute the signature');
+    const counts = new Map();
+    for (const filePath of reads) {
+      if (filePath.startsWith(`${root}${path.sep}`)) {
+        counts.set(filePath, (counts.get(filePath) ?? 0) + 1);
+      }
+    }
+    const skillRoot = path.join(root, '.skilled', 'skills');
+    const trackedFiles = [
+      path.join(skillRoot, 'demo', 'SKILL.md'),
+      path.join(skillRoot, 'demo', 'graph-metadata.json'),
+      path.join(skillRoot, 'system-spec-kit', 'SKILL.md'),
+      path.join(advisorRoot, 'scripts', 'skill_advisor.py'),
+      path.join(advisorRoot, 'scripts', 'skill_advisor_runtime.py'),
+      path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'),
+      path.join(advisorRoot, 'scripts', 'skill-graph.json'),
+      path.join(advisorRoot, 'database', 'skill-graph.sqlite'),
+    ];
+    for (const filePath of trackedFiles) {
+      assert.equal(
+        counts.get(filePath),
+        1,
+        `${filePath} should be read once across two signatures`,
+      );
+    }
+  } finally {
+    delete globalThis.__advisorSignatureReads;
+    fs.rmSync(root, { recursive: true, force: true });
+    restoreDbDirEnv();
+  }
+});
+
+test('changing one source file changes the signature without rehashing unchanged files', async () => {
+  const { root, restoreDbDirEnv } = makeAdvisorFixture();
+  const reads = [];
+  try {
+    const pluginModule = await loadSignatureProbePlugin();
+    globalThis.__advisorSignatureReads = reads;
+    const children = Array.from(
+      { length: 3 },
+      () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
+    );
+    const calls = [];
+    const hooks = await pluginModule.default.server({ directory: root }, {
+      cacheTTLMs: 60_000,
+      spawnOverride: spawnSequence(children, calls),
+    });
+    const prompt = { prompt: 'same prompt', sessionID: 'signature-change-session' };
+    const demoSkill = path.join(root, '.skilled', 'skills', 'demo', 'SKILL.md');
+
+    await runPrompt(hooks, prompt);
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 1, 'unchanged sources keep the cached advice');
+
+    const readsBeforeChange = reads.length;
+    writeFixtureFile(demoSkill, '# Demo changed\n');
+
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 2, 'changed content must produce a new signature');
+
+    const rehashed = reads.slice(readsBeforeChange)
+      .filter((filePath) => filePath.startsWith(`${root}${path.sep}`));
+    assert.deepEqual(rehashed, [demoSkill], 'only the changed file is read again');
+  } finally {
+    delete globalThis.__advisorSignatureReads;
+    fs.rmSync(root, { recursive: true, force: true });
+    restoreDbDirEnv();
+  }
 });

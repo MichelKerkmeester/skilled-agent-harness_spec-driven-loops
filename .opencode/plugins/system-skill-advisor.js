@@ -268,6 +268,31 @@ function disabledEnvName() {
   return null;
 }
 
+// The signature runs on every advisor lookup, so the digest of a file whose
+// identity is unchanged is reused instead of read and hashed again. Any stat
+// difference falls back to the read, and a stat or read failure stays missing.
+const fileDigestCache = new Map();
+
+function fileDigest(sourcePath, stat) {
+  const cached = fileDigestCache.get(sourcePath);
+  if (cached
+    && cached.mtimeMs === stat.mtimeMs
+    && cached.ctimeMs === stat.ctimeMs
+    && cached.size === stat.size
+    && cached.ino === stat.ino) {
+    return cached.digest;
+  }
+  const digest = createHash('sha256').update(readFileSync(sourcePath)).digest('hex');
+  fileDigestCache.set(sourcePath, {
+    mtimeMs: stat.mtimeMs,
+    ctimeMs: stat.ctimeMs,
+    size: stat.size,
+    ino: stat.ino,
+    digest,
+  });
+  return digest;
+}
+
 function addFileSignature(hash, label, sourcePath) {
   try {
     const stat = statSync(sourcePath);
@@ -282,7 +307,7 @@ function addFileSignature(hash, label, sourcePath) {
     hash.update('\u001f');
     hash.update(String(stat.size));
     hash.update('\u001f');
-    hash.update(createHash('sha256').update(readFileSync(sourcePath)).digest('hex'));
+    hash.update(fileDigest(sourcePath, stat));
     hash.update('\u001e');
   } catch {
     hash.update(label);
