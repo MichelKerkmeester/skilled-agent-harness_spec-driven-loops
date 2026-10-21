@@ -228,6 +228,30 @@ describe('Pi refusal phrasings', () => {
     ['$(echo "a)b" `true` cli-devin)', true],
     ['$(echo "$(true)" ")" cli-devin)', true],
     ['$(echo "`" "`" ")" cli-devin)', true],
+    // A backtick or `$(` starts a fresh quoting context even inside double quotes, so a quote
+    // inside it cannot close the double quote around it, and structure the scan cannot resolve
+    // is refused rather than guessed.
+    ['$(echo "`printf ")"`" cli-devin)', true],
+    ['$(echo "`printf ")"`" "x" cli-devin)', true],
+    ['$(echo "`printf ")" "x"`" cli-devin)', true],
+    ['$(echo "\\"`printf ")"`" cli-devin)', true],
+    ["$(echo '\"' \"`printf \")\"`\" cli-devin)", true],
+    ['$(echo "`printf ")"`" `true` cli-devin)', true],
+    ['$(echo "`a`" ")" "`printf ")"`" cli-devin)', true],
+    ['`echo "`" cli-devin`', true],
+    ['`echo "$(printf "`")" cli-devin`', true],
+    ['$(echo "`printf ")"`" cli-devin', true],
+    [`${'$(x '.repeat(33)}${')'.repeat(33)} use cli-devin`, true],
+    // Every context closed before the mention leaves it in plain text.
+    ['$(echo "`printf ")"`") use cli-devin', false],
+    ["$(echo 'a\"b') use cli-devin", false],
+    ['echo "\\"" and use cli-devin', false],
+    ["use cli-devin on the users' files", false],
+    // A single quote is a literal inside double quotes, and a quote left open still encloses the
+    // mention after it.
+    ["\"'\" $(echo \"'\" cli-devin)", true],
+    ["use 'cli-devin", true],
+    ["use 'cli-devin now", true],
     // Every level closed, so the mention stands in plain text again.
     ['$(echo ")") use cli-devin', false],
     // A substitution that closed before the mention leaves it in plain text.

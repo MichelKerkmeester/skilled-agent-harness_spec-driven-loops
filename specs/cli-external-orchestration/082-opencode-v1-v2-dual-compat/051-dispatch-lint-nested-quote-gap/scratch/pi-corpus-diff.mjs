@@ -4,7 +4,8 @@
 // an executor, each read as the operator's text for one devin and one codex dispatch, so a verdict
 // that moves is either a row the phase's deny table names or a regression.
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -22,8 +23,7 @@ const EXECUTOR = /\b(?:cli-[\w-]+|opencode\d*|claude|codex|devin|cursor-agent|pi
 // Each engine is loaded from a `.pi/extensions` copy whose `.skilled` link points at this
 // worktree, the same layout the extension's relative imports expect.
 function stage(label, source) {
-  const dir = join(root, 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap/scratch/engines', label);
-  rmSync(dir, { recursive: true, force: true });
+  const dir = mkdtempSync(join(tmpdir(), `pi-corpus-${label}-`));
   mkdirSync(join(dir, '.pi/extensions'), { recursive: true });
   symlinkSync(join(root, '.skilled'), join(dir, '.skilled'));
   const file = join(dir, '.pi/extensions/lint.ts');

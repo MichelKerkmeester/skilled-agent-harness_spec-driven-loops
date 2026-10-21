@@ -12,7 +12,8 @@
   "derived": {
     "trigger_phrases": [
       "dispatch lint nested quote gap",
-      "replace the pi dispatch lint s expansion depth",
+      "phase 51 dispatch lint nested quote gap",
+      "pi dispatch lint context stack scanner",
       "dispatch lint nested quote gap plan",
       "dispatch lint nested quote gap tasks",
       "dispatch lint nested quote gap implementation summary"
@@ -23,21 +24,23 @@
       "nested",
       "quote",
       "gap",
-      "replace",
-      "expansion",
-      "depth",
+      "phase",
+      "context",
+      "stack",
+      "scanner",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
     ],
     "entities": [
       {
@@ -65,37 +68,49 @@
         "source": "derived"
       },
       {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "The Pi",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Acceptance Criteria",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -171,23 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The Pi lint refuses an executor mention that sits inside a quote or a command substitution, because text there is shell syntax the operator quoted, not a request",
     "created_at": "2026-10-21T18:53:35Z",
-    "last_save_at": "2026-10-21T18:53:36.078Z",
+    "last_save_at": "2026-10-21T19:00:10.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0086034bb26b3acd246e32f2456cd664a6398f8f3ff1c68ebcd3d0d3b36dc2a2",
+    "source_fingerprint": "sha256:c29477e0c2e524aaba75ce181035ef1ff84d764dedda3c0004844612c9de2227",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "becf1b5583f5ffa76df7ed18b06d7195a0d842bc7d5e93dfe4f5fcb0cfc3d457",
+      "spec.md": "f50138e9f8c99c5ccb04fb6742df27d7de38c3b7202d58a6dddf36161d638246",
       "plan.md": "06a40d3f6f44af9392e3e487b5bb96f3b2b4df73f4049ef2334cde4d5f70817d",
       "tasks.md": "3f3065933998f5b98878f087360ece16d40669054fd9b534b96dfea02e5dcbaf",
-      "implementation-summary.md": "9c32954c66cd65908838c726a46633388c27b4c77461095b77324343c4f6ad0c"
+      "implementation-summary.md": "037f33737e7f0ac975324fbcc68593fb3ffbea66ce1e62a4f4e7a4144ead8b3a"
     },
     "last_active_at": null
   }

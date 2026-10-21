@@ -1,0 +1,55 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/195-dispatch-lint-nested-quote-gap
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (226 tests | 11 failed) 434ms
+   ❯ Pi refusal phrasings (139)
+     × $(echo "`printf ")"`" cli-devin) 3ms
+     × $(echo "`printf ")"`" "x" cli-devin) 0ms
+     × $(echo "`printf ")" "x"`" cli-devin) 0ms
+     × $(echo "\"`printf ")"`" cli-devin) 0ms
+     × $(echo '"' "`printf ")"`" cli-devin) 0ms
+     × $(echo "`printf ")"`" `true` cli-devin) 0ms
+     × $(echo "`a`" ")" "`printf ")"`" cli-devin) 0ms
+     × `echo "`" cli-devin` 0ms
+     × `echo "$(printf "`")" cli-devin` 0ms
+     × $(echo "`printf ")"`" cli-devin 0ms
+     × $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x ))))))))))))))))))))))))))))))))) use cli-devin 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" "x" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")" "x"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "\"`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo '"' "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" `true` cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`a`" ")" "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > `echo "`" cli-devin`
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > `echo "$(printf "`")" cli-devin`
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x ))))))))))))))))))))))))))))))))) use cli-devin
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:359:49
+    357|     ['Use cli-devin. Then report back.', false],
+    358|   ])('%s', (userText, expected) => {
+    359|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    360|   });
+    361| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  11 failed | 215 passed (226)
+   Start at  20:59:43
+   Duration  545ms (tests 89%, transform 7%, import 4%)
+
+base-engine: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

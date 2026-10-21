@@ -140,99 +140,89 @@ function stripInjectedContent(text: string): string {
   return cleaned;
 }
 
-function isInsideQuote(text: string, index: number): boolean {
-  let quote: '\'' | '"' | undefined;
-  let escaped = false;
-  for (let cursor = 0; cursor < index; cursor += 1) {
+/** POSIX quoting decides what each character means, and each context has its own rules, so the
+ * scan keeps one frame per open context and reads every character the way the frame on top of
+ * the stack reads it: inside single quotes only the closing quote is special, inside double
+ * quotes a backslash escapes only `$`, a backtick, a quote, a backslash or a newline, and inside
+ * a substitution a bare `(` nests while a `)` closes. A backtick and a `$(` start a fresh context
+ * even inside double quotes, so the double quote around them resumes only once that context
+ * closes. Carrying the contexts as a stack is what reproduces that resume; a single flat quote
+ * flag instead lets a quoted `)` inside the inner context close the outer span, and a mention the
+ * shell still reads inside a substitution is then wrongly allowed. Structure the scan cannot
+ * resolve fails closed: an unclosed context, or a nesting no real command line reaches, counts as
+ * enclosing so a mention is refused rather than guessed. The one exception is a single trailing
+ * `'` opened after the mention, because a prose apostrophe such as `users'` opens a span nothing
+ * ever closes; a mention that apostrophe already encloses is still refused. */
+function isEnclosedOrUnresolved(text: string, index: number): boolean {
+  type Frame = 'sub' | 'paren' | 'tick' | 'dq' | 'sq';
+  const stack: Frame[] = [];
+  let enclosed = false;
+  let recorded = false;
+  const record = (position: number): void => {
+    if (recorded || position < index) return;
+    enclosed = stack.length > 0;
+    recorded = true;
+  };
+  const open = (frame: Frame): boolean => {
+    stack.push(frame);
+    return stack.length > 32;
+  };
+  let cursor = 0;
+  while (cursor < text.length) {
+    record(cursor);
+    const top = stack[stack.length - 1];
     const character = text[cursor];
-    if (escaped) {
-      escaped = false;
-      continue;
-    }
-    if (character === '\\' && quote !== '\'') {
-      escaped = true;
-      continue;
-    }
-    if (quote) {
-      if (character === quote) quote = undefined;
-    } else if (character === '\'' || character === '"') {
-      quote = character;
-    }
-  }
-  return quote !== undefined;
-}
-
-/* One pass over the text before the index keeps a nesting depth instead of comparing the last
- * opener with the last closer: a closed inner substitution leaves its still-open outer one
- * visible. `$(` opens a level, a bare `(` only nests inside an open level, and a `)` only
- * closes an open level, so a parenthesis in ordinary prose never starts an expansion. A
- * backtick is tracked as its own open span because it nests nothing.
- *
- * The shell decides what each character means, so the scan carries the quote and escape state
- * too: a quoted or escaped bracket or backtick is a literal, and counting it would move the
- * depth on text the shell never reads as syntax. A backslash outside single quotes escapes the
- * next character; inside single quotes nothing but the closing `'` is special; inside double
- * quotes only `$(`, a backtick and a backslash are, and a `$(` there opens a level whose own
- * quotes are tracked from scratch, with the enclosing double quote resumed when that level
- * closes. The caller passes text whose in-word apostrophes are neutralized, so a contraction
- * like `don't` cannot open a quote and hide the rest of the scan. */
-function isInsideExpansion(text: string, index: number): boolean {
-  let depth = 0;
-  let inBacktick = false;
-  let quote: '\'' | '"' | undefined;
-  const suspendedQuotes: Array<'\'' | '"' | undefined> = [];
-  let escaped = false;
-  for (let cursor = 0; cursor < index; cursor += 1) {
-    const character = text[cursor];
-    if (escaped) {
-      escaped = false;
-      continue;
-    }
-    if (character === '\\' && quote !== '\'') {
-      escaped = true;
-      continue;
-    }
-    if (quote === '\'') {
-      if (character === '\'') quote = undefined;
-      continue;
-    }
-    if (quote === '"') {
-      if (character === '"') quote = undefined;
-      else if (character === '`') inBacktick = !inBacktick;
-      else if (character === '$' && text[cursor + 1] === '(') {
-        suspendedQuotes.push(quote);
-        quote = undefined;
-        depth += 1;
-        cursor += 1;
-      }
-      continue;
-    }
-    if (character === '\'' || character === '"') {
-      quote = character;
-      continue;
-    }
-    if (character === '`') {
-      inBacktick = !inBacktick;
-      continue;
-    }
-    if (character === '$' && text[cursor + 1] === '(') {
-      suspendedQuotes.push(undefined);
-      depth += 1;
+    const following = text[cursor + 1];
+    if (top === 'sq') {
+      if (character === '\'') stack.pop();
       cursor += 1;
       continue;
     }
-    if (depth === 0) continue;
-    if (character === '(') {
-      suspendedQuotes.push(undefined);
-      depth += 1;
+    if (character === '$' && following === '(') {
+      if (open('sub')) return true;
+      record(cursor + 1);
+      cursor += 2;
       continue;
     }
-    if (character === ')') {
-      depth -= 1;
-      quote = suspendedQuotes.pop();
+    if (character === '\\') {
+      const literalBackslash = top === 'dq' && following !== '$' && following !== '`' &&
+        following !== '"' && following !== '\\' && following !== '\n';
+      if (literalBackslash) {
+        cursor += 1;
+        continue;
+      }
+      record(cursor + 1);
+      cursor += 2;
+      continue;
     }
+    if (character === '`') {
+      if (top === 'tick') stack.pop();
+      else if (open('tick')) return true;
+      cursor += 1;
+      continue;
+    }
+    if (character === '"') {
+      if (top === 'dq') stack.pop();
+      else if (open('dq')) return true;
+      cursor += 1;
+      continue;
+    }
+    if (character === '\'' && top !== 'dq') {
+      if (open('sq')) return true;
+      cursor += 1;
+      continue;
+    }
+    if (top === 'sub' || top === 'paren') {
+      if (character === '(') {
+        if (open('paren')) return true;
+      } else if (character === ')') {
+        stack.pop();
+      }
+    }
+    cursor += 1;
   }
-  return depth > 0 || inBacktick;
+  if (enclosed) return true;
+  return stack.length > 0 && !(stack.length === 1 && stack[0] === 'sq');
 }
 
 function tokenStart(text: string, index: number): number {
@@ -341,7 +331,7 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
   const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
-  if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(quoteProbe, mentionIndex)) return false;
+  if (isEnclosedOrUnresolved(quoteProbe, mentionIndex)) return false;
   const sentence = mentionSentence(text, mentionIndex).trim();
   if (REFUSAL_PATTERN.test(sentence)) {
     if (!isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)))) return false;
