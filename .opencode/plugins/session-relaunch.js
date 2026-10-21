@@ -32,6 +32,9 @@ const NOTE_NOT_WRITTEN = new Set(['missing', 'invalid']);
 // message.part.updated fires for every streamed part, so a flags read per event
 // would parse the same file many times per turn. A stat is enough to notice the
 // edit that changes the answer, and a missing file is a stable answer too.
+// mtime and size alone repeat across a same-size rewrite that sets mtime back,
+// so the identity also carries ctime, which moves on every write and cannot be
+// restored from user space, and the inode, which changes when the file is replaced.
 let flagsCache = null;
 
 function flagsConfig() {
@@ -41,16 +44,20 @@ function flagsConfig() {
     stat = fs.statSync(configPath);
   } catch {}
   const mtimeMs = stat ? stat.mtimeMs : null;
+  const ctimeMs = stat ? stat.ctimeMs : null;
   const size = stat ? stat.size : null;
+  const ino = stat ? stat.ino : null;
   if (
     flagsCache
     && flagsCache.path === configPath
     && flagsCache.mtimeMs === mtimeMs
+    && flagsCache.ctimeMs === ctimeMs
     && flagsCache.size === size
+    && flagsCache.ino === ino
   ) return flagsCache.config;
 
   const config = hookFlags.loadConfigFile(configPath);
-  flagsCache = { path: configPath, mtimeMs, size, config };
+  flagsCache = { path: configPath, mtimeMs, ctimeMs, size, ino, config };
   return config;
 }
 

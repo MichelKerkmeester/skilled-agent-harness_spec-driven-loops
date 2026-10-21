@@ -225,6 +225,38 @@ test('editing the flags file after a cached read disables the next event', async
   assert.deepEqual(await transform(hooks, sessionID), []);
 });
 
+test('a same-size flags rewrite with its mtime restored is read again', async (t) => {
+  const root = setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  delete process.env.SESSION_RELAUNCH_THRESHOLD;
+  const flagsPath = path.join(root, 'hook-flags.env');
+  fs.writeFileSync(flagsPath, 'SESSION_RELAUNCH_THRESHOLD=0.95\n');
+  // Pin the mtime to a whole millisecond first: the reset below can only restore
+  // the precision a Date carries, never the finer timestamp a write leaves behind.
+  const pinned = new Date(Math.floor(fs.statSync(flagsPath).mtimeMs));
+  fs.utimesSync(flagsPath, pinned, pinned);
+  const cached = fs.statSync(flagsPath);
+  const hooks = await loadPlugin({ directory: root });
+  const sessionID = 'ses-flags-same-size-0001';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-flags-cached', 90));
+  assert.deepEqual(await transform(hooks, sessionID), []);
+
+  fs.writeFileSync(flagsPath, 'SESSION_RELAUNCH_THRESHOLD=0.85\n');
+  fs.utimesSync(flagsPath, cached.atime, cached.mtime);
+  const rewritten = fs.statSync(flagsPath);
+  assert.equal(rewritten.size, cached.size);
+  assert.equal(rewritten.mtimeMs, cached.mtimeMs);
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-flags-rewritten', 90));
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  assert.match(output[0], /90% full/);
+});
+
 test('active nudge appears on three consecutive system transforms', async (t) => {
   setupEnv(t);
   process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
