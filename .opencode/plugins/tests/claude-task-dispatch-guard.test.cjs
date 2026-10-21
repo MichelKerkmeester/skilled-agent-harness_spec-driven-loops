@@ -18,7 +18,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { spawnSync } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 
 const REJECT_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
@@ -33,6 +33,17 @@ const HOOK_PATH = path.join(
   'claude',
   'task-dispatch-guard.cjs',
 );
+
+const GUARD_CORE_PATH = path.join(
+  __dirname,
+  '..',
+  '..',
+  'hooks',
+  'task-dispatch',
+  'lib',
+  'dispatch-guard.cjs',
+);
+const guardCore = require(GUARD_CORE_PATH);
 
 function writeFixtureRegistry(dir) {
   const registryDir = path.join(dir, '.skilled', 'skills', 'system-deep-loop');
@@ -99,6 +110,44 @@ function decisionOf(hook) {
     : null;
 }
 
+// Wake every child at one shared wall-clock instant so their read-modify-write
+// windows really overlap; sequential spawning alone would hide the lost update.
+const CONCURRENT_RECORD_SCRIPT = `
+const { recordLoopDispatch } = require(process.env.GUARD_CORE_PATH);
+const waitMs = Number(process.env.RECORD_START_AT) - Date.now();
+if (waitMs > 0) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, waitMs);
+}
+recordLoopDispatch(process.env.RECORD_STATE_DIR, process.env.RECORD_SESSION_ID, 'deep-review', false);
+`;
+
+function recordConcurrently({ childCount, stateDir, sessionID }) {
+  const startAt = Date.now() + 1500;
+  const children = [];
+  for (let index = 0; index < childCount; index += 1) {
+    children.push(new Promise((resolve, reject) => {
+      const child = spawn(process.execPath, ['-e', CONCURRENT_RECORD_SCRIPT], {
+        env: {
+          ...process.env,
+          GUARD_CORE_PATH,
+          RECORD_STATE_DIR: stateDir,
+          RECORD_SESSION_ID: sessionID,
+          RECORD_START_AT: String(startAt),
+        },
+        stdio: ['ignore', 'ignore', 'pipe'],
+      });
+      let stderr = '';
+      child.stderr.on('data', (chunk) => { stderr += chunk; });
+      child.on('error', reject);
+      child.on('exit', (code) => {
+        if (code === 0) resolve();
+        else reject(new Error(`concurrent recorder exited ${code}: ${stderr}`));
+      });
+    }));
+  }
+  return Promise.all(children);
+}
+
 function contextOf(hook) {
   return hook.json && hook.json.hookSpecificOutput
     ? hook.json.hookSpecificOutput.additionalContext || ''
@@ -111,7 +160,7 @@ function reasonOf(hook) {
     : '';
 }
 
-function main() {
+async function main() {
   assert.equal(fs.existsSync(HOOK_PATH), true, 'the Claude task-dispatch-guard hook script must exist');
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'claude-task-guard-'));
@@ -440,7 +489,94 @@ function main() {
   fs.rmSync(blockedStateDirPath, { force: true });
   fs.rmSync(degradedGuardLogPath(cwd), { force: true });
 
+  // --- Concurrent hand-offs to one session must not lose increments ---
+
+  const concurrentStateDir = path.join(tmpDir, 'concurrent-state');
+  const concurrentSession = 'claude-loop-concurrent';
+  const concurrentCount = 16;
+  fs.mkdirSync(concurrentStateDir, { recursive: true });
+  await recordConcurrently({
+    childCount: concurrentCount,
+    stateDir: concurrentStateDir,
+    sessionID: concurrentSession,
+  });
+  assert.equal(
+    guardCore.readLoopState(concurrentStateDir, concurrentSession).dispatches['deep-review'].count,
+    concurrentCount,
+    'every concurrent hand-off must survive the shared session-state update',
+  );
+  assert.equal(
+    fs.existsSync(`${guardCore.loopStatePath(concurrentStateDir, concurrentSession)}.lock`),
+    false,
+    'the per-session lock must be released after the update',
+  );
+
+  // A lock whose owner died must be taken over instead of waiting out the whole
+  // retry window or falling back to an unlocked update.
+  const staleLockStateDir = path.join(tmpDir, 'stale-lock-state');
+  const staleLockSession = 'claude-loop-stale-lock';
+  fs.mkdirSync(staleLockStateDir, { recursive: true });
+  const staleLockPath = `${guardCore.loopStatePath(staleLockStateDir, staleLockSession)}.lock`;
+  fs.writeFileSync(staleLockPath, '999999\n');
+  const staleLockTime = new Date(Date.now() - 60 * 1000);
+  fs.utimesSync(staleLockPath, staleLockTime, staleLockTime);
+  const staleLockStartedAt = Date.now();
+  const staleLockResult = guardCore.recordLoopDispatch(
+    staleLockStateDir,
+    staleLockSession,
+    'deep-review',
+    false,
+  );
+  assert.equal(staleLockResult.count, 1, 'a takeover must record on the current count');
+  assert.equal(staleLockResult.persisted, true, 'a takeover must persist the updated state');
+  assert.equal(fs.existsSync(staleLockPath), false, 'a stale lock must be removed after takeover');
+  assert.ok(
+    Date.now() - staleLockStartedAt < 1000,
+    'a stale lock must be taken over without waiting out the retry window',
+  );
+
+  // --- A missing projectDir resolves relative Config: paths against cwd ---
+
+  const fallbackConfigDir = path.join(tmpDir, 'specs', 'fallback', 'review');
+  fs.mkdirSync(fallbackConfigDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(fallbackConfigDir, 'deep-review-config.json'),
+    JSON.stringify({ mode: 'review', maxIterations: 10 }),
+  );
+  const fallbackSession = 'claude-loop-cwd-fallback';
+  const priorCwd = process.cwd();
+  try {
+    process.chdir(tmpDir);
+    const fallbackResult = guardCore.evaluateDispatch({
+      subagentType: 'general',
+      prompt: 'Agent: @deep-review\nIteration: 1 of 10\n- Config: specs/fallback/review/deep-review-config.json\nmode=review',
+      sessionID: fallbackSession,
+      env: {},
+    });
+    assert.equal(fallbackResult.decision, 'allow', 'a cwd-resolved config must not warn');
+  } finally {
+    process.chdir(priorCwd);
+  }
+  const fallbackState = guardCore.readLoopState(
+    path.join(tmpDir, '.skilled', 'skills', '.state', 'loop-guard'),
+    fallbackSession,
+  );
+  assert.equal(
+    fallbackState.dispatches['deep-review'].lastCommandDriven,
+    true,
+    'a caller without projectDir must resolve relative Config: paths against cwd',
+  );
+  assert.equal(
+    fallbackState.dispatches['deep-review'].count,
+    0,
+    'a cwd-resolved config must keep the dispatch command-driven',
+  );
+
   console.log('claude-task-dispatch-guard.test.cjs: all assertions passed');
 }
 
-main();
+main()
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });

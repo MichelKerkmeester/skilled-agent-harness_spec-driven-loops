@@ -23,7 +23,9 @@
 
 const {
   appendFileSync,
+  closeSync,
   mkdirSync,
+  openSync,
   readdirSync,
   readFileSync,
   realpathSync,
@@ -48,6 +50,10 @@ const WARN_LOG_MAX_BYTES_ENV = 'SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
 const REJECT_MODE_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
+const LOOP_STATE_LOCK_SUFFIX = '.lock';
+const LOOP_STATE_LOCK_RETRY_MS = 10;
+const LOOP_STATE_LOCK_TIMEOUT_MS = 2000;
+const LOOP_STATE_LOCK_STALE_MS = 10000;
 const LOOP_STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 
 // Retention/cleanup env vars, mirroring the opencode-goal.js sweep/archive/prune
@@ -342,6 +348,83 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
 }
 
 /**
+ * Sleep synchronously without spinning a CPU core.
+ *
+ * @param {number} milliseconds - wait duration
+ * @returns {void}
+ */
+function sleepSync(milliseconds) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+}
+
+/**
+ * Take the per-session loop-state lock, waiting briefly when another hook
+ * process holds it. A lock older than the stale window belongs to a process
+ * that died before releasing it, so takeover is safe.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} lockPath - per-session lock path
+ * @returns {boolean} true when this process holds the lock
+ */
+function acquireLoopStateLock(stateDir, lockPath) {
+  try {
+    mkdirSync(stateDir, { recursive: true });
+  } catch (_) {
+    return false;
+  }
+
+  const deadline = Date.now() + LOOP_STATE_LOCK_TIMEOUT_MS;
+  for (;;) {
+    if (Date.now() >= deadline) return false;
+
+    try {
+      const fd = openSync(lockPath, 'wx');
+      try {
+        writeFileSync(fd, `${process.pid}\n`, 'utf8');
+      } finally {
+        closeSync(fd);
+      }
+      return true;
+    } catch (error) {
+      if (!error || error.code !== 'EEXIST') return false;
+    }
+
+    let stale = false;
+    try {
+      stale = Date.now() - statSync(lockPath).mtimeMs > LOOP_STATE_LOCK_STALE_MS;
+    } catch (_) {
+      // The prior holder released it between attempts; retry the create now.
+      continue;
+    }
+
+    if (stale) {
+      try {
+        unlinkSync(lockPath);
+      } catch (_) {
+        // Another contender already took the stale lock over.
+      }
+      continue;
+    }
+
+    sleepSync(LOOP_STATE_LOCK_RETRY_MS);
+  }
+}
+
+/**
+ * Remove the per-session loop-state lock after a completed update.
+ *
+ * @param {string} lockPath - per-session lock path
+ * @returns {void}
+ */
+function releaseLoopStateLock(lockPath) {
+  try {
+    unlinkSync(lockPath);
+  } catch (_) {
+    // Fail open: a lost lock is recovered through the stale-takeover window.
+  }
+}
+
+/**
  * Record one dispatch to a loop-executor target and return the updated
  * non-command-driven count for that target in this session.
  *
@@ -352,25 +435,34 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
  * @returns {{ count: number, persisted: boolean }} updated count and persistence status
  */
 function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
-  const state = readLoopState(stateDir, sessionID);
-  const dispatches = state.dispatches && typeof state.dispatches === 'object'
-    ? state.dispatches
-    : {};
-  const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
-    ? dispatches[targetAgent]
-    : { count: 0 };
+  // Concurrent hook processes share one state file, so the read-modify-write
+  // needs mutual exclusion or one hand-off overwrites another's increment.
+  const lockPath = `${loopStatePath(stateDir, sessionID)}${LOOP_STATE_LOCK_SUFFIX}`;
+  const lockHeld = acquireLoopStateLock(stateDir, lockPath);
+  try {
+    const state = readLoopState(stateDir, sessionID);
+    const dispatches = state.dispatches && typeof state.dispatches === 'object'
+      ? state.dispatches
+      : {};
+    const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
+      ? dispatches[targetAgent]
+      : { count: 0 };
 
-  if (!commandDriven) entry.count = (entry.count || 0) + 1;
-  entry.lastCommandDriven = commandDriven;
-  entry.lastTimestamp = new Date().toISOString();
-  dispatches[targetAgent] = entry;
+    if (!commandDriven) entry.count = (entry.count || 0) + 1;
+    entry.lastCommandDriven = commandDriven;
+    entry.lastTimestamp = new Date().toISOString();
+    dispatches[targetAgent] = entry;
 
-  const persisted = writeLoopStateAtomic(stateDir, sessionID, {
-    sessionId: sessionID,
-    dispatches,
-  });
+    const persisted = writeLoopStateAtomic(stateDir, sessionID, {
+      sessionId: sessionID,
+      dispatches,
+    });
 
-  return { count: entry.count, persisted };
+    return { count: entry.count, persisted };
+  } finally {
+    // Fail open: an unavailable lock still records the dispatch unlocked above.
+    if (lockHeld) releaseLoopStateLock(lockPath);
+  }
 }
 
 /**
@@ -697,7 +789,7 @@ function evaluateDispatch(request = {}) {
 
     // -- Check 2: loop-like repeated hand-off to a command-owned loop executor --
     if (LOOP_EXECUTOR_AGENTS.has(targetAgent) && sessionID) {
-      const commandDriven = isCommandDrivenIteration(prompt, projectDir);
+      const commandDriven = isCommandDrivenIteration(prompt, projectDir || process.cwd());
       const { count, persisted } = recordLoopDispatch(
         stateDir,
         sessionID,
