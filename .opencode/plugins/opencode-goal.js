@@ -2078,29 +2078,28 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
   let mutation = 'bound';
   // A rebind to a different packet keeps the prior record in the archive, as
   // the runtime-neutral core does, so both implementations keep one history.
-  const prior = await readGoal(sessionID, options);
-  if (prior && prior.packetPath && prior.packetPath !== packet.packetPath) {
-    // The goal id is read from state any process on this machine can edit, and it
-    // keeps path separators and `..`, so the snapshot must land directly in the
-    // archive folder or not at all.
-    try {
-      const snapshotPath = await placeArchiveRecord(
-        sessionID,
-        prior,
-        options,
-        { canonical: false },
-      );
-      if (!snapshotPath) {
-        writeDebugStderr(
-          'bindGoal.archivePrior',
-          new Error('archive target escapes its archive folder'),
+  const goal = await mutateGoal(sessionID, async (current) => {
+    if (current && current.packetPath && current.packetPath !== packet.packetPath) {
+      // The goal id is read from state any process on this machine can edit, and it
+      // keeps path separators and `..`, so the snapshot must land directly in the
+      // archive folder or not at all.
+      try {
+        const snapshotPath = await placeArchiveRecord(
+          sessionID,
+          current,
+          options,
+          { canonical: false },
         );
+        if (!snapshotPath) {
+          writeDebugStderr(
+            'bindGoal.archivePrior',
+            new Error('archive target escapes its archive folder'),
+          );
+        }
+      } catch (error) {
+        writeDebugStderr('bindGoal.archivePrior', error);
       }
-    } catch (error) {
-      writeDebugStderr('bindGoal.archivePrior', error);
     }
-  }
-  const goal = await mutateGoal(sessionID, (current) => {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
     const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);

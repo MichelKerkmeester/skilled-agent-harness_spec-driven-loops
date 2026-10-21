@@ -9,7 +9,7 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const { access, mkdir, mkdtemp, readFile, readdir, rename, rm, utimes, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
-const { dirname, join } = require('node:path');
+const { basename, dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const { readContinuationEntries, restoreEnv } = require('./helpers/continuation-log.cjs');
@@ -1012,6 +1012,53 @@ test(
       2,
       'both snapshots share one goal id but differ in content',
     );
+  }),
+);
+
+test(
+  'a rebind archives the goal another process wrote just before the lock',
+  async () => withState(async ({ helpers, stateDir }) => {
+    await writePacketGoal(stateDir, 'specs/t/100-rebind-race-a');
+    await writePacketGoal(stateDir, 'specs/t/101-rebind-race-b');
+    await writePacketGoal(stateDir, 'specs/t/102-rebind-race-c');
+    const ctx = { sessionID: 'session-rebind-race', messageID: 'm1', agent: 'build' };
+    const bindOpts = { stateDir, directory: stateDir };
+    await helpers.executeGoalAction(
+      { action: 'bind', packetPath: 'specs/t/100-rebind-race-a' },
+      ctx,
+      { ...bindOpts, nowMs: 1000 },
+    );
+    const activePath = helpers.goalPathForSession(ctx.sessionID, bindOpts);
+    const fsPromises = require('node:fs/promises');
+    const originalMkdir = fsPromises.mkdir;
+    let injected = false;
+    fsPromises.mkdir = async (target, options) => {
+      if (!injected && basename(String(target)).startsWith('.lock-')) {
+        injected = true;
+        const record = JSON.parse(await readFile(activePath, 'utf8'));
+        record.goalId = 'rebind-race-other-process';
+        record.packetPath = 'specs/t/101-rebind-race-b';
+        record.updatedAtMs = 2000;
+        record.updatedAt = new Date(2000).toISOString();
+        await writeFile(activePath, `${JSON.stringify(record, null, 2)}\n`, 'utf8');
+      }
+      return originalMkdir(target, options);
+    };
+    require('node:module').syncBuiltinESMExports();
+    try {
+      const rebound = await helpers.executeGoalAction(
+        { action: 'bind', packetPath: 'specs/t/102-rebind-race-c' },
+        ctx,
+        { ...bindOpts, nowMs: 3000 },
+      );
+      assert.match(String(rebound), /mutation=rebound/);
+    } finally {
+      fsPromises.mkdir = originalMkdir;
+      require('node:module').syncBuiltinESMExports();
+    }
+    assert.equal(injected, true, 'the rebind acquired the mutation lock');
+    const history = String(await helpers.executeGoalAction({ action: 'history' }, ctx, bindOpts));
+    assert.match(history, /goal_id="rebind-race-other-process"/);
   }),
 );
 
