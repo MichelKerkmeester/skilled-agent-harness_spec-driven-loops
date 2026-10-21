@@ -662,6 +662,66 @@ test('session deletion prevents an in-flight completion from repopulating cache'
   assert.match(await status(hooks), /cache_entries=0/);
 });
 
+test('concurrent unique advisor lookups keep at most two CLI children live', async () => {
+  const calls = [];
+  let liveChildren = 0;
+  let maxLiveChildren = 0;
+  const hooks = await makePlugin({
+    spawnOverride: (binary, args, options) => {
+      const child = fakeChild({ manual: true });
+      calls.push({ binary, args, options, child });
+      liveChildren += 1;
+      maxLiveChildren = Math.max(maxLiveChildren, liveChildren);
+      child.once('close', () => {
+        liveChildren -= 1;
+      });
+      return child;
+    },
+  });
+  const pending = Array.from({ length: 5 }, (_, index) => runPrompt(hooks, {
+    sessionID: 'advisor-concurrency-session',
+    prompt: `unique concurrency prompt ${index}`,
+  }));
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  const waitForCalls = async (expected) => {
+    for (let attempt = 0; attempt < 100 && calls.length < expected; attempt += 1) {
+      await flush();
+    }
+    assert.equal(calls.length, expected);
+  };
+  const release = (index) => {
+    calls[index].child.stdout.emit('data', cliEnvelope({ freshness: 'live', recommendations: [] }));
+    calls[index].child.emit('close', 0);
+  };
+
+  await flush();
+  assert.equal(calls.length, 2);
+  assert.equal(maxLiveChildren, 2);
+
+  release(0);
+  await waitForCalls(3);
+  assert.equal(liveChildren, 2);
+
+  release(1);
+  await waitForCalls(4);
+  assert.equal(liveChildren, 2);
+
+  release(2);
+  await waitForCalls(5);
+  assert.equal(liveChildren, 2);
+
+  release(3);
+  await flush();
+  assert.equal(liveChildren, 1);
+
+  release(4);
+  const outputs = await Promise.all(pending);
+  assert.equal(maxLiveChildren, 2);
+  for (const output of outputs) {
+    assert.equal(output.system.length, 1);
+  }
+});
+
 test('cache TTL starts when CLI work completes', async () => {
   const calls = [];
   const children = [

@@ -56,6 +56,9 @@ const ADVISOR_PROMPT_MAX_CHARS = 10_000;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
 const MAX_BRIDGE_STDOUT_BYTES = 256 * 1024;
+// Unique prompts each need their own advisor child, so a burst must not multiply
+// live processes without limit.
+const MAX_CONCURRENT_ADVISOR_RUNS = 2;
 const BRIDGE_TERMINATION_GRACE_MS = 250;
 const COMPILED_ROUTE_BOUNDING_ENV = 'SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
 const DISABLED_ENV = 'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED';
@@ -969,6 +972,9 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     advisorCache: new Map(),
     // In-flight promise dedup: concurrent identical-key requests share one advisor CLI spawn.
     inFlight: new Map(),
+    // Live advisor CLI runs and the FIFO of callers waiting for a free slot.
+    activeAdvisorRuns: 0,
+    advisorRunWaiters: [],
     // Per-session record of the constant directive block last delivered in
     // full, keyed by normalized session id. Cleared on session lifecycle
     // boundaries (created/resumed/compacted/deleted) so the full block is
@@ -992,6 +998,33 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       : null,
   };
 
+  function acquireAdvisorRunSlot() {
+    if (state.activeAdvisorRuns < MAX_CONCURRENT_ADVISOR_RUNS) {
+      state.activeAdvisorRuns += 1;
+      return Promise.resolve(true);
+    }
+    return new Promise((resolve) => {
+      state.advisorRunWaiters.push(resolve);
+    });
+  }
+
+  function releaseAdvisorRunSlot() {
+    const next = state.advisorRunWaiters.shift();
+    if (next) {
+      // Hand the slot straight to the oldest waiter so the live count never dips.
+      next(true);
+      return;
+    }
+    state.activeAdvisorRuns = Math.max(0, state.activeAdvisorRuns - 1);
+  }
+
+  // A reset must release queued callers, or their host transforms never settle.
+  function cancelAdvisorRunWaiters() {
+    while (state.advisorRunWaiters.length > 0) {
+      state.advisorRunWaiters.shift()(false);
+    }
+  }
+
   /**
    * Run the advisor CLI and render its JSON response.
    * The CLI receives the request on stdin from `advisorCliRequest`, returns stdout
@@ -1006,7 +1039,19 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
    * @param {number} params.options.bridgeTimeoutMs - Timeout before SIGTERM is sent
    * @returns {Promise<Object>} Rendered response with `brief`, `status`, and `metadata`
    */
-  function runAdvisorCli({ projectDir, prompt, options }) {
+  async function runAdvisorCli({ projectDir, prompt, options }) {
+    const granted = await acquireAdvisorRunSlot();
+    if (!granted) {
+      return { brief: null, status: 'fail_open', error: 'RUNTIME_RESET', metadata: {} };
+    }
+    try {
+      return await invokeAdvisorCli({ projectDir, prompt, options });
+    } finally {
+      releaseAdvisorRunSlot();
+    }
+  }
+
+  function invokeAdvisorCli({ projectDir, prompt, options }) {
     const startedAt = Date.now();
     state.bridgeInvocations += 1;
 
@@ -1190,6 +1235,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     state.epoch += 1;
     state.advisorCache.clear();
     state.inFlight.clear();
+    cancelAdvisorRunWaiters();
     state.directiveDedupBySession.clear();
     state.directiveEpochBySession.clear();
     state.directiveGeneration += 1;
