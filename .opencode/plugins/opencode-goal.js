@@ -1504,55 +1504,91 @@ async function maybePruneArchive(rawOptions = {}) {
 async function placeArchiveRecord(sessionID, record, options, { sourcePath = null, canonical = true } = {}) {
   const archiveDir = await ensureGoalArchiveDir(options);
   const sessionKey = sessionKeyForSession(sessionID);
-  const payload = `${JSON.stringify(record, null, 2)}\n`;
-  const digest = createHash('sha256').update(JSON.stringify(record), 'utf8').digest('hex').slice(0, 16);
-  const candidates = [];
-  if (canonical) candidates.push(join(archiveDir, `${sessionKey}.json`));
-  candidates.push(join(archiveDir, `${sessionKey}.${normalizeGoalID(record.goalId)}.${digest}.json`));
+  // Both paths stage through one file inside the archive folder. A named
+  // source is moved here first, so the file archived is whatever sits at the
+  // active path at that instant and no step here unlinks the active path.
+  // A staging name never ends in `.json`, so a crash cannot leave a file the
+  // history listing would read as an archive.
+  const tempPath = join(archiveDir, `.tmp-${randomUUID()}`);
+  let payload = `${JSON.stringify(record, null, 2)}\n`;
+  let goalId = record.goalId;
+  if (sourcePath) await rename(sourcePath, tempPath);
+  else await writeFile(tempPath, payload, { mode: 0o600 });
 
-  for (const candidate of candidates) {
-    if (dirname(resolvePath(candidate)) !== resolvePath(archiveDir)) {
-      writeDebugStderr(
-        'placeArchiveRecord',
-        new Error('archive target escapes its archive folder'),
-      );
-      continue;
+  const dropTemp = async () => {
+    await unlink(tempPath).catch((error) => {
+      if (error?.code !== 'ENOENT') writeDebugStderr('placeArchiveRecord.unlinkTemp', error);
+    });
+  };
+  const restoreTemp = async () => {
+    if (!sourcePath) {
+      await dropTemp();
+      return;
     }
     try {
-      if (sourcePath) {
-        await link(sourcePath, candidate);
-        await unlink(sourcePath);
-      } else {
-        const tempPath = join(archiveDir, `.tmp-${randomUUID()}.json`);
-        try {
-          await writeFile(tempPath, payload, { mode: 0o600 });
-          await link(tempPath, candidate);
-        } finally {
-          await unlink(tempPath).catch((error) => {
-            if (error?.code !== 'ENOENT') writeDebugStderr('placeArchiveRecord.unlinkTemp', error);
-          });
-        }
-      }
-      return candidate;
+      await link(tempPath, sourcePath);
     } catch (error) {
-      if (error?.code !== 'EEXIST') throw error;
-      if (candidate === candidates[candidates.length - 1]) {
+      // EEXIST means a new goal owns the active path now; any other failure
+      // means the restore could not run. Either way the moved file stays put
+      // so the record it holds is never lost, and the reason is logged.
+      writeDebugStderr('placeArchiveRecord.restore', error);
+      return;
+    }
+    await dropTemp();
+  };
+
+  try {
+    if (sourcePath) {
+      // The stored bytes, not the caller's record, decide the duplicate check
+      // and the digest: another process may have written this file after the
+      // caller read it.
+      payload = await readFile(tempPath, 'utf8');
+      try {
+        const movedGoal = JSON.parse(payload);
+        if (movedGoal?.goalId) goalId = movedGoal.goalId;
+      } catch {
+        // A file that does not parse still archives under the caller's id.
+      }
+    }
+    const digest = createHash('sha256').update(payload, 'utf8').digest('hex').slice(0, 16);
+    const candidates = [];
+    if (canonical) candidates.push(join(archiveDir, `${sessionKey}.json`));
+    candidates.push(join(archiveDir, `${sessionKey}.${normalizeGoalID(goalId)}.${digest}.json`));
+    const goalIdCandidate = candidates[candidates.length - 1];
+    if (canonical
+      && dirname(resolvePath(goalIdCandidate)) !== resolvePath(archiveDir)) {
+      // An id that walks out of the archive folder loses its id here. A
+      // snapshot-only caller keeps refusing instead of renaming the record.
+      candidates.push(join(archiveDir, `${sessionKey}.${digest}.json`));
+    }
+
+    for (const candidate of candidates) {
+      if (dirname(resolvePath(candidate)) !== resolvePath(archiveDir)) {
+        writeDebugStderr(
+          'placeArchiveRecord',
+          new Error('archive target escapes its archive folder'),
+        );
+        continue;
+      }
+      try {
+        await link(tempPath, candidate);
+      } catch (error) {
+        if (error?.code !== 'EEXIST') throw error;
         const existing = await readFile(candidate, 'utf8').catch((readError) => {
           if (readError?.code === 'ENOENT') return null;
           throw readError;
         });
-        if (existing !== null && existing === payload) {
-          if (sourcePath) {
-            await unlink(sourcePath).catch((unlinkError) => {
-              if (unlinkError?.code !== 'ENOENT') throw unlinkError;
-            });
-          }
-          return candidate;
-        }
+        if (existing === null || existing !== payload) continue;
       }
+      await dropTemp();
+      return candidate;
     }
+    await restoreTemp();
+    return null;
+  } catch (error) {
+    await restoreTemp();
+    throw error;
   }
-  return null;
 }
 
 async function archiveGoalStateFile(sessionID, rawOptions = {}) {
@@ -1709,7 +1745,12 @@ async function listArchivedGoalRecords(rawOptions = {}) {
   return candidates
     .sort((a, b) => Number(b.canonical) - Number(a.canonical) || b.mtimeMs - a.mtimeMs)
     .filter((record) => {
-      const identity = `${record.goal.sessionId}\u0000${record.goal.goalId}`;
+      // Identity is the record's content, not its goal id: a rebound goal
+      // keeps one id across distinct snapshots, and one record stored under a
+      // legacy and a canonical name is one row. Only byte-identical records
+      // collapse.
+      const identity = `${record.goal.sessionId}\u0000${record.goal.goalId}\u0000`
+        + JSON.stringify(record.goal);
       if (identities.has(identity)) return false;
       identities.add(identity);
       return true;
