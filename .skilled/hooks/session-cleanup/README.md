@@ -5,7 +5,7 @@ trigger_phrases:
   - "session cleanup hook"
   - "startup guard teardown"
   - "mcp helper teardown"
-importance_tier: "reference"
+importance_tier: "normal"
 contextType: "reference"
 ---
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "permission request policy"
   - "devin permission hook"
   - "permission decision policy"
-importance_tier: "reference"
+importance_tier: "normal"
 contextType: "reference"
 ---
 

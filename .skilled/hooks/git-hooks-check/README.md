@@ -5,7 +5,7 @@ trigger_phrases:
   - "check git hooks"
   - "git hook verification"
   - "git hook drift"
-importance_tier: "reference"
+importance_tier: "normal"
 contextType: "reference"
 ---
 

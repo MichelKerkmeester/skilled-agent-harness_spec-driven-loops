@@ -4,7 +4,7 @@ description: "OpenCode plugin that watches Codex hook health and surfaces a warn
 trigger_phrases:
   - "codex hooks watchdog"
   - "codex hook health"
-importance_tier: "reference"
+importance_tier: "normal"
 contextType: "reference"
 ---
 

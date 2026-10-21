@@ -5,7 +5,7 @@ trigger_phrases:
   - "codex hook installer"
   - "install codex hooks"
   - "reconcile codex hooks"
-importance_tier: "reference"
+importance_tier: "normal"
 contextType: "reference"
 ---
 

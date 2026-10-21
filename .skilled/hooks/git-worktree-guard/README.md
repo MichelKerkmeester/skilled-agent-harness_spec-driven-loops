@@ -5,7 +5,7 @@ trigger_phrases:
   - "worktree guard hook"
   - "worktree safety"
   - "shared checkout warning"
-importance_tier: "reference"
+importance_tier: "normal"
 contextType: "reference"
 ---
 
