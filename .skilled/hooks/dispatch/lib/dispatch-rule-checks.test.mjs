@@ -124,6 +124,12 @@ test('stdin and model checks ignore flags and redirects inside a quoted prompt',
   assert.equal(stdin(`opencode run -m p/m <<'EOF'\nprompt\nEOF`), true);
   assert.equal(stdin('cat p.md | opencode run -m p/m'), true);
   assert.equal(stdin('opencode run -m p/m "use </dev/null in your answer"'), false);
+  // In ANSI-C quoting a backslash escapes the next character, so `\'` does not end the span.
+  assert.equal(stdin(String.raw`opencode run $'it\'s --model p/m </dev/null'`), false);
+  assert.equal(model(String.raw`opencode run $'it\'s --model p/m </dev/null'`), false);
+  // Any quoted heredoc delimiter is syntax, not a prompt, whatever characters it holds.
+  assert.equal(stdin(`opencode run -m p/m <<'END-MARK'\nprompt\nEND-MARK`), true);
+  assert.equal(stdin(`opencode run -m p/m <<"END MARK"\nprompt\nEND MARK`), true);
 });
 
 test('availability checks pass for a resolvable binary and never refuse without PATH', () => {

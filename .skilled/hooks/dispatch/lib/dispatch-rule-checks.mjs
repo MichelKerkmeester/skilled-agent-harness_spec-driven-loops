@@ -51,14 +51,15 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 
 // A prompt is an argument, not syntax: a quoted span is text the CLI receives, so a flag or
 // redirect spelled inside one is not evidence the dispatch passes it. Blank the span contents
-// and keep the quotes, leaving only the command's own argument structure.
+// and keep the quotes, leaving only the command's own argument structure. In ANSI-C `$'...'`
+// a backslash escapes the next character, so only an unescaped quote ends the span.
 // A quoted heredoc delimiter is syntax rather than prompt text -- `<<'EOF'` is exactly what
-// the stdin rule looks for -- so the word after `<<` or `<<-` survives the blanking.
+// the stdin rule looks for -- so a quoted word of any shape after `<<` or `<<-` survives.
 function blankQuotedSpans(command) {
   let result = '';
   for (let index = 0; index < command.length; index += 1) {
     if (command[index] === '<') {
-      const heredoc = /^<<-?\s*(['"])[A-Za-z_][A-Za-z0-9_]*\1/.exec(command.slice(index));
+      const heredoc = /^<<-?\s*(?:'[^'\n]+'|"[^"\n]+")/.exec(command.slice(index));
       if (heredoc) {
         result += heredoc[0];
         index += heredoc[0].length - 1;
@@ -66,6 +67,29 @@ function blankQuotedSpans(command) {
       }
     }
     const character = command[index];
+    if (character === '$' && command[index + 1] === "'") {
+      let cursor = index + 2;
+      let closed = false;
+      while (cursor < command.length) {
+        // ANSI-C quoting: a backslash escapes the next character, so `\'` stays inside.
+        if (command[cursor] === '\\' && cursor + 1 < command.length) {
+          cursor += 2;
+          continue;
+        }
+        if (command[cursor] === "'") {
+          closed = true;
+          break;
+        }
+        cursor += 1;
+      }
+      if (!closed) {
+        result += character;
+        continue;
+      }
+      result += "''";
+      index = cursor;
+      continue;
+    }
     if (character === "'") {
       const end = command.indexOf("'", index + 1);
       if (end === -1) {
