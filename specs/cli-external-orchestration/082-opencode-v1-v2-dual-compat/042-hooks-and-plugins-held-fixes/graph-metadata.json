@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hooks and plugins held fixes",
+      "phase 42 hooks and plugins held fixes",
+      "039 held findings",
+      "bearer token redaction",
+      "stdin byte cap",
+      "hooks and plugins held fixes plan",
+      "hooks and plugins held fixes tasks",
+      "hooks and plugins held fixes implementation summary"
+    ],
+    "key_topics": [
+      "hooks",
+      "plugins",
+      "held",
+      "phase",
+      "findings",
+      "bearer",
+      "token",
+      "redaction",
+      "stdin",
+      "byte",
+      "cap",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".skilled/hooks/git/install-hooks.sh",
+      ".skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+      ".skilled/hooks/shared/hook-adapter-shared.cjs",
+      ".opencode/plugins/session-relaunch.js",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      ".skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs",
+      ".opencode/plugins/system-spec-gate.js",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/session-cleanup.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hop-history.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/git/install-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-adapter-shared.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 039 confirmed seven P1 and nine P2 findings in the hook tree and the OpenCode plugins whose fixes change behaviour, so it held them",
+    "created_at": "2026-10-21T04:53:45Z",
+    "last_save_at": "2026-10-21T05:00:32.352Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f435871d9d324cbb55e8191f0a496cbe7b2e77033ec2dd81ae3977b4032e28d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2c5711a2dffe3a925c27973560b7498ed57b112c52616af06e8f6186ff33754c",
+      "plan.md": "f734fcd29e1905afe447d202f4a4b5a77c202835218ea560eefc369704b8e26e",
+      "tasks.md": "95ef7854a224ac145a4dc695611283d34666c169308a8f6170c0ac7719700e14",
+      "implementation-summary.md": "32f2a861c73c153f481861a5be665477f5fbb208cb6cc9f40154e937adaab228"
+    },
+    "last_active_at": null
+  }
+}
