@@ -10,7 +10,7 @@ trigger_phrases:
   - "figma code mode variable not found"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # Figma CLI Troubleshooting
@@ -474,7 +474,7 @@ When reporting a bug upstream, include: the binary in use and version (`figma-ds
 - [mcp-wiring.md](mcp-wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, and discovery.
 - [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification.
 - [SKILL.md](../SKILL.md) - the skill contract this reference supports.
-- Code Mode transport for the optional MCP: [mcp-code-mode SKILL.md](../../../mcp-code-mode/SKILL.md). Browser-debugging owner for port 9222 conflicts: [mcp-chrome-devtools SKILL.md](../../mcp-chrome-devtools/SKILL.md).
+- Code Mode transport for the optional MCP: the `mcp-code-mode` skill, `mcp-code-mode/SKILL.md` in the skills library. Browser-debugging owner for port 9222 conflicts: the `mcp-chrome-devtools` skill, `mcp-tooling/mcp-chrome-devtools/SKILL.md` in the skills library.
 - Upstream: [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). [Node.js](https://nodejs.org/) (>=18). This skill does not vendor either.
 
 > **Note**: Most failures are upstream of any Figma operation: wrong package under the colliding `figma-cli` name, Node <18, Figma Desktop not open, an incomplete connect mode, or a missing Code Mode env prefix. Verify the binary, Desktop state, and daemon health before deeper diagnosis, and confirm every illustrative command against the live `--help` surface.

@@ -10,6 +10,9 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 SOURCE="auto"           # auto | npm | repo
 REPO_URL="https://github.com/silships/figma-cli.git"
+# The repo build is pinned to the commit this packet's command surface was
+# verified against, so a moved default branch cannot change what installs.
+REPO_REF="486b9856a6b051652d9d0a5e413046f637d6f499"
 INSTALL_ROOT="$HOME/.figma-ds-cli/source"
 FORCE=0; SKIP_VERIFY=0; VERBOSE=0
 
@@ -20,6 +23,7 @@ mcp-figma install.sh: install + verify the silships figma-cli (as figma-ds-cli).
 Usage: install.sh [options]
   --source auto|npm|repo   Install source (default: auto = try npm, fall back to repo)
   --repo-url <url>         Git URL for repo install (default: $REPO_URL)
+  --repo-ref <commit>      Commit to build (default: $REPO_REF)
   --install-root <path>    Clone location for repo install (default: $INSTALL_ROOT)
   --force                  Reinstall even if a working binary is present
   --skip-verify            Skip post-install verification
@@ -36,6 +40,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --source) SOURCE="${2:?}"; shift 2;;
     --repo-url) REPO_URL="${2:?}"; shift 2;;
+    --repo-ref) REPO_REF="${2:?}"; shift 2;;
     --install-root) INSTALL_ROOT="${2:?}"; shift 2;;
     --force) FORCE=1; shift;;
     --skip-verify) SKIP_VERIFY=1; shift;;
@@ -91,16 +96,17 @@ install_repo() {
   log "== repo install (silships/figma-cli) =="
   mkdir -p "$(dirname "$INSTALL_ROOT")"
   if [ -d "$INSTALL_ROOT/.git" ]; then
-    info "Updating existing checkout: $INSTALL_ROOT"
-    if [ -n "${VERBOSE:-}" ]; then
-      git -C "$INSTALL_ROOT" pull --ff-only || warn "git pull failed; using existing checkout"
-    else
-      git -C "$INSTALL_ROOT" pull --ff-only >/dev/null 2>&1 || warn "git pull failed; using existing checkout"
-    fi
+    info "Updating existing checkout to $REPO_REF: $INSTALL_ROOT"
   else
     info "Cloning $REPO_URL -> $INSTALL_ROOT (outside this repo; not vendored)"
-    git clone --depth 1 "$REPO_URL" "$INSTALL_ROOT" >/dev/null 2>&1 || { err "git clone of $REPO_URL failed (check network/access); cannot build the full figma-ds-cli surface."; exit 1; }
+    git init -q "$INSTALL_ROOT" && git -C "$INSTALL_ROOT" remote add origin "$REPO_URL" \
+      || { err "Could not prepare $INSTALL_ROOT for the clone."; exit 1; }
   fi
+  if [ "$VERBOSE" = 1 ]; then
+    git -C "$INSTALL_ROOT" fetch --depth 1 origin "$REPO_REF" && git -C "$INSTALL_ROOT" checkout -q --detach FETCH_HEAD
+  else
+    git -C "$INSTALL_ROOT" fetch --depth 1 origin "$REPO_REF" >/dev/null 2>&1 && git -C "$INSTALL_ROOT" checkout -q --detach FETCH_HEAD >/dev/null 2>&1
+  fi || { err "git fetch of $REPO_REF from $REPO_URL failed (check network/access); cannot build the full figma-ds-cli surface."; exit 1; }
   ( cd "$INSTALL_ROOT" && npm_q install && npm_q install -g . ) || { err "npm build/install of the silships repo in $INSTALL_ROOT failed; re-run with --verbose to see the error."; exit 1; }
 }
 

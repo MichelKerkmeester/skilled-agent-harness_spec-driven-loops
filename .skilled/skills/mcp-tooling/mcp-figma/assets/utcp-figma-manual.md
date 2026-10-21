@@ -8,7 +8,7 @@ trigger_phrases:
   - "figma mcp env key"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.1.0
 ---
 
 # Figma Code Mode Manual - Framelink figma snippet
@@ -50,7 +50,7 @@ Add the manual object below into the `manual_call_templates` array of the projec
       "figma": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "figma-developer-mcp", "--stdio"],
+        "args": ["-y", "figma-developer-mcp@latest", "--stdio"],
         "env": {
           "FIGMA_API_KEY": "${FIGMA_API_KEY}"
         }
@@ -66,7 +66,7 @@ Add the manual object below into the `manual_call_templates` array of the projec
 - Manual namespace. Keep it `figma` so calls resolve as `figma.figma_<tool>` and env vars resolve as `figma_<VAR>`.
 
 **`args`**:
-- `["-y", "figma-developer-mcp", "--stdio"]` runs the Framelink server on demand over stdio. The `-y` flag avoids an interactive npx prompt.
+- `["-y", "figma-developer-mcp@latest", "--stdio"]` runs the Framelink server on demand over stdio, the same arguments the registered `figma` manual in `.utcp_config.json` uses. This asset is the one source for them. The `-y` flag avoids an interactive npx prompt.
 
 **`env.FIGMA_API_KEY`**:
 - References `${FIGMA_API_KEY}`. Code Mode prefixes it with the manual name, so the actual `.env` key is `figma_FIGMA_API_KEY`.

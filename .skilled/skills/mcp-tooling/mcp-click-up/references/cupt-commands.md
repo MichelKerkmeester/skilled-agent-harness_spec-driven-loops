@@ -10,7 +10,7 @@ trigger_phrases:
   - "cupt note"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # cupt CLI Reference
@@ -124,6 +124,9 @@ cupt list --team "Engineering" --tag urgent # Combine (slow due to client-side t
 | `cupt show <id> --offline` | Use cached data | |
 | `cupt context <id>` | Parent + siblings + subtasks | |
 | `cupt statuses <id>` | Status schema for task's list | |
+| `cupt add "<name>" --list <id>` | Create a task, with a plain description through `-d` | `--parent`, `--blocks`, `--due`, `--tag`, `--json` |
+
+> `cupt add` sends the plain `description` field, so ClickUp shows markdown in it as literal text. A task whose description carries markdown goes through `clickup_create_task` with `markdown_description`, per `mcp-tools.md`.
 
 **`cupt statuses <id>` output example:**
 ```
@@ -253,7 +256,7 @@ cupt tag add TASK_ID needs_review
 
 | Flag | Applies To | Description |
 |------|-----------|-------------|
-| `--json` | All read commands | Machine-readable JSON output |
+| `--json` | `add`, `list`, `show`, `statuses`, `teams` | Machine-readable JSON output |
 | `--offline` | list, show | Use locally cached data |
 | `--debug` | All | Enable debug logging |
 | `--version` | — | Print cupt version |

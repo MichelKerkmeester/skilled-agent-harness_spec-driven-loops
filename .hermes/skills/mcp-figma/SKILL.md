@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.3.0
+version: 1.1.4.0
 user-invocable: true
 ---
 
@@ -117,7 +117,7 @@ assets/env-template.md              # the prefixed figma_FIGMA_API_KEY .env line
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
+> Resilience pattern: see the sk-doc smart-router template, `sk-doc/sk-create-skill/assets/skill/skill-smart-router.md` in the skills library. Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path

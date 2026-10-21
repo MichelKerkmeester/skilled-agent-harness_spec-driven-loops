@@ -16,9 +16,15 @@ err()  { printf '%s✗ %s%s\n' "$_c_red" "$*" "$_c_rst" >&2; }
 # Resolve the silships figma-cli binary.
 # Order: figma-ds-cli (npm canonical, unambiguous) -> figma-cli (silships repo build only).
 # A bare "figma" is NOT ours (that is unic/figma-cli) and is never selected.
+# figma-cli is only accepted after its own help names it the silships tool, so a
+# foreign binary under that name fails closed instead of being driven.
+is_silships() {
+  "$1" --help 2>/dev/null | grep -q 'Figma design systems'
+}
+
 figma_bin() {
   if command -v figma-ds-cli >/dev/null 2>&1; then printf 'figma-ds-cli'; return 0; fi
-  if command -v figma-cli   >/dev/null 2>&1; then printf 'figma-cli';   return 0; fi
+  if command -v figma-cli >/dev/null 2>&1 && is_silships figma-cli; then printf 'figma-cli'; return 0; fi
   return 1
 }
 
@@ -46,6 +52,8 @@ port_listening() {
 }
 
 DAEMON_TOKEN_FILE="$HOME/.figma-ds-cli/.daemon-token"
+# The daemon writes its PID under the figma-cli name, the silships repo's own
+# bin name, not the unrelated npm package. doctor.sh checks the PID before trusting it.
 DAEMON_PID_FILE="$HOME/.figma-cli-daemon.pid"
 DAEMON_PORT=3456
 CDP_PORT=9222

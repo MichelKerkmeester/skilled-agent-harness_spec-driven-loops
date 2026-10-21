@@ -7,7 +7,7 @@ trigger_phrases:
   - "new clickup task"
   - "add task to list"
   - "create subtask"
-version: 1.1.0.0
+version: 1.1.1.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -46,7 +46,7 @@ Create a task in a ClickUp list. Requires name and list_id, always ask the user 
 
 ## 2. HOW IT WORKS
 
-cupt has no create command, so task creation always goes through this tool. Ask the user which list the task belongs in. Put any markdown in `markdown_description`, because ClickUp renders it as rich text. `priority` is one of `urgent`, `high`, `normal` or `low`, and dates use `YYYY-MM-DD` or `YYYY-MM-DD HH:MM`. Pass `parent` to create a subtask, and `custom_fields` as `[{id, value}]` to set field values on create. Tags must already exist in the space. The server has no bulk-create tool, so create several tasks with one call each inside a single `call_tool_chain`.
+`cupt add` creates a task but sends only the plain `description` field, which ClickUp shows as literal markdown, so a task whose description carries markdown goes through this tool. Ask the user which list the task belongs in. Put any markdown in `markdown_description`, because ClickUp renders it as rich text. `priority` is one of `urgent`, `high`, `normal` or `low`, and dates use `YYYY-MM-DD` or `YYYY-MM-DD HH:MM`. Pass `parent` to create a subtask, and `custom_fields` as `[{id, value}]` to set field values on create. Tags must already exist in the space. The server has no bulk-create tool, so create several tasks with one call each inside a single `call_tool_chain`.
 
 ---
 

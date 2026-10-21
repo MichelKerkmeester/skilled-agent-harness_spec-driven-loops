@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill: cupt CLI (v0.7.1+) and the official hosted ClickUp MCP (61 live tools)."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # mcp-click-up: Feature Catalog
@@ -14,8 +14,8 @@ Complete feature inventory for both tools in the mcp-click-up skill. This catalo
 
 The mcp-click-up skill routes ClickUp work between two complementary tools:
 
-- **cupt CLI** (`pipx install cupt`) — 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache, and `--json` output on `add` and 4 of its read commands (`list`, `show`, `statuses`, `teams`, not global).
-- **Official ClickUp MCP** (the `clickup_official` manual: the hosted server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote`, signed in with OAuth, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers what cupt cannot do: task creation, documents and pages, search, lists and folders, task relations, chat and reminders.
+- **cupt CLI** (`pipx install cupt`), with 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache and `--json` output on the commands [`cupt-global-flags/json-flag.md`](cupt-global-flags/json-flag.md) lists.
+- **Official ClickUp MCP** (the `clickup_official` manual: the hosted server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote`, signed in with OAuth, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers what cupt cannot do: task creation with a markdown description, documents and pages, search, lists and folders, task relations, chat and reminders.
 
 > **Verification status (2026-10-08):** the `clickup_official` manual runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08, and every MCP card below was generated from that tool list, one card per tool, with each parameter table taken from the server's own schema. The server has no tools for goals, bulk create, webhooks, checklist edits, spaces, views, space tags, task templates, guests, user groups or audit logs. Its operator catalog had no operators enabled, so those features have no MCP route.
 
@@ -323,7 +323,7 @@ See [`cupt-workspace/prefetch.md`](cupt-workspace/prefetch.md)
 4 flags that apply across multiple cupt commands.
 
 ### JSON output flag
-`--json` returns structured JSON on `add` and four read commands, not globally. Required for agent workflows. Never parse human-readable output.
+`--json` returns structured JSON on the commands its card lists, not globally. Required for agent workflows. Never parse human-readable output.
 
 See [`cupt-global-flags/json-flag.md`](../feature-catalog/cupt-global-flags/json-flag.md)
 

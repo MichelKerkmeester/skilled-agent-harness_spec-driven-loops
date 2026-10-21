@@ -1,12 +1,12 @@
 ---
 title: "mcp-figma: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-figma skill. Covers binary detection, the Figma Desktop requirement, safe connect, daemon health, read-only inspect and export, the destructive-verb refusal gate, and optional Framelink MCP discovery via Code Mode."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-figma: Manual Testing Playbook
 
-End-to-end manual testing reference for the mcp-figma skill. Every scenario validates a capability of the skill against its defined behavior, and the default set is deliberately SAFE: it exercises detection, setup, read-only access, and the safety gate, but performs no destructive Figma writes. The skill drives the live Figma Desktop session through the silships `figma-ds-cli`, so most scenarios depend on Figma Desktop being open with a file and on verifying the live binary and daemon rather than trusting documentation. Skill version 1.0.0.0.
+End-to-end manual testing reference for the mcp-figma skill. Every scenario validates a capability of the skill against its defined behavior, and the default set is deliberately SAFE: it exercises detection, setup, read-only access, and the safety gate, but performs no destructive Figma writes. The skill drives the live Figma Desktop session through the silships `figma-ds-cli`, so most scenarios depend on Figma Desktop being open with a file and on verifying the live binary and daemon rather than trusting documentation.
 
 > **Naming trap (locked decision, read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **never `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. Every scenario below treats `figma-ds-cli` as the canonical command and verifies any `figma-cli` resolution against the silships tool before trusting it.
 
@@ -32,7 +32,7 @@ End-to-end manual testing reference for the mcp-figma skill. Every scenario vali
 
 This playbook defines 17 deterministic scenarios across 6 categories validating the safe surface and the smart-router intent classification of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-12, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 13.
 
-> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 12 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
+> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 13 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
 
 ### Realistic Test Model
 
@@ -132,7 +132,7 @@ Release is READY only when no scenario verdict is FAIL, all critical-path scenar
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 12).
+Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 13).
 
 ---
 

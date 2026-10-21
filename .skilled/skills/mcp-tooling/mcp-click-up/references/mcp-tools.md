@@ -12,7 +12,7 @@ trigger_phrases:
   - "mcp tools"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -56,7 +56,7 @@ OAuth 2.1 with PKCE, through the hosted server, with one browser approval on the
 ## 4. WHAT THE MCP CAN AND CANNOT DO
 
 Use the **official MCP** for:
-- Creating tasks, including subtasks through `parent` (cupt has no create command)
+- Creating tasks whose description carries markdown, including subtasks through `parent` (`cupt add` creates a task but sends only the plain `description` field)
 - Documents: creating them, listing their pages and reading, creating or updating pages
 - Keyword search across tasks, docs and chats, and field filtering of tasks
 - Lists and folders: create, read and update
@@ -301,7 +301,8 @@ To change an existing page, read it first with `clickup_get_document_pages`, the
 | Mark a task done | cupt | Resolves the closed status per list and has a dry run |
 | Add a note | cupt | `cupt note <id> "text"` |
 | Time tracking | cupt | start, stop and add commands |
-| Create a task | MCP | cupt has no create command |
+| Create a plain task | cupt | `cupt add "<name>" --list <id> --json` |
+| Create a task with a markdown description | MCP | `cupt add` sends only the plain `description` field |
 | Create or edit a document | MCP | cupt has no document surface |
 | Search the workspace | MCP | `clickup_search` covers tasks, docs and chats |
 | Goals, bulk create, webhooks, checklist edits | Neither | No tool on the hosted server and no enabled operator |

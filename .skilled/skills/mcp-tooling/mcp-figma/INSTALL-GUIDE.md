@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma Installation Guide"
 description: "Installation and verification of the silships figma-ds-cli binary that drives Figma Desktop from the terminal, plus the safe MCP setup."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-figma Installation Guide
@@ -11,7 +11,7 @@ Complete installation and configuration guide for the `mcp-figma` skill, which d
 > **Naming trap, read first.** Install **`figma-ds-cli`**, the unambiguous npm package for the silships tool. The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, by Fredi Bach, which installs a bin named `figma`). **Never run `npm i -g figma-cli`.** A `figma-cli` command exists as a second name for the silships tool only when you build from the silships repo.
 > **Package:** `figma-ds-cli` (silships) | **Dependencies:** Node.js 18+, Figma Desktop, macOS baseline
 
-**Version:** 1.0.0.0 | **Updated:** 2026-06-15 | **Transport:** local daemon (HTTP 127.0.0.1:3456)
+**Version:** 1.0.1.0 | **Updated:** 2026-10-21 | **Transport:** local daemon (HTTP 127.0.0.1:3456)
 
 ---
 
@@ -265,7 +265,7 @@ Phase 5 proves the CLI drives the live session end to end.
 | 2 | Binary identity  | `./doctor.sh`                          | `figma-ds-cli` resolved, not unic/figma-cli  |
 | 3 | CLI reachable    | `figma-ds-cli --help`                  | Usage text with Figma Desktop open           |
 | 4 | Daemon health    | `figma-ds-cli daemon status`           | Healthy on `127.0.0.1:3456`, token present   |
-| 5 | Read-only export | `figma-ds-cli extract --out DESIGN.md` | A 9-section DESIGN.md written to the path     |
+| 5 | Read-only export | `figma-ds-cli extract design-<timestamp>.md` | An 11-section DESIGN.md written to that new path |
 
 ### Validation: `phase_5_complete`
 
@@ -287,8 +287,8 @@ A read-only `extract` returns content against the open file, and the daemon stay
 # 3. Confirm the daemon is healthy
 ./daemon.sh status
 
-# 4. Inspect or export read-only, the safe default
-figma-ds-cli extract --out DESIGN.md
+# 4. Inspect or export read-only, the safe default. The output path is new, so nothing is overwritten
+OUT="design-$(date +%Y%m%d-%H%M%S).md"; [ -e "$OUT" ] || figma-ds-cli extract "$OUT"
 ```
 
 ### Common Operations
@@ -460,6 +460,7 @@ figma_FIGMA_API_KEY=figd_your_token_here
 
 | Version | Date       | Changes                                                                    |
 | ------- | ---------- | -------------------------------------------------------------------------- |
+| 1.0.1.0 | 2026-10-21 | The read-only export writes to a new path with a positional argument, as `extract` takes it, and names its 11 sections. |
 | 1.0.0.0 | 2026-06-15 | First stable release. Live verification against figma-ds-cli 1.2.0, embedded `mcp-servers/figma-cli` install scaffold, install and doctor parity with the other mcp skills, house-voice pass. |
 | 0.1.0   | 2026-06-14 | Initial release. CLI-primary skill (figma-ds-cli), install and safety scripts, optional Framelink MCP via Code Mode. Pre-1.0 until live external verification is complete. |
 

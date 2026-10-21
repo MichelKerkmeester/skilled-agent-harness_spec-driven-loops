@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up Installation Guide"
 description: "Installation and configuration for ClickUp task management through the cupt CLI and the ClickUp MCP path."
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # mcp-click-up Installation Guide
@@ -11,7 +11,7 @@ Complete installation and configuration for ClickUp task management, providing A
 > **Package:** `cupt` (PyPI) | **Dependencies:** Python 3.8+, pipx (or pip); Node.js 18+ for the MCP path
 > **Phase-by-phase validation:** the install and verification checkpoints live in [§2 Prerequisites & Installation](#2-prerequisites--installation) through [§5 Verification](#5-verification) below.
 
-**Version:** 1.0.1.0 | **Updated:** 2026-07-16
+**Version:** 1.0.2.0 | **Updated:** 2026-10-21
 
 ---
 
@@ -20,8 +20,8 @@ Complete installation and configuration for ClickUp task management, providing A
 Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
-Run the embedded install script:
-  bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+Run the embedded install script from the mcp-click-up folder, wherever it sits:
+  bash scripts/install.sh
 
 It will:
   1. Install cupt via pipx (or pip fallback)
@@ -119,6 +119,8 @@ which cupt
 ```bash
 cupt config --api-token pk_YOUR_TOKEN_HERE
 ```
+
+A token typed on the command line lands in your shell history. Run `cupt auth` instead where you can, or clear the line from history afterwards, for example with `history -d` in bash.
 
 **Option B — OAuth (recommended for teams):** create an app with redirect URL `http://localhost:4321`, then run the interactive wizard:
 

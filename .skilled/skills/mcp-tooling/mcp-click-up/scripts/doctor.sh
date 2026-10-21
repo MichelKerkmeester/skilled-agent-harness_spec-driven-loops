@@ -68,8 +68,19 @@ fi
 
 # Optional MCP via Code Mode
 log "-- Optional ClickUp MCP via Code Mode --"
-UTCP="$HERE/../../../../../.utcp_config.json"
-if [ -f "$UTCP" ]; then
+# The packet runs both from .skilled and vendored into other repositories at a
+# different depth, so a fixed number of levels finds the wrong folder in one of
+# them. The nearest .utcp_config.json above the script is the one Code Mode reads.
+find_utcp() {
+  local dir="$HERE"
+  while [ "$dir" != "/" ]; do
+    [ -f "$dir/.utcp_config.json" ] && { printf '%s' "$dir/.utcp_config.json"; return 0; }
+    dir="$(dirname "$dir")"
+  done
+  return 1
+}
+UTCP="$(find_utcp || true)"
+if [ -n "$UTCP" ]; then
   if grep -qi 'mcp.clickup.com' "$UTCP" 2>/dev/null; then
     ok "Code Mode ClickUp manual registered in .utcp_config.json (official server, mcp-remote bridge)"
   elif grep -qi '"clickup' "$UTCP" 2>/dev/null; then
@@ -78,7 +89,7 @@ if [ -f "$UTCP" ]; then
     info "No ClickUp manual in .utcp_config.json"
   fi
 else
-  info ".utcp_config.json not found at expected repo root"
+  info "No .utcp_config.json in any folder above the packet"
 fi
 info "MCP server: https://mcp.clickup.com/mcp (official, OAuth 2.1 + PKCE)"
 
