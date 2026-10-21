@@ -13,7 +13,9 @@
     "trigger_phrases": [
       "relaunch takeover lock identity",
       "relaunch takeover lock identity owner token instead",
+      "takeover mutex inode reuse",
       "relaunch takeover lock identity plan",
+      "takeover mutex owner token",
       "relaunch takeover lock identity tasks",
       "relaunch takeover lock identity implementation summary"
     ],
@@ -25,19 +27,30 @@
       "owner",
       "token",
       "instead",
+      "mutex",
+      "inode",
+      "reuse",
       "plan",
-      "tasks",
-      "implementation",
-      "summary",
-      "broken"
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/mutation/base-killer.tap",
+      "scratch/mutation/r1-killer.tap",
+      "scratch/mutation/r2-killer.tap",
+      "scratch/after-killer-r3.tap",
+      "scratch/killer-20x-r3.txt",
+      "scratch/after-killer.tap",
+      "scratch/after-killer-r2.tap",
+      ".github/workflows/hooks-node-tests.yml"
     ],
     "entities": [
       {
@@ -65,37 +78,103 @@
         "source": "derived"
       },
       {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "base-killer.tap",
+        "kind": "file",
+        "path": "scratch/mutation/base-killer.tap",
+        "source": "derived"
+      },
+      {
+        "name": "r1-killer.tap",
+        "kind": "file",
+        "path": "scratch/mutation/r1-killer.tap",
+        "source": "derived"
+      },
+      {
+        "name": "r2-killer.tap",
+        "kind": "file",
+        "path": "scratch/mutation/r2-killer.tap",
+        "source": "derived"
+      },
+      {
+        "name": "after-killer-r3.tap",
+        "kind": "file",
+        "path": "scratch/after-killer-r3.tap",
+        "source": "derived"
+      },
+      {
+        "name": "killer-20x-r3.txt",
+        "kind": "file",
+        "path": "scratch/killer-20x-r3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-killer.tap",
+        "kind": "file",
+        "path": "scratch/after-killer.tap",
+        "source": "derived"
+      },
+      {
+        "name": "after-killer-r2.tap",
+        "kind": "file",
+        "path": "scratch/after-killer-r2.tap",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-node-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/hooks-node-tests.yml",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Hook Node Tests",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Acceptance Criteria",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -113,81 +192,15 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.github/workflows/hooks-node-tests.yml` failed `killer leaves a takeover directory a contender replaced while it was held` in `killer.test.cjs` on every Linux run of run 39577580180, and the same suite passed on macOS",
     "created_at": "2026-10-21T10:04:06Z",
-    "last_save_at": "2026-10-21T10:04:06.857Z",
+    "last_save_at": "2026-10-21T11:28:41.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4045e54cdad2b38aeff5977ec81497c932ed9daef31ada2aa8b5f98530797de",
+    "source_fingerprint": "sha256:af8e01d1efbbbf1bc203e481e40de3e17312cb81719b914e9d8221a4f1881d6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e54f533d9a0ba7d2411e357c69881189e5efe28a18d62e86d11bce3f2d87b745",
-      "plan.md": "4a55bb5beefcd2d81e9f8d1833e7a4f87bab2da9f08e6b54305645801b320e41",
-      "tasks.md": "ea59b5458d15724059faaa3f2457a24de5bd35b7df6fcce08a4dceddd908863b",
-      "implementation-summary.md": "1a5df5d1952e050adda08ba256be475dba80af475bec1de420b818061a495ba6"
+      "spec.md": "0ae2de2646ef50a11c23b891139c2cddc6bec13df17b23ca9f10b6f99f92ba42",
+      "plan.md": "41d0512d39689970e9363c0616a8e854989a9b22d4b885105047e7747acb5034",
+      "tasks.md": "0e70a1f4d7027104191c7789a1ab790ba5891037ee610002eb0a5038ff07e395",
+      "implementation-summary.md": "e6d26461a35a2add7f134c824c5efb6ec32881e20a73513a356a741c59ef7938"
     },
     "last_active_at": null
   }

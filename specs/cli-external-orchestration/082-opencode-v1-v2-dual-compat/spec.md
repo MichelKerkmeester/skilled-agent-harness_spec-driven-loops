@@ -155,6 +155,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | Complete |
 | 43 | 043-v2-default-model-and-follow-ups/ | Make `llmgateway/deepseek-v4.1-flash` the OpenCode 2 default model, put the hook node:test suites in a blocking CI job, and close the 035, 037 and 042 doc and comment follow-ups | In Progress |
 | 44 | 044-skill-advisor-stress-ci/ | Make the Skill Advisor Stress Tests workflow pass again: its OpenCode plugin stress test still calls the plugin's default export as a function, which the dual-export object no longer is | Complete |
+| 45 | 045-relaunch-takeover-lock-identity/ | Prove takeover mutex ownership with an owner token as well as the inode, rename before removing and keep a contender's directory, so Hook Node Tests passes on Linux | In Progress |
 
 ### Phase Transition Rules
 
