@@ -132,6 +132,20 @@ test('stdin and model checks ignore flags and redirects inside a quoted prompt',
   assert.equal(stdin(`opencode run -m p/m <<"END MARK"\nprompt\nEND MARK`), true);
 });
 
+test('each repeated dispatch is held to the stdin and model checks on its own', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+  const model = CHECKS['explicit-model-required'];
+  const complete = 'opencode run -m p/m "a" </dev/null && opencode run -m p/m "b" </dev/null';
+
+  // The second run has a model but no redirect; the first run's redirect cannot close its stdin.
+  assert.equal(stdin('opencode run -m p/m "a" </dev/null && opencode run -m p/m "b"'), false);
+  // The second run has a redirect but no model; the first run's -m cannot stand in for it.
+  assert.equal(model('opencode run -m p/m "a" </dev/null && opencode run "b" </dev/null'), false);
+
+  assert.equal(stdin(complete), true);
+  assert.equal(model(complete), true);
+});
+
 test('availability checks pass for a resolvable binary and never refuse without PATH', () => {
   // `sh` is on PATH anywhere this suite can run, so it stands in for a present binary.
   const present = CHECKS['command-v-pi-required'];

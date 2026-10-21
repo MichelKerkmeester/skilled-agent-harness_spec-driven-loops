@@ -128,15 +128,16 @@ function blankQuotedSpans(command) {
   return result;
 }
 
-// The text the stdin and model checks read: every resolved dispatch's own arguments joined in
-// command order, or the whole command when nothing resolves. Quotes are blanked either way,
+// The texts the stdin and model checks read: each resolved dispatch's own blanked arguments,
+// in command order, so one dispatch's flag or redirect cannot answer for another. When
+// nothing resolves the whole blanked command is the one text. Quotes are blanked either way,
 // so a prompt cannot lend a check a flag or redirect the dispatch never passed.
-function dispatchArgumentText(command) {
+function dispatchArgumentTexts(command) {
   const dispatches = resolveDispatchCommands(command);
-  const text = dispatches.length > 0
-    ? dispatches.map((dispatch) => dispatch.text).join('\n')
-    : command;
-  return blankQuotedSpans(text);
+  const texts = dispatches.length > 0
+    ? dispatches.map((dispatch) => dispatch.text)
+    : [command];
+  return texts.map(blankQuotedSpans);
 }
 
 // Claude's print-mode shape, shared by the headless list below and the permission-mode check.
@@ -248,21 +249,30 @@ export const CHECKS = {
   // and hang at 0% CPU, emitting nothing at all.
   'stdin-redirect-required': (cmd) => {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
-    const argumentText = dispatchArgumentText(cmd);
-    if (STDIN_REDIRECT.test(argumentText)) return true; // stdin handled
     // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin. The pipe is
     // shell syntax around the dispatch, so it is read from the whole command, unquoted.
     if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(blankQuotedSpans(cmd))) return true;
+    // Every dispatch answers for its own stdin: a redirect on one run cannot close stdin on
+    // a later run that has none. When no resolved text carries a headless shape, the whole
+    // command is the one text, so a shape the resolver did not name is still checked.
+    const texts = dispatchArgumentTexts(cmd);
+    const headless = texts.filter((text) => HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(text)));
+    const held = headless.length > 0 ? headless : [blankQuotedSpans(cmd)];
     // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
-    if (HERMES_CHAT.test(cmd) && HERMES_STDIN_HANDLED.test(argumentText)) return true;
-    return false;
+    return held.every((text) => STDIN_REDIRECT.test(text)
+      || (HERMES_CHAT.test(text) && HERMES_STDIN_HANDLED.test(text)));
   },
   // Without an explicit model the run falls back to the configured default; when that
   // provider is out of quota the 429 retries forever and emits nothing, which looks
   // exactly like a deadlock.
   'explicit-model-required': (cmd) => {
     if (!/\bopencode\d*\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
-    return /(^|\s)(-m|--model)(\s|=)/.test(dispatchArgumentText(cmd));
+    // Every opencode run in the chain must name its own model: one run's -m cannot cover
+    // a later run that falls back to the configured default.
+    const texts = dispatchArgumentTexts(cmd);
+    const runs = texts.filter((text) => /\bopencode\d*\s+run\b/.test(text));
+    const held = runs.length > 0 ? runs : [blankQuotedSpans(cmd)];
+    return held.every((text) => /(^|\s)(-m|--model)(\s|=)/.test(text));
   },
   // A bare top-level `--agent general` is rejected by opencode at runtime. Both spellings
   // count: `--agent=general` reached the runtime unflagged while `--agent general` did not.

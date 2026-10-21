@@ -482,6 +482,14 @@ describe('resolveDispatchPacket', () => {
     expect(commands[0].entry.skill).toBe('cli-opencode');
     expect(commands[0].text).toBe("opencode run -m p/m 'x' </dev/null");
   });
+
+  it('keeps each repeated executor as its own dispatch command', () => {
+    const command = 'opencode run -m p/m "a" </dev/null && opencode run "b"';
+    const commands = resolveDispatchCommands(command);
+    expect(commands).toHaveLength(2);
+    expect(commands.every(({ entry }) => entry.skill === 'cli-opencode')).toBe(true);
+    expect(resolveDispatchPackets(command)).toHaveLength(1);
+  });
 });
 
 // ── DISPATCH_SHAPES (single source of truth shared with the lint twin) ─────────────────────────

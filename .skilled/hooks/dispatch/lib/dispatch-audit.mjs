@@ -747,7 +747,7 @@ function resolveSegment(segment, redirectionsStripped = false) {
  * @returns {Array<{skill: string, packetPath: string}>} one entry per distinct dispatch, in command order.
  */
 export function resolveDispatchPackets(command) {
-  return resolveDispatchCommands(command).map(({ entry }) => entry);
+  return resolvePacketList(command, true, true).map(({ entry }) => entry);
 }
 
 /**
@@ -759,23 +759,29 @@ export function resolveDispatchPackets(command) {
  * flags. Each `text` here has already been unwrapped (shell `-c`, `nohup`, `env`, a
  * heredoc body) for exactly that reason.
  *
+ * It returns every dispatch, repeats of one executor included, because a chain can run the
+ * same CLI twice and each run passes its own flags and redirects.
+ *
  * @param {string} command - raw command text.
- * @returns {Array<{entry: object, text: string}>} one item per distinct dispatch, in command order.
+ * @returns {Array<{entry: object, text: string}>} one item per dispatch, in command order.
  */
 export function resolveDispatchCommands(command) {
-  return resolvePacketList(command, true);
+  return resolvePacketList(command, true, false);
 }
 
 // An executed heredoc body is resolved one level down: a heredoc inside that body is data the
 // inner call writes unless that inner call runs it too, and reading it there would need the
 // same evidence this level already refuses to assume.
-function resolvePacketList(command, readExecutedHeredocs) {
+//
+// `distinct` keeps one entry per skill when the caller only needs the governing packets, and
+// keeps every dispatch when the caller needs each run's own arguments.
+function resolvePacketList(command, readExecutedHeredocs, distinct) {
   const raw = typeof command === 'string' ? command : '';
   if (!raw) return [];
   const dispatches = [];
   const seen = new Set();
   const add = (resolved) => {
-    if (!resolved || seen.has(resolved.skill)) return;
+    if (!resolved || (distinct && seen.has(resolved.skill))) return;
     const entry = DISPATCH_SHAPES.find((d) => d.skill === resolved.skill);
     if (!entry) return;
     seen.add(resolved.skill);
@@ -786,7 +792,7 @@ function resolvePacketList(command, readExecutedHeredocs) {
   }
   if (readExecutedHeredocs) {
     for (const body of executedHeredocBodies(raw)) {
-      for (const resolved of resolvePacketList(body, false)) {
+      for (const resolved of resolvePacketList(body, false, distinct)) {
         add({ skill: resolved.entry.skill, text: resolved.text });
       }
     }
