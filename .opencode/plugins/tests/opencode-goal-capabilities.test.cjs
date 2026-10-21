@@ -230,14 +230,47 @@ test('env caps configure new goals and status exposes remaining budgets', async 
 
 test('provider-limit detection accepts 429 variants and quota patterns only', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const cases = [
-    { name: 'strict-number', error: { name: 'APIError', data: { statusCode: 429 } }, limited: true },
-    { name: 'string-code', error: { name: 'APIError', data: { statusCode: '429' } }, limited: true },
+    {
+      name: 'strict-number',
+      error: { name: 'APIError', data: { statusCode: 429 } },
+      limited: true,
+    },
+    {
+      name: 'string-code',
+      error: { name: 'APIError', data: { statusCode: '429' } },
+      limited: true,
+    },
     { name: 'other-class-status', error: { name: 'ProviderError', status: 429 }, limited: true },
-    { name: 'null-before-status', error: { name: 'ProviderError', statusCode: null, status: 429 }, limited: true },
-    { name: 'empty-before-status', error: { name: 'ProviderError', statusCode: '', status: 429 }, limited: true },
-    { name: 'quota-message', error: { name: 'ProviderError', message: 'insufficient quota for this request' }, limited: true },
-    { name: 'non-limit-status', error: { name: 'ProviderError', statusCode: 400, message: 'bad request' }, limited: false },
-    { name: 'non-limit-message', error: { name: 'ProviderAuthError', data: { message: 'bad key' } }, limited: false },
+    {
+      name: 'null-before-status',
+      error: { name: 'ProviderError', statusCode: null, status: 429 },
+      limited: true,
+    },
+    {
+      name: 'empty-before-status',
+      error: { name: 'ProviderError', statusCode: '', status: 429 },
+      limited: true,
+    },
+    {
+      name: 'false-before-status',
+      error: { name: 'ProviderError', statusCode: false, status: 429 },
+      limited: true,
+    },
+    {
+      name: 'quota-message',
+      error: { name: 'ProviderError', message: 'insufficient quota for this request' },
+      limited: true,
+    },
+    {
+      name: 'non-limit-status',
+      error: { name: 'ProviderError', statusCode: 400, message: 'bad request' },
+      limited: false,
+    },
+    {
+      name: 'non-limit-message',
+      error: { name: 'ProviderAuthError', data: { message: 'bad key' } },
+      limited: false,
+    },
   ];
 
   for (const testCase of cases) {
