@@ -158,6 +158,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 45 | 045-relaunch-takeover-lock-identity/ | Prove takeover mutex ownership with an owner token as well as the inode, rename before removing and keep a contender's directory, so Hook Node Tests passes on Linux | Complete |
 | 46 | 046-final-two-version-proof/ | Run the live plugin playbook for all 17 plugins on OpenCode 1.19.3 and 2.0.32, rerun every tracked suite, validate the packet and record CI on the final main commit | Complete |
 | 47 | 047-diagram-corpus-ci/ | Bring the Diagram Corpus workflow back to green by moving the diagram scripts README into the 1.2 version era the metadata family requires and telling the next reader to set the major.minor by hand | Complete |
+| 48 | 048-skilled-loop-shared-nudge-formatter/ | [Phase 48 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -212,4 +213,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 042-hooks-and-plugins-held-fixes | 044-skill-advisor-stress-ci | The Skill Advisor Stress Tests workflow has failed every run since 2026-10-19, and the open-work goal needs every workflow green | `044/implementation-summary.md`; the stress suite passes 64 of 64 locally and on CI at the pushed commit |
 | 045-relaunch-takeover-lock-identity | 046-final-two-version-proof | Every fix group is on main and Hook Node Tests passes, so the open-work goal needs its final proof from main | `046/implementation-summary.md`; the 17 by 2 live matrix, the suite table, recursive validation and the CI table |
 | 046-final-two-version-proof | 047-diagram-corpus-ci | The operator asked on 2026-10-21 to fix Diagram Corpus, red on main since 2026-10-18 | `047/implementation-summary.md`; Diagram Corpus passes on CI at the pushed commit |
+| 047-diagram-corpus-ci | 048-skilled-loop-shared-nudge-formatter | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
