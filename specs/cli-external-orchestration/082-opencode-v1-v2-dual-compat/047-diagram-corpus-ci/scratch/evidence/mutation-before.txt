@@ -1,0 +1,110 @@
+✖ the corpus is clean before anything is mutated (1083.878125ms)
+✔ accessible-svg refuses a diagram whose svg has no title (2108.031875ms)
+✔ unique-ids refuses an id used twice in one file (1961.623875ms)
+✔ no-external refuses a script fetched from a host that is not the fonts allowlist (2007.1725ms)
+✔ marker-vocabulary refuses a connector drawn with a marker nobody defined (2175.472833ms)
+✔ grid-4px refuses a new file with a value off the grid (1836.9195ms)
+✔ orthogonal-connectors refuses a connector line that runs at an angle (1942.263875ms)
+✔ node-budget refuses more tagged nodes than the budget allows (2323.42575ms)
+✔ derivation-gates refuses a template whose palette block drifts from the token source (2386.288125ms)
+✔ derivation-gates refuses a themed block whose provenance comment was deleted (2364.566542ms)
+✔ derivation-gates refuses a themed block whose accent falls under the text-on-mark gate (2277.337083ms)
+✔ legend-fidelity refuses a legend swatch keying a dash the drawing never paints (2216.151583ms)
+✔ label-mask-clearance refuses a label mask shifted onto its connector (2156.574292ms)
+✔ label-mask-clearance refuses a label mask pulled inside the clearance floor (2344.929709ms)
+✖ metadata refuses a version outside the anchor era (1317.792125ms)
+✔ catalog-bidirectional refuses a catalog row naming a file that left (2422.990042ms)
+✖ grid-4px leaves an off-grid value inside a path command alone (1140.397ms)
+✖ grid-4px leaves an off-grid value inside a point list alone (1158.975292ms)
+✔ every family the checker registers has a case here, or a stated reason it cannot (6.468333ms)
+✔ nothing here names a family the checker does not register (0.363875ms)
+✔ no exemption outlives the family it excuses (0.908208ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 17
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35302.357084
+
+✖ failing tests:
+
+test at scripts/tests/corpus-mutations.test.cjs:127:1
+✖ the corpus is clean before anything is mutated (1083.878125ms)
+  AssertionError [ERR_ASSERTION]: every case below assumes a green starting point
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:128:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "Diagram corpus: 38 files, 12 families\n  + accessible-svg: 304 assertion(s), 38 file run(s), 0 failure(s)\n  + catalog-bidirectional: 101 assertion(s), 1 corpus run(s), 0 failure(s)\n  + derivation-gates: 54 assertion(s), 38 file run(s), 0 failure(s)\n  + grid-4px: 38 assertion(s), 38 file run(s), 0 failure(s)\n  + label-mask-clearance: 820 assertion(s), 38 file run(s), 0 failure(s)\n  + legend-fidelity: 18 assertion(s), 38 file run(s), 0 failure(s)\n  + marker-vocabulary: 98 assertion(s), 38 file run(s), 0 failure(s)\n  x metadata: 65 assertion(s), 1 corpus run(s), 1 failure(s)\n  + no-external: 38 assertion(s), 38 file run(s), 0 failure(s)\n  + node-budget: 0 assertion(s), 38 file run(s), 0 failure(s)\n  + orthogonal-connectors: 164 assertion(s), 38 file run(s), 0 failure(s)\n  + unique-ids: 181 assertion(s), 38 file run(s), 0 failure(s)\n\n  FAIL [metadata] scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era; the standard's apply pass re-derives it\n\nSummary: errors: 1\n\nRESULT: FAILED\n",
+    expected: /RESULT: PASSED/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at scripts/tests/corpus-mutations.test.cjs:139:3
+✖ metadata refuses a version outside the anchor era (1317.792125ms)
+  AssertionError [ERR_ASSERTION]: the package copy already fails metadata unmutated:
+    FAIL [metadata] scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era; the standard's apply pass re-derives it
+  
+  1 !== 0
+  
+      at runPackageCase (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:113:12)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:139:53)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts/tests/corpus-mutations.test.cjs:144:3
+✖ grid-4px leaves an off-grid value inside a path command alone (1140.397ms)
+  AssertionError [ERR_ASSERTION]: grid-4px fired on an off-grid value inside a path command, which is exempt:
+  
+      at runExemptionCase (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:82:12)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:144:58)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "Diagram corpus: 38 files, 12 families\n  + accessible-svg: 312 assertion(s), 39 file run(s), 0 failure(s)\n  + catalog-bidirectional: 101 assertion(s), 1 corpus run(s), 0 failure(s)\n  + derivation-gates: 54 assertion(s), 39 file run(s), 0 failure(s)\n  + grid-4px: 39 assertion(s), 39 file run(s), 0 failure(s)\n  + label-mask-clearance: 820 assertion(s), 39 file run(s), 0 failure(s)\n  + legend-fidelity: 18 assertion(s), 39 file run(s), 0 failure(s)\n  + marker-vocabulary: 98 assertion(s), 39 file run(s), 0 failure(s)\n  x metadata: 65 assertion(s), 1 corpus run(s), 1 failure(s)\n  + no-external: 39 assertion(s), 39 file run(s), 0 failure(s)\n  + node-budget: 0 assertion(s), 39 file run(s), 0 failure(s)\n  + orthogonal-connectors: 164 assertion(s), 39 file run(s), 0 failure(s)\n  + unique-ids: 184 assertion(s), 39 file run(s), 0 failure(s)\n\n  FAIL [metadata] scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era; the standard's apply pass re-derives it\n\nSummary: errors: 1\n\nRESULT: FAILED\n",
+    expected: /RESULT: PASSED/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at scripts/tests/corpus-mutations.test.cjs:144:3
+✖ grid-4px leaves an off-grid value inside a point list alone (1158.975292ms)
+  AssertionError [ERR_ASSERTION]: grid-4px fired on an off-grid value inside a point list, which is exempt:
+  
+      at runExemptionCase (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:82:12)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/191-diagram-corpus-ci/.skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs:144:58)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "Diagram corpus: 38 files, 12 families\n  + accessible-svg: 312 assertion(s), 39 file run(s), 0 failure(s)\n  + catalog-bidirectional: 101 assertion(s), 1 corpus run(s), 0 failure(s)\n  + derivation-gates: 54 assertion(s), 39 file run(s), 0 failure(s)\n  + grid-4px: 39 assertion(s), 39 file run(s), 0 failure(s)\n  + label-mask-clearance: 820 assertion(s), 39 file run(s), 0 failure(s)\n  + legend-fidelity: 18 assertion(s), 39 file run(s), 0 failure(s)\n  + marker-vocabulary: 98 assertion(s), 39 file run(s), 0 failure(s)\n  x metadata: 65 assertion(s), 1 corpus run(s), 1 failure(s)\n  + no-external: 39 assertion(s), 39 file run(s), 0 failure(s)\n  + node-budget: 0 assertion(s), 39 file run(s), 0 failure(s)\n  + orthogonal-connectors: 164 assertion(s), 39 file run(s), 0 failure(s)\n  + unique-ids: 184 assertion(s), 39 file run(s), 0 failure(s)\n\n  FAIL [metadata] scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era; the standard's apply pass re-derives it\n\nSummary: errors: 1\n\nRESULT: FAILED\n",
+    expected: /RESULT: PASSED/,
+    operator: 'match',
+    diff: 'simple'
+  }

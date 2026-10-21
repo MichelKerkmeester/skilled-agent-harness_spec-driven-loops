@@ -13,6 +13,7 @@
     "trigger_phrases": [
       "diagram corpus ci",
       "phase 47 diagram corpus ci",
+      "diagram corpus version era",
       "diagram corpus ci plan",
       "diagram corpus ci tasks",
       "diagram corpus ci implementation summary"
@@ -21,23 +22,31 @@
       "diagram",
       "corpus",
       "phase",
+      "version",
+      "era",
       "plan",
       "tasks",
       "implementation",
       "summary",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing"
+      "github",
+      "workflows",
+      "diagram-corpus"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
+      ".skilled/skills/sk-design/sk-design-diagram/scripts/families/metadata.cjs",
+      "scratch/evidence/corpus-mutated-back.log",
+      "scratch/evidence/corpus-after.log",
+      "scratch/evidence/mutation-before.txt",
+      "scratch/evidence/mutation-after.tap",
+      "scripts/README.md",
+      ".github/workflows/diagram-corpus.yml"
     ],
     "entities": [
       {
@@ -65,7 +74,61 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "metadata.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/families/metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-mutated-back.log",
+        "kind": "file",
+        "path": "scratch/evidence/corpus-mutated-back.log",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-after.log",
+        "kind": "file",
+        "path": "scratch/evidence/corpus-after.log",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-before.txt",
+        "kind": "file",
+        "path": "scratch/evidence/mutation-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-after.tap",
+        "kind": "file",
+        "path": "scratch/evidence/mutation-after.tap",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/diagram-corpus.yml",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Diagram Corpus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -83,19 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Diagram Corpus",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -113,7 +164,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Family",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -131,63 +188,15 @@
         "source": "derived"
       },
       {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.github/workflows/diagram-corpus.yml` has failed since run `39165172090` at `be234e6f94` on 2026-10-18, last green at `d04df31790` on 2026-10-11, and every pull request run since 2026-10-14 also failed",
     "created_at": "2026-10-21T13:32:28Z",
-    "last_save_at": "2026-10-21T13:34:06.170Z",
+    "last_save_at": "2026-10-21T13:45:59.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74f984a81ee0f3881053f9597a74df1c33a392dcbd5eb9633ca8feb49039d23a",
+    "source_fingerprint": "sha256:e417d21e31988fbf055051410fc717097313118700d0f584e6e45785fc9157a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd1af524a47234b19e41d78399e61512179a0639fcfca060cf400adde12d61ff",
-      "plan.md": "a971d30669ab62f75c38ddf47b1d3ae42318d4d3f8e37ef54c05fe26b683abd7",
-      "tasks.md": "b668cb0573f1fb83a9234047268126fb86fc401d9aa6adc91d7997b6bcd86d9b",
-      "implementation-summary.md": "1ce23407a3cf3a6ff22feb0dadf641244a719e3fbf639cae9d9afb5370f0c9fd"
+      "spec.md": "4898aba6525ab4708dfd6ea1115e3f34f650591a80654fd20c1e2524c2fadcea",
+      "plan.md": "586dc9f309c49e48f9f820ce8704c5d175aa2a287ff51bb8874452143b8e6a73",
+      "tasks.md": "4189cd7eaf5107119aebb977cae200280ff20169bd5cadf2ee66aa8b06451e82",
+      "implementation-summary.md": "c7c13c320b149991d184aafc022012eb2a5464b411810d0bb67e34895a1396a3"
     },
     "last_active_at": null
   }

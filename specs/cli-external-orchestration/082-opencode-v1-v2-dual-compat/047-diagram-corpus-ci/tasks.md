@@ -31,9 +31,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Date the break and the last green run from the workflow history (run `39165172090` at `be234e6f94`, last green `d04df31790`)
+- [x] T002 Trace the failed assertion to the era rule and the README's first version (`.skilled/skills/sk-design/sk-design-diagram/scripts/families/metadata.cjs`, `.skilled/skills/sk-design/sk-design-diagram/scripts/README.md`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +40,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Set the README version to `1.2.0.1`, keeping its one earlier edition (`.skilled/skills/sk-design/sk-design-diagram/scripts/README.md`)
+- [x] T004 Rewrite the era message to say the apply pass keeps a child doc's own edition and to set the major.minor by hand (`.skilled/skills/sk-design/sk-design-diagram/scripts/families/metadata.cjs`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +49,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T005 Restore `1.0.1.0` and confirm the checker fails with the old value (`scratch/evidence/corpus-mutated-back.log`)
+- [x] T006 Confirm the checker passes at `1.2.0.1` (`scratch/evidence/corpus-after.log`)
+- [x] T007 Run the mutation suite before and after the fix (`scratch/evidence/mutation-before.txt`, `scratch/evidence/mutation-after.tap`)
+- [x] T008 Confirm both applicator steps reproduce `assets/diagrams` byte for byte
+- [x] T009 DeepSeek v4.1 flash max read-only review of the diff
+- [ ] T010 Record the Diagram Corpus run id after the push to main (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +62,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked `[x]` - T010 waits on the push to main
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +77,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-
