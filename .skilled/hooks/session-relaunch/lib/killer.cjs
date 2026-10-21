@@ -396,13 +396,45 @@ function removeOwnerlessMutex(mutexPath, mutexInode) {
     throw error;
   }
   if (stats.ino !== mutexInode) return;
+
+  // Renaming first keeps a contender from replacing the directory under this
+  // path between the checks and the removal.
+  const stalePath = `${mutexPath}.stale-${process.pid}-${randomUUID()}`;
   try {
-    fs.statSync(path.join(mutexPath, 'owner'));
-    return;
+    fs.renameSync(mutexPath, stalePath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+
+  let renamedInode;
+  try {
+    renamedInode = fs.statSync(stalePath).ino;
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+  let ownerExists = false;
+  try {
+    fs.statSync(path.join(stalePath, 'owner'));
+    ownerExists = true;
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
   }
-  fs.rmSync(mutexPath, { recursive: true, force: true });
+
+  if (renamedInode === mutexInode && !ownerExists) {
+    fs.rmSync(stalePath, { recursive: true, force: true });
+    return;
+  }
+
+  try {
+    fs.renameSync(stalePath, mutexPath);
+  } catch (error) {
+    // A path a contender has taken again leaves the rename for the stale sweep.
+    if (error.code !== 'EEXIST' && error.code !== 'ENOTEMPTY' && error.code !== 'ENOENT') {
+      throw error;
+    }
+  }
 }
 
 // A mutex whose owner pid is alive is still stale once the directory outlives
