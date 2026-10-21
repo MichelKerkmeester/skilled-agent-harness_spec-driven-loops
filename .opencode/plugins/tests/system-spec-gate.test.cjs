@@ -270,6 +270,51 @@ test('P2 fix: classify and enforce key an absent sessionID under the same fallba
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Lifecycle events key on the same no-session fallback as classify. A delete
+// with no session id must evict the state file classify wrote for the unknown
+// session, not a separate key nothing else ever writes.
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('session.deleted without a session id evicts the unknown-session gate state classify wrote', async () => {
+  const { default: MkSpecGatePlugin } = await loadPlugin();
+  const guardCore = await loadCore();
+  const projectDir = makeProjectDir();
+  try {
+    await withEnv('AI_SESSION_CHILD', undefined, () => withEnv(DISABLED_ENV, undefined, async () => {
+      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+      const { stateDir } = guardCore.resolveGuardPaths(projectDir);
+      const unknownStatePath = path.join(stateDir, `${guardCore.sessionStateKey(guardCore.UNKNOWN_SESSION_ID)}.json`);
+
+      // No sessionID on this input, so classify keys the opened gate under the
+      // shared unknown-session token.
+      await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, {});
+      assert.ok(fs.existsSync(unknownStatePath), 'classify must open the gate under the unknown-session state file');
+
+      await hooks.event({ type: 'session.deleted' });
+      assert.equal(
+        fs.existsSync(unknownStatePath),
+        false,
+        'a delete with no session id must evict the unknown-session state file',
+      );
+
+      // An empty id is the same missing-session case, so it must land on the
+      // same file instead of a second, empty-string key.
+      await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline' }, {});
+      assert.ok(fs.existsSync(unknownStatePath), 'classify must reopen the gate under the unknown-session state file');
+
+      await hooks.event({ type: 'session.deleted', properties: { sessionID: '' } });
+      assert.equal(
+        fs.existsSync(unknownStatePath),
+        false,
+        'an empty session id on a delete must evict the same unknown-session state file',
+      );
+    }));
+  } finally {
+    fs.rmSync(projectDir, { recursive: true, force: true });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // The enforce-unset contract: SYSTEM_SPEC_GATE_ENFORCE unset never denies a
 // Write/Edit through the real OpenCode adapter surface, even once classify
 // opens the gate from the session's last user message via ctx.client.
