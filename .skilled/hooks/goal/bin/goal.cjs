@@ -407,7 +407,13 @@ function main(argv) {
   if (!actionsWithoutScope.has(action)) {
     // A session action must never inherit the caller's directory as its workspace.
     if (!parsedScope.binding.workspace) {
-      return printFail(normalizedAction, new core.GoalError('MISSING_WORKSPACE', 'workspace is required for a session action; pass --workspace <repo root>'));
+      return printFail(
+        normalizedAction,
+        new core.GoalError(
+          'MISSING_WORKSPACE',
+          'workspace is required for a session action; pass --workspace <repo root>',
+        ),
+      );
     }
     try {
       core.resolveGoalScope(options);

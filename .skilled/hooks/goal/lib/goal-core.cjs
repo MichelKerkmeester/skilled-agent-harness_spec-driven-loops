@@ -776,7 +776,10 @@ function writeJsonAtomic(targetPath, record) {
   }
 }
 
-/** Fail-open read: only a missing file falls through; any other read or parse error returns null. */
+/**
+ * Fail-open read: only a missing file falls through; any other read or parse error
+ * returns null.
+ */
 function readGoalRecordForScope(goalScope) {
   for (const path of [goalScope.statePath, goalScope.legacyScopedStatePath].filter(Boolean)) {
     try {

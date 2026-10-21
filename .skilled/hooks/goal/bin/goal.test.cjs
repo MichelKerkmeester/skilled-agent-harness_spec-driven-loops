@@ -194,7 +194,13 @@ test('an unknown leading flag fails instead of becoming an objective', () => {
 
 test('session actions without a workspace fail with MISSING_WORKSPACE and write nothing', () => {
   for (const action of [['show'], ['set', 'x']]) {
-    const { stdout, status } = runCliRawWithStatus(['--runtime', 'cli', '--session', 's', ...action]);
+    const { stdout, status } = runCliRawWithStatus([
+      '--runtime',
+      'cli',
+      '--session',
+      's',
+      ...action,
+    ]);
     assert.match(stdout, /^STATUS=FAIL ACTION=(show|set)/m);
     assert.equal(status, 1);
     assert.equal(field(stdout, 'code'), 'MISSING_WORKSPACE');

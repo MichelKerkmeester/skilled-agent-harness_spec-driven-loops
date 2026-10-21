@@ -1503,7 +1503,12 @@ async function maybePruneArchive(rawOptions = {}) {
   await pruneArchive(options);
 }
 
-async function placeArchiveRecord(sessionID, record, options, { sourcePath = null, canonical = true } = {}) {
+async function placeArchiveRecord(
+  sessionID,
+  record,
+  options,
+  { sourcePath = null, canonical = true } = {},
+) {
   const archiveDir = await ensureGoalArchiveDir(options);
   const sessionKey = sessionKeyForSession(sessionID);
   // Both paths stage through one file inside the archive folder. A named
@@ -1609,7 +1614,12 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
     const archiveDir = await ensureGoalArchiveDir(options);
     let archivePath;
     try {
-      archivePath = await placeArchiveRecord(normalizedSessionID, currentGoal, options, { sourcePath });
+      archivePath = await placeArchiveRecord(
+        normalizedSessionID,
+        currentGoal,
+        options,
+        { sourcePath },
+      );
     } catch (error) {
       if (error?.code === 'ENOENT') return null;
       await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
@@ -1818,7 +1828,8 @@ async function inspectGoalHealth(rawOptions = {}) {
  * @param {string} sessionID - OpenCode session id
  * @param {Function} mutator - Function receiving the current goal
  * @param {Object} [rawOptions] - State helper options
- * @returns {Promise<Object|null>} Mutated goal, the current goal when unchanged, or null after a delete
+ * @returns {Promise<Object|null>} Mutated goal, the current goal when unchanged,
+ * or null after a delete
  */
 async function enqueueGoalMutation(sessionID, rawOptions = {}, operation) {
   const options = normalizeOptions(rawOptions);
@@ -2000,7 +2011,12 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
     // keeps path separators and `..`, so the snapshot must land directly in the
     // archive folder or not at all.
     try {
-      const snapshotPath = await placeArchiveRecord(sessionID, prior, options, { canonical: false });
+      const snapshotPath = await placeArchiveRecord(
+        sessionID,
+        prior,
+        options,
+        { canonical: false },
+      );
       if (!snapshotPath) {
         writeDebugStderr(
           'bindGoal.archivePrior',
@@ -2637,7 +2653,10 @@ function renderContinuationPrompt(goal, rawOptions = {}) {
       promptSource = buildEnhancedGoalPrompt(packet.objectiveSlice, options).goalPrompt;
     }
   }
-  const objective = sanitizeInlineText(objectiveSource, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
+  const objective = sanitizeInlineText(
+    objectiveSource,
+    Math.min(options.maxObjectiveChars, objectivePreviewLimit),
+  );
   const goalPrompt = sanitizePromptText(promptSource, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal?.lastVerifierReason || 'not verified complete', DEFAULT_MAX_REASON_CHARS);
   return clampText([

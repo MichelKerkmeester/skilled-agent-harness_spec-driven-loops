@@ -263,16 +263,31 @@ test('a malformed current record never falls through to the legacy scoped record
     scope: { runtime: 'pi', sessionId: 'legacy-scope-session', workspace },
   };
   const scope = core.resolveGoalScope(options);
-  assert.ok(scope.legacyScopedStatePath, 'the workspace-default root exposes the legacy scoped path');
+  assert.ok(
+    scope.legacyScopedStatePath,
+    'the workspace-default root exposes the legacy scoped path',
+  );
   mkdirSync(scope.stateDir, { recursive: true });
 
-  const legacy = { goalId: 'goal-legacy-scoped', objective: 'Inherited objective', status: 'active' };
+  const legacy = {
+    goalId: 'goal-legacy-scoped',
+    objective: 'Inherited objective',
+    status: 'active',
+  };
   writeFileSync(scope.legacyScopedStatePath, `${JSON.stringify(legacy)}\n`, { mode: 0o600 });
   writeFileSync(scope.statePath, '{not json', { mode: 0o600 });
-  assert.equal(core.readGoalRecord(options), null, 'a malformed current record fails the whole read');
+  assert.equal(
+    core.readGoalRecord(options),
+    null,
+    'a malformed current record fails the whole read',
+  );
 
   rmSync(scope.statePath);
-  assert.equal(core.readGoalRecord(options).goalId, legacy.goalId, 'a missing current record still reads the legacy one');
+  assert.equal(
+    core.readGoalRecord(options).goalId,
+    legacy.goalId,
+    'a missing current record still reads the legacy one',
+  );
 });
 
 test('explicit legacy migration binds one validated scope and quarantines the source', () => {
