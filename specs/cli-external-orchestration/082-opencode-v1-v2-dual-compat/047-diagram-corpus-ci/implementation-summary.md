@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci"
-    last_updated_at: "2026-10-21T13:50:00Z"
+    last_updated_at: "2026-10-21T16:00:00Z"
     last_updated_by: "deepseek-v4.1-flash"
-    recent_action: "README moved to 1.2.0.1, era message rewritten, corpus and mutation suites rerun"
-    next_safe_action: "Push, then record the Diagram Corpus run id in tasks T010"
+    recent_action: "Recorded Diagram Corpus run 39611546340 on bfa19a5b9f and closed the phase"
+    next_safe_action: "None; the workflow is green on main"
     blockers: []
     key_files:
       - ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-047-diagram-corpus-ci"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,6 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 047-diagram-corpus-ci |
+| **Status** | Complete |
 | **Completed** | 2026-10-21 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -103,7 +104,29 @@ The diff went to a read-only DeepSeek v4.1 flash max review, which returned PASS
 | Both applicator steps | Output reproduced `assets/diagrams` byte for byte |
 | Existing era mutation case | Still covers the rule at `scripts/tests/mutation-cases.cjs:71`; it rejects a version outside the anchor era |
 | DeepSeek v4.1 flash max read-only review | PASS, no P0 or P1, 3 P2; two fixed, one recorded below |
-| Diagram Corpus on CI at the pushed commit | Not run yet; status stays In Progress until the run id is recorded in `tasks.md` T010 |
+| Recursive strict validation of 082 before the push | 48 of 48 folders print `RESULT: PASSED` |
+| Diagram Corpus on CI at the pushed commit | success, run `39611546340` on `bfa19a5b9f` |
+
+### CI
+
+The fix reached main at `bfa19a5b9f`, and every workflow below succeeded on that commit.
+
+| Workflow | Run | Conclusion |
+|---|---|---|
+| Diagram Corpus | 39611546340 | success |
+| Advisory Checks | 39611546299 | success |
+| Changed Packet Validation | 39611546253 | success |
+| Command Tree Parity | 39611546482 | success |
+| Dispatch Enforcement Guard | 39611546501 | success |
+| Gate Inputs | 39611546525 | success |
+| Hook Node Tests | 39611546502 | success |
+| Markdown Link Integrity | 39611546497 | success |
+| Message Contract | 39611546333 | success |
+| OpenCode Plugin Tests | 39611546451 | success |
+| Playbook Operator Contract | 39611546258 | success |
+| Rule Canary Sync | 39611546529 | success |
+| sk-doc Script Tests | 39611546341 | success |
+| Trigger Index Rebuild | 39611546368 | success |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -112,7 +135,7 @@ The diff went to a read-only DeepSeek v4.1 flash max review, which returned PASS
 ## Known Limitations
 
 1. **A new doc in this packet will fail the same check.** sk-doc's `frontmatter-version.mjs` still starts any doc without a version at `1.0.0.0`, so the next new doc under this family fails the era rule until someone sets its major.minor by hand. The durable fix belongs to sk-doc's version standard, and that owner decides it.
-2. **CI has not confirmed this yet.** The local corpus pass, the mutation suite and the applicator comparison are green, but Diagram Corpus is only proven by a run at the pushed commit. Its run id is task T010.
+2. **CI proves this only at `bfa19a5b9f`.** Diagram Corpus run `39611546340` is green on that commit, so any later change to the package's docs has to keep the README inside the `1.2` era.
 <!-- /ANCHOR:limitations -->
 
 ---

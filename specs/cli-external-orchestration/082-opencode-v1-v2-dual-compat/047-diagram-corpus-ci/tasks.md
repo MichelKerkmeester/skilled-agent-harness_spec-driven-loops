@@ -54,7 +54,7 @@ contextType: "general"
 - [x] T007 Run the mutation suite before and after the fix (`scratch/evidence/mutation-before.txt`, `scratch/evidence/mutation-after.tap`)
 - [x] T008 Confirm both applicator steps reproduce `assets/diagrams` byte for byte
 - [x] T009 DeepSeek v4.1 flash max read-only review of the diff
-- [ ] T010 Record the Diagram Corpus run id after the push to main (`implementation-summary.md`)
+- [x] T010 Record the Diagram Corpus run id after the push to main: run `39611546340` on `bfa19a5b9f` succeeded (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,7 +62,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` - T010 waits on the push to main
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

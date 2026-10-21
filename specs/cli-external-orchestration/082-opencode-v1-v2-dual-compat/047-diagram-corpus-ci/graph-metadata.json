@@ -33,7 +33,7 @@
       "diagram-corpus"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -128,12 +128,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -147,6 +141,12 @@
       },
       {
         "name": "Diagram Corpus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`.github/workflows/diagram-corpus.yml` has failed since run `39165172090` at `be234e6f94` on 2026-10-18, last green at `d04df31790` on 2026-10-11, and every pull request run since 2026-10-14 also failed",
     "created_at": "2026-10-21T13:32:28Z",
-    "last_save_at": "2026-10-21T13:47:25.467Z",
+    "last_save_at": "2026-10-21T13:56:49.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45019da956c4736364992f96b4a8c1c86be219beed2eaa040ffcdd077cc40e2a",
+    "source_fingerprint": "sha256:7a006b0c980548c6157afdcf17ba0777fbfee43827a7b7accf937e6514af7218",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a62a83b35a8b7452d538b02a2307d01f3775c3c2632ca2218784973ff0ff15bd",
+      "spec.md": "8bd90218220f710a81630833a7b668bbc198843ec5559e8ac2cce0c2b1261429",
       "plan.md": "586dc9f309c49e48f9f820ce8704c5d175aa2a287ff51bb8874452143b8e6a73",
-      "tasks.md": "b89f433f06583d2c58b2390f717b8eb4adcb530f69e18b17f57dc7e7f296a343",
-      "implementation-summary.md": "b09d651a730f0e47aa54353f19f2b79a946994e9e474b9a2439acd136d39a4de"
+      "tasks.md": "d658141491c2ed7cac3b4d79d364f406aef6308bdb02bccf19a7a68b41595349",
+      "implementation-summary.md": "939476a099cdd3e0b141282a7ad813c51e9a5fca54ff4c8c36186de943ef8e3b"
     },
     "last_active_at": null
   }
