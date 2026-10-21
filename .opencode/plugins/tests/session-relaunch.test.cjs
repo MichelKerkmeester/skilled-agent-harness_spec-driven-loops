@@ -26,6 +26,7 @@ const OPENCODE_CAPTURE = require(
   '../../hooks/session-relaunch/tests/fixtures/opencode-assistant-message-updated.json',
 );
 const core = require(CORE_PATH);
+const hookFlags = require('../../hooks/shared/hook-flags.cjs');
 const nudge = require('../../hooks/session-relaunch/lib/nudge.cjs');
 const ENV_KEYS = [
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
@@ -182,6 +183,46 @@ test('hook flags written after plugin load silence the next event', async (t) =>
     },
   } });
   assert.deepEqual(await transform(hooks, sessionID, { limit: { context: 100 } }), []);
+});
+
+test('an unchanged flags file is read once across many events', async (t) => {
+  const root = setupEnv(t);
+  fs.writeFileSync(path.join(root, 'hook-flags.env'),
+    'SESSION_RELAUNCH_THRESHOLD=0.5\n');
+  const loadConfigFile = hookFlags.loadConfigFile;
+  const reads = [];
+  t.mock.method(hookFlags, 'loadConfigFile', (filePath) => {
+    reads.push(filePath);
+    return loadConfigFile(filePath);
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-flags-read-once-0001';
+  const payload = { event: {
+    type: 'message.part.updated',
+    properties: { sessionID, part: { messageID: 'part-flags', type: 'text', text: 'x' } },
+  } };
+
+  for (let index = 0; index < 40; index += 1) await hooks.event(payload);
+
+  assert.equal(reads.length, 1);
+});
+
+test('editing the flags file after a cached read disables the next event', async (t) => {
+  const root = setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  const flagsPath = path.join(root, 'hook-flags.env');
+  fs.writeFileSync(flagsPath, 'SESSION_RELAUNCH_THRESHOLD=0.5\n');
+  const hooks = await loadPlugin({ directory: root });
+  const sessionID = 'ses-live-edit-flags-0001';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-live-edit', 90));
+  assert.equal((await transform(hooks, sessionID)).length, 1);
+
+  fs.writeFileSync(flagsPath,
+    'SESSION_RELAUNCH_THRESHOLD=0.5\nSYSTEM_SESSION_RELAUNCH_DISABLED=1\n');
+  assert.deepEqual(await transform(hooks, sessionID), []);
 });
 
 test('active nudge appears on three consecutive system transforms', async (t) => {
