@@ -12,9 +12,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`helpers/` holds shared utility functions for the sibling `*.test.cjs` files in `.skilled/plugins/tests/`. It centralizes continuation-log reading and environment-variable restoration so individual test files do not duplicate that logic. The helpers are CJS (`.cjs`) so they can be `require()`'d directly by the CJS test shells.
+`helpers/` holds shared utility functions for the sibling `*.test.cjs` files in `.skilled/plugins/tests/`. It centralizes continuation-log reading and environment-variable restoration so individual test files do not duplicate that logic, and it reads the plugin inventory and scans plugin sources for the v2 suites. The helpers are CJS (`.cjs`) so they can be `require()`'d directly by the CJS test shells.
 
-Current state: one module, `continuation-log.cjs`, exporting two functions. It is consumed by four goal-plugin test files through `require('./helpers/continuation-log.cjs')`.
+Current state: two modules. `continuation-log.cjs` exports two functions and is consumed by four goal-plugin test files through `require('./helpers/continuation-log.cjs')`. `plugin-inventory.cjs` reads the plugin inventory and uses a rolldown AST parse to find the event names each plugin compares against; it is consumed by `plugin-inventory.test.cjs`, `v2-registration.test.cjs` and `v2-hard-plugins.test.cjs`.
 
 ---
 
@@ -23,6 +23,7 @@ Current state: one module, `continuation-log.cjs`, exporting two functions. It i
 | File | Consumers | Responsibility |
 |---|---|---|
 | `continuation-log.cjs` | `opencode-goal-lifecycle.test.cjs`, `opencode-goal-state.test.cjs`, `opencode-goal-continuation.test.cjs`, `opencode-goal-capabilities.test.cjs` | Reads continuation-log entries from a state directory and restores environment variables after a test. |
+| `plugin-inventory.cjs` | `plugin-inventory.test.cjs`, `v2-registration.test.cjs`, `v2-hard-plugins.test.cjs` | Reads the plugin inventory and scans each plugin's source with rolldown's AST parser for the event names it compares against, reporting the checks it cannot trace. |
 
 ---
 
@@ -31,7 +32,8 @@ Current state: one module, `continuation-log.cjs`, exporting two functions. It i
 ```text
 helpers/
 +-- README.md
-`-- continuation-log.cjs
++-- continuation-log.cjs
+`-- plugin-inventory.cjs
 ```
 
 ---
@@ -64,7 +66,7 @@ None. The helpers are pure utility functions with no configuration surface.
 | CJS | `.cjs` so the CJS test shells can `require()` directly. |
 | Fail-open on missing file | `readContinuationEntries` returns `[]` on `ENOENT`; re-throws any other error so a genuine parse failure is not silently swallowed. |
 | No side effects on success | `restoreEnv` mutates only the named env key. |
-| No external deps | Node builtins only (`node:fs/promises`, `node:path`). |
+| No external deps in `continuation-log.cjs` | Node builtins only (`node:fs/promises`, `node:path`). `plugin-inventory.cjs` resolves `rolldown/parseAst` from the repository root. |
 
 ---
 
@@ -83,6 +85,12 @@ Expected result: all four suites pass (confirms the helpers behave as their cons
 
 ```bash
 node --check .skilled/plugins/tests/helpers/continuation-log.cjs
+```
+
+Expected result: no syntax error.
+
+```bash
+node --check .opencode/plugins/tests/helpers/plugin-inventory.cjs
 ```
 
 Expected result: no syntax error.

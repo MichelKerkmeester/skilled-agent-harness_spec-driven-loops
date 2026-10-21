@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.skilled/plugins/tests/` contains the Node built-in test-runner suites for the plugin entrypoints in the parent directory. Tests are **hermetic**: they use temporary directories (`os.tmpdir()`), in-process `import()` of the plugin module under test, stubbed `ctx.client` / bridge / subprocess seams, and per-test env var save/restore. No live OpenCode session, daemon, or network is required.
 
-The suites pin three contracts above all: the **kill-switch ordering** (a disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`), the **fail-open boundary** (a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op), and the **hook behavior** (correct injection / deny / advise / cache / lifecycle) when the kill-switch is off. Several plugins expose a `.__test` surface hanging off the default export so tests can reach internal helpers without a stray named export being mistaken for a second plugin.
+The suites pin three contracts above all: the **kill-switch ordering** (a disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`), the **fail-open boundary** (a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op), and the **hook behavior** (correct injection / deny / advise / cache / lifecycle) when the kill-switch is off. The export-contract suite reaches the goal plugin's internal helpers through `getGoalCore(plugin.server)` rather than an extra test-only export on the default export, so no stray named export is mistaken for a second plugin.
 
 Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared `hook-flags.cjs` resolver directly, while importing the ESM plugin under test via `import(pathToFileURL(...))`. Some suites use cache-busting query strings (`?${label}-${Date.now()}`) or `data:text/javascript;base64,...` instrumented modules to get a fresh module instance per test.
 
@@ -32,7 +32,7 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `mcp-route-guard.test.cjs` | `mcp-route-guard.js` | Writes its log under `.skilled`, under `.opencode` when that is the only source root, and under the checkout root when the project sits below it. |
 | `opencode-goal-capabilities.test.cjs` | `opencode-goal.js` | Goal capability and operator-status reporting. |
 | `opencode-goal-continuation.test.cjs` | `opencode-goal.js` | Guarded continuation behavior, using `helpers/continuation-log.cjs`. |
-| `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, `.__test` surface). |
+| `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, internals reached through `getGoalCore(plugin.server)`). |
 | `opencode-goal-lifecycle.test.cjs` | `opencode-goal.js` | Goal lifecycle events and usage tracking, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-render-parity.test.cjs` | `opencode-goal.js` + `hooks/goal/lib/goal-core.cjs` | Pins the shared injection label set across both renderers and the brief cache key's write sensitivity. |
 | `opencode-goal-state.test.cjs` | `opencode-goal.js` | Session-keyed goal persistence, using `helpers/continuation-log.cjs`. |
@@ -107,7 +107,7 @@ tests/
 |---|---|
 | `system-spec-gate.test.cjs` | Pins the kill-switch ordering contract: `SYSTEM_SPEC_GATE_DISABLED=1` must be checked before `experimental.chat.system.transform` reads or mutates `output` at all. Also pins normal hook behavior (normalize + inject) when enabled. |
 | `system-skill-advisor.test.cjs` | Pins advisor caching, lifecycle, and bridge behavior. Imports the bridge via `pathToFileURL(BRIDGE_PATH)` and exercises the TTL+LRU cache, in-flight dedup, and fail-open paths. |
-| `opencode-goal-*.test.cjs` (7 files) | The goal plugin's split test surface: capabilities, continuation, export contract, lifecycle, state, supervisor, tool-path. Uses `helpers/continuation-log.cjs` for continuation-log fixtures. |
+| `opencode-goal-*.test.cjs` (8 files) | The goal plugin's split test surface: capabilities, continuation, export contract, lifecycle, render parity, state, supervisor, tool-path. Uses `helpers/continuation-log.cjs` for continuation-log fixtures. |
 | `sk-code-post-edit-quality.test.cjs` | Pins the `tool.execute.before`/`after` callID-to-filePath correlation and the post-edit router drain on the next transform. |
 
 ---
@@ -126,7 +126,7 @@ Tests manage their own env per test (save/restore). The kill-switch env each sui
 | Kill-switch ordering | A disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`. |
 | Fail-open boundary | A missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. |
 | CJS shell, ESM under test | Tests are `.test.cjs` so they can `require()` Node builtins and `hook-flags.cjs`. The ESM plugin under test is imported via `import(pathToFileURL(...))`. Cache-busting query strings or `data:text/javascript;base64,...` instrumented modules give a fresh module instance per test where needed. |
-| `.__test` surface | Several plugins expose internal helpers hanging off the default export so tests can reach them without a stray named export being mistaken for a second plugin. |
+| `getGoalCore(plugin.server)` seam | The export-contract suite reaches the goal plugin's internal helpers through `getGoalCore(plugin.server)` rather than adding an extra test-only export to the default export, so a stray named export is never mistaken for a second plugin. |
 | Helpers | Shared fixture utilities live under `helpers/` (see `helpers/README.md`). |
 
 ---
