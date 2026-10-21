@@ -35,7 +35,7 @@
       "workspace"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -138,12 +138,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -163,6 +157,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The OpenCode goal plugin deletes a goal whenever a mutator returns `null`, although several event mutators return `null` only to mean that no goal exists, so a goal another process just wrote can be removed",
     "created_at": "2026-10-21T04:56:30Z",
-    "last_save_at": "2026-10-21T06:31:36.272Z",
+    "last_save_at": "2026-10-21T06:57:46.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5100fb505f4ce48798113cbc82c5f7dbe276434445ed65c1d60e35c874b76aa3",
+    "source_fingerprint": "sha256:30770db7d1d2d98f3b36139bd49b137a0775d7565a7cc51b6f6e56cf974ff8b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "475441a5e9199f755dd951f11ee5c76b73147530f2c3f75a04d18b27c2daa8f1",
+      "spec.md": "ff899aa9f13effa7a9d92db1feea75cf198f2adac18b0fcf90a0dd503a1bbebe",
       "plan.md": "0c75debe5cf1dd79e2865d35a26aa9eb12ad1d0556b9cc4daf7580c68f551207",
-      "tasks.md": "24cf4b8e12127f4bae1b59d0da2e7000e4f5e1bb1cfef8e9cece46601581fb8e",
-      "implementation-summary.md": "21a6c4eb4f7106e49c2d5f7abd415da950d461d1b0f335f393b1da6a53d6fa27"
+      "tasks.md": "af82f395072874a5d09343932c438aa567cbed4005c6f3a0da2bd46ed73ad288",
+      "implementation-summary.md": "514455a3d810735a510dfd247dabf90c48819b721724627246d61c0b8367f3bc"
     },
     "last_active_at": null
   }

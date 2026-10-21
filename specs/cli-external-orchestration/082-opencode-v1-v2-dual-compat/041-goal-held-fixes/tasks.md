@@ -59,7 +59,7 @@ contextType: "general"
 - [x] T012 Plugin, hooks node and battery unit suites rerun at or above baseline (`scratch/after.txt`)
 - [x] T013 Live opencode-goal scenario on OpenCode 1.19.3 and 2.0.32 (`scratch/live-goal/`)
 - [x] T014 Luna verifies every change (`scratch/luna/`)
-- [ ] T015 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
+- [x] T015 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
