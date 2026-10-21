@@ -1,0 +1,75 @@
+PASS test_authored_name_kebab.py
+PASS test_build_rule_cards.py
+PASS test_category_classification_denumbered.py
+PASS test_changelog_validator.py
+PASS test_check_repo_rules.py
+PASS test_cite_drift_advisory.py
+PASS test_code_folder_readme.py
+PASS test_create_benchmark_family_registry.py
+PASS test_create_skill_contract.py
+PASS test_extract_structure_regressions.py
+PASS test_feature_catalog_validation.py
+PASS test_frontmatter_values.py
+PASS test_instruction_file_exclusion.py
+PASS test_is_uppercase_section.py
+PASS test_measure_rule_compliance.py
+PASS test_naming_root_resolver.py
+PASS test_no_new_snake_case_guard.py
+PASS test_package_skill_regressions.py
+PASS test_quick_validate_086.py
+PASS test_readme_manifest.py
+PASS test_readme_verdict_parity.py
+PASS test_reference_checker.py
+PASS test_reference_rewrite_executor.py
+FAIL test_rename_tooling_fixture_harness.py (exit 1)
+test_boundary_and_flag_guards_fail_before_fixture_mutation (__main__.RenameToolingFixtureHarnessTests)
+Protected roots, outside roots, and rollback-only requests should be rejected. ... ok
+test_corpus_declares_a_non_zero_explicit_scenario_matrix (__main__.RenameToolingFixtureHarnessTests)
+The corpus validator should accept the complete explicit coverage contract. ... ok
+test_default_cli_is_dry_run_deterministic_and_non_mutating (__main__.RenameToolingFixtureHarnessTests)
+The default CLI should execute no rename apply or rollback operation. ... FAIL
+test_explicit_apply_and_rollback_remain_inside_disposable_repositories (__main__.RenameToolingFixtureHarnessTests)
+Opt-in mutation should prove apply, idempotency, rollback, and stale-plan aborts. ... FAIL
+
+======================================================================
+FAIL: test_default_cli_is_dry_run_deterministic_and_non_mutating (__main__.RenameToolingFixtureHarnessTests)
+The default CLI should execute no rename apply or rollback operation.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups/.skilled/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py", line 74, in test_default_cli_is_dry_run_deterministic_and_non_mutating
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 2 != 0 : ERROR: fixture harness changed the protected worktree; paths that moved during the run: ?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/scratch/live/v1-direct.err; ?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/scratch/live/v1-direct.jsonl; ?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/scratch/live/v1-unpinned.txt; ?? specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/scratch/live/v2-unpinned.txt
+
+
+======================================================================
+FAIL: test_explicit_apply_and_rollback_remain_inside_disposable_repositories (__main__.RenameToolingFixtureHarnessTests)
+Opt-in mutation should prove apply, idempotency, rollback, and stale-plan aborts.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups/.skilled/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py", line 125, in test_explicit_apply_and_rollback_remain_inside_disposable_repositories
+    self.assertEqual(snapshot_git_worktree(self.protected_root), protected_before)
+AssertionError: '77acd2002e63d2ed7aab3593e678bd7f5e9df747c4f7b671743f9dafeeb0ccb4' != '13200d0b15107d93c34e124701dedc11c5beeebb9952bfe6c72b641e3bc4eccf'
+- 77acd2002e63d2ed7aab3593e678bd7f5e9df747c4f7b671743f9dafeeb0ccb4
++ 13200d0b15107d93c34e124701dedc11c5beeebb9952bfe6c72b641e3bc4eccf
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 743.870s
+
+FAILED (failures=2)
+PASS test_root_name_consumer_matrix.py
+PASS test_rule_experiment.py
+PASS test_semantic_rename_engine.py
+PASS test_skill_contract.py
+PASS test_structure_validation.py
+PASS test_surface_packet_sections.py
+PASS test_template_version_seed.py
+PASS test_validate_catalog_package.py
+PASS test_validation_switch.py
+PASS test_validator.py
+PASS test-frontmatter-version.mjs
+PASS test-frontmatter-version-bump.mjs
+PASS test-cite-drift-scan.mjs
+PASS install-guide-contract.test.cjs
+1 failing: test_rename_tooling_fixture_harness.py
+EXIT=1

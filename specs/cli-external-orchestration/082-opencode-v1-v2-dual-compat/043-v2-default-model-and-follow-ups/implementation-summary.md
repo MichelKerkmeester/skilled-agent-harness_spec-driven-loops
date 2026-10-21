@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/043-v2-default-model-and-follow-ups"
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups"
     last_updated_at: "2026-10-21T07:17:06Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

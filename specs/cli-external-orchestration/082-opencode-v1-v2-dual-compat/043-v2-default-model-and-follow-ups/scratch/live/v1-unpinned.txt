@@ -1,0 +1,8 @@
+bin=opencode
+model=undefined
+effort=undefined
+command=opencode "run" "--model" "opencode-go/deepseek-v4.1-flash" "--format" "json" "--dir" "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups" "--dangerously-skip-permissions" "--variant" "max" "Reply with the single word OK. Do not use any tools."
+exit=null
+signal=SIGTERM
+text=
+stderr_tail=

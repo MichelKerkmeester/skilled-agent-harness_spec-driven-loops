@@ -1,0 +1,39 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+THE DECISION (from the operator, 2026-10-21): cli-opencode now has a per-version default model.
+- OpenCode 1: `opencode-go/deepseek-v4.1-flash` at `--variant max` (unchanged). Form: `opencode run --model opencode-go/deepseek-v4.1-flash --variant max ...`.
+- OpenCode 2: `llmgateway/deepseek-v4.1-flash` at `#max` (DevPass, LLM Gateway). Form: `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#max ...`. Reason: OpenCode 2 lists no `opencode-go` provider unless it is logged in to it separately (`opencode2 providers login opencode-go`), so the v1 default fails on a typical v2 install, while `llmgateway` is listed.
+
+HOW TO APPLY IT:
+1. Every OpenCode 2 dispatch example that shows the DEFAULT dispatch and today reads `-m opencode-go/deepseek-v4.1-flash#<level>` becomes `-m llmgateway/deepseek-v4.1-flash#<level>`. Keep the level as written.
+2. Do NOT change OpenCode 1 forms (`--model opencode-go/deepseek-v4.1-flash`, `--variant ...`). They keep opencode-go.
+3. Do NOT change text that describes the opencode-go route itself rather than the default dispatch, for example a roster row about `opencode-go/deepseek-v4.1-flash` saying what its v2 form is. There, keep `-m opencode-go/deepseek-v4.1-flash#max` and add, once per such row, that v2 needs its own opencode-go login.
+4. Prose that says what the default is must state both versions. Never say the default is the same on both versions.
+5. A v2 pre-flight or provider check for the default now checks the `llmgateway/` prefix, not `opencode-go/`.
+Before editing, list every line in your files that contains `opencode-go/deepseek-v4.1-flash` (rg -n), classify each as v1-form, v2-default-dispatch, route-description or prose-default, and edit only the last three as above.
+
+TASK: apply the decision to the cli-opencode skill's core docs listed under ALLOWED WRITE PATHS. Also:
+- In `references/providers-and-models.md`: in the `### llmgateway` table, set the `Default?` cell of the `llmgateway/deepseek-v4.1-flash` row to `✓` and say in its Notes that it is the OpenCode 2 default. Keep the `opencode-go` table's `✓` on `opencode-go/deepseek-v4.1-flash` and say in its Notes that it is the OpenCode 1 default. Each table must still have exactly one `✓`. In section 3 (Defaults and quick invocation), the Default model and Default effort rows name both versions, and the OpenCode 2 code block uses the llmgateway id. Fix the intro sentence of the `### opencode-go` and `### llmgateway` sections to match.
+- In `SKILL.md` section 3 Default Invocation and ALWAYS rule 3, state both defaults. Keep the existing "Fan-out fallback" line unchanged.
+- In `references/cli-reference.md` section 4 (the provider pre-flight and decision table) and the "skill default is not configured" text, the v2 path checks for `llmgateway`.
+- In `references/install-and-versions.md`, the line about v2 not listing opencode-go now says the v2 default therefore uses llmgateway.
+Docs follow sk-doc's markdown rules already used in these files: plain sentences, no new headings, no marketing words.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/README.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/*.md (any file in that folder)
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+rg -n "opencode-go/deepseek-v4.1-flash#" .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md .skilled/skills/cli-external-orchestration/cli-opencode/README.md .skilled/skills/cli-external-orchestration/cli-opencode/references/
+and
+rg -n "llmgateway/deepseek-v4.1-flash#" .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md .skilled/skills/cli-external-orchestration/cli-opencode/README.md .skilled/skills/cli-external-orchestration/cli-opencode/references/ | wc -l
+
+Return report: each file you changed with the count of lines changed, every remaining `opencode-go/deepseek-v4.1-flash#` line with the reason it stays (route-description), and the two verify outputs.

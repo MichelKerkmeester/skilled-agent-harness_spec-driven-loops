@@ -1,0 +1,30 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change): cli-opencode now has a per-version default model, and the docs already say so: OpenCode 1 uses `opencode-go/deepseek-v4.1-flash` (`--model ... --variant max`), OpenCode 2 uses `llmgateway/deepseek-v4.1-flash` (`-m ...#max`). In `references/providers-and-models.md` the `### opencode-go` table marks the v1 default with `✓` and the `### llmgateway` table marks the v2 default with `✓`.
+
+Update `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs` to hold the tree to that:
+1. Rename `DEFAULT_ID` to `V1_DEFAULT_ID` and add `V2_DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash'`, each with a one-line comment on where it is listed.
+2. Keep 'the roster names one opencode-go default' (now against `V1_DEFAULT_ID`) and add the same test for the `llmgateway` table and `V2_DEFAULT_ID`.
+3. In "SKILL.md's default invocation names the roster default", require every `--model` selector to pin `V1_DEFAULT_ID` and every `-m` selector to pin `V2_DEFAULT_ID` (still requiring at least one of each). Rename the test to say it names each version's roster default.
+4. Add one test that the two defaults differ in exactly one way: the same model slug after the provider, and the providers `opencode-go` and `llmgateway`.
+5. Update the header comment so it describes the per-version default. Leave the retired-id test unchanged.
+
+Code standards: read the whole file first and match its style. Never put finding ids, task ids, spec paths, phase numbers or packet numbers in a comment or a test name.
+
+Check: the updated SKILL.md test must fail if a `-m` selector in SKILL.md's Default Invocation section names `opencode-go/deepseek-v4.1-flash#max`. Prove it by temporarily editing that one selector in SKILL.md, running the test, confirming the failure, then restoring SKILL.md exactly (`git diff --stat` on SKILL.md must show the same lines as before you started).
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs
+- .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md (temporary check only; must end exactly as you found it)
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+node --test --test-reporter=tap .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs 2>&1 | grep -E '^(not ok|# (tests|pass|fail))'
+
+Return report: the tests in the file after your change, the verify output, and the result of the check.

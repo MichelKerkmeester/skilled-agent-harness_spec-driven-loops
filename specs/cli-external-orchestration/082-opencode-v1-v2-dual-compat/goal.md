@@ -135,9 +135,9 @@ and findings belong here.
 | Bun-compiled v2 | OpenCode 2 is Bun-compiled, so `process.argv[1]` is a virtual path. An import-time `realpathSync(process.argv[1])` in a plugin import chain kills the plugin on v2 (002 decision 10) |
 | 005 policy amendment | On `unknown`, version-specific rules warn instead of dropping (005 Q5), and the probe targets the binary the command runs (005 NFR-S01) |
 | 006 binary order | PATH order first, `opencode2` before `opencode` only inside one directory, so test stubs keep winning over a real binary (006 decision 10). With both installed side by side, cli-opencode lineages go to v2 and native lineages refuse until `OPENCODE_BIN=opencode` |
-| 006 v2 default model | v2 lists no opencode-go model on this machine, so a v2 lineage with no pinned model fails here until that credential is added to v2; carried to 007 (006 decision 12) |
+| 006 v2 default model | v2 lists no opencode-go model on this machine, so a v2 lineage with no pinned model fails here until that credential is added to v2; carried to 007 (006 decision 12). Resolved in 043: v2 defaults to `llmgateway` |
 | 007 executors | The operator asked for DeepSeek V4.1 Flash wherever possible: DeepSeek writes code and docs from 007 on, Luna cross-reviews (007 decision 0) |
-| 007 v2 opencode-go | The install reference states that the skill's default model names the `opencode-go` provider, which v2 does not list here, so the default cannot be assumed to work on v2 (reference line 250). Adding that credential to v2 is the operator's |
+| 007 v2 opencode-go | The install reference states that the skill's default model names the `opencode-go` provider, which v2 does not list here, so the default cannot be assumed to work on v2 (reference line 250). Adding that credential to v2 is the operator's. Resolved in 043, as for 006 |
 | 008 v1 oracle | OpenCode 1.19.3 logs no plugin line and reports no broken plugin, so the v1 load check is an import harness, not a log window (008 decision 2) |
 | 008 git-setup-check | Phase 002's `dualPlugin(...)` wrapper hid the git adapter from `/doctor:git`; fixed in 008 (decision 12) |
 | 008 Q1 held | `/doctor:opencode` stays a script: a command file needs its route entry and catalog rows, which wait for the operator (008 decisions 4 and 15) |

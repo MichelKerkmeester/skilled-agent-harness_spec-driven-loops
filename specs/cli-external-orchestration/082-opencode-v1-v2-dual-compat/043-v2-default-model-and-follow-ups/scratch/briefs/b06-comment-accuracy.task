@@ -1,0 +1,33 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK: four comments claim more than their code guarantees. Change comment text only, never code. Read the code each comment describes before rewording it.
+
+1. `.github/workflows/trigger-index-rebuild.yml`, the comment above `concurrency:`, ends: "leaves the index unrebuilt until the next push to the branch". A push made with the default GITHUB_TOKEN also starts no run, so the true statement is: until a later push that starts a workflow run. Match `.github/workflows/README.md`'s row for this workflow, which says "until a later push that does start one".
+2. `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, the comment on the loop-state lock's temp-file sweep says a temp file's age proves it is not in flight. Age only makes it eligible for removal: a creator paused longer than that age loses its temp file and then skips its update. Say that.
+3. Same file, the break-lock comment says a break lock is never moved out from under a contender. That holds except when the breaker holding it has died, in which case another process retires it. State the exception.
+4. `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, the comment block above `BEARER_SCHEME_WORD` / `BEARER_TOKEN_SHAPE` describes which Bearer tokens are redacted but omits the two thresholds the patterns enforce: the token run must be at least 8 characters, and a run with no digit or symbol counts as a token only when it is at least 16 characters and contains an uppercase letter. Read the regexes and state the thresholds they actually enforce.
+
+Code standards: match the surrounding comment style and density. A comment states the durable WHY only. Never put finding ids, task ids, spec paths, phase numbers or packet numbers in a comment.
+
+ALLOWED WRITE PATHS:
+- .github/workflows/trigger-index-rebuild.yml
+- .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs
+- .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify by running (from the worktree root):
+git diff --stat
+git diff -U0 | grep '^[+-]' | grep -v '^[+-][+-]' | grep -vE '^[+-]\s*(//|\*|#|/\*)' | head
+(the second command must print nothing: only comment lines changed)
+and
+node --test --test-reporter=tap .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs 2>&1 | grep -E '^# (pass|fail)'
+and
+actionlint .github/workflows/trigger-index-rebuild.yml && echo actionlint-ok
+
+Return report: each comment before and after, and the three verify outputs.
