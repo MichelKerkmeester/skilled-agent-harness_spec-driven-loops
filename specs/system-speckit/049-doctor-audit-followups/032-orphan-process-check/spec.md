@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` (planning only) |
 | **Parent Spec** | ../spec.md |
@@ -120,7 +120,7 @@ The operator sees orphaned helpers in one line and can reap them safely, without
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Run against a fixture of the 2026-10-21 process table, the scan lists the 22 orphans and none of the daemons.
+- **SC-001**: Superseded by ADR-001: the 2026-10-21 table was never saved. Fixture rows for every helper kind list exactly the orphans and none of the daemons, and a live orphan is listed on this machine (AC-005).
 - **SC-002**: `/doctor:setup` prints the line in under a second.
 <!-- /ANCHOR:success-criteria -->
 
@@ -189,8 +189,7 @@ The operator sees orphaned helpers in one line and can reap them safely, without
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the age threshold be one value or per pattern?
-- Should `/doctor:setup` offer the reap, or only point to the script?
+- None. The threshold is one value, 60 minutes, overridable with `--min-age-min`; `/doctor:setup` only points to the reap (ADR-002).
 <!-- /ANCHOR:questions -->
 
 ---

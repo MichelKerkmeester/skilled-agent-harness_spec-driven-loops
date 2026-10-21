@@ -17,6 +17,7 @@
       "orphan process check plan",
       "orphan process check tasks",
       "orphan process check acceptance criteria",
+      "orphan process check decision",
       "orphan process check implementation summary"
     ],
     "key_topics": [
@@ -31,16 +32,20 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation"
+      "decision"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/orphan-process-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-setup-orphan-line.test.cjs",
       ".skilled/commands/doctor/assets/doctor-setup.yaml",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
     ],
@@ -70,9 +75,33 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-process-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/orphan-process-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-process-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-orphan-line.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-setup-orphan-line.test.cjs",
         "source": "derived"
       },
       {
@@ -164,35 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-line",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-10-21 a manual cleanup found 22 orphaned processes holding about 315 MB: `node --test` runs from removed worktrees, a Pi worker and its child, a harness Python server, test helpers, a `git-live-follow` for a scratch repository, `tail -F` and `grep` monitors, and eight `grep -r` searches stuck on `/private/tmp`",
     "created_at": "2026-10-21T09:51:17Z",
-    "last_save_at": "2026-10-21T09:56:27.816Z",
+    "last_save_at": "2026-10-21T12:28:05.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,15 +205,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38056f9b2f556ba8f3fde77f90271d4c48afb9d4f576598033238b7ef5e9d42a",
+    "source_fingerprint": "sha256:1faf7a123f222a386c040c59556530921da1b42db2abc2f149b8dd2fa3747f39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3860894b5a930f51afb285836e99bfa7cd3183e0ce85417bacf1fd830ffaabb0",
+      "spec.md": "5dde6e1144579f746089f26db3c36bef3deeccdb77dac05b01571a3cf2b8330d",
       "plan.md": "a41b891c03d871f45a7adc4845ef3daa1a75fe4a82c4048d7e558761aed97d82",
-      "tasks.md": "519e140a905d198bd037e7e0031c5b6b2ca5b07c4f658676f1b7ecbf6224b2dd",
-      "implementation-summary.md": "819ac2bbbb9559ca6f79ce38ca54f7411dd268c763a0157e40d184c8fb7b4820"
+      "tasks.md": "0af9698c9cd65ed4c3f77a63bda55e59aa2fb51c8ade297e40f0500d7c66b8b4",
+      "decision-record.md": "0f53261b68c9e0fe65caa70f00e624b2c0612de51f570a019dbe65dc809f6116",
+      "implementation-summary.md": "ae502d4f956d5878194f5fb34760ef6c3ac2ea6660c14ee02cb8070d4f721075"
     },
     "last_active_at": null
   }

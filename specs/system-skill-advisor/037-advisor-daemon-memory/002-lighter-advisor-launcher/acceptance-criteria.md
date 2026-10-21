@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-lighter-advisor-launcher"
+    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher"
     last_updated_at: "2026-10-21T09:51:16Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded the no-go; AC-001 and AC-004 Met, AC-002 and AC-003 superseded"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "scaffold-002-lighter-advisor-launcher"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,9 +36,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 002-lighter-advisor-launcher
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-10-21
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given this machine, When the three processes are measured, Then their RSS and the decision are recorded in `decision-record.md` | `decision-record.md` ADR-001 with the measurement table | Unmet | - |
-| AC-002 | REQ-002 | Given a go, When a session queries the advisor in a fresh checkout, Then one advisor process serves it and lease takeover and model server respawn still work | `ps` listing, lease tests | Unmet | - |
-| AC-003 | REQ-003 | Given a go, When the launcher and lease suites run, Then they pass with no lost cases | vitest output | Unmet | - |
-| AC-004 | REQ-004 | Given a no-go, When the phase closes, Then the decision names the recovery path that keeps the launcher and no code changed | `decision-record.md`, `git diff --stat` limited to this folder | Unmet | - |
+| AC-001 | REQ-001 | Given this machine, When the three processes are measured, Then their RSS and the decision are recorded in `decision-record.md` | `decision-record.md` ADR-001: measurement table (launcher 53 to 57 MB, advisor server 66 to 103 MB, bare Node 47 to 50 MB) and the no-go | Met | - |
+| AC-002 | REQ-002 | Given a go, When a session queries the advisor in a fresh checkout, Then one advisor process serves it and lease takeover and model server respawn still work | not applicable after the no-go | Superseded | ADR-002 |
+| AC-003 | REQ-003 | Given a go, When the launcher and lease suites run, Then they pass with no lost cases | not applicable after the no-go | Superseded | ADR-002 |
+| AC-004 | REQ-004 | Given a no-go, When the phase closes, Then the decision names the recovery path that keeps the launcher and no code changed | ADR-001 names the crash and out-of-memory cleanup at `.skilled/bin/system-skill-advisor-launcher.cjs:1436`; `git diff` for this phase touches only this folder and its parent | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not started. Every criterion is Unmet until the phase is built and verified.
+The measurement and the recovery-path map carried the decision. The build criteria were superseded by ADR-002 after the no-go.
 <!-- /ANCHOR:closure -->

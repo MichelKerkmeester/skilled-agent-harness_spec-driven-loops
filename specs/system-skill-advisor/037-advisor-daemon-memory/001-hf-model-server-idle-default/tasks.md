@@ -31,8 +31,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Grep every reader of `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN`
-- [ ] T002 Measure the cold start after an eviction, three runs, and record it
+- [x] T001 Grep every reader of `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN`
+- [x] T002 Measure the cold start after an eviction, three runs, and record it
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,9 +40,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Change the unset default in `getModelServerIdleConfig` (`.skilled/bin/lib/model-server-supervision.cjs`)
-- [ ] T004 Update the default-disabled expectations (`launcher-model-server-idle-eviction.vitest.ts`)
-- [ ] T005 Update the default in `ENV-REFERENCE.md` and `.env.example`
+- [x] T003 Change the unset default in `getModelServerIdleConfig` (`.skilled/bin/lib/model-server-supervision.cjs`)
+- [x] T004 Update the default-disabled expectations (`launcher-model-server-idle-eviction.vitest.ts`)
+- [x] T005 Update the default in `ENV-REFERENCE.md` and `.env.example`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,9 +50,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Run the idle eviction suite
-- [ ] T007 Live check: an idle launcher drops its model server and the next query respawns it
-- [ ] T008 Strict validation of this folder
+- [x] T006 Run the idle eviction suite (embedders 90 passed, 2 skipped; supervision suites 29; advisor launcher-bootstrap 20)
+- [x] T007 Live check: an idle launcher drops its model server and the next query respawns it (superseded by ADR-002; the eviction case in the supervision suite stands in)
+- [x] T008 Strict validation of this folder (RESULT: PASSED after the orchestrator refreshed the generated metadata)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` (planning only) |
 | **Parent Spec** | ../spec.md |
@@ -72,7 +72,7 @@ An idle model server unloads by default and comes back on the next embedding req
 
 ### In Scope
 - Measure the time from an evicted server to the first embedding result, three runs, on this machine.
-- Change the unset default in `getModelServerIdleConfig` from 0 to the chosen value, proposed 15 minutes.
+- Change the unset default in `getModelServerIdleConfig` from 0 to 10 minutes, chosen from the measured cold start (ADR-001).
 - Keep `0` and negative values as "never evict", and keep invalid values falling back safely.
 - Update `ENV-REFERENCE.md`, `.env.example` and the idle eviction tests.
 
@@ -187,8 +187,7 @@ An idle model server unloads by default and comes back on the next embedding req
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Is 15 minutes right, or should the measured cold start push it higher?
-- Should a non-numeric value fall back to the default or to off? The current code treats it as off.
+- None. ADR-001 settles both earlier questions: the default is 10 minutes, and a non-numeric value uses the default.
 <!-- /ANCHOR:questions -->
 
 ---
