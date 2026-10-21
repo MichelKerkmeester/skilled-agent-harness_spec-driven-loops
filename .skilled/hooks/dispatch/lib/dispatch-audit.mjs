@@ -548,15 +548,46 @@ function resolveSegment(segment, redirectionsStripped = false) {
   return null;
 }
 
-export function resolveDispatchPacket(command) {
-  const entryFor = (skill) => DISPATCH_SHAPES.find((d) => d.skill === skill) || null;
+/**
+ * Resolve every dispatch in a command chain to the packet whose rules govern it.
+ *
+ * A shell chain can hold more than one dispatch -- `opencode run ... && pi -p ...` is two
+ * calls governed by two different packets. Returning only the first one let the preflight
+ * evaluate cli-opencode's rules for the whole chain, so a later executor's own hard rules
+ * (a missing `--offline`, say) were never checked at all. Every dispatch has to be checked
+ * against its own packet, so this returns each one in command order, deduplicated to the
+ * first position where its skill appears.
+ *
+ * @param {string} command - raw command text.
+ * @returns {Array<{skill: string, packetPath: string}>} one entry per distinct dispatch, in command order.
+ */
+export function resolveDispatchPackets(command) {
   const raw = typeof command === 'string' ? command : '';
-  if (!raw) return null;
+  if (!raw) return [];
+  const packets = [];
+  const seen = new Set();
   for (const segment of shellSegments(stripHeredocBodies(raw))) {
     const skill = resolveSegment(segment);
-    if (skill) return entryFor(skill);
+    if (!skill || seen.has(skill)) continue;
+    const entry = DISPATCH_SHAPES.find((d) => d.skill === skill);
+    if (!entry) continue;
+    seen.add(skill);
+    packets.push(entry);
   }
-  return null;
+  return packets;
+}
+
+/**
+ * Resolve a command to the first packet whose rules govern it, or null when nothing does.
+ *
+ * The first result is what the single-packet callers need; callers that evaluate rules
+ * for a whole chain use `resolveDispatchPackets` instead.
+ *
+ * @param {string} command - raw command text.
+ * @returns {{skill: string, packetPath: string} | null}
+ */
+export function resolveDispatchPacket(command) {
+  return resolveDispatchPackets(command)[0] ?? null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

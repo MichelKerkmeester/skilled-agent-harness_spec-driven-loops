@@ -22,6 +22,7 @@ import {
   matchDispatchShape,
   recordDispatch,
   resolveDispatchPacket,
+  resolveDispatchPackets,
 } from './dispatch-audit.mjs';
 import { evaluate } from './dispatch-rule-checks.mjs';
 import {
@@ -453,6 +454,18 @@ describe('resolveDispatchPacket', () => {
 
   it('does not unwrap a name lookup', () => {
     expect(resolveDispatchPacket('command -v opencode')).toBeNull();
+  });
+
+  it('resolves every dispatch in a chain, once each, in command order', () => {
+    expect(
+      resolveDispatchPackets('opencode run -m p/m "a" </dev/null && pi --offline -p "b" </dev/null').map((e) => e.skill),
+    ).toEqual(['cli-opencode', 'cli-pi']);
+    expect(
+      resolveDispatchPackets('opencode run -m p/m "a" ; opencode run -m p/m "b"').map((e) => e.skill),
+    ).toEqual(['cli-opencode']);
+    expect(resolveDispatchPackets('git status')).toEqual([]);
+    expect(resolveDispatchPackets(undefined)).toEqual([]);
+    expect(resolveDispatchPacket('opencode run -m p/m "a" && pi -p "b"')?.skill).toBe('cli-opencode');
   });
 });
 

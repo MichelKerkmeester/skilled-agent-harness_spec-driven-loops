@@ -1,0 +1,28 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs (119 tests | 1 failed | 110 skipped) 6ms
+   ❯ resolveDispatchPacket (9)
+     × resolves every dispatch in a chain, once each, in command order 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > resolveDispatchPacket > resolves every dispatch in a chain, once each, in command order
+TypeError: resolveDispatchPackets is not a function
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:461:7
+    459|   it('resolves every dispatch in a chain, once each, in command order'…
+    460|     expect(
+    461|       resolveDispatchPackets('opencode run -m p/m "a" </dev/null && pi…
+       |       ^
+    462|     ).toEqual(['cli-opencode', 'cli-pi']);
+    463|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed | 110 skipped (119)
+   Start at  07:08:37
+   Duration  109ms (transform 51%, import 33%, tests 12%, worker 3%)
+
+b2-every-dispatch: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-audit.mjs)

@@ -1,0 +1,29 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its test.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, `resolveDispatchPacket` (around line 526) walks the command's segments and returns at the FIRST segment that resolves. In `opencode run -m p/m "a" </dev/null && pi -p "b"` the second dispatch is never returned, so the preflight adapters evaluate only cli-opencode's rules and cli-pi's own hard rules (for example `--offline`) never run for it.
+
+Fix:
+1. Add and export `resolveDispatchPackets(command)`. It walks the same segments `resolveDispatchPacket` walks today, with the same `stripHeredocBodies` and `shellSegments` steps and the same `resolveSegment` call, and returns an array of every resolved `DISPATCH_SHAPES` entry in command order, without duplicates (the same skill twice appears once, at its first position). A non-string or empty command returns `[]`.
+2. Rewrite `resolveDispatchPacket(command)` as `resolveDispatchPackets(command)[0] ?? null`, so its result is unchanged for every input.
+3. Give `resolveDispatchPackets` a JSDoc block in the style of the neighbouring functions, saying why it exists: every dispatch in a chain must be checked against its own packet's rules.
+
+Test: in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, inside `describe('resolveDispatchPacket', ...)`, add `resolveDispatchPackets` to the import list at the top of the file and add one `it` that asserts:
+- `resolveDispatchPackets('opencode run -m p/m "a" </dev/null && pi --offline -p "b" </dev/null').map((e) => e.skill)` equals `['cli-opencode', 'cli-pi']`;
+- `resolveDispatchPackets('opencode run -m p/m "a" ; opencode run -m p/m "b"').map((e) => e.skill)` equals `['cli-opencode']`;
+- `resolveDispatchPackets('git status')` equals `[]`, and `resolveDispatchPackets(undefined)` equals `[]`;
+- `resolveDispatchPacket('opencode run -m p/m "a" && pi -p "b"')?.skill` is still `'cli-opencode'`.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.
