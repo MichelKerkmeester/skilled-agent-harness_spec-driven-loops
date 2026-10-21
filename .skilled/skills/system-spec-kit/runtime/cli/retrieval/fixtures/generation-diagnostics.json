@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7205,
-    "ok": 14773,
+    "ok": 14800,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25526,
+  "documentsScanned": 25553,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
+  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37252,
+      "ok": 37291,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69258,6 +69258,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch",
       "reason": "excluded directory"
     },
@@ -72406,6 +72414,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -74859,6 +74875,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/031-changelog-v4003-reality-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/scratch",
       "reason": "excluded directory"
     },
     {

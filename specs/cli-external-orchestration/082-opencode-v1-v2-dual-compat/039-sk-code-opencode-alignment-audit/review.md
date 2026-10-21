@@ -27,7 +27,7 @@ A finding whose fix would change behaviour an operator or a runtime sees was not
 | Severity | Confirmed | Fixed | Held for the operator | Recorded |
 |---|---|---|---|---|
 | P0 | 5 | 2 | 3 | 0 |
-| P1 | 48 | 29 | 18 | 1 |
+| P1 | 48 | 30 | 18 | 0 |
 | P2 | 205 | 184 | 14 | 7 |
 
 Luna rejected 25 further candidates. The two findings Luna's verify rounds added are counted in the table.
@@ -82,7 +82,6 @@ Each of these needs a behaviour change, so each waits on an operator decision. L
 
 | Id | Sev | File | Why it stays |
 |---|---|---|---|
-| b05-relaunch-lib-006 | P1 | `.skilled/hooks/session-relaunch/lib/nudge.cjs` | recorded (fixed in part): the JS formatter is shared; .skilled/bin/skilled-loop is outside the audited trees and keeps its own |
 | b01-plugins-goal-N02 | P2 | `.opencode/plugins/opencode-goal.js` | recorded: splitting the 3,380-line plugin is a refactor beyond a standards pass |
 | b02-plugins-rest-005 | P2 | `.opencode/plugins/mcp-route-guard.js` | recorded: the shared rotate helper it asks for is a new cross-plugin module, beyond a standards pass |
 | b03-plugin-tests-goal-002 | P2 | `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | recorded (fixed in part): the check uses access(); the two-file fileExists copy stays, as two copies do not earn a shared helper |
@@ -90,6 +89,8 @@ Each of these needs a behaviour change, so each waits on an operator decision. L
 | b03-plugin-tests-goal-006 | P2 | `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs` | recorded (fixed in part): the header names the goal id line, but still opens with "exactly two lines differ by design"; a P2 wording point after round 3, left under the stop rule |
 | b07-relaunch-adapters-005 | P2 | `.skilled/hooks/session-relaunch/codex/stop-arm.mjs` | recorded: sharing the arm-and-spawn flow means a new shared adapter module, beyond a standards pass |
 | b07-relaunch-adapters-008 | P2 | `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` | recorded: moving the Pi test means a new file path and a README change across runtimes, beyond a standards pass |
+
+`b05-relaunch-lib-006` is no longer recorded: phase 048 fixed it at `70c81b37c3` and `1159acb5c5`, where the wrapper builds its seed suffix through the shared core formatter.
 
 ---
 
@@ -249,7 +250,7 @@ Surface names the standard applied. Findings give id, severity, the rule cited a
 | `.skilled/hooks/session-relaunch/lib/context-usage.cjs` | JS (CJS) | b05-relaunch-lib | b05-relaunch-lib-001 P1 (universal-checklist.md § 3. P1 - REQUIRED (No Magic Numbers/): fixed | d072f5e002 | aligned |
 | `.skilled/hooks/session-relaunch/lib/hop-history.cjs` | JS (CJS) | b05-relaunch-lib | b05-relaunch-lib-002 P2 (code-quality-checklist.md § 4. BOUNDARY CONDITIONS): held: behaviour change awaiting the operator (verify: HELD)<br>b05-relaunch-lib-N03 P1 (universal-checklist.md §3 P1 REQUIRED “Magic values are extr): fixed<br>b05-relaunch-lib-N06 P2 (javascript/style-guide.md §6 FORMATTING RULES “Maximum: 100 ): fixed | d072f5e002 | aligned, P2 recorded |
 | `.skilled/hooks/session-relaunch/lib/killer.cjs` | JS (CJS) | b05-relaunch-lib | b05-relaunch-lib-003 P2 (javascript/style-guide.md § 4. SECTION ORGANIZATION): fixed<br>b05-relaunch-lib-004 P2 (code-quality-checklist.md § 7. KISS / DRY ENFORCEMENT (DRY C): fixed<br>b05-relaunch-lib-N01 P1 (security-checklist.md §6 “Check-then-act without atomicity”;): held: behaviour change awaiting the operator (verify: HELD)<br>b05-relaunch-lib-N02 P1 (universal-checklist.md §3 P1 REQUIRED “Magic values are extr): fixed | d072f5e002 | open P0/P1 (operator decision) |
-| `.skilled/hooks/session-relaunch/lib/nudge.cjs` | JS (CJS) | b05-relaunch-lib | b05-relaunch-lib-005 P2 (javascript/style-guide.md § 4. SECTION ORGANIZATION): fixed<br>b05-relaunch-lib-006 P1 (code-quality-checklist.md § 7. KISS / DRY ENFORCEMENT (DRY C): recorded (fixed in part): the JS formatter is shared; .skilled/bin/skilled-loop is outside the audited trees and keeps its own<br>b05-relaunch-lib-007 — (code-quality-checklist.md § 7. KISS / DRY ENFORCEMENT (KISS ): rejected by verifier: nudge.cjs:297-303 accepts `cwd` from current adapter callers and explicitly says the root no longer comes from it. The YAGNI rule in code-quality-checklist.md §<br>b05-relaunch-lib-N05 P2 (code-quality-checklist.md §6 MAINTAINABILITY SIGNALS “Magic ): fixed | d072f5e002 | open P0/P1 (operator decision) |
+| `.skilled/hooks/session-relaunch/lib/nudge.cjs` | JS (CJS) | b05-relaunch-lib | b05-relaunch-lib-005 P2 (javascript/style-guide.md § 4. SECTION ORGANIZATION): fixed<br>b05-relaunch-lib-006 P1 (code-quality-checklist.md § 7. KISS / DRY ENFORCEMENT (DRY C): fixed in 048 (70c81b37c3, 1159acb5c5)<br>b05-relaunch-lib-007 — (code-quality-checklist.md § 7. KISS / DRY ENFORCEMENT (KISS ): rejected by verifier: nudge.cjs:297-303 accepts `cwd` from current adapter callers and explicitly says the root no longer comes from it. The YAGNI rule in code-quality-checklist.md §<br>b05-relaunch-lib-N05 P2 (code-quality-checklist.md §6 MAINTAINABILITY SIGNALS “Magic ): fixed | d072f5e002 | aligned |
 | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` | JS (CJS) | b05-relaunch-lib | b05-relaunch-lib-008 P2 (javascript/style-guide.md § 6. FORMATTING RULES (Line Length): fixed<br>b05-relaunch-lib-N04 P1 (universal-checklist.md §3 P1 REQUIRED “Magic values are extr): fixed | d072f5e002 | aligned |
 | `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` | TS | b07-relaunch-adapters | b07-relaunch-adapters-008 P2 (shared/code-organization/directory-and-test-conventions.md §): recorded: moving the Pi test means a new file path and a README change across runtimes, beyond a standards pass<br>b07-relaunch-adapters-009 P1 (typescript-checklist.md § 3. P1 - REQUIRED → No Non-Null Ass): fixed<br>b07-relaunch-adapters-010 P2 (typescript/style-guide/formatting-imports-and-coexistence.md): fixed<br>b07-relaunch-adapters-N01 P1 (`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/t): fixed<br>b07-relaunch-adapters-N05 P2 (`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/j): fixed<br>b07-relaunch-adapters-N07 P2 (`.skilled/skills/sk-code/sk-code-review/assets/test-quality-): fixed | ea30571cdc | aligned, P2 recorded |
 | `.skilled/hooks/session-relaunch/pi/session-relaunch.ts` | TS | b07-relaunch-adapters | b07-relaunch-adapters-011 P1 (typescript-checklist.md § 3. P1 - REQUIRED → TSDoc on Public): fixed<br>b07-relaunch-adapters-012 N/A (code-quality-checklist.md § 7 KISS / DRY ENFORCEMENT (KISS C): rejected by verifier: Dropping `asModule` also changes normalization for the dynamic CommonJS core, usage and nudge imports, which can break adapter loading; behaviour-change: yes<br>b07-relaunch-adapters-N02 P1 (`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/t): fixed | ea30571cdc | aligned |

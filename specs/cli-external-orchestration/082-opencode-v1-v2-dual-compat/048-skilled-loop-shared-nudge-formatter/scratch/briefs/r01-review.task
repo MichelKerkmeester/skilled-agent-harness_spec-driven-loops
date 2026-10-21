@@ -1,0 +1,18 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter (pre-approved, skip Gate 3)
+
+ROLE: read-only code reviewer. Load sk-code's code-review mode and use only the standards it states.
+
+REVIEW: commit 70c81b37c3 (run `git show 70c81b37c3`). It replaces the hand-written spec-folder suffix in `.skilled/bin/skilled-loop` (`spec_folder_suffix`) with a node call to `specFolderSuffix` in `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`, and adds one test in `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`.
+
+Check:
+1. The new suffix is byte-identical to the old one for 'none', a valid folder and an empty value. For an invalid folder it is now empty; confirm that an invalid folder cannot reach this call in normal use (read where the wrapper gets `spec_folder` and where the CLI validates it).
+2. The node call: argument passing (`node -e '...' -- a b` and `process.argv.slice(1)`), quoting, failure handling, and `set -euo pipefail` interaction (does a node failure abort the wrapper, or print an empty suffix?).
+3. The test: does it fail on the old function, does it clean up, is it isolated.
+4. Comment hygiene: no ids, spec paths or phase numbers in code comments.
+
+You may run read-only commands and the test file (`node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`).
+
+BANNED OPERATIONS: no file writes or edits of any kind, no git commands that change state (commit, add, checkout, reset, stash, push, merge), no installs, no network.
+
+OUTPUT: a verdict line `VERDICT: PASS` or `VERDICT: FAIL`, then findings as `P0|P1|P2 file:line — problem — fix`. P1 means wrong behaviour, a broken or missing test, or a false claim. Report "none" if there are no findings.

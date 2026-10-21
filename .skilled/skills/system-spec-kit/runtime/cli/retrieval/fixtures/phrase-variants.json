@@ -1,5 +1,5 @@
 {
-  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
+  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8554,6 +8554,12 @@
     "advisor daemon framing": [
       "advisor daemon framing"
     ],
+    "advisor daemon memory": [
+      "advisor daemon memory"
+    ],
+    "advisor daemon memory phase parent spec": [
+      "advisor daemon memory phase parent spec"
+    ],
     "advisor daemon predates build": [
       "advisor daemon predates build"
     ],
@@ -8862,6 +8868,12 @@
     ],
     "advisor launcher fresh clone": [
       "advisor launcher fresh clone"
+    ],
+    "advisor launcher memory": [
+      "advisor launcher memory"
+    ],
+    "advisor launcher no go": [
+      "advisor launcher no-go"
     ],
     "advisor launcher supervisor": [
       "advisor launcher supervisor"
@@ -36289,6 +36301,21 @@
     "diagram command router": [
       "diagram command router"
     ],
+    "diagram corpus ci": [
+      "diagram corpus ci"
+    ],
+    "diagram corpus ci implementation summary": [
+      "diagram corpus ci implementation summary"
+    ],
+    "diagram corpus ci plan": [
+      "diagram corpus ci plan"
+    ],
+    "diagram corpus ci tasks": [
+      "diagram corpus ci tasks"
+    ],
+    "diagram corpus version era": [
+      "diagram corpus version era"
+    ],
     "diagram design system": [
       "diagram design system"
     ],
@@ -37994,6 +38021,9 @@
     ],
     "doctor mutation class read only": [
       "doctor mutation class read-only"
+    ],
+    "doctor orphan processes": [
+      "doctor orphan processes"
     ],
     "doctor ownership split": [
       "doctor ownership split"
@@ -45520,6 +45550,9 @@
     "fold in worklist": [
       "fold-in worklist"
     ],
+    "fold launcher into advisor server": [
+      "fold launcher into advisor server"
+    ],
     "fold one off repairs": [
       "fold one off repairs"
     ],
@@ -51484,6 +51517,24 @@
     "hf model server http uds service implementation summary": [
       "hf-model-server HTTP/UDS service implementation summary"
     ],
+    "hf model server idle default": [
+      "hf model server idle default"
+    ],
+    "hf model server idle default acceptance criteria": [
+      "hf model server idle default acceptance criteria"
+    ],
+    "hf model server idle default decision": [
+      "hf model server idle default decision"
+    ],
+    "hf model server idle default implementation summary": [
+      "hf model server idle default implementation summary"
+    ],
+    "hf model server idle default plan": [
+      "hf model server idle default plan"
+    ],
+    "hf model server idle default tasks": [
+      "hf model server idle default tasks"
+    ],
     "hf model server implementation plan": [
       "hf model server implementation plan"
     ],
@@ -57088,6 +57139,24 @@
     ],
     "light style reference example": [
       "light style reference example"
+    ],
+    "lighter advisor launcher": [
+      "lighter advisor launcher"
+    ],
+    "lighter advisor launcher acceptance criteria": [
+      "lighter advisor launcher acceptance criteria"
+    ],
+    "lighter advisor launcher decision": [
+      "lighter advisor launcher decision"
+    ],
+    "lighter advisor launcher implementation summary": [
+      "lighter advisor launcher implementation summary"
+    ],
+    "lighter advisor launcher plan": [
+      "lighter advisor launcher plan"
+    ],
+    "lighter advisor launcher tasks": [
+      "lighter advisor launcher tasks"
     ],
     "lightweight command line default": [
       "lightweight command-line default"
@@ -64913,6 +64982,12 @@
     "model server default spawn summary": [
       "model server default spawn summary"
     ],
+    "model server idle default": [
+      "model server idle default"
+    ],
+    "model server idle timeout": [
+      "model server idle timeout"
+    ],
     "model server spawn plan": [
       "model server spawn plan"
     ],
@@ -69341,6 +69416,24 @@
     "orphan predicate existing heartbeat": [
       "orphan predicate existing heartbeat"
     ],
+    "orphan process check": [
+      "orphan process check"
+    ],
+    "orphan process check acceptance criteria": [
+      "orphan process check acceptance criteria"
+    ],
+    "orphan process check decision": [
+      "orphan process check decision"
+    ],
+    "orphan process check implementation summary": [
+      "orphan process check implementation summary"
+    ],
+    "orphan process check plan": [
+      "orphan process check plan"
+    ],
+    "orphan process check tasks": [
+      "orphan process check tasks"
+    ],
     "orphan quarantine backstop": [
       "orphan quarantine backstop"
     ],
@@ -72516,6 +72609,12 @@
     ],
     "phase 46 final two version proof": [
       "phase 46 final two version proof"
+    ],
+    "phase 47 diagram corpus ci": [
+      "phase 47 diagram corpus ci"
+    ],
+    "phase 48 skilled loop shared nudge formatter": [
+      "phase 48 skilled loop shared nudge formatter"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
@@ -78716,6 +78815,9 @@
     ],
     "reap only proven inactive worktrees": [
       "reap only proven inactive worktrees"
+    ],
+    "reap zombie processes": [
+      "reap zombie processes"
     ],
     "reapability from parent evidence": [
       "reapability from parent evidence"
@@ -97534,6 +97636,18 @@
     "skilled loop relaunch": [
       "skilled-loop relaunch"
     ],
+    "skilled loop shared nudge formatter": [
+      "skilled loop shared nudge formatter"
+    ],
+    "skilled loop shared nudge formatter implementation summary": [
+      "skilled loop shared nudge formatter implementation summary"
+    ],
+    "skilled loop shared nudge formatter plan": [
+      "skilled loop shared nudge formatter plan"
+    ],
+    "skilled loop shared nudge formatter tasks": [
+      "skilled loop shared nudge formatter tasks"
+    ],
     "skilled loop shell shim": [
       "skilled-loop shell shim"
     ],
@@ -100336,6 +100450,9 @@
     ],
     "speckit hermes state dir": [
       "SPECKIT_HERMES_STATE_DIR"
+    ],
+    "speckit hf model server idle timeout min default": [
+      "SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN default"
     ],
     "speckit hooks git config": [
       "speckit.hooks git config"

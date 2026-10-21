@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter",
+  "description": "Phase 48: skilled-loop-shared-nudge-formatter",
+  "keywords": [
+    "phase",
+    "skilled-loop-shared-nudge-formatter"
+  ],
+  "lastUpdated": "2026-10-21T14:18:25.114Z",
+  "specId": "048",
+  "folderSlug": "skilled-loop-shared-nudge-formatter",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

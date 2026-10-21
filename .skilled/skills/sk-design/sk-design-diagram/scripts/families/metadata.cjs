@@ -44,7 +44,7 @@ module.exports = {
       if (!m) continue;
       tally('metadata', 1);
       if (m[1] !== anchor[1] || m[2] !== anchor[2]) {
-        record('metadata', 'error', path.relative(root, doc), `version ${m[1]}.${m[2]}.${m[3]}.${m[4]} is outside the anchor's ${anchor[1]}.${anchor[2]} era; the standard's apply pass re-derives it`);
+        record('metadata', 'error', path.relative(root, doc), `version ${m[1]}.${m[2]}.${m[3]}.${m[4]} is outside the anchor's ${anchor[1]}.${anchor[2]} era; set its major.minor to ${anchor[1]}.${anchor[2]} by hand, because the frontmatter-version apply pass keeps a child doc's own edition`);
       }
     }
   },

@@ -259,13 +259,17 @@ function writeSpecFolderNote(handoffPath, specFolder) {
   fs.writeFileSync(handoffPath, `---\nstatus: open\nspec_folder: ${specFolder}\n---\n`);
 }
 
-function runWrapper(sandbox, args) {
-  return spawnSync('/bin/bash', [WRAPPER_PATH, ...args], {
+function runWrapperScript(sandbox, wrapperPath, args) {
+  return spawnSync('/bin/bash', [wrapperPath, ...args], {
     cwd: sandbox.repoRoot,
     env: sandbox.env,
     encoding: 'utf8',
     timeout: 12000,
   });
+}
+
+function runWrapper(sandbox, args) {
+  return runWrapperScript(sandbox, WRAPPER_PATH, args);
 }
 
 function installSkilledLoopCommand(sandbox) {
@@ -275,6 +279,60 @@ set -euo pipefail
 exec /bin/bash "${WRAPPER_PATH}" "$@"
 `;
   fs.writeFileSync(commandPath, source, { mode: 0o755 });
+}
+
+function installWrapperCopy(sandbox) {
+  const sourceRoot = path.resolve(__dirname, '../../..');
+  const targetRoot = path.join(sandbox.repoRoot, '.skilled');
+  for (const relativePath of ['bin/skilled-loop', 'hooks/session-relaunch', 'hooks/shared']) {
+    fs.cpSync(path.join(sourceRoot, relativePath), path.join(targetRoot, relativePath), {
+      recursive: true,
+    });
+  }
+  return {
+    corePath: path.join(targetRoot, 'hooks/session-relaunch/lib/relaunch-core.cjs'),
+    realCorePath: path.resolve(__dirname, '../lib/relaunch-core.cjs'),
+    wrapperPath: path.join(targetRoot, 'bin/skilled-loop'),
+  };
+}
+
+// Copy the wrapper and its relaunch modules into the sandbox, then change the copied
+// core's suffix marker so a seed built by the wrapper proves which implementation ran.
+function installWrapperCopyWithChangedSuffix(sandbox) {
+  const { corePath, realCorePath, wrapperPath } = installWrapperCopy(sandbox);
+  const marker = ' (suffix owned by the copied core)';
+  const shimSource = [
+    `'use strict';`,
+    `const realCore = require(${JSON.stringify(realCorePath)});`,
+    `const SUFFIX = ${JSON.stringify(SPEC_FOLDER_SUFFIX)};`,
+    `const MARKER = ${JSON.stringify(marker)};`,
+    'module.exports = {',
+    '  ...realCore,',
+    '  specFolderSuffix(specFolder) {',
+    '    return realCore.specFolderSuffix(specFolder).replace(SUFFIX, MARKER);',
+    '  },',
+    '};',
+    '',
+  ].join('\n');
+  fs.writeFileSync(corePath, shimSource);
+  return { wrapperPath, marker };
+}
+
+function installWrapperWithThrowingSuffix(sandbox) {
+  const { corePath, realCorePath, wrapperPath } = installWrapperCopy(sandbox);
+  const shimSource = [
+    `'use strict';`,
+    `const realCore = require(${JSON.stringify(realCorePath)});`,
+    'module.exports = {',
+    '  ...realCore,',
+    '  specFolderSuffix() {',
+    "    throw new Error('spec-folder suffix failure');",
+    '  },',
+    '};',
+    '',
+  ].join('\n');
+  fs.writeFileSync(corePath, shimSource);
+  return { wrapperPath };
 }
 
 function runManualCommand(sandbox, command) {
@@ -480,6 +538,37 @@ test('wrapper carries Gate 3 Skip in the relaunch seed', (t) => {
     seed,
   );
   assert.doesNotMatch(readLog(sandbox), /spec-folder-dropped/);
+});
+
+test('wrapper builds the relaunch seed suffix through the shared core formatter', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const { wrapperPath, marker } = installWrapperCopyWithChangedSuffix(sandbox);
+
+  const result = runWrapperScript(sandbox, wrapperPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [
+    `${SEED} ${handoffPath} | Spec folder: ${SPEC_FOLDER}${marker}`,
+  ]);
+});
+
+test('wrapper relaunches without a spec-folder suffix when the core formatter throws', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const { wrapperPath } = installWrapperWithThrowingSuffix(sandbox);
+
+  const result = runWrapperScript(sandbox, wrapperPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`]);
+  assert.match(result.stderr, /could not build the spec-folder suffix/);
 });
 
 test('wrapper leaves an empty spec folder unanswered without logging a drop', (t) => {

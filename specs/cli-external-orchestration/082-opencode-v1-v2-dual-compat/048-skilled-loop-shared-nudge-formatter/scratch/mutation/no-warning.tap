@@ -1,0 +1,66 @@
+TAP version 13
+# Subtest: wrapper relaunches without a spec-folder suffix when the core formatter throws
+not ok 1 - wrapper relaunches without a spec-folder suffix when the core formatter throws
+  ---
+  duration_ms: 618.32
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:559:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /could not build the spec-folder suffix/. Input:
+    
+    '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-aMqR4B/repo/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:6\n' +
+      "    throw new Error('spec-folder suffix failure');\n" +
+      '    ^\n' +
+      '\n' +
+      'Error: spec-folder suffix failure\n' +
+      '    at specFolderSuffix (/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-aMqR4B/repo/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:6:11)\n' +
+      '    at [eval]:4:28\n' +
+      '    at runScriptInThisContext (node:internal/vm:219:10)\n' +
+      '    at node:internal/process/execution:485:12\n' +
+      '    at [eval]-wrapper:6:24\n' +
+      '    at runScriptInContext (node:internal/process/execution:483:60)\n' +
+      '    at evalFunction (node:internal/process/execution:317:30)\n' +
+      '    at evalTypeScript (node:internal/process/execution:329:3)\n' +
+      '    at node:internal/main/eval_string:71:3\n' +
+      '\n' +
+      'Node.js v26.8.2\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-aMqR4B/repo/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:6
+        throw new Error('spec-folder suffix failure');
+        ^
+    
+    Error: spec-folder suffix failure
+        at specFolderSuffix (/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-aMqR4B/repo/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:6:11)
+        at [eval]:4:28
+        at runScriptInThisContext (node:internal/vm:219:10)
+        at node:internal/process/execution:485:12
+        at [eval]-wrapper:6:24
+        at runScriptInContext (node:internal/process/execution:483:60)
+        at evalFunction (node:internal/process/execution:317:30)
+        at evalTypeScript (node:internal/process/execution:329:3)
+        at node:internal/main/eval_string:71:3
+    
+    Node.js v26.8.2
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:571:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 675.092833

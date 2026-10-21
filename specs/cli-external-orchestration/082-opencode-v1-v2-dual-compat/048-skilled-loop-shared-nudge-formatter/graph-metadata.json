@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled loop shared nudge formatter",
+      "phase 48 skilled loop shared nudge formatter",
+      "skilled loop shared nudge formatter plan",
+      "skilled loop shared nudge formatter tasks",
+      "skilled loop shared nudge formatter implementation summary"
+    ],
+    "key_topics": [
+      "skilled",
+      "loop",
+      "shared",
+      "nudge",
+      "formatter",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "hooks",
+      "session-relaunch"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      "scratch/mutation/old-function.tap",
+      "scratch/mutation/no-warning.tap",
+      "scratch/before/suffix-compare.txt",
+      "scratch/after/suffix-compare.txt",
+      "scratch/after/skilled-loop.tap",
+      "scratch/before/hook-node.tap",
+      "scratch/after/hook-node.tap",
+      "scratch/after/live-session-relaunch.txt",
+      "scratch/after/pid46220-before.txt",
+      "scratch/compare-suffix.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "old-function.tap",
+        "kind": "file",
+        "path": "scratch/mutation/old-function.tap",
+        "source": "derived"
+      },
+      {
+        "name": "no-warning.tap",
+        "kind": "file",
+        "path": "scratch/mutation/no-warning.tap",
+        "source": "derived"
+      },
+      {
+        "name": "suffix-compare.txt",
+        "kind": "file",
+        "path": "scratch/before/suffix-compare.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.tap",
+        "kind": "file",
+        "path": "scratch/after/skilled-loop.tap",
+        "source": "derived"
+      },
+      {
+        "name": "hook-node.tap",
+        "kind": "file",
+        "path": "scratch/before/hook-node.tap",
+        "source": "derived"
+      },
+      {
+        "name": "live-session-relaunch.txt",
+        "kind": "file",
+        "path": "scratch/after/live-session-relaunch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pid46220-before.txt",
+        "kind": "file",
+        "path": "scratch/after/pid46220-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compare-suffix.sh",
+        "kind": "script",
+        "path": "scratch/compare-suffix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Node",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` owns the seed's spec-folder suffix in `specFolderSuffix`, and `nudge.cjs` already shares it",
+    "created_at": "2026-10-21T14:18:23Z",
+    "last_save_at": "2026-10-21T14:51:43.551Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a69665bb9f86e862d4228343df7647ac7c342a290e167e60a6d8dd66177b37ac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dc6b7e71ad522ee9fba7b4d557de2bb7dd06a51ec8755fb41b8af38f96923cf5",
+      "plan.md": "2c4e79d9010e0851310fca257fc7f3caf76a68362f83c886cc6b526b0d54b39b",
+      "tasks.md": "c140b63ccfe6b8e4ce1a86c1446470f2bc31148c744d7be3e347cbe3e891c429",
+      "implementation-summary.md": "508c80bc6a6c0d0cec7f2bc61fb20a0062d4925a89bca222e008252e9330fdaa"
+    },
+    "last_active_at": null
+  }
+}

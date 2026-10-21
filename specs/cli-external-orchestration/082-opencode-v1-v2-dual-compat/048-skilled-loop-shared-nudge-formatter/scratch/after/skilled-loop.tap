@@ -1,0 +1,676 @@
+TAP version 13
+# Subtest: second invocation uses only the seed and name, recorded cwd, and the same loop id
+ok 1 - second invocation uses only the seed and name, recorded cwd, and the same loop id
+  ---
+  duration_ms: 660.738208
+  type: 'test'
+  ...
+# Subtest: devin runtime dispatch does not fall through to claude
+ok 2 - devin runtime dispatch does not fall through to claude
+  ---
+  duration_ms: 255.878125
+  type: 'test'
+  ...
+# Subtest: wrapper carries a valid spec folder in the relaunch seed
+ok 3 - wrapper carries a valid spec folder in the relaunch seed
+  ---
+  duration_ms: 635.493167
+  type: 'test'
+  ...
+# Subtest: wrapper carries Gate 3 Skip in the relaunch seed
+ok 4 - wrapper carries Gate 3 Skip in the relaunch seed
+  ---
+  duration_ms: 621.71675
+  type: 'test'
+  ...
+# Subtest: wrapper builds the relaunch seed suffix through the shared core formatter
+ok 5 - wrapper builds the relaunch seed suffix through the shared core formatter
+  ---
+  duration_ms: 773.189375
+  type: 'test'
+  ...
+# Subtest: wrapper relaunches without a spec-folder suffix when the core formatter throws
+ok 6 - wrapper relaunches without a spec-folder suffix when the core formatter throws
+  ---
+  duration_ms: 684.385083
+  type: 'test'
+  ...
+# Subtest: wrapper leaves an empty spec folder unanswered without logging a drop
+ok 7 - wrapper leaves an empty spec folder unanswered without logging a drop
+  ---
+  duration_ms: 663.761167
+  type: 'test'
+  ...
+# Subtest: wrapper drops parent traversal spec folders and logs them
+ok 8 - wrapper drops parent traversal spec folders and logs them
+  ---
+  duration_ms: 598.649417
+  type: 'test'
+  ...
+# Subtest: wrapper drops spec-folder parent traversal spec folders and logs them
+ok 9 - wrapper drops spec-folder parent traversal spec folders and logs them
+  ---
+  duration_ms: 609.75325
+  type: 'test'
+  ...
+# Subtest: wrapper drops trailing parent traversal spec folders and logs them
+ok 10 - wrapper drops trailing parent traversal spec folders and logs them
+  ---
+  duration_ms: 637.709833
+  type: 'test'
+  ...
+# Subtest: wrapper drops shell metacharacters spec folders and logs them
+ok 11 - wrapper drops shell metacharacters spec folders and logs them
+  ---
+  duration_ms: 533.616542
+  type: 'test'
+  ...
+# Subtest: wrapper drops absolute spec folders and logs them
+ok 12 - wrapper drops absolute spec folders and logs them
+  ---
+  duration_ms: 619.149917
+  type: 'test'
+  ...
+# Subtest: wrapper drops carriage return spec folders and logs them
+ok 13 - wrapper drops carriage return spec folders and logs them
+  ---
+  duration_ms: 620.751042
+  type: 'test'
+  ...
+# Subtest: wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed
+ok 14 - wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed
+  ---
+  duration_ms: 621.363375
+  type: 'test'
+  ...
+# Subtest: name scanning stops at -- and relaunch omits the name option
+ok 15 - name scanning stops at -- and relaunch omits the name option
+  ---
+  duration_ms: 670.60025
+  type: 'test'
+  ...
+# Subtest: wrapper starts claude with no arguments under /bin/bash
+ok 16 - wrapper starts claude with no arguments under /bin/bash
+  ---
+  duration_ms: 263.334542
+  type: 'test'
+  ...
+# Subtest: wrapper defaults to claude when it has no arguments
+ok 17 - wrapper defaults to claude when it has no arguments
+  ---
+  duration_ms: 259.759416
+  type: 'test'
+  ...
+# Subtest: wrapper passes a single prompt argument to the default claude runtime
+ok 18 - wrapper passes a single prompt argument to the default claude runtime
+  ---
+  duration_ms: 265.502125
+  type: 'test'
+  ...
+# Subtest: wrapper exports runtime identity for each supported runtime
+ok 19 - wrapper exports runtime identity for each supported runtime
+  ---
+  duration_ms: 1934.56825
+  type: 'test'
+  ...
+# Subtest: Claude carries --model value before the seed and name on relaunch
+ok 20 - Claude carries --model value before the seed and name on relaunch
+  ---
+  duration_ms: 642.781
+  type: 'test'
+  ...
+# Subtest: Claude carries --model=value as a normalized model flag on relaunch
+ok 21 - Claude carries --model=value as a normalized model flag on relaunch
+  ---
+  duration_ms: 644.46975
+  type: 'test'
+  ...
+# Subtest: wrapper exports the selected model to Claude across relaunches
+ok 22 - wrapper exports the selected model to Claude across relaunches
+  ---
+  duration_ms: 656.180417
+  type: 'test'
+  ...
+# Subtest: Claude does not inherit model or provider env without a model argument
+ok 23 - Claude does not inherit model or provider env without a model argument
+  ---
+  duration_ms: 637.824834
+  type: 'test'
+  ...
+# Subtest: model scanning stops at -- while carrying the model selected before it
+ok 24 - model scanning stops at -- while carrying the model selected before it
+  ---
+  duration_ms: 732.367625
+  type: 'test'
+  ...
+# Subtest: Claude keeps a multiword model as one relaunch argument
+ok 25 - Claude keeps a multiword model as one relaunch argument
+  ---
+  duration_ms: 665.675417
+  type: 'test'
+  ...
+# Subtest: Claude ignores --model when it has no value
+ok 26 - Claude ignores --model when it has no value
+  ---
+  duration_ms: 661.995208
+  type: 'test'
+  ...
+# Subtest: second invocation omits --name when the first launch had no name
+ok 27 - second invocation omits --name when the first launch had no name
+  ---
+  duration_ms: 643.686458
+  type: 'test'
+  ...
+# Subtest: pi relaunch carries provider and model before name and seed
+ok 28 - pi relaunch carries provider and model before name and seed
+  ---
+  duration_ms: 648.619125
+  type: 'test'
+  ...
+# Subtest: Pi normalizes extension aliases and preserves selection order on relaunch
+ok 29 - Pi normalizes extension aliases and preserves selection order on relaunch
+  ---
+  duration_ms: 675.548084
+  type: 'test'
+  ...
+# Subtest: Pi extension scanning stops at --
+ok 30 - Pi extension scanning stops at --
+  ---
+  duration_ms: 654.322958
+  type: 'test'
+  ...
+# Subtest: Pi does not carry -e when it has no value
+ok 31 - Pi does not carry -e when it has no value
+  ---
+  duration_ms: 686.23725
+  type: 'test'
+  ...
+# Subtest: wrapper exports the selected provider and model to Pi across relaunches
+ok 32 - wrapper exports the selected provider and model to Pi across relaunches
+  ---
+  duration_ms: 715.882459
+  type: 'test'
+  ...
+# Subtest: opencode carries -m before --prompt and never passes a resume flag
+ok 33 - opencode carries -m before --prompt and never passes a resume flag
+  ---
+  duration_ms: 712.531834
+  type: 'test'
+  ...
+# Subtest: opencode normalizes --model m before --prompt on relaunch
+ok 34 - opencode normalizes --model m before --prompt on relaunch
+  ---
+  duration_ms: 604.851667
+  type: 'test'
+  ...
+# Subtest: opencode normalizes --model=m before --prompt on relaunch
+ok 35 - opencode normalizes --model=m before --prompt on relaunch
+  ---
+  duration_ms: 685.913167
+  type: 'test'
+  ...
+# Subtest: wrapper declines a stale armed record and logs the decline
+ok 36 - wrapper declines a stale armed record and logs the decline
+  ---
+  duration_ms: 363.6735
+  type: 'test'
+  ...
+# Subtest: wrapper pending print carries the consumed packet answer
+ok 37 - wrapper pending print carries the consumed packet answer
+  ---
+  duration_ms: 390.465166
+  type: 'test'
+  ...
+# Subtest: wrapper pending print carries the consumed skip answer
+ok 38 - wrapper pending print carries the consumed skip answer
+  ---
+  duration_ms: 405.937334
+  type: 'test'
+  ...
+# Subtest: wrapper pending print carries the consumed empty answer
+ok 39 - wrapper pending print carries the consumed empty answer
+  ---
+  duration_ms: 400.901625
+  type: 'test'
+  ...
+# Subtest: wrapper prints a manual command when the hop cap declines a record
+ok 40 - wrapper prints a manual command when the hop cap declines a record
+  ---
+  duration_ms: 356.414708
+  type: 'test'
+  ...
+# Subtest: declined relaunch warns when the handoff path contains a line break
+ok 41 - declined relaunch warns when the handoff path contains a line break
+  ---
+  duration_ms: 250.427667
+  type: 'test'
+  ...
+# Subtest: codex disables the daemon on the first launch and each relaunch
+ok 42 - codex disables the daemon on the first launch and each relaunch
+  ---
+  duration_ms: 1172.313209
+  type: 'test'
+  ...
+# Subtest: codex does not duplicate an operator-supplied --no-daemon option
+ok 43 - codex does not duplicate an operator-supplied --no-daemon option
+  ---
+  duration_ms: 628.304417
+  type: 'test'
+  ...
+# Subtest: multi-hop relaunches carry each runtime model and provider on every invocation
+ok 44 - multi-hop relaunches carry each runtime model and provider on every invocation
+  ---
+  duration_ms: 6724.97925
+  type: 'test'
+  ...
+# Subtest: wrapper returns the last runtime exit code and logs relaunch and decline events
+ok 45 - wrapper returns the last runtime exit code and logs relaunch and decline events
+  ---
+  duration_ms: 658.042792
+  type: 'test'
+  ...
+# Subtest: wrapper prints the manual command after runtime exit 130
+ok 46 - wrapper prints the manual command after runtime exit 130
+  ---
+  duration_ms: 411.771959
+  type: 'test'
+  ...
+# Subtest: wrapper names pi in the manual command after runtime exit 130
+ok 47 - wrapper names pi in the manual command after runtime exit 130
+  ---
+  duration_ms: 369.931375
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the claude manual claim command
+ok 48 - declined relaunch prints the claude manual claim command
+  ---
+  duration_ms: 317.119584
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the pi manual claim command
+ok 49 - declined relaunch prints the pi manual claim command
+  ---
+  duration_ms: 314.916333
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the opencode manual claim command
+ok 50 - declined relaunch prints the opencode manual claim command
+  ---
+  duration_ms: 380.270917
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the codex manual claim command
+ok 51 - declined relaunch prints the codex manual claim command
+  ---
+  duration_ms: 374.44975
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the cursor manual claim command
+ok 52 - declined relaunch prints the cursor manual claim command
+  ---
+  duration_ms: 362.194208
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the hermes manual claim command
+ok 53 - declined relaunch prints the hermes manual claim command
+  ---
+  duration_ms: 324.269333
+  type: 'test'
+  ...
+# Subtest: declined relaunch prints the devin manual claim command
+ok 54 - declined relaunch prints the devin manual claim command
+  ---
+  duration_ms: 364.495125
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $& handoff path identically
+ok 55 - wrapper and core fill a $& handoff path identically
+  ---
+  duration_ms: 382.254125
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $' handoff path identically
+ok 56 - wrapper and core fill a $' handoff path identically
+  ---
+  duration_ms: 341.584375
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $$ handoff path identically
+ok 57 - wrapper and core fill a $$ handoff path identically
+  ---
+  duration_ms: 330.865167
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $` handoff path identically
+ok 58 - wrapper and core fill a $` handoff path identically
+  ---
+  duration_ms: 376.733917
+  type: 'test'
+  ...
+# Subtest: wrapper and core fill a $1 handoff path identically
+ok 59 - wrapper and core fill a $1 handoff path identically
+  ---
+  duration_ms: 370.50825
+  type: 'test'
+  ...
+# Subtest: wrapper printed argument preserves a bang path in interactive bash
+ok 60 - wrapper printed argument preserves a bang path in interactive bash
+  ---
+  duration_ms: 355.099167
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for short name before a flag
+ok 61 - wrapper does not carry flag-like values for short name before a flag
+  ---
+  duration_ms: 528.964375
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for equals name before a flag
+ok 62 - wrapper does not carry flag-like values for equals name before a flag
+  ---
+  duration_ms: 953.708375
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for long name before the end-of-options marker
+ok 63 - wrapper does not carry flag-like values for long name before the end-of-options marker
+  ---
+  duration_ms: 586.189
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for model before a resume flag
+ok 64 - wrapper does not carry flag-like values for model before a resume flag
+  ---
+  duration_ms: 601.372
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for equals model before a flag
+ok 65 - wrapper does not carry flag-like values for equals model before a flag
+  ---
+  duration_ms: 563.426958
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for model before the end-of-options marker
+ok 66 - wrapper does not carry flag-like values for model before the end-of-options marker
+  ---
+  duration_ms: 658.452834
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for short model before a resume flag
+ok 67 - wrapper does not carry flag-like values for short model before a resume flag
+  ---
+  duration_ms: 666.636958
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for short Pi extension before a resume flag
+ok 68 - wrapper does not carry flag-like values for short Pi extension before a resume flag
+  ---
+  duration_ms: 627.302
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for equals Pi extension before a resume flag
+ok 69 - wrapper does not carry flag-like values for equals Pi extension before a resume flag
+  ---
+  duration_ms: 688.525958
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for long Pi extension before the end-of-options marker
+ok 70 - wrapper does not carry flag-like values for long Pi extension before the end-of-options marker
+  ---
+  duration_ms: 648.55625
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi space provider before a resume flag
+ok 71 - wrapper does not carry flag-like values for Pi space provider before a resume flag
+  ---
+  duration_ms: 672.880166
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi space provider before the end-of-options marker
+ok 72 - wrapper does not carry flag-like values for Pi space provider before the end-of-options marker
+  ---
+  duration_ms: 689.038458
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi equals provider before a resume flag
+ok 73 - wrapper does not carry flag-like values for Pi equals provider before a resume flag
+  ---
+  duration_ms: 703.649167
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Pi equals provider before the end-of-options marker
+ok 74 - wrapper does not carry flag-like values for Pi equals provider before the end-of-options marker
+  ---
+  duration_ms: 708.762083
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes space provider before a model option
+ok 75 - wrapper does not carry flag-like values for Hermes space provider before a model option
+  ---
+  duration_ms: 732.445167
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes space provider before the end-of-options marker
+ok 76 - wrapper does not carry flag-like values for Hermes space provider before the end-of-options marker
+  ---
+  duration_ms: 774.250625
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes equals provider before a resume flag
+ok 77 - wrapper does not carry flag-like values for Hermes equals provider before a resume flag
+  ---
+  duration_ms: 711.902625
+  type: 'test'
+  ...
+# Subtest: wrapper does not carry flag-like values for Hermes equals provider before the end-of-options marker
+ok 78 - wrapper does not carry flag-like values for Hermes equals provider before the end-of-options marker
+  ---
+  duration_ms: 625.68075
+  type: 'test'
+  ...
+# Subtest: Pi resolves an extension path containing spaces on relaunch
+ok 79 - Pi resolves an extension path containing spaces on relaunch
+  ---
+  duration_ms: 659.342167
+  type: 'test'
+  ...
+# Subtest: Pi keeps the missing-directory fallback path without a cd error
+ok 80 - Pi keeps the missing-directory fallback path without a cd error
+  ---
+  duration_ms: 672.235458
+  type: 'test'
+  ...
+# Subtest: wrapper escapes shell characters in the manual handoff path
+ok 81 - wrapper escapes shell characters in the manual handoff path
+  ---
+  duration_ms: 385.775458
+  type: 'test'
+  ...
+# Subtest: wrapper prints the manual command and declines a CR/LF handoff path
+ok 82 - wrapper prints the manual command and declines a CR/LF handoff path
+  ---
+  duration_ms: 409.2985
+  type: 'test'
+  ...
+# Subtest: wrapper preserves exit 130 and prints the manual command when consume fails
+ok 83 - wrapper preserves exit 130 and prints the manual command when consume fails
+  ---
+  duration_ms: 407.14675
+  type: 'test'
+  ...
+# Subtest: wrapper consumes an armed record and prints the manual command when cwd is missing
+ok 84 - wrapper consumes an armed record and prints the manual command when cwd is missing
+  ---
+  duration_ms: 393.852458
+  type: 'test'
+  ...
+# Subtest: wrapper warns and preserves the runtime exit code when the decider fails
+ok 85 - wrapper warns and preserves the runtime exit code when the decider fails
+  ---
+  duration_ms: 336.680584
+  type: 'test'
+  ...
+# Subtest: wrapper warns and consumes a relaunch record with invalid JSON
+ok 86 - wrapper warns and consumes a relaunch record with invalid JSON
+  ---
+  duration_ms: 354.9675
+  type: 'test'
+  ...
+# Subtest: wrapper warns and consumes a relaunch record with truncated parsed output
+ok 87 - wrapper warns and consumes a relaunch record with truncated parsed output
+  ---
+  duration_ms: 311.950042
+  type: 'test'
+  ...
+# Subtest: wrapper declines a relaunch record with an empty handoff path without a warning
+ok 88 - wrapper declines a relaunch record with an empty handoff path without a warning
+  ---
+  duration_ms: 258.539708
+  type: 'test'
+  ...
+# Subtest: wrapper warns without a stack when declined decision JSON is malformed
+ok 89 - wrapper warns without a stack when declined decision JSON is malformed
+  ---
+  duration_ms: 250.165458
+  type: 'test'
+  ...
+# Subtest: codex carries model and seed without resume options
+ok 90 - codex carries model and seed without resume options
+  ---
+  duration_ms: 3441.447792
+  type: 'test'
+  ...
+# Subtest: cursor carries model and seed without resume options
+ok 91 - cursor carries model and seed without resume options
+  ---
+  duration_ms: 2618.8365
+  type: 'test'
+  ...
+# Subtest: hermes carries model and seed without resume options
+ok 92 - hermes carries model and seed without resume options
+  ---
+  duration_ms: 7982.030209
+  type: 'test'
+  ...
+# Subtest: devin carries model and seed without resume options
+ok 93 - devin carries model and seed without resume options
+  ---
+  duration_ms: 2553.383416
+  type: 'test'
+  ...
+# Subtest: runtime first launch preserves argv except the Codex daemon default
+ok 94 - runtime first launch preserves argv except the Codex daemon default
+  ---
+  duration_ms: 1087.618083
+  type: 'test'
+  ...
+# Subtest: manual commands preserve carried flags and match automatic relaunch argv
+ok 95 - manual commands preserve carried flags and match automatic relaunch argv
+  ---
+  duration_ms: 9251.611917
+  type: 'test'
+  ...
+# Subtest: wrapper template and core command escape a special handoff path identically
+ok 96 - wrapper template and core command escape a special handoff path identically
+  ---
+  duration_ms: 361.2295
+  type: 'test'
+  ...
+# Subtest: wrapper reports an unusable manual template when a Claude model holds the placeholder
+ok 97 - wrapper reports an unusable manual template when a Claude model holds the placeholder
+  ---
+  duration_ms: 366.370959
+  type: 'test'
+  ...
+# Subtest: wrapper reports an unusable manual template when a Claude name holds the placeholder
+ok 98 - wrapper reports an unusable manual template when a Claude name holds the placeholder
+  ---
+  duration_ms: 338.967916
+  type: 'test'
+  ...
+# Subtest: wrapper reports an unusable manual template when a Pi provider holds the placeholder
+ok 99 - wrapper reports an unusable manual template when a Pi provider holds the placeholder
+  ---
+  duration_ms: 336.415875
+  type: 'test'
+  ...
+# Subtest: wrapper and CLI both print the manual command on stdout
+ok 100 - wrapper and CLI both print the manual command on stdout
+  ---
+  duration_ms: 354.221917
+  type: 'test'
+  ...
+# Subtest: cursor command-only launch relaunches the bare seed from the recorded cwd
+ok 101 - cursor command-only launch relaunches the bare seed from the recorded cwd
+  ---
+  duration_ms: 2240.989708
+  type: 'test'
+  ...
+# Subtest: cursor command-only declines print the manual command and never relaunch
+ok 102 - cursor command-only declines print the manual command and never relaunch
+  ---
+  duration_ms: 1581.933291
+  type: 'test'
+  ...
+# Subtest: cursor manual command reruns the runtime with the relaunch seed form
+ok 103 - cursor manual command reruns the runtime with the relaunch seed form
+  ---
+  duration_ms: 559.645583
+  type: 'test'
+  ...
+# Subtest: devin command-only launch relaunches the bare seed from the recorded cwd
+ok 104 - devin command-only launch relaunches the bare seed from the recorded cwd
+  ---
+  duration_ms: 2025.037542
+  type: 'test'
+  ...
+# Subtest: devin command-only declines print the manual command and never relaunch
+ok 105 - devin command-only declines print the manual command and never relaunch
+  ---
+  duration_ms: 1521.751916
+  type: 'test'
+  ...
+# Subtest: devin manual command reruns the runtime with the relaunch seed form
+ok 106 - devin manual command reruns the runtime with the relaunch seed form
+  ---
+  duration_ms: 514.278917
+  type: 'test'
+  ...
+# Subtest: wrapper consumes a pending decline record and preserves the runtime exit code
+ok 107 - wrapper consumes a pending decline record and preserves the runtime exit code
+  ---
+  duration_ms: 298.944083
+  type: 'test'
+  ...
+# Subtest: wrapper does not relaunch a claim for a missing note
+ok 108 - wrapper does not relaunch a claim for a missing note
+  ---
+  duration_ms: 346.577875
+  type: 'test'
+  ...
+# Subtest: wrapper does not relaunch a claim for a unparseable note
+ok 109 - wrapper does not relaunch a claim for a unparseable note
+  ---
+  duration_ms: 335.962208
+  type: 'test'
+  ...
+# Subtest: wrapper does not relaunch a claim for a already claimed note
+ok 110 - wrapper does not relaunch a claim for a already claimed note
+  ---
+  duration_ms: 323.827709
+  type: 'test'
+  ...
+# Subtest: wrapper declines a record without a cwd and keeps the runtime exit code
+ok 111 - wrapper declines a record without a cwd and keeps the runtime exit code
+  ---
+  duration_ms: 280.612
+  type: 'test'
+  ...
+1..111
+# tests 111
+# suites 0
+# pass 111
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 94721.368334

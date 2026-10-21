@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: the corpus is clean before anything is mutated
+ok 1 - the corpus is clean before anything is mutated
+  ---
+  duration_ms: 973.815791
+  type: 'test'
+  ...
+# Subtest: accessible-svg refuses a diagram whose svg has no title
+ok 2 - accessible-svg refuses a diagram whose svg has no title
+  ---
+  duration_ms: 2086.7025
+  type: 'test'
+  ...
+# Subtest: unique-ids refuses an id used twice in one file
+ok 3 - unique-ids refuses an id used twice in one file
+  ---
+  duration_ms: 1917.727666
+  type: 'test'
+  ...
+# Subtest: no-external refuses a script fetched from a host that is not the fonts allowlist
+ok 4 - no-external refuses a script fetched from a host that is not the fonts allowlist
+  ---
+  duration_ms: 1749.334792
+  type: 'test'
+  ...
+# Subtest: marker-vocabulary refuses a connector drawn with a marker nobody defined
+ok 5 - marker-vocabulary refuses a connector drawn with a marker nobody defined
+  ---
+  duration_ms: 1799.868916
+  type: 'test'
+  ...
+# Subtest: grid-4px refuses a new file with a value off the grid
+ok 6 - grid-4px refuses a new file with a value off the grid
+  ---
+  duration_ms: 1759.196667
+  type: 'test'
+  ...
+# Subtest: orthogonal-connectors refuses a connector line that runs at an angle
+ok 7 - orthogonal-connectors refuses a connector line that runs at an angle
+  ---
+  duration_ms: 1740.649042
+  type: 'test'
+  ...
+# Subtest: node-budget refuses more tagged nodes than the budget allows
+ok 8 - node-budget refuses more tagged nodes than the budget allows
+  ---
+  duration_ms: 1778.025625
+  type: 'test'
+  ...
+# Subtest: derivation-gates refuses a template whose palette block drifts from the token source
+ok 9 - derivation-gates refuses a template whose palette block drifts from the token source
+  ---
+  duration_ms: 1710.444875
+  type: 'test'
+  ...
+# Subtest: derivation-gates refuses a themed block whose provenance comment was deleted
+ok 10 - derivation-gates refuses a themed block whose provenance comment was deleted
+  ---
+  duration_ms: 1698.465
+  type: 'test'
+  ...
+# Subtest: derivation-gates refuses a themed block whose accent falls under the text-on-mark gate
+ok 11 - derivation-gates refuses a themed block whose accent falls under the text-on-mark gate
+  ---
+  duration_ms: 1744.194792
+  type: 'test'
+  ...
+# Subtest: legend-fidelity refuses a legend swatch keying a dash the drawing never paints
+ok 12 - legend-fidelity refuses a legend swatch keying a dash the drawing never paints
+  ---
+  duration_ms: 2461.878417
+  type: 'test'
+  ...
+# Subtest: label-mask-clearance refuses a label mask shifted onto its connector
+ok 13 - label-mask-clearance refuses a label mask shifted onto its connector
+  ---
+  duration_ms: 2183.847542
+  type: 'test'
+  ...
+# Subtest: label-mask-clearance refuses a label mask pulled inside the clearance floor
+ok 14 - label-mask-clearance refuses a label mask pulled inside the clearance floor
+  ---
+  duration_ms: 2179.397125
+  type: 'test'
+  ...
+# Subtest: metadata refuses a version outside the anchor era
+ok 15 - metadata refuses a version outside the anchor era
+  ---
+  duration_ms: 2166.255292
+  type: 'test'
+  ...
+# Subtest: catalog-bidirectional refuses a catalog row naming a file that left
+ok 16 - catalog-bidirectional refuses a catalog row naming a file that left
+  ---
+  duration_ms: 2157.540084
+  type: 'test'
+  ...
+# Subtest: grid-4px leaves an off-grid value inside a path command alone
+ok 17 - grid-4px leaves an off-grid value inside a path command alone
+  ---
+  duration_ms: 981.33275
+  type: 'test'
+  ...
+# Subtest: grid-4px leaves an off-grid value inside a point list alone
+ok 18 - grid-4px leaves an off-grid value inside a point list alone
+  ---
+  duration_ms: 1117.72825
+  type: 'test'
+  ...
+# Subtest: every family the checker registers has a case here, or a stated reason it cannot
+ok 19 - every family the checker registers has a case here, or a stated reason it cannot
+  ---
+  duration_ms: 13.514791
+  type: 'test'
+  ...
+# Subtest: nothing here names a family the checker does not register
+ok 20 - nothing here names a family the checker does not register
+  ---
+  duration_ms: 1.676959
+  type: 'test'
+  ...
+# Subtest: no exemption outlives the family it excuses
+ok 21 - no exemption outlives the family it excuses
+  ---
+  duration_ms: 1.496625
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 32306.124291

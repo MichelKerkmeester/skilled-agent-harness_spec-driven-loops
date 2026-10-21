@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Every one of the 319 tracked paths under the OpenCode plugin folder and the hook tree now has an sk-code review row. 215 of the 258 confirmed findings are fixed, including two path escapes, and 35 that would change behaviour wait on the operator, three of them P0."
+description: "Every one of the 319 tracked paths under the OpenCode plugin folder and the hook tree now has an sk-code review row. 216 of the 258 confirmed findings are fixed, including two path escapes, and 35 that would change behaviour wait on the operator, three of them P0."
 trigger_phrases:
   - "sk code opencode alignment audit implementation summary"
 importance_tier: "normal"
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 039-sk-code-opencode-alignment-audit |
 | **Completed** | 2026-10-21 |
-| **Status** | Complete except REQ-002: 22 P0 and P1 findings stay open, 21 waiting on the operator |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -56,7 +56,7 @@ Every tracked file in the OpenCode plugin folder and the hook tree now has a rev
 
 ### Phase 39: sk-code-opencode-alignment-audit
 
-The review covered 203 real files and 116 symlinks. It confirmed 258 findings: 5 P0, 48 P1 and 205 P2. 215 are fixed (2 P0, 29 P1, 184 P2). 35 wait on the operator because each fix changes behaviour a runtime or an operator would see: 3 P0, 18 P1 and 14 P2. 8 are recorded with the reason they stay, most because the fix needs a new shared module or a file outside both trees. Luna rejected 25 more candidates.
+The review covered 203 real files and 116 symlinks. It confirmed 258 findings: 5 P0, 48 P1 and 205 P2. 216 are fixed (2 P0, 30 P1, 184 P2). 35 wait on the operator because each fix changes behaviour a runtime or an operator would see: 3 P0, 18 P1 and 14 P2. 7 are recorded with the reason they stay, most because the fix needs a new shared module or a file outside both trees. Luna rejected 25 more candidates.
 
 Most fixes are standards work: module headers, numbered section dividers, import order, JSDoc on exports, line length, and test isolation from the operator's hook kill switches. A number of READMEs and the plugin architecture doc said things the code no longer does, and now match it. The plugin inventory scanner had three ways to lose an event check without reporting it. Each now reports the check, and each has a test that fails on the old scanner.
 
@@ -126,7 +126,7 @@ Batch 12 (the inventory scanner, its tests and the plugin architecture doc) wait
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **REQ-002 is not met.** 21 P0 and P1 findings wait on an operator decision (`review.md` §3), and one P1 stays because its other half is in `.skilled/bin/skilled-loop`, outside both trees.
+1. **REQ-002 is met.** Every P0 and P1 row names its fix commit. The last one, `b05-relaunch-lib-006`, was fixed in phase 048 at `70c81b37c3` and `1159acb5c5`, where the wrapper builds its seed suffix through the shared core formatter.
 2. **Luna's round 4 did not run for batches 10 and 12.** It stopped at the usage limit. Those fixes rest on the orchestrator's tests and mutation checks.
 3. **The scanner still names the event type by name.** A value held under another name stays invisible. The two-version battery remains the authoritative guard.
 <!-- /ANCHOR:limitations -->

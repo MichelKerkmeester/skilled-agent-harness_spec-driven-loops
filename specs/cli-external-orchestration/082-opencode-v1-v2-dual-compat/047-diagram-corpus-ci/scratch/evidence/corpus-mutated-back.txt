@@ -1,0 +1,19 @@
+Diagram corpus: 38 files, 12 families
+  + accessible-svg: 304 assertion(s), 38 file run(s), 0 failure(s)
+  + catalog-bidirectional: 101 assertion(s), 1 corpus run(s), 0 failure(s)
+  + derivation-gates: 54 assertion(s), 38 file run(s), 0 failure(s)
+  + grid-4px: 38 assertion(s), 38 file run(s), 0 failure(s)
+  + label-mask-clearance: 820 assertion(s), 38 file run(s), 0 failure(s)
+  + legend-fidelity: 18 assertion(s), 38 file run(s), 0 failure(s)
+  + marker-vocabulary: 98 assertion(s), 38 file run(s), 0 failure(s)
+  x metadata: 65 assertion(s), 1 corpus run(s), 1 failure(s)
+  + no-external: 38 assertion(s), 38 file run(s), 0 failure(s)
+  + node-budget: 0 assertion(s), 38 file run(s), 0 failure(s)
+  + orthogonal-connectors: 164 assertion(s), 38 file run(s), 0 failure(s)
+  + unique-ids: 181 assertion(s), 38 file run(s), 0 failure(s)
+
+  FAIL [metadata] scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era; set it to 1.2.x.x by hand, because the frontmatter-version apply pass keeps a child doc's own edition
+
+Summary: errors: 1
+
+RESULT: FAILED

@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof"
     last_updated_at: "2026-10-21T12:45:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Ran the live matrix, the suites and the v1 default dispatch from origin/main"
-    next_safe_action: "Record CI on the final main commit"
+    recent_action: "Recorded CI on both pushed commits and closed the phase"
+    next_safe_action: "None; the OpenCode 1 default dispatch waits on the opencode-go quota"
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/scratch/live-runs/results-matrix.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-046-final-two-version-proof"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -129,6 +129,61 @@ Worktree 190 was created from origin/main with sk-git's `create` and provisioned
 | Live matrix | v2 10 of 17 | v1 17 of 17, v2 17 of 17 |
 | OpenCode 1 default dispatch (`opencode-go/deepseek-v4.1-flash --variant max`) | none | Stopped by the 180 s alarm, exit 142; the OpenCode log shows `Go usage limit exceeded` (`scratch/v1-default/`) |
 | Recursive strict validation of 082 | none | 47 of 47 folders print `RESULT: PASSED`, exit 0, at commit `81566567ed` |
+
+### CI
+
+Pushed to main as `eb0c18f7e9..586e3bb152`; the trigger-index bot then committed `ebadbe1edf` on top.
+
+| Commit | Workflow | Run | Conclusion |
+|---|---|---|---|
+| `586e3bb152` | Advisory Checks | 39601195200 | success |
+| `586e3bb152` | Changed Packet Validation | 39601195180 | success |
+| `586e3bb152` | Command Tree Parity | 39601195211 | success |
+| `586e3bb152` | Dispatch Enforcement Guard | 39601195134 | success |
+| `586e3bb152` | Gate Inputs | 39601195305 | success |
+| `586e3bb152` | Message Contract | 39601195195 | success |
+| `586e3bb152` | Playbook Operator Contract | 39601195287 | success |
+| `586e3bb152` | Rule Canary Sync | 39601195146 | success |
+| `586e3bb152` | sk-doc Script Tests | 39601195183 | success |
+| `586e3bb152` | Trigger Index Rebuild | 39601195330 | success |
+| `ebadbe1edf` | Hook Node Tests | 39601446963 | success |
+| `ebadbe1edf` | OpenCode Plugin Tests | 39601446934 | success |
+| `ebadbe1edf` | Spec-Kit Check | 39601446991 | success |
+| `ebadbe1edf` | Markdown Link Integrity | 39601447041 | success |
+| `ebadbe1edf` | Advisory Checks | 39601447025 | success |
+| `ebadbe1edf` | Changed Packet Validation | 39601446988 | success |
+| `ebadbe1edf` | Command Tree Parity | 39601446822 | success |
+| `ebadbe1edf` | Dispatch Enforcement Guard | 39601446725 | success |
+| `ebadbe1edf` | Gate Inputs | 39601447089 | success |
+| `ebadbe1edf` | Message Contract | 39601446727 | success |
+| `ebadbe1edf` | Playbook Operator Contract | 39601446989 | success |
+| `ebadbe1edf` | Rule Canary Sync | 39601446673 | success |
+| `ebadbe1edf` | sk-doc Script Tests | 39601446969 | success |
+| `ebadbe1edf` | Trigger Index Rebuild | 39601446987 | skipped, as on every bot commit |
+
+The workflows that did not run on either commit, with their last run on main. Most are path-filtered; Strict Pass Freshness Report runs on a schedule, and Dependabot Updates and Dependency Graph are run by GitHub, so their run names are the update titles:
+
+| Workflow | Run | Commit | Conclusion |
+|---|---|---|---|
+| Deep-Loop Runtime Tests | 39577580054 | `db82fdfd62` | success |
+| OpenCode Dual-Version Battery | 39579717047 | `df71abbc47` | success |
+| Pi Extension Tests | 39508434074 | `ff2ecb632a` | success |
+| Routing Registry Drift Guard | 39579716962 | `df71abbc47` | success |
+| Runtime No-Spec-Import Guard | 39602980597 | `00fb08a77d` | success |
+| sk-code Script Tests | 39512563089 | `d704b466da` | success |
+| sk-doc Rename Harness | 39526699911 | `e42bdbeaf2` | success |
+| sk-git Script Tests | 39515394430 | `c818616abc` | success |
+| Skill Advisor Stress Tests | 39564216421 | `53fd0cbbde` | success |
+| Skill Doc Frontmatter | 39577580100 | `db82fdfd62` | success |
+| Chart Corpus | 38363499258 | `0efd5a12b5` | success |
+| Repo Rules Corpus | 38363499132 | `0efd5a12b5` | success |
+| Strict Pass Freshness Report (scheduled) | 39200485518 | `33d619a538` | success |
+| Dependabot Updates (GitHub-managed) | 39577752249 | `db82fdfd62` | success |
+| Dependency Graph (GitHub-managed) | 36911226681 | `8a4f2ef459` | success |
+| Diagram Corpus | 39165172090 | `be234e6f94` | failure, outside this goal: it failed on 2026-10-18, before the goal began, no phase of this packet touches its paths, and group 047, opened alongside this closeout, is fixing it |
+
+Seven workflows have never run on main: Agent Mirror Sync, Comment Hygiene Gate, Copilot code review, Copilot coding agent, Dependabot Auto-merge, Naming Standard Guard and Prompt-Knowledge Card Sync.
+
 <!-- /ANCHOR:verification -->
 
 ---

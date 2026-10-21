@@ -1,0 +1,26 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter (pre-approved, skip Gate 3)
+
+ROLE: spec-doc writer. Load system-spec-kit for spec-folder docs and follow it. Use `../047-diagram-corpus-ci/` as the model for shape, length and tone.
+
+TASK: fill the four Level 1 docs of phase 048 and mark finding b05-relaunch-lib-006 fixed in phase 039 and the parent.
+
+FACTS (use only these; do not invent numbers):
+- Finding: b05-relaunch-lib-006, P1, DRY. The spec-folder suffix text of the relaunch seed was written twice: once in `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` (`specFolderSuffix`, shared by `nudge.cjs`) and once by hand in `spec_folder_suffix()` in `.skilled/bin/skilled-loop`.
+- Fix: `spec_folder_suffix()` now calls node and prints `require(core).specFolderSuffix(folder)`, the same style the wrapper already uses for the manual command. If node fails it prints a warning on stderr and relaunches with a bare seed.
+- Behaviour: neutral. For 'none', two valid folders and an empty value both versions print the same bytes. For invalid folders the old shell copied the value and the core returns ''; the CLI already drops invalid folders at prepare and consume, so they never reach the wrapper.
+- Commits: 84cdaeb09a (scaffold), 70c81b37c3 (wrapper delegates, ownership test), 1159acb5c5 (stderr warning, shim test, throwing-formatter test).
+- Evidence in `scratch/`: before/suffix-compare.txt 4 same 4 DIFF (invalid inputs); after/suffix-compare.txt 8 same 0 DIFF; mutation/old-function.tap: the ownership test fails on the old function (exit 1); mutation/no-warning.tap: the throwing test fails without the warning (exit 1); after/skilled-loop.tap 111/111 (baseline 109 before the two new tests); before/hook-node.tap 870/870 over 29 files; after/hook-node.tap 872/872 over 29 files; after/live-session-relaunch.txt: live session-relaunch playbook on OpenCode 1 and 2 with llmgateway, both runner exit 0, marker present, a tool call completed (bash on v1, shell on v2); after/pid46220-before.txt: the shared v2 service was not touched.
+- Review: DeepSeek v4.1 flash max via cli-pi, read-only session r01, VERDICT PASS with two P2s (silent node failure; brittle regex edit in the test). Both fixed in 1159acb5c5 by writer b02.
+
+CHANGES:
+1. `048/spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`: replace every template placeholder with the facts above. Status Complete. Tasks all checked with evidence. Keep the template anchors and frontmatter keys.
+2. `039-sk-code-opencode-alignment-audit/review.md`: the row for b05-relaunch-lib-006 in "## 4. Recorded, Not Fixed" — move it out of that table (state it is fixed in phase 048 at 70c81b37c3 and 1159acb5c5); in the per-file row for `nudge.cjs`, change that finding's text to `fixed in 048 (70c81b37c3, 1159acb5c5)` and the row's last column to match the other rows that have no open P0/P1 left.
+3. `039/implementation-summary.md` Known Limitations item 1 and `039/spec.md` Status: REQ-002 is now met; say the last P1 was fixed in 048.
+4. Parent `spec.md`: phase-map row 39 Status → Complete; row 48 scope sentence (one line, like its neighbours) and Status Complete; handoff row 047→048: criteria "The operator approved closing 039's last open P1 on 2026-10-21", verification "`048/implementation-summary.md`; suffix compare 8/8, skilled-loop 111/111, Hook Node 872/872". Keep every other row unchanged.
+
+ALLOWED WRITE PATHS: the four 048 docs; 039/review.md, 039/implementation-summary.md, 039/spec.md; the parent spec.md.
+
+BANNED: no git commit, push, branch, stash, reset, checkout or merge; no code edits; no network; no service commands.
+
+VERIFY: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter --strict` and the same for `.../039-sk-code-opencode-alignment-audit`, and print the RESULT lines. Finish with a short list of what you changed.
