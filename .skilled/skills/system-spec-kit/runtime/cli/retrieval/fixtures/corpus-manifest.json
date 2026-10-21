@@ -1,5 +1,5 @@
 {
-  "corpusHash": "663238f06a56dc93d5f85b3029a22155209dd94e23344cdbdb2d412734942f67",
+  "corpusHash": "d1abd2e23d48fe91a78fea3e75bf925571a5828216c0a47dd51d3bfb016064c8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25591,
+  "includedPathCount": 25595,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9060,6 +9060,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25622,7 +25626,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "852b05103393280cf5352fab8eb518a28a56e1243d9d8f6c7c83ecd30e324691",
+  "manifestHash": "e92d128e4477ab3c122a88c491f05acaa31eeb4da7d277418f926ea4f175d26f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26778,6 +26782,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/scratch",
       "reason": "excluded directory"
     },
     {

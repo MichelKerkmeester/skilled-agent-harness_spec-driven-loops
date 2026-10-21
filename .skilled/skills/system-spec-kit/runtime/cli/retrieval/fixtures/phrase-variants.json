@@ -1,5 +1,5 @@
 {
-  "manifestHash": "852b05103393280cf5352fab8eb518a28a56e1243d9d8f6c7c83ecd30e324691",
+  "manifestHash": "e92d128e4477ab3c122a88c491f05acaa31eeb4da7d277418f926ea4f175d26f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72763,6 +72763,9 @@
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
+    "phase 50 sk doc ci outside failures": [
+      "phase 50 sk doc ci outside failures"
+    ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
     ],
@@ -94399,6 +94402,18 @@
     ],
     "sk doc changelog rewrite tasks": [
       "sk-doc changelog rewrite tasks"
+    ],
+    "sk doc ci outside failures": [
+      "sk doc ci outside failures"
+    ],
+    "sk doc ci outside failures implementation summary": [
+      "sk doc ci outside failures implementation summary"
+    ],
+    "sk doc ci outside failures plan": [
+      "sk doc ci outside failures plan"
+    ],
+    "sk doc ci outside failures tasks": [
+      "sk doc ci outside failures tasks"
     ],
     "sk doc compiled routing": [
       "sk-doc compiled routing"
