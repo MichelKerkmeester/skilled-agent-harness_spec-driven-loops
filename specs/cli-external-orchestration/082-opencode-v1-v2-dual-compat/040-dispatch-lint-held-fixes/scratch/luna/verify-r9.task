@@ -1,0 +1,24 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is round nine, covering the five P1s of your round-8 verdict (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-r8.txt`).
+
+Commits: `git log --oneline f2055d463e..HEAD`, `git diff f2055d463e..HEAD -- .skilled/hooks/dispatch/`. Changes:
+- every inflection of the refusal verbs, plus refusal nouns and slang, in `REFUSAL_PATTERN` (`.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`);
+- a sentence ends only at `.`, `!` or `?` followed by whitespace and a capital letter, or the end of the text; `;`, line breaks and abbreviation periods do not end it; the next sentence, when it refuses and names no executor, withholds authorization too;
+- the reset form compares executors through the new `executorSkill` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, which `directExecutor` now shares;
+- curly and low quotes are read as quotes in the Pi user text;
+- the expansion check counts nesting depth for `$(` and backticks.
+
+Severity, by the user's policy: a fail-closed false deny is P2 at most. Only an authorization that leaks through (a refusal or negation of the dispatched executor that still authorizes it) or a regression elsewhere (a test, another runtime, the shared `directExecutor` classification, or a plain request such as `use cli-devin`, `dispatch via cli-devin` or `/deep:review --executor cli-devin` now denied) is P1 or P0.
+
+Judge each round-8 P1 (`forbid cli-devin`; `not opencode; use cli-devin`; `not claude, use cli-claude-code`; `use “cli-devin”`; `$(echo $(true) cli-devin)`), then look for leaks of the same five classes and their neighbours, and check that `executorSkill` did not change what `directExecutor` returns. Trace by reading, or probe with `node --input-type=module -e` importing `.skilled/hooks/dispatch/lib/*.mjs`. Do not run vitest or node:test.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<round-8 phrasing> | CLOSED|OPEN | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <exact phrasing> | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL

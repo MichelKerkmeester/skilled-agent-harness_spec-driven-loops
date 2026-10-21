@@ -3,7 +3,7 @@
 
 
  Test Files  1 passed (1)
-      Tests  123 passed (123)
-   Start at  10:19:03
-   Duration  336ms (tests 52%, transform 27%, import 18%, worker 3%)
+      Tests  124 passed (124)
+   Start at  10:45:16
+   Duration  362ms (tests 51%, transform 28%, import 19%, worker 2%)
 

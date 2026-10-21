@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 40: dispatch-lint-held-fixes"
-description: "All ten dispatch-hook findings 039 held are fixed with a test that fails on the pre-change engine; the main push is held because Luna's eighth and final round found five P1s, none a regression against the base."
+description: "All ten dispatch-hook findings 039 held are fixed with a test that fails on the pre-change engine; the main push is held because Luna's ninth round found three P1s, two of which reproduce and none a regression against the base."
 trigger_phrases:
   - "dispatch lint held fixes implementation summary"
 importance_tier: "normal"
@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes"
     last_updated_at: "2026-10-21T04:55:14Z"
     last_updated_by: "template-author"
-    recent_action: "Round 8 sentence policy closed round 7; Luna found five pre-existing P1s"
+    recent_action: "Round 9 closed the five round-8 P1s; Luna found three more, two reproduce"
     next_safe_action: "Operator decides the main push"
     blockers: []
     key_files: []
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 040-dispatch-lint-held-fixes |
 | **Status** | In Progress |
-| **Completed** | Not yet: Luna round 8 FAIL |
+| **Completed** | Not yet: Luna round 9 FAIL |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,7 @@ The ten dispatch-hook findings 039 held for the operator are fixed in the shared
 |---------|---------------|----------------------------|
 | b09-hooks-dispatch-006 (P0) | 2cb94baa32 | `dispatch-audit.test.mjs` codex substitution rows |
 | b09-hooks-dispatch-N01 (P0) | 7bda6731b4 | Pi `denies a wrapped dispatch`, `blocks a named wrapper dispatch that omits the stdin redirect` |
-| b09-hooks-dispatch-N02 (P0) | 2cac0da1fa, 22f6b903a5, 2c352bae5a, d3c7237d8e, 14818954f9, 01e5e6c73a | Pi deny matrix: negated, quoted, backtick and bare-not deep-loop rows |
+| b09-hooks-dispatch-N02 (P0) | 2cac0da1fa, 22f6b903a5, 2c352bae5a, d3c7237d8e, 14818954f9, 01e5e6c73a, 8042946e3c, 5ec42348e8, 80ef0a3adf, 1889eb0dcd | Pi deny matrix: negated, quoted, backtick and bare-not deep-loop rows |
 | b09-hooks-dispatch-012 (P1) | d5e869aaae | `permission-mode check sees claude print mode behind other flags` |
 | b09-hooks-dispatch-N03 (P1) | fdc0fc8741, a207f963dd, c0805c2350, 1db655bfe5, e0f84f529b | `resolveDispatchPackets` chain test, Codex `lints the second dispatch in a chain against its own packet`, `each repeated dispatch is held to the stdin and model checks on its own` |
 | b09-hooks-dispatch-N04 (P1) | 17d2a25f4c, 92e672a7c2 | `stdin and model checks ignore flags and redirects inside a quoted prompt` |
@@ -81,7 +81,7 @@ The hooks README and the two dispatch playbook features describe the new behavio
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek v4.1 flash (cli-pi) wrote each change from a one-change brief (`scratch/briefs/`). Every change was then mutation-checked against the commit before it, compared on the 260-command corpus and run through the suites. Luna verified read-only in eight rounds (`scratch/luna/`). Round 1 found the herestring and two-heredoc defects, round 2 the same-skill repeat, ANSI-C quote and quoted-delimiter gaps, and round 3 the bare-not, pipe and hyphenated-delimiter gaps. Each was fixed and verified in the next round. Round 4 closed all of them and reported three P1s. The operator approved a fifth round limited to those three: 2c352bae5a scopes a Pi negation to its clause, e0f84f529b counts only pipes that feed a dispatch, and 0bde6b4df6 reads a `<<` inside quotes as text. Round 5 closed all three and found that a comma ended a negation. The operator approved a sixth round for that item: d3c7237d8e carries a negation across a parenthetical comma, with sixteen new deny-matrix phrasings that each fail on the engine before it. Round 6 closed it and found a negated list with imperatives and modal negations still authorizing. The operator approved a seventh round: 14818954f9 carries a negation across and/or lists, adds modal negations, refusal verbs and curly apostrophes, and denies exclusion phrases before the mention and refusals after it, with a 54-deny, 13-allow phrasing table whose deny rows each fail on the original base or the pre-round head. Round 7 closed both and found three more phrasing gaps. The user then chose a sentence-wide refusal policy as the final, eighth round: 01e5e6c73a replaces the layered reading with one rule (a sentence naming the executor authorizes only when it carries no negation or refusal word; `not <other>, use <executor>` and `not <other> but <executor>` excepted). Round 8 closed the three round-7 items and reported the five P1s below; the base engine authorizes all five too.
+DeepSeek v4.1 flash (cli-pi) wrote each change from a one-change brief (`scratch/briefs/`). Every change was then mutation-checked against the commit before it, compared on the 260-command corpus and run through the suites. Luna verified read-only in nine rounds (`scratch/luna/`). Round 1 found the herestring and two-heredoc defects, round 2 the same-skill repeat, ANSI-C quote and quoted-delimiter gaps, and round 3 the bare-not, pipe and hyphenated-delimiter gaps. Each was fixed and verified in the next round. Round 4 closed all of them and reported three P1s. The operator approved a fifth round limited to those three: 2c352bae5a scopes a Pi negation to its clause, e0f84f529b counts only pipes that feed a dispatch, and 0bde6b4df6 reads a `<<` inside quotes as text. Round 5 closed all three and found that a comma ended a negation. The operator approved a sixth round for that item: d3c7237d8e carries a negation across a parenthetical comma, with sixteen new deny-matrix phrasings that each fail on the engine before it. Round 6 closed it and found a negated list with imperatives and modal negations still authorizing. The operator approved a seventh round: 14818954f9 carries a negation across and/or lists, adds modal negations, refusal verbs and curly apostrophes, and denies exclusion phrases before the mention and refusals after it, with a 54-deny, 13-allow phrasing table whose deny rows each fail on the original base or the pre-round head. Round 7 closed both and found three more phrasing gaps. The user then chose a sentence-wide refusal policy as the final, eighth round: 01e5e6c73a replaces the layered reading with one rule (a sentence naming the executor authorizes only when it carries no negation or refusal word; `not <other>, use <executor>` and `not <other> but <executor>` excepted). Round 8 closed the three round-7 items and found five P1s the base engine also has. The user approved a ninth round for all five: 8042946e3c widens the refusal verbs and ends a sentence only at `.`/`!`/`?` before whitespace and a capital, bac669ee6d exports the registry's `executorSkill`, 5ec42348e8 compares reset-form executors through it, 80ef0a3adf reads curly quotes and nested substitutions, and 1889eb0dcd adds refusal nouns and a next-sentence retraction. Round 9 closed all five and reported the items below.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,14 +106,14 @@ DeepSeek v4.1 flash (cli-pi) wrote each change from a one-change brief (`scratch
 | Check | Result |
 |-------|--------|
 | hooks node:test | PASS 840/0 (baseline 836) |
-| hooks vitest | PASS 332/0 (baseline 217) |
+| hooks vitest | PASS 385/0 (baseline 217) |
 | plugins | PASS 481/0 (baseline 481) |
 | battery unit | PASS 51/0 (baseline 51) |
 | dispatch rule-checks | PASS 42/0 (baseline 38) |
-| dispatch audit vitest | PASS 123/0 (baseline 114) |
+| dispatch audit vitest | PASS 124/0 (baseline 114) |
 | Mutation | Every new test fails on the commit before its fix (`scratch/mutation/`) |
 | Corpus | 18 of 260 commands move, each one a finding names (`scratch/corpus-diff.txt`) |
-| Luna round 8 | FAIL: five P1s, listed below, none a regression against the base |
+| Luna round 9 | FAIL: three P1s, two reproduce, none a regression against the base |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,8 +122,8 @@ DeepSeek v4.1 flash (cli-pi) wrote each change from a one-change brief (`scratch
 ## Known Limitations
 
 1. **Policy P2: fail-closed false denies.** A positive request with a negation or refusal word in its sentence, such as `use cli-devin, it is not forbidden`, is denied by the user's policy. The operator writes the request as its own sentence. The hooks README records this.
-2. **Open P1s from round 8, all authorized by the base engine too:** `forbid cli-devin` (the refusal set has `forbidden`, not `forbid`); `not opencode; use cli-devin` (the semicolon ends the sentence, so the refusal does not reach the mention); `not claude, use cli-claude-code` (the reset form compares `claude` and `cli-claude-code` as different executors); `use “cli-devin”` (curly double quotes are not read as quotes); `$(echo $(true) cli-devin)` (nested command substitution hides the outer expansion).
-3. **Recorded:** the Pi phrasing rounds 4 to 8 each found phrasings the word set or the quote and expansion scan misses; a word list cannot be complete.
+2. **Open P1s from round 9, authorized by the base engine too:** `Use cli-devin. Never use devin.` (the next-sentence retraction is skipped when that sentence names any executor, even the same one through an alias); `$(echo ")" cli-devin)` (a `)` inside quotes closes the substitution depth). Luna's third item, `Do not use any executor, e.g. CLI-devin`, does not reproduce: `shouldDenyPiDispatch` denies it on head and base, because the upper-case `CLI-devin` is not a mention.
+3. **Recorded:** the Pi phrasing rounds 4 to 9 each found phrasings the word set or the quote and expansion scan misses; a word list cannot be complete.
 4. **Recorded from round 3:** `<<$'WORD'` delimiters, a heredoc fed to `env bash`, and a quoted `"$(codex exec task)"` in the audit are still missed.
 5. **Recorded from round 2:** the fallback resolves `unknown-wrapper devin -p task` and `devin -p "unterminated` as Devin. This is the preflight's existing fail-closed reading, which the audit now shares.
 <!-- /ANCHOR:limitations -->

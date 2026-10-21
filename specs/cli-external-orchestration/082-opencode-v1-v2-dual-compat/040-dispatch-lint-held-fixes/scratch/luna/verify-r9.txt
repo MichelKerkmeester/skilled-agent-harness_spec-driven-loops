@@ -1,0 +1,12 @@
+VERDICTS
+forbid cli-devin | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:49 includes `forbid`; the normal mention path remains usable without a refusal at :284-288.
+not opencode; use cli-devin | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:55,62 keeps the semicolon in the refusal sentence, and the reset form requires a comma or `but`; matching plain mentions remain allowed at :304-307 and :339-341.
+not claude, use cli-claude-code | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:262-264 compares canonical executor identities; .skilled/hooks/dispatch/lib/dispatch-audit.mjs:288-316 preserves the prior `directExecutor` mappings. The import probe exited 0 with unchanged dispatch and non-dispatch classifications.
+use “cli-devin” | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:280-282 normalizes curly and low quotes before checking whether the mention is quoted.
+$(echo $(true) cli-devin) | CLOSED | .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:170-188 keeps the outer substitution depth open after the inner one closes; :282 rejects the mention.
+
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:62 | P1 | Do not use any executor, e.g. CLI-devin | The period in `e.g.` followed by uppercase `CLI` is treated as a sentence boundary, dropping `not` from the mention’s sentence and allowing the refused executor. | Make sentence splitting abbreviation-aware, including when an abbreviation precedes an uppercase mention.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:249,288 | P1 | Use cli-devin. Never use devin. | The follow-on sentence refuses the same executor through its `devin` alias, but the boolean `namesExecutor` check preserves the original authorization whenever any executor is named. | Compare canonical executor identities in the follow-on refusal and revoke authorization when it names the same executor.
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:185-186 | P1 | $(echo ")" cli-devin) | The `)` inside the quoted string drops expansion depth to zero before `cli-devin`, so the mention inside the substitution is accepted. | Track quote and escape state while balancing substitution delimiters.
+VERDICT: FAIL
