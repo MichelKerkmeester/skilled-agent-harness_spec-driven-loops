@@ -158,6 +158,166 @@ function isNothing(node, context) {
   return node.type === 'Literal' && node.value === null;
 }
 
+// Only a parameter written directly in the parameter list can be traced through calls; a name
+// destructured out of a parameter receives part of the value, not the argument itself.
+function directParameterOwner(identifier, context) {
+  const parent = context.nodeParents.get(identifier);
+  if (parent === undefined) return null;
+
+  if (FUNCTION_TYPES.has(parent.type) && parent.params.includes(identifier)) return parent;
+
+  if (parent.type === 'AssignmentPattern' && parent.left === identifier) {
+    const owner = context.nodeParents.get(parent);
+    if (
+      owner !== undefined &&
+      FUNCTION_TYPES.has(owner.type) &&
+      owner.params.includes(parent)
+    ) {
+      return owner;
+    }
+  }
+
+  return null;
+}
+
+// A declaration binding is found by its own identifier, which stays exact even when a parameter
+// shares the function's name.
+function declarationBinding(identifier, context) {
+  const binding = context.bindings.find((candidate) => candidate.node === identifier);
+  return binding === undefined ? null : binding;
+}
+
+// A function declaration or a variable holding a function has a name every call reaches; a method,
+// a callback or an inline function has none, so its parameter cannot be traced.
+function callableBindingFor(fn, context) {
+  if (fn.type === 'FunctionDeclaration') {
+    return fn.id === null ? null : declarationBinding(fn.id, context);
+  }
+
+  const parent = context.nodeParents.get(fn);
+  if (
+    parent !== undefined &&
+    parent.type === 'VariableDeclarator' &&
+    parent.init === fn &&
+    parent.id.type === 'Identifier'
+  ) {
+    return declarationBinding(parent.id, context);
+  }
+
+  return null;
+}
+
+// A defaulted parameter keeps its own position in the list, so the default does not shift it.
+function parameterIndex(fn, identifier) {
+  const direct = fn.params.indexOf(identifier);
+  if (direct !== -1) return direct;
+  return fn.params.findIndex(
+    (param) => param.type === 'AssignmentPattern' && param.left === identifier,
+  );
+}
+
+// The default expression is what the function reads when the call leaves the parameter empty.
+function parameterDefault(fn, identifier) {
+  const parameter = fn.params[parameterIndex(fn, identifier)];
+  if (parameter === undefined || parameter.type !== 'AssignmentPattern') return null;
+  return parameter.left === identifier ? parameter.right : null;
+}
+
+// A call that omits an argument or passes the global nothing leaves the parameter's default in
+// place, so the default is the value the function actually reads.
+function isOmittedArgument(argument, context) {
+  if (argument === undefined) return true;
+  if (argument.type === 'Identifier' && argument.name === 'undefined') {
+    return context.resolve(argument) === null;
+  }
+  return (
+    argument.type === 'UnaryExpression' &&
+    argument.operator === 'void' &&
+    argument.argument.type === 'Literal' &&
+    argument.argument.value === 0
+  );
+}
+
+// An exported callable can be reached from outside the file, so its parameter keeps reading as the
+// type; both an exported declaration and a separate export list make that escape.
+function exportedCallable(fn, callable, context) {
+  const parent = context.nodeParents.get(fn);
+  if (
+    fn.type === 'FunctionDeclaration' &&
+    parent !== undefined &&
+    (parent.type === 'ExportNamedDeclaration' || parent.type === 'ExportDefaultDeclaration')
+  ) {
+    return true;
+  }
+
+  if (parent !== undefined && parent.type === 'VariableDeclarator' && parent.init === fn) {
+    const declaration = context.nodeParents.get(parent);
+    if (declaration !== undefined && declaration.type === 'ExportNamedDeclaration') return true;
+  }
+
+  return context.nodes.some(
+    ({ node }) =>
+      node.type === 'ExportSpecifier' &&
+      node.local.type === 'Identifier' &&
+      context.resolve(node.local) === callable,
+  );
+}
+
+// A parameter is the event type only when every call passes one, and a function that escapes can
+// be called anywhere; the resolving set keeps one parameter handed to another from looping.
+function isEventTypeParameter(binding, context) {
+  if (context.resolvingParams.has(binding)) return true;
+
+  const identifier = binding.node;
+  const fn = directParameterOwner(identifier, context);
+  if (fn === null) return true;
+
+  // A function that writes its parameter can hold the event type whatever the call passed.
+  if (context.written.has(binding)) return true;
+
+  const callable = callableBindingFor(fn, context);
+  if (callable === null) return true;
+  if (exportedCallable(fn, callable, context)) return true;
+
+  const calls = [];
+  for (const { node, parent } of context.nodes) {
+    if (node.type !== 'Identifier') continue;
+    if (node === callable.node) continue;
+    if (context.resolve(node) !== callable) continue;
+    if (isBindingIdentifier(node, parent)) continue;
+    if (parent === null || parent.type !== 'CallExpression' || parent.callee !== node) return true;
+    calls.push(parent);
+  }
+
+  if (calls.length === 0) return true;
+
+  const index = parameterIndex(fn, identifier);
+  const defaultExpression = parameterDefault(fn, identifier);
+
+  context.resolvingParams.add(binding);
+  try {
+    for (const call of calls) {
+      for (let position = 0; position <= index; position += 1) {
+        const argument = call.arguments[position];
+        // An explicit nothing is an argument like any other, so only a genuinely absent slot ends
+        // the walk: that slot leaves this parameter and every later one with its default value.
+        const absent = argument === undefined;
+        if (absent || (position === index && isOmittedArgument(argument, context))) {
+          if (defaultExpression !== null && containsEventType(defaultExpression, context)) {
+            return true;
+          }
+          break;
+        }
+        if (argument.type === 'SpreadElement') return true;
+        if (position === index && containsEventType(argument, context)) return true;
+      }
+    }
+    return false;
+  } finally {
+    context.resolvingParams.delete(binding);
+  }
+}
+
 function isEventType(node, context) {
   if (node === null || node === undefined) return false;
 
@@ -165,8 +325,11 @@ function isEventType(node, context) {
   if (node.type === 'ChainExpression') return isEventType(node.expression, context);
 
   if (node.type === 'Identifier') {
-    if (node.name === 'type' || node.name.endsWith('Type')) return true;
     const binding = context.resolve(node);
+    if (node.name === 'type' || node.name.endsWith('Type')) {
+      if (binding === null || binding.kind !== 'param') return true;
+      return isEventTypeParameter(binding, context);
+    }
     return binding !== null && context.aliases.has(binding);
   }
 
@@ -192,7 +355,10 @@ function containsEventType(node, context) {
     (current) =>
       !FUNCTION_TYPES.has(current.type) &&
       !(current.type === 'UnaryExpression' && current.operator === 'typeof'),
-  ).some((entry) => isEventType(entry.node, context));
+  ).some(({ node: current, parent }) => {
+    // A name in a binding position or an object key is not a value, so it cannot be the type.
+    return !isBindingIdentifier(current, parent) && isEventType(current, context);
+  });
 }
 
 // Every pattern form hides its names at a different depth, so one walk flattens them all.
@@ -689,10 +855,210 @@ function isInTestPosition(node, parents) {
   }
 }
 
+// The generic rule reads a call that carries the type in an argument but is neither a membership
+// check nor a method on the type; both of those are handled earlier in the call reader.
+function reachesGenericCallRule(node, context) {
+  const callee = node.callee;
+
+  if (callee.type === 'MemberExpression') {
+    const property =
+      !callee.computed && callee.property.type === 'Identifier' ? callee.property.name : null;
+    const firstArgument = node.arguments[0];
+
+    if (
+      (property === 'has' || property === 'includes') &&
+      firstArgument !== undefined &&
+      containsEventType(firstArgument, context)
+    ) {
+      return false;
+    }
+
+    if (isEventType(callee.object, context)) return false;
+  }
+
+  return node.arguments.some((argument) => containsEventType(argument, context));
+}
+
+// A stored call keeps its value through the operators that only reshape it, so the walk follows
+// those links until the value is handed to a name, and stops anywhere else.
+function storedIdentifier(node, parents) {
+  let current = node;
+
+  while (true) {
+    const parent = parents.get(current);
+    if (parent === null || parent === undefined) return null;
+
+    if (
+      parent.type === 'LogicalExpression' ||
+      (parent.type === 'UnaryExpression' && parent.operator === '!') ||
+      parent.type === 'ChainExpression' ||
+      parent.type === 'AwaitExpression' ||
+      parent.type === 'ParenthesizedExpression' ||
+      (parent.type === 'ConditionalExpression' &&
+        (parent.consequent === current || parent.alternate === current))
+    ) {
+      current = parent;
+      continue;
+    }
+
+    if (
+      parent.type === 'VariableDeclarator' &&
+      parent.init === current &&
+      parent.id.type === 'Identifier'
+    ) {
+      return parent.id;
+    }
+
+    if (
+      parent.type === 'AssignmentExpression' &&
+      parent.operator === '=' &&
+      parent.right === current &&
+      parent.left.type === 'Identifier'
+    ) {
+      return parent.left;
+    }
+
+    return null;
+  }
+}
+
+// The source calls behind a value are the ones held by every derived binding the expression reads,
+// so one walk collects them all without entering a function that runs only when called.
+function collectDerivedOrigins(node, context, derived) {
+  const origins = new Set();
+  if (node === null || node === undefined) return origins;
+
+  for (const { node: current, parent } of walkAst(
+    node,
+    (current) => !FUNCTION_TYPES.has(current.type),
+  )) {
+    if (current.type !== 'Identifier' || isBindingIdentifier(current, parent)) continue;
+    const held = derived.get(context.resolve(current));
+    if (held === undefined) continue;
+    for (const call of held) origins.add(call);
+  }
+
+  return origins;
+}
+
+// A binding is derived from a helper call when the result is stored in it, and another binding
+// joins when it is declared or assigned from an expression that reads a derived binding, until
+// every binding holds all of the source calls whose value reached it.
+function collectDerivedBindings(context) {
+  const derived = new Map();
+
+  const add = (identifier, origins) => {
+    if (origins.size === 0) return false;
+    const binding = context.resolve(identifier);
+    if (binding === null) return false;
+
+    let held = derived.get(binding);
+    if (held === undefined) {
+      held = new Set();
+      derived.set(binding, held);
+    }
+
+    let changed = false;
+    for (const call of origins) {
+      if (held.has(call)) continue;
+      held.add(call);
+      changed = true;
+    }
+    return changed;
+  };
+
+  // A source call hands its value to the name the value is stored in, if there is one.
+  for (const { node } of context.nodes) {
+    if (node.type !== 'CallExpression') continue;
+    if (!reachesGenericCallRule(node, context)) continue;
+    if (isInTestPosition(node, context.nodeParents)) continue;
+    const identifier = storedIdentifier(node, context.nodeParents);
+    if (identifier !== null) add(identifier, new Set([node]));
+  }
+
+  // The spread repeats because one derived binding can hand its value to another, and the reads
+  // only settle once no binding gains a source call.
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const { node } of context.nodes) {
+      if (node.type === 'VariableDeclarator' && node.id.type === 'Identifier') {
+        if (add(node.id, collectDerivedOrigins(node.init, context, derived))) changed = true;
+      } else if (
+        node.type === 'AssignmentExpression' &&
+        node.operator === '=' &&
+        node.left.type === 'Identifier'
+      ) {
+        if (add(node.left, collectDerivedOrigins(node.right, context, derived))) changed = true;
+      }
+    }
+  }
+
+  return derived;
+}
+
+// A stored name decides a branch when a read of it reaches the condition of one; the walk runs
+// through expression links only, so a statement or a function body ends it.
+function readDecidesBranch(node, parents) {
+  let current = node;
+
+  while (true) {
+    const parent = parents.get(current);
+    if (parent === null || parent === undefined) return false;
+
+    if (
+      (parent.type === 'IfStatement' ||
+        parent.type === 'ConditionalExpression' ||
+        parent.type === 'WhileStatement' ||
+        parent.type === 'DoWhileStatement' ||
+        parent.type === 'ForStatement') &&
+      parent.test === current
+    ) {
+      return true;
+    }
+
+    if (
+      (parent.type === 'SwitchStatement' && parent.discriminant === current) ||
+      (parent.type === 'SwitchCase' && parent.test === current)
+    ) {
+      return true;
+    }
+
+    if (!parent.type.endsWith('Expression') || FUNCTION_TYPES.has(parent.type)) return false;
+    current = parent;
+  }
+}
+
+// The stored name itself is not a read, so only the other references to its binding can reach a
+// branch condition and carry the helper call into the report.
+function bindingDecidesBranch(binding, context) {
+  for (const { node, parent } of context.nodes) {
+    if (node.type !== 'Identifier') continue;
+    if (context.resolve(node) !== binding) continue;
+    if (isBindingIdentifier(node, parent)) continue;
+    if (readDecidesBranch(node, context.nodeParents)) return true;
+  }
+
+  return false;
+}
+
+// A source call is reported when a derived binding that carries its value decides a branch, so
+// one pass over the derived bindings builds the set the call reader looks the call up in.
+function collectReportedCalls(context) {
+  const calls = new Set();
+
+  for (const [binding, origins] of context.derived) {
+    if (!bindingDecidesBranch(binding, context)) continue;
+    for (const call of origins) calls.add(call);
+  }
+
+  return calls;
+}
+
 // A membership call on the type reads the receiver's contents; an unresolved receiver or a member
 // the collection kind does not have is reported because those events are otherwise invisible. A
 // helper handed the type inside a test decides a branch the scan cannot follow, so that is reported
-// too, while a call elsewhere is only logging or passing the value along.
+// too, and a stored result is reported when a read of its name decides a branch later.
 function readCall(node, parent, source, context, handled, unscanned) {
   const callee = node.callee;
 
@@ -742,10 +1108,12 @@ function readCall(node, parent, source, context, handled, unscanned) {
     }
   }
 
-  // A call in a test receives the event type even when another call wraps it.
-  if (!node.arguments.some((argument) => containsEventType(argument, context))) return;
-  if (!isInTestPosition(node, context.nodeParents)) return;
-  unscanned.add(text(source, node));
+  // A call in a test receives the event type even when another call wraps it; a result stored in
+  // a name is reported when a read of that name decides a branch later.
+  if (!reachesGenericCallRule(node, context)) return;
+  if (isInTestPosition(node, context.nodeParents) || context.reportedCalls.has(node)) {
+    unscanned.add(text(source, node));
+  }
 }
 
 function scanEvents(source) {
@@ -761,9 +1129,12 @@ function scanEvents(source) {
     bindings: scopes.bindings,
     typeBindings: scopes.typeBindings,
     aliases: new Set(),
+    resolvingParams: new Set(),
   };
   context.written = collectWrittenBindings(context);
   const aliases = collectEventTypeAliases(context);
+  context.derived = collectDerivedBindings(context);
+  context.reportedCalls = collectReportedCalls(context);
   const handled = new Set();
   const unscanned = new Set();
 

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3336d96763329a10c06a89a068bf900d8677b1c7c230e7db899598da52907132",
+  "manifestHash": "f646544845906528611fc8fb4e87e54869ccbffa5a57d66868552b2342e6e059",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20472,6 +20472,18 @@
     "cli opencode docs and listings tasks": [
       "cli opencode docs and listings tasks"
     ],
+    "cli opencode docs and vision test cleanup": [
+      "cli opencode docs and vision test cleanup"
+    ],
+    "cli opencode docs and vision test cleanup implementation summary": [
+      "cli opencode docs and vision test cleanup implementation summary"
+    ],
+    "cli opencode docs and vision test cleanup plan": [
+      "cli opencode docs and vision test cleanup plan"
+    ],
+    "cli opencode docs and vision test cleanup tasks": [
+      "cli opencode docs and vision test cleanup tasks"
+    ],
     "cli opencode dual dispatch": [
       "cli opencode dual dispatch"
     ],
@@ -25849,6 +25861,9 @@
     ],
     "confirm mode stop hint implementation summary": [
       "confirm mode stop hint implementation summary"
+    ],
+    "confirm the provider prefix": [
+      "confirm the provider prefix"
     ],
     "confirm variant parity": [
       "confirm variant parity"
@@ -41352,6 +41367,9 @@
     ],
     "event rate measurement finding": [
       "event rate measurement finding"
+    ],
+    "event scanner data flow": [
+      "event scanner data flow"
     ],
     "event time invalidation pending": [
       "event-time invalidation pending"
@@ -72298,8 +72316,14 @@
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
     ],
+    "phase 36 cli opencode docs and vision test cleanup": [
+      "phase 36 cli opencode docs and vision test cleanup"
+    ],
     "phase 37 ci pi and provisioning follow ups": [
       "phase 37 ci pi and provisioning follow ups"
+    ],
+    "phase 38 plugin scanner follow ups": [
+      "phase 38 plugin scanner follow ups"
     ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
@@ -74848,6 +74872,9 @@
     "plugin operation logic": [
       "plugin operation logic"
     ],
+    "plugin playbook snippet default server": [
+      "plugin playbook snippet default server"
+    ],
     "plugin rename": [
       "plugin rename"
     ],
@@ -74871,6 +74898,18 @@
     ],
     "plugin scanner ast tasks": [
       "plugin scanner ast tasks"
+    ],
+    "plugin scanner follow ups": [
+      "plugin scanner follow ups"
+    ],
+    "plugin scanner follow ups implementation summary": [
+      "plugin scanner follow ups implementation summary"
+    ],
+    "plugin scanner follow ups plan": [
+      "plugin scanner follow ups plan"
+    ],
+    "plugin scanner follow ups tasks": [
+      "plugin scanner follow ups tasks"
     ],
     "plugin scanner readiness": [
       "plugin scanner readiness"
@@ -85151,6 +85190,9 @@
     ],
     "rollback window monitoring plan": [
       "rollback window monitoring plan"
+    ],
+    "rolldown direct dependency": [
+      "rolldown direct dependency"
     ],
     "rolling novelty mad": [
       "rolling novelty MAD"
@@ -107541,6 +107583,9 @@
     ],
     "type definitions": [
       "type definitions"
+    ],
+    "type parameter false positive": [
+      "type parameter false positive"
     ],
     "type ramp per size": [
       "type ramp per size"

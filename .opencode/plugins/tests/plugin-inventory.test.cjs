@@ -373,6 +373,36 @@ test('a helper that receives a wrapped event type inside a test is reported', ()
   assert.deepEqual(unscannedEventChecks(source), ['isKnown(normalize(eventType))']);
 });
 
+// A helper result stored in a name still receives the type when that name decides an if.
+test('a stored helper result that decides an if is reported', () => {
+  const source = `const ok = isKnown(eventType); if (ok) {}`;
+  assert.deepEqual(unscannedEventChecks(source), ['isKnown(eventType)']);
+});
+
+// The stored value passes through a logical expression and a reassignment before it decides a loop.
+test('a stored helper result behind a logical expression that decides a loop is reported', () => {
+  const source = `let seen; seen = await matches(event.type); const go = seen && ready; while (go) {}`;
+  assert.deepEqual(unscannedEventChecks(source), ['matches(event.type)']);
+});
+
+// A stored result that is only passed along or returned never decides a branch.
+test('a stored helper result that never decides a branch is not reported', () => {
+  const source = `function run() { const label = describe(eventType); log(label); const n = count(type); return n; }`;
+  assert.deepEqual(unscannedEventChecks(source), []);
+});
+
+// A read inside a nested function decides that function's branch, so the helper call is reported.
+test('a stored helper result read inside a nested function is reported', () => {
+  const source = `const hit = check(eventType); function later() { if (hit) {} }`;
+  assert.deepEqual(unscannedEventChecks(source), ['check(eventType)']);
+});
+
+// A stored helper result that decides a switch discriminant is reported.
+test('a stored helper result that decides a switch is reported', () => {
+  const source = `const k = classify(eventType); switch (k) { case 1: }`;
+  assert.deepEqual(unscannedEventChecks(source), ['classify(eventType)']);
+});
+
 // A method that hands the collection to a callback can let that callback change it.
 test('a callback method that can reach the collection makes it untrusted', () => {
   const source = `const A = ['c.one']; A.forEach((value, index, all) => { all.length = 0; }); if (A.includes(eventType)) {}`;
@@ -384,6 +414,93 @@ test('a callback method that can reach the collection makes it untrusted', () =>
 test('a computed static type key is read as the type field', () => {
   const source = `const { ['type']: kind } = event; if (kind === 'c.computed') {}`;
   assert.deepEqual(handledEventNames(source), ['c.computed']);
+});
+
+// A parameter is not the event type when every call passes something else.
+test('a type-named parameter is not the event type when its calls pass no event type', () => {
+  const source = `function format(type) { if (type === 'a.b') {} } format('json'); format(mode);`;
+  assert.deepEqual(handledEventNames(source), []);
+});
+
+// A parameter that receives the event type in its call still selects events.
+test('a type-named parameter that receives the event type reads as the type', () => {
+  const source = `function route(type) { if (type === 'r.one') {} } route(event.type);`;
+  assert.deepEqual(handledEventNames(source), ['r.one']);
+});
+
+// A function with no calls might be called anywhere, so its parameter keeps reading as the type.
+test('a type-named parameter of an uncalled function still reads as the type', () => {
+  const source = `function lone(type) { if (type === 'r.two') {} }`;
+  assert.deepEqual(handledEventNames(source), ['r.two']);
+});
+
+// An escaping function can be called anywhere, so its parameter keeps reading as the type.
+test('a type-named parameter of an escaping function still reads as the type', () => {
+  const source = `function sent(type) { if (type === 'r.three') {} } sent('x'); register(sent);`;
+  assert.deepEqual(handledEventNames(source), ['r.three']);
+});
+
+// A defaulted parameter is still direct, and a call that omits it passes no event type.
+test('a defaulted type-named parameter is not the event type when its call omits it', () => {
+  const source = `const pick = (kindType = 'none') => { if (kindType === 'r.four') {} }; pick();`;
+  assert.deepEqual(handledEventNames(source), []);
+});
+
+// A parameter passed to another type-named parameter is resolved through its own call.
+test('a type-named parameter passed to another type-named parameter is resolved', () => {
+  const source = `function a(type) { return b(type); } function b(type) { if (type === 'r.five') {} } a(event.type);`;
+  assert.deepEqual(handledEventNames(source), ['r.five']);
+});
+
+// A recursive call cannot prove the value is not the event type, so the guard fails closed.
+test('a type-named parameter that only reaches itself still reads as the type', () => {
+  const source = `function loop(type) { if (type === 'r.six') {} loop(type); }`;
+  assert.deepEqual(handledEventNames(source), ['r.six']);
+});
+
+// A default reads the event type when a call omits the argument or passes the global nothing.
+test('a type-named parameter defaulted from the event type reads as the type', () => {
+  const source = `const pick = (kindType = event.type) => { if (kindType === 'r.event') {} }; pick(); pick(undefined);`;
+  assert.deepEqual(handledEventNames(source), ['r.event']);
+});
+
+// A parameter the function writes can hold the event type whatever its caller passed.
+test('a type-named parameter written inside its function reads as the type', () => {
+  const source = `function route(type) { type = event.type; if (type === 'r.assigned') {} } route('json');`;
+  assert.deepEqual(handledEventNames(source), ['r.assigned']);
+});
+
+// An exported declaration can be called from outside the file, so its parameter keeps counting.
+test('a type-named parameter of an exported function reads as the type', () => {
+  const source = `export function format(type) { if (type === 'a.b') {} } format('json');`;
+  assert.deepEqual(handledEventNames(source), ['a.b']);
+});
+
+// An explicit nothing earlier is ordinary; a missing one leaves this parameter's default in place.
+test('a type-named parameter reads past an argument before its own position', () => {
+  const explicit = `function f(a, type) { if (type === 'r.second') {} } f(undefined, event.type);`;
+  const missing = `const g = (a, kindType = event.type) => { if (kindType === 'r.third') {} }; g();`;
+
+  assert.deepEqual(handledEventNames(explicit), ['r.second']);
+  assert.deepEqual(handledEventNames(missing), ['r.third']);
+});
+
+// A separate export list also lets a function escape, so its parameter keeps counting.
+test('a type-named parameter of a function exported by name reads as the type', () => {
+  const source = `function g(type) { if (type === 'a.c') {} } g('x'); export { g };`;
+  assert.deepEqual(handledEventNames(source), ['a.c']);
+});
+
+// A key and a member property are names, not values, so neither carries the event type.
+test('a type-named object key and member property are not event values', () => {
+  const source = `const result = evaluate({ subagentType: args.subagentType }); if (result.ok) {}`;
+  assert.deepEqual(unscannedEventChecks(source), []);
+});
+
+// A shorthand property passes its value, so the event type inside it is still read.
+test('a shorthand type-named property passes the event type', () => {
+  const source = `const seen = isKnown({ eventType }); if (seen) {}`;
+  assert.deepEqual(unscannedEventChecks(source), ['isKnown({ eventType })']);
 });
 
 // A source the parser cannot read fails loudly instead of passing empty.

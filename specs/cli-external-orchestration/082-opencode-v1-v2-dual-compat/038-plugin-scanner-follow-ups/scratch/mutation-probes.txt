@@ -1,0 +1,32 @@
+== m1-no-stored-report exit=1
+✖ a stored helper result behind a logical expression that decides a loop is reported (0.2855ms)
+✖ a stored helper result read inside a nested function is reported (0.144333ms)
+✖ a stored helper result that decides a switch is reported (0.12725ms)
+✖ a stored helper result that decides an if is reported (1.609ms)
+✖ failing tests:
+== m2-no-param-trace exit=1
+✖ a defaulted type-named parameter is not the event type when its call omits it (0.147583ms)
+✖ a type-named parameter is not the event type when its calls pass no event type (0.509209ms)
+✖ failing tests:
+== m4-escape-ignored exit=1
+✖ a type-named parameter of an escaping function still reads as the type (0.65775ms)
+✖ failing tests:
+== m3-keys-count exit=1
+✖ a type-named object key and member property are not event values (1.713334ms)
+✖ failing tests:
+== m5-no-cycle-guard exit=1
+✖ a type-named parameter that only reaches itself still reads as the type (3.697542ms)
+✖ failing tests:
+== m6-param-write-ignored exit=1
+✖ a type-named parameter written inside its function reads as the type (0.484417ms)
+✖ failing tests:
+== m7-export-ignored exit=1
+✖ a type-named parameter of an exported function reads as the type (0.468083ms)
+✖ failing tests:
+== m8-default-ignored exit=1
+✖ a type-named parameter defaulted from the event type reads as the type (0.462792ms)
+✖ a type-named parameter reads past an argument before its own position (0.154459ms)
+✖ failing tests:
+== m9-explicit-undefined-breaks exit=1
+✖ a type-named parameter reads past an argument before its own position (0.505833ms)
+✖ failing tests:

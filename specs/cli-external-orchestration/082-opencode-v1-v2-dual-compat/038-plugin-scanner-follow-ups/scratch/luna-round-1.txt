@@ -1,0 +1,25 @@
+FAIL
+
+### P0
+
+None.
+
+### P1
+
+- **Defaulted parameters can hide an event check.** File: [plugin-inventory.cjs:249](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/tests/helpers/plugin-inventory.cjs:249). A parameter defaulted to `event.type` is treated as unrelated when calls omit the argument or pass `undefined`; the scanner returns no check for `if (kindType === 'r.event')`. Inspect the default expression for those calls and keep the parameter classified as an event type unless the default is proven safe.
+
+- **Parameter assignments can hide an event check.** File: [plugin-inventory.cjs:254](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/tests/helpers/plugin-inventory.cjs:254). In `function route(type) { type = event.type; if (type === 'r.assigned') {} } route('json')`, the call-site check suppresses the parameter even though the function overwrites it with the event type. Account for writes to the parameter, or fail closed when it is reassigned.
+
+- **Directly exported functions are not recognized as escaping.** File: [plugin-inventory.cjs:237](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/tests/helpers/plugin-inventory.cjs:237). `export function format(type) { if (type === 'a.b') {} } format('json')` produces no event check, though another module can call the exported function with `event.type`. Treat direct function and variable declaration exports as escapes.
+
+- **The documented object and array limit contradicts the scanner.** File: [ARCHITECTURE.md:230](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/ARCHITECTURE.md:230). The docs say the scanner does not follow values through object properties or array elements, but [plugin-inventory.cjs:870](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/tests/helpers/plugin-inventory.cjs:870) propagates origins through them. For example, storing a helper result in `value`, then in `{ value }`, reports the helper when testing `box.value`. Stop propagation at object and array construction to match the stated limit.
+
+### P2
+
+- **Overwritten or not-yet-assigned bindings retain stale origins.** File: [plugin-inventory.cjs:931](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/tests/helpers/plugin-inventory.cjs:931). `let ok = matches(type); ok = false; if (ok) {}` still reports `matches(type)`. Track assignments in order and discard origins after a non-derived overwrite.
+
+- **The captured mutation transcript has trailing whitespace.** File: [mutation-new-tests-on-old-helper.txt:110](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups/scratch/mutation-new-tests-on-old-helper.txt:110). `git diff --check` exits 2 on whitespace-only lines in this artifact. Trim trailing spaces from the captured output.
+
+The before/after scan JSON compares equal for all 16 bridged plugins. The lockfile changes are limited to the root `rolldown` dev dependency and peer-flag removals on rolldown and its dependencies. No new comments contain IDs, spec paths, or phase numbers.
+
+`node --check` passed for both changed JavaScript files. The focused `node --test` command exited 1 before assertions because test setup hit `EPERM` creating a temporary directory outside the read-only worktree. The recorded after-run transcript reports 472 passing tests, including the new fixtures. `git status` showed no worktree changes.

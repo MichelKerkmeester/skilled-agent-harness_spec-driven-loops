@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugin scanner follow ups",
+      "phase 38 plugin scanner follow ups",
+      "event scanner data flow",
+      "type parameter false positive",
+      "rolldown direct dependency",
+      "plugin scanner follow ups plan",
+      "plugin scanner follow ups tasks",
+      "plugin scanner follow ups implementation summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "scanner",
+      "follow",
+      "ups",
+      "phase",
+      "event",
+      "data",
+      "flow",
+      "type",
+      "parameter",
+      "false",
+      "positive"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/package.json",
+      ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+      ".opencode/plugins/tests/plugin-inventory.test.cjs",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".skilled/package-lock.json",
+      "scratch/baseline/scan-before.json",
+      "scratch/after/scan-after.json",
+      "scratch/mutation-new-tests-on-old-helper.txt",
+      "scratch/mutation-probes.txt",
+      "scratch/luna-round-1.txt",
+      "scratch/luna-round-2.txt",
+      ".opencode/plugins/tests/README.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/plugin-inventory.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".skilled/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "scan-before.json",
+        "kind": "config",
+        "path": "scratch/baseline/scan-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "scan-after.json",
+        "kind": "config",
+        "path": "scratch/after/scan-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-new-tests-on-old-helper.txt",
+        "kind": "file",
+        "path": "scratch/mutation-new-tests-on-old-helper.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-probes.txt",
+        "kind": "file",
+        "path": "scratch/mutation-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-round-1.txt",
+        "kind": "file",
+        "path": "scratch/luna-round-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-round-2.txt",
+        "kind": "file",
+        "path": "scratch/luna-round-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The event guard in `plugin-inventory.cjs` reports a helper that receives the event type only when the call sits in a branch test, so `const ok = isKnown(eventType); if (ok) {}` decides a branch the scan never reports",
+    "created_at": "2026-10-20T22:53:31Z",
+    "last_save_at": "2026-10-20T23:49:44.642Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d3e8b1d49500acc52b24c76395544573386cd912839b85119820704c19d1d326",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "96f8d4cc5cf1c4d6e6fe342b8acab98906b3b20cc2d9a702f0e8ecd792a0db5f",
+      "plan.md": "9f263ab334dd52e7f2fd7d6d60fa1c180fa58c682bc09865069b9f2402e5d513",
+      "tasks.md": "a79c1df23c99148cd2381646d957470168a45d6552a1517382af47e00f444a68",
+      "implementation-summary.md": "0bdc18f220e1b6b892b2f72fd7cd3701108f5a31d1a61212d9b20c7cad00e72d"
+    },
+    "last_active_at": null
+  }
+}
