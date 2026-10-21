@@ -84,6 +84,15 @@ const DEFAULT_MIN_CHECKER_MS = 300;
 // checker's stdout is not needlessly mangled.
 const SECRET_PATTERN = /((?:api[_-]?key|access[_-]?key|secret|token|password|passwd|bearer|authorization)\s*[:=]\s*)['"]?([A-Za-z0-9\-_.]{8,})['"]?/gi;
 
+// A scheme that names itself in front of the credential is why the assignment
+// pattern above misses both `Authorization: Bearer <token>` and a bare
+// `Bearer <token>`: the span after the keyword is the scheme word, and the
+// token sits one space further on, so the requirement for an unbroken value is
+// never met. Anchor on the scheme instead and keep it readable while only the
+// token is replaced, so a finding still says which scheme it carried. The
+// 8-character floor is what leaves ordinary prose after the word "bearer" alone.
+const BEARER_SCHEME_PATTERN = /\b(bearer\s+['"]?)([A-Za-z0-9\-._~+/=]{8,})/gi;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS -- path + scope resolution
 // ─────────────────────────────────────────────────────────────────────────────
@@ -259,8 +268,9 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Redact secret-shaped assignments in finding text before it is logged or
- * surfaced, leaving the keyworded prefix so the finding still names its field.
+ * Redact secret-shaped assignments and bearer-scheme tokens in finding text
+ * before it is logged or surfaced, leaving the keyworded or scheme prefix so
+ * the finding still names its field.
  *
  * @param {string} text
  * @returns {string}
@@ -268,7 +278,10 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
 function redactSecrets(text) {
   if (typeof text !== 'string' || !text) return text;
   SECRET_PATTERN.lastIndex = 0;
-  return text.replace(SECRET_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`);
+  BEARER_SCHEME_PATTERN.lastIndex = 0;
+  return text
+    .replace(SECRET_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`)
+    .replace(BEARER_SCHEME_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`);
 }
 
 /**

@@ -428,6 +428,21 @@ test('runChecks: redacts keyworded secret-shaped assignments in finding stdout',
   assert.match(findings[0].stdout, /\[REDACTED\]/);
 });
 
+test('redactSecrets: redacts the token carried by an Authorization bearer scheme', () => {
+  const redacted = router.redactSecrets('request failed: Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.abc');
+  assert.equal(redacted, 'request failed: Authorization: Bearer [REDACTED]');
+});
+
+test('redactSecrets: redacts the token after a bare bearer scheme, keeps the scheme word, and leaves a short word alone', () => {
+  assert.equal(router.redactSecrets('Bearer sk-live-abc123456789'), 'Bearer [REDACTED]');
+  assert.equal(router.redactSecrets('bearer abc123456789'), 'bearer [REDACTED]', 'the scheme word is case-insensitive');
+  assert.equal(router.redactSecrets('Bearer token'), 'Bearer token', 'a word shorter than 8 characters after the scheme is not a token');
+});
+
+test('redactSecrets: still redacts a keyworded secret-shaped assignment', () => {
+  assert.equal(router.redactSecrets('api_key: sk-thisisalonglivetoken123456'), 'api_key: [REDACTED]');
+});
+
 test('runChecks: real check-comment-hygiene.sh flags a live ADR reference (repo-root integration)', () => {
   // Must live inside REPO_ROOT: resolveDispatch treats an outside-root path as
   // no-match by design, and the real checker install this test targets only
