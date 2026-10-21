@@ -1,0 +1,24 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter (pre-approved, skip Gate 3)
+
+ROLE: code writer. Load sk-code for the bash and JavaScript surfaces and follow it.
+
+TASK: fix two review findings on commit 70c81b37c3.
+
+1. `.skilled/bin/skilled-loop`, function `spec_folder_suffix` (around line 113): when the node call fails, it prints nothing and stays silent. Keep the empty fallback and the 0 return, but add an `else` branch that prints this one line to stderr:
+   warning: could not build the spec-folder suffix; relaunching without it
+   Do not return non-zero (the caller appends with `seed+=$(...)` after the record was consumed).
+
+2. `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`, helper `installWrapperCopyWithChangedSuffix`: stop editing the copied core's source text with a regex. Instead, after copying, overwrite the copied `hooks/session-relaunch/lib/relaunch-core.cjs` with a small shim that requires the REAL core by absolute path, re-exports everything, and overrides only `specFolderSuffix` so its result for a valid folder is the real result with ` (carried from the handoff; Gate 3 answered in the sending session)` replaced by the marker ` (suffix owned by the copied core)`. Keep the test's assertion the same. Remove the `assert.notEqual` source check that is no longer needed. Keep the helper comment as the durable WHY.
+   Also add one more test: run the copied wrapper with a shim whose `specFolderSuffix` throws, and assert the relaunch still happens with a seed that has no spec-folder suffix and stderr contains `could not build the spec-folder suffix`.
+
+ALLOWED WRITE PATHS:
+- .skilled/bin/skilled-loop
+- .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+
+BANNED OPERATIONS:
+- No git commit, push, branch, stash, reset, checkout or merge.
+- No writes outside the allowed paths.
+- No installs, no network.
+
+VERIFY: `bash -n .skilled/bin/skilled-loop` and `node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`; print both results. Finish with a short list of changes.

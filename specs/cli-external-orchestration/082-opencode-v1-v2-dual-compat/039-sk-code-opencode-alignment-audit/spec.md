@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete except REQ-002: one P1 stays recorded; the 21 held P0 and P1 findings are fixed in phases 040, 041 and 042 |
+| **Status** | Complete: the 21 held P0 and P1 findings are fixed in phases 040, 041 and 042, and the last P1, `b05-relaunch-lib-006`, is fixed in phase 048 |
 | **Created** | 2026-10-21 |
 | **Branch** | `worktrees/181-sk-code-opencode-alignment-audit` |
 | **Parent Spec** | ../spec.md |

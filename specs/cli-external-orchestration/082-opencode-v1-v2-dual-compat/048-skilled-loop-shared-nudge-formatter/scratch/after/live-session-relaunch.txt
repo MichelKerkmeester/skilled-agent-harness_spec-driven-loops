@@ -1,0 +1,14 @@
+== v1
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter
+session-relaunch v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter/.skilled/skills/.state/plugin-utilization
+runner-exit=0
+[session-relaunch] Context is past the configured window (over 100% full). If the remainin
+["bash","completed"]
+exit-file=0
+== v2
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter
+session-relaunch v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/192-skilled-loop-shared-nudge-formatter/.skilled/skills/.state/plugin-utilization
+runner-exit=0
+[session-relaunch] Context is past the configured window (over 100% full). If the remainin
+["shell","completed"]
+exit-file=0

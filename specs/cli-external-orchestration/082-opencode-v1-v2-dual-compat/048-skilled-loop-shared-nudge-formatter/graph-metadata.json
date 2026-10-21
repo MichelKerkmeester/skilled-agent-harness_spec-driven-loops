@@ -28,16 +28,28 @@
       "tasks",
       "implementation",
       "summary",
-      "broken",
-      "missing"
+      "hooks",
+      "session-relaunch"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      "scratch/mutation/old-function.tap",
+      "scratch/mutation/no-warning.tap",
+      "scratch/before/suffix-compare.txt",
+      "scratch/after/suffix-compare.txt",
+      "scratch/after/skilled-loop.tap",
+      "scratch/before/hook-node.tap",
+      "scratch/after/hook-node.tap",
+      "scratch/after/live-session-relaunch.txt",
+      "scratch/after/pid46220-before.txt",
+      "scratch/compare-suffix.sh"
     ],
     "entities": [
       {
@@ -65,6 +77,66 @@
         "source": "derived"
       },
       {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "old-function.tap",
+        "kind": "file",
+        "path": "scratch/mutation/old-function.tap",
+        "source": "derived"
+      },
+      {
+        "name": "no-warning.tap",
+        "kind": "file",
+        "path": "scratch/mutation/no-warning.tap",
+        "source": "derived"
+      },
+      {
+        "name": "suffix-compare.txt",
+        "kind": "file",
+        "path": "scratch/before/suffix-compare.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.tap",
+        "kind": "file",
+        "path": "scratch/after/skilled-loop.tap",
+        "source": "derived"
+      },
+      {
+        "name": "hook-node.tap",
+        "kind": "file",
+        "path": "scratch/before/hook-node.tap",
+        "source": "derived"
+      },
+      {
+        "name": "live-session-relaunch.txt",
+        "kind": "file",
+        "path": "scratch/after/live-session-relaunch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pid46220-before.txt",
+        "kind": "file",
+        "path": "scratch/after/pid46220-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compare-suffix.sh",
+        "kind": "script",
+        "path": "scratch/compare-suffix.sh",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -83,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "Hook Node",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -90,12 +168,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -113,81 +185,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` owns the seed's spec-folder suffix in `specFolderSuffix`, and `nudge.cjs` already shares it",
     "created_at": "2026-10-21T14:18:23Z",
-    "last_save_at": "2026-10-21T14:18:26.284Z",
+    "last_save_at": "2026-10-21T14:51:43.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b29c4758ea8ff7e47d71971df69f1617d59fdac432de2e682f5abfab7da7451d",
+    "source_fingerprint": "sha256:a69665bb9f86e862d4228343df7647ac7c342a290e167e60a6d8dd66177b37ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19d784aa303e5f62e113303eb94edcbb5c6f06105b11ed723cbf458c5b33d372",
-      "plan.md": "74457c0c754ab0cc7372cf4b6481e9daf25d2dde5a723fbff83208eb0c9bdea6",
-      "tasks.md": "a1873e774b1fa899dbf21e29bce7672f336cf3295b659283ae4fc9c6a41e024e",
-      "implementation-summary.md": "208868340633ead61aa142f1fba766e95905ee461a711a708d4e7b3dfd869f1e"
+      "spec.md": "dc6b7e71ad522ee9fba7b4d557de2bb7dd06a51ec8755fb41b8af38f96923cf5",
+      "plan.md": "2c4e79d9010e0851310fca257fc7f3caf76a68362f83c886cc6b526b0d54b39b",
+      "tasks.md": "c140b63ccfe6b8e4ce1a86c1446470f2bc31148c744d7be3e347cbe3e891c429",
+      "implementation-summary.md": "508c80bc6a6c0d0cec7f2bc61fb20a0062d4925a89bca222e008252e9330fdaa"
     },
     "last_active_at": null
   }
