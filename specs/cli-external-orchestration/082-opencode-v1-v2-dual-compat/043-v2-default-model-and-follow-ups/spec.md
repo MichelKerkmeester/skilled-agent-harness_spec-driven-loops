@@ -92,6 +92,7 @@ OpenCode 2 defaults to `llmgateway/deepseek-v4.1-flash#max` while OpenCode 1 kee
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`, `opencode-dual-dispatch.vitest.ts` | Modify | Cover both defaults and their packet line |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/**` | Modify | The v2 default in SKILL.md, README, references and playbook; the default-model test |
 | `.hermes/skills/cli-opencode/SKILL.md` | Regenerate | From the edited SKILL.md |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` and its archived copy under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/` | Regenerate | The policy hash the commit hook re-derives when the cli-opencode SKILL.md changes |
 | `.opencode/plugins/tests/v2-bridge.test.cjs`, `.opencode/plugins/README.md` | Modify | Test timeout; probe claim |
 | `.skilled/hooks/spec-gate/README.md` and the spec-gate playbook scenario | Modify | Shell-write known limit |
 | `.github/workflows/trigger-index-rebuild.yml` | Modify | Concurrency comment |

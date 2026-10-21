@@ -55,7 +55,7 @@
       "scratch/after/checks-2.txt",
       "scratch/live/v2-unpinned.txt",
       "scratch/live/v1-unpinned.txt",
-      ".skilled/hooks/spec-gate/README.md"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json"
     ],
     "entities": [
       {
@@ -161,6 +161,12 @@
         "source": "derived"
       },
       {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -195,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written",
     "created_at": "2026-10-21T07:17:06Z",
-    "last_save_at": "2026-10-21T09:08:29.173Z",
+    "last_save_at": "2026-10-21T09:17:12.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e788fe394bd899c03193cfebc1887acf8ebe76fffead72eba9e325a333e013d",
+    "source_fingerprint": "sha256:b2ef98e2a31a426d29fe3bae250d06ff73fa0ce2b947cb78400a05b9afc104b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4078dd7a26775ed5e3b0609a705869b95348e5146f1fb6a598e773207d39683b",
+      "spec.md": "161e384adc242c34fa830713e61d61cb41c8f1a5cfb96b95b01e115629c99b5e",
       "plan.md": "384d6e44f9817f8906b86a7a38961ff87414ea3eddfff8da6ce35032abdd8bb8",
-      "tasks.md": "86bb3d97a44b8a0c10dee0444791a64a4999bef4d33e3b7cfdedef21d4af860d",
-      "implementation-summary.md": "2b74ed3e50a12776d533be0a3eacfe14118b5cd89bbf89d5493f62b166752960"
+      "tasks.md": "2abc41fe00dbc13014255d4ec8fdbc33d1e4302b029caaac92b4610079765782",
+      "implementation-summary.md": "96b97c240fb7fff7762e2ab437926b04c4e155f8f4960e5b9ba69789f24003a3"
     },
     "last_active_at": null
   }

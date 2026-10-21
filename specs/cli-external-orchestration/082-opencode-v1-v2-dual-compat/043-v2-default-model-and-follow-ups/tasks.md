@@ -51,7 +51,7 @@ contextType: "general"
 - [x] T011 [P] Correct the trigger-index concurrency comment (`.github/workflows/trigger-index-rebuild.yml`)
 - [x] T012 [P] Correct the three overstated comments (`.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`)
 - [x] T013 Add the hook node:test workflow and its README rows (`.github/workflows/hooks-node-tests.yml`, `.github/workflows/README.md`)
-- [x] T014 Mark 036 Known Limitation 5 and the 006 and 007 notes resolved (`../036-*/implementation-summary.md`, `../goal.md`)
+- [x] T014 Mark 036 Known Limitation 5 and the 006 and 007 notes resolved (`../006-*/implementation-summary.md`, `../036-*/implementation-summary.md`, `../goal.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

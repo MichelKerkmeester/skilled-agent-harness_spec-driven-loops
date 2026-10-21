@@ -79,7 +79,7 @@ The follow-ups recorded by 035, 037 and 042 are closed: the v2-bridge announceme
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek v4.1 flash at max, through cli-pi on llmgateway, wrote every change from eleven one-change briefs (`scratch/briefs/`). I ran every local check in the table below myself and reproduced the timeout mutation; the Luna rows are its review, and the CI row is filled from the pushed commit. Luna (GPT-6 Luna, max, fast, read-only through cli-codex) reviewed the range from `d76353d242`. Round 1 failed with four P1s and one P2: the OpenCode 1 live dispatch had not exited 0, the README probe sentence still overclaimed, the shell-write row misstated where paths are evaluated, the mutation proof was not recorded, and a break-lock comment missed the unreadable-record fallback. The three wording findings were fixed in `9f2c2529ce` and the mutation proof is in `scratch/after/v2-bridge-timeout-mutation.txt`; the live dispatch is the open item under Known Limitations.
+DeepSeek v4.1 flash at max, through cli-pi on llmgateway, wrote every change from eleven one-change briefs (`scratch/briefs/`). I ran every local check in the table below myself and reproduced the timeout mutation; the Luna row is its review, and the CI row stays pending until the push. Luna (GPT-6 Luna, max, fast, read-only through cli-codex) reviewed the range from `d76353d242`. Round 1 failed with four P1s and one P2: the OpenCode 1 live dispatch had not exited 0, the README probe sentence still overclaimed, the shell-write row misstated where paths are evaluated, the mutation proof was not recorded, and a break-lock comment missed the unreadable-record fallback. The three wording findings were fixed in `9f2c2529ce` and the mutation proof is in `scratch/after/v2-bridge-timeout-mutation.txt`; the live dispatch is the open item under Known Limitations.
 
 Commits: `32a096d41a` runtime, `5f56290b06` docs, `2bc3e8430b` default-model test, `c3b40e5b81` bridge timeout, `1218e32308` spec gate and probe docs, `90f98701f0` comments, `5a6b93251c` Hook Node Tests workflow, `784864b0e9` resolution notes, `9f2c2529ce` round 1 fixes.
 <!-- /ANCHOR:how-delivered -->
@@ -117,8 +117,8 @@ Commits: `32a096d41a` runtime, `5f56290b06` docs, `2bc3e8430b` default-model tes
 | Bridge timeout mutation | Mutated: exit 1 in 4 s, 11 fail, 3 cancelled by timeout (before: killed by the 120 s alarm). Restored: diff empty, 51/51 |
 | Live unpinned dispatch, OpenCode 2 | PASS: built `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#max`, exit 0, replied OK (`scratch/live/v2-unpinned.txt`) |
 | Live unpinned dispatch, OpenCode 1 | BLOCKED: built the expected `opencode run --model opencode-go/deepseek-v4.1-flash --variant max`, but opencode-go returned `Go usage limit exceeded` and 1.19.3 hung until the alarm (`scratch/live/v1-unpinned.txt`, `v1-probe-errors.txt`) |
-| Luna review | Round 1 FAIL (4 P1, 1 P2); wording findings fixed; round 2 below |
-| Hook Node Tests on CI | Recorded after the push |
+| Luna review | Round 1 FAIL (4 P1, 1 P2), fixed in `9f2c2529ce`. Round 2 FAIL (2 P1 on packet-doc accuracy, 1 P2 whitespace), fixed in `1c5a576c40`. Round 3 FAIL (3 P1, 1 P2, all packet-doc accuracy), fixed in the commit after it. The OpenCode 1 live run is classed recorded-blocked in every round |
+| Hook Node Tests on CI | Pending: no run exists until the push to main |
 <!-- /ANCHOR:verification -->
 
 ---
