@@ -1,0 +1,13 @@
+
+> test:stress
+> SPECKIT_RUN_STRESS=true vitest run --config vitest.stress.config.ts
+
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  21 passed (21)
+      Tests  65 passed (65)
+   Start at  09:21:08
+   Duration  20.41s (transform 466ms, setup 69ms, import 1.44s, tests 17.57s, environment 1ms)
+
