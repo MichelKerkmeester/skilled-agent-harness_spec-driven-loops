@@ -6,7 +6,7 @@
 // PostToolUse `exec|Bash` matcher group.
 // PostToolUse(exec) CLI dispatch audit trail for Codex CLI -- the Codex sibling of
 // the Claude dispatch-audit hook. Observes a completed exec call, recognizes an
-// `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends one
+// `opencode run` / `claude -p` / `codex exec` dispatch shape, and appends one
 // redacted, size-rotated JSONL audit line through the SAME shared dispatch-audit
 // primitives both runtimes use, tagged runtime:'codex'. Strictly observational --
 // unlike the sibling PreToolUse preflight lint, it must never emit a
@@ -19,6 +19,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
+
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import {

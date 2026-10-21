@@ -5,12 +5,13 @@
 // PostToolUse a plain string where it used to hand `{stdout, stderr}`. Both
 // adapters must keep firing under either name and either response shape.
 
-import { describe, it, expect } from 'vitest';
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { describe, it, expect } from 'vitest';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '..', '..', '..', '..');
@@ -20,7 +21,14 @@ const FLAGGED_DISPATCH = 'opencode run -m p/m --agent general "x" </dev/null';
 
 function hookEnv() {
   const env = { ...process.env };
-  for (const name of ['SYSTEM_HOOKS_DISABLED', 'MK_HOOKS_DISABLED', 'CLI_DISPATCH_AUDIT_DISABLED']) {
+  for (const name of [
+    'SYSTEM_HOOKS_DISABLED',
+    'MK_HOOKS_DISABLED',
+    'CLI_DISPATCH_AUDIT_DISABLED',
+    'SYSTEM_DISPATCH_DISABLED',
+    'SYSTEM_DISPATCH_GUARD_DISABLED',
+    'MK_DISPATCH_DISABLED',
+  ]) {
     delete env[name];
   }
   return env;

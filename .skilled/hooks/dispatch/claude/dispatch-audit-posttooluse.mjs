@@ -19,6 +19,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
+
 import * as dispatchAuditCore from '../lib/dispatch-audit.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';

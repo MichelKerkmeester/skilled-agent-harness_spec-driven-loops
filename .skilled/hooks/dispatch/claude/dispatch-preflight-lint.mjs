@@ -17,20 +17,15 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import path from 'node:path';
+
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
 import { resolveDispatchPacket } from '../lib/dispatch-audit.mjs';
-import path from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
-// Dispatch-shape registry: command pattern → the skill whose sidecar declares its hard rules.
-// `skill` is the short display name (used in advisory/block messages); `packetPath` is the
-// hub-relative path segment under .skilled/skills/ used to resolve SKILL.md — both
-// cli-opencode and cli-claude-code now live nested under the cli-external-orchestration parent hub,
-// so packetPath carries the hub prefix while skill stays
-// the short, human-readable name. Shared with the post-execution dispatch-audit core so the
-// before-lint and the after-audit can never disagree about what counts as a dispatch; extend by
-// adding an entry there as new cli-* dispatch skills gain a rule set.
+// The dispatch shapes and the skill each one resolves to live in `lib/dispatch-audit.mjs`
+// (`DISPATCH_SHAPES`); add new `cli-*` entries there.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
