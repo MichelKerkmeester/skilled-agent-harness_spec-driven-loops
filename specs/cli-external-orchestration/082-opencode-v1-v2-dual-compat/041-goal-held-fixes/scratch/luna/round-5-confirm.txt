@@ -1,0 +1,5 @@
+**P1 — Stale locks from the previous format cannot be removed.** The old implementation created lock directories. This commit treats entries without a valid PID as age-checked locks, but `breakAbandonedLock` sends stale entries to `removeLockEntry`, which uses `unlink`. On a directory, that fails; the helper returns `false`, and mutations keep timing out. A crashed run that left a directory lock can therefore continue blocking writes.
+
+The other checks pass: acquisition uses atomic `symlink`; `finally` attempts `unlink` even when the operation throws; `ENOENT` leads to an immediate retry; and errors from `process.kill(pid, 0)` other than `ESRCH`, including `EPERM`, count as alive. The new dead-owner test uses a fresh link to an exited process, so it would fail without the dead-owner branch. The lifecycle spy tracks `symlink`. I found no new comments with IDs or spec paths, and no added line exceeds 100 characters. I did not run tests or Node, per the read-only task instructions.
+
+VERDICT: FAIL

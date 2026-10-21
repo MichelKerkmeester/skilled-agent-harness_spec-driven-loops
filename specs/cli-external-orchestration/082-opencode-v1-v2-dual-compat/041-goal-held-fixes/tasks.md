@@ -33,7 +33,7 @@ contextType: "general"
 
 - [x] T001 Scaffold the phase and fill the parent phase-map rows (`../spec.md`)
 - [x] T002 Record the plugin, hooks node and battery unit suites before any edit (`scratch/baseline.txt`)
-- [ ] T003 [P] List every caller that runs a `goal.cjs` session action (`scratch/cli-callers.txt`)
+- [x] T003 [P] List every caller that runs a `goal.cjs` session action (updated in `651ca91307`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,13 +41,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Skip null and empty candidates in `statusCodeFromError` (`.opencode/plugins/opencode-goal.js`)
-- [ ] T005 Delete a goal only on an explicit delete, never on `null` (`.opencode/plugins/opencode-goal.js`)
-- [ ] T006 Give every archive file a name unique to its record (`.opencode/plugins/opencode-goal.js`)
-- [ ] T007 Archive the replaced record in `setGoal` and the cleared record in `clearGoal` (`.opencode/plugins/opencode-goal.js`)
-- [ ] T008 Build the continuation prompt from the bound packet (`.opencode/plugins/opencode-goal.js`)
-- [ ] T009 Stop at an unreadable current record and skip non-object archives (`.skilled/hooks/goal/lib/goal-core.cjs`)
-- [ ] T010 Require `--workspace` for current-session actions and update callers (`.skilled/hooks/goal/bin/goal.cjs`)
+- [x] T004 Skip null and empty candidates in `statusCodeFromError` (`.opencode/plugins/opencode-goal.js`)
+- [x] T005 Delete a goal only on an explicit delete, never on `null` (`.opencode/plugins/opencode-goal.js`)
+- [x] T006 Give every archive file a name unique to its record (`.opencode/plugins/opencode-goal.js`)
+- [x] T007 Archive the replaced record in `setGoal` and the cleared record in `clearGoal` (`.opencode/plugins/opencode-goal.js`)
+- [x] T008 Build the continuation prompt from the bound packet (`.opencode/plugins/opencode-goal.js`)
+- [x] T009 Stop at an unreadable current record and skip non-object archives (`.skilled/hooks/goal/lib/goal-core.cjs`)
+- [x] T010 Require `--workspace` for current-session actions and update callers (`.skilled/hooks/goal/bin/goal.cjs`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,10 +55,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 A test per finding, each failing under a mutation that restores the old code (`scratch/mutations.txt`)
-- [ ] T012 Plugin, hooks node and battery unit suites rerun at or above baseline (`scratch/after.txt`)
-- [ ] T013 Live opencode-goal scenario on OpenCode 1.19.3 and 2.0.32 (`scratch/live-goal/`)
-- [ ] T014 Luna verifies every change (`scratch/luna/`)
+- [x] T011 A test per finding, each failing under a mutation that restores the old code (`scratch/mutations/summary.txt`)
+- [x] T012 Plugin, hooks node and battery unit suites rerun at or above baseline (`scratch/after.txt`)
+- [x] T013 Live opencode-goal scenario on OpenCode 1.19.3 and 2.0.32 (`scratch/live-goal/`)
+- [x] T014 Luna verifies every change (`scratch/luna/`)
 - [ ] T015 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 

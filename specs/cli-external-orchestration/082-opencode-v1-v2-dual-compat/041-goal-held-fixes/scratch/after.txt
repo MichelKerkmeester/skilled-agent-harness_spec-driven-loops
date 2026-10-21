@@ -1,0 +1,4 @@
+plugins # tests 494 # pass 494 # fail 0 
+hooks-node # tests 840 # pass 840 # fail 0 
+battery-unit # tests 51 # pass 51 # fail 0 
+head cce87d388f (before the main merge)

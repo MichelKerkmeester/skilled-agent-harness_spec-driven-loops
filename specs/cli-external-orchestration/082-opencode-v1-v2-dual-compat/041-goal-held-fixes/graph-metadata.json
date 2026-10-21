@@ -41,9 +41,13 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/mutations/summary.txt",
       ".opencode/plugins/opencode-goal.js",
       ".skilled/hooks/goal/lib/goal-core.cjs",
       ".skilled/hooks/goal/bin/goal.cjs",
+      ".hermes/SYNC.md",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
       ".skilled/hooks/goal/lib/goal-core.test.cjs",
       ".skilled/hooks/goal/bin/goal.test.cjs",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
@@ -74,6 +78,12 @@
         "source": "derived"
       },
       {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/mutations/summary.txt",
+        "source": "derived"
+      },
+      {
         "name": "opencode-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/opencode-goal.js",
@@ -89,6 +99,24 @@
         "name": "goal.cjs",
         "kind": "file",
         "path": ".skilled/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".hermes/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
@@ -168,35 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The OpenCode goal plugin deletes a goal whenever a mutator returns `null`, although several event mutators return `null` only to mean that no goal exists, so a goal another process just wrote can be removed",
     "created_at": "2026-10-21T04:56:30Z",
-    "last_save_at": "2026-10-21T04:59:39.748Z",
+    "last_save_at": "2026-10-21T06:31:36.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:529f1b7f98f737a068a6261cacb560100309b57d954c26470e2725755ac47bc0",
+    "source_fingerprint": "sha256:5100fb505f4ce48798113cbc82c5f7dbe276434445ed65c1d60e35c874b76aa3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "475441a5e9199f755dd951f11ee5c76b73147530f2c3f75a04d18b27c2daa8f1",
       "plan.md": "0c75debe5cf1dd79e2865d35a26aa9eb12ad1d0556b9cc4daf7580c68f551207",
-      "tasks.md": "3d47a5f09b3cbd42581e678c2d9aaa0e2e3a150aafa5849c4deefbe51a4452f4",
-      "implementation-summary.md": "c2f5d8f2d59ea0239b93c088b3b781305687001a398f71b7ec0a2fe17c0bf69e"
+      "tasks.md": "24cf4b8e12127f4bae1b59d0da2e7000e4f5e1bb1cfef8e9cece46601581fb8e",
+      "implementation-summary.md": "21a6c4eb4f7106e49c2d5f7abd415da950d461d1b0f335f393b1da6a53d6fa27"
     },
     "last_active_at": null
   }
