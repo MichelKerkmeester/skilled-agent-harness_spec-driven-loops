@@ -102,6 +102,30 @@ test('stdin-redirect-required covers every headless CLI shape, not just opencode
   assert.equal(CHECKS['stdin-redirect-required']('npm test'), true); // not a dispatch → n/a
 });
 
+test('stdin and model checks ignore flags and redirects inside a quoted prompt', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+  const model = CHECKS['explicit-model-required'];
+
+  // The prompt names both things the checks look for; the dispatch passes neither.
+  const promptOnly = 'opencode run "fix it --model p/m </dev/null"';
+  assert.equal(stdin(promptOnly), false);
+  assert.equal(model(promptOnly), false);
+
+  for (const cmd of [
+    'opencode run -m p/m "fix it" </dev/null',
+    `bash -c "opencode run -m p/m 'fix it' </dev/null"`,
+    'nohup opencode run --model p/m "x" </dev/null',
+    'opencode run -m "$MODEL" "x" </dev/null',
+  ]) {
+    assert.equal(stdin(cmd), true, `stdin handled: ${cmd}`);
+    assert.equal(model(cmd), true, `model passed: ${cmd}`);
+  }
+
+  assert.equal(stdin(`opencode run -m p/m <<'EOF'\nprompt\nEOF`), true);
+  assert.equal(stdin('cat p.md | opencode run -m p/m'), true);
+  assert.equal(stdin('opencode run -m p/m "use </dev/null in your answer"'), false);
+});
+
 test('availability checks pass for a resolvable binary and never refuse without PATH', () => {
   // `sh` is on PATH anywhere this suite can run, so it stands in for a present binary.
   const present = CHECKS['command-v-pi-required'];

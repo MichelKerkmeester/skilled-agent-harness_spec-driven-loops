@@ -399,6 +399,14 @@ export function matchDispatchShape(command) {
 // and is unescaped the way the shell would before it is inspected.
 const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:-[a-z]*c|--command)\s+(?:'([^']*)'|"((?:\\[\s\S]|[^"\\])*)")/;
 
+// The payload a shell wrapper match stands for, already unescaped the way the shell would
+// before it hands the text to the child.
+function shellPayloadText(match) {
+  if (match[1] !== undefined) return match[1];
+  // Inside double quotes the shell drops a backslash only before $ ` " \ and a newline.
+  return match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1');
+}
+
 /**
  * Return the command a shell wrapper runs, or null when the text has no wrapper.
  * @param {string} command - text that may hold a `bash -c '<cmd>'` style wrapper.
@@ -406,10 +414,23 @@ const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:
  */
 function shellPayload(command) {
   const match = command.match(SHELL_WRAPPER);
-  if (!match) return null;
-  if (match[1] !== undefined) return match[1];
-  // Inside double quotes the shell drops a backslash only before $ ` " \ and a newline.
-  return match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1');
+  return match ? shellPayloadText(match) : null;
+}
+
+/**
+ * Return the wrapper's payload only when the wrapper heads the segment.
+ *
+ * `inspectDispatch` already unwraps shell payloads internally, so its direct verdict can
+ * describe a command one level below the text it was given. Callers that need the text the
+ * executor receives unwrap again; the head check keeps a wrapper spelled INSIDE a prompt
+ * (`opencode run "bash -c x"`) as prompt text instead of treating it as the dispatcher.
+ * @param {string} command - one shell segment.
+ * @returns {string | null} the head wrapper's payload, or null.
+ */
+function headShellPayload(command) {
+  const match = command.match(SHELL_WRAPPER);
+  if (!match || command.slice(0, match.index).trim() !== '') return null;
+  return shellPayloadText(match);
 }
 
 /**
@@ -420,9 +441,7 @@ function shellPayload(command) {
 function shellPayloads(command) {
   const payloads = [];
   for (const match of command.matchAll(new RegExp(SHELL_WRAPPER.source, 'g'))) {
-    payloads.push(match[1] !== undefined
-      ? match[1]
-      : match[2].replace(/\\\n/g, '').replace(/\\([$`"\\])/g, '$1'));
+    payloads.push(shellPayloadText(match));
   }
   return payloads;
 }
@@ -616,11 +635,19 @@ const REDIRECTION = /\s(?:\d?>>?|\d?<|&>>?|\d?>&\d?)\s*(?:"[^"]*"|'[^']*'|[^\s;&
 // Redirection stripping is a LAST resort, never a first step: the pattern is not
 // quote-aware, so running it up front ate the closing quote of a `bash -c "... </dev/null"`
 // payload and broke the unwrap it was meant to help.
+//
+// The returned `text` is the command as the executor finally receives it, after every
+// unwrap, so a caller reading flags or redirects tests the real arguments rather than the
+// quoted wrapper payload that merely contains them.
 function resolveSegment(segment, redirectionsStripped = false) {
   let current = segment;
   for (let depth = 0; depth <= MAX_UNWRAP_DEPTH; depth += 1) {
     const inspected = inspectDispatch(current);
-    if (inspected.kind === 'direct') return inspected.executor;
+    if (inspected.kind === 'direct') {
+      const head = headShellPayload(current);
+      if (head !== null) { current = head; continue; }
+      return { skill: inspected.executor, text: current };
+    }
     // Ambiguous means the tokenizer saw dispatch evidence inside ONE segment but could not
     // pin one executor. Match the shape list against that segment only: matching the whole
     // command is what made a call that merely quotes a dispatch read as one.
@@ -635,7 +662,8 @@ function resolveSegment(segment, redirectionsStripped = false) {
       const unquoted = current
         .replace(/'(?:\\.|[^'\\])*'/g, "''")
         .replace(/"(?:\\.|[^"\\])*"/g, '""');
-      return DISPATCH_SHAPES.find((d) => d.test.test(unquoted))?.skill || null;
+      const skill = DISPATCH_SHAPES.find((d) => d.test.test(unquoted))?.skill || null;
+      return skill ? { skill, text: current } : null;
     }
     const shell = shellPayload(current);
     if (shell !== null) { current = shell; continue; }
@@ -666,6 +694,22 @@ function resolveSegment(segment, redirectionsStripped = false) {
  * @returns {Array<{skill: string, packetPath: string}>} one entry per distinct dispatch, in command order.
  */
 export function resolveDispatchPackets(command) {
+  return resolveDispatchCommands(command).map(({ entry }) => entry);
+}
+
+/**
+ * Resolve every dispatch together with the argument text it was resolved from.
+ *
+ * `resolveDispatchPackets` answers WHICH packet governs; a rule check also needs the text
+ * that packet's executor actually receives. A wrapper's quoted payload is the dispatcher's
+ * text, not the executor's, so a rule testing the raw command reads a prompt's words as
+ * flags. Each `text` here has already been unwrapped (shell `-c`, `nohup`, `env`, a
+ * heredoc body) for exactly that reason.
+ *
+ * @param {string} command - raw command text.
+ * @returns {Array<{entry: object, text: string}>} one item per distinct dispatch, in command order.
+ */
+export function resolveDispatchCommands(command) {
   return resolvePacketList(command, true);
 }
 
@@ -675,24 +719,26 @@ export function resolveDispatchPackets(command) {
 function resolvePacketList(command, readExecutedHeredocs) {
   const raw = typeof command === 'string' ? command : '';
   if (!raw) return [];
-  const packets = [];
+  const dispatches = [];
   const seen = new Set();
-  const add = (skill) => {
-    if (!skill || seen.has(skill)) return;
-    const entry = DISPATCH_SHAPES.find((d) => d.skill === skill);
+  const add = (resolved) => {
+    if (!resolved || seen.has(resolved.skill)) return;
+    const entry = DISPATCH_SHAPES.find((d) => d.skill === resolved.skill);
     if (!entry) return;
-    seen.add(skill);
-    packets.push(entry);
+    seen.add(resolved.skill);
+    dispatches.push({ entry, text: resolved.text });
   };
   for (const segment of shellSegments(stripHeredocBodies(raw))) {
     add(resolveSegment(segment));
   }
   if (readExecutedHeredocs) {
     for (const body of executedHeredocBodies(raw)) {
-      for (const entry of resolvePacketList(body, false)) add(entry.skill);
+      for (const resolved of resolvePacketList(body, false)) {
+        add({ skill: resolved.entry.skill, text: resolved.text });
+      }
     }
   }
-  return packets;
+  return dispatches;
 }
 
 /**

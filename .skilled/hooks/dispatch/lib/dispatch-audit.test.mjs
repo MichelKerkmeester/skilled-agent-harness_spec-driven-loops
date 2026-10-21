@@ -21,6 +21,7 @@ import {
   isAuditDisabled,
   matchDispatchShape,
   recordDispatch,
+  resolveDispatchCommands,
   resolveDispatchPacket,
   resolveDispatchPackets,
 } from './dispatch-audit.mjs';
@@ -473,6 +474,13 @@ describe('resolveDispatchPacket', () => {
     expect(resolveDispatchPackets('git status')).toEqual([]);
     expect(resolveDispatchPackets(undefined)).toEqual([]);
     expect(resolveDispatchPacket('opencode run -m p/m "a" && pi -p "b"')?.skill).toBe('cli-opencode');
+  });
+
+  it('returns the unwrapped text each dispatch was resolved from', () => {
+    const commands = resolveDispatchCommands(String.raw`bash -c "opencode run -m p/m 'x' </dev/null"`);
+    expect(commands).toHaveLength(1);
+    expect(commands[0].entry.skill).toBe('cli-opencode');
+    expect(commands[0].text).toBe("opencode run -m p/m 'x' </dev/null");
   });
 });
 

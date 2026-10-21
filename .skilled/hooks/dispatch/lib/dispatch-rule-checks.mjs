@@ -18,6 +18,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
+import { resolveDispatchCommands } from './dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. RULE LOADING
@@ -47,6 +48,72 @@ export function readHardRules(skillMdPath) {
 // A check returning false means the rule is VIOLATED and should be surfaced.
 
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
+
+// A prompt is an argument, not syntax: a quoted span is text the CLI receives, so a flag or
+// redirect spelled inside one is not evidence the dispatch passes it. Blank the span contents
+// and keep the quotes, leaving only the command's own argument structure.
+// A quoted heredoc delimiter is syntax rather than prompt text -- `<<'EOF'` is exactly what
+// the stdin rule looks for -- so the word after `<<` or `<<-` survives the blanking.
+function blankQuotedSpans(command) {
+  let result = '';
+  for (let index = 0; index < command.length; index += 1) {
+    if (command[index] === '<') {
+      const heredoc = /^<<-?\s*(['"])[A-Za-z_][A-Za-z0-9_]*\1/.exec(command.slice(index));
+      if (heredoc) {
+        result += heredoc[0];
+        index += heredoc[0].length - 1;
+        continue;
+      }
+    }
+    const character = command[index];
+    if (character === "'") {
+      const end = command.indexOf("'", index + 1);
+      if (end === -1) {
+        result += character;
+        continue;
+      }
+      result += "''";
+      index = end;
+      continue;
+    }
+    if (character === '"') {
+      let cursor = index + 1;
+      let closed = false;
+      while (cursor < command.length) {
+        // A backslash-escaped quote inside a double-quoted span is part of the span.
+        if (command[cursor] === '\\' && cursor + 1 < command.length) {
+          cursor += 2;
+          continue;
+        }
+        if (command[cursor] === '"') {
+          closed = true;
+          break;
+        }
+        cursor += 1;
+      }
+      if (!closed) {
+        result += character;
+        continue;
+      }
+      result += '""';
+      index = cursor;
+      continue;
+    }
+    result += character;
+  }
+  return result;
+}
+
+// The text the stdin and model checks read: every resolved dispatch's own arguments joined in
+// command order, or the whole command when nothing resolves. Quotes are blanked either way,
+// so a prompt cannot lend a check a flag or redirect the dispatch never passed.
+function dispatchArgumentText(command) {
+  const dispatches = resolveDispatchCommands(command);
+  const text = dispatches.length > 0
+    ? dispatches.map((dispatch) => dispatch.text).join('\n')
+    : command;
+  return blankQuotedSpans(text);
+}
 
 // Claude's print-mode shape, shared by the headless list below and the permission-mode check.
 const CLAUDE_PRINT = /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/;
@@ -157,11 +224,13 @@ export const CHECKS = {
   // and hang at 0% CPU, emitting nothing at all.
   'stdin-redirect-required': (cmd) => {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
-    if (STDIN_REDIRECT.test(cmd)) return true; // stdin handled
-    // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin.
-    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(cmd)) return true;
+    const argumentText = dispatchArgumentText(cmd);
+    if (STDIN_REDIRECT.test(argumentText)) return true; // stdin handled
+    // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin. The pipe is
+    // shell syntax around the dispatch, so it is read from the whole command, unquoted.
+    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(blankQuotedSpans(cmd))) return true;
     // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
-    if (HERMES_CHAT.test(cmd) && HERMES_STDIN_HANDLED.test(cmd)) return true;
+    if (HERMES_CHAT.test(cmd) && HERMES_STDIN_HANDLED.test(argumentText)) return true;
     return false;
   },
   // Without an explicit model the run falls back to the configured default; when that
@@ -169,7 +238,7 @@ export const CHECKS = {
   // exactly like a deadlock.
   'explicit-model-required': (cmd) => {
     if (!/\bopencode\d*\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
-    return /(^|\s)(-m|--model)(\s|=)/.test(cmd);
+    return /(^|\s)(-m|--model)(\s|=)/.test(dispatchArgumentText(cmd));
   },
   // A bare top-level `--agent general` is rejected by opencode at runtime. Both spellings
   // count: `--agent=general` reached the runtime unflagged while `--agent general` did not.
