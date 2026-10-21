@@ -31,8 +31,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Turn the 2026-10-21 cleanup into fixture `ps` rows, macOS and Linux
-- [ ] T002 Write the allowlist of intended daemons
+- [x] T001 Turn the 2026-10-21 cleanup into fixture `ps` rows, macOS and Linux (representative rows per kind; ADR-001)
+- [x] T002 Write the allowlist of intended daemons
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,9 +40,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Scanner and classifier (`orphan-process-check.cjs`)
-- [ ] T004 `--reap` with command-line and start-time re-check
-- [ ] T005 Doctor step and presentation line (`doctor-setup.yaml`, `doctor-setup-presentation.txt`)
+- [x] T003 Scanner and classifier (`orphan-process-check.cjs`)
+- [x] T004 `--reap` with command-line and start-time re-check
+- [x] T005 Doctor step and presentation line (`doctor-setup.yaml`, `doctor-setup-presentation.txt`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,10 +50,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Tests: parsing, allowlist, PID reuse, gone PID (`orphan-process-check.test.cjs`)
-- [ ] T007 Doctor tests
-- [ ] T008 Live scan on this machine compared with a hand count
-- [ ] T009 Strict validation of this folder
+- [x] T006 Tests: parsing, allowlist, PID reuse, gone PID (`orphan-process-check.test.cjs`)
+- [x] T007 Doctor tests (contract test for the setup step and line; suite 422 of 422)
+- [x] T008 Live scan on this machine compared with a hand count
+- [x] T009 Strict validation of this folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,9 +61,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

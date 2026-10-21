@@ -63,10 +63,12 @@ Evidence: [N] legs, [N] passed, [N] failed, [N] skipped, [N] degraded, [N] error
 Recommendation: [the doctor command for each failing or degraded leg, or none]
 Last session hop: [the first line `session-relaunch.cjs history --last 1` printed, or no hop recorded yet]
 [open notes: N handoff notes not claimed yet, oldest <filename>; shown only when history printed it]
+[orphans: N, about M MB; list them with node .skilled/commands/doctor/scripts/orphan-process-check.cjs --reap]
 STATUS=[status]
 ```
 
 The last session hop line is informational. It shows when a session last handed over, kept, claimed or finished a handoff, and it never changes the status. The open notes line appears only while a handoff note is still open, so a hand-over nobody finished stays visible.
+The orphan line is informational only and never changes the doctor status. With no orphan processes, print `orphans: none`. Run the listed `--reap` command to see each process, then use its confirmation command with `--yes` only when those are the processes to stop.
 
 ### Failure Summary
 

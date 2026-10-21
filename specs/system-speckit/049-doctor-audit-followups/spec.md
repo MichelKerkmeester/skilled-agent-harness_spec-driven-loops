@@ -155,7 +155,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 29 | 029-main-ci-regenerations/ | Regenerate the derived files behind three red checks on main | Complete |
 | 30 | 030-cursor-reconcile-test-exemption/ | Exempt the backgrounded reconcile hook in the Cursor parity assertion so Spec-Kit Check passes | Complete |
 | 31 | 031-changelog-v4003-reality-check/ | Check every v4.0.0.3 changelog claim against the code and cover the specs shipped since v4.0.0.2 | Complete |
-| 32 | 032-orphan-process-check/ | Read-only doctor scan for orphaned helper processes, with a guarded opt-in reap | Pending |
+| 32 | 032-orphan-process-check/ | Read-only doctor scan for orphaned helper processes, with a guarded opt-in reap | Complete |
 
 ### Phase Transition Rules
 
