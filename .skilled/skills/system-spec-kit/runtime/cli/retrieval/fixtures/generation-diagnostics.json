@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7205,
-    "ok": 14800,
+    "ok": 14825,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25553,
+  "documentsScanned": 25578,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
+  "manifestHash": "2ac57a8190ffde1aca313d91a5e4cc03aa1c5cbb620b9ea5d015832950512721",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37291,
+      "ok": 37324,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -72422,6 +72422,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -74879,6 +74883,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/scratch",
       "reason": "excluded directory"
     },
     {
