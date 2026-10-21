@@ -24,6 +24,7 @@
 const {
   appendFileSync,
   closeSync,
+  linkSync,
   mkdirSync,
   openSync,
   readdirSync,
@@ -56,6 +57,7 @@ const LOOP_STATE_LOCK_BREAK_SUFFIX = '.break';
 const LOOP_STATE_LOCK_RETRY_MS = 10;
 const LOOP_STATE_LOCK_TIMEOUT_MS = 2000;
 const LOOP_STATE_LOCK_STALE_MS = 10000;
+const LOOP_STATE_LOCK_TEMP_REGEX = /\.lock(?:\.break)?\.tmp-(\d+)-[0-9a-f-]+$/;
 const LOOP_STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 
 // Retention/cleanup env vars, mirroring the opencode-goal.js sweep/archive/prune
@@ -360,8 +362,9 @@ function sleepSync(milliseconds) {
 }
 
 /**
- * Read a loop-state lock's recorded owner. Content without both a pid and a
- * token is unreadable, so its age, not an owner probe, has to decide staleness.
+ * Read a loop-state lock's recorded owner. Acquisition installs the record
+ * atomically with the lock, so content without both a pid and a token can only
+ * be corruption; its age, not an owner probe, has to decide staleness.
  *
  * @param {string} lockPath - per-session lock or break-lock path
  * @returns {{ pid: number|null, token: string|null }} recorded owner, or nulls
@@ -397,8 +400,8 @@ function processIsAlive(pid) {
 
 /**
  * Decide whether a lock may be removed. A readable owner is authoritative and
- * only its death makes the lock stale; unreadable content (an owner killed
- * between create and write) falls back to the stale window.
+ * only its death makes the lock stale; unreadable content (corruption, since
+ * acquisition installs the record atomically) falls back to the stale window.
  *
  * @param {{ pid: number|null, token: string|null }} owner - recorded owner
  * @param {number} ageMs - lock file age
@@ -410,28 +413,34 @@ function loopStateLockIsStale(owner, ageMs) {
 }
 
 /**
- * Create a lock file with this process's pid and a fresh token.
+ * Create a lock file with this process's pid and a fresh token. The record is
+ * written to a private temp file and hard-linked into place, so the lock path
+ * is never visible without a complete owner record and a held lock reports
+ * EEXIST from the link rather than from the initial create.
  *
  * @param {string} lockPath - per-session lock or break-lock path
  * @returns {string|null} this process's token, or null when the path is already held
  */
 function createLoopStateLock(lockPath) {
   const token = randomUUID();
-  let descriptor;
-  try {
-    descriptor = openSync(lockPath, 'wx', 0o600);
-  } catch (error) {
-    if (error && error.code === 'EEXIST') return null;
-    throw error;
-  }
+  const tempPath = `${lockPath}.tmp-${process.pid}-${token}`;
+  const descriptor = openSync(tempPath, 'wx', 0o600);
   try {
     writeFileSync(descriptor, `${process.pid} ${token}\n`, 'utf8');
   } catch (error) {
     closeSync(descriptor);
-    try { unlinkSync(lockPath); } catch (_ignored) { /* best-effort cleanup */ }
+    try { unlinkSync(tempPath); } catch (_ignored) { /* best-effort cleanup */ }
     throw error;
   }
   closeSync(descriptor);
+  try {
+    linkSync(tempPath, lockPath);
+  } catch (error) {
+    if (error && error.code === 'EEXIST') return null;
+    throw error;
+  } finally {
+    try { unlinkSync(tempPath); } catch (_ignored) { /* best-effort cleanup */ }
+  }
   return token;
 }
 
@@ -502,14 +511,14 @@ function acquireLoopStateBreakLock(breakPath, now) {
  * Breaking by rename cannot work: a claimed lock has to be renamed back when it
  * turns out to be a live replacement, and a contender can create a fresh lock
  * between that rename and the restore, leaving two owners updating one state. A
- * break lock created with 'wx' is never moved out from under another contender,
- * and the per-session lock is unlinked only after a re-read held by the break
- * lock still finds it abandoned, so a live owner keeps its lock.
+ * break lock installed by a hard link is never moved out from under another
+ * contender, and the per-session lock is unlinked only after a re-read held by
+ * the break lock still finds it abandoned, so a live owner keeps its lock.
  *
  * Staleness is judged by owner liveness: a readable owner whose pid is dead is
- * abandoned immediately, while unreadable content (an owner killed between create
- * and write) falls back to the stale window. The same rule retires a break lock
- * whose breaker died.
+ * abandoned immediately, while unreadable content (corruption, since acquisition
+ * installs the record atomically) falls back to the stale window. The same rule
+ * retires a break lock whose breaker died.
  *
  * Remaining limit: a pid reused by an unrelated process makes a dead owner look
  * alive, which only delays acquisition until it times out. The break-lock
@@ -550,8 +559,8 @@ function breakAbandonedLoopStateLock(lockPath, now) {
  * Take the per-session loop-state lock, waiting briefly when another hook
  * process holds it. A lock whose owner died is removed through the break lock,
  * so contenders that all judge it abandoned cannot each remove it and update the
- * state at once. Acquisition always retries the exclusive create and never
- * installs the per-session lock itself by renaming.
+ * state at once. Acquisition always retries the atomic link and never installs
+ * the per-session lock itself by renaming.
  *
  * @param {string} stateDir - loop-guard state directory
  * @param {string} lockPath - per-session lock path
@@ -888,6 +897,22 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
         try {
           const fileStats = statSync(sourcePath);
           if (now - fileStats.mtimeMs > activeRetentionMs) unlinkSync(sourcePath);
+        } catch (_) {
+          // Fail open on a single entry; the rest of the sweep pass still runs.
+        }
+        continue;
+      }
+
+      const lockTempMatch = LOOP_STATE_LOCK_TEMP_REGEX.exec(entry.name);
+      if (lockTempMatch) {
+        // A creator killed between writing its temp file and linking it leaves this
+        // behind; its embedded pid or the stale window proves it is not in flight.
+        try {
+          const fileStats = statSync(sourcePath);
+          const tempPid = Number(lockTempMatch[1]);
+          if (!processIsAlive(tempPid) || now - fileStats.mtimeMs > LOOP_STATE_LOCK_STALE_MS) {
+            unlinkSync(sourcePath);
+          }
         } catch (_) {
           // Fail open on a single entry; the rest of the sweep pass still runs.
         }

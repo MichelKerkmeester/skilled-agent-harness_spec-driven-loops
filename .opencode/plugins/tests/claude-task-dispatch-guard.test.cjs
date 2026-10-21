@@ -15,6 +15,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const { randomUUID } = require('node:crypto');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -130,6 +131,76 @@ async function waitForPaths(paths, timeoutMs = 10000) {
     await new Promise((resolve) => setTimeout(resolve, 5));
   }
   throw new Error('concurrent recorders did not become ready');
+}
+
+// The observer preload patches the fs primitives the guard core destructures at
+// require time, so it can read the lock path at its first appearance: the open
+// that creates it directly, or the link that installs a fully written temp file.
+const LOCK_OBSERVER_PRELOAD = `
+const fs = require('node:fs');
+
+const lockPath = process.env.LOCK_OBSERVE_LOCK_PATH;
+const observationPath = process.env.LOCK_OBSERVE_PATH;
+let observed = false;
+
+function record(source) {
+  if (observed) return;
+  let content;
+  try {
+    content = fs.readFileSync(lockPath, 'utf8');
+  } catch (_) {
+    return;
+  }
+  observed = true;
+  fs.writeFileSync(observationPath, JSON.stringify({ source, content, pid: process.pid }));
+}
+
+const originalOpenSync = fs.openSync;
+fs.openSync = function observedOpenSync(...args) {
+  const descriptor = originalOpenSync.apply(this, args);
+  if (args[0] === lockPath) record('open');
+  return descriptor;
+};
+
+const originalLinkSync = fs.linkSync;
+fs.linkSync = function observedLinkSync(...args) {
+  const result = originalLinkSync.apply(this, args);
+  if (args[1] === lockPath) record('link');
+  return result;
+};
+`;
+
+const LOCK_OBSERVER_SCRIPT = `
+const { recordLoopDispatch } = require(process.env.GUARD_CORE_PATH);
+recordLoopDispatch(
+  process.env.LOCK_STATE_DIR,
+  process.env.LOCK_SESSION_ID,
+  'deep-review',
+  false,
+);
+`;
+
+function observeLockCreation({ stateDir, sessionID, preloadPath, observationPath }) {
+  const lockPath = `${guardCore.loopStatePath(stateDir, sessionID)}.lock`;
+  fs.writeFileSync(preloadPath, LOCK_OBSERVER_PRELOAD);
+  fs.rmSync(observationPath, { force: true });
+  const result = spawnSync(
+    process.execPath,
+    ['--require', preloadPath, '-e', LOCK_OBSERVER_SCRIPT],
+    {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        GUARD_CORE_PATH,
+        LOCK_STATE_DIR: stateDir,
+        LOCK_SESSION_ID: sessionID,
+        LOCK_OBSERVE_PATH: observationPath,
+        LOCK_OBSERVE_LOCK_PATH: lockPath,
+      },
+    },
+  );
+  assert.equal(result.status, 0, `lock observer exited ${result.status}: ${result.stderr || ''}`);
+  return JSON.parse(fs.readFileSync(observationPath, 'utf8'));
 }
 
 async function recordConcurrently({
@@ -543,6 +614,33 @@ async function main() {
     'the per-session lock must be released after the update',
   );
 
+  // The owner record must be readable the moment the lock path first appears: a
+  // creator paused before its write would otherwise leave a live-looking lock
+  // with unreadable content that only the stale window could retire.
+  const observedLockStateDir = path.join(tmpDir, 'observed-lock-state');
+  const observedLockSession = 'claude-loop-observed-lock';
+  const observedLock = observeLockCreation({
+    stateDir: observedLockStateDir,
+    sessionID: observedLockSession,
+    preloadPath: path.join(tmpDir, 'lock-observer-preload.cjs'),
+    observationPath: path.join(tmpDir, 'lock-observation.json'),
+  });
+  assert.match(
+    observedLock.content,
+    /^\d+ \S+\n$/,
+    'the lock path must never be visible without a complete owner record',
+  );
+  assert.equal(
+    observedLock.content.split(' ')[0],
+    String(observedLock.pid),
+    'the visible lock must name the acquiring process as its owner',
+  );
+  assert.equal(
+    fs.existsSync(`${guardCore.loopStatePath(observedLockStateDir, observedLockSession)}.lock`),
+    false,
+    'the observed acquisition must release its lock',
+  );
+
   // A lock whose owner died is broken immediately, even when its file is fresh;
   // waiting for the age window would block a live session for no reason. The
   // update records exactly one increment on the count already on disk.
@@ -726,6 +824,22 @@ async function main() {
   fs.writeFileSync(sweepOldUnreadablePath, 'not an owner\n');
   fs.utimesSync(sweepOldUnreadablePath, staleWindowAgo, staleWindowAgo);
 
+  // A creator killed between writing its lock temp file and linking it leaves a
+  // file the ordinary lock branch cannot see; the sweep retires it by embedded
+  // pid liveness while keeping a live creator's temp file.
+  const sweepDeadTempBase = guardCore.loopStatePath(
+    sweepStateDir,
+    'claude-loop-sweep-dead-temp',
+  );
+  const sweepDeadTempPath = `${sweepDeadTempBase}.lock.tmp-${sweepDeadPid}-${randomUUID()}`;
+  const sweepLiveTempBase = guardCore.loopStatePath(
+    sweepStateDir,
+    'claude-loop-sweep-live-temp',
+  );
+  const sweepLiveTempPath = `${sweepLiveTempBase}.lock.tmp-${process.pid}-${randomUUID()}`;
+  fs.writeFileSync(sweepDeadTempPath, `${sweepDeadPid} dead-temp\n`);
+  fs.writeFileSync(sweepLiveTempPath, `${process.pid} live-temp\n`);
+
   guardCore.sweepStaleLoopGuardStates(sweepStateDir, {});
   assert.equal(fs.existsSync(sweepLockPath), false, 'the sweep must remove a dead owner\'s lock');
   assert.equal(
@@ -742,6 +856,16 @@ async function main() {
     fs.existsSync(sweepOldUnreadablePath),
     false,
     'unreadable content past the stale window must be swept',
+  );
+  assert.equal(
+    fs.existsSync(sweepDeadTempPath),
+    false,
+    'the sweep must remove a dead owner\'s lock temp file',
+  );
+  assert.equal(
+    fs.existsSync(sweepLiveTempPath),
+    true,
+    'the sweep must keep a live owner\'s lock temp file',
   );
   assert.deepEqual(
     fs.readdirSync(sweepStateDir).filter((name) => name.endsWith('.break')),
