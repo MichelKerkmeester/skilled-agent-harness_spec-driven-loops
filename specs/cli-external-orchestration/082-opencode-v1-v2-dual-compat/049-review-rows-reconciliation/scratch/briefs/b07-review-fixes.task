@@ -1,0 +1,18 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: documentation editor. One change: apply the fixes from a read-only review of this phase's diff.
+
+INPUT: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/review-diff.md, findings RD-01 to RD-09. Apply every one, using its suggested fix, with these decisions:
+- RD-01: 049's own strict validation now prints RESULT: PASSED, Errors 0, Warnings 0. Record that.
+- RD-02 and RD-08: the orchestrator will re-derive graph-metadata.json for 039 and for the parent 082 (a derived file only, recomputed by repair-derived.cjs from the edited docs) right after your edit, then rerun recursive validation. So: keep REQ-006 as the recursive run; add "039-sk-code-opencode-alignment-audit/graph-metadata.json" and "graph-metadata.json" (parent) as Modified (re-derived) and "049-review-rows-reconciliation/description.json" as Created and "049-review-rows-reconciliation/graph-metadata.json" as Modified (re-derived) to 049's Files Changed and spec.md Files to Change; delete limitation #4 (its claims are false); leave the recursive-validation verification row as "pending" (the orchestrator fills it from the real run).
+- RD-03: change 039 implementation-summary.md :57 to "207 real files and 116 symlinks" only where it states the current file count; :106 to "323 of 323"; label :117 "at the audit" (do not change its number).
+- RD-06: fix the script, not the sentence: in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/check-review-rows.mjs, also compare the "Held, since fixed" column (cells[3]) with the rows. The rows no longer carry a held outcome, so count held-since-fixed per severity as the §5 entries whose text contains "fixed by 040", "fixed by 041" or "fixed by 042", and compare cells[3] with that count; print it in the same "section 2" line (confirmed/fixed/held/recorded) and fail the exit status on a mismatch. Keep the file's one-line header comment style; no spec paths, phase or task ids in comments.
+- RD-09: set 039's last_updated_at to "2026-10-21T15:50:00Z" and last_updated_by to "orchestrator".
+
+ALLOWED WRITE PATHS: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/implementation-summary.md, the four .md files in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/, and specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/check-review-rows.mjs.
+
+BANNED OPERATIONS: git commit, push, branch, stash, reset, checkout, add; editing any other file (not review.md, not any json); deleting anything; installs; network calls; printing environment variables.
+
+When done, run and print the full output and exit status of:
+node specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/check-review-rows.mjs specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md .

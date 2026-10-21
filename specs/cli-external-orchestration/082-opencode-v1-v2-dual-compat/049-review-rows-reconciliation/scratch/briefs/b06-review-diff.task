@@ -1,0 +1,20 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: read-only reviewer. You did not write these changes. One job: check a docs-only diff for false or inconsistent claims.
+
+INPUT: run "git diff HEAD" in this worktree, and read the untracked files under specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/ (description.json, scratch/check-review-rows.mjs, scratch/check-review-rows.txt, scratch/review-new-files.md).
+
+CHECK, and cite file:line for every finding:
+1. Every "fixed by 0NN (<commits>)" in 039-sk-code-opencode-alignment-audit/review.md: each commit exists ("git cat-file -t <sha>") and is on HEAD's history ("git merge-base --is-ancestor <sha> HEAD"); and the phase number matches what that phase's implementation-summary.md (specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-*/, specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-*/, specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-*/) says it fixed. Sample at least 12 ids across all three phases, including every P0.
+2. §2 Totals in review.md match the §5 rows (run: node specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/check-review-rows.mjs specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md . ; it must exit 0), and §1's file counts match "git ls-files .opencode/plugins .skilled/hooks .opencode/hooks" split into symlinks and real files.
+3. Any remaining text in review.md or 039's implementation-summary.md that still says a finding waits on, or is held for, the operator.
+4. The 049 docs (spec.md, plan.md, tasks.md, implementation-summary.md) and the parent specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md rows 49 and the 048→049 handoff row: any claim not backed by the diff or the checker output. Note: 049 strict validation now passes, since description.json was generated and graph-metadata.json re-derived; a doc that still says it fails is a finding.
+5. The recorded P1 b09-hooks-dispatch-R01: its description matches specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-*/implementation-summary.md Known Limitations and .skilled/hooks/dispatch/README.md.
+6. Comment hygiene in scratch/check-review-rows.mjs: no spec paths, phase or task ids in code comments.
+
+OUTPUT: write specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/review-diff.md: a table (id | severity P0/P1/P2 | file:line | finding | suggested fix) and a last line "Verdict: PASS" if there is no P0 or P1, else "Verdict: FAIL".
+
+ALLOWED WRITE PATH: only that review-diff.md.
+
+BANNED OPERATIONS: editing any other file; git commit, push, branch, stash, reset, checkout, add; deleting anything; installs; network calls; printing environment variables.

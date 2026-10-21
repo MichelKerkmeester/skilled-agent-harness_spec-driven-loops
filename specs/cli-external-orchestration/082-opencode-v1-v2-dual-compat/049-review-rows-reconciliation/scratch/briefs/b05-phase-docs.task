@@ -1,0 +1,23 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: spec-doc author. One change: fill in this phase's four scaffolded docs and its two rows in the parent phase map. Model the shape, tone and frontmatter on the completed sibling specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/ (spec.md, plan.md, tasks.md, implementation-summary.md). Replace every bracketed template placeholder.
+
+WHAT THIS PHASE DID (facts to use, nothing else):
+- Problem: on main, 039's review.md still marked the 35 findings fixed by phases 040, 041 and 042 as "held: behaviour change awaiting the operator", in §3, §2 Totals and the §5 rows; 039's implementation-summary.md still said 35 wait on the operator. Four hook files added after the audit had no review row (git tracks 323 paths, review.md had 319 rows).
+- Docs-only phase: no code changed. Files changed: 039-sk-code-opencode-alignment-audit/review.md and 039-sk-code-opencode-alignment-audit/implementation-summary.md, plus this phase's docs and the parent spec.md rows.
+- review.md now: every one of the 35 reads "fixed by 040/041/042 (<commits>)"; §3 is "Held for the Operator, Since Fixed" with a "Fixed by" column; four new rows (batch b14-new-files) for .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs, .skilled/hooks/git/install-hooks.test.sh, .skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs and .skilled/hooks/session-relaunch/claude/compact-pointer.mjs; a separate read-only DeepSeek review found 6 P2 and no P0 or P1 in them, recorded in §4 with reasons (scratch/review-new-files.md); 040's round-10 lint gap is recorded as b09-hooks-dispatch-R01 P1 in the dispatch-preflight-lint.ts row and §4 with its reason; §2 Totals recomputed from the rows: P0 5 confirmed/5 fixed, P1 47/46 with 1 recorded, P2 211/198 with 13 recorded. An earlier 48 P1 count did not match the rows (46 from the audit).
+- Checker: scratch/check-review-rows.mjs compares the review rows with git ls-files, checks no P0/P1 is open unless §4 records it with a reason, and checks §2 against the rows. Its output is scratch/check-review-rows.txt (exit 0: 323 tracked, 323 rows, 0 missing, 0 open P0/P1, 1 recorded P1).
+- Executors: DeepSeek v4.1 flash max through cli-pi on llmgateway wrote every edit from briefs in scratch/briefs/ (b01 review rows, b03 039 summary, b04 new rows and totals, b05 these docs); a separate read-only DeepSeek session reviewed the four new files (b02) and will review the whole diff. Luna was not used.
+- Acceptance: REQ-001 no §5 finding reads held; REQ-002 §2 matches the rows; REQ-003 every tracked path has a row; REQ-004 no open P0/P1 except b09-hooks-dispatch-R01, recorded with its reason; REQ-005 039's summary carries no stale held wording; REQ-006 recursive strict validation of 082 passes.
+- Status: spec.md Status "In Progress" for now; tasks: mark done every task except "recursive strict validation", "push to main" and "CI green", which stay open. implementation-summary.md Verification table: list the checker run (exit 0, from scratch/check-review-rows.txt); write "pending" for recursive validation and CI. completion_pct 80.
+
+PARENT EDITS in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md:
+- Phase map row 49: replace "[Phase 49 scope]" with "Reconcile the 039 review with the fixes from phases 040 to 042, add rows for the four hook files added after the audit, and recompute the totals from the rows". Leave its status "Pending" (do not change it).
+- Handoff row "| 048-skilled-loop-shared-nudge-formatter | 049-review-rows-reconciliation | [Criteria TBD] | [Verification TBD] |": criteria "048's P1 fix is on main and its review row names the commit"; verification "check-review-rows.mjs exits 0 against review.md".
+
+ALLOWED WRITE PATHS: the four .md files in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/ and specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md.
+
+BANNED OPERATIONS: git commit, push, branch, stash, reset, checkout; editing any other file (do not touch graph-metadata.json or description.json); deleting anything; installs; network calls; printing environment variables.
+
+When done, run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation --strict ; and print its last 15 lines. Fix any error it reports in the four docs only.

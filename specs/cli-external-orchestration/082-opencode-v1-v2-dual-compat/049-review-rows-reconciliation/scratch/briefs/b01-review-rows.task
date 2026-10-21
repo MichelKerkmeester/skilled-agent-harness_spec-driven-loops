@@ -1,0 +1,58 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: documentation editor. One change: bring one review file up to date.
+
+FILE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md
+
+CONTEXT: 35 findings in that file still read "held: behaviour change awaiting the operator (verify: HELD)". All 35 have since been fixed on main by phases 040, 041 and 042. The table below gives each id, the phase that fixed it, and its fix commits.
+
+MAPPING (id | phase | commits):
+b09-hooks-dispatch-006 | 040 | 2cb94baa32
+b09-hooks-dispatch-N01 | 040 | 7bda6731b4
+b09-hooks-dispatch-N02 | 040 | 2cac0da1fa 22f6b903a5 2c352bae5a d3c7237d8e 14818954f9 01e5e6c73a 8042946e3c 5ec42348e8 80ef0a3adf 1889eb0dcd b4da9c1e63 6ff94ffe21
+b09-hooks-dispatch-012 | 040 | d5e869aaae
+b09-hooks-dispatch-N03 | 040 | fdc0fc8741 a207f963dd c0805c2350 1db655bfe5 e0f84f529b
+b09-hooks-dispatch-N04 | 040 | 17d2a25f4c 92e672a7c2
+b09-hooks-dispatch-N05 | 040 | 72b98dd2b3 9fb6fc7d7e 06bfa6eb1d 0bde6b4df6
+b09-hooks-dispatch-N06 | 040 | 237e6f863b
+b09-hooks-dispatch-N07 | 040 | f006480388 06bfa6eb1d
+b09-hooks-dispatch-N08 | 040 | f006480388 06bfa6eb1d
+b01-plugins-goal-003 | 041 | a9a6f2fc68
+b01-plugins-goal-004 | 041 | 6676301298
+b01-plugins-goal-005 | 041 | 92e6379de5
+b01-plugins-goal-N01 | 041 | 92e6379de5 0a9a6a1023
+b01-plugins-goal-001 | 041 | d43b94c624 ae7a4ce68f
+b01-plugins-goal-008 | 041 | 8fd6199a68 39a3259022
+b08-hooks-goal-006 | 041 | 23a69afbd7
+b08-hooks-goal-007 | 041 | fe63af3f0a
+b08-hooks-goal-N01 | 041 | 651ca91307
+b05-relaunch-lib-N01 | 042 | 557e83052b 89f6699fe2
+b10-hooks-quality-screen-task-012 | 042 | f7afb8c441 e71517445a 039fa4d2f2 a6b8ce1049
+b10-hooks-quality-screen-task-016 | 042 | 324a6b6cc0
+b10-hooks-quality-screen-task-017 | 042 | 9dcf3168db b7a43d9cd5 8709743b3d 6dfa3257dc
+b11-hooks-shared-and-small-011 | 042 | b773d87964
+b11-hooks-shared-and-small-016 | 042 | a91c17d44b
+b11-hooks-shared-and-small-N01 | 042 | ba48e3f040
+b02-plugins-rest-007 | 042 | f62953677e e2ada51448 cb8619244e
+b02-plugins-rest-012 | 042 | 015c39c1b4
+b02-plugins-rest-N03 | 042 | ae0d20a062 b7824acede
+b02-plugins-rest-N04 | 042 | 7deeac6287 1df4dddee0 84f93e097c 6bd8cfab2a
+b02-plugins-rest-N05 | 042 | 8c42fd499d 410696410c
+b05-relaunch-lib-002 | 042 | f32f7786c9
+b10-hooks-quality-screen-task-009 | 042 | 2c4801c55d
+b10-hooks-quality-screen-task-010 | 042 | 2c4801c55d
+b11-hooks-shared-and-small-018 | 042 | fd7149c106
+
+EDITS, all in review.md:
+1. §5 Per-File Review: in each finding entry for an id above, replace exactly "held: behaviour change awaiting the operator (verify: HELD)" with "fixed by 0NN (<commits>)", using the phase and commits from the mapping. Append those commits to that row's Commits column, space-separated, skipping duplicates; if the column is "-", replace it. Then set the row's Status column: "aligned" if no P0/P1/P2 in the row is left open, or "aligned, P2 recorded" if it still has a "recorded" P2. No row may still say "open P0/P1 (operator decision)".
+2. §3: rename the heading to "## 3. Held for the Operator, Since Fixed". Replace its intro paragraph with one sentence: these findings needed a behaviour change, the operator approved fixing all 35 on 2026-10-21, and phases 040, 041 and 042 fixed each one with a test that fails without the fix. Add a column "Fixed by" after "Sev" holding "0NN <first commit>" for each row. Keep every other column.
+3. §2 Totals: rename the column "Held for the operator" to "Held, since fixed", and set each Fixed cell to the old Fixed plus that row's held count: P0 2+3=5, P1 30+18=48, P2 184+14=198. Keep Confirmed and Recorded as they are (P2 Recorded stays 7).
+4. §1, last paragraph: say the 35 held findings were fixed later by 040 to 042 at the operator's request.
+5. Frontmatter description: replace "35 findings wait on an operator decision because fixing them changes behaviour." with "The 35 findings first held for an operator decision were fixed later by phases 040, 041 and 042."
+
+ALLOWED WRITE PATHS: only the one review.md above.
+
+BANNED OPERATIONS: git commit, push, branch, stash, reset, checkout of other refs; editing any other file; deleting anything; installs; network calls; printing environment variables.
+
+Keep the file's existing wording and table layout everywhere else. When done, print the count of lines that still contain "held: behaviour change awaiting the operator" (it must be 0).

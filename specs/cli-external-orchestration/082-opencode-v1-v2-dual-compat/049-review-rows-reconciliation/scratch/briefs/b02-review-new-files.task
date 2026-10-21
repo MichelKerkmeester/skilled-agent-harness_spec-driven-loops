@@ -1,0 +1,18 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: findings-first code reviewer, read-only on source.
+
+TASK: Review these four files, which were added to the hook tree after the alignment review and so have no review row yet:
+1. .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs
+2. .skilled/hooks/git/install-hooks.test.sh
+3. .skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs
+4. .skilled/hooks/session-relaunch/claude/compact-pointer.mjs
+
+Use the same standards as the existing review: load .skilled/skills/sk-code/SKILL.md, follow its router to the surface that matches each file (JavaScript or shell), and use sk-code's code-review mode (sk-code-review/references/review-core.md) for severity: P0 security or data loss, P1 correctness or a spec mismatch, P2 style and maintainability. Compare against a sibling file of the same kind in the same folder for local conventions (header format, section dividers, naming).
+
+OUTPUT: write exactly one file, specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/review-new-files.md. For each of the four files give: path, surface, then each finding as "id | severity | rule cited (file and section) | line | one-sentence finding | suggested fix". Use ids b14-new-files-001, -002 and so on. If a file has no finding, write "none". Only report a finding you can point to a line for.
+
+ALLOWED WRITE PATHS: only that one review-new-files.md.
+
+BANNED OPERATIONS: editing any source or doc file; git commit, push, branch, stash, reset; deleting anything; installs; network calls; printing environment variables.

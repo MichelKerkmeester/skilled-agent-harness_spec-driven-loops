@@ -26,18 +26,26 @@
       "tasks",
       "implementation",
       "summary",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences"
+      "main",
+      "039-sk-code-opencode-alignment-audit",
+      "still",
+      "marked"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs",
+      ".skilled/hooks/git/install-hooks.test.sh",
+      ".skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs",
+      ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      "scratch/review-new-files.md",
+      "scratch/check-review-rows.mjs",
+      "scratch/check-review-rows.txt",
+      "scratch/briefs/b01-review-rows.task"
     ],
     "entities": [
       {
@@ -65,7 +73,61 @@
         "source": "derived"
       },
       {
+        "name": "devin-dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.test.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/git/install-hooks.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-new-files.md",
+        "kind": "doc",
+        "path": "scratch/review-new-files.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-rows.mjs",
+        "kind": "file",
+        "path": "scratch/check-review-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-rows.txt",
+        "kind": "file",
+        "path": "scratch/check-review-rows.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b01-review-rows.task",
+        "kind": "file",
+        "path": "scratch/briefs/b01-review-rows.task",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -95,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +169,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -129,65 +191,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "On main, `039-sk-code-opencode-alignment-audit/review.md` still marked the 35 findings fixed by phases 040, 041 and 042 as \"held: behaviour change awaiting the operator\", in §3, in §2 Totals and in the §5 rows, and 039's implementation summary still said 35 wait on the operator",
     "created_at": "2026-10-21T15:24:01Z",
-    "last_save_at": "2026-10-21T15:25:26.747Z",
+    "last_save_at": "2026-10-21T16:17:33.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85e89aef86942baaca761a83b9c93bf57e579d7f3c6033858f89ecf0ce10938d",
+    "source_fingerprint": "sha256:50b09897aa45fe8a248035fde9e1378adb2fce9c069d9d58263af5b48dac706b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03cd6c55cb135dae805771980aa0d084f6806d042c0cd314b924d98d0f9a23f7",
-      "plan.md": "d71c946889501fa07b797c002b2e673354b6300d950955ed6c16ffa4d81e664e",
-      "tasks.md": "0c6260acb45e6fac279953f2d50f50febf1fe66c156da58c444eecf9acd45ec5",
-      "implementation-summary.md": "6c8682941ec06748881d40f401aff613883eebc4a7b845da4e031ebefd9b9c42"
+      "spec.md": "5e5fcbfb59d79ecea3d9ea872f1ec5da60932f8ac1379b95e7fdf25bb16479bf",
+      "plan.md": "4eb8a348b3bb2403e22d5a257623cb0da50b0363700c55b0a1440518c1d761b9",
+      "tasks.md": "bd330371d8d2da9231825e6b56db748308807a47b805ec0b50a6437001e55824",
+      "implementation-summary.md": "d45b9e9caed2c1926ad48e3a97a53863a3c4663ab46dc5005ccbf42c09f041fb"
     },
     "last_active_at": null
   }

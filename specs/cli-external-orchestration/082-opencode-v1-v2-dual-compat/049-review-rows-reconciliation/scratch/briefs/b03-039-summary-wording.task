@@ -1,0 +1,22 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: documentation editor. One change: remove stale "waits on the operator" wording from one summary.
+
+FILE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/implementation-summary.md
+
+CONTEXT: the summary still says 35 findings (21 of them P0/P1) wait on an operator decision. The operator approved fixing all 35, and phases 040, 041 and 042 fixed every one on main. review.md in the same folder now marks each as fixed. Recounted from review.md's rows, the audit confirmed 256 findings: 5 P0, 46 P1 and 205 P2. The old count of 48 P1 did not match the rows. All 5 P0 and 46 P1 are now fixed; 198 P2 are fixed and 7 P2 are recorded.
+
+EDITS:
+1. Frontmatter description: replace the clause "216 of the 258 confirmed findings are fixed, including two path escapes, and 35 that would change behaviour wait on the operator, three of them P0." with "Every P0 and P1 is fixed, including two path escapes; the 35 findings first held for an operator decision were fixed later by phases 040, 041 and 042."
+2. _memory.continuity: set next_safe_action to "None; review.md has no open P0 or P1"; set blockers to an empty list ([]); set open_questions to []; set completion_pct to 100; set recent_action to "Reconciled review.md with the fixes from phases 040 to 042". Change nothing else in the frontmatter.
+3. The paragraph under "### Phase 39: sk-code-opencode-alignment-audit" that starts "The review covered 203 real files": rewrite it in the same plain style to say: the review covered 203 real files and 116 symlinks; it confirmed 256 findings (5 P0, 46 P1, 205 P2; an earlier count said 48 P1, which the rows do not support); during the audit 214 were fixed and 35 were held because each fix changes behaviour a runtime or an operator would see (3 P0, 18 P1, 14 P2); the operator approved all 35 and phases 040, 041 and 042 fixed them; 7 P2 stay recorded with their reason; Luna rejected 25 more candidates.
+4. The paragraph starting "The three held P0s sit in the dispatch lint.": keep its first two sentences, and replace the last sentence with "Phase 040 fixed all three with tests that fail on the old lint; its implementation summary records the gaps a later round still found."
+5. Files Changed table, review.md row Purpose: "One row per tracked file, the held-and-since-fixed list and the recorded list".
+6. Key Decisions, first row ("Hold every fix that changes behaviour"): append to its Why cell: " The operator later approved all 35, and phases 040 to 042 fixed them".
+
+ALLOWED WRITE PATHS: only the one implementation-summary.md above.
+
+BANNED OPERATIONS: git commit, push, branch, stash, reset, checkout of other refs; editing any other file; deleting anything; installs; network calls; printing environment variables.
+
+Do not add ids of tasks or packets to any code. Keep all other text as it is. When done, print every line of the file that still contains "operator" so the wording can be checked.

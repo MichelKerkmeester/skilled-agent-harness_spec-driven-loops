@@ -1,0 +1,41 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/193-review-rows-reconciliation (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation (pre-approved, skip Gate 3)
+
+ROLE: documentation editor. One change: add the missing review rows and record the open items in a review file, then fix one count in its summary.
+
+FILES:
+- A = specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md
+- B = specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/implementation-summary.md
+- Read-only input: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation/scratch/review-new-files.md (a review of four hook files added after the audit: 6 P2 findings, ids b14-new-files-001 to -006, no P0 or P1).
+
+CONTEXT: git tracks 323 paths under .opencode/plugins and .skilled/hooks, but A's §5 has 319 rows. The four files in the input have no row. Separately, phase 040 left one known P1 gap in the Pi dispatch lint, described in .skilled/hooks/dispatch/README.md (the `pi/dispatch-preflight-lint.ts` row, "Known gap: ..."): a quote inside a backtick inside a double-quoted substitution resets the outer quote state, so `` $(echo "`printf ")"`" cli-devin) `` still authorizes cli-devin; the engine before the sentence policy let it through too.
+
+EDITS to A:
+1. §5: add these four rows, each placed so the table stays sorted by path (compare with the rows around it):
+| `.skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs` | JS (ESM) | b14-new-files | b14-new-files-001 P2 (test-quality-checklist.md § 4. TEST INDEPENDENCE AND RELIABILITY): recorded<br>b14-new-files-002 P2 (test-quality-checklist.md § 4. TEST INDEPENDENCE AND RELIABILITY): recorded | - | aligned, P2 recorded |
+| `.skilled/hooks/git/install-hooks.test.sh` | Shell | b14-new-files | b14-new-files-003 P2 (shell/quality-standards/overview-and-priority-blockers.md § 2. P0 - HARD BLOCKERS): recorded | - | aligned, P2 recorded |
+| `.skilled/hooks/post-edit-quality/codex/post-edit-quality.test.cjs` | JS (CJS) | b14-new-files | b14-new-files-004 P2 (test-quality-checklist.md § 2. COVERAGE QUALITY): recorded<br>b14-new-files-005 P2 (test-quality-checklist.md § 2. COVERAGE QUALITY): recorded | - | aligned, P2 recorded |
+| `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs` | JS (ESM) | b14-new-files | b14-new-files-006 P2 (review-core.md § 6. BASELINE CHECK FAMILIES): recorded | - | aligned, P2 recorded |
+2. §5, the row for `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`: append to its Findings cell "<br>b09-hooks-dispatch-R01 P1 (review-core.md §2 (“Required: correctness bug, spec mismatch”)): recorded" and set its Status cell to "aligned, P1 recorded". Change nothing else in that row.
+3. §4 Recorded, Not Fixed: add seven rows after the existing ones, same columns (Id | Sev | File | Why it stays):
+- b09-hooks-dispatch-R01 | P1 | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` | recorded: the round-10 residual of the fix for b09-hooks-dispatch-N02; a quote inside a backtick inside a double-quoted substitution resets the outer quote state, so `` $(echo "`printf ")"`" cli-devin) `` still authorizes cli-devin. The engine before the fix let it through too, and the dispatch README records it
+- one row per b14-new-files-001 to -006, File = that finding's path, Why = "recorded: found after the audit by a docs-only phase; " followed by a one-clause summary of the finding from the input file (a test-only gap for 001 to 005, a parity gap with the CLI's spec_folder check for 006)
+After the table, keep the existing b05-relaunch-lib-006 sentence, and add one sentence: phase 040's implementation summary also lists P2-class lint gaps (phrasings a word list cannot cover, `<<$'WORD'` delimiters, `env bash` heredocs, a quoted `"$(codex exec task)"` in the audit, and the unknown-wrapper fallback); they are recorded there, not here.
+4. §2 Totals: set the table to exactly
+| Severity | Confirmed | Fixed | Held, since fixed | Recorded |
+|---|---|---|---|---|
+| P0 | 5 | 5 | 3 | 0 |
+| P1 | 47 | 46 | 18 | 1 |
+| P2 | 211 | 198 | 14 | 13 |
+and replace the sentence under it with: "The table counts the finding entries in the §5 rows. Luna rejected 25 further candidates. An earlier version said 48 P1; the rows hold 46 from the audit, plus the one recorded lint gap from phase 040. P2 includes the six findings on the four files phase 049 reviewed after they were added."
+5. §1: change "203 real files and 116 symlinks" to "207 real files and 116 symlinks", and append to the second paragraph: "Four hook files added after the audit were reviewed later by DeepSeek, read-only, as batch 14; their six P2 findings are recorded in §4."
+6. Frontmatter description of A: append " Four files added after the audit have rows from a later review."
+
+EDITS to B:
+7. In the frontmatter description, change "319 tracked paths" to "323 tracked paths", and change "Every P0 and P1 is fixed" to "Every P0 and P1 the audit found is fixed".
+
+ALLOWED WRITE PATHS: only A and B.
+
+BANNED OPERATIONS: git commit, push, branch, stash, reset, checkout of other refs; editing any other file; deleting anything; installs; network calls; printing environment variables.
+
+Keep every other line as it is. When done, print: the number of §5 table rows (lines starting with "| `" between "## 5." and "## 6."), and every §5 line containing "recorded".

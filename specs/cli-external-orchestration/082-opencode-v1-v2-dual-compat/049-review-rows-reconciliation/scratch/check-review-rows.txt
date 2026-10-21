@@ -1,0 +1,12 @@
+tracked paths: 323; rows: 323; missing: 0; extra: 0; duplicates: 0
+P0: confirmed 5, fixed 5, recorded 0, held 0, unparsed 0
+P1: confirmed 47, fixed 46, recorded 1, held 0, unparsed 0
+P2: confirmed 211, fixed 198, recorded 13, held 0, unparsed 0
+rows with status "open P0/P1": 0
+P0/P1 recorded with a reason in section 4: 1
+  b09-hooks-dispatch-R01 P1 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
+open P0/P1 findings: 0
+section 2 P0 confirmed/fixed/held/recorded: table 5/5/3/0, rows 5/5/3/0
+section 2 P1 confirmed/fixed/held/recorded: table 47/46/18/1, rows 47/46/18/1
+section 2 P2 confirmed/fixed/held/recorded: table 211/198/14/13, rows 211/198/14/13
+exit 0
