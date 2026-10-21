@@ -511,9 +511,10 @@ function acquireLoopStateBreakLock(breakPath, now) {
  * Breaking by rename cannot work: a claimed lock has to be renamed back when it
  * turns out to be a live replacement, and a contender can create a fresh lock
  * between that rename and the restore, leaving two owners updating one state. A
- * break lock installed by a hard link is never moved out from under another
- * contender, and the per-session lock is unlinked only after a re-read held by
- * the break lock still finds it abandoned, so a live owner keeps its lock.
+ * break lock installed by a hard link is never moved out from under a live
+ * contender unless its breaker has died, in which case another process retires
+ * it, and the per-session lock is unlinked only after a re-read held by the
+ * break lock still finds it abandoned, so a live owner keeps its lock.
  *
  * Staleness is judged by owner liveness: a readable owner whose pid is dead is
  * abandoned immediately, while unreadable content (corruption, since acquisition
@@ -906,7 +907,9 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
       const lockTempMatch = LOOP_STATE_LOCK_TEMP_REGEX.exec(entry.name);
       if (lockTempMatch) {
         // A creator killed between writing its temp file and linking it leaves this
-        // behind; its embedded pid or the stale window proves it is not in flight.
+        // behind, and its dead embedded pid proves it is not in flight. Age alone
+        // only makes the file eligible for removal: a creator paused past that
+        // window loses its temp file and then skips its update when the link fails.
         try {
           const fileStats = statSync(sourcePath);
           const tempPid = Number(lockTempMatch[1]);

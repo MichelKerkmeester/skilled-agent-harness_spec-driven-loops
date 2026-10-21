@@ -17,7 +17,7 @@ permissions: {}
 # after this one and rebuilds on the newest tip, which is why a rejected push exits
 # 0 instead of retrying. The one gap: a commit pushed with the default GITHUB_TOKEN
 # starts no workflow run, so a rebuild that loses a race to such a commit leaves the
-# index unrebuilt until the next push to the branch.
+# index unrebuilt until a later push that does start one.
 concurrency:
   group: trigger-index-rebuild-${{ github.ref }}
   cancel-in-progress: false
