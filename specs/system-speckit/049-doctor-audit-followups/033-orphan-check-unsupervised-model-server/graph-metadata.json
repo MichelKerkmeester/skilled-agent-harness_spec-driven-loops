@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,7 +42,8 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/orphan-process-check.cjs",
-      ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs"
+      ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
     ],
     "entities": [
       {
@@ -85,6 +86,12 @@
         "name": "orphan-process-check.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A model server is a child of its launcher",
     "created_at": "2026-10-21T14:17:17Z",
-    "last_save_at": "2026-10-21T14:19:03.077Z",
+    "last_save_at": "2026-10-21T15:27:11.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +203,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25d7f2bf24878bcb3901685fd547103974a05370227203f8ccb090fa579df49d",
+    "source_fingerprint": "sha256:6e9718f36dfe4bec8149afb18c12b72296dfef3cfcaa1cdee10acd37147e72a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5469328fb31087615f03a6b2eaa1d5c0ca553217edec63573661d1823cf9eb3e",
+      "spec.md": "49b14efa08bc0cb694c0e4dade52fbc933c6a8ca6715710911d5524dd5c59d44",
       "plan.md": "88af863c2f7b38105464d3a6bef2a9b2260f439a20bb63d78cf03dec0ba296c2",
-      "tasks.md": "f672f113054d540eec3cddcacb24b44cd841d11177295a242d638294a57bc854",
-      "implementation-summary.md": "6fdce857001150a8685ff95595680bba4370ed1790c52ef80396b3073aaad17f"
+      "tasks.md": "9563eba2f5c9bcacc2f053dcc02ad428714f301ddcc750966a4799be63b4d0e4",
+      "implementation-summary.md": "06bae77d8272d836e9a0e6763a9eb988b7cc2b4ad826783c395a2ec982901a9e"
     },
     "last_active_at": null
   }

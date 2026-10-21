@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` (planning only) |
 | **Parent Spec** | ../spec.md |
@@ -122,6 +122,7 @@ A model server is a child of its launcher. When the launcher dies, the model ser
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | A model server started by hand from a shell is listed | Low | Its parent is the shell, not PID 1 |
+| Risk | A model server kept on purpose with `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` is listed and could be reaped | Low | The presentation note says not to reap it; `--reap` shows the full command before `--yes` |
 | Dependency | Phase 032 | No script to change | Merged |
 <!-- /ANCHOR:risks -->
 

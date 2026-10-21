@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/033-orphan-check-unsupervised-model-server"
+    packet_pointer: "system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server"
     last_updated_at: "2026-10-21T14:17:19Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Marked AC-001 to AC-003 Met"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "scaffold-033-orphan-check-unsupervised-model-server"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 033-orphan-check-unsupervised-model-server
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-21
 <!-- /ANCHOR:metadata -->
 
@@ -51,9 +51,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a model server row with parent PID 1 and an existing checkout, When the scan runs, Then it is listed as `unsupervised-model-server` | fixture test | Unmet | - |
-| AC-002 | REQ-002 | Given an advisor launcher and `git-live-follow` with existing paths, When the scan runs, Then neither is listed | fixture test | Unmet | - |
-| AC-003 | REQ-003 | Given a model server whose checkout is gone, When the scan runs, Then it is listed as `stale-model-server` | fixture test | Unmet | - |
+| AC-001 | REQ-001 | Given a model server row with parent PID 1 and an existing checkout, When the scan runs, Then it is listed as `unsupervised-model-server` | `.skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs:224` (existing checkout, a checkout with a space, a node flag before the script); removing the branch fails two tests; live 2026-10-21: a real orphaned model server was listed as `unsupervised-model-server`, 567 MB | Met | - |
+| AC-002 | REQ-002 | Given an advisor launcher and `git-live-follow` with existing paths, When the scan runs, Then neither is listed | `.skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs:224` keeps live advisor launchers and `git-live-follow` unlisted | Met | - |
+| AC-003 | REQ-003 | Given a model server whose checkout is gone, When the scan runs, Then it is listed as `stale-model-server` | `.skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs:224` (missing checkout, also with a space in the path) stays `stale-model-server` | Met | - |
 
 ### Status values
 
@@ -78,7 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not started. Every criterion is Unmet until the phase is built and verified.
+The fixture tests and a live orphaned model server carried the phase.
 <!-- /ANCHOR:closure -->
