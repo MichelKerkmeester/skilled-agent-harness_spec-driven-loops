@@ -1,0 +1,58 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T05:44:35.034Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (46 tests | 3 failed) 441ms
+   ❯ registered Pi extension boundary (27)
+     × denies a wrapped dispatch: command codex exec task </dev/null 3ms
+     × denies a wrapped dispatch: nohup opencode run -m p/m "task" </dev/null 0ms
+     × blocks a named wrapper dispatch that omits the stdin redirect 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > registered Pi extension boundary > denies a wrapped dispatch: command codex exec task </dev/null
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > registered Pi extension boundary > denies a wrapped dispatch: nohup opencode run -m p/m "task" </dev/null
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:219:27
+    217|   ])('denies a wrapped dispatch: %s', async (command) => {
+    218|     const { result } = await invokeFactory('run the task', command);
+    219|     expect(result?.block).toBe(true);
+       |                           ^
+    220|   });
+    221|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > registered Pi extension boundary > blocks a named wrapper dispatch that omits the stdin redirect
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:235:27
+    233|   it('blocks a named wrapper dispatch that omits the stdin redirect', …
+    234|     const { result } = await invokeFactory('dispatch via cli-opencode'…
+    235|     expect(result?.block).toBe(true);
+       |                           ^
+    236|     expect(result?.reason).toContain('[stdin-redirect-required]');
+    237|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 43 passed (46)
+   Start at  07:44:34
+   Duration  553ms (tests 89%, transform 7%, import 4%)
+
+b9-pi-wrapped: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

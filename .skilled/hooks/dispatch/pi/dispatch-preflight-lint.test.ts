@@ -207,6 +207,49 @@ describe('registered Pi extension boundary', () => {
     expect(result?.reason).toContain('[stdin-redirect-required]');
   });
 
+  // A wrapper word hides the executor from the command-word classifier, so these dispatches
+  // reached neither authorization nor the hard rules. Both now follow the resolved packet.
+  it.each([
+    'command codex exec task </dev/null',
+    'nohup opencode run -m p/m "task" </dev/null',
+    'timeout 60 devin -p "task" </dev/null',
+    String.raw`perl -e 'alarm 60; exec @ARGV' -- pi --offline -m p/m -p "task" </dev/null`,
+  ])('denies a wrapped dispatch: %s', async (command) => {
+    const { result } = await invokeFactory('run the task', command);
+    expect(result?.block).toBe(true);
+  });
+
+  // Naming the executor authorizes a wrapped dispatch exactly as it authorizes the bare form.
+  it('allows a named dispatch behind an exec wrapper', async () => {
+    const { result } = await invokeFactory(
+      'dispatch via cli-opencode',
+      'nohup opencode run -m p/m "task" </dev/null',
+    );
+    expect(result).toBeUndefined();
+  });
+
+  // Authorization is not exemption: the wrapped dispatch still answers to its packet's rules,
+  // and a run without the stdin redirect can hang on inherited stdin.
+  it('blocks a named wrapper dispatch that omits the stdin redirect', async () => {
+    const { result } = await invokeFactory('dispatch via cli-opencode', 'nohup opencode run -m p/m "task"');
+    expect(result?.block).toBe(true);
+    expect(result?.reason).toContain('[stdin-redirect-required]');
+  });
+
+  // A variable executor stays unproven no matter how the dispatch is named: the request
+  // authorizes a skill, it does not turn an unreadable command into a known one.
+  it('keeps an ambiguous dispatch denied even when it is named', async () => {
+    const { result } = await invokeFactory('dispatch via cli-devin', 'devin -p "$TASK" </dev/null');
+    expect(result?.block).toBe(true);
+  });
+
+  // A heredoc fed to a shell runs its body, so a dispatch in that body is a dispatch even
+  // though the command word belongs to the shell.
+  it('denies a dispatch in a heredoc a shell runs', async () => {
+    const { result } = await invokeFactory('run the task', 'bash <<\'EOF\'\ndevin -p "task" </dev/null\nEOF');
+    expect(result?.block).toBe(true);
+  });
+
   // Allowed is not the same as silent: a warn-severity rule earns an advisory,
   // and an advisory must never read as a denial.
   it('advises without blocking when a permitted dispatch trips a warn-severity rule', async () => {

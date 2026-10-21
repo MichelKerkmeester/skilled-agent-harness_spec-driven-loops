@@ -1,0 +1,25 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one correction to the uncommitted change in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` and its test.
+
+Problem: the `effectiveKind` helper in the `tool_call` handler turns an `ambiguous` inspection with one resolved packet into `direct`. That was not asked for and loosens the gate: `devin -p "$TASK"` and `bash -c "cd \"$DIR\" && devin -p task"` are ambiguous on purpose and must stay denied. Only a `none` inspection may be upgraded.
+
+Fix:
+1. In `effectiveKind`, delete the `inspection.kind === 'ambiguous'` branch so an ambiguous inspection stays `ambiguous`. Keep the `none` rules and the `direct` rule as they are. Update the comment above the helper so it no longer says a wrapper word reads as ambiguous and is resolved; say that a wrapper (`command`, `nohup`, `perl -e ... --`) in front of `codex exec` or `opencode run`, or a heredoc a shell runs, reads as none, and that an ambiguous reading is never upgraded.
+2. In `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, in the tests you added:
+   - 'allows a named dispatch behind an exec wrapper': use raw text `dispatch via cli-opencode` and command `nohup opencode run -m p/m "task" </dev/null`.
+   - 'blocks a named wrapper dispatch that omits the stdin redirect': use raw text `dispatch via cli-opencode` and command `nohup opencode run -m p/m "task"`.
+   - add one `it('keeps an ambiguous dispatch denied even when it is named', ...)`: raw text `dispatch via cli-devin`, command `devin -p "$TASK" </dev/null`, expect `result?.block` to be `true`.
+   If `opencode` must be on the stubbed PATH for these, add it to the existing stub list.
+Keep every other test unchanged.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: what you changed (file and line), then the verification command with its pass and fail counts.

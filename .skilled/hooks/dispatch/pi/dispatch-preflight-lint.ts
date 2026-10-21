@@ -258,21 +258,40 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
       if (event.toolName !== 'bash' || typeof event.input.command !== 'string') return;
 
       const { lint, audit } = await loadDispatchModules();
-      const inspection = audit.inspectDispatch(event.input.command);
-      if (inspection.kind === 'none') return;
+      const command: string = event.input.command;
+      const inspection = audit.inspectDispatch(command);
+      const resolved = audit.resolveDispatchPackets(command);
 
-      const dispatchSkill = inspection.kind === 'direct' ? inspection.executor : null;
+      // `inspectDispatch` reads the command word, so a wrapper (`command`, `nohup`,
+      // `perl -e ... --`) in front of `codex exec` or `opencode run`, or a heredoc a shell
+      // runs, reads as none. The resolver unwraps those layers and names the packet, so one
+      // resolved packet under a none reading is that single direct dispatch; zero packets or
+      // several leave it ambiguous. Only a none reading is upgraded: an ambiguous reading is
+      // never upgraded, whatever the resolver found.
+      const effectiveKind = ((): 'direct' | 'ambiguous' | 'none' => {
+        if (inspection.kind === 'none') {
+          if (resolved.length === 1) return 'direct';
+          return resolved.length > 1 ? 'ambiguous' : 'none';
+        }
+        if (inspection.kind === 'ambiguous') return 'ambiguous';
+        return resolved.some((packet) => packet.skill !== inspection.executor) ? 'ambiguous' : 'direct';
+      })();
+      if (effectiveKind === 'none') return;
+
+      const dispatchSkill = effectiveKind === 'direct'
+        ? (inspection.kind === 'direct' ? inspection.executor : resolved[0].skill)
+        : null;
       const denied = shouldDenyPiDispatch({
         runtime: PI_RUNTIME,
         toolName: event.toolName,
-        command: event.input.command,
+        command,
         dispatchSkill,
         inspectedExecutor: dispatchSkill,
-        inspectionKind: inspection.kind,
+        inspectionKind: effectiveKind,
         userText: currentUserText(ctx),
       });
       if (denied) {
-        if (inspection.kind !== 'direct') {
+        if (effectiveKind !== 'direct') {
           return {
             block: true,
             reason: 'Pi dispatch denied: the command does not prove one direct executor. Call one executor by its literal name, such as `pi -p` or `codex exec`, not through a variable or alias, and name that executor in the user request.',
@@ -284,27 +303,37 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
         };
       }
 
-      const shape = audit.DISPATCH_SHAPES.find((candidate) => candidate.skill === dispatchSkill);
-      if (!shape) return;
-
-      const skillMd = join(ctx.cwd, '.skilled', 'skills', shape.packetPath, 'SKILL.md');
-      const rules = lint.readHardRules(skillMd);
-      if (rules.length === 0) return;
-
-      const violations = lint.evaluate(event.input.command, rules);
-      const blocking = violations.filter((violation) => violation.severity === 'block');
-      const warnings = violations.filter((violation) => violation.severity === 'warn');
+      // Every resolved packet answers to its own rules, so a chain gets one verdict per
+      // executor instead of the first packet's rule set standing in for the whole command.
+      const verdicts = lint.evaluateDispatch(command, join(ctx.cwd, '.skilled', 'skills'));
+      const blocking = verdicts
+        .map((verdict) => ({
+          skill: verdict.skill,
+          violations: verdict.violations.filter((violation) => violation.severity === 'block'),
+        }))
+        .filter((verdict) => verdict.violations.length > 0);
       if (blocking.length > 0) {
         return {
           block: true,
-          reason: `Dispatch blocked by ${dispatchSkill} hard-rule(s):\n` +
-            blocking.map((violation) => `  • [${violation.id}] ${violation.message}`).join('\n'),
+          reason: blocking
+            .map(({ skill, violations }) => `Dispatch blocked by ${skill} hard-rule(s):\n` +
+              violations.map((violation) => `  • [${violation.id}] ${violation.message}`).join('\n'))
+            .join('\n'),
         };
       }
+
+      const warnings = verdicts
+        .map((verdict) => ({
+          skill: verdict.skill,
+          violations: verdict.violations.filter((violation) => violation.severity === 'warn'),
+        }))
+        .filter((verdict) => verdict.violations.length > 0);
       if (warnings.length > 0) {
         return {
-          reason: `Dispatch advisory for ${dispatchSkill}:\n` +
-            warnings.map((violation) => `  • [${violation.id}] ${violation.message}`).join('\n'),
+          reason: warnings
+            .map(({ skill, violations }) => `Dispatch advisory for ${skill}:\n` +
+              violations.map((violation) => `  • [${violation.id}] ${violation.message}`).join('\n'))
+            .join('\n'),
         };
       }
     } catch {
