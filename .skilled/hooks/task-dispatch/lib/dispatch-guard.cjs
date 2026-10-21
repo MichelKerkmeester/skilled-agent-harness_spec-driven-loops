@@ -24,7 +24,6 @@
 const {
   appendFileSync,
   closeSync,
-  linkSync,
   mkdirSync,
   openSync,
   readdirSync,
@@ -53,7 +52,7 @@ const REJECT_MODE_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
 const LOOP_STATE_LOCK_SUFFIX = '.lock';
-const LOOP_STATE_LOCK_CLAIM_INFIX = `${LOOP_STATE_LOCK_SUFFIX}.stale-`;
+const LOOP_STATE_LOCK_BREAK_SUFFIX = '.break';
 const LOOP_STATE_LOCK_RETRY_MS = 10;
 const LOOP_STATE_LOCK_TIMEOUT_MS = 2000;
 const LOOP_STATE_LOCK_STALE_MS = 10000;
@@ -364,7 +363,7 @@ function sleepSync(milliseconds) {
  * Read a loop-state lock's recorded owner. Content without both a pid and a
  * token is unreadable, so its age, not an owner probe, has to decide staleness.
  *
- * @param {string} lockPath - per-session lock or takeover-claim path
+ * @param {string} lockPath - per-session lock or break-lock path
  * @returns {{ pid: number|null, token: string|null }} recorded owner, or nulls
  */
 function readLoopStateLock(lockPath) {
@@ -397,8 +396,8 @@ function processIsAlive(pid) {
 }
 
 /**
- * Decide whether a lock may be taken over. A readable owner is authoritative
- * and only its death makes the lock stale; unreadable content (an owner killed
+ * Decide whether a lock may be removed. A readable owner is authoritative and
+ * only its death makes the lock stale; unreadable content (an owner killed
  * between create and write) falls back to the stale window.
  *
  * @param {{ pid: number|null, token: string|null }} owner - recorded owner
@@ -411,9 +410,9 @@ function loopStateLockIsStale(owner, ageMs) {
 }
 
 /**
- * Create the per-session lock with this process's pid and a fresh token.
+ * Create a lock file with this process's pid and a fresh token.
  *
- * @param {string} lockPath - per-session lock path
+ * @param {string} lockPath - per-session lock or break-lock path
  * @returns {string|null} this process's token, or null when the path is already held
  */
 function createLoopStateLock(lockPath) {
@@ -437,63 +436,122 @@ function createLoopStateLock(lockPath) {
 }
 
 /**
- * Put a lock back after a takeover claim caught a replacement it never judged
- * stale. A hard link restores it only while the path is free; overwriting a
- * live replacement would delete a lock another process now owns.
+ * Remove a lock this process created once its update is complete. Only the
+ * owner whose token still sits in the file may remove it, so a stalled process
+ * that lost a per-session lock cannot delete its breaker's lock, and a breaker
+ * that lost the break lock cannot delete the next breaker's.
  *
- * @param {string} claimPath - path holding the claimed lock
- * @param {string} lockPath - per-session lock path
+ * @param {string} lockPath - per-session lock or break-lock path
+ * @param {string} token - token returned by acquisition
  * @returns {void}
  */
-function restoreClaimedLoopStateLock(claimPath, lockPath) {
+function releaseLoopStateLock(lockPath, token) {
+  const owner = readLoopStateLock(lockPath);
+  if (owner.pid !== process.pid || owner.token !== token) return;
   try {
-    linkSync(claimPath, lockPath);
+    unlinkSync(lockPath);
   } catch (_) {
-    // The path gained a replacement while the claim was held; the sweep owns it.
-    return;
+    // Fail open: a lost lock is recovered through the dead-owner break path.
   }
-  try { unlinkSync(claimPath); } catch (_ignored) { /* best-effort cleanup */ }
 }
 
 /**
- * Claim a stale lock by renaming it to a unique path, then verify the claim
- * still names the owner that was judged stale before creating a replacement.
- * Only one contender's rename can succeed, so a second contender cannot remove
- * the fresh lock the first one creates in its place.
+ * Take the break lock that serializes lock removal, retiring one whose breaker
+ * died so a crashed breaker cannot block every later contender.
+ *
+ * Retiring an abandoned break lock is left as the whole attempt's progress:
+ * returning null makes the retiring contender wait a retry before it competes for
+ * the fresh lock, which narrows but does not close a race that needs a breaker to
+ * have died while holding the break lock.
+ *
+ * @param {string} breakPath - break-lock path
+ * @param {number} now - current clock in ms
+ * @returns {string|null} this process's break-lock token, or null when another
+ *   live breaker holds it
+ */
+function acquireLoopStateBreakLock(breakPath, now) {
+  let token;
+  try {
+    token = createLoopStateLock(breakPath);
+  } catch (_) {
+    return null;
+  }
+  if (token) return token;
+
+  let breakStats;
+  try {
+    breakStats = statSync(breakPath);
+  } catch (_) {
+    // The prior breaker released it between the create and the stat; retry later.
+    return null;
+  }
+  const owner = readLoopStateLock(breakPath);
+  if (!loopStateLockIsStale(owner, now - breakStats.mtimeMs)) return null;
+  try {
+    unlinkSync(breakPath);
+  } catch (_) {
+    // Another contender retired it first; this attempt made no progress either way.
+  }
+  return null;
+}
+
+/**
+ * Remove a per-session lock that is abandoned, under a `<lockPath>.break` mutex
+ * so only one contender removes it at a time.
+ *
+ * Breaking by rename cannot work: a claimed lock has to be renamed back when it
+ * turns out to be a live replacement, and a contender can create a fresh lock
+ * between that rename and the restore, leaving two owners updating one state. A
+ * break lock created with 'wx' is never moved out from under another contender,
+ * and the per-session lock is unlinked only after a re-read held by the break
+ * lock still finds it abandoned, so a live owner keeps its lock.
+ *
+ * Staleness is judged by owner liveness: a readable owner whose pid is dead is
+ * abandoned immediately, while unreadable content (an owner killed between create
+ * and write) falls back to the stale window. The same rule retires a break lock
+ * whose breaker died.
+ *
+ * Remaining limit: a pid reused by an unrelated process makes a dead owner look
+ * alive, which only delays acquisition until it times out. The break-lock
+ * retirement race is a second limit: two contenders that both judge the same
+ * breaker dead can interleave so one removes the fresh break lock the other
+ * created.
  *
  * @param {string} lockPath - per-session lock path
- * @param {{ pid: number|null, token: string|null }} staleOwner - owner judged abandoned
- * @returns {string|null} this process's new token, or null when another contender won
+ * @param {number} now - current clock in ms
+ * @returns {void}
  */
-function takeOverStaleLoopStateLock(lockPath, staleOwner) {
-  const claimPath = `${lockPath}.stale-${process.pid}-${randomUUID()}`;
-  try {
-    renameSync(lockPath, claimPath);
-  } catch (_) {
-    // Another contender claimed the same stale lock, or its owner released it.
-    return null;
-  }
-
-  const claimedOwner = readLoopStateLock(claimPath);
-  if (claimedOwner.pid !== staleOwner.pid || claimedOwner.token !== staleOwner.token) {
-    // A live owner replaced the lock after the staleness read; it was never abandoned.
-    restoreClaimedLoopStateLock(claimPath, lockPath);
-    return null;
-  }
+function breakAbandonedLoopStateLock(lockPath, now) {
+  const breakPath = `${lockPath}${LOOP_STATE_LOCK_BREAK_SUFFIX}`;
+  const breakToken = acquireLoopStateBreakLock(breakPath, now);
+  if (!breakToken) return;
 
   try {
-    return createLoopStateLock(lockPath);
-  } catch (_) {
-    return null;
+    let lockStats;
+    try {
+      lockStats = statSync(lockPath);
+    } catch (_) {
+      // Its owner released it before the break lock was taken.
+      return;
+    }
+    const owner = readLoopStateLock(lockPath);
+    if (!loopStateLockIsStale(owner, now - lockStats.mtimeMs)) return;
+    try {
+      unlinkSync(lockPath);
+    } catch (_) {
+      // Fail open: an unremovable lock is judged again on the next attempt.
+    }
   } finally {
-    try { unlinkSync(claimPath); } catch (_ignored) { /* best-effort cleanup */ }
+    releaseLoopStateLock(breakPath, breakToken);
   }
 }
 
 /**
  * Take the per-session loop-state lock, waiting briefly when another hook
- * process holds it. Takeover is a rename claim, so two contenders that both see
- * one stale lock cannot both replace it and then update the state.
+ * process holds it. A lock whose owner died is removed through the break lock,
+ * so contenders that all judge it abandoned cannot each remove it and update the
+ * state at once. Acquisition always retries the exclusive create and never
+ * installs the per-session lock itself by renaming.
  *
  * @param {string} stateDir - loop-guard state directory
  * @param {string} lockPath - per-session lock path
@@ -518,6 +576,8 @@ function acquireLoopStateLock(stateDir, lockPath) {
     }
     if (token) return token;
 
+    // This judgement only decides whether a break is worth attempting; the break
+    // re-judges under the break lock before it unlinks anything.
     let lockStats;
     try {
       lockStats = statSync(lockPath);
@@ -528,31 +588,11 @@ function acquireLoopStateLock(stateDir, lockPath) {
 
     const owner = readLoopStateLock(lockPath);
     if (loopStateLockIsStale(owner, Date.now() - lockStats.mtimeMs)) {
-      const claimedToken = takeOverStaleLoopStateLock(lockPath, owner);
-      if (claimedToken) return claimedToken;
+      breakAbandonedLoopStateLock(lockPath, Date.now());
     }
 
     if (Date.now() >= deadline) return null;
     sleepSync(LOOP_STATE_LOCK_RETRY_MS);
-  }
-}
-
-/**
- * Remove the per-session loop-state lock after a completed update. Only the
- * owner whose token still sits in the file may remove it, so a stalled process
- * that lost the lock to a contender cannot delete the contender's lock.
- *
- * @param {string} lockPath - per-session lock path
- * @param {string} token - token returned by acquisition
- * @returns {void}
- */
-function releaseLoopStateLock(lockPath, token) {
-  const owner = readLoopStateLock(lockPath);
-  if (owner.pid !== process.pid || owner.token !== token) return;
-  try {
-    unlinkSync(lockPath);
-  } catch (_) {
-    // Fail open: a lost lock is recovered through the dead-owner takeover.
   }
 }
 
@@ -800,33 +840,6 @@ function acquireSweepLock(stateDir, intervalMs, now) {
 }
 
 /**
- * Remove one lock or takeover-claim file whose owner is dead or whose age has
- * outlived the stale window. An abandoned lock otherwise blocks every later
- * hook process for the same session until a takeover happens to claim it.
- *
- * @param {string} lockPath - lock or takeover-claim path
- * @param {number} now - sweep clock
- * @returns {void}
- */
-function sweepAbandonedLoopStateLock(lockPath, now) {
-  let lockStats;
-  try {
-    lockStats = statSync(lockPath);
-  } catch (_) {
-    return;
-  }
-
-  const expired = now - lockStats.mtimeMs > LOOP_STATE_LOCK_STALE_MS;
-  const owner = readLoopStateLock(lockPath);
-  if (!expired && (owner.pid === null || processIsAlive(owner.pid))) return;
-  try {
-    unlinkSync(lockPath);
-  } catch (_) {
-    // Fail open on a single entry; the rest of the sweep pass still runs.
-  }
-}
-
-/**
  * Archive per-session loop-guard state files that have gone untouched past the
  * active-retention window, then prune the archive itself. Throttled to once
  * per sweep interval via runtimeState, mirroring opencode-goal.js's
@@ -881,11 +894,10 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
         continue;
       }
 
-      if (
-        entry.name.endsWith(LOOP_STATE_LOCK_SUFFIX)
-        || entry.name.includes(LOOP_STATE_LOCK_CLAIM_INFIX)
-      ) {
-        sweepAbandonedLoopStateLock(sourcePath, now);
+      if (entry.name.endsWith(LOOP_STATE_LOCK_SUFFIX)) {
+        // The sweep removes a lock on the same owner-liveness rule as acquisition:
+        // age alone only decides for content that names no readable owner.
+        breakAbandonedLoopStateLock(sourcePath, now);
         continue;
       }
 
