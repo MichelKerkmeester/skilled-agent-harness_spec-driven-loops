@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f6fc87205704a2682bfb0e37e3b779bbe152d334d9238a348db30a5a7b7f0fc6",
+  "manifestHash": "c2ce883af86f8e1b52dec9f6d2f3c501106050bb16df9df4d1d33f4f510a935f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36808,6 +36808,18 @@
     "dispatch lint held fixes tasks": [
       "dispatch lint held fixes tasks"
     ],
+    "dispatch lint nested quote gap": [
+      "dispatch lint nested quote gap"
+    ],
+    "dispatch lint nested quote gap implementation summary": [
+      "dispatch lint nested quote gap implementation summary"
+    ],
+    "dispatch lint nested quote gap plan": [
+      "dispatch lint nested quote gap plan"
+    ],
+    "dispatch lint nested quote gap tasks": [
+      "dispatch lint nested quote gap tasks"
+    ],
     "dispatch mandate removal closure": [
       "dispatch mandate removal closure"
     ],
@@ -72769,6 +72781,9 @@
     "phase 50 sk doc ci outside failures": [
       "phase 50 sk doc ci outside failures"
     ],
+    "phase 51 dispatch lint nested quote gap": [
+      "phase 51 dispatch lint nested quote gap"
+    ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
     ],
@@ -73852,6 +73867,9 @@
     ],
     "pi dispatch hardening tasks": [
       "Pi dispatch hardening tasks"
+    ],
+    "pi dispatch lint context stack scanner": [
+      "pi dispatch lint context stack scanner"
     ],
     "pi dispatch prompt discipline": [
       "pi dispatch prompt discipline"

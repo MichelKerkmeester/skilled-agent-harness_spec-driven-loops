@@ -1,5 +1,5 @@
 {
-  "corpusHash": "99c51b1867472afe50204676df7cda69581defcb0e61c5904972a2e769640c16",
+  "corpusHash": "cb4d973f874c9e3dd747e45f7ccadf1f910f36230a2bb25748fc7e64b74585ab",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25599,
+  "includedPathCount": 25603,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9064,6 +9064,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/spec.md",
@@ -25630,7 +25634,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f6fc87205704a2682bfb0e37e3b779bbe152d334d9238a348db30a5a7b7f0fc6",
+  "manifestHash": "c2ce883af86f8e1b52dec9f6d2f3c501106050bb16df9df4d1d33f4f510a935f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26790,6 +26794,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap/scratch",
       "reason": "excluded directory"
     },
     {
