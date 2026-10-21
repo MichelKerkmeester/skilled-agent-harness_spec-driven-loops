@@ -68,7 +68,7 @@ The family's error message was the second half of the problem. It said the front
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The old value was restored first and the checker rerun, so the failure is shown to come from the version and not from something else (`scratch/evidence/corpus-mutated-back.log`). At `1.2.0.1` the same checker reports 38 files, 12 families and 0 errors (`scratch/evidence/corpus-after.log`).
+The old value was restored first and the checker rerun, so the failure is shown to come from the version and not from something else (`scratch/evidence/corpus-mutated-back.txt`). At `1.2.0.1` the same checker reports 38 files, 12 families and 0 errors (`scratch/evidence/corpus-after.txt`).
 
 The mutation suite was run before the change and after it. Before, its first test, the clean-corpus precondition, failed and put the metadata error into the output of three cases that copy the package (`scratch/evidence/mutation-before.txt`). After, all 21 tests pass (`scratch/evidence/mutation-after.tap`). Both applicator steps were rerun and their output compared to `assets/diagrams` byte for byte, with no difference.
 
@@ -96,8 +96,8 @@ The diff went to a read-only DeepSeek v4.1 flash max review, which returned PASS
 
 | Check | Result |
 |-------|--------|
-| Corpus check with `1.0.1.0` restored | FAILED, one metadata error naming `scripts/README.md` and its `1.0.1.0` version - `scratch/evidence/corpus-mutated-back.log` |
-| Corpus check at `1.2.0.1` | PASSED, 38 files, 12 families, 0 errors - `scratch/evidence/corpus-after.log` |
+| Corpus check with `1.0.1.0` restored | FAILED, one metadata error naming `scripts/README.md` and its `1.0.1.0` version - `scratch/evidence/corpus-mutated-back.txt` |
+| Corpus check at `1.2.0.1` | PASSED, 38 files, 12 families, 0 errors - `scratch/evidence/corpus-after.txt` |
 | Mutation suite before the fix | FAILED, the clean-corpus precondition and three package-copy cases carried the metadata error - `scratch/evidence/mutation-before.txt` |
 | Mutation suite after the fix | PASS 21/21, 0 failed - `scratch/evidence/mutation-after.tap` |
 | Both applicator steps | Output reproduced `assets/diagrams` byte for byte |

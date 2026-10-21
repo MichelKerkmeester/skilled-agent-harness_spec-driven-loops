@@ -41,8 +41,8 @@
       "implementation-summary.md",
       ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
       ".skilled/skills/sk-design/sk-design-diagram/scripts/families/metadata.cjs",
-      "scratch/evidence/corpus-mutated-back.log",
-      "scratch/evidence/corpus-after.log",
+      "scratch/evidence/corpus-mutated-back.txt",
+      "scratch/evidence/corpus-after.txt",
       "scratch/evidence/mutation-before.txt",
       "scratch/evidence/mutation-after.tap",
       "scripts/README.md",
@@ -86,15 +86,15 @@
         "source": "derived"
       },
       {
-        "name": "corpus-mutated-back.log",
+        "name": "corpus-mutated-back.txt",
         "kind": "file",
-        "path": "scratch/evidence/corpus-mutated-back.log",
+        "path": "scratch/evidence/corpus-mutated-back.txt",
         "source": "derived"
       },
       {
-        "name": "corpus-after.log",
+        "name": "corpus-after.txt",
         "kind": "file",
-        "path": "scratch/evidence/corpus-after.log",
+        "path": "scratch/evidence/corpus-after.txt",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`.github/workflows/diagram-corpus.yml` has failed since run `39165172090` at `be234e6f94` on 2026-10-18, last green at `d04df31790` on 2026-10-11, and every pull request run since 2026-10-14 also failed",
     "created_at": "2026-10-21T13:32:28Z",
-    "last_save_at": "2026-10-21T13:45:59.883Z",
+    "last_save_at": "2026-10-21T13:47:25.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e417d21e31988fbf055051410fc717097313118700d0f584e6e45785fc9157a9",
+    "source_fingerprint": "sha256:45019da956c4736364992f96b4a8c1c86be219beed2eaa040ffcdd077cc40e2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4898aba6525ab4708dfd6ea1115e3f34f650591a80654fd20c1e2524c2fadcea",
+      "spec.md": "a62a83b35a8b7452d538b02a2307d01f3775c3c2632ca2218784973ff0ff15bd",
       "plan.md": "586dc9f309c49e48f9f820ce8704c5d175aa2a287ff51bb8874452143b8e6a73",
-      "tasks.md": "4189cd7eaf5107119aebb977cae200280ff20169bd5cadf2ee66aa8b06451e82",
-      "implementation-summary.md": "c7c13c320b149991d184aafc022012eb2a5464b411810d0bb67e34895a1396a3"
+      "tasks.md": "b89f433f06583d2c58b2390f717b8eb4adcb530f69e18b17f57dc7e7f296a343",
+      "implementation-summary.md": "b09d651a730f0e47aa54353f19f2b79a946994e9e474b9a2439acd136d39a4de"
     },
     "last_active_at": null
   }

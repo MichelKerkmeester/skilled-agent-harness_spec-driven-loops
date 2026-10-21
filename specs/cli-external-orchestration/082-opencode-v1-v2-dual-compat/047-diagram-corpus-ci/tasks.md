@@ -49,8 +49,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T005 Restore `1.0.1.0` and confirm the checker fails with the old value (`scratch/evidence/corpus-mutated-back.log`)
-- [x] T006 Confirm the checker passes at `1.2.0.1` (`scratch/evidence/corpus-after.log`)
+- [x] T005 Restore `1.0.1.0` and confirm the checker fails with the old value (`scratch/evidence/corpus-mutated-back.txt`)
+- [x] T006 Confirm the checker passes at `1.2.0.1` (`scratch/evidence/corpus-after.txt`)
 - [x] T007 Run the mutation suite before and after the fix (`scratch/evidence/mutation-before.txt`, `scratch/evidence/mutation-after.tap`)
 - [x] T008 Confirm both applicator steps reproduce `assets/diagrams` byte for byte
 - [x] T009 DeepSeek v4.1 flash max read-only review of the diff

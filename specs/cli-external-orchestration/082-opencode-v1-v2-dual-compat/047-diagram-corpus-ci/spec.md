@@ -98,8 +98,8 @@ Diagram Corpus passes again, and the next reader of the error is told the one st
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The README version sits in `SKILL.md`'s `1.2` era. | The corpus check reports 38 files, 12 families, 0 errors and `RESULT: PASSED` (`scratch/evidence/corpus-after.log`). |
-| REQ-002 | The old value still fails the check. | With `1.0.1.0` restored, the check reports `RESULT: FAILED` and names `scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era` (`scratch/evidence/corpus-mutated-back.log`). |
+| REQ-001 | The README version sits in `SKILL.md`'s `1.2` era. | The corpus check reports 38 files, 12 families, 0 errors and `RESULT: PASSED` (`scratch/evidence/corpus-after.txt`). |
+| REQ-002 | The old value still fails the check. | With `1.0.1.0` restored, the check reports `RESULT: FAILED` and names `scripts/README.md: version 1.0.1.0 is outside the anchor's 1.2 era` (`scratch/evidence/corpus-mutated-back.txt`). |
 
 ### P1 - Required (complete OR user-approved deferral)
 
