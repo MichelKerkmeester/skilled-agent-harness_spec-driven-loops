@@ -1,5 +1,5 @@
 {
-  "manifestHash": "223d1eb7cfaf0ecfc7ca7f678be2a6f521c56f0aaa73fb54fccde36a04ccb745",
+  "manifestHash": "7f1834b160b0669dbb298cea783f58bf1fbf25a90dabbeebd4cabf10e732021c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80099,6 +80099,21 @@
     "relaunch loop test suite": [
       "relaunch loop test suite"
     ],
+    "relaunch takeover lock identity": [
+      "relaunch takeover lock identity"
+    ],
+    "relaunch takeover lock identity implementation summary": [
+      "relaunch takeover lock identity implementation summary"
+    ],
+    "relaunch takeover lock identity owner token instead": [
+      "relaunch takeover lock identity owner token instead"
+    ],
+    "relaunch takeover lock identity plan": [
+      "relaunch takeover lock identity plan"
+    ],
+    "relaunch takeover lock identity tasks": [
+      "relaunch takeover lock identity tasks"
+    ],
     "release alignment proposal": [
       "release alignment proposal"
     ],
@@ -104675,6 +104690,12 @@
     ],
     "tail signal or noise": [
       "tail signal or noise"
+    ],
+    "takeover mutex inode reuse": [
+      "takeover mutex inode reuse"
+    ],
+    "takeover mutex owner token": [
+      "takeover mutex owner token"
     ],
     "tanstack mini shai hulud audit": [
       "TanStack Mini Shai-Hulud audit",
