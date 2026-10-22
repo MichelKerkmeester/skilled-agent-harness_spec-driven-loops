@@ -209,6 +209,66 @@ function listCommandNames(dir) {
   return [...new Set(names)].sort();
 }
 
+// Maps every name a runtime could register for a file that is not a `.md` command
+// to that file's relative path, so a README or an asset a host starts listing is
+// told apart from a real command. A name a `.md` command already owns is left out,
+// because the command folder answers that name.
+function listNonCommandFiles(dir) {
+  const commands = new Set();
+  const relativePaths = [];
+  const seen = new Set();
+
+  const walk = (current, prefix) => {
+    let real;
+    try {
+      real = fs.realpathSync(current);
+    } catch {
+      return;
+    }
+    // A linked folder can point back at an ancestor, so a visited real path ends the walk.
+    if (seen.has(real)) return;
+    seen.add(real);
+
+    let entries;
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch (error) {
+      if (error?.code === 'ENOENT') return;
+      throw error;
+    }
+
+    for (const entry of entries) {
+      const full = path.join(current, entry.name);
+      let stat;
+      try {
+        stat = fs.statSync(full); // stat follows a link, so a linked file or folder still counts.
+      } catch {
+        continue; // A broken link registers no name.
+      }
+      if (stat.isDirectory()) {
+        walk(full, `${prefix}${entry.name}/`);
+      } else if (stat.isFile()) {
+        const relative = `${prefix}${entry.name}`;
+        if (entry.name.endsWith('.md')) commands.add(relative.slice(0, -'.md'.length));
+        else relativePaths.push(relative);
+      }
+    }
+  };
+
+  for (const folder of ['command', 'commands']) walk(path.join(dir, folder), '');
+
+  const found = new Map();
+  for (const relative of relativePaths) {
+    // A host names a file by its path with or without the extension, so both
+    // spellings are recorded and either one proves the file is not a command.
+    for (const key of [relative, relative.slice(0, relative.length - path.extname(relative).length)]) {
+      if (commands.has(key)) continue;
+      found.set(key, relative);
+    }
+  }
+  return found;
+}
+
 // Names the command folders a runtime may legitimately list beyond the project's
 // own: the global config directories it reads, the ancestor folders v2 merges as
 // well, and the v2 built-ins that live in no folder at all.
@@ -244,7 +304,7 @@ function allowedCommandSources(root, family, env, isolated = false) {
     for (const name of V2_BUILTIN_COMMANDS) allowed.add(name);
   }
 
-  return { required, allowed };
+  return { required, allowed, nonCommand: listNonCommandFiles(path.join(root, '.opencode')) };
 }
 
 // Lists every ancestor plugin folder above the root. OpenCode 2 merges each
@@ -703,15 +763,17 @@ function promptServerOf(name) {
   return name.slice(0, colon);
 }
 
-// Fails when a project command file is missing from the listing or a listed name
-// comes from no folder this runtime reads, so a global, inherited or built-in
-// command is never counted as a stray.
+// Fails when a project command file is missing, when a listed name comes from
+// no folder the runtime reads, or when a project non-command file could produce
+// that name. A global, inherited or built-in command stays legitimate unless a
+// non-command file explains it; built-ins and configured MCP prompts always pass.
 function legCommandListed(family, listed, sources) {
   if (!Array.isArray(listed)) {
     return makeResult('command-listed', family, 'FAIL', 'the command listing did not parse');
   }
 
   const { required, allowed } = sources;
+  const nonCommand = sources.nonCommand instanceof Map ? sources.nonCommand : new Map();
   const mcpServers = sources.mcpServers ?? [];
   const present = new Set(listed);
   const details = [];
@@ -721,16 +783,20 @@ function legCommandListed(family, listed, sources) {
     if (!present.has(name)) details.push(`${name}: in the command folder, not listed`);
   }
   for (const name of listed) {
-    if (required.includes(name) || allowed.has(name)) continue;
+    // A built-in or a configured MCP prompt is listed whatever the files are, so a
+    // non-command file with its name proves nothing; a global or inherited folder fails.
+    const builtin = family === 'v2' && V2_BUILTIN_COMMANDS.includes(name);
     const server = promptServerOf(name);
-    if (server !== null) {
-      const configured = Array.isArray(mcpServers)
-        ? mcpServers.includes(server)
-        : (mcpServers instanceof Set && mcpServers.has(server));
-      if (configured) {
-        mcpAccepted += 1;
-        continue;
-      }
+    const configuredPrompt = server !== null
+      && (Array.isArray(mcpServers) ? mcpServers.includes(server) : (mcpServers instanceof Set && mcpServers.has(server)));
+    if (nonCommand.has(name) && !required.includes(name) && !builtin && !configuredPrompt) {
+      details.push(`${name}: listed, but ${nonCommand.get(name)} is not a command file`);
+      continue;
+    }
+    if (required.includes(name) || allowed.has(name)) continue;
+    if (configuredPrompt) {
+      mcpAccepted += 1;
+      continue;
     }
     details.push(`${name}: listed, in no command folder`);
   }
@@ -1204,6 +1270,7 @@ module.exports = {
   parseVersion,
   parseArgs,
   listCommandNames,
+  listNonCommandFiles,
   allowedCommandSources,
   ancestorPluginDirs,
   v2ServerEnv,

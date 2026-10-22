@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 004 solved a real problem: both OpenCode versions scan `{command,commands}//.md` and registered all 12 non-command markdown files as commands",
     "created_at": "2026-10-22T10:42:28Z",
-    "last_save_at": "2026-10-22T13:19:48.417Z",
+    "last_save_at": "2026-10-22T14:35:04.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b69c4f0893b8d10c04eddfb4ee51f51851211d58da7583bfef514dd99eb7ce39",
+    "source_fingerprint": "sha256:4d2b1a9f30a35a1cf934ccbe9628b94cd7f1512616fb1ea63147c984af42351b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad06c21378ae480c810dc0c8ed4a75f130b70714a983c078f27970dd34bea90f",
       "plan.md": "0bcdaeae0472e7131e3e574f821064cd6d622823c97090d2f28dae1321b08d7a",
       "tasks.md": "f2c9a7952c91133b580af0d9318875f9791054587d2cd38a55ec76888a288f92",
-      "implementation-summary.md": "8f61e968d32885c9a3b042cb1344e3e0ff4c015cbebec114fc6b7034e9d0ad58"
+      "implementation-summary.md": "06541d872749454920fbd143f4916b332e62847f91b75cf4d6a1d35912c77551"
     },
     "last_active_at": null
   }

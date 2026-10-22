@@ -155,9 +155,9 @@ Every number above was read from `scratch/suites-before.txt` and `scratch/suites
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The suffix is a convention the hosts happen to honour, not a contract they publish.** Both 1.19.3 and 2.0.32 scan only `.md` names today, and neither offers an ignore list or a frontmatter opt-out. A future version that widens the scan would register these 12 files again, and the command-list proof is what would catch it.
-2. **The evidence is two command lists, not a per-file check.** The lists show nothing was added or removed on either version; they do not name which files exist, so a file that moved between two unlisted states would not show.
-3. **The 7 unrelated READMEs the fixture regeneration would have added are still absent** from `baseline-readme-verdicts.json`. That was the right call for this phase and remains an open gap for whoever owns the baseline next.
+1. **The suffix is a convention the hosts happen to honour, not a contract they publish.** Both 1.19.3 and 2.0.32 scan only `.md` names today, and neither offers an ignore list or a frontmatter opt-out. A future version that widens the scan would register these 12 files again, and the command-list proof is what would catch it. Phase 056 keeps that as an upstream fact rather than turning it into a contract: it guards it in CI instead, where the battery's `command-listed` leg now fails on the file a widened glob would list and the OpenCode Dual-Version Battery workflow runs that leg on 1.19.3 and 2.0.32.
+2. **The evidence is two command lists, not a per-file check.** The lists show nothing was added or removed on either version; they do not name which files exist, so a file that moved between two unlisted states would not show. Phase 056 closes it per file: the `command-listed` leg now fails a listed name that a non-command file in the command folder could produce, even when a global or inherited folder owns that name, with v2 built-ins and configured MCP prompts exempt.
+3. **The 7 unrelated READMEs the fixture regeneration would have added are still absent** from `baseline-readme-verdicts.json`. That was the right call for this phase and remains an open gap for whoever owns the baseline next. Phase 056 closes it by rebuilding the baseline from the tracked set, 978 to 985 entries with 0 existing verdicts changed and a parity diff of 0.
 <!-- /ANCHOR:limitations -->
 
 ---

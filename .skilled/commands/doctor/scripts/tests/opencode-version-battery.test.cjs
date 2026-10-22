@@ -30,6 +30,7 @@ const {
   legPluginLoad,
   legsForV2,
   listCommandNames,
+  listNonCommandFiles,
   listPluginFiles,
   main,
   mcpServerNames,
@@ -780,6 +781,93 @@ test('C13: legsForV2 with an unreadable config and a stray keeps the stray a fai
   assert.ok(result);
   assert.equal(result.status, 'FAIL');
   assert.match(resultText(result), /stray-command: listed, in no command folder/);
+});
+
+test('C14: a listed README fails even when a global folder owns its name', (t) => {
+  const root = tempRoot(t);
+  commandFile(root, 'a');
+  const readme = path.join(root, '.opencode', 'commands', 'deep', 'README.markdown');
+  fs.mkdirSync(path.dirname(readme), { recursive: true });
+  fs.writeFileSync(readme, '# fixture\n');
+  const env = emptyEnv(t);
+  const listed = ['a', 'deep/README', ...V2_BUILTIN_COMMANDS];
+  const stray = legCommandListed('v2', listed, allowedCommandSources(root, 'v2', env));
+  assert.equal(stray.status, 'FAIL');
+  assert.match(resultText(stray), /deep\/README: listed, but deep\/README\.markdown is not a command file/);
+
+  // A global `.md` command owns the same name, so the allowlist skip alone would
+  // let a host's listing of the README through.
+  const globalDir = path.join(env.XDG_CONFIG_HOME, 'opencode', 'commands', 'deep');
+  fs.mkdirSync(globalDir, { recursive: true });
+  fs.writeFileSync(path.join(globalDir, 'README.md'), '---\ndescription: global command\n---\n');
+  const allowedSources = allowedCommandSources(root, 'v2', env);
+  assert.ok(allowedSources.allowed.has('deep/README'));
+  const allowedStray = legCommandListed('v2', listed, allowedSources);
+  assert.equal(allowedStray.status, 'FAIL');
+  assert.match(resultText(allowedStray), /deep\/README: listed, but deep\/README\.markdown is not a command file/);
+
+  const clean = legCommandListed('v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', env));
+  assert.equal(clean.status, 'PASS');
+});
+
+test('C15: listNonCommandFiles maps a name and its stem, minus a stem a command owns', (t) => {
+  const root = tempRoot(t);
+  const base = path.join(root, '.opencode', 'commands');
+  fs.mkdirSync(path.join(base, 'x'), { recursive: true });
+  fs.writeFileSync(path.join(base, 'x', 'y.txt'), '');
+  fs.writeFileSync(path.join(base, 'z.md'), '');
+  fs.writeFileSync(path.join(base, 'z.txt'), '');
+  const found = listNonCommandFiles(path.join(root, '.opencode'));
+  assert.equal(found.get('x/y.txt'), 'x/y.txt');
+  assert.equal(found.get('x/y'), 'x/y.txt');
+  assert.equal(found.get('z.txt'), 'z.txt');
+  assert.ok(!found.has('z'));
+  assert.equal(listNonCommandFiles(path.join(root, 'missing')).size, 0);
+});
+
+test('C16: a built-in or a configured MCP prompt keeps passing beside a non-command file', (t) => {
+  const root = tempRoot(t);
+  commandFile(root, 'a');
+  const base = path.join(root, '.opencode', 'commands');
+  fs.writeFileSync(path.join(base, 'review.txt'), '');
+  const env = emptyEnv(t);
+
+  // The runtime lists a built-in whatever the folder holds, so the file's stem is no
+  // sign of a widened glob on v2.
+  const builtin = legCommandListed(
+    'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', env),
+  );
+  assert.equal(builtin.status, 'PASS');
+  assert.deepEqual(builtin.details, ['listed: 3', 'required: 1']);
+
+  fs.writeFileSync(path.join(base, 'srv:prompt.txt'), '');
+  const mcpSources = { ...allowedCommandSources(root, 'v2', env), mcpServers: ['srv'] };
+  const prompt = legCommandListed('v2', ['a', 'srv:prompt', ...V2_BUILTIN_COMMANDS], mcpSources);
+  assert.equal(prompt.status, 'PASS');
+  assert.ok(prompt.details.includes('mcp prompts: 1'));
+
+  // v1 registers no built-ins, so the same file's stem stays a stray there.
+  const v1 = legCommandListed('v1', ['a', 'review'], allowedCommandSources(root, 'v1', env));
+  assert.equal(v1.status, 'FAIL');
+  assert.match(resultText(v1), /review: listed, but review\.txt is not a command file/);
+});
+
+test('C17: a linked command folder still exposes a non-command file name', (t) => {
+  const root = tempRoot(t);
+  const real = path.join(root, 'real', 'commands');
+  fs.mkdirSync(path.join(real, 'deep'), { recursive: true });
+  fs.writeFileSync(path.join(real, 'a.md'), '---\ndescription: fixture command\n---\n');
+  fs.writeFileSync(path.join(real, 'deep', 'README.markdown'), '# fixture\n');
+  fs.mkdirSync(path.join(root, '.opencode'), { recursive: true });
+  fs.symlinkSync(real, path.join(root, '.opencode', 'commands'), 'dir');
+
+  const found = listNonCommandFiles(path.join(root, '.opencode'));
+  assert.equal(found.get('deep/README'), 'deep/README.markdown');
+
+  const sources = allowedCommandSources(root, 'v2', emptyEnv(t));
+  const result = legCommandListed('v2', ['a', 'deep/README', ...V2_BUILTIN_COMMANDS], sources);
+  assert.equal(result.status, 'FAIL');
+  assert.match(resultText(result), /deep\/README: listed, but deep\/README\.markdown is not a command file/);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

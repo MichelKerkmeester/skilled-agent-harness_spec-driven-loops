@@ -166,6 +166,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 53 | 053-final-commit-live-proof/ | Rerun the live 17-plugin playbook on OpenCode 1.19.3 and 2.0.32 at the final main commit | Complete |
 | 54 | 054-v4-0-0-13-changelog-opencode/ | Make the OpenCode 1 and 2 work and its testing a prominent part of the v4.0.0.13 changelog | Complete |
 | 55 | 055-command-support-into-commands/ | Move the non-command markdown from `.skilled/command-support/` back into `.skilled/commands/` as `.markdown` files, so neither OpenCode version registers them | Complete |
+| 56 | 056-command-folder-guard-and-readme-baseline/ | Close 055's three Known Limitations: fail the battery's `command-listed` leg per file when a non-command file in the command folder could produce a listed name, keep built-ins and configured MCP prompts exempt, rebuild the README verdict baseline from the tracked set, and leave the `.markdown` suffix guard to the CI run on both versions | Pending |
 
 ### Phase Transition Rules
 
@@ -228,4 +229,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 052-v1-default-llmgateway | 053-final-commit-live-proof | 052 is on main with CI green | `053/scratch/live-runs/results-matrix.md` shows 17/17 on both versions |
 | 053-final-commit-live-proof | 054-v4-0-0-13-changelog-opencode | 053 is on main with CI green | `054/implementation-summary.md`; the changelog passes `validate_document.py` and a read-only review |
 | 054-v4-0-0-13-changelog-opencode | 055-command-support-into-commands | The operator chose on 2026-10-22 to keep everything inside `.skilled/commands/` with `.markdown` names | both versions list the same commands before and after (`055/scratch/commands-*.json`) |
+| 055-command-support-into-commands | 056-command-folder-guard-and-readme-baseline | The operator asked on 2026-10-22 to fix 055's three gaps: the unguarded `.markdown` suffix, the command proof that was only two command lists, and the seven READMEs missing from the verdict baseline | Battery unit tests 55/55, the live battery all PASS on both versions (`056/scratch/battery-live.txt`), and the README verdict parity diff 0 |
 <!-- /ANCHOR:phase-map -->

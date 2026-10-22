@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline",
+  "description": "Phase 56: command-folder-guard-and-readme-baseline",
+  "keywords": [
+    "phase",
+    "command-folder-guard-and-readme-baseline"
+  ],
+  "lastUpdated": "2026-10-22T14:23:52.375Z",
+  "specId": "056",
+  "folderSlug": "command-folder-guard-and-readme-baseline",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
