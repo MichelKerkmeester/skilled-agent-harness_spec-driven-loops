@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.11.0
+version: 1.4.12.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -60,7 +60,7 @@ A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no pl
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -70,12 +70,12 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
 
-On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, but these examples omit it and use the default agent, as on OpenCode 1.
+On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`). On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, but these examples omit it and use the default agent, as on OpenCode 1.
 
 On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
 
@@ -101,7 +101,7 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 # On OpenCode 1 (1.19.3):
 opencode run \
   --port 4096 \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --agent deep-research \
   --variant max \
   --format json \
@@ -131,7 +131,7 @@ External runtimes (Claude Code, OpenCode, Copilot) parse the event stream increm
 # On OpenCode 1 (1.19.3):
 opencode run \
   --format json \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --agent general \
   --variant max \
   --dir /repo \
@@ -149,7 +149,7 @@ opencode run \
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
   --format json \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   "<prompt>" 2>/dev/null | while IFS= read -r line; do
     type=$(echo "$line" | jq -r '.type')
     case "$type" in
@@ -178,7 +178,7 @@ Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` fl
 # On OpenCode 1 (1.19.3):
 opencode run \
   --agent deep-review \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --variant max \
   --format json \
   --dir /repo \
@@ -189,7 +189,7 @@ opencode run \
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
   --agent deep-review \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "Run iteration 3 of the deep-review loop for the approved spec folder. State file: review/deep-review-state.jsonl."
 ```
@@ -215,7 +215,7 @@ A calling AI in one repo (e.g. a sibling project) can dispatch into a different 
 # From a session in repo A, dispatch into repo B's runtime
 opencode run \
   --dir /path/to/other-repo \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --agent general \
   --variant max \
   --format json \
@@ -227,7 +227,7 @@ opencode run \
 # From a session in repo A, dispatch into repo B's runtime
 cd /path/to/other-repo && opencode2 run --standalone \
   --agent general \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
 ```

@@ -1,0 +1,9 @@
+2026-10-22T20:07:22.760Z
+kind=cli-opencode label=v1
+lineage.model=undefined (unpinned)
+effective.model=llmgateway/deepseek-v4.1-flash-1017
+argv="opencode" "run" "--model" "llmgateway/deepseek-v4.1-flash-1017" "--format" "json" "--dir" "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/203-deepseek-v4-1-flash-1017-default" "--dangerously-skip-permissions" "--variant" "max" "<prompt>"
+exit=0
+signal=null
+stdout_tail=9641379,"sessionID":"ses_e9ac674ecffei2ZJqOvDdrhsLb","part":{"id":"prt_16539ae20001KXZhjBpsbW0epJ","reason":"stop","snapshot":"704f050c524bc2d59354c84f315ad4d8be26dcf7","messageID":"msg_165398f48001r2jVAyMOXpNJfJ","sessionID":"ses_e9ac674ecffei2ZJqOvDdrhsLb","type":"step-finish","tokens":{"total":31057,"input":15071,"output":2,"reasoning":112,"cache":{"write":0,"read":15872}},"cost":0.002376666}}\n
+stderr_tail=

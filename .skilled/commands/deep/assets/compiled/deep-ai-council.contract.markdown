@@ -117,7 +117,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "d0be1b2f887144b7302d1e16a91966cf0555156651da36e34692b0d470f5056c",
+      "sha256": "4b4ab4b098a8bd0d21317a1b497c3d9110687804d4e20e5efb53826b0f2d4fcf",
       "section": "full"
     },
     {

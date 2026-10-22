@@ -1,0 +1,12 @@
+opencode.json default reverted: # fail 1 
+roster old non-default row removed: # fail 1 
+roster default reverted: # fail 1 
+pi models.json -1017 entry removed:       Tests  1 failed | 300 passed (301) 
+max pin regex reverted (ts):       Tests  2 failed | 299 passed (301) 
+fanout PI provider mapping for -1017 removed:       Tests  2 failed | 299 passed (301) 
+fanout old literal dropped from PI allowlist:       Tests  4 failed | 297 passed (301) 
+OpenCode default reverted (fanout):       Tests  2 failed | 299 passed (301) 
+pi settings.json defaultModel reverted to gpt-6-luna:       Tests  1 failed | 107 passed (108)
+pi settings.json -1017 moved off the first enabledModels slot:       Tests  1 failed | 107 passed (108)
+pi-blackhole model reverted to openai/gpt-6-luna medium:       Tests  1 failed | 107 passed (108)
+pi-blackhole thinking alone reverted to medium:       Tests  1 failed | 107 passed (108)

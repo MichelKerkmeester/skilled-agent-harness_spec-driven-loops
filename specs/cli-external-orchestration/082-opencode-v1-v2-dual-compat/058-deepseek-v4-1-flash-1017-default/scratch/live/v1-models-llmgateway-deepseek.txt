@@ -1,0 +1,5 @@
+llmgateway/deepseek-v3.2
+llmgateway/deepseek-v4-flash
+llmgateway/deepseek-v4-pro
+llmgateway/deepseek-v4.1-flash
+llmgateway/deepseek-v4.1-flash-1017

@@ -1,0 +1,4 @@
+llmgateway   deepseek-v4.1-flash         1.1M     393.2K   yes       yes   
+llmgateway   deepseek-v4.1-flash-1017    1.1M     393.2K   yes       yes   
+opencode-go  deepseek-v4-pro             1M       384K     yes       no    
+opencode-go  deepseek-v4.1-flash         1M       384K     yes       yes   

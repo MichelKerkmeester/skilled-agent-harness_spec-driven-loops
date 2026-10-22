@@ -1,7 +1,7 @@
 ---
 title: "HERMES-010 -- Cross-model validation pair"
 description: "Confirm both roster models answer an identical factual question through the same dispatch shape, so a disagreement would be a model signal rather than a transport artefact for `HERMES-010`."
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # HERMES-010 -- Cross-model validation pair
@@ -57,7 +57,7 @@ perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --sou
 echo $?
 
 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \
-  --provider llmgateway --model deepseek-v4.1-flash --reasoning none \
+  --provider llmgateway --model deepseek-v4.1-flash-1017 --reasoning none \
   -t file,todo --max-turns 4 --run-budget 150 -q "$Q" </dev/null >b.txt 2>b.err
 echo $?
 
@@ -68,7 +68,7 @@ grep -c -- --yolo a.txt; grep -c -- --yolo b.txt
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HERMES-010 | Cross-model validation pair | Confirm both roster models answer an identical factual question through the same dispatch shape, so a disagreement would be a model signal rather than a transport artefact | `In one sentence: which flag makes a headless hermes chat auto-approve tool calls Hermes flags as dangerous? Answer with the flag only.` | 1. `perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool --provider llmgateway --model glm-5.3-flash --reasoning none -t file,todo --max-turns 4 --run-budget 120 -q "In one sentence: which flag makes a headless hermes chat auto-approve tool calls Hermes flags as dangerous? Answer with the flag only." </dev/null >a.txt 2>a.err` -> 2. Repeat step 1 with `--model deepseek-v4.1-flash` and `--run-budget 150`, capturing `b.txt` and `b.err` -> 3. `echo $?` after each -> 4. `tail -1 a.txt; tail -1 b.txt` | Both dispatches exit `0`; the tail of each stdout names `--yolo`; each stderr carries its own distinct `session_id:` line | Both complete stdout captures, both exit codes, both elapsed times, both session ids, and an explicit statement of which flags were held constant across the pair | PASS when both runs exit 0 and both answers name the same flag; FAIL when the two answers disagree on the flag, or when either run returns no answer; SKIP only when a named environment blocker prevents the check, such as an unreachable provider or a missing credential, naming which model was unavailable | Read the whole stdout, not just the tail: with `deepseek-v4.1-flash` the model's reasoning precedes the answer on `-Q` stdout, so a naive head-based comparison will appear to disagree when the answers match. A genuine disagreement is a finding about the models and belongs in the run's findings file, not a re-run |
+| HERMES-010 | Cross-model validation pair | Confirm both roster models answer an identical factual question through the same dispatch shape, so a disagreement would be a model signal rather than a transport artefact | `In one sentence: which flag makes a headless hermes chat auto-approve tool calls Hermes flags as dangerous? Answer with the flag only.` | 1. `perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool --provider llmgateway --model glm-5.3-flash --reasoning none -t file,todo --max-turns 4 --run-budget 120 -q "In one sentence: which flag makes a headless hermes chat auto-approve tool calls Hermes flags as dangerous? Answer with the flag only." </dev/null >a.txt 2>a.err` -> 2. Repeat step 1 with `--model deepseek-v4.1-flash-1017` and `--run-budget 150`, capturing `b.txt` and `b.err` -> 3. `echo $?` after each -> 4. `tail -1 a.txt; tail -1 b.txt` | Both dispatches exit `0`; the tail of each stdout names `--yolo`; each stderr carries its own distinct `session_id:` line | Both complete stdout captures, both exit codes, both elapsed times, both session ids, and an explicit statement of which flags were held constant across the pair | PASS when both runs exit 0 and both answers name the same flag; FAIL when the two answers disagree on the flag, or when either run returns no answer; SKIP only when a named environment blocker prevents the check, such as an unreachable provider or a missing credential, naming which model was unavailable | Read the whole stdout, not just the tail: with `deepseek-v4.1-flash-1017` the model's reasoning precedes the answer on `-Q` stdout, so a naive head-based comparison will appear to disagree when the answers match. A genuine disagreement is a finding about the models and belongs in the run's findings file, not a re-run |
 
 ### Recorded Result
 

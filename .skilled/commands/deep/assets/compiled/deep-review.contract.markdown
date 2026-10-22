@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "fe62f9a7e823925170126798841eeb2936c3cc834de1cf2ee1ec53bc914a9c37",
+      "sha256": "ff823dd8684b879cc77c5ee6dfdc22b1712d5e59deba3714e4428f91c6722b93",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "9f6eedc3a2b4432f9ba942249f260ca51cd3298f00914e06f257483dbb885cac"
+  "compiledBodyDigest": "633bce8f751c7910826f23013d80b66d609b572205162f1337a242d9a81a8af6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -350,7 +350,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
+     H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:

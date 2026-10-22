@@ -8,7 +8,7 @@ trigger_phrases:
   - "hermes fan-out template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hermes CLI Prompt Templates
@@ -45,7 +45,7 @@ ACCEPTANCE: [observable outcome]
 VERIFY: [command whose output proves completion]
 EOF
 
-hermes chat -Q --oneshot --query-file /tmp/hermes-task.md --provider llmgateway --model deepseek-v4.1-flash \
+hermes chat -Q --oneshot --query-file /tmp/hermes-task.md --provider llmgateway --model deepseek-v4.1-flash-1017 \
   --reasoning max --ignore-rules --source tool --max-turns 200 --run-budget 840 \
   -t terminal,file,skills,todo,web --yolo --in "$PWD" </dev/null
 ```
@@ -68,7 +68,7 @@ No `--yolo`: the single-query approval gate denies dangerous calls, and the tool
 
 ## 4. GENERATION
 
-Same command as the write dispatch with the prompt naming the new file's exact path, the conventions file to read first, and the test that proves the generated code. Prefer `deepseek-v4.1-flash` for volume and `glm-5.3-flash` for a second opinion on the same brief.
+Same command as the write dispatch with the prompt naming the new file's exact path, the conventions file to read first, and the test that proves the generated code. Prefer `deepseek-v4.1-flash-1017` for volume and `glm-5.3-flash` for a second opinion on the same brief.
 
 ---
 
@@ -78,7 +78,7 @@ The runtime builds the command; the caller supplies the lineage configuration.
 
 ```bash
 /deep:research:auto "<topic>" \
-  --executor=cli-hermes --model=deepseek-v4.1-flash --label=hermes --iters=5 \
+  --executor=cli-hermes --model=deepseek-v4.1-flash-1017 --label=hermes --iters=5 \
   --stop-policy=max-iterations
 ```
 

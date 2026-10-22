@@ -6,7 +6,7 @@ trigger_phrases:
   - "check-prompt-quality-card-sync"
   - "cli-hermes prompt card"
   - "prompt-improver hermes eligibility row"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Prompt-Quality Card Sync And Prompt-Improver Eligibility
@@ -23,7 +23,7 @@ A dispatch is only as good as the prompt it carries, and both halves of that con
 
 The packet ships a thin delegator card rather than a copy of the canonical one, so the quality rules cannot drift per executor. The sync guard walks the delegator cards, the `cli-hermes` card among them, and walks the CLI skills, `cli-external-orchestration/cli-hermes` among them, so a card that stopped delegating or a skill that lost its card is reported rather than discovered during a dispatch.
 
-The prompt-improver agent definition carries a model-eligibility table, and its `cli-hermes` row names the two gateway model ids and states that the roster is closed at them, which keeps an improver from proposing a model the lineage builder would reject. The row is mirrored in the Claude and Codex copies of the same agent, so an improver reached from any of the three runtimes sees the same eligibility.
+The prompt-improver agent definition carries a model-eligibility table, and its `cli-hermes` row names the three gateway model ids and states that the roster is closed at them, which keeps an improver from proposing a model the lineage builder would reject. The row is mirrored in the Claude and Codex copies of the same agent, so an improver reached from any of the three runtimes sees the same eligibility.
 
 Persona handling is a packet rule rather than a Hermes capability. Hermes has no flag that loads an agent file, its profiles are separate homes, and its sub-agents receive a goal and context only, so the resolved persona is inlined at the top of the dispatch prompt alongside the child-dispatch preamble. The canonical card owns that rule; the packet points at it.
 

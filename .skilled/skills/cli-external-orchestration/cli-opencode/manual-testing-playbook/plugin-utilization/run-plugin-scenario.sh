@@ -45,8 +45,8 @@ if ! [[ "$ALARM" =~ ^[1-9][0-9]*$ ]]; then
   echo "RUN_ALARM must be a whole number of seconds: $ALARM" >&2
   exit 2
 fi
-MODEL_V1="llmgateway/deepseek-v4.1-flash"
-MODEL_V2="llmgateway/deepseek-v4.1-flash#high"
+MODEL_V1="llmgateway/deepseek-v4.1-flash-1017"
+MODEL_V2="llmgateway/deepseek-v4.1-flash-1017#high"
 echo "running in $ROOT" >&2
 # Evidence must stay inside this checkout, so a run never writes into another tree.
 ROOT_REAL="$(cd "$ROOT" && pwd -P)" || exit 2

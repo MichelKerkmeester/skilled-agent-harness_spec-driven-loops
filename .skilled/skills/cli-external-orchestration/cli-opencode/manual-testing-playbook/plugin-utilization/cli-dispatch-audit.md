@@ -1,7 +1,7 @@
 ---
 title: "CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2"
 description: "This scenario validates cli-dispatch-audit for `CO-041`. It focuses on confirming that a blocked CLI dispatch is refused before it runs and that every allowed dispatch appends one audit record on both OpenCode versions."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CO-041` and confirm the
 - Objective: Confirm that the guard refuses `opencode run --help` with both hard-rule names, and that an allowed `opencode run --help ... </dev/null` appends an audit record, on OpenCode 1 and OpenCode 2.
 - Real user request: `Does the cli-opencode dispatch guard actually stop a bad dispatch before it runs, and does the audit log still record the dispatches that are allowed through?`
 - Prompt: `This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help`
-- Prompt (audit): `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null`
+- Prompt (audit): `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null`
 - Expected execution process: Run the guard prompt as runner name `dispatch-guard` on each version, then the audit prompt as runner name `dispatch-audit` on each version, and read the tool-call status from the events file and the log line from the effects file.
 - Expected signals: the guard tool call ends in error with `Dispatch blocked by cli-opencode hard-rule(s)` naming `stdin-redirect-required` and `explicit-model-required`; the audit `effects.txt` shows a new `cli-dispatch-audit.log` line with `"runtime":"opencode"` and `"skill":"cli-opencode"`.
 - Evidence requirements: Capture events, capture JSON, effects and exit for all four runs (`dispatch-guard.v1`, `dispatch-guard.v2`, `dispatch-audit.v1`, `dispatch-audit.v2`).
@@ -53,9 +53,9 @@ Operators run the exact prompt and command sequence for `CO-041` and confirm the
 ```bash
 export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 dispatch-guard "This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help"
-AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 dispatch-audit "Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null"
+AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 dispatch-audit "Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 dispatch-guard "This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help"
-AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 dispatch-audit "Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null"
+AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 dispatch-audit "Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null"
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/dispatch-guard.v1.events.jsonl"
 grep -E 'cli-dispatch-audit.log' "$EVIDENCE_DIR/dispatch-audit.v1.effects.txt"
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/dispatch-guard.v2.events.jsonl"
@@ -65,7 +65,7 @@ cat "$EVIDENCE_DIR"/dispatch-*.v*.exit
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-041 | cli-dispatch-audit live utilization on OpenCode 1 and 2 | Confirm the guard refuses a bad dispatch and the audit leg writes one record per version | `This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help` then `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null` | 1. Run `dispatch-guard` on v1 -> 2. Run `dispatch-audit` on v1 -> 3. Read the events error and the effects log line -> 4. Repeat both runs on v2 -> 5. Repeat both reads on v2 | Guard call errors with `Dispatch blocked by cli-opencode hard-rule(s)` naming `stdin-redirect-required` and `explicit-model-required`; audit effects show `"runtime":"opencode"` and `"skill":"cli-opencode"` | `dispatch-guard.v1.txt`, `dispatch-guard.v2.txt`, `dispatch-audit.v1.txt`, `dispatch-audit.v2.txt` | PASS if both legs hold on that version; FAIL if the guard command runs or no audit record is written | Read the tool name in the events file first; OpenCode 2 names the shell tool `shell` and the bridge reports it to the plugin as `bash`, so a v2-only miss points at the bridge, not the rule engine |
+| CO-041 | cli-dispatch-audit live utilization on OpenCode 1 and 2 | Confirm the guard refuses a bad dispatch and the audit leg writes one record per version | `This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help` then `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null` | 1. Run `dispatch-guard` on v1 -> 2. Run `dispatch-audit` on v1 -> 3. Read the events error and the effects log line -> 4. Repeat both runs on v2 -> 5. Repeat both reads on v2 | Guard call errors with `Dispatch blocked by cli-opencode hard-rule(s)` naming `stdin-redirect-required` and `explicit-model-required`; audit effects show `"runtime":"opencode"` and `"skill":"cli-opencode"` | `dispatch-guard.v1.txt`, `dispatch-guard.v2.txt`, `dispatch-audit.v1.txt`, `dispatch-audit.v2.txt` | PASS if both legs hold on that version; FAIL if the guard command runs or no audit record is written | Read the tool name in the events file first; OpenCode 2 names the shell tool `shell` and the bridge reports it to the plugin as `bash`, so a v2-only miss points at the bridge, not the rule engine |
 
 ---
 

@@ -220,6 +220,10 @@ export const PI_SUPPORTED_MODELS = [
   // deactivated the older vision-exp id and answers 410 for it, so the 4.1 line is the live
   // route. It accepts images like the id it replaces, so nothing is lost by moving.
   'deepseek-v4.1-flash',
+  // The 2026-10-17 release has its own gateway id and is DevPass-fronted like the bare literal
+  // above; it is the rotation default. The older literal stays so a run can still pin the
+  // September release.
+  'deepseek-v4.1-flash-1017',
   // Provider-qualified DeepSeek V4.1 Flash route, for runs that must bill through
   // opencode-go instead of DevPass. The literal names its provider, so it maps to exactly
   // one route and the bare literal above keeps DevPass.
@@ -245,8 +249,8 @@ export const PI_SUPPORTED_MODELS = [
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
-/** Stable rotation default; the same model the cli-opencode default names, reached here through DevPass under its bare literal. */
-export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4.1-flash';
+/** Stable rotation default: the 2026-10-17 DeepSeek V4.1 Flash release, reached here through DevPass under its own dated gateway literal. */
+export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4.1-flash-1017';
 
 /** True when `model` is in the enforced cli-pi allowlist. */
 export function isPiModelAllowed(model: string): model is PiSupportedModel {
@@ -262,6 +266,7 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  */
 export const HERMES_SUPPORTED_MODELS = [
   'deepseek-v4.1-flash',
+  'deepseek-v4.1-flash-1017',
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
@@ -270,8 +275,8 @@ export const HERMES_SUPPORTED_MODELS = [
 ] as const;
 export type HermesSupportedModel = typeof HERMES_SUPPORTED_MODELS[number];
 
-/** Same rotation default as cli-pi: the gateway-fronted DeepSeek Flash literal. */
-export const HERMES_DEFAULT_MODEL: HermesSupportedModel = 'deepseek-v4.1-flash';
+/** Same rotation default as cli-pi: the gateway-fronted DeepSeek Flash literal for the 2026-10-17 release. */
+export const HERMES_DEFAULT_MODEL: HermesSupportedModel = 'deepseek-v4.1-flash-1017';
 
 /** True when `model` is in the enforced cli-hermes allowlist. */
 export function isHermesModelAllowed(model: string): model is HermesSupportedModel {
@@ -288,8 +293,8 @@ export function isHermesModelAllowed(model: string): model is HermesSupportedMod
  * literals reach this function — and has no `xhigh` on either, so pinning a GLM literal to
  * `xhigh` would send the fan-out routes a tier their provider does not offer.
  *
- * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash`, fronted by DevPass) and
- * provider-prefixed on cli-opencode
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash`, fronted by DevPass, and its dated
+ * `-1017` release) and provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4.1-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
  * too. GLM-5.3-Flash is matched on both its bare DevPass literal (`glm-5.3-flash`) and
@@ -298,7 +303,7 @@ export function isHermesModelAllowed(model: string): model is HermesSupportedMod
  * bakes the tier into the id and is intentionally not matched here.
  */
 export function isFlashMaxPinnedModel(model: string): boolean {
-  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash(-1017)?|glm-5\.3-flash)$/.test(model);
 }
 
 /** Effective reasoning effort after the Flash top-tier pin. */

@@ -1,0 +1,8 @@
+Blackhole-active Pi run, no --model, PI_BLACKHOLE_PASSIVE unset.
+Agent dir: scratch, settings.json and pi-blackhole/pi-blackhole-config.json linked to the worktree's .pi files;
+models.json is the worktree copy with only the llmgateway baseUrl pointed at a local capture proxy that
+forwards to https://api.llmgateway.io and records request model + reasoning_effort (never headers).
+Only override: PI_BLACKHOLE_OBSERVE_AFTER_TOKENS=1000 so the observer fires inside a short run (default 15000).
+Result (bh.capture.jsonl): every session request model=deepseek-v4.1-flash-1017 effort=max
+(settings defaultThinkingLevel xhigh, which the -1017 thinkingLevelMap marks null, so Pi's clampThinkingLevel
+rounds up to max); the observation-agent request ("You are the observation agent...") model=deepseek-v4.1-flash-1017 effort=high.

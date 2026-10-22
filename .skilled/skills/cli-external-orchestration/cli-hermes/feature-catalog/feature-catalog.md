@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes dispatch guards"
   - "hermes runtime folder"
 last_updated: "2026-09-14"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # cli-hermes: Feature Catalog
@@ -60,15 +60,15 @@ See [`fanout-dispatch/hermes-executor-kind.md`](fanout-dispatch/hermes-executor-
 
 ---
 
-### Closed Six-Model Gateway Roster
+### Closed Seven-Model Gateway Roster
 
 #### Description
 
-Dispatch is fenced to the six model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
+Dispatch is fenced to the seven model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
 
 #### Current Reality
 
-`HERMES_SUPPORTED_MODELS` holds `deepseek-v4.1-flash` and `glm-5.3-flash`, with the DeepSeek literal as the rotation default, and `isHermesModelAllowed` is the predicate over it. The fan-out script carries a deliberate synchronous mirror of that set so command construction fails closed without importing the TypeScript module, and an off-roster id raises an input error naming the allowlist. The provider name itself is pinned, because Hermes resolves `--provider` by a user-defined block the repository cannot carry.
+`HERMES_SUPPORTED_MODELS` holds `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3` and `qwen3.8-max`, with the `-1017` DeepSeek literal as the rotation default, and `isHermesModelAllowed` is the predicate over it. The fan-out script carries a deliberate synchronous mirror of that set so command construction fails closed without importing the TypeScript module, and an off-roster id raises an input error naming the allowlist. The provider name itself is pinned, because Hermes resolves `--provider` by a user-defined block the repository cannot carry.
 
 #### Source Files
 
@@ -202,7 +202,7 @@ The packet's prompt-quality card is held in sync with the canonical card by a re
 
 #### Current Reality
 
-The packet ships a thin delegator card rather than a copy, and the sync guard lists the `cli-hermes` card among the delegators it checks and `cli-external-orchestration/cli-hermes` among the CLI skills it walks. The prompt-improver agent definition carries a `cli-hermes` row naming the two gateway model ids and stating that the roster is closed, and the row is mirrored in the Claude and Codex copies of that agent. Persona handling is a packet rule rather than a Hermes feature: Hermes has no flag that loads an agent file, so the resolved persona is inlined into the dispatch prompt.
+The packet ships a thin delegator card rather than a copy, and the sync guard lists the `cli-hermes` card among the delegators it checks and `cli-external-orchestration/cli-hermes` among the CLI skills it walks. The prompt-improver agent definition carries a `cli-hermes` row naming the three gateway model ids and stating that the roster is closed, and the row is mirrored in the Claude and Codex copies of that agent. Persona handling is a packet rule rather than a Hermes feature: Hermes has no flag that loads an agent file, so the resolved persona is inlined into the dispatch prompt.
 
 #### Source Files
 

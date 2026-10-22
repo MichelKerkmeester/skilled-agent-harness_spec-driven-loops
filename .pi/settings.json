@@ -2,7 +2,7 @@
   "lastChangelogVersion": "1.4.0",
   "theme": "dark",
   "defaultProvider": "llmgateway",
-  "defaultModel": "gpt-6-luna",
+  "defaultModel": "deepseek-v4.1-flash-1017",
   "defaultThinkingLevel": "xhigh",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
@@ -12,6 +12,7 @@
   "defaultProjectTrust": "always",
   "treeFilterMode": "default",
   "enabledModels": [
+    "llmgateway/deepseek-v4.1-flash-1017",
     "openai/gpt-6-luna",
     "llmgateway/gpt-6-luna",
     "llmgateway/deepseek-v4.1-flash",

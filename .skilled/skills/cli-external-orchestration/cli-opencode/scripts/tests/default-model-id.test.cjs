@@ -31,10 +31,19 @@ const SKILL = path.join(SKILL_ROOT, 'SKILL.md');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
 const HERMES_SKILL = path.join(REPO_ROOT, '.hermes', 'skills', 'cli-opencode', 'SKILL.md');
 
+// The repository's own OpenCode config, which selects the model every dispatch in this
+// checkout runs unless a flag overrides it.
+const OPENCODE_CONFIG = path.join(REPO_ROOT, 'opencode.json');
+
 // The default on both OpenCode versions, the `✓` row of the roster's `### llmgateway`
 // table: OpenCode 1 dispatches it at `--variant max`, OpenCode 2 with the `#max` effort
 // suffix on the id.
-const DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash';
+const DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash-1017';
+
+// The gateway serves two DeepSeek V4.1 Flash releases under separate ids. The older one
+// stays selectable and pinnable, so the roster must keep listing it as a non-default row
+// rather than dropping it when the default moves.
+const PREVIOUS_RELEASE_ID = 'llmgateway/deepseek-v4.1-flash';
 
 // The id the gateway retired, assembled from fragments so this file does not itself
 // spell the dead slug: a search for it across the skill should return the dated
@@ -176,6 +185,20 @@ test('the roster names one llmgateway default', () => {
   assertSingleRosterDefault('llmgateway', DEFAULT_ID);
 });
 
+test('the roster keeps the previous llmgateway release as a non-default row', () => {
+  const rows = rosterRows(read(ROSTER), 'llmgateway');
+  const row = rows.find((cells) => cells[0].replace(/^`|`$/g, '') === PREVIOUS_RELEASE_ID);
+
+  assert.ok(row, `the llmgateway table no longer lists ${PREVIOUS_RELEASE_ID}`);
+  assert.notEqual(row[1], '✓', `${PREVIOUS_RELEASE_ID} is marked as the default`);
+
+  // A reader has to be able to tell the two releases apart and see when the older
+  // route stops answering, so both dates live in the notes cell.
+  const notes = row[2];
+  assert.ok(notes.includes('2026-09-10'), `${PREVIOUS_RELEASE_ID} is not labeled as the 2026-09-10 release`);
+  assert.ok(notes.includes('2026-10-24'), `${PREVIOUS_RELEASE_ID} carries no 2026-10-24 deactivation note`);
+});
+
 test('both versions default to llmgateway, each in its own syntax', () => {
   const lines = read(SKILL).split('\n');
   const start = lines.findIndex((line) => line.startsWith('### Default Invocation'));
@@ -250,5 +273,34 @@ test('no current doc names the retired opencode-go id or its bare slug', () => {
     offenders.join('\n'),
     '',
     `${RETIRED_ID} and its bare slug are retired, but they are still named at:\n${offenders.join('\n')}`,
+  );
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. THE REPOSITORY CONFIG TAKES THE DEFAULT
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('opencode.json selects the default model wherever it selects one', () => {
+  const config = JSON.parse(read(OPENCODE_CONFIG));
+
+  assert.equal(
+    config.model,
+    DEFAULT_ID,
+    `opencode.json selects ${config.model} as its top-level model`,
+  );
+
+  const agents = Object.entries(config.agent ?? {});
+  assert.ok(agents.length > 0, 'opencode.json configures no agents to hold to the default');
+
+  // An agent that pins a different model is drift, exactly as a top-level selector that
+  // names another id is.
+  const differing = agents
+    .filter(([, agent]) => agent.model !== DEFAULT_ID)
+    .map(([name, agent]) => `${name}: ${agent.model}`);
+
+  assert.equal(
+    differing.join('\n'),
+    '',
+    `every agent.*.model in opencode.json must be ${DEFAULT_ID}, but these do not:\n${differing.join('\n')}`,
   );
 });

@@ -1,0 +1,3 @@
+  24 "model":"deepseek-v4.1-flash-1017"
+  24 "provider":"llmgateway"
+  18 "thinkingLevel":"max"

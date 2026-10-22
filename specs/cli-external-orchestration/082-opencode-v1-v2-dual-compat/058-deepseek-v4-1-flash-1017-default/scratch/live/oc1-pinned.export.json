@@ -1,0 +1,155 @@
+{
+  "info": {
+    "id": "ses_e9b00c9f5ffeDRAKdnkstysyd1",
+    "slug": "neon-pixel",
+    "projectID": "4c10847297631c3af43d766cf1908920fe00c449",
+    "directory": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/203-deepseek-v4-1-flash-1017-default",
+    "path": "",
+    "title": "Response test verification",
+    "agent": "build",
+    "model": {
+      "id": "deepseek-v4.1-flash-1017",
+      "providerID": "llmgateway",
+      "variant": "max"
+    },
+    "version": "1.19.3",
+    "summary": {
+      "additions": 0,
+      "deletions": 0,
+      "files": 0
+    },
+    "cost": 0.004397442,
+    "tokens": {
+      "input": 29275,
+      "output": 2,
+      "reasoning": 0,
+      "cache": {
+        "read": 1664,
+        "write": 0
+      }
+    },
+    "permission": [
+      {
+        "permission": "question",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_enter",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_exit",
+        "pattern": "*",
+        "action": "deny"
+      }
+    ],
+    "time": {
+      "created": 1792695809546,
+      "updated": 1792695922770
+    }
+  },
+  "messages": [
+    {
+      "info": {
+        "role": "user",
+        "time": {
+          "created": 1792695809951
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "llmgateway",
+          "modelID": "deepseek-v4.1-flash-1017",
+          "variant": "max"
+        },
+        "summary": {
+          "diffs": []
+        },
+        "id": "msg_164ff379f001Pu7KCX7KD2J5R9",
+        "sessionID": "ses_e9b00c9f5ffeDRAKdnkstysyd1"
+      },
+      "parts": [
+        {
+          "type": "text",
+          "text": "\"Reply with exactly: OK\"",
+          "id": "prt_164ff37a7001GB1bmT2DZmX7Fj",
+          "sessionID": "ses_e9b00c9f5ffeDRAKdnkstysyd1",
+          "messageID": "msg_164ff379f001Pu7KCX7KD2J5R9"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_164ff379f001Pu7KCX7KD2J5R9",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "variant": "max",
+        "path": {
+          "cwd": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/203-deepseek-v4-1-flash-1017-default",
+          "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/203-deepseek-v4-1-flash-1017-default"
+        },
+        "cost": 0.004397442,
+        "tokens": {
+          "total": 30941,
+          "input": 29275,
+          "output": 2,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 1664
+          }
+        },
+        "modelID": "deepseek-v4.1-flash-1017",
+        "providerID": "llmgateway",
+        "time": {
+          "created": 1792695810136,
+          "completed": 1792695922764
+        },
+        "finish": "stop",
+        "id": "msg_164ff3858001Y80G5ZSjqmS5Am",
+        "sessionID": "ses_e9b00c9f5ffeDRAKdnkstysyd1"
+      },
+      "parts": [
+        {
+          "snapshot": "44497da28ab1a3b4604d684a2f744b3c38860066",
+          "type": "step-start",
+          "id": "prt_16500e6f3001sefbQFhrVL55ZT",
+          "sessionID": "ses_e9b00c9f5ffeDRAKdnkstysyd1",
+          "messageID": "msg_164ff3858001Y80G5ZSjqmS5Am"
+        },
+        {
+          "type": "text",
+          "text": "OK",
+          "time": {
+            "start": 1792695921355,
+            "end": 1792695921379
+          },
+          "id": "prt_16500eacb001wsM1agP2ohp6xF",
+          "sessionID": "ses_e9b00c9f5ffeDRAKdnkstysyd1",
+          "messageID": "msg_164ff3858001Y80G5ZSjqmS5Am"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "44497da28ab1a3b4604d684a2f744b3c38860066",
+          "type": "step-finish",
+          "tokens": {
+            "total": 30941,
+            "input": 29275,
+            "output": 2,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 1664
+            }
+          },
+          "cost": 0.004397442,
+          "id": "prt_16500edbf001g2EbyMuTrRQCN3",
+          "sessionID": "ses_e9b00c9f5ffeDRAKdnkstysyd1",
+          "messageID": "msg_164ff3858001Y80G5ZSjqmS5Am"
+        }
+      ]
+    }
+  ]
+}

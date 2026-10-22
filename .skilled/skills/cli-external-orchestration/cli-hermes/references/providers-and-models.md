@@ -1,6 +1,6 @@
 ---
 title: cli-hermes Providers, Models & Invocation
-description: The per-mode catalog of the one fan-out provider (llmgateway), its operator-side configuration contract, the six-id closed roster, and the reasoning-level lever reachable through cli-hermes.
+description: The per-mode catalog of the one fan-out provider (llmgateway), its operator-side configuration contract, the seven-id closed roster, and the reasoning-level lever reachable through cli-hermes.
 trigger_phrases:
   - "hermes providers and models"
   - "which model for hermes dispatch"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes roster"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 The single catalog of the provider, the model ids, the reasoning lever and the dispatch shape the cli-hermes mode can reach. Hermes is a multi-provider pass-through with a catalog of some forty providers; this mode deliberately reaches one of them.
@@ -20,7 +20,7 @@ The single catalog of the provider, the model ids, the reasoning lever and the d
 
 ### Core Principle
 
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at six ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at seven ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
 
 ### When to Use
 
@@ -51,7 +51,8 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
 
 | Model id | Provider | Reasoning | Standing | Notes |
 |---|---|---|---|---|
-| `deepseek-v4.1-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0, fan-out lineage dispatched | The rotation default; the same literal cli-pi dispatches through DevPass |
+| `deepseek-v4.1-flash-1017` | `llmgateway` | pinned `max` | **observed 2026-10-22**: a live fan-out dispatch with no model pinned built `--model deepseek-v4.1-flash-1017` and replied `OK` | The rotation default; the same literal cli-pi dispatches through DevPass |
+| `deepseek-v4.1-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0, fan-out lineage dispatched | The 2026-09-10 release, still selectable and pinnable; llmgateway's DeepSeek provider route for it is Deactivating on Oct 24, 2026, so a pinned run must move to the `-1017` id before then |
 | `glm-5.3-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0 at `max` and `none` | The second lens; flat-price on DevPass |
 | `gpt-6-luna` | `llmgateway` | the caller's effort | **probed live 2026-09-23**, a one-turn smoke that replied `OK`; catalog-listed the same day in `/v1/models` (1.05M context, 128K output, efforts `none` to `max`) | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `gpt-6-sol` | `llmgateway` | the caller's effort | **catalog-listed 2026-09-23** in `/v1/models` (1.05M context, 128K output, efforts `none` to `max`); live probe pending | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
@@ -66,7 +67,7 @@ To add a model: amend the packet's spec (`071-cli-hermes-creation`), then `HERME
 
 ## 4. REASONING LEVELS
 
-`--reasoning` accepts `none minimal low medium high xhigh max ultra`, the same set as the runtime's `REASONING_EFFORTS`, so the builder forwards the effort without a map. Both roster models are Flash-family reasoning models the runtime pins to `max` (`isFlashMaxPinnedModel`); a lower requested effort never reaches Hermes from the fan-out. A direct dispatch may pass any level; observed 2026-09-14 through the gateway:
+`--reasoning` accepts `none minimal low medium high xhigh max ultra`, the same set as the runtime's `REASONING_EFFORTS`, so the builder forwards the effort without a map. Every Flash-family roster model is a reasoning model the runtime pins to `max` (`isFlashMaxPinnedModel`); a lower requested effort never reaches Hermes from the fan-out. A direct dispatch may pass any level; observed 2026-09-14 through the gateway:
 
 | Model | Level | Result |
 |---|---|---|
@@ -82,7 +83,7 @@ No level was refused. Exit 0 shows the gateway accepted the level, not that the 
 ## 5. INVOCATION
 
 ```bash
-hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model deepseek-v4.1-flash \
+hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model deepseek-v4.1-flash-1017 \
   --reasoning max --ignore-rules --source tool --max-turns 200 --run-budget 840 \
   -t terminal,file,skills,todo,web --yolo --in "$PWD" </dev/null
 ```

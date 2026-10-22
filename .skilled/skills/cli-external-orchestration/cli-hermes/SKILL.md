@@ -37,7 +37,7 @@ deep-loop runtime, validate the returned output, and keep the calling AI as cond
 
 - **Headless Hermes dispatch**: the task explicitly names Hermes, Nous Research, or the Hermes agent.
 - **Cross-AI validation**: an independent implementation attempt, review, or second opinion through a Hermes-hosted model.
-- **LLM Gateway roster dispatch**: a task that wants `deepseek-v4.1-flash` or `glm-5.3-flash` through Hermes's tool loop rather than Pi's or OpenCode's.
+- **LLM Gateway roster dispatch**: a task that wants `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` through Hermes's tool loop rather than Pi's or OpenCode's.
 - **Project skills and plugins**: a task that concerns Hermes's repo-local `.hermes/skills`, `.hermes/plugins`, or its skill and plugin commands.
 - **Deep-loop fan-out**: a `/deep:research` or `/deep:review` lineage on `--executor=cli-hermes`.
 
@@ -105,7 +105,7 @@ INTENT_SIGNALS = {
     "GENERATION":       {"weight": 4, "keywords": ["generate", "create", "build", "write code", "hermes coding agent"]},
     "REVIEW":           {"weight": 4, "keywords": ["review", "audit", "bug", "second opinion", "cross-validate"]},
     "HEADLESS":         {"weight": 4, "keywords": ["hermes cli", "hermes agent", "headless", "oneshot", "query-file", "quiet mode"]},
-    "MODELS":           {"weight": 4, "keywords": ["llm gateway", "devpass", "deepseek-v4.1-flash", "glm-5.3-flash", "reasoning level", "provider"]},
+    "MODELS":           {"weight": 4, "keywords": ["llm gateway", "devpass", "deepseek-v4.1-flash-1017", "deepseek-v4.1-flash", "glm-5.3-flash", "reasoning level", "provider"]},
     "AGENT_DELEGATION": {"weight": 4, "keywords": ["delegate", "persona", "delegate_task", "sub-agent", "agent bridge"]},
     "NATIVE_RESOURCES": {"weight": 4, "keywords": ["skill", "plugin", "hermes skills", "skills trust", "project plugin", "toolset"]},
     "HOOKS":            {"weight": 3, "keywords": ["hook", "pre_verify", "pre_tool_call", "consent allowlist", "repo-guards"]},
@@ -162,12 +162,12 @@ This packet owns provider-specific routing, the availability probe, and prompt c
 
 **One provider is reachable from the fan-out: `llmgateway`** (DevPass, the operator's LLM Gateway plan), declared as a Hermes custom provider block of that exact name in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`. That block is an operator step; the repo cannot carry it. Setup and the credential contract are in [providers-and-models.md](./references/providers-and-models.md).
 
-**Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the six the gateway serves for Hermes: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3` and `qwen3.8-max`. These are bare literals of Pi's roster. Every id except the two GPT-6 ids was probed live; `gpt-6-luna` and `gpt-6-sol` replaced the probed GPT-5.6 Luna and Sol on 2026-09-23, when the gateway's `/v1/models` catalog listed both. `gpt-6-luna` passed its first live probe the same day; `gpt-6-sol`'s is still pending. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
+**Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the seven the gateway serves for Hermes: `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3` and `qwen3.8-max`. The `-1017` id is the rotation default. These are bare literals of Pi's roster. Every id except the two GPT-6 ids was probed live; `gpt-6-luna` and `gpt-6-sol` replaced the probed GPT-5.6 Luna and Sol on 2026-09-23, when the gateway's `/v1/models` catalog listed both. `gpt-6-luna` passed its first live probe the same day; `gpt-6-sol`'s is still pending. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
 
 ### The Dispatch Shape
 
 ~~~bash
-hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model deepseek-v4.1-flash \
+hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model deepseek-v4.1-flash-1017 \
   --reasoning max --ignore-rules --source tool --max-turns 200 --run-budget 840 \
   -t terminal,file,skills,todo,web --yolo --in <repo-root> </dev/null
 ~~~
@@ -246,7 +246,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - Flags, headless forms, exit codes, isolation flags, environment
-- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the six-id roster, reasoning levels
+- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the seven-id roster, reasoning levels
 - [hermes-tools.md](./references/hermes-tools.md) - Toolsets, project skills and plugins, the write guard, subsystems that stay off
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor and executor patterns, cross-validation, anti-patterns
 - [agent-delegation.md](./references/agent-delegation.md) - Persona inlining, persona skills, `delegate_task`, prompt templates for commands

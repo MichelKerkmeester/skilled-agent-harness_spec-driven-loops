@@ -161,7 +161,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
+     H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:

@@ -1,0 +1,9 @@
+2026-10-22T20:07:23.099Z
+kind=cli-hermes label=hermes
+lineage.model=undefined (unpinned)
+effective.model=deepseek-v4.1-flash-1017
+argv="hermes" "chat" "-Q" "--oneshot" "--query-file" "-" "--provider" "llmgateway" "--model" "deepseek-v4.1-flash-1017" "--ignore-rules" "--source" "tool" "--max-turns" "200" "--run-budget" "840" "-t" "terminal,file,skills,todo,web" "--yolo" "--reasoning" "max"
+exit=0
+signal=null
+stdout_tail=OK\n
+stderr_tail=\nsession_id: 20261022_220717_d7a731\n

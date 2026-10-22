@@ -2405,7 +2405,7 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // `-max` uid bakes the tier into the id and is not matched. Duplicated as a plain function
 // so the pin lands inside the synchronous command builders below.
 function isFlashMaxPinnedModel(model) {
-  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash(-1017)?|glm-5\.3-flash)$/.test(model);
 }
 
 // Effective reasoning effort after the Flash top-tier pin.
@@ -2552,7 +2552,7 @@ const CURSOR_ALLOWED_MODELS = new Set([
 // an unpinned lineage depend on which binary PATH happened to resolve.
 const CODEX_DEFAULT_MODEL = 'gpt-6-luna';
 const CLAUDE_DEFAULT_MODEL = 'claude-opus-4-8';
-const OPENCODE_DEFAULT_MODEL = 'llmgateway/deepseek-v4.1-flash';
+const OPENCODE_DEFAULT_MODEL = 'llmgateway/deepseek-v4.1-flash-1017';
 const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 
 // Mirrors PI_SUPPORTED_MODELS in executor-config.ts. Pi is a provider
@@ -2564,6 +2564,9 @@ const PI_ALLOWED_MODELS = new Set([
   // provider-qualified literal below rather than through this bare one. The gateway deactivated
   // the older vision-exp id and returns 410 for it, so the bare literal here is the 4.1 line.
   'deepseek-v4.1-flash',
+  // The dated 2026-10-17 release of the same model, DevPass-fronted and the default pi
+  // model; the undated literal above stays pinnable for the 2026-09-10 build.
+  'deepseek-v4.1-flash-1017',
   // Provider-qualified DeepSeek V4.1 Flash route, for runs that must bill through
   // opencode-go instead of DevPass. The literal names its provider, so it maps to exactly
   // one route and the bare literal above keeps DevPass.
@@ -2584,7 +2587,7 @@ const PI_ALLOWED_MODELS = new Set([
   // direct-dispatch only and absent here.
   'glm-5.3-flash',
 ]);
-const PI_DEFAULT_MODEL = 'deepseek-v4.1-flash';
+const PI_DEFAULT_MODEL = 'deepseek-v4.1-flash-1017';
 
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
@@ -2793,6 +2796,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
   ['deepseek-v4.1-flash', 'llmgateway'],
+  ['deepseek-v4.1-flash-1017', 'llmgateway'],
   ['opencode-go/deepseek-v4.1-flash', 'opencode-go'],
   ['minimax-m3', 'minimax'],
   ['gpt-6-luna', 'openai'],
@@ -2898,13 +2902,14 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
 // runtime accepts and the other refuses for no reason the caller can see.
 const HERMES_ALLOWED_MODELS = new Set([
   'deepseek-v4.1-flash',
+  'deepseek-v4.1-flash-1017',
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
   'qwen3.8-max',
   'glm-5.3-flash',
 ]);
-const HERMES_DEFAULT_MODEL = 'deepseek-v4.1-flash';
+const HERMES_DEFAULT_MODEL = 'deepseek-v4.1-flash-1017';
 // The name of the operator's custom provider block in ~/.hermes/config.yaml. The packet
 // contract pins it, because Hermes resolves `--provider` by that user-defined name and
 // nothing in the repo can carry the block itself.

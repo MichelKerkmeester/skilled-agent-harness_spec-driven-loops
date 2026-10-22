@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -79,7 +79,7 @@ On OpenCode 1 (1.19.3):
 
 ```bash
 opencode run \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --agent general \
   --variant max \
   --format json \
@@ -92,7 +92,7 @@ On OpenCode 2 (2.0.32), the same dispatch rides `max` on the model id as `#max`,
 ```bash
 cd "$REPO_ROOT" && opencode2 run \
   --standalone \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent general \
   --format json \
   "<prompt-from-template>" 2>&1
@@ -100,7 +100,7 @@ cd "$REPO_ROOT" && opencode2 run \
 
 On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
-OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`).
 
 ### Why it matters
 
@@ -155,7 +155,7 @@ On OpenCode 1 (1.19.3):
 ```bash
 opencode run \
   --port 4096 \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --agent deep-research \
   --variant max \
   --format json \
@@ -221,7 +221,7 @@ On OpenCode 1 (1.19.3):
 
 ```bash
 opencode run \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --agent general \
   --variant max \
   --format json \
@@ -234,7 +234,7 @@ On OpenCode 2 (2.0.32), the same translation as use case 1 applies:
 ```bash
 cd "$REPO_ROOT" && opencode2 run \
   --standalone \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent general \
   --format json \
   "<prompt-from-template>" 2>&1
@@ -384,7 +384,7 @@ On OpenCode 1 (1.19.3):
 
 ```bash
 timeout 720 opencode run \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --variant max \
   --pure \
   --dangerously-skip-permissions \
@@ -399,7 +399,7 @@ On OpenCode 2 (2.0.32), the same dispatch adds `--standalone` and rides `max` on
 ```bash
 timeout 720 opencode2 run \
   --standalone \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --auto \
   "$(cat prompt.md)" \
   </dev/null \

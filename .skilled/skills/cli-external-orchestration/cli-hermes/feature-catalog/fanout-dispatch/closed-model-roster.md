@@ -1,19 +1,19 @@
 ---
-title: "Closed Six-Model Gateway Roster"
-description: "Dispatch is fenced to the six model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned."
+title: "Closed Seven-Model Gateway Roster"
+description: "Dispatch is fenced to the seven model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned."
 trigger_phrases:
-  - "closed six-model gateway roster"
+  - "closed seven-model gateway roster"
   - "HERMES_SUPPORTED_MODELS"
   - "isHermesModelAllowed"
   - "hermes llmgateway provider"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
-# Closed Six-Model Gateway Roster (HERMES_SUPPORTED_MODELS)
+# Closed Seven-Model Gateway Roster (HERMES_SUPPORTED_MODELS)
 
 ## 1. OVERVIEW
 
-Dispatch is fenced to the six model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
+Dispatch is fenced to the seven model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
 
 Hermes is a provider pass-through with a wide upstream catalog, so the fence is not a convenience: it is what keeps dispatch inside the one credential kind this machine can share across runtimes.
 
@@ -21,9 +21,9 @@ Hermes is a provider pass-through with a wide upstream catalog, so the fence is 
 
 ## 2. HOW IT WORKS
 
-The runtime config declares `HERMES_SUPPORTED_MODELS` as `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3` and `qwen3.8-max`, exports a matching type, names the DeepSeek literal as the rotation default, and exposes `isHermesModelAllowed` as the type-narrowing predicate over the set. Every id is the bare literals the gateway expects beneath its provider name, not provider-prefixed forms.
+The runtime config declares `HERMES_SUPPORTED_MODELS` as `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3` and `qwen3.8-max`, exports a matching type, names the `-1017` DeepSeek literal as the rotation default, and exposes `isHermesModelAllowed` as the type-narrowing predicate over the set. Every id is the bare literals the gateway expects beneath its provider name, not provider-prefixed forms.
 
-The fan-out script carries its own synchronous mirror of the same six ids, with a comment naming the config as the source it mirrors. The duplication is deliberate: command construction stays fail-closed without importing a TypeScript module. A lineage that names no model takes the default; one that names an id outside the set raises an input error that prints the whole allowlist, and no process is spawned.
+The fan-out script carries its own synchronous mirror of the same seven ids, with a comment naming the config as the source it mirrors. The duplication is deliberate: command construction stays fail-closed without importing a TypeScript module. A lineage that names no model takes the default; one that names an id outside the set raises an input error that prints the whole allowlist, and no process is spawned.
 
 The provider name is pinned in the same place, because Hermes resolves `--provider` by a user-defined block name and nothing in the repository can carry that block. The provider, its key variable and the credential file are operator steps; the packet documents them and no dispatch performs them.
 

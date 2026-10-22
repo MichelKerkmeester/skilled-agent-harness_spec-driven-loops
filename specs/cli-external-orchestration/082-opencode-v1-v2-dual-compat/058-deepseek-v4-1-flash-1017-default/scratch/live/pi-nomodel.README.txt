@@ -1,0 +1,4 @@
+Pi with no --model from the worktree: PI_CODING_AGENT_DIR is a scratch dir whose settings.json and models.json link
+to the worktree's .pi files (the operator's ~/.pi/agent files link to the main checkout). Command:
+pi -ne -p "Reply with exactly: OK" --mode text|json --offline. text replied OK (exit 0); json shows
+provider llmgateway, model deepseek-v4.1-flash-1017, thinkingLevel max (xhigh clamped up, see ../blackhole/README.txt).

@@ -2,6 +2,10 @@
 // MODULE: Executor Config Unit Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
@@ -31,6 +35,9 @@ import {
   pinReasoningEffortForModel,
   assertExecutorMcpServerCapability,
 } from '../../lib/deep-loop/executor-config';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
 
 describe('executor-config', () => {
   it('defines eight executor kinds including cli-devin, cli-pi and cli-hermes', () => {
@@ -959,6 +966,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants, the DevPass GLM-5.3-Flash literal, and the provider-qualified DeepSeek route for opencode-go', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4.1-flash',
+      'deepseek-v4.1-flash-1017',
       'deepseek/deepseek-v4-flash-vision-exp',
       'glm-5.3-flash',
       'gpt-6-luna',
@@ -970,9 +978,41 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
     ]);
   });
 
-  it('defaults to deepseek-v4-flash, which is itself an allowed model', () => {
-    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4.1-flash');
+  it('defaults to deepseek-v4.1-flash-1017, which is itself an allowed model', () => {
+    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4.1-flash-1017');
     expect(isPiModelAllowed(PI_DEFAULT_MODEL)).toBe(true);
+  });
+
+  it('routes its default model and the older DeepSeek release through the llmgateway provider config', () => {
+    const config = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'models.json'), 'utf8')) as {
+      providers?: { llmgateway?: { models?: { id?: string }[] } };
+    };
+    const llmgatewayIds = (config.providers?.llmgateway?.models ?? []).map((model) => model.id);
+    expect(llmgatewayIds).toContain(PI_DEFAULT_MODEL);
+    expect(llmgatewayIds).toContain('deepseek-v4.1-flash');
+  });
+
+  it('makes its default model the default of a pi run that names no model', () => {
+    const settings = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'settings.json'), 'utf8')) as {
+      defaultProvider?: string;
+      defaultModel?: string;
+      enabledModels?: string[];
+    };
+    expect(settings.defaultProvider).toBe('llmgateway');
+    expect(settings.defaultModel).toBe(PI_DEFAULT_MODEL);
+    expect(settings.enabledModels?.[0]).toBe(`llmgateway/${PI_DEFAULT_MODEL}`);
+  });
+
+  it('runs the pi-blackhole workers on its default model at a thinking level the model supports', () => {
+    const blackhole = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'pi-blackhole-config.json'), 'utf8')) as {
+      model?: { provider?: string; id?: string; thinking?: string };
+    };
+    expect(blackhole.model).toEqual({ provider: 'llmgateway', id: PI_DEFAULT_MODEL, thinking: 'high' });
+    const config = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'models.json'), 'utf8')) as {
+      providers?: { llmgateway?: { models?: { id?: string; thinkingLevelMap?: Record<string, string | null> }[] } };
+    };
+    const entry = config.providers?.llmgateway?.models?.find((model) => model.id === PI_DEFAULT_MODEL);
+    expect(entry?.thinkingLevelMap?.high).toBe('high');
   });
 
   it('accepts every allowlisted id', () => {
@@ -1001,14 +1041,14 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
   // their bare literals.
   it('matches the bare literals of the Pi roster and keeps the retired MiMo id out', () => {
     expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
-      'deepseek-v4.1-flash', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
+      'deepseek-v4.1-flash', 'deepseek-v4.1-flash-1017', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
       'minimax-m3', 'qwen3.8-max',
     ]);
     expect(isHermesModelAllowed('mimo-v2.6-pro')).toBe(false);
   });
 
-  it('defaults to deepseek-v4.1-flash, which is itself an allowed model', () => {
-    expect(HERMES_DEFAULT_MODEL).toBe('deepseek-v4.1-flash');
+  it('defaults to deepseek-v4.1-flash-1017, which is itself an allowed model', () => {
+    expect(HERMES_DEFAULT_MODEL).toBe('deepseek-v4.1-flash-1017');
     expect(isHermesModelAllowed(HERMES_DEFAULT_MODEL)).toBe(true);
   });
 
@@ -1039,6 +1079,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-vision-exp')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek-v4.1-flash')).toBe(true);
+    expect(isFlashMaxPinnedModel('deepseek-v4.1-flash-1017')).toBe(true);
     expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4.1-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash')).toBe(true);
@@ -1060,6 +1101,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(pinReasoningEffortForModel('deepseek-v4-flash', null)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', undefined)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek/deepseek-v4-flash-latest', 'low')).toBe('max');
+    expect(pinReasoningEffortForModel('deepseek-v4.1-flash-1017', 'high')).toBe('max');
     expect(pinReasoningEffortForModel('opencode-go/deepseek-v4.1-flash', 'low')).toBe('max');
     expect(pinReasoningEffortForModel('minimax-m3', 'high')).toBe('high');
     expect(pinReasoningEffortForModel('minimax-m3', null)).toBe(null);

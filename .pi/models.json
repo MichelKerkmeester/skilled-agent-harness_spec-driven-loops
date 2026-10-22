@@ -38,6 +38,34 @@
           }
         },
         {
+          "id": "deepseek-v4.1-flash-1017",
+          "name": "DeepSeek V4.1 Flash 1017",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1050000,
+          "maxTokens": 393216,
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": "low",
+            "medium": null,
+            "high": "high",
+            "max": "max",
+            "xhigh": null
+          },
+          "cost": {
+            "input": 0.15,
+            "output": 0.6,
+            "cacheRead": 0.003,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false
+          }
+        },
+        {
           "id": "glm-5.3-flash",
           "name": "GLM-5.3-Flash",
           "reasoning": true,

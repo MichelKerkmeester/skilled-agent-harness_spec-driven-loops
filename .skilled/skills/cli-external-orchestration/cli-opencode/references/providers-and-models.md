@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -63,7 +63,7 @@ GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (bas
 
 ### opencode-go
 
-opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families, and its flash route is `opencode-go/deepseek-v4.1-flash` (the direct DeepSeek API provider was retired). It is no longer the mode default: `llmgateway/deepseek-v4.1-flash` is, on both versions. Confirm live slugs via `opencode models opencode-go` on OpenCode 1.
+opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families, and its flash route is `opencode-go/deepseek-v4.1-flash` (the direct DeepSeek API provider was retired). It is no longer the mode default: `llmgateway/deepseek-v4.1-flash-1017` is, on both versions. Confirm live slugs via `opencode models opencode-go` on OpenCode 1.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
@@ -74,17 +74,18 @@ opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, a
 
 ### llmgateway
 
-DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. It hosts this mode's **default model on both OpenCode versions**, `llmgateway/deepseek-v4.1-flash`. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
+DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. It hosts this mode's **default model on both OpenCode versions**, `llmgateway/deepseek-v4.1-flash-1017`. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
 
-> **The gateway takes BARE model ids.** `llmgateway/deepseek-v4.1-flash` is provider + id, and the id sent on the wire is `deepseek-v4.1-flash`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. The gateway also rewrites ids upstream in its reply (`deepseek/…`, `zai/…`). Those names are informational and are never sent.
+> **The gateway takes BARE model ids.** `llmgateway/deepseek-v4.1-flash-1017` is provider + id, and the id sent on the wire is `deepseek-v4.1-flash-1017`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. The gateway also rewrites ids upstream in its reply (`deepseek/…`, `zai/…`). Those names are informational and are never sent.
 
 > **DevPass bills per token at normal API list rates.** The plan buys credits at a 3x bonus, which discounts the bill rather than removing it, so a cached read still costs less than an uncached one and neither is free. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). All three models below are **Standard**, so **no weekly cap applies to this roster**.
 
-> **`llmgateway` fronts 262 models. Exactly the two below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
+> **`llmgateway` fronts 262 models. Exactly the three below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `llmgateway/deepseek-v4.1-flash` | ✓ | **The mode default on both OpenCode versions.** DeepSeek V4.1 Flash via DevPass, reasoning **and images**. Pinned `--variant max` (OpenCode 1 only), which the route accepts. On OpenCode 2 the equivalent is `-m llmgateway/deepseek-v4.1-flash#max`. Context 1.05M, output 384K, $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
+| `llmgateway/deepseek-v4.1-flash-1017` | ✓ | **The mode default on both OpenCode versions.** DeepSeek V4.1 Flash via DevPass, the 2026-10-17 release, reasoning **and images**. Pinned `--variant max` (OpenCode 1 only), which the route accepts. On OpenCode 2 the equivalent is `-m llmgateway/deepseek-v4.1-flash-1017#max`. Context 1.05M, output 384K, $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here |
+| `llmgateway/deepseek-v4.1-flash` | no | The **2026-09-10** release of DeepSeek V4.1 Flash via DevPass, still selectable and pinnable. It carries the same 1.05M context, 384K output, $0.15 in and $0.60 out per million tokens and cached reads $0.003, and the same effort ladder as the `-1017` release, so pinning it trades no capability and no price. DeepSeek's own provider route for it **deactivates on 2026-10-24**, after which the `-1017` default is the one that keeps answering. Pinned `--variant max` (OpenCode 1 only), which the route accepts; on OpenCode 2 the equivalent is `-m llmgateway/deepseek-v4.1-flash#max`. Live-verified 2026-09-10. `low`/**`high`**/**`max`** plus off, default `high`; `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
 | `llmgateway/glm-5.3-flash` | no | GLM-5.3-Flash via DevPass, a reasoning route with the full ladder including **both `xhigh` and `max`**, the only GLM-5.3-Flash route carrying both, so `--variant max` (OpenCode 1 only). On OpenCode 2 the equivalent is `-m llmgateway/glm-5.3-flash#max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
 
 ---
@@ -95,14 +96,14 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `llmgateway/deepseek-v4.1-flash`, on both OpenCode 1 and OpenCode 2 |
-| Default effort | On OpenCode 1, `--variant max` (flash is max-tier-pinned by policy). On OpenCode 2, `-m llmgateway/deepseek-v4.1-flash#max` |
+| Default model | `llmgateway/deepseek-v4.1-flash-1017`, on both OpenCode 1 and OpenCode 2 |
+| Default effort | On OpenCode 1, `--variant max` (flash is max-tier-pinned by policy). On OpenCode 2, `-m llmgateway/deepseek-v4.1-flash-1017#max` |
 | Default format | `--format json` |
 
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model llmgateway/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -112,12 +113,12 @@ opencode run \
 ```bash
 # On OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "<prompt>" </dev/null
 ```
 
-The two versions do not always list the same providers, and OpenCode 2 lists no `opencode-go` provider, while the `opencode-go` Go-plan quota is spent on OpenCode 1, so `llmgateway/deepseek-v4.1-flash` is the single default on both versions. On OpenCode 2 confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
+The two versions do not always list the same providers, and OpenCode 2 lists no `opencode-go` provider, while the `opencode-go` Go-plan quota is spent on OpenCode 1, so `llmgateway/deepseek-v4.1-flash-1017` is the single default on both versions. On OpenCode 2 confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
 
 If the default provider is not configured, the mode ASKS the operator before substituting. It never silently swaps a model. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §4.
 
@@ -125,14 +126,14 @@ If the default provider is not configured, the mode ASKS the operator before sub
 
 ## 4. REASONING-EFFORT / THINKING LEVER
 
-cli-opencode expresses reasoning effort through the **`--variant`** flag (OpenCode 1 only), which maps to a provider-specific effort scale. On OpenCode 2 the level rides on the model id instead (`-m provider/model#<level>`). Default skill behavior is `--variant high` for non-pinned models, and the default model is pinned to its max tier by policy: `llmgateway/deepseek-v4.1-flash` at `--variant max` on OpenCode 1 and at `#max` on OpenCode 2. The ladders below are observed on OpenCode 1 and are unverified on OpenCode 2.0.32.
+cli-opencode expresses reasoning effort through the **`--variant`** flag (OpenCode 1 only), which maps to a provider-specific effort scale. On OpenCode 2 the level rides on the model id instead (`-m provider/model#<level>`). Default skill behavior is `--variant high` for non-pinned models, and the default model is pinned to its max tier by policy: `llmgateway/deepseek-v4.1-flash-1017` at `--variant max` on OpenCode 1 and at `#max` on OpenCode 2. The ladders below are observed on OpenCode 1 and are unverified on OpenCode 2.0.32.
 
 | Provider | `--variant` behavior (OpenCode 1 only) |
 |----------|----------------------|
 | `opencode-go` (`deepseek-v4.1-flash`) | reasoning model pinned to `--variant max` (OpenCode 1 only, max thinking tier) by policy. On OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`, which needs its own opencode-go login on v2 (`opencode2 providers login opencode-go`). The fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified, omitted by default. Confirm before relying |
 | `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**, with Pro tiers at `medium`/`high`/`xhigh`. The `-fast` slugs are the low-latency Fast tier with the same range |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`. `glm-5.3-flash` carries the full ladder to `max`. Always pass the level explicitly here |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash-1017` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`, and the older `deepseek-v4.1-flash` release carries the same ladder. `glm-5.3-flash` carries the full ladder to `max`. Always pass the level explicitly here |
 
 ---
 
@@ -144,14 +145,14 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 ```bash
 # On OpenCode 1 (1.19.3):
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
-  --model llmgateway/deepseek-v4.1-flash --variant max --format json \
+  --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json \
   --dir "$REPO_ROOT" "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
 ```bash
 # On OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 \
-  opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#max --format json \
+  opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
   "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 

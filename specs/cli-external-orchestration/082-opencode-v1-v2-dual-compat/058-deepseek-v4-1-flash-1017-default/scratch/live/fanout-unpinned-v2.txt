@@ -1,0 +1,9 @@
+2026-10-22T20:07:19.023Z
+kind=cli-opencode label=v2
+lineage.model=undefined (unpinned)
+effective.model=llmgateway/deepseek-v4.1-flash-1017
+argv="opencode2" "run" "--standalone" "-m" "llmgateway/deepseek-v4.1-flash-1017#max" "--format" "json" "--auto" "<prompt>"
+exit=0
+signal=null
+stdout_tail=8db9001RIrMUm0S5JI3PQ","type":"step-start","snapshot":"704f050c524bc2d59354c84f315ad4d8be26dcf7"}}\n{"type":"text","timestamp":1792699636312,"sessionID":"ses_e9ac679c0ffeXITezibeM5WeM5","part":{"id":"prt_165399a550025JNy9UOcsimh80","sessionID":"ses_e9ac679c0ffeXITezibeM5WeM5","messageID":"msg_165398db9001RIrMUm0S5JI3PQ","type":"text","text":"OK","time":{"start":1792699636309,"end":1792699636312}}}\n
+stderr_tail=

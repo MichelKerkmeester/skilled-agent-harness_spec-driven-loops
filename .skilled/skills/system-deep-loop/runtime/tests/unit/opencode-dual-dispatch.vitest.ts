@@ -395,7 +395,7 @@ describe('OpenCode lineage builders', () => {
     );
 
     expect(result.args).toContain('--model');
-    expect(result.args).toContain('llmgateway/deepseek-v4.1-flash');
+    expect(result.args).toContain('llmgateway/deepseek-v4.1-flash-1017');
     expect(result.args).toContain('--variant');
     expect(result.args).toContain('max');
     expect(result.args).not.toContain('opencode-go/deepseek-v4.1-flash');
@@ -413,7 +413,7 @@ describe('OpenCode lineage builders', () => {
     );
 
     expect(result.args).toContain('-m');
-    expect(result.args).toContain('llmgateway/deepseek-v4.1-flash#max');
+    expect(result.args).toContain('llmgateway/deepseek-v4.1-flash-1017#max');
   });
 
   it('D3 preserves the native v1 argv', () => {

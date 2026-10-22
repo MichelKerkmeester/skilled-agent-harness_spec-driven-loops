@@ -1,0 +1,9 @@
+2026-10-22T20:07:15.214Z
+kind=cli-pi label=pi
+lineage.model=undefined (unpinned)
+effective.model=deepseek-v4.1-flash-1017
+argv="pi" "-p" "--offline" "--model" "llmgateway/deepseek-v4.1-flash-1017" "--thinking" "max" "<prompt>"
+exit=0
+signal=null
+stdout_tail=OK\n
+stderr_tail=

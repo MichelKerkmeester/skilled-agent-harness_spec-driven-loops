@@ -1884,12 +1884,12 @@ describe('fanout-run.cjs — cli-hermes adapter', () => {
     }
   });
 
-  it('defaults an omitted model to deepseek-v4.1-flash', () => {
+  it('defaults an omitted model to deepseek-v4.1-flash-1017', () => {
     const command = buildLineageCommand(
       { kind: 'cli-hermes' }, 'p', 'workspace-write', 'default', withStub('default-model'),
     ) as { args: string[]; effectiveConfig: { model: string } };
-    expect(command.args.slice(0, 9)).toEqual(prefix('deepseek-v4.1-flash').slice(0, 9));
-    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
+    expect(command.args.slice(0, 9)).toEqual(prefix('deepseek-v4.1-flash-1017').slice(0, 9));
+    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash-1017');
   });
 
   it('keeps the run budget one margin under the lineage timeout and never below the margin', () => {
@@ -2008,6 +2008,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // opencode-go fronts the same model through its own provider-qualified literal, which
       // carries an exact selector rather than composing one.
       'deepseek-v4.1-flash': 'llmgateway',
+      'deepseek-v4.1-flash-1017': 'llmgateway',
       'opencode-go/deepseek-v4.1-flash': 'opencode-go',
       'minimax-m3': 'minimax',
       'gpt-6-luna': 'openai',
@@ -2040,7 +2041,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // variants) and GLM-5.3-Flash (bare opencode-go or vendor-prefixed OpenRouter literal) are
       // pinned to their route's top thinking tier, so they always carry --thinking even when the
       // lineage names no reasoningEffort. The other picker ids carry no --thinking here.
-      const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
+      const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash(-1017)?|glm-5\.3-flash)$/.test(model);
       const modelSelector = selectorByModel[model] ?? `${provider}/${model}`;
       const expectedArgs = isFlashPinned
         ? ['-p', '--offline', '--model', modelSelector, '--thinking', 'max', 'bounded prompt']
@@ -2070,12 +2071,27 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     }
   });
 
-  it('defaults an omitted model to deepseek-v4.1-flash, max-pinned via its DevPass provider prefix', () => {
+  it('defaults an omitted model to deepseek-v4.1-flash-1017, max-pinned via its DevPass provider prefix', () => {
     const binDir = makeTempDir('fanout-run-pi-default-model-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const command = buildLineageCommand(
       { kind: 'cli-pi' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      opts,
+    ) as { args: string[]; effectiveConfig: { model: string } };
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash-1017', '--thinking', 'max', 'bounded prompt']);
+    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash-1017');
+  });
+
+  it('still dispatches the older deepseek-v4.1-flash release when a lineage pins it', () => {
+    const binDir = makeTempDir('fanout-run-pi-older-flash-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const command = buildLineageCommand(
+      { kind: 'cli-pi', model: 'deepseek-v4.1-flash' },
       'bounded prompt',
       'workspace-write',
       'default',
