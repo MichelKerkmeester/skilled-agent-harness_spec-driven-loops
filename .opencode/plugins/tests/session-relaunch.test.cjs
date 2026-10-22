@@ -1169,7 +1169,7 @@ test('the planned note path lands under the env repo root, not the session direc
     ),
   );
   assert.equal(notePath.startsWith(`${path.sep}workspace${path.sep}`), false);
-  assert.match(path.basename(notePath), /^\d{8}T\d{6}Z-ses-note\.md$/);
+  assert.match(path.basename(notePath), /^\d{8}T\d{6}Z-ses-note-path-0001\.md$/);
 });
 
 test('a relative SESSION_RELAUNCH_REPO_ROOT still yields an absolute planned note path', async (t) => {
@@ -1584,4 +1584,94 @@ test('after compaction the first-level nudge fires again', async (t) => {
 
   assert.equal(output.length, 1);
   assert.match(output[0], /81% full/);
+});
+
+test('a new user message disarms the armed record it owns', async (t) => {
+  setupEnv(t);
+  const spawn = stubSpawn(t);
+  const loopId = 'opencode-loop-user-message-0001';
+  const sessionID = 'ses_4f2a8c1d9e6bKQrJWCjyWiOfRn';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+  assert.equal(spawn.calls.length, 1);
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-after-arm', role: 'user' } },
+  } });
+
+  // The operator is still working, so the killer must find nothing to act on.
+  const record = core.readRelaunchFile(loopId, process.env);
+  assert.equal(record.status, 'disarmed');
+  assert.equal(record.disarmReason, 'user-message');
+  assert.equal(record.sessionId, sessionID);
+});
+
+test('a user message in another session leaves the armed record alone', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-loop-other-session-0001';
+  const sessionID = 'ses_7b3e5a9c1d2fKQrJWCjyWiOfRt';
+  const otherID = 'ses_1d8c4e6a2b9fKQrJWCjyWiOfRv';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID: otherID, info: { id: 'msg-other-session', role: 'user' } },
+  } });
+
+  // A record belongs to the session that armed it, so a sibling session's turn says
+  // nothing about whether this loop should relaunch.
+  const record = core.readRelaunchFile(loopId, process.env);
+  assert.equal(record.status, 'armed');
+  assert.equal(record.sessionId, sessionID);
+});
+
+test('a user message before the arm does not disarm', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-loop-pending-message-0001';
+  const sessionID = 'ses_9a6d2b7f4c1eKQrJWCjyWiOfRx';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-before-arm', role: 'user' } },
+  } });
+
+  // A pending record has not handed control to a killer yet, so it stays available
+  // for the session.idle that arms it.
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
 });

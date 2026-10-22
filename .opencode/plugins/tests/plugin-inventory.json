@@ -18,6 +18,7 @@
     "unverified": [
       { "event": "session.status", "reason": "Needs a model turn; not observed on OpenCode 2." },
       { "event": "session.resumed", "reason": "Not observed on OpenCode 2." },
+      { "event": "session.updated", "reason": "Carries info.parentID for a task sub-agent on OpenCode 1.19.3; not observed on OpenCode 2." },
       { "event": "session.compact", "reason": "Not observed on OpenCode 2." },
       { "event": "permission.asked", "reason": "Needs a model turn; not observed on OpenCode 2." },
       { "event": "permission.replied", "reason": "Needs a model turn; not observed on OpenCode 2." },

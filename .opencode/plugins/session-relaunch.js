@@ -233,6 +233,25 @@ function spawnKiller(loopId) {
   }
 }
 
+// The killer runs without a transcript, so it never sees the operator's next turn arrive;
+// the arm is withdrawn here, before its fixed idle wait ends and it signals a relaunch.
+function withdrawArmForUserMessage(loopId, sessionID) {
+  try {
+    const record = core.readRelaunchFile(loopId, process.env);
+    if (record?.status !== 'armed' || record.sessionId !== sessionID) return;
+    core.unarm({
+      loopId,
+      reason: 'user-message',
+      expectedStatus: 'armed',
+      expectedHandoff: record.handoff,
+      expectedArmedAt: record.armedAt,
+      expectedArmId: record.armId,
+      env: process.env,
+    });
+    logEvent('arm-cancelled', { loopId, sessionId: sessionID, reason: 'user-message' });
+  } catch {}
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -286,11 +305,15 @@ function sessionRelaunchPlugin(ctx = {}) {
 
           if (info.role === 'user' && typeof info.id === 'string') {
             const state = stateFor(sessionStates, sessionID);
+            const isNewUserMessage = state.latestUserMessageId !== info.id;
             if (
-              state.latestUserMessageId !== info.id
+              isNewUserMessage
               && state.activeSeed?.messageID !== null
               && info.id !== state.activeSeed?.messageID
             ) state.activeSeed = null;
+            if (isNewUserMessage && process.env.SKILLED_LOOP_ID) {
+              withdrawArmForUserMessage(process.env.SKILLED_LOOP_ID, sessionID);
+            }
             state.latestUserMessageId = info.id;
             return;
           }
