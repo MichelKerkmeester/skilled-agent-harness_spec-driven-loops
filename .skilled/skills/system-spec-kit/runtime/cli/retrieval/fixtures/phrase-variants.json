@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7ab812d6885ae10c29b14751cf2c633fc631240245e3e883810177e9b7af5235",
+  "manifestHash": "72dce7cb4012a4d91924a5e8cb3c4d71681e299eec9e9c97a3a66b618d207a38",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21689,8 +21689,8 @@
     "closed roster": [
       "closed roster"
     ],
-    "closed six model gateway roster": [
-      "closed six-model gateway roster"
+    "closed seven model gateway roster": [
+      "closed seven-model gateway roster"
     ],
     "closed status discovery": [
       "closed status discovery"
@@ -34668,6 +34668,18 @@
     ],
     "deepseek v4 1 flash": [
       "deepseek v4.1 flash"
+    ],
+    "deepseek v4 1 flash 1017 default": [
+      "deepseek v4 1 flash 1017 default"
+    ],
+    "deepseek v4 1 flash 1017 default implementation summary": [
+      "deepseek v4 1 flash 1017 default implementation summary"
+    ],
+    "deepseek v4 1 flash 1017 default plan": [
+      "deepseek v4 1 flash 1017 default plan"
+    ],
+    "deepseek v4 1 flash 1017 default tasks": [
+      "deepseek v4 1 flash 1017 default tasks"
     ],
     "deepseek v4 flash": [
       "deepseek v4 flash"
@@ -72903,6 +72915,9 @@
     ],
     "phase 57 v4 0 0 13 reliability fixes": [
       "phase 57 v4 0 0 13 reliability fixes"
+    ],
+    "phase 58 deepseek v4 1 flash 1017 default": [
+      "phase 58 deepseek v4 1 flash 1017 default"
     ],
     "phase 59 cross cli map refresh": [
       "phase 59 cross cli map refresh"

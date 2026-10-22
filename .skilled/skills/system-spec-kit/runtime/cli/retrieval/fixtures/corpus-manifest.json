@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2c5c58a344f21ebe163a37c52c6a16ed8d8e34021ca088e9da7ca825acb89d85",
+  "corpusHash": "189becfda7d51420023e59a719e4f25e8d74b2cec1201b7f09dcaf59b4474c3a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25654,
+  "includedPathCount": 25658,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9091,6 +9091,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/spec.md",
@@ -25685,7 +25689,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7ab812d6885ae10c29b14751cf2c633fc631240245e3e883810177e9b7af5235",
+  "manifestHash": "72dce7cb4012a4d91924a5e8cb3c4d71681e299eec9e9c97a3a66b618d207a38",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26873,6 +26877,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default/scratch",
       "reason": "excluded directory"
     },
     {
