@@ -17,6 +17,9 @@ import {
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface RelaunchRecord {
+  armId?: string;
+  armedAt?: string;
+  handoff?: string;
   runtime?: string;
   sessionId?: string;
   status?: string;
@@ -40,6 +43,15 @@ interface CoreModule {
   dropNestedLoop(env: NodeJS.ProcessEnv, options: { hostPid: number }): boolean;
   parseHandoff(text: string): { frontmatter: Record<string, unknown> };
   readRelaunchFile(loopId: string, env: NodeJS.ProcessEnv): RelaunchRecord | null;
+  unarm(options: {
+    loopId: string;
+    reason: string;
+    expectedStatus?: string;
+    expectedHandoff?: string;
+    expectedArmedAt?: string;
+    expectedArmId?: string;
+    env: NodeJS.ProcessEnv;
+  }): RelaunchRecord | null;
 }
 
 // CoreModule is a hand-written view of a CommonJS module no compiler checks it against,
@@ -52,6 +64,7 @@ const CORE_FUNCTIONS = [
   'dropNestedLoop',
   'parseHandoff',
   'readRelaunchFile',
+  'unarm',
 ] as const;
 
 interface ContextUsageModule {
@@ -125,6 +138,14 @@ type AdapterModules = {
 type CompactionRegistrar = {
   on(
     event: 'session_compact',
+    handler: (event: unknown, ctx: ExtensionContext) => unknown,
+  ): void;
+};
+
+// The shim declares no start event either, though a running Pi emits one before each turn.
+type AgentStartRegistrar = {
+  on(
+    event: 'agent_start',
     handler: (event: unknown, ctx: ExtensionContext) => unknown,
   ): void;
 };
@@ -292,6 +313,14 @@ function logPointer(core: CoreModule, sessionId: string, notePath: string): void
   } catch {}
 }
 
+// The withdrawal is a handoff step like the arm itself, so it lands in the same log, and a
+// state-dir write that fails must not fail the turn that withdrew it.
+function logArmCancelled(core: CoreModule, loopId: string, sessionId: string): void {
+  try {
+    core.appendLog('arm-cancelled', { loopId, sessionId, reason: 'user-message' }, process.env);
+  } catch {}
+}
+
 // The ambient shim declares no `node:fs`, so the note is read through the dynamic import the
 // killer path already resolves. A note whose frontmatter will not parse costs only its packet:
 // the seed still names the work worth claiming.
@@ -375,8 +404,8 @@ async function armRelaunch(
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Register the message_end, before_agent_start, agent_end and session_compact hooks on the
- * Pi extension host.
+ * Register the message_end, before_agent_start, agent_start, agent_end and session_compact
+ * hooks on the Pi extension host.
  */
 export default function sessionRelaunch(pi: ExtensionAPI): void {
   // Keyed by session id, so two sessions in one host process never swap a nudge.
@@ -465,6 +494,42 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
         // streaming loop, start a turn on an idle one.
         { deliverAs: 'followUp', triggerTurn: true },
       );
+    } catch {
+      return undefined;
+    }
+  });
+
+  // Pi writes an assistant message only once its turn completes, so a turn the operator starts
+  // just after the arm leaves the transcript silent for longer than the killer waits, and the
+  // killer reads that silence as a dead session and signals it mid-turn. A turn that has started
+  // is proof enough that the session is alive, so its arm is withdrawn before it can fire.
+  (pi as unknown as AgentStartRegistrar).on('agent_start', async (_event, ctx) => {
+    try {
+      const config = loadConfigFile(configPath());
+      if (!isEnabled(config)) return;
+      const modules = await loadModules();
+      const sessionId = sessionIdOf(ctx, modules.nudge);
+      if (!sessionId) return;
+
+      const loopId = process.env.SKILLED_LOOP_ID;
+      if (!loopId) return;
+
+      const record = modules.core.readRelaunchFile(loopId, process.env);
+      if (record?.status !== 'armed' || record.sessionId !== sessionId) return;
+
+      // The withdrawal matches every field the arm carried, so a stop that re-armed the record
+      // between this read and this call is not undone on the strength of the older record.
+      const disarmed = modules.core.unarm({
+        loopId,
+        reason: 'user-message',
+        expectedStatus: 'armed',
+        expectedHandoff: record.handoff,
+        expectedArmedAt: record.armedAt,
+        expectedArmId: record.armId,
+        env: process.env,
+      });
+      if (disarmed === null) return;
+      logArmCancelled(modules.core, loopId, sessionId);
     } catch {
       return undefined;
     }

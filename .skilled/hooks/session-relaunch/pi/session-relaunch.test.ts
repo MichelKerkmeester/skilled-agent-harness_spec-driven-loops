@@ -796,6 +796,81 @@ describe('session-relaunch Pi extension', () => {
       vi.resetModules();
     }
   });
+
+  it('agent_start disarms the armed record this session owns', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-user-message-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
+
+    // Pi writes the assistant message only once a turn completes, so the session file
+    // stays quiet while the model thinks. An operator prompt in that gap must withdraw the
+    // arm, or the killer reads the silence as a dead session and signals mid-turn.
+    await emit(handlers, 'agent_start', {}, ctx);
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+      status: 'disarmed',
+      disarmReason: 'user-message',
+    });
+  });
+
+  it('agent_start leaves another session\'s armed record alone', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-other-session-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'agent_end', {}, makeContext());
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
+
+    await emit(handlers, 'agent_start', {}, makeContext('pi-session-0002'));
+
+    // A record belongs to the session that armed it, so a sibling session's turn says
+    // nothing about whether this loop should relaunch.
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
+  });
+
+  it('agent_start before the arm leaves a pending record pending', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-pending-message-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'agent_start', {}, makeContext());
+
+    // A pending record has not handed control to a killer yet, so it stays available for
+    // the stop that arms it.
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
+  });
 });
 
 // A compacted session keeps its id but loses the detail its open note holds, so the
