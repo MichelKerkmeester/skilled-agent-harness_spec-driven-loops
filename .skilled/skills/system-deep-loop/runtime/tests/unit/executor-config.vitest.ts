@@ -956,16 +956,13 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants, the DevPass GLM-5.3-Flash literal, and the provider-qualified DeepSeek routes for opencode-go and Cline', () => {
+  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants, the DevPass GLM-5.3-Flash literal, and the provider-qualified DeepSeek route for opencode-go', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
-      'cline-pass/deepseek-v4.1-flash',
       'deepseek-v4.1-flash',
       'deepseek/deepseek-v4-flash-vision-exp',
       'glm-5.3-flash',
       'gpt-6-luna',
       'gpt-6-sol',
-      'mimo-v2.6-flash',
-      'mimo-v2.6-pro',
       'minimax-m3',
       'opencode-go/deepseek-v4.1-flash',
       'qwen3.8-max',
@@ -991,18 +988,23 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   it('rejects the router alias auto', () => {
     expect(isPiModelAllowed('auto')).toBe(false);
   });
+
+  it('rejects the retired Cline and MiMo v2.6 routes', () => {
+    for (const model of ['cline-pass/deepseek-v4.1-flash', 'mimo-v2.6-pro', 'mimo-v2.6-flash']) {
+      expect(isPiModelAllowed(model)).toBe(false);
+    }
+  });
 });
 
 describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
   // Hermes and Pi reach the same gateway account, so the rosters are deliberately equal on
-  // their bare literals. The gateway returns HTTP 400 "Requested model ... not supported" for
-  // `mimo-v2.6-pro-ultraspeed`, which is why neither roster carries it.
-  it('matches the bare literals of the Pi roster and keeps the refused ultraspeed id out', () => {
+  // their bare literals.
+  it('matches the bare literals of the Pi roster and keeps the retired MiMo id out', () => {
     expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4.1-flash', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
-      'mimo-v2.6-pro', 'minimax-m3', 'qwen3.8-max',
+      'minimax-m3', 'qwen3.8-max',
     ]);
-    expect(HERMES_SUPPORTED_MODELS).not.toContain('mimo-v2.6-pro-ultraspeed');
+    expect(isHermesModelAllowed('mimo-v2.6-pro')).toBe(false);
   });
 
   it('defaults to deepseek-v4.1-flash, which is itself an allowed model', () => {
@@ -1026,7 +1028,7 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
     for (const model of ['deepseek-v4.1-flash', 'glm-5.3-flash']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('max');
     }
-    for (const model of ['gpt-6-luna', 'gpt-6-sol', 'minimax-m3', 'mimo-v2.6-pro', 'qwen3.8-max']) {
+    for (const model of ['gpt-6-luna', 'gpt-6-sol', 'minimax-m3', 'qwen3.8-max']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('high');
     }
   });
@@ -1051,8 +1053,6 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('qwen3.8-max')).toBe(false);
     expect(isFlashMaxPinnedModel('google/gemini-3.8-flash')).toBe(false);
     expect(isFlashMaxPinnedModel('openai/gpt-6-luna')).toBe(false);
-    // MiMo Flash tops out at high, so a Flash name alone must not pull it up to max.
-    expect(isFlashMaxPinnedModel('mimo-v2.6-flash')).toBe(false);
   });
 
   it('pins each Flash family to its own top tier and leaves other models unchanged', () => {
@@ -1060,9 +1060,6 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(pinReasoningEffortForModel('deepseek-v4-flash', null)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', undefined)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek/deepseek-v4-flash-latest', 'low')).toBe('max');
-    // Cline serves DeepSeek V4.1 Flash with no max tier, so its provider-qualified literal pins
-    // to xhigh while the opencode-go literal of the same model still pins to its max tier.
-    expect(pinReasoningEffortForModel('cline-pass/deepseek-v4.1-flash', 'low')).toBe('xhigh');
     expect(pinReasoningEffortForModel('opencode-go/deepseek-v4.1-flash', 'low')).toBe('max');
     expect(pinReasoningEffortForModel('minimax-m3', 'high')).toBe('high');
     expect(pinReasoningEffortForModel('minimax-m3', null)).toBe(null);
@@ -1070,8 +1067,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
 
   // Both literals that reach this pin are route-bound: the bare one is opencode-go's and the
   // vendor-prefixed one is OpenRouter's, and GLM-5.3-Flash offers low/high/max on both with no
-  // xhigh. Its xhigh ceiling is real but belongs to the Cline route, which dispatches directly
-  // under its own tier map and never reaches this function.
+  // xhigh.
   it('pins GLM-5.3-Flash to max on both route-bound literals', () => {
     expect(pinReasoningEffortForModel('glm-5.3-flash', 'high')).toBe('max');
     expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', 'high')).toBe('max');

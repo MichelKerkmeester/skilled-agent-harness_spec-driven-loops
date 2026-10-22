@@ -11,7 +11,7 @@ trigger_phrases:
   - "install opencode v1 and v2"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OpenCode CLI - Install and Version Layouts
@@ -244,12 +244,14 @@ The `--dangerously-skip-permissions` alias is hidden from help and appears only 
 
 The two versions list different providers, so a model id that works on one can be missing on the other [confirmed: the two lists below, read on this machine on 2026-10-18].
 
-| Command | Providers listed |
-|---------|------------------|
-| `opencode models` (1.19.3) | llmgateway-providers, llmgateway, opencode-go, openai, cline-pass, opencode, minimax |
-| `opencode2 models --standalone` (2.0.32) | llmgateway-providers, llmgateway, cline-pass, opencode |
+| Command | Roster-relevant providers listed |
+|---------|----------------------------------|
+| `opencode models` (1.19.3) | llmgateway-providers, llmgateway, opencode-go, openai, opencode, minimax |
+| `opencode2 models --standalone` (2.0.32) | llmgateway-providers, llmgateway, opencode |
 
-v1 1.19.3 lists `opencode-go`, `openai` and `minimax`, which v2 2.0.32 does not [confirmed: both versions' model listings on 2026-10-18, and `opencode2 models --standalone` on 2026-10-20, which lists the same four v2 provider prefixes], and v2 lists `llmgateway`, `llmgateway-providers`, `cline-pass` and `opencode`. The former OpenCode 1 default model, `opencode-go/deepseek-v4.1-flash`, names the `opencode-go` provider, which v2 does not list [confirmed: `opencode models` on 1.19.3], so the default on both versions is `llmgateway/deepseek-v4.1-flash`, which v2 does list.
+A listing also shows any provider whose credential is still in the local auth store, including one that is off the roster. Such a provider is not a dispatch target.
+
+v1 1.19.3 lists `opencode-go`, `openai` and `minimax`, which v2 2.0.32 does not [confirmed: both versions' model listings on 2026-10-18, and `opencode2 models --standalone` on 2026-10-20, which lists the same v2 provider prefixes], and v2 lists `llmgateway`, `llmgateway-providers` and `opencode`. The former OpenCode 1 default model, `opencode-go/deepseek-v4.1-flash`, names the `opencode-go` provider, which v2 does not list [confirmed: `opencode models` on 1.19.3], so the default on both versions is `llmgateway/deepseek-v4.1-flash`, which v2 does list.
 
 Check the provider on the version you are about to dispatch. For a v2 run, list with `models --standalone` under the v2 name in your layout (`opencode2` side by side, `opencode` in a v2-only layout) and look for the `<provider>/` prefix: v2 `models` takes no provider argument, and without `--standalone` it asks the shared background service. For a v1 run, use `opencode models`. Whether credentials added on one version reach the other was not probed [unknown].
 

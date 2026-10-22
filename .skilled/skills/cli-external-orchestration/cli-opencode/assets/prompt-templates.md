@@ -8,10 +8,9 @@ trigger_phrases:
   - "opencode worker farm dispatch"
   - "opencode ablation suite template"
   - "minimax dispatch scaffold"
-  - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -657,37 +656,7 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ---
 
-## 16. TEMPLATE 15: MiMo (LLM GATEWAY, COSTAR PLUS LEAN)
-
-**When**: dispatching to MiMo-V2.6-Pro, which this roster reaches through LLM Gateway (DevPass) only: the slug is `llmgateway/mimo-v2.6-pro` (provider `llmgateway`, billed per token), and the gateway serves no ultraspeed tier. The 126/004 benchmark (10/10 real `mimo-v2.6-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback). Use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format and brevity, **not** guardrails. TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). On OpenCode 1, always pass `--variant high`. opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13), and high is the standing default. On OpenCode 2, a level rides the model string (`-m llmgateway/mimo-v2.6-pro#high`), and whether the gateway accepts it is unverified on OpenCode 2.0.32. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). On OpenCode 1, confirm the live model id with `opencode models llmgateway`. On OpenCode 2, confirm `opencode2 models --standalone` lists the `llmgateway/` prefix first.
-
-**Invocation**:
-
-```bash
-# On OpenCode 1 (1.19.3):
-opencode run \
-  --model llmgateway/mimo-v2.6-pro \
-  --variant high \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt>" \
-  </dev/null
-```
-
-```bash
-# OpenCode 2 (2.0.32):
-cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m llmgateway/mimo-v2.6-pro#high \
-  --format json \
-  "<prompt>" \
-  </dev/null
-```
-
-**Prompt scaffold (COSTAR, the empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing. It ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
-
----
-
-## 17. TEMPLATE 16: DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
+## 16. TEMPLATE 15: DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
 
 **Framework:** RCAF + sk-design-md-generator Style Reference Manifest
 **Agent:** `general`, `write`, or a design-capable leaf agent
@@ -763,7 +732,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
 
 ---
 
-## 18. RELATED RESOURCES
+## 17. RELATED RESOURCES
 
 - `../references/cli-reference.md` - Full subcommand and flag reference
 - `../references/integration-patterns.md` - Three use cases and decision tree

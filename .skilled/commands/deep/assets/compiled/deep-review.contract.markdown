@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "f28b363afff27cf9d8385652c9e053dd37aa635595c85a863b4b49dab1f7c700",
+      "sha256": "fe62f9a7e823925170126798841eeb2936c3cc834de1cf2ee1ec53bc914a9c37",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d12087f059a8db4bd906190247e9c32646a96419f6d5fab622eb9b19b6a4bac6"
+  "compiledBodyDigest": "9f6eedc3a2b4432f9ba942249f260ca51cd3298f00914e06f257483dbb885cac"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -184,7 +184,7 @@ PRE-BOUND SETUP ANSWERS:
   convergence_mode: default  # default | off | sliding-window | divergent
   stop_policy: convergence  # one of: convergence | max-iterations
   executor: native  # one of: native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
-  executor_model: ""  # optional, executor-specific (cli-opencode e.g. llmgateway/mimo-v2.6-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
+  executor_model: ""  # optional, executor-specific (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional
   executor_service_tier: ""  # optional

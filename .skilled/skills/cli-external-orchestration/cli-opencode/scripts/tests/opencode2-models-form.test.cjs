@@ -669,13 +669,13 @@ test('unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run',
   );
 
   const commaOr = unversionedV1Forms(
-    'Use `opencode models llmgateway` on OpenCode 1, or `opencode models cline-pass` for Cline.',
+    'Use `opencode models llmgateway` on OpenCode 1, or `opencode models openrouter` for OpenRouter.',
   );
   assert.equal(commaOr.length, 1, 'a label in another clause must not cover this command');
-  assert.equal(commaOr[0].text, 'opencode models cline-pass', 'the unlabelled command is the offender');
+  assert.equal(commaOr[0].text, 'opencode models openrouter', 'the unlabelled command is the offender');
 
   assert.equal(
-    flagged('| `opencode models llmgateway` on OpenCode 1 | `opencode models cline-pass` |'),
+    flagged('| `opencode models llmgateway` on OpenCode 1 | `opencode models openrouter` |'),
     1,
     'a label in another table cell must not cover this command',
   );
@@ -821,9 +821,10 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
     'the provider pre-flight section has no fenced bash block with an "opencode2 models --standalone" command',
   );
 
-  // The variable gates the default model, so a check on any other provider would report
-  // the default present when only that provider is configured. LLM Gateway is the only
-  // MiMo route and the other provider OpenCode 2 lists, so its own variable gates MiMo.
+  // Each provider is checked against its own anchored prefix into its own variable, so a check
+  // on one provider can never report another one present. LLM Gateway hosts the default model
+  // on both versions and DEFAULT_OK is copied from LLMGATEWAY_OK, so that check gates the
+  // default. opencode-go is the other provider OpenCode 2 can list, and it keeps its own variable.
   const goIndex = providerCheckIndex(standalone, 'opencode-go', 'OPENCODE_GO_OK');
   assert.notEqual(
     goIndex,

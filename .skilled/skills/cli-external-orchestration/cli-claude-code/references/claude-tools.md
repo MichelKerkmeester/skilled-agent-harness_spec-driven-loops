@@ -10,7 +10,7 @@ trigger_phrases:
   - "claude code plan mode read-only"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Claude Code CLI Built-in Tools Reference
@@ -249,7 +249,7 @@ Every OpenCode-side claim below is sourced from a live `opencode run --help` cap
 | **File Attachment** | `--file <specs...>` (downloads named file resources at startup) | `-f`/`--file <files...>` (attaches files to the message) |
 | **Memory System** | Spec-folder continuity docs via `/speckit:save` and `/speckit:search` | The same spec-folder continuity docs: `cli-opencode` dispatches load the project's full plugin/skill/MCP runtime, which is the skill's own primary value proposition. This is NOT an area where Claude Code has an advantage |
 | **Hooks** | Pre/post tool-call hooks (configured in settings) | Not documented in the current cli-opencode skill surface, so it is unverified. Do not assume absence without checking `opencode`'s own docs |
-| **Model Count** | 3 named tiers (opus, sonnet, haiku), each with dated release ids | Five providers, each with several models: `opencode-go` (default), `openai`, `cline-pass`, `llmgateway` and `minimax`. Per-model roster: [cli-opencode's providers reference](../../cli-opencode/references/providers-and-models.md) |
+| **Model Count** | 3 named tiers (opus, sonnet, haiku), each with dated release ids | Four providers, each with several models: `llmgateway` (default), `opencode-go`, `openai` and `minimax`. Per-model roster: [cli-opencode's providers reference](../../cli-opencode/references/providers-and-models.md) |
 | **Auth Methods** | Claude subscription OAuth only: `claude auth login`, or `claude setup-token` (CI/CD). No API key | Per-provider `opencode providers login <provider>` / `opencode auth login` (OAuth-style) flows plus API keys |
 | **Nesting Guard** | `$CLAUDECODE` env var + process ancestry + `~/.claude/state/<id>/lock` probe | `OPENCODE_*` env vars + process ancestry + a best-effort `~/.opencode/state/<id>/lock` probe (ADR-001). OpenCode has its own three-layer guard, not "N/A" |
 | **Non-Interactive** | `-p "prompt"` (print mode) | `opencode run "prompt"` (there is no separate `exec` subcommand) |

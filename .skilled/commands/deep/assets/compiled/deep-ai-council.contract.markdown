@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "45594856005c2b2d91e88dfe8de3fc6767667dc93aa28041c37206deca8253f3",
+      "sha256": "2b9f1c3c84fa6360459351459b5de143d272fbb2373c61dd06b66b48f552848c",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "bde172c8bbb7532e86c5179e25f8f292fc181bf314898f5f6a78982058cb1388",
+      "sha256": "cf0b3565e00565ea6987243206f7d49ec8bd53776dfcc49c89619d7db311e170",
       "section": "full"
     },
     {
@@ -117,7 +117,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "6b0387e77bdb3547550bcf9c8cd32a031368f0565ed1a83146e7d679b53159cc",
+      "sha256": "d0be1b2f887144b7302d1e16a91966cf0555156651da36e34692b0d470f5056c",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "de2400296114d5ee3dcc3be1cb58b7a6f7c0ef6ca7653e00a465abeabef997c2"
+  "compiledBodyDigest": "05c45b6298d5b80dc4459859e34f32a134c78def4d8fee1e589d23028162617b"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -254,7 +254,7 @@ PRE-BOUND SETUP ANSWERS:
   executor:
     mode: in-cli  # in-cli | external-cli
     cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
-    model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/mimo-v2.6-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
+    model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
     timeout: 900  # optional positive integer seconds

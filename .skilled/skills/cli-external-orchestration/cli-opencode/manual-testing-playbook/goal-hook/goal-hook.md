@@ -1,7 +1,7 @@
 ---
 title: "CO-039 -- Goal hook native opencode-goal validation"
 description: "Validates OpenCode goal actions, session isolation, fixed opaque state keys, lazy legacy migration, native token accounting, and system-prompt injection."
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 # CO-039 -- Goal hook native opencode-goal validation
@@ -144,7 +144,7 @@ console.log(JSON.stringify({ verdict: 'PASS', stateFiles, migrated: true, tokens
 
 - **Dependency resolution.** The tracked `.skilled/node_modules/@opencode-ai/plugin` dependency resolves in this checkout. Treat import failure as install-state drift; do not create an untracked cache symlink as part of the playbook.
 - **Unit-test suite run.** `node --test .skilled/plugins/tests/opencode-goal-*.test.cjs` passes 152/152 across eight suite files. Re-measure with the command above rather than trusting this number; it has gone stale once already.
-- **Live headless `opencode run` check (optional).** Headless `opencode run` exposes `opencode_goal` and `opencode_goal_status` to the model, and `experimental.chat.system.transform` fires on a resumed `--session`. The check runs two turns against a scratch `OPENCODE_GOAL_STATE_DIR`, each with an explicit `-m <provider/model>` and stdin redirected from `/dev/null`. In turn 1 the model calls `opencode_goal` with `set` and then `opencode_goal_status`, and the scratch state file for that session id holds the objective. Between the turns, bind that session id in-process to a scratch packet whose `goal.md` carries a random canary the model never sees. Turn 2 resumes with `--session <id>`, calls no tool and asks the model to copy the `[active_goal]` objective and criteria lines from its system prompt. PASS when turn 2 quotes the canary and carries no frontmatter or log-row canary. A passing run on `llmgateway/mimo-v2.6-pro` is recorded in `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/opencode/a3-live-summary.md`. It supersedes an earlier finding that reported the tools hidden and the transform silent in headless runs.
+- **Live headless `opencode run` check (optional).** Headless `opencode run` exposes `opencode_goal` and `opencode_goal_status` to the model, and `experimental.chat.system.transform` fires on a resumed `--session`. The check runs two turns against a scratch `OPENCODE_GOAL_STATE_DIR`, each with an explicit `-m <provider/model>` and stdin redirected from `/dev/null`. In turn 1 the model calls `opencode_goal` with `set` and then `opencode_goal_status`, and the scratch state file for that session id holds the objective. Between the turns, bind that session id in-process to a scratch packet whose `goal.md` carries a random canary the model never sees. Turn 2 resumes with `--session <id>`, calls no tool and asks the model to copy the `[active_goal]` objective and criteria lines from its system prompt. PASS when turn 2 quotes the canary and carries no frontmatter or log-row canary. A passing live run is recorded in `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/opencode/a3-live-summary.md`. It supersedes an earlier finding that reported the tools hidden and the transform silent in headless runs.
 
 ---
 

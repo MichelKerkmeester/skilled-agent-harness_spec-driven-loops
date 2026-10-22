@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode dispatch framework precedence"
 importance_tier: normal
 contextType: planning
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # OpenCode CLI: Prompt Quality Card
@@ -36,9 +36,9 @@ The 7-framework selection table, the task->framework map, the pre-planning-densi
 
 ## 3. OPENCODE SMALL-MODEL DISPATCH
 
-OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card. There are no per-model prompt-craft profiles.
+OpenCode dispatches the MiniMax, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card. There are no per-model prompt-craft profiles.
 
-**Executor notes:** Omit `--agent` for all small-model dispatches. OpenCode 1 maps `--variant low/medium/high` to MiMo's reasoning effort, and OpenCode 2 takes the level on the model id (`#high`). `high` is the standing default for MiMo. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. MiMo-V2.6-Pro is reached through LLM Gateway only (`llmgateway/mimo-v2.6-pro`). Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
+**Executor notes:** Omit `--agent` for all small-model dispatches. OpenCode 1 takes the reasoning effort through `--variant`, and OpenCode 2 takes the level on the model id (`#<level>`). MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
 
 ---
 

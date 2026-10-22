@@ -11,7 +11,7 @@ trigger_phrases:
   - "council strategy count"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.10
+version: 1.7.1.0
 ---
 
 # AI Council Seat Diversity Patterns
@@ -135,7 +135,7 @@ Analytical + Critical + Pragmatic
 
 ### 2. Vantage Diversity (within a single round)
 
-Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `llmgateway/mimo-v2.6-pro`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
+Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `llmgateway/glm-5.3-flash`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
 
 If real external vantages are unavailable, preserve lens diversity and label simulated vantages.
 
@@ -237,7 +237,7 @@ Task Type Received
     │
     ├─► New Feature
     │   └─► Round 1: cli-opencode (direct providers)
-    │       Seats: Creative (llmgateway/mimo-v2.6-pro) + Analytical (deepseek/deepseek-v4-pro high) + Holistic (openai/gpt-5.5-pro)
+    │       Seats: Creative (llmgateway/glm-5.3-flash) + Analytical (deepseek/deepseek-v4-pro high) + Holistic (openai/gpt-5.5-pro)
     │       Rationale: broad direct-provider model bench within one CLI; novel → structured → system-fit.
     │       Optional Round 2: cli-claude-code for correctness-scrutiny pass.
     │

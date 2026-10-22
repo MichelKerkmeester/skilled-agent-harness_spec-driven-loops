@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes dispatch guards"
   - "hermes runtime folder"
 last_updated: "2026-09-14"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-hermes: Feature Catalog
@@ -60,11 +60,11 @@ See [`fanout-dispatch/hermes-executor-kind.md`](fanout-dispatch/hermes-executor-
 
 ---
 
-### Closed Seven-Model Gateway Roster
+### Closed Six-Model Gateway Roster
 
 #### Description
 
-Dispatch is fenced to the seven model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
+Dispatch is fenced to the six model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
 
 #### Current Reality
 

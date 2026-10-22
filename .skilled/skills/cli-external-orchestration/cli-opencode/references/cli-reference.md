@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -198,7 +198,7 @@ Run the block for the version you are about to dispatch. A v2-only layout names 
 opencode models opencode-go         >/dev/null 2>&1 && OPENCODE_GO_OK=1  || OPENCODE_GO_OK=0   # OpenCode 1: OpenCode Go gateway (selectable; fronts DeepSeek V4 Flash, Qwen, GLM)
 opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # OpenCode 1: MiniMax Token Plan (default MiniMax path)
 opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # OpenCode 1: MiniMax Direct API (pay-per-token)
-opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # OpenCode 1: LLM Gateway (DevPass); the default route and the only MiMo route
+opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # OpenCode 1: LLM Gateway (DevPass); the default route
 DEFAULT_OK=$LLMGATEWAY_OK                                                                            # OpenCode 1 default is on LLM Gateway
 echo "default=$DEFAULT_OK opencode_go=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
 ```
@@ -206,7 +206,7 @@ echo "default=$DEFAULT_OK opencode_go=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOK
 ```bash
 # OpenCode 2 pre-flight: `models` takes no provider argument, so list once on a private server and filter per provider
 V2_MODELS=$(opencode2 models --standalone 2>/dev/null)
-printf '%s\n' "$V2_MODELS" | grep '^llmgateway/'  >/dev/null && LLMGATEWAY_OK=1 || LLMGATEWAY_OK=0    # LLM Gateway (DevPass); the only MiMo route
+printf '%s\n' "$V2_MODELS" | grep '^llmgateway/'  >/dev/null && LLMGATEWAY_OK=1 || LLMGATEWAY_OK=0    # LLM Gateway (DevPass); the default route
 printf '%s\n' "$V2_MODELS" | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0  # OpenCode Go gateway (2.0.32 lists none here unless logged in separately)
 DEFAULT_OK=$LLMGATEWAY_OK                                                                             # OpenCode 2 default is on LLM Gateway
 MINIMAX_TOKEN_OK=0; MINIMAX_DIRECT_OK=0                                                               # 2.0.32 lists no minimax provider
@@ -227,13 +227,6 @@ echo "default=$DEFAULT_OK opencode_go=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOK
 | Direct API explicitly requested | `MINIMAX_DIRECT_OK=1` | Proceed with `--model minimax/MiniMax-M3` (pay-per-token, confirm the live id via `opencode models minimax` on OpenCode 1) |
 | Direct API requested, not configured | `MINIMAX_DIRECT_OK=0` | **ASK user** to configure the `minimax` provider (`MINIMAX_API_KEY`). Do not substitute silently |
 
-**MiMo routing** (LLM Gateway only, the Xiaomi Direct API and Token Plan routes are not on this roster):
-
-| State | Condition | Action |
-|-------|-----------|--------|
-| MiMo requested | `LLMGATEWAY_OK=1` | Proceed with `--model llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2. **Omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models llmgateway` on OpenCode 1 or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2 |
-| LLM Gateway not configured | `LLMGATEWAY_OK=0` | **ASK user** to run `opencode auth login` → DevPass (LLM Gateway). Never substitute silently |
-
 **Login / setup command shapes** (the AI surfaces these to the user, who runs them in their own terminal):
 
 ```bash
@@ -251,9 +244,6 @@ opencode auth login          # → provider minimax-coding-plan; Anthropic-compa
 
 # MiniMax Direct API — pay-per-token alternative (needs MINIMAX_API_KEY; platform endpoint https://api.minimax.io/v1)
 opencode providers login minimax
-
-# LLM Gateway (DevPass) — the only MiMo route. Interactive: pick "DevPass (LLM Gateway)".
-opencode auth login          # → provider llmgateway; model llmgateway/mimo-v2.6-pro
 
 # Z.AI GLM Coding Plan — GLM coding subscription. Interactive: pick "Z.AI Coding Plan".
 opencode auth login          # → provider zai-coding-plan; model zai-coding-plan/glm-5.2
@@ -273,10 +263,9 @@ Surface these verbatim to the operator when the pre-flight decision tree lands o
 The skill default is not configured on this machine (`llmgateway/deepseek-v4.1-flash` on both OpenCode 1 and OpenCode 2).
 A configured fallback is available. Pick one:
   A) Use `openai/gpt-6-sol --variant high` on OpenCode 1 or `-m openai/gpt-6-sol#high` on OpenCode 2 (OpenAI flagship persona, configured now, paid)
-  B) Use `llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2 (MiMo through DevPass LLM Gateway, configured now, per token)
-  C) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
-  D) Run the default provider's login first (`opencode providers login llmgateway` on OpenCode 1, `opencode2 providers login llmgateway` on OpenCode 2), then retry the original dispatch
-  E) Name a different model — paste the `--model <provider/model>` you want to use
+  B) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
+  C) Run the default provider's login first (`opencode providers login llmgateway` on OpenCode 1, `opencode2 providers login llmgateway` on OpenCode 2), then retry the original dispatch
+  D) Name a different model — paste the `--model <provider/model>` you want to use
 ```
 
 **All providers missing:**
@@ -286,11 +275,10 @@ No supported providers are configured on this machine. Run one:
   - `opencode providers login opencode-go`  (optional on OpenCode 1 — selectable Go gateway; fronts deepseek-v4.1-flash)
   - `opencode auth login`                   (MiniMax Token Plan — default MiniMax path; pick "MiniMax Token Plan (minimax.io)" → provider minimax-coding-plan; model minimax-coding-plan/MiniMax-M3)
   - `opencode providers login minimax`      (MiniMax Direct API — pay-per-token; needs MINIMAX_API_KEY; model minimax/MiniMax-M3)
-  - `opencode auth login`                   (LLM Gateway — pick "DevPass (LLM Gateway)" → provider llmgateway; the default route on both versions (llmgateway/deepseek-v4.1-flash) and the default MiMo route, model llmgateway/mimo-v2.6-pro or llmgateway/mimo-v2.6-flash)
+  - `opencode auth login`                   (LLM Gateway — pick "DevPass (LLM Gateway)" → provider llmgateway; the default route on both versions, model llmgateway/deepseek-v4.1-flash)
   - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
   - `opencode auth login`                   (Z.AI GLM Coding Plan — GLM coding subscription; provider zai-coding-plan; model zai-coding-plan/glm-5.2)
   - `opencode providers login openai`       (OpenAI premium alternative — paid)
-  - `opencode auth login`                   (Cline — Cline Pass account; provider cline-pass, NOT cline; model form cline-pass/cline-pass/<id>, e.g. cline-pass/cline-pass/deepseek-v4.1-flash)
 Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
 ```
 

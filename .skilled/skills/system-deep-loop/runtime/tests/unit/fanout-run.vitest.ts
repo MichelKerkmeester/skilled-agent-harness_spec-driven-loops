@@ -2005,17 +2005,13 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
       // DevPass routes DeepSeek Flash under its bare literal → llmgateway/deepseek-v4.1-flash;
-      // opencode-go and Cline front the same model through their own provider-qualified
-      // literals, each of which carries an exact selector rather than composing one.
+      // opencode-go fronts the same model through its own provider-qualified literal, which
+      // carries an exact selector rather than composing one.
       'deepseek-v4.1-flash': 'llmgateway',
       'opencode-go/deepseek-v4.1-flash': 'opencode-go',
-      'cline-pass/deepseek-v4.1-flash': 'cline-pass',
       'minimax-m3': 'minimax',
       'gpt-6-luna': 'openai',
       'gpt-6-sol': 'openai',
-      // Both MiMo literals go through DevPass → llmgateway/mimo-v2.6-{pro,flash}.
-      'mimo-v2.6-pro': 'llmgateway',
-      'mimo-v2.6-flash': 'llmgateway',
       'qwen3.8-max': 'opencode-go',
       // OpenRouter routes exactly DeepSeek V4 Flash and GLM-5.3-Flash, each dispatched as
       // openrouter/<upstream>/<id>; both stay on the max thinking pin.
@@ -2030,7 +2026,6 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     // exact id Pi lists for that provider instead of `${provider}/${model}`.
     const selectorByModel: Record<string, string> = {
       'opencode-go/deepseek-v4.1-flash': 'opencode-go/deepseek-v4.1-flash',
-      'cline-pass/deepseek-v4.1-flash': 'cline-pass/cline-pass/deepseek-v4.1-flash',
     };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(
@@ -2044,29 +2039,24 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // DeepSeek Flash (the bare 4.1 literal, provider-prefixed, or the -latest / -vision-exp
       // variants) and GLM-5.3-Flash (bare opencode-go or vendor-prefixed OpenRouter literal) are
       // pinned to their route's top thinking tier, so they always carry --thinking even when the
-      // lineage names no reasoningEffort; Cline has no max tier and tops out at xhigh, so its
-      // provider-qualified literal pins there instead. The other picker ids carry no --thinking here.
+      // lineage names no reasoningEffort. The other picker ids carry no --thinking here.
       const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
       const modelSelector = selectorByModel[model] ?? `${provider}/${model}`;
-      const pinnedThinking = model.startsWith('cline-pass/') ? 'xhigh' : 'max';
       const expectedArgs = isFlashPinned
-        ? ['-p', '--offline', '--model', modelSelector, '--thinking', pinnedThinking, 'bounded prompt']
+        ? ['-p', '--offline', '--model', modelSelector, '--thinking', 'max', 'bounded prompt']
         : ['-p', '--offline', '--model', modelSelector, 'bounded prompt'];
       expect(command.args).toEqual(expectedArgs);
       expect(command.effectiveConfig.model).toBe(model);
     }
   });
 
-  it('dispatches the provider-qualified DeepSeek routes through their exact Pi selectors, each at its own top tier', () => {
+  it('dispatches the provider-qualified DeepSeek route through its exact Pi selector at its top tier', () => {
     const binDir = makeTempDir('fanout-run-pi-qualified-selector-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    // opencode-go lists the model bare; Cline lists it under a cline-pass/ id, which gives the
-    // three-segment selector. Each route pins to its own top tier: opencode-go carries max,
-    // while Cline serves no max tier and tops out at xhigh.
+    // opencode-go lists the model bare and carries a max tier.
     const selectorByModel: Record<string, { selector: string; thinking: string }> = {
       'opencode-go/deepseek-v4.1-flash': { selector: 'opencode-go/deepseek-v4.1-flash', thinking: 'max' },
-      'cline-pass/deepseek-v4.1-flash': { selector: 'cline-pass/cline-pass/deepseek-v4.1-flash', thinking: 'xhigh' },
     };
     for (const [model, { selector, thinking }] of Object.entries(selectorByModel)) {
       const command = buildLineageCommand(

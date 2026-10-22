@@ -17,7 +17,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.7.4.0
+version: 1.7.5.0
 ---
 
 # cli-external-orchestration
@@ -51,7 +51,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
 
 | Mode | What the packet dispatches |
 |---|---|
-| **`cli-opencode`** ([README](./cli-opencode/README.md), [SKILL.md](./cli-opencode/SKILL.md)) | OpenCode CLI dispatch: full-runtime and parallel sessions, detached sessions, the plugin, skill, MCP and Spec-Kit-Memory runtime plus small-model dispatch for DeepSeek, Kimi, MiniMax, MiMo and GLM. |
+| **`cli-opencode`** ([README](./cli-opencode/README.md), [SKILL.md](./cli-opencode/SKILL.md)) | OpenCode CLI dispatch: full-runtime and parallel sessions, detached sessions, the plugin, skill, MCP and Spec-Kit-Memory runtime plus small-model dispatch for DeepSeek, Kimi, MiniMax and GLM. |
 | **`cli-claude-code`** ([README](./cli-claude-code/README.md), [SKILL.md](./cli-claude-code/SKILL.md)) | Claude Code CLI dispatch: Anthropic-backed extended thinking, surgical code edits, structured JSON-schema output, agent delegation and cross-AI second opinions |
 | **`cli-codex`** ([README](./cli-codex/README.md), [SKILL.md](./cli-codex/SKILL.md)) | Codex CLI dispatch: OpenAI-backed coding, repo analysis, PR review, web research and cross-model validation. Fails closed when the `codex` binary is absent |
 | **`cli-cursor`** ([README](./cli-cursor/README.md), [SKILL.md](./cli-cursor/SKILL.md)) | Cursor CLI dispatch: Composer-model dispatch, read-only `--mode plan` and `--mode ask` exploration, native git worktree isolation, a cloud `worker` and a shared `.cursor/` hooks, MCP and rules config surface with the Cursor editor |

@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.17.0
+version: 1.4.18.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -575,7 +575,7 @@ Expected signals: Exit 0. Exactly one MEMORY_HANDBACK delimiter pair. Payload pa
 
 This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the 16-template inventory in `assets/prompt-templates.md`, the CLEAR quality card, real template-driven dispatch, small-model dispatch matrices, and design-context manifest handoff.
 
-### CO-023 | Prompt templates inventory (16 templates)
+### CO-023 | Prompt templates inventory (15 templates)
 
 #### Description
 
@@ -583,7 +583,7 @@ Verify `assets/prompt-templates.md` contains exactly 13 numbered templates (TEMP
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt-templates.md and count the TEMPLATE N section headers. Verify all 16 templates are present, each named template includes a Framework tag and each invocation template includes a bash code block (Templates 1-11).
+Prompt summary: As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt-templates.md and count the TEMPLATE N section headers. Verify all 15 templates are present, each named template includes a Framework tag and each invocation template includes a bash code block (Templates 1-11).
 
 Expected signals: 13 unique TEMPLATE headers. >=12 Framework lines. >=11 bash code blocks. Templates 12 and 13 present.
 
@@ -837,7 +837,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### PROMPT TEMPLATES
 
-- CO-023: [Prompt templates inventory (16 templates)](../manual-testing-playbook/prompt-templates/templates-inventory.md)
+- CO-023: [Prompt templates inventory (15 templates)](../manual-testing-playbook/prompt-templates/templates-inventory.md)
 - CO-024: [CLEAR quality card 5-check](../manual-testing-playbook/prompt-templates/clear-quality-card.md)
 - CO-025: [Template applied to a real dispatch](../manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md)
 - CO-037: [MiniMax design dispatch carries context manifest and proof cards](../manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md)

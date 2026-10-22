@@ -1,7 +1,7 @@
 ---
 title: "cli-pi: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-pi skill."
-version: 1.5.0.12
+version: 1.5.1.0
 ---
 
 # cli-pi: Manual Testing Playbook
@@ -10,7 +10,7 @@ version: 1.5.0.12
 
 > **RECURSION BOUNDS**: This playbook may be run from a Pi runtime or a non-Pi one. Being inside Pi is no longer a reason to refuse a `cli-pi` dispatch, because Pi has no in-process delegation left. What the shared runtime still refuses, and what a scenario must record if it fires, is a dispatch from inside a fan-out lineage and a dispatch whose kind already appears in the dispatch stack.
 
-This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 36 canonical scenario files.
+This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 35 canonical scenario files.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -39,7 +39,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 36 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
+This playbook provides 35 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note (2026-08-10): the package covers Pi version/help, settings, extension lifecycle, dispatch controls, providers, prompt quality, and goal isolation. `PI-021` validates the native registered `/goal-pi` command, two-session scoped state, lifecycle identity binding, resume/new-session behavior, explicit legacy migration, and disabled fallback. Native commands short-circuit before a model turn, so the core isolation proof does not require provider credentials.
 
@@ -107,7 +107,7 @@ Coverage note (2026-08-10): the package covers Pi version/help, settings, extens
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All 22 linked scenario files under the ten category folders
+2. All 21 linked scenario files under the ten category folders
 3. Real command transcripts or cited captured evidence for every executable scenario
 4. The scenario-to-feature coverage map in §18
 5. Triage notes for every FAIL or SKIP result
@@ -138,7 +138,7 @@ Release is `READY` only when:
 
 1. No scenario has an unresolved FAIL.
 2. The critical baseline scenarios `PI-001`, `PI-002`, `PI-007`, `PI-011`, `PI-014`, and `PI-017` have evidence or a still-valid named blocker.
-3. Coverage is 100%: all 22 root-index IDs map to exactly one scenario file.
+3. Coverage is 100%: all 21 root-index IDs map to exactly one scenario file.
 4. Every SKIP carries a specific blocker and a safe re-run condition.
 5. The root document and all scenario files pass the required document and link checks.
 
@@ -243,13 +243,12 @@ This category validates project-local extension auto-discovery, registration aga
 
 ---
 
-## 13. MODEL DISPATCH (`PI-017..PI-018`, `PI-023`)
+## 13. MODEL DISPATCH (`PI-017..PI-018`)
 
-This category checks the model allowlist and the settings/provider interaction without inventing an `auto` default or claiming a provider-backed turn without credentials, and it proves the config-wired cline-pass provider's slashed model-id dispatch contract.
+This category checks the model allowlist and the settings/provider interaction without inventing an `auto` default or claiming a provider-backed turn without credentials.
 
 - `PI-017`: [Supported-model allowlist smoke](model-dispatch/supported-model-allowlist-smoke.md)
 - `PI-018`: [Provider and settings merge](model-dispatch/provider-settings-merge.md)
-- `PI-023`: [Cline provider model-id format dispatch](model-dispatch/cline-provider-id-format-dispatch.md)
 
 ---
 
@@ -295,7 +294,6 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 | `.skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core, session-lifecycle bridge behavior, and paired advisory delivery | `PI-014`, `PI-015`, `PI-016`, `PI-020`, `PI-022` |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
-| `.pi/models.json`, `.pi/settings.json`, and `.pi/custom-providers.md` | Config-wired cline-pass provider block, three-segment references, and the slashed model-id contract | `PI-023` |
 | `.skilled/hooks/goal/pi/goal-pi.test.mjs` | Native command, A/B lifecycle, resume/new-id, turn-end isolation, and missing-identity contracts | `PI-021` |
 | `.skilled/hooks/goal/lib/goal-core.test.cjs` | Session-scoped state, legacy quarantine, rendering, and hardening | `PI-021` |
 | `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |

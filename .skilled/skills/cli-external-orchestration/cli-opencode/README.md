@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # cli-opencode
@@ -269,7 +269,7 @@ A: OpenCode reads stdin at startup before session creation. When stdout and stde
 
 **Q: Which model do I pick?**
 
-A: Default to `llmgateway/deepseek-v4.1-flash` on both versions. On OpenCode 1 that is `--model llmgateway/deepseek-v4.1-flash --variant max`, through the DevPass LLM Gateway, which fronts the latency-optimized reasoning model at its max thinking tier; the `opencode-go` Go-plan quota is spent, so that route hangs on "Go usage limit exceeded". On OpenCode 2 the default is `-m llmgateway/deepseek-v4.1-flash#max`, through the same gateway, because v2 lists no `opencode-go` provider unless it is logged in separately. One provider now serves both versions. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `llmgateway/mimo-v2.6-pro` for MiMo or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
+A: Default to `llmgateway/deepseek-v4.1-flash` on both versions. On OpenCode 1 that is `--model llmgateway/deepseek-v4.1-flash --variant max`, through the DevPass LLM Gateway, which fronts the latency-optimized reasoning model at its max thinking tier; the `opencode-go` Go-plan quota is spent, so that route hangs on "Go usage limit exceeded". On OpenCode 2 the default is `-m llmgateway/deepseek-v4.1-flash#max`, through the same gateway, because v2 lists no `opencode-go` provider unless it is logged in separately. One provider now serves both versions. Switch to `minimax/MiniMax-M3` for MiniMax Direct or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
 
 ---
 

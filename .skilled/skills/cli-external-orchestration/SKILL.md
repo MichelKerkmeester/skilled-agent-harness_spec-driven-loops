@@ -24,7 +24,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 
 | Mode | Kind | Use it for | Packet |
 |------|------|-----------|--------|
-| **cli-opencode** | workflow | OpenCode CLI orchestration: external dispatch, in-OpenCode parallel/detached sessions, full plugin/skill/MCP/Spec-Kit-Memory runtime, small-model dispatch (DeepSeek, Kimi, MiniMax, MiMo, GLM) | `cli-external-orchestration/cli-opencode/` |
+| **cli-opencode** | workflow | OpenCode CLI orchestration: external dispatch, in-OpenCode parallel/detached sessions, full plugin/skill/MCP/Spec-Kit-Memory runtime, small-model dispatch (DeepSeek, Kimi, MiniMax, GLM) | `cli-external-orchestration/cli-opencode/` |
 | **cli-claude-code** | workflow | Claude Code CLI orchestration: Anthropic-backed extended thinking, surgical code editing, structured JSON-schema output, agent delegation, cross-AI second opinions | `cli-external-orchestration/cli-claude-code/` |
 | **cli-codex** | workflow | Codex CLI orchestration: OpenAI-backed coding, review, and web research; fails closed when `codex` is absent | `cli-external-orchestration/cli-codex/` |
 | **cli-cursor** | workflow | Cursor CLI orchestration: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when `cursor-agent` is absent | `cli-external-orchestration/cli-cursor/` |

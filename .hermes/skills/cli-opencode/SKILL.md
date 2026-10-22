@@ -10,7 +10,7 @@ version: 1.5.0.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, mimo, mimo-v2.6-pro, mimo-v2.6-flash, llmgateway, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-6-luna, cline, cline-pass, cline-deepseek-v4-flash, cline-deepseek-v4.1-flash -->
+<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, llmgateway, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-6-luna -->
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
 
@@ -182,7 +182,7 @@ Core flags on OpenCode 1: `--model`, `--agent`, `--variant`, `--format json`, `-
 
 Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices on OpenCode 1, or, on OpenCode 2, `opencode2 models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md).
 
-**Five providers are reachable** (`opencode-go`, `openai`, `cline-pass`, `llmgateway` (**DevPass**), `minimax`), with `llmgateway/deepseek-v4.1-flash` the single default on both OpenCode 1 and OpenCode 2, and the full roster and per-provider caveats in [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md). This file deliberately does not restate it: two copies of a model list is how the two disagree.
+**Four providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`), with `llmgateway/deepseek-v4.1-flash` the single default on both OpenCode 1 and OpenCode 2, and the full roster and per-provider caveats in [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md). This file deliberately does not restate it: two copies of a model list is how the two disagree.
 
 One cross-provider footgun is worth carrying here: **id shape differs per provider**, and copying a form between providers returns a 400 (see [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md) §2).
 

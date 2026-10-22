@@ -1,7 +1,7 @@
 ---
 title: "HERMES-003 -- Off-roster model rejection"
 description: "Confirm an off-roster model id fails fast with exit 1 and a gateway diagnostic on stdout rather than silently falling back to another model for `HERMES-003`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-003 -- Off-roster model rejection
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-The packet pins a closed seven-id roster. The guarantee that matters operationally is not that the roster is documented but that an id outside it cannot quietly succeed against some other model, which would make a cross-validation result meaningless.
+The packet pins a closed six-id roster. The guarantee that matters operationally is not that the roster is documented but that an id outside it cannot quietly succeed against some other model, which would make a cross-validation result meaningless.
 
 This scenario dispatches a deliberately nonexistent id and checks the failure is loud, immediate, and readable on stdout.
 
@@ -83,7 +83,7 @@ cat err.txt
 | File | Role |
 |---|---|
 | [cli-reference.md](../../references/cli-reference.md) | Exit-code table, including `result.failed` exit 1 with the gateway error on stdout |
-| [providers-and-models.md](../../references/providers-and-models.md) | The closed seven-id roster and the llmgateway provider contract |
+| [providers-and-models.md](../../references/providers-and-models.md) | The closed six-id roster and the llmgateway provider contract |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CO-025 -- Template applied to a real dispatch"
 description: "This scenario validates a template-driven dispatch end-to-end for `CO-025`. It focuses on confirming a chosen template (TEMPLATE 5 — Code review) populated with real placeholders produces a successful opencode run dispatch and the response matches the template's intended output shape."
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # CO-025 -- Template applied to a real dispatch
@@ -18,7 +18,7 @@ This scenario validates Template applied to a real dispatch for `CO-025`. It foc
 
 ### Why This Matters
 
-The 16 templates exist so operators do not author dispatch prompts from scratch. Their value depends on producing predictable, well-shaped output when used as documented. If a template's placeholders are too loose or the documented output shape does not actually emerge when the template is dispatched, the inventory's promise fails. This test takes one representative template (TEMPLATE 5) and exercises the full path from template -> populated prompt -> dispatch -> shape-matched response.
+The 15 templates exist so operators do not author dispatch prompts from scratch. Their value depends on producing predictable, well-shaped output when used as documented. If a template's placeholders are too loose or the documented output shape does not actually emerge when the template is dispatched, the inventory's promise fails. This test takes one representative template (TEMPLATE 5) and exercises the full path from template -> populated prompt -> dispatch -> shape-matched response.
 
 ---
 

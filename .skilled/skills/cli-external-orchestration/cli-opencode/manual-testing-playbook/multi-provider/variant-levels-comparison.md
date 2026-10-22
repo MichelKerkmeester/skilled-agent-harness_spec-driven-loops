@@ -1,7 +1,7 @@
 ---
 title: "CO-012 -- Variant levels (minimal/low/medium/high)"
 description: "This scenario validates the `--variant` flag levels for `CO-012`. It focuses on confirming the `llmgateway/deepseek-v4.1-flash` variant range (minimal through the skill-verified `high` default) maps to reasoning effort and produces materially different response depth between extremes."
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # CO-012 -- Variant levels (minimal/low/medium/high)
@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-On OpenCode 1, this scenario validates Variant levels for `CO-012`. It focuses on confirming the `--variant` flag accepts the documented per-provider range and that the response depth materially differs between extremes when the same prompt is dispatched. On OpenCode 2 the effort rides on the model selector (`-m provider/model#<level>`). The v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. Underlying-model conventions apply: the DeepSeek-family reasoning models (via the opencode-go and Cline routes) accept reasoning-effort variants.
+On OpenCode 1, this scenario validates Variant levels for `CO-012`. It focuses on confirming the `--variant` flag accepts the documented per-provider range and that the response depth materially differs between extremes when the same prompt is dispatched. On OpenCode 2 the effort rides on the model selector (`-m provider/model#<level>`). The v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. Underlying-model conventions apply: the DeepSeek-family reasoning models (via the opencode-go and LLM Gateway routes) accept reasoning-effort variants.
 
 ### Why This Matters
 
@@ -57,7 +57,6 @@ On OpenCode 1, for full-spectrum validation on a provider whose full range is ve
 | Model | Variant range to sweep |
 |---|---|
 | `llmgateway/deepseek-v4.1-flash` | On OpenCode 1, reasoning model pinned to `--variant max` (its top thinking tier) by policy, and the default on both versions (OpenCode 2 carries the same pin as `#max`). Treat any other value as unverified until smoke-tested. On OpenCode 2 the effort rides on the model id (`-m llmgateway/deepseek-v4.1-flash#max`), and the v2 reader confirms that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. The `opencode-go/` route stays selectable but needs its own v2 login first (`opencode2 providers login opencode-go`) |
-| `llmgateway/mimo-v2.6-pro` | On OpenCode 1, `--variant` maps to MiMo reasoning effort (`none`/`low`/`medium`/`high`), so always use `high` per the MiMo effort map. On OpenCode 2 the level rides on the model id (`-m llmgateway/mimo-v2.6-pro#high`). Whether the gateway accepts it is unverified on OpenCode 2.0.32 |
 | `openai/gpt-6-sol` | On OpenCode 1, `--variant` maps to OpenAI reasoning effort (`none`/`low`/`medium`/`high`/`xhigh`). On OpenCode 2 the level rides on the model id (`-m openai/gpt-6-sol#<level>`). Whether the provider accepts it is unverified on OpenCode 2.0.32 |
 
 
