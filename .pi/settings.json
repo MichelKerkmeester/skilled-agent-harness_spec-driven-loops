@@ -16,16 +16,8 @@
     "llmgateway/gpt-6-luna",
     "llmgateway/deepseek-v4.1-flash",
     "opencode-go/deepseek-v4.1-flash",
-    "cline-pass/cline-pass/deepseek-v4.1-flash",
     "llmgateway/glm-5.3-flash",
-    "opencode-go/glm-5.3-flash",
-    "cline-pass/z-ai/glm-5.3-flash",
-    "llmgateway/mimo-v2.6-pro",
-    "llmgateway/mimo-v2.6-flash",
-    "opencode-go/mimo-v2.6-pro",
-    "opencode-go/mimo-v2.6-flash",
-    "cline-pass/cline-pass/mimo-v2.6-pro",
-    "cline-pass/cline-pass/mimo-v2.6-flash"
+    "opencode-go/glm-5.3-flash"
   ],
   "packages": [
     "extensions/pi-cache-optimizer",
