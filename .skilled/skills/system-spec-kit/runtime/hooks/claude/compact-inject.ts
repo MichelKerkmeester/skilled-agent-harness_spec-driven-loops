@@ -203,6 +203,16 @@ function authoredSnapshotEnabled(input: Record<string, unknown>): boolean {
     || process.env.SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT === '1';
 }
 
+/**
+ * A sub-agent or fork payload carries its own agent id next to the parent's
+ * session id, so `session_id` alone cannot tell the two apart.
+ */
+export function isSubagentPayload(input: unknown): boolean {
+  if (typeof input !== 'object' || input === null) return false;
+  const agentId = (input as Record<string, unknown>).agent_id;
+  return typeof agentId === 'string' && agentId.trim().length > 0;
+}
+
 /** Build compact context from transcript analysis (legacy fallback) */
 export function buildCompactContext(transcriptLines: string[]): string {
   const filePaths = extractFilePaths(transcriptLines);
@@ -504,10 +514,17 @@ async function main(): Promise<void> {
     return;
   }
 
+  // A child's payload reuses the parent's session id, so priming the cache or
+  // signalling a boundary from here would land on the parent's next session.
+  if (isSubagentPayload(input)) {
+    hookLog('info', 'compact-inject', `Skipping PreCompact for sub-agent ${String(input.agent_id).trim()}: its session id is the parent's`);
+    return;
+  }
+
   const rawSessionId = typeof input.session_id === 'string' ? input.session_id.trim() : '';
   notifyDirectiveLifecycleBoundary({ sessionId: rawSessionId || null, boundary: 'compact' });
   const sessionId = getRequiredSessionId(rawSessionId, 'compact-inject');
-  hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
+  hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'}, agent_id: absent)`);
 
   let transcriptLines: string[] = [];
   if (input.transcript_path) {

@@ -121,6 +121,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 18 | 018-outside-loop-handoff/ | A session outside `skilled-loop` keeps a handoff note with `session-relaunch.cjs keep` instead of hearing nothing, Claude Code points it back at the note after a compaction, and `history` and `/doctor:setup` name every note nobody claimed. | complete |
 | 19 | 019-fork-compact-pointer-research/ | [Phase 19 scope] | Pending |
 | 20 | 020-fork-session-guards/ | [Phase 20 scope] | Pending |
+| 21 | 021-fork-nudge-and-precompact-guards/ | [Phase 21 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -152,6 +153,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 017-hop-history | 018-outside-loop-handoff | phase 017 is Complete with the hop history recorded and readable | `validate.sh 017-hop-history --strict` RESULT: PASSED |
 | 018-outside-loop-handoff | 019-fork-compact-pointer-research | [Criteria TBD] | [Verification TBD] |
 | 019-fork-compact-pointer-research | 020-fork-session-guards | [Criteria TBD] | [Verification TBD] |
+| 020-fork-session-guards | 021-fork-nudge-and-precompact-guards | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

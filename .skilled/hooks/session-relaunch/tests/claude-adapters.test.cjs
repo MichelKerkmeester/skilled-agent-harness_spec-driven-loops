@@ -168,6 +168,50 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
   );
 });
 
+test('context-nudge stays silent for a sub-agent tool call', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    agent_id: 'a78dbc9773274be92',
+    agent_type: 'fork',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  assert.equal(fs.existsSync(stateFile), false, stateFile);
+});
+
+test('context-nudge still nudges the main session when agent_id is empty', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    agent_id: '',
+    agent_type: 'fork',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  assert.equal(output.hookSpecificOutput.hookEventName, 'PostToolUse');
+  assert.match(
+    output.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
+  assert.ok(output.hookSpecificOutput.additionalContext.includes(`--session '${SESSION_ID}'`));
+});
+
 test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';

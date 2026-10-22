@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards",
+  "spec_folder": "hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fork nudge and precompact guards",
+      "phase 21 fork nudge and precompact guards",
+      "fork nudge and precompact guards plan",
+      "fork nudge and precompact guards tasks",
+      "fork nudge and precompact guards implementation summary"
+    ],
+    "key_topics": [
+      "fork",
+      "nudge",
+      "precompact",
+      "guards",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "probe",
+      "claude",
+      "code"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+      "tests/hook-precompact.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-precompact.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Payload",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A probe on Claude Code 2.1.306 showed that a fork's PostToolUse payload carries `agentid` and `agenttype` with the parent's session id and transcript path",
+    "created_at": "2026-10-22T06:56:47Z",
+    "last_save_at": "2026-10-22T07:05:23.021Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:39841cc9d98d3f23ad75037cc2df95852247a349248b5f4afc6692765ba5b52d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1ab092a8a5d993ebf211ee1957a46a7e87faeeb35bb5830e88d5670fc3169437",
+      "plan.md": "c90eab671fe9f00e2e02808bf70c2ed36fb0bdd1a6fff6e62a11cfe257814f9a",
+      "tasks.md": "ff92b73b6c901b6d6c7b348f664fd7824334b78a187c1a1361fbba610c15714f",
+      "implementation-summary.md": "8701c7a6f138632026fd7fe3e85b69201cc51c02ea4551b9162b3004f9f86679"
+    },
+    "last_active_at": null
+  }
+}

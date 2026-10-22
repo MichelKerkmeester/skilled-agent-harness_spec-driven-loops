@@ -56,6 +56,9 @@ async function main() {
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null || typeof payload !== 'object') return done();
 
+  // A sub-agent reports its parent's session and transcript, so its fill and note are the parent's.
+  if (typeof payload.agent_id === 'string' && payload.agent_id.trim() !== '') return done();
+
   // One registration serves both events, so any named event is answered under its own name.
   const eventName = payloadEventName(payload, { runtime: 'claude' });
   const sessionId = payload.session_id;

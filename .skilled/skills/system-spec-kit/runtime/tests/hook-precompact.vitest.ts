@@ -6,7 +6,7 @@ import { mkdtempSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
-import { buildCompactContext, detectSpecFolder, tailFile } from '../hooks/claude/compact-inject.js';
+import { buildCompactContext, detectSpecFolder, isSubagentPayload, tailFile } from '../hooks/claude/compact-inject.js';
 import { ensureStateDir, loadState, updateState, getStatePath, type PersistedHookState } from '../hooks/claude/hook-state.js';
 import { truncateToTokenBudget, COMPACTION_TOKEN_BUDGET } from '../hooks/claude/shared.js';
 
@@ -155,6 +155,30 @@ describe('precompact hook', () => {
       expect(brief.payloadContract.provenance.sourceRefs).toContain('compact-merger');
       expect(brief.payloadContract.selection?.topicCount).toBe(2);
       expect(brief.payloadContract.sections.map((section) => section.source)).toEqual(['code-graph', 'session']);
+    });
+  });
+
+  describe('isSubagentPayload', () => {
+    it('flags a payload that carries an agent id', () => {
+      expect(isSubagentPayload({
+        session_id: 's',
+        agent_id: 'a78dbc9773274be92',
+        agent_type: 'fork',
+      })).toBe(true);
+    });
+
+    it('ignores a payload with no agent id', () => {
+      expect(isSubagentPayload({ session_id: 's' })).toBe(false);
+    });
+
+    it('ignores empty and whitespace-only agent ids', () => {
+      expect(isSubagentPayload({ session_id: 's', agent_id: '' })).toBe(false);
+      expect(isSubagentPayload({ session_id: 's', agent_id: '   ' })).toBe(false);
+    });
+
+    it('ignores a non-string agent id and null input', () => {
+      expect(isSubagentPayload({ session_id: 's', agent_id: 42 })).toBe(false);
+      expect(isSubagentPayload(null)).toBe(false);
     });
   });
 });
