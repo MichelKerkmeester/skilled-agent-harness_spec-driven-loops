@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bcdef55a4fa7177e5876bd0d533b84965ca2b1f0dfee3ea0a47ebc63268c0c3e",
+  "manifestHash": "b2e699238b554478ad6ff9a10bacd255fedd9364686416fd204a230beb0176cc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72892,6 +72892,9 @@
     "phase 56 command folder guard and readme baseline": [
       "phase 56 command folder guard and readme baseline"
     ],
+    "phase 57 v4 0 0 13 reliability fixes": [
+      "phase 57 v4 0 0 13 reliability fixes"
+    ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
     ],
@@ -109506,6 +109509,18 @@
     ],
     "v4 0 0 13 release notes": [
       "v4.0.0.13 release notes"
+    ],
+    "v4 0 0 13 reliability fixes": [
+      "v4 0 0 13 reliability fixes"
+    ],
+    "v4 0 0 13 reliability fixes implementation summary": [
+      "v4 0 0 13 reliability fixes implementation summary"
+    ],
+    "v4 0 0 13 reliability fixes plan": [
+      "v4 0 0 13 reliability fixes plan"
+    ],
+    "v4 0 0 13 reliability fixes tasks": [
+      "v4 0 0 13 reliability fixes tasks"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
