@@ -37,13 +37,22 @@ interface CoreModule {
     record: RelaunchRecord | null,
     options: { loopId: string; sessionId: string; runtime: string; env: NodeJS.ProcessEnv },
   ): { armable: boolean; reason: string };
+  dropNestedLoop(env: NodeJS.ProcessEnv, options: { hostPid: number }): boolean;
+  parseHandoff(text: string): { frontmatter: Record<string, unknown> };
   readRelaunchFile(loopId: string, env: NodeJS.ProcessEnv): RelaunchRecord | null;
 }
 
 // CoreModule is a hand-written view of a CommonJS module no compiler checks it against,
 // so each function it names is checked once at load: a renamed or missing export then
 // fails the load instead of the first arm, which would otherwise fail in silence.
-const CORE_FUNCTIONS = ['appendLog', 'arm', 'armableRecord', 'readRelaunchFile'] as const;
+const CORE_FUNCTIONS = [
+  'appendLog',
+  'arm',
+  'armableRecord',
+  'dropNestedLoop',
+  'parseHandoff',
+  'readRelaunchFile',
+] as const;
 
 interface ContextUsageModule {
   fillFromPiUsage(usage: unknown): number;
@@ -69,6 +78,13 @@ interface NudgeModule {
   }): string;
   isSeedPrompt(text: unknown): boolean;
   seedInstructions(options: { prompt: unknown; sessionId: string }): string | null;
+  seedText(options: {
+    notePath: string;
+    specFolder: string | undefined;
+    sessionId: string;
+    cliPath: string;
+    afterCompaction?: boolean;
+  }): string;
   specFolderInput(options: { env?: NodeJS.ProcessEnv }): string | undefined;
   resolveRepoRoot(env?: NodeJS.ProcessEnv): string;
   plannedNotePath(options: {
@@ -77,6 +93,7 @@ interface NudgeModule {
     env?: NodeJS.ProcessEnv;
     now?: Date;
   }): string;
+  openNotePathFor(options: { repoRoot: string; sessionId: string }): string | null;
   handoffPending(options: {
     sessionId: string;
     env?: NodeJS.ProcessEnv;
@@ -100,6 +117,16 @@ type AdapterModules = {
   core: CoreModule;
   contextUsage: ContextUsageModule;
   nudge: NudgeModule;
+};
+
+// The ambient extension shim declares the events its extensions registered, and the
+// post-compaction one is not among them. The extra surface is declared here at the point of
+// use, as the killer child's EventEmitter surface is; a running Pi supplies the real signature.
+type CompactionRegistrar = {
+  on(
+    event: 'session_compact',
+    handler: (event: unknown, ctx: ExtensionContext) => unknown,
+  ): void;
 };
 
 const CONCERN = 'session-relaunch';
@@ -163,7 +190,17 @@ async function loadNudge(): Promise<NudgeModule> {
 function loadModules(): Promise<AdapterModules> {
   if (modulesPromise === null) {
     modulesPromise = Promise.all([loadCore(), loadContextUsage(), loadNudge()])
-      .then(([core, contextUsage, nudge]) => ({ core, contextUsage, nudge }))
+      .then(([core, contextUsage, nudge]) => {
+        // A nested run inherits the loop variables of the session that started it, and the host
+        // shares one process environment, so they are dropped before any handler reads
+        // SKILLED_LOOP_ID and hands off under a loop this process does not own. Resolving the
+        // modules is once per host, so the drop runs once per host too; reading the process
+        // table on every event is what this placement avoids.
+        try {
+          core.dropNestedLoop(process.env, { hostPid: process.pid });
+        } catch {}
+        return { core, contextUsage, nudge };
+      })
       .catch((error: unknown) => {
         modulesPromise = null;
         throw error;
@@ -247,6 +284,29 @@ function logSpawnError(core: CoreModule, loopId: string, error: unknown): void {
   } catch {}
 }
 
+// The pointer is recorded in the same log as every other handoff step, and a state-dir write
+// that fails must not be the reason the session is left without its note.
+function logPointer(core: CoreModule, sessionId: string, notePath: string): void {
+  try {
+    core.appendLog('compact-pointer', { sessionId, note: notePath }, process.env);
+  } catch {}
+}
+
+// The ambient shim declares no `node:fs`, so the note is read through the dynamic import the
+// killer path already resolves. A note whose frontmatter will not parse costs only its packet:
+// the seed still names the work worth claiming.
+async function noteSpecFolder(core: CoreModule, notePath: string): Promise<string> {
+  try {
+    const fs = asModule<{ readFileSync(filePath: string, encoding: 'utf8'): string }>(
+      await import('node:fs' as string),
+    );
+    const folder = core.parseHandoff(fs.readFileSync(notePath, 'utf8')).frontmatter.spec_folder;
+    return typeof folder === 'string' ? folder : '';
+  } catch {
+    return '';
+  }
+}
+
 async function spawnKiller(
   core: CoreModule,
   loopId: string,
@@ -315,7 +375,8 @@ async function armRelaunch(
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Register the message_end, before_agent_start and agent_end hooks on the Pi extension host.
+ * Register the message_end, before_agent_start, agent_end and session_compact hooks on the
+ * Pi extension host.
  */
 export default function sessionRelaunch(pi: ExtensionAPI): void {
   // Keyed by session id, so two sessions in one host process never swap a nudge.
@@ -404,6 +465,52 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
         // streaming loop, start a turn on an idle one.
         { deliverAs: 'followUp', triggerTurn: true },
       );
+    } catch {
+      return undefined;
+    }
+  });
+
+  (pi as unknown as CompactionRegistrar).on('session_compact', async (_event, ctx) => {
+    try {
+      const config = loadConfigFile(configPath());
+      if (!isEnabled(config)) return;
+      const modules = await loadModules();
+      const sessionId = sessionIdOf(ctx, modules.nudge);
+      if (!sessionId) return;
+
+      // Compaction keeps the session id but drops the detail its open note holds, and the
+      // context it frees makes the spent nudge level stale, so the level starts over. A
+      // held nudge goes with it, since it quotes the fill the compaction freed.
+      try {
+        modules.nudge.writeState(sessionId, 0, process.env);
+      } catch {}
+
+      heldNudges.delete(sessionId);
+
+      // A prepared hop already owns the note, and claiming it here would leave the fresh
+      // session nothing to claim.
+      if (modules.nudge.handoffPending({ sessionId })) return;
+
+      const notePath = modules.nudge.openNotePathFor({
+        repoRoot: modules.nudge.resolveRepoRoot(process.env),
+        sessionId,
+      });
+      if (notePath === null) return;
+
+      logPointer(modules.core, sessionId, notePath);
+      const specFolder = await noteSpecFolder(modules.core, notePath);
+      // The pointer rides the turn the compaction already queued, so it asks for no extra one.
+      pi.sendMessage({
+        customType: CONCERN,
+        content: modules.nudge.seedText({
+          notePath,
+          specFolder,
+          sessionId,
+          cliPath: modules.nudge.CLI_COMMAND,
+          afterCompaction: true,
+        }),
+        display: false,
+      });
     } catch {
       return undefined;
     }

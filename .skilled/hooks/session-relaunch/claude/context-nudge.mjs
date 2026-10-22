@@ -8,7 +8,12 @@
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
-import { appendLog, isEntrypoint, payloadEventName } from '../lib/relaunch-core.cjs';
+import {
+  appendLog,
+  dropNestedLoop,
+  isEntrypoint,
+  payloadEventName,
+} from '../lib/relaunch-core.cjs';
 import { readClaudeFill, resolveWindow, fillRatio } from '../lib/context-usage.cjs';
 import nudge from '../lib/nudge.cjs';
 
@@ -58,6 +63,10 @@ async function main() {
 
   // A sub-agent reports its parent's session and transcript, so its fill and note are the parent's.
   if (typeof payload.agent_id === 'string' && payload.agent_id.trim() !== '') return done();
+
+  // A runtime started from this loop session's shell inherits the loop variables, so it
+  // must act as a session outside the loop.
+  dropNestedLoop(process.env);
 
   // One registration serves both events, so any named event is answered under its own name.
   const eventName = payloadEventName(payload, { runtime: 'claude' });

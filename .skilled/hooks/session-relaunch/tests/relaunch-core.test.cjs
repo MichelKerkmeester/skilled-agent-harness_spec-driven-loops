@@ -28,6 +28,9 @@ const {
   manualClaimCommand,
   validSpecFolder,
   findLoopChildPid,
+  hostRuntimePid,
+  nestedUnderLoop,
+  dropNestedLoop,
   readProcessTable,
   liveKillerPid,
   lockIsExpired,
@@ -43,6 +46,15 @@ const DEFAULT_SECTIONS = {
   'Remaining work': 'Build the core and adapters.',
   'In-flight state': 'No child process is running.',
 };
+// A runtime launched from a tool shell sits two processes below its loop: the shell it
+// started from, then the loop's own runtime.
+const NESTED_PROCESS_TABLE = [
+  '300 250 pi',
+  '250 200 zsh',
+  '200 100 claude',
+  '100 1 bash',
+  '',
+].join('\n');
 
 function createSandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-core-'));
@@ -1020,6 +1032,135 @@ test('findLoopChildPid selects the ancestor directly below the loop', () => {
   assert.equal(findLoopChildPid('999', { pid: 41, processTable: table }), null);
   assert.equal(findLoopChildPid('loop-id', { pid: 41, processTable: table }), null);
   assert.equal(findLoopChildPid('100', { pid: 41, processTable: null }), null);
+});
+
+test('hostRuntimePid skips shells above the caller', () => {
+  const table = [
+    '500 400 node',
+    '400 300 /bin/zsh',
+    '300 200 -/bin/bash',
+    '200 100 claude',
+    '100 1 bash',
+    '',
+  ].join('\n');
+  assert.equal(hostRuntimePid({ pid: 500, processTable: table }), 200);
+});
+
+test('hostRuntimePid returns the direct parent when it is not a shell', () => {
+  const table = [
+    '500 400 node',
+    '400 100 /Applications/Some App.app/Contents/MacOS/Some App',
+    '100 1 bash',
+    '',
+  ].join('\n');
+  assert.equal(hostRuntimePid({ pid: 500, processTable: table }), 400);
+});
+
+test('hostRuntimePid returns null for a missing table or a broken chain', () => {
+  assert.equal(hostRuntimePid({ pid: 500, processTable: '' }), null);
+  assert.equal(hostRuntimePid({ pid: 500, processTable: 'not a process table' }), null);
+  assert.equal(hostRuntimePid({ pid: 500, processTable: '500 400 node\n' }), null);
+  // Every ancestor is a shell and one belongs to its own past, so the walk never settles.
+  assert.equal(hostRuntimePid({ pid: 500, processTable: '500 400 zsh\n400 500 zsh\n' }), null);
+});
+
+test('nestedUnderLoop is false for the loop child and a shim grandchild', () => {
+  const child = ['200 100 claude', '100 1 bash', ''].join('\n');
+  const shimmed = ['210 205 pi', '205 100 sh', '100 1 bash', ''].join('\n');
+  assert.equal(nestedUnderLoop('100', { hostPid: 200, processTable: child }), false);
+  assert.equal(nestedUnderLoop('100', { hostPid: 210, processTable: shimmed }), false);
+});
+
+test('nestedUnderLoop is true for a runtime started from the loop runtime shell', () => {
+  assert.equal(
+    nestedUnderLoop('100', { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+    true,
+  );
+});
+
+test('nestedUnderLoop is false for an unrelated or invalid loop id', () => {
+  for (const loopId of ['999', 'loop-id', '', '0']) {
+    assert.equal(
+      nestedUnderLoop(loopId, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+      false,
+      loopId,
+    );
+  }
+  for (const loopPid of ['300', '100']) {
+    assert.equal(
+      nestedUnderLoop(loopPid, { hostPid: Number(loopPid), processTable: NESTED_PROCESS_TABLE }),
+      false,
+      loopPid,
+    );
+  }
+});
+
+test('dropNestedLoop removes the loop variables for a nested run', () => {
+  const env = {
+    SKILLED_LOOP_ID: '100',
+    SKILLED_LOOP_RUNTIME: 'pi',
+    SKILLED_LOOP_HOPS: '2',
+    OTHER: 'x',
+  };
+  assert.equal(
+    dropNestedLoop(env, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+    true,
+  );
+  assert.deepEqual(env, { OTHER: 'x' });
+});
+
+test('dropNestedLoop keeps the loop variables for the loop own runtime', () => {
+  const env = {
+    SKILLED_LOOP_ID: '100',
+    SKILLED_LOOP_RUNTIME: 'claude',
+    SKILLED_LOOP_HOPS: '1',
+    OTHER: 'x',
+  };
+  assert.equal(
+    dropNestedLoop(env, { hostPid: 200, processTable: NESTED_PROCESS_TABLE }),
+    false,
+  );
+  assert.deepEqual(env, {
+    SKILLED_LOOP_ID: '100',
+    SKILLED_LOOP_RUNTIME: 'claude',
+    SKILLED_LOOP_HOPS: '1',
+    OTHER: 'x',
+  });
+});
+
+test('dropNestedLoop does nothing outside the loop', () => {
+  const env = { SKILLED_LOOP_RUNTIME: 'pi', OTHER: 'x' };
+  assert.equal(
+    dropNestedLoop(env, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+    false,
+  );
+  assert.deepEqual(env, { SKILLED_LOOP_RUNTIME: 'pi', OTHER: 'x' });
+
+  const unset = { SKILLED_LOOP_ID: '', OTHER: 'x' };
+  assert.equal(
+    dropNestedLoop(unset, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+    false,
+  );
+  assert.deepEqual(unset, { SKILLED_LOOP_ID: '', OTHER: 'x' });
+});
+
+test('dropNestedLoop resolves the host from pid when hostPid is omitted', () => {
+  const table = [
+    '310 300 node',
+    '300 250 pi',
+    '250 200 zsh',
+    '200 100 claude',
+    '100 1 bash',
+    '',
+  ].join('\n');
+  const env = {
+    SKILLED_LOOP_ID: '100',
+    SKILLED_LOOP_RUNTIME: 'pi',
+    SKILLED_LOOP_HOPS: '1',
+  };
+  // The hook's parent is the nested runtime, so the walk from pid meets it before any shell.
+  assert.equal(dropNestedLoop(env, { pid: 310, processTable: table }), true);
+  assert.deepEqual(env, {});
 });
 
 test('readProcessTable returns null instead of blocking on a stuck ps', (t) => {

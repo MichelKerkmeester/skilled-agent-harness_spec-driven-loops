@@ -111,6 +111,16 @@ function claimedReminder(seed) {
     + `When the remaining work is done, run \`${complete}\` to close the note.`;
 }
 
+// The note's own frontmatter names the spec folder a claim of it should resume into.
+function noteSpecFolder(notePath) {
+  try {
+    const folder = core.parseHandoff(fs.readFileSync(notePath, 'utf8')).frontmatter.spec_folder;
+    return typeof folder === 'string' ? folder : '';
+  } catch {
+    return '';
+  }
+}
+
 function makeState() {
   return {
     contextWindow: null,
@@ -138,6 +148,14 @@ function stateFor(sessionStates, sessionID) {
   state = makeState();
   sessionStates.set(sessionID, state);
   return state;
+}
+
+function trackChildSession(sessionStates, childSessions, sessionID) {
+  if (!childSessions.has(sessionID) && childSessions.size >= MAX_SESSIONS) {
+    childSessions.delete(childSessions.keys().next().value);
+  }
+  childSessions.add(sessionID);
+  sessionStates.delete(sessionID);
 }
 
 function queueNudge(state, sessionID, fillTokens, windowTokens, directory) {
@@ -221,6 +239,15 @@ function spawnKiller(loopId) {
 
 function sessionRelaunchPlugin(ctx = {}) {
   const sessionStates = new Map();
+  // A sub-agent runs as a child session with its own id and its own fill, so its nudge,
+  // seed or idle would hand off or end the parent's runtime.
+  const childSessions = new Set();
+
+  // A runtime started from inside another loop's process inherits that loop's variables, so a
+  // nested run would arm and relaunch a runtime that is not its own.
+  try {
+    core.dropNestedLoop(process.env, { hostPid: process.pid });
+  } catch {}
 
   function isEnabled() {
     try {
@@ -236,8 +263,22 @@ function sessionRelaunchPlugin(ctx = {}) {
         if (!isEnabled()) return;
         const event = payload?.event;
         const properties = event?.properties;
+        if (event?.type === 'session.created' || event?.type === 'session.updated') {
+          const info = properties?.info;
+          if (
+            info
+            && typeof info === 'object'
+            && typeof info.parentID === 'string'
+            && info.parentID
+            && nudge.validSessionId(info.id)
+          ) {
+            trackChildSession(sessionStates, childSessions, info.id);
+            return;
+          }
+        }
+
         const sessionID = properties?.sessionID;
-        if (!nudge.validSessionId(sessionID)) return;
+        if (!nudge.validSessionId(sessionID) || childSessions.has(sessionID)) return;
 
         if (event.type === 'message.updated') {
           const info = properties.info;
@@ -247,6 +288,7 @@ function sessionRelaunchPlugin(ctx = {}) {
             const state = stateFor(sessionStates, sessionID);
             if (
               state.latestUserMessageId !== info.id
+              && state.activeSeed?.messageID !== null
               && info.id !== state.activeSeed?.messageID
             ) state.activeSeed = null;
             state.latestUserMessageId = info.id;
@@ -319,6 +361,44 @@ function sessionRelaunchPlugin(ctx = {}) {
           const armed = core.arm({ loopId, cwd: directory, env: process.env });
           if (armed?.status !== 'armed') return;
           spawnKiller(loopId);
+          return;
+        }
+
+        if (event.type === 'session.compacted') {
+          // A compacted session keeps its id but loses the detail its open note holds, and the
+          // freed context makes the spent nudge level stale; the nudge the plugin still holds
+          // goes with it, since its text quotes the fill the compaction freed. A note a prepared
+          // hop already owns is left for that hop to claim.
+          try {
+            nudge.writeState(sessionID, 0, process.env);
+          } catch {}
+          const state = sessionStates.get(sessionID);
+          if (state) {
+            state.nudgeLevel = 0;
+            state.activeNudge = null;
+            state.pendingNudge = null;
+            state.pendingUsage = null;
+          }
+          if (nudge.handoffPending({ sessionId: sessionID, env: process.env })) return;
+
+          const notePath = nudge.openNotePathFor({
+            repoRoot: nudge.resolveRepoRoot(),
+            sessionId: sessionID,
+          });
+          if (notePath === null) return;
+
+          logEvent('compact-pointer', { sessionId: sessionID, note: notePath });
+          stateFor(sessionStates, sessionID).activeSeed = {
+            messageID: null,
+            notePath,
+            text: nudge.seedText({
+              notePath,
+              specFolder: noteSpecFolder(notePath),
+              sessionId: sessionID,
+              cliPath: nudge.CLI_COMMAND,
+              afterCompaction: true,
+            }),
+          };
         }
       } catch {
         return undefined;
@@ -331,7 +411,7 @@ function sessionRelaunchPlugin(ctx = {}) {
         output.system = Array.isArray(output.system) ? output.system : [];
 
         const sessionID = sessionIdOf(input);
-        if (!sessionID) return;
+        if (!sessionID || childSessions.has(sessionID)) return;
         const state = sessionStates.get(sessionID);
         if (!state) return;
 

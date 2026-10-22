@@ -11,6 +11,7 @@ const os = require('node:os');
 const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const { specFolderFromSeed } = require('../lib/nudge.cjs');
+const { runNested } = require('./fixtures/nested-run.cjs');
 
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop';
@@ -162,6 +163,17 @@ function runCli(sandbox, args, env = sandbox.env) {
     encoding: 'utf8',
     timeout: 5000,
   });
+}
+
+// The nested detection walks the live process table, so these runs keep the real ps
+// instead of the stub the sandbox puts first on PATH.
+function nestedRunEnv(sandbox) {
+  return {
+    ...sandbox.env,
+    PATH: process.env.PATH,
+    SKILLED_LOOP_ID: String(process.pid),
+    SKILLED_LOOP_RUNTIME: 'claude',
+  };
 }
 
 function startRuntime(sandbox, script) {
@@ -664,6 +676,30 @@ test('prepare refuses a live shell child of the Codex loop runtime', async (t) =
   assert.match(result.report?.stderr || '', /Codex still has a live shell child \(bash/);
 });
 
+test('prepare refuses a live shell child of the Pi loop runtime', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'pi';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+
+  const result = await startLoopAncestorPrepare(sandbox, t, { busyShell: true });
+
+  assert.equal(result.report?.code, 2, result.stderr || result.stdout);
+  assert.match(result.report?.stderr || '', /Pi still has a live shell child \(bash/);
+});
+
+test('prepare refuses a live shell child of the OpenCode loop runtime', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'opencode';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+
+  const result = await startLoopAncestorPrepare(sandbox, t, { busyShell: true });
+
+  assert.equal(result.report?.code, 2, result.stderr || result.stdout);
+  assert.match(result.report?.stderr || '', /Opencode still has a live shell child \(bash/);
+});
+
 test('prepare names the runtime when ps fails', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -742,6 +778,39 @@ test('prepare exits three outside the loop and prints the manual claim command',
   ].join('');
   assert.equal(result.status, 3, result.stderr);
   assert.ok(result.stdout.includes(manualCommand), result.stdout);
+});
+
+test('prepare from a nested run prints the manual command and exits 3', async (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const result = await runNested({
+    argv: [
+      CLI_PATH,
+      'prepare',
+      '--handoff', handoffPath,
+      '--session', SESSION_ID,
+      '--runtime', 'claude',
+    ],
+    env: nestedRunEnv(sandbox),
+    cwd: sandbox.repoRoot,
+  });
+  const manualCommand = 'skilled-loop claude "[session-relaunch] '
+    + `claim and continue handoff ${handoffPath}${SPEC_FOLDER_SUFFIX}"`;
+  assert.equal(result.code, 3, result.stderr);
+  assert.ok(result.stdout.includes(manualCommand), result.stdout);
+  assert.equal(fs.existsSync(relaunchPath(sandbox, String(process.pid))), false);
+});
+
+test('keep from a nested run behaves as outside the loop', async (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const result = await runNested({
+    argv: [CLI_PATH, 'keep', '--handoff', handoffPath, '--session', SESSION_ID],
+    env: nestedRunEnv(sandbox),
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.match(result.stdout, /note kept; this session cannot relaunch, so keep working/);
 });
 
 for (const { label, specFolder } of [

@@ -16,6 +16,7 @@ import {
   arm,
   appendLog,
   armableRecord,
+  dropNestedLoop,
   isEntrypoint,
   readRelaunchFile,
   resolveKillerTarget,
@@ -87,6 +88,9 @@ async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess)
  */
 async function armPendingRecord(payload, dependencies = {}) {
   const env = dependencies.env || process.env;
+  // A runtime started from this loop session's shell inherits the loop variables, so it
+  // must act as a session outside the loop.
+  dropNestedLoop(env);
   const loopId = env.SKILLED_LOOP_ID;
   if (!loopId) return null;
 

@@ -1021,6 +1021,174 @@ function resolveKillerTarget(loopId, { preferredPid, pid = process.pid, processT
   return findLoopChildPid(loopId, { pid, processTable: table });
 }
 
+/**
+ * Parse `pid ppid` or `pid ppid comm` rows into a pid-keyed map. The command
+ * column is what separates a shell from the runtime above it, and a command
+ * name may contain spaces, so the row is split on its first two numeric fields
+ * only.
+ *
+ * @param {string} table - Process table text.
+ * @returns {Map<number, { ppid: number, comm: string }>} Rows keyed by pid.
+ */
+function processRowsFromTable(table) {
+  const rows = new Map();
+  for (const line of table.split(/\r?\n/)) {
+    const match = line.trim().match(/^(\d+)\s+(\d+)(?:\s+(.*))?$/);
+    if (match) {
+      rows.set(Number(match[1]), {
+        ppid: Number(match[2]),
+        comm: typeof match[3] === 'string' ? match[3].trim() : '',
+      });
+    }
+  }
+  return rows;
+}
+
+// A runtime reaches its session through whatever shell started it, so these are
+// the process names that are transparent when the runtime above is located.
+const SHELL_NAMES = new Set(['sh', 'bash', 'zsh', 'dash', 'ksh', 'fish', 'tcsh', 'csh']);
+
+/**
+ * Report whether a command column names a shell. A login shell is reported as
+ * `-/bin/zsh` or `-zsh`, where a leading dash marks the login variant instead
+ * of belonging to the path.
+ *
+ * @param {string} comm - Command column from a process-table row.
+ * @returns {boolean} True when the command is a shell.
+ */
+function isShellCommand(comm) {
+  if (typeof comm !== 'string' || comm.length === 0) return false;
+  const withoutLoginMark = comm.startsWith('-') ? comm.slice(1) : comm;
+  const programName = path.basename(withoutLoginMark);
+  return SHELL_NAMES.has(programName.startsWith('-') ? programName.slice(1) : programName);
+}
+
+/**
+ * Resolve the runtime that hosts this process by skipping the shells above it.
+ * A runtime started from a tool shell sits below that shell, so process.ppid
+ * names the shell rather than the runtime that owns the session; the nearest
+ * non-shell ancestor is the host the loop variables belong to.
+ *
+ * @param {Object} [options] - Dependency seams for tests.
+ * @param {number} [options.pid=process.pid] - Descendant pid to climb from.
+ * @param {string} [options.processTable] - `pid ppid comm` rows; the live table when omitted.
+ * @returns {number|null} The nearest non-shell ancestor, or null at the end of the chain.
+ */
+function hostRuntimePid({ pid = process.pid, processTable } = {}) {
+  const table = typeof processTable === 'string'
+    ? processTable
+    : readProcessTable({ withCommand: true });
+  if (typeof table !== 'string') return null;
+
+  const rows = processRowsFromTable(table);
+
+  let current = Number(pid);
+  const visited = new Set();
+  while (Number.isSafeInteger(current) && current > 0 && !visited.has(current)) {
+    visited.add(current);
+    const row = rows.get(current);
+    // A row the table does not carry ends the chain: the processes above it are
+    // unreadable, and an unreadable ancestor cannot be proven to be the runtime.
+    if (!row) return null;
+    const parent = row.ppid;
+    if (!Number.isSafeInteger(parent) || parent < 1) return null;
+    const parentRow = rows.get(parent);
+    if (!parentRow) return null;
+    if (!isShellCommand(parentRow.comm)) return parent;
+    current = parent;
+  }
+  return null;
+}
+
+/**
+ * Report whether this runtime was started from inside the session the loop id
+ * names. A runtime started from the loop's own tool shell inherits the loop
+ * variables through the outer runtime, so dropping them needs positive proof of
+ * that depth: only a walk that meets the loop pid with two or more processes in
+ * between marks the run as nested.
+ *
+ * @param {string} loopId - Owning loop pid carried by SKILLED_LOOP_ID.
+ * @param {Object} [options] - Host pid and dependency seams for tests.
+ * @param {number} [options.hostPid] - Runtime pid to walk up from.
+ * @param {string} [options.processTable] - `pid ppid` pairs; the live table when omitted.
+ * @returns {boolean} True only when the loop pid is reached with two or more processes between.
+ */
+function nestedUnderLoop(loopId, { hostPid, processTable } = {}) {
+  const loopPid = Number(loopId);
+  if (!Number.isSafeInteger(loopPid) || loopPid < 1) return false;
+  const startPid = Number(hostPid);
+  if (!Number.isSafeInteger(startPid) || startPid < 1 || startPid === loopPid) return false;
+
+  const table = typeof processTable === 'string' ? processTable : readProcessTable();
+  if (typeof table !== 'string') return false;
+
+  const rows = processRowsFromTable(table);
+
+  let current = startPid;
+  let between = 0;
+  const visited = new Set();
+  while (!visited.has(current)) {
+    visited.add(current);
+    const row = rows.get(current);
+    if (!row) return false;
+    const parent = row.ppid;
+    if (!Number.isSafeInteger(parent) || parent < 1) return false;
+    if (parent === loopPid) return between >= 2;
+    between += 1;
+    current = parent;
+  }
+  return false;
+}
+
+/**
+ * Drop the inherited loop variables when this runtime runs inside the loop they
+ * name. Every nested run carries the outer loop's id, so leaving it in place
+ * would let the inner runtime treat this session as the loop's own runtime and
+ * arm a relaunch against the outer loop's record. An unknown or unrelated loop
+ * pid keeps today's behavior, because dropping the variables there would turn a
+ * real loop child into an unguarded session. Only a loop id that is a pid can
+ * name an ancestor, so any other value skips the read.
+ *
+ * @param {NodeJS.ProcessEnv} env - Environment to strip; mutated in place.
+ * @param {Object} [options] - Host pid and dependency seams for tests.
+ * @param {number} [options.hostPid] - Runtime pid to compare against; resolved from pid when omitted.
+ * @param {number} [options.pid=process.pid] - Descendant pid to resolve the host from.
+ * @param {string} [options.processTable] - `pid ppid comm` rows; the live table when omitted.
+ * @returns {boolean} True when the inherited loop variables were dropped.
+ */
+function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) {
+  try {
+    if (!nonEmptyString(env?.SKILLED_LOOP_ID)) return false;
+    const loopPid = Number(env.SKILLED_LOOP_ID);
+    if (!Number.isSafeInteger(loopPid) || loopPid < 1) return false;
+
+    const table = typeof processTable === 'string'
+      ? processTable
+      : readProcessTable({ withCommand: true });
+    const resolvedHostPid = hostPid === undefined || hostPid === null
+      ? hostRuntimePid({ pid, processTable: table })
+      : hostPid;
+    const nested = nestedUnderLoop(env.SKILLED_LOOP_ID, {
+      hostPid: resolvedHostPid,
+      processTable: table,
+    });
+    if (!nested) return false;
+
+    try {
+      appendLog('loop-nested-run', { loopId: env.SKILLED_LOOP_ID, hostPid: resolvedHostPid }, env);
+    } catch {
+      // A log that cannot be written must not keep the inherited loop alive.
+    }
+
+    delete env.SKILLED_LOOP_ID;
+    delete env.SKILLED_LOOP_RUNTIME;
+    delete env.SKILLED_LOOP_HOPS;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1065,4 +1233,7 @@ module.exports = {
   readProcessTable,
   findLoopChildPid,
   resolveKillerTarget,
+  hostRuntimePid,
+  nestedUnderLoop,
+  dropNestedLoop,
 };

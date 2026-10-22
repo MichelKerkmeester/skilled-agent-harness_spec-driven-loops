@@ -122,6 +122,12 @@ function assistantEvent(sessionID, id, input) {
   } };
 }
 
+function sessionCreatedEvent(sessionID, parentID) {
+  const info = { id: sessionID };
+  if (parentID !== undefined) info.parentID = parentID;
+  return { event: { type: 'session.created', properties: { info } } };
+}
+
 function notePathFromNudge(text) {
   const match = text.match(/Write the handoff note at '([^']+)'/);
   assert.ok(match);
@@ -131,6 +137,19 @@ function notePathFromNudge(text) {
 function writeHandoffNote(notePath, sessionID) {
   fs.mkdirSync(path.dirname(notePath), { recursive: true });
   fs.writeFileSync(notePath, `---\nsession_id: ${sessionID}\n---\n`);
+}
+
+// A note the planner can hand back has to sit where it looks and carry the status
+// it matches on, which writeHandoffNote leaves out.
+function writeOpenNote(root, sessionID) {
+  const notePath = path.join(
+    root,
+    '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    `20261018T000000Z-${sessionID.slice(0, 8)}.md`,
+  );
+  fs.mkdirSync(path.dirname(notePath), { recursive: true });
+  fs.writeFileSync(notePath, `---\nsession_id: ${sessionID}\nstatus: open\n---\n`);
+  return notePath;
 }
 
 async function startLoopNudge(t, sessionID) {
@@ -1263,4 +1282,306 @@ test('malformed plugin events and transforms never throw', async (t) => {
   await assert.doesNotReject(async () => {
     await hooks['experimental.chat.system.transform']({}, {});
   });
+});
+
+test('a task sub-agent session never receives a nudge', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const parent = 'ses-task-nudge-parent-0001';
+  const child = 'ses-task-nudge-child-0001';
+
+  await hooks.event(sessionCreatedEvent(child, parent));
+  await hooks.event(assistantEvent(child, 'assistant-child-nudge', 170));
+
+  assert.deepEqual(await transform(hooks, child), []);
+  // A transform that hides the text still advances the recorded level, so the level
+  // is what proves nothing was queued for the child session in the first place.
+  assert.equal(nudge.readState(child, process.env), 0);
+});
+
+test('a sub-agent seen only through session.updated is also ignored', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const parent = 'ses-task-update-parent-0001';
+  const child = 'ses-task-update-child-0001';
+
+  await hooks.event({ event: {
+    type: 'session.updated',
+    properties: { info: { id: child, parentID: parent } },
+  } });
+  await hooks.event(assistantEvent(child, 'assistant-child-update', 170));
+
+  assert.deepEqual(await transform(hooks, child), []);
+  assert.equal(nudge.readState(child, process.env), 0);
+});
+
+test('the parent session still nudges while its sub-agent is ignored', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const parent = 'ses-task-parent-0001';
+  const child = 'ses-task-child-0001';
+
+  await hooks.event(sessionCreatedEvent(parent));
+  await hooks.event(sessionCreatedEvent(child, parent));
+  await hooks.event(assistantEvent(child, 'assistant-child-ignored', 170));
+  assert.deepEqual(await transform(hooks, child), []);
+
+  await hooks.event(assistantEvent(parent, 'assistant-parent-running', 170));
+  const output = await transform(hooks, parent);
+
+  assert.equal(output.length, 1);
+  assert.match(output[0], /85% full/);
+});
+
+test('a sub-agent session.idle never arms a pending record', async (t) => {
+  setupEnv(t);
+  const spawn = stubSpawn(t);
+  const loopId = 'opencode-task-child-loop-0001';
+  const parent = 'ses-task-idle-parent-0001';
+  const child = 'ses-task-idle-child-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: child,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event(sessionCreatedEvent(child, parent));
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID: child } } });
+
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
+  assert.equal(spawn.calls.length, 0);
+});
+
+test('a sub-agent never receives the claim seed', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const parent = 'ses-task-seed-parent-0001';
+  const child = 'ses-task-seed-child-0001';
+  const notePath = path.join(root, 'child-handoff.md');
+
+  await hooks.event(sessionCreatedEvent(child, parent));
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID: child, info: { id: 'msg-child-seed', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID: child,
+      part: {
+        messageID: 'msg-child-seed',
+        type: 'text',
+        text: `[session-relaunch] claim and continue handoff ${notePath}`,
+      },
+    },
+  } });
+
+  assert.deepEqual(await transform(hooks, child), []);
+});
+
+test('an empty parentID does not mark a sub-agent', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-empty-parent-0001';
+
+  await hooks.event(sessionCreatedEvent(sessionID, ''));
+  await hooks.event(assistantEvent(sessionID, 'assistant-empty-parent', 170));
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  assert.match(output[0], /85% full/);
+});
+
+test('after compaction the next transform points the session at its open note', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-compact-pointer-0001';
+  const notePath = writeOpenNote(root, sessionID);
+  nudge.writeState(sessionID, 1, process.env);
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  assert.ok(output[0].includes(`claim '${notePath}'`), output[0]);
+  assert.equal(nudge.readState(sessionID, process.env), 0);
+});
+
+test('the compaction pointer repeats until the note is claimed, then reminds, then clears', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-compact-repeat-0001';
+  const notePath = writeOpenNote(root, sessionID);
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  const first = await transform(hooks, sessionID);
+  const second = await transform(hooks, sessionID);
+  assert.equal(first.length, 1);
+  assert.ok(first[0].includes(`claim '${notePath}'`), first[0]);
+  assert.deepEqual(second, first);
+
+  core.claimHandoff(notePath, { sessionId: sessionID });
+  const reminder = await transform(hooks, sessionID);
+  assert.equal(reminder.length, 1);
+  assert.ok(reminder[0].includes(`claimed handoff note ${notePath}`), reminder[0]);
+  assert.equal(reminder[0].includes(`claim '${notePath}'`), false);
+
+  core.completeHandoff(notePath);
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});
+
+test('a compaction without an open note adds nothing but still resets the nudge level', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-compact-no-note-0001';
+  nudge.writeState(sessionID, 1, process.env);
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+  assert.equal(nudge.readState(sessionID, process.env), 0);
+});
+
+test('a sub-agent session compaction is ignored', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const parent = 'ses-compact-parent-0001';
+  const child = 'ses-compact-child-0001';
+  // The child has an open note, so only the sub-agent check keeps the pointer away.
+  writeOpenNote(root, child);
+  nudge.writeState(child, 1, process.env);
+
+  await hooks.event(sessionCreatedEvent(child, parent));
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID: child },
+  } });
+
+  assert.deepEqual(await transform(hooks, child), []);
+  // The recorded level proves the compaction never reached the child: a pointer resets
+  // it before anything could be delivered.
+  assert.equal(nudge.readState(child, process.env), 1);
+});
+
+test('a compaction while a prepared hop owns the note adds nothing', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-compact-loop-0001';
+  const sessionID = 'ses-compact-pending-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  const notePath = writeOpenNote(root, sessionID);
+  core.preparePending({
+    loopId,
+    handoffPath: notePath,
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: root,
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});
+
+test('the plugin drops the loop variables when it runs nested', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = String(process.pid);
+  const dropNestedLoop = core.dropNestedLoop;
+  const calls = [];
+  core.dropNestedLoop = (...args) => {
+    calls.push(args);
+    return true;
+  };
+  t.after(() => {
+    core.dropNestedLoop = dropNestedLoop;
+  });
+
+  await loadPlugin({ directory: '/workspace/opencode' });
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][0], process.env);
+  assert.deepEqual(calls[0][1], { hostPid: process.pid });
+});
+
+test('compaction drops the active nudge text', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-compact-nudge-drop-0001';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-at-85', 170));
+  const active = await transform(hooks, sessionID);
+  assert.equal(active.length, 1);
+  assert.match(active[0], /85% full/);
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});
+
+test('after compaction the first-level nudge fires again', async (t) => {
+  setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-compact-renudge-0001';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-before-compaction', 170));
+  const active = await transform(hooks, sessionID);
+  assert.match(active[0], /85% full/);
+
+  await hooks.event({ event: {
+    type: 'session.compacted',
+    properties: { sessionID },
+  } });
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-after-compaction', 162));
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  assert.match(output[0], /81% full/);
 });

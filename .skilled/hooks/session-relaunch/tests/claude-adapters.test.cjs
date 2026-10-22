@@ -15,6 +15,7 @@ const STOP_ARM_PATH = path.resolve(__dirname, '../claude/stop-arm.mjs');
 const POST_TOOL_USE = require('./fixtures/payload-post-tool-use.json');
 const USER_PROMPT_SUBMIT = require('./fixtures/payload-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/payload-stop.json');
+const { runNested } = require('./fixtures/nested-run.cjs');
 const SESSION_ID = 'session-adapter-00000001';
 
 function createSandbox(t) {
@@ -164,6 +165,51 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
   assert.equal(nextOutput.hookSpecificOutput.hookEventName, 'PostToolUse');
   assert.match(
     nextOutput.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
+});
+
+test('a nested run gets the outside-the-loop nudge', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = String(process.pid);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const result = await runNested({
+    argv: [CONTEXT_NUDGE_PATH],
+    env: sandbox.env,
+    cwd: sandbox.repoRoot,
+    input: JSON.stringify(payload),
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes('cannot relaunch'), context);
+  assert.doesNotMatch(context, /prepare --handoff/);
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  assert.match(fs.readFileSync(logPath, 'utf8'), /loop-nested-run/);
+});
+
+test('the loop runtime itself still gets the in-loop nudge', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = String(process.pid);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.match(
+    JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext,
     /prepare --handoff.*--runtime 'claude'/,
   );
 });
@@ -432,6 +478,64 @@ test('stop-arm arms a matching pending record, starts the killer lock, and print
     killChild(target);
     await waitFor(() => !fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), 2500);
   }
+});
+
+test('stop-arm leaves a pending record alone when the relaunch concern is disabled', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_PID = String(target.pid);
+  sandbox.env.SYSTEM_SESSION_RELAUNCH_DISABLED = '1';
+  const liveCwd = path.join(sandbox.root, 'live-cwd');
+  fs.mkdirSync(liveCwd, { recursive: true });
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: liveCwd,
+    background_tasks: [],
+  };
+  try {
+    const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '');
+    assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'pending');
+    assert.equal(fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), false);
+  } finally {
+    killChild(target);
+  }
+});
+
+test("stop-arm leaves a nested run's pending record untouched", async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+  const result = await runNested({
+    argv: [STOP_ARM_PATH],
+    env: sandbox.env,
+    cwd: sandbox.repoRoot,
+    input: JSON.stringify(payload),
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'pending');
+  assert.equal(fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), false);
 });
 
 test('stop-arm defers pending state when background tasks exist and logs the reason', async (t) => {

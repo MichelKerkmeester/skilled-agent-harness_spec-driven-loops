@@ -15,7 +15,13 @@ import type {
   ExtensionContext,
   MessageEndEvent,
 } from '@earendil-works/pi-coding-agent';
-import { arm, preparePending, readRelaunchFile, shouldRelaunch } from '../lib/relaunch-core.cjs';
+import { readState, writeState } from '../lib/nudge.cjs';
+import relaunchCore, {
+  arm,
+  preparePending,
+  readRelaunchFile,
+  shouldRelaunch,
+} from '../lib/relaunch-core.cjs';
 import sessionRelaunch from './session-relaunch';
 
 const { spawnMock } = vi.hoisted(() => ({ spawnMock: vi.fn(() => ({ unref: vi.fn() })) }));
@@ -754,6 +760,160 @@ describe('session-relaunch Pi extension', () => {
 
       expect(result).toBeUndefined();
     }
+  });
+
+  // The extension shares the runtime's process, so it reports its own pid and lets the
+  // core decide whether the loop variables were inherited from an outer session.
+  it('drops the loop variables when the extension runs nested', async () => {
+    setupEnv();
+    // The drop rides the adapter's first module resolution, so only a fresh instance can
+    // show it: the shared instance resolved its modules during an earlier test, and this
+    // instance resolves its own on the first handler call.
+    const dropNestedLoop = vi.fn(relaunchCore.dropNestedLoop);
+    const observedCore = { default: { ...relaunchCore, dropNestedLoop } };
+    vi.resetModules();
+    vi.doMock('../lib/relaunch-core.cjs', () => observedCore);
+    vi.doMock('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs', () => observedCore);
+
+    try {
+      const nestedModule = await import('./session-relaunch?nested-drop');
+      const { api, handlers } = makeExtensionApi();
+      nestedModule.default(api);
+
+      await emit(handlers, 'session_compact', {}, makeContext());
+
+      expect(dropNestedLoop).toHaveBeenCalledOnce();
+      expect(dropNestedLoop).toHaveBeenCalledWith(process.env, { hostPid: process.pid });
+
+      // A second event on the same instance reuses the resolved modules, so the process
+      // table is not read again for a host that already paid for one lookup.
+      await emit(handlers, 'session_compact', {}, makeContext());
+
+      expect(dropNestedLoop).toHaveBeenCalledOnce();
+    } finally {
+      vi.doUnmock('../lib/relaunch-core.cjs');
+      vi.doUnmock('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs');
+      vi.resetModules();
+    }
+  });
+});
+
+// A compacted session keeps its id but loses the detail its open note holds, so the
+// extension points the same session back at that note and spends its nudge level again.
+describe('session_compact pointer', () => {
+  const SESSION_ID = 'pi-session-0001';
+
+  function writeOpenNote(): string {
+    const directory = path.join(
+      // setupEnv() sets SESSION_RELAUNCH_REPO_ROOT, so the note sits under the sandbox root.
+      process.env.SESSION_RELAUNCH_REPO_ROOT!,
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    );
+    mkdirSync(directory, { recursive: true });
+    const notePath = path.join(directory, `20261021T080000Z-${SESSION_ID.slice(0, 8)}.md`);
+    writeFileSync(notePath, [
+      '---',
+      'status: open',
+      `session_id: ${SESSION_ID}`,
+      'spec_folder: ',
+      '---',
+      '## Goal', 'finish the handoff',
+      '## Done', 'wrote the note',
+      '## Remaining work', 'continue',
+      '## In-flight state', 'pointer added',
+    ].join('\n'));
+    return notePath;
+  }
+
+  it('points a compacted session at its open note', async () => {
+    setupEnv();
+    const notePath = writeOpenNote();
+    writeState(SESSION_ID, 1, process.env);
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const message = api.sendMessage.mock.calls[0][0] as { content: string };
+    expect(message).toMatchObject({ customType: 'session-relaunch', display: false });
+    expect(message.content).toMatch(/^\[session-relaunch\] This session was compacted/);
+    expect(message.content).toContain(notePath);
+    expect(message.content).toContain('claim');
+    expect(readState(SESSION_ID, process.env)).toBe(0);
+  });
+
+  it('adds nothing without an open note but resets the level', async () => {
+    setupEnv();
+    writeState(SESSION_ID, 1, process.env);
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+
+    expect(api.sendMessage).not.toHaveBeenCalled();
+    expect(readState(SESSION_ID, process.env)).toBe(0);
+  });
+
+  it('drops a nudge held before the compaction', async () => {
+    setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-compact-nudge-0001';
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, makeContext(SESSION_ID));
+    expect(api.sendMessage).not.toHaveBeenCalled();
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+    await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID));
+
+    const nudges = api.sendMessage.mock.calls.filter(([message]) =>
+      message.customType === 'session-relaunch' && /full/.test(String(message.content)));
+    expect(nudges).toHaveLength(0);
+  });
+
+  it('adds nothing while a prepared hop owns the note', async () => {
+    setupEnv();
+    const notePath = writeOpenNote();
+    const loopId = 'pi-compact-loop-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: notePath,
+      sessionId: SESSION_ID,
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+
+    expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
+  it('logs compact-pointer to relaunch.log', async () => {
+    setupEnv();
+    const notePath = writeOpenNote();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+
+    const logPath = path.join(
+      // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
+      process.env.XDG_RUNTIME_DIR!,
+      'skilled-relaunch',
+      'relaunch.log',
+    );
+    const pointerLines = readFileSync(logPath, 'utf8')
+      .split(/\r?\n/)
+      .filter((line) => line.includes('compact-pointer'));
+    expect(pointerLines).toHaveLength(1);
+    expect(pointerLines[0]).toContain(notePath);
   });
 });
 

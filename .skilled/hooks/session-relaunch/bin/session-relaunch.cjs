@@ -384,6 +384,10 @@ function stateForLoop(loopId) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function prepare(args) {
+  // A runtime started from this loop session's shell inherits the loop variables, so it
+  // must act as a session outside the loop.
+  core.dropNestedLoop(process.env);
+
   const envRuntime = process.env.SKILLED_LOOP_RUNTIME || 'claude';
   if (!LOOP_RUNTIMES.includes(envRuntime)) {
     throw new Error(`SKILLED_LOOP_RUNTIME must be one of ${LOOP_RUNTIMES.join(', ')}`);
@@ -474,6 +478,10 @@ function prepare(args) {
 // Outside the wrapper nothing can relaunch the session, so the note is kept for the same
 // session to claim after auto-compaction, and the hop history records that it was kept.
 function keep(args) {
+  // A runtime started from this loop session's shell inherits the loop variables, so it
+  // must act as a session outside the loop.
+  core.dropNestedLoop(process.env);
+
   if (process.env.SKILLED_LOOP_ID) {
     throw new Error('this session runs under skilled-loop; run prepare instead');
   }
