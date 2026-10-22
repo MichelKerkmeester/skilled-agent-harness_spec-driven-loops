@@ -1,0 +1,81 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/195-dispatch-lint-nested-quote-gap
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (239 tests | 19 failed) 512ms
+   ❯ Pi refusal phrasings (152)
+     × $(echo "`printf ")"`" cli-devin) 3ms
+     × $(echo "`printf ")"`" "x" cli-devin) 0ms
+     × $(echo "`printf ")" "x"`" cli-devin) 0ms
+     × $(echo "\"`printf ")"`" cli-devin) 0ms
+     × $(echo '"' "`printf ")"`" cli-devin) 0ms
+     × $(echo "`printf ")"`" `true` cli-devin) 0ms
+     × $(echo "`a`" ")" "`printf ")"`" cli-devin) 0ms
+     × `echo "`" cli-devin` 0ms
+     × `echo "$(printf "`")" cli-devin` 0ms
+     × $(echo "`printf ")"`" cli-devin 0ms
+     × $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x ))))))))))))))))))))))))))))))))) use cli-devin 0ms
+     × echo # "
+" cli-devin "
+# " 0ms
+     × echo # `
+` cli-devin `
+# ` 0ms
+     × $(echo hi # ignored )
+cli-devin) 0ms
+     × $(case x in x) cli-devin;; esac) 0ms
+     × foo'cli-devin' 0ms
+     × use “x" cli-devin "” 0ms
+     × use ‘x' cli-devin '’ 0ms
+     × "${x:-"} cli-devin 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 19 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" "x" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")" "x"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "\"`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo '"' "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" `true` cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`a`" ")" "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > `echo "`" cli-devin`
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > `echo "$(printf "`")" cli-devin`
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x ))))))))))))))))))))))))))))))))) use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo # "
+" cli-devin "
+# "
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo # `
+` cli-devin `
+# `
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo hi # ignored )
+cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(case x in x) cli-devin;; esac)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > foo'cli-devin'
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use “x" cli-devin "”
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use ‘x' cli-devin '’
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > "${x:-"} cli-devin
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:375:49
+    373|     ['Use cli-devin. Then report back.', false],
+    374|   ])('%s', (userText, expected) => {
+    375|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    376|   });
+    377| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/19]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  19 failed | 220 passed (239)
+   Start at  21:14:47
+   Duration  635ms (tests 89%, transform 7%, import 4%)
+
+base-engine-r2: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

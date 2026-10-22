@@ -1,0 +1,15 @@
+# scenario system-skill-advisor, run 2026-10-21T21:21:12Z in worktree 196, HEAD dfdc523af5
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+skill-advisor v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.
+Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+killswitch-skill-advisor v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+Advisor lines with the switch: 0
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+skill-advisor v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+killswitch-skill-advisor v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+Advisor lines with the switch: 0
+# block exit 0

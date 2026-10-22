@@ -1,0 +1,15 @@
+# scenario system-dist-freshness-guard, run 2026-10-21T21:20:55Z in worktree 196, HEAD dfdc523af5
+[ 'sk-design-md-generator/backend' ]
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+dist-freshness v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+dist-freshness-guard.log (new): 2026-10-21T21:20:59.091Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+dist-freshness v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+dist-freshness-guard.log: 2026-10-21T21:21:09.620Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+# block exit 0

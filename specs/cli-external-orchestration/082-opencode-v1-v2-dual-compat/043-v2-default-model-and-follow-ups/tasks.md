@@ -61,7 +61,7 @@ contextType: "general"
 
 - [x] T015 Prove the v2-bridge timeout with the stream-announcement mutation (`scratch/after/v2-bridge-timeout-mutation.txt`)
 - [x] T016 Rerun the plugin, hook node:test, installer, default-model, models-form and runner suites (`scratch/after/`)
-- [B] T017 Run one unpinned live dispatch on each version (`scratch/live/`) (OpenCode 2 passed; OpenCode 1 blocked by the opencode-go usage limit)
+- [x] T017 Run one unpinned live dispatch on each version (`scratch/live/`) (OpenCode 2 passed here; OpenCode 1 was blocked by the opencode-go usage limit in this phase and passed in 052: exit 0, replied OK - `../052-v1-default-llmgateway/scratch/live/v1-unpinned.txt`)
 - [x] T018 Luna review of every change (four rounds; results in `implementation-summary.md`)
 - [x] T019 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`) (pushed `db82fdfd62`; CI recorded)
 <!-- /ANCHOR:phase-3 -->
@@ -71,9 +71,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

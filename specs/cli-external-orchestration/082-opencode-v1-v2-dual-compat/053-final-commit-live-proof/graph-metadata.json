@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "final commit live proof",
+      "phase 53 final commit live proof",
+      "final commit live proof plan",
+      "final commit live proof tasks",
+      "final commit live proof implementation summary"
+    ],
+    "key_topics": [
+      "final",
+      "commit",
+      "live",
+      "proof",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "proved",
+      "plugins",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/live-runs/results-matrix.md",
+      "scratch/live-runs/summary.txt",
+      "scratch/live-runs/system-completion-sentinel.rerun1.txt",
+      "scratch/live-runs/system-skill-advisor.txt",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/results-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "system-completion-sentinel.rerun1.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/system-completion-sentinel.rerun1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/system-skill-advisor.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Command Sequence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 046 proved all 17 plugins live on OpenCode 1.19.3 and 2.0.32, but it did so at `eb0c18f7e9`",
+    "created_at": "2026-10-21T21:14:40Z",
+    "last_save_at": "2026-10-21T22:16:56.660Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b0e65db19458b44d2efeb705ac49fea1b49e381f2daae596b4f2354859990ab4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8afecd4eefafb0d09e229bb10107dbe0c566693d64c11a60363224f17ff79492",
+      "plan.md": "7c9ed31528f2c206b01c6fac0673a0c91ca75672d53af3b1c78aacdcd88f7164",
+      "tasks.md": "a1ba5a5ae4faa62511f8e24ea8970a793d75aa1ad493f7126ea89d2083ce2dae",
+      "implementation-summary.md": "8abc27526d1061976fbd4daa0d40117a3643a7e7d401dac25e0644dbe6a1ef32"
+    },
+    "last_active_at": null
+  }
+}

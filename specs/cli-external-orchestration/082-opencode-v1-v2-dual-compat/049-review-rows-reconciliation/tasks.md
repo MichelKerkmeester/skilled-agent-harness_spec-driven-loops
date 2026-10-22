@@ -55,8 +55,8 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T010 Run recursive strict validation on the parent packet: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` - PASSED, 50 of 50 folders, exit 0
-- [ ] T011 Push the reconciled record to main
-- [ ] T012 Confirm CI is green at the pushed commit
+- [x] T011 Push the reconciled record to main - `0732e20037` on main
+- [x] T012 Confirm CI is green at the pushed commit - CI green on main `32bf081ea1`, Spec-Kit Check 39670544554
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

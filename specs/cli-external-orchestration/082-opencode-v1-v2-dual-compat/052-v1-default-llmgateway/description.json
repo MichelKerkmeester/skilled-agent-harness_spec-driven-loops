@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway",
+  "description": "Make llmgateway the OpenCode 1 cli-opencode default model and close 043",
+  "keywords": [
+    "llmgateway",
+    "opencode",
+    "cli-opencode",
+    "default",
+    "model",
+    "close"
+  ],
+  "lastUpdated": "2026-10-21T18:58:28.089Z",
+  "specId": "052",
+  "folderSlug": "v1-default-llmgateway",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

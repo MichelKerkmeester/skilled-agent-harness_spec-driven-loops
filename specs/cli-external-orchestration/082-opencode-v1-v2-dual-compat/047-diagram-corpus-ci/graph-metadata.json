@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`.github/workflows/diagram-corpus.yml` has failed since run `39165172090` at `be234e6f94` on 2026-10-18, last green at `d04df31790` on 2026-10-11, and every pull request run since 2026-10-14 also failed",
     "created_at": "2026-10-21T13:32:28Z",
-    "last_save_at": "2026-10-21T13:56:49.228Z",
+    "last_save_at": "2026-10-21T22:16:53.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a006b0c980548c6157afdcf17ba0777fbfee43827a7b7accf937e6514af7218",
+    "source_fingerprint": "sha256:3da653a5d908d4b8e077c67452beaa7f96e1d199252153aa22a7262570024ec1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8bd90218220f710a81630833a7b668bbc198843ec5559e8ac2cce0c2b1261429",
       "plan.md": "586dc9f309c49e48f9f820ce8704c5d175aa2a287ff51bb8874452143b8e6a73",
       "tasks.md": "d658141491c2ed7cac3b4d79d364f406aef6308bdb02bccf19a7a68b41595349",
-      "implementation-summary.md": "939476a099cdd3e0b141282a7ad813c51e9a5fca54ff4c8c36186de943ef8e3b"
+      "implementation-summary.md": "a83fb15cad8d09558a74a451b1f9d788a1141de7dc0aaea6fc2737b797a4f563"
     },
     "last_active_at": null
   }

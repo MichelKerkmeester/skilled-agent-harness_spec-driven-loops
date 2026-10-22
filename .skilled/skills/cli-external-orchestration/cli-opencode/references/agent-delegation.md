@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -84,7 +84,7 @@ On OpenCode 1, `--agent <slug>` is valid at the top level ONLY for the primary a
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent <slug> \
   --variant max \
   --format json \
@@ -250,7 +250,7 @@ Mirroring the sibling cli-* skills, cli-opencode supports an inline routing patt
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -289,7 +289,7 @@ Example:
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent orchestrate \
   --variant max \
   --format json \
@@ -343,7 +343,7 @@ The calling AI wants a security-focused review of a single file. No `--agent` fl
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /path/to/repo \
@@ -372,7 +372,7 @@ The calling AI's first 3 debug attempts failed. Escalate to a fresh-context disp
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /path/to/repo \

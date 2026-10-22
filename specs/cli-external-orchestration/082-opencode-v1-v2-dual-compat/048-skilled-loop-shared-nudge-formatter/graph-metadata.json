@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` owns the seed's spec-folder suffix in `specFolderSuffix`, and `nudge.cjs` already shares it",
     "created_at": "2026-10-21T14:18:23Z",
-    "last_save_at": "2026-10-21T14:51:43.551Z",
+    "last_save_at": "2026-10-21T22:16:55.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a69665bb9f86e862d4228343df7647ac7c342a290e167e60a6d8dd66177b37ac",
+    "source_fingerprint": "sha256:402ae326c1578a78b4cdf13b5e3d664e10f6e11f30a95a2d3e377a24219f4811",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc6b7e71ad522ee9fba7b4d557de2bb7dd06a51ec8755fb41b8af38f96923cf5",
       "plan.md": "2c4e79d9010e0851310fca257fc7f3caf76a68362f83c886cc6b526b0d54b39b",
       "tasks.md": "c140b63ccfe6b8e4ce1a86c1446470f2bc31148c744d7be3e347cbe3e891c429",
-      "implementation-summary.md": "508c80bc6a6c0d0cec7f2bc61fb20a0062d4925a89bca222e008252e9330fdaa"
+      "implementation-summary.md": "4d61265dd788fa5efc607161ee2ac8b708dd9c7e5ced472460115a26a5b33a10"
     },
     "last_active_at": null
   }

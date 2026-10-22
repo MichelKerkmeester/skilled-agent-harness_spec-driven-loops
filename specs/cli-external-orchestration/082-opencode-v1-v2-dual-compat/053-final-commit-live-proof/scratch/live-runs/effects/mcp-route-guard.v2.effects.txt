@@ -1,0 +1,6 @@
+# new log lines
+mcp-route-guard.log: 2026-10-21T21:16:42.152Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+codex-hooks-watchdog.log: 2026-10-21T21:16:36.503Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/bin/install-codex-hooks.mjs --check
+# files changed during the run
+.skilled/logs/mcp-route-guard.log
+.skilled/logs/codex-hooks-watchdog.log

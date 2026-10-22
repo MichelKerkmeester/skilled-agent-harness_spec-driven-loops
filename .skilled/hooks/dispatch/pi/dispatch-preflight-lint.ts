@@ -63,6 +63,11 @@ const SENTENCE_TERMINATOR_PATTERN = /[.!?](?=\s+[A-Z])/;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
 // The end of a `/deep:` mention is the end of its executor value, not the end of `/deep:`.
 const DEEP_LOOP_PHRASE_END_PATTERN = /^\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(?:cli-[\w-]+)/i;
+// Only these contraction words are prose; any other in-word apostrophe is a shell quote.
+const CONTRACTION_PATTERNS = [
+  /(?<=\b(?:i|you|we|they|he|she|it|that|there|here|what|who|where|how|when|let))'(?=(?:s|re|ve|ll|d|m)\b)/gi,
+  /(?<=\b(?:don|doesn|didn|isn|aren|wasn|weren|hasn|haven|hadn|won|can|couldn|shouldn|wouldn|mustn|mightn|needn|ain|shan))'(?=t\b)/gi,
+];
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -133,106 +138,139 @@ function stripInjectedContent(text: string): string {
   const specGateStart = cleaned.lastIndexOf(SPEC_GATE_MARKER);
   if (specGateStart !== -1) cleaned = cleaned.slice(0, specGateStart);
   const lastUserTurn = cleaned.lastIndexOf('[user]');
+  // A marker inside an open quote or substitution is the operator's own text, not a turn
+  // boundary, so the text is refused rather than cut there.
   if (lastUserTurn !== -1) {
     const suffix = cleaned.slice(lastUserTurn + '[user]'.length);
+    if (isEnclosedInAnyReading(cleaned, lastUserTurn)) return '';
     if (suffix.trim()) cleaned = suffix;
   }
   return cleaned;
 }
 
-function isInsideQuote(text: string, index: number): boolean {
-  let quote: '\'' | '"' | undefined;
-  let escaped = false;
-  for (let cursor = 0; cursor < index; cursor += 1) {
+/** POSIX quoting decides what each character means, and each context has its own rules, so the
+ * scan keeps one frame per open context and reads every character the way the frame on top of
+ * the stack reads it: inside single quotes only the closing quote is special, inside double
+ * quotes a backslash escapes only `$`, a backtick, a quote, a backslash or a newline, inside a
+ * substitution a bare `(` nests while a `)` closes, and inside a brace only `}` closes. A
+ * backtick, a `$(` and a `${` start a fresh context even inside double quotes, so the double
+ * quote around them resumes only once that context closes. A brace nests the way a substitution
+ * does, so a quote inside `${...}` opens a context of its own instead of pairing with the quote
+ * around it, and a mention the shell still reads inside that span is not passed as plain text.
+ * Carrying the contexts as a stack is what reproduces that resume; a single flat quote flag
+ * instead lets a quoted `)` inside the inner context close the outer span, and a mention the
+ * shell still reads inside a substitution is then wrongly allowed. A `case` word at a word start
+ * inside a substitution or a parenthesised span makes the structure unresolvable, because its
+ * pattern's `)` cannot be told from the closer that ends the span, and that reading fails closed;
+ * a `)` ends a word, so a word start follows one just as it follows whitespace or an operator.
+ * When `comments` is true, a `#` at a word start opens a comment that runs to the next newline,
+ * and inside a backtick context to the nearer of that newline and the closing backtick, while a
+ * `#` inside `${...}` is literal; the comment is not a frame, so a mention the shell drops as a
+ * comment is not enclosed, while one the comment line leaves inside an open span still is.
+ * Structure the scan cannot resolve fails closed: an unclosed context, or a nesting no real
+ * command line reaches, counts as enclosing so a mention is refused rather than guessed. The one
+ * exception is a single trailing `'` opened after the mention, because a prose apostrophe such as
+ * `users'` opens a span nothing ever closes; a mention that apostrophe already encloses is still
+ * refused. */
+function isEnclosedOrUnresolved(text: string, index: number, comments: boolean): boolean {
+  type Frame = 'sub' | 'paren' | 'tick' | 'dq' | 'sq' | 'brace';
+  const stack: Frame[] = [];
+  let enclosed = false;
+  let recorded = false;
+  const record = (position: number): void => {
+    if (recorded || position < index) return;
+    enclosed = stack.length > 0;
+    recorded = true;
+  };
+  const open = (frame: Frame): boolean => {
+    stack.push(frame);
+    return stack.length > 32;
+  };
+  let cursor = 0;
+  while (cursor < text.length) {
+    record(cursor);
+    const top = stack[stack.length - 1];
     const character = text[cursor];
-    if (escaped) {
-      escaped = false;
+    const following = text[cursor + 1];
+    if (top === 'sq') {
+      if (character === '\'') stack.pop();
+      cursor += 1;
       continue;
     }
-    if (character === '\\' && quote !== '\'') {
-      escaped = true;
-      continue;
-    }
-    if (quote) {
-      if (character === quote) quote = undefined;
-    } else if (character === '\'' || character === '"') {
-      quote = character;
-    }
-  }
-  return quote !== undefined;
-}
-
-/* One pass over the text before the index keeps a nesting depth instead of comparing the last
- * opener with the last closer: a closed inner substitution leaves its still-open outer one
- * visible. `$(` opens a level, a bare `(` only nests inside an open level, and a `)` only
- * closes an open level, so a parenthesis in ordinary prose never starts an expansion. A
- * backtick is tracked as its own open span because it nests nothing.
- *
- * The shell decides what each character means, so the scan carries the quote and escape state
- * too: a quoted or escaped bracket or backtick is a literal, and counting it would move the
- * depth on text the shell never reads as syntax. A backslash outside single quotes escapes the
- * next character; inside single quotes nothing but the closing `'` is special; inside double
- * quotes only `$(`, a backtick and a backslash are, and a `$(` there opens a level whose own
- * quotes are tracked from scratch, with the enclosing double quote resumed when that level
- * closes. The caller passes text whose in-word apostrophes are neutralized, so a contraction
- * like `don't` cannot open a quote and hide the rest of the scan. */
-function isInsideExpansion(text: string, index: number): boolean {
-  let depth = 0;
-  let inBacktick = false;
-  let quote: '\'' | '"' | undefined;
-  const suspendedQuotes: Array<'\'' | '"' | undefined> = [];
-  let escaped = false;
-  for (let cursor = 0; cursor < index; cursor += 1) {
-    const character = text[cursor];
-    if (escaped) {
-      escaped = false;
-      continue;
-    }
-    if (character === '\\' && quote !== '\'') {
-      escaped = true;
-      continue;
-    }
-    if (quote === '\'') {
-      if (character === '\'') quote = undefined;
-      continue;
-    }
-    if (quote === '"') {
-      if (character === '"') quote = undefined;
-      else if (character === '`') inBacktick = !inBacktick;
-      else if (character === '$' && text[cursor + 1] === '(') {
-        suspendedQuotes.push(quote);
-        quote = undefined;
-        depth += 1;
+    if (comments && character === '#' && top !== 'dq' && top !== 'brace' &&
+      (cursor === 0 || /[\s;&|()`]/.test(text[cursor - 1]))) {
+      const newline = text.indexOf('\n', cursor);
+      let commentEnd = newline === -1 ? text.length : newline;
+      if (top === 'tick') {
+        const backtick = text.indexOf('`', cursor);
+        if (backtick !== -1 && backtick < commentEnd) commentEnd = backtick;
+      }
+      while (cursor < commentEnd) {
+        record(cursor);
         cursor += 1;
       }
       continue;
     }
-    if (character === '\'' || character === '"') {
-      quote = character;
+    if (character === '$' && following === '(') {
+      if (open('sub')) return true;
+      record(cursor + 1);
+      cursor += 2;
+      continue;
+    }
+    if (character === '$' && following === '{') {
+      if (open('brace')) return true;
+      record(cursor + 1);
+      cursor += 2;
+      continue;
+    }
+    if (character === '\\') {
+      const literalBackslash = top === 'dq' && following !== '$' && following !== '`' &&
+        following !== '"' && following !== '\\' && following !== '\n';
+      if (literalBackslash) {
+        cursor += 1;
+        continue;
+      }
+      record(cursor + 1);
+      cursor += 2;
       continue;
     }
     if (character === '`') {
-      inBacktick = !inBacktick;
-      continue;
-    }
-    if (character === '$' && text[cursor + 1] === '(') {
-      suspendedQuotes.push(undefined);
-      depth += 1;
+      if (top === 'tick') stack.pop();
+      else if (open('tick')) return true;
       cursor += 1;
       continue;
     }
-    if (depth === 0) continue;
-    if (character === '(') {
-      suspendedQuotes.push(undefined);
-      depth += 1;
+    if (character === '"') {
+      if (top === 'dq') stack.pop();
+      else if (open('dq')) return true;
+      cursor += 1;
       continue;
     }
-    if (character === ')') {
-      depth -= 1;
-      quote = suspendedQuotes.pop();
+    if (character === '\'' && top !== 'dq') {
+      if (open('sq')) return true;
+      cursor += 1;
+      continue;
     }
+    if (top === 'brace') {
+      if (character === '}') stack.pop();
+      cursor += 1;
+      continue;
+    }
+    if (top === 'sub' || top === 'paren') {
+      if (text.startsWith('case', cursor) && (cursor === 0 || /[\s;&|()]/.test(text[cursor - 1])) &&
+        /\s/.test(text[cursor + 4] ?? '')) {
+        return true;
+      }
+      if (character === '(') {
+        if (open('paren')) return true;
+      } else if (character === ')') {
+        stack.pop();
+      }
+    }
+    cursor += 1;
   }
-  return depth > 0 || inBacktick;
+  if (enclosed) return true;
+  return stack.length > 0 && !(stack.length === 1 && stack[0] === 'sq');
 }
 
 function tokenStart(text: string, index: number): number {
@@ -324,6 +362,20 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
   return otherSkill !== null && mentionedSkill !== null && otherSkill !== mentionedSkill;
 }
 
+// Operator text is not known to be shell, and each reading can pair quotes the other cannot, so
+// the scan runs with comment handling off and on, and with curly quotes read as quotes and as the
+// literal characters a shell sees. A mention any reading encloses is refused. Only a contraction
+// from the prose list is neutralized, so `foo'cli-devin'` still quotes the mention and so does a
+// possessive such as `file's`.
+function isEnclosedInAnyReading(userText: string, index: number): boolean {
+  const withoutContractions = (value: string): string =>
+    CONTRACTION_PATTERNS.reduce((probe, pattern) => probe.replace(pattern, '_'), value);
+  const quoteProbe = withoutContractions(userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'"));
+  const shellProbe = withoutContractions(userText);
+  return [quoteProbe, shellProbe].some((probe) => isEnclosedOrUnresolved(probe, index, false) ||
+    isEnclosedOrUnresolved(probe, index, true));
+}
+
 /** A mention authorizes only inside a sentence that carries no negation or refusal word, before
  * or after it; `not <other>, use <executor>` and `not <other> but <executor>` are the only
  * exceptions. A false deny is accepted, so `use cli-devin, it is not forbidden` stays refused:
@@ -335,13 +387,12 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
  * `cli-devin` while `Use cli-devin. Never use devin.` does not: both spellings are one skill. A
  * mention whose own skill cannot be resolved is retracted too, so the rule fails closed. Every
  * curly and low quote reads as the straight quote it stands in for, so a mention the operator
- * quoted is refused whichever form the pair mixes, and an apostrophe inside a word is a
- * contraction rather than a delimiter. The substitution swaps one character for one character, so
- * indexes into the original text still address the same characters. */
+ * quoted is refused whichever form the pair mixes, and an apostrophe that ends a contraction is
+ * not a delimiter. The substitution swaps one character for one character, so indexes into the
+ * original text still address the same characters. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
-  const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
-  if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(quoteProbe, mentionIndex)) return false;
+  if (isEnclosedInAnyReading(userText, mentionIndex)) return false;
   const sentence = mentionSentence(text, mentionIndex).trim();
   if (REFUSAL_PATTERN.test(sentence)) {
     if (!isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)))) return false;
@@ -381,7 +432,12 @@ function deepLoopExecutors(userText: string): string[] {
   DEEP_LOOP_EXECUTOR_PATTERN.lastIndex = 0;
   for (let match = DEEP_LOOP_EXECUTOR_PATTERN.exec(userText); match; match = DEEP_LOOP_EXECUTOR_PATTERN.exec(userText)) {
     const deepIndex = match.index + match[0].indexOf('/deep:');
-    if (isUsableMention(userText, deepIndex)) executors.push(match[1]);
+    // A quote or substitution can open between `/deep:` and its executor value, so the value's
+    // own position must be plain text as well.
+    const executorIndex = match.index + match[0].lastIndexOf(match[1]);
+    if (isUsableMention(userText, deepIndex) && !isEnclosedInAnyReading(userText, executorIndex)) {
+      executors.push(match[1]);
+    }
   }
   DEEP_LOOP_EXECUTOR_PATTERN.lastIndex = 0;
   return executors;

@@ -1,0 +1,27 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (one change: fix two leftover claims that opencode-go is the cli-opencode default):
+The cli-opencode default model is now `llmgateway/deepseek-v4.1-flash` on BOTH OpenCode versions (`--model llmgateway/deepseek-v4.1-flash --variant max` on OpenCode 1, `-m llmgateway/deepseek-v4.1-flash#max` on OpenCode 2). opencode-go stays a selectable provider.
+
+1. `.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md` line 167: the clause "fall back to the version's flash default (`opencode-go/deepseek-v4.1-flash` on OpenCode 1, `llmgateway/...` on OpenCode 2)" must name the single default `llmgateway/deepseek-v4.1-flash` on both versions. Keep the rest of the line, including the dated 2026-05-04 incident record, exactly as it is.
+2. `.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` line 8: the frontmatter trigger phrase `"opencode default model opencode-go flash"` becomes `"opencode default model llmgateway flash"`.
+
+Read each line before editing it. Edit nothing else.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+git diff -U0 -- .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md | grep -c '^[-+][^-+]'
+and
+grep -n "opencode-go/deepseek-v4.1-flash` on OpenCode 1\|default model opencode-go" .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+
+Return report: the two edited lines after the change and both verify outputs.

@@ -1,0 +1,9 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/195-dispatch-lint-nested-quote-gap
+
+
+ Test Files  1 passed (1)
+      Tests  124 passed (124)
+   Start at  21:42:35
+   Duration  178ms (tests 52%, transform 25%, import 21%, worker 2%)
+

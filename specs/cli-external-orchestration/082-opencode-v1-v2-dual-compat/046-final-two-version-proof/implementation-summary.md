@@ -130,6 +130,8 @@ Worktree 190 was created from origin/main with sk-git's `create` and provisioned
 | OpenCode 1 default dispatch (`opencode-go/deepseek-v4.1-flash --variant max`) | none | Stopped by the 180 s alarm, exit 142; the OpenCode log shows `Go usage limit exceeded` (`scratch/v1-default/`) |
 | Recursive strict validation of 082 | none | 47 of 47 folders print `RESULT: PASSED`, exit 0, at commit `81566567ed` |
 
+This phase was checked by orchestrator reruns only: the live blocks and every suite were rerun from the same commit by the orchestrating session, and no separate read-only session reviewed it. Luna was not used, because the operator moved review to DeepSeek v4.1 flash on 2026-10-21 and kept Luna as a fallback only.
+
 ### CI
 
 Pushed to main as `eb0c18f7e9..586e3bb152`; the trigger-index bot then committed `ebadbe1edf` on top.

@@ -148,6 +148,12 @@ describe('Pi dispatch deny matrix', () => {
     ['avoid one executor then prefer another (policy deny)', 'devin -p "task"', 'avoid opencode, prefer cli-devin', true],
     ['quoted deep-loop executor', 'devin -p "task"', 'say "run /deep:review --executor cli-devin"', true],
     ['backtick deep-loop executor', 'devin -p "task"', 'the form is `run /deep:review --executor cli-devin`', true],
+    ['deep-loop executor quoted after /deep:', 'devin -p "task"', 'run /deep:research "then --executor cli-devin"', true],
+    ['deep-loop executor single-quoted after /deep:', 'devin -p "task"', "run /deep:research 'then --executor cli-devin'", true],
+    ['deep-loop executor in a substitution after /deep:', 'devin -p "task"', '/deep:research $(echo --executor cli-devin)', true],
+    ['deep-loop executor in backticks after /deep:', 'devin -p "task"', '/deep:research `echo --executor cli-devin`', true],
+    ['deep-loop executor in a brace after /deep:', 'devin -p "task"', '/deep:research ${x:- --executor cli-devin}', true],
+    ['quoted deep-loop executor beside a plain request', 'devin -p "task"', '/deep:research "then --executor cli-devin" and use cli-opencode', true],
     ['negation in an earlier sentence (policy deny)', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', true],
     ['cli-pi named by the user', 'pi -p "task"', 'use cli-pi', false],
     ['cli-pi without an override', 'pi -p "task"', 'run the task', true],
@@ -228,6 +234,64 @@ describe('Pi refusal phrasings', () => {
     ['$(echo "a)b" `true` cli-devin)', true],
     ['$(echo "$(true)" ")" cli-devin)', true],
     ['$(echo "`" "`" ")" cli-devin)', true],
+    // A backtick or `$(` starts a fresh quoting context even inside double quotes, so a quote
+    // inside it cannot close the double quote around it, and structure the scan cannot resolve
+    // is refused rather than guessed.
+    ['$(echo "`printf ")"`" cli-devin)', true],
+    ['$(echo "`printf ")"`" "x" cli-devin)', true],
+    ['$(echo "`printf ")" "x"`" cli-devin)', true],
+    ['$(echo "\\"`printf ")"`" cli-devin)', true],
+    ["$(echo '\"' \"`printf \")\"`\" cli-devin)", true],
+    ['$(echo "`printf ")"`" `true` cli-devin)', true],
+    ['$(echo "`a`" ")" "`printf ")"`" cli-devin)', true],
+    ['`echo "`" cli-devin`', true],
+    ['`echo "$(printf "`")" cli-devin`', true],
+    ['$(echo "`printf ")"`" cli-devin', true],
+    [`${'$(x '.repeat(33)}${')'.repeat(33)} use cli-devin`, true],
+    // Every context closed before the mention leaves it in plain text.
+    ['$(echo "`printf ")"`") use cli-devin', false],
+    ["$(echo 'a\"b') use cli-devin", false],
+    ['echo "\\"" and use cli-devin', false],
+    ["use cli-devin on the users' files", false],
+    // A single quote is a literal inside double quotes, and a quote left open still encloses the
+    // mention after it.
+    ["\"'\" $(echo \"'\" cli-devin)", true],
+    ["use 'cli-devin", true],
+    ["use 'cli-devin now", true],
+    // Comments, curly quotes and in-word apostrophes are read every way a shell or the operator
+    // could mean them, and a mention any reading encloses is refused.
+    ['echo # "\n" cli-devin "\n# "', true],
+    ['echo # `\n` cli-devin `\n# `', true],
+    ['$(echo hi # ignored )\ncli-devin)', true],
+    ['$(case x in x) cli-devin;; esac)', true],
+    ["foo'cli-devin'", true],
+    ['use “x" cli-devin "”', true],
+    ["use ‘x' cli-devin '’", true],
+    ['"${x:-"} cli-devin', true],
+    // Plain prose with a hash, a contraction, the word case or a closed brace still authorizes.
+    ['use cli-devin # fast', false],
+    ['see #12 and use cli-devin', false],
+    ["it's fine, use cli-devin", false],
+    ['in case it fails, use cli-devin', false],
+    ['${HOME} is set, use cli-devin', false],
+    // A comment can follow a closing parenthesis, a case can follow one, a turn marker inside an
+    // open quote is the operator's own text, and a possessive apostrophe is a shell quote.
+    ['echo $( (echo hi)# )\ncli-devin\n)', true],
+    ['use $( (echo hi)# )\nand then cli-devin\n)', true],
+    ['echo $( f()case y in y) cli-devin;; esac; f )', true],
+    ['say "please [user] cli-devin', true],
+    ['say `please [user] cli-devin', true],
+    ['say $(please [user] cli-devin', true],
+    ["the file's data and cli-devin's settings", true],
+    ["echo a's cli-devin'", true],
+    ["use the file's cli-devin'", true],
+    // A backtick still ends a comment inside it, a hash inside a brace is literal, and plain
+    // contractions, a possessive after the mention and a closed quote before a marker still pass.
+    ['echo `echo hi #` and use cli-devin', false],
+    ['echo ${x:- #} and use cli-devin', false],
+    ["we'll see; use cli-devin", false],
+    ["use cli-devin for the user's task", false],
+    ['earlier "quoted" text [user] use cli-devin', false],
     // Every level closed, so the mention stands in plain text again.
     ['$(echo ")") use cli-devin', false],
     // A substitution that closed before the mention leaves it in plain text.

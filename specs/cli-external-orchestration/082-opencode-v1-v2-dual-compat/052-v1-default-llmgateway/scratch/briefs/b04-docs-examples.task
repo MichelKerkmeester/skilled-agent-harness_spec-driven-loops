@@ -1,0 +1,41 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (one change: switch the default-dispatch example commands to llmgateway):
+
+FACTS (the operator decided this on 2026-10-21):
+- The cli-opencode default model is now `llmgateway/deepseek-v4.1-flash` (LLM Gateway, DevPass) on BOTH OpenCode versions.
+- OpenCode 1 dispatches it as `--model llmgateway/deepseek-v4.1-flash --variant max`. OpenCode 2 dispatches it as `-m llmgateway/deepseek-v4.1-flash#max` (unchanged).
+- Why: the opencode-go Go-plan quota is spent, so an OpenCode 1 dispatch on opencode-go hangs on "Go usage limit exceeded"; OpenCode 2 lists no opencode-go provider; one provider now serves both versions.
+- `opencode-go` stays a documented, selectable provider with its models. Only the DEFAULT moves. Do not delete opencode-go rows, sections or the opencode-go route; only stop calling it the default and stop using it in the canonical default command.
+- Example commands that show the skill default dispatch on OpenCode 1 (`--model opencode-go/deepseek-v4.1-flash`) change to `--model llmgateway/deepseek-v4.1-flash`. Commands whose point is the opencode-go provider itself (a provider check like `opencode models opencode-go`, a variant-range test of opencode-go) keep it.
+- Never edit lines inside `changelog/` or `benchmark/`, and never edit a line starting `Coverage note (2026-04-26):` (dated records).
+
+In these files, every example `opencode run` command that uses `--model opencode-go/deepseek-v4.1-flash` as the skill's default dispatch becomes `--model llmgateway/deepseek-v4.1-flash` (keep `--variant max` or whatever variant the example already uses). Any prose sentence in these files that calls opencode-go the default changes to llmgateway. Lines that are about the opencode-go provider itself stay.
+- .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md (13 example commands; also line ~93 which states the per-version default)
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md (line ~125 only; line ~167 is a dated incident record and stays)
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md (line ~224, if it names the executor of the default dispatch)
+
+Read each file's relevant region before editing. A sed replacement of the exact string `--model opencode-go/deepseek-v4.1-flash` is acceptable for the command lines, but then read the surrounding prose and fix any sentence that still calls opencode-go the default.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+grep -n "opencode-go" .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md .skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md
+
+Return report: each file changed with a count of edits, and the verify output with a one-line reason per remaining hit.
