@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9801b9772cc6dc23dc314cc7b1445d23e52fa73e40ceeabbd84a7903ad58fdac",
+  "corpusHash": "5f3b3c719135d80643679242abbb121e21245bdfcacedecee3580bbd712b7ab9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -25681,7 +25681,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "841bed8018eff82c4030d3618c052c40d65a431d3037fc4bf850d08bfe70655e",
+  "manifestHash": "5ff64e9db85f6c799aea4a0ca42f708dd101813f77e25ff24b9fa6810538553f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
