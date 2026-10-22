@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-22 |
 | **Branch** | `worktrees/205-v4-0-0-13-changelog-rewrite` |
 | **Parent Spec** | ../spec.md |

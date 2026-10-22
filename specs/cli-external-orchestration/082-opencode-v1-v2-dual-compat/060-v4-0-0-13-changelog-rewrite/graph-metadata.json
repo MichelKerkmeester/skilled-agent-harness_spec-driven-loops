@@ -86,12 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -111,6 +105,12 @@
       },
       {
         "name": "Reliability Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,7 +182,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Trigger Index Rebuild",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The v4.0.0.13 changelog described the release mostly as the handover, and the imbalance started at the top",
     "created_at": "2026-10-22T20:01:06.264Z",
-    "last_save_at": "2026-10-22T20:01:06.264Z",
+    "last_save_at": "2026-10-22T20:23:05.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:655aff26e2082d06cd8e4e06a0846bdd6511f0252b33fb09918588a26d420906",
+    "source_fingerprint": "sha256:0f264e723f977411279c865c3359ee7905040b7aa0ebe291a4d44d0140e67340",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3dede5e4bb429a15602a85dc0deef809df6c26a750f99f15ffe14b7cbc81456",
+      "spec.md": "6e722bbf09c8cb82bbb50f730313fdd8a4aa6a3609d2ce6711186bd48af6525a",
       "plan.md": "0334eb44135acc1425580162067082a543f7b39c6a436834011b01d40c774bec",
-      "tasks.md": "96a92b89b59e9e352eb66e2aa7ce68b74a8c4296f37a683b270838b85acbe492",
-      "implementation-summary.md": "050cc64064e3d59763378a4056143246b174b39162f14b8484f498730f66f533"
+      "tasks.md": "ba78dcd305ccff8b11b35cc77a1fc3918b795a13bfbdcdf728fb45bdb93c8343",
+      "implementation-summary.md": "6f08eeb8e0be3c3e52a32a5bc6fc3c2ce164464e050e5aaaff16fa7219310ac1"
     },
     "last_active_child_id": null,
     "last_active_at": null

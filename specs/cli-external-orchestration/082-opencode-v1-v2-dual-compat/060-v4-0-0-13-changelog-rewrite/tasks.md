@@ -54,8 +54,8 @@ contextType: "general"
 - [x] T007 Round 2 read-only DeepSeek review, then fix its findings: the live-test and side-by-side claims had attached to agents, commands and config (P1), and the warm-cache qualifier, the `cupt add` docs wording and the skipped archive file were fixed (P2) (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T008 Round 3 read-only DeepSeek review: PASS with two P2s, both sentences carried over word for word from the previous glance list and recorded rather than changed (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T009 Run both content validators over the finished file: `validate_document.py` reports VALID with 0 issues and `hvr_scan.py` reports 0 hard blockers (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T010 Commit and push to main (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T011 Confirm CI is green on the pushed commit and the index rebuilt after it (`.skilled/changelog/skilled/v4.0.0.13.md`)
+- [x] T010 Commit and push to main (`.skilled/changelog/skilled/v4.0.0.13.md`) - `4b7a026f5c` on main
+- [x] T011 Confirm CI is green on the pushed commit and the index rebuilt after it (`.skilled/changelog/skilled/v4.0.0.13.md`) - CI green on `4b7a026f5c` (12 workflows) and on the index rebuild `5228e8c417` (13 passed, Trigger Index Rebuild skipped, Spec-Kit Check 39845676779)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,9 +63,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every task marked `[x]`: T010 and T011 stay open until the rewrite is on main and CI has run on that commit
+- [x] Every task marked `[x]`, T010 and T011 included now that the rewrite is on main and CI passed on it
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the title, the equal headlines, the two six-item sections, the 3359 word count and the 12-bullet glance list all read as recorded, and both validators passed
+- [x] Manual verification passed: the title, the equal headlines, the two six-item sections, the 3359 word count and the 12-bullet glance list all read as recorded, and both validators passed
 <!-- /ANCHOR:completion -->
 
 ---

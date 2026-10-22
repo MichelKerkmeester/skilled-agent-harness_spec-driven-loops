@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-22T21:56:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Changelog rewrite assembled and polished. Review round 3 returned PASS"
-    next_safe_action: "Push to main, then confirm CI and the index rebuild"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/changelog/skilled/v4.0.0.13.md"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 060-v4-0-0-13-changelog-rewrite |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | 2026-10-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -124,7 +124,7 @@ The finished file then went through `validate_document.py`, which reported VALID
 | OpenCode 1 and 2 | PASS: 6 H4 items and 697 words, from 8 items and 941 words |
 | Glance list | PASS: 12 bullets, with the first six alternating handover and OpenCode |
 | Default model | PASS: `llmgateway/deepseek-v4.1-flash` is still the stated default, because phase 058 had not landed on main |
-| Push and CI | PENDING: the commit and CI tasks stay open until the rewrite is on main and CI has run on that commit |
+| Push and CI | PASS: the rewrite landed as `4b7a026f5c` and CI passed on it and on the index rebuild `5228e8c417` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -135,7 +135,7 @@ The finished file then went through `validate_document.py`, which reported VALID
 1. **The rewrite cannot outrun its source.** Every sentence traces to the previous changelog, so a fact that file got wrong is still wrong here. The three read-only rounds checked the rewrite against that file, not against the code.
 2. **The cuts are editorial judgment.** The dropped facts are recorded, but a reader who valued the advisor timing numbers or the break-lock detail will not find them now, and restoring any of them means either a longer file or another cut elsewhere.
 3. **The two carried-over glance sentences stay as they are.** Both are word for word from the previous changelog, so they were recorded rather than changed, and a later pass that wants different wording has to brief it.
-4. **The push and the CI record are still open.** The commit and CI tasks in `tasks.md` remain unticked, and this file says nothing about a pushed commit until they close.
+4. **The CI scope is what CI covered.** The rewrite landed as `4b7a026f5c` and CI passed on it and on the index rebuild `5228e8c417`. The three read-only rounds checked the words, and the workflows checked the tree those words sit in.
 
 ### P2s Left as Written
 

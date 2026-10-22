@@ -169,7 +169,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 56 | 056-command-folder-guard-and-readme-baseline/ | Close 055's three Known Limitations: fail the battery's `command-listed` leg per file when a non-command file in the command folder could produce a listed name, keep built-ins and configured MCP prompts exempt, rebuild the README verdict baseline from the tracked set, and leave the `.markdown` suffix guard to the CI run on both versions | Complete |
 | 57 | 057-v4-0-0-13-reliability-fixes/ | Add the user-visible reliability fixes since v4.0.0.12 that the v4.0.0.13 changelog missed: advisor lookups, the hand-off count lock, goal records, worktree provisioning and smaller fixes | Complete |
 | 59 | 059-cross-cli-map-refresh/ | Bring `.skilled/CROSS-CLI.md` back in line with the tree: correct the plugin SDK claim, add OpenCode 2 and the `.markdown` rule, fix the counts and the files that don't exist, and add the missing entries | Complete |
-| 60 | 060-v4-0-0-13-changelog-rewrite/ | Rewrite the v4.0.0.13 changelog so in-session handover and OpenCode 1 and 2 support lead as equal headlines, tighter and in the style of v4.0.0.0 | In Progress |
+| 60 | 060-v4-0-0-13-changelog-rewrite/ | Rewrite the v4.0.0.13 changelog so in-session handover and OpenCode 1 and 2 support lead as equal headlines, tighter and in the style of v4.0.0.0 | Complete |
 
 ### Phase Transition Rules
 
