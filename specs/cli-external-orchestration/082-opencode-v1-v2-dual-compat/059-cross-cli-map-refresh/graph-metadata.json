@@ -184,7 +184,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Kit Check",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`.skilled/CROSS-CLI.md` exists so a reader can tell, for any surface, whether a runtime links it, generates it or authors it, and that answer decides where an edit belongs",
     "created_at": "2026-10-22T19:25:26Z",
-    "last_save_at": "2026-10-22T19:49:53.979Z",
+    "last_save_at": "2026-10-22T20:19:00.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f045d59e28cb1d5c6f69f28e1e2fadbff96bdc1131aec6149dd90a25188ff582",
+    "source_fingerprint": "sha256:114c4ef9f951e03010590bb84f8a9577605100f0774e2a3f78e7cbeb2f594a2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4777ce93b5ef48dc3f0ee4aaef31686c35631dc3dca270f701dc4db06d396542",
       "plan.md": "f4ffdef979cdfe1007c957d058c8bc916bd7422c2463e537ca15214a17f4f43e",
-      "tasks.md": "ac872ce17368fbae61be81664560e96c5cf6b05cc465662c16fb7ad419f8bad8",
-      "implementation-summary.md": "477099534a3c15dac832acd7f27784ba6b3a537ea78890b8f4b80c10b59df839"
+      "tasks.md": "87ee77845237caa4e271ecae7b7fdaa3fe443ca2311594783a7d89ebdf489963",
+      "implementation-summary.md": "ba3c5ab17d80f880d506558c3c77560637a5e2a0f63f596d532d27d14ad5039a"
     },
     "last_active_at": null
   }

@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh"
     last_updated_at: "2026-10-22T21:47:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Writer pass 4 and review round 2 complete; map checks pass; push pending"
-    next_safe_action: "Push the map correction to main and record CI on the pushed commit"
+    recent_action: "Map correction pushed and CI recorded"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/CROSS-CLI.md"
@@ -127,8 +127,8 @@ The validators ran over the finished file. `validate_document.py` reported VALID
 | `sync-hook-registrations.cjs --check` | PASS: 32-hook registry, 19 Pi extensions resolve |
 | `validate.sh 059-cross-cli-map-refresh --strict` | PASS: `RESULT: PASSED` |
 | `validate.sh 082-opencode-v1-v2-dual-compat --recursive` | PASS: `RESULT: PASSED` |
-| Push | recorded after push |
-| CI | recorded after push |
+| Push | `7221270fab` on main |
+| CI | PASS: 12/12 on `7221270fab`; 13 passed and 1 skipped on `b1dad870d9`, Spec-Kit Check 39844554321 |
 
 ### Reviewer Verdicts
 
@@ -146,7 +146,6 @@ The validators ran over the finished file. `validate_document.py` reported VALID
 1. **The counts are a snapshot.** They were right at the commit this phase read, and any surface added afterwards makes them wrong until someone re-runs the generators. The map states this and names the command, so the limitation is bounded rather than removed.
 2. **The `validate_document.py` warning remains.** `document_type_fallback` applies the README rules to the map because it is a repository-level document rather than a skill or command page. The document validates, and the warning is a classification notice rather than a content fault, so it is left visible instead of silenced.
 3. **The `.opencode` plugins cell counts entry files, not every tracked file.** It reads 16 authored plugin files plus the `sk-vision.js` link, while the directory holds 61 tracked entries when `lib/` and `tests/` are included. That is the map's level of detail: it answers what a reader finds at the top of the plugin directory, and the third round-2 P2 was left as written for that reason.
-4. **The push and the CI record are still open.** The push task and the CI-record task in `tasks.md` remain unticked, and this file says nothing about a pushed commit until they close.
 <!-- /ANCHOR:limitations -->
 
 ---

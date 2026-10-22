@@ -54,7 +54,7 @@ contextType: "general"
 - [x] T007 Run `validate_document.py` over the map and require no error (`.skilled/CROSS-CLI.md`)
 - [x] T008 Run the markdown link check over the map, so every relative and repository path it names resolves (`.skilled/CROSS-CLI.md`)
 - [x] T009 Validate strictly, this phase first and then 082 recursively: `validate.sh 059-cross-cli-map-refresh --strict` then `validate.sh 082-opencode-v1-v2-dual-compat --recursive` (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/`)
-- [ ] T010 Push to main and record CI at the pushed commit (`.skilled/CROSS-CLI.md`)
+- [x] T010 Push to main and record CI at the pushed commit (`.skilled/CROSS-CLI.md`) - `7221270fab` on main; CI green, Spec-Kit Check 39844554321 on `b1dad870d9`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,7 +62,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every task marked `[x]`: T010 stays open until the commit is on main and CI has run on it
+- [x] Every task marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: every count in the map matches the tree, every path it names resolves, and the read-only review finds no wrong number
 <!-- /ANCHOR:completion -->
