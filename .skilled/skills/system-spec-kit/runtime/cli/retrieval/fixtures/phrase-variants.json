@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8ca8af9471476eb573df68dc6a692289ff268c144b011ee50a6cff683bdb6180",
+  "manifestHash": "e571fcefcdf5302ee2044e90f8a346daa6fa597a372a17a90fa47668767631ed",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -68188,6 +68188,9 @@
     "opencode": [
       "opencode"
     ],
+    "opencode 1 and 2 support": [
+      "opencode 1 and 2 support"
+    ],
     "opencode 1 and opencode 2 lineage argv": [
       "OpenCode 1 and OpenCode 2 lineage argv"
     ],
@@ -72846,6 +72849,9 @@
     ],
     "phase 53 final commit live proof": [
       "phase 53 final commit live proof"
+    ],
+    "phase 54 v4 0 0 13 changelog opencode": [
+      "phase 54 v4 0 0 13 changelog opencode"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
@@ -109422,6 +109428,18 @@
     ],
     "v4 0 0 13 changelog implementation summary": [
       "v4 0 0 13 changelog implementation summary"
+    ],
+    "v4 0 0 13 changelog opencode": [
+      "v4 0 0 13 changelog opencode"
+    ],
+    "v4 0 0 13 changelog opencode implementation summary": [
+      "v4 0 0 13 changelog opencode implementation summary"
+    ],
+    "v4 0 0 13 changelog opencode plan": [
+      "v4 0 0 13 changelog opencode plan"
+    ],
+    "v4 0 0 13 changelog opencode tasks": [
+      "v4 0 0 13 changelog opencode tasks"
     ],
     "v4 0 0 13 changelog plan": [
       "v4 0 0 13 changelog plan"
