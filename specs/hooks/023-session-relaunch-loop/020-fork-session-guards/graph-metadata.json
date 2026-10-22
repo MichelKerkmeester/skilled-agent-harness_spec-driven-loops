@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/020-fork-session-guards",
+  "spec_folder": "hooks/023-session-relaunch-loop/020-fork-session-guards",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fork session guards",
+      "phase 20 fork session guards",
+      "fork session guards plan",
+      "fork session guards tasks",
+      "fork session guards implementation summary"
+    ],
+    "key_topics": [
+      "fork",
+      "session",
+      "guards",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "ae7668a35ed03d742",
+      "compacted",
+      "session-prime",
+      "injected"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+      ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".claude/settings.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+      "hooks/claude/shared.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      "tests/hook-session-start.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-10-21 fork `ae7668a35ed03d742` compacted, and `session-prime` injected \"Recovered Context (Post-Compaction)\" from a cache keyed by the parent's session id, then cleared that cache",
+    "created_at": "2026-10-22T04:44:27Z",
+    "last_save_at": "2026-10-22T04:56:57.208Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8412c7f5038dab6dec92098e6d311264ceb8a0a8a0e83e5d262f8c0f85d3416",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "61d7960a17418a434de8485922c99147cebd4fe7629fe82e98fd03ee6bb6a9ba",
+      "plan.md": "214af9cc48569f6913134536f8b2abe0d17bfc1a2d6f8aaf6e084184f6e3fe4f",
+      "tasks.md": "76afa2b13fad2c1725d4c239da4be4f66d85ea8d6fea89d87b6cb4fb8cc0c6f0",
+      "implementation-summary.md": "a2d37eb41df2aa196a52f9e217e995143cafc4df498ec16e597eccf509461316"
+    },
+    "last_active_at": null
+  }
+}

@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 import { spawnSync } from 'node:child_process';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { ensureStateDir, saveState, getStatePath, type HookState } from '../hooks/claude/hook-state.js';
@@ -13,6 +13,7 @@ import {
   getUnicodeRuntimeFingerprint,
 } from '../cli/lib/unicode-normalization';
 import {
+  forkCompactedRecently,
   formatHookOutput,
   truncateToTokenBudget,
   SESSION_PRIME_TOKEN_BUDGET,
@@ -187,6 +188,70 @@ describe('session-prime hook', () => {
       const longPayload = 'x'.repeat(12000);
       const truncated = truncateToTokenBudget(longPayload, COMPACTION_TOKEN_BUDGET);
       expect(truncated.length / 4).toBeLessThanOrEqual(COMPACTION_TOKEN_BUDGET + 50);
+    });
+  });
+
+  describe('forkCompactedRecently', () => {
+    const parentSessionId = 'parent-session';
+    let tempDir: string;
+
+    beforeEach(() => {
+      tempDir = mkdtempSync(join(tmpdir(), 'fork-compact-boundary-'));
+    });
+
+    afterEach(() => {
+      rmSync(tempDir, { recursive: true, force: true });
+    });
+
+    function seedForkTranscript(options: { boundaryAgoMs?: number; mtimeAgoMs?: number } = {}): {
+      transcriptPath: string;
+      nowMs: number;
+    } {
+      const nowMs = Date.now();
+      const transcriptPath = join(tempDir, `${parentSessionId}.jsonl`);
+      writeFileSync(transcriptPath, `${JSON.stringify({ type: 'user' })}\n`, 'utf-8');
+      if (options.boundaryAgoMs === undefined) return { transcriptPath, nowMs };
+
+      const forkDir = join(tempDir, parentSessionId, 'subagents');
+      mkdirSync(forkDir, { recursive: true });
+      const forkPath = join(forkDir, 'agent-abc123.jsonl');
+      const boundary = {
+        type: 'system',
+        subtype: 'compact_boundary',
+        timestamp: new Date(nowMs - options.boundaryAgoMs).toISOString(),
+      };
+      writeFileSync(forkPath, `${JSON.stringify(boundary)}\n`, 'utf-8');
+
+      if (options.mtimeAgoMs !== undefined) {
+        const seconds = (nowMs - options.mtimeAgoMs) / 1000;
+        utimesSync(forkPath, seconds, seconds);
+      }
+
+      return { transcriptPath, nowMs };
+    }
+
+    it('detects a fork boundary written moments before the parent SessionStart hook', () => {
+      const { transcriptPath, nowMs } = seedForkTranscript({ boundaryAgoMs: 300 });
+
+      expect(forkCompactedRecently(transcriptPath, parentSessionId, nowMs)).toBe(true);
+    });
+
+    it('ignores a fork boundary older than the freshness window', () => {
+      const { transcriptPath, nowMs } = seedForkTranscript({ boundaryAgoMs: 60_000, mtimeAgoMs: 60_000 });
+
+      expect(forkCompactedRecently(transcriptPath, parentSessionId, nowMs)).toBe(false);
+    });
+
+    it('returns false when the fork has no subagents directory', () => {
+      const { transcriptPath, nowMs } = seedForkTranscript();
+
+      expect(forkCompactedRecently(transcriptPath, parentSessionId, nowMs)).toBe(false);
+    });
+
+    it('returns false when the fork boundary timestamp is ahead of now', () => {
+      const { transcriptPath, nowMs } = seedForkTranscript({ boundaryAgoMs: -1000 });
+
+      expect(forkCompactedRecently(transcriptPath, parentSessionId, nowMs)).toBe(false);
     });
   });
 });

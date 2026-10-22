@@ -11,7 +11,7 @@ import {
   parseHookStdin, hookLog, formatHookOutput, truncateToTokenBudget,
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, SESSION_PRIME_TOKEN_BUDGET,
   calculatePressureAdjustedBudget, sanitizeRecoveredPayload, wrapRecoveredCompactPayload,
-  getRequiredSessionId,
+  getRequiredSessionId, forkCompactedRecently,
   type HookInput,
   type OutputSection,
 } from './shared.js';
@@ -228,6 +228,17 @@ async function main(): Promise<void> {
   });
   const sessionId = getRequiredSessionId(rawSessionId, 'session-prime');
   hookLog('info', 'session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
+
+  // A fork compacts under its parent's session id, so recovering and clearing here
+  // would spend the parent's cached brief on the fork.
+  const transcriptPath = input.transcript_path;
+  if (source === 'compact'
+    && typeof transcriptPath === 'string'
+    && transcriptPath !== ''
+    && forkCompactedRecently(transcriptPath, sessionId)) {
+    hookLog('info', 'session-prime', `Skipping compact recovery for session ${sessionId}: a forked sub-agent compacted`);
+    return;
+  }
 
   let sections: OutputSection[];
   let budget: number;

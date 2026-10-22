@@ -4,6 +4,8 @@
 // Copilot imports these helpers straight from ../shared-provenance.js, so
 // drift in any one runtime silently forks the recovered-payload contract.
 
+import { closeSync, openSync, readdirSync, readSync, statSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { HOOK_STDIN_TIMEOUT_MS, readHookStdin } from '../shared-stdin.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -17,6 +19,11 @@ export const COMPACTION_TOKEN_BUDGET = 4000;
 /** Token budget for session priming (startup/resume) */
 export const SESSION_PRIME_TOKEN_BUDGET = 2000;
 const MAX_HOOK_STDIN_BYTES = 1024 * 1024;
+/** How recent a fork's compaction boundary must be to belong to this SessionStart */
+const FORK_COMPACTION_WINDOW_MS = 5_000;
+/** A transcript untouched for longer cannot hold a boundary inside that window */
+const FORK_TRANSCRIPT_MTIME_WINDOW_MS = 10_000;
+const FORK_TRANSCRIPT_TAIL_BYTES = 64 * 1024;
 
 /** Parsed JSON from Claude Code hook stdin */
 export interface HookInput {
@@ -142,4 +149,69 @@ export function calculatePressureAdjustedBudget(
   if (ratio > 0.9) return Math.max(200, Math.floor(baseBudget * 0.2));
   if (ratio > 0.7) return Math.floor(baseBudget * (1 - ratio) * 2);
   return baseBudget;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 4. TRANSCRIPT INSPECTION
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * True when a forked sub-agent compacted moments ago. A fork carries its parent's session
+ * id and files its transcript under the parent's directory, so a compaction boundary there
+ * belongs to the fork, not to the parent whose SessionStart is running.
+ */
+export function forkCompactedRecently(
+  transcriptPath: string,
+  sessionId: string,
+  nowMs: number = Date.now(),
+): boolean {
+  const subagentDir = join(dirname(transcriptPath), sessionId, 'subagents');
+  let entries: string[];
+  try {
+    entries = readdirSync(subagentDir);
+  } catch {
+    return false;
+  }
+
+  for (const entry of entries) {
+    if (!/^agent-.*\.jsonl$/.test(entry)) continue;
+    const filePath = join(subagentDir, entry);
+    try {
+      const stat = statSync(filePath);
+      if (!stat.isFile()) continue;
+      // The boundary timestamp decides; the mtime check only keeps stale
+      // transcripts from being read at all.
+      if (Math.abs(nowMs - stat.mtimeMs) > FORK_TRANSCRIPT_MTIME_WINDOW_MS) continue;
+      const boundaryMs = lastCompactBoundaryMs(filePath, stat.size);
+      if (boundaryMs === null) continue;
+      const ageMs = nowMs - boundaryMs;
+      if (ageMs >= 0 && ageMs <= FORK_COMPACTION_WINDOW_MS) return true;
+    } catch {
+      continue;
+    }
+  }
+
+  return false;
+}
+
+/** Newest compact_boundary timestamp in the transcript tail, or null when there is none. */
+function lastCompactBoundaryMs(filePath: string, size: number): number | null {
+  const length = Math.min(size, FORK_TRANSCRIPT_TAIL_BYTES);
+  const buffer = Buffer.alloc(length);
+  const descriptor = openSync(filePath, 'r');
+  let read = 0;
+  try {
+    read = readSync(descriptor, buffer, 0, length, size - length);
+  } finally {
+    closeSync(descriptor);
+  }
+
+  const lines = buffer.subarray(0, read).toString('utf8').split('\n');
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    if (!lines[index].includes('"compact_boundary"')) continue;
+    const record = JSON.parse(lines[index]) as { timestamp?: unknown };
+    const timestampMs = typeof record.timestamp === 'string' ? Date.parse(record.timestamp) : Number.NaN;
+    return Number.isFinite(timestampMs) ? timestampMs : null;
+  }
+  return null;
 }

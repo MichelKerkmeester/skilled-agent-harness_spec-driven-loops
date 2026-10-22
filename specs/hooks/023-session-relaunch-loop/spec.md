@@ -120,6 +120,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 17 | 017-hop-history/ | Every hop writes `handed-over`, `claimed`, `done` or `timed-out` lines to a gitignored hop history; `session-relaunch.cjs history` and `/doctor:setup` show it, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over. | complete |
 | 18 | 018-outside-loop-handoff/ | A session outside `skilled-loop` keeps a handoff note with `session-relaunch.cjs keep` instead of hearing nothing, Claude Code points it back at the note after a compaction, and `history` and `/doctor:setup` name every note nobody claimed. | complete |
 | 19 | 019-fork-compact-pointer-research/ | [Phase 19 scope] | Pending |
+| 20 | 020-fork-session-guards/ | [Phase 20 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -150,6 +151,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 016-handover-trigger-review | 017-hop-history | phase 016 is Complete with the review findings fixed and live hops re-proven | `validate.sh 016-handover-trigger-review --strict` RESULT: PASSED |
 | 017-hop-history | 018-outside-loop-handoff | phase 017 is Complete with the hop history recorded and readable | `validate.sh 017-hop-history --strict` RESULT: PASSED |
 | 018-outside-loop-handoff | 019-fork-compact-pointer-research | [Criteria TBD] | [Verification TBD] |
+| 019-fork-compact-pointer-research | 020-fork-session-guards | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

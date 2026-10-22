@@ -22,7 +22,8 @@
     "hooks/023-session-relaunch-loop/016-handover-trigger-review",
     "hooks/023-session-relaunch-loop/017-hop-history",
     "hooks/023-session-relaunch-loop/018-outside-loop-handoff",
-    "hooks/023-session-relaunch-loop/019-fork-compact-pointer-research"
+    "hooks/023-session-relaunch-loop/019-fork-compact-pointer-research",
+    "hooks/023-session-relaunch-loop/020-fork-session-guards"
   ],
   "manual": {
     "depends_on": [],
@@ -204,7 +205,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-21T18:45:05.112Z",
+    "last_save_at": "2026-10-22T04:44:28.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +213,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c5e85cabbe916842aecd3103c1deee4a25c7973656017cb759824785050d79b1",
+    "source_fingerprint": "sha256:bc714493e097a531c8dbc248b9d6d567ee779124f7d23a7b65d71185d88ffa0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "59b856c05d0d6e0e924131d109e86b529fc50596e90add08bbf03e035862f96e",
+      "spec.md": "57c19af41e370cd49f8374ebe356dc619b8d1c53d77470defb0318326d543722",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/012-ci-red-check-repairs",
