@@ -88,7 +88,7 @@ function walk(dir, out) {
     const p = path.join(dir, e.name);
     if (excluded(p)) continue;
     if (e.isDirectory()) walk(p, out);
-    else if (e.isFile() && p.endsWith('.md')) out.push(p);
+    else if (e.isFile() && (p.endsWith('.md') || p.endsWith('.markdown'))) out.push(p);
   }
 }
 

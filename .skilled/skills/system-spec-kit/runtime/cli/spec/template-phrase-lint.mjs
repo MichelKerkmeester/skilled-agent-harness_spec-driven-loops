@@ -37,7 +37,7 @@ function gitOutput(args, cwd) {
 function stagedMarkdownChanges(root) {
   const names = gitOutput([
     'diff', '--cached', '--name-status', '--find-renames', '-z',
-    '--diff-filter=ACMR', '--', '*.md',
+    '--diff-filter=ACMR', '--', '*.md', '*.markdown',
   ], root).toString('utf8').split('\0').filter(Boolean);
   const changes = [];
 

@@ -8,8 +8,8 @@ trigger_phrases:
 
 # Doctor Script Tests: Coverage For Every Doctor Script
 
-> Documents `.skilled/commands/doctor/scripts/tests/`. This README was moved out of `.skilled/commands/`
-> to `.skilled/command-support/doctor/scripts/tests/` so OpenCode does not register it as a command.
+> Documents `.skilled/commands/doctor/scripts/tests/`. This README uses the `.markdown` extension
+> because OpenCode registers every `.md` file under `.skilled/commands/` as a command.
 
 ---
 
@@ -81,5 +81,5 @@ python3 -m unittest discover -s .skilled/commands/doctor/scripts/tests -p 'test_
 
 ## 4. RELATED
 
-- [Doctor command scripts](../README.md)
+- [Doctor command scripts](../README.markdown)
 - [Doctor route manifest](../../../../commands/doctor/_routes.yaml)

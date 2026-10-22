@@ -21,23 +21,23 @@ const { checkCommand } = require('./check-contract-drift.cjs');
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const MANIFEST_PATH = '.skilled/command-support/deep/assets/compiled/manifest.jsonl';
+const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
 
 const COMMANDS = {
   'deep/ai-council': {
     slug: 'deep_ai-council',
-    legacyBodyPath: '.skilled/command-support/deep/assets/legacy/deep-ai-council.body.md',
-    compiledContractPath: '.skilled/command-support/deep/assets/compiled/deep-ai-council.contract.md',
+    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-ai-council.body.markdown',
+    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown',
   },
   'deep/review': {
     slug: 'deep_review',
-    legacyBodyPath: '.skilled/command-support/deep/assets/legacy/deep-review.body.md',
-    compiledContractPath: '.skilled/command-support/deep/assets/compiled/deep-review.contract.md',
+    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-review.body.markdown',
+    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-review.contract.markdown',
   },
   'deep/research': {
     slug: 'deep_research',
-    legacyBodyPath: '.skilled/command-support/deep/assets/legacy/deep-research.body.md',
-    compiledContractPath: '.skilled/command-support/deep/assets/compiled/deep-research.contract.md',
+    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-research.body.markdown',
+    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-research.contract.markdown',
   },
 };
 

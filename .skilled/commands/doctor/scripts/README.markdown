@@ -10,8 +10,8 @@ importance_tier: "important"
 
 # Doctor Command Scripts
 
-> Documents `.skilled/commands/doctor/scripts/`. This README was moved out of `.skilled/commands/`
-> to `.skilled/command-support/doctor/scripts/` so OpenCode does not register it as a command.
+> Documents `.skilled/commands/doctor/scripts/`. This README uses the `.markdown` extension because
+> OpenCode registers every `.md` file under `.skilled/commands/` as a command.
 >
 > Diagnostic and validation entrypoints used by the doctor command family.
 
@@ -48,7 +48,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- skill-graph-freshness.cjs
 +-- tests/            # one suite per script, plus run-all.sh
 |   `-- opencode-version-battery.test.cjs
-`-- README.md
+`-- README.markdown
 ```
 
 ---
@@ -176,7 +176,7 @@ Run every doctor test from the repository root. CI runs the same command in the 
 bash .skilled/commands/doctor/scripts/tests/run-all.sh
 ```
 
-The runner needs `node`, `python3` with PyYAML, and the advisor runtime's dependencies (`npm --prefix .skilled/skills/system-skill-advisor/runtime ci`). It exits `0` when every suite passes, `1` when one fails and `2` when a required tool is missing. `tests/README.md` lists the suites.
+The runner needs `node`, `python3` with PyYAML, and the advisor runtime's dependencies (`npm --prefix .skilled/skills/system-skill-advisor/runtime ci`). It exits `0` when every suite passes, `1` when one fails and `2` when a required tool is missing. `tests/README.markdown` lists the suites.
 
 Each script can be pointed at a fixture tree, which is how the tests run without touching the repository:
 
@@ -196,5 +196,5 @@ Each script can be pointed at a fixture tree, which is how the tests run without
 - [Doctor route manifest](../../../commands/doctor/_routes.yaml)
 - [Doctor command routers](../../../commands/doctor/)
 - [Doctor assets](../../../commands/doctor/assets/)
-- [Doctor script tests](./tests/README.md)
+- [Doctor script tests](./tests/README.markdown)
 - [Commands directory](../../../commands/)

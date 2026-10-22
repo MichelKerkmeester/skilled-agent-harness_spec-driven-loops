@@ -10,8 +10,8 @@ importance_tier: "normal"
 
 # Command Validation Fixtures
 
-> Documents `.skilled/commands/scripts/fixtures/`. This README was moved out of `.skilled/commands/`
-> to `.skilled/command-support/scripts/fixtures/` so OpenCode does not register it as a command.
+> Documents `.skilled/commands/scripts/fixtures/`. This README uses the `.markdown` extension because
+> OpenCode registers every `.md` file under `.skilled/commands/` as a command.
 >
 > Deliberately invalid command references that prove the validator rejects broken assets.
 
@@ -30,7 +30,7 @@ The fixture values are intentionally broken. They must remain unresolved so the 
 ```text
 fixtures/
 +-- broken-command-refs.yaml
-`-- README.md
+`-- README.markdown
 ```
 
 ---

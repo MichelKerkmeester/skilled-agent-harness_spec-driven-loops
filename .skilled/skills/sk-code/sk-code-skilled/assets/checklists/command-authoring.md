@@ -8,7 +8,7 @@ trigger_phrases:
   - "command runtime mirrors"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Command Authoring Checklist
@@ -37,7 +37,7 @@ This checklist keeps user-invoked commands consistent with the two live command 
 - [ ] Confirm command frontmatter uses the live fields `argument-hint` and `allowed-tools` when the command needs arguments or tool permissions.
 - [ ] Confirm whether `:auto` needs PRE-BOUND SETUP ANSWERS support in `argument-hint` and the presentation or compiled contract.
 - [ ] For YAML-router commands, verify real assets such as `.skilled/commands/create/assets/create-skill-auto.yaml`, `.skilled/commands/create/assets/create-skill-confirm.yaml`, and `.skilled/commands/create/assets/create-skill-presentation.txt`.
-- [ ] For contract-renderer commands, verify the rendered contract source such as `.skilled/command-support/deep/assets/compiled/deep-research.contract.md` and workflow assets such as `.skilled/commands/deep/assets/deep-research-auto.yaml`.
+- [ ] For contract-renderer commands, verify the rendered contract source such as `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` and workflow assets such as `.skilled/commands/deep/assets/deep-research-auto.yaml`.
 - [ ] Confirm command scope, required user inputs, dispatch targets, and file-write authority.
 - [ ] Classify the command's runtime scope, then run the mirror generator. `.claude/commands` is a real filtered tree of per-command symlinks, so OpenCode-only commands must be excluded deliberately.
 - [ ] Do not mirror commands into `.skilled/prompts/`; that path is not present in this workspace.

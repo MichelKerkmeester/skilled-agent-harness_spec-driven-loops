@@ -1,0 +1,14 @@
+plugins: # pass 516 # fail 0 
+hooks-node(30 files): # pass 889 # fail 0 
+battery-unit: # pass 51 # fail 0 
+gate3-parity: # pass 17 # fail 0 
+deep-loop-vitest:  Test Files 167 passed (167)  Tests 2799 passed | 8 skipped (2807) 
+sk-doc-script-tests: rc=0 PASS test-cite-drift-scan.mjs PASS install-guide-contract.test.cjs all sk-doc script tests passed 
+link-guard: check-markdown-links: 7794 files, 14204 links checked, 0 broken
+cmds v1 40 40 identical
+cmds v2 42 42 identical
+readme-manifest: SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+readme-verdict-parity: PARITY PASS: verdict diff is empty
+version-battery --family=both: rc=0, 8 of 8 legs PASS
+sk-doc script tests: 38 PASS, 0 FAIL (baseline 38 PASS)
+note: the first after-run of deep-loop vitest had 3 failures from one census row; fixed before this final run
