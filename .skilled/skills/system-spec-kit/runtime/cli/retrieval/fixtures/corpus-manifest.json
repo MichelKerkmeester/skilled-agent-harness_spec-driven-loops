@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c2b69e55feb6c93dc1ceee451a3db49401105ae5ce8275ddad9258edc1f2a20",
+  "corpusHash": "ad30c5ea2e0dee16ced763b730f416d28729ef9d236d9b19e9eb02d294169fcb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25642,
+  "includedPathCount": 25646,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9091,6 +9091,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25673,7 +25677,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7e8a258496bcb2b97e60bd286bf5a7e131f3e9b88ab91a9c4328ff8831c265f2",
+  "manifestHash": "e1e4bb74b05ec870b34de5cdc2dd7c75051d5d6aa50fd89252b90ac6acb18511",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

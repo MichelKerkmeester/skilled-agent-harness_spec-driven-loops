@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7e8a258496bcb2b97e60bd286bf5a7e131f3e9b88ab91a9c4328ff8831c265f2",
+  "manifestHash": "e1e4bb74b05ec870b34de5cdc2dd7c75051d5d6aa50fd89252b90ac6acb18511",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28533,6 +28533,18 @@
     ],
     "cross cli manual testing": [
       "cross cli manual testing"
+    ],
+    "cross cli map refresh": [
+      "cross cli map refresh"
+    ],
+    "cross cli map refresh implementation summary": [
+      "cross cli map refresh implementation summary"
+    ],
+    "cross cli map refresh plan": [
+      "cross cli map refresh plan"
+    ],
+    "cross cli map refresh tasks": [
+      "cross cli map refresh tasks"
     ],
     "cross cli process spam": [
       "cross CLI process spam"
@@ -72891,6 +72903,9 @@
     ],
     "phase 57 v4 0 0 13 reliability fixes": [
       "phase 57 v4 0 0 13 reliability fixes"
+    ],
+    "phase 59 cross cli map refresh": [
+      "phase 59 cross cli map refresh"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
