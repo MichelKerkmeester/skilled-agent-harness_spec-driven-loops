@@ -164,6 +164,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 51 | 051-dispatch-lint-nested-quote-gap/ | Replace the Pi dispatch lint's expansion depth count with one POSIX context-stack scanner, so a backtick quoted inside a substitution no longer lets a nested executor mention authorize, and unresolvable structure denies | Complete |
 | 52 | 052-v1-default-llmgateway/ | Make llmgateway/deepseek-v4.1-flash the OpenCode 1 default too, so both versions share one default, prove an unpinned dispatch live on each version and close 043 | Complete |
 | 53 | 053-final-commit-live-proof/ | Rerun the live 17-plugin playbook on OpenCode 1.19.3 and 2.0.32 at the final main commit | Complete |
+| 54 | 054-v4-0-0-13-changelog-opencode/ | Make the OpenCode 1 and 2 work and its testing a prominent part of the v4.0.0.13 changelog | Complete |
 
 ### Phase Transition Rules
 
@@ -224,4 +225,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 040-dispatch-lint-held-fixes | 051-dispatch-lint-nested-quote-gap | 040 recorded one P1 open: a backtick quoted inside `$(` let a nested mention authorize cli-devin, and the goal allows no open P1 | `051/implementation-summary.md`; each deny row fails on the old scanner and CI passes at the pushed commit |
 | 050-sk-doc-ci-outside-failures | 052-v1-default-llmgateway | The operator chose llmgateway for the OpenCode 1 default on 2026-10-21 because the opencode-go quota is spent | `052/implementation-summary.md`; both unpinned live dispatches exit 0 and reply |
 | 052-v1-default-llmgateway | 053-final-commit-live-proof | 052 is on main with CI green | `053/scratch/live-runs/results-matrix.md` shows 17/17 on both versions |
+| 053-final-commit-live-proof | 054-v4-0-0-13-changelog-opencode | 053 is on main with CI green | `054/implementation-summary.md`; the changelog passes `validate_document.py` and a read-only review |
 <!-- /ANCHOR:phase-map -->

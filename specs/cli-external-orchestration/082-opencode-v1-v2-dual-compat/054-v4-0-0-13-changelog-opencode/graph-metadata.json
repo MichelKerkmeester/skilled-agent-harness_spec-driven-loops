@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 0 0 13 changelog opencode",
+      "phase 54 v4 0 0 13 changelog opencode",
+      "v4 0 0 13 changelog opencode plan",
+      "v4 0 0 13 changelog opencode tasks",
+      "v4 0 0 13 changelog opencode implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "opencode",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "headline",
+      "change",
+      "every",
+      "plugin",
+      "agent"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Release",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Upgrade Notes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "v4.0.0.13 made OpenCode 2 a headline change: every plugin, agent, command and the config run on OpenCode 1 and 2 from one source",
+    "created_at": "2026-10-22T07:26:45Z",
+    "last_save_at": "2026-10-22T08:15:49.522Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:52e6e720f74b809cb659a418e648e7afb6f49757d1883b4d57f45cad5e3d5e85",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "28284048a303a3999144d2547d9ee083151d6b014cf5b90e437ed920a231687c",
+      "plan.md": "f8bff0fc18684daedaf2eed84446d472ab6d1e74bc3ceae9de4e196e30a0abcf",
+      "tasks.md": "e5d1eaf306766bede6e42b18eb4e9640bf2ee0fbbdf8a704c32d9520848d14a4",
+      "implementation-summary.md": "1223e9cb85793c037ae3bc87ec8bd366be1e684f48d6d6159b1ce17f472d28af"
+    },
+    "last_active_at": null
+  }
+}

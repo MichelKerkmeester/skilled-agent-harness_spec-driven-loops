@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode",
+  "description": "Phase 54: v4-0-0-13-changelog-opencode",
+  "keywords": [
+    "phase",
+    "v4-0-0-13-changelog-opencode"
+  ],
+  "lastUpdated": "2026-10-22T07:26:46.424Z",
+  "specId": "054",
+  "folderSlug": "v4-0-0-13-changelog-opencode",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
