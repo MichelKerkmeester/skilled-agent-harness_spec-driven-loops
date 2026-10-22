@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3110cf3d53f11a47978b7d1c1e9091523ffdb1b2df39c50591031dbbb7e6c2e7",
+  "manifestHash": "7ab812d6885ae10c29b14751cf2c633fc631240245e3e883810177e9b7af5235",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -68224,14 +68224,14 @@
     "opencode": [
       "opencode"
     ],
-    "opencode 1 and 2 support": [
-      "opencode 1 and 2 support"
-    ],
     "opencode 1 and opencode 2 lineage argv": [
       "OpenCode 1 and OpenCode 2 lineage argv"
     ],
     "opencode 2 ancestor opencode folder": [
       "opencode 2 ancestor opencode folder"
+    ],
+    "opencode 2 plugin support": [
+      "opencode 2 plugin support"
     ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
@@ -72978,6 +72978,9 @@
     ],
     "phase 60 v4 0 0 13 changelog rewrite": [
       "phase 60 v4 0 0 13 changelog rewrite"
+    ],
+    "phase 61 v4 0 0 13 changelog trim": [
+      "phase 61 v4 0 0 13 changelog trim"
     ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"
@@ -109533,6 +109536,18 @@
     ],
     "v4 0 0 13 changelog tasks": [
       "v4 0 0 13 changelog tasks"
+    ],
+    "v4 0 0 13 changelog trim and simplify": [
+      "v4 0 0 13 changelog trim and simplify"
+    ],
+    "v4 0 0 13 changelog trim and simplify implementation summary": [
+      "v4 0 0 13 changelog trim and simplify implementation summary"
+    ],
+    "v4 0 0 13 changelog trim and simplify plan": [
+      "v4 0 0 13 changelog trim and simplify plan"
+    ],
+    "v4 0 0 13 changelog trim and simplify tasks": [
+      "v4 0 0 13 changelog trim and simplify tasks"
     ],
     "v4 0 0 13 release notes": [
       "v4.0.0.13 release notes"
