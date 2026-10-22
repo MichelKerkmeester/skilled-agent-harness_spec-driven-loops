@@ -1,5 +1,5 @@
 {
-  "manifestHash": "30fe6943da8369a15d85501db1c6243d5395a30b4cb29b32f57ae88a77a8e4b2",
+  "manifestHash": "e10cf09ed6d0acdb07608a2d5a2b03d1f748eb3e0c02150644c80e579fd34a84",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -45925,6 +45925,18 @@
     "fork pi cache optimizer": [
       "fork pi-cache-optimizer"
     ],
+    "fork session guards": [
+      "fork session guards"
+    ],
+    "fork session guards implementation summary": [
+      "fork session guards implementation summary"
+    ],
+    "fork session guards plan": [
+      "fork session guards plan"
+    ],
+    "fork session guards tasks": [
+      "fork session guards tasks"
+    ],
     "forkable prompt framework engine": [
       "forkable prompt-framework engine"
     ],
@@ -72438,6 +72450,9 @@
     ],
     "phase 20 deep review remediation": [
       "phase 20 deep review remediation"
+    ],
+    "phase 20 fork session guards": [
+      "phase 20 fork session guards"
     ],
     "phase 20 implementation summary": [
       "phase 20 implementation summary"

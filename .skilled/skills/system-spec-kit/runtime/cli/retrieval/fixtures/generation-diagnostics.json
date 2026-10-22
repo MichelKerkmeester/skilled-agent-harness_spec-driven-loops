@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7207,
-    "ok": 14858,
+    "ok": 14862,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25613,
+  "documentsScanned": 25617,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "30fe6943da8369a15d85501db1c6243d5395a30b4cb29b32f57ae88a77a8e4b2",
+  "manifestHash": "e10cf09ed6d0acdb07608a2d5a2b03d1f748eb3e0c02150644c80e579fd34a84",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37368,
+      "ok": 37373,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70095,6 +70095,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/020-fork-session-guards/scratch",
       "reason": "excluded directory"
     },
     {
