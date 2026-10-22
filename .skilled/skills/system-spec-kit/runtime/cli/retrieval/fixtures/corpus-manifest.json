@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3f0cc446216ac4be2bbf2584f21ecccea59f1dfaaba8cf4a8b4aab5ff581d798",
+  "corpusHash": "265ab3c0527360d93160dd6dcc49e782e0b9122d47a1009e3393445f01566b62",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25625,
+  "includedPathCount": 25629,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9080,6 +9080,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25656,7 +25660,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0d6e8e8c53106686054e69301ca21b0389b57094d63de5e96d786567b36c664d",
+  "manifestHash": "5b6a815a80ee30315b31106dc0bf2b87c1212b48f80aac0e6d65827bf95569c5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26832,6 +26836,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/scratch",
       "reason": "excluded directory"
     },
     {
