@@ -19,7 +19,7 @@ _memory:
       - ".skilled/bin/tests/opencode-config-shape.test.cjs"
       - ".skilled/command-support"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5b60bfd60248a48b43e12292b3939ce3c49652dd740e0fe532fcf8bb63757bd0"
       session_id: "scaffold-004-agents-commands-config"
       parent_session_id: null
     completion_pct: 95

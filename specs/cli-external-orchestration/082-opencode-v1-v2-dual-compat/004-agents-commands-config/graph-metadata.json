@@ -55,7 +55,7 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
       "runtime/scripts/README.md",
       ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md"
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
     ],
     "entities": [
       {
@@ -155,9 +155,9 @@
         "source": "derived"
       },
       {
-        "name": "command-authoring.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md",
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
         "source": "derived"
       },
       {
@@ -205,8 +205,8 @@
     ],
     "causal_summary": "The agents and commands carry wording and file layout that only one host understands",
     "created_at": "2026-10-18T12:45:03Z",
-    "last_save_at": "2026-10-19T09:45:26.101Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-21T18:54:38.284Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59a7bbdef879f8a55cd941928bcf348c1a8733b4bfc33f9413f2ba204b68fd7e",
+    "source_fingerprint": "sha256:76aab0dcd44484b59608db86329f8011c24414b45c1438effe2832ac2edf3fcd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f113c90f71c7208b07ebc2789d4450f8a50c315fe9f5c79ce43acc707305663e",
       "plan.md": "d572a5df0caf8aa0e4157b52420c21a04471261415b7bc5e30104e4c0820e1a4",
       "tasks.md": "8ef9e49b2619aeb29d13bad10fd5f0df383c2cd873e15a13bb78e50f4652084b",
-      "implementation-summary.md": "5b60bfd60248a48b43e12292b3939ce3c49652dd740e0fe532fcf8bb63757bd0"
+      "implementation-summary.md": "e4e6b3b2d2f9dcecaec9fd7bde0a7a84cdba579b27d0573f6678d90c2c07461a"
     },
     "last_active_at": null
   }

@@ -1,18 +1,25 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config",
   "description": "Phase 4: agents-commands-config",
   "keywords": [
     "phase",
     "agents-commands-config"
   ],
-  "lastUpdated": "2026-10-18T12:45:04.176Z",
+  "lastUpdated": "2026-10-21T22:41:02.385Z",
   "specId": "004",
   "folderSlug": "agents-commands-config",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "21-10-26_19-54__the-goal-isn-t-closed-yet-two-things-keep-it-open.md",
+    "21-10-26_21-44__the-goal-is-met-and-no-background-work-is-left-i.md",
+    "21-10-26_22-13__the-goal-is-met-i-closed-the-one-record-that-was.md",
+    "21-10-26_22-13__criterion-4-is-now-being-rerun-a-new-group-053-is.md",
+    "21-10-26_22-48__group-053-is-still-running-its-deepseek-writer.md",
+    "21-10-26_23-41__the-goal-is-met-with-two-deviations-now-recorded.md"
+  ]
 }
