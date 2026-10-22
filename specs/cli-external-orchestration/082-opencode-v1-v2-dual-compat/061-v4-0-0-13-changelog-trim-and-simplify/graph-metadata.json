@@ -32,7 +32,7 @@
       "described"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -113,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -132,6 +126,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The v4.0.0.13 changelog had grown to 3359 words and still described work the operator did not want in this release",
     "created_at": "2026-10-22T20:42:40Z",
-    "last_save_at": "2026-10-22T21:10:17.000Z",
+    "last_save_at": "2026-10-22T21:30:20.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7511ee6a21bdc1f56340a0dc8e7ded1cab27cfae5fa41a6a8ef627a18fe64876",
+    "source_fingerprint": "sha256:029a80a14080397967da444d8756901be07ec63559effc3ef8587143af5d58a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "176353f27a3332ea47cd8f1199a1160991c7166ea31bf29c40cb7222d2184638",
+      "spec.md": "101755580016442d7b6e2d38f153b60f883bb0766f54ee41808c040ce351261d",
       "plan.md": "70fb58e9e957e531321885fff3dda4bc158d3d48e67ed5f99ffdc08dd36dd149",
-      "tasks.md": "493aff0af330438f4d7888ab043f586c2641df6a4440c023cd2128414d518fc1",
-      "implementation-summary.md": "d0fb41f99ca9dee21ed81f906dac7fcd91c767b47dfce9030c2f85254a53a88c"
+      "tasks.md": "3478b6648e57e1362eb5c7bb19026c43c04e08a56ae20c44f7acb8ae8a20b468",
+      "implementation-summary.md": "7ab9aebfe0bf10d3f9d4147b240d09ca1c7e19698e23ecfdbcabeba57db7372c"
     },
     "last_active_at": null
   }

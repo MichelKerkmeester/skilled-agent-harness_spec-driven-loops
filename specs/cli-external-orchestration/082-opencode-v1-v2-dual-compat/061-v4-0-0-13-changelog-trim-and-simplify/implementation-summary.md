@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify"
     last_updated_at: "2026-10-22T23:05:00Z"
     last_updated_by: "spec-record-writer"
-    recent_action: "Recorded round 3 and the hand fixes, plus the final 2961-word, 11-bullet state"
-    next_safe_action: "Commit and push to main, then confirm CI"
+    recent_action: "Closed the phase: pushed `3857bfa345` on main and confirmed CI green"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/changelog/skilled/v4.0.0.13.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-061-v4-0-0-13-changelog-trim-and-simplify"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 061-v4-0-0-13-changelog-trim-and-simplify |
-| **Completed** | Work finished 2026-10-22; commit, push and CI pending |
+| **Status** | Complete |
+| **Completed** | 2026-10-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -70,7 +71,7 @@ The review rounds tightened the result. Round 1 returned FAIL with four P1 findi
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Four DeepSeek v4.1 flash writers drafted one section each in parallel at max thinking, using the previous changelog as the only fact source. One assembly pass joined the drafts, removed both topics and the four spec-folder line entries, applied the plain-word replacements, set the impact order and wrote the 11-bullet glance list. A mid-task operator rule then framed OpenCode 2 as the expected and recommended version, and a DeepSeek fix pass applied it to the title, the trigger phrase, the H2 heading, the prose order, the `Move to OpenCode 2` upgrade note and the `Pin OpenCode 1` fallback step. `validate_document.py` then reported VALID with 0 issues, `hvr_scan.py` reported 0 hard blockers and a grep for the removed topics returned no hits. Three read-only DeepSeek v4.1 flash reviews at max thinking followed. Round 1 returned FAIL with four P1 findings, all fixed by a DeepSeek fix pass that also applied eleven P2s and restored the two lost facts as the `Saved State and Test Suites Hold Up` item. Round 2 returned PASS with four P2; three were fixed by hand and the fourth was this records update. Round 3 returned FAIL with one P1 on the reordered built-ins count, fixed by hand, plus one P2 on `a session's sub-agent hand-off count` and a restored cause-and-effect sentence; the two remaining P2s are recorded in Known Limitations. The push to main and the CI run on that commit are still open.
+Four DeepSeek v4.1 flash writers drafted one section each in parallel at max thinking, using the previous changelog as the only fact source. One assembly pass joined the drafts, removed both topics and the four spec-folder line entries, applied the plain-word replacements, set the impact order and wrote the 11-bullet glance list. A mid-task operator rule then framed OpenCode 2 as the expected and recommended version, and a DeepSeek fix pass applied it to the title, the trigger phrase, the H2 heading, the prose order, the `Move to OpenCode 2` upgrade note and the `Pin OpenCode 1` fallback step. `validate_document.py` then reported VALID with 0 issues, `hvr_scan.py` reported 0 hard blockers and a grep for the removed topics returned no hits. Three read-only DeepSeek v4.1 flash reviews at max thinking followed. Round 1 returned FAIL with four P1 findings, all fixed by a DeepSeek fix pass that also applied eleven P2s and restored the two lost facts as the `Saved State and Test Suites Hold Up` item. Round 2 returned PASS with four P2; three were fixed by hand and the fourth was this records update. Round 3 returned FAIL with one P1 on the reordered built-ins count, fixed by hand, plus one P2 on `a session's sub-agent hand-off count` and a restored cause-and-effect sentence; the two remaining P2s are recorded in Known Limitations. The push to main and the CI run on that commit are closed: `3857bfa345` is on main, CI was green with 12 of 12, and 12 passed with Trigger Index Rebuild skipped on the index rebuild `d092874cf7`, Spec-Kit Check 39855629894.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -105,7 +106,7 @@ Four DeepSeek v4.1 flash writers drafted one section each in parallel at max thi
 | Read-only DeepSeek review, round 1 | FAIL: four P1 findings (load against run, two lost facts, narrowed history log, empty entry against bare null), all fixed by the DeepSeek fix pass that also applied eleven P2s |
 | Read-only DeepSeek review, round 2 | PASS: four P2 findings, three fixed by hand and the fourth carried by this records update |
 | Read-only DeepSeek review, round 3 | FAIL: one P1 (reordered built-ins count attached to OpenCode 1), fixed by hand; one P2 (`a session's sub-agent hand-off count`) fixed together with the restored config-shape cause and effect; two P2s recorded in Known Limitations |
-| Push to main and CI green on the commit | Pending |
+| Push to main and CI green on the commit | PASS: `3857bfa345` on main, CI green: 12 of 12, and 12 passed with Trigger Index Rebuild skipped on the index rebuild `d092874cf7`, Spec-Kit Check 39855629894 |
 <!-- /ANCHOR:verification -->
 
 ---

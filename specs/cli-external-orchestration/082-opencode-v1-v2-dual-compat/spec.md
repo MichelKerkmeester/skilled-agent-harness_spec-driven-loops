@@ -171,7 +171,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 58 | 058-deepseek-v4-1-flash-1017-default/ | Move the DeepSeek flash default to LLM Gateway's 2026-10-17 `deepseek-v4.1-flash-1017` release on cli-pi, cli-hermes and both OpenCode versions, keep the 2026-09-10 literal pinnable, hold every default with tests and revert proofs, and prove it live on all four hosts | In Progress |
 | 59 | 059-cross-cli-map-refresh/ | Bring `.skilled/CROSS-CLI.md` back in line with the tree: correct the plugin SDK claim, add OpenCode 2 and the `.markdown` rule, fix the counts and the files that don't exist, and add the missing entries | Complete |
 | 60 | 060-v4-0-0-13-changelog-rewrite/ | Rewrite the v4.0.0.13 changelog so in-session handover and OpenCode 1 and 2 support lead as equal headlines, tighter and in the style of v4.0.0.0 | Complete |
-| 61 | 061-v4-0-0-13-changelog-trim-and-simplify/ | Drop the Resident Memory and MCP Tooling topics, replace internal jargon with plain words and reorder the v4.0.0.13 changelog by user impact so the handover and OpenCode 1 and 2 support lead | In Progress |
+| 61 | 061-v4-0-0-13-changelog-trim-and-simplify/ | Drop the Resident Memory and MCP Tooling topics, replace internal jargon with plain words and reorder the v4.0.0.13 changelog by user impact so the handover and OpenCode 1 and 2 support lead | Complete |
 
 ### Phase Transition Rules
 

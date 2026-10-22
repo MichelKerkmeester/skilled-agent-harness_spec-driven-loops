@@ -52,8 +52,8 @@ contextType: "general"
 
 - [x] T005 Run both content validators over the assembled file: `validate_document.py` reports VALID with 0 issues and `hvr_scan.py` reports 0 hard blockers (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T006 Run separate read-only DeepSeek reviews of the finished file and fix any finding before the commit. Round 1 (DeepSeek v4.1 flash, max thinking, read-only) returned FAIL with four P1 findings: 'load' against 'run' in the opening, two lost facts (deep-loop logs keep every row on rebuild and five suites now run in CI), the history log narrowed, and 'empty entry' against 'bare null'. A DeepSeek fix pass fixed all four, applied eleven P2s, restored the two facts as the new `Saved State and Test Suites Hold Up` Reliability Fixes item and applied the OpenCode 2 framing rule. Round 2 returned PASS with four P2; the orchestrator fixed three by hand (an added gloss on the surface id, 'iteration config file', and the glance record bullet) and the fourth was the records update. Round 3 (the last review allowed) returned FAIL with one P1: reordering the versions had attached 'its two built-ins included' to OpenCode 1, fixed by hand as '42 on OpenCode 2, its two built-ins included, and 40 on OpenCode 1', plus one P2 on 'a session's sub-agent hand-off count' and the restoration of the config-shape sentence's cause and effect. The remaining two P2s are recorded under Known Limitations in `implementation-summary.md`, not fixed (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T007 Commit and push to main (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T008 Confirm CI is green on the pushed commit (`.skilled/changelog/skilled/v4.0.0.13.md`)
+- [x] T007 Commit and push to main: `3857bfa345` on main (`.skilled/changelog/skilled/v4.0.0.13.md`)
+- [x] T008 Confirm CI is green on the pushed commit: CI green: 12 of 12 on `3857bfa345`, and 12 passed with Trigger Index Rebuild skipped on the index rebuild `d092874cf7`, Spec-Kit Check 39855629894 (`.skilled/changelog/skilled/v4.0.0.13.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,8 +61,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, the push and CI tasks included
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`, the push and CI tasks included
+- [x] No `[B]` blocked tasks remaining
 - [x] Review done: round 1 FAIL with four P1 all fixed, round 2 PASS with four P2, three fixed by hand and the fourth carried by this records update, round 3 FAIL with one P1 and one P2 fixed by hand and two P2s recorded
 - [x] Manual verification passed: the two topics are gone with no grep hits, the jargon is replaced, the impact order leads with the handover and names OpenCode 2 first, and the file reads at 2961 words with 11 glance bullets
 <!-- /ANCHOR:completion -->
