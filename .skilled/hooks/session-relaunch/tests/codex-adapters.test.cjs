@@ -668,7 +668,7 @@ test('context-nudge plans the handoff note under the resolved repo root', async 
       '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
     ),
   );
-  assert.match(path.basename(match[1]), /^\d{8}T\d{6}Z-codex-se\.md$/);
+  assert.match(path.basename(match[1]), /^\d{8}T\d{6}Z-codex-session-00000001\.md$/);
 });
 
 test('context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async (t) => {

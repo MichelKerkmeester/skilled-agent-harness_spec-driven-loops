@@ -460,7 +460,7 @@ test('plannedNotePath resolves the repo root and stamps the session id', (t) => 
     path.join(
       path.resolve('relative-root'),
       '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
-      `20261018T010203Z-${SESSION_ID.slice(0, 8)}.md`,
+      `20261018T010203Z-${SESSION_ID}.md`,
     ),
   );
   assert.equal(path.isAbsolute(resolved), true);
@@ -476,7 +476,7 @@ test('plannedNotePath resolves the repo root and stamps the session id', (t) => 
     path.join(
       HOOK_REPO_ROOT,
       '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
-      `20261018T010203Z-${SESSION_ID.slice(0, 8)}.md`,
+      `20261018T010203Z-${SESSION_ID}.md`,
     ),
   );
 });
@@ -568,7 +568,7 @@ for (const [label, notes] of [
       path.join(
         path.resolve(env.SESSION_RELAUNCH_REPO_ROOT),
         '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
-        `20261018T010203Z-${SESSION_ID.slice(0, 8)}.md`,
+        `20261018T010203Z-${SESSION_ID}.md`,
       ),
     );
   });
@@ -1199,4 +1199,47 @@ test('handoffPending is false for a record that names another loop', (t) => {
   fs.writeFileSync(filePath, JSON.stringify({ ...record, loopId: 'nudge-loop-other' }));
 
   assert.equal(handoffPending({ sessionId: SESSION_ID, env: envForLoop(env, loopId) }), false);
+});
+
+// OpenCode derives a session id from a timestamp, so two sessions nudged in the same second
+// share a leading run of characters and a truncated name cannot tell them apart.
+test('two OpenCode sessions with a shared id prefix plan different notes in the same second', (t) => {
+  const { env } = handoffFixture(t, {});
+  const now = new Date('2026-10-18T01:02:03.456Z');
+  const openerId = 'ses_e9cd7f9b1ffeZIoTJLvKcGV5IB';
+  const secondId = 'ses_e9cd7f5b0ffeQl1E7MLzsen2Lu';
+
+  const openerNote = plannedNotePath({ sessionId: openerId, env, now });
+  const secondNote = plannedNotePath({ sessionId: secondId, env, now });
+
+  assert.notEqual(openerNote, secondNote);
+  assert.ok(path.basename(openerNote).endsWith(`-${openerId}.md`));
+  assert.ok(path.basename(secondNote).endsWith(`-${secondId}.md`));
+});
+
+test('a planned note name carries the full session id', (t) => {
+  const { env } = handoffFixture(t, {});
+  const now = new Date('2026-10-18T01:02:03.456Z');
+
+  assert.equal(
+    path.basename(plannedNotePath({ sessionId: SESSION_ID, env, now })),
+    `20261018T010203Z-${SESSION_ID}.md`,
+  );
+});
+
+// A note written before names carried the full session id still holds that session's work,
+// so the nudge keeps naming it instead of abandoning it for a fresh path.
+test('an open note under the old eight-character name is still reused', (t) => {
+  const legacyName = `20261017T000000Z-${SESSION_ID.slice(0, 8)}.md`;
+  const { directory, env } = handoffFixture(t, {
+    [legacyName]: noteText(SESSION_ID, 'open'),
+  });
+
+  const planned = plannedNotePath({
+    sessionId: SESSION_ID,
+    env,
+    now: new Date('2026-10-18T01:02:03.456Z'),
+  });
+
+  assert.equal(planned, path.join(directory, legacyName));
 });

@@ -653,7 +653,7 @@ describe('session-relaunch Pi extension', () => {
         '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
       ),
     );
-    expect(path.basename(notePath)).toMatch(/^\d{8}T\d{6}Z-pi-sessi\.md$/);
+    expect(path.basename(notePath)).toMatch(/^\d{8}T\d{6}Z-pi-session-0001\.md$/);
   });
 
   it('resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async () => {

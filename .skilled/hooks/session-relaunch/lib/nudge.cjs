@@ -35,7 +35,9 @@ const DEFAULT_THRESHOLD = 0.8;
 // The wrapper's own ceiling on completed hops, used when no cap is configured.
 const DEFAULT_MAX_HOPS = core.DEFAULT_MAX_HOPS;
 const SESSION_ID_PATTERN = /^[A-Za-z0-9_-]{1,128}$/;
-const SESSION_ID_PREFIX_LENGTH = 8;
+// Notes named before the full id went into the filename carry this many leading id
+// characters; the reader still accepts them so a note written then keeps its work.
+const LEGACY_SESSION_ID_PREFIX_LENGTH = 8;
 const FINISH_INSTEAD_INSTRUCTION = ' If the remaining work fits in a few more steps, finish it instead'
   + ' and skip these steps.'
   + ' Otherwise do these steps now, before any other work,'
@@ -304,6 +306,7 @@ function ensureHandoffDir(repoRoot) {
 // A second nudge must name the note the session already has open. Handing it a
 // fresh stamped path lets the first note be written and then abandoned as open
 // while the seed claims the second one, so the work the first one describes is lost.
+// The full id keeps concurrent sessions whose ids share a prefix from planning the same note.
 function openNotePathFor({ repoRoot, sessionId }) {
   if (!validSessionId(sessionId)) return null;
   const directory = handoffDir(repoRoot);
@@ -315,9 +318,10 @@ function openNotePathFor({ repoRoot, sessionId }) {
   }
 
   // Note names start with a UTC stamp, so a reverse sort puts the newest note first.
-  const suffix = `-${sessionId.slice(0, SESSION_ID_PREFIX_LENGTH)}.md`;
+  const suffix = `-${sessionId}.md`;
+  const legacySuffix = `-${sessionId.slice(0, LEGACY_SESSION_ID_PREFIX_LENGTH)}.md`;
   for (const filename of filenames.sort().reverse()) {
-    if (!filename.endsWith(suffix)) continue;
+    if (!filename.endsWith(suffix) && !filename.endsWith(legacySuffix)) continue;
     const notePath = path.join(directory, filename);
     let frontmatter;
     try {
@@ -348,7 +352,7 @@ function plannedNotePath({
   const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
   return path.join(
     handoffDir(repoRoot),
-    `${stamp}-${sessionId.slice(0, SESSION_ID_PREFIX_LENGTH)}.md`,
+    `${stamp}-${sessionId}.md`,
   );
 }
 
