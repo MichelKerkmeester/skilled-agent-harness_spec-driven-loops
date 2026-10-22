@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a6e4303970c8ac5b49b091d13457390c47dcdc8c296cf7c703a9bc6b4e8918dd",
+  "manifestHash": "7e8a258496bcb2b97e60bd286bf5a7e131f3e9b88ab91a9c4328ff8831c265f2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21689,8 +21689,8 @@
     "closed roster": [
       "closed roster"
     ],
-    "closed seven model gateway roster": [
-      "closed seven-model gateway roster"
+    "closed six model gateway roster": [
+      "closed six-model gateway roster"
     ],
     "closed status discovery": [
       "closed status discovery"
@@ -63850,9 +63850,6 @@
     ],
     "mimo cline pass route": [
       "mimo cline pass route"
-    ],
-    "mimo dispatch scaffold": [
-      "mimo dispatch scaffold"
     ],
     "mimo fix dispatch": [
       "mimo fix dispatch"

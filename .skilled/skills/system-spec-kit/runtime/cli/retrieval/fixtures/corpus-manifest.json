@@ -1,5 +1,5 @@
 {
-  "corpusHash": "eba8d2982e32f097dc0a0cc090d31ba7530230208cb42f34c4d6128e6d74df41",
+  "corpusHash": "8c2b69e55feb6c93dc1ceee451a3db49401105ae5ce8275ddad9258edc1f2a20",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25643,
+  "includedPathCount": 25642,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1730,7 +1730,6 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/mcp-host-integration/project-global-mcp-precedence.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/mcp-host-integration/stdio-mcp-transport-discovery.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/mcp-host-integration/streamable-http-positive-control.md",
-    ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/provider-settings-merge.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/prompt-quality/clear-prompt-quality-card.md",
@@ -25674,7 +25673,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a6e4303970c8ac5b49b091d13457390c47dcdc8c296cf7c703a9bc6b4e8918dd",
+  "manifestHash": "7e8a258496bcb2b97e60bd286bf5a7e131f3e9b88ab91a9c4328ff8831c265f2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
