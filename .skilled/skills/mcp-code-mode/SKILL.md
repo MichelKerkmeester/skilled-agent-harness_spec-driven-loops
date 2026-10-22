@@ -22,13 +22,6 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ✅ Interacting with design tools, databases, or services
 - ✅ Browser automation and web interactions
 
-**Benefits over traditional tool calling**:
-- 🚀 **98.7% context reduction** - 1.6k tokens vs 141k for 47 tools
-- ⚡ **60% faster execution** - Single execution vs 15+ API round trips
-- 🔗 **State persistence** - Data flows naturally between operations
-- 🛡️ **Type safety** - Full TypeScript support with autocomplete
-- 🎯 **Progressive loading** - Tools discovered on-demand, zero upfront cost
-
 ### Do NOT Use Code Mode For
 
 **Use native tools instead**:
