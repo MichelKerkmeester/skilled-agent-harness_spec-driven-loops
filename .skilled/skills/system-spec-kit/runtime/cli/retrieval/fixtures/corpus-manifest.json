@@ -1,5 +1,5 @@
 {
-  "corpusHash": "265ab3c0527360d93160dd6dcc49e782e0b9122d47a1009e3393445f01566b62",
+  "corpusHash": "d39c5f3821027d04fc799200f351b0fc9904beca39a7d4b7471a3d17f3b37011",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25629,
+  "includedPathCount": 25635,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10483,6 +10483,12 @@
     "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/plan.md",
     "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/spec.md",
     "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/decision-record.md",
+    "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/plan.md",
+    "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/spec.md",
+    "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25660,7 +25666,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5b6a815a80ee30315b31106dc0bf2b87c1212b48f80aac0e6d65827bf95569c5",
+  "manifestHash": "5136a834d8904a1ec37184f72bf9c014ea05ff8e5a8cccf53e6044373db88bde",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27648,6 +27654,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/scratch",
       "reason": "excluded directory"
     },
     {

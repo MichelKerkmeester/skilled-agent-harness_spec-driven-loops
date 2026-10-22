@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7207,
-    "ok": 14874,
+    "ok": 14880,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25629,
+  "documentsScanned": 25635,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5b6a815a80ee30315b31106dc0bf2b87c1212b48f80aac0e6d65827bf95569c5",
+  "manifestHash": "5136a834d8904a1ec37184f72bf9c014ea05ff8e5a8cccf53e6044373db88bde",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37389,
+      "ok": 37398,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70111,6 +70111,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/scratch",
       "reason": "excluded directory"
     },
     {

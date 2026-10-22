@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5b6a815a80ee30315b31106dc0bf2b87c1212b48f80aac0e6d65827bf95569c5",
+  "manifestHash": "5136a834d8904a1ec37184f72bf9c014ea05ff8e5a8cccf53e6044373db88bde",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11660,6 +11660,9 @@
     ],
     "aria state sync": [
       "aria state sync"
+    ],
+    "arm withdrawal on new turn": [
+      "arm withdrawal on new turn"
     ],
     "artifact certificate binding": [
       "artifact certificate binding"
@@ -68483,6 +68486,9 @@
     "opencode multi agent workflow": [
       "opencode multi-agent workflow"
     ],
+    "opencode nested run waiver": [
+      "opencode nested run waiver"
+    ],
     "opencode parallel detached session": [
       "opencode parallel detached session"
     ],
@@ -72534,6 +72540,9 @@
     ],
     "phase 22 implementation summary": [
       "phase 22 implementation summary"
+    ],
+    "phase 22 runtime certainty claude pi opencode": [
+      "phase 22 runtime certainty claude pi opencode"
     ],
     "phase 22 tasks": [
       "phase 22 tasks"
@@ -86994,6 +87003,24 @@
     ],
     "runtime capability stoppolicy": [
       "runtime capability stopPolicy"
+    ],
+    "runtime certainty claude pi opencode": [
+      "runtime certainty claude pi opencode"
+    ],
+    "runtime certainty claude pi opencode acceptance criteria": [
+      "runtime certainty claude pi opencode acceptance criteria"
+    ],
+    "runtime certainty claude pi opencode implementation summary": [
+      "runtime certainty claude pi opencode implementation summary"
+    ],
+    "runtime certainty claude pi opencode plan": [
+      "runtime certainty claude pi opencode plan"
+    ],
+    "runtime certainty claude pi opencode tasks": [
+      "runtime certainty claude pi opencode tasks"
+    ],
+    "runtime certainty decision record": [
+      "runtime certainty decision record"
     ],
     "runtime cleanup followups handover": [
       "runtime cleanup followups handover"
