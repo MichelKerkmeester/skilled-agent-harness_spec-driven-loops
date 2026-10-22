@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline"
     last_updated_at: "2026-10-22T00:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the per-file command-folder guard"
-    next_safe_action: "Push, confirm CI, then update the changelog"
+    recent_action: "Confirmed CI green on d39360163c, 5cf5e26c0b and both index rebuilds"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline/scratch/verification.txt"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "056-command-folder-guard-and-readme-baseline"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "How phase 056 closes 055's three Known Limitations: a CI-guarded suffix, a per-file command-folder check, and a README verdict baseline rebuilt from the tracked set"
@@ -39,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 056-command-folder-guard-and-readme-baseline |
-| **Status** | In Progress |
-| **Completed** | Pending T016 (CI confirmation) |
+| **Status** | Complete |
+| **Completed** | 2026-10-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -98,7 +98,7 @@ The live battery then ran on both versions with the new check in place, and ever
 
 The README baseline was rebuilt rather than patched, and the parity rerun after the rebuild reports `baseline_files=985 diff_entries=0 PASS`. The sk-doc script tests ran 38 PASS with 0 FAIL through `run-script-tests.sh` at exit 0. The tracked smoke suites read plugins 533/533 and hook node tests 914/914 over 30 files; both grew on main since 055's 516 and 889, and neither suite covers the files this phase changed.
 
-A separate read-only review through a DeepSeek session took two rounds. Round 1 FAIL with 1 P1 and 3 P2s, the P1 fixed by the exemption and pinned by C16. Round 2 PASS with 5 P2s, the stale comment and the symlink test fixed, the rest recorded. The guard and baseline work is committed and pushed as `d39360163c` on main, and the changelog and doctor README followed it. CI is the one thing still open: T016 stays unticked, so nothing here claims a green run.
+A separate read-only review through a DeepSeek session took two rounds. Round 1 FAIL with 1 P1 and 3 P2s, the P1 fixed by the exemption and pinned by C16. Round 2 PASS with 5 P2s, the stale comment and the symlink test fixed, the rest recorded. The guard and baseline work is committed and pushed as `d39360163c` on main, and the changelog and doctor README followed it in `5cf5e26c0b`. CI came back green on both: `d39360163c` returned 16 of 16 success, including OpenCode Dual-Version Battery 39797243651, and `5cf5e26c0b` returned 14 of 14, including Spec-Kit Check 39800756189. The two trigger-index rebuilds after them, `a6ec327b4f` and `64802322d8`, came back with 13 success each and Trigger Index Rebuild skipped on their own commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -137,8 +137,10 @@ A separate read-only review through a DeepSeek session took two rounds. Round 1 
 | Read-only review, round 2 | PASS: 5 P2s, the stale comment above `legCommandListed` and a symlinked command folder test (C17) fixed, four recorded |
 | Changelog and doctor README | PASS: `validate_document.py` VALID with 0 issues on `v4.0.0.13.md` and on `doctor/scripts/README.markdown` (`--type readme`); the live-doc search found no stale reference outside spec records and generated indexes |
 | Docs fact check | PASS: read-only DeepSeek review with 2 P2s, both fixed (the "stay at their old paths" wording, and the README omitting the command-owned-name exception) |
-| Commit | `d39360163c` on main (guard and baseline), pushed before the docs step |
-| CI | PENDING: T016 is unticked, so this phase claims no CI result |
+| Commit | `d39360163c` on main (guard and baseline) and `5cf5e26c0b` on main (changelog and doctor README) |
+| CI on `d39360163c` | PASS: 16 of 16 success, including OpenCode Dual-Version Battery 39797243651, Spec-Kit Check 39797243400, OpenCode Plugin Tests 39797243382, Hook Node Tests 39797243093, sk-doc Script Tests 39797243118 and Markdown Link Integrity 39797243561 |
+| CI on `5cf5e26c0b` | PASS: 14 of 14 success, including Spec-Kit Check 39800756189, Markdown Link Integrity 39800755239 and sk-doc Script Tests 39800755316 |
+| CI on the index rebuilds | PASS: `a6ec327b4f` 13 success with Trigger Index Rebuild skipped (Spec-Kit Check 39797528638) and `64802322d8` 13 success with Trigger Index Rebuild skipped (Spec-Kit Check 39801068549) |
 
 Every number above was read from `scratch/verification.txt` and `scratch/battery-live.txt`, and the battery unit test count was re-read from the suite at the final state.
 <!-- /ANCHOR:verification -->
@@ -153,7 +155,6 @@ Every number above was read from `scratch/verification.txt` and `scratch/battery
 3. **The unreadable-config degrade rule does not recognise the new detail text.** A config that cannot be read still degrades as it did before, without knowing about the non-command wording.
 4. **A detail repeats the name when the listed name keeps its extension.** The message reads correctly but carries the name twice in that case.
 5. **The new walker has no cycle or broken-link test of its own.** It reuses `listCommandNames`' guards, and C17 covers a symlinked command folder, but the cycle and broken-link paths are untested here.
-6. **CI is unconfirmed at the pushed commit.** The guard commit `d39360163c` is on main and the changelog and doctor README now describe it, but T016 stays unticked, so nothing here claims a green run.
 <!-- /ANCHOR:limitations -->
 
 ---

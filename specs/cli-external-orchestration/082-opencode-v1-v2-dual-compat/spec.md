@@ -166,7 +166,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 53 | 053-final-commit-live-proof/ | Rerun the live 17-plugin playbook on OpenCode 1.19.3 and 2.0.32 at the final main commit | Complete |
 | 54 | 054-v4-0-0-13-changelog-opencode/ | Make the OpenCode 1 and 2 work and its testing a prominent part of the v4.0.0.13 changelog | Complete |
 | 55 | 055-command-support-into-commands/ | Move the non-command markdown from `.skilled/command-support/` back into `.skilled/commands/` as `.markdown` files, so neither OpenCode version registers them | Complete |
-| 56 | 056-command-folder-guard-and-readme-baseline/ | Close 055's three Known Limitations: fail the battery's `command-listed` leg per file when a non-command file in the command folder could produce a listed name, keep built-ins and configured MCP prompts exempt, rebuild the README verdict baseline from the tracked set, and leave the `.markdown` suffix guard to the CI run on both versions | Pending |
+| 56 | 056-command-folder-guard-and-readme-baseline/ | Close 055's three Known Limitations: fail the battery's `command-listed` leg per file when a non-command file in the command folder could produce a listed name, keep built-ins and configured MCP prompts exempt, rebuild the README verdict baseline from the tracked set, and leave the `.markdown` suffix guard to the CI run on both versions | Complete |
 
 ### Phase Transition Rules
 

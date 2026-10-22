@@ -15,3 +15,6 @@ Docs step (asked by the operator after the guard landed):
 - Guard commit d39360163c pushed to main before this step.
 
 CI on d39360163c: 16 of 16 success, including OpenCode Dual-Version Battery 39797243651, Spec-Kit Check 39797243400, OpenCode Plugin Tests 39797243382, Hook Node Tests 39797243093, sk-doc Script Tests 39797243118 and Markdown Link Integrity 39797243561.
+
+CI on 5cf5e26c0b (docs step): 14 of 14 success, including Spec-Kit Check 39800756189, Markdown Link Integrity 39800755239 and sk-doc Script Tests 39800755316.
+CI on the index rebuilds: a6ec327b4f 13 success with Trigger Index Rebuild skipped (Spec-Kit Check 39797528638); 64802322d8 13 success with Trigger Index Rebuild skipped (Spec-Kit Check 39801068549).

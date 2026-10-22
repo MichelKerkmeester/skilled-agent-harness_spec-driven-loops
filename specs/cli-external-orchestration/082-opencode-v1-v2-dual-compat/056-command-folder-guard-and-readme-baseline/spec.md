@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-22 |
 | **Branch** | `worktrees/201-command-folder-guard-and-readme-baseline` |
 | **Parent Spec** | ../spec.md |
@@ -52,7 +52,7 @@ This is **Phase 56** of the OpenCode v1 and v2 dual compatibility packet. It clo
 - `scratch/verification.txt` and `scratch/battery-live.txt`.
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name. The v4.0.0.13 changelog and its related docs are a later task in this phase and are still pending.
+- Delivered in T017: `.skilled/changelog/skilled/v4.0.0.13.md` and `.skilled/commands/doctor/scripts/README.markdown` now describe the `.markdown` move, the new failure rule and its guard, both validating with `validate_document.py` at 0 issues.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -81,7 +81,7 @@ Make the command folder guarded per file rather than per list, and make the READ
 - The `.markdown` suffix itself - it stays an upstream fact about what both hosts glob, now guarded in CI rather than replaced.
 - The `.skilled/commands/` layout and the 12 non-command files - 055 settled both and this phase does not move them.
 - Any change to a real command, agent, config, plugin or hook.
-- The v4.0.0.13 changelog and its related docs - a later task in this phase, still pending, so the packet does not claim it.
+- The v4.0.0.13 changelog and its related docs - a later task in this phase (T017), recorded in `implementation-summary.md` rather than in the table above.
 
 ### Files to Change
 

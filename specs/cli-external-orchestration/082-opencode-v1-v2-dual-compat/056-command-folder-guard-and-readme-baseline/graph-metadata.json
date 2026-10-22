@@ -32,7 +32,7 @@
       "markdown"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -126,12 +126,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,6 +139,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 055 proved the `.markdown` suffix works by reading two command lists on each version",
     "created_at": "2026-10-22T14:23:51Z",
-    "last_save_at": "2026-10-22T14:48:08.742Z",
+    "last_save_at": "2026-10-22T15:53:59.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:234edddb6c629abc86c42aa818cb9db1489e072383e6d2a6360b7d7f754f8e59",
+    "source_fingerprint": "sha256:7f4179e8d4a7592ee272f833642d0342b3138b718b310aa5714007f9165c1937",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb6b7c138cf53dcaa80daeb65ea7106b5c0d7d41bd35cdb3f0514c28c09fdb79",
+      "spec.md": "3067ff44aee9828035856e0a68058242c74ac675542a9443804a51157296ecba",
       "plan.md": "f4582ca9994c7ed3dc4c8992456195cbf37952841803d590217b691b8d1107f6",
-      "tasks.md": "54efdac0cea5de50b6db42a5afbd27c09e924205d3a05f16005566d18fcaba11",
-      "implementation-summary.md": "870279ec896171056c7333d5cfd21c098a00816027c881a4deee31a3703d5c08"
+      "tasks.md": "5f76b5619d4b0e6c849def8c6d5a31bca03c6b9728127ab271c0aab52722d5fe",
+      "implementation-summary.md": "e5d7f0bdfbe03f1ea195cd4fdff065c22084863d989419ab7d8346239ed60420"
     },
     "last_active_at": null
   }
