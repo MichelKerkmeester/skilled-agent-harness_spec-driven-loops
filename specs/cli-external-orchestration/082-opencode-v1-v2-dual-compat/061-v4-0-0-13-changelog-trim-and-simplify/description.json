@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify",
+  "description": "Phase 61: v4-0-0-13-changelog-trim-and-simplify",
+  "keywords": [
+    "phase",
+    "v4-0-0-13-changelog-trim-and-simplify"
+  ],
+  "lastUpdated": "2026-10-22T20:42:40.765Z",
+  "specId": "061",
+  "folderSlug": "v4-0-0-13-changelog-trim-and-simplify",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

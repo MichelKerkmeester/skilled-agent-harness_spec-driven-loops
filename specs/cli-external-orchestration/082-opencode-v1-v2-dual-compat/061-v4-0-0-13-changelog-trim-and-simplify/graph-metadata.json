@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 0 0 13 changelog trim and simplify",
+      "phase 61 v4 0 0 13 changelog trim",
+      "v4 0 0 13 changelog trim and simplify plan",
+      "v4 0 0 13 changelog trim and simplify tasks",
+      "v4 0 0 13 changelog trim and simplify implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "trim",
+      "simplify",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "grown",
+      "words",
+      "still",
+      "described"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      "scratch/draft-a.md",
+      "scratch/draft-d.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      "scratch/draft-b.md",
+      "scratch/draft-c.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "draft-a.md",
+        "kind": "doc",
+        "path": "scratch/draft-a.md",
+        "source": "derived"
+      },
+      {
+        "name": "draft-d.md",
+        "kind": "doc",
+        "path": "scratch/draft-d.md",
+        "source": "derived"
+      },
+      {
+        "name": "draft-b.md",
+        "kind": "doc",
+        "path": "scratch/draft-b.md",
+        "source": "derived"
+      },
+      {
+        "name": "draft-c.md",
+        "kind": "doc",
+        "path": "scratch/draft-c.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resident Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Saved State",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Suites Hold Up",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sessions That Hand Themselves Over",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Plugin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.0.13 changelog had grown to 3359 words and still described work the operator did not want in this release",
+    "created_at": "2026-10-22T20:42:40Z",
+    "last_save_at": "2026-10-22T21:10:17.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7511ee6a21bdc1f56340a0dc8e7ded1cab27cfae5fa41a6a8ef627a18fe64876",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "176353f27a3332ea47cd8f1199a1160991c7166ea31bf29c40cb7222d2184638",
+      "plan.md": "70fb58e9e957e531321885fff3dda4bc158d3d48e67ed5f99ffdc08dd36dd149",
+      "tasks.md": "493aff0af330438f4d7888ab043f586c2641df6a4440c023cd2128414d518fc1",
+      "implementation-summary.md": "d0fb41f99ca9dee21ed81f906dac7fcd91c767b47dfce9030c2f85254a53a88c"
+    },
+    "last_active_at": null
+  }
+}
