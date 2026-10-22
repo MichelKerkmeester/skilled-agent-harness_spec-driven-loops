@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.6.0
+version: 1.0.7.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -124,6 +124,24 @@ Each live launch overrides the threshold and window-token limit then sets the ho
 | OpenCode | Run C (no `loopId` recorded) | Not a hop: the model ran a made-up `prepare.mjs` command, which failed with `MODULE_NOT_FOUND`. The nudge stopped after the note existed. | No saved `relaunch.log` copy. The ledger records `decline reason=no-file` and `WRAPPER_EXIT=0`. No claim or relaunch was recorded. | Sent one Ctrl-C to end the session after the command failed. |
 
 The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator inputs and evidence paths: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed. A third record, [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md), covers the run with no Gate 3 answer on Pi and OpenCode.
+
+#### Recorded Results, 2026-10-22
+
+Pi 1.3.0 and OpenCode 1.19.3 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found three defects, each fixed with a failing test first and then rerun: OpenCode sessions started in the same second planned the same note, and on both runtimes a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md).
+
+| Situation | Pi | OpenCode |
+|---|---|---|
+| Full hop with model carry and spec folder | Pass | Pass |
+| One nudge and one re-nudge | Pass | Pass |
+| Keep, `/compact`, claim, complete | Pass, `compact-pointer` on `session_compact` | Pass, `compact-pointer` on `session.compacted` |
+| Hop cap, stale record, kill switch | Pass | Pass |
+| Busy at arm time | Pass after the `agent_start` withdrawal | Pass after the user-message withdrawal |
+| Live shell child at prepare | Pass | Pass for a compound command; a single exec'd command is not detected |
+| Sub-agent | Not applicable, Pi has none | Pass, the `task` child session got no state |
+| Two loops at once | Pass | Pass |
+| Started from a subdirectory, and through the shim in a linked repository | Pass | Pass |
+| Interrupt after relaunch, before claim | Pass, wrapper exit 130 | Pass, wrapper exit 0 |
+| Nested run inside a loop | Pass, `loop-nested-run` logged | Not run: the model refused to start OpenCode nested |
 
 #### Live Pi hop in tmux (Live)
 

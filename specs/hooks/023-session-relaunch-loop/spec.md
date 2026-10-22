@@ -122,6 +122,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 19 | 019-fork-compact-pointer-research/ | [Phase 19 scope] | Pending |
 | 20 | 020-fork-session-guards/ | [Phase 20 scope] | Pending |
 | 21 | 021-fork-nudge-and-precompact-guards/ | [Phase 21 scope] | Pending |
+| 22 | 022-runtime-certainty-claude-pi-opencode/ | Live certification of S1 to S13 on Claude, Pi and OpenCode, with the defects it found fixed test-first | Complete |
 
 ### Phase Transition Rules
 
@@ -154,6 +155,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 018-outside-loop-handoff | 019-fork-compact-pointer-research | [Criteria TBD] | [Verification TBD] |
 | 019-fork-compact-pointer-research | 020-fork-session-guards | [Criteria TBD] | [Verification TBD] |
 | 020-fork-session-guards | 021-fork-nudge-and-precompact-guards | [Criteria TBD] | [Verification TBD] |
+| 021-fork-nudge-and-precompact-guards | 022-runtime-certainty-claude-pi-opencode | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

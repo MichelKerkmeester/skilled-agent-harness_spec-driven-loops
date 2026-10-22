@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+  "spec_folder": "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime certainty claude pi opencode",
+      "phase 22 runtime certainty claude pi opencode",
+      "runtime certainty claude pi opencode plan",
+      "runtime certainty claude pi opencode tasks",
+      "runtime certainty claude pi opencode acceptance criteria",
+      "runtime certainty decision record",
+      "opencode nested run waiver",
+      "arm withdrawal on new turn",
+      "runtime certainty claude pi opencode implementation summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "certainty",
+      "claude",
+      "opencode",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "nested"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+      ".opencode/plugins/session-relaunch.js",
+      ".opencode/plugins/tests/plugin-inventory.json",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      "scratch/evidence/LEDGER.md",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.json",
+        "kind": "config",
+        "path": ".opencode/plugins/tests/plugin-inventory.json",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "LEDGER.md",
+        "kind": "doc",
+        "path": "scratch/evidence/LEDGER.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A probe on OpenCode 1.19.3 showed that a `task` sub-agent runs as a child session with its own session id",
+    "created_at": "2026-10-22T07:57:01Z",
+    "last_save_at": "2026-10-22T12:50:38.035Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6fef584c789881a0efc0482deafe643e7631abe0a32e2c55f3ea70e6a69701be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3e9d3f8ce776e754c4170d1ceb877ad83b795f14d7aabe77def6c2725e4b0071",
+      "plan.md": "6ea1ff7f69327dbaea469ef7e1a0f8a55a10bf5d2c495dc25e7d56f7ef651826",
+      "tasks.md": "8dd9995fdd0f53d292390612ae89e670ad3f41719ed342d63cc08904bc5c8e02",
+      "decision-record.md": "b41c6ad77137e30b57847dcea1fb25da1df86f000444f32e2e62cd11dd7aca93",
+      "implementation-summary.md": "48bc94158373d377ad8ce41fd31bec6099a2e5ff49eb8384eba2b70aa9c8219c"
+    },
+    "last_active_at": null
+  }
+}

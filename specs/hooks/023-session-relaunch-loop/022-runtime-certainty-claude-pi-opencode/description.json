@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+  "description": "Phase 22: runtime-certainty-claude-pi-opencode",
+  "keywords": [
+    "phase",
+    "runtime-certainty-claude-pi-opencode"
+  ],
+  "lastUpdated": "2026-10-22T11:28:04.328Z",
+  "specId": "022",
+  "folderSlug": "runtime-certainty-claude-pi-opencode",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "22-10-26_10-34__session-relaunch-handoff-state.md",
+    "22-10-26_12-28__pi-session-relaunch-handoff.md"
+  ]
+}

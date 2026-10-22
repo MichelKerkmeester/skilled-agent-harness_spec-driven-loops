@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.6.0
+version: 1.0.7.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -424,6 +424,22 @@ tmux attach -t shim-claude
 ~~~
 
 Evidence: inside the first session, `echo $SKILLED_LOOP_ID` through the Bash tool prints a loop id, so the shim started Claude under the wrapper. The nudge arrives, prepare exits 0, the killer ends the session and the wrapper starts Claude again with the claim seed in the same pane. PASS when the note under `.skilled/skills/.state/session-relaunch/handoffs/` reaches done. FAIL when `SKILLED_LOOP_ID` is empty, prepare exits 3 or the pane returns to the shell prompt without a relaunch.
+
+#### Recorded Results, 2026-10-22
+
+Claude Code 2.1.306 to 2.1.308 (it updated itself mid-run), live in tmux at a 0.05 threshold. All rows passed. The full situation matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md).
+
+| Situation | Result |
+|---|---|
+| Full hop with model carry, spec-folder resume and a git worktree | Pass, rerun on the final code with full-id note names |
+| One nudge and one re-nudge | Pass, levels at 14% and 18% |
+| Keep, `/compact`, claim, complete | Pass, `compact-pointer` logged |
+| Hop cap, stale record, busy at arm time, live shell child, kill switch | Pass |
+| Agent sub-agent | Pass, the guard denied its claim and it got no nudge |
+| Two loops at once | Pass, each claimed only its own note |
+| Interrupt after relaunch, before claim | Pass, the wrapper warns that the note was not claimed |
+| Nested `claude -p` inside a loop | Pass, `loop-nested-run` logged and the nested run got the outside-loop wording |
+| Shell shim in a linked repository | Pass, the tool shell reported a loop id |
 
 ### Expected
 
