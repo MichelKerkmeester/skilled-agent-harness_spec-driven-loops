@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A probe on OpenCode 1.19.3 showed that a `task` sub-agent runs as a child session with its own session id",
     "created_at": "2026-10-22T07:57:01Z",
-    "last_save_at": "2026-10-22T12:50:38.035Z",
+    "last_save_at": "2026-10-22T16:36:34.066Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fef584c789881a0efc0482deafe643e7631abe0a32e2c55f3ea70e6a69701be",
+    "source_fingerprint": "sha256:349af460baeeeaf51613b8a57d0807e9f2a21b88be5fe53b1bef999af2576687",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e9d3f8ce776e754c4170d1ceb877ad83b795f14d7aabe77def6c2725e4b0071",
       "plan.md": "6ea1ff7f69327dbaea469ef7e1a0f8a55a10bf5d2c495dc25e7d56f7ef651826",
       "tasks.md": "8dd9995fdd0f53d292390612ae89e670ad3f41719ed342d63cc08904bc5c8e02",
       "decision-record.md": "b41c6ad77137e30b57847dcea1fb25da1df86f000444f32e2e62cd11dd7aca93",
-      "implementation-summary.md": "48bc94158373d377ad8ce41fd31bec6099a2e5ff49eb8384eba2b70aa9c8219c"
+      "implementation-summary.md": "d2bcde5d2abad78e6aac199ac4a1937bca86f4fb05897506027ceec3c0b2fa8e"
     },
     "last_active_at": null
   }

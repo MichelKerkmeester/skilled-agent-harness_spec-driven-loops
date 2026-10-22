@@ -148,7 +148,7 @@ Run names point at `scratch/evidence/<run>/` and the ledger row. Claude ran Clau
 | S10 kill switch | PASS c-s10 | PASS p-s10 | PASS o-s10 |
 | S11 worktree, subdirectory, linked-repo shim | PASS c-s1, s11-shim | PASS p-s11, s11-shim | PASS o-s11, s11-shim |
 | S12 interrupt before claim | PASS `58449ea2bd` c-s12b | PASS p-s12 | PASS o-s12 |
-| S13 nested run | PASS c-s13b | PASS p-s13 | Waived, ADR-001 |
+| S13 nested run | PASS c-s13b, shim path c-s13c | PASS p-s13 | Waived, ADR-001 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -160,7 +160,7 @@ Run names point at `scratch/evidence/<run>/` and the ledger row. Claude ran Clau
 2. **No live nested run on OpenCode.** The model refuses to start OpenCode from OpenCode under the cli-opencode skill. ADR-001 records the waiver.
 3. **No timeout notification on Pi and OpenCode for a busy arm.** The arm is withdrawn instead, and the wrapper prints the manual claim command at exit. ADR-002 records the trade.
 4. **Pi passes its own interrupt status through.** After an interrupt before the claim, the wrapper exits 130 on Pi and 0 on OpenCode, with the same warning and manual command on both.
-5. **The Claude shim path of S13 runs live only after the merge.** Claude Code's tool shell sources `~/.zshrc`, which loads the main checkout's shim. The shim fix is proven by the snapshot replay tests in bash and zsh, and the core nested path passed live.
+5. **The shim takes effect only once the main checkout has it.** Claude Code's tool shell sources `~/.zshrc`, which loads the main checkout's shim, so a worktree's shim is never what a tool shell runs. After the merge, run c-s13c showed a nested `claude -p` through the shim reply with exit 0, where it had exited 127.
 6. **Versions.** Certainty covers Claude Code 2.1.306 to 2.1.308, Pi 1.3.0 and OpenCode 1.19.3. Pi 1.4.0 is available and untested. A host upgrade that changes event payloads needs the probes and the matrix again.
 7. **Model behavior, not mechanism.** GPT-6 Luna sometimes shortened `/Users/michelkerkmeester` to `/Users/michelkerkme`, stopped when an evidence file did not exist yet, or took the finish-instead branch, and needed the step resent. None of these touched the relaunch mechanism.
 8. **Out of scope.** The Hermes live-run contradiction between the phase 013 and 016 summaries and the playbook stays open, as do Codex, Cursor and Devin, which this phase did not certify.

@@ -8,7 +8,7 @@ trigger_phrases:
   - "bash naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Shell Style Guide
@@ -164,6 +164,10 @@ _json_escape() {
     printf '%s' "$str"
 }
 ```
+
+**Exception**: a file sourced into an interactive shell gives every helper that its public functions call a plain prefixed name instead, such as `skilled_loop_resolve`. Agent tool shells, Claude Code's among them, are rebuilt from a function snapshot that drops names starting with a single underscore, so a public function that calls `_helper` there fails with `command not found`.
+
+**Evidence**: `.skilled/bin/skilled-loop-shell.sh`
 
 **Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:37-45`
 
