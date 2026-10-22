@@ -113,7 +113,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Claude Code 2.1.306 to 2.1.308 | External | Green | Hook payload changes would invalidate the Claude rows |
-| Pi 1.3.0 | External | Green | Same for the Pi rows; 1.4.0 is available and untested |
+| Pi 1.3.0 | External | Green | Same for the Pi rows; on 1.4.0, S1, S3 and S6 were rerun and passed |
 | OpenCode 1.19.3 | External | Green | Same for the OpenCode rows |
 | `openai/gpt-6-luna` through Pi and OpenCode | External | Yellow | The model sometimes needs the evidence path resent and refuses a nested self-run |
 <!-- /ANCHOR:dependencies -->

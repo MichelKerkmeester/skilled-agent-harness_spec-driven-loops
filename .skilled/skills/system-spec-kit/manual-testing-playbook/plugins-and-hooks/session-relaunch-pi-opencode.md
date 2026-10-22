@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.7.0
+version: 1.0.8.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -127,7 +127,7 @@ The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator i
 
 #### Recorded Results, 2026-10-22
 
-Pi 1.3.0 and OpenCode 1.19.3 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found three defects, each fixed with a failing test first and then rerun: OpenCode sessions started in the same second planned the same note, and on both runtimes a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md).
+Pi 1.3.0 and OpenCode 1.19.3 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found three defects, each fixed with a failing test first and then rerun: OpenCode sessions started in the same second planned the same note, and on both runtimes a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md). After Pi moved to 1.4.0 the same day, S1, S3 and S6 were rerun on it and passed.
 
 | Situation | Pi | OpenCode |
 |---|---|---|
