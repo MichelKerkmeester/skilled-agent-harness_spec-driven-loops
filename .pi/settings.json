@@ -25,8 +25,7 @@
     "opencode-go/mimo-v2.6-pro",
     "opencode-go/mimo-v2.6-flash",
     "cline-pass/cline-pass/mimo-v2.6-pro",
-    "cline-pass/cline-pass/mimo-v2.6-flash",
-    "minimax/MiniMax-M3"
+    "cline-pass/cline-pass/mimo-v2.6-flash"
   ],
   "packages": [
     "extensions/pi-cache-optimizer",
