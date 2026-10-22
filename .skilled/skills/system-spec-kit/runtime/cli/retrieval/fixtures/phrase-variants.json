@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e1e4bb74b05ec870b34de5cdc2dd7c75051d5d6aa50fd89252b90ac6acb18511",
+  "manifestHash": "841bed8018eff82c4030d3618c052c40d65a431d3037fc4bf850d08bfe70655e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72976,6 +72976,9 @@
     "phase 6 tasks": [
       "phase 6 tasks"
     ],
+    "phase 60 v4 0 0 13 changelog rewrite": [
+      "phase 60 v4 0 0 13 changelog rewrite"
+    ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"
     ],
@@ -109515,6 +109518,18 @@
     ],
     "v4 0 0 13 changelog plan": [
       "v4 0 0 13 changelog plan"
+    ],
+    "v4 0 0 13 changelog rewrite": [
+      "v4 0 0 13 changelog rewrite"
+    ],
+    "v4 0 0 13 changelog rewrite implementation summary": [
+      "v4 0 0 13 changelog rewrite implementation summary"
+    ],
+    "v4 0 0 13 changelog rewrite plan": [
+      "v4 0 0 13 changelog rewrite plan"
+    ],
+    "v4 0 0 13 changelog rewrite tasks": [
+      "v4 0 0 13 changelog rewrite tasks"
     ],
     "v4 0 0 13 changelog tasks": [
       "v4 0 0 13 changelog tasks"
