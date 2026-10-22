@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4f47dde40cc9e62f26d7ce5d507ea3a9ec1f4dae0d42697f0f4bf1d204e631a9",
+  "corpusHash": "97d21f4784c27a7cdcc5de1720d09f36650e9d7d7568f47903834482a562cd36",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25617,
+  "includedPathCount": 25621,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10471,6 +10471,10 @@
     "specs/hooks/023-session-relaunch-loop/020-fork-session-guards/plan.md",
     "specs/hooks/023-session-relaunch-loop/020-fork-session-guards/spec.md",
     "specs/hooks/023-session-relaunch-loop/020-fork-session-guards/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/plan.md",
+    "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/spec.md",
+    "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25648,7 +25652,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e10cf09ed6d0acdb07608a2d5a2b03d1f748eb3e0c02150644c80e579fd34a84",
+  "manifestHash": "8ca8af9471476eb573df68dc6a692289ff268c144b011ee50a6cff683bdb6180",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27624,6 +27628,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/020-fork-session-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/scratch",
       "reason": "excluded directory"
     },
     {
