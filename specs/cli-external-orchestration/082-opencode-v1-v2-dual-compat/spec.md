@@ -169,6 +169,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 56 | 056-command-folder-guard-and-readme-baseline/ | Close 055's three Known Limitations: fail the battery's `command-listed` leg per file when a non-command file in the command folder could produce a listed name, keep built-ins and configured MCP prompts exempt, rebuild the README verdict baseline from the tracked set, and leave the `.markdown` suffix guard to the CI run on both versions | Complete |
 | 57 | 057-v4-0-0-13-reliability-fixes/ | Add the user-visible reliability fixes since v4.0.0.12 that the v4.0.0.13 changelog missed: advisor lookups, the hand-off count lock, goal records, worktree provisioning and smaller fixes | Complete |
 | 59 | 059-cross-cli-map-refresh/ | Bring `.skilled/CROSS-CLI.md` back in line with the tree: correct the plugin SDK claim, add OpenCode 2 and the `.markdown` rule, fix the counts and the files that don't exist, and add the missing entries | Complete |
+| 60 | 060-v4-0-0-13-changelog-rewrite/ | Rewrite the v4.0.0.13 changelog so in-session handover and OpenCode 1 and 2 support lead as equal headlines, tighter and in the style of v4.0.0.0 | In Progress |
 
 ### Phase Transition Rules
 
@@ -234,4 +235,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 055-command-support-into-commands | 056-command-folder-guard-and-readme-baseline | The operator asked on 2026-10-22 to fix 055's three gaps: the unguarded `.markdown` suffix, the command proof that was only two command lists, and the seven READMEs missing from the verdict baseline | Battery unit tests 55/55, the live battery all PASS on both versions (`056/scratch/battery-live.txt`), and the README verdict parity diff 0 |
 | 056-command-folder-guard-and-readme-baseline | 057-v4-0-0-13-reliability-fixes | The operator asked on 2026-10-22 to add the missing fixes to v4.0.0.13 | `validate_document.py` passes and a read-only DeepSeek fact check returns PASS |
 | 057-v4-0-0-13-reliability-fixes | 059-cross-cli-map-refresh | The operator asked on 2026-10-22 to fix the drift in the cross-CLI map | `validate_document.py` passes on `.skilled/CROSS-CLI.md` and a read-only review finds no wrong number |
+| 059-cross-cli-map-refresh | 060-v4-0-0-13-changelog-rewrite | The operator asked on 2026-10-22 for a rewrite that gives OpenCode 2 plugin support equal weight with the handover | `validate_document.py` reports 0 issues on the changelog and a read-only review returns PASS |
 <!-- /ANCHOR:phase-map -->

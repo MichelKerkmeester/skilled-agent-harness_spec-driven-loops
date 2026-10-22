@@ -1,0 +1,238 @@
+---
+title: "v4.0.0.13, Sessions That Hand Themselves Over"
+description: "A session near its context limit now hands itself over to a fresh session in the same terminal, and the framework's plugins, agents and commands run on OpenCode 1 and OpenCode 2 side by side, with all 17 plugins tested live on both."
+trigger_phrases:
+  - "v4.0.0.13 release notes"
+  - "skilled v4.0.0.13"
+  - "in-session handover"
+  - "session relaunch loop"
+  - "opencode 1 and 2 support"
+importance_tier: "normal"
+contextType: "general"
+---
+# v4.0.0.13, Sessions That Hand Themselves Over
+
+v4.0.0.13 lets a long session carry on past its context limit without you closing the terminal. When a session nears its limit it writes a handoff note, ends itself and a fresh session starts in the same terminal with the note already claimed. Claude, Pi, OpenCode, Codex and Hermes do this on their own. Cursor and Devin do it when you run `/speckit:handoff`, which Cursor names `/speckit-handoff`.
+
+The second headline is OpenCode 2. Every plugin, agent, command and the config now work on OpenCode 1 and OpenCode 2 from one source, the two install side by side and `cli-opencode` dispatches to whichever one you have. The code standards surface for the framework's own code also has a name of its own. Smaller fixes make deep-loop state safer to migrate and put more test suites in CI. The local embedding model now unloads when nothing uses it, `/doctor:setup` counts leftover processes, and the ClickUp, Figma and Code Mode skills got a round of install and safety fixes.
+
+> Spec folders: `specs/hooks/023-session-relaunch-loop` (Level 2), `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat` (Level 2) `specs/sk-code/012-sk-code-skilled-rename` (Level 2), `specs/system-skill-advisor/037-advisor-daemon-memory` (Level 2), `specs/system-speckit/049-doctor-audit-followups` phases 032 and 033 (Level 2), `specs/mcp-tooling/023-vendored-copy-review-fixes` and `specs/mcp-tooling/024-code-mode-js-yaml-override`
+
+&nbsp;
+
+## Why This Release
+
+A long task used to end in auto-compaction, which squeezes the conversation into a summary and loses detail, or in you saving context by hand and starting again. The in-session handover keeps the detail in a written note and keeps you out of the loop. OpenCode 2 used to load none of the framework's plugins, so moving to it meant losing the guards, the goal tracking and the advisor. Now you can run either version, or both, and get the same framework.
+
+&nbsp;
+
+## What's New at a Glance
+
+- **A full session restarts itself.** Near 80% of its context window a session writes a handoff note, saves continuity and ends, and a fresh session in the same terminal claims the note and continues. `/speckit:handoff` triggers it on Cursor, as `/speckit-handoff`, and on Devin.
+- **One line in your shell turns it on.** Sourcing `.skilled/bin/skilled-loop-shell.sh` makes `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` start under the loop when you type them, and a project whose `.skilled` is a symlink to this checkout starts under the loop and hops on its own when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`.
+- **Every hop leaves a record.** Each hand-over, kept note, claim, finish and stalled hop adds a line to a hop history you can read with one command or in `/doctor:setup`, which also names any note nobody claimed, and an opt-in macOS notice tells you when a session hands over.
+- **Every setting is listed, and `/doctor:env` sees them all.** `.env.example` now names every setting the code reads with its default, `/doctor:env` shows and saves each one, and the README says where to set a value on your own machine.
+- **A session outside the loop keeps a note.** A session started without the wrapper cannot hop, so it writes the handoff note, keeps working and, on Claude Code, Pi and OpenCode, is pointed back at the note after auto-compaction.
+- **Proven live in thirteen situations.** Claude, Pi and OpenCode each ran sub-agents, nested runs, two sessions at once, interrupts and busy hand-overs live, and the four faults those runs found are fixed.
+- **Every plugin works on OpenCode 1 and 2, side by side.** All 17 plugins, the agents, the commands and one config run on either version from one source, and one setup script installs both with an `opencode2` launcher that keeps v2 on its own database. `cli-opencode` dispatches to the version it finds, and an unpinned dispatch uses the same llmgateway DeepSeek model on each.
+- **Tested live on both versions.** All 17 plugins showed their effect live on OpenCode 1.19.3 and 2.0.32, and the plugin, hook and dual-version checks now run in CI on every change to their files.
+- **`sk-code-opencode` is now `sk-code-skilled`.** The framework code surface no longer shares a name with the OpenCode runtime.
+- **State, locks and CI are sturdier.** Older research and review logs keep every row when the loop rebuilds its state, and the two Pi extension suites, the sk-git suite and two sk-doc suites now run in CI. Advisor lookups queue and give up on time, hand-off counts update under a lock, a corrupt goal reads as no goal and a fresh worktree provisions what it needs. The git pre-commit installer now finds the hooks folder, and the OpenCode session-cleanup guards no longer stall the event stream.
+- **Local model servers free their memory.** The hf-local model server, about 470 MB, unloads after 10 minutes idle, and one whose launcher died is reaped by the next launcher.
+- **ClickUp, Figma and Code Mode are safer to install.** The ClickUp and Figma skills fix 24 review findings, and a fresh Code Mode install starts again.
+
+&nbsp;
+
+## In-Session Handover
+
+#### The Session Hands Over Before It Fills
+
+A hook reads how full the context window is as the session works. At 80% it asks the session to finish if a few steps remain, and otherwise to write a handoff note with four parts: the goal, what is done, the remaining work and anything in flight. It then saves continuity for the bound spec folder and marks the note ready. A second reminder comes 5% later if the first was missed. If you have told the session not to hand off, it keeps working and auto-compaction takes over as before.
+
+#### A Fresh Session Picks Up the Note
+
+When the session goes idle, a small watcher ends it and `skilled-loop` starts the same runtime again in the same terminal with the model you started it on. The new session claims the note, resumes the spec folder and works only on what the note lists as remaining. It carries your spec-folder answer across, so it does not ask the documentation question again. A hop cap of ten and a ten-minute freshness limit stop a runaway chain.
+
+#### Five Runtimes Hop on Their Own
+
+Claude, Pi, OpenCode, Codex and Hermes each read their own usage signal and hop without you. Cursor and Devin run under the loop too, but they hop only after `/speckit:handoff`, because neither offers an event the loop can trust to end a session safely. Each of the five was proven with a live hop in a repository that links `.skilled` and the runtime folders.
+
+#### A Stuck Hop Tells You What to Run
+
+When the session will not go idle within 30 seconds, the watcher stands down and sends a macOS notification titled "Session relaunch needs attention (killer timed out)" with the exact command to continue by hand. The watcher only ever signals a process the loop started. On Pi and OpenCode, a turn you start just after the session was readied for the hop cancels the hop at once, so your new message is never cut off. The note stays open, and the claim command prints when the session exits.
+
+#### You Can See Every Hop Afterwards
+
+You can check on hops without watching the terminal. Each hop writes lines to `.skilled/skills/.state/session-relaunch/hop-history.log`: `handed-over` when the loop restarts the session, `claimed` and `done` when the new session picks up and finishes the note, and `timed-out` when a stalled hop gives up. Each line names the time, runtime, hop number, folder and the note's goal. `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` prints the latest lines and `/doctor:setup` shows the last one. Set `SESSION_RELAUNCH_NOTIFY_HOPS=1` in `.skilled/hooks/hook-flags.env` for a macOS notice titled "Session handed over" on each hand-over. It is off unless you set it. When a handoff note is still open, both also print a line with the count and the oldest note, so a hand-over nobody finished shows up.
+
+#### A Session Outside the Loop Keeps Its Note
+
+A session started before you added the shell line runs outside the loop and cannot hop. Auto-compaction then shortens its context to a summary, and the summary drops detail such as merge decisions and open conflicts. At 80% such a session is now asked to write the same handoff note and run `session-relaunch.cjs keep`, which records a `note-kept` line, and then it carries on. On Claude Code, Pi and OpenCode, a hook that runs after each compaction points the session back at its note, so it claims the note and continues from the exact state. It also lets the next fill ask again. Codex and Hermes print the claim command when the note is kept, and the session follows it after compaction.
+
+#### Sub-Agents and Nested Runs Stay Out of the Loop
+
+A sub-agent never hands over its parent's session. Claude Code forks and agents are refused any handoff command, and an OpenCode `task` sub-agent gets no reminder and cannot ready a hop. A `claude -p` or `pi -p` you start from inside a looped session counts as a session outside the loop, so it can never end or restart the session that started it.
+
+#### Proven Live on Claude, Pi and OpenCode
+
+Thirteen situations ran live on each of the three runtimes, among them two sessions at once in one repository, an interrupt during the hop, a start from a subdirectory or through the shell line in a linked repository, and a busy session at hand-over time. The runs found four faults, now fixed: two OpenCode sessions started in the same second could write over each other's note, a message sent right at hand-over time could be cut off on Pi and OpenCode, the shell line's commands failed inside Claude Code's own tool shell, and a hop interrupted before the new session claimed its note now prints a warning with the command to continue.
+
+&nbsp;
+
+## OpenCode 1 and 2
+
+#### Every Plugin Works on Both Versions
+
+OpenCode 1 and OpenCode 2 now run the same 17 repository plugins from one source file each. Every plugin exports both shapes. Sixteen of them share one bridge that adapts OpenCode 2, and sk-vision exports both shapes itself. The bridge reports v2's `shell` tool as `bash` and its `subagent` tool as `task`, announces each session once with `session.created` and fills the message event fields that v1 plugins read.
+
+Before the bridge mapped these, seven plugins loaded on OpenCode 2 but did nothing. sk-vision also runs on OpenCode 2 now. With automatic inspection on, an attached image gets its vision evidence through v2's prompt hook. With the same setting on, its 13 tools register on v2 as well.
+
+#### Agents and Commands Stay Shared
+
+Both versions read one set of agents, one set of commands and a single `opencode.json`. The config keeps the v1 shape and OpenCode 2 converts it when it loads, so you maintain one file.
+
+Both versions register every `.md` file under a `commands/` folder as a command, at any depth, with no ignore list and no setting to opt one out, so the 12 files in `.skilled/commands/` that are not commands now use `.markdown`. The 12 files are back from `.skilled/command-support/` into `.skilled/commands/` at the paths they held before that move, still render as Markdown, and are listed by neither version. Your command list is unchanged at 40 commands on OpenCode 1 and 42 on OpenCode 2, its two built-ins included.
+
+#### Dispatch Follows the Installed Version
+
+`cli-opencode` asks the binary it picked for its version with `--version` instead of guessing from the binary's name. With no preference set, it takes `opencode2` before `opencode` within each `PATH` directory. Set `OPENCODE_BIN` when you want to choose the binary yourself.
+
+On OpenCode 2 the dispatch builds the v2 command line, `run --standalone`, and attaches the variant to the model id as `provider/model#variant`. OpenCode 2 has no `--dir` or `--variant` flag to carry them. `--standalone` gives each dispatch a private server in place of the shared background service.
+
+#### Both Versions Install Side by Side
+
+The setup script at `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh` has four modes: `both`, `v1`, `v2` and `check`. `both` installs v1 into `~/.local` and v2 into `~/.local/opencode-v2`, then writes an `opencode2` launcher that sets `OPENCODE_DB`. Without it OpenCode 2 is documented to open v1's `opencode.db` and migrate it in place, so the launcher keeps v2 on a database of its own.
+
+`check` changes nothing and reports what each name resolves to. Every step prints its rollback line, so each move can be undone. The skill's `references/install-and-versions.md` covers the v1-only, v2-only and side-by-side layouts.
+
+#### One Default Model on Both Versions
+
+An unpinned dispatch now uses `llmgateway/deepseek-v4.1-flash` at its `max` variant on both versions. The dispatch passes `--variant max` on OpenCode 1 and attaches `#max` to the model id on OpenCode 2.
+
+Before, the default depended on the version, and the OpenCode 1 default, `opencode-go/deepseek-v4.1-flash`, names a provider that OpenCode 2 does not list. Your unpinned dispatch now behaves the same whichever version runs it. `opencode-go` remains a provider you can select on OpenCode 1.
+
+#### Guards and Checks Know the Version
+
+The dispatch guards recognize `opencode2` and apply each rule to the version the rule was written for. On OpenCode 2 a slash-command route that the guards cannot check yet warns you instead of blocking.
+
+On Pi, which adds its own authorization check, a request now authorizes a CLI executor only when you name it in plain text. A name inside a quote, a backtick, a command substitution or a negated sentence no longer counts, so a quoted example or a refusal can no longer let a dispatch through.
+
+#### Tested Live on Both Versions
+
+All 17 plugins were run live on OpenCode 1.19.3 and OpenCode 2.0.32, and each showed its expected effect on both versions. The run was done twice: once when the work was finished, and again on the final tree after later fixes landed.
+
+Three automated checks now run in CI on every pull request and push that touches their files, and fail the run when a test fails. The OpenCode Dual-Version Battery installs each version and checks that every plugin loads and is active, and that the repository's skills are visible. The battery also fails when a command file is missing or when a version starts listing one of the commands folder's non-command files as a command. The other two are OpenCode Plugin Tests and Hook Node Tests.
+
+All 323 files the review covered in the plugin folder and the hook tree were reviewed against the framework's own code standards, and all 5 critical and 47 high-severity findings were fixed. Separate read-only model sessions reviewed the code changes before they shipped. The dispatch check that decides whether you asked for an executor went through repeated adversarial review rounds that checked each tricky case against how a shell actually reads it.
+
+On the release tree the test suites pass at these counts:
+
+| Suite | Tests passing |
+|---|---|
+| OpenCode plugins | 516 |
+| Hook node tests | 886 |
+| Hook vitest tests | 452 |
+| Version battery unit tests | 55 |
+
+#### What Still Differs Between Versions
+
+Agent `temperature` has no effect on OpenCode 2.0.32 with the `openai-compatible` provider package, the only package tested. Both versions also share one `~/.config/opencode` folder, so a key you write for one version is live on the other.
+
+Homebrew's formula is v2-only and cannot sit beside a v1 install. `opencode upgrade --major` removes v1, so use the setup script when you want both.
+
+&nbsp;
+
+## Environment Settings
+
+#### Every Setting in One File
+
+`.env.example` was missing about 120 settings the code reads, the whole session-relaunch set among them. Each one now sits in its area with its default and a line on what it does, and two new sections cover the session relaunch and the doctor, tooling and test-runner settings. Values a runtime sets for you, system values and test hooks stay out.
+
+#### /doctor:env Shows and Saves Them
+
+`/doctor:env` read only `ENV-REFERENCE.md`, so it could not see those settings. It now adds every `.env.example` setting the reference does not cover, can save any switch whose reader takes it from `hook-flags.env`, such as the hop notice, and keeps the Code Mode provider keys hidden. The root README's Environment Settings section says which of a shell export, `hook-flags.env`, Claude Code's `settings.local.json` and `.env` each setting belongs in.
+
+&nbsp;
+
+## Framework Code Standards
+
+#### The Framework Surface Has Its Own Name
+
+The sk-code surface for this framework's skills, agents, commands, hooks and scripts was called `sk-code-opencode`, which kept colliding with the OpenCode runtime in searches and routing. It is now `sk-code-skilled`, with the routing alias `code-skilled` and the surface id `SKILLED`. What it checks has not changed.
+
+**Breaking:** anything that matched the surface id `OPENCODE` from sk-code surface detection must now match `SKILLED`, and links to `sk-code/sk-code-opencode/` must point to `sk-code/sk-code-skilled/`.
+
+&nbsp;
+
+## Resident Memory
+
+#### The Local Model Unloads When Idle
+
+With Ollama off, embeddings fall back to the local Hugging Face model server, which used to keep its model loaded, about 470 MB, for as long as its launcher ran. It now unloads after 10 minutes without an embedding. The next embedding reloads it in about half a second, measured on a warm model cache. `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN` sets the minutes, and `0` keeps it loaded as before.
+
+#### A Model Server Whose Launcher Died Is Reaped
+
+A launcher killed outright used to leave its model server loaded with no owner, and every later launcher left it alone because the shared socket still answered. Now the next launcher that starts reaps it, after checking that its parent is PID 1 and its command is the model server, and a supervised one takes its place on the next embedding. `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` turns this off, for a model server you run under launchd or another init system.
+
+#### /doctor:setup Counts Leftover Processes
+
+Test runners, tail monitors, stuck searches, executor workers and orphaned model servers can outlive the sessions that started them. One cleanup here found 22 of them holding about 315 MB. `/doctor:setup` now shows one line with their count and size. `node .skilled/commands/doctor/scripts/orphan-process-check.cjs --reap` lists them, and adding `--yes` stops them, after it re-checks each process's command, age and owner. It never lists the daemons that are meant to stay up.
+
+#### The Launcher Stays a Separate Process
+
+Folding the advisor launcher into the advisor server would save about 50 MB per checkout. It is not done, because the launcher is what stops the model server when the advisor server crashes. The decision record in `037-advisor-daemon-memory/002-lighter-advisor-launcher` has the measurements.
+
+&nbsp;
+
+## MCP Tooling
+
+#### ClickUp and Figma Fixes
+
+A review of the ClickUp and Figma skills raised 8 P1 and 16 P2 findings, all fixed at the source. The doctor scripts now find `.utcp_config.json` from any folder below it, `connect-safe` exits 2 when no terminal is attached, `figma-cli` must prove it is the expected binary before it runs, `install.sh` fetches a pinned commit, and the docs say that `cupt add` sends the plain description.
+
+#### A Fresh Code Mode Install Starts
+
+A global `js-yaml` override forced a version one dependency could not use, so a clean `npm ci` built a Code Mode server that crashed at start-up. A scoped override fixes it, and an existing install keeps working as before.
+
+&nbsp;
+
+## Reliability Fixes
+
+#### Advisor Lookups Queue Instead of Piling Up
+
+Two unique prompts arriving together each started their own advisor child, and a queued lookup waited with no deadline. Now at most two run at once and the rest queue in order, and a queued lookup gives up after the normal advisor timeout counted from when it queued, measured on a clock that ignores changes to the system time, then skips the advisor rather than running late. Each lookup also re-read and hashed about 36 source files, and a file's digest is now reused while the file is unchanged, which takes that file check from about 2.2 ms to 0.24 ms on repeat lookups. On Pi the advisor printed a JSON diagnostic over Pi's input line on every prompt and no longer does, though the record still goes to disk.
+
+#### Hand-Off Counts Stop Racing
+
+Two hooks updating a session's hand-off count at the same time no longer both write the same number, because the count now updates under a lock that records its owner, and when the lock cannot be had the count is left alone and reported as not saved. A lock is taken over only when its owner process is dead or its unreadable owner record has outlived the stale window, and only under a separate break lock. An iteration config is accepted only from inside the project, so a file or symlink outside it can no longer unlock the exemption.
+
+#### A Corrupt Goal Record Reads Empty
+
+A corrupt current goal record used to bring back an older stale goal, and now it reads as no goal. One archive file holding something other than a goal record, such as a bare null, used to hide every archived goal, and it is now skipped. A packet `goal.md` that is a symlink to a file outside the workspace is no longer read as the session goal.
+
+#### Fresh Worktrees Build What They Need
+
+A fresh worktree could not run the two Pi extension suites or the DESIGN.md backend suite because provisioning skipped their package trees, and it now installs them and says why a run failed. The Code Mode server and an empty placeholder package stay out on purpose. A source edited during a build is no longer recorded as built, and staleness now compares a fingerprint of the inputs as they are on disk, so an unstaged edit or a deleted input triggers a rebuild while a build that writes nothing new no longer rebuilds every time. Pointing provisioning at a subdirectory now provisions the whole worktree instead of silently doing nothing.
+
+#### Smaller Fixes Across the Stack
+
+The git pre-commit installer now installs where git looks for hooks, so it works in a linked worktree and with a custom core.hooksPath, and the shared stdin reader stops at 64 MiB. On OpenCode the session-cleanup startup guards could stall the event stream for about 32 seconds, and they now run in parallel without blocking while a guard child that ignores a stop request is still killed. Pi's `--fast` flag now registers in the main checkout, and sk-vision on OpenCode 2 releases all of its parts when it shuts down, even when one part fails.
+
+&nbsp;
+
+## Upgrade Notes
+
+- **Turn on the handover.** Add `source <checkout>/.skilled/bin/skilled-loop-shell.sh` to `~/.zshrc` or `~/.bashrc` and open a new terminal. Remove any `claude` alias, because an alias wins over the shim.
+- **See every setting.** Run `/doctor:env list` to see each setting and where it is set, and read the README's Environment Settings section before you copy a line from `.env.example`.
+- **Want a notice per hop?** Add `SESSION_RELAUNCH_NOTIFY_HOPS=1` to `.skilled/hooks/hook-flags.env`. The hop history needs no setup.
+- **Link the runtime folders too.** A repository that links `.skilled` also needs `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes` linked for the automatic hop, because each runtime reads its hooks from the project it starts in.
+- **Hermes needs one plugin listed.** Keep `repo-guards` under `plugins.enabled` in `~/.hermes/config.yaml`. The shim sets `HERMES_ENABLE_PROJECT_PLUGINS=1` for wrapped launches only.
+- **Codex asks once.** Approve the repository's hooks the first time Codex starts in a project.
+- **Repoint the renamed surface.** Replace `sk-code-opencode` with `sk-code-skilled` and the surface id `OPENCODE` with `SKILLED` in your own scripts and links.
+- **Pin OpenCode 1 if you need it.** With both versions installed, set `OPENCODE_BIN=opencode` to keep dispatches on OpenCode 1.
+- **Install both versions in one step.** Run `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh both`, or `check` to see your current layout without changing it.
+- **Never run `opencode upgrade --major` beside v1.** It removes OpenCode 1. Use the setup script instead.
+- **Set up llmgateway or pin a model.** An unpinned dispatch now uses `llmgateway/deepseek-v4.1-flash` on both versions, so set up the `llmgateway` provider on each version or pass `--model`.
+- **Repoint links to command-support.** A script or link that points at `.skilled/command-support/` must now use the same path under `.skilled/commands/`, with `.markdown` in place of `.md`.
+- **Pass a workspace to goal session actions.** Scripts that call `goal.cjs` session actions must now pass `--workspace <repo root>`.
+- **Keep the model loaded if you prefer.** Set `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN=0` to keep the local model server warm, and `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` if an init system runs it on the shared socket.
