@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9ba22cbc895a179b027469ffe0fb36bd609d123b005a4bf5fec24afa043875d4",
+  "corpusHash": "7bacb528d4092ecc7fbbe6a212654e1bf310c4efe771d8c1dfbdf660327410f8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25607,
+  "includedPathCount": 25613,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10461,6 +10461,12 @@
     "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/plan.md",
     "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/spec.md",
     "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/plan.md",
+    "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/research.md",
+    "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/spec.md",
+    "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25638,7 +25644,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8b7c3d8b00475919c4a85c2df559ddf21c40d099f5fa5fbdeb2b722668f9a239",
+  "manifestHash": "30fe6943da8369a15d85501db1c6243d5395a30b4cb29b32f57ae88a77a8e4b2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27602,6 +27608,14 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/scratch",
       "reason": "excluded directory"
     },
     {
