@@ -61,8 +61,8 @@ contextType: "general"
 - [x] T014 Confirm the adjacent checks: the README manifest is reproducible, the verdict parity diff is empty, the link guard found 0 broken links over 7794 files and 14204 links, and the full version battery passed 8 of 8 legs on both versions
 - [x] T015 Have the change reviewed read-only by a separate DeepSeek v4.1 flash session through cli-pi. Round 1 returned PASS with 2 P2s, both fixed in T011, and a narrow round 2 checked those fixes and the census change. Luna was not used
 - [x] T016 Fill this phase's four docs and add the parent map and handoff rows for 055 (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`)
-- [ ] T017 Push to main
-- [ ] T018 Record CI on the pushed commit (`implementation-summary.md`)
+- [x] T017 Push to main - `6f0737b56a` on main
+- [x] T018 Record CI on the pushed commit (`implementation-summary.md`) - CI green on `6f0737b56a` (18 of 18) and `5565f2aa3c` (13 passed, 1 skipped), Spec-Kit Check 39782205255
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,7 +73,7 @@ contextType: "general"
 - [x] Every task before the push is marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: both versions list the same commands before and after, and no suite regressed
-- [ ] T017 and T018 close after the push, which is when they are ticked
+- [x] T017 and T018 closed after the push: `6f0737b56a` on main, CI green on it and on the trigger-index rebuild `5565f2aa3c`
 <!-- /ANCHOR:completion -->
 
 ---

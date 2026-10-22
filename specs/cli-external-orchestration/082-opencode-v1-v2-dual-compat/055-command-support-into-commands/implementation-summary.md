@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands"
     last_updated_at: "2026-10-22T00:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Moved 12 files back into .skilled/commands as .markdown"
-    next_safe_action: "Push to main, then tick T017 and T018 with the CI result"
+    recent_action: "Recorded push 6f0737b56a and its green CI"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/scratch/commands-after.json"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "055-command-support-into-commands"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Where do the non-command markdown files live: inside .skilled/commands/, with .markdown names, the operator's choice of 2026-10-22"
@@ -105,7 +105,7 @@ The tracked suites ran before and after so the result reads as a delta. Plugins 
 
 A separate read-only DeepSeek v4.1 flash session reviewed the change through cli-pi. Round 1 returned PASS with 2 P2s, both fixed: `audit_readmes.py`'s `readme_exists` now also accepts a lowercase `readme.markdown`, and the report scope lists `.skilled/**/README.markdown`. A narrow round 2 checked those two fixes and the census change. Luna was not used.
 
-The push to main and CI on the pushed commit are the two tasks still open, which is why `tasks.md` leaves T017 and T018 unticked. They are ticked after the push.
+The push to main is `6f0737b56a`, which `a98a95a71b..6f0737b56a` published, and CI on it is green: all 18 workflows that ran succeeded, including Spec-Kit Check 39782205255, Deep-Loop Runtime Tests 39782205245, OpenCode Plugin Tests 39782205262, Hook Node Tests 39782205309, sk-doc Script Tests 39782205197 and Markdown Link Integrity 39782205140. The trigger-index rebuild after it, `5565f2aa3c`, came back with 13 succeeded, Spec-Kit Check 39782542830 among them, and Trigger Index Rebuild was skipped on its own rebuild commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -145,6 +145,7 @@ The push to main and CI on the pushed commit are the two tasks still open, which
 | Markdown link guard | PASS: 7794 files and 14204 links checked, 0 broken |
 | Version battery, both versions | PASS: 8 of 8 legs |
 | Read-only review | PASS: DeepSeek v4.1 flash through cli-pi, round 1 PASS with 2 P2s that were fixed, and a narrow round 2 on those fixes and the census change. Luna was not used |
+| CI on main | PASS: `6f0737b56a` green, 18 of 18 workflows that ran, Spec-Kit Check 39782205255. The trigger-index rebuild `5565f2aa3c` gave 13 succeeded, Spec-Kit Check 39782542830, with Trigger Index Rebuild skipped on its own commit |
 
 Every number above was read from `scratch/suites-before.txt` and `scratch/suites-after.txt`, so a regression would have shown as a delta rather than as a plausible-looking figure.
 <!-- /ANCHOR:verification -->
@@ -156,8 +157,7 @@ Every number above was read from `scratch/suites-before.txt` and `scratch/suites
 
 1. **The suffix is a convention the hosts happen to honour, not a contract they publish.** Both 1.19.3 and 2.0.32 scan only `.md` names today, and neither offers an ignore list or a frontmatter opt-out. A future version that widens the scan would register these 12 files again, and the command-list proof is what would catch it.
 2. **The evidence is two command lists, not a per-file check.** The lists show nothing was added or removed on either version; they do not name which files exist, so a file that moved between two unlisted states would not show.
-3. **The push and CI are still open.** Tasks T017 and T018 are unticked by design, so the record's CI row stays empty until the push lands.
-4. **The 7 unrelated READMEs the fixture regeneration would have added are still absent** from `baseline-readme-verdicts.json`. That was the right call for this phase and remains an open gap for whoever owns the baseline next.
+3. **The 7 unrelated READMEs the fixture regeneration would have added are still absent** from `baseline-readme-verdicts.json`. That was the right call for this phase and remains an open gap for whoever owns the baseline next.
 <!-- /ANCHOR:limitations -->
 
 ---

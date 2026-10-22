@@ -32,7 +32,7 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 004 solved a real problem: both OpenCode versions scan `{command,commands}//.md` and registered all 12 non-command markdown files as commands",
     "created_at": "2026-10-22T10:42:28Z",
-    "last_save_at": "2026-10-22T12:23:15.660Z",
+    "last_save_at": "2026-10-22T13:19:48.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8febcac41e73140fc4fa26eb33c19b120567708096b17edbba902a2c328a918",
+    "source_fingerprint": "sha256:b69c4f0893b8d10c04eddfb4ee51f51851211d58da7583bfef514dd99eb7ce39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad06c21378ae480c810dc0c8ed4a75f130b70714a983c078f27970dd34bea90f",
       "plan.md": "0bcdaeae0472e7131e3e574f821064cd6d622823c97090d2f28dae1321b08d7a",
-      "tasks.md": "5d40753e965e817e7d4dfc7587b86982a73afce0f58d2186bdef5d0c747f177b",
-      "implementation-summary.md": "2a31414f393349503371d290da025f10f9fe48de0268d368f5b9237de214779f"
+      "tasks.md": "f2c9a7952c91133b580af0d9318875f9791054587d2cd38a55ec76888a288f92",
+      "implementation-summary.md": "8f61e968d32885c9a3b042cb1344e3e0ff4c015cbebec114fc6b7034e9d0ad58"
     },
     "last_active_at": null
   }
