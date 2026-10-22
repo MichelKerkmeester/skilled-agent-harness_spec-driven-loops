@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A probe on Claude Code 2.1.306 showed that a fork's PostToolUse payload carries `agentid` and `agenttype` with the parent's session id and transcript path",
     "created_at": "2026-10-22T06:56:47Z",
-    "last_save_at": "2026-10-22T07:05:23.021Z",
+    "last_save_at": "2026-10-22T07:20:12.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39841cc9d98d3f23ad75037cc2df95852247a349248b5f4afc6692765ba5b52d",
+    "source_fingerprint": "sha256:d94e05277b985769c27fc1750d9b559c3f213d7f56a6ec6a98e89c63bbf1e01f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ab092a8a5d993ebf211ee1957a46a7e87faeeb35bb5830e88d5670fc3169437",
+      "spec.md": "749996d6daee0f500020d35dd19527dfbc1e015682441498df798c80e96a04df",
       "plan.md": "c90eab671fe9f00e2e02808bf70c2ed36fb0bdd1a6fff6e62a11cfe257814f9a",
       "tasks.md": "ff92b73b6c901b6d6c7b348f664fd7824334b78a187c1a1361fbba610c15714f",
-      "implementation-summary.md": "8701c7a6f138632026fd7fe3e85b69201cc51c02ea4551b9162b3004f9f86679"
+      "implementation-summary.md": "a2613557e2a1813d07949f0e7136d36b73d23ff2493b10328889f743e826b709"
     },
     "last_active_at": null
   }

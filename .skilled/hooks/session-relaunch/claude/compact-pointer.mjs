@@ -18,6 +18,8 @@ import nudge from '../lib/nudge.cjs';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CONCERN = 'session-relaunch';
+// The spec-kit runtime's hooks/claude/shared.ts keeps a TypeScript copy of this fork check;
+// change both windows together.
 const FORK_COMPACTION_WINDOW_MS = 5000;
 const FORK_TRANSCRIPT_MTIME_WINDOW_MS = 10000;
 const TRANSCRIPT_TAIL_BYTES = 64 * 1024;
@@ -55,7 +57,7 @@ function noteSpecFolder(notePath) {
 // A fork files its own transcript under its parent's session directory, so a compaction
 // boundary there is the fork's. The record's own timestamp decides; the mtime check only
 // keeps stale transcripts from being read at all.
-export function forkCompactedRecently(transcriptPath, sessionId, nowMs = Date.now()) {
+function forkCompactedRecently(transcriptPath, sessionId, nowMs = Date.now()) {
   const directory = path.join(path.dirname(transcriptPath), sessionId, 'subagents');
   let entries = [];
   try {

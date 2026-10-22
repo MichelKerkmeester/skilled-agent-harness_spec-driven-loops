@@ -69,10 +69,10 @@ A sub-agent's activity no longer drives the parent's nudge, note or compact cach
 
 ### In Scope
 - `context-nudge.mjs` exits with no output and no state write when the payload carries a non-empty `agent_id`.
-- `compact-inject.ts` skips its cache write and boundary signal for such a payload, and logs `agent_id: absent` on every main-session compaction.
+- `compact-inject.ts` skips its cache write and boundary signal for such a payload, when the payload carries `agent_id`.
 
 ### Out of Scope
-- Confirming that PreCompact payloads carry `agent_id`. The log line records the answer at the next real fork compaction.
+- Detecting a fork at PreCompact without `agent_id`. A probe showed a fork's PreCompact carries no `agent_id`, and the fork's compaction record lands only after PreCompact.
 
 ### Files to Change
 
@@ -101,7 +101,7 @@ A sub-agent's activity no longer drives the parent's nudge, note or compact cach
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The unknown is recorded | Every main-session PreCompact logs `agent_id: absent` |
+| REQ-003 | The unknown is settled | A fork compaction probe records whether PreCompact carries `agent_id`: on Claude Code 2.1.306 it does not |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -120,7 +120,7 @@ A sub-agent's activity no longer drives the parent's nudge, note or compact cach
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | PreCompact payloads carry `agent_id` for a fork | If not, the PreCompact skip never fires | Low harm: a fork's PreCompact reads the parent's transcript. The log line records the answer |
+| Dependency | PreCompact payloads carry `agent_id` for a fork | They do not on 2.1.306, so the PreCompact skip never fires for a fork | Low harm: a fork's PreCompact reads the parent's transcript, and session-prime skips the fork's SessionStart |
 | Risk | The live `compact-inject` runs from gitignored `dist` | No effect until the runtime is rebuilt | Rebuild after merging |
 <!-- /ANCHOR:risks -->
 
@@ -129,7 +129,7 @@ A sub-agent's activity no longer drives the parent's nudge, note or compact cach
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether PreCompact payloads inside a fork carry `agent_id`.
+- None. A fork's PreCompact carries no `agent_id` on Claude Code 2.1.306.
 <!-- /ANCHOR:questions -->
 
 ---

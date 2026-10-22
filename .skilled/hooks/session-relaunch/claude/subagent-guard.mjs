@@ -16,7 +16,10 @@ import { isEntrypoint } from '../lib/relaunch-core.cjs';
 
 const CONCERN = 'session-relaunch';
 const LIFECYCLE_COMMAND = /session-relaunch\.cjs['"]?\s+(claim|complete|keep|prepare)\b/;
-const DENIAL_REASON = '[session-relaunch] A sub-agent shares its parent\'s session id, so this command would act on the parent\'s handoff note. Leave the note to the parent session.';
+const DENIAL_REASON = [
+  '[session-relaunch] A sub-agent shares its parent\'s session id, so this command would act',
+  'on the parent\'s handoff note. Leave the note to the parent session.',
+].join(' ');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -39,12 +42,12 @@ function emit(envelope) {
 // from inside one resolves the parent's handoff note and would claim, complete,
 // keep or prepare it behind the parent's back. Only the main session's calls carry
 // no agent id, so only those reach the note.
-export function deniesRelaunchCommand(payload) {
+function deniesRelaunchCommand(payload) {
   if (payload === null || typeof payload !== 'object') return false;
   if (payload.tool_name !== 'Bash') return false;
 
   const agentId = payload.agent_id;
-  if (typeof agentId !== 'string' || agentId === '') return false;
+  if (typeof agentId !== 'string' || agentId.trim() === '') return false;
 
   const command = payload.tool_input?.command;
   if (typeof command !== 'string' || command === '') return false;

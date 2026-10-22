@@ -237,7 +237,13 @@ describe('session-prime hook', () => {
     });
 
     it('ignores a fork boundary older than the freshness window', () => {
-      const { transcriptPath, nowMs } = seedForkTranscript({ boundaryAgoMs: 60_000, mtimeAgoMs: 60_000 });
+      const { transcriptPath, nowMs } = seedForkTranscript({ boundaryAgoMs: 60_000 });
+
+      expect(forkCompactedRecently(transcriptPath, parentSessionId, nowMs)).toBe(false);
+    });
+
+    it('skips a fork transcript not written in the last 10 seconds', () => {
+      const { transcriptPath, nowMs } = seedForkTranscript({ boundaryAgoMs: 300, mtimeAgoMs: 60_000 });
 
       expect(forkCompactedRecently(transcriptPath, parentSessionId, nowMs)).toBe(false);
     });

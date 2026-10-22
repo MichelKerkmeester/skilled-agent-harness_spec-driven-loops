@@ -53,7 +53,9 @@ The last two places where a fork acted as its parent are closed. A fork's tool c
 
 ### Sub-agent skip in PreCompact
 
-`compact-inject.ts` exports `isSubagentPayload` and returns before the boundary signal and cache write when it is true. Every main-session PreCompact now logs `agent_id: absent`, so the next real fork compaction shows whether PreCompact carries the field.
+`compact-inject.ts` exports `isSubagentPayload` and returns before the boundary signal and cache write when it is true. A later probe settled the open question: on Claude Code 2.1.306 a fork's PreCompact, SessionStart and PostCompact payloads carry no `agent_id`, so this skip does not fire for a fork's compaction. The `agent_id: absent` clause was dropped from the log line, because a fork logs it too.
+
+An sk-code alignment review then raised seven P2 items, all fixed. The guard now trims `agent_id` like the other two hooks, with a whitespace-only test. `HookInput` declares `agent_id` and `agent_type`. The two copies of the fork check point at each other. The relaunch hooks' unimported predicates lost their `export`. A long denial string was split, and the session-start window tests now isolate the 5-second and 10-second gates.
 
 ### Files Changed
 
@@ -82,7 +84,6 @@ DeepSeek v4.1 Flash wrote the two test files in parallel, then the two fixes in 
 | Decision | Why |
 |----------|-----|
 | Key both skips on `agent_id` | It is the field the probes showed separates a sub-agent from its parent |
-| Log `agent_id: absent` on every PreCompact | PreCompact inside a fork cannot be forced on demand, so the next real one records the answer |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -106,7 +107,7 @@ DeepSeek v4.1 Flash wrote the two test files in parallel, then the two fixes in 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **PreCompact `agent_id` is unconfirmed.** If a fork's PreCompact lacks it, the skip never fires. The harm stays low because that hook reads the parent's transcript.
+1. **A fork's PreCompact carries no `agent_id`.** A probe with `claude -p --autocompact 100k` made a fork compact three times, and none of its PreCompact, SessionStart or PostCompact payloads held the field. The PreCompact skip therefore never fires for a fork. The harm stays low: the hook caches the parent's own transcript, and session-prime skips the fork's SessionStart through the fork's compaction record.
 2. **The live `compact-inject` needs a rebuild.** `dist` is gitignored.
 <!-- /ANCHOR:limitations -->
 

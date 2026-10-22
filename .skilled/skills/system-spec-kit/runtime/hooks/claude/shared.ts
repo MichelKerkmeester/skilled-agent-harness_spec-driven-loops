@@ -19,6 +19,8 @@ export const COMPACTION_TOKEN_BUDGET = 4000;
 /** Token budget for session priming (startup/resume) */
 export const SESSION_PRIME_TOKEN_BUDGET = 2000;
 const MAX_HOOK_STDIN_BYTES = 1024 * 1024;
+// session-relaunch/claude/compact-pointer.mjs keeps a plain-Node copy of this fork check;
+// change both windows together.
 /** How recent a fork's compaction boundary must be to belong to this SessionStart */
 const FORK_COMPACTION_WINDOW_MS = 5_000;
 /** A transcript untouched for longer cannot hold a boundary inside that window */
@@ -34,6 +36,8 @@ export interface HookInput {
   readonly custom_instructions?: string;
   readonly stop_hook_active?: boolean;
   readonly last_assistant_message?: string;
+  readonly agent_id?: string;
+  readonly agent_type?: string;
   readonly [key: string]: unknown;
 }
 

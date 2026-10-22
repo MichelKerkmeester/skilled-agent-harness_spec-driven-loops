@@ -517,14 +517,15 @@ async function main(): Promise<void> {
   // A child's payload reuses the parent's session id, so priming the cache or
   // signalling a boundary from here would land on the parent's next session.
   if (isSubagentPayload(input)) {
-    hookLog('info', 'compact-inject', `Skipping PreCompact for sub-agent ${String(input.agent_id).trim()}: its session id is the parent's`);
+    const agentId = input.agent_id?.trim();
+    hookLog('info', 'compact-inject', `Skipping PreCompact for sub-agent ${agentId}: its session id is the parent's`);
     return;
   }
 
   const rawSessionId = typeof input.session_id === 'string' ? input.session_id.trim() : '';
   notifyDirectiveLifecycleBoundary({ sessionId: rawSessionId || null, boundary: 'compact' });
   const sessionId = getRequiredSessionId(rawSessionId, 'compact-inject');
-  hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'}, agent_id: absent)`);
+  hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
 
   let transcriptLines: string[] = [];
   if (input.transcript_path) {

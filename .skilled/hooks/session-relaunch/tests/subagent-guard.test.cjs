@@ -158,6 +158,15 @@ test('subagent-guard stays silent for the main session that carries no agent_id'
   assertSilent(result);
 });
 
+test('subagent-guard stays silent for a whitespace-only agent_id', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runGuard(sandbox, JSON.stringify({
+    ...bashPayload(sandbox, claimCommand()),
+    agent_id: '   ',
+  }));
+  assertSilent(result);
+});
+
 test('subagent-guard stays silent for a sub-agent reading the hop history', async (t) => {
   const sandbox = createSandbox(t);
   const result = await runGuard(sandbox, JSON.stringify(
