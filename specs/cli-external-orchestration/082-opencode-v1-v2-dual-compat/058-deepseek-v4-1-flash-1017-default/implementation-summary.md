@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-22T22:10:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Recorded Pi default and blackhole move"
-    next_safe_action: "Push the branch to main, then record CI on the pushed commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default/scratch/revert-proofs.txt"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "058-deepseek-v4-1-flash-1017-default"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Which DeepSeek flash id the framework defaults to: deepseek-v4.1-flash-1017, the 2026-10-17 release, through llmgateway, with the 2026-09-10 literal kept as a pin"
@@ -39,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 058-deepseek-v4-1-flash-1017-default |
-| **Status** | In Progress |
-| **Completed** | 2026-10-22 (push pending) |
+| **Status** | Complete |
+| **Completed** | 2026-10-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -114,7 +114,7 @@ Two limits on that proof are recorded below rather than papered over. A plain `p
 
 The change was reviewed read-only by DeepSeek on the combined diff, then again on the settings and blackhole change. The first pass returned PASS. The second returned FAIL with two P1s and two P2s: the DeepSeek effort rows in `.pi/custom-providers.md` and `providers-and-models.md` said `xhigh` folds into `high` without adding that Pi rounds it up to `max`, a blackhole compaction-model sentence was stale, and `pi-tools.md` still told dispatches to default to `google`. All four were fixed and a third pass returned PASS, leaving three P2s as notes: the settings test checks only `enabledModels[0]`, the 2026-10-24 deactivation date comes from llmgateway's docs and is not in the `/v1/models` payload, and the operator's global blackhole config links to the main checkout and changes when this lands.
 
-The suites ran baseline first, then at the final gate. The deep-loop vitest floor went from 2799 passed / 8 skipped to 2804 passed / 8 skipped across 167 files, and the cli-opencode script tests from 22 to 24. The remaining suites are recorded as rerun at the final gate before the push, and CI is recorded after it. The push and the CI record are the two tasks still open.
+The suites ran baseline first, then at the final gate. The deep-loop vitest floor went from 2799 passed / 8 skipped to 2804 passed / 8 skipped across 167 files, and the cli-opencode script tests from 22 to 24. At the final gate on the rebased commit the battery unit tests passed 55/55, the config-shape tests 6/6, the Hermes sync tests 4/4, the playbook validator passed every package, and 082 validated recursively with every folder PASSED. The commit landed on main as `5b5f56720f`, and all 19 CI workflow runs on it succeeded.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -158,7 +158,7 @@ The suites ran baseline first, then at the final gate. The deep-loop vitest floo
 | cli-opencode script tests, baseline then final | PASS: 22 then 24 |
 | Revert proofs for the widened scope | PASS: four new proofs, each one failed and 107 passed (`scratch/revert-proofs.txt`) |
 | Review passes | PASS: PASS on the combined diff, FAIL with two P1s and two P2s on the settings/blackhole change, all four fixed, then PASS with three P2 notes |
-| CI on main | Pending: recorded after the push |
+| CI on main | All 19 workflow runs on `5b5f56720f` succeeded (run ids 39858029173 to 39858029728), and the trigger-index rebuild it triggered landed as `798a4665f7` |
 <!-- /ANCHOR:verification -->
 
 ---

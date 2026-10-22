@@ -66,8 +66,8 @@ contextType: "general"
 - [x] T019 Prove the fan-out builds the id on every host: an unpinned dispatch on Pi, OpenCode 1, OpenCode 2 and Hermes each builds the -1017 id and exits 0 (`scratch/live/`)
 - [x] T020 Run the four touched suites and record the counts; the numbers are pending the final rerun before the push (`scratch/`)
 - [x] T021 Fill this phase's four docs and add the parent map and handoff rows for 058 (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`)
-- [ ] T022 Push to main (`spec.md`)
-- [ ] T023 Record CI on the pushed commit (`implementation-summary.md`)
+- [x] T022 Push to main: `5b5f56720f` on origin/main (`spec.md`)
+- [x] T023 Record CI on the pushed commit: all 19 workflow runs on `5b5f56720f` succeeded, runs 39858029173 to 39858029728 (`implementation-summary.md`)
 - [x] T024 Widen Pi's own default on the operator's scope: `defaultModel` moves from `gpt-6-luna` to `deepseek-v4.1-flash-1017` and `llmgateway/deepseek-v4.1-flash-1017` takes the first `enabledModels` slot, every earlier entry kept; `defaultProvider` stays `llmgateway` and `defaultThinkingLevel` stays `xhigh`, which the -1017 thinking-level map marks `null` so Pi's `clampThinkingLevel` rounds a no-model run up to `max` (`.pi/settings.json`)
 - [x] T025 Move the pi-blackhole worker model with it: `openai` / `gpt-6-luna` / `medium` becomes `llmgateway` / `deepseek-v4.1-flash-1017` / `high`, and `high` maps to `high` in the -1017 thinking-level map (`.pi/pi-blackhole-config.json`)
 - [x] T026 Hold both with two assertions and prove each by a revert: the settings default provider, default model and `enabledModels[0]`, and the blackhole model plus `thinkingLevelMap.high`; the four revert proofs each read one failed and 107 passed (`.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts`, `scratch/revert-proofs.txt`)
@@ -81,7 +81,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every task marked `[x]`: T022 and T023 stay open until the commit is on main and CI has run on it
+- [x] Every task marked `[x]`: the commit is on main and CI passed on it
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: every host built and answered the -1017 id at the max tier, Pi answered with no model named and ran its blackhole workers on the same id, the older literal still built its own selector, and the twelve revert proofs failed on the reverted values
 <!-- /ANCHOR:completion -->

@@ -32,7 +32,7 @@
       "deepseek-v4"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -159,12 +159,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -189,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "LLM Gateway lists `deepseek-v4.1-flash-1017` (created 2026-10-17) as its newest DeepSeek flash, after `deepseek-v4.1-flash` (2026-09-10), `deepseek-v4-flash` and `deepseek-v4-pro` (2026-04-24) and `deepseek-v3.2` (2025-09-29)",
     "created_at": "2026-10-22T18:50:31Z",
-    "last_save_at": "2026-10-22T21:03:36.560Z",
+    "last_save_at": "2026-10-22T21:47:14.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:badf477eff62ae226bc966727a5c27b3fdbb9e52c16e6f802cb4ed34462633f2",
+    "source_fingerprint": "sha256:7f734f1b065750026c4ee19668037af1a3e46ad57211a878816a60db6676f660",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f45bc1cc62b6de289b7446151f400d61701c7c64ac220ba7fff6492446b09632",
+      "spec.md": "52fc878838846ea111475018e833669b63da003051abf30bddc563711cfeba95",
       "plan.md": "be1ea007dbcf51d222fecd75a6576798ec50cde76b26289620bbdf10a478d225",
-      "tasks.md": "67f5f92ef57d1f886d4a081970f3ee8b2ea1c67fe6907f1fe216197d033cd48d",
-      "implementation-summary.md": "cca877c6a0310340cd74bc011a7a235b8bb27f397372124ef58b5b312348a098"
+      "tasks.md": "3012a41645e4b365501bcdf9b11741cc8ad0769783b2a9bfe001dad80eb112a2",
+      "implementation-summary.md": "070142792e0b2ea6890755d37bfeadc4309fb6349b9bb9e11aa5b96a29b4b0db"
     },
     "last_active_at": null
   }
