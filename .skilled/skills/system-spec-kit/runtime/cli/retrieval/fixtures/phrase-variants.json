@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8b7c3d8b00475919c4a85c2df559ddf21c40d099f5fa5fbdeb2b722668f9a239",
+  "manifestHash": "30fe6943da8369a15d85501db1c6243d5395a30b4cb29b32f57ae88a77a8e4b2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -45892,6 +45892,18 @@
     "fork attribution tasks": [
       "fork attribution tasks"
     ],
+    "fork compact pointer research": [
+      "fork compact pointer research"
+    ],
+    "fork compact pointer research implementation summary": [
+      "fork compact pointer research implementation summary"
+    ],
+    "fork compact pointer research plan": [
+      "fork compact pointer research plan"
+    ],
+    "fork compact pointer research tasks": [
+      "fork compact pointer research tasks"
+    ],
     "fork comparison tasks": [
       "fork comparison tasks"
     ],
@@ -72321,6 +72333,9 @@
     ],
     "phase 19 closure gate": [
       "phase 19 closure gate"
+    ],
+    "phase 19 fork compact pointer research": [
+      "phase 19 fork compact pointer research"
     ],
     "phase 19 implementation summary": [
       "phase 19 implementation summary"

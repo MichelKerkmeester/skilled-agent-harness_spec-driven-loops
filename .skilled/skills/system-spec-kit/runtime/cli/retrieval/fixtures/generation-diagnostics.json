@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7205,
-    "ok": 14854,
+    "missing-frontmatter": 7207,
+    "ok": 14858,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25607,
+  "documentsScanned": 25613,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8b7c3d8b00475919c4a85c2df559ddf21c40d099f5fa5fbdeb2b722668f9a239",
+  "manifestHash": "30fe6943da8369a15d85501db1c6243d5395a30b4cb29b32f57ae88a77a8e4b2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37363,
+      "ok": 37368,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -37037,6 +37037,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -70075,6 +70087,14 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/scratch",
       "reason": "excluded directory"
     },
     {
