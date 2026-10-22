@@ -136,6 +136,7 @@ function stubBin(root) {
   const stubs = {
     bash: 'printf "WRAPPED %s\\n" "$*"; if [ -n "${HERMES_ENABLE_PROJECT_PLUGINS:-}" ]; then printf "PLUGINS %s\\n" "$HERMES_ENABLE_PROJECT_PLUGINS"; fi',
     claude: 'printf "DIRECT claude %s\\n" "$*"',
+    pi: 'printf "DIRECT pi %s\\n" "$*"',
     'cursor-agent': 'printf "DIRECT cursor-agent %s\\n" "$*"',
   };
   for (const [name, body] of Object.entries(stubs)) {
@@ -161,6 +162,47 @@ function launch(shell, box, bin, line, { tty }) {
 }
 
 const HAS_SCRIPT = spawnSync('script', ['-q', '/dev/null', 'true'], { stdio: 'ignore' }).status === 0;
+
+// A snapshot of an interactive shell copies the function definitions but drops every
+// name that is a single underscore followed by anything else, so a tool shell rebuilt
+// from the copy still has the runtime functions and none of their private helpers.
+const SNAPSHOT = {
+  bash: { names: '$(compgen -A function)', print: 'declare -f "$name"' },
+  zsh: { names: '${(k)functions}', print: 'functions "$name"' },
+};
+
+function snapshot(shell, root) {
+  const { names, print } = SNAPSHOT[shell.name];
+  const file = path.join(root, 'snapshot.sh');
+  const script = [
+    'source "$1" || exit 90',
+    'for name in ' + names + '; do',
+    '  case "$name" in _[!_]*) continue ;; esac',
+    '  ' + print + ' || exit 92',
+    'done',
+  ].join('\n');
+  const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', SHIM], {
+    encoding: 'utf8',
+    env: cleanEnv(),
+  });
+  assert.equal(result.status, 0, `${shell.name} snapshot: ${result.stderr}`);
+  fs.writeFileSync(file, result.stdout);
+  return file;
+}
+
+// Nothing else reaches the fresh shell, so a runtime function still naming a dropped
+// helper fails here the same way it fails in an agent's tool shell.
+function replay(shell, bin, file) {
+  const script = [
+    'source "$1" || exit 90',
+    'claude -p hello </dev/null; printf "CLAUDE %s\\n" "$?"',
+    'pi -p hello </dev/null; printf "PI %s\\n" "$?"',
+  ].join('\n');
+  return spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', file], {
+    encoding: 'utf8',
+    env: cleanEnv({ PATH: `${bin}:${process.env.PATH}` }),
+  });
+}
 
 for (const shell of SHELLS) {
   test(`${shell.name}: without a terminal the runtime function runs the binary directly`, (t) => {
@@ -204,5 +246,23 @@ for (const shell of SHELLS) {
     );
     assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} hermes chat\\nPLUGINS 1$`, 'm'));
     assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} claude --model opus\\nAFTER unset$`, 'm'));
+  });
+
+  test(`${shell.name}: runtime functions still work after a snapshot drops single-underscore functions`, (t) => {
+    const box = sandbox(t);
+    const bin = stubBin(box.root);
+    const dump = snapshot(shell, box.root);
+    const definitions = fs.readFileSync(dump, 'utf8');
+    // The stub binaries answer to the same names, so a dump that lost a runtime
+    // function would still exit 0; only the definition proves the function ran.
+    assert.match(definitions, /^claude \(\)/m, `${shell.name} dump keeps claude`);
+    assert.match(definitions, /^pi \(\)/m, `${shell.name} dump keeps pi`);
+    const result = replay(shell, bin, dump);
+    assert.equal(
+      result.stdout,
+      'DIRECT claude -p hello\nCLAUDE 0\nDIRECT pi -p hello\nPI 0\n',
+      `${shell.name} replay`,
+    );
+    assert.doesNotMatch(result.stderr, /command not found/, `${shell.name} replay stderr`);
   });
 }

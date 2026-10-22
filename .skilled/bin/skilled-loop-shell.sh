@@ -16,6 +16,9 @@
 #
 # The file is sourced into the operator's own shell, so it sets no option there and
 # keeps to syntax that bash 3.2 and zsh read the same way.
+#
+# Agent tool shells are rebuilt from a snapshot that drops single-underscore
+# functions, so every helper a runtime function calls keeps a plain name.
 
 # ───────────────────────────────────────────────────────────────
 # 1. WRAPPER RESOLUTION
@@ -39,10 +42,10 @@ skilled_loop_resolve() (
   if [ -n "${SKILLED_LOOP_ID:-}" ]; then
     exit 0
   fi
-  if ! _skilled_loop_opens_session "$runtime" "$@"; then
+  if ! skilled_loop_opens_session "$runtime" "$@"; then
     exit 0
   fi
-  _skilled_loop_find_wrapper
+  skilled_loop_find_wrapper
 )
 
 # ───────────────────────────────────────────────────────────────
@@ -51,7 +54,7 @@ skilled_loop_resolve() (
 
 # Succeeds when the first argument is a subcommand that does not open a session in
 # this terminal. Each list comes from that runtime's own --help.
-_skilled_loop_first_word_passes() {
+skilled_loop_first_word_passes() {
   case "$1:$2" in
     claude:agents|claude:attach|claude:auth|claude:auto-mode|claude:doctor|\
       claude:gateway|claude:import|claude:install|claude:logs|claude:mcp|\
@@ -109,7 +112,7 @@ _skilled_loop_first_word_passes() {
 
 # Succeeds when the argument is a flag that prints, runs headless or exits instead of
 # opening a session here. Each list comes from that runtime's own --help.
-_skilled_loop_flag_passes() {
+skilled_loop_flag_passes() {
   case "$1:$2" in
     claude:-p|claude:--print|claude:-v|claude:--version|claude:-h|claude:--help|\
       claude:--bg|claude:--background|claude:--desktop|claude:--cloud|\
@@ -145,18 +148,18 @@ _skilled_loop_flag_passes() {
 
 # Succeeds when the arguments open an interactive session. Only the first argument is
 # read as a subcommand, so a prompt word that matches one later on stays a prompt.
-_skilled_loop_opens_session() {
+skilled_loop_opens_session() {
   local runtime="$1"
   local argument
   shift
-  if [ "$#" -gt 0 ] && _skilled_loop_first_word_passes "$runtime" "$1"; then
+  if [ "$#" -gt 0 ] && skilled_loop_first_word_passes "$runtime" "$1"; then
     return 1
   fi
   for argument in "$@"; do
     if [ "$argument" = '--' ]; then
       break
     fi
-    if _skilled_loop_flag_passes "$runtime" "$argument"; then
+    if skilled_loop_flag_passes "$runtime" "$argument"; then
       return 1
     fi
   done
@@ -164,7 +167,7 @@ _skilled_loop_opens_session() {
 }
 
 # Prints the nearest skilled-loop wrapper at or above $PWD, or nothing at the root.
-_skilled_loop_find_wrapper() {
+skilled_loop_find_wrapper() {
   local directory="$PWD"
   while :; do
     if [ -f "$directory/.skilled/bin/skilled-loop" ]; then
@@ -184,7 +187,7 @@ _skilled_loop_find_wrapper() {
 
 # A pipe or a redirect means a script or another tool is driving the runtime, and the
 # wrapper's relaunch needs a terminal to hand the fresh session to.
-_skilled_loop_launch() {
+skilled_loop_launch() {
   local runtime="$1"
   local binary="$2"
   local wrapper=''
@@ -205,10 +208,10 @@ _skilled_loop_launch() {
 
 # The `function` keyword keeps zsh from expanding an existing alias of the same name
 # while it reads these definitions.
-function claude { _skilled_loop_launch claude claude "$@"; }
-function pi { _skilled_loop_launch pi pi "$@"; }
-function opencode { _skilled_loop_launch opencode opencode "$@"; }
-function codex { _skilled_loop_launch codex codex "$@"; }
-function hermes { _skilled_loop_launch hermes hermes "$@"; }
-function devin { _skilled_loop_launch devin devin "$@"; }
-function cursor-agent { _skilled_loop_launch cursor cursor-agent "$@"; }
+function claude { skilled_loop_launch claude claude "$@"; }
+function pi { skilled_loop_launch pi pi "$@"; }
+function opencode { skilled_loop_launch opencode opencode "$@"; }
+function codex { skilled_loop_launch codex codex "$@"; }
+function hermes { skilled_loop_launch hermes hermes "$@"; }
+function devin { skilled_loop_launch devin devin "$@"; }
+function cursor-agent { skilled_loop_launch cursor cursor-agent "$@"; }
