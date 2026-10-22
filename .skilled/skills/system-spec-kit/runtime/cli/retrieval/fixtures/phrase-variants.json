@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0d6e8e8c53106686054e69301ca21b0389b57094d63de5e96d786567b36c664d",
+  "manifestHash": "5b6a815a80ee30315b31106dc0bf2b87c1212b48f80aac0e6d65827bf95569c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24527,6 +24527,18 @@
     ],
     "command runtime mirrors": [
       "command runtime mirrors"
+    ],
+    "command support into commands": [
+      "command support into commands"
+    ],
+    "command support into commands implementation summary": [
+      "command support into commands implementation summary"
+    ],
+    "command support into commands plan": [
+      "command support into commands plan"
+    ],
+    "command support into commands tasks": [
+      "command support into commands tasks"
     ],
     "command surface benchmark methodology": [
       "command surface benchmark methodology"
@@ -72852,6 +72864,9 @@
     ],
     "phase 54 v4 0 0 13 changelog opencode": [
       "phase 54 v4 0 0 13 changelog opencode"
+    ],
+    "phase 55 command support into commands": [
+      "phase 55 command support into commands"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
