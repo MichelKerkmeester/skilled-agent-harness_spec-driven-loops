@@ -10,9 +10,9 @@ importance_tier: "important"
 
 # Compiled Deep Command Contracts
 
-> Documents the contracts in `.skilled/command-support/deep/assets/compiled/` for the command family
-> under `.skilled/commands/deep/`. This README was moved out of `.skilled/commands/` so OpenCode
-> does not register it as a command.
+> Documents the contracts in `.skilled/commands/deep/assets/compiled/` for the command family
+> under `.skilled/commands/deep/`. This README uses the `.markdown` extension because OpenCode
+> registers every `.md` file under `.skilled/commands/` as a command.
 >
 > Generated executor contracts and rollout metadata derived from maintained deep-command authorities.
 
@@ -20,7 +20,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.skilled/command-support/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
+`.skilled/commands/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
@@ -32,11 +32,11 @@ The compiled inventory is intentionally limited to the three commands registered
 
 ```text
 compiled/
-+-- deep-ai-council.contract.md
-+-- deep-research.contract.md
-+-- deep-review.contract.md
++-- deep-ai-council.contract.markdown
++-- deep-research.contract.markdown
++-- deep-review.contract.markdown
 +-- manifest.jsonl
-`-- README.md
+`-- README.markdown
 ```
 
 ---
@@ -45,9 +45,9 @@ compiled/
 
 | File | Responsibility |
 |---|---|
-| `deep-research.contract.md` | Generated executor contract for `/deep:research`. |
-| `deep-review.contract.md` | Generated executor contract for `/deep:review`. |
-| `deep-ai-council.contract.md` | Generated executor contract for `/deep:ai-council`. |
+| `deep-research.contract.markdown` | Generated executor contract for `/deep:research`. |
+| `deep-review.contract.markdown` | Generated executor contract for `/deep:review`. |
+| `deep-ai-council.contract.markdown` | Generated executor contract for `/deep:ai-council`. |
 | `manifest.jsonl` | Append-only render records with command, mode and content digests. |
 
 ---
@@ -109,7 +109,7 @@ Check the JSONL structure from the repository root:
 ```bash
 node -e '
 const fs = require("fs");
-const lines = fs.readFileSync(".skilled/command-support/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
+const lines = fs.readFileSync(".skilled/commands/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
 for (const line of lines) JSON.parse(line);
 console.log(`OK ${lines.length} manifest rows`);
 '

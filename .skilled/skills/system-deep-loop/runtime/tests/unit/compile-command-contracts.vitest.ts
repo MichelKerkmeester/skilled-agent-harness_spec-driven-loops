@@ -42,12 +42,12 @@ function sourceSha(sourcePath: string): string {
 
 describe('compile-command-contracts', () => {
   it.each([
-    ['deep/ai-council', 'deep-ai-council.contract.md'],
-    ['deep/review', 'deep-review.contract.md'],
-    ['deep/research', 'deep-research.contract.md'],
+    ['deep/ai-council', 'deep-ai-council.contract.markdown'],
+    ['deep/review', 'deep-review.contract.markdown'],
+    ['deep/research', 'deep-research.contract.markdown'],
   ])('writes %s to its tracked renderer path', (command, fileName) => {
     expect(compiler.outputPathFor(command)).toBe(
-      join(compiler.WORKSPACE_ROOT, '.skilled/command-support/deep/assets/compiled', fileName),
+      join(compiler.WORKSPACE_ROOT, '.skilled/commands/deep/assets/compiled', fileName),
     );
   });
 
@@ -98,7 +98,7 @@ describe('compile-command-contracts', () => {
       const copied = require(join(scripts, 'compile-command-contracts.cjs')) as typeof compiler;
 
       expect(copied.outputPathFor('deep/review')).toBe(
-        join(root, '.opencode', 'command-support', 'deep', 'assets', 'compiled', 'deep-review.contract.md'),
+        join(root, '.opencode', 'commands', 'deep', 'assets', 'compiled', 'deep-review.contract.markdown'),
       );
     } finally {
       rmSync(root, { recursive: true, force: true });

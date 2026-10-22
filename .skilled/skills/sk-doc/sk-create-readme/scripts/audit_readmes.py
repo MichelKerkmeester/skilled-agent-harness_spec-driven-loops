@@ -295,7 +295,7 @@ def build_durable_manifest(repo_root: Path) -> Dict[str, Any]:
             prefix = '' if str(relative) == '.' else relative.as_posix() + '/'
             filenames = [name for name in filenames if prefix + name in tracked]
         durable_files = [name for name in filenames if _is_durable_file(name)]
-        has_readme = any(name.lower() == 'readme.md' for name in filenames)
+        has_readme = any(name.lower() in ('readme.md', 'readme.markdown') for name in filenames)
         if len(durable_files) >= 5 or has_readme:
             directories.add('.' if str(relative) == '.' else relative.as_posix())
 
@@ -359,7 +359,7 @@ def manifest_reproduction(repo_root: Path, manifest_path: Optional[Path] = None)
             })
     for directory in sorted(frozen_set):
         directory_path = repo_root / directory
-        readme_exists = any((directory_path / name).is_file() for name in ('README.md', 'readme.md'))
+        readme_exists = any((directory_path / name).is_file() for name in ('README.md', 'readme.md', 'README.markdown', 'readme.markdown'))
         if readme_exists:
             continue
         exclusion = classify_path(repo_root, directory_path)
@@ -602,7 +602,7 @@ def find_readmes(repo_root: Path) -> List[Path]:
         if classify_path(repo_root, directory):
             continue
         for filename in filenames:
-            if filename.lower() != 'readme.md':
+            if filename.lower() not in ('readme.md', 'readme.markdown'):
                 continue
             path = directory / filename
             if not path.is_file() or path.is_symlink():
@@ -1008,6 +1008,7 @@ def main() -> int:
             "include": [
                 "README.md (repo root)",
                 ".skilled/**/README.md",
+                ".skilled/**/README.markdown",
                 ".claude/**/README.md",
                 ".pi/**/README.md",
                 ".github/**/README.md",

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command support into commands",
+      "phase 55 command support into commands",
+      "command support into commands plan",
+      "command support into commands tasks",
+      "command support into commands implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "support",
+      "commands",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "solved",
+      "real",
+      "problem",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/create/readme.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs",
+      ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/readme.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-menu-parity.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-authoring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-lint.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_readme_verdict_parity.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "state-backend-census.json",
+        "kind": "config",
+        "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 solved a real problem: both OpenCode versions scan `{command,commands}//.md` and registered all 12 non-command markdown files as commands",
+    "created_at": "2026-10-22T10:42:28Z",
+    "last_save_at": "2026-10-22T12:23:15.660Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a8febcac41e73140fc4fa26eb33c19b120567708096b17edbba902a2c328a918",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ad06c21378ae480c810dc0c8ed4a75f130b70714a983c078f27970dd34bea90f",
+      "plan.md": "0bcdaeae0472e7131e3e574f821064cd6d622823c97090d2f28dae1321b08d7a",
+      "tasks.md": "5d40753e965e817e7d4dfc7587b86982a73afce0f58d2186bdef5d0c747f177b",
+      "implementation-summary.md": "2a31414f393349503371d290da025f10f9fe48de0268d368f5b9237de214779f"
+    },
+    "last_active_at": null
+  }
+}

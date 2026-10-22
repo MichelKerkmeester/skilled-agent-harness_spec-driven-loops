@@ -10,9 +10,9 @@ importance_tier: "important"
 
 # Legacy Deep Command Bodies
 
-> Documents the fallback bodies in `.skilled/command-support/deep/assets/legacy/` for the command
-> family under `.skilled/commands/deep/`. This README was moved out of `.skilled/commands/` so
-> OpenCode does not register it as a command.
+> Documents the fallback bodies in `.skilled/commands/deep/assets/legacy/` for the command
+> family under `.skilled/commands/deep/`. This README uses the `.markdown` extension because
+> OpenCode registers every `.md` file under `.skilled/commands/` as a command.
 >
 > Router bodies retained as the base payload for the three compiler-managed deep commands.
 
@@ -20,7 +20,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.skilled/command-support/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
+`.skilled/commands/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
 
@@ -32,10 +32,10 @@ Each body has a matching compiled contract in `../compiled/`. There is no fifth 
 
 ```text
 legacy/
-+-- deep-ai-council.body.md
-+-- deep-research.body.md
-+-- deep-review.body.md
-`-- README.md
++-- deep-ai-council.body.markdown
++-- deep-research.body.markdown
++-- deep-review.body.markdown
+`-- README.markdown
 ```
 
 ---
@@ -44,9 +44,9 @@ legacy/
 
 | File | Responsibility |
 |---|---|
-| `deep-research.body.md` | Fallback router for the deep-research loop. |
-| `deep-review.body.md` | Fallback router for the deep-review loop. |
-| `deep-ai-council.body.md` | Fallback router for bounded AI Council sessions. |
+| `deep-research.body.markdown` | Fallback router for the deep-research loop. |
+| `deep-review.body.markdown` | Fallback router for the deep-review loop. |
+| `deep-ai-council.body.markdown` | Fallback router for bounded AI Council sessions. |
 
 ---
 
@@ -99,9 +99,9 @@ Compiled contracts live in the sibling `compiled/` folder. Their maintained sour
 Confirm the expected files exist from the repository root:
 
 ```bash
-test -f .skilled/command-support/deep/assets/legacy/deep-ai-council.body.md
-test -f .skilled/command-support/deep/assets/legacy/deep-research.body.md
-test -f .skilled/command-support/deep/assets/legacy/deep-review.body.md
+test -f .skilled/commands/deep/assets/legacy/deep-ai-council.body.markdown
+test -f .skilled/commands/deep/assets/legacy/deep-research.body.markdown
+test -f .skilled/commands/deep/assets/legacy/deep-review.body.markdown
 ```
 
 Expected result: every command exits with status `0`.

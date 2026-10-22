@@ -42,9 +42,9 @@ def current_verdict(path: str) -> dict:
 
 
 def tracked_readmes() -> list[str]:
-    """Every tracked README.md, the set the baseline describes; vendored trees are never tracked."""
+    """Every tracked README.md or README.markdown, the set the baseline describes; vendored trees are never tracked."""
     proc = subprocess.run(
-        ["git", "ls-files", "--", "README.md", "*/README.md"],
+        ["git", "ls-files", "--", "README.md", "*/README.md", "*/README.markdown"],
         cwd=REPO,
         capture_output=True,
         text=True,

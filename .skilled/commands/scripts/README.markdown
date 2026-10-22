@@ -10,8 +10,8 @@ importance_tier: "normal"
 
 # Command Validation Scripts
 
-> Documents `.skilled/commands/scripts/`. This README was moved out of `.skilled/commands/`
-> to `.skilled/command-support/scripts/` so OpenCode does not register it as a command.
+> Documents `.skilled/commands/scripts/`. This README uses the `.markdown` extension because OpenCode
+> registers every `.md` file under `.skilled/commands/` as a command.
 >
 > Validation tooling that detects unresolved agent, skill asset and runtime-directory references in command assets.
 
@@ -32,7 +32,7 @@ importance_tier: "normal"
 +-- fixtures/
 |   `-- broken-command-refs.yaml
 +-- validate-command-references.cjs
-`-- README.md
+`-- README.markdown
 ```
 
 ---

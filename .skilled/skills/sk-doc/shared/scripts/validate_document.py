@@ -258,6 +258,10 @@ def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[
     if any(f'/{name}/' in path_lower or f'\\{name}\\' in path_lower for name in CATALOG_DIR_NAMES):
         if portable_path.parent.parent.name in CATALOG_DIR_NAMES:
             return 'feature_catalog', 'rule'
+    # A README inside a commands folder uses the .markdown extension so OpenCode does
+    # not register it as a command, and the commands-folder rule would misread it.
+    if portable_path.name == 'readme.markdown':
+        return 'readme', 'rule'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command', 'rule'
     # Changelog files: under .skilled/changelog/, .skilled/skills/*/changelog/,

@@ -282,8 +282,8 @@
         { "purpose": "presentation", "path": ".skilled/commands/deep/assets/deep-<name>-presentation.txt" },
         { "purpose": "auto_workflow", "path": ".skilled/commands/deep/assets/deep-<name>-auto.yaml" },
         { "purpose": "confirm_workflow", "path": ".skilled/commands/deep/assets/deep-<name>-confirm.yaml" },
-        { "purpose": "other", "path": ".skilled/command-support/deep/assets/compiled/ (generated *.contract.md + manifest.jsonl digest ledger)" },
-        { "purpose": "other", "path": ".skilled/command-support/deep/assets/legacy/ (fallback injection bodies)" }
+        { "purpose": "other", "path": ".skilled/commands/deep/assets/compiled/ (generated *.contract.markdown + manifest.jsonl digest ledger)" },
+        { "purpose": "other", "path": ".skilled/commands/deep/assets/legacy/ (fallback injection bodies)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
