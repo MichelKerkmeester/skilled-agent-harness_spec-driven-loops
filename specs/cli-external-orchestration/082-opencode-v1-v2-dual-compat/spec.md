@@ -164,7 +164,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 51 | 051-dispatch-lint-nested-quote-gap/ | Replace the Pi dispatch lint's expansion depth count with one POSIX context-stack scanner, so a backtick quoted inside a substitution no longer lets a nested executor mention authorize, and unresolvable structure denies | Complete |
 | 52 | 052-v1-default-llmgateway/ | Make llmgateway/deepseek-v4.1-flash the OpenCode 1 default too, so both versions share one default, prove an unpinned dispatch live on each version and close 043 | Complete |
 | 53 | 053-final-commit-live-proof/ | Rerun the live 17-plugin playbook on OpenCode 1.19.3 and 2.0.32 at the final main commit | Complete |
-| 54 | 054-v4-0-0-13-changelog-opencode/ | Make the OpenCode 1 and 2 work and its testing a prominent part of the v4.0.0.13 changelog | Pending |
+| 54 | 054-v4-0-0-13-changelog-opencode/ | Make the OpenCode 1 and 2 work and its testing a prominent part of the v4.0.0.13 changelog | Complete |
 
 ### Phase Transition Rules
 

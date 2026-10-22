@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode"
     last_updated_at: "2026-10-22T09:30:00Z"
     last_updated_by: "deepseek-v4.1-flash"
-    recent_action: "Fixed six review P1s over three rounds; a narrow read-only check passed the changed sentences"
-    next_safe_action: "Push to main, then confirm the run at that commit"
+    recent_action: "Pushed as `31f48d136f` on main; main `75bf33afe9` is green, Spec-Kit Check 39744488854 included"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/changelog/skilled/v4.0.0.13.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-v4-0-0-13-changelog-opencode"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Does the changelog keep test counts: yes, as a recorded deviation, because the operator asked for the testing to be shown"
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 054-v4-0-0-13-changelog-opencode |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | 2026-10-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -115,7 +115,7 @@ The finished file then went through `validate_document.py`, which reported VALID
 | Plugin count | PASS: 17 plugin files under `.opencode/plugins/`, matching the changelog's 17 |
 | Glance list length | PASS: 12 bullets, the template's ceiling, down from 14 by merging related bullets |
 | OpenCode section position and size | PASS: sits right after In-Session Handover with eight H4 items |
-| Push and CI | Not run in this phase: T011 and T012 are open for the orchestrator |
+| Push and CI | PASS: pushed as `31f48d136f` on main, where all 12 workflows that ran passed; the index rebuild after it, main `75bf33afe9`, ran 13 green, including Spec-Kit Check 39744488854, OpenCode Plugin Tests 39744489328 and Hook Node Tests 39744488865, with Trigger Index Rebuild skipped on its own rebuild commit |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -127,7 +127,7 @@ The finished file then went through `validate_document.py`, which reported VALID
 2. **The suite counts are a point-in-time measurement.** They describe the release tree on 2026-10-22. A later code change makes them stale in the same way 872 went stale here, and nothing in the changelog reruns them.
 3. **The counts are the template's exception, not its rule.** Another changelog written from the same contract will drop test counts unless its operator asks for them, so this file cannot be used as the shape for the next one.
 4. **The Resident Memory section still points at `037-advisor-daemon-memory/002-lighter-advisor-launcher`.** That pointer predates this edit and was out of scope, so it stays as found; it is noted here rather than fixed.
-5. **The push and the CI check are not done.** The phase stops at validated content; T011 and T012 track the push to main and the green run at that commit.
+5. **The CI record is a point-in-time measurement.** `31f48d136f` passed all 12 workflows that ran, and main `75bf33afe9` passed 13. A later commit replaces that result, so the record here describes those two runs and nothing after them.
 
 ### P2s Left as Written
 

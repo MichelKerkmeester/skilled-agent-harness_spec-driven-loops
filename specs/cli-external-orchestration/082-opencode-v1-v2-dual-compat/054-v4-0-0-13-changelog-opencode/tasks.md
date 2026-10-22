@@ -56,8 +56,8 @@ contextType: "general"
 - [x] T009 Round 2 read-only DeepSeek review, then fix its 3 P1s: the sk-vision tools gate was unstated, the 872 hook node count was stale, and 323 was an audit-time count (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T010 Run both content validators over the finished file: `validate_document.py` reports VALID with 0 issues and `hvr_scan.py` reports 0 hard blockers (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T013 Round 3 read-only DeepSeek review, then fix its 1 P1 and 4 P2s in one brief: say the suites "run in CI" rather than that they block a merge, drop the dispatch audit row so the table holds four, scope `opencode-go` to OpenCode 1, describe the `OPENCODE_DB` migration as documented rather than probed, and name the two Pi extension suites; a narrow read-only check of the changed sentences then returned PASS, with one P2 - this phase's own `spec.md` still listed 124 - now fixed (`implementation-summary.md`, `spec.md`)
-- [ ] T011 Push to main
-- [ ] T012 Confirm CI green at the pushed commit
+- [x] T011 Push to main - `31f48d136f` on main
+- [x] T012 Confirm CI green at the pushed commit - CI green on main `75bf33afe9`, Spec-Kit Check 39744488854
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,10 +65,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [ ] T011 and T012 open: the push to main and the CI check at that commit belong to the orchestrator
+- [x] T011 and T012 closed: `31f48d136f` is on main, and main `75bf33afe9` ran 13 workflows green, including Spec-Kit Check 39744488854
 <!-- /ANCHOR:completion -->
 
 ---
