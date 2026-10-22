@@ -54,8 +54,10 @@ contextType: "general"
 - [x] T007 Round 2 read-only DeepSeek fact check, then fix its findings: provisioning undercounted the missing package trees and omitted the two that stay out on purpose (P1), and the archive paragraph named malformed JSON where a valid file holding the wrong shape is the trigger (P2) (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T008 Round 3 read-only DeepSeek fact check: PASS, no findings (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T009 Run both content validators over the finished file: `validate_document.py` reports VALID with 0 issues and `hvr_scan.py` reports 0 hard blockers (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T010 Push to main (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T011 Record CI on the pushed commit (`.skilled/changelog/skilled/v4.0.0.13.md`)
+- [x] T010 Push to main (`.skilled/changelog/skilled/v4.0.0.13.md`)
+  - `11a5d9b0e4` on main
+- [x] T011 Record CI on the pushed commit (`.skilled/changelog/skilled/v4.0.0.13.md`)
+  - CI green on `11a5d9b0e4` and on `e5f2a95488`, Spec-Kit Check 39837140597
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,7 +65,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every task marked `[x]`: T010 and T011 stay open until the commit is on main and CI has run on it
+- [x] Every task marked `[x]`: T010 and T011 stay open until the commit is on main and CI has run on it
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: the section, the glance bullet at 12 and the upgrade note all read as recorded, and both validators passed
 <!-- /ANCHOR:completion -->

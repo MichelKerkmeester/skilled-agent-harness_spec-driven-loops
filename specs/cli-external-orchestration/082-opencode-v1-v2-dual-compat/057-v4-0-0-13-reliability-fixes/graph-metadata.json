@@ -32,7 +32,7 @@
       "advisor"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,6 +98,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,14 +157,14 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Kit Check",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "five H4",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "v4.0.0.13 shipped a run of reliability fixes between tag v4.0.0.12 and the release: advisor lookups that queued without a deadline, a hand-off count that two hooks could overwrite at once, a corrupt goal record that revived a stale goal, worktrees missing their package trees, and a set of smaller repairs",
     "created_at": "2026-10-22T18:36:09Z",
-    "last_save_at": "2026-10-22T19:01:46.618Z",
+    "last_save_at": "2026-10-22T19:30:26.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de8e16bc507b9108a7ab063f1fde572a8c00b060842fc866ec66defca92f79a7",
+    "source_fingerprint": "sha256:be88d3e66210c85c93918e5850bdbf070c2349972714c3a0f914ff4811d55e26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b44ec7753292e5ca39edfb68ec04e3e8073d3a9f3a1a9e1337fd079f1b9e36b",
+      "spec.md": "5fa340bef3e7b5010bd875915650b22cccc28240f0197d0f8fc6a7c8a43d72d6",
       "plan.md": "d34877fac0b7c77b74ca22d5c7d699c8dde0e069ea4d03875aea18f20da65174",
-      "tasks.md": "ec5caf36cd141bee78bf8862140bdc579dcf82ec2856b64c818101de816db951",
-      "implementation-summary.md": "51e0524eb943baadf796588458789eaabd37fa383cc2e9dc39d69f93f17e3c3f"
+      "tasks.md": "c4c285c7e49cf062b7272e7ad3a0da460e450624e6845ab3f60699eed68357bf",
+      "implementation-summary.md": "08da5dc9fd9cf1f639e9919ceed909a05b884c7c9bfb114fd416200da3acc6fe"
     },
     "last_active_at": null
   }

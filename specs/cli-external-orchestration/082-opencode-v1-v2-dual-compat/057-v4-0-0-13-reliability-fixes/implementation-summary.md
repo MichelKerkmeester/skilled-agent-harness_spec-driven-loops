@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes"
-    last_updated_at: "2026-10-22T20:40:00Z"
+    last_updated_at: "2026-10-22T23:10:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Changelog section written; fact check round 3 PASS"
-    next_safe_action: "Push the changelog change to main and record CI on the pushed commit"
+    recent_action: "Pushed and CI green"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/changelog/skilled/v4.0.0.13.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "057-v4-0-0-13-reliability-fixes"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Which commit is left out: ecd8873efa, because the live-proof paragraph already covers that handoff-note fault among its four"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 057-v4-0-0-13-reliability-fixes |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | 2026-10-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -121,7 +121,7 @@ Every finding was fixed in a brief before the next round began, and round 3 retu
 | Glance bullet and list length | PASS: the bullet reads "State, locks and CI are sturdier." and names all six areas, and `What's New at a Glance` still lists 12 bullets |
 | Upgrade note | PASS: "Pass a workspace to goal session actions." is in Upgrade Notes and names `--workspace` and the repo root |
 | Commit coverage | PASS: 25 of the 26 commits since tag v4.0.0.12 are described, with `ecd8873efa` dropped for the live-proof paragraph's existing mention |
-| Push and CI | PENDING: T010 and T011 stay open until the change is on main and CI has run on that commit |
+| Push and CI | PASS: on main as `11a5d9b0e4`; CI green on `11a5d9b0e4` (12 of 12 workflows, sk-doc Script Tests 39836751312, Changed Packet Validation 39836751565) and on the index rebuild `e5f2a95488` (13 passed, Trigger Index Rebuild skipped, Spec-Kit Check 39837140597); recursive strict validation of 082 printed RESULT: PASSED for all 58 folders |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -132,7 +132,7 @@ Every finding was fixed in a brief before the next round began, and round 3 retu
 1. **The section describes commits, not a run.** Each sentence was checked against its commits in three read-only rounds, but nothing in the changelog executes the fixes, so a later regression would not show up here.
 2. **The dropped commit depends on the live-proof paragraph staying.** `ecd8873efa` has no line of its own because that paragraph covers the same handoff-note fault. If a later edit removes those four faults, the release notes lose the fix.
 3. **The glance bullet carries six areas in one sentence.** It reads longer than the bullet it replaced, and that length is the price of holding the list at 12 while naming every group.
-4. **The push and the CI record are still open.** T010 and T011 in `tasks.md` remain unticked, and this file says nothing about a pushed commit until they close.
+4. **The CI record is a snapshot of two commits.** The green runs cover `11a5d9b0e4` and the index rebuild `e5f2a95488`; later commits on main are not part of this record.
 
 ### P2s Left as Written
 
