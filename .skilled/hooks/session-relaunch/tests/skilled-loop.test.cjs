@@ -187,6 +187,12 @@ if (markerPath && fs.existsSync(markerPath)) {
     fs.writeFileSync(path.join(stateDir, "relaunch-" + loopId + ".json"), JSON.stringify(relaunch));
   }
 }
+const noteDoneInvocation = process.env.NOTE_DONE_ON_INVOCATION;
+if (noteDoneInvocation === String(invocation)) {
+  const notePath = process.env.HANDOFF_PATH;
+  const note = fs.readFileSync(notePath, "utf8");
+  fs.writeFileSync(notePath, note.replace(/^status: open$/m, "status: done"));
+}
 const exitCodes = (process.env.STUB_EXIT_CODES || "0").split(",").map(Number);
 process.exitCode = exitCodes[Math.min(invocation - 1, exitCodes.length - 1)];
 `;
@@ -1141,6 +1147,44 @@ test('wrapper returns the last runtime exit code and logs relaunch and decline e
   assert.equal(readRecords(recordPath).length, 2);
   assert.match(readLog(sandbox), /relaunch/);
   assert.match(readLog(sandbox), /decline/);
+});
+
+test('a relaunched runtime that exits before claiming prints the manual claim command', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  const warningLine = result.stderr.split('\n').find((line) => line.includes('was not claimed'));
+  assert.ok(warningLine, result.stderr);
+  assert.ok(warningLine.includes(handoffPath), warningLine);
+  assert.equal(
+    result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
+    expectedClaudeManualCommand(handoffPath, SPEC_FOLDER),
+  );
+});
+
+test('a relaunched runtime that claimed its note prints no claim command at exit', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    NOTE_DONE_ON_INVOCATION: '2',
+  });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.match(fs.readFileSync(handoffPath, 'utf8'), /status: done/);
+  assert.doesNotMatch(result.stderr, /was not claimed/);
+  assert.equal(
+    (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+    false,
+  );
 });
 
 test('wrapper prints the manual command after runtime exit 130', (t) => {

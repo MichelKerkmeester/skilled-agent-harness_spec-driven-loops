@@ -104,6 +104,19 @@ consumed_spec_folder() {
   printf '%s' "$spec_folder"
 }
 
+# Prints the note's state through the core, so the wrapper judges a note exactly as a
+# claim and a should-relaunch decision would.
+handoff_note_state() {
+  local handoff_path="$1"
+  local note_state=''
+  note_state=$(node -e '
+    const [corePath, handoffPath] = process.argv.slice(1);
+    const { noteState } = require(corePath);
+    process.stdout.write(noteState(handoffPath));
+  ' -- "$relaunch_core" "$handoff_path" 2>/dev/null) || note_state=''
+  printf '%s' "$note_state"
+}
+
 has_line_break() {
   local value="$1"
   [[ "$value" == *$'\r'* || "$value" == *$'\n'* ]]
@@ -427,6 +440,11 @@ if [[ ! "$SKILLED_LOOP_HOPS" =~ ^[0-9]+$ ]]; then
 fi
 export SKILLED_LOOP_HOPS
 
+# The note a relaunch seeded and its spec folder, kept so a later decline can name the
+# note that session was handed and never claimed.
+relaunched_handoff=''
+relaunched_spec_folder=''
+
 while true; do
   # Keep the wrapper alive so it can inspect relaunch state after the runtime exits.
   # The guarded expansion keeps empty arguments safe under Bash 3.2 with nounset.
@@ -512,6 +530,8 @@ while true; do
       export SKILLED_LOOP_HOPS
 
       spec_folder=$(consumed_spec_folder)
+      relaunched_handoff="$handoff_path"
+      relaunched_spec_folder="$spec_folder"
       seed="[session-relaunch] claim and continue handoff $handoff_path"
       seed+=$(spec_folder_suffix "$spec_folder")
       build_relaunch_arguments "$seed"
@@ -538,6 +558,7 @@ while true; do
       fi
       exec 3<&-
       consume_record
+      manual_command_printed=0
       if has_line_break "$handoff_path"; then
         printf '%s\n' \
           'warning: the handoff path contains a line break; no manual command printed' >&2
@@ -551,8 +572,16 @@ while true; do
               && ((runtime_exit == 0)); then
               runtime_exit=1
             fi
+            manual_command_printed=1
             ;;
         esac
+      fi
+      # An interrupted relaunch leaves an open note that only the operator can pick up now.
+      if ((manual_command_printed == 0)) && [[ -n "$relaunched_handoff" ]] \
+        && [[ "$(handoff_note_state "$relaunched_handoff")" == 'open' ]]; then
+        printf 'warning: the relaunched session ended before claiming %s; its handoff note was not claimed\n' \
+          "$relaunched_handoff" >&2
+        print_manual_command "$relaunched_handoff" "$relaunched_spec_folder" || true
       fi
       exit "$runtime_exit"
       ;;
