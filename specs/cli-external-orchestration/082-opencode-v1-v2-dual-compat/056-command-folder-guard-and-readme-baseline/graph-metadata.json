@@ -38,6 +38,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      ".skilled/commands/doctor/scripts/README.markdown",
       "scratch/verification.txt",
       ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
       ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
@@ -67,6 +69,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 055 proved the `.markdown` suffix works by reading two command lists on each version",
     "created_at": "2026-10-22T14:23:51Z",
-    "last_save_at": "2026-10-22T14:27:31.681Z",
+    "last_save_at": "2026-10-22T14:48:08.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b82519b98d29e224b17848b4d9bee73f38c36ac3c4c70c0d1c2c31dd2f628c46",
+    "source_fingerprint": "sha256:234edddb6c629abc86c42aa818cb9db1489e072383e6d2a6360b7d7f754f8e59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fb6b7c138cf53dcaa80daeb65ea7106b5c0d7d41bd35cdb3f0514c28c09fdb79",
       "plan.md": "f4582ca9994c7ed3dc4c8992456195cbf37952841803d590217b691b8d1107f6",
-      "tasks.md": "a6c10c8ab5beed19275896838e598a657ce93471b75482d9562f95d40ec41900",
-      "implementation-summary.md": "df9576acf8ef1e531ec3a7de67f453e22adbec0b82539ca2b093045475a21640"
+      "tasks.md": "54efdac0cea5de50b6db42a5afbd27c09e924205d3a05f16005566d18fcaba11",
+      "implementation-summary.md": "870279ec896171056c7333d5cfd21c098a00816027c881a4deee31a3703d5c08"
     },
     "last_active_at": null
   }

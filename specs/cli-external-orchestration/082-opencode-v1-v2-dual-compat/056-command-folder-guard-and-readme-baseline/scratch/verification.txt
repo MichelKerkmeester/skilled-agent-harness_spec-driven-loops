@@ -6,3 +6,12 @@ sk-doc script tests: 38 PASS, 0 FAIL (run-script-tests.sh, exit 0).
 Smoke: plugins 533/533, hook node tests 914/914 over 30 files (main grew from 516/889 since 055; these suites do not cover the changed files).
 Review round 1 (read-only DeepSeek): FAIL, 1 P1 (v2 built-ins failed when a non-command file shares their stem) + 3 P2. Fixed: built-ins on v2 and configured MCP prompts exempt (C16).
 Review round 2: PASS, 5 P2. Fixed: the stale comment above legCommandListed, and the symlinked-folder half of the walker-coverage P2 (C17). Recorded, not fixed: the cycle and broken-link half of that P2 (the new walker reuses listCommandNames' guards), plus three more: a configured MCP prompt whose name a non-command file also produces passes; the unreadable-config degrade rule does not recognise the new detail text; a detail repeats the name when the listed name keeps its extension.
+
+Docs step (asked by the operator after the guard landed):
+- Changelog .skilled/changelog/skilled/v4.0.0.13.md: the command-support paragraph now says the 12 files moved back into .skilled/commands/ as .markdown because both versions register every *.md under commands/, and the command list is unchanged (40 on v1, 42 on v2); the battery testing paragraph adds the new failure rule; the battery unit test row is 55; a new upgrade note tells readers to repoint .skilled/command-support/ links; the glance list was 13 bullets after a later edit by another change and is back to 12 by merging the two OpenCode install and plugin bullets. validate_document.py: VALID, 0 issues.
+- .skilled/commands/doctor/scripts/README.markdown: the command-listed bullet states the new rule, its exemptions and that a name a .md command owns is left out. validate_document.py --type readme: VALID, 0 issues.
+- Search of live docs for command-support or the old .md names found no other stale reference outside spec records and generated indexes.
+- Fact check (read-only DeepSeek): PASS with 2 P2, both fixed (the "stay at their old paths" wording, and the README omitting the command-owned-name exception).
+- Guard commit d39360163c pushed to main before this step.
+
+CI on d39360163c: 16 of 16 success, including OpenCode Dual-Version Battery 39797243651, Spec-Kit Check 39797243400, OpenCode Plugin Tests 39797243382, Hook Node Tests 39797243093, sk-doc Script Tests 39797243118 and Markdown Link Integrity 39797243561.

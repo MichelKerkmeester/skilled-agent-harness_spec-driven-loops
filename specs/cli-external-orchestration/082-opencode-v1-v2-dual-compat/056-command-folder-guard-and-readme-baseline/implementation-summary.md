@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 056-command-folder-guard-and-readme-baseline |
 | **Status** | In Progress |
-| **Completed** | Pending T015 to T017 |
+| **Completed** | Pending T016 (CI confirmation) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -61,6 +61,12 @@ The walker itself, `listNonCommandFiles`, reads `command/` and `commands/` under
 
 The README verdict baseline was the other half of 055's gap. It is rebuilt from the tracked set with `test_readme_verdict_parity.py --write`: 978 to 985 entries, 8 tracked READMEs added, one stale entry removed for the deleted `.skilled/skills/sk-code/shared/assets/patterns/README.md`, and 0 existing verdicts changed. Seven of the added READMEs are valid; the eighth is the vendored npm README under `082/scratch/a2-v2pkg/package`, which is invalid with a return code of 1 and one issue, recorded as the auditor gives it.
 
+### Docs Step: Changelog and Doctor README
+
+The guard landed as `d39360163c` on main before the docs step, and the operator asked for the changelog and its related docs to follow it in the same phase. `.skilled/changelog/skilled/v4.0.0.13.md` changed in four places: the command-support paragraph now says the 12 files moved back into `.skilled/commands/` as `.markdown` because both versions register every `*.md` under `commands/`, with the command list unchanged at 40 on v1 and 42 on v2; the battery testing paragraph adds the new failure rule; the battery unit test row reads 55; and a new upgrade note tells readers to repoint `.skilled/command-support/` links. The glance list had grown to 13 bullets after a later edit by another change and is back to 12 by merging the two OpenCode install and plugin bullets. `.skilled/commands/doctor/scripts/README.markdown` states the new rule in its command-listed bullet, names its exemptions, and says a name a `.md` command owns is left out. Both files validate with `validate_document.py` at 0 issues, and a search of the live docs for `command-support` or the old `.md` names found no other stale reference outside spec records and generated indexes.
+
+A read-only DeepSeek fact check returned PASS with 2 P2s, both fixed: the "stay at their old paths" wording, and the README omitting the command-owned-name exception.
+
 ### Deviations and Recorded P2s
 
 The guard deviates from a strict per-file rule in one place, and `scratch/verification.txt` records it through review: round 1 returned FAIL with 1 P1 (v2 built-ins failed when a non-command file shares their stem) plus 3 P2s, and the fix was the exemption for built-ins on v2 and configured MCP prompts, pinned by C16. Round 2 returned PASS with 5 P2s. Fixed: the stale comment above `legCommandListed`, and a symlinked command folder test (C17). Recorded, not fixed, exactly as the verification file lists them: a configured MCP prompt whose name a non-command file also produces passes; the unreadable-config degrade rule does not recognise the new detail text; a detail repeats the name when the listed name keeps its extension; no cycle or broken-link test for the new walker, which reuses `listCommandNames`' guards.
@@ -75,6 +81,8 @@ The guard deviates from a strict per-file rule in one place, and `scratch/verifi
 | `scratch/verification.txt` | Created | The unit, revert, parity, suite and review record |
 | `scratch/battery-live.txt` | Created | The live battery transcript, both versions |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Created | This phase's packet, filled from the scaffold |
+| `.skilled/changelog/skilled/v4.0.0.13.md` | Modified | The `.markdown` move and the unchanged 40/42 lists, the new failure rule, 55 as the test row, the upgrade note, and a glance list back to 12 bullets |
+| `.skilled/commands/doctor/scripts/README.markdown` | Modified | The command-listed bullet carries the new rule, its exemptions and the command-owned-name exception |
 | `../spec.md` | Modified | The phase map row for 056 and the 055 to 056 handoff row |
 | `../055-command-support-into-commands/implementation-summary.md` | Modified | One sentence per Known Limitation saying how this phase closes it |
 <!-- /ANCHOR:what-built -->
@@ -90,7 +98,7 @@ The live battery then ran on both versions with the new check in place, and ever
 
 The README baseline was rebuilt rather than patched, and the parity rerun after the rebuild reports `baseline_files=985 diff_entries=0 PASS`. The sk-doc script tests ran 38 PASS with 0 FAIL through `run-script-tests.sh` at exit 0. The tracked smoke suites read plugins 533/533 and hook node tests 914/914 over 30 files; both grew on main since 055's 516 and 889, and neither suite covers the files this phase changed.
 
-A separate read-only review through a DeepSeek session took two rounds. Round 1 FAIL with 1 P1 and 3 P2s, the P1 fixed by the exemption and pinned by C16. Round 2 PASS with 5 P2s, the stale comment and the symlink test fixed, the rest recorded. The push, CI and the v4.0.0.13 changelog are not done yet: T015 to T017 stay unticked, so nothing here claims a commit or a green run.
+A separate read-only review through a DeepSeek session took two rounds. Round 1 FAIL with 1 P1 and 3 P2s, the P1 fixed by the exemption and pinned by C16. Round 2 PASS with 5 P2s, the stale comment and the symlink test fixed, the rest recorded. The guard and baseline work is committed and pushed as `d39360163c` on main, and the changelog and doctor README followed it. CI is the one thing still open: T016 stays unticked, so nothing here claims a green run.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -127,7 +135,10 @@ A separate read-only review through a DeepSeek session took two rounds. Round 1 
 | Hook node tests | PASS: 914/914 over 30 files (grew on main from 889 since 055; the suite does not cover the changed files) |
 | Read-only review, round 1 | FAIL: 1 P1 (v2 built-ins failed when a non-command file shares their stem) plus 3 P2s. The P1 was fixed by exempting built-ins on v2 and configured MCP prompts, pinned by C16 |
 | Read-only review, round 2 | PASS: 5 P2s, the stale comment above `legCommandListed` and a symlinked command folder test (C17) fixed, four recorded |
-| Commit, CI and changelog | PENDING: T015 to T017 are unticked, so this phase claims no pushed commit and no CI result |
+| Changelog and doctor README | PASS: `validate_document.py` VALID with 0 issues on `v4.0.0.13.md` and on `doctor/scripts/README.markdown` (`--type readme`); the live-doc search found no stale reference outside spec records and generated indexes |
+| Docs fact check | PASS: read-only DeepSeek review with 2 P2s, both fixed (the "stay at their old paths" wording, and the README omitting the command-owned-name exception) |
+| Commit | `d39360163c` on main (guard and baseline), pushed before the docs step |
+| CI | PENDING: T016 is unticked, so this phase claims no CI result |
 
 Every number above was read from `scratch/verification.txt` and `scratch/battery-live.txt`, and the battery unit test count was re-read from the suite at the final state.
 <!-- /ANCHOR:verification -->
@@ -142,7 +153,7 @@ Every number above was read from `scratch/verification.txt` and `scratch/battery
 3. **The unreadable-config degrade rule does not recognise the new detail text.** A config that cannot be read still degrades as it did before, without knowing about the non-command wording.
 4. **A detail repeats the name when the listed name keeps its extension.** The message reads correctly but carries the name twice in that case.
 5. **The new walker has no cycle or broken-link test of its own.** It reuses `listCommandNames`' guards, and C17 covers a symlinked command folder, but the cycle and broken-link paths are untested here.
-6. **The v4.0.0.13 changelog and its related docs are not updated yet.** That is a later task in this phase, still unticked with the push and the CI check.
+6. **CI is unconfirmed at the pushed commit.** The guard commit `d39360163c` is on main and the changelog and doctor README now describe it, but T016 stays unticked, so nothing here claims a green run.
 <!-- /ANCHOR:limitations -->
 
 ---

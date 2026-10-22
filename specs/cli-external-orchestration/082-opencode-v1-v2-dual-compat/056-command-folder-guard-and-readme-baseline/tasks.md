@@ -59,9 +59,9 @@ contextType: "general"
 - [x] T012 Confirm the rebuilt baseline and the sk-doc scripts: `baseline_files=985 diff_entries=0 PASS` on the parity rerun, and 38 PASS with 0 FAIL from `run-script-tests.sh` (`scratch/verification.txt`)
 - [x] T013 Run the tracked smoke suites: plugins 533/533 and hook node tests 914/914 over 30 files. Both grew on main since 055's 516 and 889, and neither suite covers the files this phase changed (`scratch/verification.txt`)
 - [x] T014 Fill this phase's four docs, add the parent map and handoff rows for 056, and append one sentence to each of 055's three Known Limitations saying how this phase closes it (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`, `../055-command-support-into-commands/implementation-summary.md`)
-- [ ] T015 Commit and push to main
+- [x] T015 Commit and push to main — `d39360163c` on main (guard and baseline)
 - [ ] T016 Confirm CI green at the pushed commit (`implementation-summary.md`)
-- [ ] T017 Update the v4.0.0.13 changelog and related docs
+- [x] T017 Update the v4.0.0.13 changelog and related docs — the changelog now names the `.markdown` move and the unchanged lists (40 on v1, 42 on v2), adds the new failure rule, records 55 as the battery unit test row and an upgrade note for `.skilled/command-support/` links, and its glance list is back to 12; `doctor/scripts/README.markdown` states the rule, its exemptions and the command-owned-name exception; both validate with 0 issues, the live-doc search found no other stale reference, and the fact check returned PASS with 2 P2s, both fixed (`scratch/verification.txt`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
