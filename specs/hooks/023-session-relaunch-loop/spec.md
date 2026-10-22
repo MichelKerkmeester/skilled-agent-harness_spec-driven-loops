@@ -119,6 +119,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 16 | 016-handover-trigger-review/ | The `/speckit:handoff` doc follows the sk-create-command template, and a ten-iteration deep review checks whether the automatic handover fires every time on Claude, Pi, OpenCode, Codex and Hermes, then fixes what it confirms and proves live hops again. | complete |
 | 17 | 017-hop-history/ | Every hop writes `handed-over`, `claimed`, `done` or `timed-out` lines to a gitignored hop history; `session-relaunch.cjs history` and `/doctor:setup` show it, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over. | complete |
 | 18 | 018-outside-loop-handoff/ | A session outside `skilled-loop` keeps a handoff note with `session-relaunch.cjs keep` instead of hearing nothing, Claude Code points it back at the note after a compaction, and `history` and `/doctor:setup` name every note nobody claimed. | complete |
+| 19 | 019-fork-compact-pointer-research/ | [Phase 19 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -148,6 +149,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 015-v4-0-0-13-changelog | 016-handover-trigger-review | phase 015 is Complete with the v4.0.0.13 release entry validated | `validate.sh 015-v4-0-0-13-changelog --strict` RESULT: PASSED |
 | 016-handover-trigger-review | 017-hop-history | phase 016 is Complete with the review findings fixed and live hops re-proven | `validate.sh 016-handover-trigger-review --strict` RESULT: PASSED |
 | 017-hop-history | 018-outside-loop-handoff | phase 017 is Complete with the hop history recorded and readable | `validate.sh 017-hop-history --strict` RESULT: PASSED |
+| 018-outside-loop-handoff | 019-fork-compact-pointer-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

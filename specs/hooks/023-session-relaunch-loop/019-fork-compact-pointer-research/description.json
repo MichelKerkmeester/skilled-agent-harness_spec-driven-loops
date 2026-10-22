@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "hooks/023-session-relaunch-loop/019-fork-compact-pointer-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-10-21T18:45:04.910Z",
+  "specId": "019",
+  "folderSlug": "fork-compact-pointer-research",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

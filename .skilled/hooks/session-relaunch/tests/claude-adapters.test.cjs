@@ -879,18 +879,43 @@ function writeOpenNote(sandbox, sessionId = SESSION_ID) {
   return notePath;
 }
 
-function compactPayload(source = 'compact') {
-  return { hook_event_name: 'SessionStart', source, session_id: SESSION_ID };
+function writeSessionTranscripts(sandbox, { forkBoundaryAgoMs } = {}) {
+  const projectDir = path.join(sandbox.root, 'project');
+  fs.mkdirSync(projectDir, { recursive: true });
+  const parentPath = path.join(projectDir, `${SESSION_ID}.jsonl`);
+  fs.writeFileSync(parentPath, `${JSON.stringify({ type: 'user' })}\n`);
+  if (typeof forkBoundaryAgoMs !== 'number') return { parentPath, forkPath: null };
+
+  // A fork inherits its parent's session id and files its own transcript under that
+  // id's subagents directory, so a fork's compaction is not the parent's.
+  const subagentsDir = path.join(projectDir, SESSION_ID, 'subagents');
+  fs.mkdirSync(subagentsDir, { recursive: true });
+  const forkPath = path.join(subagentsDir, 'agent-abc123.jsonl');
+  const boundary = {
+    type: 'system',
+    subtype: 'compact_boundary',
+    timestamp: new Date(Date.now() - forkBoundaryAgoMs).toISOString(),
+    compactMetadata: { trigger: 'auto' },
+  };
+  fs.writeFileSync(forkPath, `${JSON.stringify(boundary)}\n`);
+  return { parentPath, forkPath };
+}
+
+function compactPayload(source = 'compact', transcriptPath) {
+  const payload = { hook_event_name: 'SessionStart', source, session_id: SESSION_ID };
+  if (!transcriptPath) return payload;
+  return { ...payload, transcript_path: transcriptPath };
 }
 
 test('compact-pointer points a compacted session at its open note and resets the nudge level', async (t) => {
   const sandbox = createSandbox(t);
   const notePath = writeOpenNote(sandbox);
+  const { parentPath } = writeSessionTranscripts(sandbox);
   const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
   fs.mkdirSync(path.dirname(stateFile), { recursive: true });
   fs.writeFileSync(stateFile, '{"level":2}\n');
 
-  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload());
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
   assert.equal(result.code, 0, result.stderr);
   const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
   assert.match(context, /^\[session-relaunch\] This session was compacted after it wrote a handoff note/);
@@ -906,7 +931,10 @@ test('compact-pointer adds nothing on a fresh start or when no note is open', as
   assert.equal(startup.stdout, '');
 
   const empty = createSandbox(t);
-  const compacted = await runAdapter(empty, COMPACT_POINTER, compactPayload());
+  const { parentPath } = writeSessionTranscripts(empty);
+  const compacted = await runAdapter(
+    empty, COMPACT_POINTER, compactPayload('compact', parentPath),
+  );
   assert.equal(compacted.code, 0, compacted.stderr);
   assert.equal(compacted.stdout, '');
 });
@@ -916,7 +944,70 @@ test('compact-pointer leaves a note alone while its hop is prepared', async (t) 
   const notePath = writeOpenNote(sandbox);
   createPendingRecord(sandbox, '7001', SESSION_ID, notePath);
   sandbox.env.SKILLED_LOOP_ID = '7001';
+  const { parentPath } = writeSessionTranscripts(sandbox);
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('compact-pointer stays silent for a fork that just compacted', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+  const { parentPath } = writeSessionTranscripts(sandbox, { forkBoundaryAgoMs: 300 });
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 2 });
+});
+
+test('compact-pointer still points the parent when a fork compacted long ago', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+  const { parentPath } = writeSessionTranscripts(sandbox, { forkBoundaryAgoMs: 60000 });
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), context);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+test('compact-pointer stays silent when the transcript path names a fork file', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+  const { forkPath } = writeSessionTranscripts(sandbox, { forkBoundaryAgoMs: 60000 });
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', forkPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 2 });
+});
+
+test('compact-pointer skips and logs when the payload has no transcript path', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+
   const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload());
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 2 });
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
+  assert.match(log, /compact-pointer-skipped/);
+  assert.match(log, /reason=no-transcript/);
 });

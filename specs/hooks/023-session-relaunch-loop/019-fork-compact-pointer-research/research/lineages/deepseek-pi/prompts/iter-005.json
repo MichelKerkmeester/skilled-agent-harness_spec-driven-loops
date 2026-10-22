@@ -1,0 +1,46 @@
+{
+  "iteration": 5,
+  "status": "complete",
+  "newInfoRatio": 0.4,
+  "focus": "Read stop-arm and context-usage transcript handling and try to recover the fork transcript_path value from local records",
+  "timestamp": "2026-10-21T18:53:06Z",
+  "outDir": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages/deepseek-pi",
+  "answeredQuestions": [],
+  "findings": [
+    {
+      "id": "f-iter005-001",
+      "label": "`stop-arm` gates its arm path on `SKILLED_LOOP_ID`, requires `payload.transcript_path`, and hands that path to the killer it spawns, so if Stop dispatch ever reached a fork the killer would watch a fork transcript while arming the parent's loop record.",
+      "sources": [".skilled/hooks/session-relaunch/claude/stop-arm.mjs"]
+    },
+    {
+      "id": "f-iter005-002",
+      "label": "`context-nudge` derives the fill ratio from `payload.transcript_path` and persists the level under `payload.session_id`, the same parent-state write compact-pointer performs at level 0 — the difference is only which level it writes.",
+      "sources": [".skilled/hooks/session-relaunch/claude/context-nudge.mjs"]
+    },
+    {
+      "id": "f-iter005-003",
+      "label": "No local record of a fork's `transcript_path` exists: a search of the Claude state tree outside the project transcripts found no stored `subagents/agent-` path, so neither a fork's own jsonl nor the parent transcript can be confirmed as the value a fork's payload carries.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"]
+    },
+    {
+      "id": "f-iter005-004",
+      "label": "The parent transcript contains zero sidechain records, so a fork never writes its turns into the parent file; the fork transcript and the parent transcript are disjoint files, which means a transcript-based check reads exactly one of them and never a blend.",
+      "sources": [".skilled/hooks/session-relaunch/lib/context-usage.cjs"]
+    },
+    {
+      "id": "f-iter005-005",
+      "label": "`readClaudeFill` already filters `entry.isSidechain !== true`, so the repo's transcript reader was written expecting sidechain entries to be possible in a transcript it reads — the notion that a transcript can contain fork turns already exists in the code, but no reader exposes it to the compact path.",
+      "sources": [".skilled/hooks/session-relaunch/lib/context-usage.cjs"]
+    }
+  ],
+  "ruledOut": [
+    {
+      "direction": "Key the fix on transcript_path matching a /subagents/ segment",
+      "reason": "Unprovable from local evidence and wrong if the payload names the parent transcript; kept as a candidate with a known risk, not the recommendation."
+    },
+    {
+      "direction": "Assume the fork writes its turns into the parent transcript so one path covers both",
+      "reason": "The parent transcript contains zero sidechain records."
+    }
+  ]
+}
