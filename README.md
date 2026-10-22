@@ -1010,8 +1010,8 @@ Each runtime's hook reads how full its context window is. Near 80% it asks the s
 - **OpenCode:** reads each message's token counts and arms at `session.idle` through its plugin, on OpenCode 1 and 2
 - **Hermes:** reads usage after each model call and arms at session end through the `repo-guards` plugin
 - **Cursor and Devin:** have no event the loop can trust, so they hand over when you run `/speckit:handoff`
-- **Sessions outside the loop:** one started before the shell line was added cannot relaunch. At 80% it writes the same note and runs `keep`, then carries on. After auto-compaction, Claude Code points the session back at the note, so decisions the summary dropped are not lost
-- **Safe by design:** only a session inside `skilled-loop` is asked to hop, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, and the watcher only ever signals a process the loop started
+- **Sessions outside the loop:** one started before the shell line was added cannot relaunch. At 80% it writes the same note and runs `keep`, then carries on. After auto-compaction, Claude Code, Pi and OpenCode point the session back at the note, so decisions the summary dropped are not lost
+- **Safe by design:** only a session inside `skilled-loop` is asked to hop, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, the watcher only ever signals a process the loop started, a new turn on Pi or OpenCode cancels a pending hop, and sub-agents and runtimes started from inside a session never hand over the session that started them
 - **Hop history:** every hand-over, kept note, claim, completion and timeout is logged in `.skilled/skills/.state/session-relaunch/hop-history.log`. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` to read it, along with any note nobody claimed, and set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice on each hand-over
 - **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, and auto-compaction stays the fallback
 
