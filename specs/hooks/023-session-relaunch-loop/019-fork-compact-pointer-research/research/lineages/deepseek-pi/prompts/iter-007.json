@@ -1,0 +1,46 @@
+{
+  "iteration": 7,
+  "status": "complete",
+  "newInfoRatio": 0.45,
+  "focus": "Decide the missing-transcript branch by evidence: census compact-pointer callers and per-runtime adapters, and weigh each wrong answer",
+  "timestamp": "2026-10-21T18:54:28Z",
+  "outDir": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages/deepseek-pi",
+  "answeredQuestions": [],
+  "findings": [
+    {
+      "id": "f-iter007-001",
+      "label": "`compact-pointer` exists only in the Claude adapter — there is no codex, pi, hermes or opencode equivalent — so the fix is one adapter plus its tests, and the pointer's own blast radius is Claude-only.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"]
+    },
+    {
+      "id": "f-iter007-002",
+      "label": "Fail-closed on a missing transcript is the asymmetric choice: a wrong emission injects a false \"you were compacted\" and can get the parent's note claimed, while a wrong suppression only withholds a reminder whose note stays open and reclaimable.",
+      "sources": [".skilled/hooks/session-relaunch/lib/nudge.cjs", ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"]
+    },
+    {
+      "id": "f-iter007-003",
+      "label": "Fail-closed changes the meaning of the existing emitting test, which passes a payload with no transcript at all; the fix must extend the payload factory to carry a transcript that holds a boundary, so the emitting path stays covered rather than silently deleted.",
+      "sources": [".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"]
+    },
+    {
+      "id": "f-iter007-004",
+      "label": "`session-prime` forwards the payload's source to the directive-lifecycle store as `{session_id, boundary}`, so a fork's SessionStart(source=compact) records a compaction boundary against the parent's session id in a second subsystem.",
+      "sources": [".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts", ".skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts"]
+    },
+    {
+      "id": "f-iter007-005",
+      "label": "Every one of these writes is keyed by session_id, so a fork can silently rewrite the parent's nudge level, its directive boundary and its gate state; no part of the SessionStart family records which agent performed the write.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs", ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts"]
+    }
+  ],
+  "ruledOut": [
+    {
+      "direction": "Apply the pointer fix to every runtime adapter",
+      "reason": "No other runtime has a compact pointer; their shared hazard is session-keyed state, a different finding with a different fix."
+    },
+    {
+      "direction": "Fail open on a missing transcript to protect the parent path",
+      "reason": "The parent path is documented to carry transcript_path, and a silent fail-open reproduces the observed misfire."
+    }
+  ]
+}

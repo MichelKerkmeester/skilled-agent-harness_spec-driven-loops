@@ -1,0 +1,767 @@
+{
+  "sessionId": "fanout-deepseek-pi-1792608380069-rdh5rh",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-10-21T18:57:45.849Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-the-sessionstart-compact-payload-actually-contain-for-a-fork-versus-it",
+      "inboxId": null,
+      "text": "What does the SessionStart compact payload actually contain for a fork versus its parent session?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-where-do-fork-sub-agent-transcripts-live-and-do-they-carry-the-parent-session-id",
+      "inboxId": null,
+      "text": "Where do fork sub-agent transcripts live, and do they carry the parent session_id or a distinct id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-hook-paths-nudge-note-keep-claim-stop-arm-key-off-session-id-and-therefore",
+      "inboxId": null,
+      "text": "Which hook paths (nudge, note-keep, claim, Stop-arm) key off session_id and therefore share the fork hazard?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-is-the-smallest-correct-fix-that-separates-a-fork-from-its-parent-without-r",
+      "inboxId": null,
+      "text": "What is the smallest correct fix that separates a fork from its parent without regressing the parent path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-test-or-observable-evidence-would-prove-the-fork-misfire-is-gone",
+      "inboxId": null,
+      "text": "What test or observable evidence would prove the fork misfire is gone?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-the-sessionstart-compact-payload-actually-contain-for-a-fork-versus-it",
+      "inboxId": null,
+      "text": "What does the SessionStart compact payload actually contain for a fork versus its parent session?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-where-do-fork-sub-agent-transcripts-live-and-do-they-carry-the-parent-session-id",
+      "inboxId": null,
+      "text": "Where do fork sub-agent transcripts live, and do they carry the parent session_id or a distinct id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-which-hook-paths-nudge-note-keep-claim-stop-arm-key-off-session-id-and-therefore",
+      "inboxId": null,
+      "text": "Which hook paths (nudge, note-keep, claim, Stop-arm) key off session_id and therefore share the fork hazard?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-is-the-smallest-correct-fix-that-separates-a-fork-from-its-parent-without-r",
+      "inboxId": null,
+      "text": "What is the smallest correct fix that separates a fork from its parent without regressing the parent path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-5-what-test-or-observable-evidence-would-prove-the-fork-misfire-is-gone",
+      "inboxId": null,
+      "text": "What test or observable evidence would prove the fork misfire is gone?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What else does the fork's SessionStart payload carry (transcript_path, any agent id, cwd) that a gate could read?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which other hook paths key off session_id and share this hazard?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the smallest correct discriminator, and what test proves it?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What the smallest correct fix is, and what test proves it.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the nudge, note-keep, claim and Stop-arm paths share the hazard, and how severe each is.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether a fork's transcript_path points at its own subagent jsonl or at the parent transcript — unproven locally, and the deciding detail for one candidate fix.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the Stop-arm and the UserPromptSubmit/PostToolUse nudge paths fire inside forks at all, and what they would do there.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether a fork's transcript_path differs from the parent's — the deciding detail for a transcript-based fix.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The smallest correct fix and its proof test.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether a fork's `transcript_path` points at its own subagent jsonl or at the parent transcript — still unproven, and it decides which fix is smallest.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The smallest correct fix and the test that proves it.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The test that would prove the fix.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The smallest correct fix, given that `transcript_path` may name either transcript.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether any existing test or caller depends on the pointer firing without a transcript, which would make the fail-closed branch a breaking change.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The exact test set that proves the fix and the suppression side-effect property.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the boundary guard still lets a fork through after a genuine parent compaction, and how large that residual window is.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the second clause belongs in the same change or a follow-up, and the final consolidated recommendation.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The fork's exact `transcript_path` value, which no local artifact records. It does not change the recommended fix.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-all-three-2026-10-21-fires-executed-inside-fork-sidechain-transcripts-and-each-f",
+      "text": "All three 2026-10-21 fires executed inside fork sidechain transcripts, and each fork line matches its relaunch.log row to within ~30 ms: aea1c7f90bbedad3d at 14:44:41.466Z vs log 14:44:41.453Z, ae7668a35ed03d742 at 15:30:23.729Z vs log 15:30:23.714Z, a94347aac9778aa86 at 17:42:12.061Z vs log 17:42:12.039Z.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-fork-transcripts-live-at-claude-projects-project-slug-parent-session-id-subagent",
+      "text": "Fork transcripts live at ~/.claude/projects/<project-slug>/<parent-session-id>/subagents/agent-<agentId>.jsonl with a sibling agent-<agentId>.meta.json, so the fork store is namespaced under the parent session id.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-the-fork-marker-exists-on-disk-but-never-reaches-the-hook-agent-meta-json-carrie",
+      "text": "The fork marker exists on disk but never reaches the hook: agent-*.meta.json carries agentType=fork, isFork=true and spawnDepth=1, while the hook's gate reads only source and session_id.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-the-fork-s-sessionstart-payload-carries-the-parent-s-session-id-because-the-hook",
+      "text": "The fork's SessionStart payload carries the parent's session_id, because the hook logged sessionId=0b9dc60c-478f-4659-8191-2da52f1cd765 and resolved the parent's note while running inside the fork process.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-the-hook-is-registered-under-sessionstart-with-an-empty-matcher-so-it-runs-for-e",
+      "text": "The hook is registered under SessionStart with an empty matcher, so it runs for every SessionStart source and relies entirely on that in-code source gate.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-the-hook-writes-nudge-state-for-the-payload-s-session-id-before-any-fork-shaped-",
+      "text": "The hook writes nudge state for the payload's session id before any fork-shaped guard, so a fork firing this path resets the parent's nudge level to 0 under the parent's own state filename.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-hook-s-only-source-gate-is-payload-source-compact-plus-a-valid-payload-sessi",
+      "text": "The hook's only source gate is `payload.source !== 'compact'` plus a valid `payload.session_id`; nothing in the gate establishes that the caller is the top-level session, so any SessionStart with source=compact passes.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-the-parent-session-did-not-compact-on-2026-10-21-its-transcript-holds-six-compac",
+      "text": "The parent session did not compact on 2026-10-21: its transcript holds six compact_boundary records, the last at 2026-10-20T16:19:05.871Z, and its last SessionStart:compact hook attachment is 2026-10-20T16:19:06.293Z.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-session-prime-s-compact-branch-shares-the-hazard-it-keys-the-cached-compact-brie",
+      "text": "`session-prime`'s compact branch shares the hazard: it keys the cached compact brief by session_id and injects it whenever source=compact, so the same fork received the parent's post-compaction brief (cached at 2026-10-21T15:29:16.367Z) one minute before it read the parent's note.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-a-second-independent-sessionstart-hook-in-the-same-fork-logged-sessionstart-trig",
+      "text": "A second, independent SessionStart hook in the same fork logged `SessionStart triggered (source: compact, session: 0b9dc60c-478f-4659-8191-2da52f1cd765)` to its stderr (recorded at line 195 of the fork transcript), independently confirming that a fork's payload carries source=compact and the parent's session id.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-session-scoped-hook-state-is-broadly-keyed-by-session-id-rather-than-by-agent-th",
+      "text": "Session-scoped hook state is broadly keyed by session_id rather than by agent: the spec-gate state directory holds one file per hex-encoded session id, and one of them decodes to 0b9dc60c-478f-4659-8191-2da52f1cd765, so a fork writing gate state writes the parent's record.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-contract-states-compact-pointer-s-intent-as-running-on-sessionstart-after-a-",
+      "text": "The contract states compact-pointer's intent as running on SessionStart \"after a compaction\", but the implementation trusts `source === 'compact'` as proof that a compaction happened, so the contract's precondition is unenforced in code.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-the-repo-s-own-contract-documents-the-claude-sessionstart-payload-as-source-star",
+      "text": "The repo's own contract documents the Claude SessionStart payload as source (startup/compact/resume/clear), session_id, transcript_path, stop_hook_active and context_window_tokens — there is no agent id, subagent flag or fork marker any hook could read.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-claimhandoff-validates-only-that-the-supplied-session-id-is-well-formed-and-that",
+      "text": "`claimHandoff` validates only that the supplied session id is well formed and that the note is open; it never compares the caller's session against the note's `session_id`, so a fork passing `--session <parent>` would have claimed the parent's note successfully and marked it claimed.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-opennotepathfor-selects-a-note-by-filename-suffix-first-8-characters-of-session-",
+      "text": "`openNotePathFor` selects a note by filename suffix `-<first 8 characters of session_id>.md` plus `status: open` and a frontmatter `session_id` match, so a fork carrying the parent's session id resolves the parent's open note and no agent check exists anywhere on that path.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-seedtext-aftercompaction-true-asserts-this-session-was-compacted-after-it-wrote-",
+      "text": "`seedText({ afterCompaction: true })` asserts \"This session was compacted after it wrote a handoff note\", a false claim when the emitter is a fork that never compacted, and it produces exactly the claim invocation the two fork replies refused.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-note-identity-is-only-eight-characters-of-session-id-so-the-note-lookup-s-own-fi",
+      "text": "Note identity is only eight characters of session id, so the note lookup's own filter is coarser than the note's full session identity — a second session whose id shares those eight characters would match the same note.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-the-hook-calls-writestate-sessionid-0-before-any-fork-shaped-guard-and-statefile",
+      "text": "The hook calls `writeState(sessionId, 0)` before any fork-shaped guard, and `stateFilePath` builds `nudge-<session>.json` from the payload session id, so each fork fire rewrites the parent's own nudge ladder to level 0 — the parent then nudges again sooner than its real context fill warrants.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-the-only-guard-that-could-have-suppressed-the-fork-fire-handoffpending-returns-f",
+      "text": "The only guard that could have suppressed the fork fire, `handoffPending`, returns false unless `SKILLED_LOOP_ID` is set, and the parent's note carries an empty `loop_id:` because prepare ran outside the wrapper, so the guard short-circuits and the pointer is emitted.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-context-nudge-needs-only-session-id-and-transcript-path-and-writes-state-under-t",
+      "text": "`context-nudge` needs only `session_id` and `transcript_path` and writes state under the payload session id exactly as compact-pointer does, so if PostToolUse dispatch ever reaches forks the same parent-state overwrite appears there too.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-worktree-guard-announced-this-top-level-session-is-running-on-the-shared-main-ch",
+      "text": "`worktree-guard` announced \"This top-level session is running on the shared 'main' checkout\" inside a fork, a second adapter that assumes it is addressing a top-level session — evidence the assumption is family-wide rather than one hook's bug.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-every-hook-attachment-inside-a-fork-carries-agentid-and-issidechain-true-on-the-",
+      "text": "Every hook attachment inside a fork carries `agentId` and `isSidechain: true` on the transcript record itself, so the fork's identity is provable from the transcript while it is absent from the payload the adapter receives.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-the-platform-fires-a-dedicated-subagentstart-event-whose-matcher-is-fork-inside-",
+      "text": "The platform fires a dedicated `SubagentStart` event whose matcher is `fork` inside sub-agents — 3, 8 and 6 occurrences in the 14:44, 15:30 and 17:42 forks — so fork-ness is observable at the platform level even though the SessionStart payload itself carries no fork field.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-the-project-s-posttooluse-context-nudge-and-stop-stop-arm-adapters-produced-no-a",
+      "text": "The project's PostToolUse `context-nudge` and Stop `stop-arm` adapters produced no attachment at all in any of the three forks; the only PostToolUse entries were the Orca agent-hook bridge, so the fork hazard is confined to SessionStart dispatch plus whatever the injected seed makes the model do.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-the-project-s-sessionstart-adapters-do-run-inside-forks-session-prime-worktree-g",
+      "text": "The project's SessionStart adapters do run inside forks: session-prime, worktree-guard, check-git-hooks, git-live-follow and compact-pointer all produced hook_success entries in the fork transcripts.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-context-nudge-derives-the-fill-ratio-from-payload-transcript-path-and-persists-t",
+      "text": "`context-nudge` derives the fill ratio from `payload.transcript_path` and persists the level under `payload.session_id`, the same parent-state write compact-pointer performs at level 0 — the difference is only which level it writes.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-readclaudefill-already-filters-entry-issidechain-true-so-the-repo-s-transcript-r",
+      "text": "`readClaudeFill` already filters `entry.isSidechain !== true`, so the repo's transcript reader was written expecting sidechain entries to be possible in a transcript it reads — the notion that a transcript can contain fork turns already exists in the code, but no reader exposes it to the compact path.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-stop-arm-gates-its-arm-path-on-skilled-loop-id-requires-payload-transcript-path-",
+      "text": "`stop-arm` gates its arm path on `SKILLED_LOOP_ID`, requires `payload.transcript_path`, and hands that path to the killer it spawns, so if Stop dispatch ever reached a fork the killer would watch a fork transcript while arming the parent's loop record.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-no-local-record-of-a-fork-s-transcript-path-exists-a-search-of-the-claude-state-",
+      "text": "No local record of a fork's `transcript_path` exists: a search of the Claude state tree outside the project transcripts found no stored `subagents/agent-` path, so neither a fork's own jsonl nor the parent transcript can be confirmed as the value a fork's payload carries.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-the-parent-transcript-contains-zero-sidechain-records-so-a-fork-never-writes-its",
+      "text": "The parent transcript contains zero sidechain records, so a fork never writes its turns into the parent file; the fork transcript and the parent transcript are disjoint files, which means a transcript-based check reads exactly one of them and never a blend.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-session-prime-needs-the-same-gate-or-the-fork-still-receives-the-parent-s-cached",
+      "text": "`session-prime` needs the same gate or the fork still receives the parent's cached compact brief; its cache is keyed by session id and validated only for a 30-minute TTL and payload semantics, both of which a fork satisfies.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-writestate-sessionid-0-currently-runs-before-the-guards-so-a-suppressed-fire-wou",
+      "text": "`writeState(sessionId, 0)` currently runs before the guards, so a suppressed fire would still reset the parent's nudge ladder; moving the reset below the guards makes suppression side-effect free, and the existing emitting-path test still passes.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-the-adapter-harness-already-supports-a-transcript-per-payload-through-writetrans",
+      "text": "The adapter harness already supports a transcript per payload through `writeTranscript`, so a compaction-evidence guard can be tested without new fixtures; the payload factory also omits `transcript_path`, which makes the missing-path branch explicitly testable.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-the-evidence-to-require-is-a-record-with-type-system-subtype-compact-boundary-an",
+      "text": "The evidence to require is a record with `type: system`, `subtype: compact_boundary` and a `timestamp`; the parent transcript carries six such records and none on 2026-10-21, while a fork's SessionStart implies a compaction that never wrote one.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-the-fix-is-a-guard-ahead-of-the-emit-emit-only-when-the-transcript-named-by-the-",
+      "text": "The fix is a guard ahead of the emit: emit only when the transcript named by the payload holds a compact_boundary at or after the note's `created_at`, which suppresses every fork fire observed and every future one whose transcript lacks a boundary.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-treating-a-missing-transcript-path-as-cannot-verify-is-the-honest-branch-and-it-",
+      "text": "Treating a missing `transcript_path` as \"cannot verify\" is the honest branch, and it should fail closed with its own log row so a real parent regression becomes visible in `relaunch.log` rather than silent.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-compact-pointer-exists-only-in-the-claude-adapter-there-is-no-codex-pi-hermes-or",
+      "text": "`compact-pointer` exists only in the Claude adapter — there is no codex, pi, hermes or opencode equivalent — so the fix is one adapter plus its tests, and the pointer's own blast radius is Claude-only.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-session-prime-forwards-the-payload-s-source-to-the-directive-lifecycle-store-as-",
+      "text": "`session-prime` forwards the payload's source to the directive-lifecycle store as `{session_id, boundary}`, so a fork's SessionStart(source=compact) records a compaction boundary against the parent's session id in a second subsystem.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-every-one-of-these-writes-is-keyed-by-session-id-so-a-fork-can-silently-rewrite-",
+      "text": "Every one of these writes is keyed by session_id, so a fork can silently rewrite the parent's nudge level, its directive boundary and its gate state; no part of the SessionStart family records which agent performed the write.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-fail-closed-changes-the-meaning-of-the-existing-emitting-test-which-passes-a-pay",
+      "text": "Fail-closed changes the meaning of the existing emitting test, which passes a payload with no transcript at all; the fix must extend the payload factory to carry a transcript that holds a boundary, so the emitting path stays covered rather than silently deleted.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-fail-closed-on-a-missing-transcript-is-the-asymmetric-choice-a-wrong-emission-in",
+      "text": "Fail-closed on a missing transcript is the asymmetric choice: a wrong emission injects a false \"you were compacted\" and can get the parent's note claimed, while a wrong suppression only withholds a reminder whose note stays open and reclaimable.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-latesttailentry-is-private-to-context-usage-cjs-and-not-exported-so-a-boundary-r",
+      "text": "`latestTailEntry` is private to `context-usage.cjs` and not exported, so a boundary reader either exports that helper or reads the transcript tail on its own — the cheaper option is a dedicated tail scan in the relaunch lib.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-no-code-in-the-hooks-tree-or-the-spec-kit-runtime-reads-a-compact-boundary-recor",
+      "text": "No code in the hooks tree or the spec-kit runtime reads a `compact_boundary` record today, so the guard needs a new small reader and cannot borrow correctness from an existing tested one.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-test-a-boundary-newer-than-the-note-payload-hook-event-name-sessionstart-source-",
+      "text": "Test A (boundary newer than the note): payload `{hook_event_name: 'SessionStart', source: 'compact', session_id, transcript_path}` where the transcript holds a boundary after the note's `created_at`; expects the compacted-session context and the claim command, and expects the nudge file reset to `{level:0}`.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-test-b-boundary-absent-the-reproduced-fork-case-the-same-payload-with-a-transcri",
+      "text": "Test B (boundary absent — the reproduced fork case): the same payload with a transcript that has no boundary; expects empty stdout and the nudge file still `{level:2}`, which is the regression test for the observed misfire and for the side-effect reorder.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-test-c-stale-boundary-a-boundary-timestamped-before-the-note-s-created-at-expect",
+      "text": "Test C (stale boundary): a boundary timestamped before the note's `created_at`; expects empty stdout, because a compaction that predates the note cannot be the one that lost the note's detail.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-test-d-missing-transcript-no-transcript-path-in-the-payload-expects-empty-stdout",
+      "text": "Test D (missing transcript): no `transcript_path` in the payload; expects empty stdout and a `compact-pointer-skipped reason=no-transcript` row in `relaunch.log`, so a silent disable is impossible.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-the-harness-needs-one-new-fixture-helper-that-writes-a-transcript-containing-a-t",
+      "text": "The harness needs one new fixture helper that writes a transcript containing a `{\"type\":\"system\",\"subtype\":\"compact_boundary\",\"timestamp\":...}` record, because `writeTranscript` emits a single assistant record with no timestamp control.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-a-compact-cache-for-the-parent-session-existed-with-cachedat-2026-10-21t15-29-16",
+      "text": "A compact cache for the parent session existed with `cachedAt` 2026-10-21T15:29:16.367Z while the parent transcript carries no record at 15:29 at all and no boundary on 2026-10-21, so the presence of a compact cache is not evidence that a compaction happened.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-a-second-equally-small-clause-closes-window-a-record-one-delivery-per-note-path-",
+      "text": "A second, equally small clause closes window A: record one delivery per (note path, boundary timestamp) in the relaunch state directory and skip a repeat, which suppresses the second and third fork fires while letting the parent's next genuine compaction re-arm the pointer.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-residual-window-a-when-the-parent-genuinely-compacts-after-writing-a-note-and-ne",
+      "text": "Residual window A: when the parent genuinely compacts after writing a note and never claims it, every later fork still finds a boundary and still receives the parent's pointer, so the boundary guard narrows the failing class rather than closing it.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-residual-window-b-a-boundary-and-a-note-created-within-the-same-second-make-orde",
+      "text": "Residual window B: a boundary and a note created within the same second make ordering ambiguous, and a \"boundary at or after the note\" comparison resolves that ambiguity in the fork's favour, so the guard should require the boundary to be strictly after the note's `created_at`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-the-writestate-sessionid-0-reorder-is-required-whichever-clause-lands-without-it",
+      "text": "The `writeState(sessionId, 0)` reorder is required whichever clause lands: without it every suppressed fork fire still resets the parent's ladder, so the suppression would be visible only in stdout and invisible in state.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-the-delivery-marker-must-be-its-own-state-file-rather-than-a-field-inside-nudge-",
+      "text": "The delivery marker must be its own state file rather than a field inside `nudge-<session>.json`, because the existing emitting test asserts that file deep-equals `{level:0}` and widening the record would break that assertion without adding coverage.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-four-tests-prove-it-boundary-after-note-emits-and-resets-the-level-no-boundary-e",
+      "text": "Four tests prove it: boundary-after-note emits and resets the level; no-boundary emits nothing and leaves the level intact; boundary-before-note emits nothing; a missing transcript emits nothing and logs `compact-pointer-skipped reason=no-transcript`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-the-fix-does-not-depend-on-the-one-value-still-unproven-locally-the-fork-s-trans",
+      "text": "The fix does not depend on the one value still unproven locally, the fork's `transcript_path`, because the boundary guard behaves identically whether that path names the fork's transcript or the parent's.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-the-fix-is-two-clauses-plus-a-reorder-emit-only-when-the-payload-s-transcript-ho",
+      "text": "The fix is two clauses plus a reorder: emit only when the payload's transcript holds a compact_boundary strictly after the note's `created_at`, record one delivery per (note, boundary) so later fires for the same boundary stay silent, and move `writeState(sessionId, 0)` below every guard.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-the-hazard-table-compact-pointer-emits-the-parent-s-pointer-and-zeroes-the-paren",
+      "text": "The hazard table: compact-pointer emits the parent's pointer and zeroes the parent's nudge level; session-prime injects the parent's compact brief and records a compaction boundary for the parent's session; spec-gate shares the parent's gate record; `claim` would accept a fork's claim of the parent's note; stop-arm and the PostToolUse nudge share the same keying but are not dispatched inside forks today.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-the-mechanism-in-one-sentence-a-fork-inherits-the-parent-s-session-id-and-the-pl",
+      "text": "The mechanism in one sentence: a fork inherits the parent's `session_id` and the platform emits `SessionStart` with `source: compact` inside it, so every session-keyed path resolves the parent's state while the hook's only gate is the very value the platform sets for a fork.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-the-parent-never-compacted-on-2026-10-21-six-compact-boundary-records-exist-the-",
+      "text": "The parent never compacted on 2026-10-21: six compact_boundary records exist, the last at 2026-10-20T16:19:05.871Z, and the parent transcript's last `SessionStart:compact` attachment is 2026-10-20T16:19:06.293Z, while three forks fired the pointer at 14:44, 15:30 and 17:42.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-the-residual-risk-after-the-fix-is-a-parent-that-compacts-ignores-its-own-pointe",
+      "text": "The residual risk after the fix is a parent that compacts, ignores its own pointer and leaves the note open, which clause two covers by suppressing the repeat rather than by re-emitting it to a fork.",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-e96dfe215c1f",
+      "text": "\"The hook is mis-registered on a start source other than compact\": ruled out because the registration has an empty matcher and the hook returns early unless `payload.source === 'compact'`.",
+      "contentHash": "e96dfe215c1f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d744a8c81a0b",
+      "text": "\"The parent compacted and the transcript simply lacks the boundary\": ruled out because the parent transcript has zero compact_boundary records on 2026-10-21 while three SessionStart:compact hook attachments exist only in fork sidechains.",
+      "contentHash": "d744a8c81a0b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1acbe2c1c495",
+      "text": "\"Read the fork marker out of the payload\": ruled out by the documented payload contract, which exposes no agent or fork field. Any fix must derive fork-ness from a value the payload does carry.",
+      "contentHash": "1acbe2c1c495",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-144760cb6b4e",
+      "text": "\"The fork ran the hook in a different state directory\": ruled out because the hook's `stateDir()` keys on uid (501), not on agent, so forks and parent share one relaunch state directory.",
+      "contentHash": "144760cb6b4e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d7ec7c032780",
+      "text": "\"The fork is protected because a model refuses the instruction\": ruled out as a control, since `claimHandoff` would have accepted the claim; the refusals observed were model judgment, not an enforced guarantee.",
+      "contentHash": "d7ec7c032780",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b9117fed15b5",
+      "text": "\"The pending-handoff guard covers the unwrapped case\": ruled out because the guard is keyed on `SKILLED_LOOP_ID` and the observed note has an empty `loop_id`.",
+      "contentHash": "b9117fed15b5",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c2c1fe2ff662",
+      "text": "\"Every project hook misfires in a fork\": ruled out by the attachment census — PostToolUse and Stop adapters never ran in the forks, so the blast radius is SessionStart plus the seed's instruction, not the whole hook surface.",
+      "contentHash": "c2c1fe2ff662",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-770b644c987d",
+      "text": "\"The fork hazard can be detected from transcript-side metadata by the hook\": ruled out because `agentId`/`isSidechain` live on transcript records, while the adapter only receives the payload.",
+      "contentHash": "770b644c987d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-15041e786ce6",
+      "text": "\"Fork writes its turns into the parent transcript, so one path covers both\": ruled out by the zero sidechain count in the parent transcript.",
+      "contentHash": "15041e786ce6",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-13c34a6f6fe5",
+      "text": "\"Key the fix on transcript_path matching a `/subagents/` segment\": not refuted, but unprovable from local evidence, and it would be wrong if the payload names the parent transcript. Recorded as a candidate with a known risk rather than the recommendation.",
+      "contentHash": "13c34a6f6fe5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-0e6dbfd1bd0b",
+      "text": "\"Infer compaction from the nudge state file\": ruled out because the state file is exactly what the hook overwrites, so it cannot serve as evidence.",
+      "contentHash": "0e6dbfd1bd0b",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-de3ac0381cae",
+      "text": "\"Patch only the seed text so it stops claiming a compaction\": ruled out as insufficient, because the fork would still be pushed to claim the parent's note; the text is a symptom of the missing gate.",
+      "contentHash": "de3ac0381cae",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-db3a08e77b59",
+      "text": "\"Apply the same fix to every runtime adapter\": ruled out because no other runtime has a compact pointer; the shared hazard is session-keyed state, which is a different finding with a different fix.",
+      "contentHash": "db3a08e77b59",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-632d6ad03e90",
+      "text": "\"Fail open on a missing transcript to protect the parent path\": ruled out because the parent path is documented to carry `transcript_path`, and a silent fail-open reproduces exactly the observed misfire.",
+      "contentHash": "632d6ad03e90",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-503fe507d8e0",
+      "text": "\"Assert on the log row alone\": ruled out as the primary evidence, because a log row proves a decision was recorded, not that the parent path still emits.",
+      "contentHash": "503fe507d8e0",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b9581108cb37",
+      "text": "\"Reuse the existing transcript reader\": ruled out because nothing in the tree parses compaction boundaries and the tail helper is not exported.",
+      "contentHash": "b9581108cb37",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e6bcf27486ee",
+      "text": "\"Store the delivery marker in the note frontmatter\": ruled out because the note is the parent's artifact and the marker would then travel with it into a future claim, confusing `status` semantics.",
+      "contentHash": "e6bcf27486ee",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-12488d5a5d7d",
+      "text": "\"The boundary guard alone is sufficient\": ruled out by residual window A, which the guard structurally cannot see.",
+      "contentHash": "12488d5a5d7d",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-7bbe07434859",
+      "text": "\"Add an agent-identity check to the payload\": ruled out for the third time by the documented payload contract, which carries no agent field.",
+      "contentHash": "7bbe07434859",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-7b976d867a6a",
+      "text": "\"Disable the pointer for all forks by registering a SubagentStart marker\": ruled out as the smallest fix, because it adds a new hook registration where a transcript check inside the existing hook suffices.",
+      "contentHash": "7b976d867a6a",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 18,
+    "keyFindings": 61,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.2,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages/deepseek-pi/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

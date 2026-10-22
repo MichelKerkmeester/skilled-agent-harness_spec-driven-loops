@@ -7,6 +7,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import path from 'node:path';
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
 import { appendLog, isEntrypoint, parseHandoff, payloadEventName } from '../lib/relaunch-core.cjs';
@@ -17,6 +18,9 @@ import nudge from '../lib/nudge.cjs';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CONCERN = 'session-relaunch';
+const FORK_COMPACTION_WINDOW_MS = 5000;
+const FORK_TRANSCRIPT_MTIME_WINDOW_MS = 10000;
+const TRANSCRIPT_TAIL_BYTES = 64 * 1024;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -48,6 +52,55 @@ function noteSpecFolder(notePath) {
   }
 }
 
+// A fork files its own transcript under its parent's session directory, so a compaction
+// boundary there is the fork's. The record's own timestamp decides; the mtime check only
+// keeps stale transcripts from being read at all.
+export function forkCompactedRecently(transcriptPath, sessionId, nowMs = Date.now()) {
+  const directory = path.join(path.dirname(transcriptPath), sessionId, 'subagents');
+  let entries = [];
+  try {
+    entries = fs.readdirSync(directory);
+  } catch {
+    return false;
+  }
+
+  for (const entry of entries) {
+    if (!/^agent-.*\.jsonl$/.test(entry)) continue;
+    const filePath = path.join(directory, entry);
+    try {
+      const stat = fs.statSync(filePath);
+      if (!stat.isFile()) continue;
+      if (Math.abs(nowMs - stat.mtimeMs) > FORK_TRANSCRIPT_MTIME_WINDOW_MS) continue;
+      const timestamp = lastCompactBoundaryTimestamp(filePath);
+      if (timestamp === null) continue;
+      const age = nowMs - timestamp;
+      if (age >= 0 && age <= FORK_COMPACTION_WINDOW_MS) return true;
+    } catch {}
+  }
+  return false;
+}
+
+function lastCompactBoundaryTimestamp(filePath) {
+  const { size } = fs.statSync(filePath);
+  const length = Math.min(size, TRANSCRIPT_TAIL_BYTES);
+  const buffer = Buffer.alloc(length);
+  const descriptor = fs.openSync(filePath, 'r');
+  let read = 0;
+  try {
+    read = fs.readSync(descriptor, buffer, 0, length, size - length);
+  } finally {
+    fs.closeSync(descriptor);
+  }
+
+  const lines = buffer.subarray(0, read).toString('utf8').split('\n');
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    if (!lines[index].includes('"compact_boundary"')) continue;
+    const timestamp = Date.parse(JSON.parse(lines[index]).timestamp);
+    return Number.isFinite(timestamp) ? timestamp : null;
+  }
+  return null;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -68,6 +121,22 @@ async function main() {
 
   const sessionId = payload.session_id;
   if (!nudge.validSessionId(sessionId)) return done();
+
+  // A forked sub-agent carries its parent's session id, so a fork's compaction reports
+  // under the parent's id and must not reach the parent's note or nudge level.
+  const transcriptPath = payload.transcript_path;
+  if (typeof transcriptPath !== 'string' || transcriptPath === '') {
+    logEvent('compact-pointer-skipped', { sessionId, reason: 'no-transcript' });
+    return done();
+  }
+  if (path.basename(transcriptPath) !== `${sessionId}.jsonl`) {
+    logEvent('compact-pointer-skipped', { sessionId, reason: 'not-session-transcript' });
+    return done();
+  }
+  if (forkCompactedRecently(transcriptPath, sessionId)) {
+    logEvent('compact-pointer-skipped', { sessionId, reason: 'fork-compaction' });
+    return done();
+  }
 
   try {
     nudge.writeState(sessionId, 0);

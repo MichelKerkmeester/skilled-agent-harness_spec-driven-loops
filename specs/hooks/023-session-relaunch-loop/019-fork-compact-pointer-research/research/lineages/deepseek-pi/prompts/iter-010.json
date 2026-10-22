@@ -1,0 +1,56 @@
+{
+  "iteration": 10,
+  "status": "complete",
+  "newInfoRatio": 0.2,
+  "focus": "Consolidate the mechanism, per-path hazard table, two-clause fix, test set, residual risks and scope limits",
+  "timestamp": "2026-10-21T18:55:55Z",
+  "outDir": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages/deepseek-pi",
+  "answeredQuestions": [],
+  "findings": [
+    {
+      "id": "f-iter010-001",
+      "label": "The mechanism in one sentence: a fork inherits the parent's `session_id` and the platform emits `SessionStart` with `source: compact` inside it, so every session-keyed path resolves the parent's state while the hook's only gate is the very value the platform sets for a fork.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs", ".skilled/hooks/session-lifecycle/README.md"]
+    },
+    {
+      "id": "f-iter010-002",
+      "label": "The hazard table: compact-pointer emits the parent's pointer and zeroes the parent's nudge level; session-prime injects the parent's compact brief and records a compaction boundary for the parent's session; spec-gate shares the parent's gate record; `claim` would accept a fork's claim of the parent's note; stop-arm and the PostToolUse nudge share the same keying but are not dispatched inside forks today.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs", ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts", ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"]
+    },
+    {
+      "id": "f-iter010-003",
+      "label": "The parent never compacted on 2026-10-21: six compact_boundary records exist, the last at 2026-10-20T16:19:05.871Z, and the parent transcript's last `SessionStart:compact` attachment is 2026-10-20T16:19:06.293Z, while three forks fired the pointer at 14:44, 15:30 and 17:42.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"]
+    },
+    {
+      "id": "f-iter010-004",
+      "label": "The fix is two clauses plus a reorder: emit only when the payload's transcript holds a compact_boundary strictly after the note's `created_at`, record one delivery per (note, boundary) so later fires for the same boundary stay silent, and move `writeState(sessionId, 0)` below every guard.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs", ".skilled/hooks/session-relaunch/lib/nudge.cjs"]
+    },
+    {
+      "id": "f-iter010-005",
+      "label": "Four tests prove it: boundary-after-note emits and resets the level; no-boundary emits nothing and leaves the level intact; boundary-before-note emits nothing; a missing transcript emits nothing and logs `compact-pointer-skipped reason=no-transcript`.",
+      "sources": [".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"]
+    },
+    {
+      "id": "f-iter010-006",
+      "label": "The residual risk after the fix is a parent that compacts, ignores its own pointer and leaves the note open, which clause two covers by suppressing the repeat rather than by re-emitting it to a fork.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"]
+    },
+    {
+      "id": "f-iter010-007",
+      "label": "The fix does not depend on the one value still unproven locally, the fork's `transcript_path`, because the boundary guard behaves identically whether that path names the fork's transcript or the parent's.",
+      "sources": [".skilled/hooks/session-relaunch/lib/context-usage.cjs"]
+    }
+  ],
+  "ruledOut": [
+    {
+      "direction": "Add an agent-identity check to the payload",
+      "reason": "The documented payload contract carries no agent field."
+    },
+    {
+      "direction": "Register a SubagentStart marker hook to disable the pointer for forks",
+      "reason": "It adds a new hook registration where a transcript check inside the existing hook suffices."
+    }
+  ]
+}

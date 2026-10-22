@@ -1,0 +1,51 @@
+{
+  "iteration": 9,
+  "status": "insight",
+  "newInfoRatio": 0.45,
+  "focus": "Attack the boundary guard: enumerate residual paths where a fork still receives the parent pointer and decide on a second clause",
+  "timestamp": "2026-10-21T18:55:31Z",
+  "outDir": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages/deepseek-pi",
+  "answeredQuestions": [],
+  "findings": [
+    {
+      "id": "f-iter009-001",
+      "label": "Residual window A: when the parent genuinely compacts after writing a note and never claims it, every later fork still finds a boundary and still receives the parent's pointer, so the boundary guard narrows the failing class rather than closing it.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs", ".skilled/hooks/session-relaunch/lib/nudge.cjs"]
+    },
+    {
+      "id": "f-iter009-002",
+      "label": "Residual window B: a boundary and a note created within the same second make ordering ambiguous, and a \"boundary at or after the note\" comparison resolves that ambiguity in the fork's favour, so the guard should require the boundary to be strictly after the note's `created_at`.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"]
+    },
+    {
+      "id": "f-iter009-003",
+      "label": "A second, equally small clause closes window A: record one delivery per (note path, boundary timestamp) in the relaunch state directory and skip a repeat, which suppresses the second and third fork fires while letting the parent's next genuine compaction re-arm the pointer.",
+      "sources": [".skilled/hooks/session-relaunch/lib/nudge.cjs", ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"]
+    },
+    {
+      "id": "f-iter009-004",
+      "label": "The delivery marker must be its own state file rather than a field inside `nudge-<session>.json`, because the existing emitting test asserts that file deep-equals `{level:0}` and widening the record would break that assertion without adding coverage.",
+      "sources": [".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"]
+    },
+    {
+      "id": "f-iter009-005",
+      "label": "A compact cache for the parent session existed with `cachedAt` 2026-10-21T15:29:16.367Z while the parent transcript carries no record at 15:29 at all and no boundary on 2026-10-21, so the presence of a compact cache is not evidence that a compaction happened.",
+      "sources": [".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts", ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"]
+    },
+    {
+      "id": "f-iter009-006",
+      "label": "The `writeState(sessionId, 0)` reorder is required whichever clause lands: without it every suppressed fork fire still resets the parent's ladder, so the suppression would be visible only in stdout and invisible in state.",
+      "sources": [".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"]
+    }
+  ],
+  "ruledOut": [
+    {
+      "direction": "Consider the boundary guard alone sufficient",
+      "reason": "Residual window A is structurally invisible to it."
+    },
+    {
+      "direction": "Store the delivery marker in the note frontmatter",
+      "reason": "The note is the parent's artifact and the marker would travel with it into a future claim, confusing status semantics."
+    }
+  ]
+}
