@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e03e2aca63ed9d26dbdea5f4aaa213a2edb723d973dac83910ee17c93f024806",
+  "corpusHash": "38b2b03bfe436d0e429b675b9a7b0c7b82d848de808616c24ed71e846fba304b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25635,
+  "includedPathCount": 25639,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9084,6 +9084,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25666,7 +25670,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0f40d7ec9472227b7ed0685b039af9261b2bde9d5f4c87c864486876c377bc30",
+  "manifestHash": "c8a573e3115da558c18d91794d96a9b74f750f2b74ddab735f41be4d81599141",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26846,6 +26850,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline/scratch",
       "reason": "excluded directory"
     },
     {

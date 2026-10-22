@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0f40d7ec9472227b7ed0685b039af9261b2bde9d5f4c87c864486876c377bc30",
+  "manifestHash": "c8a573e3115da558c18d91794d96a9b74f750f2b74ddab735f41be4d81599141",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24443,6 +24443,18 @@
     ],
     "command file contract": [
       "command file contract"
+    ],
+    "command folder guard and readme baseline": [
+      "command folder guard and readme baseline"
+    ],
+    "command folder guard and readme baseline implementation summary": [
+      "command folder guard and readme baseline implementation summary"
+    ],
+    "command folder guard and readme baseline plan": [
+      "command folder guard and readme baseline plan"
+    ],
+    "command folder guard and readme baseline tasks": [
+      "command folder guard and readme baseline tasks"
     ],
     "command frontmatter family key": [
       "command frontmatter family key"
@@ -72876,6 +72888,9 @@
     ],
     "phase 55 command support into commands": [
       "phase 55 command support into commands"
+    ],
+    "phase 56 command folder guard and readme baseline": [
+      "phase 56 command folder guard and readme baseline"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
