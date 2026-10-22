@@ -60,7 +60,8 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/055-command-support-into-commands",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -101,6 +102,7 @@
       "spec.md",
       "goal.md",
       "research/research.md",
+      ".skilled/CROSS-CLI.md",
       "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
       "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
       "014-post-merge-deep-research/research/research.md",
@@ -116,8 +118,7 @@
       "009-sk-code-opencode-alignment/goal.md",
       "010-documentation-sweep/goal.md",
       "011-two-version-proof-and-closeout/goal.md",
-      "012-sk-vision-v2-prompt-hook/goal.md",
-      "research/steering-log.md"
+      "012-sk-vision-v2-prompt-hook/goal.md"
     ],
     "entities": [
       {
@@ -139,6 +140,12 @@
         "source": "derived"
       },
       {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
         "name": "new-code-run.txt",
         "kind": "file",
         "path": "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
@@ -154,12 +161,6 @@
         "name": "dispatch-audit.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "steering-log.md",
-        "kind": "doc",
-        "path": "research/steering-log.md",
         "source": "derived"
       },
       {
@@ -267,7 +268,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-22T19:33:19.457Z",
+    "last_save_at": "2026-10-22T19:53:30.630Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -275,10 +276,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b5e81f4e6a9bd79b8e49e35d185b8412a4049b24f9600e5a56ecf1c9e67e74a5",
+    "source_fingerprint": "sha256:5d941655a97802cf952680273a85e09ff63c39380469398202689396e00894e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44b7dc353a81bcc22c39b1655dc1350aa29803405f4e9469bf8e1bb389933ba1",
+      "spec.md": "0dc5f9a36b536dd4fd46b177fcd635c4e29914cafaa5e3c158e068946df6993f",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

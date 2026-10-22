@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh",
+  "description": "Phase 59: cross-cli-map-refresh",
+  "keywords": [
+    "phase",
+    "cross-cli-map-refresh"
+  ],
+  "lastUpdated": "2026-10-22T19:25:27.101Z",
+  "specId": "059",
+  "folderSlug": "cross-cli-map-refresh",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
