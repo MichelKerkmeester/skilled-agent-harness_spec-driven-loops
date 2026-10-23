@@ -22,6 +22,16 @@ export default defineConfig({
     ],
     setupFiles: [
       path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),
+      path.resolve(
+        import.meta.dirname,
+        '..',
+        '..',
+        'system-deep-loop',
+        'runtime',
+        'tests',
+        '_support',
+        'hermetic-opencode-path.ts',
+      ),
     ],
     // Several script suites mutate shared process-level state and temp project roots.
     // Run files serially so the combined config remains deterministic.

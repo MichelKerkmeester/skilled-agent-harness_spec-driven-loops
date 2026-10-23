@@ -172,6 +172,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 59 | 059-cross-cli-map-refresh/ | Bring `.skilled/CROSS-CLI.md` back in line with the tree: correct the plugin SDK claim, add OpenCode 2 and the `.markdown` rule, fix the counts and the files that don't exist, and add the missing entries | Complete |
 | 60 | 060-v4-0-0-13-changelog-rewrite/ | Rewrite the v4.0.0.13 changelog so in-session handover and OpenCode 1 and 2 support lead as equal headlines, tighter and in the style of v4.0.0.0 | Complete |
 | 61 | 061-v4-0-0-13-changelog-trim-and-simplify/ | Drop the Resident Memory and MCP Tooling topics, replace internal jargon with plain words and reorder the v4.0.0.13 changelog by user impact so the handover and OpenCode 1 and 2 support lead | Complete |
+| 62 | 062-opencode-2-primary-v1-fallback/ | Make the first opencode2 anywhere on PATH win over an earlier opencode, keep the first opencode as the fallback only when no opencode2 exists with OPENCODE_BIN still overriding both, and reorder every listed doc and asset to recommend OpenCode 2 first with OpenCode 1 as the temporary fallback | In Progress |
 
 ### Phase Transition Rules
 
@@ -240,4 +241,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 057-v4-0-0-13-reliability-fixes | 059-cross-cli-map-refresh | The operator asked on 2026-10-22 to fix the drift in the cross-CLI map | `validate_document.py` passes on `.skilled/CROSS-CLI.md` and a read-only review finds no wrong number |
 | 059-cross-cli-map-refresh | 060-v4-0-0-13-changelog-rewrite | The operator asked on 2026-10-22 for a rewrite that gives OpenCode 2 plugin support equal weight with the handover | `validate_document.py` reports 0 issues on the changelog and a read-only review returns PASS |
 | 060-v4-0-0-13-changelog-rewrite | 061-v4-0-0-13-changelog-trim-and-simplify | The operator asked on 2026-10-22 to drop two topics, simplify the wording and reorder by impact | `validate_document.py` reports 0 issues and a read-only DeepSeek review returns PASS |
+| 061-v4-0-0-13-changelog-trim-and-simplify | 062-opencode-2-primary-v1-fallback | The operator stated on 2026-10-22 that OpenCode 1 support is temporary and the repository must expect and promote OpenCode 2 while keeping backwards compatibility | The later-`opencode2` preference, the no-`opencode2` fallback and the `OPENCODE_BIN` override tests pass, the suites are hermetic against a host install, both live unpinned dispatches exit 0 and reply OK (`062/scratch/live/`), and the playbook passes 72 scenarios with 0 violations |
 <!-- /ANCHOR:phase-map -->

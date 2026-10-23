@@ -170,6 +170,9 @@ function parseOpencodeVersion(text) {
 /**
  * Resolve and probe an executable OpenCode binary.
  *
+ * OpenCode 2 is preferred anywhere on PATH; OpenCode 1 is only the fallback,
+ * used when no `opencode2` executable exists.
+ *
  * @param {NodeJS.ProcessEnv} [env=process.env] - Environment used for PATH and probing.
  * @param {Object} [deps={}] - Optional dependency overrides.
  * @param {(executablePath: string) => string} [deps.probe] - Synchronous version probe.
@@ -197,12 +200,12 @@ function resolveOpencodeBinary(env = process.env, deps = {}) {
   }
 
   const searchPath = typeof env.PATH === 'string' ? env.PATH : '';
-  for (const directory of searchPath.split(path.delimiter)) {
-    if (!directory) continue;
-    for (const command of ['opencode2', 'opencode']) {
-      const executablePath = findExecutable(path.join(directory, command));
-      if (executablePath) return resolveCandidate(command, executablePath, env, deps);
-    }
+
+  // Search the whole PATH once per name so an earlier-directory OpenCode 1 cannot
+  // shadow an OpenCode 2 that sits in a later directory
+  for (const command of ['opencode2', 'opencode']) {
+    const executablePath = resolveOnPath(command, searchPath);
+    if (executablePath) return resolveCandidate(command, executablePath, env, deps);
   }
 
   throw unresolvedError('No executable regular file was found on PATH');

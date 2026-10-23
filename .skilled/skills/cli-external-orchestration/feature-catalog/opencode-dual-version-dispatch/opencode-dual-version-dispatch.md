@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode dual-version dispatch"
   - "resolveOpencodeBinary version probe"
   - "OpenCode 1 and OpenCode 2 lineage argv"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # OpenCode Dual-Version Dispatch (cli-opencode)
@@ -23,7 +23,7 @@ Two binaries can coexist. OpenCode 1 installs as `opencode` and OpenCode 2 insta
 
 ### Binary Resolution And Version Probe
 
-`resolveOpencodeBinary` returns the command name, the executable path, and the parsed version family for one dispatch. `OPENCODE_BIN` overrides the search: a bare name is resolved through `env.PATH`, a path is used as it stands, and an override that does not resolve is an error rather than a fallback. Without the override, the resolver walks `PATH` in directory order and prefers `opencode2` over `opencode` inside each directory, so directory order still wins over name order.
+`resolveOpencodeBinary` returns the command name, the executable path, and the parsed version family for one dispatch. `OPENCODE_BIN` overrides the search: a bare name is resolved through `env.PATH`, a path is used as it stands, and an override that does not resolve is an error rather than a fallback. Without the override, the resolver searches the whole of `PATH` once per candidate name: it takes the first `opencode2` found anywhere on `PATH`, and only when no `opencode2` exists at all does it fall back to the first `opencode` in `PATH` order. OpenCode 2 is therefore the primary binary and OpenCode 1 the temporary fallback.
 
 The probe runs the resolved executable with `--version` under a bounded timeout and joins its standard output and standard error. `parseOpencodeVersion` then reads the first supported version token in that text: major 1 is `v1`, major 2 is `v2`, and every other shape is `unknown`. A leading word and a prerelease or build suffix are tolerated, so `1.19.3`, `1.19.3-rc.1`, and `opencode v2.0.32` all parse. A binary that cannot be found, a probe that fails or times out, and output with no supported version token all raise `E_OPENCODE_UNRESOLVED`, and the message names both candidate binary names and includes the probe output. Successful probes are cached by canonical path, size, and modification time, and `clearOpencodeVersionCache` empties that cache.
 

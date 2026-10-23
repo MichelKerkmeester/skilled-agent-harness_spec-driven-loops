@@ -2,10 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: OPENCODE SETUP HELPER
 # ───────────────────────────────────────────────────────────────
-# Builds the v1-only, v2-only or side-by-side OpenCode layout under
-# HOME, and reports which version each command name resolves to.
+# Builds the v2-only (recommended), side-by-side or v1-only (fallback)
+# OpenCode layout under HOME, and reports which version each command
+# name resolves to. OpenCode 2 is the expected version; OpenCode 1 is
+# kept for users who have not updated yet.
 #
-# Usage: opencode-setup.sh <both|v1|v2|check>
+# Usage: opencode-setup.sh <v2|both|v1|check>
 #
 # Exit Codes:
 #   0 - Success
@@ -472,12 +474,12 @@ mode_v2() {
 
 usage() {
     cat <<EOF
-Usage: $SCRIPT_NAME <both|v1|v2|check>
+Usage: $SCRIPT_NAME <v2|both|v1|check>
 
 Modes:
-  both   Install v1 and v2 side by side in the home directory and write the opencode2 launcher
-  v1     Install v1 only into the default prefix
-  v2     Install v2 only into the default prefix
+  v2     Install v2 only into the default prefix (recommended)
+  both   Install v1 and v2 side by side in the home directory and write the opencode2 launcher (recommended)
+  v1     Install v1 only into the default prefix (fallback for users who have not updated)
   check  Report what each name resolves to; change nothing
 
 Exit Codes:

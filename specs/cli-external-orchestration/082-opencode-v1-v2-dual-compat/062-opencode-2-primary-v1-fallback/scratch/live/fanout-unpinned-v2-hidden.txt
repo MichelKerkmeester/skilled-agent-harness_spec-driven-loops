@@ -1,0 +1,7 @@
+2026-10-22T22:02:16.095Z
+label=v2-hidden
+argv=["opencode","run","--model","llmgateway/deepseek-v4.1-flash-1017","--format","json","--dir","/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/207-opencode-2-primary-v1-fallback","--dangerously-skip-permissions","--variant","max","<prompt>"]
+exit=0
+signal=null
+text="text":"OK"
+stderr_tail=

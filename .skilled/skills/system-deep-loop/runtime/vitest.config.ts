@@ -20,6 +20,9 @@ export default defineConfig({
     fileParallelism: false,
     globals: true,
     environment: 'node',
+    setupFiles: [
+      path.resolve(import.meta.dirname, 'tests', '_support', 'hermetic-opencode-path.ts'),
+    ],
     testTimeout: TEST_TIMEOUT_MS,
     teardownTimeout: TEARDOWN_TIMEOUT_MS,
   },

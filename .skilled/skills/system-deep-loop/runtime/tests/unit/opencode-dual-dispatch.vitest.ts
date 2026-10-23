@@ -24,7 +24,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
  * unresolved or unparseable probes throw Error(code 'E_OPENCODE_UNRESOLVED'), naming both
  * opencode2 and opencode and including probe output. deps.probe(executablePath) replaces --version.
  * OPENCODE_BIN overrides PATH: bare names use env.PATH, paths are used as-is, with no fallback.
- * Otherwise PATH order wins, with opencode2 preferred within each directory.
+ * Otherwise opencode2 wins anywhere on PATH, and opencode is the fallback when no opencode2 exists.
  * Cache entries use realpath, size, and mtime; clearOpencodeVersionCache() empties the cache.
  * isOpencodeBinaryAvailable(env) returns true when either executable name resolves.
  */
@@ -562,12 +562,41 @@ describe('OpenCode resolver adversarial cases', () => {
     }
   });
 
-  it('keeps PATH directory order ahead of executable-name order', () => {
+  it('prefers opencode2 on a later PATH directory over opencode on an earlier one', () => {
+    const pathRoot = createTempDirectory();
+    const firstDir = join(pathRoot, 'dir1');
+    const secondDir = join(pathRoot, 'dir2');
+    writeVersionStub(firstDir, 'opencode', VERSION_1_OUTPUT);
+    const secondExecutable = writeVersionStub(secondDir, 'opencode2', VERSION_2_OUTPUT);
+
+    expect(resolver.resolveOpencodeBinary(envWithPath(firstDir, secondDir))).toEqual({
+      command: 'opencode2',
+      executablePath: realpathSync(secondExecutable),
+      version: 'v2',
+    });
+  });
+
+  it('OPENCODE_BIN overrides an opencode2 elsewhere on PATH', () => {
+    const pathRoot = createTempDirectory();
+    const firstDir = join(pathRoot, 'dir1');
+    const secondDir = join(pathRoot, 'dir2');
+    const v1Executable = writeVersionStub(firstDir, 'opencode', VERSION_1_OUTPUT);
+    writeVersionStub(secondDir, 'opencode2', VERSION_2_OUTPUT);
+    const env = { ...envWithPath(secondDir), OPENCODE_BIN: v1Executable };
+
+    expect(resolver.resolveOpencodeBinary(env)).toEqual({
+      command: v1Executable,
+      executablePath: realpathSync(v1Executable),
+      version: 'v1',
+    });
+  });
+
+  it('falls back to the first opencode on PATH when no opencode2 exists', () => {
     const pathRoot = createTempDirectory();
     const firstDir = join(pathRoot, 'dir1');
     const secondDir = join(pathRoot, 'dir2');
     const firstExecutable = writeVersionStub(firstDir, 'opencode', VERSION_1_OUTPUT);
-    writeVersionStub(secondDir, 'opencode2', VERSION_2_OUTPUT);
+    writeVersionStub(secondDir, 'opencode', VERSION_2_OUTPUT);
 
     expect(resolver.resolveOpencodeBinary(envWithPath(firstDir, secondDir))).toEqual({
       command: 'opencode',

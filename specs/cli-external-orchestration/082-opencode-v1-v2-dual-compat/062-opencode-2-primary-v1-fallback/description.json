@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback",
+  "description": "Phase 62: make the first opencode2 anywhere on PATH win, fall back to the first opencode only when none exists, and recommend OpenCode 2 first with OpenCode 1 as temporary backwards compatibility",
+  "keywords": [
+    "phase",
+    "opencode-2-primary-v1-fallback",
+    "resolver",
+    "path-order",
+    "hermetic-tests",
+    "backwards-compatibility"
+  ],
+  "lastUpdated": "2026-10-22T23:10:00.000Z",
+  "specId": "062",
+  "folderSlug": "opencode-2-primary-v1-fallback",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

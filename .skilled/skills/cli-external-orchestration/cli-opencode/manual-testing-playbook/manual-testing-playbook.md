@@ -1,14 +1,14 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # cli-opencode: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `opencode run` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--port <N>` with explicit parallel-session keywords (OpenCode 1 only, with no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
+> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--port <N>` with explicit parallel-session keywords (OpenCode 2 has no `run` equivalent, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md)). The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -41,13 +41,13 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-**Version note.** The scenario commands in this playbook are written for OpenCode 1 (1.19.3) unless a scenario says otherwise. Each scenario names its OpenCode 2 (2.0.32) twin or says v2 has none. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../references/install-and-versions.md).
+**Version note.** Each scenario names an OpenCode 2 (recommended, 2.0.32) twin where one exists, or says v2 has none; where v2 has no equivalent, the scenario command is written for OpenCode 1 (fallback, 1.19.3) unless a scenario says otherwise. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../references/install-and-versions.md).
 
-This playbook provides deterministic scenarios validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells. The `plugin-utilization/` category adds 17 live scenarios, CO-040 to CO-056, one per repository plugin, each run on OpenCode 1 and OpenCode 2.
+This playbook provides deterministic scenarios validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells. The `plugin-utilization/` category adds 17 live scenarios, CO-040 to CO-056, one per repository plugin, each run on OpenCode 2 (recommended) and OpenCode 1 (fallback).
 
-Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). A v2 reader checks that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first; this machine's v2 listing has no `opencode-go/` ids, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+Coverage note (2026-04-26): The OpenCode 2 (recommended, 2.0.32) twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). On OpenCode 1 (fallback, 1.19.3), this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. A v2 reader checks that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first; this machine's v2 listing has no `opencode-go/` ids, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
-> **Since then:** OpenCode 1.19.3 discontinued session sharing, so the operator-confirmed `--share` flows the coverage note mentions no longer publish anything, and the default model is now `llmgateway/deepseek-v4.1-flash-1017` on both versions (`--variant max` on OpenCode 1, `#max` on OpenCode 2). See SKILL.md NEVER rule 2 and `references/providers-and-models.md`.
+> **Since then:** OpenCode 1.19.3 discontinued session sharing, so the operator-confirmed `--share` flows the coverage note mentions no longer publish anything, and the default model is now `llmgateway/deepseek-v4.1-flash-1017` on both versions (`#max` on OpenCode 2, `--variant max` on OpenCode 1). See SKILL.md NEVER rule 2 and `references/providers-and-models.md`.
 
 ### Realistic Test Model
 
@@ -70,13 +70,13 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
-3. On OpenCode 1, the CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. OpenCode 2 is 2.0.32, a separate install ([install reference](../references/install-and-versions.md)). Drift handled per `references/cli-reference.md` §9.
-4. The default model resolves on both versions. On OpenCode 1 the LLM Gateway must resolve `llmgateway/deepseek-v4.1-flash-1017` (confirm via `opencode models llmgateway`). On OpenCode 2 the same route is the default, so `opencode2 models --standalone` must list the `llmgateway/` prefix for `llmgateway/deepseek-v4.1-flash-1017`. The `opencode-go/` route stays selectable but needs its own v2 login first (`opencode2 providers login opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
+3. OpenCode 2 (recommended) is 2.0.32, a separate install ([install reference](../references/install-and-versions.md)). On OpenCode 1 (fallback), the CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. Drift handled per `references/cli-reference.md` §9.
+4. The default model resolves on both versions. On OpenCode 2 the same route is the default, so `opencode2 models --standalone` must list the `llmgateway/` prefix for `llmgateway/deepseek-v4.1-flash-1017`. On OpenCode 1 the LLM Gateway must resolve `llmgateway/deepseek-v4.1-flash-1017` (confirm via `opencode models llmgateway`). The `opencode-go/` route stays selectable but needs its own v2 login first (`opencode2 providers login opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.
-8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). On OpenCode 1, most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in (OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <path> && opencode2 run ...`). The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
-9. Destructive scenarios (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. These are OpenCode 1 only scenarios, because OpenCode 2 `run` has no `--port` or `--dir` ([install reference](../references/install-and-versions.md)). Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. No scenario passes `--share`: on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, so these scenarios publish nothing. Recovery is mandatory after every run (pass or fail): remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/` and confirm the capture files are outside the project tree.
+8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). OpenCode 2 has no `--dir`, so it starts in the directory instead (`cd <path> && opencode2 run ...`), while on OpenCode 1 most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in. The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
+9. Destructive scenarios (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. OpenCode 2 `run` has no `--port` or `--dir`, so these are OpenCode 1-only scenarios ([install reference](../references/install-and-versions.md)). Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. No scenario passes `--share`: on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, so these scenarios publish nothing. Recovery is mandatory after every run (pass or fail): remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/` and confirm the capture files are outside the project tree.
 
 ---
 
@@ -91,7 +91,7 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 - Session id captured from the `sessionID` field of the event stream
 - The final `text` event summary
 - The final user-facing outcome and a PASS, PARTIAL or FAIL verdict with rationale
-- For the CHK-033 destructive scenarios (CO-026, CO-027, CO-028), capture the sandbox `--dir` value and confirm the dispatch transcript contains no `--share` invocation (on OpenCode 1 it publishes nothing, and OpenCode 2 `run` has no such flag, see the [install reference](../references/install-and-versions.md))
+- For the CHK-033 destructive scenarios (CO-026, CO-027, CO-028), capture the sandbox `--dir` value and confirm the dispatch transcript contains no `--share` invocation (OpenCode 2 `run` has no such flag, and on OpenCode 1 it publishes nothing, see the [install reference](../references/install-and-versions.md))
 
 ---
 
@@ -173,7 +173,7 @@ This section records wave planning and capacity guidance for the manual testing 
 5. Run parallel detached scenarios (CO-026, CO-027, CO-028) in a dedicated wave with isolated port range (e.g., 4096-4299) to avoid port collisions with other workloads.
 6. After each wave, save context and evidence (JSON event streams, session ids, ratio computations), then begin the next wave.
 7. Record utilization table, per-feature file references and evidence paths in the final report.
-8. No scenario passes `--share` (OpenCode 1 treats it as a hidden, deprecated no-op that publishes nothing, and OpenCode 2 `run` has no such flag, see the [install reference](../references/install-and-versions.md)). The playbook validates session creation only.
+8. No scenario passes `--share` (OpenCode 2 `run` has no such flag, and OpenCode 1 treats it as a hidden, deprecated no-op that publishes nothing, see the [install reference](../references/install-and-versions.md)). The playbook validates session creation only.
 
 ### Recommended Wave Plan
 
@@ -200,7 +200,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-On OpenCode 1, verify the canonical `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`). Both versions emit the same event schema (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`). A v2 reader checks that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; a typical v2 install lists no `opencode-go` provider, and that route needs its own v2 login (`opencode2 providers login opencode-go`).
+OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`). On OpenCode 1, verify the canonical `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. Both versions emit the same event schema (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`). A v2 reader checks that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; a typical v2 install lists no `opencode-go` provider, and that route needs its own v2 login (`opencode2 providers login opencode-go`).
 
 #### Scenario Contract
 
@@ -228,15 +228,15 @@ Expected signals: Both formats exit 0. Default output mentions the expected conc
 
 > **Feature File:** [CO-002](../manual-testing-playbook/cli-invocation/format-default-vs-json.md)
 
-### CO-003 | Working directory pinning via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
+### CO-003 | Working directory pinning via --dir (OpenCode 2 starts in the directory; OpenCode 1 only)
 
 #### Description
 
-On OpenCode 1, verify `--dir <path>` pins the dispatched session's working directory rather than inheriting the caller's CWD, even when the caller is in a different directory. OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <path> && opencode2 run ...`.
+OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <path> && opencode2 run ...`. On OpenCode 1, verify `--dir <path>` pins the dispatched session's working directory rather than inheriting the caller's CWD, even when the caller is in a different directory.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying --dir pinning works (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <repo-root> && opencode2 run ...`), change to /tmp before dispatching, but pin --dir to the Public repo root. Ask the dispatched session to use its bash tool to print the working directory and the first three entries it sees. Verify the working directory matches the pinned --dir, not /tmp.
+Prompt summary: As an external-AI conductor verifying --dir pinning works (OpenCode 2 twin starts in the directory instead: `cd <repo-root> && opencode2 run ...`), change to /tmp before dispatching, but pin --dir to the Public repo root. Ask the dispatched session to use its bash tool to print the working directory and the first three entries it sees. Verify the working directory matches the pinned --dir, not /tmp.
 
 Expected signals: Dispatched session reports CWD as the pinned path. Tool.result payloads do NOT mention `/tmp`. Project files (e.g., `AGENTS.md`, `.skilled/`) appear in the listing.
 
@@ -264,13 +264,13 @@ Expected signals: Dispatch exits 0. Reply mentions the unique function name `hel
 
 #### Description
 
-On OpenCode 1, verify `--pure` runs without external plugins, `--print-logs --log-level DEBUG` streams verbose logs to stderr and the stdout JSON event stream remains parseable in both cases. OpenCode 2 `run` has no `--pure` ([install reference](../references/install-and-versions.md)).
+OpenCode 2 `run` has no `--pure`. On OpenCode 1, verify `--pure` runs without external plugins, `--print-logs --log-level DEBUG` streams verbose logs to stderr and the stdout JSON event stream remains parseable in both cases ([install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor exercising the diagnostic flag surface, dispatch the same short prompt three times: (1) baseline default. (2) with --pure to disable plugins. (3) with --print-logs --log-level DEBUG to capture verbose logs. Step (2) uses `--pure`, which is OpenCode 1 only, because OpenCode 2 `run` has no `--pure` ([install reference](../references/install-and-versions.md)). Verify (1) and (3) produce parseable JSON event streams on stdout, (2) exits without plugin loader errors and (3) writes a non-empty stderr log.
+Prompt summary: As an external-AI conductor exercising the diagnostic flag surface, dispatch the same short prompt three times: (1) baseline default. (2) with --pure to disable plugins. (3) with --print-logs --log-level DEBUG to capture verbose logs. Step (2) uses `--pure`; because OpenCode 2 `run` has no `--pure`, this step is OpenCode 1 only ([install reference](../references/install-and-versions.md)). Verify (1) and (3) produce parseable JSON event streams on stdout, (2) exits without plugin loader errors and (3) writes a non-empty stderr log.
 
-Expected signals: All three exit 0. Baseline + debug stdout JSON parseable. --pure stderr has no plugin errors (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). --debug stderr is non-empty.
+Expected signals: All three exit 0. Baseline + debug stdout JSON parseable. --pure stderr has no plugin errors (no OpenCode 2 `run` equivalent, OpenCode 1 only, see the [install reference](../references/install-and-versions.md)). --debug stderr is non-empty.
 
 #### Test Execution
 
@@ -346,11 +346,11 @@ The direct DeepSeek API provider was retired from the cli-opencode roster. The f
 
 #### Description
 
-On OpenCode 1, verify `--variant minimal` and `--variant max` produce materially different response depth for the same prompt, proving the variant flag actually drives provider reasoning effort rather than being a no-op. OpenCode 2 carries the same levels on the model id, as `-m llmgateway/deepseek-v4.1-flash-1017#minimal` and `-m llmgateway/deepseek-v4.1-flash-1017#max`. The v2 twin keeps `llmgateway/` for a like-for-like comparison, so `opencode2 models --standalone` must list the `llmgateway/` prefix before that twin resolves.
+OpenCode 2 carries the same levels on the model id, as `-m llmgateway/deepseek-v4.1-flash-1017#minimal` and `-m llmgateway/deepseek-v4.1-flash-1017#max`. On OpenCode 1, verify `--variant minimal` and `--variant max` produce materially different response depth for the same prompt, proving the variant flag actually drives provider reasoning effort rather than being a no-op. The v2 twin keeps `llmgateway/` for a like-for-like comparison, so `opencode2 models --standalone` must list the `llmgateway/` prefix before that twin resolves.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying the variant flag truly drives reasoning depth, dispatch the same multi-dimensional architecture trade-off prompt twice with --variant minimal and --variant max (OpenCode 1 only, with the OpenCode 2 twin carrying the level on the model id: `-m llmgateway/deepseek-v4.1-flash-1017#minimal` and `-m llmgateway/deepseek-v4.1-flash-1017#max`). Verify both runs exit 0, the max-variant response is at least 2x longer than the minimal response and the max response weighs at least 2 more dimensions than the minimal response.
+Prompt summary: As an external-AI conductor verifying the variant flag truly drives reasoning depth, dispatch the same multi-dimensional architecture trade-off prompt twice with --variant minimal and --variant max (OpenCode 2 twin carries the level on the model id: `-m llmgateway/deepseek-v4.1-flash-1017#minimal` and `-m llmgateway/deepseek-v4.1-flash-1017#max`). Verify both runs exit 0, the max-variant response is at least 2x longer than the minimal response and the max response weighs at least 2 more dimensions than the minimal response.
 
 Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte count. Max-variant covers more dimensions.
 
@@ -453,7 +453,7 @@ Verify `/deep:review:auto` against a pre-bound scratch spec packet runs at least
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor exercising the production deep-review loop, dispatch `opencode run --command deep/review` (OpenCode 1 only, since OpenCode 2 has no `run` flag for a registered command and runs it through the server API, `POST /api/session/{id}/command`, instead) against a pre-bound scratch spec packet targeting `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference), with a tight iteration cap. Verify the dispatch exits 0, a new iteration file with a P0, P1 or P2 finding appears under `<packet>/review/iterations/` and `<packet>/review/deep-review-state.jsonl` gained at least one record. Return a verdict naming the highest-severity finding and the state-file record count delta.
+Prompt summary: As an external-AI conductor exercising the production deep-review loop, dispatch `opencode run --command deep/review` (OpenCode 2 has no `run` flag for a registered command and runs it through the server API, `POST /api/session/{id}/command`, instead, so this is OpenCode 1 only) against a pre-bound scratch spec packet targeting `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference), with a tight iteration cap. Verify the dispatch exits 0, a new iteration file with a P0, P1 or P2 finding appears under `<packet>/review/iterations/` and `<packet>/review/deep-review-state.jsonl` gained at least one record. Return a verdict naming the highest-severity finding and the state-file record count delta.
 
 Expected signals: Exit 0. >= 1 new iteration file under `<packet>/review/iterations/` with a severity tag (P0, P1 or P2) and a file or line citation. State JSONL line count increased. No raw `--agent deep-review` or `--agent orchestrate` simulation dispatch. Scratch packet removed afterwards.
 
@@ -469,7 +469,7 @@ Verify `--agent orchestrate` produces a sequenced multi-agent plan naming at lea
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash-1017#high --format json ...`, and the v2 reader checks that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash-1017` is the default on both versions (DevPass); the `opencode-go/` route stays selectable and needs its own v2 login (`opencode2 providers login opencode-go`)) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run `tool_use` events appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
+Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash-1017#high --format json ...`, and the v2 reader checks that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash-1017` is the default on both versions (DevPass); the `opencode-go/` route stays selectable and needs its own v2 login (`opencode2 providers login opencode-go`)) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run `tool_use` events appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
 
 Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` `tool_use` events. Working tree clean. Dispatch line includes `--agent orchestrate`.
 
@@ -481,7 +481,7 @@ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs descri
 
 ## 11. SESSION CONTINUITY (`CO-018..CO-020`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` prohibition: on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, and OpenCode 2 `run` has no such flag ([install reference](../references/install-and-versions.md)).
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` prohibition: OpenCode 2 `run` has no such flag, and on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued` ([install reference](../references/install-and-versions.md)).
 
 ### CO-018 | Continue last session via -c
 
@@ -519,11 +519,11 @@ Expected signals: Both exit 0. SID captured non-empty. Second turn references pr
 
 #### Description
 
-Verify `--fork --continue` creates a new session id distinct from the parent, AND that SKILL.md NEVER rule 2 forbids `--share` and states it is a deprecated no-op. On OpenCode 1 `--share` publishes nothing, and OpenCode 2 `run` has no such flag ([install reference](../references/install-and-versions.md)).
+Verify `--fork --continue` creates a new session id distinct from the parent, AND that SKILL.md NEVER rule 2 forbids `--share` and states it is a deprecated no-op. OpenCode 2 `run` has no such flag, and on OpenCode 1 `--share` publishes nothing ([install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is forbidden and documented as a deprecated no-op (OpenCode 1 treats `--share` as a deprecated no-op, and OpenCode 2 `run` has no `--share`, see the [install reference](../references/install-and-versions.md)).
+Prompt summary: As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is forbidden and documented as a deprecated no-op (OpenCode 2 `run` has no `--share`, and OpenCode 1 treats `--share` as a deprecated no-op, see the [install reference](../references/install-and-versions.md)).
 
 Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 forbids `--share` and states it is a hidden, deprecated flag that publishes nothing (OpenCode 2 `run` has no `--share`, see the [install reference](../references/install-and-versions.md)).
 
@@ -651,11 +651,11 @@ This category covers 3 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `opencode run --port <N>` (with explicit parallel-session keywords in the prompt) creates a SEPARATE session with its own session id and its own state directory under `~/.opencode/state/` and the dispatch is NOT refused by the self-invocation guard (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
+Verify `opencode run --port <N>` (with explicit parallel-session keywords in the prompt) creates a SEPARATE session with its own session id and its own state directory under `~/.opencode/state/` and the dispatch is NOT refused by the self-invocation guard (OpenCode 2 `run` has no `--share` or `--port`, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or external runtime simulating one) spawning a parallel detached OpenCode session for a small isolated worker task, dispatch opencode run with --port 4096 and a prompt that explicitly says "parallel detached session" + "ablation suite" so the smart router permits use case 2. Verify the dispatch creates a new session with its own session id, its own state directory at ~/.opencode/state/<id>/ and that the dispatch is NOT refused (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
+Prompt summary: As an in-OpenCode operator (or external runtime simulating one) spawning a parallel detached OpenCode session for a small isolated worker task, dispatch opencode run with --port 4096 and a prompt that explicitly says "parallel detached session" + "ablation suite" so the smart router permits use case 2. Verify the dispatch creates a new session with its own session id, its own state directory at ~/.opencode/state/<id>/ and that the dispatch is NOT refused (OpenCode 2 `run` has no `--share` or `--port`, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md)).
 
 Expected signals: Exit 0. New SID captured non-empty. State directory exists. Zero refusal messages.
 
@@ -671,7 +671,7 @@ Verify a 3-worker farm loop with the documented `</dev/null` redirect spawns all
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or fresh shell) running a parallel worker farm, dispatch a 3-worker loop using TEMPLATE 8 from prompt_templates.md. Each worker uses opencode run with --port (4100 + N) and a small isolated task (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)). Critically, append the documented </dev/null redirect to each backgrounded invocation. After the loop, wait for all workers to complete and verify all 3 produced output files.
+Prompt summary: As an in-OpenCode operator (or fresh shell) running a parallel worker farm, dispatch a 3-worker loop using TEMPLATE 8 from prompt_templates.md. Each worker uses opencode run with --port (4100 + N) and a small isolated task (OpenCode 2 `run` has no `--share` or `--port`, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md)). Critically, append the documented </dev/null redirect to each backgrounded invocation. After the loop, wait for all workers to complete and verify all 3 produced output files.
 
 Expected signals: WAIT exit 0. 3 logs with content. 3 distinct session ids. Each worker references its own number.
 
@@ -687,7 +687,7 @@ Verify two parallel detached sessions running an ablation comparison (variant hi
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or fresh shell) running an ablation suite per TEMPLATE 7 (CIDI framework), dispatch two parallel detached opencode run sessions on different ports, one with --variant high and one with --variant minimal (OpenCode 1 only, because OpenCode 2 carries the level on the model id as `-m llmgateway/deepseek-v4.1-flash-1017#<level>` and has no `--share`/`--port`, see the [install reference](../references/install-and-versions.md), and its v2 reader checks that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash-1017` is the default on both versions (DevPass); the `opencode-go/` route stays selectable and needs its own v2 login (`opencode2 providers login opencode-go`)), both asking the same multi-dimensional architecture trade-off question. Capture each session's output to its own log file. Compute the byte-count ratio between the two responses. Verify the high-variant response is at least 2x larger than the minimal-variant response.
+Prompt summary: As an in-OpenCode operator (or fresh shell) running an ablation suite per TEMPLATE 7 (CIDI framework), dispatch two parallel detached opencode run sessions on different ports, one with --variant high and one with --variant minimal (OpenCode 2 carries the level on the model id as `-m llmgateway/deepseek-v4.1-flash-1017#<level>` and has no `--share`/`--port`, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md), and its v2 reader checks that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash-1017` is the default on both versions (DevPass); the `opencode-go/` route stays selectable and needs its own v2 login (`opencode2 providers login opencode-go`)), both asking the same multi-dimensional architecture trade-off question. Capture each session's output to its own log file. Compute the byte-count ratio between the two responses. Verify the high-variant response is at least 2x larger than the minimal-variant response.
 
 Expected signals: WAIT exit 0. Distinct session ids. HIGH/MIN ratio >= 2.0.
 
@@ -699,17 +699,17 @@ Expected signals: WAIT exit 0. Distinct session ids. HIGH/MIN ratio >= 2.0.
 
 ## 15. CROSS-REPO AND CROSS-SERVER (`CO-029..CO-031`)
 
-On OpenCode 1, this category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises cli-opencode's unique cross-repo dispatch capability via `--dir` (per `references/opencode-tools.md` §6), the documented cross-server dispatch contract via `--attach` (operator-environment-dependent) and the critical safety contract that cross-repo alone does NOT bypass the self-invocation guard. OpenCode 2 has no `--dir` and uses `--server <url>` in place of `--attach` ([install reference](../references/install-and-versions.md)).
+OpenCode 2 has no `--dir` and uses `--server <url>` in place of `--attach`. On OpenCode 1, this category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises cli-opencode's unique cross-repo dispatch capability via `--dir` (per `references/opencode-tools.md` §6), the documented cross-server dispatch contract via `--attach` (operator-environment-dependent) and the critical safety contract that cross-repo alone does NOT bypass the self-invocation guard ([install reference](../references/install-and-versions.md)).
 
-### CO-029 | Cross-repo dispatch via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
+### CO-029 | Cross-repo dispatch via --dir (OpenCode 2 starts in the directory; OpenCode 1 only)
 
 #### Description
 
-On OpenCode 1, verify `--dir <other-repo-path>` targets a different repository's plugin / skill / MCP runtime and the dispatched session reports the cross-repo path as its working directory rather than the caller's CWD. OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <other-repo-path> && opencode2 run ...`.
+OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <other-repo-path> && opencode2 run ...`. On OpenCode 1, verify `--dir <other-repo-path>` targets a different repository's plugin / skill / MCP runtime and the dispatched session reports the cross-repo path as its working directory rather than the caller's CWD.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying cross-repo dispatch, dispatch opencode run with --dir set to a different valid repo path on the machine (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <other-repo-path> && opencode2 run ...`). Ask the dispatched session to use the bash tool to list the top 5 entries in its working directory. Verify the listed files match the cross-repo path, not the Public repo.
+Prompt summary: As an external-AI conductor verifying cross-repo dispatch, dispatch opencode run with --dir set to a different valid repo path on the machine (OpenCode 2 twin starts in the directory instead: `cd <other-repo-path> && opencode2 run ...`). Ask the dispatched session to use the bash tool to list the top 5 entries in its working directory. Verify the listed files match the cross-repo path, not the Public repo.
 
 Expected signals: Exit 0. Cross-repo path referenced in a `tool_use` event's `.part.state.output`. Zero references to Public-only files in the listing.
 
@@ -717,17 +717,17 @@ Expected signals: Exit 0. Cross-repo path referenced in a `tool_use` event's `.p
 
 > **Feature File:** [CO-029](../manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md)
 
-### CO-030 | Cross-server dispatch via --attach (OpenCode 1 only, OpenCode 2 uses `--server`)
+### CO-030 | Cross-server dispatch via --attach (OpenCode 2 uses `--server`; OpenCode 1 only)
 
 #### Description
 
-On OpenCode 1, verify the documented `--attach <url>` flag combined with `--dir <remote-path>` is part of the cli-opencode skill surface (the OpenCode 2 twins are `--server <url>` and starting in the directory, see the [install reference](../references/install-and-versions.md)). Live remote server execution is out of scope. The test validates documentation and CLI surface contract.
+The OpenCode 2 twins are `--server <url>` and starting in the directory (see the [install reference](../references/install-and-versions.md)); on OpenCode 1, verify the documented `--attach <url>` flag combined with `--dir <remote-path>` is part of the cli-opencode skill surface. Live remote server execution is out of scope. The test validates documentation and CLI surface contract.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor preparing to dispatch into a remote OpenCode server, verify the cli-opencode documentation contract for cross-server dispatch is intact. Grep the cli-reference.md flag table for --attach, grep the subcommand map for opencode attach and run opencode run --help to confirm the flag is in the live binary's help output (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>`, see the [install reference](../references/install-and-versions.md)).
+Prompt summary: As an external-AI conductor preparing to dispatch into a remote OpenCode server, verify the cli-opencode documentation contract for cross-server dispatch is intact. Grep the cli-reference.md flag table for --attach, grep the subcommand map for opencode attach and run opencode run --help to confirm the flag is in the live binary's help output (OpenCode 2 twin as `--server <url>`; OpenCode 1 only, see the [install reference](../references/install-and-versions.md)).
 
-Expected signals: cli-reference.md §4 + §3 document `--attach` and `opencode attach` (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>`, see the [install reference](../references/install-and-versions.md)). Live binary help includes `--attach`. SKILL.md activation triggers reference cross-server dispatch.
+Expected signals: cli-reference.md §4 + §3 document `--attach` and `opencode attach` (OpenCode 2 twin as `--server <url>`; OpenCode 1 only, see the [install reference](../references/install-and-versions.md)). Live binary help includes `--attach`. SKILL.md activation triggers reference cross-server dispatch.
 
 #### Test Execution
 
@@ -737,11 +737,11 @@ Expected signals: cli-reference.md §4 + §3 document `--attach` and `opencode a
 
 #### Description
 
-On OpenCode 1, verify the documented self-invocation guard correctly refuses a nested cli-opencode dispatch even when the nested target is a different repo via `--dir`. OpenCode 2 has no `--dir` ([install reference](../references/install-and-versions.md)). Cross-repo does NOT bypass the guard. Only the explicit parallel-session keywords do.
+OpenCode 2 has no `--dir`. On OpenCode 1, verify the documented self-invocation guard correctly refuses a nested cli-opencode dispatch even when the nested target is a different repo via `--dir` ([install reference](../references/install-and-versions.md)). Cross-repo does NOT bypass the guard. Only the explicit parallel-session keywords do.
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (simulated by exporting OPENCODE_CONFIG_DIR=/tmp/co-031-fake) attempting a nested cross-repo dispatch, restate the request as a generic cross-repo cli-opencode invocation with --dir pointing at a different path but WITHOUT any parallel-session keywords. Verify the smart router refuses with the documented self-invocation message AND the refusal message includes the parallel-session keyword option among the three remediation paths (OpenCode 1 only, because OpenCode 2 `run` has no `--dir`, see the [install reference](../references/install-and-versions.md)).
+Prompt summary: As an in-OpenCode operator (simulated by exporting OPENCODE_CONFIG_DIR=/tmp/co-031-fake) attempting a nested cross-repo dispatch, restate the request as a generic cross-repo cli-opencode invocation with --dir pointing at a different path but WITHOUT any parallel-session keywords. Verify the smart router refuses with the documented self-invocation message AND the refusal message includes the parallel-session keyword option among the three remediation paths (OpenCode 2 `run` has no `--dir`, so this is OpenCode 1 only, see the [install reference](../references/install-and-versions.md)).
 
 Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the only bypass. Integration_patterns.md §5 lists parallel-session keywords as remediation. Cross-repo NOT a bypass. No real dispatch.
 
@@ -799,7 +799,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 - CO-001: [Base non-interactive invocation](../manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md)
 - CO-002: [Output format default vs json](../manual-testing-playbook/cli-invocation/format-default-vs-json.md)
-- CO-003: [Working directory pinning via --dir](../manual-testing-playbook/cli-invocation/dir-flag-working-directory.md) (OpenCode 1 only, OpenCode 2 starts in the directory)
+- CO-003: [Working directory pinning via --dir](../manual-testing-playbook/cli-invocation/dir-flag-working-directory.md) (OpenCode 2 starts in the directory; OpenCode 1 only)
 - CO-004: [File attachment via -f / --file flag](../manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md)
 - CO-005: [Plugin disable and verbose logs](../manual-testing-playbook/cli-invocation/pure-and-print-logs.md)
 
@@ -850,8 +850,8 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### CROSS-REPO AND CROSS-SERVER
 
-- CO-029: [Cross-repo dispatch via --dir](../manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md) (OpenCode 1 only, OpenCode 2 starts in the directory)
-- CO-030: [Cross-server dispatch via --attach](../manual-testing-playbook/cross-repo-cross-server/attach-remote-server.md) (OpenCode 1 only, OpenCode 2 uses `--server`)
+- CO-029: [Cross-repo dispatch via --dir](../manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md) (OpenCode 2 starts in the directory; OpenCode 1 only)
+- CO-030: [Cross-server dispatch via --attach](../manual-testing-playbook/cross-repo-cross-server/attach-remote-server.md) (OpenCode 2 uses `--server`; OpenCode 1 only)
 - CO-031: [Self-invocation guard fires on nested cross-repo dispatch](../manual-testing-playbook/cross-repo-cross-server/self-invocation-guard-nested.md)
 
 ### GOAL HOOK
@@ -939,7 +939,7 @@ external OpenCode process. There is no operator-facing prompt beyond the run-thi
 
 ## 22. PLUGIN UTILIZATION (`CO-040..CO-056`)
 
-Each scenario drives a live session on OpenCode 1 and OpenCode 2 at one plugin's hook and checks for the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
+Each scenario drives a live session on OpenCode 2 (recommended) and OpenCode 1 (fallback) at one plugin's hook and checks for the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
 
 Run results live in the skill's `benchmark/reports/` folder; the first run is `2026-10-20--manual-testing-playbook--plugin-utilization`, and its findings name the plugins whose expected effects were missing on OpenCode 2, and why.
 

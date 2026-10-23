@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode 2 primary v1 fallback",
+      "phase 62 opencode 2 primary v1 fallback",
+      "opencode 2 primary v1 fallback plan",
+      "opencode 2 primary v1 fallback tasks",
+      "opencode 2 primary v1 fallback implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "primary",
+      "fallback",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "fan-out",
+      "runtime",
+      "resolver",
+      "cli-opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/README.md",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      "scratch/live/resolve-both-installed.json",
+      "scratch/live/resolve-v2-hidden.json",
+      "scratch/live/fanout-unpinned-both-installed.txt",
+      "scratch/live/fanout-unpinned-v2-hidden.txt",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-both-installed.json",
+        "kind": "config",
+        "path": "scratch/live/resolve-both-installed.json",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-v2-hidden.json",
+        "kind": "config",
+        "path": "scratch/live/resolve-v2-hidden.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-unpinned-both-installed.txt",
+        "kind": "file",
+        "path": "scratch/live/fanout-unpinned-both-installed.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-unpinned-v2-hidden.txt",
+        "kind": "file",
+        "path": "scratch/live/fanout-unpinned-v2-hidden.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fan-out runtime resolver and cli-opencode's documented one-line resolver walked PATH directory by directory, trying `opencode2` then `opencode` inside each directory",
+    "created_at": "2026-10-22T21:33:02Z",
+    "last_save_at": "2026-10-22T23:22:07.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d59c3e0372fd4ec5e9349beaa37ce03b4a38f0dbc215681b56300b9ba1e51f0b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ab1149b5fc4423cbe7182900928341355bc3586dd6b8bd8b1e2ec907b9d67991",
+      "plan.md": "ce6d27e4d47d36fedc7411dd03d5239543dded3e5e08c01620d2c0f1dba2978c",
+      "tasks.md": "31f077f4d3a48c9d907b8a601e6e62a6c0b1741edc59d3504ff4d562fea40011",
+      "implementation-summary.md": "b5d00196fde821215b4bd8f6882f590050af0709d00773cbf116db5263ef4fbe"
+    },
+    "last_active_at": null
+  }
+}

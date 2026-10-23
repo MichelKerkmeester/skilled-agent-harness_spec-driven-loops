@@ -1007,7 +1007,7 @@ Each runtime's hook reads how full its context window is. Near 80% it asks the s
 - **Claude Code:** reads usage from the transcript after each tool call and prompt, and arms the relaunch at `Stop`
 - **Codex:** reads the rollout's latest `token_count` and arms at `Stop`. Approve the repository's hooks in `/hooks` once
 - **Pi:** reads usage at `message_end` and arms at `agent_end` through its extension
-- **OpenCode:** reads each message's token counts and arms at `session.idle` through its plugin, on OpenCode 1 and 2
+- **OpenCode:** reads each message's token counts and arms at `session.idle` through its plugin, on OpenCode 2 (recommended) and OpenCode 1 (fallback)
 - **Hermes:** reads usage after each model call and arms at session end through the `repo-guards` plugin
 - **Cursor and Devin:** have no event the loop can trust, so they hand over when you run `/speckit:handoff`
 - **Sessions outside the loop:** one started before the shell line was added cannot relaunch. At 80% it writes the same note and runs `keep`, then carries on. After auto-compaction, Claude Code, Pi and OpenCode point the session back at the note, so decisions the summary dropped are not lost
@@ -1020,7 +1020,7 @@ Each runtime's hook reads how full its context window is. Near 80% it asks the s
 &nbsp;
 #### OpenCode Plugins
 
-Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds them through `.opencode/plugins/`. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 1 and OpenCode 2 alike. When both are installed, `OPENCODE_BIN=opencode` keeps CLI dispatches on OpenCode 1.
+Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds them through `.opencode/plugins/`. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
