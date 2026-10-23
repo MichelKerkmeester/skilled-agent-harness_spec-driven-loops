@@ -54,8 +54,8 @@ contextType: "general"
 - [x] T007 Run both content validators over the updated file: `validate_document.py` reports VALID with 0 issues and `hvr_scan.py` reports 0 hard blockers, and the glance list holds 11 bullets (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T008 Run one separate read-only DeepSeek v4.1 flash 1017 review at max thinking. It returned VERDICT: PASS with no P0 or P1 and two P2s, recorded and not fixed: 'runs OpenCode 2 whenever it is installed' at lines 17 and 39 compresses away the `OPENCODE_BIN` override that line 99 states, and OpenCode 1 is named before OpenCode 2 inside two clauses at lines 99 and 172 without inverting the recommendation. The title is confirmed unchanged as 'v4.0.0.13, Sessions That Hand Themselves Over and Every Plugin on OpenCode 2' (`.skilled/changelog/skilled/v4.0.0.13.md`)
 - [x] T009 Fill this phase's four docs and the parent packet's phase-map and handoff rows from the facts and the verification record (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`)
-- [ ] T010 Commit and push to main (`.skilled/changelog/skilled/v4.0.0.13.md`)
-- [ ] T011 Confirm CI is green on the pushed commit (`.skilled/changelog/skilled/v4.0.0.13.md`)
+- [x] T010 Commit and push to main: `5801f6f807` on main (`.skilled/changelog/skilled/v4.0.0.13.md`)
+- [x] T011 Confirm CI is green on the pushed commit: 12 of 12 on `5801f6f807`, and 13 passed with Trigger Index Rebuild skipped on the index rebuild `dd180cefeb`, Spec-Kit Check 39879181332 (`.skilled/changelog/skilled/v4.0.0.13.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,7 +63,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, the push and CI tasks included
+- [x] All tasks marked `[x]`, the push and CI tasks included
 - [x] No `[B]` blocked tasks remaining
 - [x] Review done: one read-only DeepSeek v4.1 flash 1017 session at max thinking returned VERDICT: PASS with no P0 or P1 and two P2s recorded
 - [x] Manual verification passed: both validators report 0 issues and 0 hard blockers, the glance list holds 11 bullets, and the title is unchanged

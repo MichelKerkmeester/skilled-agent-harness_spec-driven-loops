@@ -78,12 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,6 +97,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The v4.0.0.13 changelog had been trimmed and reordered, but it still described the release as it stood before two later changes landed",
     "created_at": "2026-10-23T00:23:40Z",
-    "last_save_at": "2026-10-23T00:30:58.810Z",
+    "last_save_at": "2026-10-23T00:59:08.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e0b3f24169167ac8e49ee5bb20541e5514d783ad0b1666d02cf5b2ea6db9a61",
+    "source_fingerprint": "sha256:cfc648405457f7561cb81b6bc3fc1a2c1660d3aa9b6b66d3e85eb7717dd4085a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "73c88796b76e98cfd8eb7dfaba044c260ea739bb4d3033d03c30933b8a40be89",
-      "plan.md": "48d4d6d006f67626014d40242eaf176126d930448340f67232c01c186f39f481",
-      "tasks.md": "9e7b9788f826fc3172f203545fe1e37be6708620f6c477caa1a748ecb38f235d",
-      "implementation-summary.md": "0eb642e1e4a987b101f7a9d59acf7835604f526f0cfb0eaf213f778ba1cf3887"
+      "spec.md": "7054b3f807fbb5e578956ad35adf7d0879b46fed651649de802c3ca5a63eb0d8",
+      "plan.md": "dd81fb9f9c22f6296564f9879352b43c1258f253afacb744387d4ef95420e351",
+      "tasks.md": "9b783cbf9df7d515b304d8935af5b78823a8c368f3c3f95a90e3a54d9c7fe1f3",
+      "implementation-summary.md": "df9d93f63c5e33b9ad0c4f361463672d0d8af747544179aebdd93fb2fd35e130"
     },
     "last_active_at": null
   }

@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/208-v4-0-0-13-final-changelog` |
 | **Parent Spec** | ../spec.md |
@@ -116,7 +116,7 @@ Bring the changelog to the state the release will actually ship, so a reader mee
 |----|-------------|---------------------|
 | REQ-005 | The changelog passes both content validators. | `validate_document.py` reports VALID with 0 issues and `hvr_scan.py` reports 0 hard blockers. |
 | REQ-006 | A separate read-only review checks the final file. | One separate read-only DeepSeek v4.1 flash 1017 session at max thinking returns VERDICT: PASS with no P0 or P1 and two P2s: 'runs OpenCode 2 whenever it is installed' at lines 17 and 39 compresses away the `OPENCODE_BIN` override that line 99 states, and OpenCode 1 is named before OpenCode 2 inside two clauses at lines 99 and 172 without inverting the recommendation. Both are recorded and not fixed. |
-| REQ-007 | This phase's records match the final state. | All four docs replace every scaffold placeholder, carry status In Progress and list the commit-and-push and CI confirmation as the only open tasks. |
+| REQ-007 | This phase's records match the final state. | All four docs replace every scaffold placeholder, carry status Complete with the push and CI tasks ticked with their commit and run ids. |
 <!-- /ANCHOR:requirements -->
 
 ---

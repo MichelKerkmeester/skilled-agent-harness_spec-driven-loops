@@ -44,7 +44,7 @@ The work brings the trimmed v4.0.0.13 changelog up to the final tree. One DeepSe
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 - [x] Read-only review findings fixed or recorded (one PASS with no P0 or P1 and two P2s recorded)
-- [ ] Commit pushed to main with CI green
+- [x] Commit pushed to main with CI green
 <!-- /ANCHOR:quality-gates -->
 
 ---
