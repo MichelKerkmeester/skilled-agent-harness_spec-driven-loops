@@ -12,6 +12,9 @@ on:
       # Any changed skill doc must raise its version, which the doc-version-raise job checks.
       - '.opencode/skills/**/*.md'
       - '.skilled/skills/**/*.md'
+      - '.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
+      - '.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
+      - '.github/workflows/skill-doc-frontmatter.yml'
   push:
     branches: [main, 'skilled/**']
     paths:
@@ -21,6 +24,13 @@ on:
       - '.skilled/skills/**/references/**'
       - '.opencode/skills/**/assets/**'
       - '.skilled/skills/**/assets/**'
+      - '.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
+      - '.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
+      - '.github/workflows/skill-doc-frontmatter.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   frontmatter-coverage:

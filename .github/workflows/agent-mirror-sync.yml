@@ -2,6 +2,22 @@ name: Agent Mirror Sync
 on:
   pull_request:
     branches: [main]
+    paths:
+      - '.opencode/agents/**'
+      - '.skilled/agents/**'
+      - '.claude/agents/**'
+      - '.codex/agents/**'
+      - '.opencode/bin/check-agent-mirror-sync.cjs'
+      - '.skilled/bin/check-agent-mirror-sync.cjs'
+      - '.opencode/bin/lib/mirror-sync-verify.cjs'
+      - '.skilled/bin/lib/mirror-sync-verify.cjs'
+      - '.opencode/skills/system-spec-kit/**'
+      - '.skilled/skills/system-spec-kit/**'
+      - '.github/workflows/agent-mirror-sync.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   agent-mirror-sync:

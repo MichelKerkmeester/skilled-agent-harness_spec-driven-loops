@@ -4,11 +4,63 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/commands/**'
+      - '.opencode/commands/**'
+      - '.claude/commands/**'
+      - '.cursor/commands/**'
+      - '.claude/agents/**'
+      - '.skilled/agents/**'
+      - '.opencode/agents/**'
+      - '.cursor/agents/**'
+      - '.devin/agents/**'
+      - '.skilled/skills/**/SKILL.md'
+      - '.opencode/skills/**/SKILL.md'
+      - '.hermes/**'
+      - '.skilled/skills/system-spec-kit/**'
+      - '.opencode/skills/system-spec-kit/**'
+      - '.claude/settings.json'
+      - '.claude/hooks/**'
+      - '.codex/hooks.json'
+      - '.codex/hooks/**'
+      - '.cursor/hooks.json'
+      - '.cursor/hooks/**'
+      - '.devin/hooks.v1.json'
+      - '.devin/hooks/**'
+      - '.github/workflows/command-tree-parity.yml'
   push:
     branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/commands/**'
+      - '.opencode/commands/**'
+      - '.claude/commands/**'
+      - '.cursor/commands/**'
+      - '.claude/agents/**'
+      - '.skilled/agents/**'
+      - '.opencode/agents/**'
+      - '.cursor/agents/**'
+      - '.devin/agents/**'
+      - '.skilled/skills/**/SKILL.md'
+      - '.opencode/skills/**/SKILL.md'
+      - '.hermes/**'
+      - '.skilled/skills/system-spec-kit/**'
+      - '.opencode/skills/system-spec-kit/**'
+      - '.claude/settings.json'
+      - '.claude/hooks/**'
+      - '.codex/hooks.json'
+      - '.codex/hooks/**'
+      - '.cursor/hooks.json'
+      - '.cursor/hooks/**'
+      - '.devin/hooks.v1.json'
+      - '.devin/hooks/**'
+      - '.github/workflows/command-tree-parity.yml'
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   command-tree-parity:
@@ -44,10 +96,10 @@ jobs:
           echo "Command trees are byte-identical."
 
   hermes-mirror:
-    # The Hermes runtime reads generated copies of every skill's SKILL.md and of the
-    # command prompts. An edit to any skill can leave its copy stale, and no path filter
-    # narrow enough to keep a heavier workflow cheap sees every such edit, so the copies
-    # are compared here, on every push and pull request.
+    # The Hermes runtime reads generated copies of every skill's SKILL.md, of the agent
+    # personas and of the command prompts. The filter above names each of those sources,
+    # so an edit to any of them runs this job; a missed input is what lets a stale copy
+    # land green, which is the failure this job exists to catch.
     name: Hermes skill and prompt copies match their sources
     runs-on: ubuntu-latest
     steps:
