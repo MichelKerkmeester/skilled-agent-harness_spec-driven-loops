@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c3513804d4069c3e2c3a33fbf5af35a39aa324ece5b65da8339af576edbb79d9",
+  "manifestHash": "c99aad54383a630b4fbd0646d49445d6b2006d57828b762622695288026e2c6c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7019,6 +7019,12 @@
     "052 stale fall through bug": [
       "052 stale fall-through bug"
     ],
+    "053 ci research": [
+      "053 ci research"
+    ],
+    "053 ci workflow efficiency": [
+      "053 ci workflow efficiency"
+    ],
     "053 mk spec memory rename remediation": [
       "053 mk-spec-memory rename remediation"
     ],
@@ -7030,6 +7036,12 @@
     ],
     "053 remediation tasks": [
       "053 remediation tasks"
+    ],
+    "053 research plan": [
+      "053 research plan"
+    ],
+    "053 research tasks": [
+      "053 research tasks"
     ],
     "054 handover": [
       "054 handover"
@@ -17718,6 +17730,18 @@
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
     ],
+    "ci research acceptance criteria": [
+      "ci research acceptance criteria"
+    ],
+    "ci research implementation summary": [
+      "ci research implementation summary"
+    ],
+    "ci research plan": [
+      "ci research plan"
+    ],
+    "ci research tasks": [
+      "ci research tasks"
+    ],
     "ci resolution plan": [
       "ci resolution plan"
     ],
@@ -17768,6 +17792,12 @@
     ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
+    ],
+    "ci workflow efficiency phase parent spec": [
+      "ci workflow efficiency phase parent spec"
+    ],
+    "ci workflow efficiency research": [
+      "ci workflow efficiency research"
     ],
     "ci workflow tasks": [
       "ci workflow tasks"
@@ -37634,6 +37664,15 @@
     "doctor check 5l": [
       "doctor check 5l"
     ],
+    "doctor ci and sk code ci packet": [
+      "doctor ci and sk-code-ci packet"
+    ],
+    "doctor ci command design": [
+      "doctor ci command design"
+    ],
+    "doctor ci design research": [
+      "doctor ci design research"
+    ],
     "doctor cocoindex": [
       "/doctor cocoindex",
       "doctor cocoindex"
@@ -48206,6 +48245,12 @@
     ],
     "git worktree counter max plus one": [
       "git worktree counter max plus one"
+    ],
+    "github actions cost research": [
+      "github actions cost research"
+    ],
+    "github actions efficiency packet": [
+      "github actions efficiency packet"
     ],
     "github actions schedule": [
       "github actions schedule"
@@ -92327,6 +92372,12 @@
     ],
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
+    ],
+    "sk code ci research": [
+      "sk-code-ci research"
+    ],
+    "sk code ci surface design": [
+      "sk-code-ci surface design"
     ],
     "sk code close out": [
       "sk-code close-out"

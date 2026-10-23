@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7206,
-    "ok": 14920,
+    "missing-frontmatter": 7249,
+    "ok": 14927,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25674,
+  "documentsScanned": 25724,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c3513804d4069c3e2c3a33fbf5af35a39aa324ece5b65da8339af576edbb79d9",
+  "manifestHash": "c99aad54383a630b4fbd0646d49445d6b2006d57828b762622695288026e2c6c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37447,
+      "ok": 37464,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -68124,6 +68124,264 @@
       "line": 1,
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/deep-research-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-011.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-012.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-013.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-014.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-015.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-016.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-017.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-018.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-019.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/iterations/iteration-020.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-11.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-12.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-13.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-14.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-15.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-16.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-17.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-18.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-19.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-20.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     }
   ],
   "skippedPaths": [
@@ -75041,6 +75299,10 @@
     },
     {
       "path": "specs/system-speckit/052-research-folder-continuity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch",
       "reason": "excluded directory"
     },
     {

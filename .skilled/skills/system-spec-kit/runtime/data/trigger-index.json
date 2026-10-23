@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c3513804d4069c3e2c3a33fbf5af35a39aa324ece5b65da8339af576edbb79d9",
+  "manifestHash": "c99aad54383a630b4fbd0646d49445d6b2006d57828b762622695288026e2c6c",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -14977,7 +14977,14 @@
     "specs/system-speckit/052-research-folder-continuity/implementation-summary.md",
     "specs/system-speckit/052-research-folder-continuity/plan.md",
     "specs/system-speckit/052-research-folder-continuity/spec.md",
-    "specs/system-speckit/052-research-folder-continuity/tasks.md"
+    "specs/system-speckit/052-research-folder-continuity/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/acceptance-criteria.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/implementation-summary.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/plan.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/research/research.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/spec.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/001-research/tasks.md",
+    "specs/system-speckit/053-ci-workflow-efficiency/spec.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -22339,6 +22346,12 @@
     "052 stale fall through bug": [
       13696
     ],
+    "053 ci research": [
+      14972
+    ],
+    "053 ci workflow efficiency": [
+      14974
+    ],
     "053 mk spec memory rename remediation": [
       9642,
       11195
@@ -22351,6 +22364,12 @@
     ],
     "053 remediation tasks": [
       9643
+    ],
+    "053 research plan": [
+      14970
+    ],
+    "053 research tasks": [
+      14973
     ],
     "054 handover": [
       8864
@@ -33530,6 +33549,18 @@
     "ci regression gate comparison rule sets": [
       14513
     ],
+    "ci research acceptance criteria": [
+      14968
+    ],
+    "ci research implementation summary": [
+      14969
+    ],
+    "ci research plan": [
+      14970
+    ],
+    "ci research tasks": [
+      14973
+    ],
     "ci resolution plan": [
       13926
     ],
@@ -33580,6 +33611,13 @@
     ],
     "ci visual regression pipeline": [
       512
+    ],
+    "ci workflow efficiency phase parent spec": [
+      14974
+    ],
+    "ci workflow efficiency research": [
+      14971,
+      14972
     ],
     "ci workflow tasks": [
       13874
@@ -54750,6 +54788,15 @@
     "doctor check 5l": [
       5381
     ],
+    "doctor ci and sk code ci packet": [
+      14974
+    ],
+    "doctor ci command design": [
+      14971
+    ],
+    "doctor ci design research": [
+      14972
+    ],
     "doctor cocoindex": [
       10584,
       10609
@@ -66352,6 +66399,13 @@
     ],
     "git worktree counter max plus one": [
       2453
+    ],
+    "github actions cost research": [
+      14971,
+      14972
+    ],
+    "github actions efficiency packet": [
+      14974
     ],
     "github actions schedule": [
       12851,
@@ -113896,6 +113950,12 @@
     ],
     "sk code changelog rewrite tasks": [
       6153
+    ],
+    "sk code ci research": [
+      14972
+    ],
+    "sk code ci surface design": [
+      14971
     ],
     "sk code close out": [
       4518
