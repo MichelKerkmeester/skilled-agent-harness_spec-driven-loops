@@ -14,6 +14,10 @@ on:
       - '.github/workflows/chart-corpus.yml'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 # The corpus check is the chart packet's contract: forty-two families over every shipped form.
 # Until this existed it ran only when somebody chose to run it, and two reviews found twenty-one
 # assertions inside it that passed for a reason other than the one their message gave. This blocks,
