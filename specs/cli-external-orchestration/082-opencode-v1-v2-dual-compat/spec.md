@@ -175,7 +175,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 62 | 062-opencode-2-primary-v1-fallback/ | Make the first opencode2 anywhere on PATH win over an earlier opencode, keep the first opencode as the fallback only when no opencode2 exists with OPENCODE_BIN still overriding both, and reorder every listed doc and asset to recommend OpenCode 2 first with OpenCode 1 as the temporary fallback | Complete |
 | 63 | 063-v4-0-0-13-final-changelog/ | Bring the v4.0.0.13 changelog to its final pre-release state with `llmgateway/deepseek-v4.1-flash-1017` as the default on both OpenCode versions, Pi, Hermes and the deep-loop fan-out runtime, dispatch that takes the first `opencode2` anywhere on PATH, two new upgrade notes and suite counts from reruns on this tree | Complete |
 | 64 | 064-append-log-concurrency-flake/ | Hold one lock across appendLog's last-byte peek and its write, so a concurrent append no longer leaves an empty line in the relaunch log | Complete |
-| 65 | 065-drop-old-deepseek-from-pi/ | Delete the undated 2026-09-10 DeepSeek V4.1 Flash from Pi's `.pi/models.json` and both cli-pi rosters, so only the dated 2026-10-17 id is registered and a lineage pinned to the old id is rejected up front | In Progress |
+| 65 | 065-drop-old-deepseek-from-pi/ | Delete the undated 2026-09-10 DeepSeek V4.1 Flash from Pi's `.pi/models.json` and both cli-pi rosters, so only the dated 2026-10-17 id is registered and a lineage pinned to the old id is rejected up front | Complete |
 
 ### Phase Transition Rules
 

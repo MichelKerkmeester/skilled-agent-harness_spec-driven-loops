@@ -54,12 +54,12 @@ contextType: "general"
 
 - [x] T008 Prove the new checks bite: restoring the old id in `.pi/models.json` and the rosters fails 5 tests; a sixth, the Hermes CJS alignment check, failed only because the revert script also duplicated a Hermes id, so it is not counted (`.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts`, `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`)
 - [x] T009 Record the suite counts from a full rerun of the four updated suites and any suite the runtime rosters touch (`.skilled/skills/system-deep-loop/runtime/tests/`, `.skilled/skills/system-deep-loop/deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts`) - deep-loop runtime 2807 passed and 8 skipped of 2815 in 167 files (the 062 baseline was 2806 and 8 of 2814; the one extra is the new rejection test); deep-ai-council 120 of 120 before and after; config-shape, battery and cli-opencode script tests 85 of 85 before and after; playbook fleet `--strict` PASS before and after, cli-pi 35 scenarios and 0 violations
-- [ ] T010 Live proof: `pi --list-models` shows no undated llmgateway DeepSeek row after the main checkout updates (`.pi/models.json`) - PENDING: the orchestrator fills the observed output
+- [x] T010 Live proof: `pi --list-models` shows no undated llmgateway DeepSeek row after the main checkout updates (`.pi/models.json`) - on the main checkout at `8d13b357a9`, `pi --list-models` lists three llmgateway rows, `deepseek-v4.1-flash-1017`, `glm-5.3-flash` and `gpt-6-luna`, with no undated DeepSeek row, exit 0 (`scratch/live/list-models.txt`)
 - [x] T011 Live proof: an unpinned `pi` run uses `deepseek-v4.1-flash-1017` and exits 0 (`.pi/settings.json`, `.pi/models.json`) - `pi -ne -p ... --mode json --offline` with no `--model` reported `model: deepseek-v4.1-flash-1017`, `provider: llmgateway`, reply OK, exit 0 (`scratch/live/unpinned-run.jsonl`)
 - [x] T012 Live proof: a fan-out cli-pi lineage pinned to `deepseek-v4.1-flash` is rejected with "cli-pi model 'deepseek-v4.1-flash' is not in the enforced allowlist" (`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`) - `buildLineageCommand` with the real `pi` on PATH threw that message listing the nine allowed ids, while `-1017` built `pi -p --offline --model llmgateway/deepseek-v4.1-flash-1017 --thinking max` (`scratch/live/fanout-pin-rejection.txt`)
 - [x] T013 Fill this phase's four docs and the parent packet's phase-map and handoff rows from the facts and the verification record (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`)
-- [ ] T014 Commit and push to main (`.pi/models.json`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`)
-- [ ] T015 Confirm CI is green on the pushed commit (`.pi/models.json`)
+- [x] T014 Commit and push to main (`.pi/models.json`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`) - pushed to main as `8d13b357a9`
+- [x] T015 Confirm CI is green on the pushed commit (`.pi/models.json`) - 17 of 17 workflows green on `8d13b357a9`, including Deep-Loop Runtime Tests `39909844320`, OpenCode Dual-Version Battery `39909844429`, Spec-Kit Check `39909844384`, Playbook Operator Contract `39909844592` and Trigger Index Rebuild `39909844393`; the index rebuild `c33ff8840a` had 13 succeeded, Trigger Index Rebuild skipped and Spec-Kit Check `39910111430` green
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, the live proof, suite count, push and CI tasks included
+- [x] All tasks marked `[x]`, the live proof, suite count, push and CI tasks included
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the live `pi --list-models` and unpinned-run proofs, the rejection proof and the suite counts are recorded
+- [x] Manual verification passed: the live `pi --list-models` and unpinned-run proofs, the rejection proof and the suite counts are recorded
 <!-- /ANCHOR:completion -->
 
 ---

@@ -43,8 +43,8 @@ Commit `052d1e2e1e` removed the undated 2026-09-10 `deepseek-v4.1-flash` from `.
 - [x] All acceptance criteria met
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
-- [ ] Live proof on the updated main checkout recorded (pending)
-- [ ] Commit pushed to main with CI green (pending)
+- [x] Live proof on the updated main checkout recorded
+- [x] Commit pushed to main with CI green
 <!-- /ANCHOR:quality-gates -->
 
 ---

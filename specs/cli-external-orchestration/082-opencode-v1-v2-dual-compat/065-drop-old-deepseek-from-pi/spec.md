@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/210-drop-old-deepseek-from-pi` |
 | **Parent Spec** | ../spec.md |
@@ -145,7 +145,7 @@ Remove the undated id from Pi entirely, so the runtime registers only `deepseek-
 | Risk | Removing the provider mapping makes the rejection message less obvious | Low | `PI_ALLOWED_MODELS` rejects the literal first with a message that names the id and the allowlist |
 | Risk | Hermes or OpenCode loses the old id by accident | Med | Both keep it on purpose and the tests still cover their rosters; the phase records say why |
 | Risk | A doc still claims the old id is pinnable on Pi | Med | All three roster docs are updated and the changelog names OpenCode and Hermes as the remaining routes |
-| Risk | The live proof is taken from this worktree rather than the main checkout | Med | The proof rows stay pending until the main checkout updates; the orchestrator fills them after the push |
+| Risk | The live proof is taken from this worktree rather than the main checkout | Med | The picker proof was taken from the main checkout after the push; the other proofs exercise the same files from the worktree |
 <!-- /ANCHOR:risks -->
 
 ---

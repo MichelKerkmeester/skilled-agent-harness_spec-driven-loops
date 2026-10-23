@@ -1,0 +1,7 @@
+$ readlink ~/.pi/agent/models.json: ../../MEGA/Development/Code_Environment/Public/.pi/models.json
+$ pi --list-models (main checkout at 8d13b357a9)
+provider     model                       context  max-out  thinking  images
+llmgateway   deepseek-v4.1-flash-1017    1.1M     393.2K   yes       yes   
+llmgateway   glm-5.3-flash               1.0M     131.1K   yes       no    
+llmgateway   gpt-6-luna                  1.1M     128K     yes       yes   
+exit=0

@@ -32,7 +32,7 @@
       "undated"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -50,6 +50,7 @@
       ".pi/custom-providers.md",
       ".skilled/changelog/skilled/v4.0.0.13.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
+      "scratch/live/list-models.txt",
       "scratch/live/unpinned-run.jsonl",
       "scratch/live/fanout-pin-rejection.txt"
     ],
@@ -151,6 +152,12 @@
         "source": "derived"
       },
       {
+        "name": "list-models.txt",
+        "kind": "file",
+        "path": "scratch/live/list-models.txt",
+        "source": "derived"
+      },
+      {
         "name": "unpinned-run.jsonl",
         "kind": "file",
         "path": "scratch/live/unpinned-run.jsonl",
@@ -164,12 +171,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +202,7 @@
     ],
     "causal_summary": "Commit `052d1e2e1e` took the undated 2026-09-10 `deepseek-v4.1-flash` out of `.pi/settings.json` `enabledModels`, so the picker stopped offering it, but the model object stayed in the `llmgateway` provider block in `.pi/models.json`",
     "created_at": "2026-10-23T04:51:31Z",
-    "last_save_at": "2026-10-23T06:09:30.572Z",
+    "last_save_at": "2026-10-23T06:32:53.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d5ff5015e835a9901b2ec52799c355fcce1e8a605681e251b15e14cf7d7c6c2",
+    "source_fingerprint": "sha256:f813ff961abc2c5bbe32b18fe0c57468adb78ac73b48c4caf26788d841b14019",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5777b45dceb0ea891e0fe8306b115b2d8f7f3ce973a675535b0b733cbbf1d641",
-      "plan.md": "58c7532b987370156baa1181271246a28914c65f352fab1ee9eeff1c88b1a699",
-      "tasks.md": "e21ea155c7fe934d54c620ce46a5a76249b4b614e68c3ba606b00d568ed444df",
-      "implementation-summary.md": "63283b94395b26908ff97d944ead3aec79cc6d6ee7285864fd80460c3bca0a1e"
+      "spec.md": "901ef852c896989f14a19a0e4d4122e5f04975dacf1769d90d9799375d3db10a",
+      "plan.md": "0d7d8b3a69052d0c5e506dea1b24f93e30a748c5671ad9278b802bf09726853b",
+      "tasks.md": "7f609a275b1d9b45f54b505b5122fc078ce0b11f2964769f6301a10cd5ba823e",
+      "implementation-summary.md": "a91a4f824c459bccf37b3162a5ec1bc7ae4573c8ee714bd3870b0a309f6f6aa3"
     },
     "last_active_at": null
   }

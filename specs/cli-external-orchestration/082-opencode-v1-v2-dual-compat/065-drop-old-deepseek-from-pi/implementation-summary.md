@@ -10,10 +10,9 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi"
     last_updated_at: "2026-10-23T05:20:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the suite reruns, the unpinned run, the pinned-id rejection and both review rounds"
-    next_safe_action: "Push to main, confirm CI, then record pi --list-models from the updated main checkout"
-    blockers:
-      - "Push to main, CI and the pi --list-models proof are pending"
+    recent_action: "Pushed the change, confirmed CI and recorded pi --list-models from the main checkout"
+    next_safe_action: "None; the phase is complete"
+    blockers: []
     key_files:
       - ".pi/models.json"
       - ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
@@ -22,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-065-drop-old-deepseek-from-pi"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 065-drop-old-deepseek-from-pi |
-| **Status** | In Progress |
-| **Completed** | — (live proof, push and CI pending) |
+| **Status** | Complete |
+| **Completed** | 2026-10-23 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -88,7 +87,7 @@ The tests move with the roster. `executor-config`, `fanout-run`, `combo-matrix` 
 
 DeepSeek V4.1 Flash 1017 through cli-pi wrote the test changes at max thinking and the doc changes at high thinking, then fixed the review findings the same way, including the Hermes roster docblock and test name. The orchestrator made the runtime roster deletions, the first comment rewording and the `models.json` deletion by hand as mechanical edits, because those are short, reviewable removals rather than open-ended design work. A separate read-only DeepSeek session reviewed the diff: round 1 failed with two P1 findings (cli-pi docs still presenting the undated literal as a live Pi route, and the PI-017 playbook still counting ten ids) and four P2 wording findings; round 2 passed with one P2 about a stale sentence in the opencode-go row, which was fixed. Luna was not used.
 
-The revert proof and the suite reruns hold the change. Restoring the old id in `.pi/models.json` and the rosters fails 5 tests, which shows the new checks reject the split state rather than merely documenting it. An unpinned `pi` run reached `-1017` and exited 0, and the fan-out command builder rejected a lineage pinned to the old id on the real `pi` path. `pi --list-models` reads the main checkout's `.pi/models.json` through the global symlink, so that proof waits for the push and a fast-forward of the main checkout.
+The revert proof and the suite reruns hold the change. Restoring the old id in `.pi/models.json` and the rosters fails 5 tests, which shows the new checks reject the split state rather than merely documenting it. An unpinned `pi` run reached `-1017` and exited 0, and the fan-out command builder rejected a lineage pinned to the old id on the real `pi` path. `pi --list-models` reads the main checkout's `.pi/models.json` through the global symlink, so that proof was taken after the push: the main checkout at `8d13b357a9` lists only the three registered llmgateway rows.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -115,13 +114,13 @@ The revert proof and the suite reruns hold the change. Restoring the old id in `
 | Check | Result |
 |-------|--------|
 | Revert proof: old id restored in `.pi/models.json` and the rosters | FAIL 5 tests, which proves the new checks bite; a sixth failure came from the revert script duplicating a Hermes id and is not counted |
-| `pi --list-models` shows no undated llmgateway DeepSeek row after the main checkout updates | PENDING: the orchestrator fills the observed output |
+| `pi --list-models` shows no undated llmgateway DeepSeek row after the main checkout updates | PASS: on the main checkout at `8d13b357a9`, `pi --list-models` lists three llmgateway rows, `deepseek-v4.1-flash-1017`, `glm-5.3-flash` and `gpt-6-luna`, with no undated DeepSeek row, exit 0 (`scratch/live/list-models.txt`) |
 | An unpinned `pi` run uses `deepseek-v4.1-flash-1017` and exits 0 | PASS: JSON events report `model: deepseek-v4.1-flash-1017` on `llmgateway`, reply OK, exit 0 (`scratch/live/unpinned-run.jsonl`) |
 | A fan-out cli-pi lineage pinned to the old id is rejected | PASS: `buildLineageCommand` throws "cli-pi model 'deepseek-v4.1-flash' is not in the enforced allowlist" with the nine allowed ids; `-1017` builds its `pi` command (`scratch/live/fanout-pin-rejection.txt`) |
 | Suite counts from the four updated suites and any suite the rosters touch | PASS: deep-loop runtime 2807 passed and 8 skipped of 2815 in 167 files (the 062 baseline was 2806 and 8 of 2814; the one extra is the new rejection test); deep-ai-council 120 of 120 before and after; config-shape, battery and cli-opencode script tests 85 of 85 before and after; playbook fleet `--strict` PASS before and after, cli-pi 35 scenarios and 0 violations |
 | Changelog validator and link guard | PASS: `validate_document.py` 0 issues on the v4.0.0.13 changelog; link guard 0 broken across 7793 files |
 | Read-only DeepSeek review | Round 1 FAIL (2 P1, 4 P2, all fixed); round 2 PASS with 1 P2, fixed |
-| Commit, push and CI green on the pushed commit | PENDING: not yet pushed |
+| Commit, push and CI green on the pushed commit | PASS: 17 of 17 workflows green on `8d13b357a9`, including Deep-Loop Runtime Tests `39909844320`, OpenCode Dual-Version Battery `39909844429`, Spec-Kit Check `39909844384`, Playbook Operator Contract `39909844592` and Trigger Index Rebuild `39909844393`; the index rebuild `c33ff8840a` had 13 succeeded, Trigger Index Rebuild skipped and Spec-Kit Check `39910111430` green |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -129,7 +128,7 @@ The revert proof and the suite reruns hold the change. Restoring the old id in `
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`pi --list-models` reads the main checkout.** Pi's global `models.json` is a symlink to the main checkout's file, so the picker proof can only be taken after the push lands there.
+1. **`pi --list-models` reads the main checkout.** Pi's global `models.json` is a symlink to the main checkout's file, so the picker proof can only be taken once a push lands there.
 2. **The old id still exists outside Pi.** Hermes and OpenCode keep `deepseek-v4.1-flash` on purpose, so a reader who sees the id elsewhere is not looking at a missed removal.
 3. **Two timing-sensitive deep-loop tests fail under load.** Running the baseline and the after-suite at the same time failed `deep-research-ledger-schema` (a 30 s timeout) on both trees and `branch-leases-waves` on the after tree; the after-suite run alone passed every file. Neither test reads a model roster.
 <!-- /ANCHOR:limitations -->
