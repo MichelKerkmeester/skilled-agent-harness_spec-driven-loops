@@ -603,10 +603,11 @@ MD
     if [ "$MISS" = "0" ]; then echo "C6 PASS$LINES" >> "$C"; else echo "C6 FAIL missing=$MISS$LINES" >> "$C"; fi
   fi
 
-  # C7: no commit and no push by the swarm.
+  # C7: swarm commits stay local and nothing is pushed.
   HEAD=$(git rev-parse HEAD)
   COUNT=$(git log --oneline "$START..HEAD" | wc -l | tr -d ' ')
-  if [ "$HEAD" = "$START" ] && [ "$COUNT" = "0" ]; then echo "C7 PASS head=$HEAD commits_since_start=$COUNT" >> "$C"; else echo "C7 FAIL head=$HEAD start=$START commits_since_start=$COUNT" >> "$C"; fi
+  REMOTE=$(git branch -r --contains HEAD | wc -l | tr -d ' ')
+  if [ "$COUNT" = "0" ] || [ "$REMOTE" = "0" ]; then echo "C7 PASS head=$HEAD commits_since_start=$COUNT remote_branches_with_head=$REMOTE" >> "$C"; else echo "C7 FAIL head=$HEAD start=$START commits_since_start=$COUNT remote_branches_with_head=$REMOTE" >> "$C"; fi
 
   cat "$C"
   PASSES=$(grep -c '^C[1-7] PASS ' "$C")

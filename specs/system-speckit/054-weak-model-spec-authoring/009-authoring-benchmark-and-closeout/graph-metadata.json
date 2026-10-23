@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-23T14:14:22.520Z",
+    "last_save_at": "2026-10-23T15:38:00.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e79f77538d33ab883dc8e4244e5842df601c9d1519e69f6ec4c53ad558e446e3",
+    "source_fingerprint": "sha256:8913ea40f35e7ff21d9468506460b6ab3274f19c3594f964ed853a6e90083cba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a224a44966dadd84108f4ccd37009621dc7226084195f68c9f608987cb10472",
       "plan.md": "5a626159893779c61a6bd9bef8b5abe5e39b69169f9498e6edce19d11869bb9c",
-      "tasks.md": "b74f5df5a37ac2daf5969d9a9cbadd391411aa993bdd77e872c66b9da3412617",
+      "tasks.md": "c03ac8db26dd510b0ff20414a20e448799408e8afe47bc5390c30f81f47de8bc",
       "implementation-summary.md": "e18e5be02f8dba8e7de2eac4d4a68a88be1a9c48719c667d3a2740c9d6ec5695"
     },
     "last_active_at": null

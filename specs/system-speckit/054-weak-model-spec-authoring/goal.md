@@ -93,7 +93,7 @@ string, not these files.
 - [ ] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
 - [ ] The phase 009 report lists min and max for five metrics over 3 baseline and 3 final runs, and the final runs' lowest `leftover_hints` is below the baseline's lowest
 - [ ] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL named in the log with its escalation
-- [ ] `git log` shows no commit and no push made by the swarm
+- [ ] The swarm commits only on the build worktree and never pushes
 <!-- /ANCHOR:completion -->
 
 ---

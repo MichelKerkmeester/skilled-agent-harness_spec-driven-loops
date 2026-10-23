@@ -168,14 +168,14 @@
     ],
     "causal_summary": "A DeepSeek V4.1 Flash worker that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-23T14:14:54.822Z",
+    "last_save_at": "2026-10-23T15:37:58.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a16686830dcba0b1f9a189867d05c159698d8138dd0f86ea0680b6740284c2b5",
+    "source_fingerprint": "sha256:dbcbe7c9c8eb4f2bb78cb5ee8d508881c9f620c26c893c5cf967b68e6da4d21a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d7323e13b09fd9229806fa9678348b01dc4e70701c7e3c4614bf18ea7dd429bd"

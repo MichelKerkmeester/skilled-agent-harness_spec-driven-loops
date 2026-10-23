@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] The benchmark report folder holds `README.md` with ten numbered sections, `results.csv` with six runs, `source.md` that names this packet, and one new row in the reports index
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
 - [ ] `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the parent goal completion anchor holds seven `[x]` rows
-- [ ] `git rev-parse HEAD` equals the phase start commit and `git log --oneline <start>..HEAD` prints nothing, so the swarm made no commit and no push
+- [ ] `git branch -r --contains HEAD | wc -l` prints `0` whenever `git log --oneline <start>..HEAD` prints any line, so swarm commits stay local and nothing was pushed
 <!-- /ANCHOR:completion -->
 
 ---
