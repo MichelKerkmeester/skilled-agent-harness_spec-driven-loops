@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/013-private-surface-skills/005-leak-and-routing-verification",
+  "description": "Phase 5: leak-and-routing-verification",
+  "keywords": [
+    "phase",
+    "leak-and-routing-verification"
+  ],
+  "lastUpdated": "2026-10-23T07:03:41.569Z",
+  "specId": "005",
+  "folderSlug": "leak-and-routing-verification",
+  "parentChain": [
+    "sk-code",
+    "013-private-surface-skills"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

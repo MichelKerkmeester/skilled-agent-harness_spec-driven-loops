@@ -15,7 +15,8 @@
     "sk-code/009-sk-code-mobile-cli-deprecation",
     "sk-code/010-drift-guard-cleanup",
     "sk-code/011-sk-code-poinytail-based-refinement",
-    "sk-code/012-sk-code-skilled-rename"
+    "sk-code/012-sk-code-skilled-rename",
+    "sk-code/013-private-surface-skills"
   ],
   "manual": {
     "depends_on": [],

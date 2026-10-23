@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/013-private-surface-skills/002-hub-surface-removal",
+  "description": "Phase 2: hub-surface-removal",
+  "keywords": [
+    "phase",
+    "hub-surface-removal"
+  ],
+  "lastUpdated": "2026-10-23T07:03:39.394Z",
+  "specId": "002",
+  "folderSlug": "hub-surface-removal",
+  "parentChain": [
+    "sk-code",
+    "013-private-surface-skills"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

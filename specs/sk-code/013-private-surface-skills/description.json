@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-code/013-private-surface-skills",
+  "description": "Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor ro",
+  "keywords": [
+    "move",
+    "webflow",
+    "obsidian",
+    "surfaces",
+    "shipped",
+    "sk-code",
+    "hub",
+    "gitignored",
+    "local",
+    "private",
+    "skills",
+    "only",
+    "operator",
+    "advisor",
+    "routes"
+  ],
+  "lastUpdated": "2026-10-23T07:03:38.026Z",
+  "specId": "013",
+  "folderSlug": "private-surface-skills",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

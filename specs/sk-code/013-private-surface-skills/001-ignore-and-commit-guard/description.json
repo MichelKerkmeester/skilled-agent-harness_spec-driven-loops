@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/013-private-surface-skills/001-ignore-and-commit-guard",
+  "description": "Phase 1: ignore-and-commit-guard",
+  "keywords": [
+    "phase",
+    "ignore-and-commit-guard"
+  ],
+  "lastUpdated": "2026-10-23T07:03:38.671Z",
+  "specId": "001",
+  "folderSlug": "ignore-and-commit-guard",
+  "parentChain": [
+    "sk-code",
+    "013-private-surface-skills"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
