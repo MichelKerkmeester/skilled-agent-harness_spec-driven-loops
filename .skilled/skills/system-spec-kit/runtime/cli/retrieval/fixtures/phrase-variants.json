@@ -1,5 +1,5 @@
 {
-  "manifestHash": "663ad8588d7e6b6fcb3bb9541cfbb8e31bb0c6e992fef4502f40b9bacd5f6f18",
+  "manifestHash": "8419ebc34c5358db896cb9f6f2ccf0cacfa37ee49bdb410becbd52b06f0d3e5b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -73012,6 +73012,9 @@
     "phase 62 opencode 2 primary v1 fallback": [
       "phase 62 opencode 2 primary v1 fallback"
     ],
+    "phase 63 v4 0 0 13 final changelog": [
+      "phase 63 v4 0 0 13 final changelog"
+    ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"
     ],
@@ -109578,6 +109581,18 @@
     ],
     "v4 0 0 13 changelog trim and simplify tasks": [
       "v4 0 0 13 changelog trim and simplify tasks"
+    ],
+    "v4 0 0 13 final changelog": [
+      "v4 0 0 13 final changelog"
+    ],
+    "v4 0 0 13 final changelog implementation summary": [
+      "v4 0 0 13 final changelog implementation summary"
+    ],
+    "v4 0 0 13 final changelog plan": [
+      "v4 0 0 13 final changelog plan"
+    ],
+    "v4 0 0 13 final changelog tasks": [
+      "v4 0 0 13 final changelog tasks"
     ],
     "v4 0 0 13 release notes": [
       "v4.0.0.13 release notes"
