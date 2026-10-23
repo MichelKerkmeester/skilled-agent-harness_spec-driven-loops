@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7262,
-    "ok": 14954,
+    "ok": 15025,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25764,
+  "documentsScanned": 25835,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a608fd9a1e890ec1096c94316b195cd732b303cfd71e5873b8aefca254c3c52d",
+  "manifestHash": "1417a24e9ac44cee511a05bee77b66fff115cc24a29327ed64f780c136a706ed",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37502,
+      "ok": 37656,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -75401,6 +75401,38 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch",
       "reason": "excluded directory"
     },
     {

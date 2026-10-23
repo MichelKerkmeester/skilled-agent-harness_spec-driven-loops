@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a608fd9a1e890ec1096c94316b195cd732b303cfd71e5873b8aefca254c3c52d",
+  "manifestHash": "1417a24e9ac44cee511a05bee77b66fff115cc24a29327ed64f780c136a706ed",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8090,6 +8090,9 @@
     "additive ex scenarios vs restructure": [
       "additive EX scenarios vs restructure"
     ],
+    "additive hub registration adr": [
+      "additive hub registration adr"
+    ],
     "additive migration": [
       "additive migration"
     ],
@@ -9482,6 +9485,9 @@
     "advisor vocabulary cleanup acceptance criteria": [
       "advisor vocabulary cleanup acceptance criteria"
     ],
+    "advisor vocabulary cleanup decision record": [
+      "advisor vocabulary cleanup decision record"
+    ],
     "advisor vocabulary cleanup implementation summary": [
       "advisor vocabulary cleanup implementation summary"
     ],
@@ -10669,6 +10675,18 @@
     "always loaded versus triggered": [
       "always-loaded versus triggered"
     ],
+    "always run workflow consolidation": [
+      "always-run workflow consolidation"
+    ],
+    "always run workflow measurement criteria": [
+      "always-run workflow measurement criteria"
+    ],
+    "always run workflow measurement tasks": [
+      "always-run workflow measurement tasks"
+    ],
+    "always run workflow merge measurement": [
+      "always-run workflow merge measurement"
+    ],
     "always see what is currently active": [
       "always see what is currently active"
     ],
@@ -11531,6 +11549,9 @@
     ],
     "architecture coverage transition contract": [
       "architecture coverage transition contract"
+    ],
+    "architecture decision": [
+      "architecture decision"
     ],
     "architecture decision gate": [
       "architecture decision gate"
@@ -14904,6 +14925,9 @@
     "canary single route case": [
       "canary single route case"
     ],
+    "cancel in progress adr": [
+      "cancel in progress adr"
+    ],
     "candidate changed fix": [
       "candidate_changed fix"
     ],
@@ -17697,11 +17721,26 @@
     "ci dependency hardening acceptance criteria": [
       "ci dependency hardening acceptance criteria"
     ],
+    "ci efficiency final synthesis review": [
+      "ci efficiency final synthesis review"
+    ],
+    "ci efficiency synthesis deepseek review": [
+      "ci efficiency synthesis deepseek review"
+    ],
     "ci lanes wired": [
       "ci lanes wired"
     ],
+    "ci merge upper bound re measure": [
+      "ci merge upper bound re-measure"
+    ],
     "ci mirror parity": [
       "ci mirror parity"
+    ],
+    "ci on off switch variables": [
+      "ci on off switch variables"
+    ],
+    "ci path filters and shallow checkout": [
+      "ci path filters and shallow checkout"
     ],
     "ci pi and provisioning follow ups": [
       "ci pi and provisioning follow ups"
@@ -17784,6 +17823,21 @@
     "ci shared package resolution": [
       "ci shared package resolution"
     ],
+    "ci surface detection plan": [
+      "ci surface detection plan"
+    ],
+    "ci surface precedence decision": [
+      "ci surface precedence decision"
+    ],
+    "ci switch adr": [
+      "ci switch adr"
+    ],
+    "ci switch tasks": [
+      "ci switch tasks"
+    ],
+    "ci switch variables plan": [
+      "ci switch variables plan"
+    ],
     "ci token configuration": [
       "ci token configuration"
     ],
@@ -17813,6 +17867,27 @@
     ],
     "ci workflow efficiency research": [
       "ci workflow efficiency research"
+    ],
+    "ci workflow report acceptance": [
+      "ci workflow report acceptance"
+    ],
+    "ci workflow report command plan": [
+      "ci workflow report command plan"
+    ],
+    "ci workflow report command tasks": [
+      "ci workflow report command tasks"
+    ],
+    "ci workflow report decisions": [
+      "ci workflow report decisions"
+    ],
+    "ci workflow rule data": [
+      "ci workflow rule data"
+    ],
+    "ci workflow status report": [
+      "ci workflow status report"
+    ],
+    "ci workflow surface detection": [
+      "ci workflow surface detection"
     ],
     "ci workflow tasks": [
       "ci workflow tasks"
@@ -21331,6 +21406,9 @@
     "cli versus mcp tasks": [
       "cli versus mcp tasks"
     ],
+    "cli vitest shard adr": [
+      "cli vitest shard adr"
+    ],
     "cli vs mcp transport": [
       "cli vs mcp transport"
     ],
@@ -24660,6 +24738,9 @@
     "command tree parity ac": [
       "command tree parity ac"
     ],
+    "command tree parity path filter": [
+      "command tree parity path filter"
+    ],
     "command tree parity testing strategy": [
       "command tree parity testing strategy"
     ],
@@ -25721,11 +25802,23 @@
     "composer": [
       "composer"
     ],
+    "composite action and cache tasks": [
+      "composite action and cache tasks"
+    ],
+    "composite action cache decision": [
+      "composite action cache decision"
+    ],
     "composite converged pivot": [
       "composite_converged pivot"
     ],
     "composite convergence vote": [
       "composite convergence vote"
+    ],
+    "composite setup action cache": [
+      "composite setup action cache"
+    ],
+    "composite setup action cache plan": [
+      "composite setup action cache plan"
     ],
     "comprehensive audit findings": [
       "comprehensive audit findings"
@@ -25784,8 +25877,14 @@
     "concise changelog entries": [
       "concise changelog entries"
     ],
+    "concurrency and path filter tasks": [
+      "concurrency and path filter tasks"
+    ],
     "concurrency capped fanout": [
       "concurrency-capped fanout"
+    ],
+    "concurrency group decision": [
+      "concurrency group decision"
     ],
     "concurrency race condition review": [
       "concurrency race condition review"
@@ -26086,6 +26185,24 @@
     ],
     "consolidation db handle consistency": [
       "consolidation db handle consistency"
+    ],
+    "consolidation decision": [
+      "consolidation decision"
+    ],
+    "consolidation decision acceptance criteria": [
+      "consolidation decision acceptance criteria"
+    ],
+    "consolidation decision implementation summary": [
+      "consolidation decision implementation summary"
+    ],
+    "consolidation decision plan": [
+      "consolidation decision plan"
+    ],
+    "consolidation decision record": [
+      "consolidation decision record"
+    ],
+    "consolidation decision tasks": [
+      "consolidation decision tasks"
     ],
     "consolidation embedding lock fix": [
       "consolidation embedding lock fix"
@@ -26918,6 +27035,9 @@
     ],
     "contract drift directive": [
       "contract drift directive"
+    ],
+    "contract drift fast fail adr": [
+      "contract drift fast fail adr"
     ],
     "contract grep tasks": [
       "contract grep tasks"
@@ -29609,6 +29729,9 @@
     "d7 supersession command names": [
       "D7 supersession command names"
     ],
+    "d8 merge default adr": [
+      "d8 merge default adr"
+    ],
     "daemon": [
       "daemon"
     ],
@@ -30514,6 +30637,9 @@
     ],
     "decision provenance graph": [
       "decision provenance graph"
+    ],
+    "decision rationale": [
+      "decision rationale"
     ],
     "decision record": [
       "decision record"
@@ -32144,6 +32270,9 @@
     ],
     "deep loop deterministic replay digest": [
       "deep-loop deterministic replay digest"
+    ],
+    "deep loop diagram corpus skill advisor stress failures": [
+      "deep loop diagram corpus skill advisor stress failures"
     ],
     "deep loop dispatch configuration": [
       "deep-loop dispatch configuration"
@@ -35206,6 +35335,9 @@
     "dependabot remediation plan": [
       "dependabot remediation plan"
     ],
+    "dependabot split adr": [
+      "dependabot split adr"
+    ],
     "dependabot tasks": [
       "dependabot tasks"
     ],
@@ -37687,6 +37819,24 @@
     ],
     "doctor ci design research": [
       "doctor ci design research"
+    ],
+    "doctor ci review wiring": [
+      "doctor ci review wiring"
+    ],
+    "doctor ci review wiring acceptance criteria": [
+      "doctor ci review wiring acceptance criteria"
+    ],
+    "doctor ci review wiring decision record": [
+      "doctor ci review wiring decision record"
+    ],
+    "doctor ci review wiring implementation summary": [
+      "doctor ci review wiring implementation summary"
+    ],
+    "doctor ci review wiring plan": [
+      "doctor ci review wiring plan"
+    ],
+    "doctor ci review wiring tasks": [
+      "doctor ci review wiring tasks"
     ],
     "doctor cocoindex": [
       "/doctor cocoindex",
@@ -44524,6 +44674,9 @@
     "file line citation check": [
       "file:line citation check"
     ],
+    "file parallelism probe adr": [
+      "file parallelism probe adr"
+    ],
     "file protection levels": [
       "file protection levels"
     ],
@@ -45778,6 +45931,9 @@
     "folder level search routing": [
       "folder-level search routing"
     ],
+    "folder mode decision": [
+      "folder mode decision"
+    ],
     "folder name recorded in summary": [
       "folder name recorded in summary"
     ],
@@ -46455,6 +46611,9 @@
     ],
     "freshness and scan truth tasks": [
       "freshness and scan truth tasks"
+    ],
+    "freshness candidate set adr": [
+      "freshness candidate set adr"
     ],
     "freshness contract": [
       "freshness contract"
@@ -48269,6 +48428,9 @@
     ],
     "github actions schedule": [
       "github actions schedule"
+    ],
+    "github actions workflow standards": [
+      "github actions workflow standards"
     ],
     "github bodies omit h1": [
       "github bodies omit h1"
@@ -52651,6 +52813,9 @@
     "hub surface removal acceptance criteria": [
       "hub surface removal acceptance criteria"
     ],
+    "hub surface removal decision record": [
+      "hub surface removal decision record"
+    ],
     "hub surface removal implementation summary": [
       "hub surface removal implementation summary"
     ],
@@ -53175,6 +53340,9 @@
     ],
     "ignore and commit guard acceptance criteria": [
       "ignore and commit guard acceptance criteria"
+    ],
+    "ignore and commit guard decision record": [
+      "ignore and commit guard decision record"
     ],
     "ignore and commit guard implementation summary": [
       "ignore and commit guard implementation summary"
@@ -55339,6 +55507,12 @@
     "jina v3 retrieval rescue ships": [
       "jina-v3 retrieval rescue ships"
     ],
+    "job consolidation cost arithmetic": [
+      "job consolidation cost arithmetic"
+    ],
+    "job consolidation decision gate": [
+      "job consolidation decision gate"
+    ],
     "job queue governance json test fix": [
       "job-queue governance_json test fix"
     ],
@@ -56582,6 +56756,9 @@
     "leak and routing verification acceptance criteria": [
       "leak and routing verification acceptance criteria"
     ],
+    "leak and routing verification decisions": [
+      "leak and routing verification decisions"
+    ],
     "leak and routing verification implementation summary": [
       "leak and routing verification implementation summary"
     ],
@@ -56755,6 +56932,9 @@
     ],
     "least covered dimension pivot": [
       "least covered dimension pivot"
+    ],
+    "least privilege workflow permissions": [
+      "least privilege workflow permissions"
     ],
     "least risky first sequencing decision": [
       "least risky first sequencing decision"
@@ -63683,6 +63863,9 @@
     "merged tree re verification": [
       "merged-tree re-verification"
     ],
+    "merged workflow shape adr": [
+      "merged workflow shape adr"
+    ],
     "mermaid extract": [
       "mermaid_extract"
     ],
@@ -63706,6 +63889,9 @@
     ],
     "message contract enforcement": [
       "message contract enforcement"
+    ],
+    "message contract exception adr": [
+      "message contract exception adr"
     ],
     "message contract implementation plan": [
       "message contract implementation plan"
@@ -71250,6 +71436,9 @@
     "path covering termination tasks": [
       "path-covering termination tasks"
     ],
+    "path filter decision": [
+      "path filter decision"
+    ],
     "path guard implementation": [
       "path guard implementation"
     ],
@@ -71538,6 +71727,12 @@
     ],
     "per iteration lineage context refresh": [
       "per-iteration lineage context refresh"
+    ],
+    "per job timeout minutes": [
+      "per job timeout minutes"
+    ],
+    "per job timeout sizing plan": [
+      "per job timeout sizing plan"
     ],
     "per kind flag compatibility": [
       "per-kind flag compatibility"
@@ -72643,6 +72838,18 @@
     "phase 2 quality report listing": [
       "phase 2 quality report listing"
     ],
+    "phase 2 rebuild fanout removal": [
+      "phase 2 rebuild fanout removal"
+    ],
+    "phase 2 rebuild fanout removal acceptance criteria": [
+      "phase 2 rebuild fanout removal acceptance criteria"
+    ],
+    "phase 2 rebuild fanout removal plan": [
+      "phase 2 rebuild fanout removal plan"
+    ],
+    "phase 2 rebuild fanout removal tasks": [
+      "phase 2 rebuild fanout removal tasks"
+    ],
     "phase 2 removal plan": [
       "phase 2 removal plan"
     ],
@@ -72850,6 +73057,18 @@
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
     ],
+    "phase 3 trigger and job hygiene": [
+      "phase 3 trigger and job hygiene"
+    ],
+    "phase 3 trigger and job hygiene acceptance criteria": [
+      "phase 3 trigger and job hygiene acceptance criteria"
+    ],
+    "phase 3 trigger and job hygiene plan": [
+      "phase 3 trigger and job hygiene plan"
+    ],
+    "phase 3 trigger and job hygiene tasks": [
+      "phase 3 trigger and job hygiene tasks"
+    ],
     "phase 3 unread version fields": [
       "phase 3 unread version fields"
     ],
@@ -72952,6 +73171,18 @@
     "phase 4 routing parity ci": [
       "phase 4 routing parity ci"
     ],
+    "phase 4 setup caching provisioning": [
+      "phase 4 setup caching provisioning"
+    ],
+    "phase 4 setup caching provisioning acceptance criteria": [
+      "phase 4 setup caching provisioning acceptance criteria"
+    ],
+    "phase 4 setup caching provisioning plan": [
+      "phase 4 setup caching provisioning plan"
+    ],
+    "phase 4 setup caching provisioning tasks": [
+      "phase 4 setup caching provisioning tasks"
+    ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
     ],
@@ -73050,6 +73281,18 @@
     ],
     "phase 5 skill packet and registry": [
       "phase 5 skill packet and registry"
+    ],
+    "phase 5 slow and failing tests": [
+      "phase 5 slow and failing tests"
+    ],
+    "phase 5 slow and failing tests acceptance criteria": [
+      "phase 5 slow and failing tests acceptance criteria"
+    ],
+    "phase 5 slow and failing tests plan": [
+      "phase 5 slow and failing tests plan"
+    ],
+    "phase 5 slow and failing tests tasks": [
+      "phase 5 slow and failing tests tasks"
     ],
     "phase 5 stale audit task list": [
       "phase 5 stale audit task list"
@@ -73153,6 +73396,18 @@
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
     ],
+    "phase 6 sk code ci surface": [
+      "phase 6 sk code ci surface"
+    ],
+    "phase 6 sk code ci surface acceptance criteria": [
+      "phase 6 sk code ci surface acceptance criteria"
+    ],
+    "phase 6 sk code ci surface plan": [
+      "phase 6 sk code ci surface plan"
+    ],
+    "phase 6 sk code ci surface tasks": [
+      "phase 6 sk code ci surface tasks"
+    ],
     "phase 6 skill package doc findings": [
       "phase 6 skill package doc findings"
     ],
@@ -73222,6 +73477,18 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 7 workflow hygiene on off control": [
+      "phase 7 workflow hygiene on off control"
+    ],
+    "phase 7 workflow hygiene on off control acceptance criteria": [
+      "phase 7 workflow hygiene on off control acceptance criteria"
+    ],
+    "phase 7 workflow hygiene on off control plan": [
+      "phase 7 workflow hygiene on off control plan"
+    ],
+    "phase 7 workflow hygiene on off control tasks": [
+      "phase 7 workflow hygiene on off control tasks"
+    ],
     "phase 8 advisor residuals and surface hint": [
       "phase 8 advisor residuals and surface hint"
     ],
@@ -73233,6 +73500,18 @@
     ],
     "phase 8 ci red check repairs": [
       "phase 8 ci red check repairs"
+    ],
+    "phase 8 consolidation decision": [
+      "phase 8 consolidation decision"
+    ],
+    "phase 8 consolidation decision acceptance criteria": [
+      "phase 8 consolidation decision acceptance criteria"
+    ],
+    "phase 8 consolidation decision plan": [
+      "phase 8 consolidation decision plan"
+    ],
+    "phase 8 consolidation decision tasks": [
+      "phase 8 consolidation decision tasks"
     ],
     "phase 8 docs and readmes": [
       "phase 8 docs and readmes"
@@ -73266,6 +73545,18 @@
     ],
     "phase 9 advisor vocabulary freshness": [
       "phase 9 advisor vocabulary freshness"
+    ],
+    "phase 9 doctor ci review wiring": [
+      "phase 9 doctor ci review wiring"
+    ],
+    "phase 9 doctor ci review wiring acceptance criteria": [
+      "phase 9 doctor ci review wiring acceptance criteria"
+    ],
+    "phase 9 doctor ci review wiring plan": [
+      "phase 9 doctor ci review wiring plan"
+    ],
+    "phase 9 doctor ci review wiring tasks": [
+      "phase 9 doctor ci review wiring tasks"
     ],
     "phase 9 doctor update compatibility": [
       "phase 9 doctor update compatibility"
@@ -74874,6 +75165,9 @@
     ],
     "pins imports dual export tasks": [
       "pins imports dual export tasks"
+    ],
+    "pip cache and checkout trial adr": [
+      "pip cache and checkout trial adr"
     ],
     "pipe bdg output to jq": [
       "pipe bdg output to jq"
@@ -76804,6 +77098,9 @@
     "private local skills acceptance criteria": [
       "private local skills acceptance criteria"
     ],
+    "private local skills decision record": [
+      "private local skills decision record"
+    ],
     "private local skills implementation summary": [
       "private local skills implementation summary"
     ],
@@ -76815,6 +77112,15 @@
     ],
     "private procedure card structure": [
       "private procedure card structure"
+    ],
+    "private skill guard adr": [
+      "private skill guard adr"
+    ],
+    "private skill restore decision": [
+      "private skill restore decision"
+    ],
+    "private skill scan containment decision": [
+      "private skill scan containment decision"
     ],
     "private surface skills phase parent spec": [
       "private surface skills phase parent spec"
@@ -77714,6 +78020,12 @@
     ],
     "provision stamp fingerprint before build": [
       "provision stamp fingerprint before build"
+    ],
+    "provision worktree cache": [
+      "provision worktree cache"
+    ],
+    "provision worktree cache adr": [
+      "provision worktree cache adr"
     ],
     "provisional benchmark promotion": [
       "provisional benchmark promotion"
@@ -78657,6 +78969,9 @@
     "read only review pivot": [
       "read-only review pivot"
     ],
+    "read only surface packet adr": [
+      "read-only surface packet adr"
+    ],
     "read or modify frontmatter": [
       "Read or modify frontmatter"
     ],
@@ -79371,6 +79686,12 @@
     "rebuild all databases": [
       "rebuild all databases"
     ],
+    "rebuild commit ci fan out": [
+      "rebuild commit ci fan-out"
+    ],
+    "rebuild commit fanout adr": [
+      "rebuild commit fanout adr"
+    ],
     "rebuild council graph from artifacts": [
       "rebuild council graph from artifacts"
     ],
@@ -79382,6 +79703,24 @@
     ],
     "rebuild dist before verifying": [
       "rebuild dist before verifying"
+    ],
+    "rebuild fanout removal": [
+      "rebuild fanout removal"
+    ],
+    "rebuild fanout removal acceptance criteria": [
+      "rebuild fanout removal acceptance criteria"
+    ],
+    "rebuild fanout removal decision record": [
+      "rebuild fanout removal decision record"
+    ],
+    "rebuild fanout removal implementation summary": [
+      "rebuild fanout removal implementation summary"
+    ],
+    "rebuild fanout removal plan": [
+      "rebuild fanout removal plan"
+    ],
+    "rebuild fanout removal tasks": [
+      "rebuild fanout removal tasks"
     ],
     "rebuild from source": [
       "rebuild from source"
@@ -90692,6 +91031,24 @@
     "setup a vec store rebuild": [
       "Setup A vec store rebuild"
     ],
+    "setup caching provisioning": [
+      "setup caching provisioning"
+    ],
+    "setup caching provisioning acceptance criteria": [
+      "setup caching provisioning acceptance criteria"
+    ],
+    "setup caching provisioning decision record": [
+      "setup caching provisioning decision record"
+    ],
+    "setup caching provisioning implementation summary": [
+      "setup caching provisioning implementation summary"
+    ],
+    "setup caching provisioning plan": [
+      "setup caching provisioning plan"
+    ],
+    "setup caching provisioning tasks": [
+      "setup caching provisioning tasks"
+    ],
     "setup check hardening": [
       "setup check hardening"
     ],
@@ -92487,11 +92844,35 @@
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
     ],
+    "sk code ci registration plan": [
+      "sk-code-ci registration plan"
+    ],
+    "sk code ci registration tasks": [
+      "sk-code-ci registration tasks"
+    ],
     "sk code ci research": [
       "sk-code-ci research"
     ],
+    "sk code ci surface": [
+      "sk code ci surface"
+    ],
+    "sk code ci surface acceptance criteria": [
+      "sk code ci surface acceptance criteria"
+    ],
+    "sk code ci surface decision record": [
+      "sk code ci surface decision record"
+    ],
     "sk code ci surface design": [
       "sk-code-ci surface design"
+    ],
+    "sk code ci surface implementation summary": [
+      "sk code ci surface implementation summary"
+    ],
+    "sk code ci surface plan": [
+      "sk code ci surface plan"
+    ],
+    "sk code ci surface tasks": [
+      "sk code ci surface tasks"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -98569,6 +98950,9 @@
     "skip at exit zero hazard": [
       "skip at exit zero hazard"
     ],
+    "skip ci token decision": [
+      "skip ci token decision"
+    ],
     "skip closed in sweep causal": [
       "skip closed in sweep causal"
     ],
@@ -98637,6 +99021,24 @@
     ],
     "sleeptime agent tasks": [
       "sleeptime agent tasks"
+    ],
+    "slow and failing tests": [
+      "slow and failing tests"
+    ],
+    "slow and failing tests acceptance criteria": [
+      "slow and failing tests acceptance criteria"
+    ],
+    "slow and failing tests decision record": [
+      "slow and failing tests decision record"
+    ],
+    "slow and failing tests implementation summary": [
+      "slow and failing tests implementation summary"
+    ],
+    "slow and failing tests plan": [
+      "slow and failing tests plan"
+    ],
+    "slow and failing tests tasks": [
+      "slow and failing tests tasks"
     ],
     "small model doc contract evidence": [
       "small model doc contract evidence"
@@ -99715,6 +100117,9 @@
     ],
     "spec kit check workflow tasks": [
       "spec kit check workflow tasks"
+    ],
+    "spec kit cli vitest file parallelism": [
+      "spec kit cli vitest file parallelism"
     ],
     "spec kit code graph decoupling": [
       "spec kit code graph decoupling"
@@ -103632,6 +104037,9 @@
     "surface tie order warning tasks": [
       "surface tie order warning tasks"
     ],
+    "surface verification adr": [
+      "surface verification adr"
+    ],
     "surface verification commands": [
       "surface verification commands"
     ],
@@ -106931,6 +107339,15 @@
     "timeline template": [
       "timeline template"
     ],
+    "timeout and switch acceptance": [
+      "timeout and switch acceptance"
+    ],
+    "timeout floor adr": [
+      "timeout floor adr"
+    ],
+    "timeout sizing tasks": [
+      "timeout sizing tasks"
+    ],
     "timer status": [
       "timer status"
     ],
@@ -107791,6 +108208,24 @@
     "trigger ablation no op fix": [
       "trigger ablation no-op fix"
     ],
+    "trigger and job hygiene": [
+      "trigger and job hygiene"
+    ],
+    "trigger and job hygiene acceptance criteria": [
+      "trigger and job hygiene acceptance criteria"
+    ],
+    "trigger and job hygiene decision record": [
+      "trigger and job hygiene decision record"
+    ],
+    "trigger and job hygiene implementation summary": [
+      "trigger and job hygiene implementation summary"
+    ],
+    "trigger and job hygiene plan": [
+      "trigger and job hygiene plan"
+    ],
+    "trigger and job hygiene tasks": [
+      "trigger and job hygiene tasks"
+    ],
     "trigger cache mtime caching": [
       "trigger cache mtime caching"
     ],
@@ -107907,6 +108342,9 @@
     ],
     "trigger index rebuild refused": [
       "trigger index rebuild refused"
+    ],
+    "trigger index rebuild skip ci": [
+      "trigger index rebuild skip ci"
     ],
     "trigger index regenerate committed": [
       "trigger index regenerate committed"
@@ -112648,6 +113086,12 @@
     "workflow assets literal replacement": [
       "workflow assets literal replacement"
     ],
+    "workflow concurrency and path filter plan": [
+      "workflow concurrency and path filter plan"
+    ],
+    "workflow concurrency groups cancel in progress": [
+      "workflow concurrency groups cancel in progress"
+    ],
     "workflow config loader": [
       "workflow config loader"
     ],
@@ -112656,6 +113100,24 @@
     ],
     "workflow fix tasks": [
       "workflow fix tasks"
+    ],
+    "workflow hygiene on off control": [
+      "workflow hygiene on off control"
+    ],
+    "workflow hygiene on off control acceptance criteria": [
+      "workflow hygiene on off control acceptance criteria"
+    ],
+    "workflow hygiene on off control decision record": [
+      "workflow hygiene on off control decision record"
+    ],
+    "workflow hygiene on off control implementation summary": [
+      "workflow hygiene on off control implementation summary"
+    ],
+    "workflow hygiene on off control plan": [
+      "workflow hygiene on off control plan"
+    ],
+    "workflow hygiene on off control tasks": [
+      "workflow hygiene on off control tasks"
     ],
     "workflow install step": [
       "workflow install step"
