@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   dispatch-enforcement-guard:
     name: Every declared dispatch rule is reachable and discriminates
@@ -38,16 +42,6 @@ jobs:
             echo "::error::A dispatch rule is unreachable, undeclared, or does not discriminate — see the failures above."
             exit 1
           fi
-      - name: Run the dispatch audit core suite
-        run: |
-          set -euo pipefail
-          npm --prefix .skilled ci
-          # The quarantined evidence tray (review/containment) freezes an older copy of
-          # this suite that resolves no skills tree, so only the live copies enforce.
-          # Vitest is installed under .skilled, never at the repository root, so the
-          # runner is called by its path. npx resolves through any node_modules above
-          # it and has run a cached, unpinned vitest in place of the locked one.
-          .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
 
   hooks-vitest:
     name: Every hook vitest suite passes
