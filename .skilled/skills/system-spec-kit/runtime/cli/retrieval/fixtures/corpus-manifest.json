@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aa0ead8f16a270ba28f56df11896a261434725df44dfccc400a0610897da9efb",
+  "corpusHash": "3226c313baa11c04cd3e739c7e1e7145ce6427b9f0fb7038711924703018a7ae",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25666,
+  "includedPathCount": 25670,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9115,6 +9115,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25697,7 +25701,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f86f083b6c071cc2b7cbf1e8d24e04b97f13c12ca40044947343cd23d9e680e8",
+  "manifestHash": "b3297780946e57f933299e4da4e620b67cd8b2acc6043cb379f54e8fb56ff48e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26905,6 +26909,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/scratch",
       "reason": "excluded directory"
     },
     {
