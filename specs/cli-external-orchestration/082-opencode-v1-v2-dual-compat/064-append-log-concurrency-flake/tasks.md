@@ -54,8 +54,8 @@ contextType: "general"
 - [x] T007 Rerun the suites the change touches after the fix: the concurrency test passed 100 of 100 runs, the stress run of 16 workers by 300 lines by 30 rounds found 0 bad rounds, the hook node suite passed 915 of 915 from a baseline of 914 with the 1 new test, the hooks vitest suite passed 461 of 461 and `relaunch-core.test.cjs` passed 102 of 102 (`.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs`)
 - [x] T008 Run one separate read-only DeepSeek review. It returned VERDICT: PASS with 5 P2 findings; the deadline being skipped on the retry paths and the per-poll buffer allocation were fixed, and the stale-lock reclaim race, the unlocked fallback after 2 s, Windows `rmdir` EPERM/EBUSY and the vacuous-pass case are recorded and not fixed (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`)
 - [x] T009 Fill this phase's four docs and the parent packet's phase-map and handoff rows from the facts and the verification record (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`)
-- [ ] T010 Commit and push to main (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`)
-- [ ] T011 Confirm CI is green on the pushed commit (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`)
+- [x] T010 Commit and push to main (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`) - `f14b40fb60` on main
+- [x] T011 Confirm CI is green on the pushed commit (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs`) - 12 of 12 on `f14b40fb60`; 13 passed, 1 skipped on `d051c75793` (Hook Node Tests 39899611575, Spec-Kit Check 39899611470)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,7 +63,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, the push and CI tasks included
+- [x] All tasks marked `[x]`, the push and CI tasks included
 - [x] No `[B]` blocked tasks remaining
 - [x] Review done: one separate read-only DeepSeek session returned VERDICT: PASS with 5 P2s, two fixed and four recorded
 - [x] Manual verification passed: the regression test fails on the old code and passes on the fixed one, the concurrency test passes 100 of 100 runs, the stress run finds 0 bad rounds and the hook node and vitest suites are green

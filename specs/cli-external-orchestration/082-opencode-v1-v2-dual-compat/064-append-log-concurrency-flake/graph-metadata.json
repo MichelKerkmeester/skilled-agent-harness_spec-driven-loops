@@ -91,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,6 +163,18 @@
         "source": "derived"
       },
       {
+        "name": "Hook Node Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -173,23 +185,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Hook Node Tests case 'appendLog keeps every line when eight processes append concurrently' failed once in CI",
     "created_at": "2026-10-23T04:12:26Z",
-    "last_save_at": "2026-10-23T04:13:51.328Z",
+    "last_save_at": "2026-10-23T04:39:59.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:120fce35f756cc6e1089016183c4c6d922e350193aba9650157f217d9c747c26",
+    "source_fingerprint": "sha256:d1d7eb912ae0312584a9961c353edcf872ab3202458150eb086b75f7765ecd0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28666ceb60e09ce8199efa3cdd67be9cc2079f4e7b2f41c18610a781ce3f2e84",
-      "plan.md": "a478fb4a35764aedfe3bcb4afc3e8ff61f04ad7a0f18ff08136c78531830e05e",
-      "tasks.md": "ad91b585f795c8d66d47094f2d47042beed33398d7ec1a53722a3601f0ecf276",
-      "implementation-summary.md": "56be9acaab5a6dc6bf262dace2271e978d54b28ba143e2ac2cac04dc8a46ba0a"
+      "spec.md": "0a8665eaa24452e47994118a8b506470c8afeef2d959bea3838857bb0b321efd",
+      "plan.md": "7978248293b9ca33b92463c7c835cffe5114c03b9a024b03ab6fe94290ba9901",
+      "tasks.md": "04c7ac36a384ab9c67c2f230f80438b03c07728aa2fd875510fdb56cc8406b9b",
+      "implementation-summary.md": "6acd8a4da1aa62e4b9a479e28b38299f98b0b01d6c204d6e9c286e8a132c5b86"
     },
     "last_active_at": null
   }

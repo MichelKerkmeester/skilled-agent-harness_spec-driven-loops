@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-23T04:12:27Z"
     last_updated_by: "spec-record-writer"
     recent_action: "Filled the phase records after the fix, the regression test and the read-only review"
-    next_safe_action: "Commit and push to main, then confirm CI on the pushed commit"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 064-append-log-concurrency-flake |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | 2026-10-23 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -113,7 +113,7 @@ After the fix the concurrency test passed 100 of 100 runs, the stress run of 16 
 | Hooks vitest suite | PASS: 461 of 461 |
 | `relaunch-core.test.cjs` | PASS: 102 of 102 |
 | Read-only DeepSeek review | PASS: 5 P2s, two fixed (the retry-path deadline and the per-poll buffer) and four recorded |
-| Commit, push and CI green on the commit | PENDING: the push to main has not happened yet |
+| Commit, push and CI green on the commit | PASS: `f14b40fb60` on main, 12 of 12 workflows; index rebuild `d051c75793` 13 passed, 1 skipped |
 <!-- /ANCHOR:verification -->
 
 ---

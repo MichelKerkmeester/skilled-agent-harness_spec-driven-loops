@@ -44,7 +44,7 @@ One failing CI run on ubuntu-latest showed 201 lines where the concurrency test 
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 - [x] Read-only review findings fixed or recorded (one PASS with 5 P2s, two fixed and four recorded)
-- [ ] Commit pushed to main with CI green
+- [x] Commit pushed to main with CI green
 <!-- /ANCHOR:quality-gates -->
 
 ---

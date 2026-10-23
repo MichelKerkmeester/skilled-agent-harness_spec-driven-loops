@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/209-append-log-concurrency-flake` |
 | **Parent Spec** | ../spec.md |
@@ -113,7 +113,7 @@ Hold one lock across the peek and the write, so a concurrent append can no longe
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | A separate read-only review checks the fix. | One separate read-only DeepSeek session returned VERDICT: PASS with 5 P2 findings. The deadline skipped on the retry paths and the per-poll buffer allocation were fixed; the stale-lock reclaim race, the unlocked fallback, Windows `rmdir` EPERM/EBUSY and the vacuous-pass case are recorded and not fixed. |
-| REQ-006 | This phase's records match the final state. | All four docs replace every scaffold placeholder, keep the template anchors and frontmatter, and carry status In Progress with the push and CI tasks unticked. |
+| REQ-006 | This phase's records match the final state. | All four docs replace every scaffold placeholder, keep the template anchors and frontmatter, and record the push and CI results. |
 <!-- /ANCHOR:requirements -->
 
 ---
