@@ -13,6 +13,11 @@ on:
 #
 # continue-on-error keeps the job green: a red X nobody is expected to act on is how a
 # gate becomes background noise. Read the step output, not the run status.
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   advisory:
     name: Advisory — test suites and doc-model references
@@ -35,7 +40,7 @@ jobs:
             echo "::error::Node test runner not found at $RUNNER — failing closed."
             exit 1
           fi
-          node "$RUNNER" || true
+          node "$RUNNER"
 
       - name: Doc-model reference drift (report-only)
         continue-on-error: true
@@ -49,7 +54,10 @@ jobs:
             echo "::error::Doc-model validator not found at $VALIDATOR — failing closed."
             exit 1
           fi
-          node "$VALIDATOR" || echo "doc-model drift reported above; fix by citing canonical model names from registry.ts"
+          if ! node "$VALIDATOR"; then
+            echo "::error::doc-model drift found; fix by citing canonical model names from registry.ts"
+            exit 1
+          fi
 
       - name: Trigger index freshness (report-only)
         continue-on-error: true
@@ -65,4 +73,7 @@ jobs:
           fi
           # The checkout is committed content, so this compares the committed index with
           # the corpus it should describe. The lookup cannot afford this walk per call.
-          node "$GENERATOR" --check || echo "trigger index drift reported above; the trigger-index-rebuild workflow repairs drift on the integration branches after merge, or regenerate locally with node $GENERATOR"
+          if ! node "$GENERATOR" --check; then
+            echo "::error::trigger index drift found; the trigger-index-rebuild workflow repairs drift on the integration branches after merge, or regenerate locally with node $GENERATOR"
+            exit 1
+          fi

@@ -169,13 +169,15 @@ jobs:
           # followed by workflow-command text. The output is replayed inside a
           # stop-commands block that only a random token closes.
           report="$(mktemp)"
-          node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs > "$report" 2>&1 || true
+          status=0
+          node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs > "$report" 2>&1 || status=$?
           token="$(node -e 'process.stdout.write(require("node:crypto").randomUUID())')"
           [[ -n "$token" ]] || exit 1
           printf '::stop-commands::%s\n' "$token"
           cat "$report"
           printf '\n::%s::\n' "$token"
           rm -f "$report"
+          exit "$status"
 
       - name: Publish the report
         if: always()
