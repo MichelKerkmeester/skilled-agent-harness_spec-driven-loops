@@ -1,5 +1,5 @@
 {
-  "corpusHash": "11a98253fdb15ea069f95a4510e8a554e2155590e003212fe4296871e7ecbb00",
+  "corpusHash": "0a5f221f025c7b6ab7bff216d8120fd153afeab42fd3b7322955b96374544795",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25835,
+  "includedPathCount": 25897,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25359,6 +25359,12 @@
     "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/plan.md",
     "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/spec.md",
     "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/acceptance-criteria.md",
+    "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/goal.md",
+    "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/implementation-summary.md",
+    "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/plan.md",
+    "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md",
     "specs/system-speckit/041-write-recipe-fixes/spec.md",
     "specs/system-speckit/041-write-recipe-fixes/timeline.md",
     "specs/system-speckit/046-align-runtime-code-with-sk-code-skilled/acceptance-criteria.md",
@@ -25863,10 +25869,66 @@
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md",
     "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/tasks.md",
     "specs/system-speckit/053-ci-workflow-efficiency/goal.md",
-    "specs/system-speckit/053-ci-workflow-efficiency/spec.md"
+    "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1417a24e9ac44cee511a05bee77b66fff115cc24a29327ed64f780c136a706ed",
+  "manifestHash": "23f45a37562057eb73fbba71d1e4f5da2c2aa71f32370e46e5bb5f9555391de4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32557,6 +32619,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/046-align-runtime-code-with-sk-code-skilled/scratch",
       "reason": "excluded directory"
     },
@@ -32846,6 +32912,42 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {

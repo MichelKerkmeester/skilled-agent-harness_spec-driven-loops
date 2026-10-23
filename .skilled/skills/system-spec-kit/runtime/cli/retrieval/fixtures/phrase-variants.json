@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1417a24e9ac44cee511a05bee77b66fff115cc24a29327ed64f780c136a706ed",
+  "manifestHash": "23f45a37562057eb73fbba71d1e4f5da2c2aa71f32370e46e5bb5f9555391de4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7049,6 +7049,9 @@
     "054 implementation summary": [
       "054 implementation summary"
     ],
+    "054 packet closeout": [
+      "054 packet closeout"
+    ],
     "054 plan": [
       "054 plan"
     ],
@@ -11195,6 +11198,9 @@
     "applied source and doc fixes 011": [
       "applied source and doc fixes 011"
     ],
+    "applier verify commands": [
+      "applier verify commands"
+    ],
     "apply 5 dimension rubric": [
       "apply 5-dimension rubric"
     ],
@@ -11210,6 +11216,9 @@
     ],
     "apply hunter skeptic referee pattern": [
       "apply hunter skeptic referee pattern"
+    ],
+    "apply ledger rows": [
+      "apply ledger rows"
     ],
     "apply mode phase b implementation": [
       "apply mode phase b implementation"
@@ -12423,14 +12432,41 @@
     "authored write surface quality tasks": [
       "authored write surface quality tasks"
     ],
+    "authoring benchmark and closeout": [
+      "authoring benchmark and closeout"
+    ],
+    "authoring benchmark and closeout acceptance criteria": [
+      "authoring benchmark and closeout acceptance criteria"
+    ],
+    "authoring benchmark and closeout goal": [
+      "authoring benchmark and closeout goal"
+    ],
+    "authoring benchmark and closeout implementation summary": [
+      "authoring benchmark and closeout implementation summary"
+    ],
+    "authoring benchmark and closeout plan": [
+      "authoring benchmark and closeout plan"
+    ],
+    "authoring benchmark and closeout tasks": [
+      "authoring benchmark and closeout tasks"
+    ],
     "authoring boundary": [
       "authoring boundary"
+    ],
+    "authoring card documentation": [
+      "authoring card documentation"
+    ],
+    "authoring card documentation alignment": [
+      "authoring card documentation alignment"
     ],
     "authoring checklist": [
       "authoring checklist"
     ],
     "authoring checklists asset template": [
       "authoring checklists asset template"
+    ],
+    "authoring metric definitions": [
+      "authoring metric definitions"
     ],
     "authoring not scoring boundary": [
       "authoring-not-scoring boundary"
@@ -12959,6 +12995,9 @@
     ],
     "baseline and instrumentation acceptance criteria": [
       "baseline and instrumentation acceptance criteria"
+    ],
+    "baseline authoring run": [
+      "baseline authoring run"
     ],
     "baseline capture nesting": [
       "baseline capture nesting"
@@ -15304,6 +15343,12 @@
     "card plus self check plan": [
       "card plus self-check plan"
     ],
+    "card router edits": [
+      "card router edits"
+    ],
+    "card sync guard": [
+      "card sync guard"
+    ],
     "card sync guard rewrite": [
       "card-sync-guard-rewrite"
     ],
@@ -15315,6 +15360,9 @@
     ],
     "card sync guard rewrite tasks": [
       "card-sync-guard-rewrite tasks"
+    ],
+    "card sync guard tasks": [
+      "card sync guard tasks"
     ],
     "card versus table enforcement": [
       "card versus table enforcement"
@@ -15412,6 +15460,9 @@
     ],
     "catalog and playbook tasks": [
       "catalog and playbook tasks"
+    ],
+    "catalog and readme alignment tasks": [
+      "catalog and readme alignment tasks"
     ],
     "catalog and readme truth": [
       "catalog and readme truth"
@@ -15825,6 +15876,12 @@
     ],
     "census hardening tasks": [
       "census hardening tasks"
+    ],
+    "census lane brief": [
+      "census lane brief"
+    ],
+    "census lane detection commands": [
+      "census lane detection commands"
     ],
     "census line feed path": [
       "census line feed path"
@@ -24464,6 +24521,15 @@
     "command allowed tools mistake": [
       "command allowed-tools mistake"
     ],
+    "command and agent audit": [
+      "command and agent audit"
+    ],
+    "command and agent audit rows": [
+      "command and agent audit rows"
+    ],
+    "command and agent audit table": [
+      "command and agent audit table"
+    ],
     "command and playbook acceptance": [
       "command and playbook acceptance"
     ],
@@ -30494,6 +30560,9 @@
     "dead half census tasks": [
       "dead half census tasks"
     ],
+    "dead hash file deletion guard": [
+      "dead hash file deletion guard"
+    ],
     "dead man switch ioc scan": [
       "dead-man switch IOC scan"
     ],
@@ -34822,6 +34891,9 @@
     "deepseek exclusion patch": [
       "deepseek exclusion patch"
     ],
+    "deepseek flash spec authoring": [
+      "deepseek flash spec authoring"
+    ],
     "deepseek guard implementation": [
       "deepseek guard implementation"
     ],
@@ -34953,6 +35025,9 @@
     ],
     "defaultresource policy": [
       "defaultResource policy"
+    ],
+    "defect ledger schema": [
+      "defect ledger schema"
     ],
     "defense in depth": [
       "defense in depth"
@@ -37206,6 +37281,12 @@
     ],
     "display configuration": [
       "display configuration"
+    ],
+    "disposable worktree scenario run": [
+      "disposable worktree scenario run"
+    ],
+    "disposable worktree scenario runner": [
+      "disposable worktree scenario runner"
     ],
     "disprove p0 finding": [
       "disprove P0 finding"
@@ -42023,6 +42104,9 @@
     "ex 037 ex 042 scenario plan": [
       "EX-037 EX-042 scenario plan"
     ],
+    "exact match row applier": [
+      "exact match row applier"
+    ],
     "exact sha acceptance gate plan": [
       "exact-SHA acceptance gate plan"
     ],
@@ -42035,8 +42119,17 @@
     "exact string replacement gate": [
       "exact string replacement gate"
     ],
+    "exactly once applier": [
+      "exactly once applier"
+    ],
     "exacttriggersearch parity": [
       "exactTriggerSearch parity"
+    ],
+    "example drift guard": [
+      "example drift guard"
+    ],
+    "example drift guard source": [
+      "example drift guard source"
     ],
     "example generation": [
       "example generation"
@@ -43368,6 +43461,9 @@
     ],
     "failed upgrades roll back": [
       "failed upgrades roll back"
+    ],
+    "failing first placeholder test": [
+      "failing first placeholder test"
     ],
     "failure count lowered bar": [
       "failure count lowered bar"
@@ -44737,6 +44833,12 @@
     "fill a new rule": [
       "fill a new rule"
     ],
+    "fill guidance test source": [
+      "fill guidance test source"
+    ],
+    "fill instruction format": [
+      "fill instruction format"
+    ],
     "filter and sort rows in a notion data source": [
       "filter and sort rows in a Notion data source"
     ],
@@ -44784,6 +44886,9 @@
     ],
     "filters jsonc": [
       "filters.jsonc"
+    ],
+    "final baseline run tasks": [
+      "final baseline run tasks"
     ],
     "final commit live proof": [
       "final commit live proof"
@@ -45493,6 +45598,24 @@
     "fix write recipe commit step tasks": [
       "fix write recipe commit step tasks"
     ],
+    "fix write recipe move destination": [
+      "fix write recipe move destination"
+    ],
+    "fix write recipe move destination acceptance criteria": [
+      "fix write recipe move destination acceptance criteria"
+    ],
+    "fix write recipe move destination goal": [
+      "fix write recipe move destination goal"
+    ],
+    "fix write recipe move destination implementation summary": [
+      "fix write recipe move destination implementation summary"
+    ],
+    "fix write recipe move destination plan": [
+      "fix write recipe move destination plan"
+    ],
+    "fix write recipe move destination tasks": [
+      "fix write recipe move destination tasks"
+    ],
     "fix write recipe post checks": [
       "fix write recipe post checks"
     ],
@@ -46056,6 +46179,9 @@
     ],
     "follow up review fixes tasks": [
       "follow up review fixes tasks"
+    ],
+    "followable spec templates": [
+      "followable spec templates"
     ],
     "follower auto start": [
       "follower auto start"
@@ -51976,6 +52102,9 @@
     "hint precision tests": [
       "hint precision tests"
     ],
+    "hint to token conversion script": [
+      "hint to token conversion script"
+    ],
     "historic context preservation": [
       "historic context preservation"
     ],
@@ -55789,6 +55918,15 @@
     "knowledge graph production methodology deep loop": [
       "knowledge graph production methodology deep loop"
     ],
+    "known row move destination": [
+      "known row move destination"
+    ],
+    "known rows apply script": [
+      "known rows apply script"
+    ],
+    "known rows k 01 to k 25": [
+      "known rows K-01 to K-25"
+    ],
     "kubernetes icon": [
       "kubernetes icon"
     ],
@@ -56771,6 +56909,9 @@
     "leaked chrome process": [
       "leaked chrome process"
     ],
+    "leaked example descriptions": [
+      "leaked example descriptions"
+    ],
     "leaked timer reproduction": [
       "leaked timer reproduction"
     ],
@@ -56977,6 +57118,9 @@
     ],
     "ledger read cache tasks": [
       "ledger read cache tasks"
+    ],
+    "ledger rows owned by phase 2": [
+      "ledger rows owned by phase 2"
     ],
     "ledger schema legacy upcasters delete": [
       "ledger schema legacy upcasters delete"
@@ -57323,6 +57467,9 @@
     ],
     "let the pi fast mode extension stand down": [
       "let the pi fast mode extension stand down"
+    ],
+    "level 1 smoke run brief": [
+      "level 1 smoke run brief"
     ],
     "level 2 3 3 required docs": [
       "level 2 3 3+ required docs"
@@ -59519,6 +59666,9 @@
     "manual testing playbook examples": [
       "manual testing playbook examples"
     ],
+    "manual testing playbook execution": [
+      "manual testing playbook execution"
+    ],
     "manual testing playbook fairness audit": [
       "manual testing playbook fairness audit"
     ],
@@ -59557,6 +59707,12 @@
     ],
     "manual testing playbook remediation": [
       "manual-testing-playbook remediation"
+    ],
+    "manual testing playbook report package": [
+      "manual testing playbook report package"
+    ],
+    "manual testing playbook report tasks": [
+      "manual testing playbook report tasks"
     ],
     "manual testing playbook suite citation": [
       "manual testing playbook suite citation"
@@ -70713,6 +70869,12 @@
     "packet closeout edits": [
       "packet closeout edits"
     ],
+    "packet closeout sequence": [
+      "packet closeout sequence"
+    ],
+    "packet closeout tasks": [
+      "packet closeout tasks"
+    ],
     "packet closure": [
       "packet closure"
     ],
@@ -70931,6 +71093,9 @@
     ],
     "parent child phase folders": [
       "parent-child phase folders"
+    ],
+    "parent completion criteria proofs": [
+      "parent completion criteria proofs"
     ],
     "parent died after snapshot control": [
       "parent died after snapshot control"
@@ -72520,6 +72685,9 @@
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
     ],
+    "phase 1 template drift census and baseline": [
+      "phase 1 template drift census and baseline"
+    ],
     "phase 1 typo proof parsers": [
       "phase 1 typo proof parsers"
     ],
@@ -72871,6 +73039,9 @@
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
     ],
+    "phase 2 template and example defect repair": [
+      "phase 2 template and example defect repair"
+    ],
     "phase 2 webflow labels and playbook": [
       "phase 2 webflow labels and playbook"
     ],
@@ -73072,6 +73243,9 @@
     "phase 3 unread version fields": [
       "phase 3 unread version fields"
     ],
+    "phase 3 versioned placeholder gate": [
+      "phase 3 versioned placeholder gate"
+    ],
     "phase 30 epic deep review": [
       "phase 30 epic deep review"
     ],
@@ -73182,6 +73356,9 @@
     ],
     "phase 4 setup caching provisioning tasks": [
       "phase 4 setup caching provisioning tasks"
+    ],
+    "phase 4 template section fill guidance": [
+      "phase 4 template section fill guidance"
     ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
@@ -73303,6 +73480,9 @@
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
+    "phase 5 weak model authoring card": [
+      "phase 5 weak model authoring card"
+    ],
     "phase 50 sk doc ci outside failures": [
       "phase 50 sk doc ci outside failures"
     ],
@@ -73369,6 +73549,9 @@
     "phase 6 evidence gated provenance goal": [
       "phase 6 evidence gated provenance goal"
     ],
+    "phase 6 fix write recipe move destination": [
+      "phase 6 fix write recipe move destination"
+    ],
     "phase 6 gates completion": [
       "phase 6 gates completion"
     ],
@@ -73410,6 +73593,9 @@
     ],
     "phase 6 skill package doc findings": [
       "phase 6 skill package doc findings"
+    ],
+    "phase 6 speckit command and agent alignment": [
+      "phase 6 speckit command and agent alignment"
     ],
     "phase 6 tasks": [
       "phase 6 tasks"
@@ -73455,6 +73641,9 @@
     ],
     "phase 7 lineage reducer compliance": [
       "phase 7 lineage reducer compliance"
+    ],
+    "phase 7 playbook catalog readme alignment": [
+      "phase 7 playbook catalog readme alignment"
     ],
     "phase 7 remediation deep review": [
       "phase 7 remediation deep review"
@@ -73528,6 +73717,9 @@
     "phase 8 out of scope cleanup": [
       "phase 8 out of scope cleanup"
     ],
+    "phase 8 playbook run in worktree": [
+      "phase 8 playbook run in worktree"
+    ],
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
     ],
@@ -73545,6 +73737,9 @@
     ],
     "phase 9 advisor vocabulary freshness": [
       "phase 9 advisor vocabulary freshness"
+    ],
+    "phase 9 authoring benchmark and closeout": [
+      "phase 9 authoring benchmark and closeout"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -75391,6 +75586,24 @@
     "playbook backticked path rules": [
       "playbook backticked path rules"
     ],
+    "playbook catalog readme alignment": [
+      "playbook catalog readme alignment"
+    ],
+    "playbook catalog readme alignment acceptance criteria": [
+      "playbook catalog readme alignment acceptance criteria"
+    ],
+    "playbook catalog readme alignment goal": [
+      "playbook catalog readme alignment goal"
+    ],
+    "playbook catalog readme alignment implementation summary": [
+      "playbook catalog readme alignment implementation summary"
+    ],
+    "playbook catalog readme alignment plan": [
+      "playbook catalog readme alignment plan"
+    ],
+    "playbook catalog readme alignment tasks": [
+      "playbook catalog readme alignment tasks"
+    ],
     "playbook catalog truth": [
       "playbook catalog truth"
     ],
@@ -75633,6 +75846,24 @@
     ],
     "playbook run harness": [
       "playbook run harness"
+    ],
+    "playbook run in worktree": [
+      "playbook run in worktree"
+    ],
+    "playbook run in worktree acceptance criteria": [
+      "playbook run in worktree acceptance criteria"
+    ],
+    "playbook run in worktree goal": [
+      "playbook run in worktree goal"
+    ],
+    "playbook run in worktree implementation summary": [
+      "playbook run in worktree implementation summary"
+    ],
+    "playbook run in worktree plan": [
+      "playbook run in worktree plan"
+    ],
+    "playbook run in worktree tasks": [
+      "playbook run in worktree tasks"
     ],
     "playbook run phase 003 verification": [
       "playbook run phase 003 verification"
@@ -86580,6 +86811,9 @@
     "round two recommendations": [
       "round two recommendations"
     ],
+    "route authoring intents to a card": [
+      "route authoring intents to a card"
+    ],
     "route categories save command": [
       "route categories save command"
     ],
@@ -86699,6 +86933,9 @@
     ],
     "router final report": [
       "router-final report"
+    ],
+    "router intent card rows": [
+      "router intent card rows"
     ],
     "router keeps its own version": [
       "router keeps its own version"
@@ -87925,6 +88162,9 @@
     "runtime mirror": [
       "runtime mirror"
     ],
+    "runtime mirror alignment": [
+      "runtime mirror alignment"
+    ],
     "runtime mirror and mcp config": [
       "runtime mirror and mcp config"
     ],
@@ -87942,6 +88182,12 @@
     ],
     "runtime mirror path convention reconciliation": [
       "runtime mirror path convention reconciliation"
+    ],
+    "runtime mirror sync commands": [
+      "runtime mirror sync commands"
+    ],
+    "runtime mirror sync tasks": [
+      "runtime mirror sync tasks"
     ],
     "runtime mirrors": [
       "runtime mirrors"
@@ -90090,6 +90336,9 @@
     ],
     "section count rule removed": [
       "section count rule removed"
+    ],
+    "section fill instruction": [
+      "section fill instruction"
     ],
     "section fragment derivation": [
       "section fragment derivation"
@@ -99530,6 +99779,12 @@
     "spec anchoring output": [
       "spec anchoring output"
     ],
+    "spec authoring card": [
+      "spec authoring card"
+    ],
+    "spec authoring card text": [
+      "spec authoring card text"
+    ],
     "spec auto healing recommendations": [
       "spec auto healing recommendations"
     ],
@@ -99912,6 +100167,9 @@
     "spec folder mis location": [
       "spec folder mis-location"
     ],
+    "spec folder move destination": [
+      "spec folder move destination"
+    ],
     "spec folder mutex": [
       "spec folder mutex"
     ],
@@ -100154,6 +100412,9 @@
     ],
     "spec kit deep review 013 generation 2": [
       "spec_kit deep-review 013 generation 2"
+    ],
+    "spec kit defect ledger": [
+      "spec kit defect ledger"
     ],
     "spec kit doc manifest": [
       "spec-kit doc manifest"
@@ -101245,6 +101506,24 @@
     ],
     "speckit code graph ttl ms": [
       "SPECKIT_CODE_GRAPH_TTL_MS"
+    ],
+    "speckit command and agent alignment": [
+      "speckit command and agent alignment"
+    ],
+    "speckit command and agent alignment acceptance criteria": [
+      "speckit command and agent alignment acceptance criteria"
+    ],
+    "speckit command and agent alignment goal": [
+      "speckit command and agent alignment goal"
+    ],
+    "speckit command and agent alignment implementation summary": [
+      "speckit command and agent alignment implementation summary"
+    ],
+    "speckit command and agent alignment plan": [
+      "speckit command and agent alignment plan"
+    ],
+    "speckit command and agent alignment tasks": [
+      "speckit command and agent alignment tasks"
     ],
     "speckit command integration implementation summary": [
       "speckit command integration implementation summary"
@@ -103273,6 +103552,9 @@
     ],
     "stress test vitest coverage": [
       "stress_test vitest coverage"
+    ],
+    "strict census before and after": [
+      "strict census before and after"
     ],
     "strict fast mode env": [
       "strict fast-mode env"
@@ -106001,6 +106283,33 @@
     "template alignment tasks": [
       "template alignment tasks"
     ],
+    "template and example defect repair": [
+      "template and example defect repair"
+    ],
+    "template and example defect repair acceptance criteria": [
+      "template and example defect repair acceptance criteria"
+    ],
+    "template and example defect repair goal": [
+      "template and example defect repair goal"
+    ],
+    "template and example defect repair implementation summary": [
+      "template and example defect repair implementation summary"
+    ],
+    "template and example defect repair plan": [
+      "template and example defect repair plan"
+    ],
+    "template and example defect repair tasks": [
+      "template and example defect repair tasks"
+    ],
+    "template authoring manual scenarios": [
+      "template authoring manual scenarios"
+    ],
+    "template authoring playbook scenarios": [
+      "template authoring playbook scenarios"
+    ],
+    "template authoring scenario brief": [
+      "template authoring scenario brief"
+    ],
     "template backend redesign": [
       "template backend redesign"
     ],
@@ -106115,6 +106424,24 @@
     "template default trigger phrases": [
       "template default trigger phrases"
     ],
+    "template drift census and baseline": [
+      "template drift census and baseline"
+    ],
+    "template drift census and baseline acceptance criteria": [
+      "template drift census and baseline acceptance criteria"
+    ],
+    "template drift census and baseline goal": [
+      "template drift census and baseline goal"
+    ],
+    "template drift census and baseline implementation summary": [
+      "template drift census and baseline implementation summary"
+    ],
+    "template drift census and baseline plan": [
+      "template drift census and baseline plan"
+    ],
+    "template drift census and baseline tasks": [
+      "template drift census and baseline tasks"
+    ],
     "template driven commit enforcement": [
       "template-driven commit enforcement"
     ],
@@ -106201,6 +106528,9 @@
     ],
     "template guidance sidecar": [
       "template guidance sidecar"
+    ],
+    "template hint conversion script": [
+      "template hint conversion script"
     ],
     "template impl decisions": [
       "template impl decisions"
@@ -106385,6 +106715,24 @@
     "template seams sentinel repair": [
       "template seams sentinel repair"
     ],
+    "template section fill guidance": [
+      "template section fill guidance"
+    ],
+    "template section fill guidance acceptance criteria": [
+      "template section fill guidance acceptance criteria"
+    ],
+    "template section fill guidance goal": [
+      "template section fill guidance goal"
+    ],
+    "template section fill guidance implementation summary": [
+      "template section fill guidance implementation summary"
+    ],
+    "template section fill guidance plan": [
+      "template section fill guidance plan"
+    ],
+    "template section fill guidance tasks": [
+      "template section fill guidance tasks"
+    ],
     "template selection guide": [
       "template selection guide"
     ],
@@ -106444,6 +106792,9 @@
     ],
     "template triage": [
       "template triage"
+    ],
+    "template v2 3 stamp": [
+      "template v2.3 stamp"
     ],
     "template validation orchestrator": [
       "template validation orchestrator"
@@ -110651,6 +111002,9 @@
     "validateplaceholders fence exclusion": [
       "validatePlaceholders fence exclusion"
     ],
+    "validateplaceholders orchestrator edit": [
+      "validatePlaceholders orchestrator edit"
+    ],
     "validateplaceholders summary": [
       "validatePlaceholders summary"
     ],
@@ -110947,6 +111301,12 @@
     ],
     "value of computation allocation tasks": [
       "value of computation allocation tasks"
+    ],
+    "value token lifecycle": [
+      "value token lifecycle"
+    ],
+    "value token lifecycle implementation": [
+      "value token lifecycle implementation"
     ],
     "var name binding": [
       "var:name binding"
@@ -111623,6 +111983,24 @@
     "versioned event envelope tasks": [
       "versioned event envelope tasks"
     ],
+    "versioned placeholder gate": [
+      "versioned placeholder gate"
+    ],
+    "versioned placeholder gate acceptance criteria": [
+      "versioned placeholder gate acceptance criteria"
+    ],
+    "versioned placeholder gate goal": [
+      "versioned placeholder gate goal"
+    ],
+    "versioned placeholder gate implementation summary": [
+      "versioned placeholder gate implementation summary"
+    ],
+    "versioned placeholder gate plan": [
+      "versioned placeholder gate plan"
+    ],
+    "versioned placeholder gate tasks": [
+      "versioned placeholder gate tasks"
+    ],
     "versioned sub folders": [
       "versioned sub-folders"
     ],
@@ -112177,6 +112555,30 @@
     "wcag design review": [
       "wcag design review"
     ],
+    "weak model authoring baseline": [
+      "weak model authoring baseline"
+    ],
+    "weak model authoring card": [
+      "weak model authoring card"
+    ],
+    "weak model authoring card acceptance criteria": [
+      "weak model authoring card acceptance criteria"
+    ],
+    "weak model authoring card goal": [
+      "weak model authoring card goal"
+    ],
+    "weak model authoring card implementation summary": [
+      "weak model authoring card implementation summary"
+    ],
+    "weak model authoring card plan": [
+      "weak model authoring card plan"
+    ],
+    "weak model authoring card tasks": [
+      "weak model authoring card tasks"
+    ],
+    "weak model authoring delta": [
+      "weak model authoring delta"
+    ],
     "weak model drops query fix": [
       "weak model drops query fix"
     ],
@@ -112188,6 +112590,9 @@
     ],
     "weak model loop adherence tasks": [
       "weak model loop adherence tasks"
+    ],
+    "weak model spec authoring phase parent spec": [
+      "weak model spec authoring phase parent spec"
     ],
     "weak model write boundary": [
       "weak model write boundary"

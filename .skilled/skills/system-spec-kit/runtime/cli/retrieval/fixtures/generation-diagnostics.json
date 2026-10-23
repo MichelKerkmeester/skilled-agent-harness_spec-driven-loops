@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7262,
-    "ok": 15025,
+    "ok": 15087,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25835,
+  "documentsScanned": 25897,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1417a24e9ac44cee511a05bee77b66fff115cc24a29327ed64f780c136a706ed",
+  "manifestHash": "23f45a37562057eb73fbba71d1e4f5da2c2aa71f32370e46e5bb5f9555391de4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37656,
+      "ok": 37791,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -75144,6 +75144,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/046-align-runtime-code-with-sk-code-skilled/scratch",
       "reason": "excluded directory"
     },
@@ -75433,6 +75437,42 @@
     },
     {
       "path": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
