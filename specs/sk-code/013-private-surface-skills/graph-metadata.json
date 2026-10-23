@@ -17,7 +17,11 @@
   },
   "derived": {
     "trigger_phrases": [
-      "private surface skills phase parent spec"
+      "private surface skills phase parent spec",
+      "private surface skills research",
+      "packet 013 coverage audit",
+      "local private skill leak proof",
+      "phase 005 fresh clone proof"
     ],
     "key_topics": [
       "private",
@@ -26,19 +30,34 @@
       "phase",
       "parent",
       "spec",
-      "shipped",
-      "sk-code",
-      "hub",
-      "still",
-      "carries",
-      "two"
+      "research",
+      "packet",
+      "coverage",
+      "audit",
+      "local",
+      "skill"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
+      "research/research.md",
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
-      "002-hub-surface-removal/acceptance-criteria.md"
+      "002-hub-surface-removal/acceptance-criteria.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "runtime/data/trigger-index.json",
+      "003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+      "002-hub-surface-removal/tasks.md",
+      "003-advisor-vocabulary-cleanup/plan.md",
+      "003-advisor-vocabulary-cleanup/tasks.md",
+      "004-private-local-skills/tasks.md",
+      "005-leak-and-routing-verification/tasks.md",
+      "001-ignore-and-commit-guard/tasks.md",
+      "001-ignore-and-commit-guard/plan.md",
+      "005-leak-and-routing-verification/plan.md",
+      "005-leak-and-routing-verification/spec.md",
+      "001-ignore-and-commit-guard/spec.md",
+      "research/deep-research-state.jsonl"
     ],
     "entities": [
       {
@@ -48,9 +67,33 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -88,20 +131,58 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Run Provenance",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Obsidian Plugin",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leak Coverage",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Correctness",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clone Proof Sufficiency",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-23T08:14:37.583Z",
+    "last_save_at": "2026-10-23T09:58:46.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:6978c46889e7a884b648eda766e8b1058569c652408f9387d940f654aa8115e6",
+    "source_fingerprint": "sha256:96f5b1c9956093d4cb7b937fb8799542fcd990367618cf20d9a37c11bcb8825a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1395a9a9568ad7cf620aff1b1c889597cc4dd5a28a30172604b5c33b97db439b"
+      "spec.md": "1395a9a9568ad7cf620aff1b1c889597cc4dd5a28a30172604b5c33b97db439b",
+      "research/research.md": "92706e4a1ecee8313e345748936333709451094207f0c81b18846fbd8f7aefce"
     },
     "last_active_at": null
   }

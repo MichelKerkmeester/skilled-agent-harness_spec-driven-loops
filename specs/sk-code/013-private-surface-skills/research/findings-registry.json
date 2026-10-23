@@ -1,0 +1,286 @@
+{
+  "sessionId": "2026-10-23T08:24:54Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-leak-coverage-which-tracked-or-generated-surfaces-that-can-carry-or-route-sk-",
+      "inboxId": null,
+      "text": "Q1 Leak coverage: which tracked or generated surfaces that can carry or route sk-code-webflow / sk-code-obsidian (or a local-* private skill) does packet 013 miss? Check the committed trigger index, Hermes sync and .hermes/skills, runtime mirrors, compiled routing and activation manifests, skill-graph.json from --export-json, the advisor DB and scorer vocabulary, OpenCode plugins (system-skill-advisor.js surface detection), doctor checks, description / graph-metadata / changelog / README generators, CI artifacts, and the pre-commit and pre-push hooks.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-phase-correctness-does-phase-002-s-removal-list-cover-a-fresh-git-grep-of-eve",
+      "inboxId": null,
+      "text": "Q2 Phase correctness: does phase 002's removal list cover a fresh `git grep` of every tracked file naming the surfaces; are the phase 001 ignore patterns right for a real folder and a symlink; is phase 003's advisor symlink-follow change safe; does the phase 001 commit guard catch `git add -f` and renames?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-executability-by-a-deepseek-writer-does-every-task-name-exact-files-make-one-",
+      "inboxId": null,
+      "text": "Q3 Executability by a DeepSeek writer: does every task name exact files, make one change, carry a proving command, map to acceptance criteria and a rollback? Which tasks are vague?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-is-phase-005-s-fresh-clone-proof-sufficient-to-show-no-private-byte-or-surfac",
+      "inboxId": null,
+      "text": "Q4 Is phase 005's fresh-clone proof sufficient to show no private byte or surface signal reaches the public repo?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-risks-git-history-retention-other-repos-that-symlink-this-checkout-the-obsidi",
+      "inboxId": null,
+      "text": "Q5 Risks: git history retention, other repos that symlink this checkout (the Obsidian Plugin project), and CI drift checks that the removal or the private skills can trip.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-leak-coverage-which-tracked-or-generated-surfaces-that-can-carry-or-route-sk-",
+      "inboxId": null,
+      "text": "Q1 Leak coverage: which tracked or generated surfaces that can carry or route sk-code-webflow / sk-code-obsidian (or a local-* private skill) does packet 013 miss? Check the committed trigger index, Hermes sync and .hermes/skills, runtime mirrors, compiled routing and activation manifests, skill-graph.json from --export-json, the advisor DB and scorer vocabulary, OpenCode plugins (system-skill-advisor.js surface detection), doctor checks, description / graph-metadata / changelog / README generators, CI artifacts, and the pre-commit and pre-push hooks.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-phase-correctness-does-phase-002-s-removal-list-cover-a-fresh-git-grep-of-eve",
+      "inboxId": null,
+      "text": "Q2 Phase correctness: does phase 002's removal list cover a fresh `git grep` of every tracked file naming the surfaces; are the phase 001 ignore patterns right for a real folder and a symlink; is phase 003's advisor symlink-follow change safe; does the phase 001 commit guard catch `git add -f` and renames?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-executability-by-a-deepseek-writer-does-every-task-name-exact-files-make-one-",
+      "inboxId": null,
+      "text": "Q3 Executability by a DeepSeek writer: does every task name exact files, make one change, carry a proving command, map to acceptance criteria and a rollback? Which tasks are vague?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-q4-is-phase-005-s-fresh-clone-proof-sufficient-to-show-no-private-byte-or-surfac",
+      "inboxId": null,
+      "text": "Q4 Is phase 005's fresh-clone proof sufficient to show no private byte or surface signal reaches the public repo?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-risks-git-history-retention-other-repos-that-symlink-this-checkout-the-obsidi",
+      "inboxId": null,
+      "text": "Q5 Risks: git history retention, other repos that symlink this checkout (the Obsidian Plugin project), and CI drift checks that the removal or the private skills can trip.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q5: What risks remain from Git history, the Obsidian Plugin project and CI drift checks?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Does phase 005’s fresh-clone proof show that no private bytes or surface signals reach the public repository?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Does every task give a DeepSeek writer exact files, one change, proof, acceptance mapping and rollback?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: What risks remain from Git history, the Obsidian Plugin project's links to this checkout and CI drift checks?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Does phase 005's fresh-clone proof establish that no private bytes or surface signals reach the public repository?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The active Obsidian Plugin checkout path and symlink targets remain UNKNOWN; verify from that checkout with the F3 command.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The exact contents of reachable tag trees and hosted release assets remain UNKNOWN; verify with the inventory commands in F4.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 remains: does every task give a DeepSeek writer exact files, one change, proof, acceptance mapping, and rollback?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-2-1-p0-none-from-this-iteration",
+      "text": "**P0:** None from this iteration.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-p1-phase-002-tasks-md-and-plan-md-reconcile-the-93-file-scoped-baseline-with-the",
+      "text": "**P1, phase 002 `tasks.md` and `plan.md`:** Reconcile the 93-file scoped baseline with the all-tracked grep and name the four generated deferrals.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-p1-phase-003-plan-md-define-trusted-local-symlink-target-roots-and-prove-tracked",
+      "text": "**P1, phase 003 `plan.md`:** Define trusted `local-*` symlink target roots and prove tracked outputs do not follow them.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-p2-phase-001-tasks-md-and-plan-md-add-codex-and-cursor-coverage-or-record-their-",
+      "text": "**P2, phase 001 `tasks.md` and `plan.md`:** Add `.codex` and `.cursor` coverage or record their absence as an invariant. Add staged copy, symlink and gitlink proof cases.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-p0-none-supported-by-observed-evidence-this-pass-found-proof-gaps-and-documented",
+      "text": "P0: none supported by observed evidence. This pass found proof gaps and documented external dependencies, not an observed public leak.",
+      "addedAtIteration": 4,
+      "sources": [
+        "Phase 005 spec.md, plan.md, tasks.md, and acceptance-criteria.md.",
+        ".github/workflows/README.md and .github/workflows/routing-registry-drift.yml.",
+        "ci-skill-root-metadata.cjs, ci-skill-derived-freshness.cjs, skill_graph_compiler.py.",
+        "sk-code-obsidian/README.md and sk-code/shared/references/stack-detection.md.",
+        "Local Git refs via git for-each-ref; no remote fetch or release download was performed."
+      ]
+    },
+    {
+      "id": "finding-4-2-p1-phase-005-tasks-md-and-acceptance-criteria-md-need-a-final-public-tip-sweep-a",
+      "text": "P1: phase 005 tasks.md and acceptance-criteria.md need a final-public-tip sweep, a private-blob comparison, and an Obsidian Plugin checkout probe.",
+      "addedAtIteration": 4,
+      "sources": [
+        "Phase 005 spec.md, plan.md, tasks.md, and acceptance-criteria.md.",
+        ".github/workflows/README.md and .github/workflows/routing-registry-drift.yml.",
+        "ci-skill-root-metadata.cjs, ci-skill-derived-freshness.cjs, skill_graph_compiler.py.",
+        "sk-code-obsidian/README.md and sk-code/shared/references/stack-detection.md.",
+        "Local Git refs via git for-each-ref; no remote fetch or release download was performed."
+      ]
+    },
+    {
+      "id": "finding-4-3-p2-phase-005-spec-md-and-tasks-md-need-a-history-tag-release-inventory-and-a-loc",
+      "text": "P2: phase 005 spec.md and tasks.md need a history/tag/release inventory and a local-* drift-script run with private skills present.",
+      "addedAtIteration": 4,
+      "sources": [
+        "Phase 005 spec.md, plan.md, tasks.md, and acceptance-criteria.md.",
+        ".github/workflows/README.md and .github/workflows/routing-registry-drift.yml.",
+        "ci-skill-root-metadata.cjs, ci-skill-derived-freshness.cjs, skill_graph_compiler.py.",
+        "sk-code-obsidian/README.md and sk-code/shared/references/stack-detection.md.",
+        "Local Git refs via git for-each-ref; no remote fetch or release download was performed."
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 7,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.74,
+    "coverageBySources": {
+      "other": 5
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/213-private-surface-research/specs/sk-code/013-private-surface-skills/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

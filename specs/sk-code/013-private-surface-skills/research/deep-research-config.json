@@ -1,0 +1,112 @@
+{
+  "topic": "Coverage audit of packet sk-code/013-private-surface-skills (five phases moving sk-code-webflow and sk-code-obsidian into ignored private local-* skills). Q1 leak coverage: does 013 cover every tracked or generated surface that can leak or route the two surfaces (committed trigger index, Hermes sync and .hermes/skills, runtime mirrors, compiled routing and activation manifests, skill-graph.json from --export-json, advisor DB and scorer vocabulary, OpenCode plugins incl. system-skill-advisor.js surface detection, doctor checks, description/graph-metadata/changelog/README generators, CI artifacts, pre-commit and pre-push hooks)? Q2 phase correctness: do the phase-2 removal steps cover a fresh grep of tracked files naming the surfaces; are the ignore patterns right for a real folder and a symlink; is the advisor symlink-follow change safe; does the commit guard catch git add -f and renames? Q3 executability by a DeepSeek writer: exact files, one change per task, proving commands, acceptance criteria, rollback; flag vague tasks. Q4 is phase 5's fresh-clone proof sufficient? Q5 risks: git history retention, other repos that symlink this checkout (Obsidian Plugin project), CI drift checks. Label every claim confirmed, documented or inferred, with file:line. Output: research.md plus P0/P1/P2 amendments each naming the phase file. Do not edit phase docs.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-code/013-private-surface-skills",
+  "createdAt": "2026-10-23T08:24:54Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "configDir": null,
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 3600,
+    "governor": null,
+    "agentPersona": null,
+    "liveTools": {
+      "webSearch": "inherit",
+      "mcpServers": []
+    }
+  },
+  "lineage": {
+    "sessionId": "2026-10-23T08:24:54Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "minIterations": 3,
+  "stopPolicy": "max-iterations",
+  "minIdeaObservations": 2,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}
