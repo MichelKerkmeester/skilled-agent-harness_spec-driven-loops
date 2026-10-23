@@ -7,6 +7,9 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The rebuild workflow's own suite pins the commit message it writes, so a
+      # change to that workflow has to run the suite that guards it.
+      - '.github/workflows/trigger-index-rebuild.yml'
       # The mirror-parity job compares generated mirrors against their sources.
       # Triggering on the spec-kit runtime alone let a mirror drift on a command
       # or agent commit, ship unseen, and fail here later on whoever next touched
@@ -35,6 +38,9 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The rebuild workflow's own suite pins the commit message it writes, so a
+      # change to that workflow has to run the suite that guards it.
+      - '.github/workflows/trigger-index-rebuild.yml'
       # The mirror-parity job compares generated mirrors against their sources.
       # Triggering on the spec-kit runtime alone let a mirror drift on a command
       # or agent commit, ship unseen, and fail here later on whoever next touched
