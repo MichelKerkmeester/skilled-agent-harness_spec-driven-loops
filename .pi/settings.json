@@ -3,7 +3,7 @@
   "theme": "dark",
   "defaultProvider": "llmgateway",
   "defaultModel": "deepseek-v4.1-flash-1017",
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
   "steeringMode": "one-at-a-time",
