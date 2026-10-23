@@ -335,9 +335,9 @@ describe('deep-ai-council session CLI runner', () => {
     },
     {
       kind: 'cli-pi',
-      model: 'deepseek-v4.1-flash',
+      model: 'deepseek-v4.1-flash-1017',
       command: 'pi',
-      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', prompt],
+      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash-1017', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', prompt],
     },
     {
       kind: 'cli-hermes',

@@ -213,20 +213,15 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
  * the operator-confirmed picker roster so generic provider routing cannot broaden it.
  */
 export const PI_SUPPORTED_MODELS = [
-  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (the direct DeepSeek API
-  // provider was retired from the roster); `PI_MODEL_PROVIDERS` in fanout-run.cjs holds the
-  // provider mapping for it. opencode-go fronts the same model, reached through its own
-  // provider-qualified literal below rather than through this bare one. The gateway
-  // deactivated the older vision-exp id and answers 410 for it, so the 4.1 line is the live
-  // route. It accepts images like the id it replaces, so nothing is lost by moving.
-  'deepseek-v4.1-flash',
-  // The 2026-10-17 release has its own gateway id and is DevPass-fronted like the bare literal
-  // above; it is the rotation default. The older literal stays so a run can still pin the
-  // September release.
+  // DeepSeek V4.1 Flash is DevPass-fronted on pi under its dated 2026-10-17 gateway literal,
+  // the rotation default; `PI_MODEL_PROVIDERS` in fanout-run.cjs holds the provider mapping
+  // for it. The undated September literal is not registered in .pi/models.json, so pi
+  // cannot run it and it stays off this roster. The gateway deactivated the older vision-exp
+  // id and answers 410 for it, so the 4.1 line is the live route.
   'deepseek-v4.1-flash-1017',
   // Provider-qualified DeepSeek V4.1 Flash route, for runs that must bill through
   // opencode-go instead of DevPass. The literal names its provider, so it maps to exactly
-  // one route and the bare literal above keeps DevPass.
+  // one route and the dated literal above keeps DevPass.
   'opencode-go/deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-6-luna',
@@ -259,10 +254,11 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 
 /**
  * Hermes is a provider pass-through like Pi, with a much wider catalog. Dispatch stays scoped
- * to the two models reachable through the operator's LLM Gateway (DevPass) custom provider,
- * the only credential kind on this machine that Hermes can share with the other runtimes.
- * Both ids are the bare literals the gateway expects under `llmgateway/<id>`, and both are
- * Flash-family reasoning models the max-tier pin below already covers.
+ * to the models reachable through the operator's LLM Gateway (DevPass) custom provider, the
+ * only credential kind on this machine that Hermes can share with the other runtimes. Every
+ * id is the bare literal the gateway expects under `llmgateway/<id>`. The provider block
+ * passes any gateway id through, so Hermes keeps the undated September DeepSeek release that
+ * pi no longer registers.
  */
 export const HERMES_SUPPORTED_MODELS = [
   'deepseek-v4.1-flash',
@@ -293,8 +289,8 @@ export function isHermesModelAllowed(model: string): model is HermesSupportedMod
  * literals reach this function — and has no `xhigh` on either, so pinning a GLM literal to
  * `xhigh` would send the fan-out routes a tier their provider does not offer.
  *
- * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash`, fronted by DevPass, and its dated
- * `-1017` release) and provider-prefixed on cli-opencode
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash-1017`, fronted by DevPass) and on
+ * cli-hermes (that id and the undated `deepseek-v4.1-flash`), and provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4.1-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
  * too. GLM-5.3-Flash is matched on both its bare DevPass literal (`glm-5.3-flash`) and

@@ -2559,17 +2559,14 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // pass-through with no house model, so this synchronous duplicate keeps
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
-  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (the direct DeepSeek API provider
-  // was retired). opencode-go fronts the same model, reached through its own
-  // provider-qualified literal below rather than through this bare one. The gateway deactivated
-  // the older vision-exp id and returns 410 for it, so the bare literal here is the 4.1 line.
-  'deepseek-v4.1-flash',
-  // The dated 2026-10-17 release of the same model, DevPass-fronted and the default pi
-  // model; the undated literal above stays pinnable for the 2026-09-10 build.
+  // DeepSeek V4.1 Flash is DevPass-fronted on pi under its dated 2026-10-17 literal, the
+  // default pi model. The undated September literal is not registered in .pi/models.json,
+  // so pi cannot run it and it stays off this set. The gateway deactivated the older
+  // vision-exp id and returns 410 for it, so the 4.1 line is the live route.
   'deepseek-v4.1-flash-1017',
   // Provider-qualified DeepSeek V4.1 Flash route, for runs that must bill through
   // opencode-go instead of DevPass. The literal names its provider, so it maps to exactly
-  // one route and the bare literal above keeps DevPass.
+  // one route and the dated literal above keeps DevPass.
   'opencode-go/deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-6-luna',
@@ -2795,7 +2792,6 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // model. Hand-duplicated as a plain literal so command construction stays
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
-  ['deepseek-v4.1-flash', 'llmgateway'],
   ['deepseek-v4.1-flash-1017', 'llmgateway'],
   ['opencode-go/deepseek-v4.1-flash', 'opencode-go'],
   ['minimax-m3', 'minimax'],
@@ -2897,9 +2893,11 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
 // pass-through with a wide catalog, so this synchronous duplicate keeps command
 // construction fail-closed without importing the TypeScript module. Every id is one of the
 // bare literals the operator's LLM Gateway (DevPass) provider expects.
-// Hermes and Pi reach the same gateway account, so their rosters are deliberately equal.
-// Two lists meant to hold the same ids drift, and the drift surfaces as a model one
-// runtime accepts and the other refuses for no reason the caller can see.
+// Hermes reaches the same gateway account as Pi, but through its own provider block, which
+// passes any gateway id through. So it keeps the undated September DeepSeek literal that pi
+// no longer registers. Keep this set equal to HERMES_SUPPORTED_MODELS: two lists meant to
+// hold the same ids drift, and the drift surfaces as a model one path accepts and the other
+// refuses for no reason the caller can see.
 const HERMES_ALLOWED_MODELS = new Set([
   'deepseek-v4.1-flash',
   'deepseek-v4.1-flash-1017',

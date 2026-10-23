@@ -407,7 +407,7 @@ describe('executor web-search policy', () => {
     // let a lineage believe it runs as a persona it never gets.
     expect(() => parseExecutorConfig({
       kind: 'cli-pi',
-      model: 'deepseek-v4.1-flash',
+      model: 'deepseek-v4.1-flash-1017',
       agentPersona: 'markdown',
     })).toThrowError(/agentPersona.*not supported by executor kind 'cli-pi'/);
     expect(parseExecutorConfig({ kind: 'cli-hermes', model: 'glm-5.3-flash' }).agentPersona).toBeNull();
@@ -965,7 +965,6 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants, the DevPass GLM-5.3-Flash literal, and the provider-qualified DeepSeek route for opencode-go', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
-      'deepseek-v4.1-flash',
       'deepseek-v4.1-flash-1017',
       'deepseek/deepseek-v4-flash-vision-exp',
       'glm-5.3-flash',
@@ -983,13 +982,17 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
     expect(isPiModelAllowed(PI_DEFAULT_MODEL)).toBe(true);
   });
 
-  it('routes its default model and the older DeepSeek release through the llmgateway provider config', () => {
+  it('rejects the undated deepseek-v4.1-flash, which pi no longer registers', () => {
+    expect(isPiModelAllowed('deepseek-v4.1-flash')).toBe(false);
+  });
+
+  it('routes its default model through the llmgateway provider config and registers no undated DeepSeek release', () => {
     const config = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'models.json'), 'utf8')) as {
       providers?: { llmgateway?: { models?: { id?: string }[] } };
     };
     const llmgatewayIds = (config.providers?.llmgateway?.models ?? []).map((model) => model.id);
     expect(llmgatewayIds).toContain(PI_DEFAULT_MODEL);
-    expect(llmgatewayIds).toContain('deepseek-v4.1-flash');
+    expect(llmgatewayIds).not.toContain('deepseek-v4.1-flash');
   });
 
   it('makes its default model the default of a pi run that names no model', () => {
@@ -1037,9 +1040,9 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
 });
 
 describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
-  // Hermes and Pi reach the same gateway account, so the rosters are deliberately equal on
-  // their bare literals.
-  it('matches the bare literals of the Pi roster and keeps the retired MiMo id out', () => {
+  // Hermes and Pi reach the same gateway account, so the rosters share their bare literals,
+  // except that Hermes keeps the undated DeepSeek release, which pi no longer registers.
+  it('lists the gateway bare literals, keeps the undated DeepSeek release and keeps the retired MiMo id out', () => {
     expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4.1-flash', 'deepseek-v4.1-flash-1017', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
       'minimax-m3', 'qwen3.8-max',

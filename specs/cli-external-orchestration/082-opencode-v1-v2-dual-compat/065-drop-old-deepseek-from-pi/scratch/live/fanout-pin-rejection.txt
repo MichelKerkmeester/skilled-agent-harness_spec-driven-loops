@@ -1,0 +1,4 @@
+$ which pi: /Users/michelkerkmeester/.local/bin/pi
+deepseek-v4.1-flash -> rejected: cli-pi model 'deepseek-v4.1-flash' is not in the enforced allowlist: deepseek-v4.1-flash-1017, opencode-go/deepseek-v4.1-flash, minimax-m3, gpt-6-luna, gpt-6-sol, qwen3.8-max, deepseek/deepseek-v4-flash-vision-exp, z-ai/glm-5.3-flash, glm-5.3-flash
+deepseek-v4.1-flash-1017 -> accepted: pi ["-p","--offline","--model","llmgateway/deepseek-v4.1-flash-1017","--thinking","max","p"]
+exit=0

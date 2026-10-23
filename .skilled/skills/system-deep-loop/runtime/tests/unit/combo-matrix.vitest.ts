@@ -156,7 +156,7 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
     case 'cli-devin':
       return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'auto', '--respect-workspace-trust', 'false'];
     case 'cli-pi':
-      return ['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', MATRIX_PROMPT];
+      return ['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash-1017', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', MATRIX_PROMPT];
     case 'cli-hermes':
       // Read-only representative: no --yolo, the narrowed toolset, the prompt on stdin
       // rather than in argv, and the max pin the Flash-family roster carries.

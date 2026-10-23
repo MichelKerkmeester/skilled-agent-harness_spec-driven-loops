@@ -2004,10 +2004,9 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
-      // DevPass routes DeepSeek Flash under its bare literal → llmgateway/deepseek-v4.1-flash;
+      // DevPass routes DeepSeek Flash under its dated literal → llmgateway/deepseek-v4.1-flash-1017;
       // opencode-go fronts the same model through its own provider-qualified literal, which
       // carries an exact selector rather than composing one.
-      'deepseek-v4.1-flash': 'llmgateway',
       'deepseek-v4.1-flash-1017': 'llmgateway',
       'opencode-go/deepseek-v4.1-flash': 'opencode-go',
       'minimax-m3': 'minimax',
@@ -2086,19 +2085,17 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash-1017');
   });
 
-  it('still dispatches the older deepseek-v4.1-flash release when a lineage pins it', () => {
-    const binDir = makeTempDir('fanout-run-pi-older-flash-');
+  it('rejects a cli-pi lineage pinned to the undated deepseek-v4.1-flash', () => {
+    const binDir = makeTempDir('fanout-run-pi-undated-flash-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    const command = buildLineageCommand(
+    expect(() => buildLineageCommand(
       { kind: 'cli-pi', model: 'deepseek-v4.1-flash' },
       'bounded prompt',
       'workspace-write',
       'default',
       opts,
-    ) as { args: string[]; effectiveConfig: { model: string } };
-    expect(command.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--thinking', 'max', 'bounded prompt']);
-    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
+    )).toThrowError(/cli-pi model 'deepseek-v4\.1-flash' is not in the enforced allowlist/);
   });
 
   it('routes the opencode-go DeepSeek literal as its own selector, pinned to max', () => {
@@ -2113,15 +2110,15 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(command.effectiveConfig.reasoningEffort).toBe('max');
   });
 
-  it('pins cli-pi deepseek-v4.1-flash to --thinking max even when a lower effort is requested', () => {
+  it('pins cli-pi deepseek-v4.1-flash-1017 to --thinking max even when a lower effort is requested', () => {
     const binDir = makeTempDir('fanout-run-pi-flash-max-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const flashHigh = buildLineageCommand(
-      { kind: 'cli-pi', model: 'deepseek-v4.1-flash', reasoningEffort: 'high' },
+      { kind: 'cli-pi', model: 'deepseek-v4.1-flash-1017', reasoningEffort: 'high' },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
-    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--thinking', 'max', 'p']);
+    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash-1017', '--thinking', 'max', 'p']);
     expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
     // A non-flash pi model keeps the requested effort.
     const proHigh = buildLineageCommand(

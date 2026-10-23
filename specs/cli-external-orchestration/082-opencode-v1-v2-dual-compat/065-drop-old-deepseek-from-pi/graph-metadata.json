@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "drop old deepseek from pi",
+      "phase 65 drop old deepseek from pi",
+      "drop old deepseek from pi plan",
+      "drop old deepseek from pi tasks",
+      "drop old deepseek from pi implementation summary"
+    ],
+    "key_topics": [
+      "drop",
+      "old",
+      "deepseek",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "commit",
+      "052d1e2e1e",
+      "took",
+      "undated"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+      ".skilled/skills/system-deep-loop/deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".pi/custom-providers.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
+      "scratch/live/unpinned-run.jsonl",
+      "scratch/live/fanout-pin-rejection.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "combo-matrix.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session-cli.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "supported-model-allowlist-smoke.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
+        "source": "derived"
+      },
+      {
+        "name": "unpinned-run.jsonl",
+        "kind": "file",
+        "path": "scratch/live/unpinned-run.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pin-rejection.txt",
+        "kind": "file",
+        "path": "scratch/live/fanout-pin-rejection.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit `052d1e2e1e` took the undated 2026-09-10 `deepseek-v4.1-flash` out of `.pi/settings.json` `enabledModels`, so the picker stopped offering it, but the model object stayed in the `llmgateway` provider block in `.pi/models.json`",
+    "created_at": "2026-10-23T04:51:31Z",
+    "last_save_at": "2026-10-23T06:09:30.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2d5ff5015e835a9901b2ec52799c355fcce1e8a605681e251b15e14cf7d7c6c2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5777b45dceb0ea891e0fe8306b115b2d8f7f3ce973a675535b0b733cbbf1d641",
+      "plan.md": "58c7532b987370156baa1181271246a28914c65f352fab1ee9eeff1c88b1a699",
+      "tasks.md": "e21ea155c7fe934d54c620ce46a5a76249b4b614e68c3ba606b00d568ed444df",
+      "implementation-summary.md": "63283b94395b26908ff97d944ead3aec79cc6d6ee7285864fd80460c3bca0a1e"
+    },
+    "last_active_at": null
+  }
+}

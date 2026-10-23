@@ -67,7 +67,8 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -109,6 +110,7 @@
       "goal.md",
       "research/research.md",
       ".skilled/CROSS-CLI.md",
+      ".pi/models.json",
       "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
       "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
       "014-post-merge-deep-research/research/research.md",
@@ -123,8 +125,7 @@
       "008-doctor-and-ci/goal.md",
       "009-sk-code-opencode-alignment/goal.md",
       "010-documentation-sweep/goal.md",
-      "011-two-version-proof-and-closeout/goal.md",
-      "012-sk-vision-v2-prompt-hook/goal.md"
+      "011-two-version-proof-and-closeout/goal.md"
     ],
     "entities": [
       {
@@ -149,6 +150,12 @@
         "name": "CROSS-CLI.md",
         "kind": "doc",
         "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
         "source": "derived"
       },
       {
@@ -264,17 +271,11 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Version Detection",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-23T04:39:47.179Z",
+    "last_save_at": "2026-10-23T06:05:52.796Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -282,10 +283,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:77c7caf1e266ab83f1a95469a433e9dc9fe91657ae0022063f31a6e41967c603",
+    "source_fingerprint": "sha256:6a25647edbb779be6d7cf23fc42bdd3ab4b7546dbad74f16c45febe0412ef68a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "750e693093f233c98395084ce8561cd6b9b365fd2a9a2934280d90a75cc42134",
+      "spec.md": "b1d39261885a47b086ffbede4c43255b53dc3d11ebe66839df2e68a2c13d4844",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

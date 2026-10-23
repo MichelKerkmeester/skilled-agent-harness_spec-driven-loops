@@ -1,0 +1,4 @@
+$ pi -ne -p 'Reply with exactly: OK' --mode text --offline (unpinned, cwd=worktree)
+5:  "defaultModel": "deepseek-v4.1-flash-1017",
+OK
+exit=0
