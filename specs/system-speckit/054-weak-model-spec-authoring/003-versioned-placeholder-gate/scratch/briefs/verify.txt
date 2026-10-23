@@ -21,6 +21,14 @@ Run these checks from the repository root and record each result:
  C10 Consistency: spec.md, plan.md, tasks.md, acceptance-criteria.md and goal.md agree on artifact names, paths and
     counts. List each disagreement with both file:line.
 
+ C11 Amendment conformance (read specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch/briefs/amend-opencode.txt first, if it exists). Run
+    rg -n 'opencode2? run|AI_SESSION_CHILD|SYSTEM_SPEC_GATE_ENFORCE|outside OpenCode|opencode2 models' specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/*.md
+    and list every hit that still describes the conductor as outside OpenCode or a worker as dispatched by
+    opencode run or opencode2 run. Then confirm in plan.md and tasks.md: (a) every worker dispatch is a Task tool
+    call with subagent_type general, (b) the worker brief skeleton carries the sentence "You are a dispatched Task
+    subagent" and no sentence claiming environment variables are set, (c) no PID, wait, kill or pkill line remains,
+    (d) parallelism is at most 3 Task calls in one message, (e) any .jsonl worker transcript read has become a .txt
+    reply file. Mark each of (a) to (e) PASS or FAIL with file:line.
 Write the report to specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch/verify/report.txt, one finding per line:
   PASS|FAIL|WARN <check id> <one-sentence detail> <file:line>
 End the file with one line: VERDICT: CLEAN or VERDICT: <n> FAIL, <m> WARN

@@ -282,9 +282,9 @@ Setup (T001-T003) ──► Apply (T004) ──► Sweep (T005) ──► Rechec
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode. It runs every command, edits only this phase folder and the recipe file, and keeps `goal.md` section 4 current.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It runs every command, edits only this phase folder and the recipe file, and keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent, dispatched with the Task tool only when a task names one. No task in this phase dispatches one, because the only edit is a scripted replacement applied by `apply_row.py`.
 - **Reviewer**: one read-only `cli-codex` dispatch at phase close. It writes nothing.
-- **No worker dispatch**: this phase's only edit is a scripted replacement. Do not dispatch a DeepSeek worker to edit the recipe.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first command

@@ -45,7 +45,7 @@ One conductor creates a disposable worktree from the operator's `BASE_REF`, lets
 ### Definition of Done
 - [ ] Every row in `acceptance-criteria.md` is `Met`, `Waived` or `Superseded`
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
-- [ ] `results.csv` holds eight data rows and every row is `PASS`, `FAIL`, `FIXED`, `ESCALATED` or `SCENARIO_DEFECT`
+- [ ] `results.csv` holds eight data rows, every row is `PASS` or `FAIL`, and `scratch/results.tsv` holds one of the five verdict values `PASS`, `FAIL`, `FIXED`, `ESCALATED` or `SCENARIO_DEFECT`
 - [ ] The disposable worktree is gone and the primary checkout gate prints nothing outside the allowed paths
 - [ ] The frontier review ran read-only and its reply is saved
 <!-- /ANCHOR:quality-gates -->
@@ -62,13 +62,13 @@ One disposable execution host, one scenario map, one literal runner, one compara
 
 | Component | Role |
 |-----------|------|
-| **Conductor** | One DeepSeek V4.1 Flash max session outside OpenCode. It creates the worktree, runs every command, writes every verdict and edits only this phase folder plus the report folder |
+| **Conductor** | The operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It creates the worktree, runs every command, writes every verdict and edits only this phase folder plus the report folder |
 | **Worktree allocator** | `.skilled/skills/sk-git/scripts/worktree-naming.sh create`, which allocates `worktrees/NNN-slug`, creates `.worktrees/NNN-slug` and provisions the dependency trees and builds |
 | **Scenario map builder** | A Node script that carries the eight literal ids and paths, checks each file and writes `scratch/scenarios.tsv` |
 | **Runner** | A Bash script that extracts the `### Commands` fenced block from one scenario file and runs it from the worktree root |
 | **Comparator** | A Node script that matches each captured run against up to three frozen patterns and prints `PASS` or `FAIL` with a one-line reason |
-| **S8 worker** | One `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max` that authors a Level 1 packet from the card inside the disposable worktree |
-| **Fix worker** | One dispatch per failed attempt, limited to the one file the scenario's `## 4. SOURCE FILES` list names |
+| **S8 worker** | One Task subagent on `llmgateway/deepseek-v4.1-flash-1017#max` that authors a Level 1 packet from the card inside the disposable worktree |
+| **Fix worker** | One Task subagent per failed attempt, limited to the one file the scenario's `## 4. SOURCE FILES` list names |
 | **Reviewer** | One read-only `cli-codex` dispatch at phase close |
 
 ### 3.1 Execution host
@@ -147,7 +147,7 @@ awk '
 
 An empty command file is `SCENARIO_DEFECT` and is not run. The scenario files phase 007 writes use several numbered blocks under one `### Commands` heading, so concatenation is what makes the scenario runnable as one script. The run output goes to `$PHASE/scratch/runs/$ID.txt`, followed by a `truncated=yes` or `truncated=no` line and an `exit=<n>` line. A run above 2 MB is cut to its first 2 MB and last 200 lines before those two lines are written, so a runaway scenario cannot fill the disk. The command block is the scenario's own text. The runner never retypes a command.
 
-S8 is the one exception. Its commands dispatch a worker, so the conductor extracts the `### Prompt` block, writes a worker brief from the skeleton in this plan, dispatches it inside `$WT` and then checks the packet the worker returns. The worker transcript is saved as `scratch/runs/<playbook-id>.worker-<n>.jsonl`. The S8 run file holds only conductor-written lines: `dispatch_exit`, `dispatch_attempts`, the conductor's own strict validation, `leftover_tokens` and `cleanup=ok`. A `RESULT: PASSED` line in the worker transcript therefore can never satisfy the S8 pattern. S8's packet path is frozen to `specs/zz-pb-card/001-card-authoring`, the path the scenario file itself uses, so the check needs no parsing judgment.
+S8 is the one exception. Its commands dispatch a worker, so the conductor extracts the `### Prompt` block, writes a worker brief from the skeleton in this plan, dispatches one Task subagent that works inside `$WT` and then checks the packet the worker returns. The worker reply is saved as `scratch/runs/<playbook-id>.worker-<n>.txt`. The S8 run file holds only conductor-written lines: `dispatch_exit`, `dispatch_attempts`, the conductor's own strict validation, `leftover_tokens` and `cleanup=ok`. A `RESULT: PASSED` line in the worker reply therefore can never satisfy the S8 pattern. S8's packet path is frozen to `specs/zz-pb-card/001-card-authoring`, the path the scenario file itself uses, so the check needs no parsing judgment.
 
 ### 3.5 Comparator
 
@@ -155,7 +155,7 @@ For each run the comparator reads its up to three patterns and prints one line:
 
 `S<n> PASS <playbook-id> <run-file>` or `S<n> FAIL <playbook-id> <first missing pattern>`
 
-Every non-empty pattern must match. The `^4$` and `^0$` patterns are matched with the multiline flag. For every run the comparator also writes `<run file>.check.txt`, which names the result, the first missing pattern, the exit line, the truncation line and the last output line. The fix brief quotes that file, so the failing line reaches the worker without the conductor retyping it. When a run does not match, the conductor reads the scenario's own `### Pass / Fail` section. If that section states a different observable and the run satisfies it, the row is `SCENARIO_DEFECT` and is escalated to phase 007. The comparator's verdict is never overridden by a chat impression.
+Every non-empty pattern must match. The `^4$` and `^0$` patterns are matched with the multiline flag. A run whose exit line is `142` is always a `FAIL` with `missing:exit=142`, whatever its output matched. For every run the comparator also writes `<run file>.check.txt`, which names the result, the first missing pattern, the exit line, the truncation line and the last output line. It also writes `<run file>.stderr.txt`, which holds the failing `missing:` line. The fix brief quotes the stderr file, so the failing line reaches the worker without the conductor retyping it. When a run does not match, the conductor reads the scenario's own `### Pass / Fail` section. If that section states a different observable and the run satisfies it, the row is `SCENARIO_DEFECT` and is escalated to phase 007. The comparator's verdict is never overridden by a chat impression.
 
 ### 3.6 Report package
 
@@ -171,7 +171,7 @@ The report folder name is `<date>--manual-testing-playbook--weak-model-authoring
 scenario_id,runtime,run,evidence_class,verdict
 ```
 
-One data row per scenario, with `runtime` set to `conductor`, `run` set to `1`, `evidence_class` set to `manual-testing-playbook` and `verdict` set to the row's verdict.
+One data row per scenario, with `runtime` set to `conductor`, `run` set to `1`, `evidence_class` set to `manual-testing-playbook` and `verdict` set to `PASS` for a `PASS` or `FIXED` row and `FAIL` for a `FAIL`, `ESCALATED` or `SCENARIO_DEFECT` row. The five-value verdict stays in `scratch/results.tsv`.
 
 `outcomes/<playbook-id>.json` follows the observed shape:
 
@@ -235,7 +235,7 @@ The fix brief is the skeleton in the AI EXECUTION PROTOCOL section, followed by 
 ```text
 TASK: Scenario <S label> failed at <playbook id>.
 The captured run is <run file>. The comparator wrote:
-<the contents of <run file>.check.txt, quoted>
+<the contents of <run file>.stderr.txt, quoted>
 The scenario's pass criterion is:
 <the Pass line from the scenario file, quoted>
 Change only the single file named under ALLOWED WRITE PATHS so that the scenario
@@ -246,12 +246,14 @@ RETURN exactly one line: FIXED <the file> or BLOCKED <the reason>
 
 After the worker returns, the conductor reruns the same scenario command block from `$WT`. A PASS marks the row `FIXED` and keeps the original run beside the rerun as `scratch/runs/<playbook-id>.fix-<n>.txt`.
 
-A fix edits a tracked file under `.skilled/`, so the disposable worktree is never clean after a successful fix. Before removal, T016 saves the worktree state:
+A fix edits a tracked file under `.skilled/`, so the disposable worktree is never clean after a successful fix. Before removal, T016 clears scratch output and saves the worktree state:
 
 ```bash
-git -C "$WT" diff > "$PHASE/scratch/fixes/fix.patch"
-git -C "$WT" status --porcelain > "$PHASE/scratch/fixes/status.txt"
+git -C "$WT" diff > "$PHASE/scratch/fixes/fix.patch" && echo PATCH_SAVED
+git -C "$WT" status --porcelain > "$PHASE/scratch/fixes/status.txt" && echo STATUS_SAVED
 ```
+
+The block prints `PATCH_SAVED` and `STATUS_SAVED`. Untracked output under `$WT/scratch/` is scratch and not a fix, so T016 clears it with `git -C "$WT" clean -fd -- scratch` before it saves `status.txt`. A changed path outside that scratch directory that still reads `UNPATCHED` keeps the worktree and is recorded for the operator.
 
 The removal gate then reads `status.txt` line by line and looks for `diff --git a/<path> b/<path>` in `fix.patch`. It writes `PATCHED <path>` or `UNPATCHED <path>` for each change, prints `PATCH_GATE_COVERED` when the counts agree, and refuses removal while any `UNPATCHED` line exists. The patch is applied to the build worktree later by the operator or the phase 009 conductor, never by this phase.
 
@@ -311,7 +313,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |------------|------|--------|-------------------|
 | `BASE_REF` from the operator | External | Checked in T001 | No worktree can be created from the right tree |
 | `worktree-naming.sh` and its provisioning list | Internal | Checked in T005 | The worktree has no dependencies or build |
-| `opencode2` with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T002 | S8 and every fix brief cannot run |
+| The OpenCode Task tool with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T002 | S8 and every fix brief cannot run |
 | npm registry or local cache | External | Exercised in T005 | Provisioning fails and the phase stops |
 | `jq`, `rg` and `shasum` on PATH | Internal | Checked in T002 | The map, verdicts and evidence hashes cannot be built |
 | `cli-codex` with `gpt-6-luna` | External | Checked in T017 | The review is recorded as skipped and REQ-007 stays open |
@@ -450,7 +452,7 @@ Phase 007 close ──► Setup (T001-T003) ──► Scenario map (T004)
 
 **Parallel Opportunities**:
 - The scenario map and the worktree creation do not share a file and can run together.
-- A fix brief and a different scenario run can overlap, because the fix writes one source file and the other scenario runs in a different part of the tree. The conductor keeps at most two workers alive at once, below the three-lane limit.
+- A fix brief and a different scenario run can overlap, because the fix writes one source file and the other scenario runs in a different part of the tree. The conductor sends at most three Task calls in one message, and never two that write the same file.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -475,17 +477,18 @@ Phase 007 close ──► Setup (T001-T003) ──► Scenario map (T004)
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It creates the worktree, runs every scenario, writes every verdict and edits only this phase folder plus the report folder.
-- **S8 worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. It authors one Level 1 packet inside the disposable worktree, then stops.
-- **Fix worker**: one dispatch per failed attempt. It may edit exactly one file inside the disposable worktree.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It creates the worktree, runs every scenario, writes every verdict and edits only this phase folder plus the report folder.
+- **Worker**: one Task subagent on `llmgateway/deepseek-v4.1-flash-1017#max`. A Task subagent inherits the session model and cannot receive environment variables, so its brief is what pre-resolves its gates.
+- **S8 worker**: one Task subagent that authors one Level 1 packet inside the disposable worktree, then stops.
+- **Fix worker**: one Task subagent per failed attempt. It may edit exactly one file inside the disposable worktree.
 - **Reviewer**: one read-only `cli-codex` dispatch at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first dispatch
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command
+- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` NEVER rules 1 and 5 before the first dispatch, because they forbid a nested CLI dispatch from inside OpenCode and name the Task tool as the replacement
 - [ ] Read `.skilled/skills/sk-git/SKILL.md` and its `references/worktree-workflows.md` before creating the worktree
 - [ ] Confirm the conductor's working directory is `RUNROOT`, never the disposable worktree for durable writes
-- [ ] Confirm `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`
+- [ ] Confirm `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0
 - [ ] Save every brief to `scratch/briefs/<task-id>.txt` before dispatching it
 
 ### Execution Rules
@@ -493,6 +496,7 @@ Written for the executing swarm. Follow each rule as written. Where a rule and y
 | Rule | Requirement |
 |------|-------------|
 | TASK-SEQ | Run tasks in ID order. T011 runs only after a `FAIL`, and T018 only after a finding |
+| TASK-PARALLEL | Send at most three Task calls in one message, and never two that write the same file |
 | TASK-SCOPE | A worker writes only the paths under ALLOWED WRITE PATHS in its brief |
 | TASK-VERIFY | The conductor runs the task's verify command and reads both its output and its exit status before marking the task `[x]` |
 | TASK-LOCATE | Find text by its exact content, never by a line number |
@@ -508,10 +512,8 @@ Every brief starts with this block, word for word, with the two paths filled in:
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker
+as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
@@ -532,18 +534,15 @@ git stash, rm, mv, create.sh outside the task's stated command, generate-context
 /speckit:save, and any edit to a file not listed under ALLOWED WRITE PATHS.
 ```
 
-The role line is a focused persona summary in place of a full agent file, the small-context exception that `cli-opencode` rule 18 allows. It is declared here as that exception.
+The role line is a focused persona summary in place of a full agent file, the small-context exception that `cli-opencode` rule 18 allows for a native surface. It is declared here as that exception.
 
 ### Dispatch Command
 
-```bash
-cd "$WT" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-```
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of
+`$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to
+`$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 
-`PHASE` is this folder's path in `RUNROOT`. `WT` is the disposable worktree. Never kill by a name pattern. Kill only the captured PID.
+`PHASE` is this folder's path in `RUNROOT`. `WT` is the disposable worktree. The prompt is the brief and nothing else, so the Task call adds no instruction of its own. A Task subagent starts in the conductor's session directory, so the brief names `$WT` and the worker runs every command from that directory.
 
 ### S8 Brief Task Text
 
@@ -552,6 +551,8 @@ Append this text after the skeleton for S8, with the scenario file's Prompt bloc
 ```text
 TASK: Author one Level 1 spec packet from the authoring card, following the scenario
 prompt below exactly.
+
+Work only inside the disposable worktree at $WT and run every command from that directory.
 
 <the scenario's Prompt block, verbatim>
 

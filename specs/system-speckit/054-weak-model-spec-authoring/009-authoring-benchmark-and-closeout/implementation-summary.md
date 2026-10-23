@@ -65,7 +65,7 @@ When it runs, this phase writes `scratch/baseline/baseline.json`, the three fina
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The phase runs as a DeepSeek V4.1 Flash conductor with three serial worker runs under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. The conductor publishes every number from `delta.json` and ticks a parent box only after its PASS line exists.
+Not delivered yet. The phase runs inside the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, with three serial Task subagent runs under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. The conductor publishes every number from `delta.json` and ticks a parent box only after its PASS line exists.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -1,0 +1,9 @@
+plan.md:562 - Conductor role now reads "the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max", and the sentence requiring the conductor to run outside OpenCode was removed.
+plan.md:564 - Worker role now reads "one Task subagent", dispatched with the Task tool only when a task names one.
+plan.md:591 - Worker brief skeleton now states "You are a dispatched Task subagent" and that AGENTS.md and the prompt are the spec-folder pre-resolution, replacing the AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 environment claim.
+plan.md:620 - The `opencode2 run --standalone` dispatch block was replaced with the Task tool instruction, and the worker reply path changed from `scratch/runs/<TASK>.jsonl` to `scratch/runs/<TASK>.txt`.
+plan.md:622 - Added the parallel rule: at most 3 Task calls in one message, never two that write the same file.
+plan.md:624 - Removed the PID capture, wait, kill and pkill lines and the sentence about killing only the captured PID.
+graph-metadata.json:213 - Re-derived the generated `last_save_at` timestamp after the plan.md edit.
+graph-metadata.json:224 - Re-derived the generated `source_fingerprint` after the plan.md edit.
+graph-metadata.json:228 - Re-derived the generated `plan.md` content hash after the plan.md edit.

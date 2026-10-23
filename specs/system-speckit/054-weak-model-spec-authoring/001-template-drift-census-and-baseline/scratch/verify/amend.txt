@@ -1,0 +1,34 @@
+AMENDMENT PASS: conductor runs inside OpenCode v2, workers are Task subagents
+
+CHANGED LOCATIONS
+
+spec.md:111 files-to-change row: scratch/runs/T009-*.jsonl became T009-*.txt plus T009-*.t0 and T009-*.t1, and the purpose text now reads worker replies and dispatch times
+spec.md:169 NFR-P01: removed the captured-PID kill, a lane that has not returned in 30 minutes is cancelled and dispatched once more
+spec.md:172 NFR-S01: workers inherit provider login from the conductor's session, not from the environment
+plan.md:182 dependency row: opencode2 became the OpenCode v2 Task tool, with opencode.json naming llmgateway/deepseek-v4.1-flash-1017
+plan.md:296 critical path: three dispatches at once became three Task calls in one message
+plan.md:321 Conductor role: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, with the not-inside-OpenCode sentence removed
+plan.md:322 Worker role: one Task subagent that inherits the session model, replacing the opencode2 run dispatch
+plan.md:327 pre-task item: reads cli-opencode NEVER rules 1 and 5 and then uses the Task tool dispatch, replacing the first-worker-command reading
+plan.md:329 pre-flight: opencode2 models --standalone became rg -c 'deepseek-v4.1-flash-1017' opencode.json above 0
+plan.md:336 TASK-SEQ: at most three Task calls in one message
+plan.md:349 worker brief skeleton: the AI_SESSION_CHILD and SYSTEM_SPEC_GATE_ENFORCE sentence became the dispatched-Task-subagent pre-resolution sentence
+plan.md:371 role-line note: dropped the cli-opencode rule 18 justification and kept the small-context exception
+plan.md:373 to 379 dispatch section: opencode2 run, the PID, wait, kill and pkill lines and the jsonl redirect became the literal Task tool instruction with subagent_type general and a verbatim reply written to scratch/runs/<TASK>.txt
+plan.md:381 parallel rule: at most three Task calls in one message, never two that write the same file, and the env-var note for Task subagents
+plan.md:383 timing: date +%s to scratch/runs/<TASK>.t0 before the Task call and .t1 after it
+tasks.md:42 T001 verify: opencode2 --version and models --standalone became rg -c 'deepseek-v4.1-flash-1017' opencode.json
+tasks.md:52 T004: three Task calls in one message with replies in scratch/runs/T004-A.txt, T004-B.txt and T004-C.txt
+tasks.md:172 T009: replies in scratch/runs/T009-<n>.txt, t0 and t1 timestamps, and the verify reads the txt and t0 files
+tasks.md:204 T010: T0 reads scratch/runs/T009-$N.t0
+tasks.md:335 CHK-032: every worker ran as a Task subagent with the pre-resolution preamble, replacing the env-var check
+implementation-summary.md:68 how delivered: the operator's interactive OpenCode v2 session dispatching Task subagents
+
+acceptance-criteria.md and goal.md carry no dispatch text and are unchanged.
+
+VERIFY
+
+rg -c 'opencode2? run' on the six root docs prints nothing and exits 1
+check-goal.cjs prints RESULT: PASSED (5/5 checks)
+validate.sh --strict prints RESULT: FAILED with 2 errors, both in generated metadata: SOURCE_FINGERPRINT_MISMATCH and GENERATED_METADATA_DRIFT on graph-metadata.json
+The metadata refresh is outside this worker's ALLOWED WRITE PATHS, so it was not run. Operator command: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline --apply

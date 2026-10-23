@@ -48,6 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D5 | The report package copies the real file set of an existing report folder: `README.md`, `results.csv`, `source.md` and `outcomes/`. The ten `sk-create-benchmark` section headings live inside `README.md`. |
 | D6 | Durable writes land in this phase folder plus the one report folder and one reports index row. No source file under `.skilled/` is edited by hand. |
 | D7 | The report folder is written before the worktree is removed, so no evidence depends on a deleted directory. |
+| D8 | The conductor is the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. Every worker is one Task subagent, and no nested CLI dispatch is used from that session. |
 
 <!-- /ANCHOR:directive -->
 

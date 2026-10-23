@@ -1,20 +1,23 @@
-PASS C1 validate.sh --strict prints "Summary: Errors: 0  Warnings: 0" then "RESULT: PASSED" (exit 0) specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/spec.md:1
-PASS C2 check-goal.cjs prints "[check-goal] RESULT: PASSED (5/5 checks)" (exit 0)
-PASS C3 check-placeholders.sh prints "PASS — Zero placeholder patterns found in specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair" (exit 0)
-PASS C4 rg -n '—' over the six phase docs prints nothing (exit 1)
-PASS C5 every .skilled path named in tasks.md and plan.md exists, and the only missing specs paths are the three phase 1 outputs (ledger.jsonl, suite-start.txt, review/T011.txt) that T001 checks and treats as BLOCKED tasks.md:48
-PASS C6 all 25 K locators occur exactly once (25 of 25) and the checklist and style-guide locators occur once each tasks.md:72
-WARN C6 plan.md:131 says `rg -n 'Why Bulleted' .skilled specs` found only the style guide and no other doc, but the command also matches 001-template-drift-census-and-baseline/plan.md:103, 001-template-drift-census-and-baseline/goal.md:58 and 002-template-and-example-defect-repair/plan.md:92 and :123 plan.md:131
-PASS C7 every invocation of an existing repo script checks out: validate.sh --strict, opencode2 models --standalone, opencode2 run --standalone -m ...#max --format json, codex exec --model gpt-6-luna -c ... --sandbox read-only, npm --prefix ... test, and the rg, grep and jq flags tasks.md:58
-PASS C8 author-common.txt and author-phase.txt are absent, so there is no frozen requirement list to check scratch/briefs/verify.txt:17
-FAIL C9 T016's verify `grep -c '' scratch/review/T015.txt` equals the number of findings applied or recorded, which is unsatisfiable when T015 returns the single line NO FINDINGS because the file then holds 1 line and there are 0 findings tasks.md:447
-FAIL C9 T016 says to "fix the file with the exact text in the finding's third column", but that column holds prose describing a fix, not replacement text, so the edit is left to judgment the docs do not settle tasks.md:447
-WARN C9 T011's verify ("every printed line starts with DELETED or KEPT, and each DELETED path fails test -e") supplies no command, so the executor must invent the loop tasks.md:343
-WARN C9 T011 says a common base name such as README.md "leaves the file and prints KEPT", but the block has no base-name check and deletes whenever rg exits 1 tasks.md:343
-WARN C9 T015 check 4 ("no line under the heading Why a Table argues for bullets") is a judgment the docs do not settle, because the four bullets stay under the renamed heading while tasks.md:255 asserts they name no list format tasks.md:430
-FAIL C10 tasks.md:266, plan.md:124, plan.md:415 and spec.md:106 all say .hashes lists four template files that are not there, but templates/README.md exists and only debug-delegation.md, handover.md and research.md are missing tasks.md:266
-FAIL C10 T016 instructs the conductor to edit a file a known row or ledger row names by hand, which TASK-NOHAND forbids: "Never edit a file that a known row or a ledger row names by hand" tasks.md:447
-WARN C10 spec.md:64 calls applied.txt "one line per row", but T006 writes an APPLIED line, a CHECK line and a KCHECK line for each of the 25 rows spec.md:64
-WARN C10 acceptance-criteria.md requires a waiver ADR to exist in decision-record.md, which this packet does not have; its ADR-001 to ADR-003 live in plan.md acceptance-criteria.md:32
-WARN C10 spec.md:68 says to refresh a file in ../changelog/, but specs/system-speckit/054-weak-model-spec-authoring/changelog does not exist and no task creates it spec.md:68
-VERDICT: 4 FAIL, 7 WARN
+PASS C1 validate.sh --strict printed "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED" spec.md:1
+PASS C2 check-goal.cjs printed "RESULT: PASSED (5/5 checks)" goal.md:1
+PASS C3 check-placeholders.sh printed "PASS — Zero placeholder patterns found" spec.md:1
+PASS C4 rg -n '—' over the six docs printed nothing and exited 1 spec.md:1
+PASS C5 all 20 row-target files, the three protected template folders, opencode.json, the three skill files, validate.sh, workflow-invariance.vitest.ts, trigger-index.json and the 041-001 packet exist now plan.md:82
+WARN C5 the three phase 1 preconditions that T001 tests, ledger.jsonl, suite-start.txt and review/T011.txt, do not exist yet, so T001 fails until phase 1 runs tasks.md:52
+PASS C6 all 25 known-row locators occur exactly once, grep -cF returned 1 for every row tasks.md:72
+PASS C6 the style guide heading and manual-check locators are unique, the checklist holds exactly two bare `<spec-folder>` lines, and the 15-of-18 leaked-description claim reproduces plan.md:130
+PASS C7 validate.sh documents --strict, package.json defines the test script, and the codex exec flags match cli-codex SKILL.md tasks.md:455
+PASS C8 author-common.txt and author-phase.txt do not exist, so this folder has no frozen requirement list to map scratch/briefs/verify.txt:3
+PASS C9 every task T001 to T017 carries a Verify clause that names the output it must print tasks.md:48
+WARN C9 the T015 verify command prints 0 for an empty scratch/review/T015.txt, so a failed or empty codex dispatch passes the gate tasks.md:430
+WARN C9 make_brief step 2 leaves the worker to find "the one place in the file that has the defect" when the locator is absent or repeated, a judgment the brief does not settle tasks.md:202
+WARN C9 T012 says the second and third counts are skipped when the ledger is missing, but its block still runs jq against the missing "$LED" and the doc names no action for that error output tasks.md:375
+PASS C10 the 25 rows, 18 descriptions, 20 changed files, 21 level-* example docs and the 14/24/9 checklist counts agree across the five docs plan.md:264
+WARN C10 spec.md promises the style guide contradiction is removed, but K-24 and K-25 leave template-style-guide.md:69 still allowing "Bulleted-list metadata" for some templates, and neither verification pattern matches that line spec.md:78
+PASS C11 the amendment search found no `opencode run`, `opencode2 run`, `opencode2 models` or "outside OpenCode" text in the six docs tasks.md:319
+PASS C11-(a) every worker dispatch is a Task tool call with subagent_type general plan.md:366
+PASS C11-(b) the worker brief skeleton carries "You are a dispatched Task subagent" and claims no environment variable is set plan.md:340
+WARN C11-(c) one PID, wait, kill and pkill line remains at tasks.md:458, in the cli-codex review dispatch that amendment fact line 10 leaves unchanged tasks.md:458
+PASS C11-(d) every parallel rule caps Task calls at 3 per message plan.md:326
+PASS C11-(e) worker replies are read from scratch/runs/<TASK>.txt and no .jsonl worker transcript is read tasks.md:345
+VERDICT: 0 FAIL, 6 WARN

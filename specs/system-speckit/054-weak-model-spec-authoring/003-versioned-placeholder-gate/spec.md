@@ -136,7 +136,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | In the five templates, the count of `[YOUR_VALUE_HERE: ` tokens after conversion equals the count of hints before it, and a fresh Level 2 scaffold has 114 tokens and no bare hint. The 7 stamp lines read v2.3. |
+| REQ-001 | In the five templates, the count of `[YOUR_VALUE_HERE: ` tokens after conversion equals the count of hints before it, and a fresh Level 2 scaffold has 112 tokens and no bare hint. The 7 stamp lines read v2.3. |
 | REQ-002 | For a doc stamped v2.3 or later, an unfilled token is a warning while `spec.md` has the Status Draft and an error at any other status. A `[NEEDS CLARIFICATION:` is an error in both cases. A doc stamped v2.2 keeps the error it had. The orchestrator and the shell rule agree on each case. |
 | REQ-003 | `placeholder-token-gate.vitest.ts` fails before the code change with the expected message, passes after it, and goes red under each of three scripted mutations. |
 | REQ-004 | Strict validation over the frozen folder list gives identical per-folder results before and after, both for the placeholder rule alone and for all rules. |
@@ -187,7 +187,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The rule-scoped census over all folders under `specs/` takes about one minute. The all-rules census takes about 40 minutes on three shards. A shard that has not finished in 90 minutes is killed by its captured PID and rerun once.
+- **NFR-P01**: The rule-scoped census over all folders under `specs/` takes about one minute. The all-rules census takes about 40 minutes on three shards. A shard that has not finished in 90 minutes is stopped and rerun once.
 
 ### Security
 - **NFR-S01**: No brief or script in this phase carries a credential, token or key. The only model call is the read-only frontier review.
@@ -257,7 +257,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 ## 12. OPEN QUESTIONS
 
 - None that block this phase. Every choice it needs is frozen in `goal.md` section 1 and in the ADRs in `plan.md`.
-- Three side effects are recorded as operator items and not fixed here: the era report flip, the `upgrade-level.sh` token copy and the two defects in the post-edit scanner. The conductor writes each one in `goal.md` section 4 and raises it in the closing report.
+- Five operator items are recorded and not fixed here: the era report flip, the two defects in the post-edit scanner, the `upgrade-level.sh` token copy, the `[PLACEHOLDER]` text left in `README.md` and `assets/template-mapping.md` and the phase 2 commit. The conductor writes each one in `goal.md` section 4 and raises it in the closing report.
 <!-- /ANCHOR:questions -->
 
 ---

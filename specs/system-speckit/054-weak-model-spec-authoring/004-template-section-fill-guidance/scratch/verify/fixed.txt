@@ -1,19 +1,16 @@
-REJECTED C3 known false positive, not a doc defect: all 22 hits are pre-token template text quoted inside fenced blocks in plan.md. check-placeholders.sh skips only fence delimiter lines, not the fenced body, so those lines read as placeholders. The validator PLACEHOLDER_FILLED rule skips fenced content and passes. Recorded in goal.md section 4.
-FIXED C8 plan.md:68 the fact row now cites the T003 rg -o comparison and scratch/baseline/anchor-lists.txt instead of a read of the templates, and T003 runs the comparison.
-FIXED C8 plan.md:881 T010 now includes a transient Level 1-only mutation named MUTATION PROBE, expects Tests  1 failed | 11 passed (12) and exit 1, restores the backup and reruns to 12 passed, and ADR-005 records the demonstration.
-FIXED C8 plan.md:505 the example alignment section and the drift guard contract now name phase 002 rows K-01 to K-18, the 18 leaked descriptions, and state that EXAMPLE_DRIFT_OK is expected only on the post-002 tree.
-FIXED C8 plan.md:315 S1b, S2b, S3 and S4 now give the pre-token and the post-003 locator form, and T001 writes TOKEN= to scratch/baseline/locator-form.txt to pick the form.
-FIXED C9 tasks.md:46 T003 now passes scratch/baseline/anchor-counts.txt to both grep -c commands.
-FIXED C9 tasks.md:81 T005 now runs ls -1 with the three explicit paths.
-FIXED C9 tasks.md:227 T006 now composes failing-first.txt from the fill count and the drift message, so both lines its Verify names exist.
-FIXED C9 plan.md:403 S1b, S2b, S3 and S4 replacement text now uses the [YOUR_VALUE_HERE: ...] form so applying it never restores a bare hint. The research fixes stay bare because phase 003 does not convert research.md.tmpl.
-FIXED C9 tasks.md:245 T007 and T008 now run the renderer through awk and print open=10 close=10 and open=9 close=9.
-FIXED C9 plan.md:222 C14's heading cell is now the exact template line ## ADR-001: [Decision Title].
-FIXED C9 tasks.md:299 T009 and T012 now state the phase 002 dependency and that EXAMPLE_DRIFT_OK is expected only on the post-002 tree.
-FIXED C10 tasks.md:604 the Verification Summary now reads 18 P0, 24 P1 and 9 P2, matching the 51 checklist rows.
-FIXED C10 plan.md:559 the core row now says four anchor placements and the addon row says three research crossings.
-FIXED C10 spec.md:219 the complexity row now says 38 changed files, matching the 38 distinct files in section 3.
-FIXED C10 plan.md:95 the risk row now says the weak example carries a WEAK: label instead of starting with it.
-FIXED C10 spec.md:77 the problem statement now says 14 anchor drifts and 18 leaked descriptions.
-FIXED C10 plan.md:840 ADR-002 now says 70 heading rows across the four core templates and 214 hints across the five converted templates.
-FIXED C10 tasks.md:594 CHK-052 is now a grounded find command over scratch that matches the copy T006 makes.
+FIXED C9 tasks.md:42 added mkdir -p for scratch/baseline, scratch/briefs, scratch/runs, scratch/review and scratch/test to T001 so every redirect target exists before it is written
+FIXED C9 tasks.md:42 the same T001 mkdir creates scratch/review before T015 writes its reply there
+FIXED C9 plan.md:421 added the A07 and B13 fill lines to both S3 forms and the B14 and B15 fill lines to both S4 forms, so all four questions headings keep one fill line and the 24-fill verify holds
+REJECTED C9 tasks.md:345 the pattern ends at the heading newline and does not read the next line. A perl -0777 run on the template with the A07 fill line inserted printed after_fill=1, so the probe still matches and the expected 1 failed | 11 passed follows
+FIXED C9 plan.md:105 changed the rule to open with an imperative sentence and hold one to three sentences, and aligned CHK-013. All 131 rows open with an imperative verb, all end with a period and the longest is two sentences
+FIXED C9 tasks.md:478 added a literal AI_SESSION_CHILD=1 codex exec command with --model gpt-6-luna, --sandbox read-only, -o for the reply and a captured PID, wait, kill and pkill
+FIXED C9 goal.md:63 replaced <this phase> with the literal folder path in the first completion criterion
+FIXED C9 plan.md:174 removed the Delete this line wording from B17 and B29 so the executor inserts the fill line the fill test requires
+FIXED C9 tasks.md:44 named the Progress table and the exact Start commit row in goal.md section 4
+FIXED C10 plan.md:713 corrected the diagram to Setup T001-T006, Lane A T007, Lane B T008, Lane C T009 and Golden refresh T010
+FIXED C10 plan.md:631 changed the drift guard source reference from tasks.md T010 to T005
+FIXED C10 plan.md:695 changed the review dependency from T016 to T015
+FIXED C10 plan.md:695 changed the skipped-review requirement from REQ-007 to REQ-008
+FIXED C10 plan.md:659 replaced the Level 1 addon render claim with the T008 fill counts and the Level 2 research render
+FIXED C10 implementation-summary.md:60 added implementation-summary.md to the row of planning docs marked Created
+FIXED C3 goal.md:90 already records the 22 fenced-code scanner hits as the known false positive. A rerun printed the same 22, so no doc edit was required

@@ -102,7 +102,7 @@ When the table below has `-` in both the Good and the Weak cell, the line is:
 ```
 
 Rules for the text inside the line:
-- The instruction is one imperative sentence and ends with a period.
+- The instruction opens with an imperative sentence and holds one to three sentences. It ends with a period.
 - No cell contains `[YOUR_VALUE_HERE:`, `[NEEDS_CLARIFICATION:`, `-->`, `;` or an em dash. A short priority mark such as `[P0]` is allowed because it is not a token.
 - The line is never wrapped. It is one line in the template source.
 - The good example is concrete and short. The weak example is the failure a weak model produces: vague, generic or a restatement of the heading.
@@ -171,7 +171,7 @@ Insert the constructed line immediately below the heading. When a section has tw
 | B14 | `core/spec.md.tmpl` | `## 12. OPEN QUESTIONS` | Write each open question as one line. Write `None` when nothing blocks. | Does `--quiet` suppress warnings? No, stderr is unchanged. | Edge cases are unclear. |
 | B15 | `core/spec.md.tmpl` | `## 16. OPEN QUESTIONS` | Write each open question as one line. Write `None` when nothing blocks. | Does `--quiet` suppress warnings? No, stderr is unchanged. | Edge cases are unclear. |
 | B16 | `core/spec.md.tmpl` | `## EXECUTIVE SUMMARY` | Write three sentences: the problem, the change and the proof. | Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. | This document describes the feature. |
-| B17 | `core/spec.md.tmpl` | `## RELATED DOCUMENTS` | Leave the four links in place. Delete this line. | - | - |
+| B17 | `core/spec.md.tmpl` | `## RELATED DOCUMENTS` | Leave the four links in place. | - | - |
 | B18 | `core/plan.md.tmpl` | `## FIX ADDENDUM: AFFECTED SURFACES` | Name each surface the change touches. Write `not a consumer` when it does not read the change. | `recommend-level.sh`: owns the output. Action: update. | Various files. |
 | B19 | `core/plan.md.tmpl` | `## L2: PHASE DEPENDENCIES` | Draw the phase order in the fence, then fill the table with depends-on and blocks. | Setup to Implementation to Verification. Verification blocks close. | Phases depend on each other. |
 | B20 | `core/plan.md.tmpl` | `## L2: EFFORT ESTIMATION` | Give each phase an estimate and a total. Mark the total as an assumption. | Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. | A few hours. |
@@ -183,7 +183,7 @@ Insert the constructed line immediately below the heading. When a section has tw
 | B26 | `core/plan.md.tmpl` | `## L3+: AI EXECUTION FRAMEWORK` | Name the workers, their files and the order. Keep file ownership disjoint. | One worker owns the script. One owns the test. | Agents work in parallel. |
 | B27 | `core/plan.md.tmpl` | `## L3+: WORKSTREAM COORDINATION` | Name each workstream, its owner and its files. One file per owner. | W-A owns the script. W-B owns the test. | Work is split into streams. |
 | B28 | `core/plan.md.tmpl` | `## L3+: COMMUNICATION PLAN` | Name the update cadence and the escalation path. | A note in `goal.md` section 4 after each task. | Communicate regularly. |
-| B29 | `core/tasks.md.tmpl` | `## Verification Checklist` | Fill each checklist section below. Delete this line when the checklist is complete. | - | - |
+| B29 | `core/tasks.md.tmpl` | `## Verification Checklist` | Fill each checklist section below. | - | - |
 | B30 | `core/tasks.md.tmpl` | `## Verification Protocol` | Keep the three rows and add the rule this packet uses for a blocked task. | P0 blocks close. P1 needs a recorded reason. | Follow the priorities. |
 | B31 | `core/tasks.md.tmpl` | `## Pre-Implementation` | Write one check per setup fact, each with a command. | CHK-001 [P0] The start commit is in `goal.md` section 4. | Setup is ready. |
 | B32 | `core/tasks.md.tmpl` | `## Code Quality` | Write one check per file rule. A command must answer it. | CHK-010 [P0] `bash -n recommend-level.sh` exits 0. | Code is clean. |
@@ -402,7 +402,7 @@ Pre-token form, used only when T001 recorded `TOKEN=0`:
 +- Session expiry: [User experience]
 ```
 
-**Fix S3, `questions`.** Replace the block that starts with the first line below and ends with the last line below. Post-003 form, the expected tree.
+**Fix S3, `questions`.** Replace the block that starts with the first line below and ends with the last line below. The replacement keeps the fill line for each heading. Post-003 form, the expected tree.
 
 Start marker, unique in the file: the first three removed lines of the diff below. End marker, unique in the file: the last four removed lines. The replacement covers every line between them, including both markers.
 
@@ -421,6 +421,7 @@ Replacement for the whole block from the start marker through the end marker:
 +<!-- IF level:2 -->
 +<!-- ANCHOR:questions -->
 +## 10. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [YOUR_VALUE_HERE: Question 1 requiring clarification]
 +- [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -430,6 +431,7 @@ Replacement for the whole block from the start marker through the end marker:
 +<!-- IF level:1 -->
 +<!-- ANCHOR:questions -->
 +## 7. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [YOUR_VALUE_HERE: Question 1 requiring clarification]
 +- [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -452,6 +454,7 @@ Pre-token form, used only when T001 recorded `TOKEN=0`:
 +<!-- IF level:2 -->
 +<!-- ANCHOR:questions -->
 +## 10. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [Question 1 requiring clarification]
 +- [Question 2 requiring clarification]
@@ -461,6 +464,7 @@ Pre-token form, used only when T001 recorded `TOKEN=0`:
 +<!-- IF level:1 -->
 +<!-- ANCHOR:questions -->
 +## 7. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [Question 1 requiring clarification]
 +- [Question 2 requiring clarification]
@@ -472,7 +476,7 @@ Pre-token form, used only when T001 recorded `TOKEN=0`:
 
 Start marker, unique in the file: the first two removed lines of the diff below. End marker, unique in the file: the last four removed lines. The replacement covers every line between them, including both markers. The pre-token form selects the same position, because phase 003 changes only the hint text inside the block.
 
-Replacement, post-003 form:
+Replacement, post-003 form, with the fill line kept below each heading:
 
 ```diff
 -<!-- ANCHOR:questions -->
@@ -495,6 +499,7 @@ Replacement, post-003 form:
 +<!-- IF level:3+ -->
 +<!-- ANCHOR:questions -->
 +## 16. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [YOUR_VALUE_HERE: Question 1 requiring clarification]
 +- [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -504,6 +509,7 @@ Replacement, post-003 form:
 +<!-- IF level:3 -->
 +<!-- ANCHOR:questions -->
 +## 12. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [YOUR_VALUE_HERE: Question 1 requiring clarification]
 +- [YOUR_VALUE_HERE: Question 2 requiring clarification]
@@ -535,6 +541,7 @@ Replacement, pre-token form:
 +<!-- IF level:3+ -->
 +<!-- ANCHOR:questions -->
 +## 16. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [Question 1 requiring clarification]
 +- [Question 2 requiring clarification]
@@ -544,6 +551,7 @@ Replacement, pre-token form:
 +<!-- IF level:3 -->
 +<!-- ANCHOR:questions -->
 +## 12. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 +
 +- [Question 1 requiring clarification]
 +- [Question 2 requiring clarification]
@@ -620,7 +628,7 @@ The three `acceptance-criteria.md` examples and the Level 3 `decision-record.md`
 2. The first character is not lowercase.
 3. The last character is a period.
 
-The full source is in `tasks.md` T010. It prints `EXAMPLE_DRIFT_OK` and exits 0 when every example passes. It prints one `FAIL` line per problem and exits 1 otherwise. The three description rules pass on the post-002 tree, where phase 002 has rewritten the 18 leaked descriptions. On a tree where phase 002 has not run, 18 of the 21 examples fail those rules.
+The full source is in `tasks.md` T005. It prints `EXAMPLE_DRIFT_OK` and exits 0 when every example passes. It prints one `FAIL` line per problem and exits 1 otherwise. The three description rules pass on the post-002 tree, where phase 002 has rewritten the 18 leaked descriptions. On a tree where phase 002 has not run, 18 of the 21 examples fail those rules.
 
 It is wired as `runtime/cli/tests/example-drift.vitest.ts`, because `package.json` has no `check-` script and every existing guard is a vitest test. Evidence: `rg -n 'check-' package.json` exited 1, and `template-structure.vitest.ts` is a vitest guard.
 
@@ -648,7 +656,7 @@ This phase changes producers that every scaffold and every example reads.
 Required inventories:
 - Same-class producers: every template under `templates/core` and `templates/addons` is in the fill test, so a section without a FILL line fails.
 - Consumers of changed symbols: the scaffold golden test, the template structure test and `create.sh`. Each is run at phase close.
-- Matrix axes: four levels by four core documents is 16 renders. Ten addon templates are rendered once each at Level 1.
+- Matrix axes: four levels by four core documents is 16 renders. Ten addon templates are checked by their fill count, and `research.md.tmpl` is rendered once at Level 2.
 - Algorithm invariant: adding a FILL line never changes an anchor count. The fill test asserts the count per level and document.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -684,7 +692,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Phase 003 closed | Internal | Checked in T001 | Every locator is in the wrong form and the gate is absent |
 | `node` and `npx vitest` in the skill root | Internal | Checked in T001 | No test can run |
 | `rg`, `awk` and `git` on PATH | Internal | Checked in T001 | No locator or status check can run |
-| `cli-codex` for the review | External | Checked in T016 | The review is recorded as skipped and REQ-007 stays open |
+| `cli-codex` for the review | External | Checked in T015 | The review is recorded as skipped and REQ-008 stays open |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -702,9 +710,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Setup (T001-T005) ──► Lane A (T006) ──┐
-                      Lane B (T007) ──┼──► Golden refresh (T009) ──► Gates (T011-T015)
-                      Lane C (T008) ──┘
+Setup (T001-T006) ──► Lane A (T007) ──┐
+                      Lane B (T008) ──┼──► Golden refresh (T010) ──► Gates (T011-T015)
+                      Lane C (T009) ──┘
 ```
 
 | Phase | Depends On | Blocks |
@@ -816,22 +824,22 @@ Setup (T001-T005) ──► Lane A (T006) ──┐
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode. It dispatches workers, runs every verify command, owns the snapshot file and edits only this phase folder.
-- **Worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. One worker does one lane, then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It dispatches Task subagents, runs every verify command, owns the snapshot file and edits only this phase folder.
+- **Worker**: one Task subagent on `llmgateway/deepseek-v4.1-flash-1017#max`. One worker does one lane, then stops.
 - **Reviewer**: one read-only frontier review through `cli-codex` at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first dispatch
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command
+- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` NEVER rules 1 and 5 before the first Task call
 - [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4
-- [ ] Confirm `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`
+- [ ] Confirm `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above `0`
 - [ ] Save every brief to `scratch/briefs/<task-id>.txt` before dispatching it
 
 ### Execution Rules
 
 | Rule | Requirement |
 |------|-------------|
-| TASK-SEQ | Run tasks in ID order. Tasks marked `[P]` may run together, at most three at once, and only when no two write the same file |
+| TASK-SEQ | Run tasks in ID order. Tasks marked `[P]` may run together with at most three Task calls in one message, and only when no two write the same file |
 | TASK-SCOPE | A worker writes only the paths under ALLOWED WRITE PATHS in its brief |
 | TASK-VERIFY | The conductor runs the task's verify command and reads both its output and its exit status before marking the task `[x]` |
 | TASK-LOCATE | Find text by its exact content, never by a line number |
@@ -844,10 +852,9 @@ Every brief starts with this block, word for word, with the two paths filled in:
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as
+pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
+No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance
@@ -872,14 +879,9 @@ The role line is a focused persona summary in place of a full agent file, the sm
 
 ### Dispatch Command
 
-```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-```
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of `$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 
-`PHASE` is this folder's path and `WORKTREE` is the build worktree. Never kill by a name pattern. Kill only the captured PID.
+`PHASE` is this folder's path. A Task subagent inherits the session model, so no model flag or process cleanup is needed.
 
 ### Status Reporting Format
 

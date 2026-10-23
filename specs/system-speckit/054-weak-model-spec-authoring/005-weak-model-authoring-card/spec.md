@@ -23,7 +23,7 @@ This phase writes one short authoring card and makes the skill's router load it 
 
 **Key Decisions**: one card of at most 260 lines replaces the guide as the default authoring load, and a shell guard plus a vitest test make drift fail instead of warn.
 
-**Critical Dependencies**: phases 003 and 004 are closed, so the card can name the v2.3 token form and the per-section fill notes that are already in the templates.
+**Critical Dependencies**: phases 003 and 004 are prerequisites, so the card can name the v2.3 token form and the per-section fill notes once those phases land.
 
 ---
 
@@ -41,7 +41,7 @@ This phase writes one short authoring card and makes the skill's router load it 
 | **Phase** | 5 of 9 |
 | **Predecessor** | 004-template-section-fill-guidance |
 | **Successor** | 006-speckit-command-and-agent-alignment |
-| **Handoff Criteria** | The card exists and is at most 260 lines, the four intents load it, `check-card-sync.sh` exits 0, and three Level 1 smoke runs are recorded in `scratch/card-bench/` |
+| **Handoff Criteria** | The card exists and is at most 260 lines, the four intents load it, `check-card-sync.sh` exits 0, and three Level 1 smoke runs have replies in `scratch/runs/` and five metrics each in `scratch/card-bench/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -54,8 +54,8 @@ This is **Phase 5** of the Make system-spec-kit templates and authoring docs fol
 **Scope Boundary**: Writes land in `.skilled/skills/system-spec-kit/` for the card, the router, the inventory, the checklist, the tasks template and the sync guard, and in this phase folder for the plan and the measurements. No other skill changes.
 
 **Dependencies**:
-- Phase 003 is closed. The five core templates are stamped `v2.3` and carry `[YOUR_VALUE_HERE:` tokens, and the validator applies the Draft lifecycle to them.
-- Phase 004 is closed. Each template section carries a fill note, and the four `Task Format` declarations are stable.
+- Phase 003 is a prerequisite. On the post-003 tree the five core templates are stamped `v2.3` and carry `[YOUR_VALUE_HERE:` tokens, and the validator applies the Draft lifecycle to them.
+- Phase 004 is a prerequisite. On the post-004 tree each template section carries a fill note, and the four `Task Format` declarations are stable.
 - The launch preconditions in `../spec.md` section 3 are met and recorded in `../goal.md` section 4.
 
 **Deliverables**:
@@ -63,7 +63,7 @@ This is **Phase 5** of the Make system-spec-kit templates and authoring docs fol
 - Four `RESOURCE_MAP` rows in `SKILL.md` that load the card, and one prose sentence that names the guide's new tier.
 - `leaf-manifest.json` and `leaf-aliases.json` regenerated so both list the card.
 - `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` and its wiring.
-- `scratch/card-bench/`: three Level 1 smoke runs with five metrics each.
+- `scratch/runs/` and `scratch/card-bench/`: three Level 1 smoke replies and five metrics per run.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -115,7 +115,7 @@ A weak model reaches one short card for the authoring intents, and the long guid
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Create | The sync guard |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modify | One row in the package topology list |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts` | Create | Runs the guard in the suite |
-| `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/*` | Create | Three smoke runs and their metrics |
+| `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/*` and `.../scratch/runs/*` | Create | Three smoke replies and their metrics |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -128,7 +128,7 @@ A weak model reaches one short card for the authoring intents, and the long guid
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | `references/workflows/spec-authoring-card.md` exists, its line count is at most 260, and every command in it is one the phase ran or read from `--help` or source. |
-| REQ-002 | In `SKILL.md`, the `RESOURCE_MAP` lists load the card for PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING, and `references/templates/template-guide.md` appears in the `ON_DEMAND` list only. |
+| REQ-002 | In `SKILL.md`, the `RESOURCE_MAP` lists load the card for PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING, and `references/templates/template-guide.md` appears in the `ON_DEMAND` list and in no intent list. |
 | REQ-003 | `leaf-manifest.json` and `leaf-aliases.json` both list the card, and `generate-leaf-manifest.cjs --check` exits 0. |
 | REQ-004 | The authoring checklist no longer tells a reader to read templates from the templates root. |
 | REQ-005 | `templates/core/tasks.md.tmpl` declares the per-task `Verify:` slot in its `Task Format` line. |
@@ -139,7 +139,7 @@ A weak model reaches one short card for the authoring intents, and the long guid
 
 | ID | Requirement |
 |----|-------------|
-| REQ-008 | Three Level 1 smoke runs by a DeepSeek V4.1 Flash worker are recorded in `scratch/card-bench/` with five metrics each, and at least one run passes strict with zero leftover tokens. |
+| REQ-008 | Three Level 1 smoke runs by a DeepSeek V4.1 Flash worker have replies in `scratch/runs/` and five metrics each in `scratch/card-bench/`, and at least one run passes strict with zero leftover tokens. |
 | REQ-009 | One read-only frontier review of the phase diff ran, and each finding is applied or recorded with a reason in `goal.md` section 4. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
@@ -162,8 +162,8 @@ A weak model reaches one short card for the authoring intents, and the long guid
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 003 closed with the `v2.3` stamp and the token form | The card would teach a token form that does not exist | `tasks.md` T001 checks the stamp and the token on the real templates before the card is written |
-| Dependency | Phase 004 closed with fill notes in each template section | The card would point at notes that are not there | The card names the note without quoting its shape, and T001 records what the notes look like |
+| Dependency | Phase 003 lands the `v2.3` stamp and the token form | The card would teach a token form that does not exist | `tasks.md` T001 checks the stamp and the token on the post-003 templates before the card is written |
+| Dependency | Phase 004 lands fill notes in each template section | The card would point at notes that are not there | The card names the note without quoting its shape, and T001 records what the notes look like |
 | Risk | The card grows past 260 lines and becomes the guide again | A weak model samples it and the phase changes nothing | The guard fails above 260 lines and the card's own rule forbids a second topic per section |
 | Risk | A worker copies from a `.tmpl` file and carries tokens into the packet | The packet fails strict or ships a token | The card's step 4 points at rendered examples, and the checklist line is changed in the same phase |
 | Risk | The regenerated inventory rewrites another skill's files | A diff outside this phase's scope | The fix command runs with `--skill system-spec-kit` and T006 reads the file list it prints |
@@ -178,7 +178,7 @@ A weak model reaches one short card for the authoring intents, and the long guid
 - **NFR-P01**: The card stays at or below 260 lines, and each of its sections stays under 20 lines. A section over 20 lines is split or cut.
 
 ### Security
-- **NFR-S01**: The card and every brief carry no credential, token or key. Workers inherit provider login from the environment only.
+- **NFR-S01**: The card and every brief carry no credential, token or key. Workers run on the session model and inherit its provider login.
 
 ### Reliability
 - **NFR-R01**: The guard is deterministic. Two runs on the same tree print the same lines in the same order, and it reads no network and writes no file.
@@ -193,7 +193,7 @@ A weak model reaches one short card for the authoring intents, and the long guid
 
 ### Error Scenarios
 - External service failure: a provider error during a smoke run stops that run. The conductor records the error, retries once after 10 minutes, then records the run as failed.
-- Network timeout: the smoke run is killed by its captured PID after 30 minutes and recorded as a failed run.
+- Network timeout: the conductor stops waiting for the Task subagent after 30 minutes and records the run as a failed run.
 
 ---
 
@@ -201,11 +201,11 @@ A weak model reaches one short card for the authoring intents, and the long guid
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 11/25 | Files: 9 changed, 1 created card, 3 measurement files. Systems: router, inventory, templates, checklist |
+| Scope | 11/25 | Files: 9 declared paths plus 1 measurement folder, 6 changed, 3 created. Systems: router, inventory, templates, checklist |
 | Risk | 6/25 | Auth: N, API: N, Breaking: N, one shared router |
 | Research | 12/20 | The card must match four scripts and two prior phases |
 | Multi-Agent | 8/15 | Workstreams: card, router, guard, three smoke runs, one review |
-| Coordination | 8/15 | Dependencies: phases 003 and 004 closed, launch preconditions |
+| Coordination | 8/15 | Dependencies: phases 003 and 004 prerequisites, launch preconditions |
 | **Total** | **45/100** | **Level 3** |
 
 ---

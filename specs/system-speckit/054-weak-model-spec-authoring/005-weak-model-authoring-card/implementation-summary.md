@@ -67,7 +67,7 @@ The planning session measured a fresh Level 1 scaffold on the tree before phase 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The phase runs as a DeepSeek V4.1 Flash swarm under the protocol in `plan.md`, section AI EXECUTION PROTOCOL.
+Not delivered yet. The phase runs as the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, dispatching Task subagents under the protocol in `plan.md`, section AI EXECUTION PROTOCOL.
 <!-- /ANCHOR:how-delivered -->
 
 ---

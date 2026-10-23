@@ -1034,7 +1034,7 @@ npx vitest run --config ../../vitest.config.ts --project cli tests/level-contrac
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Smoke-test a real scaffold in the throwaway track (`specs/zz-bench-gate/`, deleted at the end). Run the blocks in order. Verify: the first block prints `1` from the `--track` source check, because `create.sh --help` omits that flag. The Level 1 Draft block prints `! PLACEHOLDER_FILLED:` with `unfilled value token(s) in a Draft packet`, `Summary: Errors: 0` and `RESULT: PASSED`. The Complete block prints `error` with `placeholder(s) found`. The old-stamp block prints `error` with `placeholder(s) found`. The Level 2 block prints `114 114 102 102 0` over the five docs a Level 2 scaffold creates: 114 hints, 114 tokens, 102 distinct hints, 102 distinct tokens and no bare hint. The last block prints `TRACK_GONE`. The token counts printed in the Level 1 messages vary with the template text, so only the status words matter there. When a block prints `PASSED` where `error` is expected, the lifecycle is not active: stop and read T008 and T009 again.
+- [ ] T014 Smoke-test a real scaffold in the throwaway track (`specs/zz-bench-gate/`, deleted at the end). Run the blocks in order. Verify: the first block prints `1` from the `--track` source check, because `create.sh --help` omits that flag. The Level 1 Draft block prints `! PLACEHOLDER_FILLED:` with `unfilled value token(s) in a Draft packet`, `Summary: Errors: 0` and `RESULT: PASSED`. The Complete block prints `error` with `placeholder(s) found`. The old-stamp block prints `error` with `placeholder(s) found`. The Level 2 block prints `112 112 101 101 0` over the five docs a Level 2 scaffold creates: 112 hints, 112 tokens, 101 distinct hints, 101 distinct tokens and no bare hint. The last block prints `TRACK_GONE`. The token counts printed in the Level 1 messages vary with the template text, so only the status words matter there. When a block prints `PASSED` where `error` is expected, the lifecycle is not active: stop and read T008 and T009 again.
 
 ```bash
 cd "$WORKTREE"
@@ -1069,7 +1069,7 @@ rm -rf specs/zz-bench-gate
 test ! -e specs/zz-bench-gate && echo TRACK_GONE
 ```
 
-  The Level 2 line prints five numbers: all hints, tokens, distinct hints, distinct tokens and bare hints. It counts the five docs a Level 2 scaffold creates, which include `implementation-summary.md`. `inline-gate-renderer.sh --level 2` prints 117 bracketed hints over the four docs without `implementation-summary.md` and 131 over all five, and `finalize_scaffold_templates` replaces the scaffolder texts, so a converted Level 2 scaffold prints `114 114 102 102 0`. Phase 1 counted 97 because its regex needs a letter after the bracket.
+  The Level 2 line prints five numbers: all hints, tokens, distinct hints, distinct tokens and bare hints. It counts the five docs a Level 2 scaffold creates: `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` and `acceptance-criteria.md`. `inline-gate-renderer.sh --level 2` prints 117 bracketed hints over the four docs without `implementation-summary.md` and 131 over all five, and `finalize_scaffold_templates` replaces the scaffolder texts, so a converted Level 2 scaffold prints `112 112 101 101 0`. Phase 1 counted 97 because its regex needs a letter after the bracket.
 
 - [ ] T015 Record the census after the change and compare (`scratch/census/a-after.tsv`, `b-after-*.tsv`, `b-after.tsv`). Run the blocks in order, using the same folder list as T006. Verify: the compare block prints `CENSUS_SAME gate A` and `CENSUS_SAME gate B`. A `CENSUS_DIFF` line lists up to 40 differing rows. Gate A must be identical. For Gate B, a folder whose verdict changed but whose placeholder column did not change is first rerun twice with the current build: write both results in `goal.md` section 4. A verdict that flips between two runs of the same build is noise from a time-based rule and does not block. A verdict that is stable and different, or any change in the placeholder column, blocks the phase.
 
@@ -1187,7 +1187,7 @@ Check these six things:
 (5) No code comment names a spec, phase, task, ADR or finding id.
 (6) template-guide.md and validation-rules.md describe what the code does.
 Return one line per finding in this form, and nothing else:
-P0|P1|P2 <file>:<line> | <what is wrong> | <the fix>
+P0|P1|P2 <file>:<line> | <what is wrong> | <the exact old text> => <the exact new text>
 Return the single line NO FINDINGS when there are none.
 BRIEF
 ```
@@ -1200,7 +1200,7 @@ AI_SESSION_CHILD=1 codex exec --model gpt-6-luna -c model_reasoning_effort="high
 PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
 ```
 
-- [ ] T020 Apply the review findings (`goal.md`, the files the findings name). For each `P0` or `P1` line, fix the file with the exact text in the finding's third column using the same tool that made the first edit, then rerun T009's test, T013's third block, T015 and T018. For each `P2` line, fix it the same way or write the reason it was not fixed in `goal.md` section 4. A finding that asks for a change outside the file list is not applied: write it in `goal.md` section 4 and raise it to the operator. Record each finding as a row of the form `| FINDING <P0/P1/P2> <file>:<line> | APPLIED or RECORDED |` in the findings table of `goal.md` section 4. Run the block below. Verify: it prints `FINDINGS_TALLIED` with two equal numbers, or `NO_FINDINGS_OK` when T019 holds the single line `NO FINDINGS`.
+- [ ] T020 Apply the review findings (`goal.md`, the files the findings name). For each `P0` or `P1` line, split the third column at the first ` => ` into the exact old text and the exact new text, write them as one block with the old text above a `---` line and the new text below it in an edits file and apply it with `python3 -I "$SC/tools/apply_edits.py" <file> <edits-file>`. `apply_edits.py` writes nothing unless the old text occurs once. Then rerun T009's test, T013's third block, T015 and T018. For each `P2` line, fix it the same way or write the reason it was not fixed in `goal.md` section 4. A finding that asks for a change outside the file list is not applied: write it in `goal.md` section 4 and raise it to the operator. Record each finding as a row of the form `| FINDING <P0/P1/P2> <file>:<line> | APPLIED or RECORDED |` in the findings table of `goal.md` section 4. Run the block below. Verify: it prints `FINDINGS_TALLIED` with two equal numbers, or `NO_FINDINGS_OK` when T019 holds the single line `NO FINDINGS`.
 
 ```bash
 cd "$WORKTREE"

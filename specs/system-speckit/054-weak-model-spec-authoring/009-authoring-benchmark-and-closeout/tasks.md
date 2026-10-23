@@ -45,7 +45,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check the tools and the provider (no file). Verify: `opencode2 --version </dev/null` prints a version line, `opencode2 models --standalone | grep -c 'llmgateway/deepseek-v4.1-flash-1017'` prints a number of at least 1, and `for t in jq rg awk node python3 git perl; do command -v "$t" || echo "MISSING $t"; done` prints seven paths and no `MISSING` line.
+- [ ] T001 Check the tools and the configured model (no file). Verify: `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0, and `for t in jq rg awk node python3 git perl; do command -v "$t" || echo "MISSING $t"; done` prints seven paths and no `MISSING` line.
 
 - [ ] T002 Check that every prior phase and the write-recipe child are closed (no file). Run the block below. Verify: the first line reads `8 RESULT: PASSED`, the second reads `RESULT: PASSED`, then `BASELINE_OK`, `CENSUS_OK`, `DRIFT_GUARD_OK`, `CARD_GUARD_OK`, `NESTED_OK` and a final `RESULT: PASSED`. When one line is missing or a child fails, write the missing path or the failing child in `goal.md` section 4 and stop the phase. This phase does not edit another phase folder.
 
@@ -88,13 +88,13 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   rm -r specs/zz-bench-hints
   ```
 
-- [ ] T005 Run the final baseline three times, serially (`scratch/runs/T005-1.jsonl` to `T005-3.jsonl`, `scratch/baseline/runs.jsonl`). For each run `N` in 1, 2, 3, in order:
+- [ ] T005 Run the final baseline three times, serially (`scratch/runs/T005-1.txt` to `T005-3.txt`, `scratch/baseline/runs.jsonl`). For each run `N` in 1, 2, 3, in order:
   1. Save `git status --porcelain` to `$SC/baseline/status-before-$N.txt`.
-  2. Save `date +%s` to `$SC/baseline/start-$N.txt`.
-  3. Build the brief as the skeleton in `plan.md` section AI EXECUTION PROTOCOL followed by the frozen task block below, save it as `$SC/briefs/T005-$N.txt`, set `TASK=T005-$N`, and dispatch it with the plan's dispatch command. The output goes to `$SC/runs/T005-$N.jsonl`.
+  2. Save `date +%s` to `$SC/runs/T005-$N.t0` before the Task call.
+  3. Build the brief as the skeleton in `plan.md` section AI EXECUTION PROTOCOL followed by the frozen task block below, save it as `$SC/briefs/T005-$N.txt`, set `TASK=T005-$N`, and dispatch it with the Task tool as the plan's Dispatch Command says. When the subagent returns, write its final reply verbatim to `$SC/runs/T005-$N.txt` with the write tool, then run `date +%s > "$SC/runs/T005-$N.t1"`.
   4. Run T006 for that run before starting the next one.
 
-  Verify: `for n in 1 2 3; do test -s "$SC/runs/T005-$n.jsonl" && test -s "$SC/baseline/start-$n.txt" && test -s "$SC/baseline/status-before-$n.txt" && echo "run-$n recorded"; done` prints `run-1 recorded`, `run-2 recorded` and `run-3 recorded`, and the frozen-text check prints `TASK_FROZEN`.
+  Verify: `for n in 1 2 3; do test -s "$SC/runs/T005-$n.txt" && test -s "$SC/runs/T005-$n.t0" && test -s "$SC/runs/T005-$n.t1" && test -s "$SC/baseline/status-before-$n.txt" && echo "run-$n recorded"; done` prints `run-1 recorded`, `run-2 recorded` and `run-3 recorded`, and the frozen-text check prints `TASK_FROZEN`.
 
   Frozen task block, copied from `../001-template-drift-census-and-baseline/tasks.md` T009 with no word changed:
 
@@ -131,7 +131,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   P=specs/zz-bench-authoring/001-recommend-level-quiet-flag
   H22="$P1/scratch/baseline/hints-v2.2.txt"
   A23="$SC/baseline/anchors-v2.3.txt"
-  T0=$(cat "$SC/baseline/start-$N.txt")
+  T0=$(cat "$SC/runs/T005-$N.t0")
   M1=$(bash $S/runtime/cli/spec/validate.sh $P --strict 2>&1 | grep -c 'RESULT: PASSED')
   M2=$( { grep -F -o -f "$H22" $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md 2>/dev/null; rg -o --no-filename '\[YOUR_VALUE_HERE: [^]]*\]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md 2>/dev/null; } | wc -l | tr -d ' ')
   M3=0; while read f n; do have=$(rg -c '<!-- ANCHOR:' $P/$f.md 2>/dev/null || echo 0); [ "$have" -lt "$n" ] && M3=$((M3 + n - have)); done < "$A23"
@@ -395,7 +395,7 @@ MD
   <!-- ANCHOR:how-delivered -->
   ## How It Was Delivered
 
-  The conductor dispatched three serial DeepSeek V4.1 Flash max workers, measured each run with the five commands in `tasks.md` T006, wrote every number from `delta.json`, and proved each parent criterion before ticking its box. One read-only frontier review read the closeout diff and each finding was applied or recorded in `goal.md` section 4.
+  The conductor dispatched three serial Task subagents that inherited the DeepSeek V4.1 Flash max session model, measured each run with the five commands in `tasks.md` T006, wrote every number from `delta.json`, and proved each parent criterion before ticking its box. One read-only frontier review read the closeout diff and each finding was applied or recorded in `goal.md` section 4.
 
   ### Operator handoff
 
@@ -516,8 +516,8 @@ MD
 
   Update these five existing rows in the progress table in `../goal.md` section 4. Match the exact row text quoted here, replace only the `Pending` state and the empty evidence cell, and never append a duplicate:
   - "| Launch precondition 1: workspace chosen (A worktree or B branch) | Pending | |" becomes "| Launch precondition 1: workspace chosen (A worktree or B branch) | Done | <WORKTREE> |".
-  - "| Launch precondition 2: provider login lists `llmgateway/deepseek-v4.1-flash-1017` | Pending | |" becomes "| Launch precondition 2: provider login lists `llmgateway/deepseek-v4.1-flash-1017` | Done | <the line count from T001> |".
-  - "| Launch precondition 4: conductor runs outside OpenCode | Pending | |" becomes "| Launch precondition 4: conductor runs outside OpenCode | Done | outside OpenCode |".
+  - "| Launch precondition 2: `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017` and OpenCode v2 is logged in to llmgateway | Pending | |" becomes "| Launch precondition 2: `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017` and OpenCode v2 is logged in to llmgateway | Done | <the line count from T001> |".
+  - "| Launch precondition 4: conductor is an OpenCode v2 session with the goal bound | Pending | |" becomes "| Launch precondition 4: conductor is an OpenCode v2 session with the goal bound | Done | interactive OpenCode v2 session, goal bound |".
   - "| WORKTREE path | Pending | |" becomes "| WORKTREE path | Done | <WORKTREE> |".
   - "| Start commit | Pending | |" becomes "| Start commit | Done | <the hash from T003> |".
 
@@ -725,7 +725,7 @@ MD
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Phases 1 to 8 and the write-recipe child are closed, shown by T002
-- [ ] CHK-002 [P0] The provider lists `llmgateway/deepseek-v4.1-flash-1017`, shown by T001
+- [ ] CHK-002 [P0] `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017`, shown by T001
 - [ ] CHK-003 [P1] Every brief is saved under `scratch/briefs/` before dispatch
 <!-- /ANCHOR:pre-impl -->
 
@@ -772,7 +772,7 @@ MD
 
 - [ ] CHK-030 [P0] No brief contains a credential, token or key
 - [ ] CHK-031 [P0] No worker ran with write access outside `specs/zz-bench-authoring/`
-- [ ] CHK-032 [P1] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-032 [P1] Every worker prompt carried the AGENTS.md pre-resolution for the spec-folder question
 <!-- /ANCHOR:security -->
 
 ---

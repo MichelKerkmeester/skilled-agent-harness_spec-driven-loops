@@ -1,0 +1,27 @@
+plan.md:32 - overview now says a Task subagent handles a drifted row, not a DeepSeek CLI worker
+plan.md:65 - Key Components Conductor now names the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max
+plan.md:66 - Key Components Worker is now one Task subagent
+plan.md:168 - dependency row replaces opencode2 with the OpenCode Task tool on llmgateway/deepseek-v4.1-flash-1017
+plan.md:286 - critical path now points worker dispatch at the Dispatch Command parallel rule
+plan.md:310 - Conductor role replaced, with no requirement to run outside OpenCode
+plan.md:311 - Worker role is now one Task subagent with subagent_type general and the inherited session model
+plan.md:317 - pre-task checklist now composes a worker brief instead of a worker command
+plan.md:325 - TASK-SEQ no longer limits the phase to one dispatch at a time
+plan.md:326 - new TASK-PAR row: at most 3 Task calls in one message, never two that write the same file
+plan.md:340 - worker brief preamble now declares a dispatched Task subagent and this prompt as the pre-resolution
+plan.md:366 - Dispatch Command is now the Task tool instruction with subagent_type general, description TASK id and the brief as prompt
+plan.md:368 - Dispatch Command states the parallel rule
+plan.md:370 - Dispatch Command defines TASK and notes that a Task subagent cannot receive environment variables
+tasks.md:173 - make_brief preamble now declares a dispatched Task subagent and this prompt as the pre-resolution
+tasks.md:319 - T010 now dispatches one Task subagent per row, checks opencode.json for the session model and states the parallel rule
+tasks.md:324 - T010 prepare block captures the pre-dispatch diff and opens scratch/ready.txt
+tasks.md:331 - T010 prepare block prints the row ids that need a worker
+tasks.md:334 - T010 check block compares the post-dispatch diff against the ready row files and requires a non-empty .txt reply
+tasks.md:350 - T010 restore instruction now names scratch/extra-paths.txt
+tasks.md:462 - T016 dispatches each finding through the Task tool with a T016-<n> brief and reply path and the parallel rule
+tasks.md:568 - CHK-032 now checks a Task subagent and its pre-resolution line instead of environment variables
+goal.md:48 - D5 now assigns a drifted row to one Task subagent and states the parallel rule
+implementation-summary.md:68 - delivery note now says one Task subagent on DeepSeek V4.1 Flash
+graph-metadata.json:212 - last_save_at refreshed by repair-derived.cjs after the doc edits
+graph-metadata.json:223 - source_fingerprint refreshed by repair-derived.cjs after the doc edits
+graph-metadata.json:227 - source_doc_hashes for plan.md, tasks.md and implementation-summary.md refreshed by repair-derived.cjs

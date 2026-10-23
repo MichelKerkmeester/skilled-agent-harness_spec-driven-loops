@@ -67,7 +67,7 @@ BASE_REF=$(awk -F'|' '/^\| BASE_REF /{gsub(/^ +| +$/,"",$3); print $3}' "$RUNROO
 test -n "$BASE_REF" && git rev-parse --verify "$BASE_REF^{commit}" >/dev/null && echo BASE_REF_OK
 ```
 
-- [ ] T002 Check the tools and the provider (no file). Verify: the block prints nine lines, eight versions and a count of at least `1`. A missing tool stops the phase with `BLOCKED tools`.
+- [ ] T002 Check the tools and the provider (no file). Verify: the block prints eight lines, seven versions and a count of at least `1`. A missing tool stops the phase with `BLOCKED tools`.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -79,8 +79,7 @@ npm --version
 jq --version
 rg --version | head -1
 shasum --version | head -1
-opencode2 --version
-opencode2 models --standalone | grep -c 'llmgateway/deepseek-v4.1-flash-1017'
+rg -c 'deepseek-v4.1-flash-1017' opencode.json
 perl -e 'print "perl $]\n"'
 rsync --version | head -1
 ```
@@ -191,15 +190,18 @@ EOF
 test -d "$WT" && echo WORKTREE_DIR_OK
 ```
 
-- [ ] T006 Provision the worktree and prove it runs its own code (`scratch/worktree/provision.out`, `scratch/worktree/own-code.txt`). Run the block below. Verify: the last provisioning line ends with `0 failed`, `rg -c '^FOREIGN ' "$PHASE/scratch/worktree/own-code.txt" || true` prints nothing and `test -f "$WT/$S/runtime/dist/lib/validation/orchestrator.js" && echo ORCH_OK` prints `ORCH_OK`. When provisioning exits non-zero, run the same command once more and keep its output. A second failure writes `BLOCKED provisioning` in `goal.md` section 4 and stops the phase.
+- [ ] T006 Provision the worktree and prove it runs its own code (`scratch/worktree/provision.out`, `scratch/worktree/provision-exit.txt`, `scratch/worktree/own-code.txt`). Run the block below. Verify: `cat "$PHASE/scratch/worktree/provision-exit.txt"` prints `exit=0`, the last provisioning line ends with `0 failed`, `rg -c '^FOREIGN ' "$PHASE/scratch/worktree/own-code.txt" || true` prints nothing and `test -f "$WT/$S/runtime/dist/lib/validation/orchestrator.js" && echo ORCH_OK` prints `ORCH_OK`. When `provision-exit.txt` holds `exit=142`, the 45 minute alarm stopped provisioning: write `BLOCKED provisioning timeout` in `goal.md` section 4 and stop. When it holds any other non-zero exit, run the same command once more and keep its output. A second failure writes `BLOCKED provisioning` in `goal.md` section 4 and stops the phase.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
 RUNROOT="$(git rev-parse --show-toplevel)"
 PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
-bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision "$WT" \
-  > "$PHASE/scratch/worktree/provision.out" 2>&1
+rc=0
+perl -e 'alarm shift; exec @ARGV' 2700 bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision "$WT" \
+  > "$PHASE/scratch/worktree/provision.out" 2>&1 || rc=$?
+printf 'exit=%s\n' "$rc" > "$PHASE/scratch/worktree/provision-exit.txt"
+cat "$PHASE/scratch/worktree/provision-exit.txt"
 tail -3 "$PHASE/scratch/worktree/provision.out"
 node -e '
 const fs = require("fs");
@@ -239,7 +241,7 @@ cat "$PHASE/scratch/worktree/precondition.txt"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T008 Write the runner, the comparator, their fixture and the shared brief skeleton (`scratch/tools/run-scenario.sh`, `scratch/tools/check-run.cjs`, `scratch/test/fixture-scenario.md`, `scratch/briefs/skeleton.txt`). Write the five blocks below in order, then run the last one. The runner truncates a run above 2 MB and writes a `truncated=` line. The comparator writes `<run file>.check.txt` with the result, the missing pattern, the exit line and the last output line. Verify: the last block prints `SYNTAX_OK`, `FIXTURE_OK`, `FIXTURE_OK_SECOND`, `truncated=no`, `exit=0`, `DIAG_OK` and `COMPARATOR_OK`. A `NO_COMMANDS` line means the fixture was written wrong: fix the fixture, not the runner.
+- [ ] T008 Write the runner, the comparator, their fixture and the shared brief skeleton (`scratch/tools/run-scenario.sh`, `scratch/tools/check-run.cjs`, `scratch/test/fixture-scenario.md`, `scratch/briefs/skeleton.txt`). Write the five blocks below in order, then run the last one. The runner truncates a run above 2 MB and writes a `truncated=` line. The comparator writes `<run file>.check.txt` with the result, the missing pattern, the exit line and the last output line, and `<run file>.stderr.txt` with the failing line. A run that ends with `exit=142` compares as `FAIL` with `missing:exit=142`. Verify: the last block prints `SYNTAX_OK`, `FIXTURE_OK`, `FIXTURE_OK_SECOND`, `truncated=no`, `exit=0`, `DIAG_OK`, `STDERR_OK` and `COMPARATOR_OK`. A `NO_COMMANDS` line means the fixture was written wrong: fix the fixture, not the runner.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -290,8 +292,8 @@ source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/tools/check-run.cjs" <<'JS'
 // Compares one captured run with the frozen patterns for its label. Every
 // non-empty pattern must match, so a partial pass is never reported as a pass.
-// The sidecar check file carries the failing pattern and the last output line,
-// so the fix brief quotes the comparator instead of a retyped line.
+// The sidecar check file carries the full diagnosis, and a second file,
+// <run>.stderr.txt, carries the failing line the fix brief quotes.
 const fs = require('fs');
 
 const [mapPath, label, runPath] = process.argv.slice(2);
@@ -300,22 +302,25 @@ if (!mapPath || !label || !runPath) {
   process.exit(2);
 }
 const diagPath = runPath + '.check.txt';
+const errPath = runPath + '.stderr.txt';
 const row = fs.readFileSync(mapPath, 'utf8').split('\n').find((line) => line.startsWith(label + '\t'));
 if (!row) {
   fs.writeFileSync(diagPath, 'result:FAIL\nmissing:row\nlast:\n');
+  fs.writeFileSync(errPath, 'missing:row\n');
   console.log(`${label}\tFAIL\tmissing-row\t${runPath}`);
   process.exit(0);
 }
 const [, id, , passA, passB, passC] = row.split('\t');
 const patterns = [passA, passB, passC].filter(Boolean);
 const text = fs.readFileSync(runPath, 'utf8');
-const missing = patterns.find((pattern) => !new RegExp(pattern, 'm').test(text));
 const exitLine = (text.match(/^exit=(\d+)$/m) || [, 'none'])[1];
+const missing = exitLine === '142' ? 'exit=142' : patterns.find((pattern) => !new RegExp(pattern, 'm').test(text));
 const truncated = /^truncated=yes$/m.test(text) ? 'yes' : 'no';
 const lines = text.split('\n').filter((line) => line.trim() !== '' && !/^(exit|truncated)=/.test(line));
 const last = lines.length > 0 ? lines[lines.length - 1] : '';
 const diag = `result:${missing ? 'FAIL' : 'PASS'}\nmissing:${missing || 'none'}\nexit:${exitLine}\ntruncated:${truncated}\nlast:${last}\n`;
 fs.writeFileSync(diagPath, diag);
+fs.writeFileSync(errPath, missing ? `missing:${missing}\n` : '');
 if (!missing) {
   console.log(`${label}\tPASS\t${id}\t${runPath}`);
 } else {
@@ -361,10 +366,8 @@ source "$PHASE/scratch/env.sh"
 cat > "$PHASE/scratch/briefs/skeleton.txt" <<'TXT'
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker
+as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
@@ -399,10 +402,11 @@ printf 'S1\tfixture-id\t%s\tFIXTURE_OK\t\t\n' "$PHASE/scratch/test/fixture-scena
 OUT=$(node "$PHASE/scratch/tools/check-run.cjs" "$PHASE/scratch/test/fixture-map.tsv" S1 "$PHASE/scratch/test/fixture-run.txt")
 printf '%s\n' "$OUT"
 test -s "$PHASE/scratch/test/fixture-run.txt.check.txt" && grep -q '^result:PASS$' "$PHASE/scratch/test/fixture-run.txt.check.txt" && echo DIAG_OK
+test -f "$PHASE/scratch/test/fixture-run.txt.stderr.txt" && echo STDERR_OK
 printf '%s' "$OUT" | grep -q '^S1\tPASS' && echo COMPARATOR_OK
 ```
 
-- [ ] T009 Run scenarios S1 to S7 from their own command blocks (`scratch/runs/*.txt`, `scratch/results.tsv`). Run the block below from `RUNROOT`. It removes any old results file first, then runs each row whose label is not S8 from `$WT`. Each run is captured to `scratch/runs/<id>.txt` and the comparator writes a `.check.txt` sidecar beside it. Verify: `wc -l < "$PHASE/scratch/results.tsv"` prints `7` and `rg -c '^S[1-7]\t(PASS|FAIL)\t' "$PHASE/scratch/results.tsv"` prints `7`. A `NO_COMMANDS` run is a scenario defect: record it and continue. A run that ends with `exit=142` hit the 30 minute alarm: record `TIMEOUT` in the verdict page and run T011. Do not retype the scenario.
+- [ ] T009 Run scenarios S1 to S7 from their own command blocks (`scratch/runs/*.txt`, `scratch/results.tsv`). Run the block below from `RUNROOT`. It removes any old results file first, then runs each row whose label is not S8 from `$WT`. Each run is captured to `scratch/runs/<id>.txt` and the comparator writes a `.check.txt` sidecar beside it. Verify: `wc -l < "$PHASE/scratch/results.tsv"` prints `7` and `rg -c '^S[1-7]\t(PASS|FAIL|SCENARIO_DEFECT)\t' "$PHASE/scratch/results.tsv"` prints `7`. A `NO_COMMANDS` run is a scenario defect: the block writes `SCENARIO_DEFECT`, records it in `goal.md` section 4 and continues. A run that ends with `exit=142` hit the 30 minute alarm: record `FAIL` in the verdict page and run T011. Do not retype the scenario.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -413,13 +417,18 @@ source "$PHASE/scratch/env.sh"
 while IFS=$'\t' read -r LABEL ID SCENARIO PASS_A PASS_B; do
   [ "$LABEL" = "S8" ] && continue
   ( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$PHASE/scratch/runs/$ID.txt" )
+  if grep -q '^NO_COMMANDS$' "$PHASE/scratch/runs/$ID.txt"; then
+    printf '%s\tSCENARIO_DEFECT\t%s\t%s\n' "$LABEL" "$ID" "$PHASE/scratch/runs/$ID.txt" >> "$PHASE/scratch/results.tsv"
+    printf 'SCENARIO_DEFECT %s %s\n' "$LABEL" "$ID" >> "$PHASE/goal.md"
+    continue
+  fi
   node "$PHASE/scratch/tools/check-run.cjs" "$PHASE/scratch/scenarios.tsv" "$LABEL" "$PHASE/scratch/runs/$ID.txt" \
     >> "$PHASE/scratch/results.tsv"
 done < "$PHASE/scratch/scenarios.tsv"
 cat "$PHASE/scratch/results.tsv"
 ```
 
-- [ ] T010 Run S8 as a DeepSeek authoring dispatch (`scratch/briefs/S8.txt`, `scratch/runs/<S8 id>.txt`). Read the shared skeleton, extract the scenario prompt, assemble the brief, then run the block below. Each worker transcript is saved as `scratch/runs/<S8 id>.worker-<n>.jsonl` and the run file holds conductor-written lines only, so a `RESULT: PASSED` line inside the transcript can never satisfy the S8 pattern. A provider error is retried once after 10 minutes, and a second failure marks S8 `ESCALATED`. Verify: `test -s "$PHASE/scratch/runs/$S8_ID.txt" && echo S8_RUN_OK` prints `S8_RUN_OK`, `rg -c '^RESULT: PASSED$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^leftover_tokens 0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^dispatch_exit=0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1` and `rg -c '^S8\tPASS\t' "$PHASE/scratch/results.tsv"` prints `1`. When the packet is missing, the worker did not follow the frozen path: append `S8 FAIL <S8 id> <run file>` as four tab-separated fields to the results file and run T011. When the second dispatch also fails, the block prints `S8_ESCALATED`, writes the first error line in `goal.md` section 4 and appends the `ESCALATED` row.
+- [ ] T010 Run S8 as a DeepSeek authoring dispatch (`scratch/briefs/S8.txt`, `scratch/runs/<S8 id>.txt`). Read the shared skeleton, extract the scenario prompt, assemble the brief with the first block below, then dispatch it with the Task tool. Each worker reply is saved as `scratch/runs/<S8 id>.worker-<n>.txt` and the run file holds conductor-written lines only, so a `RESULT: PASSED` line inside the reply can never satisfy the S8 pattern. A provider error is retried once after 10 minutes, and a second failure marks S8 `ESCALATED`. Verify: `test -s "$PHASE/scratch/runs/$S8_ID.txt" && echo S8_RUN_OK` prints `S8_RUN_OK`, `rg -c '^RESULT: PASSED$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^leftover_tokens 0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^dispatch_exit=0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1` and `rg -c '^S8\tPASS\t' "$PHASE/scratch/results.tsv"` prints `1`. When the packet is missing, the worker did not follow the frozen path: append `S8 FAIL <S8 id> <run file>` as four tab-separated fields to the results file and run T011. When the second dispatch also fails, the block prints `S8_ESCALATED`, writes the first error line in `goal.md` section 4 and appends the `ESCALATED` row.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -437,22 +446,35 @@ test -s "$PHASE/scratch/briefs/skeleton.txt" && echo SKELETON_OK
 {
   cat "$PHASE/scratch/briefs/skeleton.txt"
   printf '\nTASK: Author one Level 1 spec packet from the authoring card, following the scenario\nprompt below exactly.\n\n'
+  printf 'Work only inside the disposable worktree at %s and run every command from that directory.\n\n' "$WT"
   cat "$PHASE/scratch/briefs/S8-prompt.txt"
   printf '\n\nSteps:\n1. Read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md once.\n2. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 1 --track zz-pb-card --short-name card-authoring --number 1 "Author a Level 1 packet from the card"\n3. Fill spec.md, plan.md, tasks.md and implementation-summary.md for this feature: add a --quiet flag to .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh that prints only the final recommended-level line.\n4. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-pb-card/001-card-authoring --strict\n5. Fix what it reports and run it again, at most three times in all.\n\nRETURN exactly one line: the folder path, then the last RESULT line validate.sh printed.\n'
 } > "$PHASE/scratch/briefs/S8.txt"
-RC=1
-ATTEMPT=0
-for N in 1 2; do
-  ATTEMPT=$N
-  ( cd "$WT" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-      -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-      "$(cat "$PHASE/scratch/briefs/S8.txt")" ) </dev/null \
-      > "$PHASE/scratch/runs/$S8_ID.worker-$N.jsonl" 2>&1
-  RC=$?
-  [ "$RC" -eq 0 ] && break
-  rg -qi 'provider|rate limit|overloaded|unavailable|timeout|503|529' "$PHASE/scratch/runs/$S8_ID.worker-$N.jsonl" || break
-  [ "$N" -eq 1 ] && { echo "provider_error=$RC"; sleep 600; }
-done
+test -s "$PHASE/scratch/briefs/S8.txt" && echo S8_BRIEF_OK
+```
+
+Dispatch attempt 1 with the Task tool: subagent_type `general`, description `S8`, prompt = the full text of
+`$PHASE/scratch/briefs/S8.txt`. When the subagent returns, write its final reply verbatim to
+`$PHASE/scratch/runs/$S8_ID.worker-1.txt` with the write tool. A provider error is retried once after
+10 minutes as attempt 2, with its reply written to `$PHASE/scratch/runs/$S8_ID.worker-2.txt`.
+
+When attempt 1 ends in a provider error, run this block before attempt 2. It prints `RETRY_DELAY_DONE` after 10 minutes.
+
+```bash
+sleep 600
+echo RETRY_DELAY_DONE
+```
+
+Then set `ATTEMPT` to the attempt that produced a reply and run the block below.
+
+```bash
+cd "$(git rev-parse --show-toplevel)"
+RUNROOT="$(git rev-parse --show-toplevel)"
+PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+source "$PHASE/scratch/env.sh"
+ATTEMPT=${ATTEMPT:-1}
+WORKER="$PHASE/scratch/runs/$S8_ID.worker-$ATTEMPT.txt"
+if [ -s "$WORKER" ] && ! rg -qi 'provider|rate limit|overloaded|unavailable|timeout|503|529' "$WORKER"; then RC=0; else RC=1; fi
 P="$WT/specs/zz-pb-card/001-card-authoring"
 LEFT=unknown
 {
@@ -478,8 +500,8 @@ if [ "$RC" -eq 0 ] && [ "$LEFT" = "0" ] && printf '%s' "$LINE" | grep -q 'PASS';
   printf '%s\n' "$LINE" >> "$PHASE/scratch/results.tsv"
   echo S8_PASS
 elif [ "$RC" -ne 0 ]; then
-  printf 'S8\tESCALATED\t%s\t%s\n' "$S8_ID" "$PHASE/scratch/runs/$S8_ID.worker-$ATTEMPT.jsonl" >> "$PHASE/scratch/results.tsv"
-  ERR=$(rg -m1 -i 'provider|rate limit|overloaded|unavailable|timeout|503|529' "$PHASE/scratch/runs/$S8_ID.worker-$ATTEMPT.jsonl" | cut -c1-200)
+  printf 'S8\tESCALATED\t%s\t%s\n' "$S8_ID" "$WORKER" >> "$PHASE/scratch/results.tsv"
+  ERR=$(rg -m1 -i 'provider|rate limit|overloaded|unavailable|timeout|503|529' "$WORKER" | cut -c1-200)
   printf 'S8 ESCALATED provider error after %s dispatch attempts: %s\n' "$ATTEMPT" "$ERR" >> "$PHASE/goal.md"
   echo S8_ESCALATED
 else
@@ -489,7 +511,7 @@ fi
 tail -1 "$PHASE/scratch/results.tsv"
 ```
 
-- [ ] T011 Fix one failed scenario, one file, at most three attempts (`scratch/fix/<label>-<n>.txt`). Run this task only for a `FAIL` row. Set `LABEL` from that row before the block. The block reads the fix target from the scenario's `## 4. SOURCE FILES` list, then runs attempt 1, attempt 2 and attempt 3 only while the row is still `FAIL`, so `N` advances only after a failed rerun and the loop stops at the first PASS. Verify: the block prints `FIX_TARGET=<the one repo-relative file the scenario names>` and one `attempt=<n> verdict=<value>` line per attempt, `test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK` prints `FIX_OK`, `grep -c 'ALLOWED WRITE PATHS' "$PHASE/scratch/fix/$LABEL-1.txt"` prints `1` and `find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l` prints `1` to `3`. After the third failed attempt the row reads `ESCALATED` and the other scenarios continue. When the scenario has no `- Implementation:` bullet, the block writes `SCENARIO_DEFECT` and prints `SCENARIO_DEFECT <label>`.
+- [ ] T011 Fix one failed scenario, one file, at most three attempts (`scratch/fix/<label>-<n>.txt`). Run this task only for a `FAIL` row. Set `LABEL` from that row before the first block. The first block reads the fix target from the scenario's `## 4. SOURCE FILES` list, quotes the failing line from the run's `.stderr.txt` file and writes the next attempt brief. Dispatch that brief with the Task tool, then run the second block to rerun the scenario and record the attempt. Repeat the two blocks only while the row is still `FAIL`, so `N` advances only after a failed rerun and the loop stops at the first PASS. Verify: the first block prints `FIX_TARGET=<the one repo-relative file the scenario names>` and `ATTEMPT=<n>`, the second block prints one `attempt=<n> verdict=<value>` line per attempt, `test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK` prints `FIX_OK`, `grep -c 'ALLOWED WRITE PATHS' "$PHASE/scratch/fix/$LABEL-1.txt"` prints `1` and `find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l` prints `1` to `3`. After the third failed attempt the row reads `ESCALATED` and the other scenarios continue. When the scenario has no `- Implementation:` bullet, the first block writes `SCENARIO_DEFECT` and prints `SCENARIO_DEFECT <label>`.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -497,6 +519,7 @@ RUNROOT="$(git rev-parse --show-toplevel)"
 PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 ROW=$(awk -F'\t' -v l="$LABEL" '$1==l{print; exit}' "$PHASE/scratch/results.tsv")
+VERDICT=$(printf '%s' "$ROW" | cut -f2)
 ID=$(printf '%s' "$ROW" | cut -f3)
 RUN=$(printf '%s' "$ROW" | cut -f4)
 SCENARIO=$(awk -F'\t' -v l="$LABEL" '$1==l{print $3}' "$PHASE/scratch/scenarios.tsv")
@@ -509,36 +532,50 @@ if [ -z "$FILE" ]; then
   echo "SCENARIO_DEFECT $LABEL"
   exit 0
 fi
+[ "$VERDICT" = "FAIL" ] || { echo "NO_FAIL_ROW $LABEL $VERDICT"; exit 0; }
+N=$(( $(find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l | tr -d ' ') + 1 ))
+[ "$N" -le 3 ] || { echo "ATTEMPTS_EXHAUSTED $LABEL"; exit 0; }
+FAIL_LINE=$(cat "$RUN.stderr.txt")
+PASS_LINE=$(grep -m1 '^- \*\*Pass\*\*:' "$SCENARIO")
+sed "s|  specs/zz-pb-card/ and everything under it|  $FILE|" "$PHASE/scratch/briefs/skeleton.txt" > "$PHASE/scratch/fix/$LABEL-$N.txt"
+printf '\nTASK: Scenario %s failed at %s.\nThe captured run is %s. The comparator wrote:\n%s\nThe scenario pass criterion is:\n%s\nWork only inside the disposable worktree at %s and run every command from that directory.\nChange only the single file named under ALLOWED WRITE PATHS so that the scenario\npasses. Do not edit the scenario file. Do not edit any other file.\nThe conductor reruns the scenario after you return.\nRETURN exactly one line: FIXED <the file> or BLOCKED <the reason>\n' \
+  "$LABEL" "$ID" "$RUN" "$FAIL_LINE" "$PASS_LINE" "$WT" >> "$PHASE/scratch/fix/$LABEL-$N.txt"
 printf 'FIX_TARGET=%s\n' "$FILE"
-LATEST="$RUN"
-for N in 1 2 3; do
-  VERDICT=$(awk -F'\t' -v l="$LABEL" '$1==l{print $2}' "$PHASE/scratch/results.tsv")
-  [ "$VERDICT" = "FAIL" ] || break
-  FAIL_LINE=$(cat "$LATEST.check.txt")
-  PASS_LINE=$(grep -m1 '^- \*\*Pass\*\*:' "$SCENARIO")
-  sed "s|  specs/zz-pb-card/ and everything under it|  $FILE|" "$PHASE/scratch/briefs/skeleton.txt" > "$PHASE/scratch/fix/$LABEL-$N.txt"
-  printf '\nTASK: Scenario %s failed at %s.\nThe captured run is %s. The comparator wrote:\n%s\nThe scenario pass criterion is:\n%s\nChange only the single file named under ALLOWED WRITE PATHS so that the scenario\npasses. Do not edit the scenario file. Do not edit any other file.\nThe conductor reruns the scenario after you return.\nRETURN exactly one line: FIXED <the file> or BLOCKED <the reason>\n' \
-    "$LABEL" "$ID" "$LATEST" "$FAIL_LINE" "$PASS_LINE" >> "$PHASE/scratch/fix/$LABEL-$N.txt"
-  ( cd "$WT" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-      -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-      "$(cat "$PHASE/scratch/fix/$LABEL-$N.txt")" ) </dev/null \
-      > "$PHASE/scratch/runs/$ID.fix-$N.jsonl" 2>&1
-  LATEST="$PHASE/scratch/runs/$ID.fix-$N.txt"
-  ( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$LATEST" )
-  LINE=$(node "$PHASE/scratch/tools/check-run.cjs" "$PHASE/scratch/scenarios.tsv" "$LABEL" "$LATEST")
-  printf '%s\n' "$LINE"
-  if printf '%s' "$LINE" | grep -q 'PASS'; then
-    VERDICT=FIXED
-  elif [ "$N" -eq 3 ]; then
-    VERDICT=ESCALATED
-  else
-    VERDICT=FAIL
-  fi
-  NEW=$(printf '%s\t%s\t%s\t%s' "$LABEL" "$VERDICT" "$ID" "$LATEST")
-  awk -F'\t' -v l="$LABEL" -v row="$NEW" 'BEGIN{OFS="\t"} $1==l{print row; next}{print}' "$PHASE/scratch/results.tsv" > "$PHASE/scratch/results.tmp"
-  mv "$PHASE/scratch/results.tmp" "$PHASE/scratch/results.tsv"
-  printf 'attempt=%s verdict=%s\n' "$N" "$VERDICT"
-done
+printf 'ATTEMPT=%s\n' "$N"
+printf 'BRIEF=%s\n' "$PHASE/scratch/fix/$LABEL-$N.txt"
+```
+
+Dispatch that brief with the Task tool: subagent_type `general`, description `FIX-$LABEL-$N`, prompt = the full text of
+`$PHASE/scratch/fix/$LABEL-$N.txt`. When the subagent returns, write its final reply verbatim to
+`$PHASE/scratch/runs/$ID.fix-$N.reply.txt` with the write tool. Then run the block below. Repeat the
+first block, the dispatch and the block below only while the row is still `FAIL`, up to three
+attempts in all.
+
+```bash
+cd "$(git rev-parse --show-toplevel)"
+RUNROOT="$(git rev-parse --show-toplevel)"
+PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
+source "$PHASE/scratch/env.sh"
+ROW=$(awk -F'\t' -v l="$LABEL" '$1==l{print; exit}' "$PHASE/scratch/results.tsv")
+ID=$(printf '%s' "$ROW" | cut -f3)
+SCENARIO=$(awk -F'\t' -v l="$LABEL" '$1==l{print $3}' "$PHASE/scratch/scenarios.tsv")
+N=$(find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l | tr -d ' ')
+[ "$N" -ge 1 ] || { echo "NO_BRIEF $LABEL"; exit 0; }
+LATEST="$PHASE/scratch/runs/$ID.fix-$N.txt"
+( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$LATEST" )
+LINE=$(node "$PHASE/scratch/tools/check-run.cjs" "$PHASE/scratch/scenarios.tsv" "$LABEL" "$LATEST")
+printf '%s\n' "$LINE"
+if printf '%s' "$LINE" | grep -q 'PASS'; then
+  VERDICT=FIXED
+elif [ "$N" -ge 3 ]; then
+  VERDICT=ESCALATED
+else
+  VERDICT=FAIL
+fi
+NEW=$(printf '%s\t%s\t%s\t%s' "$LABEL" "$VERDICT" "$ID" "$LATEST")
+awk -F'\t' -v l="$LABEL" -v row="$NEW" 'BEGIN{OFS="\t"} $1==l{print row; next}{print}' "$PHASE/scratch/results.tsv" > "$PHASE/scratch/results.tmp"
+mv "$PHASE/scratch/results.tmp" "$PHASE/scratch/results.tsv"
+printf 'attempt=%s verdict=%s\n' "$N" "$VERDICT"
 test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK
 ```
 
@@ -679,7 +716,7 @@ MD
   echo
   echo "## 1. HEADLINE / OVERVIEW"
   echo
-  echo "Verdict: $(awk -F'\t' '$2=="PASS" || $2=="FIXED" {p++} END {print (p==8 ? "PASS" : "PASS WITH ESCALATIONS")}' "$PHASE/scratch/results.tsv")."
+  echo "Verdict: $(awk -F'\t' '$2=="PASS" || $2=="FIXED" {p++} END {print (p==8 ? "PASS" : (p==0 ? "FAIL" : "PASS WITH ESCALATIONS"))}' "$PHASE/scratch/results.tsv")."
   echo
   echo "Eight scenarios from phase 007 ran on a disposable worktree built from \`$BASE_REF\`. $(awk -F'\t' '$2=="PASS" || $2=="FIXED" {p++} END {print p+0}' "$PHASE/scratch/results.tsv") passed and $(awk -F'\t' '$2=="FAIL" || $2=="ESCALATED" || $2=="SCENARIO_DEFECT" {p++} END {print p+0}' "$PHASE/scratch/results.tsv") need attention."
   echo
@@ -740,7 +777,7 @@ MD
 cat "$REPORT/README.md"
 ```
 
-- [ ] T014 Add the reports index row (`.skilled/skills/system-spec-kit/benchmark/reports/README.md`). Run the first block to print the exact row, then use the edit tool with the second block. Verify: `rg -c "$FOLDER" "$RUNROOT/$S/benchmark/reports/README.md"` prints `1`. When it prints `2`, the row was already added: remove the duplicate by hand and record it in `goal.md` section 4.
+- [ ] T014 Add the reports index row (`.skilled/skills/system-spec-kit/benchmark/reports/README.md`). Run the block below. It prints the row, inserts it after the header separator and prints `1`. Verify: `rg -c "$FOLDER" "$RUNROOT/$S/benchmark/reports/README.md"` prints `1`. When it prints `2`, the row was already added: remove the duplicate by hand and record it in `goal.md` section 4.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -750,13 +787,15 @@ source "$PHASE/scratch/env.sh"
 P=$(awk -F'\t' '$2=="PASS" || $2=="FIXED" {n++} END {print n+0}' "$PHASE/scratch/results.tsv")
 F=$(awk -F'\t' '$2=="FAIL" || $2=="ESCALATED" || $2=="SCENARIO_DEFECT" {n++} END {print n+0}' "$PHASE/scratch/results.tsv")
 if [ "$P" -eq 8 ]; then VERDICT="PASS"; elif [ "$F" -eq 0 ]; then VERDICT="PASS (after fixes)"; else VERDICT="FAIL"; fi
-printf '| %s | [`%s/`](./%s/) | conductor manual-testing-playbook | %s PASS, %s FAIL | **%s** | `manual-testing-playbook` |\n' "$RUN_DATE" "$FOLDER" "$FOLDER" "$P" "$F" "$VERDICT"
-```
-
-```text
-OLD: |---|---|---|---|---|---|
-NEW: |---|---|---|---|---|---|
-     <the row the first block printed, with no leading spaces>
+ROW=$(printf '| %s | [`%s/`](./%s/) | conductor manual-testing-playbook | %s PASS, %s FAIL | **%s** | `manual-testing-playbook` |' "$RUN_DATE" "$FOLDER" "$FOLDER" "$P" "$F" "$VERDICT")
+printf '%s\n' "$ROW"
+INDEX="$RUNROOT/$S/benchmark/reports/README.md"
+awk -v row="$ROW" '
+  index($0, "|---|---|---|---|---|---|") == 1 && !done { print; print row; done=1; next }
+  { print }
+' "$INDEX" > "$PHASE/scratch/reports-index.tmp"
+mv "$PHASE/scratch/reports-index.tmp" "$INDEX"
+rg -c "$FOLDER" "$INDEX"
 ```
 
 - [ ] T015 Check the primary checkout (`scratch/primary-status.txt`). Run the block below. It compares the current status with the baseline T003 saved. Verify: `grep -c '^PRIMARY_CLEAN$' "$PHASE/scratch/primary-status.txt"` prints `1`. When a path is listed, stop the phase and record it in `goal.md` section 4. Do not remove the path by hand.
@@ -778,11 +817,12 @@ git -C "$MAIN" status --porcelain --untracked-files=all > "$PHASE/scratch/primar
 if [ -s "$PHASE/scratch/primary-status.txt" ]; then
   cat "$PHASE/scratch/primary-status.txt"
 else
-  echo PRIMARY_CLEAN
+  echo PRIMARY_CLEAN > "$PHASE/scratch/primary-status.txt"
+  cat "$PHASE/scratch/primary-status.txt"
 fi
 ```
 
-- [ ] T016 Save the worktree diff, check the evidence and remove the disposable worktree and its branch (`scratch/fixes/fix.patch`, `scratch/fixes/status.txt`, `scratch/worktree/removal.txt`). Run the block below. It prints `RUNS_RECORDED 8` only when eight verdict rows exist and every evidence file is non-empty. It then saves the worktree diff and status, writes `PATCHED` or `UNPATCHED` for every changed path and prints `PATCH_GATE_COVERED` when the two counts agree. Verify: the block prints `RUNS_RECORDED 8`, `PATCH_GATE_COVERED`, `REMOVAL_OK`, `WORKTREE_GONE` and `BRANCH_GONE`. A `NO_ROWS`, `EMPTY <label>` or `UNPATCHED <path>` line stops the removal with `REMOVAL_REFUSED`, keeps the worktree and must be recorded in `goal.md` section 4. The rollback sentence is in `plan.md` section 7. Removal is irreversible for uncommitted files in the worktree.
+- [ ] T016 Save the worktree diff, check the evidence and remove the disposable worktree and its branch (`scratch/fixes/fix.patch`, `scratch/fixes/status.txt`, `scratch/worktree/removal.txt`). Run the block below. It prints `RUNS_RECORDED 8` only when eight verdict rows exist and every evidence file is non-empty. It then saves the worktree diff and status, writes `PATCHED` or `UNPATCHED` for every changed path and prints `PATCH_GATE_COVERED` when the two counts agree. Verify: the block prints `SCRATCH_CLEAN`, `PATCH_SAVED`, `STATUS_SAVED`, `RUNS_RECORDED 8`, `PATCH_GATE_COVERED`, `REMOVAL_OK`, `WORKTREE_GONE` and `BRANCH_GONE`. It clears untracked output under `$WT/scratch/` before it saves the status, so a scratch artifact cannot read `UNPATCHED`. A `NO_ROWS`, `EMPTY <label>` or `UNPATCHED <path>` line stops the removal with `REMOVAL_REFUSED`, keeps the worktree and must be recorded in `goal.md` section 4. The rollback sentence is in `plan.md` section 7. Removal is irreversible for uncommitted files in the worktree.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -790,6 +830,8 @@ RUNROOT="$(git rev-parse --show-toplevel)"
 PHASE="$RUNROOT/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree"
 source "$PHASE/scratch/env.sh"
 mkdir -p "$PHASE/scratch/fixes"
+git -C "$WT" clean -fd -- scratch > "$PHASE/scratch/fixes/scratch-clean.txt" 2>&1 || true
+echo SCRATCH_CLEAN
 {
   ROWS=$(wc -l < "$PHASE/scratch/results.tsv" | tr -d ' ')
   [ "$ROWS" = "8" ] && echo "RUNS_RECORDED 8" || echo "NO_ROWS $ROWS"
@@ -797,8 +839,8 @@ mkdir -p "$PHASE/scratch/fixes"
     test -s "$RUN" || echo "EMPTY $LABEL"
   done < "$PHASE/scratch/results.tsv"
 } > "$PHASE/scratch/worktree/evidence-before-remove.txt"
-git -C "$WT" diff > "$PHASE/scratch/fixes/fix.patch"
-git -C "$WT" status --porcelain > "$PHASE/scratch/fixes/status.txt"
+git -C "$WT" diff > "$PHASE/scratch/fixes/fix.patch" && echo PATCH_SAVED
+git -C "$WT" status --porcelain > "$PHASE/scratch/fixes/status.txt" && echo STATUS_SAVED
 : > "$PHASE/scratch/fixes/gate.txt"
 while read -r XY PATHSPEC; do
   [ -z "${PATHSPEC:-}" ] && continue
@@ -975,7 +1017,7 @@ git -C "$RUNROOT" status --porcelain
 
 - [ ] CHK-020 [P0] All acceptance criteria met
 - [ ] CHK-021 [P0] Eight run files exist and eight verdict rows exist
-- [ ] CHK-022 [P1] A run that hit the 30 minute alarm is recorded with its `exit=142` line and `TIMEOUT`
+- [ ] CHK-022 [P1] A run that hit the 30 minute alarm is recorded with its `exit=142` line and `FAIL`
 - [ ] CHK-023 [P1] The fixture test proves the extractor and comparator before the first real run
 <!-- /ANCHOR:testing -->
 
@@ -997,7 +1039,7 @@ git -C "$RUNROOT" status --porcelain
 ## Security
 
 - [ ] CHK-030 [P0] No brief contains a credential, a token or a key
-- [ ] CHK-031 [P0] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-031 [P0] Every worker was one Task subagent and its brief states that the spec-folder question is pre-resolved
 - [ ] CHK-032 [P1] No worker wrote outside the disposable worktree
 <!-- /ANCHOR:security -->
 
@@ -1051,7 +1093,7 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Each scenario returned within 30 minutes or was killed by its captured PID
+- [ ] CHK-110 [P1] Each scenario returned within 30 minutes or ended with its `exit=142` alarm line
 - [ ] CHK-111 [P1] Provisioning time is recorded in `goal.md` section 4
 - [ ] CHK-112 [P2] No load test applies to this phase
 - [ ] CHK-113 [P2] The report's expected wall clock matches the observed range

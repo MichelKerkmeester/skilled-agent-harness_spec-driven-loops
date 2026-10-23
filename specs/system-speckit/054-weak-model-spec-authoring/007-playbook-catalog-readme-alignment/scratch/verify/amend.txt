@@ -1,0 +1,29 @@
+plan.md:975 - scenario 483 preconditions now require an interactive OpenCode v2 session whose opencode.json names the model, replacing opencode2 on PATH and the provider login
+plan.md:976 - scenario 483 expected process dispatches the subagent with the Task tool
+plan.md:977 - scenario 483 expected signals read a subagent reply instead of a dispatch exit code
+plan.md:979 - scenario 483 contract pass/fail reads the subagent reply
+plan.md:993 - scenario 483 command intro scopes the shell session to steps 1, 3 and 4
+plan.md:1003 - scenario 483 brief states it is a dispatched Task subagent and this prompt is the spec-folder pre-resolution
+plan.md:1027 - scenario 483 step 2 heading names the Task tool
+plan.md:1030 - scenario 483 step 2 replaces the opencode2 run command with the Task tool instruction and a reply file write
+plan.md:1053 - scenario 483 expected output reads the reply file
+plan.md:1058 - scenario 483 evidence points at the .txt reply file instead of the .jsonl transcript
+plan.md:1064 - scenario 483 pass condition reads a subagent reply
+plan.md:1065 - scenario 483 fail condition reads no reply
+plan.md:1069 - scenario 483 triage reads the reply file and checks the session model
+plan.md:1079 - scenario 483 provenance now names the Task tool subagent
+plan.md:1934 - Conductor role is the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max
+plan.md:1935 - Worker role is one Task subagent, which inherits the session model
+plan.md:1940 - pre-task read now covers cli-opencode NEVER rules 1 and 5 and forbids a nested CLI run
+plan.md:1942 - pre-flight checks opencode.json for the model name instead of running opencode2 models
+plan.md:1962 - worker brief skeleton replaces the environment variables with the dispatched Task subagent pre-resolution sentence
+plan.md:1982 - role line note now states the Task subagent receives the persona as prompt text
+plan.md:1986 - Dispatch Command replaces the opencode2 run command with the Task tool instruction and reply file write
+plan.md:1988 - dispatch note adds the 3 Task call limit, the same-file rule and optional t0 and t1 timing
+tasks.md:42 - T001 checks the model in opencode.json instead of opencode2 version and models
+tasks.md:64 - T004 dispatches Lane A with the Task tool and writes the reply to T004-A.txt
+tasks.md:93 - T005 dispatches Lane B with the Task tool and writes the reply to T005-B.txt
+tasks.md:119 - T006 dispatches Lane C with the Task tool and writes the reply to T006-C.txt
+tasks.md:365 - CHK-031 checks each worker was a Task subagent whose prompt pre-resolved the spec-folder question
+spec.md:197 - NFR-S01 states a Task subagent inherits the session model
+graph-metadata.json - generated metadata re-derived by repair-derived.cjs after the doc edits

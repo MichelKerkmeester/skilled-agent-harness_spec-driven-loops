@@ -170,10 +170,8 @@ make_brief() {
   cat <<BRIEF
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as
+pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   $PHASE_REL
@@ -318,27 +316,38 @@ SH
 
   The last command prints the tally of `APPLIED`, `SKIP-GONE`, `SKIP-OWNED`, `NEEDS-WORKER` and `DELETE-PENDING` rows. Copy it into `goal.md` section 4. Rows owned by the write recipe have the owner `041-006`, so the loop never selects them. Rows owned by `003`, `004`, `005` and `006` are never selected either.
 
-- [ ] T010 Fix the `NEEDS-WORKER` rows with one DeepSeek worker each (`scratch/briefs/T010-<id>.txt` and the one file each row names). Skip this task when T009 printed no `NEEDS-WORKER` line and when T001 reported a missing ledger. A row lands here when its locator no longer occurs exactly once, which means the defect is prose that needs an edit instead of a pure swap. The text may also have drifted. Before the first dispatch, run `opencode2 models --standalone | grep -c 'llmgateway/deepseek-v4.1-flash-1017'`, which must print `1` or more. Then read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4. Run the block below. It works the rows one at a time and never two at once. It skips a row that is already fixed, so running it again retries only the rows that failed. Run it at most three times in all. Verify: every printed line ends in `repro=NO extra=0`. A row still failing after the third run is marked `[B]` under the blocked task protocol in `plan.md`.
+- [ ] T010 Fix the `NEEDS-WORKER` rows with one Task subagent each (`scratch/briefs/T010-<id>.txt`, `scratch/runs/T010-<id>.txt` and the one file each row names). Skip this task when T009 printed no `NEEDS-WORKER` line and when T001 reported a missing ledger. A row lands here when its locator no longer occurs exactly once, which means the defect is prose that needs an edit instead of a pure swap. The text may also have drifted. Before the first dispatch, run `rg -c 'deepseek-v4.1-flash-1017' opencode.json`, which must print a number above 0, because a Task subagent inherits the session model. Then read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4, whose NEVER rules 1 and 5 forbid a CLI worker dispatch from inside OpenCode. Run the prepare block below. It writes one brief per row that still needs a worker and prints those row ids. It skips a row that is already fixed, so running it again prepares briefs only for the rows that still failed. For each printed id, dispatch with the Task tool: subagent_type `general`, description `T010-<id>`, prompt = the full text of `$PHASE/scratch/briefs/T010-<id>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T010-<id>.txt` with the write tool. At most 3 Task calls in one message, and never two that write the same file. When every call has returned, run the check block. When the prepare block printed no id, the check block prints nothing and the task is already met. Run the whole task at most three times in all. Verify: every printed line ends in `repro=NO extra=0 reply=present`. A row still failing after the third run is marked `[B]` under the blocked task protocol in `plan.md`.
 
   ```bash
   cd "$WORKTREE"
   . "$PHASE/scratch/tools/lib.sh"
+  git diff --name-only | sort > "$PHASE/scratch/pre.txt"
+  : > "$PHASE/scratch/ready.txt"
   for id in $(grep '^NEEDS-WORKER ' "$PHASE/scratch/census.txt" | awk '{print $2}'); do
-    if [ "$(repro "$id")" = NO ]; then echo "$id repro=NO extra=0"; continue; fi
+    if [ "$(repro "$id")" = NO ]; then continue; fi
     make_brief "$id" > "$PHASE/scratch/briefs/T010-$id.txt"
-    git diff --name-only | sort > "$PHASE/scratch/pre.txt"
-    SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-      -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-      "$(cat "$PHASE/scratch/briefs/T010-$id.txt")" </dev/null > "$PHASE/scratch/runs/T010-$id.jsonl" 2>&1 &
-    PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-    git diff --name-only | sort > "$PHASE/scratch/post.txt"
-    file=$(jq -r --arg i "$id" 'select(.id==$i) | .file' "$LED")
-    extra=$(comm -13 "$PHASE/scratch/pre.txt" "$PHASE/scratch/post.txt" | grep -v "^$PHASE_REL/" | grep -cvxF -- "$file")
-    echo "$id repro=$(repro "$id") extra=$extra"
+    echo "$id" >> "$PHASE/scratch/ready.txt"
   done
+  cat "$PHASE/scratch/ready.txt"
   ```
 
-  When a printed `extra` is above `0`, restore each extra path with `git restore --source="$P2START" -- <path>` and count that dispatch as failed.
+  ```bash
+  cd "$WORKTREE"
+  . "$PHASE/scratch/tools/lib.sh"
+  git diff --name-only | sort > "$PHASE/scratch/post.txt"
+  while read -r id; do
+    jq -r --arg i "$id" 'select(.id==$i) | .file' "$LED"
+  done < "$PHASE/scratch/ready.txt" | sort -u > "$PHASE/scratch/worker-files.txt"
+  comm -13 "$PHASE/scratch/pre.txt" "$PHASE/scratch/post.txt" | grep -v "^$PHASE_REL/" | grep -vxF -f "$PHASE/scratch/worker-files.txt" > "$PHASE/scratch/extra-paths.txt"
+  extra=$(grep -c . "$PHASE/scratch/extra-paths.txt")
+  while read -r id; do
+    reply=missing
+    if [ -s "$PHASE/scratch/runs/T010-$id.txt" ]; then reply=present; fi
+    echo "$id repro=$(repro "$id") extra=$extra reply=$reply"
+  done < "$PHASE/scratch/ready.txt"
+  ```
+
+  When a printed `extra` is above `0`, restore each path in `scratch/extra-paths.txt` with `git restore --source="$P2START" -- <path>` and count that dispatch as failed.
 
 - [ ] T011 Delete other dead files named by the census (the files the rows name). Skip this task when T009 printed no `DELETE-PENDING` line. The block below runs the same reader guard as T008 with each file's base name and deletes the file only when ripgrep exits with code `1`, which means no reader. Any other code leaves the file and prints `KEPT`. A base name that other files mention, such as `README.md`, makes ripgrep exit with code `0`, so that file is also kept. Record every kept file in `goal.md` section 4. Verify: the two commands under the block print `0` and `0`. The first counts lines that do not start with `DELETED` or `KEPT`. The second counts `DELETED` paths that still exist.
 
@@ -450,7 +459,7 @@ BRIEF
   ```
 
 
-- [ ] T016 Apply the review findings (`scratch/review/T016.txt`, `scratch/briefs/T016-<n>.txt`, `goal.md`). Do not edit any file a finding names by hand. For each `P0`, `P1` or `P2` line, write a brief with the Worker Brief Skeleton in `plan.md` section AI EXECUTION PROTOCOL. Put the finding's file under ALLOWED WRITE PATHS and the finding line in the TASK section. Dispatch it with the Dispatch Command in the same section, with `T010-$id` replaced by `T016-<n>`. Write `APPLIED <file>` to `scratch/review/T016.txt` after the dispatch. Write `RECORDED <file>` instead when the dispatch failed or the finding asks for a change outside the files the rows name, and raise it to the operator. Write every finding in `goal.md` section 4. Then rerun T012, T013 and T014. A `P2` finding is fixed by a worker or recorded with the reason it was not fixed. When T015 holds `NO FINDINGS`, run `: > "$PHASE/scratch/review/T016.txt"` and skip the dispatches. Verify: the block below prints `COUNTS_MATCH`.
+- [ ] T016 Apply the review findings (`scratch/review/T016.txt`, `scratch/briefs/T016-<n>.txt`, `goal.md`). Do not edit any file a finding names by hand. For each `P0`, `P1` or `P2` line, write a brief with the Worker Brief Skeleton in `plan.md` section AI EXECUTION PROTOCOL. Put the finding's file under ALLOWED WRITE PATHS and the finding line in the TASK section. Dispatch it with the Task tool as described under Dispatch Command in the same section, with the brief at `scratch/briefs/T016-<n>.txt` and the reply at `scratch/runs/T016-<n>.txt`. At most 3 Task calls in one message, and never two that write the same file. Write `APPLIED <file>` to `scratch/review/T016.txt` after the dispatch. Write `RECORDED <file>` instead when the dispatch failed or the finding asks for a change outside the files the rows name, and raise it to the operator. Write every finding in `goal.md` section 4. Then rerun T012, T013 and T014. A `P2` finding is fixed by a worker or recorded with the reason it was not fixed. When T015 holds `NO FINDINGS`, run `: > "$PHASE/scratch/review/T016.txt"` and skip the dispatches. Verify: the block below prints `COUNTS_MATCH`.
 
   ```bash
   cd "$WORKTREE"
@@ -556,7 +565,7 @@ BRIEF
 
 - [ ] CHK-030 [P0] No brief contains a credential, token or key
 - [ ] CHK-031 [P0] `apply_row.py` wrote only the file each row names
-- [ ] CHK-032 [P1] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-032 [P1] Every worker was one Task subagent, and its brief carried the pre-resolution line
 <!-- /ANCHOR:security -->
 
 ---

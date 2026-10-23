@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `bash runtime/cli/spec/check-example-drift.sh` prints `EXAMPLE_DRIFT_OK`
 - [ ] The awk crossing command in `plan.md` section 3 prints nothing on every `.tmpl` under `templates`
 - [ ] `diff scratch/baseline/anchor-counts.txt scratch/baseline/anchor-counts-after.txt` prints nothing
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance --strict` prints `RESULT: PASSED`
 - [ ] `git status --porcelain` lists only the files in `spec.md` section 3 and this phase folder
 <!-- /ANCHOR:completion -->
 

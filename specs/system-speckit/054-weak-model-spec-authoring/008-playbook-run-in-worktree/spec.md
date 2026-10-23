@@ -60,7 +60,7 @@ This is **Phase 8** of the Make system-spec-kit templates and authoring docs fol
 
 **Deliverables**:
 - `scratch/scenarios.tsv`: the eight scenario rows, each with its playbook id, its file and its pass patterns.
-- `scratch/worktree/create.out`, `create.err`, `own-code.txt`, `precondition.txt`: how the disposable worktree was made and proved.
+- `scratch/worktree/create.out`, `create.err`, `provision.out`, `provision-exit.txt`, `own-code.txt`, `precondition.txt`: how the disposable worktree was made and proved.
 - `scratch/runs/<playbook-id>.txt`: one captured run per scenario.
 - `scratch/results.tsv` and `scratch/verdicts.md`: the verdict, the reason and the evidence for each scenario.
 - `scratch/fix/<scenario>-<n>.txt`: one fix brief per failed attempt.
@@ -100,7 +100,7 @@ Every scenario this packet adds has a real execution record and a verdict that a
 
 ### Out of Scope
 - Editing the scenario files. Phase 007 owns their text, and a scenario defect is escalated to its owner.
-- Fixing product code by hand. A fix is one DeepSeek brief with one named file inside the disposable worktree.
+- Fixing product code by hand. A fix is one Task subagent brief with one named file inside the disposable worktree.
 - Measuring the authoring benchmark delta. Phase 009 owns that comparison.
 - Committing or pushing. Both stay with the operator.
 - Running anything in the primary checkout. The only scenario host is the disposable worktree.
@@ -178,12 +178,12 @@ Every scenario this packet adds has a real execution record and a verdict that a
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: One scenario run is stopped by the runner's 30 minute alarm. A run that ends with `exit=142` is recorded as `TIMEOUT` and handled as a failure.
-- **NFR-P02**: Provisioning the disposable worktree finishes within 45 minutes. A longer run is stopped and recorded as a blocker.
+- **NFR-P01**: One scenario run is stopped by the runner's 30 minute alarm. A run that ends with `exit=142` is recorded as `FAIL` and handled as a failure.
+- **NFR-P02**: Provisioning the disposable worktree finishes within 45 minutes. A longer run is stopped by a 45 minute alarm and recorded as a blocker.
 
 ### Security
-- **NFR-S01**: No brief carries a credential, a token or a key. Workers inherit provider login from the environment only.
-- **NFR-S02**: Every worker runs with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`, and its brief states the child-dispatch exemption.
+- **NFR-S01**: No brief carries a credential, a token or a key. A Task subagent inherits the conductor session's model and provider login.
+- **NFR-S02**: Every worker is one Task subagent, and its brief states that the spec-folder question is pre-resolved under the child-dispatch exemption.
 
 ### Reliability
 - **NFR-R01**: A verdict comes from a captured output file and a frozen pattern, never from a chat message. A second conductor with the same files reaches the same verdict.

@@ -80,5 +80,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| check-placeholders.sh false positive | The scan reports the regex and lane-bracket text inside fenced blocks in `tasks.md` as placeholders. A fenced block is not an unfilled placeholder, so the docs keep the literal commands and this entry records the scan result. |
+| check-placeholders.sh false positive | The scan prints `FAIL - 4 placeholder pattern(s) found` and exits 1 on four bracket strings inside fenced code blocks in `tasks.md`. A fenced block is not an unfilled placeholder, so the docs keep the literal commands and this entry records the scan result. |
 <!-- /ANCHOR:log -->

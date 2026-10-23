@@ -168,17 +168,17 @@
     ],
     "causal_summary": "A DeepSeek V4.1 Flash worker that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-23T15:37:58.546Z",
+    "last_save_at": "2026-10-23T16:34:48.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:dbcbe7c9c8eb4f2bb78cb5ee8d508881c9f620c26c893c5cf967b68e6da4d21a",
+    "source_fingerprint": "sha256:c2cf952be3c72a8aaa64d4e15e37e50f3364a0de5c90d900474927b0c02300ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d7323e13b09fd9229806fa9678348b01dc4e70701c7e3c4614bf18ea7dd429bd"
+      "spec.md": "cb291daf5078bd86d65efc1ef3b03d520d7eafc12b8d83fb93d8d3b9d5da2eb7"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline",
     "last_active_at": "2026-10-23T11:45:12.996Z"

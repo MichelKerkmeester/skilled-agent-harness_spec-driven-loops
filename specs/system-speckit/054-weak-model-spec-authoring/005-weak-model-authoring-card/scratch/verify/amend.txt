@@ -1,0 +1,24 @@
+spec.md:181 - security requirement now says workers run on the session model and inherit its provider login, replacing the environment-only claim
+spec.md:196 - network-timeout edge case now has the conductor stop waiting for the Task subagent after 30 minutes, replacing the killed-by-captured-PID wording
+plan.md:466 - dependency row replaced `opencode2` with an interactive OpenCode v2 session whose model is named in `opencode.json`
+plan.md:628 - Conductor role rewritten as the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max
+plan.md:629 - Worker role rewritten as one Task subagent dispatched with the Task tool and inheriting the session model
+plan.md:634 - pre-task reading changed from cli-opencode sections 3 and 4 to NEVER rules 1 and 5 before the first Task dispatch
+plan.md:636 - pre-flight changed from `opencode2 models --standalone` to `rg -c 'deepseek-v4.1-flash-1017' opencode.json` above 0
+plan.md:657 - worker brief skeleton sentence about AI_SESSION_CHILD and SYSTEM_SPEC_GATE_ENFORCE replaced with the dispatched Task subagent pre-resolution line
+plan.md:678 - role-line note replaced the cli-opencode rule 18 exception with the `general` subagent type and no agent file
+plan.md:682 - dispatch command block replaced with the Task tool instruction that reads the brief and writes the final reply to `scratch/runs/<TASK>.txt`
+plan.md:686 - dispatch timing kept as `date +%s` to `scratch/runs/<TASK>.t0` before the Task call and `.t1` after it
+plan.md:698 - parallel rule added: at most 3 Task calls in one message and never two that write the same file. The PID, wait, kill and pkill lines are gone
+tasks.md:43 - T001 provider check changed from `opencode2 --version` and `opencode2 models --standalone` to the `opencode.json` model check
+tasks.md:266 - T012 transcript names changed from `run-1.jsonl` to `run-3.jsonl` to `T012-1.txt` to `T012-3.txt`
+tasks.md:270 - T012 mkdir now also creates `scratch/runs`
+tasks.md:280 - T012 dispatch loop now runs the Task tool instruction, writes the reply to `scratch/runs/$TASK.txt` and records t0 and t1
+tasks.md:316 - T012 verify reads the three `.txt` reply files
+tasks.md:318 - T013 start and end times now come from the `.t0` and `.t1` files
+tasks.md:327 - M5 seconds computed from the `.t1` and `.t0` files
+tasks.md:467 - CHK-032 env-var check replaced with the Task-subagent pre-resolution line in every brief
+implementation-summary.md:70 - delivery line names the operator's interactive OpenCode v2 session dispatching Task subagents
+goal.md:98 - log row records the conductor and worker runtime amendment
+goal.md:99 - log row records the generated metadata refresh that the validator requires after a doc edit
+graph-metadata.json - re-derived by `repair-derived.cjs --apply` after the doc edits, the only generated file written

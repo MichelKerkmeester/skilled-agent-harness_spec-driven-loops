@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | Only the files named by the 25 known rows in `tasks.md` T004, by owner `002` ledger rows and `templates/.hashes` change. No file under `templates/core`, `templates/addons` or `templates/packet-types` changes. |
 | D3 | `templates/.hashes` is deleted only when both reader searches in `tasks.md` T008 exit with code 1. |
 | D4 | Rows owned by the write recipe (`041-006`) and by phases 3 to 6 are not touched here. |
-| D5 | A DeepSeek worker fixes only a row the applier could not apply as a swap, one row and one file per brief, one worker at a time. |
+| D5 | One Task subagent fixes only a row the applier could not apply as a swap, one row and one file per brief, with at most 3 Task calls in one message and never two that write the same file. |
 | D6 | The phase closes on a matching suite comparison and one read-only frontier review through `cli-codex` with `gpt-6-luna`. |
 
 <!-- /ANCHOR:directive -->

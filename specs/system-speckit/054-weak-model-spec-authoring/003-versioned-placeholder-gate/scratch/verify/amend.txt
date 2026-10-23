@@ -1,0 +1,5 @@
+plan.md:334 Conductor role changed from a DeepSeek session that runs outside OpenCode to the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, and the outside-OpenCode sentence removed.
+plan.md:335 Worker role changed from none to one Task subagent dispatched with the Task tool and inheriting the session model, with the phase's no-worker rationale kept.
+graph-metadata.json:213 last_save_at refreshed by the sanctioned re-derive after the plan.md edit.
+graph-metadata.json:224 source_fingerprint refreshed by the sanctioned re-derive after the plan.md edit.
+graph-metadata.json:228 plan.md source_doc_hash refreshed by the sanctioned re-derive after the plan.md edit.

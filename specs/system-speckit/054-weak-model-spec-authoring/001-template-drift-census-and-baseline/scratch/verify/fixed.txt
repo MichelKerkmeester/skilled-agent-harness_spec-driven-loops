@@ -1,19 +1,13 @@
-REJECTED C3 check-placeholders.sh flags the regex and lane-bracket text inside fenced blocks in tasks.md. The task records this known scanner false positive in goal.md section 4 and leaves the fenced commands intact.
-FIXED C6 plan.md:99 replaced the single defect 1 locator and the 17 companion claim with a K-01 to K-18 table of all 18 exact leaked-description locators and a detection command that prints 18 lines.
-FIXED C7 tasks.md:212 replaced the false default-model claim in T011 with an explicit --sandbox read-only gpt-6-luna max invocation.
-FIXED C7 tasks.md:97 added the closing > to the lane awk /<!-- \/IF -->/ decrement so it matches plan.md.
-FIXED C9 tasks.md:114 replaced the T005 percentage threshold with a coverage block and an awk command whose expected output is 0.
-FIXED C9 tasks.md:133 expanded leaked-description detection to the 18 exact lines and a detection command that prints 18, so T007 can reach 18 rows.
-FIXED C9 tasks.md:157 gave T009 its own verify command over the run, start and status files and removed the delegation to T010.
-FIXED C9 tasks.md:157 saved each run start time to scratch/baseline/start-<n>.txt and made T010 read T0 from that file.
-FIXED C9 tasks.md:212 gave T011 an awk command and the expected output 0 for its line-format check.
-FIXED C9 tasks.md:227 gave T012 a goal.md line format and a command that compares the finding count with the T012 line count.
-FIXED C9 tasks.md:228 stated T013's row format and kept the grep count of 3.
-FIXED C10 spec.md:40 changed the phase count to 1 of 9 and every phase 8 rerun reference to phase 9.
-FIXED C10 spec.md:53 added specs/zz-bench-hints/ to the scope boundary alongside specs/zz-bench-authoring/.
-REJECTED C10 acceptance-criteria.md:32 the decision-record.md waiver line is fixed template text shared by every phase and the task says to leave it alone.
-FIXED C10 plan.md:43 changed the Definition of Done to Met, Waived or Superseded and aligned the M4 milestone and the tasks completion criterion.
-FIXED C10 acceptance-criteria.md:57 stated the run number plus the five metrics in AC-004 and in spec.md so the 6-key check is explicit.
-REJECTED C10 spec.md:64 the ../changelog/ line is fixed template text the task says to leave alone, and no changelog folder exists.
-FIXED C10 tasks.md:115 added candidates.jsonl to T006's file list and to the spec.md Files to Change table.
-FIXED C10 spec.md:59 added anchors-v2.2.txt, runs.jsonl, coverage.txt and review/T011.txt to Deliverables and to Files to Change.
+REJECTED C3 tasks.md:87 the four hits are bracket strings inside fenced code blocks, a known check-placeholders.sh false positive. goal.md section 4 records the scan result and the fenced commands stay.
+FIXED C9 tasks.md:243 T011 now saves its brief and runs one literal read-only codex exec command with --model gpt-6-luna, max effort, a redirect to scratch/review/T011.txt and the captured PID cleanup.
+FIXED C9 tasks.md:273 T014 now gives the literal diff over scratch/baseline/status-start.txt and the current status, filters this phase folder and prints 0.
+FIXED C9 tasks.md:130 T005 now writes each lane's unread paths to scratch/ledger/lane-<l>.missing.txt and prints lane-<l> missing 0 for a complete lane.
+FIXED C9 plan.md:364 the worker brief skeleton now binds <the paths this task names>, so a two-file lane fits it.
+FIXED C10 tasks.md:391 the Verification Summary now says 14 P0, 24 P1 and 9 P2, matching the 47 checklist rows.
+FIXED C10 plan.md:143 the affected-surfaces table now names scratch/ledger/lane-a.read.txt, lane-b.read.txt and lane-c.read.txt instead of a read line inside each lane JSONL.
+FIXED C10 spec.md:104 the Files to Change table now lists lane-*.read.txt, lane-*.all.txt, lane-*.missing.txt, status-start.txt and suite-start.txt.
+FIXED C10 tasks.md:120 T005 lane B now counts every file under templates/examples, 26, matching the lane scope.
+REJECTED C10 acceptance-criteria.md:32 the decision-record.md waiver line is fixed template text shared by every phase and the task says to leave it alone. No criterion is waived.
+FIXED C10 implementation-summary.md:60 the Files Changed table now lists all six authored docs, implementation-summary.md included.
+NOTE detection the leaked-description command in plan.md and tasks.md prints 18 on the current tree, so it already finds all 18 K rows and the count stays 18.
+NOTE verification graph-metadata.json was re-derived by repair-derived.cjs after the six doc edits, because validate.sh reported SOURCE_FINGERPRINT_MISMATCH and GENERATED_METADATA_DRIFT on the edited docs. No other out-of-scope file was edited.

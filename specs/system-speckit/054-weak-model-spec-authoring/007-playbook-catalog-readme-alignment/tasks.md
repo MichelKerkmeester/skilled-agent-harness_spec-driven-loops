@@ -30,6 +30,7 @@ contextType: "general"
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
 - `PHASE`: `$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment`
+- `P1`: `$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline`
 - `S`: `.skilled/skills/system-spec-kit`
 - `START`: the commit hash recorded by T002.
 <!-- /ANCHOR:notation -->
@@ -39,7 +40,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check the tools, the provider and the predecessor artifacts (no file). Verify: `opencode2 --version && opencode2 models --standalone | grep -c 'llmgateway/deepseek-v4.1-flash-1017' && test -f $S/runtime/cli/spec/check-example-drift.sh && echo drift-guard-present && test -f $S/runtime/cli/spec/check-card-sync.sh && echo card-guard-present && test -f $S/references/workflows/spec-authoring-card.md && echo card-present` prints a version line, a count of at least 1, then `drift-guard-present`, `card-guard-present` and `card-present`. A missing guard or card means phase 4 or phase 5 is not closed: STOP the phase and record which one.
+- [ ] T001 Check the tools, the model and the predecessor artifacts (no file). Verify: `rg -c 'deepseek-v4.1-flash-1017' opencode.json && test -f $S/runtime/cli/spec/check-example-drift.sh && echo drift-guard-present && test -f $S/runtime/cli/spec/check-card-sync.sh && echo card-guard-present && test -f $S/references/workflows/spec-authoring-card.md && echo card-present` prints a count above 0, then `drift-guard-present`, `card-guard-present` and `card-present`. A missing guard or card means phase 4 or phase 5 is not closed: STOP the phase and record which one.
 - [ ] T002 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`, `scratch/baseline/start-commit.txt`, `scratch/baseline/suite-start.txt`). Run `mkdir -p "$PHASE/scratch/baseline"`, then run `git -C "$WORKTREE" rev-parse HEAD`, replace the `Pending` cell of the `Start commit` row in the Progress table in `goal.md` section 4 with the hash, then run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Phases 8 and 9 compare their suite runs with this file. Verify: `grep -cE '^\| Start commit \| [0-9a-f]{7,}' "$PHASE/goal.md"` prints `1`, and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line, and `grep -cE '^ *(Test Files|Tests) ' "$PHASE/scratch/baseline/suite-start.txt"` prints at least `2`.
 - [ ] T003 Read the three owner contracts and record the target baseline (`scratch/baseline/contracts.txt`, `scratch/baseline/counts.txt`). Read `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`, `.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md` and `.skilled/skills/sk-doc/sk-create-readme/SKILL.md` completely. Then run this block from `$WORKTREE`. Verify: `cat "$PHASE/scratch/baseline/contracts.txt"` prints three `=present` lines, and `cat "$PHASE/scratch/baseline/counts.txt"` prints four `=` lines.
 
@@ -61,7 +62,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Lane A: write the eight scenario files (`$S/manual-testing-playbook/template-authoring/*.md`). Write the brief to `scratch/briefs/T004-A.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the plan's dispatch command. Verify: `for f in placeholder-token-warning-while-draft placeholder-token-error-after-draft placeholder-gate-legacy-stamp-unchanged example-drift-guard-catches-leak golden-render-all-levels authoring-card-router-intents authoring-card-sync-guard level-1-packet-authored-from-card; do test -f "$S/manual-testing-playbook/template-authoring/$f.md" && printf '%s %s\n' "$f" "$(grep -c '^## ' "$S/manual-testing-playbook/template-authoring/$f.md")"; done` prints eight lines, and every line ends with `5`.
+- [ ] T004 [P] Lane A: write the eight scenario files (`$S/manual-testing-playbook/template-authoring/*.md`). Write the brief to `scratch/briefs/T004-A.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the Task tool: subagent_type `general`, description `T004-A`, prompt = the full text of `$PHASE/scratch/briefs/T004-A.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T004-A.txt` with the write tool. Verify: `for f in placeholder-token-warning-while-draft placeholder-token-error-after-draft placeholder-gate-legacy-stamp-unchanged example-drift-guard-catches-leak golden-render-all-levels authoring-card-router-intents authoring-card-sync-guard level-1-packet-authored-from-card; do test -f "$S/manual-testing-playbook/template-authoring/$f.md" && printf '%s %s\n' "$f" "$(grep -c '^## ' "$S/manual-testing-playbook/template-authoring/$f.md")"; done` prints eight lines, and every line ends with `5`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -90,7 +91,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T004 DONE - 8 files
   ```
 
-- [ ] T005 [P] Lane B: write the four catalog leaves (`$S/feature-catalog/tooling-and-scripts/*.md`). Write the brief to `scratch/briefs/T005-B.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the plan's dispatch command. Verify: `for f in versioned-placeholder-gate template-section-fill-guidance example-drift-guard spec-authoring-card; do test -f "$S/feature-catalog/tooling-and-scripts/$f.md" && printf '%s %s\n' "$f" "$(grep -c '^## ' "$S/feature-catalog/tooling-and-scripts/$f.md")"; done` prints four lines, and every line ends with `4`.
+- [ ] T005 [P] Lane B: write the four catalog leaves (`$S/feature-catalog/tooling-and-scripts/*.md`). Write the brief to `scratch/briefs/T005-B.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the Task tool: subagent_type `general`, description `T005-B`, prompt = the full text of `$PHASE/scratch/briefs/T005-B.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T005-B.txt` with the write tool. Verify: `for f in versioned-placeholder-gate template-section-fill-guidance example-drift-guard spec-authoring-card; do test -f "$S/feature-catalog/tooling-and-scripts/$f.md" && printf '%s %s\n' "$f" "$(grep -c '^## ' "$S/feature-catalog/tooling-and-scripts/$f.md")"; done` prints four lines, and every line ends with `4`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -116,7 +117,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T005 DONE - 4 files
   ```
 
-- [ ] T006 [P] Lane C: apply the six document edits (`$S/README.md`, `$S/templates/README.md`, `$S/references/validation/validation-rules.md`, `$S/references/validation/path-scoped-rules.md`, `$S/references/templates/template-style-guide.md`, `$S/references/workflows/quick-reference.md`). Write the brief to `scratch/briefs/T006-C.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the plan's dispatch command. Verify: `rg -c 'YOUR_VALUE_HERE' $S/README.md` prints at least `1`, `rg -c 'check-example-drift.sh' $S/README.md` prints `1`, `rg -c 'Lifecycle For Docs Stamped v2.3 Or Later' $S/references/validation/validation-rules.md` prints `1`, `rg -c 'ERROR or WARNING' $S/references/validation/path-scoped-rules.md` prints `1`, `rg -c 'Placeholder completion while Draft' $S/references/templates/template-style-guide.md` prints `1`, `rg -c 'spec-authoring-card.md' $S/references/workflows/quick-reference.md` prints `1`, and `rg -c 'PLACEHOLDER\]' $S/references/templates/template-guide.md` prints nothing.
+- [ ] T006 [P] Lane C: apply the six document edits (`$S/README.md`, `$S/templates/README.md`, `$S/references/validation/validation-rules.md`, `$S/references/validation/path-scoped-rules.md`, `$S/references/templates/template-style-guide.md`, `$S/references/workflows/quick-reference.md`). Write the brief to `scratch/briefs/T006-C.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the Task tool: subagent_type `general`, description `T006-C`, prompt = the full text of `$PHASE/scratch/briefs/T006-C.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T006-C.txt` with the write tool. Verify: `rg -c 'YOUR_VALUE_HERE' $S/README.md` prints at least `1`, `rg -c 'check-example-drift.sh' $S/README.md` prints `1`, `rg -c 'Lifecycle For Docs Stamped v2.3 Or Later' $S/references/validation/validation-rules.md` prints `1`, `rg -c 'ERROR or WARNING' $S/references/validation/path-scoped-rules.md` prints `1`, `rg -c 'Placeholder completion while Draft' $S/references/templates/template-style-guide.md` prints `1`, `rg -c 'spec-authoring-card.md' $S/references/workflows/quick-reference.md` prints `1`, and `rg -c 'PLACEHOLDER\]' $S/references/templates/template-guide.md` prints nothing.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -236,7 +237,7 @@ Shell variables used below, set once by the conductor:
   } > "$PHASE/scratch/validation/hygiene.txt"
   ```
 
-- [ ] T014 Compare the spec-kit suite with the start (`scratch/baseline/suite-end.txt`). Run the suite once, then extract the three summary lines from each file and compare them. Verify: `diff "$PHASE/scratch/baseline/suite-lines-start.txt" "$PHASE/scratch/baseline/suite-lines-end.txt" && echo SUITE_SAME` prints `SUITE_SAME`.
+- [ ] T014 Compare the spec-kit suite with the phase start and with phase 001 (`scratch/baseline/suite-end.txt`, `scratch/baseline/suite-delta-phase1.txt`). Run the suite once, then extract the three summary lines from each file, compare the phase start with the end and record the phase 001 delta. Phases 2 to 6 add tests, so the phase 001 comparison checks the exit line and records the count delta, while the phase start and end must match. Verify: `diff "$PHASE/scratch/baseline/suite-lines-start.txt" "$PHASE/scratch/baseline/suite-lines-end.txt" && echo SUITE_SAME` prints `SUITE_SAME`, and `diff "$PHASE/scratch/baseline/suite-exit-phase1.txt" "$PHASE/scratch/baseline/suite-exit-end.txt" && echo PHASE1_EXIT_SAME` prints `PHASE1_EXIT_SAME`.
 
   ```bash
   npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-end.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-end.txt"
@@ -244,6 +245,10 @@ Shell variables used below, set once by the conductor:
   grep -E '^ *(Test Files|Tests) |^exit=' "$PHASE/scratch/baseline/suite-end.txt" > "$PHASE/scratch/baseline/suite-lines-end.txt"
   tail -1 "$PHASE/scratch/baseline/suite-start.txt" > "$PHASE/scratch/baseline/suite-exit-start.txt"
   tail -1 "$PHASE/scratch/baseline/suite-end.txt" > "$PHASE/scratch/baseline/suite-exit-end.txt"
+  grep -E '^ *(Test Files|Tests) |^exit=' "$P1/scratch/baseline/suite-start.txt" > "$PHASE/scratch/baseline/suite-lines-phase1.txt"
+  diff "$PHASE/scratch/baseline/suite-lines-phase1.txt" "$PHASE/scratch/baseline/suite-lines-end.txt" > "$PHASE/scratch/baseline/suite-delta-phase1.txt" 2>&1 || true
+  tail -1 "$P1/scratch/baseline/suite-start.txt" > "$PHASE/scratch/baseline/suite-exit-phase1.txt"
+  diff "$PHASE/scratch/baseline/suite-exit-phase1.txt" "$PHASE/scratch/baseline/suite-exit-end.txt" && echo PHASE1_EXIT_SAME
   ```
 <!-- /ANCHOR:phase-2 -->
 
@@ -362,7 +367,7 @@ Shell variables used below, set once by the conductor:
 ## Security
 
 - [ ] CHK-030 [P0] No brief contains a credential, token or key
-- [ ] CHK-031 [P0] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-031 [P0] Every worker was a Task subagent whose prompt pre-resolved the spec-folder question
 - [ ] CHK-032 [P1] No scenario writes outside its throwaway track
 <!-- /ANCHOR:security -->
 

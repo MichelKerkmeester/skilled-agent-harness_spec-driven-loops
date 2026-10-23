@@ -37,6 +37,7 @@ Shell variables used below, set once by the conductor in the build worktree:
 - `LED`: `$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl`
 - `KR`: `$PHASE/scratch/known-rows.jsonl`
 - `START`: the commit hash recorded by T002.
+- `C` and `R`: set inside the T005 and T007 blocks that use them, so run each block and its Verify command in the same shell.
 
 Every command runs from `$WORKTREE` unless the task says otherwise. Paths in the known row are relative to that directory.
 <!-- /ANCHOR:notation -->
@@ -206,7 +207,7 @@ JSONL
   PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
   ```
 
-- [ ] T010 Apply the review findings and close the phase (this folder). For each `P0` or `P1` line, write one row into `scratch/review-rows.jsonl` with the finding's line as `locator` and that line with the third column applied as `expected_text`, numbered `R-041-006-01`, `R-041-006-02` and so on in the order the findings appear. Apply them with `for id in $(jq -r .id "$PHASE/scratch/review-rows.jsonl"); do python3 -I "$APPLIER" "$PHASE/scratch/review-rows.jsonl" "$id" .; done`, then rerun T004's verify block, T007 and T008. For each `P2` line, do the same or write the reason it was not fixed in `goal.md` section 4. A finding that asks for a change outside the recipe file is not applied. Write it in `goal.md` section 4 and raise it to the operator. Then run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`, fill `implementation-summary.md` with what changed and the T004, T005, T006, T007 and T008 results, and mark each row of `acceptance-criteria.md` `Met` with its evidence. Verify: the validate command prints `RESULT: PASSED`, and `grep -cE '^\| AC-00[1-6] \|.*\| Met \| - \|$' "$PHASE/acceptance-criteria.md"` prints `6`.
+- [ ] T010 Apply the review findings and close the phase (this folder). For each `P0` or `P1` line, write one row into `scratch/review-rows.jsonl` with `file` set to `.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` and the finding's line as `locator` and that line with the third column applied as `expected_text`, numbered `R-041-006-01`, `R-041-006-02` and so on in the order the findings appear. Apply them with `for id in $(jq -r .id "$PHASE/scratch/review-rows.jsonl"); do python3 -I "$APPLIER" "$PHASE/scratch/review-rows.jsonl" "$id" .; done`, then rerun T004's verify block, T007 and T008. For each `P2` line, do the same or write the reason it was not fixed in `goal.md` section 4. A finding that asks for a change outside the recipe file is not applied. Write it in `goal.md` section 4 and raise it to the operator. Then run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`, fill `implementation-summary.md` with what changed and the T004, T005, T006, T007 and T008 results, and mark each row of `acceptance-criteria.md` `Met` with its evidence. Verify: the validate command prints `RESULT: PASSED`, and `grep -cE '^\| AC-00[1-6] \|.*\| Met \| - \|$' "$PHASE/acceptance-criteria.md"` prints `6`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -39,9 +39,9 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check tools and the phase 003 result (`scratch/baseline/locator-form.txt`). Run `node --version`, `cd "$S" && ./node_modules/.bin/vitest --version`, `which rg awk git`, `rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0`, then `printf 'TOKEN=%s\n' "$(rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0)" > "$PHASE/scratch/baseline/locator-form.txt"`. Verify: the first two lines hold a version, the next three hold a path, and `cat "$PHASE/scratch/baseline/locator-form.txt"` prints one `TOKEN=` line. A number above `0` selects the post-003 locator form in `plan.md` section 3 and `0` selects the pre-token form.
+- [ ] T001 Check tools and the phase 003 result (`scratch/baseline/locator-form.txt`). Run `mkdir -p "$PHASE/scratch/baseline" "$PHASE/scratch/briefs" "$PHASE/scratch/runs" "$PHASE/scratch/review" "$PHASE/scratch/test"`, `node --version`, `cd "$S" && ./node_modules/.bin/vitest --version`, `which rg awk git`, `rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0`, then `printf 'TOKEN=%s\n' "$(rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0)" > "$PHASE/scratch/baseline/locator-form.txt"`. Verify: the first two lines hold a version, the next three hold a path, and `cat "$PHASE/scratch/baseline/locator-form.txt"` prints one `TOKEN=` line. A number above `0` selects the post-003 locator form in `plan.md` section 3 and `0` selects the pre-token form.
 
-- [ ] T002 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`, `scratch/baseline/suite-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the hash into `goal.md` section 4 as `Start commit`, run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Verify: `grep -c 'Start commit' "$PHASE/goal.md"` prints `1` and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line.
+- [ ] T002 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`, `scratch/baseline/suite-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the row `| Start commit | Recorded | <hash> |` into the Progress table in `goal.md` section 4 with `<hash>` replaced by that output, run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Verify: `grep -c 'Start commit' "$PHASE/goal.md"` prints `1` and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line.
 
 - [ ] T003 Record the anchor baseline (`scratch/baseline/anchor-counts.txt`, `scratch/baseline/anchor-lists.txt`). Run this from `$WORKTREE`. Verify: `wc -l < "$PHASE/scratch/baseline/anchor-counts.txt"` prints `16`, `wc -l < "$PHASE/scratch/baseline/anchor-lists.txt"` prints `16`, `grep -c '^1 spec 7$' "$PHASE/scratch/baseline/anchor-counts.txt"` prints `1`, `grep -c '^3+ plan 17$' "$PHASE/scratch/baseline/anchor-counts.txt"` prints `1`, and `grep -c '^1 spec: metadata problem questions requirements risks scope success-criteria$' "$PHASE/scratch/baseline/anchor-lists.txt"` prints `1`.
 
@@ -248,7 +248,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 [P] Lane A: fill `spec.md.tmpl` and `plan.md.tmpl` and repair the spec crossings (`$S/templates/core/spec.md.tmpl`, `$S/templates/core/plan.md.tmpl`). Write the brief to `scratch/briefs/T007-A.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the plan's dispatch command. Verify: `rg -c '<!-- FILL: '` on the two files prints `24` and `18`, the awk crossing command from `plan.md` section 3 on the two files prints nothing, `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/core/spec.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=10 close=10`, and the Level 1 and Level 3 anchor counts still match `scratch/baseline/anchor-counts.txt`.
+- [ ] T007 [P] Lane A: fill `spec.md.tmpl` and `plan.md.tmpl` and repair the spec crossings (`$S/templates/core/spec.md.tmpl`, `$S/templates/core/plan.md.tmpl`). Write the brief to `scratch/briefs/T007-A.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the Task tool: subagent_type `general`, description `T007-A`, prompt = the full text of `$PHASE/scratch/briefs/T007-A.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T007-A.txt` with the write tool. Verify: `rg -c '<!-- FILL: '` on the two files prints `24` and `18`, the awk crossing command from `plan.md` section 3 on the two files prints nothing, `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/core/spec.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=10 close=10`, and the Level 1 and Level 3 anchor counts still match `scratch/baseline/anchor-counts.txt`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -275,7 +275,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T007-A DONE - 24 spec and 18 plan fill lines
   ```
 
-- [ ] T008 [P] Lane B: fill `tasks.md.tmpl`, `implementation-summary.md.tmpl` and every addon template, and repair the research crossings (`$S/templates/core/tasks.md.tmpl`, `$S/templates/core/implementation-summary.md.tmpl`, `$S/templates/addons/*.tmpl`). Write the brief to `scratch/briefs/T008-B.txt` and dispatch it. Verify: `rg -c '<!-- FILL: '` prints `22` for tasks, `6` for implementation-summary and these ten addon counts: acceptance 3, before-after 5, debug-delegation 5, decision-record 1, goal 4, handover 5, research 20, resource-map 11, roadmap 4, timeline 3. The awk crossing command on `research.md.tmpl` prints nothing, and `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/addons/research.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=9 close=9`.
+- [ ] T008 [P] Lane B: fill `tasks.md.tmpl`, `implementation-summary.md.tmpl` and every addon template, and repair the research crossings (`$S/templates/core/tasks.md.tmpl`, `$S/templates/core/implementation-summary.md.tmpl`, `$S/templates/addons/*.tmpl`). Write the brief to `scratch/briefs/T008-B.txt`, then dispatch with the Task tool: subagent_type `general`, description `T008-B`, prompt = the full text of `$PHASE/scratch/briefs/T008-B.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T008-B.txt` with the write tool. Verify: `rg -c '<!-- FILL: '` prints `22` for tasks, `6` for implementation-summary and these ten addon counts: acceptance 3, before-after 5, debug-delegation 5, decision-record 1, goal 4, handover 5, research 20, resource-map 11, roadmap 4, timeline 3. The awk crossing command on `research.md.tmpl` prints nothing, and `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/addons/research.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=9 close=9`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -302,7 +302,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T008-B DONE - tasks 22, implementation-summary 6, addons 61
   ```
 
-- [ ] T009 [P] Lane C: align the 14 examples in the plan's alignment table (`$S/templates/examples/level-*/*`). Write the brief to `scratch/briefs/T009-C.txt` and dispatch it. Phase 002 owns the 18 description repairs and must be closed first: on a pre-002 tree the guard reports 18 description failures, so `EXAMPLE_DRIFT_OK` is expected only on the post-002 tree. Verify: `bash "$S/runtime/cli/spec/check-example-drift.sh"` prints `EXAMPLE_DRIFT_OK`.
+- [ ] T009 [P] Lane C: align the 14 examples in the plan's alignment table (`$S/templates/examples/level-*/*`). Write the brief to `scratch/briefs/T009-C.txt`, then dispatch with the Task tool: subagent_type `general`, description `T009-C`, prompt = the full text of `$PHASE/scratch/briefs/T009-C.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T009-C.txt` with the write tool. Phase 002 owns the 18 description repairs and must be closed first: on a pre-002 tree the guard reports 18 description failures, so `EXAMPLE_DRIFT_OK` is expected only on the post-002 tree. Verify: `bash "$S/runtime/cli/spec/check-example-drift.sh"` prints `EXAMPLE_DRIFT_OK`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -475,7 +475,7 @@ Shell variables used below, set once by the conductor:
 
 - [ ] T014 Run the full gate (no file). Run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-after.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-after.txt"`, then `bash "$S/runtime/cli/spec/validate.sh" "$PHASE" --strict`, then `git -C "$WORKTREE" status --porcelain`. Verify: `tail -1 suite-after.txt` prints `exit=0`, the suite adds exactly 17 tests over `suite-start.txt` (16 fill tests and 1 drift test) and changes no existing test result, validate prints `RESULT: PASSED` with `Errors: 0`, and the status list holds only the paths named in `spec.md` section 3 plus this phase folder.
 
-- [ ] T015 Frontier review of the fill text (`scratch/review/T015.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first and use its default read-only invocation with the `gpt-6-luna` model. Send this brief and save the reply to `scratch/review/T015.txt`. Verify: the file exists and every line matches `^(P0|P1|P2) ` or the single line `NO FINDINGS`.
+- [ ] T015 Frontier review of the fill text (`scratch/review/T015.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Write this brief to `scratch/briefs/T015.txt`, then run the literal command below from `$WORKTREE`. Verify: the file exists and every line matches `^(P0|P1|P2) ` or the single line `NO FINDINGS`.
 
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
@@ -491,6 +491,24 @@ Shell variables used below, set once by the conductor:
   contract output. Return one line per finding in this form, and nothing else:
   P0|P1|P2 <template>:<heading> | <what is wrong> | <the fix>
   Return the single line NO FINDINGS when there are none.
+  ```
+
+  Run this command:
+
+  ```bash
+  cd "$WORKTREE"
+  AI_SESSION_CHILD=1 codex exec \
+    --model gpt-6-luna \
+    -c model_reasoning_effort="max" \
+    -c service_tier="fast" \
+    -c approval_policy=never \
+    --sandbox read-only \
+    -o "$PHASE/scratch/review/T015.txt" \
+    "$(cat "$PHASE/scratch/briefs/T015.txt")" > "$PHASE/scratch/review/T015.log" 2>&1 </dev/null &
+  CODEX_PID=$!
+  wait "$CODEX_PID"
+  kill -9 "$CODEX_PID" 2>/dev/null
+  pkill -9 -P "$CODEX_PID" 2>/dev/null
   ```
 
 - [ ] T016 Close the phase (this folder, `goal.md`, `acceptance-criteria.md`, `implementation-summary.md`). Fill `implementation-summary.md`, mark each `acceptance-criteria.md` row, and write the close entry in `goal.md` section 4. Verify: validate prints `RESULT: PASSED`, every acceptance row is `Met`, and `git status --porcelain` lists only the allowed paths.
@@ -549,7 +567,7 @@ Shell variables used below, set once by the conductor:
 - [ ] CHK-010 [P0] Every FILL line matches `<!-- FILL: ... -->` on one physical line
 - [ ] CHK-011 [P0] No FILL line holds a value token, a semicolon or an HTML comment tail
 - [ ] CHK-012 [P0] No heading, anchor or gate marker changed outside the seven crossing fixes
-- [ ] CHK-013 [P1] Every instruction is one imperative sentence ending with a period
+- [ ] CHK-013 [P1] Every instruction opens with an imperative sentence, holds one to three sentences and ends with a period
 - [ ] CHK-014 [P1] Every good and weak example uses the `--quiet` feature
 <!-- /ANCHOR:code-quality -->
 
@@ -586,7 +604,7 @@ Shell variables used below, set once by the conductor:
 
 - [ ] CHK-030 [P0] No brief contains a credential, token or key
 - [ ] CHK-031 [P0] The drift guard opens every file read-only and writes nothing
-- [ ] CHK-032 [P1] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-032 [P1] Every worker ran as one Task subagent whose brief carried the pre-resolution preamble
 <!-- /ANCHOR:security -->
 
 ---

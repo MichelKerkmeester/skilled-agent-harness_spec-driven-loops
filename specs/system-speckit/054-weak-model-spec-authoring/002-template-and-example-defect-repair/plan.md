@@ -29,7 +29,7 @@ contextType: "general"
 | **Testing** | The applier self-test, a per-row evidence recheck and a before and after suite comparison |
 
 ### Overview
-Twenty-five text swaps are known now, so they are written out in `tasks.md` and applied by `apply_row.py`, which refuses unless the old text occurs exactly once. The ledger from phase 1 may hold more owner `002` rows. The conductor applies those with the same script and sends only the rows whose text drifted to a DeepSeek worker, one file per worker. The phase closes on a clean suite comparison and a read-only frontier review of the diff.
+Twenty-five text swaps are known now, so they are written out in `tasks.md` and applied by `apply_row.py`, which refuses unless the old text occurs exactly once. The ledger from phase 1 may hold more owner `002` rows. The conductor applies those with the same script and sends only the rows whose text drifted to a Task subagent, one file per worker. The phase closes on a clean suite comparison and a read-only frontier review of the diff.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,8 +62,8 @@ A deterministic apply loop with a worker fallback. A script does every exact swa
 - **`apply_row.py`**: the exact-match applier, written in `tasks.md` T005.
 - **`lib.sh`**: three helper functions, `repro`, `apply_checked` and `make_brief`, written in `tasks.md` T005.
 - **Phase 1 `ledger.jsonl`**: the source of the census rows. This phase reads only the rows whose `owner_phase` is `002`.
-- **Conductor**: runs every task, reads every output and edits only this phase folder.
-- **Worker**: one DeepSeek dispatch for one drifted row. It edits the one file its brief names.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It runs every task, reads every output and edits only this phase folder.
+- **Worker**: one Task subagent for one drifted row. It edits the one file its brief names.
 - **Reviewer**: one read-only `cli-codex` review at phase close.
 
 ### Known-row schema (frozen)
@@ -165,7 +165,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Phase 1 `ledger.jsonl`, reviewed | Internal | Checked in T001 | Known rows still run but census rows do not, so the phase cannot close |
 | Phase 1 `suite-start.txt` | Internal | Checked in T001 | The suite comparison cannot run |
 | `python3` 3.9 or newer, `jq`, `rg`, `node` | Internal | Checked in T002 | No row can be applied |
-| `opencode2` with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T010, only when a row needs a worker | Drifted rows stay open |
+| The OpenCode Task tool with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T010, only when a row needs a worker | Drifted rows stay open |
 | `codex` with `gpt-6-luna` | External | Checked in T015 | Review is recorded as skipped with the error, and REQ-007 stays open |
 <!-- /ANCHOR:dependencies -->
 
@@ -283,7 +283,7 @@ Setup (T001-T005) ──► Known rows (T006-T007) ──► Dead file (T008) �
 
 **Parallel Opportunities**:
 - None inside the phase. The rows share files and the checks read the whole tree, so every task runs in order.
-- The frontier review reads the diff only, so it may start while the second suite rerun finishes, but only one dispatch runs at a time.
+- The frontier review reads the diff only, so it may start while the second suite rerun finishes, and worker dispatches follow the parallel rule in Dispatch Command.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -307,14 +307,14 @@ Setup (T001-T005) ──► Known rows (T006-T007) ──► Dead file (T008) �
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It runs every command in `tasks.md` and reads every output. It edits only this phase folder plus the files the rows name through the applier. It keeps `goal.md` section 4 current.
-- **Worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. It exists only for a `NEEDS-WORKER` row. One worker fixes one row in one file, then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It runs every command in `tasks.md` and reads every output. It edits only this phase folder plus the files the rows name through the applier. It keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent, dispatched with subagent_type `general`. It inherits the session model `llmgateway/deepseek-v4.1-flash-1017#max`. It exists only for a `NEEDS-WORKER` row. One worker fixes one row in one file, then stops.
 - **Reviewer**: one read-only frontier review through `cli-codex` with `gpt-6-luna` at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first command
 - [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command, only when T009 left a `NEEDS-WORKER` row
+- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker brief, only when T009 left a `NEEDS-WORKER` row
 - [ ] Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` before the review command
 - [ ] Save every brief to `scratch/briefs/` before dispatching it
 
@@ -322,7 +322,8 @@ Written for the executing swarm. Follow each rule as written. Where a rule and y
 
 | Rule | Requirement |
 |------|-------------|
-| TASK-SEQ | Run tasks in ID order. No task in this phase is parallel, and at most one dispatch runs at a time |
+| TASK-SEQ | Run tasks in ID order. No task in this phase is parallel |
+| TASK-PAR | At most 3 Task calls in one message, and never two that write the same file |
 | TASK-SCOPE | A worker writes only the path under ALLOWED WRITE PATHS in its brief |
 | TASK-VERIFY | The conductor runs the task's verify command and reads both its output and its exit status before marking the task `[x]` |
 | TASK-LOCATE | Find text by its exact content, never by a line number |
@@ -336,10 +337,8 @@ Every worker brief starts with this block, word for word. `make_brief` in `scrat
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as
+pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair
@@ -364,14 +363,11 @@ The role line is a focused persona summary in place of a full agent file, the sm
 
 ### Dispatch Command
 
-```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/T010-$id.txt")" </dev/null > "$PHASE/scratch/runs/T010-$id.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-```
+Dispatch one brief with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of `$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 
-`PHASE` is this folder's path, `WORKTREE` is the build worktree and `id` is the ledger row id. Never kill by a name pattern. Kill only the captured PID.
+At most 3 Task calls in one message, and never two that write the same file.
+
+`PHASE` is this folder's path and `TASK` is the task id, such as `T010-K-14` or `T016-1`. A Task subagent cannot receive environment variables, so the brief's preamble is what pre-resolves its gates.
 
 ### Status Reporting Format
 

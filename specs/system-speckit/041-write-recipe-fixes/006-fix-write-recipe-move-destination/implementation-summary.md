@@ -66,7 +66,7 @@ When it runs, this phase replaces `  <spec-folder>` in Step 2 with `  specs/syst
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The phase runs as a DeepSeek V4.1 Flash conductor under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. The only edit is one applier call, and one read-only frontier review checks the diff before the phase closes.
+Not delivered yet. The phase runs in the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. The only edit is one applier call, and one read-only frontier review checks the diff before the phase closes.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A fresh v2.3 scaffold carries value tokens and a Draft warning",
     "created_at": "2026-10-23T11:27:24Z",
-    "last_save_at": "2026-10-23T14:11:58.793Z",
+    "last_save_at": "2026-10-23T16:26:44.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76d662e1be8570e297f56dcd08b16604d667f6e16c12d2980ef32def2cb0ecb5",
+    "source_fingerprint": "sha256:d4a86eabac513f3f82da945431704bd70abb7f3a694937cb1966557c09760895",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e89185075519a1c52928b9a45eb6c9d4a0657b87246fe6e9ba8655f851aed1e4",
-      "plan.md": "4039c155eaf5f75927b36d8117f137396eb383ccf2aa4f08f39b72f5c0c9a7e4",
-      "tasks.md": "79918bc4af891d326c99a0d75361200559f2bd2f62a5eae5b4e89de72a67b323",
+      "spec.md": "a106fd897a1b6f235004508ffe1fdbfcc5bee0d50f53f436780ae21e36628e04",
+      "plan.md": "f57a87481c99c89766135248ed42811705c0ef20ae60ac8f6dab6482a551ae08",
+      "tasks.md": "43ca093a4be48831d8ad28184010ae6a573559c240db9b53ec950fff877d8bba",
       "implementation-summary.md": "a3fb43dbed5d4b124d64d901511b90fdf20c5de781b28c387771d5bf2c4dd56c"
     },
     "last_active_at": null

@@ -65,7 +65,7 @@ When it runs, this phase applies 25 known text swaps and every other owner `002`
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The phase runs under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. A script does the swaps, and a DeepSeek V4.1 Flash worker is used only for a row that drifted.
+Not delivered yet. The phase runs under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. A script does the swaps, and one Task subagent on DeepSeek V4.1 Flash is used only for a row that drifted.
 <!-- /ANCHOR:how-delivered -->
 
 ---

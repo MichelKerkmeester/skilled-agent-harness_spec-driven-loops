@@ -67,7 +67,7 @@ When it runs, this phase creates one disposable worktree from the operator's `BA
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The phase runs as a DeepSeek V4.1 Flash conductor under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. One disposable worktree hosts every scenario, and one read-only frontier review closes the phase.
+Not delivered yet. The phase runs as the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. Task subagents write the S8 packet and every fix. One disposable worktree hosts every scenario, and one read-only frontier review closes the phase.
 <!-- /ANCHOR:how-delivered -->
 
 ---

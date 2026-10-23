@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 1 measured a fresh Level 2 scaffold at 87 distinct hint strings and 97 occurrences, and strict validation passes it",
     "created_at": "2026-10-23T11:27:21Z",
-    "last_save_at": "2026-10-23T13:49:40.725Z",
+    "last_save_at": "2026-10-23T16:23:25.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0cdec50405bcaa8c9b9dbf1ba6e916b9afd4eca312fd7df8fff95fc08a13dad",
+    "source_fingerprint": "sha256:60e499b4b2ba1034be5617d6a2282e82c34aab3106f272d8c9ad472a997dcc04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f0dbebc37714db2dfb452a12835fd194deb4087690dec759c99ff432807b95e",
-      "plan.md": "41f9d171da0ccc4884dbd512a8c75c23adb82ee44cacb59bafaaf0aee9acc5a3",
-      "tasks.md": "15efe29b3ac72ed6c0bca875f55b901ff9c9c5bfc5d5546e89c6286b2aa95868",
+      "spec.md": "5caf8c23adf553e18354409b4065d601a8e49f140bc7d052ccceafed3f7794ae",
+      "plan.md": "f6c102745ffd6da0e4524cd1566136aad1d7a849a16b670bbf84b132f326a1d8",
+      "tasks.md": "68d13968007c43880412b406e583d02a5c0d8f08b33424abe03625797ee67af3",
       "implementation-summary.md": "3d10ce62d66dfda9f0089e4421967ce1e7577d568bf08405d600c3a0338b975b"
     },
     "last_active_at": null

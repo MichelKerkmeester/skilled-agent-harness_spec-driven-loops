@@ -1,15 +1,11 @@
-FIXED C3-L3 Left the nine `[SPEC_FOLDER]` hits unchanged as the known fenced-block false positive and recorded them in goal.md section 4.
-FIXED C5-L5 Changed the plan.md ADR-003 context from "Phase 1 recorded" to "Phase 001 records" and made spec.md line 244 say phase 1 records suite-start.txt, matching the absent phase 001 baseline.
-FIXED C8-L10 Added a Line column with the `rg -n` position to all 27 audit rows and appended the same file:line to every OLD and NEW block heading.
-FIXED C8-L11 Gave R-001 to R-003 the same two-guard precheck that R-004 to R-006 carry.
-REJECTED C8-L12 ADR-003 is approved by the orchestrator and phases 002 to 005 add tests, so the phase-start comparison is correct. plan.md ADR-003 now carries that approval and its Accepted status.
-FIXED C9-L16 Split the goal.md T003 progress row into a literal "Phase start commit" row and a separate suite and doctor baseline row, so T003 writes the row it names.
-FIXED C9-L17 T010 now prints OWNER006_TOTAL and OWNER006_OPEN, writes every OPEN line to scratch/audit/owner-006-open.txt by command, and verifies both counts.
-FIXED C9-L18 T008 now requires the summary token grep to print 8, not at least 6.
-FIXED C9-L19 T014 now supplies the four literal close-out values and the exact grep checks for implementation-summary.md and acceptance-criteria.md.
-REJECTED C9-L20 The ../changelog/ line is fixed template text shared by every phase and the packet changelog belongs to phase 009. Left unchanged as instructed.
-FIXED C10-L21 Changed the asset group count in plan.md from 4 files to 5, matching the five distinct YAML files in R-004 to R-015.
-FIXED C10-L22 Replaced the escaped-pipe A3 and A5 commands with a PCRE lookbehind and repeated -e patterns, and fixed the same A5 command in the required-inventories list.
-FIXED C10-L23 Split guard-script ownership in spec.md: phase 4 creates check-example-drift.sh and phase 5 creates check-card-sync.sh. Updated the other phase-2 references in spec.md, plan.md, tasks.md and goal.md.
-REJECTED C10-L24 The decision-record.md waiver sentence is fixed template text shared by every phase. Left unchanged as instructed.
-FIXED META Not a report finding: re-derived graph-metadata.json with repair-derived.cjs --apply because the doc edits changed its source_fingerprint and validate.sh --strict enforces the match. Recorded in goal.md section 4.
+FIXED C9-t008 tasks.md:245 The T008 summary emitter now writes the checker tail first and rc=<n> last, so grep -c 'rc=0$' prints 8 and the goal.md:62 and acceptance-criteria AC-004 commands now agree.
+FIXED C9-t010 tasks.md:285 The T010 block now computes total_status, total_rows, open_status and open_rows and prints OWNER006_COUNTS_OK or OWNER006_COUNTS_DIFF, so the verify no longer compares to symbolic n and m.
+FIXED C10-plan31 plan.md:31 Now says six MIRROR rows carry the same body text into four Claude agent siblings, matching spec.md and the affected-surfaces table.
+FIXED C10-tasknohand plan.md:580 TASK-NOHAND now allows the exact review-finding text that T014 applies and still forbids hand edits during T006.
+REJECTED C3 plan.md:188 The nine hits are the literal [SPEC_FOLDER] token inside fenced YAML and JSONL, the known scanner false-positive class. goal.md section 4 already records it, so no text changed.
+REJECTED C8-suite tasks.md:337 ADR-003 is Approved by the orchestrator and is marked Accepted in plan.md, because phases 002 to 005 add tests and the phase start is the correct comparison.
+REJECTED C10-ac32 acceptance-criteria.md:32 This is the shared template line that names decision-record.md. Left unchanged per the dispatch instruction.
+REJECTED C10-spec69 spec.md:69 This is the shared template Changelog line that names ../changelog/. The packet changelog belongs to phase 009. Left unchanged per the dispatch instruction.
+REJECTED C11c tasks.md:369 The PID, wait, kill and pkill belong to the cli-codex review dispatch, which the amendment did not change. The conductor and Task worker rules are correct.
+FIXED C8-audit-table plan.md:100 Re-ran rg -n for all 27 locators, every Line value matches the exact current line, and each OLD block quotes that exact text.
+FIXED C9-metadata graph-metadata.json Re-derived with repair-derived.cjs --apply after the doc edits so validate.sh --strict passes. No authored content changed.

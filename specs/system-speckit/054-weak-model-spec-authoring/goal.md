@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Nine phases, 001 to 009 in folder order, plus one write-recipe child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never in sk-prompt. |
+| D1 | Nine phases, 001 to 009, plus one write-recipe child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
 | D2 | The placeholder gate applies to new docs only, through the v2.3 template marker. An existing or external packet never gets a new failure. |
-| D3 | At most 3 parallel DeepSeek lanes, and never two lanes on the same file. |
+| D3 | At most 3 parallel DeepSeek lanes, never two on one file. |
 | D4 | Every phase closes on scripted gates plus one read-only frontier review (cli-codex, gpt-6-luna). |
 | D5 | Phase 008 runs the playbooks in a disposable sk-git worktree. |
 | D6 | Every phase is Level 3 with its own goal, bound below. |
-| D7 | The conductor is a DeepSeek session outside OpenCode, because cli-opencode refuses self-dispatch. |
+| D7 | The conductor is the operator's OpenCode v2 session on DeepSeek V4.1 Flash max. Workers are Task subagents (no nested `opencode run`). |
 | D8 | Cli-opencode rule 15 L4 prefers a Copilot gpt-6-sol executor. The operator chose DeepSeek, so keep L1 to L3: banned operations and allowed write paths in each prompt, a fresh worktree and a baseline commit. |
 
 <!-- /ANCHOR:directive -->
@@ -110,9 +110,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Launch precondition 1: workspace chosen (A worktree or B branch) | Pending | |
-| Launch precondition 2: provider login lists `llmgateway/deepseek-v4.1-flash-1017` | Pending | |
+| Launch precondition 2: `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017` and OpenCode v2 is logged in to llmgateway | Pending | |
 | Launch precondition 3: three-lane authorization | Done | Given by the operator before planning |
-| Launch precondition 4: conductor runs outside OpenCode | Pending | |
+| Launch precondition 4: conductor is an OpenCode v2 session with the goal bound | Pending | |
 | WORKTREE path | Pending | |
 | Start commit | Pending | |
 | BASE_REF | Pending | The git ref phase 008 builds its disposable worktree from. It must contain the phase 002 to 007 changes. Replace Pending with the ref |
@@ -121,5 +121,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Cli-opencode rule 15 L4 | The operator chose DeepSeek over a Copilot gpt-6-sol executor. See D8 |
+| Cli-opencode rule 15 L4 | The operator chose DeepSeek Task subagents over a Copilot gpt-6-sol executor. See D8 |
 <!-- /ANCHOR:log -->

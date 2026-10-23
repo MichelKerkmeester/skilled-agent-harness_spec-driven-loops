@@ -1,0 +1,3 @@
+plan.md:285-287 | Rewrote Roles: Conductor is the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, replaced the "No worker dispatch" bullet with Worker = one Task subagent that no task dispatches, kept the codex Reviewer.
+implementation-summary.md:69 | Named the conductor as the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max instead of a standalone DeepSeek session.
+graph-metadata.json:212 | Refreshed the generated source fingerprint and doc hashes after the doc edits, using repair-derived.cjs --apply.

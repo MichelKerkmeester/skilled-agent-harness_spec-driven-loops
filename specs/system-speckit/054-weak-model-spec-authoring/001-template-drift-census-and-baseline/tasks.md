@@ -39,7 +39,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check tools and provider (no file). Verify: `opencode2 --version && opencode2 models --standalone | grep -c 'llmgateway/deepseek-v4.1-flash-1017' && which jq rg` prints a version line, a count of at least 1 and two paths.
+- [ ] T001 Check tools and provider (no file). Verify: `rg -c 'deepseek-v4.1-flash-1017' opencode.json && which jq rg` prints a number above 0 and two paths.
 - [ ] T002 Prove the worktree can validate (no file). Verify: `cd "$WORKTREE" && bash $S/runtime/cli/spec/validate.sh specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag --strict | grep 'RESULT:'` prints `RESULT: PASSED`. When it fails because `node_modules` or `dist` is missing, follow the worktree provisioning in `.skilled/skills/sk-git/SKILL.md` and retry once. When it still fails, STOP the phase.
 - [ ] T003 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the hash into `goal.md` section 4 as `Start commit`, then run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run the spec-kit suite once with `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Phases 2 to 5 compare their suite runs with this file. Verify: `grep -c 'Start commit' "$PHASE/goal.md"` prints `1`, and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line.
 <!-- /ANCHOR:phase-1 -->
@@ -49,7 +49,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Dispatch census lanes A, B and C (`scratch/ledger/lane-a.jsonl`, `lane-b.jsonl`, `lane-c.jsonl`). Write one brief per lane to `scratch/briefs/T004-A.txt`, `T004-B.txt` and `T004-C.txt`, each made of the skeleton in `plan.md` section AI EXECUTION PROTOCOL followed by the lane text below, then dispatch all three with the plan's dispatch command. Verify: `for l in a b c; do jq -c . "$PHASE/scratch/ledger/lane-$l.jsonl" > /dev/null && echo "lane-$l JSON_OK"; done` prints three `JSON_OK` lines.
+- [ ] T004 [P] Dispatch census lanes A, B and C (`scratch/ledger/lane-a.jsonl`, `lane-b.jsonl`, `lane-c.jsonl`). Write one brief per lane to `scratch/briefs/T004-A.txt`, `T004-B.txt` and `T004-C.txt`, each made of the skeleton in `plan.md` section AI EXECUTION PROTOCOL followed by the lane text below, then make three Task calls in one message, one per lane, with the plan's dispatch rule, writing each reply to `scratch/runs/T004-A.txt`, `T004-B.txt` and `T004-C.txt`. Verify: `for l in a b c; do jq -c . "$PHASE/scratch/ledger/lane-$l.jsonl" > /dev/null && echo "lane-$l JSON_OK"; done` prints three `JSON_OK` lines.
 
   Lane text, with `<LANE>`, `<PATHS>` and `<OUT>` filled from this table:
 
@@ -117,7 +117,7 @@ Shell variables used below, set once by the conductor:
   for l in a b c; do
     case $l in
       a) t=$(find $S/templates -type f -not -path '*/examples/*' | wc -l | tr -d ' ') ;;
-      b) t=$(find $S/templates/examples -type f -name '*.md' | wc -l | tr -d ' ') ;;
+      b) t=$(find $S/templates/examples -type f | wc -l | tr -d ' ') ;;
       c) t=$(ls $S/references/templates/*.md $S/references/workflows/*.md $S/SKILL.md | wc -l | tr -d ' ') ;;
     esac
     if [ -f "$PHASE/scratch/ledger/lane-$l.read.txt" ]; then n=$(wc -l < "$PHASE/scratch/ledger/lane-$l.read.txt" | tr -d ' '); else n=0; fi
@@ -125,7 +125,23 @@ Shell variables used below, set once by the conductor:
   done > "$PHASE/scratch/ledger/coverage.txt"
   ```
 
-  Verify: `awk '{ if ($2 < $4 * 0.9) bad++ } END { print bad + 0 }' "$PHASE/scratch/ledger/coverage.txt"` prints `0`. A lane under 90 percent is re-dispatched once with the missing paths listed in its brief.
+  Verify: `awk '{ if ($2 < $4 * 0.9) bad++ } END { print bad + 0 }' "$PHASE/scratch/ledger/coverage.txt"` prints `0`.
+
+  This block writes each lane's unread paths to `scratch/ledger/lane-<l>.missing.txt`:
+
+  ```bash
+  for l in a b c; do
+    case $l in
+      a) find $S/templates -type f -not -path '*/examples/*' ;;
+      b) find $S/templates/examples -type f ;;
+      c) ls $S/references/templates/*.md $S/references/workflows/*.md $S/SKILL.md ;;
+    esac | sort > "$PHASE/scratch/ledger/lane-$l.all.txt"
+    comm -23 "$PHASE/scratch/ledger/lane-$l.all.txt" <(sort "$PHASE/scratch/ledger/lane-$l.read.txt") > "$PHASE/scratch/ledger/lane-$l.missing.txt"
+    echo "lane-$l missing $(wc -l < "$PHASE/scratch/ledger/lane-$l.missing.txt" | tr -d ' ')"
+  done
+  ```
+
+  It prints `lane-a missing 0`, `lane-b missing 0` and `lane-c missing 0` when every lane read every file. A lane under 90 percent is re-dispatched once with the paths in `scratch/ledger/lane-<l>.missing.txt` listed in its brief.
 
 - [ ] T006 Reduce to verified rows (`scratch/ledger/candidates.jsonl`, `ledger.jsonl`, `dropped.jsonl`, `unsafe.jsonl`). Run this script from `$WORKTREE`. Verify: `wc -l "$PHASE"/scratch/ledger/{ledger,dropped,unsafe}.jsonl` prints three counts, and `ledger.jsonl` is not empty.
 
@@ -169,7 +185,7 @@ Shell variables used below, set once by the conductor:
 
   This sequence was run once while this spec was written. On the unchanged templates it produced 87 hint strings, 97 leftover occurrences in the unfilled scaffold and a strict result of `RESULT: PASSED`, which is the defect phase 3 fixes.
 
-- [ ] T009 Run the baseline three times (`scratch/runs/T009-1.jsonl` to `T009-3.jsonl`, `scratch/baseline/runs.jsonl`). Runs are serial. Before each run, save `git status --porcelain` to `scratch/baseline/status-before-<n>.txt` and the time from `date +%s` to `scratch/baseline/start-<n>.txt`. Dispatch this brief, saved as `scratch/briefs/T009-<n>.txt`, with the plan's dispatch command, writing to `scratch/runs/T009-<n>.jsonl`. Verify: `for n in 1 2 3; do test -s "$PHASE/scratch/runs/T009-$n.jsonl" && test -s "$PHASE/scratch/baseline/start-$n.txt" && test -s "$PHASE/scratch/baseline/status-before-$n.txt" && echo "run-$n recorded"; done` prints `run-1 recorded`, `run-2 recorded` and `run-3 recorded`.
+- [ ] T009 Run the baseline three times (`scratch/runs/T009-1.txt` to `T009-3.txt`, `scratch/baseline/runs.jsonl`). Runs are serial. Before each run, save `git status --porcelain` to `scratch/baseline/status-before-<n>.txt` and run `date +%s > "$PHASE/scratch/runs/T009-<n>.t0"`. Dispatch this brief, saved as `scratch/briefs/T009-<n>.txt`, as one Task call with the plan's dispatch rule, writing to `scratch/runs/T009-<n>.txt`, then run `date +%s > "$PHASE/scratch/runs/T009-<n>.t1"`. Verify: `for n in 1 2 3; do test -s "$PHASE/scratch/runs/T009-$n.txt" && test -s "$PHASE/scratch/runs/T009-$n.t0" && test -s "$PHASE/scratch/baseline/status-before-$n.txt" && echo "run-$n recorded"; done` prints `run-1 recorded`, `run-2 recorded` and `run-3 recorded`.
 
   ```text
   (the skeleton block from plan.md, with the spec folder line set to:
@@ -201,7 +217,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: the folder path, then the last RESULT line validate.sh printed.
   ```
 
-- [ ] T010 Measure each run, then delete its track (`scratch/baseline/baseline.json`). After each run, before the next one starts, run this from `$WORKTREE` with `N` set to the run number and `T0=$(cat "$PHASE/scratch/baseline/start-$N.txt")`. Verify: `jq '.runs | length' "$PHASE/scratch/baseline/baseline.json"` prints `3` after the third run.
+- [ ] T010 Measure each run, then delete its track (`scratch/baseline/baseline.json`). After each run, before the next one starts, run this from `$WORKTREE` with `N` set to the run number and `T0=$(cat "$PHASE/scratch/runs/T009-$N.t0")`. Verify: `jq '.runs | length' "$PHASE/scratch/baseline/baseline.json"` prints `3` after the third run.
 
   ```bash
   P=specs/zz-bench-authoring/001-recommend-level-quiet-flag
@@ -224,7 +240,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Frontier review of the ledger (`scratch/review/T011.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first and use `--sandbox read-only` with the explicit alternate `--model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast"`. Send this brief and save the reply to `scratch/review/T011.txt`. Verify: `test -s "$PHASE/scratch/review/T011.txt" && awk 'NF && $0 != "NO FINDINGS" && $0 !~ /^(P0|P1|P2) /{bad++} END{print bad+0}' "$PHASE/scratch/review/T011.txt"` prints `0`.
+- [ ] T011 Frontier review of the ledger (`scratch/review/T011.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Save the brief block below to `scratch/briefs/T011.txt`, then run the command block after it from `$WORKTREE`. The command block runs one read-only `codex exec` dispatch and writes the reply to `scratch/review/T011.txt`. Verify: `test -s "$PHASE/scratch/review/T011.txt" && awk 'NF && $0 != "NO FINDINGS" && $0 !~ /^(P0|P1|P2) /{bad++} END{print bad+0}' "$PHASE/scratch/review/T011.txt"` prints `0`.
 
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
@@ -239,11 +255,22 @@ Shell variables used below, set once by the conductor:
   Return the single line NO FINDINGS when there are none.
   ```
 
+  The reply path is the redirect on the `codex exec` line:
+
+  ```bash
+  cd "$WORKTREE"
+  mkdir -p "$PHASE/scratch/review"
+  AI_SESSION_CHILD=1 codex exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast" \
+    -c approval_policy=never --sandbox read-only "$(cat "$PHASE/scratch/briefs/T011.txt")" </dev/null \
+    > "$PHASE/scratch/review/T011.txt" 2> "$PHASE/scratch/review/T011.err" &
+  PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
+  ```
+
 - [ ] T012 Apply review findings (`scratch/ledger/ledger.jsonl`, `goal.md`). For each finding, fix the row, add a NEW row through T006's reproduce check or record in `goal.md` section 4 why it was not applied. Write one line per finding in `goal.md` section 4 as `T012-APPLIED <finding id>` or `T012-RECORDED <finding id> <reason>`. Write no T012 line when T011 is `NO FINDINGS`. Verify: `test "$(grep -cE '^(P0|P1|P2) ' "$PHASE/scratch/review/T011.txt")" -eq "$(grep -cE '^T012-(APPLIED|RECORDED) ' "$PHASE/goal.md")" && echo T012_COUNTS_MATCH` prints `T012_COUNTS_MATCH`.
 
 - [ ] T013 Write `scratch/baseline/baseline.md` (`scratch/baseline/baseline.md`). One table of the three runs and their five metrics, then the minimum and maximum of each metric. Write one row per run as `| <run> | <strict_passed> | <leftover_hints> | <missing_anchors> | <out_of_scope_writes> | <seconds> |`, for example `| 1 | 1 | 87 | 0 | 0 | 420 |`. Verify: `grep -c '^| [123] |' "$PHASE/scratch/baseline/baseline.md"` prints `3`.
 
-- [ ] T014 Close the phase (this folder). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`, then `git -C "$WORKTREE" status --porcelain` and compare it with `scratch/baseline/status-start.txt`. Fill `implementation-summary.md` and mark each `acceptance-criteria.md` row. Verify: `RESULT: PASSED`, and the status diff lists only paths inside this phase folder.
+- [ ] T014 Close the phase (this folder). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`, then compare `git -C "$WORKTREE" status --porcelain` with `scratch/baseline/status-start.txt`. Fill `implementation-summary.md` and mark each `acceptance-criteria.md` row. Verify: `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict | grep 'RESULT:'` prints `RESULT: PASSED`, and `diff "$PHASE/scratch/baseline/status-start.txt" <(git -C "$WORKTREE" status --porcelain) | grep '^[<>]' | grep -v '054-weak-model-spec-authoring/001-' | wc -l | tr -d ' '` prints `0`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -332,7 +359,7 @@ Shell variables used below, set once by the conductor:
 
 - [ ] CHK-030 [P0] No brief contains a credential, token or key
 - [ ] CHK-031 [P0] No worker-written command ran unless it passed the unsafe filter in T006
-- [ ] CHK-032 [P1] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-032 [P1] Every worker ran as a Task subagent, and its brief carried the pre-resolution preamble
 <!-- /ANCHOR:security -->
 
 ---
@@ -361,9 +388,9 @@ Shell variables used below, set once by the conductor:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 0/15 |
-| P1 Items | 18 | 0/18 |
-| P2 Items | 2 | 0/2 |
+| P0 Items | 14 | 0/14 |
+| P1 Items | 24 | 0/24 |
+| P2 Items | 9 | 0/9 |
 
 **Verification Date**: not yet run
 <!-- /ANCHOR:summary -->

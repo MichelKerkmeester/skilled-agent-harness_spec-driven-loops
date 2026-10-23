@@ -148,7 +148,7 @@ Every behavior phases 2 to 5 create has one operator scenario, one catalog entry
 | REQ-007 | `validation-rules.md`, `path-scoped-rules.md`, `template-style-guide.md` and `quick-reference.md` describe the current behavior, and `template-guide.md` holds the phase 3 text. |
 | REQ-008 | `validate_document.py` prints `VALID` for every edited document and every new catalog leaf named in `tasks.md` T011. |
 | REQ-009 | `playbook-provenance-paths.vitest.ts` prints `Tests  3 passed (3)` and `workflow-invariance.vitest.ts` prints `Tests  2 passed (2)`. |
-| REQ-010 | The spec-kit suite at phase close matches `scratch/baseline/suite-start.txt` on the `Test Files`, `Tests` and `exit=` lines. |
+| REQ-010 | The spec-kit suite at phase close matches `scratch/baseline/suite-start.txt` on the `Test Files`, `Tests` and `exit=` lines, exits 0 as phase 001's `../001-template-drift-census-and-baseline/scratch/baseline/suite-start.txt` did and records its cumulative delta against phase 001. |
 | REQ-011 | No file outside the file table in section 3 and this phase folder differs from the start commit. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -194,7 +194,7 @@ Every behavior phases 2 to 5 create has one operator scenario, one catalog entry
 - **NFR-P01**: Seven scenarios finish under 10 minutes each, and scenario 483 finishes under 20 minutes because it spends one model run.
 
 ### Security
-- **NFR-S01**: Briefs carry no credential, token or key. Workers inherit provider login from the environment only.
+- **NFR-S01**: Briefs carry no credential, token or key. A Task subagent inherits the session model, so the brief never carries a provider login.
 
 ### Reliability
 - **NFR-R01**: Each scenario removes the track it creates, so a second run starts from the same tree and prints the same lines.
@@ -217,7 +217,7 @@ Every behavior phases 2 to 5 create has one operator scenario, one catalog entry
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 14/25 | Files: 20 written, 0 changed outside the declared surface. Systems: playbook, catalog, README, references |
+| Scope | 14/25 | Files: 24 written, 0 changed outside the declared surface. Systems: playbook, catalog, README, references |
 | Risk | 4/25 | Auth: N, API: N, Breaking: N |
 | Research | 10/20 | Six phase docs, six target docs and three sk-doc contracts read before writing |
 | Multi-Agent | 10/15 | Workstreams: 3 lanes, 1 review |

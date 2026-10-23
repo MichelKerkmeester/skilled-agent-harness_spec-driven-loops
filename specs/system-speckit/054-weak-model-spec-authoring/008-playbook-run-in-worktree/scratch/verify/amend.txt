@@ -1,0 +1,47 @@
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:65 - Conductor component changed from a session outside OpenCode to the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:70 - S8 worker dispatch changed from opencode2 run to one Task subagent.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:71 - Fix worker changed from one dispatch to one Task subagent per failed attempt.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:150 - S8 worker transcript changed to a Task subagent reply saved as a .txt file, with the run file still conductor-written only.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:314 - Dependency row changed from the opencode2 CLI to the OpenCode Task tool.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:453 - Parallel opportunity changed to the at most three Task calls rule and the no shared write file rule.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:478 - Conductor role changed to the operator's interactive OpenCode v2 session and the outside-OpenCode sentence removed.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:479 - Added the Worker role as one Task subagent that inherits the session model and receives its gates through the brief.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:480 - S8 worker role changed to one Task subagent.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:481 - Fix worker role changed to one Task subagent per failed attempt.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:486 - Pre-task read changed to cli-opencode NEVER rules 1 and 5, which forbid a nested CLI dispatch and name the Task tool.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:489 - Provider pre-flight changed from opencode2 models --standalone to rg -c 'deepseek-v4.1-flash-1017' opencode.json.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:497 - Added the TASK-PARALLEL execution rule for at most three Task calls and no two writers of one file.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:513 - Worker brief skeleton sentence replaced with the dispatched Task subagent pre-resolution wording.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:535 - Persona exception sentence now names the native surface.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:539 - Dispatch command block replaced with the literal Task tool instruction and the reply-to-.txt write step.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:543 - PID, wait, kill and pkill guidance removed and replaced with the session-directory and worktree-path note.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md:553 - S8 brief text now names the disposable worktree and its working directory.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:70 - T002 line count corrected from nine lines and eight versions to eight lines and seven versions.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:82 - T002 opencode2 version and model checks replaced with the opencode.json model check.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:363 - Shared skeleton sentence replaced with the dispatched Task subagent pre-resolution wording.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:419 - T010 description now dispatches the S8 brief with the Task tool and saves a .txt reply.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:437 - T010 brief preparation adds the worktree directory line.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:441 - T010 preparation block ends with the S8_BRIEF_OK check.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:444 - T010 opencode2 retry loop replaced with the Task tool dispatch prose for attempts 1 and 2.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:451 - T010 recording block added to validate the worker packet and write the conductor-only run file.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:456 - T010 recording block derives attempt and reply path from .txt files.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:458 - T010 dispatch status now derives from the reply file and its provider-error text.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:484 - T010 escalation row and error line now name the .txt reply file.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:495 - T011 description now uses a prepare block, a Task tool dispatch and a record block.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:503 - T011 prepare block reads the current verdict before choosing the next attempt.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:516 - T011 prepare block stops unless the row is still FAIL.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:522 - T011 fix brief adds the worktree directory line.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:525 - T011 prepare block prints the attempt number and brief path.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:529 - T011 opencode2 dispatch replaced with the Task tool dispatch prose and the .txt reply path.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:536 - T011 record block added to rerun the scenario from the .txt reply path and update the verdict row.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:544 - T011 record block guards against a missing brief.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:1018 - CHK-031 now checks that every worker was one Task subagent with a pre-resolution brief.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md:1072 - CHK-110 now checks the exit=142 alarm line instead of a captured PID kill.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/spec.md:103 - Out-of-scope fix brief changed from a DeepSeek brief to a Task subagent brief.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/spec.md:186 - NFR-S02 now requires one Task subagent per worker with a pre-resolution brief.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/goal.md:51 - Added D8, which freezes the OpenCode v2 conductor and the Task subagent worker runtime.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/implementation-summary.md:70 - Delivery sentence now names the OpenCode v2 conductor and the Task subagents.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/graph-metadata.json:192 - Derived entity refreshed from the amended plan text.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/graph-metadata.json:206 - last_save_at refreshed by repair-derived after the doc edits.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/graph-metadata.json:217 - source_fingerprint refreshed by repair-derived after the doc edits.
+specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/graph-metadata.json:219 - source_doc_hashes refreshed by repair-derived after the doc edits.

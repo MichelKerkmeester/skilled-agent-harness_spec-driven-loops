@@ -1,17 +1,23 @@
+FIXED C1 re-derived graph-metadata.json with the validator's repair-derived.cjs so --strict prints Summary: Errors: 0  Warnings: 0 and RESULT: PASSED after the doc edits
+REJECTED C2 the check already passes, check-goal.cjs prints RESULT: PASSED (5/5 checks), so no doc changed
 REJECTED C3 the 18 hits sit inside fenced code blocks, the known scanner false positive recorded in plan.md ADR-003, so no doc changed
-REJECTED C5 ledger.jsonl is absent because phase 001 writes it when it runs, as the orchestrator states, so no doc changed
-REJECTED C5 suite-start.txt is absent because phase 001 writes it when it runs, as the orchestrator states, so no doc changed
-FIXED C9 T004 now expects five PY_OK lines, matching the five Python tools in the check loop plus NODE_OK
-FIXED C9 T006 now names the fourth block as the one that prints ROWS_OK and then the PASS and FAIL totals
-FIXED C9 T011 now says the stamp count prints five lines with 7 stamps in all
-FIXED C9 T014 replaced 101 101 90 90 0 with the rendered counts 114 114 102 102 0
-FIXED C9 T014 the count block now covers all five Level 2 scaffold docs, including implementation-summary.md
-FIXED C10 spec.md, tasks.md and acceptance-criteria.md now say five operator items, matching goal.md OP-1 to OP-5
-FIXED C10 the handoff criteria now require 214 value tokens plus the kept texts listed in tasks.md T011
-FIXED C7 T014 now checks the --track case line in create.sh source and expects 1, because --help omits the flag
-FIXED C9 T020 now records each finding as a FINDING row and compares the two counts with a command that prints FINDINGS_TALLIED or NO_FINDINGS_OK
-REJECTED C9 phase 002 is still Draft because phase 002 closes before phase 003 runs, as the orchestrator states
-FIXED C10 the complexity table now says Files: 14 changed, matching the 14 file rows in spec.md section 3
-FIXED C10 goal.md now invokes $PHASE/scratch/tools/suite_compare.py with the full argument list
-REJECTED C10 ../changelog/ does not exist yet because phase 009 owns the changelog and the line is shared template text
-FIXED C1 regenerated graph-metadata.json with repair-derived.cjs after the doc edits, because the stored source fingerprint and causal summary had to match the edited docs for strict validation to pass
+REJECTED C4 the check already passes, the em dash search prints nothing, so no doc changed
+REJECTED C5 ledger.jsonl is absent because phase 001 writes it when it runs, so no doc changed
+REJECTED C5 suite-start.txt is absent because phase 001 writes it when it runs, so no doc changed
+REJECTED C6 the other 15 locators each occur exactly once, so no doc changed
+REJECTED C6 T001 expects **Closeable:** Yes in phase 2, which phase 002 writes when it closes before phase 003 runs, so the current 0 is pre-execution state and no doc changed
+REJECTED C7 the create.sh, validate.sh, test-validation-extended.sh, repo-era.mjs and vitest commands match their scripts, so no doc changed
+REJECTED C8 author-common.txt and author-phase.txt are absent, so there is nothing to map and no doc changed
+REJECTED C9 the T001 halt is pre-execution state, because phase 002 closes before phase 003 runs, so no doc changed
+REJECTED C9 all 21 task entries already carry a Verify line with a named expected output, so no doc changed
+FIXED C9 T019 now asks for the exact old and new text and T020 splits that column at => and applies the pair with apply_edits.py
+FIXED C9 NFR-P01 no longer claims a captured PID, because T006 and T015 start the shards with a bare wait
+FIXED C10 spec.md now names all five operator items, matching REQ-009, goal.md OP-1 to OP-5 and AC-009
+REJECTED C10 ../changelog/ is shared template text and phase 009 owns the changelog, so no doc changed
+REJECTED C11 no hit describes the conductor as outside OpenCode or a worker as dispatched by opencode run, so no doc changed
+REJECTED C11 (a) plan.md defines a Worker as one Task subagent and the phase dispatches none, so no doc changed
+REJECTED C11 (b) the Review Brief Skeleton feeds the cli-codex review, where AI_SESSION_CHILD=1 is set and Task-subagent wording does not apply, so no doc changed
+REJECTED C11 (c) the T019 codex exec block is the unchanged cli-codex review dispatch, so PID, wait, kill and pkill stay and no doc changed
+REJECTED C11 (d) no Task calls are made and only the three census shards run in parallel, so no doc changed
+REJECTED C11 (e) no worker transcript is read, T019 writes and T020 reads scratch/review/T019.txt, so no doc changed
+FIXED T014 read create.sh to settle the Level 2 docs as spec.md, plan.md, tasks.md, implementation-summary.md and acceptance-criteria.md, ran the renderer over exactly those five and changed 114 114 102 102 0 to 112 112 101 101 0 in spec.md, plan.md, tasks.md and acceptance-criteria.md

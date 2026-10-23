@@ -1,0 +1,29 @@
+spec.md:188 risk mitigation now says T001 checks opencode.json before the first dispatch
+spec.md:202 NFR-P01 now says each final run is one Task call, three runs serial, a failed run is recorded and dispatched once more
+spec.md:205 NFR-S01 now says workers inherit the session model and its provider login
+plan.md:61 Conductor is now the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max
+plan.md:62 Run worker is now one Task subagent that inherits the session model
+plan.md:169 dependency row now names the Task tool instead of opencode2
+plan.md:323 Roles Conductor is now the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max
+plan.md:324 Roles Worker is now one Task subagent that inherits the session model
+plan.md:329 pre-task checklist now cites cli-opencode NEVER rules 1 and 5 instead of composing a CLI command
+plan.md:331 pre-flight now checks opencode.json for deepseek-v4.1-flash-1017 instead of opencode2 models
+plan.md:352 brief skeleton now uses the dispatched Task subagent pre-resolution sentence instead of the environment variables
+plan.md:373 role-line note no longer cites the cli-opencode rule 18 exception
+plan.md:377 Dispatch Command now uses the Task tool, subagent_type general, description TASK id and the brief text as the prompt
+plan.md:379 dispatch timing now writes scratch/runs/TASK.t0 before the Task call and TASK.t1 after it
+plan.md:381 parallel rule added: at most 3 Task calls in one message, never two that write the same file
+plan.md:383 dispatch note now names PHASE only, with the PID, wait, kill and pkill lines removed
+tasks.md:48 T001 now checks opencode.json for deepseek-v4.1-flash-1017 instead of running opencode2
+tasks.md:91 T005 transcripts are now scratch/runs/T005-N.txt instead of .jsonl
+tasks.md:93 T005 timing now saves to scratch/runs/T005-N.t0 before the Task call
+tasks.md:94 T005 now dispatches with the Task tool, writes the reply verbatim to scratch/runs/T005-N.txt and saves T005-N.t1
+tasks.md:97 T005 verify now checks the .txt reply, t0 and t1 files
+tasks.md:134 T006 now reads the start second from scratch/runs/T005-N.t0
+tasks.md:398 T010 summary block now says three Task subagents that inherited the session model
+tasks.md:519 T014 precondition 2 row now matches the parent goal text for opencode.json and the llmgateway login
+tasks.md:520 T014 precondition 4 row now matches the parent goal text for the conductor as an OpenCode v2 session with the goal bound
+tasks.md:728 CHK-002 now checks that opencode.json names the model
+tasks.md:775 CHK-032 now checks that every worker prompt carried the AGENTS.md pre-resolution
+implementation-summary.md:68 How It Was Delivered now names the operator's interactive OpenCode v2 session and three serial Task subagent runs
+graph-metadata.json:1 source_fingerprint and source_doc_hashes restamped by repair-derived.cjs --apply so the generated metadata matches the edited source docs

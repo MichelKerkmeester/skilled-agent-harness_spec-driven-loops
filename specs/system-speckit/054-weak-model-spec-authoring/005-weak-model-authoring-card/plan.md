@@ -38,7 +38,7 @@ The conductor copies one frozen card into `references/workflows/spec-authoring-c
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 003 and 004 are closed, and `rg -c 'SPECKIT_TEMPLATE_SOURCE:.*\| v2\.3 -->' $S/templates/core/*.tmpl` prints a count for each of the four core templates
+- [ ] Phases 003 and 004 are closed on the tree this phase runs against, and `rg -c 'SPECKIT_TEMPLATE_SOURCE:.*\| v2\.3 -->' $S/templates/core/*.tmpl` prints a count for each of the four core templates
 - [ ] The launch preconditions in `../spec.md` section 3 are recorded as met in `../goal.md` section 4
 - [ ] `tasks.md` T001 to T003 are done: provider check, worktree check, locator pre-check
 
@@ -112,7 +112,7 @@ Use the level it prints. Do not raise the level yourself. The level decides whic
 |-------|------------------------|
 | 1 | `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` once implementation starts |
 | 2 | the Level 1 files plus `acceptance-criteria.md` |
-| 3 | the Level 2 files plus the architecture sections and the decision records |
+| 3 | the Level 2 files plus the architecture sections and a decision record when one is written |
 
 Acceptance: the level in the scaffold header matches the level the helper printed.
 Verify: `rg -n 'SPECKIT_LEVEL' <packet folder>/spec.md` prints one line with that level.
@@ -196,7 +196,7 @@ Verify: `rg -c 'Verify: ' <packet folder>/tasks.md` and `rg -c '^- \[ \] T[0-9]'
 
 A scaffold stamped `v2.3` or later carries tokens. A token starts with `[YOUR_VALUE_HERE:` and ends at the next closing bracket. Replace the whole token, brackets included, with real content. Do not leave a token in a finished packet.
 
-If you cannot answer a question the token asks, write an open question instead. It starts with `[NEEDS CLARIFICATION:` and ends at the next closing bracket.
+If you cannot answer a question the token asks, write `UNKNOWN` in its place and write an open question in `goal.md` section 4.
 
 A token in a packet whose `spec.md` says `Status: Draft` is a warning, so strict validation can pass with tokens still in the file. A token in any other status is an error. Do not use the warning as permission. Count the tokens.
 
@@ -222,8 +222,8 @@ Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <pack
 
 A packet is closeable when:
 - every required file exists for its level
-- every token is filled or replaced by an open question
-- `tasks.md` has no `[ ]` and no `[B]` line
+- every token is filled, or replaced with `UNKNOWN` and an open question in `goal.md`
+- `tasks.md` has no `[B]` line
 - `implementation-summary.md` names the files that changed
 - `validate.sh --strict` prints `RESULT: PASSED`
 
@@ -238,8 +238,8 @@ Stop and write the question in `goal.md` when:
 - the validator fails on the same rule after three fixes
 - the feature needs more than 4 plan steps
 
-Acceptance: the question is written in `goal.md` under the rule or command that raised it.
-Verify: `rg -n 'NEEDS CLARIFICATION' <packet folder>/goal.md` prints at least one line.
+Acceptance: the question is written in `goal.md` as `Open question:` under the rule or command that raised it.
+Verify: `rg -n 'Open question:' <packet folder>/goal.md` prints at least one line.
 Do not guess. A written question is a finished step. A guess is a defect.
 ````
 
@@ -407,7 +407,7 @@ Both texts are one line and the old text occurs once.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `references/templates/template-guide.md` | Default load for four authoring intents | unchanged content, moved to `ON_DEMAND` only | guard check `guide-on-demand-only` |
+| `references/templates/template-guide.md` | Default load for four authoring intents | unchanged content, moved out of the intent lists and still listed in `ON_DEMAND` | guard check `guide-on-demand-only` |
 | `SKILL.md` `RESOURCE_MAP` | Maps intent to doc | four rows change | guard checks `intent-PLAN` to `intent-TEMPLATE_AUTHORING` |
 | `leaf-manifest.json` | Inventory of routable leaves | regenerate | guard check `leaf-manifest` and `generate-leaf-manifest.cjs --check` |
 | `leaf-aliases.json` | Identity projection of the inventory | regenerate | guard check `leaf-aliases` |
@@ -419,7 +419,7 @@ Both texts are one line and the old text occurs once.
 Required inventories:
 - Same-class producers: `rg -l 'template-guide\.md' $S --glob '!**/node_modules/**' --glob '!**/changelog/**'` listed 20 files before this plan was written. Four are router rows in `SKILL.md` and the rest are browse links. Only the four router rows change.
 - Consumers of changed symbols: `rg -n 'spec-authoring-card' .skilled --glob '!**/node_modules/**'` printed nothing before this plan was written, so the card has no consumer that must change with it.
-- Matrix axes: four intents by two tiers. Each intent loads the card and none loads the guide. The guide is named once in `ON_DEMAND`.
+- Matrix axes: four intents by two tiers. Each intent loads the card and none loads the guide. The guide is listed once in `ON_DEMAND`.
 - Algorithm invariant: a reader who follows an authoring intent never lands on a file that carries unfilled tokens. The guard fails when that invariant breaks.
 
 ### Cross-phase contracts
@@ -460,10 +460,10 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 003 closed | Internal | Checked in T001 | The card's token section would name a form the templates do not carry |
-| Phase 004 closed | Internal | Checked in T001 | The card's fill-note step would point at notes that are not there |
+| Phase 003 prerequisite landed (v2.3 stamp and token form) | Internal | Checked in T001 | The card's token section would name a form the templates do not carry |
+| Phase 004 prerequisite landed (fill notes) | Internal | Checked in T001 | The card's fill-note step would point at notes that are not there |
 | `jq`, `awk`, `rg` on PATH | Internal | Checked in T001 | The guard cannot run |
-| `opencode2` with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T001 | The three smoke runs cannot run |
+| An interactive OpenCode v2 session with `llmgateway/deepseek-v4.1-flash-1017` in `opencode.json` | External | Checked in T001 | The three smoke runs cannot run |
 | `cli-codex` with `gpt-6-luna` | External | Checked in T014 | The review is recorded as skipped and REQ-009 stays open |
 <!-- /ANCHOR:dependencies -->
 
@@ -584,7 +584,7 @@ Setup (T001-T003) ──► Card (T004) ──► Router (T005) ──┬──�
 | Inventory | Router | Two generated files | Guard |
 | Guard | Router, Inventory, Checklist, Template | `check-card-sync.sh` | Wiring, vocabulary |
 | Vocabulary | Guard | A clean card | Smoke runs |
-| Smoke runs | Vocabulary | `scratch/card-bench/` | Review |
+| Smoke runs | Vocabulary | `scratch/runs/` replies and `scratch/card-bench/` metrics | Review |
 | Review | Smoke runs | Findings | Phase close |
 <!-- /ANCHOR:dependency-graph -->
 
@@ -625,15 +625,15 @@ Setup (T001-T003) ──► Card (T004) ──► Router (T005) ──┬──�
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It dispatches workers, runs every verify command, edits the nine declared paths, and keeps `goal.md` section 4 current.
-- **Worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. One worker authors one Level 1 packet, then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It dispatches workers, runs every verify command, edits the nine declared paths and keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent, dispatched with the Task tool and inheriting the session model. One worker authors one Level 1 packet, then stops.
 - **Reviewer**: one read-only frontier review through `cli-codex` at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first edit
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command
+- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` NEVER rules 1 and 5 before the first Task dispatch
 - [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
-- [ ] Confirm `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`
+- [ ] Confirm `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0
 - [ ] Save every brief to `scratch/briefs/<task-id>.txt` before dispatching it
 
 ### Execution Rules
@@ -654,10 +654,8 @@ Every brief starts with this block, word for word, with the two paths filled in:
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as
+pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   <the packet folder this task names>
@@ -677,18 +675,27 @@ git stash, rm, mv, create.sh outside the task's stated command, generate-context
 /speckit:save, and any edit to a file not listed under ALLOWED WRITE PATHS.
 ```
 
-The role line is a focused persona summary in place of a full agent file, the small-context exception that `cli-opencode` rule 18 allows. It is declared here as that exception.
+The role line is a focused persona summary in place of a catalogue agent file. The Task call names the `general` subagent type, so the worker loads no agent file.
 
 ### Dispatch Command
 
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of
+`$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to
+`$PHASE/scratch/runs/<TASK>.txt` with the write tool.
+
+Where the task records seconds, measure the dispatch:
+
 ```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
+date +%s > "$PHASE/scratch/runs/$TASK.t0"
 ```
 
-`PHASE` is this folder's path and `WORKTREE` is the build worktree. Never kill by a name pattern. Kill only the captured PID.
+then make the Task call, then:
+
+```bash
+date +%s > "$PHASE/scratch/runs/$TASK.t1"
+```
+
+Two rules: at most 3 Task calls in one message, and never two in one message that write the same file. `PHASE` is this folder's path.
 
 ### Status Reporting Format
 

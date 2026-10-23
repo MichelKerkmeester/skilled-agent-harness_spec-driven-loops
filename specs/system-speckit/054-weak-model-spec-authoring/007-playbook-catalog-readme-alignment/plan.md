@@ -115,15 +115,15 @@ A gate that fails a fresh scaffold blocks every new packet before its first word
 
 Operators scaffold a Level 2 packet, read the gate entry from a strict JSON run, and confirm the warning.
 
-- Objective: Prove that a v2.3 Level 2 scaffold with its Status row at Draft reports `PLACEHOLDER_FILLED` as `warning`, and that the strict run still reports `passed: true`.
+- Objective: Prove that a v2.3 Level 2 scaffold with its Status row at Draft reports `PLACEHOLDER_FILLED` as `warn`, and that the strict run still reports `passed: true`.
 - Playbook ID: 476.
 - Real user request: `Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.`
 - Prompt: `Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.`
 - Preconditions: A checkout with Node, bash and jq on PATH, and a built `.skilled/skills/system-spec-kit` so `validate.sh` runs. The scenario needs no network.
 - Expected execution process: Scaffold one Level 2 packet, confirm the v2.3 stamp and the Draft status, run strict validation with JSON output, then read the `PLACEHOLDER_FILLED` entry and the `passed` field.
-- Expected signals: The scaffold prints the packet path. The stamp line ends with `v2.3 -->`. The status line reads Draft. The gate entry prints `warning`. The `passed` field prints `true`.
+- Expected signals: The scaffold prints the packet path. The stamp line ends with `v2.3 -->`. The status line reads Draft. The gate entry prints `warn`. The `passed` field prints `true`.
 - Desired user-visible outcome: The operator sees a clean strict pass and one warning that names the unfilled tokens, with the packet left ready to fill.
-- Pass/fail: PASS if the gate entry is `warning` and `passed` is `true`. FAIL if the entry is `error` or `pass`, or if `passed` is `false`.
+- Pass/fail: PASS if the gate entry is `warn` and `passed` is `true`. FAIL if the entry is `error` or `pass`, or if `passed` is `false`.
 
 ---
 
@@ -167,17 +167,17 @@ test ! -d specs/zz-pb-gate-draft && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line that ends with `v2.3 -->`, then a Status row that reads Draft. Step 2 prints `warning`, then `true`. Step 3 prints `cleanup=ok`.
+Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line that ends with `v2.3 -->`, then a Status row that reads Draft. Step 2 prints `warn`, then `true`. Step 3 prints `cleanup=ok`.
 
 ### Evidence
 
 - The packet path, the stamp line and the status line from step 1.
-- The `warning` line and the `true` line from step 2, and the `$OUT/gate.json` file.
+- The `warn` line and the `true` line from step 2, and the `$OUT/gate.json` file.
 - The `cleanup=ok` line from step 3.
 
 ### Pass / Fail
 
-- **Pass**: The gate entry is `warning`, `passed` is `true`, and the track is gone at the end.
+- **Pass**: The gate entry is `warn`, `passed` is `true`, and the track is gone at the end.
 - **Fail**: The gate entry is `error` or `pass`, `passed` is `false`, or the track remains.
 
 ### Failure Triage
@@ -240,7 +240,7 @@ Operators scaffold a packet, set its status to Complete, and confirm that the ga
 - Expected execution process: Scaffold one Level 2 packet, change the Status row from Draft to Complete, run strict validation with JSON output, then read the gate entry and the `passed` field.
 - Expected signals: The status line reads Complete. The gate entry prints `error`. The `passed` field prints `false`.
 - Desired user-visible outcome: The operator sees the gate refuse a finished packet that still holds a token, with the token lines named in the details.
-- Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warning` or `pass`, or if `passed` is `true`.
+- Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warn` or `pass`, or if `passed` is `true`.
 
 ---
 
@@ -302,11 +302,11 @@ Step 1 prints `packet=specs/zz-pb-gate-complete/001-gate-complete`. Step 2 print
 ### Pass / Fail
 
 - **Pass**: The gate entry is `error`, `passed` is `false`, and at least one detail line names a token.
-- **Fail**: The gate entry is `warning` or `pass`, `passed` is `true`, or no detail line names a token.
+- **Fail**: The gate entry is `warn` or `pass`, `passed` is `true`, or no detail line names a token.
 
 ### Failure Triage
 
-A `warning` entry means the status edit did not land, so check step 2. A `pass` entry means the scaffold held no token, so read the stamp line and confirm phase 3 is closed. A `true` `passed` value means the gate did not run, so read `$OUT/gate.json` for the `PLACEHOLDER_FILLED` entry itself.
+A `warn` entry means the status edit did not land, so check step 2. A `pass` entry means the scaffold held no token, so read the stamp line and confirm phase 3 is closed. A `true` `passed` value means the gate did not run, so read `$OUT/gate.json` for the `PLACEHOLDER_FILLED` entry itself.
 
 ---
 
@@ -364,7 +364,7 @@ Operators rewrite the stamp on a scaffold, keep the Draft status, and confirm th
 - Expected execution process: Scaffold one Level 2 packet, rewrite every v2.3 stamp to v2.2, confirm the Draft status and the stamp, run strict validation with JSON output, then read the gate entry.
 - Expected signals: Each document stamp ends with `v2.2 -->`. The status line reads Draft. The gate entry prints `error`. The `passed` field prints `false`.
 - Desired user-visible outcome: The operator sees the older packet keep its error, so no existing repository changes verdict.
-- Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warning`, or if `passed` is `true`.
+- Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warn`, or if `passed` is `true`.
 
 ---
 
@@ -392,7 +392,7 @@ test -f "$P/spec.md" && echo "packet=$P"
 2. Rewrite the stamp in every packet document and confirm the stamp and the status.
 
 ```bash
-for f in spec plan tasks acceptance-criteria; do
+for f in spec plan tasks implementation-summary acceptance-criteria; do
   perl -pi -e 's/\| v2\.3 -->/| v2.2 -->/g' "$P/$f.md"
   printf '%s ' "$f"
   grep -c 'v2\.2 -->' "$P/$f.md"
@@ -417,23 +417,23 @@ test ! -d specs/zz-pb-gate-legacy && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints `packet=specs/zz-pb-gate-legacy/001-gate-legacy`. Step 2 prints four lines, each a document name followed by `1`, then a Status row that reads Draft. Step 3 prints `error`, then `false`. Step 4 prints `cleanup=ok`.
+Step 1 prints `packet=specs/zz-pb-gate-legacy/001-gate-legacy`. Step 2 prints five lines, each a document name followed by `1`, then a Status row that reads Draft. Step 3 prints `error`, then `false`. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 
 - The packet path from step 1.
-- The four stamp counts and the Draft status line from step 2.
+- The five stamp counts and the Draft status line from step 2.
 - The `error` line and the `false` line from step 3, and the `$OUT/gate.json` file.
 - The `cleanup=ok` line from step 4.
 
 ### Pass / Fail
 
 - **Pass**: Every document reports one v2.2 stamp, the status stays Draft, the gate entry is `error`, and `passed` is `false`.
-- **Fail**: A document keeps a v2.3 stamp, the gate entry is `warning`, or `passed` is `true`.
+- **Fail**: A document keeps a v2.3 stamp, the gate entry is `warn`, or `passed` is `true`.
 
 ### Failure Triage
 
-A stamp count of `0` means the rewrite did not match, so read the stamp line and confirm the template version. A `warning` entry means the stamp gate still saw v2.3 somewhere, so check all four documents before judging the rule. A different rule failure is separate from this scenario, so read the other error entries.
+A stamp count of `0` means the rewrite did not match, so read the stamp line and confirm the template version. A `warn` entry means the stamp gate still saw v2.3 somewhere, so check all five documents before judging the rule. A different rule failure is separate from this scenario, so read the other error entries.
 
 ---
 
@@ -972,11 +972,11 @@ Operators dispatch one worker, then validate the packet it wrote.
 - Playbook ID: 483.
 - Real user request: `Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.`
 - Prompt: `Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.`
-- Preconditions: A checkout with Node, bash, `rg` and `opencode2` on PATH, a provider login that lists `llmgateway/deepseek-v4.1-flash-1017`, and phase 5 closed so the card exists. The scenario needs network access and one model run.
-- Expected execution process: Remove any earlier throwaway track, write the worker brief, dispatch the worker, validate the packet it wrote, count the tokens left, then remove the track.
-- Expected signals: The dispatch exits 0. The packet holds `spec.md`. Strict validation prints `RESULT: PASSED`. The token count prints `0`. The track is gone at the end.
+- Preconditions: A checkout with Node, bash and `rg` on PATH, an interactive OpenCode v2 session whose `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017`, and phase 5 closed so the card exists. The scenario needs network access and one Task subagent run.
+- Expected execution process: Remove any earlier throwaway track, write the worker brief, dispatch the subagent with the Task tool, validate the packet it wrote, count the tokens left, then remove the track.
+- Expected signals: The subagent returns a final reply. The packet holds `spec.md`. Strict validation prints `RESULT: PASSED`. The token count prints `0`. The track is gone at the end.
 - Desired user-visible outcome: The operator sees a finished Level 1 packet that a strict run accepts, with no authoring hint left for a reader to fill.
-- Pass/fail: PASS if the dispatch exits 0, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone. FAIL if any of those checks fails.
+- Pass/fail: PASS if the subagent returns a reply, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone. FAIL if any of those checks fails.
 
 ---
 
@@ -990,17 +990,22 @@ Use the authoring card to write a complete Level 1 packet for a small feature, t
 
 ### Commands
 
-Run the commands from the checkout root in one shell session, so the variables set in step 1 stay defined. This scenario spends one model run.
+Run steps 1, 3 and 4 from the checkout root in one shell session. Step 1 writes the scratch path to a fixed file, so step 3 recovers it after the Task call. Step 2 uses the Task tool in this session. This scenario spends one model run.
 
 1. Clear the throwaway track and write the worker brief.
 
 ```bash
 OUT="$(mktemp -d)"
+POINTER=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+mkdir -p "$(dirname "$POINTER")"
+printf '%s\n' "$OUT" > "$POINTER"
+echo "out=$OUT"
+echo "pointer=$POINTER"
 rm -rf specs/zz-pb-card
 cat > "$OUT/brief.txt" <<'TXT'
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder you create and fill is:
   specs/zz-pb-card/001-card-authoring
@@ -1024,18 +1029,16 @@ TXT
 echo "brief=$(wc -l < "$OUT/brief.txt") lines"
 ```
 
-2. Dispatch one DeepSeek worker.
+2. Dispatch one worker with the Task tool.
 
-```bash
-SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$OUT/brief.txt")" </dev/null > "$OUT/run.jsonl" 2>&1
-echo "dispatch_exit=$?"
+```text
+Dispatch with the Task tool: subagent_type `general`, description `483`, prompt = the full text of the brief written in step 1. When the subagent returns, read the OUT path from `specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt` and write the final reply verbatim to `<that path>/reply.txt` with the write tool.
 ```
 
 3. Validate the packet and count the tokens left.
 
 ```bash
+OUT="$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
 P=specs/zz-pb-card/001-card-authoring
 test -f "$P/spec.md" && echo "packet=$P"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict > "$OUT/val.txt" 2>&1
@@ -1053,23 +1056,23 @@ test ! -d specs/zz-pb-card && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints a brief line count above 20. Step 2 prints `dispatch_exit=0`. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`. Step 4 prints `cleanup=ok`.
+Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20. Step 2 leaves the reply file in the scratch path holding the worker's last `RESULT` line. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 
-- The brief line count from step 1.
-- The dispatch exit code from step 2 and the `$OUT/run.jsonl` transcript.
+- The `out=` line, the `pointer=` line and the brief line count from step 1.
+- The reply file in the scratch path from step 2 and the worker's last `RESULT` line.
 - The packet path, the validation exit code, the `RESULT` line and the token count from step 3.
 - The `cleanup=ok` line from step 4.
 
 ### Pass / Fail
 
-- **Pass**: The dispatch exits 0, the packet exists, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone.
-- **Fail**: The dispatch fails, the packet is missing, strict validation fails, the token count is above zero, or the track remains.
+- **Pass**: The subagent returns a reply, the packet exists, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone.
+- **Fail**: The subagent returns no reply, the packet is missing, strict validation fails, the token count is above zero, or the track remains.
 
 ### Failure Triage
 
-A missing packet means the worker did not run the scaffold command, so read `$OUT/run.jsonl` and check the provider login before retrying. A failed strict run means the packet is incomplete, so read `$OUT/val.txt` and name the rule. A token count above zero means the card did not drive a finished fill, so record the token lines in `$OUT/val.txt` before the next run. Remove `specs/zz-pb-card` before every retry.
+A missing packet means the worker did not run the scaffold command, so read `$OUT/reply.txt` and check that the session model is `llmgateway/deepseek-v4.1-flash-1017` before retrying. A failed strict run means the packet is incomplete, so read `$OUT/val.txt` and name the rule. A token count above zero means the card did not drive a finished fill, so record the token lines in `$OUT/val.txt` before the next run. Remove `specs/zz-pb-card` before every retry.
 
 ---
 
@@ -1079,7 +1082,7 @@ A missing packet means the worker did not run the scaffold command, so read `$OU
 - Feature catalog: [spec-authoring-card.md](../../feature-catalog/tooling-and-scripts/spec-authoring-card.md)
 - Implementation: [spec-authoring-card.md](../../references/workflows/spec-authoring-card.md)
 
-Provenance: manual only - opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max
+Provenance: manual only - Task tool subagent on llmgateway/deepseek-v4.1-flash-1017#max
 
 ---
 
@@ -1934,15 +1937,15 @@ Setup (T001-T003) ──► Lane A scenarios (T004) ──► Playbook index (T0
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It dispatches workers, runs every verify command, edits only the declared files, and keeps `goal.md` section 4 current.
-- **Worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. One worker does one lane, then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It dispatches workers with the Task tool, runs every verify command, edits only the declared files, and keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent, which inherits the session model. One worker does one lane, then stops.
 - **Reviewer**: one read-only frontier review through `cli-codex` at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first dispatch
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command
+- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` NEVER rules 1 and 5 before the first dispatch, so the session never issues a nested CLI run
 - [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
-- [ ] Confirm `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`
+- [ ] Confirm `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0
 - [ ] Save every brief to `scratch/briefs/<task-id>.txt` before dispatching it
 
 ### Execution Rules
@@ -1962,10 +1965,7 @@ Every brief starts with this block, word for word, with the two paths filled in:
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment
@@ -1985,18 +1985,13 @@ git stash, rm, mv, create.sh outside the task's stated command, generate-context
 /speckit:save, opencode, any sub-agent, and any edit to a file not listed under ALLOWED WRITE PATHS.
 ```
 
-The role line is a focused persona summary in place of a full agent file, the small-context exception that `cli-opencode` rule 18 allows. It is declared here as that exception.
+The role line is a focused persona summary in place of a full agent file. The Task subagent receives it as prompt text, so no agent file is needed.
 
 ### Dispatch Command
 
-```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-```
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of `$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 
-`PHASE` is this folder's path and `WORKTREE` is the build worktree. Never kill by a name pattern. Kill only the captured PID.
+`PHASE` is this folder's path and `WORKTREE` is the build worktree. At most 3 Task calls go in one message, and never two that write the same file. Where a task measures time, run `date +%s > $PHASE/scratch/runs/<TASK>.t0` before the Task call and `date +%s > $PHASE/scratch/runs/<TASK>.t1` after.
 
 ### Status Reporting Format
 

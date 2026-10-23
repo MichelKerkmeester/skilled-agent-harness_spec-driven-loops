@@ -185,7 +185,7 @@ The closing report states the before and after per metric as a range, and the pa
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Phases 1 to 8 closed | There is no final tree to measure and no report from phase 8 | `tasks.md` T002 checks nine closeable statements and stops the phase when one is missing |
-| Dependency | LLM Gateway provider for `llmgateway/deepseek-v4.1-flash-1017` | No final run can start | T001 checks the provider list before the first dispatch and records the error when it fails |
+| Dependency | LLM Gateway provider for `llmgateway/deepseek-v4.1-flash-1017` | No final run can start | T001 checks `opencode.json` before the first dispatch and records the error when it fails |
 | Dependency | Phase 8 playbook report | Parent criterion 6 cannot be proven | T015 names the missing report and leaves the criterion unticked |
 | Risk | The three final runs vary so much that the delta is noise | The report overclaims | The report prints the range and states that three runs cannot support a significance claim |
 | Risk | A final run writes outside its throwaway track | The tree is dirty and the next phase inherits it | M4 counts those writes and the conductor restores each path before the next run |
@@ -199,10 +199,10 @@ The closing report states the before and after per metric as a range, and the pa
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Each final run is one worker dispatch. A run that has not returned in 30 minutes is killed by its captured PID and dispatched once more. Three runs run serially.
+- **NFR-P01**: Each final run is one Task call. Three runs run serially. A run that fails is recorded and dispatched once more.
 
 ### Security
-- **NFR-S01**: Every brief carries no credential, token or key. Workers inherit the provider login from the environment only.
+- **NFR-S01**: Every brief carries no credential, token or key. Workers inherit the session model and its provider login.
 
 ### Reliability
 - **NFR-R01**: Every number in the report is produced by a command in `tasks.md`, so a second conductor on the same tree gets the same numbers from the same runs.

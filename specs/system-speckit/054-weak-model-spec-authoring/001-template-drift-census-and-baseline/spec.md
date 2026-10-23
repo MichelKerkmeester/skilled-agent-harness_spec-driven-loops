@@ -102,13 +102,15 @@ Every later phase works from one verified ledger, and phase 9 compares against m
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `scratch/ledger/lane-a.jsonl`, `lane-b.jsonl`, `lane-c.jsonl` | Create | One file per census lane |
+| `scratch/ledger/lane-*.read.txt`, `lane-*.all.txt`, `lane-*.missing.txt` | Create | Files each lane opened, the lane file lists and the unread paths |
 | `scratch/ledger/candidates.jsonl`, `dropped.jsonl`, `unsafe.jsonl` | Create | Merge input, dropped rows and quarantined commands |
 | `scratch/ledger/ledger.jsonl` | Create | Merged rows that reproduced |
 | `scratch/ledger/coverage.txt` | Create | Files read per lane |
 | `scratch/baseline/hints-v2.2.txt`, `anchors-v2.2.txt` | Create | Hint strings and anchor counts from a fresh scaffold |
 | `scratch/baseline/runs.jsonl`, `baseline.json`, `baseline.md` | Create | Three runs, the run number and five metrics |
 | `scratch/baseline/status-before-*.txt`, `status-after-*.txt` | Create | Tree state before and after each run |
-| `scratch/runs/T009-*.jsonl`, `scratch/review/T011.txt` | Create | Dispatch output and the frontier review |
+| `scratch/baseline/status-start.txt`, `suite-start.txt` | Create | Tree state and suite result at the start commit |
+| `scratch/runs/T009-*.txt`, `T009-*.t0`, `T009-*.t1`, `scratch/review/T011.txt` | Create | Worker replies, dispatch times and the frontier review |
 | `scratch/briefs/*.txt` | Create | Every brief this phase dispatched |
 | `tasks.md`, `goal.md`, `implementation-summary.md`, `acceptance-criteria.md` | Modify | Progress and evidence |
 <!-- /ANCHOR:scope -->
@@ -166,10 +168,10 @@ Every later phase works from one verified ledger, and phase 9 compares against m
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Each census lane is one worker dispatch. A lane that has not returned in 30 minutes is killed by its captured PID and dispatched once more.
+- **NFR-P01**: Each census lane is one worker dispatch. A lane that has not returned in 30 minutes is cancelled and dispatched once more.
 
 ### Security
-- **NFR-S01**: Briefs carry no credential, token or key. Workers inherit provider login from the environment only.
+- **NFR-S01**: Briefs carry no credential, token or key. Workers inherit provider login from the conductor's session only.
 
 ### Reliability
 - **NFR-R01**: Every metric is computed by a command in `tasks.md`, so a second conductor running the same commands on the same runs gets the same numbers.

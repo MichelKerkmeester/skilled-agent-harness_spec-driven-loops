@@ -258,14 +258,14 @@ rm -rf "$T"
   cd "$WORKTREE"
   M="$PHASE/scratch/mirrors"
   : > "$M/summary.txt"
-  node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check > "$M/check-runtime.txt" 2>&1; echo "runtime-mirrors rc=$? $(tail -1 "$M/check-runtime.txt")" >> "$M/summary.txt"
-  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check > "$M/check-codex-agents.txt" 2>&1; echo "codex-agents rc=$? $(tail -1 "$M/check-codex-agents.txt")" >> "$M/summary.txt"
-  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check > "$M/check-codex-prompts.txt" 2>&1; echo "codex-prompts rc=$? $(tail -1 "$M/check-codex-prompts.txt")" >> "$M/summary.txt"
-  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check > "$M/check-pi-agents.txt" 2>&1; echo "pi-agents rc=$? $(tail -1 "$M/check-pi-agents.txt")" >> "$M/summary.txt"
-  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check > "$M/check-pi-prompts.txt" 2>&1; echo "pi-prompts rc=$? $(tail -1 "$M/check-pi-prompts.txt")" >> "$M/summary.txt"
-  node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs > "$M/check-roster.txt" 2>&1; echo "agent-roster rc=$? $(grep 'STATUS=' "$M/check-roster.txt" | tail -1)" >> "$M/summary.txt"
-  node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs > "$M/check-catalog.txt" 2>&1; echo "command-catalog rc=$? $(grep 'STATUS=' "$M/check-catalog.txt" | tail -1)" >> "$M/summary.txt"
-  node .skilled/bin/check-agent-mirror-sync.cjs --all > "$M/check-agent-bodies.txt" 2>&1; echo "agent-bodies rc=$? $(tail -1 "$M/check-agent-bodies.txt")" >> "$M/summary.txt"
+  node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check > "$M/check-runtime.txt" 2>&1; rc=$?; echo "runtime-mirrors $(tail -1 "$M/check-runtime.txt") rc=$rc" >> "$M/summary.txt"
+  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check > "$M/check-codex-agents.txt" 2>&1; rc=$?; echo "codex-agents $(tail -1 "$M/check-codex-agents.txt") rc=$rc" >> "$M/summary.txt"
+  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check > "$M/check-codex-prompts.txt" 2>&1; rc=$?; echo "codex-prompts $(tail -1 "$M/check-codex-prompts.txt") rc=$rc" >> "$M/summary.txt"
+  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check > "$M/check-pi-agents.txt" 2>&1; rc=$?; echo "pi-agents $(tail -1 "$M/check-pi-agents.txt") rc=$rc" >> "$M/summary.txt"
+  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check > "$M/check-pi-prompts.txt" 2>&1; rc=$?; echo "pi-prompts $(tail -1 "$M/check-pi-prompts.txt") rc=$rc" >> "$M/summary.txt"
+  node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs > "$M/check-roster.txt" 2>&1; rc=$?; echo "agent-roster $(grep 'STATUS=' "$M/check-roster.txt" | tail -1) rc=$rc" >> "$M/summary.txt"
+  node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs > "$M/check-catalog.txt" 2>&1; rc=$?; echo "command-catalog $(grep 'STATUS=' "$M/check-catalog.txt" | tail -1) rc=$rc" >> "$M/summary.txt"
+  node .skilled/bin/check-agent-mirror-sync.cjs --all > "$M/check-agent-bodies.txt" 2>&1; rc=$?; echo "agent-bodies $(tail -1 "$M/check-agent-bodies.txt") rc=$rc" >> "$M/summary.txt"
   cat "$M/summary.txt"
   ```
 
@@ -282,7 +282,7 @@ rm -rf "$T"
   node "$S/runtime/cli/retrieval/lookup-trigger-index.mjs" --json -- "spec authoring card" > "$PHASE/scratch/lookup.json" 2>&1; echo "lookup_exit=$?"
   ```
 
-- [ ] T010 Check the phase 1 ledger rows owned by this phase (`scratch/audit/owner-006.tsv`, `scratch/audit/owner-006-open.txt`, `goal.md`). Run the block below. It prints `OWNER006=LEDGER_MISSING` when the ledger is absent. Otherwise it prints `OWNER006_TOTAL=<n>`, `OWNER006_OPEN=<m>` and one `COVERED` or `OPEN` line per owner `006` row. Verify: `grep -cE '^(COVERED|OPEN) ' "$PHASE/scratch/audit/owner-006-status.txt"` prints `n` and `grep -c '^OPEN ' "$PHASE/scratch/audit/owner-006-status.txt"` prints `m`, so the status file matches both summary numbers. Write both numbers and the path `scratch/audit/owner-006-open.txt` into the `Owner 006 ledger rows recorded (T010)` row of `goal.md` section 4. That file already holds every `OPEN` line verbatim, so no line is copied by hand. An `OPEN` row is not fixed here, because its text was not audited at authoring time. When `LED` is missing, write `OWNER006=LEDGER_MISSING` in the same row and the task closes with it.
+- [ ] T010 Check the phase 1 ledger rows owned by this phase (`scratch/audit/owner-006.tsv`, `scratch/audit/owner-006-open.txt`, `goal.md`). Run the block below. It prints `OWNER006=LEDGER_MISSING` when the ledger is absent. Otherwise it prints `OWNER006_TOTAL=<n>`, `OWNER006_OPEN=<m>`, one `COVERED` or `OPEN` line per owner `006` row and then `OWNER006_COUNTS_OK`. Verify: the block prints `OWNER006_COUNTS_OK`, so the status file matches both summary numbers. When the ledger is absent it prints `OWNER006=LEDGER_MISSING` instead and the task closes with it. Write both numbers and the path `scratch/audit/owner-006-open.txt` into the `Owner 006 ledger rows recorded (T010)` row of `goal.md` section 4. That file already holds every `OPEN` line verbatim, so no line is copied by hand. An `OPEN` row is not fixed here, because its text was not audited at authoring time. When `LED` is missing, write `OWNER006=LEDGER_MISSING` in the same row and the task closes with it.
 
   ```bash
   cd "$WORKTREE"
@@ -301,6 +301,11 @@ rm -rf "$T"
     echo "OWNER006_TOTAL=$(wc -l < "$A/owner-006.tsv" | tr -d ' ')"
     echo "OWNER006_OPEN=$(wc -l < "$A/owner-006-open.txt" | tr -d ' ')"
     cat "$A/owner-006-status.txt"
+    total_status=$(grep -cE '^(COVERED|OPEN) ' "$A/owner-006-status.txt")
+    total_rows=$(grep -c . "$A/owner-006.tsv")
+    open_status=$(grep -c '^OPEN ' "$A/owner-006-status.txt")
+    open_rows=$(grep -c . "$A/owner-006-open.txt")
+    if [ "$total_status" = "$total_rows" ] && [ "$open_status" = "$open_rows" ]; then echo "OWNER006_COUNTS_OK"; else echo "OWNER006_COUNTS_DIFF"; fi
   fi
   ```
 

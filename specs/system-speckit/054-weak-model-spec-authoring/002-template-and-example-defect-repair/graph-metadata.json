@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The example docs a model imitates carry broken descriptions in 18 of 21 files, three of them still cite a `Checklist.md` that no longer exists",
     "created_at": "2026-10-23T11:27:20Z",
-    "last_save_at": "2026-10-23T14:15:50.536Z",
+    "last_save_at": "2026-10-23T16:02:30.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cfb4b9cc961ac48abd0cec5b21e2b782ee785df96b6594c6d1eb4d9206eb261",
+    "source_fingerprint": "sha256:80a60e79ce84ace3060c4ac264e74300c806bfd2babc16ba3dd6465f1c61fbbf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95c3449e8507c31e557a7e22468e6e310d30de66b5e1523e420f3ee141f531d8",
-      "plan.md": "0f0e58c1c818ccb0667198e4e5dda464458de1c1a9cc5dc71fb78c5c852cac5e",
-      "tasks.md": "478216d84a043aa6a8cc8fa7d32e149fac1d6154ff7f34ecbbc2b0f3eb22b471",
-      "implementation-summary.md": "7fbb163a36982c727e62c383a006077ca1bd6f7362fcdf17b45d1750d7eaa4e7"
+      "plan.md": "00009d9c9e3e7ac60c6d2833be78b98cda1c932784d2c4f362ff9e85e9571865",
+      "tasks.md": "33cc024dcc7197139b09a11bded9cf2e4c8f40dfe8c4715003ad16cebfc8b54b",
+      "implementation-summary.md": "f1eea822cd39d2ef958f21cbebf37ebab4bf2ff2ef340886a5795461625d3b28"
     },
     "last_active_at": null
   }

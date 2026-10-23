@@ -1,0 +1,38 @@
+AMENDMENT BRIEF (operator decision, frozen): the conductor now runs INSIDE OpenCode v2.
+
+FACTS
+- The operator opens an interactive OpenCode v2 session in the repository. Its build agent runs
+  llmgateway/deepseek-v4.1-flash-1017 at variant max (see opencode.json). That session is the conductor.
+- From inside OpenCode, `opencode run` and `opencode2 run` are forbidden (cli-opencode SKILL.md, NEVER rules 1 and 5).
+  Workers are dispatched with OpenCode's native Task tool instead. A Task subagent inherits the session model.
+- The session goal is bound with the native OpenCode plugin: `/goal-opencode bind specs/system-speckit/054-weak-model-spec-authoring`.
+- A Task subagent cannot receive environment variables. The in-prompt preamble is what pre-resolves its gates.
+- cli-codex review dispatches (codex exec) stay as they are. Only OpenCode worker dispatch changes.
+
+WHAT TO CHANGE IN THIS FOLDER (six docs only)
+1. Every place that dispatches a worker with `opencode2 run` or `opencode run` (find with: rg -n 'opencode2? run' specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/*.md).
+   Replace the dispatch with this literal instruction, adapted to the task id:
+     "Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of
+      `$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to
+      `$PHASE/scratch/runs/<TASK>.txt` with the write tool."
+   Remove the PID, wait, kill and pkill lines. Where a task measured time around a dispatch, keep it: run
+   `date +%s > $PHASE/scratch/runs/<TASK>.t0` before the Task call and `date +%s > $PHASE/scratch/runs/<TASK>.t1` after.
+   Where a verify read a `.jsonl` worker transcript, point it at the `.txt` reply file instead.
+2. Parallel rule: at most 3 Task calls in one message, never two that write the same file.
+3. The worker brief skeleton: keep it, but replace the sentence that says AI_SESSION_CHILD=1 and
+   SYSTEM_SPEC_GATE_ENFORCE=0 are set in the environment with: "You are a dispatched Task subagent. This
+   repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt
+   is that pre-resolution." Keep every other line of the skeleton.
+4. The Roles text: the Conductor is "the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max",
+   and a Worker is "one Task subagent". Remove any sentence saying the conductor must run outside OpenCode.
+5. Any ADR, risk row, dependency row or check that names `opencode2` as the worker runtime: update it to the Task
+   tool. A pre-flight that ran `opencode2 models --standalone` becomes a check that `opencode.json` names
+   llmgateway/deepseek-v4.1-flash-1017 (rg -c 'deepseek-v4.1-flash-1017' opencode.json prints a number above 0).
+6. Change nothing else. House style: no em dash, no semicolon in prose, no serial comma. Keep every heading and anchor.
+
+THEN RUN (from the repository root) and fix until both pass, at most three tries:
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance --strict      -> RESULT: PASSED
+  node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/goal.md       -> RESULT: PASSED
+  rg -c 'opencode2? run' specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/*.md                                                       -> no output
+Write specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/verify/amend.txt with one line per changed location: file:line and what changed.
+RETURN two lines: the validate RESULT line and the check-goal RESULT line.

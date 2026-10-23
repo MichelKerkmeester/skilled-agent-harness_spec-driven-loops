@@ -71,7 +71,7 @@ A stamp-gated lifecycle. The template stamp says which contract a doc was writte
 
 ### Frozen definitions
 
-**Hint.** A bracketed text that matches `\[[A-Za-z/][^]\[]{2,}\]`. The slash lets the score cells `[/25]`, `[/20]` and `[/15]` count. Phase 1 counted with a letter-only start, so on the same Level 2 scaffold it saw 97 occurrences and this regex sees 114 over the five docs a Level 2 scaffold creates.
+**Hint.** A bracketed text that matches `\[[A-Za-z/][^]\[]{2,}\]`. The slash lets the score cells `[/25]`, `[/20]` and `[/15]` count. Phase 1 counted with a letter-only start, so on the same Level 2 scaffold it saw 97 occurrences and this regex sees 112 over the five docs a Level 2 scaffold creates.
 
 **Conversion rule.** The script `convert_hints.py` turns a hint into `[YOUR_VALUE_HERE: ` followed by the hint text and `]`. The text keeps its case. It skips five cases:
 1. A line inside a fenced code block.
@@ -331,8 +331,8 @@ Setup (T001-T005) ──► Census before (T006) ──► Failing test (T007) �
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It runs every command in `tasks.md`, reads every output, edits only the files in `spec.md` section 3 and this phase folder, and keeps `goal.md` section 4 current.
-- **Worker**: none. Every edit in this phase is made by a tool script or a quoted heredoc, because each one has an exact old text and an exact new text. No model call can improve on that, and a model could only reword it.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It runs every command in `tasks.md`, reads every output, edits only the files in `spec.md` section 3 and this phase folder, and keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent, dispatched with the Task tool and inheriting the session model. This phase dispatches none, because every edit is made by a tool script or a quoted heredoc, and each one has an exact old text and an exact new text. No model call can improve on that, and a model could only reword it.
 - **Reviewer**: one read-only frontier review through `cli-codex` with `gpt-6-luna` at phase close. It writes nothing.
 
 ### Pre-Task Checklist

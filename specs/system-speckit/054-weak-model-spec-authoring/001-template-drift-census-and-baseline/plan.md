@@ -140,9 +140,9 @@ This phase changes no producer or consumer. The table records what it reads so t
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `templates/core`, `addons`, `packet-types` | Template sources the renderer reads | unchanged, read by lane A | lane A JSONL lists each file it read in a final `{"read": ...}` line |
-| `templates/examples` | Filled examples models imitate | unchanged, read by lane B | lane B JSONL read line |
-| `references/templates`, `references/workflows`, `SKILL.md` | Authoring guidance and router | unchanged, read by lane C | lane C JSONL read line |
+| `templates/core`, `addons`, `packet-types` | Template sources the renderer reads | unchanged, read by lane A | `scratch/ledger/lane-a.read.txt` holds one line per file lane A opened |
+| `templates/examples` | Filled examples models imitate | unchanged, read by lane B | `scratch/ledger/lane-b.read.txt` holds one line per file lane B opened |
+| `references/templates`, `references/workflows`, `SKILL.md` | Authoring guidance and router | unchanged, read by lane C | `scratch/ledger/lane-c.read.txt` holds one line per file lane C opened |
 
 Required inventories:
 - Same-class producers: every class in section 3 has a command that runs over the whole lane directory, not one file.
@@ -179,7 +179,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `opencode2` with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T001 | No lane can run |
+| OpenCode v2 Task tool, with `opencode.json` naming `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T001 | No lane can run |
 | `jq` and `rg` on PATH | Internal | Checked in T001 | Merge and evidence checks cannot run |
 | `create.sh` and `validate.sh` in the build worktree | Internal | Checked in T002 | Baseline cannot run |
 | `cli-codex` for the review | External | Checked in T011 | Review is recorded as skipped with the error, and REQ-006 stays open |
@@ -293,7 +293,7 @@ Setup (T001-T003) ──► Census lanes A, B, C in parallel (T004-T005) ──�
 **Total Critical Path**: about 2 to 3 hours
 
 **Parallel Opportunities**:
-- Lanes A, B and C run together, three dispatches at once, because they read disjoint directories and write separate files.
+- Lanes A, B and C run together as three Task calls in one message, because they read disjoint directories and write separate files.
 - The census lanes and the baseline runs do not share files, but the baseline waits for the lanes so that no more than three workers run at once.
 <!-- /ANCHOR:critical-path -->
 
@@ -318,22 +318,22 @@ Setup (T001-T003) ──► Census lanes A, B, C in parallel (T004-T005) ──�
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It dispatches workers, runs every verify command, edits only this phase folder, and keeps `goal.md` section 4 current.
-- **Worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. One worker does one lane or one baseline run, then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It dispatches workers, runs every verify command, edits only this phase folder, and keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent, which inherits the session model. One worker does one lane or one baseline run, then stops.
 - **Reviewer**: one read-only frontier review through `cli-codex` at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first dispatch
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command
+- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` NEVER rules 1 and 5, which forbid an external CLI dispatch from inside OpenCode, then use the Task tool dispatch below
 - [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
-- [ ] Confirm `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`
+- [ ] Confirm `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0
 - [ ] Save every brief to `scratch/briefs/<task-id>.txt` before dispatching it
 
 ### Execution Rules
 
 | Rule | Requirement |
 |------|-------------|
-| TASK-SEQ | Run tasks in ID order. Tasks marked `[P]` may run together, at most three at once, and only when no two write the same file |
+| TASK-SEQ | Run tasks in ID order. Tasks marked `[P]` may run as at most three Task calls in one message, and only when no two write the same file |
 | TASK-SCOPE | A worker writes only the paths under ALLOWED WRITE PATHS in its brief |
 | TASK-VERIFY | The conductor runs the task's verify command and reads both its output and its exit status before marking the task `[x]` |
 | TASK-LOCATE | Find text by its exact content, never by a line number |
@@ -346,10 +346,8 @@ Every brief starts with this block, word for word, with the two paths filled in:
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker
+as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline
@@ -363,25 +361,26 @@ ROLE: You are a read-only auditor. You read files, run read-only commands and wr
 result file. Your output is checked line by line by a script.
 
 ALLOWED WRITE PATHS:
-  <the one file this task names>
+  <the paths this task names>
 
 BANNED OPERATIONS: git commit, git push, git checkout, git switch, git branch, git reset,
 git stash, rm, mv, create.sh outside the task's stated command, generate-context.js,
 /speckit:save, and any edit to a file not listed under ALLOWED WRITE PATHS.
 ```
 
-The role line is a focused persona summary in place of a full agent file, the small-context exception that `cli-opencode` rule 18 allows. It is declared here as that exception.
+The role line is a focused persona summary in place of a full agent file. It is declared here as that small-context exception.
 
 ### Dispatch Command
 
-```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
+```text
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of
+`$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to
+`$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 ```
 
-`PHASE` is this folder's path and `WORKTREE` is the build worktree. Never kill by a name pattern. Kill only the captured PID.
+At most three Task calls in one message, and never two that write the same file. A Task subagent cannot receive environment variables, so the brief's preamble is what pre-resolves its gates.
+
+`PHASE` is this folder's path. Where a task measures time around a dispatch, run `date +%s > "$PHASE/scratch/runs/<TASK>.t0"` before the Task call and `date +%s > "$PHASE/scratch/runs/<TASK>.t1"` after it.
 
 ### Status Reporting Format
 

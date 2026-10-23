@@ -40,8 +40,8 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check tools, provider and the two dependency phases (no file). Verify: `opencode2 --version` prints a version line, `opencode2 models --standalone | grep -c 'llmgateway/deepseek-v4.1-flash-1017'` prints a count of at least 1, `which jq rg awk node` prints four paths, and `rg -c 'SPECKIT_TEMPLATE_SOURCE:.*\| v2\.3 -->' $S/templates/core/spec.md.tmpl $S/templates/core/plan.md.tmpl $S/templates/core/tasks.md.tmpl $S/templates/core/implementation-summary.md.tmpl` prints `3`, `1`, `1`, `1`. These stamp counts hold on the post-003 tree. A count below 1 on any of the four templates means phase 003 is not closed: STOP and record the blocker in `goal.md` section 4.
-- [ ] T002 Record the start state (`goal.md`, `scratch/status-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the hash into `goal.md` section 4 as `Start commit: <hash>`, then run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/status-start.txt"`. Verify: `grep -c 'Start commit:' "$PHASE/goal.md"` prints `1` and `wc -l < "$PHASE/scratch/status-start.txt"` prints a number.
+- [ ] T001 Check tools, provider and the two dependency phases (no file). Verify: `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0, `which jq rg awk node` prints four paths, and `rg -c 'SPECKIT_TEMPLATE_SOURCE:.*\| v2\.3 -->' $S/templates/core/spec.md.tmpl $S/templates/core/plan.md.tmpl $S/templates/core/tasks.md.tmpl $S/templates/core/implementation-summary.md.tmpl` prints `3`, `1`, `1`, `1`. These stamp counts hold on the post-003 tree, and the tasks template prints `0` on the pre-003 tree. A count below 1 on any of the four templates means phase 003 is not closed: STOP and record the blocker in `goal.md` section 4.
+- [ ] T002 Record the start state (`goal.md`, `scratch/status-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the hash into the Evidence cell of the `Start commit recorded` row in `goal.md` section 4 as `Start commit: <hash>`, then run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/status-start.txt"`. Verify: `grep -c 'Start commit:' "$PHASE/goal.md"` prints `1` and `wc -l < "$PHASE/scratch/status-start.txt"` prints a number.
 - [ ] T003 Locator pre-check, no edit yet (no file). Verify: these four commands print the four expected values.
 
   ```bash
@@ -52,7 +52,7 @@ Shell variables used below, set once by the conductor:
   grep -cF '[YOUR_VALUE_HERE: Implement core feature 1]' $S/templates/core/tasks.md.tmpl
   ```
 
-  Expected: `4`, `0`, `1`, `1`. The token-form value `1` holds on the post-003 tree. A `0` on the first line means the router already changed and this phase is stale: read `SKILL.md` and record the difference in `goal.md` section 4. A `0` on the fourth line means phase 003 is not closed: STOP.
+  Expected: `4`, `0`, `1`, `1`. The token-form value `1` holds on the post-003 tree, where `tasks.md.tmpl` is stamped v2.3 and carries the token. On the pre-003 tree the fourth value is `0`, and phase 003 is the phase that makes it `1`. A `0` on the first line means the router already changed and this phase is stale: read `SKILL.md` and record the difference in `goal.md` section 4. A `0` on the fourth line means phase 003 is not closed: STOP.
 
   Also check the checklist locator, which must print `1`:
 
@@ -72,7 +72,7 @@ Shell variables used below, set once by the conductor:
   cd "$WORKTREE"
   C=$S/references/workflows/spec-authoring-card.md
   rg -n -i '\b(preset|capabilit(y|ies)|kind|manifest)\b' "$C"
-  rg -n $'\u2014' "$C"
+  rg -n $'\xe2\x80\x94' "$C"
   rg -n ';' "$C"
   rg -n '\[[A-Za-z][^]\[]{2,}\]' "$C"
   ```
@@ -182,7 +182,7 @@ for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING; do
     fi
 done
 
-# 3. The long guide is reachable only from the on-demand level.
+# 3. The long guide is listed only in the on-demand level, not in an intent list.
 GUIDE_IN_MAP=$(awk '
     /^RESOURCE_MAP = \{/ { map = 1; next }
     map && /^\}$/ { map = 0 }
@@ -263,11 +263,11 @@ echo "CARD SYNC OK"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Run the Level 1 smoke test three times (`scratch/card-bench/run-1.jsonl` to `run-3.jsonl`). Runs are serial. Before the first run, measure the anchor counts of a fresh Level 1 scaffold:
+- [ ] T012 Run the Level 1 smoke test three times (`scratch/runs/T012-1.txt` to `T012-3.txt`). Runs are serial. Before the first run, measure the anchor counts of a fresh Level 1 scaffold:
 
   ```bash
   cd "$WORKTREE"
-  mkdir -p "$PHASE/scratch/card-bench"
+  mkdir -p "$PHASE/scratch/card-bench" "$PHASE/scratch/runs"
   bash $S/runtime/cli/spec/create.sh --skip-branch --level 1 --track zz-bench-card --short-name quiet-flag "Add a quiet flag to recommend-level.sh"
   P=specs/zz-bench-card/001-quiet-flag
   for f in spec plan tasks implementation-summary; do echo "$f $(rg -c '<!-- ANCHOR:' $P/$f.md)"; done > "$PHASE/scratch/card-bench/anchors-level1.txt"
@@ -277,7 +277,7 @@ echo "CARD SYNC OK"
 
   Expected on the templates this plan was written against: `spec 7`, `plan 7`, `tasks 6`, `implementation-summary 6`. A different count is not a failure: record the count you saw in `goal.md` section 4 and use that file as the baseline, because a later template edit may add an anchor.
 
-  For each run `N` in 1, 2, 3: save `git status --porcelain` to `scratch/card-bench/status-before-$N.txt`, save `date +%s` as `T0`, set `TASK=T012-$N`, save the brief below to `scratch/briefs/$TASK.txt` with the skeleton from `plan.md` and the packet folder line set to `specs/zz-bench-card/001-quiet-flag`, dispatch it with the plan's dispatch command writing to `scratch/runs/$TASK.jsonl`, then run T013 before the next run.
+  For each run `N` in 1, 2, 3: save `git status --porcelain` to `scratch/card-bench/status-before-$N.txt`, set `TASK=T012-$N`, save the brief below to `scratch/briefs/$TASK.txt` with the skeleton from `plan.md` and the packet folder line set to `specs/zz-bench-card/001-quiet-flag`, run `date +%s > "$PHASE/scratch/runs/$TASK.t0"`, dispatch it with the plan's Task tool instruction and write the subagent's final reply to `scratch/runs/$TASK.txt`, then run `date +%s > "$PHASE/scratch/runs/$TASK.t1"` and T013 before the next run.
 
   ```text
   ROLE: You are a documentation author working in this repository. You have one
@@ -309,13 +309,12 @@ echo "CARD SYNC OK"
   is planned and not implemented, and name the file the plan will change. Do not claim the flag
   is implemented. Run the card's step 9 until it prints RESULT: PASSED, at most three times.
 
-  RETURN exactly one line: the last RESULT line validate.sh printed, then the token count from
-  the card's step 8.
+  RETURN exactly one line: the last RESULT line validate.sh printed.
   ```
 
-  Verify: `ls "$PHASE"/scratch/runs/T012-{1,2,3}.jsonl` lists three files and each is non-empty.
+  Verify: `ls "$PHASE"/scratch/runs/T012-{1,2,3}.txt` lists three files and `cat "$PHASE"/scratch/runs/T012-{1,2,3}.txt | grep -c 'RESULT: PASSED'` prints `3`.
 
-- [ ] T013 Measure each run, then delete its track (`scratch/card-bench/baseline.json`). After each run, before the next one starts, run this from `$WORKTREE` with `N` set to the run number and `T0` to the saved start time. After the third run, write `baseline.md` from `baseline.json` with the command below. Verify: `jq '.runs | length' "$PHASE/scratch/card-bench/baseline.json"` prints `3` after the third run and `grep -c 'out_of_scope_writes' "$PHASE/scratch/card-bench/baseline.md"` prints `2`.
+- [ ] T013 Measure each run, then delete its track (`scratch/card-bench/baseline.json`). After each run, before the next one starts, run this from `$WORKTREE` with `N` set to the run number. The `scratch/runs/T012-$N.t0` and `.t1` files hold the start and end times. After the third run, write `baseline.md` from `baseline.json` with the command below. Verify: `jq '.runs | length' "$PHASE/scratch/card-bench/baseline.json"` prints `3` after the third run and `grep -c 'out_of_scope_writes' "$PHASE/scratch/card-bench/baseline.md"` prints `2`.
 
   ```bash
   P=specs/zz-bench-card/001-quiet-flag
@@ -324,7 +323,7 @@ echo "CARD SYNC OK"
   M3=0; while read f n; do have=$(rg -c '<!-- ANCHOR:' $P/$f.md 2>/dev/null || echo 0); [ "$have" -lt "$n" ] && M3=$((M3 + n - have)); done < "$PHASE/scratch/card-bench/anchors-level1.txt"
   git status --porcelain > "$PHASE/scratch/card-bench/status-after-$N.txt"
   M4=$(diff "$PHASE/scratch/card-bench/status-before-$N.txt" "$PHASE/scratch/card-bench/status-after-$N.txt" | grep '^>' | grep -v 'zz-bench-card' | grep -v '054-weak-model-spec-authoring/005-' | wc -l | tr -d ' ')
-  M5=$(( $(date +%s) - T0 ))
+  M5=$(( $(cat "$PHASE/scratch/runs/T012-$N.t1") - $(cat "$PHASE/scratch/runs/T012-$N.t0") ))
   echo "{\"run\":$N,\"strict_passed\":$M1,\"leftover_tokens\":$M2,\"missing_anchors\":$M3,\"out_of_scope_writes\":$M4,\"seconds\":$M5}" >> "$PHASE/scratch/card-bench/runs.jsonl"
   jq -s '{runs: .}' "$PHASE/scratch/card-bench/runs.jsonl" > "$PHASE/scratch/card-bench/baseline.json"
   rm -r specs/zz-bench-card
@@ -368,7 +367,7 @@ echo "CARD SYNC OK"
   Return the single line NO FINDINGS when there are none.
   ```
 
-- [ ] T015 Close the phase (this folder). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`, then `bash $S/runtime/cli/spec/check-card-sync.sh`, then `git -C "$WORKTREE" status --porcelain` and compare it with `scratch/status-start.txt`. Fill `implementation-summary.md` and mark each `acceptance-criteria.md` row. Verify: `RESULT: PASSED`, `CARD SYNC OK`, and the status diff lists only the nine declared paths and this phase folder.
+- [ ] T015 Close the phase (this folder). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`, then `bash $S/runtime/cli/spec/check-card-sync.sh`, then `git -C "$WORKTREE" status --porcelain` and compare it with `scratch/status-start.txt`. Fill `implementation-summary.md` and mark each `acceptance-criteria.md` row. Verify: `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict` prints `RESULT: PASSED`, `bash $S/runtime/cli/spec/check-card-sync.sh` prints `CARD SYNC OK`, `rg -o '\| Unmet \|' "$PHASE/acceptance-criteria.md" | wc -l` prints `0`, `rg -o 'Not started' "$PHASE/implementation-summary.md" | wc -l` prints `0`, and the status diff lists only the nine declared paths and this phase folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -464,7 +463,7 @@ echo "CARD SYNC OK"
 
 - [ ] CHK-030 [P0] No brief contains a credential, token or key
 - [ ] CHK-031 [P0] No worker wrote outside its ALLOWED WRITE PATHS, shown by metric M4 and the T015 status diff
-- [ ] CHK-032 [P1] Every worker ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0`
+- [ ] CHK-032 [P1] Every worker brief carried the Task-subagent pre-resolution line for the spec-folder question
 <!-- /ANCHOR:security -->
 
 ---

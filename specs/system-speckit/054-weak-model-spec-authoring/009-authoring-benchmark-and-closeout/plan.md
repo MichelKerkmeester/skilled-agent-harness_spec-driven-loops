@@ -58,8 +58,8 @@ Three serial DeepSeek workers author the same frozen Level 2 packet in a throwaw
 Fan-out of three serial runs into one deterministic reduce, then a publish stage that writes each artifact from a command rather than from prose.
 
 ### Key Components
-- **Conductor**: one DeepSeek V4.1 Flash max session outside OpenCode. It dispatches runs, runs every verify command, writes only the declared paths and keeps `goal.md` section 4 current.
-- **Run worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. It authors the frozen task in `specs/zz-bench-authoring/` and then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It dispatches runs, runs every verify command, writes only the declared paths and keeps `goal.md` section 4 current.
+- **Run worker**: one Task subagent. It inherits the session model, `llmgateway/deepseek-v4.1-flash-1017#max`, authors the frozen task in `specs/zz-bench-authoring/` and then stops.
 - **Metric reducer**: the jq script in `tasks.md` T007. It writes `delta.json` and `delta.md` from the two `baseline.json` files.
 - **Report writer**: the script in `tasks.md` T008. It writes the report tables from `delta.json` and never takes a number from prose.
 - **Reviewer**: one read-only frontier review through `cli-codex` at phase close. It writes nothing.
@@ -166,7 +166,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |------------|------|--------|-------------------|
 | Phases 1 to 8 closed | Internal | Checked in T002 | No final tree and no phase 8 report |
 | `041-006` closed | Internal | Checked in T002 | The 041 map row cannot be flipped |
-| `opencode2` with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T001 | No final run can start |
+| The Task tool with `llmgateway/deepseek-v4.1-flash-1017` | External | Checked in T001 | No final run can start |
 | `jq`, `rg`, `awk`, `node`, `python3` | Internal | Checked in T001 | The metrics, the report and the changelog checks cannot run |
 | `validate.sh`, `create.sh`, `nested-changelog.js` | Internal | Checked in T002 | The runs or the packet changelogs cannot run |
 | `cli-codex` with `gpt-6-luna` | External | Checked in T016 | The review is recorded as skipped and REQ-013 stays open |
@@ -320,15 +320,15 @@ Report and changelogs (T008-T011) ──► Index and tracks (T012-T013) ──�
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It dispatches runs, runs every verify command, edits only the declared paths and keeps `goal.md` section 4 current.
-- **Worker**: one `opencode2 run` dispatch on `llmgateway/deepseek-v4.1-flash-1017#max`. One worker does one final run, then stops.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It dispatches runs, runs every verify command, edits only the declared paths and keeps `goal.md` section 4 current.
+- **Worker**: one Task subagent. It inherits the session model, `llmgateway/deepseek-v4.1-flash-1017#max`, does one final run, then stops.
 - **Reviewer**: one read-only frontier review through `cli-codex` at phase close. It writes nothing.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first dispatch
-- [ ] Read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4 before composing the first worker command
+- [ ] Read NEVER rules 1 and 5 in `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`, which forbid CLI dispatch from inside OpenCode
 - [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
-- [ ] Confirm `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`
+- [ ] Confirm `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0
 - [ ] Save every brief to `scratch/briefs/<task-id>.txt` before dispatching it
 
 ### Execution Rules
@@ -349,10 +349,7 @@ Every brief starts with this block, word for word, with the path filled in:
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
   specs/zz-bench-authoring/001-recommend-level-quiet-flag
@@ -373,18 +370,17 @@ git stash, generate-context.js, /speckit:save, and any edit outside specs/zz-ben
 Do not edit recommend-level.sh.
 ```
 
-The role line is a focused persona summary in place of a full agent file, the small-context exception that `cli-opencode` rule 18 allows. It is declared here as that exception.
+The role line is a focused persona summary in place of a full agent file, which keeps the brief small.
 
 ### Dispatch Command
 
-```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-```
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of `$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 
-`PHASE` is this folder's path and `WORKTREE` is the build worktree. Never kill by a name pattern. Kill only the captured PID.
+Run `date +%s > "$PHASE/scratch/runs/$TASK.t0"` before the Task call and `date +%s > "$PHASE/scratch/runs/$TASK.t1"` after it.
+
+At most 3 Task calls in one message, never two that write the same file.
+
+`PHASE` is this folder's path.
 
 ### Status Reporting Format
 

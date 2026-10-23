@@ -1,0 +1,13 @@
+plan.md:819 Conductor role is now the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, dispatching Task subagents, and the outside-OpenCode sentence is removed.
+plan.md:820 Worker role is now one Task subagent on llmgateway/deepseek-v4.1-flash-1017#max instead of an opencode2 run dispatch.
+plan.md:825 Pre-task skill read now points at cli-opencode NEVER rules 1 and 5 before the first Task call instead of sections 3 and 4 before composing a worker command.
+plan.md:827 Pre-flight check now greps opencode.json for deepseek-v4.1-flash-1017 instead of running opencode2 models --standalone.
+plan.md:834 TASK-SEQ now limits parallel work to at most three Task calls in one message, never two that write the same file.
+plan.md:847 Replaced the AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 environment sentence with the dispatched Task subagent pre-resolution sentence, keeping the rest of the skeleton.
+plan.md:874 Replaced the opencode2 run dispatch block with the Task tool instruction for subagent_type general, the brief path and the verbatim reply file.
+plan.md:876 Removed the PID, wait, kill and pkill guidance and recorded that a Task subagent inherits the session model.
+tasks.md:251 T007 now dispatches with the Task tool as T007-A and writes the verbatim reply to scratch/runs/T007-A.txt.
+tasks.md:278 T008 now dispatches with the Task tool as T008-B and writes the verbatim reply to scratch/runs/T008-B.txt.
+tasks.md:305 T009 now dispatches with the Task tool as T009-C and writes the verbatim reply to scratch/runs/T009-C.txt.
+tasks.md:589 CHK-032 now requires every worker to be one Task subagent whose brief carried the pre-resolution preamble.
+graph-metadata.json:1 Re-derived generated metadata with repair-derived.cjs --apply after the doc edits, refreshing the source fingerprint and synopsis fields.

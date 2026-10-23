@@ -112,9 +112,9 @@ Make the templates, the examples, the validator and the authoring docs good enou
 The operator meets all four before the first phase runs. The conductor records each as met in `goal.md` section 4 and stops when one is not.
 
 1. **Workspace.** The operator chooses A) a git worktree or B) the current branch, following `sk-git`. The conductor never chooses. The chosen path becomes `WORKTREE` in `goal.md` section 4.
-2. **Provider login.** `opencode2 models --standalone` lists `llmgateway/deepseek-v4.1-flash-1017`. A billing or region refusal stops the run.
+2. **Provider login.** `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0, and OpenCode v2 is logged in to llmgateway. A billing or region refusal stops the run.
 3. **Lane authorization.** At most 3 parallel DeepSeek lanes and never two on one file. The operator has already given this.
-4. **Conductor placement.** The conductor is a DeepSeek session that runs outside OpenCode, because `cli-opencode` refuses self-dispatch and forbids a nested `opencode run`.
+4. **Conductor placement.** The conductor is the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, with the goal bound by `/goal-opencode bind specs/system-speckit/054-weak-model-spec-authoring`. It dispatches workers with OpenCode's Task tool (`general` subagent), because `cli-opencode` forbids a nested `opencode run` or `opencode2 run`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -162,7 +162,7 @@ The operator meets all four before the first phase runs. The conductor records e
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Cli-opencode rule 15 layer L4 prefers a Copilot gpt-6-sol executor for a phase-parent target run with skipped permissions. The operator chose DeepSeek instead, so the packet keeps layers L1 to L3 and records the deviation in `goal.md`. The operator may still prefer L4.
+- Cli-opencode rule 15 layer L4 prefers a Copilot gpt-6-sol executor for a phase-parent target run with skipped permissions. The operator chose DeepSeek Task subagents instead, so the packet keeps layers L1 to L3 and records the deviation in `goal.md`. The operator may still prefer L4.
 - Whether phase 003 also fixes the post-edit scanner `spec/check-placeholders.sh`, which flags regex classes inside fenced code blocks, is decided in the phase 003 decision record.
 <!-- /ANCHOR:questions -->
 

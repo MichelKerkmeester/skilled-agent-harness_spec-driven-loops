@@ -1,27 +1,25 @@
-PASS C1 validate.sh --strict prints "Summary: Errors: 0  Warnings: 0" then "RESULT: PASSED" with exit 0 spec.md:1
-PASS C2 check-goal.cjs prints "RESULT: PASSED (5/5 checks)" with all five sub-checks PASS and exit 0 goal.md:1
-FAIL C3 check-placeholders.sh prints "FAIL - 4 placeholder pattern(s) found" with exit 1, flagging scan-lines tasks.md:87, tasks.md:98, tasks.md:109 and tasks.md:150 inside fenced lane text and script blocks tasks.md:87
-PASS C4 rg -n for the em dash over the six phase-root .md files prints nothing and exits 1 spec.md:1
-PASS C5 all 28 repository paths asserted to exist in tasks.md and plan.md resolve with test -e, including the 041 prerequisite packet T002 validates and the three .tmpl example files tasks.md:43
-PASS C6 the 20 locators checked (plan.md's five confirmed defects plus each of the 15 leaked descriptions) each return exactly 1 from grep -cF in their own file plan.md:97
-FAIL C6 defect 1's locator occurs in exactly 1 example file and only 15 of the 22 example docs carry any leaked description, so the 17 companion rows the plan assumes have no locatable text plan.md:99
-PASS C7 create.sh accepts --skip-branch, --level, --track and --short-name, and validate.sh accepts --strict, all confirmed in source; the two script invocations are valid tasks.md:148
-WARN C7 T011 calls gpt-6-luna cli-codex's default read-only invocation, but the skill's default is gpt-5.5 and gpt-6-luna is an alternate at or below max effort tasks.md:212
-WARN C7 the lane's gate-anchor awk tests /<!-- \/IF --/ without the closing >, so its depth counter never decrements, unlike plan.md's /<!-- \/IF -->/; both happen to agree on spec.md.tmpl today tasks.md:97
-PASS C8 neither author-common.txt nor author-phase.txt exists, so there are no frozen phase requirements to trace plan.md:1
-FAIL C9 T005's verify is a "read at least 90 percent of its file count" threshold with no command and no expected output tasks.md:114
-FAIL C9 T007's first verify requires at least 18 leaked-description rows, but only 15 example files hold one, so the check cannot pass on rows that survive T006's reproduce filter tasks.md:133
-FAIL C9 T009 has no verify command of its own; its Verify line delegates to T010 tasks.md:157
-FAIL C9 T009 orders the conductor to save "the time with date +%s" but never says where, while T010 reads it as T0, leaving a weak model to guess the file tasks.md:157
-WARN C9 T011's verify states a line regex but names no command that applies it to scratch/review/T011.txt tasks.md:212
-WARN C9 T012's verify compares a grep count against a hand-counted number of findings that no command produces tasks.md:227
-WARN C9 T013's verify only matches rows written literally as "| 1 |", but T013 never states the row format, so "| Run 1 |" fails the check tasks.md:228
-FAIL C10 spec.md calls this phase "1 of 8" and names phase 8 as the baseline rerun, while the packet holds nine phase children and 009-authoring-benchmark-and-closeout owns that rerun spec.md:40
-FAIL C10 spec.md says writes land only in this folder plus specs/zz-bench-authoring/, while goal.md D1 and T008 also use specs/zz-bench-hints spec.md:53
-WARN C10 acceptance-criteria requires a waiver to cite an ADR that exists in decision-record.md, which does not exist in the packet; plan.md holds ADR-001 and ADR-002 instead acceptance-criteria.md:32
-WARN C10 plan.md's Definition of Done requires every acceptance row to be "Met", while acceptance-criteria.md closes on Met, Waived or Superseded plan.md:43
-WARN C10 spec.md describes three runs with five metrics each, while AC-004's check expects keys length 6 per run, the run number plus the five metrics acceptance-criteria.md:57
-WARN C10 spec.md's changelog step points at ../changelog/, which does not exist and is not one of the files this phase creates spec.md:64
-WARN C10 T006 writes candidates.jsonl, but its own file list names only ledger.jsonl, dropped.jsonl and unsafe.jsonl tasks.md:115
-WARN C10 spec.md's deliverables list omits anchors-v2.2.txt, runs.jsonl, coverage.txt and review/T011.txt that tasks.md creates spec.md:59
-VERDICT: 8 FAIL, 11 WARN
+PASS C1 validate.sh --strict prints "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED" with exit status 0 spec.md:1
+PASS C2 check-goal.cjs prints 5/5 PASS sub-checks then "RESULT: PASSED (5/5 checks)" with exit status 0 goal.md:1
+WARN C3 check-placeholders.sh prints "FAIL - 4 placeholder pattern(s) found" and exits 1 on bracket text at tasks.md:87, 98, 109 and 165, all four inside fenced code blocks, and goal.md:83 records that scan result as a known false positive tasks.md:87
+PASS C4 rg -n with the em dash over the six phase-root .md files prints nothing and exits 1 spec.md:1
+PASS C5 all 22 repository paths that tasks.md and plan.md assert exist now resolve under test -e, including the 041 prerequisite packet of T002, the four example levels, templates/.hashes and the three reference docs of the five confirmed defects tasks.md:43
+PASS C6 all 22 locators checked return exactly 1 from grep -cF in their own file: the 18 K-01 to K-18 lines of plan.md, the Checklist.md line in each of the three tasks.md examples, the two spec-folder locators and the Why Bulleted Lists heading plan.md:109
+PASS C7 validate.sh accepts --strict and create.sh accepts --skip-branch, --level, --track and --short-name, the latter confirmed in source at create.sh:137 because --help omits it; the T002 precondition packet validates RESULT: PASSED and opencode.json returns 3 for the T001 pattern tasks.md:163
+PASS C8 neither author-common.txt nor author-phase.txt exists in scratch/briefs/, so there are no frozen phase requirements to trace plan.md:1
+WARN C9 T011 gives the codex review as prose flag fragments rather than one runnable command and never names how the reply reaches scratch/review/T011.txt, so a weak model must compose the dispatch itself tasks.md:227
+WARN C9 T014's verify states "the status diff lists only paths inside this phase folder" with no command that produces that diff, so the close-out check is judgment tasks.md:246
+WARN C9 T005's re-dispatch rule requires a list of the missing paths, which no command in the task computes from lane-<l>.read.txt against the lane file count tasks.md:128
+WARN C9 the brief skeleton binds "the one file this task names" under ALLOWED WRITE PATHS while each lane binds two files, its OUT jsonl and its .read.txt tasks.md:112
+FAIL C10 the Verification Summary asserts P0 15, P1 18 and P2 2, but the checklist rows count 14 P0, 24 P1 and 9 P2, 47 rows in all tasks.md:364
+FAIL C10 plan.md says a lane records what it read as a final "read" line inside its lane JSONL, while tasks.md has each lane write a separate lane-<LANE>.read.txt and T005 reads only that file plan.md:143
+WARN C10 the spec.md Files to Change table omits scratch/baseline/status-start.txt and suite-start.txt from T003 and lane-*.read.txt from T004, all of which tasks.md and plan.md create or read spec.md:104
+WARN C10 lane B's coverage denominator counts only *.md under templates/examples, 22 files, while the lane scope is every file there, 26, so a compliant lane reports more files read than its own total tasks.md:120
+WARN C10 acceptance-criteria.md requires a waiver to name an ADR that exists in decision-record.md, which this folder does not have, while the only ADRs live in plan.md acceptance-criteria.md:32
+WARN C10 implementation-summary.md lists five documents under Files Changed and leaves out implementation-summary.md itself, the sixth authored doc implementation-summary.md:60
+PASS C11 no line anywhere in the six docs matches opencode run, opencode2 run, opencode2 models, AI_SESSION_CHILD, SYSTEM_SPEC_GATE_ENFORCE or "outside OpenCode", so no stale conductor or worker dispatch description remains plan.md:321
+PASS C11 (a) every worker dispatch is a Task tool call with subagent_type general, named once in the dispatch rule and referenced by T004 and T009 plan.md:376
+PASS C11 (b) the brief skeleton carries "You are a dispatched Task subagent" and the pre-resolution sentence, and no line claims environment variables are set plan.md:349
+PASS C11 (c) no PID, wait, kill or pkill line remains, the only "waits" mention being prose about lane sequencing plan.md:297
+PASS C11 (d) parallelism is capped at three Task calls in one message, in both the execution rule and the dispatch rule plan.md:336
+PASS C11 (e) every worker reply path is a .txt file under scratch/runs/ and no verify reads a .jsonl worker transcript tasks.md:52
+VERDICT: 2 FAIL, 9 WARN

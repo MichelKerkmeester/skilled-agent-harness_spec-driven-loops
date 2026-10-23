@@ -57,7 +57,7 @@ When it runs, this phase writes 131 fill lines across 14 templates: 24 in `spec.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` | Created | Phase plan, written before execution |
+| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Created | Phase plan, written before execution |
 <!-- /ANCHOR:what-built -->
 
 ---

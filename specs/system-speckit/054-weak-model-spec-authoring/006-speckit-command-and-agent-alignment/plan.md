@@ -28,7 +28,7 @@ contextType: "general"
 | **Testing** | The applier self-test, four search gates, eight mirror checks, one suite comparison and one strict validation |
 
 ### Overview
-The audit is already done. Twenty-one stale statements were found in 12 authored files, and six Claude agent siblings need the same body text. The rows are frozen in `tasks.md` T004. A script applies each one and refuses unless the old text occurs exactly once. The runtime mirror generators then rebuild every generated tree from the corrected sources, and eight read-only checks prove the trees agree.
+The audit is already done. Twenty-one stale statements were found in 12 authored files, and six MIRROR rows carry the same body text into four Claude agent siblings. The rows are frozen in `tasks.md` T004. A script applies each one and refuses unless the old text occurs exactly once. The runtime mirror generators then rebuild every generated tree from the corrected sources, and eight read-only checks prove the trees agree.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -559,9 +559,9 @@ Setup (T001-T005) ──► Apply rows (T006) ──► Search gates (T007) ─�
 Written for the executing swarm. Follow each rule as written. Where a rule and your own judgment disagree, follow the rule and record the disagreement in `goal.md` section 4.
 
 ### Roles
-- **Conductor**: one DeepSeek V4.1 Flash max session that is not itself running inside OpenCode, because `cli-opencode` refuses a dispatch from inside OpenCode. It runs every command in `tasks.md` and reads every output. It edits only this phase folder plus the files the rows name. It keeps `goal.md` section 4 current.
+- **Conductor**: the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. It runs every command in `tasks.md` and reads every output. It edits only this phase folder plus the files the rows name. It keeps `goal.md` section 4 current.
 - **Reviewer**: one read-only frontier review through `cli-codex` with `gpt-6-luna` at phase close. It writes nothing.
-- **Worker**: none. Every text change is frozen in a row and applied by `apply_row.py`, so no model decides what to write in this phase.
+- **Worker**: one Task subagent, dispatched with the Task tool only when a task names one. No task in this phase dispatches one, because every text change is frozen in a row and applied by `apply_row.py`.
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first command
@@ -577,7 +577,7 @@ Written for the executing swarm. Follow each rule as written. Where a rule and y
 | TASK-SCOPE | A row changes only the file it names. A generator changes only its own output tree |
 | TASK-VERIFY | The conductor runs the task's verify command and reads both its output and its exit status before marking the task `[x]` |
 | TASK-LOCATE | Find text by its exact content, never by a line number |
-| TASK-NOHAND | Never edit a file that a row names by hand. Only `apply_row.py` changes it. Never hand-edit a generated mirror |
+| TASK-NOHAND | Never edit a file that a row names by hand during T006. Only `apply_row.py` changes it then. The one exception is the exact review-finding text that T014 applies after the review returns. Never hand-edit a generated mirror |
 | TASK-NOJUDGE | A row whose locator is gone is recorded and skipped. The conductor does not rewrite the row and does not ask a model to |
 | TASK-BANNED | The conductor and the reviewer never run `git commit` outside T014, `git push`, `git checkout`, `git switch`, `git branch`, `git reset`, `git stash`, `generate-context.js` or `/speckit:save` |
 
@@ -588,10 +588,9 @@ Reserved for a future phase that dispatches a text worker. No task in this phase
 ```text
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
-You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
-SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
-defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
-and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as
+pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
+No answer can reach you, because nobody is at a prompt.
 
 Your write authority is already bound. The spec folder is:
   specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment
@@ -618,14 +617,11 @@ The role line is a focused persona summary in place of a full agent file, the sm
 
 Reserved with the skeleton. The only dispatch this phase runs is the `cli-codex` review in `tasks.md` T013, which uses the command written there.
 
-```bash
-cd "$WORKTREE" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode2 run --standalone \
-  -m llmgateway/deepseek-v4.1-flash-1017#max --format json \
-  "$(cat "$PHASE/scratch/briefs/$TASK.txt")" </dev/null > "$PHASE/scratch/runs/$TASK.jsonl" 2>&1 &
-PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
-```
+Dispatch with the Task tool: subagent_type `general`, description `<TASK id>`, prompt = the full text of `$PHASE/scratch/briefs/<TASK>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/<TASK>.txt` with the write tool.
 
-`PHASE` is this folder's path and `WORKTREE` is the build worktree. Never kill by a name pattern. Kill only the captured PID.
+Parallel rule: at most 3 Task calls in one message, never two that write the same file.
+
+`PHASE` is this folder's path and `WORKTREE` is the build worktree.
 
 ### Status Reporting Format
 
