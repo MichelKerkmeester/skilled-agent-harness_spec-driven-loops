@@ -47,7 +47,7 @@ Phase 2 removes the Webflow and Obsidian surfaces from the shipped sk-code hub, 
 
 This is **Phase 3** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* skills that this checkout links to but never tracks, routed only by the operator's local advisor specification.
 
-**Scope Boundary**: In scope is the sk-code hub tree, the tracked consumers that name `sk-code-webflow`, `sk-code-obsidian` or the `WEBFLOW` / `OBSIDIAN` surface tokens, and the advisor's sk-code surface vocabulary. Out of scope, kept unchanged: generic Webflow/Obsidian words in other skills, dated historical records and git history (the full boundary is D6 in the parent packet and is repeated in §3).
+**Scope Boundary**: In scope is the sk-code hub tree, the tracked consumers that name `sk-code-webflow`, `sk-code-obsidian` or the `WEBFLOW` / `OBSIDIAN` surface tokens, the advisor's sk-code surface vocabulary, and the `@code` / `@review` UNKNOWN-route fallback to an advisor-named `local-*` skill. Out of scope, kept unchanged: generic Webflow/Obsidian words in other skills, dated historical records and git history (the full boundary is D6 in the parent packet and is repeated in §3).
 
 **Dependencies**:
 - `002-hub-surface-removal` merged first: the surfaces and their `mode-registry.json` / `hub-router.json` entries must already be gone, because this phase removes the vocabulary those entries declare and regenerates the tracked fallback graph afterwards.
@@ -90,6 +90,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 - Regenerating the tracked fallback `runtime/scripts/skill-graph.json` so it no longer carries the surfaces' signals.
 - One test per behavior change, each failing before the change and passing after it, plus one characterization test for the Python reader's intended inclusion.
 - A recorded screen of `ci-leaf-manifest-freshness.cjs`: no change needed, with the proof command that shows neither private source tree carries a `leaf-manifest.json`.
+- The `@code` and `@review` agents' UNKNOWN-route fallback: when `sk-code` cannot route, the advisor CLI runs on the task text, a top pick whose `skillId` starts with `local-` becomes the standards overlay, and a non-local pick keeps the existing escalation or baseline-only behavior; the `.claude` twins are hand-edited and the `.codex` and `.pi` mirrors are regenerated.
 
 ### Out of Scope
 - Generic Webflow/Obsidian words in other skills: `mcp-tooling/mcp-obsidian`, `mcp-notion`, the mcp-code-mode Webflow CMS vocabulary at `fusion.ts:600-602`, `explicit.ts:131`, `skill_advisor.py:2181`, the `P1-MCP-002` regression and holdout rows, and the sk-design style bundles — those describe a different product, not the removed sk-code surface.
@@ -126,6 +127,9 @@ After this phase the advisor speaks only about the surface that still ships, and
 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts` | Modify | `surfaceHint` description example becomes SKILLED |
 | `.skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts` | Modify | Same description text |
 | `.skilled/skills/system-skill-advisor/README.md` | Modify | Same sentence in the option list |
+| `.skilled/agents/code.md`, `.skilled/agents/review.md` | Modify | `@code` and `@review` fall back to the advisor's top `local-*` pick when `sk-code` returns UNKNOWN; a non-local pick keeps the existing escalation or baseline-only behavior |
+| `.claude/agents/code.md`, `.claude/agents/review.md` | Modify | The hand-kept Claude-dialect twins carry the identical body edits |
+| `.codex/agents/code.toml`, `.codex/agents/review.toml`, `.pi/agents/code.md`, `.pi/agents/review.md` | Regenerate | The Codex and Pi sync scripts rebuild the generated runtime mirrors from `.skilled/agents/` |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Regenerate | Recompiled fallback graph without sk-code surface signals |
 | `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | No change | Verified: the `webflow` prompt asserts `sk-code`, which stays correct |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` | No change | Screened: 14 fleet manifests, none in either private source tree |
@@ -158,6 +162,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 | REQ-007 | `advisor-surface-hint.vitest.ts` uses a surface hint that still exists, so the test proves the argv contract rather than a removed surface. |
 | REQ-008 | The `surfaceHint` description in both tool schemas and the advisor README names SKILLED, so no shipped description advertises a surface that no longer ships. |
 | REQ-009 | Every no-change decision (the native-scorer `webflow` prompt, the zero-hit surface-id re-check, the leaf-manifest gate) is recorded with the command that proved it. |
+| REQ-014 | When `sk-code` returns UNKNOWN or ambiguous routing, `@code` and `@review` run the advisor CLI; a top pick whose `skillId` starts with `local-` is used as the standards overlay, and any other pick leaves the existing `UNKNOWN_ROUTE` escalation or baseline-only review unchanged. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -173,6 +178,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 - **SC-003**: `node -e "process.stdout.write(JSON.stringify(require('./.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json').signals['sk-code'].filter(x=>/webflow|obsidian/i.test(x))))"` prints `[]`.
 - **SC-004**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup --strict` prints `RESULT: PASSED`.
 - **SC-005**: A `local-*` link whose realpath leaves every trusted root is indexed by neither the graph scan nor the source signature, and is exported by neither the compiler nor the Hermes sync.
+- **SC-006**: With `sk-code` returning UNKNOWN, `.skilled/agents/code.md` and `.skilled/agents/review.md` name the advisor fallback, a top `local-*` pick is cited as the standards overlay, a non-local pick still escalates or reviews against the baseline, and the four drift checks exit 0 after the `.codex` and `.pi` mirrors are regenerated.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -191,6 +197,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 | Risk | Regenerated `skill-graph.json` diff is larger than expected | Medium | Diff it against the phase-2 tree and accept only removed sk-code signals plus `generated_at` and `skill_count`; any other change means the compiler ran before phase 2 |
 | Risk | `.hermes/skills/local-*` written before the D2 ignore rule lands | Medium | The sync skip is defence in depth: it removes the write path, and phase 1's ignore rule removes the tracking path |
 | Risk | The Python conflict reader's inclusion is mistaken for a leak | Low | It returns an in-memory map and writes no file; the test names the intended treatment and ADR-002 records it |
+| Risk | A non-local advisor pick is treated as a local fallback | High | The fallback tests the `local-` prefix explicitly; a top pick of `sk-code` or any other skill still escalates `UNKNOWN_ROUTE` in @code and reviews against the baseline only in @review |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -244,10 +251,10 @@ After this phase the advisor speaks only about the surface that still ships, and
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 16/25 | 23 changed files: 20 modifications, two new files and one regenerated graph |
+| Scope | 16/25 | 31 changed files: 24 modifications, two new files and five regenerated files |
 | Risk | 12/25 | Scoring shifts for one hint token; four tracked artifacts stop accepting a path class; a followed link gains a containment rule |
 | Research | 6/20 | Every anchor is verified on the working tree; the only investigation left is the regenerated graph diff |
-| Multi-Agent | 4/15 | One writer executes 76 single-change tasks in order; no parallel workstream, because every test pair reads the file the previous task wrote |
+| Multi-Agent | 4/15 | One writer executes 85 single-change tasks in order; no parallel workstream, because every test pair reads the file the previous task wrote |
 | Coordination | 10/15 | Three dependencies: phase 2 on `main`, a built local advisor database, and the optional `SPECKIT_PRIVATE_SKILL_ROOTS` for an external link |
 | **Total** | **48/100** | **Level 3** |
 <!-- /ANCHOR:complexity -->
@@ -268,6 +275,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 | R-007 | A skip is applied at every depth instead of the top level | M | L | Each skip uses the root listing or `current === directory`; AC-007 to AC-009 assert the top-level case only |
 | R-008 | The plugin suite count drifts because a row was deleted twice | L | M | T038 states the exact before and after counts (94 to 91) |
 | R-009 | The leaf-manifest gate changes after phase 4 restores the trees | L | L | T046 records the screen and AC-025 re-runs the gate; phase 5 owns the fresh-clone proof |
+| R-010 | A non-local advisor pick is mistaken for a local fallback | H | L | The `local-` prefix test is explicit in all five statements (four in `code.md`, one in `review.md`); AC-030 to AC-032 prove the non-local branch |
 
 ## 11. USER STORIES
 
@@ -298,7 +306,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 
 - No question is open. D1 through D7 in the parent packet fix every decision this phase would otherwise have to make.
 - **Inter-phase constraint for phase 4.** Phase 4 uses symlinks whose targets live outside the checkout, so it lists both target roots in `SPECKIT_PRIVATE_SKILL_ROOTS`; a symlink is followed only when its realpath is inside one of those roots. The variable must be set for every advisor process, CLI, plugin and hook alike.
-- **Corrected during the Level 3 rewrite.** The Python conflict-declaration reader starts at `skill_advisor.py:1250` and its `os.scandir` call sits at line 1266; the Level 2 draft and the research synthesis cited line 1265. `ci-leaf-manifest-freshness.cjs` finds manifests at line 103, not line 81, which is the start of `findManifestDirs`. The phase touches seven scans, not six: the Python conflict reader was missing from the inventory. A fourth Python reader, `_load_source_graph_signal_map` at line 1205 with its `os.scandir` at line 1211, already includes a `local-*` entry and writes no tracked file; it is screened with no change and is not counted among the seven. AC-001's sweep returns three `webflow cms` lines after the phase, not the four the draft implied, and `skill_advisor.py:2181` is outside that sweep's path list. The plugin test fixture targets sit at lines 356, 377 and 403, unchanged. The changed-file count is 23, not 22.
+- **Corrected during the Level 3 rewrite.** The Python conflict-declaration reader starts at `skill_advisor.py:1250` and its `os.scandir` call sits at line 1266; the Level 2 draft and the research synthesis cited line 1265. `ci-leaf-manifest-freshness.cjs` finds manifests at line 103, not line 81, which is the start of `findManifestDirs`. The phase touches seven scans, not six: the Python conflict reader was missing from the inventory. A fourth Python reader, `_load_source_graph_signal_map` at line 1205 with its `os.scandir` at line 1211, already includes a `local-*` entry and writes no tracked file; it is screened with no change and is not counted among the seven. AC-001's sweep returns three `webflow cms` lines after the phase, not the four the draft implied, and `skill_advisor.py:2181` is outside that sweep's path list. The plugin test fixture targets sit at lines 356, 377 and 403, unchanged. The changed-file count was 23 before the agent fallback and is 31 after it, because four agent files are modified and four generated runtime mirrors are regenerated.
 <!-- /ANCHOR:questions -->
 
 ---

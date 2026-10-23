@@ -23,7 +23,7 @@ contextType: "general"
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: one change per task. A task edits one file, runs one command, or generates one artifact. Every task carries the same seven fields in the same order: `File`, `Anchor`, `Change`, `Proof`, `AC`, `Rollback`, `Stop if`.
+**Task Format**: one change per task. A task edits one file, runs one command, or generates one artifact. A runtime-mirror generator counts as one command even when it writes the code/review pair, and a drift-check task counts as one check block. Every task carries the same seven fields in the same order: `File`, `Anchor`, `Change`, `Proof`, `AC`, `Rollback`, `Stop if`.
 
 **Execution order.** Tasks run in numeric order. Every test task lands before the code task it proves, and the tracked graph is regenerated only after the compiler already skips `local-*`.
 
@@ -1810,6 +1810,287 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **Rollback:** delete the `### Final counts` heading and its table.
 - **Stop if:** the count is not `16`.
 
+### T070a — Add the advisor fallback to the code agent's route step
+
+- **File:** `.skilled/agents/code.md`
+- **Anchor:** line 66, the full line beginning ``3. **INVOKE sk-code**`` and carrying ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.``
+- **Change:** replace the whole line with this line, leaving the tuple sentence and the final citation sentence unchanged.
+  ```markdown
+  3. **INVOKE sk-code** → Read `.skilled/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **FALLBACK**: if `sk-code` returns UNKNOWN or ambiguous routing, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json` and read the top pick at `.data.recommendations[0].skillId`; when it starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN's Summary line, and continue. Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
+  ```
+- **Proof:**
+  ```bash
+  sed -n '66p' .skilled/agents/code.md | rg -c '\*\*FALLBACK\*\*.*advisor_recommend.*local-'
+  sed -n '66p' .skilled/agents/code.md | rg -c 'Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit'
+  git show 42b41dd286:.skilled/agents/code.md | rg -c 'HARD STOP'
+  sed -n '66p' .skilled/agents/code.md | rg -c 'HARD STOP' || echo 0
+  ```
+  Expected: `1`, `1`, `1`, `0`. The first, second and fourth values exist only after T070a's edit; the `HARD STOP` control is `1` at `42b41dd286` and was measured now.
+- **AC:** AC-030
+- **Rollback:** replace line 66 with the anchor text; do not revert the other lines in the file.
+- **Stop if:** the new line names a packet, phase, ADR or task id, or the non-local branch no longer escalates `UNKNOWN_ROUTE`.
+
+### T070b — Make the remaining code-agent statements agree
+
+- **File:** `.skilled/agents/code.md`
+- **Anchor:** line 550, `│  └─► Escalate UNKNOWN stack, scope conflict, or low confidence`; line 518, the `Skill-load-without-applying` row's final sentence ``If `stack==UNKNOWN`, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious``; line 437, ``If sk-code returned UNKNOWN, did I escalate `UNKNOWN_STACK` instead of implementing?``; line 396, ``- `sk-code` returns UNKNOWN or stack/task implication mismatch detected``; line 392, ``- Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK` ``; line 371, ``- Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN)``; line 359, ``- sk-code returns UNKNOWN → `UNKNOWN_STACK` ``; line 210, ``[ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated.``; line 118, ``6. If `sk-code` returns UNKNOWN, escalate `UNKNOWN_ROUTE`. NEVER guess.``; line 110, ``| **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |``; line 73, ``@code does NOT pre-detect the project route. The full code-routing logic lives in `.skilled/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").``
+- **Change:** replace those eleven lines with the eleven lines below, highest line number first: 550, 518, 437, 396, 392, 371, 359, 210, 118, 110, 73. The three existing fallback replacements (73, 110, 118) stay; the other eight gain the non-local qualifier. The diagram line starts at column 1, so strip the two-space list indent from each block. No other line changes.
+  ```markdown
+  │  └─► Escalate UNKNOWN unless local-*, scope conflict, or low confidence   │
+  ```
+  ```markdown
+  | **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+  ```
+  ```markdown
+  7. Did I cite sk-code's detected stack + selected intents + loaded resource paths in my RETURN Summary, proving the smart router actually fired (not just the SKILL.md read)? If sk-code returned UNKNOWN and the advisor's top pick is not a `local-*` skill, did I escalate `UNKNOWN_STACK` instead of implementing?
+  ```
+  ```markdown
+  - `sk-code` returns UNKNOWN and the advisor's top pick is not a `local-*` skill, or a stack/task implication mismatch is detected
+  ```
+  ```markdown
+  - Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK` only when the advisor's top pick is not a `local-*` skill
+  ```
+  ```markdown
+  - Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN when the advisor's top pick is not a `local-*` skill)
+  ```
+  ```markdown
+  - sk-code returns UNKNOWN and the advisor's top pick is not a `local-*` skill → `UNKNOWN_STACK`
+  ```
+  ```markdown
+  [ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated when the advisor's top pick is not a `local-*` skill.
+  ```
+  ```markdown
+  6. If `sk-code` returns UNKNOWN, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE`. NEVER guess.
+  ```
+  ```markdown
+  | **Fallback** | Advisor `local-*` overlay | Route cannot be determined | Run `advisor_recommend`; when `.data.recommendations[0].skillId` starts with `local-`, load that `SKILL.md` as the standards overlay; otherwise return `UNKNOWN_ROUTE` |
+  ```
+  ```markdown
+  @code does NOT pre-detect the project route. The full code-routing logic lives in `.skilled/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE` to the orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
+  ```
+- **Proof:**
+  ```bash
+  sed -n '73p;110p;118p' .skilled/agents/code.md | rg -c 'advisor_recommend'
+  sed -n '73p;110p;118p' .skilled/agents/code.md | rg -c 'local-'
+  sed -n '73p;110p;118p' .skilled/agents/code.md | rg -c 'UNKNOWN_ROUTE'
+  git show 42b41dd286:.skilled/agents/code.md | rg -c '\| none \|'
+  sed -n '110p' .skilled/agents/code.md | rg -c '\| none \|' || echo 0
+  sed -n '73p;110p;118p;210p;359p;371p;392p;396p;437p;518p;550p' .skilled/agents/code.md | rg -c 'local-'
+  git show 42b41dd286:.skilled/agents/code.md | sed -n '73p;110p;118p;210p;359p;371p;392p;396p;437p;518p;550p' | rg -v 'local-' | rg -c 'UNKNOWN'
+  sed -n '73p;110p;118p;210p;359p;371p;392p;396p;437p;518p;550p' .skilled/agents/code.md | rg -v 'local-' | rg -c 'UNKNOWN' || echo 0
+  ```
+  Expected: `3`, `3`, `3`, `1`, `0`, `11`, `11`, `0`. The `3`/`3`/`3`, `11` and `0` values exist only after this edit; the two control values (`1` and `11`) were measured now against `42b41dd286`.
+- **AC:** AC-031
+- **Rollback:** restore the eleven anchor lines; leave the line-66 fallback in place.
+- **Stop if:** any of the eleven lines still lacks the `local-` qualifier or the non-local escalation.
+
+### T070c — Add the advisor fallback to the review agent's route selection
+
+- **File:** `.skilled/agents/review.md`
+- **Anchor:** line 90, `- If the route is UNKNOWN, note the uncertainty and review only against baseline security/correctness minimums.` The handoff cites line 91; the quoted sentence sits on line 90 in this tree.
+- **Change:** replace that line with this line. The section 6 `Fallback route` sentence stays unchanged, because noting uncertainty and not inventing route-specific findings remains true after the advisor fallback.
+  ```markdown
+  - If the route is UNKNOWN, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, review against that skill's `SKILL.md` plus the baseline security/correctness minimums. Otherwise, note the uncertainty and review only against baseline security/correctness minimums.
+  ```
+- **Proof:**
+  ```bash
+  sed -n '90p' .skilled/agents/review.md | rg -c 'advisor_recommend.*local-.*SKILL\.md.*baseline'
+  sed -n '90p' .skilled/agents/review.md | rg -c 'Otherwise, note the uncertainty and review only against baseline security/correctness minimums'
+  ```
+  Expected: `1`, `1`
+- **AC:** AC-032
+- **Rollback:** replace line 90 with the anchor text.
+- **Stop if:** the non-local branch no longer reviews against the baseline minimums.
+
+### T070d1 — Mirror the code-agent body edits into the Claude twin
+
+- **File:** `.claude/agents/code.md`
+- **Anchor:** line 535, `│  └─► Escalate UNKNOWN stack, scope conflict, or low confidence`; line 503, the `Skill-load-without-applying` row's final sentence ``If `stack==UNKNOWN`, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious``; line 422, ``If sk-code returned UNKNOWN, did I escalate `UNKNOWN_STACK` instead of implementing?``; line 381, ``- `sk-code` returns UNKNOWN or stack/task implication mismatch detected``; line 377, ``- Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK` ``; line 356, ``- Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN)``; line 344, ``- sk-code returns UNKNOWN → `UNKNOWN_STACK` ``; line 195, ``[ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated.``; line 103, ``6. If `sk-code` returns UNKNOWN, escalate `UNKNOWN_ROUTE`. NEVER guess.``; line 95, ``| **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |``; line 58, ``UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator``; line 51, ``3. **INVOKE sk-code**`` with ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.`` The body otherwise matches `.skilled/agents/code.md` apart from runtime path names.
+- **Change:** apply the twelve replacement lines below at those positions, highest line number first: 535, 503, 422, 381, 377, 356, 344, 195, 103, 95, 58, 51. Copy them verbatim from T070a and T070b; strip the two-space list indent so the diagram line starts at column 1, and do not reflow, reword or hand-edit any other line.
+  ```markdown
+  │  └─► Escalate UNKNOWN unless local-*, scope conflict, or low confidence   │
+  ```
+  ```markdown
+  | **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+  ```
+  ```markdown
+  7. Did I cite sk-code's detected stack + selected intents + loaded resource paths in my RETURN Summary, proving the smart router actually fired (not just the SKILL.md read)? If sk-code returned UNKNOWN and the advisor's top pick is not a `local-*` skill, did I escalate `UNKNOWN_STACK` instead of implementing?
+  ```
+  ```markdown
+  - `sk-code` returns UNKNOWN and the advisor's top pick is not a `local-*` skill, or a stack/task implication mismatch is detected
+  ```
+  ```markdown
+  - Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK` only when the advisor's top pick is not a `local-*` skill
+  ```
+  ```markdown
+  - Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN when the advisor's top pick is not a `local-*` skill)
+  ```
+  ```markdown
+  - sk-code returns UNKNOWN and the advisor's top pick is not a `local-*` skill → `UNKNOWN_STACK`
+  ```
+  ```markdown
+  [ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated when the advisor's top pick is not a `local-*` skill.
+  ```
+  ```markdown
+  6. If `sk-code` returns UNKNOWN, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE`. NEVER guess.
+  ```
+  ```markdown
+  | **Fallback** | Advisor `local-*` overlay | Route cannot be determined | Run `advisor_recommend`; when `.data.recommendations[0].skillId` starts with `local-`, load that `SKILL.md` as the standards overlay; otherwise return `UNKNOWN_ROUTE` |
+  ```
+  ```markdown
+  @code does NOT pre-detect the project route. The full code-routing logic lives in `.skilled/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE` to the orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
+  ```
+  ```markdown
+  3. **INVOKE sk-code** → Read `.skilled/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **FALLBACK**: if `sk-code` returns UNKNOWN or ambiguous routing, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json` and read the top pick at `.data.recommendations[0].skillId`; when it starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN's Summary line, and continue. Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
+  ```
+- **Proof:**
+  ```bash
+  git show 42b41dd286:.claude/agents/code.md | rg -c 'HARD STOP'
+  git show 42b41dd286:.claude/agents/code.md | rg -c '\| none \|'
+  rg -c 'advisor_recommend' .claude/agents/code.md
+  rg -c 'HARD STOP' .claude/agents/code.md || echo 0
+  rg -c '\| none \|' .claude/agents/code.md || echo 0
+  sed -n '51p;58p;95p;103p;195p;344p;356p;377p;381p;422p;503p;535p' .claude/agents/code.md | rg -c 'local-'
+  git show 42b41dd286:.claude/agents/code.md | sed -n '51p;58p;95p;103p;195p;344p;356p;377p;381p;422p;503p;535p' | rg -v 'local-' | rg -c 'UNKNOWN'
+  sed -n '51p;58p;95p;103p;195p;344p;356p;377p;381p;422p;503p;535p' .claude/agents/code.md | rg -v 'local-' | rg -c 'UNKNOWN' || echo 0
+  node -e "
+  const fs=require('fs');
+  const {parseFrontmatter}=require('./.skilled/skills/system-spec-kit/shared/dist/frontmatter/parse-frontmatter.js');
+  const norm=s=>s.replace(/\.(?:skilled|opencode|claude|pi)\/agents\//g,'<agents>/').trim();
+  const a=norm(parseFrontmatter(fs.readFileSync('.skilled/agents/code.md','utf8')).body);
+  const b=norm(parseFrontmatter(fs.readFileSync('.claude/agents/code.md','utf8')).body);
+  console.log('code: '+(a===b?'identical':'DIFF'));
+  "
+  ```
+  Expected: `1`, `1`, `4`, `0`, `0`, `12`, `12`, `0`, `code: identical`. The `4`, `12` and `0` values exist only after this edit; the three controls (`1`, `1` and `12`) were measured now against `42b41dd286`.
+- **AC:** AC-033
+- **Rollback:** restore the twelve anchor lines in `.claude/agents/code.md`.
+- **Stop if:** the body comparison prints `DIFF` for the code agent, or a line outside the twelve matching positions changes.
+
+### T070d2 — Mirror the review-agent body edit into the Claude twin
+
+- **File:** `.claude/agents/review.md`
+- **Anchor:** line 75, `- If the route is UNKNOWN, note the uncertainty and review only against baseline security/correctness minimums.` The body otherwise matches `.skilled/agents/review.md` apart from runtime path names.
+- **Change:** replace that line with this line, copied verbatim from T070c.
+  ```markdown
+  - If the route is UNKNOWN, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, review against that skill's `SKILL.md` plus the baseline security/correctness minimums. Otherwise, note the uncertainty and review only against baseline security/correctness minimums.
+  ```
+- **Proof:**
+  ```bash
+  rg -c 'advisor_recommend' .claude/agents/review.md
+  sed -n '75p' .claude/agents/review.md | rg -c 'advisor_recommend.*local-.*SKILL\.md.*baseline'
+  sed -n '75p' .claude/agents/review.md | rg -c 'Otherwise, note the uncertainty and review only against baseline security/correctness minimums'
+  node -e "
+  const fs=require('fs');
+  const {parseFrontmatter}=require('./.skilled/skills/system-spec-kit/shared/dist/frontmatter/parse-frontmatter.js');
+  const norm=s=>s.replace(/\.(?:skilled|opencode|claude|pi)\/agents\//g,'<agents>/').trim();
+  const a=norm(parseFrontmatter(fs.readFileSync('.skilled/agents/review.md','utf8')).body);
+  const b=norm(parseFrontmatter(fs.readFileSync('.claude/agents/review.md','utf8')).body);
+  console.log('review: '+(a===b?'identical':'DIFF'));
+  "
+  ```
+  Expected: `1`, `1`, `1`, `review: identical`. These values exist only after this edit.
+- **AC:** AC-033
+- **Rollback:** replace line 75 with the anchor text.
+- **Stop if:** the body comparison prints `DIFF` for the review agent.
+
+### T070e1 — Regenerate the Codex mirrors
+
+- **File:** `.codex/agents/code.toml` and `.codex/agents/review.toml`, written together by one generator.
+- **Anchor:** `.codex/agents/code.toml` line 55, the old ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.`` Both files are generated from `.skilled/agents/{code,review}.md` and must never be hand-edited.
+- **Change:** run the Codex generator once in write mode.
+  ```bash
+  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
+  ```
+- **Proof:**
+  ```bash
+  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+  rg -c 'advisor_recommend' .codex/agents/code.toml .codex/agents/review.toml
+  ```
+  Expected: `[codex-agent-sync] PASS: 11 agents are in sync.`, `.codex/agents/code.toml:4`, `.codex/agents/review.toml:1`. The two counts exist only after the `.skilled` edits and this regeneration.
+- **AC:** AC-034
+- **Rollback:** `git checkout -- .codex/agents/code.toml .codex/agents/review.toml`, then regenerate only if the `.skilled` text should stay.
+- **Stop if:** the generator writes a path outside the two named mirrors, or the check exits non-zero.
+
+### T070e2 — Regenerate the Pi mirrors
+
+- **File:** `.pi/agents/code.md` and `.pi/agents/review.md`, written together by one generator.
+- **Anchor:** `.pi/agents/code.md` line 59, the old ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.`` Both files are generated from `.skilled/agents/{code,review}.md` and must never be hand-edited.
+- **Change:** run the Pi generator once in write mode.
+  ```bash
+  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
+  ```
+- **Proof:**
+  ```bash
+  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+  rg -c 'advisor_recommend' .pi/agents/code.md .pi/agents/review.md
+  ```
+  Expected: `[pi-agent-sync] PASS: 11 agents are in sync.`, `.pi/agents/code.md:4`, `.pi/agents/review.md:1`. The two counts exist only after the `.skilled` edits and this regeneration.
+- **AC:** AC-034
+- **Rollback:** `git checkout -- .pi/agents/code.md .pi/agents/review.md`, then regenerate only if the `.skilled` text should stay.
+- **Stop if:** the generator writes a path outside the two named mirrors, or the check exits non-zero.
+
+### T070e3 — Run the four agent-mirror drift checks
+
+- **File:** none
+- **Anchor:** `.skilled/bin/check-agent-mirror-sync.cjs`, line 1 `#!/usr/bin/env node`.
+- **Change:** run the four checks only.
+  ```bash
+  set -e
+  node .skilled/bin/check-agent-mirror-sync.cjs --all
+  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+  node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
+  echo 'all four agent mirror checks exited 0'
+  ```
+- **Proof:**
+  ```bash
+  set -e
+  node .skilled/bin/check-agent-mirror-sync.cjs --all
+  node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+  node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+  node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
+  echo 'all four agent mirror checks exited 0'
+  ```
+  Expected: `all four agent mirror checks exited 0`, with the doctor check printing `STATUS=OK agent-roster-mirror: every runtime covers the canonical roster`
+- **AC:** AC-034
+- **Rollback:** n/a: read-only.
+- **Stop if:** any check exits non-zero.
+
+### T070f — Record the deferred private-skill routing probe
+
+- **File:** `implementation-summary.md`
+- **Anchor:** line 92, the limitations anchor comment, immediately followed by line 93 `## Known Limitations`.
+- **Change:** insert this block immediately before the limitations anchor comment, after the final-counts block. It records a routing probe that waits for phase 004; the insertion itself is proved now.
+  ````markdown
+  ### Deferred after phase 004
+
+  The routing probe that proves a real private skill wins an UNKNOWN route runs once phase 004 creates the two symlinks. It is not a gate for closing this phase.
+
+  ```bash
+  cd "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+  SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills:/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills" node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).data.recommendations[0].skillId))"
+  ```
+
+  Expected: `local-webflow`, the top `skillId`.
+  ````
+- **Proof:**
+  ```bash
+  rg -c '^### Deferred after phase 004' implementation-summary.md
+  sed -n '/^### Deferred after phase 004/,/^## Known Limitations/p' implementation-summary.md | rg -c 'local-webflow'
+  ```
+  Expected: `1`, `1`. These values exist only after this insertion.
+
+  **Deferred proof (after phase 004 lands):**
+  ```bash
+  cd "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+  SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills:/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills" node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).data.recommendations[0].skillId))"
+  ```
+  Expected: `local-webflow`, the top `skillId`. This probe is deferred and is not a gate for closing this phase.
+- **AC:** AC-035 (routing probe deferred after phase 004; the insertion proof above is immediate)
+- **Rollback:** delete the `### Deferred after phase 004` heading, its paragraph, its command block and its `Expected` line.
+- **Stop if:** the insertion proof is not `1`, `1`, or after phase 004 lands the top `skillId` is not `local-webflow`.
+
 ### T071 — Run the authoritative validator
 
 - **File:** none
@@ -1862,7 +2143,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
-- **Change:** stage the changed files by name, never `git add -A`, and commit with a prose body.
+- **Change:** stage the changed files by name, never `git add -A`, and commit with a prose body. The `.codex` and `.pi` agent files are the T070e1 and T070e2 regenerated copies; stage them, never hand-edit them.
   ```bash
   git add .skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts \
     .skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts \
@@ -1881,6 +2162,14 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
     .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts \
     .opencode/plugins/system-skill-advisor.js \
     .opencode/plugins/tests/system-skill-advisor.test.cjs \
+    .skilled/agents/code.md \
+    .skilled/agents/review.md \
+    .claude/agents/code.md \
+    .claude/agents/review.md \
+    .codex/agents/code.toml \
+    .codex/agents/review.toml \
+    .pi/agents/code.md \
+    .pi/agents/review.md \
     .skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts \
     .skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts \
     .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts \
@@ -1896,17 +2185,17 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
     specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/goal.md \
     specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/description.json \
     specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/graph-metadata.json
-  git commit -m "Retire the advisor's removed surface vocabulary and bound its private-skill scans"
+  git commit -m "Retire the advisor's surface vocabulary, bound its scans, and fall back to local skills" -m "advisor vocabulary cleanup: retire the surface vocabulary, bound the private-skill scans, and fall back to local skills"
   ```
 - **Proof:**
   ```bash
   git log --oneline -1
   git diff --cached --name-only | wc -l
   ```
-  Expected: one commit whose subject is `Retire the advisor's removed surface vocabulary and bound its private-skill scans`, and `0` staged paths after the commit
+  Expected: one commit whose subject is `Retire the advisor's surface vocabulary, bound its scans, and fall back to local skills`, and `0` staged paths after the commit
 - **AC:** AC-026
 - **Rollback:** `git reset --soft HEAD~1` before the push; after the push, use the phase rollback in `plan.md` §7.
-- **Stop if:** `git status --porcelain` names a path outside the 23 changed files and this phase's documents.
+- **Stop if:** `git status --porcelain` names a path outside the 31 changed files and this phase's documents.
 
 ### T075 — Push the phase
 
@@ -2009,7 +2298,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-020 [P0] All acceptance criteria met, or waived against a decision record (AC-035 under ADR-008)
 - [ ] CHK-021 [P0] Manual testing complete
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated

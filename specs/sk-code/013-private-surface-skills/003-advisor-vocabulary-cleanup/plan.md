@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | vitest, `node --test`, `python3` script-style suite |
 
 ### Overview
-Two sweeps. The vocabulary sweep deletes the `WEBFLOW` / `OBSIDIAN` surface from the advisor scorer, the OpenCode plugin's workspace detection, both tool-schema descriptions, the advisor README and the tests that name them. The scan sweep then makes the name `local-` decisive at the top level of `.skilled/skills/`: the advisor graph scan, the source-signature scan and the Python conflict-declaration reader see a private skill, and the compiler, Hermes sync, CI root-metadata gate and doctor freshness panel skip the name outright. The two follow-scans share one containment helper, so a `local-*` link is followed only when its realpath resolves inside the skills root or a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. Each behavior change lands test-first, and the tracked fallback graph is regenerated only after the compiler already skips the name.
+Two sweeps. The vocabulary sweep deletes the `WEBFLOW` / `OBSIDIAN` surface from the advisor scorer, the OpenCode plugin's workspace detection, both tool-schema descriptions, the advisor README and the tests that name them. The scan sweep then makes the name `local-` decisive at the top level of `.skilled/skills/`: the advisor graph scan, the source-signature scan and the Python conflict-declaration reader see a private skill, and the compiler, Hermes sync, CI root-metadata gate and doctor freshness panel skip the name outright. The two follow-scans share one containment helper, so a `local-*` link is followed only when its realpath resolves inside the skills root or a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. Each behavior change lands test-first, and the tracked fallback graph is regenerated only after the compiler already skips the name. A third, smaller sweep updates the `@code` and `@review` agents so an UNKNOWN route falls back to the advisor's top `local-*` pick, with the `.claude`, `.codex` and `.pi` mirrors kept in step.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -41,7 +41,7 @@ Two sweeps. The vocabulary sweep deletes the `WEBFLOW` / `OBSIDIAN` surface from
 - [x] Every anchor read on the working tree at `583316d083`
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [ ] All acceptance criteria met, or waived against a decision record (AC-035 under ADR-008)
 - [ ] Twelve green commands pass and the ambiguity slice is no lower than its baseline
 - [ ] Independent review reports no unresolved finding
 - [ ] `validate.sh --strict` prints `RESULT: PASSED`
@@ -96,10 +96,13 @@ Layered scan guards. One directory (`.skilled/skills/`) is read by seven consume
 | 21 | T048-T050 | `runtime/scripts/skill-graph.json` | Regenerate the tracked fallback and inspect the diff |
 | 22 | T051-T068 | none | Run the twelve green commands, the known-red ambiguity slice and the five closure checks |
 | 23 | T069-T070 | `implementation-summary.md` | Record the red-first evidence and the final counts |
-| 24 | T071 | none | Strict validation |
-| 25 | T072 | none | Independent review through the `subagent` tool, read-only, at most two rounds |
-| 26 | T073 | none | Final strict validation |
-| 27 | T074-T076 | none | Commit by name, push `HEAD:main`, confirm the final state |
+| 24 | T070a-T070c, T070d1-T070d2 | `.skilled/agents/code.md`, `.skilled/agents/review.md`, `.claude/agents/code.md`, `.claude/agents/review.md` | Add the advisor `local-*` fallback to @code and @review, keeping the Claude twins identical |
+| 25 | T070e1-T070e3 | `.codex/agents/code.toml`, `.codex/agents/review.toml`, `.pi/agents/code.md`, `.pi/agents/review.md` | Regenerate the Codex and Pi mirrors, then run the four drift checks |
+| 26 | T070f | `implementation-summary.md` | Record the deferred phase-004 routing probe and prove the insertion now |
+| 27 | T071 | none | Strict validation |
+| 28 | T072 | none | Independent review through the `subagent` tool, read-only, at most two rounds |
+| 29 | T073 | none | Final strict validation |
+| 30 | T074-T076 | none | Commit by name, push `HEAD:main`, confirm the final state |
 
 Each step's proof command is the `Proof` field of its first task in `tasks.md`. The two closure commands are repeated here because they decide the phase:
 
@@ -135,6 +138,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `lexical.ts` hint table | producer of scorer hints | update: drop the `obsidian plugin` token | AC-001 |
 | `.opencode/plugins/system-skill-advisor.js` `detectWorkspaceSurface` | producer of the surface hint | update: SKILLED only | AC-001 |
 | `skill-advisor-cli-manifest.ts`, `advisor-recommend.ts`, advisor `README.md` | docs and schema descriptions of `surfaceHint` | update: example becomes SKILLED | AC-015 |
+| `.skilled/agents/code.md`, `.skilled/agents/review.md` | agent route fallback when `sk-code` returns UNKNOWN | update: advisor top `local-*` pick as overlay, otherwise escalate or baseline | AC-030 to AC-032 |
+| `.claude/agents/{code,review}.md`, `.codex/agents/{code,review}.toml`, `.pi/agents/{code,review}.md` | runtime copies of the agent bodies | hand-edit `.claude`; regenerate `.codex` and `.pi` | AC-033, AC-034 |
 | `native-scorer.vitest.ts:387` | consumer asserting the hub still owns frontend prompts | unchanged | AC-016 |
 | `runtime/data/trigger-index.json`, `runtime/cli/retrieval/fixtures/*.json` | generated retrieval data | not a consumer this phase edits | phase 5 |
 
@@ -169,12 +174,13 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. The step table in §3 is the same order with the proof command attached to each file.
 
-Four rules bind every step:
+Five rules bind every step:
 
 1. **Test first.** T018, T019, T021, T022, T023, T025, T026, T028, T029, T031 and T033 land a failing or characterizing test before the matching code step. A red tree between a pair is expected and confined; the phase is not closeable while any of them is red.
 2. **Containment before following.** T017 creates the helper before T020 and T024 call it. No follow path may use a bare `statSync` check.
 3. **Executor.** Every step is a code change, including the one-line option description in the advisor README that must land with the code it describes, so the orchestrator or the `code` / `markdown` subagents write it in one OpenCode 2 session. No dispatch kit or executor branch name is used.
 4. **No ephemeral labels in code.** A comment added by this phase states the durable reason (a private skill lives only in the operator's checkout; a symlink is not a `Dirent` directory; a followed link must stay inside a trusted root) and never a packet, phase or spec path.
+5. **Agent fallback before validation.** T070a to T070e3 land the fallback and regenerate the `.codex` and `.pi` mirrors before T071, so the strict validator and the commit certify the final agent text. T070f records a probe that waits for phase 004 and proves the insertion now.
 
 **Commit and push last.** T074 to T076 run only after T051 to T073 pass: every suite green, the independent review closed, and `validate.sh --strict` printing `RESULT: PASSED`. Stage the files by name, commit, push `HEAD:main`, then confirm `git status --porcelain` is empty and `git rev-parse HEAD` equals `git rev-parse origin/main`.
 <!-- /ANCHOR:phases -->
@@ -206,6 +212,7 @@ Run from `.skilled/skills/system-skill-advisor/runtime` with `../../system-spec-
 | `SPECKIT_PRIVATE_SKILL_ROOTS` | Internal (optional) | Unset by default | An external repository linked into the tree is skipped; a real folder under `.skilled/skills/local-*` still works |
 | CI trigger-index rebuild | Internal | Green after the push | `trigger-index.json` keeps 200 surface mentions until CI regenerates it; phase 5 proves it |
 | `better-sqlite3` in the runtime `node_modules` | External | Green | The vitest suites that open a database cannot run |
+| Agent fallback before T071 | Internal | Green once T070a to T070e3 land | An authoritative validator run before the agents name the fallback would certify a tree that still hard-stops on an unknown route |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -337,8 +344,9 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 5. **T035 - Python reader** - 30 minutes - CRITICAL: the seventh scan's treatment must be pinned.
 6. **T036-T043 - Vocabulary sweep** - 1.5 hours - CRITICAL: the closure sweep depends on it.
 7. **T044-T050 - Screens and regeneration** - 45 minutes - CRITICAL: the tracked graph is the artifact the handoff names.
-8. **T051-T073 - Verify and review** - 2 hours - CRITICAL: no completion claim without it.
-9. **T074-T076 - Delivery** - 15 minutes - CRITICAL: phase 4 starts from the pushed commit.
+8. **T070a-T070c, T070d1-T070d2, T070e1-T070e3, T070f - Agent fallback** - 45 minutes - CRITICAL: the agents must name the fallback before the authoritative validator and the commit.
+9. **T051-T073 - Verify and review** - 2 hours - CRITICAL: no completion claim without it.
+10. **T074-T076 - Delivery** - 15 minutes - CRITICAL: phase 4 starts from the pushed commit.
 
 **Total Critical Path**: 10-11 hours
 
@@ -422,7 +430,7 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 **Decision**: Make no change. Record the screen with the command that proves 14 fleet manifests and zero in either private tree, and keep the gate as it is.
 
 **Consequences**:
-- One less file in a phase that already touches 23.
+- One less file in a phase that already touches 31.
 - If a future private skill adds a leaf manifest, the gate would see it; phase 5's fresh-clone proof is the backstop.
 
 **Alternatives Rejected**:
@@ -476,3 +484,21 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 **Alternatives Rejected**:
 - Trust every link: defeats the containment decision.
 - Hard-code the operator's private path: environment-specific and wrong on any other checkout.
+
+### ADR-008: Agents fall back to an advisor-named `local-*` skill when `sk-code` returns UNKNOWN
+
+**Status**: Accepted
+
+**Context**: After phase 2 removes the surfaces and this phase removes their vocabulary, `sk-code` has no route for the anobel.com Webflow tree or the Obsidian Plugin tree. `.skilled/agents/code.md` hard-stops with `UNKNOWN_ROUTE` at step 3 and `.skilled/agents/review.md` reviews only the baseline minimums. The advisor can still name `local-webflow` or `local-obsidian` once phase 004 links them.
+
+**Decision**: When `sk-code` returns UNKNOWN or ambiguous routing, `@code` and `@review` run `skill-advisor.cjs advisor_recommend` on the task text. A top pick whose `skillId` starts with `local-` becomes the standards overlay and is cited; any other pick keeps the existing behavior. The twelve UNKNOWN-route statements in `code.md` and the review route statement carry the qualifier. `.claude` is hand-edited, and `.codex` and `.pi` are regenerated.
+
+**Consequences**:
+- Webflow and Obsidian work routes to the private skill once phase 004 links it.
+- A non-local pick cannot replace sk-code's route or silence the existing escalation.
+- Five statements (four in `code.md`, one in `review.md`) and three mirror families stay in step.
+
+**Alternatives Rejected**:
+- Keep the hard stop: private work escalates even when the skill is present.
+- Accept any advisor pick: an unrelated pick would replace the route.
+- Hard-code surface names: reintroduces the retired vocabulary into tracked agent files.

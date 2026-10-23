@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 2 removes the Webflow and Obsidian surfaces from the sk-code hub, but the advisor still declares them: the lexical lane carries an `obsidian plugin` hint token for `sk-code`, the OpenCode plugin detects an OBSIDIAN or WEBFLOW workspace, and two tool schemas plus the advisor README advertise `WEBFLOW` as the example surface hint",
     "created_at": "2026-10-23T07:03:39Z",
-    "last_save_at": "2026-10-23T16:14:05.355Z",
+    "last_save_at": "2026-10-23T20:46:23.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae592970e544a0997c840c3cec7d2cad4236eb2cf7cbca985f6e2a22136bd873",
+    "source_fingerprint": "sha256:3fd6a465a1daf35a5937f0f2cbc99ff7ad7e2f6f745a6ea5d5c7fe2d2b26f359",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a708bc03625a4feb6f7e3368e6a5fefdad3198487b26f8a84232d0ef465820d",
-      "plan.md": "29fd0bdd96e7087e508061f38b6358645582daf0b70757589fe7eb7f47b87925",
-      "tasks.md": "a2e764a140029989af8d1f972de97143bd6f576ffb3c7c255a001db3e4bcae2f",
-      "decision-record.md": "5590934b4fe337f77c1961e8956e8565087651cfef44f69c1c4ea0bca868eb94",
+      "spec.md": "47cfbd29986b5c9db77f00f4901d23cc43678ca36469cb72d8256033b896b976",
+      "plan.md": "881cd1725313fcc978ba1420fcb5518db9b2639ae669d074d4dfb116ab2061de",
+      "tasks.md": "9c83a00dd6334d64550bbfb6aec7f9ef7cc3e06a1ff74a246306822441f886e3",
+      "decision-record.md": "28d5e9960d126a7f5ebab92bc91991aeae648f20f93f8e0de294e5a539093492",
       "implementation-summary.md": "e0dfc53281146f7a0cb2ed525723d5f76bfe17ef35feaf6a0e72b7f1b0726b25"
     },
     "last_active_at": null

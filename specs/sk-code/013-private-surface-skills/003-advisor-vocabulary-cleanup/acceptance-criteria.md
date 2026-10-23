@@ -80,6 +80,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-027 | REQ-013 | Given the independent review, When it closes, Then its report ends with `VERDICT: CLEAN` or every finding is resolved or recorded | Unmet | - |
 | AC-028 | REQ-009 | Given the phase start and the phase end, When `implementation-summary.md` is read, Then the baseline table, the red-first table and the final-counts table are present and agree with the suite runs | Unmet | - |
 | AC-029 | REQ-001 | Given the working tree, When the predecessor check runs, Then both surface folders are absent | Unmet | - |
+| AC-030 | REQ-014 | Given `.skilled/agents/code.md` step 3, When `sk-code` returns UNKNOWN or ambiguous routing, Then the agent runs the advisor CLI, uses a top `local-*` `skillId` as the standards overlay and cites it, and escalates `UNKNOWN_ROUTE` only when the top pick is not `local-*` | Unmet | - |
+| AC-031 | REQ-014 | Given the eleven `UNKNOWN`/`UNKNOWN_STACK` escalation statements in `code.md` that T070b rewrites (lines 73, 110, 118, 210, 359, 371, 392, 396, 437, 518 and 550), When they are read, Then each carries the advisor fallback or its non-local qualifier, the routing table's fallback row no longer reads `none`, and no unqualified escalation statement remains. The six lines that only enumerate, map or conditionally report the escalation (274, 300, 311, 354, 417, 514) stay unchanged because they do not escalate an UNKNOWN route | Unmet | - |
+| AC-032 | REQ-014 | Given `review.md` route selection, When `sk-code` returns UNKNOWN, Then a top `local-*` pick is reviewed against that skill's `SKILL.md` plus the baseline minimums, and otherwise the existing baseline-only sentence applies | Unmet | - |
+| AC-033 | REQ-014 | Given the `.claude` twins, When their twelve code-agent and one review-agent fallback lines are compared to `.skilled` and the bodies are normalized for runtime paths, Then the bodies are identical, the old hard-stop and `none` wording is gone, and no unqualified escalation statement remains | Unmet | - |
+| AC-034 | REQ-014 | Given the regenerated `.codex` and `.pi` mirrors, When the four drift checks run, Then each exits 0 and the doctor check prints `STATUS=OK` | Unmet | - |
+| AC-035 | REQ-014 | Deferred after phase 004: Given the anobel.com checkout with both private roots declared, When the advisor CLI runs on "implement a responsive webflow animation module", Then the top `skillId` is `local-webflow` | Waived | ADR-008 |
 
 ### Status values
 
@@ -354,6 +360,88 @@ test ! -d .skilled/skills/sk-code/sk-code-webflow && test ! -d .skilled/skills/s
 ```
 
 Expected: `absent`.
+
+### AC-030
+
+```bash
+sed -n '66p' .skilled/agents/code.md | rg -c '\*\*FALLBACK\*\*.*advisor_recommend.*local-'
+sed -n '66p' .skilled/agents/code.md | rg -c 'Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit'
+git show 42b41dd286:.skilled/agents/code.md | rg -c 'HARD STOP'
+sed -n '66p' .skilled/agents/code.md | rg -c 'HARD STOP' || echo 0
+```
+
+Expected: `1`, `1`, `1`, `0`. The first, second and fourth values exist only after the agent edits; the `HARD STOP` control is `1` at `42b41dd286` and was measured now.
+
+### AC-031
+
+```bash
+sed -n '73p;110p;118p' .skilled/agents/code.md | rg -c 'advisor_recommend'
+sed -n '73p;110p;118p' .skilled/agents/code.md | rg -c 'local-'
+sed -n '73p;110p;118p' .skilled/agents/code.md | rg -c 'UNKNOWN_ROUTE'
+git show 42b41dd286:.skilled/agents/code.md | rg -c '\| none \|'
+sed -n '110p' .skilled/agents/code.md | rg -c '\| none \|' || echo 0
+sed -n '73p;110p;118p;210p;359p;371p;392p;396p;437p;518p;550p' .skilled/agents/code.md | rg -c 'local-'
+git show 42b41dd286:.skilled/agents/code.md | sed -n '73p;110p;118p;210p;359p;371p;392p;396p;437p;518p;550p' | rg -v 'local-' | rg -c 'UNKNOWN'
+sed -n '73p;110p;118p;210p;359p;371p;392p;396p;437p;518p;550p' .skilled/agents/code.md | rg -v 'local-' | rg -c 'UNKNOWN' || echo 0
+```
+
+Expected: `3`, `3`, `3`, `1`, `0`, `11`, `11`, `0`. The `3`/`3`/`3`, `11` and `0` values exist only after the agent edits; the two control values (`1` and `11`) were measured now against `42b41dd286`.
+
+### AC-032
+
+```bash
+sed -n '90p' .skilled/agents/review.md | rg -c 'advisor_recommend.*local-.*SKILL\.md.*baseline'
+sed -n '90p' .skilled/agents/review.md | rg -c 'Otherwise, note the uncertainty and review only against baseline security/correctness minimums'
+```
+
+Expected: `1`, `1`.
+
+### AC-033
+
+```bash
+git show 42b41dd286:.claude/agents/code.md | rg -c 'HARD STOP'
+git show 42b41dd286:.claude/agents/code.md | rg -c '\| none \|'
+rg -c 'advisor_recommend' .claude/agents/code.md .claude/agents/review.md | sort
+rg -c 'HARD STOP' .claude/agents/code.md || echo 0
+rg -c '\| none \|' .claude/agents/code.md || echo 0
+sed -n '51p;58p;95p;103p;195p;344p;356p;377p;381p;422p;503p;535p' .claude/agents/code.md | rg -c 'local-'
+git show 42b41dd286:.claude/agents/code.md | sed -n '51p;58p;95p;103p;195p;344p;356p;377p;381p;422p;503p;535p' | rg -v 'local-' | rg -c 'UNKNOWN'
+sed -n '51p;58p;95p;103p;195p;344p;356p;377p;381p;422p;503p;535p' .claude/agents/code.md | rg -v 'local-' | rg -c 'UNKNOWN' || echo 0
+node -e "
+const fs=require('fs');
+const {parseFrontmatter}=require('./.skilled/skills/system-spec-kit/shared/dist/frontmatter/parse-frontmatter.js');
+const norm=s=>s.replace(/\.(?:skilled|opencode|claude|pi)\/agents\//g,'<agents>/').trim();
+for (const n of ['code','review']) {
+  const a=norm(parseFrontmatter(fs.readFileSync('.skilled/agents/'+n+'.md','utf8')).body);
+  const b=norm(parseFrontmatter(fs.readFileSync('.claude/agents/'+n+'.md','utf8')).body);
+  console.log(n+': '+(a===b?'identical':'DIFF'));
+}
+"
+```
+
+Expected: `1`, `1`, `.claude/agents/code.md:4`, `.claude/agents/review.md:1`, `0`, `0`, `12`, `12`, `0`, `code: identical`, `review: identical`. The `4`, `12`, `0` and body values exist only after the agent edits; the three controls (`1`, `1` and `12`) were measured now against `42b41dd286`.
+
+### AC-034
+
+```bash
+set -e
+node .skilled/bin/check-agent-mirror-sync.cjs --all
+node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
+echo 'all four agent mirror checks exited 0'
+```
+
+Expected: `all four agent mirror checks exited 0`; the doctor check prints `STATUS=OK agent-roster-mirror: every runtime covers the canonical roster`.
+
+### AC-035
+
+```bash
+cd "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills:/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills" node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).data.recommendations[0].skillId))"
+```
+
+Expected: `local-webflow`, the top `skillId`, after phase 004 lands. Deferred; not a gate for closing this phase.
 <!-- /ANCHOR:proofs -->
 
 ---
@@ -363,5 +451,5 @@ Expected: `absent`.
 
 **Closeable:** No
 
-The criteria close the packet when the seven scan decisions are proven, the tracked graph carries no sk-code surface signal, and delivery ends with HEAD equal to `origin.main`. Nothing is waived: every criterion is either met by a task or blocks closure.
+The criteria close the packet when the seven scan decisions are proven, the tracked graph carries no sk-code surface signal, the agent fallback criteria AC-030 to AC-034 are met, and delivery ends with HEAD equal to `origin.main`. Nothing is waived except AC-035, which is deferred to phase 004 under ADR-008 and does not gate this phase.
 <!-- /ANCHOR:closure -->

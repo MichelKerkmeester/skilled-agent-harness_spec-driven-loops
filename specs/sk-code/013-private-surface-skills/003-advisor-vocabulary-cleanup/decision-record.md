@@ -9,9 +9,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup"
-    last_updated_at: "2026-10-23T13:10:00Z"
+    last_updated_at: "2026-10-23T20:25:50.125Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Authored six decision records for the phase"
+    recent_action: "Authored seven decision records for the phase"
     next_safe_action: "Execute the tasks against these decisions"
     blockers: []
     key_files:
@@ -393,7 +393,7 @@ The gate walks the skills tree for every committed `leaf-manifest.json`. The res
 ### Consequences
 
 **What improves**:
-- One less file in a phase that already touches 23.
+- One less file in a phase that already touches 31.
 - The decision is recorded with its proof rather than left as an omission.
 
 **What it costs**:
@@ -540,6 +540,8 @@ The gate walks the skills tree for every committed `leaf-manifest.json`. The res
 <!-- ANCHOR:adr-006 -->
 ## ADR-006: A phase-4 external link requires `SPECKIT_PRIVATE_SKILL_ROOTS`
 
+> Numbering note: this decision is ADR-007 in `plan.md`; the decision record keeps its own sequence, and ADR-008 below covers the agent fallback.
+
 ### Metadata
 
 | Field | Value |
@@ -635,5 +637,110 @@ Phase 4 uses a symlink per private skill to a `local-skills/` folder in an exter
 **How to roll back**: remove the variable from the helper and the constraint from the spec. A real folder still works.
 <!-- /ANCHOR:adr-006-impl -->
 <!-- /ANCHOR:adr-006 -->
+
+---
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: Agents fall back to an advisor-named local-* skill when sk-code returns UNKNOWN
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-23 |
+| **Deciders** | Operator |
+
+---
+
+<!-- ANCHOR:adr-008-context -->
+### Context
+
+After phase 2 removes the Webflow and Obsidian surfaces and this phase removes their vocabulary, `sk-code` has no route for those two projects. In the anobel.com checkout, a Webflow task returns UNKNOWN; in the Obsidian Plugin checkout, an Obsidian task does. `.skilled/agents/code.md` hard-stops with `UNKNOWN_ROUTE` at step 3, and `.skilled/agents/review.md` reviews only baseline minimums. The advisor can still name `local-webflow` or `local-obsidian` once phase 004 links them, so the agents need a fallback that trusts only a `local-*` pick.
+
+### Constraints
+
+- `.claude/agents` is hand-kept and must match `.skilled`; `.codex` and `.pi` are generated and never hand-edited.
+- A non-local advisor pick must not override sk-code's route or the existing escalation.
+- No agent line may name a packet, phase, ADR or task id.
+<!-- /ANCHOR:adr-008-context -->
+
+---
+
+<!-- ANCHOR:adr-008-decision -->
+### Decision
+
+**We chose**: when `sk-code` returns UNKNOWN or ambiguous routing, `@code` and `@review` run the advisor CLI on the task text. When `.data.recommendations[0].skillId` starts with `local-`, they read that skill's `SKILL.md` as the standards overlay and cite it. Any other pick leaves the existing behavior: `@code` escalates `UNKNOWN_ROUTE`, and `@review` reviews against baseline security/correctness minimums.
+
+**How it works**: the code agent's step 3, stack-delegation contract and precedence list state the same rule; the review agent's route selection states it; the `.claude` twins carry identical bodies; the `.codex` and `.pi` mirrors are regenerated.
+<!-- /ANCHOR:adr-008-decision -->
+
+---
+
+<!-- ANCHOR:adr-008-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Advisor `local-*` fallback** | Private work proceeds; a non-local pick cannot override routing | Agents depend on the advisor CLI | 9/10 |
+| Keep the hard stop | No new dependency | Webflow and Obsidian work escalates even when the private skill is present | 2/10 |
+| Guess a default route | No CLI call | Violates the never-guess rule and can load the wrong standards | 1/10 |
+| Accept any advisor pick | Simple | A `sk-code` or unrelated pick would silently replace the route | 3/10 |
+| Hard-code surface names | No advisor call | Reintroduces the retired vocabulary into tracked agent files | 1/10 |
+
+**Why this one**: it keeps the fallback local-only and leaves the non-local branch exactly as it is.
+<!-- /ANCHOR:adr-008-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-008-consequences -->
+### Consequences
+
+**What improves**:
+- A Webflow or Obsidian task routes to the private skill once phase 004 links it.
+- The non-local branch keeps the existing escalation and baseline review.
+
+**What it costs**:
+- The agents depend on `skill-advisor.cjs` being callable on an UNKNOWN route. Mitigation: the CLI already ships in the checkout, and a failure leaves the existing escalation.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A non-local pick is treated as local | H | The `local-` prefix test is explicit in all five statements (four in `code.md`, one in `review.md`); AC-030 to AC-032 prove it |
+| A runtime mirror drifts from `.skilled` | M | T070d1 and T070d2 hand-edit the `.claude` twins and T070e1 and T070e2 regenerate `.codex` and `.pi`; T070e3 runs the four drift checks |
+| The private skill does not exist yet | L | AC-035 is deferred to phase 004 under this ADR and does not gate this phase |
+<!-- /ANCHOR:adr-008-consequences -->
+
+---
+
+<!-- ANCHOR:adr-008-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The removed surfaces leave sk-code with no route, while the advisor can still name the private skill |
+| 2 | **Beyond Local Maxima?** | PASS | Hard stop, guess, accept-any and hard-code were scored |
+| 3 | **Sufficient?** | PASS | Five agent statements (four in `code.md`, one in `review.md`) plus the three mirror families are covered |
+| 4 | **Fits Goal?** | PASS | Private work routes locally without tracked vocabulary |
+| 5 | **Open Horizons?** | PASS | A new private skill needs no agent change if the advisor names it |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-008-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-008-impl -->
+### Implementation
+
+**What changes**:
+- `.skilled/agents/code.md` and `.skilled/agents/review.md` gain the fallback.
+- `.claude/agents/code.md` and `.claude/agents/review.md` carry the same body.
+- `.codex` and `.pi` are regenerated.
+- `implementation-summary.md` records the deferred phase-004 probe.
+
+**How to roll back**: restore the fallback lines in the four agent files and regenerate the `.codex` and `.pi` mirrors; delete the deferred-probe block.
+<!-- /ANCHOR:adr-008-impl -->
+<!-- /ANCHOR:adr-008 -->
 
 ---
