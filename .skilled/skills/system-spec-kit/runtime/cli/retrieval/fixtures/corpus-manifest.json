@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f40fd4fb2e5d66f865e39469e33acb4f831dfd413032bba0cfe42865e29348a8",
+  "corpusHash": "554d58d3ea4c8581eee5dea122f6ba9d9d405e528798021f87163195863ab15e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25750,
+  "includedPathCount": 25764,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12097,6 +12097,20 @@
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/plan.md",
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md",
     "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md",
+    "specs/sk-code/013-private-surface-skills/research/deep-research-dashboard.md",
+    "specs/sk-code/013-private-surface-skills/research/deep-research-strategy.md",
+    "specs/sk-code/013-private-surface-skills/research/iterations/iteration-001.md",
+    "specs/sk-code/013-private-surface-skills/research/iterations/iteration-002.md",
+    "specs/sk-code/013-private-surface-skills/research/iterations/iteration-003.md",
+    "specs/sk-code/013-private-surface-skills/research/iterations/iteration-004.md",
+    "specs/sk-code/013-private-surface-skills/research/iterations/iteration-005.md",
+    "specs/sk-code/013-private-surface-skills/research/prompts/iteration-1.md",
+    "specs/sk-code/013-private-surface-skills/research/prompts/iteration-2.md",
+    "specs/sk-code/013-private-surface-skills/research/prompts/iteration-3.md",
+    "specs/sk-code/013-private-surface-skills/research/prompts/iteration-4.md",
+    "specs/sk-code/013-private-surface-skills/research/prompts/iteration-5.md",
+    "specs/sk-code/013-private-surface-skills/research/research.md",
+    "specs/sk-code/013-private-surface-skills/research/resource-map.md",
     "specs/sk-code/013-private-surface-skills/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
@@ -25781,7 +25795,7 @@
     "specs/system-speckit/053-ci-workflow-efficiency/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d49a9c7d4ff9025cd7fda63a24d95fa07f96638f5bfd4d727f1da5f4827281c0",
+  "manifestHash": "a608fd9a1e890ec1096c94316b195cd732b303cfd71e5873b8aefca254c3c52d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

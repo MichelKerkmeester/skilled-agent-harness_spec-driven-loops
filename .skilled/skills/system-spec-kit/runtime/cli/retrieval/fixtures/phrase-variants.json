@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d49a9c7d4ff9025cd7fda63a24d95fa07f96638f5bfd4d727f1da5f4827281c0",
+  "manifestHash": "a608fd9a1e890ec1096c94316b195cd732b303cfd71e5873b8aefca254c3c52d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -58327,6 +58327,9 @@
     "local owner artifact rollback": [
       "local owner artifact rollback"
     ],
+    "local private skill leak proof": [
+      "local private skill leak proof"
+    ],
     "local rest api": [
       "local rest api"
     ],
@@ -70437,6 +70440,9 @@
     "packet 013 actually verified": [
       "packet 013 actually verified"
     ],
+    "packet 013 coverage audit": [
+      "packet 013 coverage audit"
+    ],
     "packet 013 evidence incomplete": [
       "packet 013 evidence incomplete"
     ],
@@ -71940,6 +71946,9 @@
     ],
     "phase 005 deferral": [
       "phase 005 deferral"
+    ],
+    "phase 005 fresh clone proof": [
+      "phase 005 fresh clone proof"
     ],
     "phase 005 goal budget": [
       "phase 005 goal budget"
@@ -76809,6 +76818,9 @@
     ],
     "private surface skills phase parent spec": [
       "private surface skills phase parent spec"
+    ],
+    "private surface skills research": [
+      "private surface skills research"
     ],
     "proactive skill routing runtime": [
       "proactive skill routing runtime"
