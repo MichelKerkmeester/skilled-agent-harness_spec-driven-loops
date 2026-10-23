@@ -20,14 +20,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-22 |
 | **Branch** | `worktrees/207-opencode-2-primary-v1-fallback` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 62 of 62 |
 | **Predecessor** | 061-v4-0-0-13-changelog-trim-and-simplify |
 | **Successor** | None |
-| **Handoff Criteria** | The resolver returns the first `opencode2` anywhere on PATH and falls back to the first `opencode` only when no `opencode2` exists, while `OPENCODE_BIN` still overrides both. The dual-dispatch tests cover the later-`opencode2` case, the no-`opencode2` fallback and the `OPENCODE_BIN` override, with the old loop failing the new fixture as a negative control. The shared hermetic PATH setup removes host `opencode2` directories and deletes `OPENCODE_BIN`, and both vitest projects use it. Every listed doc, prompt asset, playbook, setup usage text, map, catalog and mirror names OpenCode 2 first and labels OpenCode 1 the fallback with no removal date. Live proof shows `opencode2` v2 and `opencode` v1 each dispatch unpinned with exit 0 and reply OK, and the rerun suites pass. The commit, push and CI run remain open |
+| **Handoff Criteria** | The resolver returns the first `opencode2` anywhere on PATH and falls back to the first `opencode` only when no `opencode2` exists, while `OPENCODE_BIN` still overrides both. The dual-dispatch tests cover the later-`opencode2` case, the no-`opencode2` fallback and the `OPENCODE_BIN` override, with the old loop failing the new fixture as a negative control. The shared hermetic PATH setup removes host `opencode2` directories and deletes `OPENCODE_BIN`, and both vitest projects use it. Every listed doc, prompt asset, playbook, setup usage text, map, catalog and mirror names OpenCode 2 first and labels OpenCode 1 the fallback with no removal date. Live proof shows `opencode2` v2 and `opencode` v1 each dispatch unpinned with exit 0 and reply OK, and the rerun suites pass. The change is pushed to main as `4505c338b1` and CI is green on that commit |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -146,7 +146,7 @@ Expect and promote OpenCode 2: the first `opencode2` anywhere on PATH wins, the 
 | Dependency | cli-opencode's documented resolver is a one-line copy | Med | The same resolution order was applied to both the runtime resolver and the documented one-liner |
 | Risk | A host OpenCode 2 install shadows the v1 stubs in tests | High | The shared setup deletes `OPENCODE_BIN` and strips host `opencode2` directories; before it, 53 fan-out tests and 32 tests in a full run failed on this host |
 | Risk | Reordering docs implies OpenCode 1 is being removed | Med | Every page labels OpenCode 1 the fallback for users who have not updated and gives no removal date |
-| Risk | The v4.0.0.13 changelog still states the old per-directory rule | Med | Recorded as a known limitation because another phase owns that file; this phase leaves it alone |
+| Risk | The v4.0.0.13 changelog still states the old per-directory rule | Med | Resolved on main by `5801f6f807`, which came from another phase; the changelog now states the opencode2-anywhere-on-PATH rule |
 <!-- /ANCHOR:risks -->
 
 ---

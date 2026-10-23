@@ -32,7 +32,7 @@
       "cli-opencode"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -143,12 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -168,6 +162,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The fan-out runtime resolver and cli-opencode's documented one-line resolver walked PATH directory by directory, trying `opencode2` then `opencode` inside each directory",
     "created_at": "2026-10-22T21:33:02Z",
-    "last_save_at": "2026-10-22T23:22:07.284Z",
+    "last_save_at": "2026-10-23T00:42:31.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d59c3e0372fd4ec5e9349beaa37ce03b4a38f0dbc215681b56300b9ba1e51f0b",
+    "source_fingerprint": "sha256:6c27ae2daf565d64438db05846d9d214cfbc501d455ff674aa7ea5891cf3596b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab1149b5fc4423cbe7182900928341355bc3586dd6b8bd8b1e2ec907b9d67991",
+      "spec.md": "e528bc7bd01a87d475370135bbe2b84bf0610c23c090d825e30a66aa68585f3a",
       "plan.md": "ce6d27e4d47d36fedc7411dd03d5239543dded3e5e08c01620d2c0f1dba2978c",
-      "tasks.md": "31f077f4d3a48c9d907b8a601e6e62a6c0b1741edc59d3504ff4d562fea40011",
-      "implementation-summary.md": "b5d00196fde821215b4bd8f6882f590050af0709d00773cbf116db5263ef4fbe"
+      "tasks.md": "07edb44e908e205e758659cb926d3c44f8313223bd4c84414d3f23001167f0be",
+      "implementation-summary.md": "13468346e7e8a87d7d10cda13fb17ad0de05a0978cf46103523588dcbf470a58"
     },
     "last_active_at": null
   }

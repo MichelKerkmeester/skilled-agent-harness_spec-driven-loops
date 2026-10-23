@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback"
     last_updated_at: "2026-10-22T23:10:00Z"
     last_updated_by: "spec-record-writer"
-    recent_action: "Recorded the resolver change, hermetic tests, doc reorder and live proof"
-    next_safe_action: "Commit and push to main, then confirm CI"
+    recent_action: "Recorded the push 4505c338b1, green CI and the resolved changelog limitation (5801f6f807)"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-062-opencode-2-primary-v1-fallback"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 062-opencode-2-primary-v1-fallback |
-| **Completed** | Work finished 2026-10-22; commit, push and CI pending |
+| **Status** | Complete |
+| **Completed** | Work finished 2026-10-22; pushed to main as `4505c338b1` with CI green |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -81,7 +82,7 @@ The documentation now recommends OpenCode 2 first and labels OpenCode 1 the fall
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek v4.1 flash 1017 writers through cli-pi wrote the code at max thinking and the docs at high thinking, and separate read-only DeepSeek sessions reviewed the result. The orchestrator fixed one setup-file path segment in `system-spec-kit/runtime/vitest.config.ts` by hand. Luna was not used. The orchestrator then reran the suites: plugins 533 of 533; battery, config-shape and cli-opencode script tests 85 of 85; the cli-opencode playbook PASS with 72 scenarios and 0 violations; the deep-loop full suite 2806 passed and 8 skipped of 2814; and the combined spec-kit config ran 35 deep-loop tests green. Both live proofs are saved in `scratch/live/`: with both versions installed, the resolver returned `opencode2` v2 and an unpinned fan-out cli-opencode dispatch ran `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max`, exit 0, reply OK; with v2 hidden from PATH, the resolver returned `opencode` v1 and an unpinned dispatch ran `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max`, exit 0, reply OK. The push to main and the CI run on that commit are still open.
+DeepSeek v4.1 flash 1017 writers through cli-pi wrote the code at max thinking and the docs at high thinking, and separate read-only DeepSeek sessions reviewed the result. The orchestrator fixed one setup-file path segment in `system-spec-kit/runtime/vitest.config.ts` by hand. Luna was not used. The orchestrator then reran the suites: plugins 533 of 533; battery, config-shape and cli-opencode script tests 85 of 85; the cli-opencode playbook PASS with 72 scenarios and 0 violations; the deep-loop full suite 2806 passed and 8 skipped of 2814; and the combined spec-kit config ran 35 deep-loop tests green. Both live proofs are saved in `scratch/live/`: with both versions installed, the resolver returned `opencode2` v2 and an unpinned fan-out cli-opencode dispatch ran `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max`, exit 0, reply OK; with v2 hidden from PATH, the resolver returned `opencode` v1 and an unpinned dispatch ran `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max`, exit 0, reply OK. The change was pushed to main as `4505c338b1`, and CI is green on that commit: all 19 workflows succeeded, including OpenCode Dual-Version Battery `39877603254`, OpenCode Plugin Tests `39877603364`, Deep-Loop Runtime Tests `39877603319`, Hook Node Tests `39877603327`, Spec-Kit Check `39877603324` and Playbook Operator Contract `39877603329`. The index rebuild `1ed84757f3` had 13 succeeded, Trigger Index Rebuild skipped and Spec-Kit Check `39877786754` green.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -118,7 +119,9 @@ DeepSeek v4.1 flash 1017 writers through cli-pi wrote the code at max thinking a
 | Deep-loop full suite | PASS: 2806 passed, 8 skipped (2814) |
 | Combined spec-kit config | PASS: 35 deep-loop tests green |
 | Separate read-only DeepSeek reviews | Completed by separate read-only sessions |
-| Push to main and CI green on the commit | Pending |
+| Push to main | PASS: pushed as `4505c338b1` |
+| CI on `4505c338b1` | PASS: all 19 workflows succeeded, including OpenCode Dual-Version Battery `39877603254`, OpenCode Plugin Tests `39877603364`, Deep-Loop Runtime Tests `39877603319`, Hook Node Tests `39877603327`, Spec-Kit Check `39877603324` and Playbook Operator Contract `39877603329` |
+| Index rebuild `1ed84757f3` | PASS: 13 succeeded, Trigger Index Rebuild skipped, Spec-Kit Check `39877786754` green |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -126,7 +129,7 @@ DeepSeek v4.1 flash 1017 writers through cli-pi wrote the code at max thinking a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The v4.0.0.13 skilled changelog still states the old per-directory rule.** This phase left it alone because another phase owns that file, so the changelog and the resolver briefly disagree about how PATH order is decided.
+1. **The v4.0.0.13 skilled changelog still stated the old per-directory rule.** This phase left it alone because another phase owns that file. Resolved on main by `5801f6f807`, which came from another phase: the changelog now states the opencode2-anywhere-on-PATH rule.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -57,8 +57,8 @@ contextType: "general"
 - [x] T010 Run the live proof on both versions and save it in `scratch/live/`: with both installed, the resolver returns `opencode2` v2 and an unpinned fan-out cli-opencode dispatch ran `opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max`, exit 0, reply OK; with v2 hidden from PATH, the resolver returns `opencode` v1 and an unpinned dispatch ran `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max`, exit 0, reply OK (`scratch/live/`)
 - [x] T011 Run separate read-only DeepSeek review sessions over the change and check every finding before delivery (`scratch/live/`, the resolver and doc set)
 - [x] T012 Rerun the suites and the playbook from the orchestrator: plugins 533 of 533; battery, config-shape and cli-opencode script tests 85 of 85; cli-opencode playbook PASS with 72 scenarios and 0 violations; deep-loop full suite 2806 passed and 8 skipped of 2814; the combined spec-kit config runs 35 deep-loop tests green (the test suites and the cli-opencode playbook)
-- [ ] T-push Commit and push to main (the resolver, tests, docs and this packet)
-- [ ] T-CI Confirm CI is green on the pushed commit (the pushed commit)
+- [x] T-push Commit and push to main as `4505c338b1` (the resolver, tests, docs and this packet)
+- [x] T-CI Confirm CI is green on `4505c338b1`: all 19 workflows succeeded, including OpenCode Dual-Version Battery `39877603254`, OpenCode Plugin Tests `39877603364`, Deep-Loop Runtime Tests `39877603319`, Hook Node Tests `39877603327`, Spec-Kit Check `39877603324` and Playbook Operator Contract `39877603329`; index rebuild `1ed84757f3` had 13 succeeded with Trigger Index Rebuild skipped and Spec-Kit Check `39877786754` (the pushed commit)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,8 +66,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, the push and CI tasks included
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`, the push and CI tasks included
+- [x] No `[B]` blocked tasks remaining
 - [x] Review done: separate read-only DeepSeek sessions reviewed the change
 - [x] Manual verification passed: both live dispatches exit 0 and reply OK, the resolver returns v2 with both installed and v1 with v2 hidden, and the suites plus the playbook pass
 <!-- /ANCHOR:completion -->
