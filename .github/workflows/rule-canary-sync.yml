@@ -5,14 +5,16 @@ on:
   push:
     branches: [main, 'skilled/**']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   rule-canary:
     name: Load-bearing rule wording stays in sync across copies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
       - name: Check that load-bearing rule wording has not drifted
         run: |
           set -euo pipefail
