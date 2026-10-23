@@ -29,7 +29,7 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 ### Where It Lives
 
 - Provider block: `.pi/models.json` under `providers["llmgateway"]`, with four models. The gateway fronts many more, and only these four are on the roster
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/gpt-6-luna"`, `"llmgateway/deepseek-v4.1-flash"`, `"llmgateway/deepseek-v4.1-flash-1017"` and `"llmgateway/glm-5.3-flash"`
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/gpt-6-luna"`, `"llmgateway/deepseek-v4.1-flash-1017"` and `"llmgateway/glm-5.3-flash"`. The older `deepseek-v4.1-flash` stays registered in `.pi/models.json`, so `--model llmgateway/deepseek-v4.1-flash` still pins it, but it is not offered in the picker
 - Default: `.pi/settings.json` sets `defaultProvider` to `"llmgateway"` and `defaultModel` to `"deepseek-v4.1-flash-1017"`, so a `pi` run with no `--model` uses this block's DeepSeek V4.1 Flash 1017 route. The global `defaultThinkingLevel` is `xhigh`, and this model's `thinkingLevelMap` marks `xhigh` unsupported, so Pi's `clampThinkingLevel` rounds the run UP to `max`. `gpt-6-luna` stays selectable by name
 
 **Model ids are BARE, and the pi reference is two-segment**: `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4.1-flash-1017`. A provider-prefixed id inside the block is the easy mistake: see the gotcha below.
@@ -106,6 +106,6 @@ Expected: the list shows the four `llmgateway` rows, and each dispatch returns a
 
 ## 5. REMOVE
 
-To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its four `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Reset `defaultProvider` and `defaultModel` to another authenticated provider first, so an unqualified dispatch still resolves, and take the bare `deepseek-v4.1-flash`, `deepseek-v4.1-flash-1017` and `glm-5.3-flash` literals out of the fan-out roster and provider map, or those lineages fail.
+To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its three `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Reset `defaultProvider` and `defaultModel` to another authenticated provider first, so an unqualified dispatch still resolves, and take the bare `deepseek-v4.1-flash`, `deepseek-v4.1-flash-1017` and `glm-5.3-flash` literals out of the fan-out roster and provider map, or those lineages fail.
 
 To drop a single model, remove its object from the provider block and its `enabledModels` line. GPT-6 Luna needs nothing else: the bare `gpt-6-luna` fan-out literal resolves to the `openai` provider. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
