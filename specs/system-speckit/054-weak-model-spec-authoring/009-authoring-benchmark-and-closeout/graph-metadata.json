@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "authoring benchmark and closeout",
+      "phase 9 authoring benchmark and closeout",
+      "weak model authoring delta",
+      "054 packet closeout",
+      "authoring benchmark and closeout plan",
+      "authoring metric definitions",
+      "packet closeout sequence",
+      "parent completion criteria proofs",
+      "authoring benchmark and closeout tasks",
+      "final baseline run tasks",
+      "packet closeout tasks",
+      "authoring benchmark and closeout acceptance criteria"
+    ],
+    "key_topics": [
+      "authoring",
+      "benchmark",
+      "closeout",
+      "phase",
+      "weak",
+      "model",
+      "delta",
+      "packet",
+      "plan",
+      "metric",
+      "definitions",
+      "sequence"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+      "specs/system-speckit/graph-metadata.json",
+      "specs/system-speckit/041-write-recipe-fixes/spec.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/system-spec-kit/templates/changelog/root.md",
+      ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+      "runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "root.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/templates/changelog/root.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
+    "created_at": "2026-10-23T11:27:27Z",
+    "last_save_at": "2026-10-23T14:14:22.520Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e79f77538d33ab883dc8e4244e5842df601c9d1519e69f6ec4c53ad558e446e3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5a224a44966dadd84108f4ccd37009621dc7226084195f68c9f608987cb10472",
+      "plan.md": "5a626159893779c61a6bd9bef8b5abe5e39b69169f9498e6edce19d11869bb9c",
+      "tasks.md": "b74f5df5a37ac2daf5969d9a9cbadd391411aa993bdd77e872c66b9da3412617",
+      "implementation-summary.md": "e18e5be02f8dba8e7de2eac4d4a68a88be1a9c48719c667d3a2740c9d6ec5695"
+    },
+    "last_active_at": null
+  }
+}

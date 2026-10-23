@@ -1,0 +1,110 @@
+COMMON BRIEF FOR EVERY PHASE-AUTHORING WORKER
+=============================================
+
+Repository root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public (all paths below are repo-relative).
+Packet: specs/system-speckit/054-weak-model-spec-authoring (call it $PKT). Branch main, working tree only.
+
+WHAT THIS IS
+The operator approved a phased PLANNING packet. A later swarm of DeepSeek V4.1 Flash max workers
+(llmgateway/deepseek-v4.1-flash-1017#max) will EXECUTE the phases autonomously. Your job is to AUTHOR
+the planning docs of ONE phase so that a weak model can execute it: literal briefs, literal commands,
+frozen decisions, scripted pass/fail gates, no judgment left to the executor. You do NOT execute the
+phase. You do NOT commit. You do NOT touch git state.
+
+PACKET GOAL
+Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm.
+All logic lives in system-spec-kit (.skilled/skills/system-spec-kit), never in sk-prompt.
+
+FROZEN OPERATOR DECISIONS (do not reopen)
+- D-a  9 phases: 001 template-drift-census-and-baseline, 002 template-and-example-defect-repair,
+       003 versioned-placeholder-gate, 004 template-section-fill-guidance, 005 weak-model-authoring-card,
+       006 speckit-command-and-agent-alignment, 007 playbook-catalog-readme-alignment, 008 playbook-run-in-worktree,
+       009 authoring-benchmark-and-closeout.
+- D-b  The placeholder gate applies to NEW docs only (version-gated). It never changes the verdict for
+       existing packets, because external-repo users would break on /doctor:update.
+- D-c  At most 3 parallel DeepSeek lanes, never two lanes on the same file.
+- D-d  Scripted gates plus one read-only frontier review per phase close (cli-codex, gpt-6-luna).
+- D-e  Phase 8 runs the playbooks in a disposable sk-git worktree.
+- D-f  Every phase is Level 3 with nested goals (each phase folder has its own goal.md).
+Also frozen: the conductor of a phase is a DeepSeek session that is NOT inside OpenCode (cli-opencode
+refuses self-dispatch and forbids nested `opencode run`). Workers are dispatched with
+`opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max`. cli-opencode rule 15 L4 prefers a
+Copilot gpt-6-sol executor for phase-parent targets with skipped permissions; the operator chose DeepSeek,
+so keep layers L1-L3 (BANNED OPERATIONS + ALLOWED WRITE PATHS in the prompt, a fresh worktree, a baseline
+commit).
+
+THE PATTERN: PHASE 001 IS FINISHED AND VALIDATED. COPY ITS SHAPE.
+Read ALL of these first, completely, before writing a line:
+  $PKT/001-template-drift-census-and-baseline/spec.md
+  $PKT/001-template-drift-census-and-baseline/plan.md        (note the AI EXECUTION PROTOCOL block inside
+                                                              <!-- ANCHOR:ai-execution -->, the worker brief
+                                                              skeleton, the dispatch command, the ADRs under
+                                                              "L3: ARCHITECTURE DECISION RECORD")
+  $PKT/001-template-drift-census-and-baseline/tasks.md       (every task has a literal command and a Verify:
+                                                              line with its expected output)
+  $PKT/001-template-drift-census-and-baseline/acceptance-criteria.md
+  $PKT/001-template-drift-census-and-baseline/goal.md
+  $PKT/001-template-drift-census-and-baseline/implementation-summary.md
+Use the same section set, the same anchors and the same frontmatter shape. Keep every heading and every
+ANCHOR pair the scaffold already gave your files. Replace the scaffold's generic Level 3 checklist items
+(feature flag, OWASP, uptime and similar) with items relevant to YOUR phase. Do not leave any scaffold
+placeholder text such as [Phase 2 scope] or [YOUR_VALUE_HERE...] behind.
+The six files you own: spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md, implementation-summary.md
+in your phase folder. goal.md follows the shape of phase 001's goal.md (DURABLE DIRECTIVE with Objective and a
+Decisions table, COMPLETION CRITERIA as checkboxes, LOG with Progress and Deviations tables). Its completion
+criteria are self-contained, each one a command-checkable statement. The implementation-summary stays a
+planned-state document exactly as in phase 001 (no claim of completion).
+
+THE PARENT PACKET (written by someone else, in parallel; do not edit it)
+- $PKT/spec.md section 3 will hold the "Launch preconditions" (build worktree choice, provider login,
+  3-lane authorization). Cite it as `../spec.md` section 3.
+- $PKT/goal.md section 4 (LOG) records those preconditions as met, the build worktree path and the start
+  commit. Cite it as `../goal.md` section 4. The conductor's WORKTREE variable comes from there.
+- Phase 001 produces (cite these paths, they exist only after phase 001 executes):
+    ../001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl   (verified defect ledger, schema in 001 plan.md section 3)
+    ../001-template-drift-census-and-baseline/scratch/baseline/suite-start.txt  (spec-kit test suite result at the start commit)
+    ../001-template-drift-census-and-baseline/scratch/baseline/hints-v2.2.txt, anchors-v2.2.txt, baseline.json
+
+WRITING RULES (house style, enforced by reviewers)
+- HVR voice: no em dashes, no semicolons in prose, no serial comma, plain words, one idea per sentence.
+- Every path repo-relative. Every check is a command with its expected output written next to it.
+- Text is for a weak executor: imperative, literal, one action per step, no "as appropriate", no "consider".
+- Where a step needs judgment, make the judgment NOW at authoring time and write the result literally.
+- Never embed ephemeral labels (spec paths, ADR/REQ/task ids, phase numbers) inside code comments of any
+  script or code you put into a doc. Keep the durable WHY in comments.
+- Do not invent facts about the repository. For every claim about an existing file, line, script flag or
+  behavior, run a READ-ONLY command (rg, sed -n, cat, ls, awk, jq, node --version, script --help) and write
+  what you observed. Any command you put into tasks.md must be one you ran (read-only parts) or reasoned
+  through against the real tree. If a command mutates, test it only against a COPY in the scratchpad
+  (see below), never the real tree.
+- Use `rg`, not grep -r, for repo searches. No interactive commands, no pagers.
+
+HARD LIMITS
+- Write ONLY inside your own phase folder: $PKT/<NNN-your-phase>/ (the six files, plus nothing else, unless
+  the phase text below says otherwise). Never create files under .skilled/, never edit any other phase, the
+  parent spec.md/goal.md, or anything outside your folder. Exception for tests of mutating scripts: use
+  your scratchpad dir named in your task prompt.
+- Do NOT run git add/commit/restore/checkout/stash/reset. Do NOT run create.sh, archive.sh,
+  generate-context.js, /speckit:save or any command that writes outside your folder or scratchpad.
+- Do NOT execute the phase's own work (no template edits, no dispatches).
+
+VALIDATION YOU MUST RUN AND PASTE THE RESULT OF (from repo root)
+  1. node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder $PKT/<NNN-your-phase> --apply
+  2. bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PKT/<NNN-your-phase> --strict
+     -> must print "RESULT: PASSED" with Errors 0 (read the output, do not trust the exit code alone).
+     If it fails, fix the docs and rerun. Stop after 3 failed fixes for the same symptom and report it.
+  3. node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $PKT/<NNN-your-phase>/goal.md
+     (run it with --help first if the invocation fails) -> all checks PASS.
+  4. bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh $PKT/<NNN-your-phase>
+     (read its --help or header for the invocation) -> clean. A hit only inside a fenced code block that
+     shows a regex or a literal token is a known false positive: note it, do not contort the doc.
+  5. rg -n '\[[A-Za-z][^]\[]{2,}\]' on your six files -> no unfilled scaffold hint left (a bracketed
+     string that is intentionally inside a fenced code block is fine).
+  6. No em dash: rg -n '—' on your six files prints nothing.
+
+REPORT BACK (max 20 lines, no tables)
+  - files written and line counts
+  - the 4-6 validation results above (verbatim RESULT lines)
+  - any cross-phase assumption you made (artifact names/paths another phase must match)
+  - anything you could not verify, as UNKNOWN, with what would settle it
+  - any defect you noticed outside your folder (named, not fixed)

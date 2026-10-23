@@ -1,0 +1,34 @@
+PASS C1 validate.sh --strict prints "Summary: Errors: 0  Warnings: 1" and "RESULT: PASSED" with exit 0, the one warning being 23 GREP_CONVENTION anchor-duplicate notices from quoted fix text spec.md:43
+PASS C2 check-goal.cjs prints "RESULT: PASSED (5/5 checks)" with exit 0 goal.md:1
+FAIL C3 check-placeholders.sh prints FAIL with 21 placeholder patterns and exit 1, all 21 being old template hint text quoted inside fenced blocks plan.md:315
+PASS C4 the em-dash scan of the six docs prints nothing and exits 1 spec.md:1
+PASS C5 all 27 repository paths named as existing now in tasks.md and plan.md pass test -e, including the inline-gate-renderer.sh wrapper and both cli skill files tasks.md:52
+PASS C6 130 of 131 fill-table heading locators match their template line exactly once and every remove and rename anchor in the 14-file alignment table exists plan.md:123
+PASS C7 every invocation of an existing script checks out: renderer --level with a positional file, template-structure compare <level> <doc> <path> anchors, recommend-level --loc/--files/--auth/--api printing 17 lines, npm test, and vitest --config/-u tasks.md:42
+PASS C8 core sections get literal instruction, good and weak text about one running example plan.md:119
+PASS C8 addon sections get one instruction line with pairs where the section carries prose plan.md:203
+PASS C8 the generic Level 3 trap is answered by an applicability table checked against the template contract plan.md:271
+PASS C8 guidance placement is decided with evidence about the gate and the renderer plan.md:818
+PASS C8 the anchor crossings are measured with the proven awk command and each gets an exact old-to-new fix plan.md:285
+PASS C8 the example realignment is a per-file literal edit list backed by the contract command plan.md:505
+PASS C8 the drift guard source, its failing-first demo and its vitest wiring are all specified plan.md:534
+PASS C8 the handoff criteria name what phases 005 and 006 may assume spec.md:43
+WARN C8 the anchor lists are asserted from a read of the templates, but no task runs the rg -o comparison the phase brief asks for plan.md:68
+WARN C8 the golden render test has a baseline and one regeneration, but no failing-first or mutation demonstration plan.md:881
+FAIL C8 the 18 leaked example descriptions owned by phase 002 are never mentioned, and 18 of 21 examples fail the guard's description rules on this tree plan.md:505
+FAIL C8 no post-token locator form and no T-level pre-check task exists, against the constraint that every row give both forms plan.md:315
+FAIL C9 T003 Verify runs "grep -c '^1 spec 7$'" with no file operand, so it can never print 1 tasks.md:46
+FAIL C9 T005 Verify says "ls" prints the three paths, but ls with no path lists the working directory tasks.md:81
+FAIL C9 T006 writes only a bare count into failing-first.txt and the drift line into drift-before.txt, so the two lines its Verify names cannot exist tasks.md:227
+FAIL C9 applying S1b, S2b, S3 and S4 verbatim reinserts pre-token bracket hints after phase 003 converted them plan.md:403
+WARN C9 T007 and T008 Verifies expect the literal strings "open=10 close=10" and "open=9 close=9", but no command prints that format tasks.md:245
+WARN C9 the C14 heading cell "## ADR-001:" is not an exact line in its template, whose line 35 reads "## ADR-001: [Decision Title]" plan.md:222
+WARN C9 T009 and T012 require EXAMPLE_DRIFT_OK while 18 descriptions fail today, and the phase 002 dependency that fixes them is unrecorded tasks.md:299
+FAIL C10 the Verification Summary claims P0 15, P1 18 and P2 2 while the checklist holds 18 P0, 24 P1 and 9 P2 rows tasks.md:604
+FAIL C10 the core row claims seven anchor repairs and the addon row two, against four core and three research repairs stated elsewhere plan.md:559
+WARN C10 the complexity table says 32 changed files while section 3 names 38 distinct files including the six planning docs spec.md:219
+WARN C10 spec says the weak example starts with "WEAK:" while the frozen line format places "WEAK:" mid-line plan.md:95
+WARN C10 the problem statement says 21 examples drifted, while 14 drift on anchors and 18 on descriptions spec.md:77
+WARN C10 "70 section rows across the four levels" counts per-template rows, not rows per level plan.md:840
+WARN C10 CHK-052 checks for a throwaway track under specs/ that no task creates tasks.md:594
+VERDICT: 9 FAIL, 10 WARN

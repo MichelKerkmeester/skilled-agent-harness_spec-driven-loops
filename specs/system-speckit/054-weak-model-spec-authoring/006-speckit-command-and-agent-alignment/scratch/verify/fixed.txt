@@ -1,0 +1,15 @@
+FIXED C3-L3 Left the nine `[SPEC_FOLDER]` hits unchanged as the known fenced-block false positive and recorded them in goal.md section 4.
+FIXED C5-L5 Changed the plan.md ADR-003 context from "Phase 1 recorded" to "Phase 001 records" and made spec.md line 244 say phase 1 records suite-start.txt, matching the absent phase 001 baseline.
+FIXED C8-L10 Added a Line column with the `rg -n` position to all 27 audit rows and appended the same file:line to every OLD and NEW block heading.
+FIXED C8-L11 Gave R-001 to R-003 the same two-guard precheck that R-004 to R-006 carry.
+REJECTED C8-L12 ADR-003 is approved by the orchestrator and phases 002 to 005 add tests, so the phase-start comparison is correct. plan.md ADR-003 now carries that approval and its Accepted status.
+FIXED C9-L16 Split the goal.md T003 progress row into a literal "Phase start commit" row and a separate suite and doctor baseline row, so T003 writes the row it names.
+FIXED C9-L17 T010 now prints OWNER006_TOTAL and OWNER006_OPEN, writes every OPEN line to scratch/audit/owner-006-open.txt by command, and verifies both counts.
+FIXED C9-L18 T008 now requires the summary token grep to print 8, not at least 6.
+FIXED C9-L19 T014 now supplies the four literal close-out values and the exact grep checks for implementation-summary.md and acceptance-criteria.md.
+REJECTED C9-L20 The ../changelog/ line is fixed template text shared by every phase and the packet changelog belongs to phase 009. Left unchanged as instructed.
+FIXED C10-L21 Changed the asset group count in plan.md from 4 files to 5, matching the five distinct YAML files in R-004 to R-015.
+FIXED C10-L22 Replaced the escaped-pipe A3 and A5 commands with a PCRE lookbehind and repeated -e patterns, and fixed the same A5 command in the required-inventories list.
+FIXED C10-L23 Split guard-script ownership in spec.md: phase 4 creates check-example-drift.sh and phase 5 creates check-card-sync.sh. Updated the other phase-2 references in spec.md, plan.md, tasks.md and goal.md.
+REJECTED C10-L24 The decision-record.md waiver sentence is fixed template text shared by every phase. Left unchanged as instructed.
+FIXED META Not a report finding: re-derived graph-metadata.json with repair-derived.cjs --apply because the doc edits changed its source_fingerprint and validate.sh --strict enforces the match. Recorded in goal.md section 4.

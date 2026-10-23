@@ -1,0 +1,17 @@
+REJECTED C3 the 18 hits sit inside fenced code blocks, the known scanner false positive recorded in plan.md ADR-003, so no doc changed
+REJECTED C5 ledger.jsonl is absent because phase 001 writes it when it runs, as the orchestrator states, so no doc changed
+REJECTED C5 suite-start.txt is absent because phase 001 writes it when it runs, as the orchestrator states, so no doc changed
+FIXED C9 T004 now expects five PY_OK lines, matching the five Python tools in the check loop plus NODE_OK
+FIXED C9 T006 now names the fourth block as the one that prints ROWS_OK and then the PASS and FAIL totals
+FIXED C9 T011 now says the stamp count prints five lines with 7 stamps in all
+FIXED C9 T014 replaced 101 101 90 90 0 with the rendered counts 114 114 102 102 0
+FIXED C9 T014 the count block now covers all five Level 2 scaffold docs, including implementation-summary.md
+FIXED C10 spec.md, tasks.md and acceptance-criteria.md now say five operator items, matching goal.md OP-1 to OP-5
+FIXED C10 the handoff criteria now require 214 value tokens plus the kept texts listed in tasks.md T011
+FIXED C7 T014 now checks the --track case line in create.sh source and expects 1, because --help omits the flag
+FIXED C9 T020 now records each finding as a FINDING row and compares the two counts with a command that prints FINDINGS_TALLIED or NO_FINDINGS_OK
+REJECTED C9 phase 002 is still Draft because phase 002 closes before phase 003 runs, as the orchestrator states
+FIXED C10 the complexity table now says Files: 14 changed, matching the 14 file rows in spec.md section 3
+FIXED C10 goal.md now invokes $PHASE/scratch/tools/suite_compare.py with the full argument list
+REJECTED C10 ../changelog/ does not exist yet because phase 009 owns the changelog and the line is shared template text
+FIXED C1 regenerated graph-metadata.json with repair-derived.cjs after the doc edits, because the stored source fingerprint and causal summary had to match the edited docs for strict validation to pass

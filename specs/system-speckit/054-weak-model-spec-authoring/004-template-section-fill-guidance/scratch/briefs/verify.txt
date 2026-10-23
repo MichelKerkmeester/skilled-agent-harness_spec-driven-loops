@@ -1,0 +1,28 @@
+VERIFY BRIEF: you audit ONE phase folder of a planning packet. You are read-only except for one report file.
+The phase docs were written by another worker. Their instructions are in specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/briefs/author-common.txt and
+specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/briefs/author-phase.txt (or, for phases written earlier, only the docs exist). Read those two briefs if they
+exist, then read the six docs in specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance: spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md, implementation-summary.md.
+
+Run these checks from the repository root and record each result:
+ C1 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance --strict   -> copy the Summary and RESULT lines
+ C2 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/goal.md     -> copy the RESULT line
+ C3 bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance   -> copy the result line
+ C4 rg -n '—' specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/*.md  -> must print nothing
+ C5 Every repository path named in tasks.md and plan.md that is said to exist NOW (not a file a later step creates):
+    run test -e on it. List each missing one with the doc file:line.
+ C6 Every "old text" / locator that tasks.md says must be found in an existing file: run grep -cF -- '<text>' <file>.
+    List each one whose count is not exactly 1, with the doc file:line. Check at least 15, or all if fewer.
+ C7 Every script flag or invocation tasks.md uses for an existing repo script: confirm it against the script's --help
+    or source. List each wrong one.
+ C8 Requirement coverage: for each frozen requirement in author-phase.txt (if it exists), say COVERED with the doc
+    file:line, or MISSING.
+ C9 Executability for a weak model: list any task that needs judgment the docs do not settle, any task with no
+    Verify command, and any Verify with no expected output. Cite file:line.
+ C10 Consistency: spec.md, plan.md, tasks.md, acceptance-criteria.md and goal.md agree on artifact names, paths and
+    counts. List each disagreement with both file:line.
+
+Write the report to specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/verify/report.txt, one finding per line:
+  PASS|FAIL|WARN <check id> <one-sentence detail> <file:line>
+End the file with one line: VERDICT: CLEAN or VERDICT: <n> FAIL, <m> WARN
+Do not edit any other file. Do not fix anything. Cite file:line for every FAIL and WARN.
+RETURN exactly the VERDICT line.

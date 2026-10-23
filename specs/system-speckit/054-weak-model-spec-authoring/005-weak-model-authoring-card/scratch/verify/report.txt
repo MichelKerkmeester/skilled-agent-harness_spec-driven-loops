@@ -1,0 +1,31 @@
+PASS C1 validate.sh --strict printed "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED" with exit 0 spec.md:1
+PASS C2 check-goal.cjs printed "RESULT: PASSED (5/5 checks)" with all five checks PASS goal.md:1
+FAIL C3 check-placeholders.sh exited 1 with "FAIL - 1 placeholder pattern(s) found", the single hit being the regex literal [A-Za-z] inside the fenced scan block, a hit the author brief classes as a known false positive tasks.md:77
+PASS C4 rg -n for the em dash over the six docs printed nothing and exited 1 plan.md:72
+PASS C5 all 27 repository paths named as existing now return true from test -e, including the four core templates and both inventory scripts tasks.md:43
+PASS C6 the four router blocks R1 to R4, the SKILL.md prose sentence, the tasks template format line, the README topology line and the checklist line each return exactly 1 plan.md:250
+WARN C6 T001 expects the v2.3 stamp counts 3, 1, 1, 1 but the four core templates are still stamped v2.2 and the command prints nothing today, so the expectation only holds after phase 003 runs tasks.md:43
+WARN C6 the T003 token locator returns 0, not the expected 1, because tasks.md.tmpl still carries the bare hint and the token form arrives only with phase 003 tasks.md:52
+PASS C7 every flag in tasks.md and plan.md is real: create.sh --skip-branch/--level/--track/--short-name, recommend-level.sh --loc/--files, validate.sh --strict, generate-leaf-manifest.cjs --write/--check, ci-skill-root-metadata.cjs --fix/--skill, opencode2 run --standalone/--format tasks.md:98
+PASS C8 COVERED card at the frozen path with literal text in the plan plan.md:69
+PASS C8 COVERED card in system-spec-kit's own words with no sk-prompt reference, confirmed by rg plan.md:73
+PASS C8 COVERED one action per section, allowed write surface and forbidden tools plan.md:91
+PASS C8 COVERED plan of 3 or 4 steps each with an acceptance line and a verify command plan.md:158
+PASS C8 COVERED light constraint wording, plain do and do not lines plan.md:96
+PASS C8 COVERED four router rows with exact old to new text and the guide left in ON_DEMAND plan.md:244
+PASS C8 COVERED manifest and alias regeneration by the shipped commands tasks.md:98
+PASS C8 COVERED checklist line replaced with rendered example text, exact old and new plan.md:389
+PASS C8 COVERED tasks template Verify slot with both the current-tree and token-form locators plus a pre-check task plan.md:339
+PASS C8 COVERED sync guard source in full with failing-first copy test and the wiring convention tasks.md:107
+PASS C8 COVERED workflow-invariance read and a task that runs it with expected output tasks.md:252
+PASS C8 COVERED three-run Level 1 smoke test with a literal worker brief and the five phase 001 metrics tasks.md:266
+FAIL C9 the smoke brief fixes --loc 40 --files 1, which recommend-level.sh answers with "Recommended Level: 0 (Quick)", while the same brief passes --level 1 and the card says use the printed level and documents only levels 1 to 3 tasks.md:302
+FAIL C9 T002 expects grep -c 'Start commit' to print 1 after the write, but goal.md already holds that phrase once at goal.md:82, so the post-write count is 2 tasks.md:44
+WARN C9 T014 names no literal cli-codex command, leaving the model flags, effort and sandbox for the executor to judge tasks.md:333
+WARN C9 CHK-042 and CHK-113 require scratch/card-bench/baseline.md, but no task creates that file tasks.md:458
+WARN C9 the dispatch command writes $TASK.jsonl while the T012 verify expects T012-1 to T012-3, and the mapping TASK=T012-$N is never stated tasks.md:280
+WARN C9 card step 10 has a verify with no expected output and step 11 has no acceptance or verify line at all plan.md:231
+FAIL C10 plan rollback says to delete "the two created files" while the enhanced rollback names three created files, the card, the guard and the vitest test plan.md:474
+FAIL C10 spec.md says the matching ../changelog file is refreshed at phase close, but no task in tasks.md performs a changelog step tasks.md:352
+WARN C10 acceptance criteria say a waiver must name an ADR in decision-record.md, but no decision-record.md exists in this folder and the ADRs live in plan.md acceptance-criteria.md:32
+VERDICT: 5 FAIL, 7 WARN

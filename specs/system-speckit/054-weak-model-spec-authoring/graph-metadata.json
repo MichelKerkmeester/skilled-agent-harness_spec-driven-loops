@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+    "system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair",
+    "system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate",
+    "system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance",
+    "system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card",
+    "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
+    "system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree",
+    "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
+    "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "weak model spec authoring phase parent spec",
+      "deepseek flash spec authoring",
+      "followable spec templates",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "weak",
+      "model",
+      "spec",
+      "authoring",
+      "phase",
+      "parent",
+      "deepseek",
+      "flash",
+      "followable",
+      "templates",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/agents/markdown.md",
+      "spec/check-placeholders.sh",
+      "001-template-drift-census-and-baseline/goal.md",
+      "002-template-and-example-defect-repair/goal.md",
+      "003-versioned-placeholder-gate/goal.md",
+      "004-template-section-fill-guidance/goal.md",
+      "005-weak-model-authoring-card/goal.md",
+      "006-speckit-command-and-agent-alignment/goal.md",
+      "007-playbook-catalog-readme-alignment/goal.md",
+      "008-playbook-run-in-worktree/goal.md",
+      "009-authoring-benchmark-and-closeout/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replace Pending",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A DeepSeek V4.1 Flash worker that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
+    "created_at": "2026-10-23T11:27:18Z",
+    "last_save_at": "2026-10-23T14:14:54.822Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:a16686830dcba0b1f9a189867d05c159698d8138dd0f86ea0680b6740284c2b5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d7323e13b09fd9229806fa9678348b01dc4e70701c7e3c4614bf18ea7dd429bd"
+    },
+    "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+    "last_active_at": "2026-10-23T11:45:12.996Z"
+  }
+}

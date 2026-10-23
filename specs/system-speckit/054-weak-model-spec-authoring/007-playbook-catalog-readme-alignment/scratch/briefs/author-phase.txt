@@ -1,0 +1,49 @@
+PHASE 007: playbook-catalog-readme-alignment
+Folder: specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment
+Your scratchpad for any mutating test: specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/test/
+
+STATE: all six files are raw scaffold. Write all six. Phases 002, 003, 004, 005 and 006 (speckit command and agent alignment) are ALREADY AUTHORED by other workers:
+READ their finished docs first (spec.md, plan.md, tasks.md, goal.md of each) so that you cite the REAL artifact names,
+script names, token form, marker, card path and gates they ended up with. Where you find an inconsistency between
+those phases and what you need, name it in your report as a cross-phase mismatch (do not edit their folders).
+
+WHAT THE PHASE DOES (frozen)
+Update the system-spec-kit documentation surfaces for the behavior phases 002-005 create. Docs only, no logic.
+ Targets (verify each exists and read its contract first):
+  - .skilled/skills/system-spec-kit/manual-testing-playbook/  (root index + NEW scenario files)
+  - .skilled/skills/system-spec-kit/feature-catalog/
+  - .skilled/skills/system-spec-kit/README.md and templates/README.md
+  - the references that describe the changed behavior (validation rules reference for the placeholder gate, template
+    guide / style guide for the token form and v2.3 marker, workflows quick-reference for the card): find the exact files
+    with rg and give exact old text -> new text rows or full new-section text.
+ Method: route through the sk-doc sub-skills that own each doc kind. READ their SKILL.md and the template/asset they name
+ BEFORE writing the task text, because the executor will follow them:
+  - .skilled/skills/sk-doc/sk-create-manual-testing-playbook/  (playbook root + scenario file shape)
+  - .skilled/skills/sk-doc/sk-create-feature-catalog/
+  - .skilled/skills/sk-doc/sk-create-readme/
+ Find them with `ls .skilled/skills/sk-doc` and read each SKILL.md. Where the sk-doc skills require a validator/lint
+ script for the artifact (look for a validate/check script in each skill's scripts/ dir), put it in the task's Verify.
+ SCENARIOS to add to the manual-testing-playbook (write each scenario file's FULL TEXT literally in plan.md or in
+ tasks.md so a weak model copies it; each scenario has numbered literal commands and a PASS/FAIL criterion, and
+ uses a throwaway track so it leaves nothing behind):
+  S1 placeholder gate: a v2.3 doc with an unfilled token while Draft -> WARNING and strict PASSED
+  S2 placeholder gate: the same doc at status Complete -> ERROR
+  S3 placeholder gate: a v2.2 doc -> behavior unchanged (zero new failures)
+  S4 example drift guard catches a leaked description (inject into a copy, guard fails; clean tree guard passes)
+  S5 golden render of every level (levels 1, 2, 3, 3+) matches and anchor counts are held
+  S6 the router loads the card for the PLAN/IMPLEMENT/INTAKE/TEMPLATE_AUTHORING intents instead of template-guide.md
+  S7 card sync guard passes on the tree and fails on a broken copy
+  S8 DeepSeek authors a Level 1 packet from the card (strict passes, zero leftover hints)
+ Use the real script names from phases 003-005 (they were told: check-example-drift.sh and check-card-sync.sh beside
+ validate.sh under .skilled/skills/system-spec-kit/runtime/cli/spec/, card at
+ .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md). Verify against their docs.
+ Find the playbook's scenario id scheme, folder layout and index conventions by reading the playbook root and two
+ existing scenario files (`ls` it first). New scenario ids must continue the existing scheme without collision.
+ Also decide and record: does the feature catalog get new entries or edits to existing ones (read how it is organised).
+ Exact text for every edit.
+Gates: the sk-doc validators the sub-skills name; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`
+on this phase `--strict`; the playbook index lists each new scenario id (a literal rg count); the spec-kit
+workflow-invariance test still passes (`npm --prefix .skilled/skills/system-spec-kit test -- workflow-invariance`
+or the real invocation: read package.json) ; suite matches phase 001's suite-start.txt; one read-only frontier review.
+Phase 008 will RUN every scenario you add, literally. So each scenario's commands must be copy-run-able from the repo
+root of a worktree, deterministic, and self-cleaning.

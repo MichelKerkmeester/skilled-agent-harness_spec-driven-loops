@@ -1,0 +1,16 @@
+FIXED C5 (report line 5) plan.md now names .skilled/skills/system-spec-kit/templates/changelog/root.md, which resolves from the repository root
+FIXED C5 (report line 6) plan.md now names .skilled/skills/system-spec-kit/templates/changelog/phase.md, which resolves from the repository root
+FIXED C6 (report line 8) T015 now appends the Parent criteria row after the BASE_REF row by exact match with an unless guard, so the row is inserted once and never duplicated
+FIXED C8 (report line 13) T008 now requires reading the phase 008 spec, plan and implementation-summary plus sk-create-benchmark sections 3 and 5 before composing the report
+FIXED C8 (report line 15) T009 now requires reading sk-create-changelog, two entries in .skilled/changelog/system-spec-kit and references/workflows/nested-changelog.md, and T011 repeats the two skill references
+FIXED C9 (report line 20) T014 now updates the five existing parent progress rows by exact row text and appends five new rows after the BASE_REF row instead of adding duplicates
+FIXED C9 (report line 21) T017 block now counts status-delta paths outside the declared allowlist with awk and rg and the verify line expects that count to print 0
+FIXED C9 (report line 22) T016 now has an awk format check that prints T016_FORMAT with bad=0 and one of findings or no_findings non-zero
+FIXED C9 (report line 23) C6 now derives the folder slug from the scenario path and also accepts the numeric title prefix, so the lookup matches both the existing reports and the phase 8 report form
+FIXED C9 (report line 24) T001 now runs opencode2 --version with </dev/null and keeps the same version-line expectation
+FIXED C10 (report line 25) ADR-006 and T015 now use the same finder, git diff --name-only $START plus git ls-files --others --exclude-standard, filtered to the playbook directory
+FIXED C10 (report line 26) Verification Summary now reports 14 P0, 24 P1 and 9 P2, which matches the checklist count
+FIXED C10 (report line 27) T014 no longer claims it changes the parent goal continuity percentage, which T017 changes
+FIXED C10 (report line 28) plan.md fallback is now v2.10.0.0.md, the next minor bump that T009 describes
+REJECTED C10 (report line 29) child goal.md files carry sections 1, 3 and 4 by template design and no text cites a missing section 2
+REJECTED C10 (report line 30) the decision-record.md waiver sentence is shared template text and every acceptance row is Met, so the waiver rule never fires

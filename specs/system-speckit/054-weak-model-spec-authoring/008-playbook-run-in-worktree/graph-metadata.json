@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook run in worktree",
+      "phase 8 playbook run in worktree",
+      "manual testing playbook execution",
+      "disposable worktree scenario run",
+      "playbook run in worktree plan",
+      "disposable worktree scenario runner",
+      "manual testing playbook report package",
+      "playbook run in worktree tasks",
+      "manual testing playbook report tasks",
+      "playbook run in worktree acceptance criteria",
+      "playbook run in worktree goal",
+      "playbook run in worktree implementation summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "run",
+      "worktree",
+      "phase",
+      "manual",
+      "testing",
+      "execution",
+      "disposable",
+      "scenario",
+      "plan",
+      "runner",
+      "report"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      "scratch/test/fixture-scenario.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-scenario.md",
+        "kind": "doc",
+        "path": "scratch/test/fixture-scenario.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comparator For",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 007 adds scenarios that claim the placeholder gate warns in Draft, fails at Complete, the drift guard catches a leaked description, the golden render holds, the router loads the card, the sync guard fails on drift and a DeepSeek worker can author a Level 1 packet from the card",
+    "created_at": "2026-10-23T11:27:26Z",
+    "last_save_at": "2026-10-23T14:13:37.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a97f3c2b5e5939ae79ec26fdb18dcd02f11fdd3879c2622f4186d86cfdc3891e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c27c88207dc14ac4ec113a7ded0a87b15324eab7a6b4df2eef5bc3d8151a72cb",
+      "plan.md": "cb6c200e26ded3f2cb3d3108c98e07bae527d724a6fb3c7be07ae626c34d0a4f",
+      "tasks.md": "31cc09e5fd5c3ad8b8e9405173e037678ec661fb2e0d3a5280d770ef348a7425",
+      "implementation-summary.md": "7682b72d8e315d79a643a72c44f16da864d7cb2492c0f9d671b93fdb95631a15"
+    },
+    "last_active_at": null
+  }
+}

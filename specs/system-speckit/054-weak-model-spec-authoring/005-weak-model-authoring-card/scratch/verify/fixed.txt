@@ -1,0 +1,12 @@
+REJECTED C3 tasks.md:77 check-placeholders.sh flags the regex literal [A-Za-z] inside the T004 fenced scan block. This is the known scanner false positive, so the doc is unchanged and goal.md section 4 records it.
+FIXED C6 tasks.md:43 T001 now states that the v2.3 stamp counts hold on the post-003 tree.
+FIXED C6 tasks.md:52 T003 now states that the token-form locator value 1 holds on the post-003 tree.
+FIXED C9 tasks.md:302 The smoke brief now uses --loc 200 --files 3, which recommend-level.sh prints as Recommended Level: 1 (Baseline), and the brief states that output.
+FIXED C9 tasks.md:44 T002 now writes Start commit: <hash> and verifies grep -c 'Start commit:' prints 1, which excludes the existing Start commit recorded row.
+FIXED C9 tasks.md:333 T014 now names the literal codex -a never exec command with gpt-6-luna, max effort, the fast tier, the read-only sandbox and /dev/null stdin.
+FIXED C9 tasks.md:458 T013 now writes scratch/card-bench/baseline.md with one line per metric plus the minimum and maximum of each metric, and its verify checks the file.
+FIXED C9 tasks.md:280 T012 now states the TASK=T012-$N mapping used by the dispatch command, so the runs write T012-1.jsonl to T012-3.jsonl.
+FIXED C9 plan.md:231 Card step 10 now names the expected RESULT: PASSED line, and step 11 now has an acceptance line and a verify command. The card is 172 lines and every 170-line reference is updated.
+FIXED C10 plan.md:474 The rollback now says three created files and names the card, the guard and the vitest test, matching the enhanced rollback.
+REJECTED C10 spec.md:69 The spec.md Changelog line is shared template text and phase 009 writes the packet changelog, so the line is unchanged per the author brief.
+REJECTED C10 acceptance-criteria.md:32 The decision-record.md waiver line is shared template text in every phase, and the ADRs for this packet live in plan.md, so the line is unchanged per the author brief.

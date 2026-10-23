@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair",
+  "description": "Phase 2: template-and-example-defect-repair",
+  "keywords": [
+    "phase",
+    "template-and-example-defect-repair"
+  ],
+  "lastUpdated": "2026-10-23T11:27:20.964Z",
+  "specId": "002",
+  "folderSlug": "template-and-example-defect-repair",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

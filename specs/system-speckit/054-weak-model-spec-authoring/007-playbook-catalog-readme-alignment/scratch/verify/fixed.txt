@@ -1,0 +1,9 @@
+FIXED C9 tasks.md:43 added mkdir -p "$PHASE/scratch/baseline" to T002 so the status-start and suite-start redirects have a directory
+FIXED C9 tasks.md:252 added mkdir -p "$PHASE/scratch/review" and a literal codex exec command with --sandbox read-only, gpt-6-luna at max, fast tier, approval_policy=never and -o T015.txt
+FIXED C9 tasks.md:232 replaced $'\u2014' with '\x{2014}' so the scan no longer depends on bash expanding a unicode escape
+FIXED C9 tasks.md:75 named the repo-relative phase plan.md path in the T004, T005 and T006 lane briefs
+FIXED C9 tasks.md:273 keyed T016 lines to the <file>:<line> that the T015 reply format already defines
+FIXED C9 tasks.md:236 added the exit= line to both suite-lines files so the T014 diff covers all three AC-010 lines
+FIXED C10 goal.md:47 replaced the false every-scenario claim with the fixture each scenario actually uses
+FIXED C10 spec.md:69 named playbook.txt and catalog.txt in the deliverable and made T009 and T010 write both transcripts
+FIXED C10 tasks.md:392 corrected the summary to 15 P0, 24 P1 and 8 P2. The doc edits changed the source fingerprint, so repair-derived.cjs --apply refreshed graph-metadata.json before validation

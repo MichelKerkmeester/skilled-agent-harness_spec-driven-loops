@@ -1,0 +1,24 @@
+FIXED C6 tasks.md:456 replaced the nonexistent "### Implementation And Test Anchors" table locator with the "- Implementation:" bullet of "## 4. SOURCE FILES", resolved against the scenario directory and printed as FIX_TARGET, then aligned plan.md section 3.7, CHK-FIX-002 and R-002
+FIXED C8 tasks.md:509 T013 now inspects the newest existing manual-testing-playbook report folder and prints EXISTING_REPORT, four PRESENT lines and the results.csv header before it writes a new folder, and plan.md section 3.6 names that inspection
+FIXED C9 tasks.md:458 check-run.cjs now writes a named "<run>.check.txt" file with result, missing pattern, exit, truncation and last output line, and T011 quotes that file in the fix brief
+FIXED C9 tasks.md:734 T016 saves "git -C \"$WT\" diff" to scratch/fixes/fix.patch and status to scratch/fixes/status.txt, writes PATCHED or UNPATCHED per changed path, refuses only on UNPATCHED and adds REQ-009 plus AC-009
+FIXED C9 tasks.md:791 T018 now has two literal bash blocks and prints findings=<count> and unrecorded=0 from a numbered finding list
+REJECTED C9 tasks.md:66 the row "| BASE_REF | Pending | <note> |" exists in ../goal.md section 4 and Pending is the State cell in column 3, so the awk is correct, and T001 now states that exact three-cell row shape
+FIXED C9 tasks.md:448 T011 now runs a literal "for N in 1 2 3" loop that stops on the first PASS and escalates after attempt 3
+FIXED C9 tasks.md:492 T012 verify now checks eight rows and prints 0 out-of-vocabulary verdicts instead of an open-ended tally
+FIXED C9 tasks.md:754 T017 verify now prints REVIEW_FILE_OK from "test -s ... && echo REVIEW_FILE_OK"
+FIXED C9 goal.md:64 the completion criterion now greps scratch/worktree/removal.txt for WORKTREE_GONE instead of using an unset $WT
+FIXED C9 tasks.md:418 the S8 worker transcript now goes to .worker-<n>.jsonl and the run file holds conductor-written lines only, so a transcript RESULT line cannot satisfy the pattern
+FIXED C9 tasks.md:426 the S8 token count now counts both "YOUR_VALUE_HERE:" and "NEEDS CLARIFICATION:"
+FIXED C10 plan.md:550 the S8 brief now uses specs/zz-pb-card/001-card-authoring and the same literal create command as T010
+FIXED C10 acceptance-criteria.md:55 AC-002 now checks NF != 6, matching the six fields the map builder writes
+FIXED C10 spec.md:169 T016 now checks eight verdict rows and every evidence file before removal, and the risk row says so
+FIXED C10 spec.md:196 run-scenario.sh now truncates a run above 2 MB to its first 2 MB and last 200 lines, writes truncated=yes and the comparator records it in the verdict reason
+FIXED C10 spec.md:197 build-scenario-map.cjs now detects duplicate playbook index rows, prints AMBIGUOUS <S label> and exits non-zero
+FIXED C10 spec.md:200 T010 now retries a provider error once after 600 seconds and marks S8 ESCALATED after the second failure
+FIXED C10 spec.md:133 REQ-003, AC-003, T011, T012 and the completion criteria now use one five-value vocabulary: PASS, FAIL, FIXED, ESCALATED, SCENARIO_DEFECT
+FIXED C10 plan.md:89 the plan create command now passes --no-provision and its exit-3 provisioning paragraph is replaced by the separate T006 provisioning step
+FIXED C10 plan.md:579 ADR-001 now says the runner extracts every fenced block under "### Commands" in order
+FIXED C10 plan.md:137 plan.md section 3.4 now names the extracted file "<id>.txt.cmd", matching run-scenario.sh
+FIXED C10 plan.md:624 ADR-004 now says every non-empty frozen pattern must match
+FIXED C10 spec.md:112 the Files to Change row now says three scratch scripts

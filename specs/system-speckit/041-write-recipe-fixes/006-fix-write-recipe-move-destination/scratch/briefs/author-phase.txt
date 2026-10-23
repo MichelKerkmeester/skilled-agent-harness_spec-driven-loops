@@ -1,0 +1,47 @@
+PHASE 041-006: fix-write-recipe-move-destination  (a child of ANOTHER packet, not of 054)
+Folder: specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination
+Your scratchpad for any mutating test: specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/test/
+
+OVERRIDES TO THE COMMON BRIEF
+ - Your folder is the 041 child above, not a 054 folder. "$PKT" in the common brief does not apply to your own files.
+   The 054 packet is only a REFERENCE: you copy phase 001's shape from specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/.
+ - Your parent is specs/system-speckit/041-write-recipe-fixes/spec.md (a series parent, no goal.md). Read it and the
+   sibling 005-fix-write-recipe-verification-gate docs for how this series phrases things (they are Level 1; yours is
+   Level 3 by operator decision D-f, so use phase 001's Level 3 shape instead).
+ - Do not edit the 041 parent spec.md (the orchestrator updates its phase-map row).
+ - Cite the parent as `../spec.md`. There is no parent goal, so the launch preconditions live in the 054 packet:
+   cite `../../054-weak-model-spec-authoring/spec.md` section 3 for the launch preconditions and
+   `../../054-weak-model-spec-authoring/goal.md` section 4 for the recorded WORKTREE and start commit.
+ - Your goal.md is a standalone (nested) goal, same shape as phase 001's goal.md.
+
+WHAT THE PHASE DOES (frozen)
+Fix the write recipe's bare spec-folder move destination.
+ File: .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md, "Step 2: Move to track". The
+ `mv` example ends with a line that is only `  <spec-folder>` (two leading spaces). Known row:
+   old: the destination line `  <spec-folder>`  ->  new: `  specs/system-speckit/078-opencode-authoring-recipe`
+   plus a sentence directly after the code block (or before it, you choose, read the file) saying the track in the
+   destination is an example and the reader substitutes the track they selected.
+ Read the file, confirm `grep -cF -- '  <spec-folder>' <file>` prints exactly 1 (it may print more if the string
+ appears elsewhere: then pick a longer unique locator that spans two lines, and prove it with a python3 -I one-liner
+ count). Write the exact old and new text, including the added sentence, in HVR voice (no em dash, no semicolon).
+ Also check the rest of that file and the other lines in the same Step for the same class of problem (`<spec-folder>`,
+ `<path>`, `<track>` bare placeholders on lines a reader would copy), and list what you found as UNKNOWN/adjacent
+ (do not widen scope without saying so; a second hit in the SAME Step 2 command block is in scope).
+ Also this phase works every ledger row with owner_phase `041-006` from
+ specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl
+ (after the known row): for each, run its evidence_cmd first and skip when it no longer reproduces; otherwise apply.
+ Tool: the exactly-once applier from phase 002 (read ../../054-weak-model-spec-authoring/002-template-and-example-defect-repair/tasks.md,
+ which embeds apply_row.py, if that file has content by the time you read it; the conductor saves it as
+ specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/tools/apply_row.py and
+ runs `python3 -I <that path> <ledger.jsonl> <row id>`). To stay independent of phase 002's timing, ALSO write the known
+ row as a one-line JSONL ledger row (fields id, file, locator, expected_text) in tasks.md and say the conductor applies
+ it with that same applier. Order dependency: this phase executes after 054 phase 002 has saved the tool. State that in
+ the Dependencies and the Handoff Criteria.
+ Series note: 041 is a series of spec-folder-write-recipe fixes, one defect per child. Predecessor: 005-fix-write-recipe-verification-gate.
+
+GATES (literal commands with expected output): applier prints APPLIED; the row evidence no longer reproduces; the diff
+names only the recipe file; `npm --prefix .skilled/skills/system-spec-kit test` matches 054 phase 001's suite-start.txt
+summary; `validate.sh <your folder> --strict` PASSED; one read-only frontier review at close (cli-codex gpt-6-luna,
+copy the invocation form from 054 phase 001 tasks.md T011 after reading it and .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md).
+This is a one-row phase: keep it proportionate. The Level 3 scaffold sections stay (anchors, headings) but their
+content is short and specific to this one edit.

@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree",
+  "description": "Phase 7: playbook-run-in-worktree",
+  "keywords": [
+    "phase",
+    "playbook-run-in-worktree"
+  ],
+  "lastUpdated": "2026-10-23T11:27:26.937Z",
+  "specId": "007",
+  "folderSlug": "playbook-run-in-worktree",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

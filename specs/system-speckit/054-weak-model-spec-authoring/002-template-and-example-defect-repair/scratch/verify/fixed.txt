@@ -1,0 +1,11 @@
+FIXED C6 (report line 7) plan.md now records that the command found the style guide and four packet docs in specs, and no other doc outside specs.
+FIXED C9 (report line 10) T016 now counts finding lines instead of all lines, and its verify prints COUNTS_MATCH when T015 holds the single line NO FINDINGS.
+FIXED C9 (report line 11) T016 now sends each finding to a worker brief and no longer claims the finding's third column is exact replacement text.
+FIXED C9 (report line 12) T011 now saves every printed line to scratch/deleted.txt, and its verify block prints 0 and 0.
+FIXED C9 (report line 13) T011 now says a shared base name makes ripgrep exit with code 0, which keeps the file, and no longer implies a separate base-name check.
+FIXED C9 (report line 14) T015 check 4 is now two rg commands that print 1 and 0 instead of a judgment about bullets.
+FIXED C10 (report line 15) tasks.md, plan.md and spec.md now say three of the four .hashes entries are missing, because templates/README.md exists.
+FIXED C10 (report line 16) T016 now changes a row file only through a worker brief and never by hand.
+FIXED C10 (report line 17) spec.md now says applied.txt holds an APPLIED, CHECK and KCHECK line per known row, and census.txt holds one line per ledger row.
+REJECTED C10 (report line 18) acceptance-criteria.md line 32 is fixed template text shared by every phase, left unchanged per the task instruction.
+REJECTED C10 (report line 19) spec.md line 68 is fixed template text shared by every phase, left unchanged per the task instruction.

@@ -1,0 +1,39 @@
+PASS C1 validate.sh --strict prints "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED", exit 0 specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md:207
+PASS C2 check-goal.cjs prints "RESULT: PASSED (5/5 checks)" with all five sub-checks PASS specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/goal.md:1
+PASS C3 check-placeholders.sh prints "PASS: Zero placeholder patterns found", exit 0 specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/spec.md:1
+PASS C4 rg -n for the U+2014 em dash over the six phase markdown files prints nothing (exit 1) specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md:1
+PASS C5 every path tasks.md and plan.md call present now exists: the recipe, $S, validate.sh, cli-codex/SKILL.md, 054 spec.md and goal.md and references/debugging/troubleshooting.md tasks.md:34
+PASS C6 locator "  <spec-folder>" in the recipe is 1 (tasks.md:57) specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md:57
+PASS C6 locator "  <spec-folder>" in the recipe is 1 (tasks.md:81 second count) specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/tasks.md:81
+PASS C6 four-line locator (destination, fence, blank, gate) is 1 with python3 -I tasks.md:74
+PASS C6 plan evidence_cmd "  <spec-folder>" in the recipe is 1 plan.md:71
+PASS C6 plan old-text destination line "  <spec-folder>" is 1 plan.md:77
+PASS C6 plan old-text gate line "Verification gate: confirm the final path is under `specs/` ..." is 1 plan.md:80
+PASS C6 spec REQ-001 literal "  <spec-folder>" in the recipe is 1 spec.md:115
+PASS C6 goal completion literal "  <spec-folder>" in the recipe is 1 goal.md:58
+PASS C6 "mv specs/078-opencode-authoring-recipe" is 1 in the recipe plan.md:75
+PASS C6 "Step 2: Move to track" is 1 in the recipe plan.md:58
+PASS C6 new-text literals are 0 now by design: "  specs/system-speckit/078-opencode-authoring-recipe" (0), the track sentence (0), AC Met row pattern (0 of 6) tasks.md:105
+PASS C7 apply_row.py takes (ledger, row id, optional root) and prints "APPLIED <id> <file>", matching tasks.md T004 tasks.md:96
+PASS C7 the applier signature, its FAIL text and its ledger field names match the 054 phase 002 source, so T004, T005 and T007 invoke it correctly tasks.md:120
+PASS C7 validate.sh accepts --strict, npm --prefix test maps to test:root, and codex exec accepts --model, -c, --sandbox and the required </dev/null tasks.md:201
+PASS C8 COVERED known row replaces the bare destination and adds the sentence spec.md:87
+PASS C8 COVERED exactly-once proof with grep -cF and python3 -I tasks.md:81
+PASS C8 COVERED whole-file same-class sweep recorded as adjacent findings goal.md:46
+PASS C8 COVERED ledger rows owned by 041-006 run evidence_cmd first and skip when it no longer reproduces tasks.md:119
+PASS C8 COVERED one-line JSONL known row with id, file, locator and expected_text applied by the 054 applier tasks.md:74
+PASS C8 COVERED all gates are literal: APPLIED, evidence gone, one changed path, suite match, validate PASSED and one read-only frontier review tasks.md:178
+FAIL C9 T009 redirects stdout and stderr into "$PHASE/scratch/review/", the directory does not exist and no task creates it, so the dispatch fails before codex runs tasks.md:203
+FAIL C9 T005 verify says "cut -d' ' -f1 "$C" | sort | uniq -c" prints lines whose first word is APPLIED, SKIP-GONE or LEDGER-MISSING, but uniq -c puts a count first so the stated check cannot pass tasks.md:109
+FAIL C9 T010 tells the conductor to "fix the recipe with the exact text in the finding's third column", which contradicts TASK-NOMODEL, apply_row.py is the only writer of the recipe tasks.md:207
+WARN C5 the fixed output path "$PHASE/scratch/review/T009.txt" and its .err sibling are written by T009, but scratch/review is absent and C5-style existence holds only for the briefs directory tasks.md:203
+WARN C9 the reviewer brief prints "P0|P1|P2 <file>:<line>" while the verify regex expects a line starting "P0 ", so the literal token can be copied and fail the gate tasks.md:194
+WARN C9 T009 verify counts non-matching lines only, so an empty review file passes with 0 while scratch/review/T009.err is never checked tasks.md:178
+WARN C9 T003 recovery says to rebuild the locator from the text on disk, which is judgment a weak model cannot settle and would change the frozen row plan.md:63
+WARN C8 Handoff Criteria lists outputs but does not state the order dependency on 054 phase 002, which the phase brief required in both Dependencies and Handoff Criteria spec.md:42
+WARN C10 AC-006 escapes the alternation as "^(P0\|P1\|P2) \|^NO FINDINGS$" while T009 uses "^(P0|P1|P2) |^NO FINDINGS$", so the two verify commands disagree acceptance-criteria.md:59
+WARN C10 acceptance-criteria.md requires waived rows to name an ADR in decision-record.md, which does not exist, while the two ADRs live in plan.md acceptance-criteria.md:32
+WARN C10 spec.md says to refresh "../changelog/" but specs/system-speckit/041-write-recipe-fixes has no changelog directory spec.md:66
+WARN C10 goal.md completion commands use bare "scratch/recheck.txt" and "scratch/changed-files.txt" while every task uses "$PHASE/scratch/", so the goal works only with the cwd set to the phase folder goal.md:61
+WARN C10 goal.md completion criteria omit the suite match and the frontier review that spec.md Handoff Criteria requires goal.md:63
+VERDICT: 3 FAIL, 9 WARN

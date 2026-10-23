@@ -115,6 +115,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 3 | `003-fix-write-recipe-workspace-bullet/` | Point the workspace bullet at sk-git | Complete |
 | 4 | `004-fix-write-recipe-post-checks/` | Reword the status and push post-check rows | Complete |
 | 5 | `005-fix-write-recipe-verification-gate/` | Check the staged set in the Step 7 gate | Complete |
+| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Draft |
 
 ### Phase Transition Rules
 
@@ -131,6 +132,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `002-fix-write-recipe-commit-step` | `003-fix-write-recipe-workspace-bullet` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `003-fix-write-recipe-workspace-bullet` | `004-fix-write-recipe-post-checks` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `004-fix-write-recipe-post-checks` | `005-fix-write-recipe-verification-gate` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `005-fix-write-recipe-verification-gate` | `006-fix-write-recipe-move-destination` | Independent: no ordering dependency inside this series. It runs after 054 phase 002 saves the row applier | `validate.sh --strict` passes on each child |
 <!-- /ANCHOR:phase-map -->
 
 ---

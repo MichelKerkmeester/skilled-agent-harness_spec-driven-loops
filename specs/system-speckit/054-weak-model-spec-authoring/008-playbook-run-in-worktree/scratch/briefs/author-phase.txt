@@ -1,0 +1,39 @@
+PHASE 008: playbook-run-in-worktree
+Folder: specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
+Your scratchpad for any mutating test: specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/test/
+
+STATE: all six files are raw scaffold. Write all six. Phases 002-007 are authored: READ phase 007's finished docs
+(the scenario list S1..S8 and their real ids/paths) and phases 003-005 for artifact names, before writing.
+
+WHAT THE PHASE DOES (frozen, operator decision D-e)
+Run every new or updated manual-testing-playbook scenario of phase 007 inside a DISPOSABLE sk-git worktree, record
+PASS/FAIL against each scenario's stated criterion, and write the report package.
+ - Worktree: create it through sk-git (READ .skilled/skills/sk-git/SKILL.md and its worktree reference first; use its
+   numbered-worktree commands, never bare git primitives for branches; the operator-approved choice for this phase
+   is a disposable worktree). Write the literal create command, how dist/ and node_modules are provisioned there
+   (the earlier phases note symlink traps: the worktree must run its OWN code; give a concrete check), and how the worktree is removed
+   afterwards (removal is destructive: write the rollback sentence per .skilled/repo-rules/blast-radius.md and make
+   the removal step require the conductor to confirm `git -C <wt> status --porcelain` is clean or only holds scratch).
+   Phase 008 runs AFTER phases 002-007 are finished and COMMITTED OR OTHERWISE PRESENT in the worktree: say how the
+   phase 002-007 changes get into the disposable worktree (the operator decides commit/branch; the plan states the
+   precondition "the worktree is created from a ref that contains the phase 002-007 changes" and gives the command that
+   proves it, e.g. checking that the card file and the guard scripts exist in the worktree).
+ - Run: for each scenario S1..S8 (and any other id phase 007 adds), the conductor runs its numbered commands
+   LITERALLY (a loop that extracts nothing by judgment: the scenario file is the script; give the conductor the exact
+   commands to read each scenario's command block and run them with output captured to scratch/runs/<id>.txt), then
+   marks PASS/FAIL against the criterion with a scripted compare where possible.
+   Scenario S8 dispatches a DeepSeek worker (use the same worker brief skeleton as phase 001 plan.md AI EXECUTION PROTOCOL).
+ - Report package: per sk-doc's `sk-create-benchmark` SKILL section 3 and section 5 (READ it:
+   .skilled/skills/sk-doc/sk-create-benchmark/SKILL.md). There is NO runner script, so the report is hand-assembled
+   by the conductor from the captured outputs. Reports live in
+   .skilled/skills/system-spec-kit/benchmark/reports/<date>--manual-testing-playbook--<subject>/ . Verify that
+   directory convention (`ls .skilled/skills/system-spec-kit/benchmark/reports | head`) and copy the real file set
+   an existing report folder has (look at one). Write the literal file list and a template for each file.
+ - Failure protocol: a failing scenario gets ONE fix brief (a DeepSeek worker, ALLOWED WRITE PATHS = only the file the
+   failure points at) and ONE rerun; after 3 failed fixes for the same scenario, record it and escalate to the
+   operator (stop that scenario, continue the others). The fix brief text is written literally in the plan as a
+   fill-in skeleton.
+ - The disposable worktree is the only place scenarios run; the main checkout stays untouched. Gate: `git status
+   --porcelain` in the MAIN checkout shows no change attributable to phase 008 except this phase folder.
+Gates as in phase 001 style: literal commands with expected output; strict validate; frontier review (cli-codex gpt-6-luna,
+copy the invocation form from phase 001 tasks.md T011 after reading it and the cli-codex SKILL.md).

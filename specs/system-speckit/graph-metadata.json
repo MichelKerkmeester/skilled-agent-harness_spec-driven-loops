@@ -22,7 +22,8 @@
     "system-speckit/050-open-knowledge-format-adoption",
     "system-speckit/051-symlinked-runtime-root",
     "system-speckit/052-research-folder-continuity",
-    "system-speckit/053-ci-workflow-efficiency"
+    "system-speckit/053-ci-workflow-efficiency",
+    "system-speckit/054-weak-model-spec-authoring"
   ],
   "manual": {
     "depends_on": [],

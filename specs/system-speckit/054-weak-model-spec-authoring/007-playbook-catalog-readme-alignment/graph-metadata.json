@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook catalog readme alignment",
+      "phase 7 playbook catalog readme alignment",
+      "template authoring manual scenarios",
+      "authoring card documentation",
+      "playbook catalog readme alignment plan",
+      "template authoring playbook scenarios",
+      "authoring card documentation alignment",
+      "playbook catalog readme alignment tasks",
+      "template authoring scenario brief",
+      "catalog and readme alignment tasks",
+      "playbook catalog readme alignment acceptance criteria",
+      "playbook catalog readme alignment goal"
+    ],
+    "key_topics": [
+      "playbook",
+      "catalog",
+      "readme",
+      "alignment",
+      "phase",
+      "template",
+      "authoring",
+      "manual",
+      "scenarios",
+      "card",
+      "documentation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      "templates/README.md",
+      "references/validation/validation-rules.md",
+      "references/validation/path-scoped-rules.md",
+      "references/templates/template-style-guide.md",
+      "references/workflows/quick-reference.md",
+      "references/templates/template-guide.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/templates/README.md",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
+      ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "path-scoped-rules.md",
+        "kind": "doc",
+        "path": "references/validation/path-scoped-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-style-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh v2.3 scaffold carries value tokens and a Draft warning",
+    "created_at": "2026-10-23T11:27:24Z",
+    "last_save_at": "2026-10-23T14:11:58.793Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:76d662e1be8570e297f56dcd08b16604d667f6e16c12d2980ef32def2cb0ecb5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e89185075519a1c52928b9a45eb6c9d4a0657b87246fe6e9ba8655f851aed1e4",
+      "plan.md": "4039c155eaf5f75927b36d8117f137396eb383ccf2aa4f08f39b72f5c0c9a7e4",
+      "tasks.md": "79918bc4af891d326c99a0d75361200559f2bd2f62a5eae5b4e89de72a67b323",
+      "implementation-summary.md": "a3fb43dbed5d4b124d64d901511b90fdf20c5de781b28c387771d5bf2c4dd56c"
+    },
+    "last_active_at": null
+  }
+}

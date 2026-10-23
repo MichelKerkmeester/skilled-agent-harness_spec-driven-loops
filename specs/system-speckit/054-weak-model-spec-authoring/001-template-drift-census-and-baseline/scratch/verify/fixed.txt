@@ -1,0 +1,19 @@
+REJECTED C3 check-placeholders.sh flags the regex and lane-bracket text inside fenced blocks in tasks.md. The task records this known scanner false positive in goal.md section 4 and leaves the fenced commands intact.
+FIXED C6 plan.md:99 replaced the single defect 1 locator and the 17 companion claim with a K-01 to K-18 table of all 18 exact leaked-description locators and a detection command that prints 18 lines.
+FIXED C7 tasks.md:212 replaced the false default-model claim in T011 with an explicit --sandbox read-only gpt-6-luna max invocation.
+FIXED C7 tasks.md:97 added the closing > to the lane awk /<!-- \/IF -->/ decrement so it matches plan.md.
+FIXED C9 tasks.md:114 replaced the T005 percentage threshold with a coverage block and an awk command whose expected output is 0.
+FIXED C9 tasks.md:133 expanded leaked-description detection to the 18 exact lines and a detection command that prints 18, so T007 can reach 18 rows.
+FIXED C9 tasks.md:157 gave T009 its own verify command over the run, start and status files and removed the delegation to T010.
+FIXED C9 tasks.md:157 saved each run start time to scratch/baseline/start-<n>.txt and made T010 read T0 from that file.
+FIXED C9 tasks.md:212 gave T011 an awk command and the expected output 0 for its line-format check.
+FIXED C9 tasks.md:227 gave T012 a goal.md line format and a command that compares the finding count with the T012 line count.
+FIXED C9 tasks.md:228 stated T013's row format and kept the grep count of 3.
+FIXED C10 spec.md:40 changed the phase count to 1 of 9 and every phase 8 rerun reference to phase 9.
+FIXED C10 spec.md:53 added specs/zz-bench-hints/ to the scope boundary alongside specs/zz-bench-authoring/.
+REJECTED C10 acceptance-criteria.md:32 the decision-record.md waiver line is fixed template text shared by every phase and the task says to leave it alone.
+FIXED C10 plan.md:43 changed the Definition of Done to Met, Waived or Superseded and aligned the M4 milestone and the tasks completion criterion.
+FIXED C10 acceptance-criteria.md:57 stated the run number plus the five metrics in AC-004 and in spec.md so the 6-key check is explicit.
+REJECTED C10 spec.md:64 the ../changelog/ line is fixed template text the task says to leave alone, and no changelog folder exists.
+FIXED C10 tasks.md:115 added candidates.jsonl to T006's file list and to the spec.md Files to Change table.
+FIXED C10 spec.md:59 added anchors-v2.2.txt, runs.jsonl, coverage.txt and review/T011.txt to Deliverables and to Files to Change.

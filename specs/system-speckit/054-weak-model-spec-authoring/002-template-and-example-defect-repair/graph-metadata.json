@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template and example defect repair",
+      "phase 2 template and example defect repair",
+      "leaked example descriptions",
+      "apply ledger rows",
+      "template and example defect repair plan",
+      "exact match row applier",
+      "known rows K-01 to K-25",
+      "dead hash file deletion guard",
+      "template and example defect repair tasks",
+      "known rows apply script",
+      "ledger rows owned by phase 2",
+      "template and example defect repair acceptance criteria"
+    ],
+    "key_topics": [
+      "template",
+      "example",
+      "defect",
+      "repair",
+      "phase",
+      "leaked",
+      "descriptions",
+      "apply",
+      "ledger",
+      "rows",
+      "plan",
+      "exact"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "templates/.hashes",
+      ".skilled/skills/system-spec-kit/templates/.hashes",
+      ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
+      ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+      "references/workflows/spec-folder-authoring-checklist.md",
+      "references/templates/template-style-guide.md",
+      "references/workflows/spec-folder-write-recipe.md",
+      "runtime/cli/tests/workflow-invariance.vitest.ts",
+      "runtime/data/trigger-index.json",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/sk-git/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": ".hashes",
+        "kind": "file",
+        "path": "templates/.hashes",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-authoring-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-write-recipe.md",
+        "kind": "doc",
+        "path": "references/workflows/spec-folder-write-recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Twenty",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why Bulleted Lists",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The example docs a model imitates carry broken descriptions in 18 of 21 files, three of them still cite a `Checklist.md` that no longer exists",
+    "created_at": "2026-10-23T11:27:20Z",
+    "last_save_at": "2026-10-23T14:15:50.536Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5cfb4b9cc961ac48abd0cec5b21e2b782ee785df96b6594c6d1eb4d9206eb261",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "95c3449e8507c31e557a7e22468e6e310d30de66b5e1523e420f3ee141f531d8",
+      "plan.md": "0f0e58c1c818ccb0667198e4e5dda464458de1c1a9cc5dc71fb78c5c852cac5e",
+      "tasks.md": "478216d84a043aa6a8cc8fa7d32e149fac1d6154ff7f34ecbbc2b0f3eb22b471",
+      "implementation-summary.md": "7fbb163a36982c727e62c383a006077ca1bd6f7362fcdf17b45d1750d7eaa4e7"
+    },
+    "last_active_at": null
+  }
+}

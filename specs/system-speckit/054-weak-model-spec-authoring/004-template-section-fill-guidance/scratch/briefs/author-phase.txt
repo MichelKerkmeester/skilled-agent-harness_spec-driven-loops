@@ -1,0 +1,67 @@
+PHASE 004: template-section-fill-guidance
+Folder: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance
+Your scratchpad for any mutating test: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/test/
+
+STATE: all six files are raw scaffold. Write all six.
+
+WHAT THE PHASE DOES (frozen)
+Phase 003 (before this one) converts every core-template hint to a `[YOUR_VALUE_HERE: ...]` token and bumps the
+marker to v2.3. This phase makes each section of the core templates tell a weak model exactly what to write:
+a ONE-LINE IMPERATIVE FILL INSTRUCTION plus a GOOD example and a WEAK example, per section, Level 1 sections first.
+Level 1 anchors:
+   spec (7):         metadata, problem, scope, requirements, success-criteria, risks, questions
+   plan (7):         summary, quality-gates, architecture, phases, testing, dependencies, rollback
+   tasks (6):        notation, phase-1, phase-2, phase-3, completion, cross-refs
+   implementation-summary (6): metadata, what-built, how-delivered, decisions, verification, limitations
+Verify these anchor lists against the real templates (`rg -o 'ANCHOR:[a-z0-9-]+' ...templates/core/*.tmpl | sort -u`);
+if a name differs, the real template wins and you record the difference. Then cover the Level 2 and Level 3
+add-on sections too (templates/addons): at least an instruction line per section, good/weak pairs where cheap.
+
+WRITE THE FILL TEXT LITERALLY in plan.md (a section "FILL TEXT TABLE" or per-template subsections): for every
+section, the exact instruction line, the exact good example and the exact weak example, all about ONE fixed
+running example feature so the examples are coherent. This is judgment work that must happen NOW at authoring time,
+because the DeepSeek executor must copy text, not invent it. Quality bar: instruction names the ONE action
+(e.g. "State the problem in two sentences: what breaks, and for whom."); good example is concrete and short; weak
+example shows the typical weak-model failure (vague, generic, restating the title). Also fix the known trap:
+the scaffold's generic Level 3 sections (feature flag, OWASP, uptime) are a weak-model trap seen while authoring
+this packet; the plan must say what the template does instead (e.g. instruct "write N/A with one reason, or delete
+the section if the section's gate allows"). Verify what the gate/validator really accepts before choosing.
+
+DESIGN CHOICES YOU MUST MAKE AND RECORD AS ADRs (verify against real behavior first)
+ - Where the guidance lives so that it does NOT trip phase 003's gate and does NOT bloat the rendered doc:
+   read .skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh and the renderer to learn whether
+   HTML comments, fenced blocks or the token text itself are scanned. Decide, with evidence, between (a) putting
+   the instruction inside the `[YOUR_VALUE_HERE: ...]` token and good/weak examples in an HTML comment, or (b) another
+   placement. A rendered scaffold with fill guidance must still be valid, and the guidance must not leave residue
+   that counts as an unfilled placeholder once the section is filled.
+ - Untangle the anchor crossings: 4 in spec.md.tmpl (nfr, edge-cases, questions and one more; find them with the
+   proven awk below) and 2 in research.md.tmpl (core-architecture, changelog-updates). Proven command (needs BEGIN{d=0}):
+   awk 'BEGIN{d=0} /<!-- IF /{d++} /<!-- \/IF -->/{d--} /<!-- ANCHOR:/{match($0,/ANCHOR:[a-z0-9-]+/); a[substr($0,RSTART+7,RLENGTH-7)]=d} /<!-- \/ANCHOR:/{match($0,/ANCHOR:[a-z0-9-]+/); n=substr($0,RSTART+7,RLENGTH-7); if (a[n]!=d) print FILENAME":"NR": anchor "n" opens at "a[n]" closes at "d}' <file.tmpl>
+   Run it on every .tmpl under templates now, record the real crossings, and write the literal fix for each
+   (exact old text -> new text, or move of the closing marker).
+ - Golden-render test for EVERY level (the inline-gate renderer; find it: `rg -ln 'inline-gate' .skilled/skills/system-spec-kit --glob '!node_modules' --glob '!dist'`),
+   with anchor counts held: render each level, compare to a stored golden file (list where goldens live and how
+   they are regenerated), and assert the anchor count per file equals today's count (record today's counts in an
+   early task as a baseline file, e.g. by rendering a scaffold per level via create.sh into a throwaway track
+   `specs/zz-bench-golden/` and counting `<!-- ANCHOR:` per doc). Failing-first, then mutation check.
+ - Align the hand-written examples (templates/examples/level-*/*) to the new templates. They cannot be
+   regenerated because they carry content; so list exactly which headings/anchors/comments each example must
+   gain or lose, as a per-file literal edit list or a scripted diff of heading+anchor skeletons
+   (skeleton = lines matching '^#|<!-- ANCHOR:|<!-- /ANCHOR:'), with the command that proves example skeleton == rendered
+   template skeleton for the same level.
+ - A drift guard script (name it check-example-drift.sh, placed beside validate.sh under
+   .skilled/skills/system-spec-kit/runtime/cli/spec/ after verifying that directory convention): asserts for each
+   example doc (1) description is a full sentence ending in a period, contains no `-->` and does not start lowercase,
+   (2) its anchor set equals the anchors of the rendered template for the same level and doc. Spell out the script
+   source in tasks.md in full (bash + rg/awk, tested by you on the real tree READ-ONLY; the guard must be read-only),
+   a failing-first demonstration (inject a leaked description into a COPY in your scratchpad and show the script
+   fails), and how it is wired in (a package.json script or a vitest that calls it: find how existing guards are
+   wired with `rg -n 'check-' .skilled/skills/system-spec-kit/package.json`).
+ - The 18 leaked example descriptions are phase 002's. This phase's drift guard must pass on the tree AFTER 002.
+Record in the Handoff Criteria what phase 005 (the authoring card) and phase 006 (docs) may assume.
+
+CONSTRAINT: phases run sequentially. Phase 003 owns the token conversion and the v2.3 marker; this phase edits
+the same templates/core files afterwards, so every edit here is located by exact text from the post-003 tree.
+Since the post-003 tree does not exist yet, write each locator against the CURRENT tree's hint text and add a
+T-level pre-check task: "if the locator is not found, the hint was converted by phase 003: re-run the locator
+with the token form (give both forms)". Give both forms for every row.

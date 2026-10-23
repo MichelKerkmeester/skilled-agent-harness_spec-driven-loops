@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate",
+  "description": "Phase 3: versioned-placeholder-gate",
+  "keywords": [
+    "phase",
+    "versioned-placeholder-gate"
+  ],
+  "lastUpdated": "2026-10-23T11:27:22.147Z",
+  "specId": "003",
+  "folderSlug": "versioned-placeholder-gate",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

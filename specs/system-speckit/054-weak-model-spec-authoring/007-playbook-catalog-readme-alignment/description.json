@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
+  "description": "Phase 7: playbook-catalog-readme-alignment",
+  "keywords": [
+    "phase",
+    "playbook-catalog-readme-alignment"
+  ],
+  "lastUpdated": "2026-10-23T11:27:25.722Z",
+  "specId": "007",
+  "folderSlug": "playbook-catalog-readme-alignment",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

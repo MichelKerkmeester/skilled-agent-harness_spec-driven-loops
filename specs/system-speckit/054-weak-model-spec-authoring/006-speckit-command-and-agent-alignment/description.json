@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment",
+  "description": "Phase 6: speckit-command-and-agent-alignment",
+  "keywords": [
+    "phase",
+    "speckit-command-and-agent-alignment"
+  ],
+  "lastUpdated": "2026-10-23T13:13:12.000Z",
+  "specId": "006",
+  "folderSlug": "speckit-command-and-agent-alignment",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

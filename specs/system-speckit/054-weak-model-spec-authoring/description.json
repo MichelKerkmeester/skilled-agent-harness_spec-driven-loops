@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/054-weak-model-spec-authoring",
+  "description": "Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm",
+  "keywords": [
+    "system-spec-kit",
+    "templates",
+    "authoring",
+    "docs",
+    "followable",
+    "deepseek",
+    "flash",
+    "agent",
+    "swarm"
+  ],
+  "lastUpdated": "2026-10-23T11:27:18.800Z",
+  "specId": "054",
+  "folderSlug": "weak-model-spec-authoring",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

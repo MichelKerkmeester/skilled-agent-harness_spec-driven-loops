@@ -1,0 +1,23 @@
+PASS C1 validate.sh --strict printed "Summary: Errors: 0  Warnings: 0" and "RESULT: PASSED" with exit 0 spec.md:1
+PASS C2 check-goal.cjs printed "RESULT: PASSED (5/5 checks)" goal.md:1
+FAIL C3 the post-edit scanner exited 1 with "FAIL — 18 placeholder pattern(s) found", and all 18 hits sit inside fenced code blocks (the fence defect recorded in plan.md ADR-003) tasks.md:97
+PASS C4 rg for the em dash over the six packet docs printed nothing (exit 1) spec.md:1
+FAIL C5 $P1/scratch/ledger/ledger.jsonl does not exist, so T001's LEDGER_OK check and T016 cannot run tasks.md:60
+FAIL C5 $P1/scratch/baseline/suite-start.txt does not exist, so T001 and T017's suite comparison cannot run tasks.md:59
+PASS C6 18 old-text locators across orchestrator.ts, template-guide.md, validation-rules.md, level-contract-resolver.vitest.ts, upgrade-legacy.vitest.ts and the level 2 fixture each occur exactly once tasks.md:629
+PASS C7 validate.sh, create.sh, test-validation-extended.sh, the vitest invocation and the npm suite command all match their --help or source tasks.md:511
+WARN C7 create.sh accepts --track but omits it from --help, so a help-first reader cannot confirm the flag T014 uses tasks.md:1042
+PASS C8 author-phase.txt and author-common.txt are absent; REQ-001 to REQ-009 each map to at least one task spec.md:139
+FAIL C9 T004 expects "four PY_OK lines" but its check loop runs five Python tools tasks.md:85
+FAIL C9 T006 says the third block prints ROWS_OK, while ROWS_OK and the totals are printed by the fourth block tasks.md:340
+FAIL C9 T011 says the stamp count prints seven lines, while the same task's note says it lists five files tasks.md:900
+FAIL C9 T014's "101 101 90 90 0" is not reproducible: inline-gate-renderer.sh --level 2 gives 117 bracketed hints over the four files it counts and 131 over the five a level 2 scaffold creates tasks.md:1037
+FAIL C9 T014 counts four scaffold docs while a level 2 create.sh also scaffolds implementation-summary.md ("template-structure.js lifecycle-docs 2"), so a real run includes 11 more tokens tasks.md:1065
+WARN C9 T020's Verify compares a line count to rows written by hand with no command that performs the comparison tasks.md:1202
+WARN C9 phase 2 is still Draft with seven Unmet criteria and "Closeable: No", so T001 halts the phase before the first task tasks.md:54
+FAIL C10 the operator-item count is three in spec.md:152 and tasks.md:1097 but five in goal.md (OP-1 to OP-5) and acceptance-criteria.md:62 spec.md:152
+FAIL C10 handoff criteria say the five templates carry "only value tokens", while the kept list deliberately leaves 40 bare hints tasks.md:926
+WARN C10 the complexity table says "Files: 12 changed" while the file table lists 14 paths spec.md:217
+WARN C10 goal.md names scratch/tools/suite_compare.py without the $PHASE prefix that defines SC goal.md:65
+WARN C10 spec.md points at ../changelog/, which does not exist and which no task creates spec.md:68
+VERDICT: 10 FAIL, 6 WARN

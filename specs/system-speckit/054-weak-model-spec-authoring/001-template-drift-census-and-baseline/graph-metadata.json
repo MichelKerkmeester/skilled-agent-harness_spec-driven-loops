@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template drift census and baseline",
+      "phase 1 template drift census and baseline",
+      "spec kit defect ledger",
+      "weak model authoring baseline",
+      "template drift census and baseline plan",
+      "defect ledger schema",
+      "census lane detection commands",
+      "template drift census and baseline tasks",
+      "census lane brief",
+      "baseline authoring run",
+      "template drift census and baseline acceptance criteria",
+      "template drift census and baseline goal"
+    ],
+    "key_topics": [
+      "template",
+      "drift",
+      "census",
+      "baseline",
+      "phase",
+      "spec",
+      "kit",
+      "defect",
+      "ledger",
+      "weak",
+      "model",
+      "authoring"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "templates/.hashes",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": ".hashes",
+        "kind": "file",
+        "path": "templates/.hashes",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why Bulleted Lists",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five template and doc defects are confirmed, but they came from a spot check, not a census, so the full list is unknown",
+    "created_at": "2026-10-23T11:27:18Z",
+    "last_save_at": "2026-10-23T13:42:04.143Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8df8ac8907d573d26eba5a5f281ae0b4fae87b033fc4e6bb0f623c814f5cdfbe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4b39914e0ff9607dd5cb9dc0b7bbf0c0f04abc81f7e4578ad9f90382ca277ce0",
+      "plan.md": "8de0347155ade49ce9539d501ba0591eeaf03b6f77c9079e30cbaefe76884336",
+      "tasks.md": "5ecb44f6f4dee0fe800f703acab551e6f6425c743598722f3ca135622f7c6f9c",
+      "implementation-summary.md": "93d0e7a0a19f8ab0b15ecdb11958b138552f0f2e9c676d38121fc4d0414edaa4"
+    },
+    "last_active_at": null
+  }
+}

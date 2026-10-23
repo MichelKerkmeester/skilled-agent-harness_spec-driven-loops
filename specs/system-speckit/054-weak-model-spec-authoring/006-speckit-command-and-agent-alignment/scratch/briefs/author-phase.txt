@@ -1,0 +1,49 @@
+PHASE 006: speckit-command-and-agent-alignment   (added by the operator after planning started)
+Folder: specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment
+Scratch for tests: specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/test/
+
+NUMBERING NOTE: the packet now has NINE phases. 001-005 as before, then 006 (this phase), 007
+playbook-catalog-readme-alignment, 008 playbook-run-in-worktree, 009 authoring-benchmark-and-closeout. Where any brief says
+"8 phases" read "9 phases".
+
+STATE: all six files are raw scaffold. Write all six. Phases 002-005 are authored in the sibling folders (some may still be
+in progress): READ their spec.md, plan.md and tasks.md to learn the real artifact names (the authoring card path, the
+v2.3 marker and `[YOUR_VALUE_HERE: ...]` token, the guard script names, the tasks `Verify:` slot). Where a sibling is still
+raw scaffold, use these planned names: card `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`,
+guards `check-example-drift.sh` and `check-card-sync.sh` under `.skilled/skills/system-spec-kit/runtime/cli/spec/`.
+
+WHAT THE PHASE DOES (operator request, frozen)
+Check and update every speckit-related command and every doc-authoring agent so they match what phases 002-005 change.
+ Inventory (verify each with ls/rg and list the final set in plan.md):
+  - normal spec-kit commands: .skilled/commands/speckit/*.md and .skilled/commands/speckit/assets/*.yaml
+    (plan, implement, complete, resume, save, search, handoff)
+  - doctor commands that concern spec-kit: .skilled/commands/doctor/speckit.md and doctor/update.md (and their assets/scripts
+    if any), plus _routes.yaml rows for them
+  - the /create:goal command assets only where they describe goal templates or placeholders (.skilled/commands/create/assets/create-goal-*.yaml,
+    create-goal-presentation.txt)
+  - agents that author or review spec docs: .skilled/agents/markdown.md first, then any other .skilled/agents/*.md that
+    tells an agent how to write or check spec docs (find with rg for: template-guide, templates/, create.sh, validate.sh,
+    check-placeholders, placeholder, Checklist.md, SPECKIT_TEMPLATE_SOURCE)
+  - runtime mirrors: .claude/agents, .opencode/agents, .claude/commands, .opencode/commands and the other runtime dirs mirror
+    .skilled. Learn how mirrors are produced and checked (read .skilled/commands/doctor/runtime-mirrors.md) and give the
+    exact sync and check commands. Never hand-edit a generated mirror.
+ For each file, check these six things and record a row in an AUDIT TABLE in plan.md (file, check, current text quoted
+ with its exact line, verdict OK or CHANGE, exact new text):
+  A1 authoring guidance points at the 1,200-line references/templates/template-guide.md where a writer needs the short
+     authoring card instead
+  A2 placeholder rules described differently from the v2.3 gate (Draft warning, error at other statuses, v2.2 unchanged)
+  A3 stale `Checklist.md` / checklist.md references (the checklist now lives in tasks.md)
+  A4 tells a writer to read gated .tmpl source instead of a rendered example or a create.sh scaffold
+  A5 omits the new guard scripts where the command already runs validators (e.g. speckit complete / doctor speckit)
+  A6 any other statement the census ledger or phases 002-005 make false
+ DO THE AUDIT NOW, at authoring time: read every file in the inventory, fill the table with real quoted lines, and write
+ each CHANGE as an exact old-line -> new-line row. The executor applies rows with the exactly-once applier from phase 002
+ (scratch/tools/apply_row.py in the 002 folder; read 002's tasks.md for its interface and the JSONL row shape) and must not
+ make judgment edits. Rows that depend on a phase 002-005 artifact name carry a pre-check command that proves the artifact
+ exists first.
+Gates (literal commands with expected output): each row APPLIED; rerun of the A1-A4 rg searches prints only lines the table
+marked OK; mirror check command clean; doctor:speckit and doctor:runtime-mirrors read-only checks pass (find their
+non-interactive script invocations under .skilled/commands/doctor/scripts or the command docs); the spec-kit suite matches phase
+001's suite-start.txt; validate.sh --strict on this phase PASSED; one read-only frontier review at close (copy phase 001's
+review task form).
+Scope: commands, agents and their mirrors only. No template, validator or skill reference edits (phases 002-005 and 007 own those).

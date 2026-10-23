@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit command and agent alignment",
+      "phase 6 speckit command and agent alignment",
+      "command and agent audit",
+      "runtime mirror alignment",
+      "speckit command and agent alignment plan",
+      "command and agent audit table",
+      "runtime mirror sync commands",
+      "speckit command and agent alignment tasks",
+      "command and agent audit rows",
+      "runtime mirror sync tasks",
+      "speckit command and agent alignment acceptance criteria",
+      "speckit command and agent alignment goal"
+    ],
+    "key_topics": [
+      "speckit",
+      "command",
+      "agent",
+      "alignment",
+      "phase",
+      "audit",
+      "runtime",
+      "mirror",
+      "plan",
+      "table",
+      "sync",
+      "commands"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/agents/markdown.md",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/markdown.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/create/assets/create-goal-auto.yaml",
+      ".skilled/commands/speckit/implement.md",
+      ".skilled/commands/speckit/complete.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A speckit command tells a writer where to find authoring guidance, how a placeholder is treated and which files a packet holds",
+    "created_at": "2026-10-23T12:53:05Z",
+    "last_save_at": "2026-10-23T13:41:26.066Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:369eb31fdae0f185e043f644b027d1afe92a219c18fbe60ea0b307e4e32cbdf6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fbeddabada3427cc4cdeeace6cb2c93bc1786016f9863527b857147533d66961",
+      "plan.md": "92158bef7bb4033f3684dc55dea61408441369057d585a167e674cfc6fc20035",
+      "tasks.md": "c9ae15c1f706ba2605818b79646d1bebf9a950454b3d43ab472b470506b8e81e",
+      "implementation-summary.md": "da21549c829ff51efc5248ede3c7c7a7fe1eddf66809e0a981cefa7a6947369b"
+    },
+    "last_active_at": null
+  }
+}

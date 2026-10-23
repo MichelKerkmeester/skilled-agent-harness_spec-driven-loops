@@ -1,0 +1,19 @@
+REJECTED C3 known false positive, not a doc defect: all 22 hits are pre-token template text quoted inside fenced blocks in plan.md. check-placeholders.sh skips only fence delimiter lines, not the fenced body, so those lines read as placeholders. The validator PLACEHOLDER_FILLED rule skips fenced content and passes. Recorded in goal.md section 4.
+FIXED C8 plan.md:68 the fact row now cites the T003 rg -o comparison and scratch/baseline/anchor-lists.txt instead of a read of the templates, and T003 runs the comparison.
+FIXED C8 plan.md:881 T010 now includes a transient Level 1-only mutation named MUTATION PROBE, expects Tests  1 failed | 11 passed (12) and exit 1, restores the backup and reruns to 12 passed, and ADR-005 records the demonstration.
+FIXED C8 plan.md:505 the example alignment section and the drift guard contract now name phase 002 rows K-01 to K-18, the 18 leaked descriptions, and state that EXAMPLE_DRIFT_OK is expected only on the post-002 tree.
+FIXED C8 plan.md:315 S1b, S2b, S3 and S4 now give the pre-token and the post-003 locator form, and T001 writes TOKEN= to scratch/baseline/locator-form.txt to pick the form.
+FIXED C9 tasks.md:46 T003 now passes scratch/baseline/anchor-counts.txt to both grep -c commands.
+FIXED C9 tasks.md:81 T005 now runs ls -1 with the three explicit paths.
+FIXED C9 tasks.md:227 T006 now composes failing-first.txt from the fill count and the drift message, so both lines its Verify names exist.
+FIXED C9 plan.md:403 S1b, S2b, S3 and S4 replacement text now uses the [YOUR_VALUE_HERE: ...] form so applying it never restores a bare hint. The research fixes stay bare because phase 003 does not convert research.md.tmpl.
+FIXED C9 tasks.md:245 T007 and T008 now run the renderer through awk and print open=10 close=10 and open=9 close=9.
+FIXED C9 plan.md:222 C14's heading cell is now the exact template line ## ADR-001: [Decision Title].
+FIXED C9 tasks.md:299 T009 and T012 now state the phase 002 dependency and that EXAMPLE_DRIFT_OK is expected only on the post-002 tree.
+FIXED C10 tasks.md:604 the Verification Summary now reads 18 P0, 24 P1 and 9 P2, matching the 51 checklist rows.
+FIXED C10 plan.md:559 the core row now says four anchor placements and the addon row says three research crossings.
+FIXED C10 spec.md:219 the complexity row now says 38 changed files, matching the 38 distinct files in section 3.
+FIXED C10 plan.md:95 the risk row now says the weak example carries a WEAK: label instead of starting with it.
+FIXED C10 spec.md:77 the problem statement now says 14 anchor drifts and 18 leaked descriptions.
+FIXED C10 plan.md:840 ADR-002 now says 70 heading rows across the four core templates and 214 hints across the five converted templates.
+FIXED C10 tasks.md:594 CHK-052 is now a grounded find command over scratch that matches the copy T006 makes.

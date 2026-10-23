@@ -1,0 +1,49 @@
+PHASE 005: weak-model-authoring-card
+Folder: specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card
+Your scratchpad for any mutating test: specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/test/
+
+STATE: all six files are raw scaffold. Write all six.
+
+WHAT THE PHASE DOES (frozen)
+Create a short authoring CARD for weak models and route the skill's router to it instead of the 1,200-line template
+guide.
+ - The card: about 200 lines, at .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+   (this exact name; later phases cite it). It restates lessons in system-spec-kit's OWN words (never cite or name
+   sk-prompt: all logic lives in system-spec-kit): one action per section; name the allowed write surface and the
+   forbidden tools; medium-density plan of 3-4 steps, each with an acceptance line and a verify command; light
+   constraint wording (plain "do X" / "do not do Y", no shouted emphasis). WRITE THE CARD TEXT LITERALLY in plan.md
+   (the executor copies it into the file; do not leave the card's content to the executor's judgment). The card
+   content must be correct against the real tooling (create.sh invocation, validate.sh invocation, level rules,
+   the v2.3 placeholder token from phase 003 and the per-section fill guidance from phase 004): verify each
+   command you put in the card by reading --help or the script source.
+ - Router: in .skilled/skills/system-spec-kit/SKILL.md the RESOURCE_MAP entries for PLAN, IMPLEMENT, INTAKE and
+   TEMPLATE_AUTHORING must load the card instead of references/templates/template-guide.md (find the exact map
+   text with `rg -n 'template-guide' .skilled/skills/system-spec-kit/SKILL.md`). template-guide.md stays reachable
+   via ON_DEMAND. Give exact old text -> new text rows.
+ - Regenerate leaf-manifest.json: `node ... generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`
+   (find the script: `find .skilled -name 'generate-leaf-manifest.cjs' -not -path '*/node_modules/*'`; read its
+   --help) and sync leaf-aliases.json (find it, read how it is maintained, state the exact edit or command).
+ - Authoring checklist line ~36 "Read templates from templates/" in references/workflows/spec-folder-authoring-checklist.md:
+   re-find with rg; change it to point at rendered examples under templates/examples/ or a create.sh scaffold,
+   NEVER at gated .tmpl source. Exact old -> new text.
+ - The tasks template gets a per-task `Verify:` command slot (templates/core/tasks.md.tmpl; phase 003 changes
+   hints to tokens, phase 004 adds fill guidance, so write both the current-tree locator and the token-form
+   locator, and a pre-check task). Spell out the exact new text of the task line in the template and in the
+   tasks examples if their skeleton check (phase 004's drift guard) requires it.
+ - A sync guard script: asserts the card, the router map, the manifest and the authoring checklist agree (card
+   file exists, SKILL.md map references it for the four intents, template-guide is only under ON_DEMAND,
+   leaf-manifest.json lists the card, line count of the card <= 260). Spell out the script source in full in
+   tasks.md (name it check-card-sync.sh beside validate.sh under .skilled/skills/system-spec-kit/runtime/cli/spec/
+   after verifying that directory convention), tested read-only on the current tree where possible and with a
+   failing-first demonstration against a COPY in your scratchpad. Say how it is wired in, as phase 004's drift guard
+   is (read phase 004's folder only if it already has content; otherwise cite the convention you found:
+   `rg -n 'check-' .skilled/skills/system-spec-kit/package.json`).
+ - New docs must pass runtime/cli/tests/workflow-invariance.vitest.ts (a vocabulary check over spec-kit docs). Read
+   it, learn what vocabulary it forbids, run it READ-ONLY if it can run without writing, and write the card to
+   comply. Add a task that runs it after the card lands, with expected output.
+ - Final check task: DeepSeek authors a Level 1 packet from the card alone (a measurement, three runs, in a
+   throwaway track specs/zz-bench-card/, same five metrics as phase 001's baseline T009/T010 but on a Level 1
+   feature of the same size class); record results in scratch/. The brief for that run must be written literally
+   in tasks.md, in the same worker brief skeleton as phase 001. Do not duplicate phase 008's job: this run is a
+   smoke test (strict passes, leftover hints 0), phase 008 does the full before/after comparison.
+Dependencies: 003 and 004 closed. Say what the card may assume from them.

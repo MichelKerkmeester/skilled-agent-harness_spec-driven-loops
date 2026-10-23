@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template section fill guidance",
+      "phase 4 template section fill guidance",
+      "section fill instruction",
+      "example drift guard",
+      "template section fill guidance plan",
+      "fill instruction format",
+      "template section fill guidance tasks",
+      "example drift guard source",
+      "fill guidance test source",
+      "template section fill guidance acceptance criteria",
+      "template section fill guidance goal",
+      "template section fill guidance implementation summary"
+    ],
+    "key_topics": [
+      "template",
+      "section",
+      "fill",
+      "guidance",
+      "phase",
+      "instruction",
+      "example",
+      "drift",
+      "guard",
+      "plan",
+      "format",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-2/plan.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-2/spec.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-3/plan.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-3/spec.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+      ".skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh Level 2 scaffold holds 97 bracketed hints and validates clean",
+    "created_at": "2026-10-23T11:27:22Z",
+    "last_save_at": "2026-10-23T13:58:24.780Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3320caabf05d41a46c3203fe4eeb82a17507b488aa2961629760206ab312b841",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dfe823c6dcc93442534d5a9d721f5e9fcd6b61d25cb50b955167cee4cb375a0d",
+      "plan.md": "d2b034f52c0503a5d2f8c7b679db23abc0e06f48fc3db5d0d9b368ebdbe377cb",
+      "tasks.md": "9e47fa5e331cd662dd77d3b14735c9ffdc24a1fb9df3f9c6aaaeaf390ad999a0",
+      "implementation-summary.md": "5ee98c628dd931a19394e3d27906661a79e2499a3ec9fe80c01040d3cebfab3c"
+    },
+    "last_active_at": null
+  }
+}

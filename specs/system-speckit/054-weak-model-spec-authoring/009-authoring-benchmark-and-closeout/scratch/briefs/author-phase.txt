@@ -1,0 +1,38 @@
+PHASE 009: authoring-benchmark-and-closeout
+Folder: specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+Your scratchpad for any mutating test: specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/test/
+
+STATE: all six files are raw scaffold. Write all six. Phases 001-008 are authored: READ phase 001 (esp. tasks T008-T010: the
+frozen authoring task, the hint extraction, the five metrics M1..M5 and the exact measuring script) and phases 003-008 for
+the real artifact names, before writing.
+
+WHAT THE PHASE DOES (frozen)
+ 1. Rerun phase 001's T009/T010 baseline (3 serial runs of the SAME frozen task text) on the final tree, after "building
+    hints-v2.3 the same way" phase 001 built hints-v2.2.txt (T008: create a throwaway Level 2 scaffold, extract hint strings
+    with the proven extractor `rg -o --no-filename '\[[A-Za-z][^]\[]{2,}\]'`, record anchors). Note: after phase 003 the
+    scaffold hints are `[YOUR_VALUE_HERE: ...]` tokens, so the v2.3 leftover count must count tokens: write the
+    literal extractor for the v2.3 form AND say how M2 (leftover_hints) stays comparable with the v2.2 definition
+    (e.g. count both: bracketed hints from hints-v2.2.txt and any `[YOUR_VALUE_HERE:` token). Make that comparability
+    decision now, record it as an ADR with the reason, and write the exact M2 command for the final side.
+ 2. Report the delta per metric with min and max over the 3 runs per side (not only a mean; three runs cannot support a
+    significance claim, say so).
+ 3. Benchmark report folder: .skilled/skills/system-spec-kit/benchmark/reports/<date>--... following the convention phase 008
+    used (read phase 008's docs, and sk-doc sk-create-benchmark SKILL sections 3 and 5).
+ 4. Recursive strict on the 054 packet to `RESULT: PASSED`: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict`.
+ 5. system-spec-kit changelog entry via sk-doc's changelog skill (find: `ls .skilled/skills/sk-doc | rg -i changelog`; READ it and
+    the existing `.skilled/skills/system-spec-kit/changelog/` convention, and also references/workflows/nested-changelog.md
+    since the phase specs mention a per-phase changelog). Literal file name, template and content skeleton.
+ 6. Regenerate the trigger index: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`
+    (and show the check that the committed index changed only as expected).
+ 7. Refresh track roots: `node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --specs specs --track system-speckit --apply`
+    (verify the flags with --help first).
+ 8. Reconcile goals: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` on the parent and each child;
+    update the parent goal.md section 4 LOG and the parent spec.md phase map statuses (Pending -> Complete) and the 041
+    series parent map row for 041-006; the completion metadata reconciled across spec.md, evidence rows, continuity fields and
+    implementation-summary.md (AGENTS.md COMPLETION VERIFICATION RULE: read its step 3 in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/AGENTS.md).
+ 9. Final operator handoff list in the implementation-summary: nothing committed or pushed; commit and push are the operator's.
+The parent goal's completion criteria are the closure gate for the whole packet (read specs/system-speckit/054-weak-model-spec-authoring/goal.md
+section 3): make a task that proves EACH of its seven criteria with a literal command and expected output, and tell the
+conductor to tick them in the parent goal.md only with that evidence.
+Gates and frontier review as in phase 001 style. Phase 009 is the only phase allowed to edit the parent spec.md, goal.md
+and the 041 parent map; say so in Scope and name the exact rows.
