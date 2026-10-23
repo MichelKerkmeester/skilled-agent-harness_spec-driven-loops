@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "setup caching provisioning",
+      "phase 4 setup caching provisioning",
+      "composite setup action cache",
+      "provision worktree cache",
+      "setup caching provisioning plan",
+      "phase 4 setup caching provisioning plan",
+      "composite setup action cache plan",
+      "setup caching provisioning tasks",
+      "phase 4 setup caching provisioning tasks",
+      "composite action and cache tasks",
+      "setup caching provisioning acceptance criteria",
+      "phase 4 setup caching provisioning acceptance criteria"
+    ],
+    "key_topics": [
+      "setup",
+      "caching",
+      "provisioning",
+      "phase",
+      "composite",
+      "action",
+      "cache",
+      "provision",
+      "worktree",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/hooks-node-tests.yml",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".github/workflows/opencode-dual-version.yml",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/workflows/rule-canary-sync.yml",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      ".github/workflows/routing-registry-drift.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/skill-advisor-stress.yml",
+      ".github/workflows/sk-doc-script-tests.yml",
+      ".github/workflows/sk-doc-rename-harness.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-node-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/hooks-node-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-rename-harness.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-rename-harness.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing in this repository is cached",
+    "created_at": "2026-10-23T08:47:52Z",
+    "last_save_at": "2026-10-23T13:28:54.430Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb6ba06478e4f96461c52e5b27e15b488f1e6f1909e5c3ef93666542e1ba11a3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "94da3f1aeade2c7570ac6f007a67617c7399806db924b4fdb28a95c2ca134a66",
+      "plan.md": "2d4afc366625bec520266a17365dce21b6029214c6c2c00439c9340927eaed78",
+      "tasks.md": "cc6a2ba84d20fd365bbd10774a60ff09d6d4c8ee175cff12c431568f9f836965",
+      "decision-record.md": "c36c10cede43ff84a5b4ff0a2780e5f8066624ce0255a581beb477af26a13e33",
+      "implementation-summary.md": "776b1f2b3fe52515f52645332525bf618a85f320aa476ea944babfaf20ef2fad"
+    },
+    "last_active_at": null
+  }
+}

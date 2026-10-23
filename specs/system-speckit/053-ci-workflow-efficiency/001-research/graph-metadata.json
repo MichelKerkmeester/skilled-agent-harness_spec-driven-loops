@@ -21,8 +21,8 @@
       "ci research tasks",
       "053 research tasks",
       "ci research acceptance criteria",
-      "ci research implementation summary",
-      "doctor ci command design"
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
       "workflow",
@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
       "research/iterations/iteration-001.md",
@@ -79,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository runs 33 workflows",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-23T07:47:35.166Z",
+    "last_save_at": "2026-10-23T13:10:01.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:046f70e8d5a28d122a29896f66532ba23f783a501907adc1cd85ea7ce9378b72",
+    "source_fingerprint": "sha256:a0f7e55fd5e66969f40f0435ca7f2b59256bd4aa5923b4304cbe74d940632e57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9487d3be38b7651e3c200cf2692567e78fb932e6d33393c586839d946376ea4a",
+      "spec.md": "6178311302a7a43463a0d169affe5af2568fec5f293dcf220faef15ed97b23b6",
       "plan.md": "784d7eacb30b0dac342e1752a7c280784357d91bbf17159dd75fb0c7b78b393e",
       "tasks.md": "586116ca5941f3a0e1c21330eb8f8f24e33efbd1ff42c4db7ca2109f8a71e7eb",
       "implementation-summary.md": "4f0f49456c0cf653f0a11d7f203c49625ec1f8520ff2dc68720805e5babe7bbc",

@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger and job hygiene",
+      "phase 3 trigger and job hygiene",
+      "workflow concurrency groups cancel in progress",
+      "command tree parity path filter",
+      "ci path filters and shallow checkout",
+      "trigger and job hygiene plan",
+      "phase 3 trigger and job hygiene plan",
+      "workflow concurrency and path filter plan",
+      "trigger and job hygiene tasks",
+      "phase 3 trigger and job hygiene tasks",
+      "concurrency and path filter tasks",
+      "trigger and job hygiene acceptance criteria"
+    ],
+    "key_topics": [
+      "trigger",
+      "job",
+      "hygiene",
+      "phase",
+      "workflow",
+      "concurrency",
+      "groups",
+      "cancel",
+      "progress",
+      "command",
+      "tree",
+      "parity"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/command-tree-parity.yml",
+      ".github/workflows/agent-mirror-sync.yml",
+      ".github/workflows/dispatch-enforcement-guard.yml",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/strict-pass-freshness-report.yml",
+      ".github/workflows/rule-canary-sync.yml",
+      ".github/workflows/repo-rules-corpus.yml",
+      ".github/workflows/deep-loop-runtime.yml",
+      ".github/workflows/skill-doc-frontmatter.yml",
+      ".github/workflows/README.md",
+      ".github/workflows/changed-packet-validation.yml",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh",
+      ".github/scripts/check-gate-inputs.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/agent-mirror-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-report.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-report.yml",
+        "source": "derived"
+      },
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rules-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/repo-rules-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/deep-loop-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-doc-frontmatter.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-doc-frontmatter.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-validation.yml",
+        "kind": "config",
+        "path": ".github/workflows/changed-packet-validation.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check-skill-doc-frontmatter.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for",
+    "created_at": "2026-10-23T08:47:51Z",
+    "last_save_at": "2026-10-23T13:31:48.179Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bc23bd926f9d0e6787cc284d591a19dea96c3560d1a1d133c6c29ecedb70bade",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4719759435b671d3a99cbf1ceaff8a3903321a04c7fca03e6959a843bd8867a9",
+      "plan.md": "3c06119f353aa6eb4d94a34c04fa938017d1cfc247f409a2d015760fbebd1d32",
+      "tasks.md": "7ca1af6915cf2298d7135de56444467c294070a7e35eb41923726eb9758363e5",
+      "decision-record.md": "b81931420c0426229ba4d3c38c8e1af9e7da9e4779f3a5d98f1bef5885afa06b",
+      "implementation-summary.md": "ad324e747669f0bc787a54f431c8a263db35189911adae6b015f7c05583cf6ef"
+    },
+    "last_active_at": null
+  }
+}

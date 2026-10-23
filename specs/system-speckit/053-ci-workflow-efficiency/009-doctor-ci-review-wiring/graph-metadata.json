@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor ci review wiring",
+      "phase 9 doctor ci review wiring",
+      "ci workflow status report",
+      "ci workflow surface detection",
+      "doctor ci review wiring plan",
+      "phase 9 doctor ci review wiring plan",
+      "ci workflow report command plan",
+      "ci surface detection plan",
+      "doctor ci review wiring tasks",
+      "phase 9 doctor ci review wiring tasks",
+      "ci workflow report command tasks",
+      "doctor ci review wiring acceptance criteria"
+    ],
+    "key_topics": [
+      "doctor",
+      "review",
+      "wiring",
+      "phase",
+      "workflow",
+      "status",
+      "report",
+      "surface",
+      "detection",
+      "plan",
+      "command",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/README.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-compatibility.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The on/off control lands six repository variables, but a clone cannot see which jobs a tree has switched off without reading every `if:` line, and there is no command that creates a new workflow with the timeout, permissions, concurrency and switch shape the standard requires",
+    "created_at": "2026-10-23T08:48:01Z",
+    "last_save_at": "2026-10-23T13:32:07.239Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6aaad2aee6a85061b2f9bd2c71d84ccf6e65bdd0ccd48a8e2a75af93bdc07166",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e4afcfabc6fe19a9df2085447218a85080a10bbbda74e7a853776236789fb33f",
+      "plan.md": "19b905e027209a1f91ea48d160c4f1877f014f3a1431f2da413e8b674c4a1ab2",
+      "tasks.md": "f3c2b034c8e97d2a66179e6fb760820ca419bbcee96b36cec0c9b40d767891ca",
+      "decision-record.md": "5a03ba0dec6f777ec1adc28891f1963f0b588266f357382a60faa965c803d906",
+      "implementation-summary.md": "a4d7a15f8afd55bc269475e5f7c25352f9df59897b85aa83f4a60a557ea83b6f"
+    },
+    "last_active_at": null
+  }
+}

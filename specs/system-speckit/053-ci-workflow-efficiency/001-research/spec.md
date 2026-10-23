@@ -200,7 +200,7 @@ Produce a measured, cited plan that later phases can implement mechanically: wha
 Deep-research ran on this topic for 20 iterations and is complete. `research/research.md` remains canonical.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
-- The rebuild commit re-runs 13 workflows on 36 of 73 push SHAs: about 2,073 of 3,812 runner-min/day (confirmed).
+- The rebuild commit re-runs 13 workflows on 35 of 73 push SHAs: about 2,073 of 3,812 runner-min/day (confirmed).
 - No workflow caches anything; 32 of 33 have no concurrency group; 27 of 33 have no timeout; 12 of 33 declare no permissions (confirmed).
 - spec-kit-check's CLI vitest project runs 183 files serially (`fileParallelism: false`) and is 65% of the slowest job (confirmed).
 - The on/off control is `vars.SKILLED_CI*` in a job-level `if:`, on by default. Skipped jobs report Success (documented), and only one ruleset context is required (confirmed).

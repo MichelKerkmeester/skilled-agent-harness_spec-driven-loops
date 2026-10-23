@@ -4,7 +4,15 @@
   "spec_folder": "system-speckit/053-ci-workflow-efficiency",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/053-ci-workflow-efficiency/001-research"
+    "system-speckit/053-ci-workflow-efficiency/001-research",
+    "system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal",
+    "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene",
+    "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning",
+    "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests",
+    "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface",
+    "system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control",
+    "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision",
+    "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring"
   ],
   "manual": {
     "depends_on": [],
@@ -16,7 +24,11 @@
       "ci workflow efficiency phase parent spec",
       "053 ci workflow efficiency",
       "github actions efficiency packet",
-      "doctor ci and sk-code-ci packet"
+      "doctor ci and sk-code-ci packet",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "workflow",
@@ -29,16 +41,31 @@
       "packet",
       "doctor",
       "sk-code-ci",
-      "repository",
-      "workflows"
+      "goal",
+      "durable"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "001-research/research/research.md",
       ".github/workflows/README.md",
-      "001-research/acceptance-criteria.md"
+      ".github/scripts/check-gate-inputs.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      "001-research/acceptance-criteria.md",
+      "001-research/research/synthesis-reviews/final-review.md",
+      "001-research/goal.md",
+      "002-rebuild-fanout-removal/goal.md",
+      "003-trigger-and-job-hygiene/goal.md",
+      "004-setup-caching-provisioning/goal.md",
+      "005-slow-and-failing-tests/goal.md",
+      "006-sk-code-ci-surface/goal.md",
+      "007-workflow-hygiene-on-off-control/goal.md",
+      "008-consolidation-decision/goal.md",
+      "009-doctor-ci-review-wiring/goal.md",
+      "001-research/implementation-summary.md"
     ],
     "entities": [
       {
@@ -48,9 +75,39 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild-workflow.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "final-review.md",
+        "kind": "doc",
+        "path": "001-research/research/synthesis-reviews/final-review.md",
         "source": "derived"
       },
       {
@@ -88,20 +145,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. LOG",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-23T07:46:09.293Z",
+    "last_save_at": "2026-10-23T13:09:56.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:50de9b359dcecb8f215c6e7c2f30b5976cc01dbcf628d7ac41fa10bf028237b0",
+    "source_fingerprint": "sha256:17753a9c5612e1e27e649a6e98836c5d351fd24b9fac6eeb055d5ac3cd9e29c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13b4f79ad519bbaa4af72cd39fbc2126d05ea35adcb97dd36aa0fd065e702f66"
+      "spec.md": "0822b5d4f544abfe004866ecc9bbb00cc4bd0ff32b58de5c8a95cbdf6467b48b"
     },
     "last_active_at": null
   }

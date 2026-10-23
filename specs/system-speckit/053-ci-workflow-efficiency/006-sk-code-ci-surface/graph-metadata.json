@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code ci surface",
+      "phase 6 sk code ci surface",
+      "github actions workflow standards",
+      "ci workflow rule data",
+      "sk code ci surface plan",
+      "phase 6 sk code ci surface plan",
+      "sk-code-ci registration plan",
+      "sk code ci surface tasks",
+      "phase 6 sk code ci surface tasks",
+      "sk-code-ci registration tasks",
+      "sk code ci surface acceptance criteria",
+      "phase 6 sk code ci surface acceptance criteria"
+    ],
+    "key_topics": [
+      "code",
+      "surface",
+      "phase",
+      "github",
+      "actions",
+      "workflow",
+      "standards",
+      "rule",
+      "data",
+      "plan",
+      "sk-code-ci",
+      "registration"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/message-contract.yml",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      "shared/README.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/message-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-surface-hint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository's 33 workflows encode a large body of convention that no single artifact states",
+    "created_at": "2026-10-23T08:47:59Z",
+    "last_save_at": "2026-10-23T13:25:11.935Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9e058e22ec28f05c3159a6dfe60f4531ee60213219305aaed07690385008ccd1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b792346ac091ca982c6479f9c675d480083c0d042a06180ac138648d1bf3b1e7",
+      "plan.md": "5d5fd4af48d28d91b8a40ee7d042d5ed7508558cd48464fdc3e38d88480e484e",
+      "tasks.md": "5ffbe1dd1e4ec94ecf4b0737d88f5b10110c2d9b49ff860d9528fbc29b55fdc5",
+      "decision-record.md": "c16cf00a74e4288a063325eb519e4b16bd69bff367c0d899e0995f1c23bb2921",
+      "implementation-summary.md": "22d6e84294c7bd352a97b65af4f56ab1fcd5a32673fc14dec6e6720c565793e1"
+    },
+    "last_active_at": null
+  }
+}

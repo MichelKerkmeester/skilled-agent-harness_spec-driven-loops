@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/008-consolidation-decision",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "consolidation decision",
+      "phase 8 consolidation decision",
+      "always-run workflow consolidation",
+      "job consolidation decision gate",
+      "ci merge upper bound re-measure",
+      "consolidation decision plan",
+      "phase 8 consolidation decision plan",
+      "always-run workflow merge measurement",
+      "job consolidation cost arithmetic",
+      "consolidation decision tasks",
+      "phase 8 consolidation decision tasks",
+      "always-run workflow measurement tasks"
+    ],
+    "key_topics": [
+      "consolidation",
+      "decision",
+      "phase",
+      "always-run",
+      "workflow",
+      "job",
+      "gate",
+      "merge",
+      "upper",
+      "bound",
+      "re-measure",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/README.md",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/command-tree-parity.yml",
+      ".skilled/skills/sk-doc/SKILL.md",
+      "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/053-ci-workflow-efficiency/008-consolidation-decision/acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine workflows run on every push with no path filter: eight on `main` or `skilled/`, and `message-contract.yml` on every branch",
+    "created_at": "2026-10-23T08:48:00Z",
+    "last_save_at": "2026-10-23T13:32:03.265Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a820815129645a10a1016cf405ba4f20ff4d34d7858578f76e15bee0e1f70f1a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0e81e4a5abdc573820759384f32e286e65695e74b7804950cf4220cdaf1f82af",
+      "plan.md": "fb07cab5524f9025e954f822aa34a5eac7707a495cb66dceb017a6bbe6e1794a",
+      "tasks.md": "3fc31a029517cfeb36144795ba447e9647d816d44d0493f35f347b4511668058",
+      "decision-record.md": "2635ce91c241bf0ab45c62efa09957e341c3364974f1d0e7deb7b3e1dd5aef63",
+      "implementation-summary.md": "cc4a17331ae139cd5e1ed46d18d749db9cfe8315f708c3726b915adc61e3ad79"
+    },
+    "last_active_at": null
+  }
+}
