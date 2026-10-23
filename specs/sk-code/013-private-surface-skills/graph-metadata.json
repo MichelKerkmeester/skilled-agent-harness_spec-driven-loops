@@ -55,7 +55,6 @@
       "004-private-local-skills/goal.md",
       "005-leak-and-routing-verification/goal.md",
       ".skilled/skills/sk-code/mode-registry.json",
-      "001-ignore-and-commit-guard/tasks.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       "runtime/data/trigger-index.json",
       "002-hub-surface-removal/acceptance-criteria.md",
@@ -63,7 +62,8 @@
       "002-hub-surface-removal/tasks.md",
       "003-advisor-vocabulary-cleanup/plan.md",
       "003-advisor-vocabulary-cleanup/tasks.md",
-      "004-private-local-skills/tasks.md"
+      "004-private-local-skills/tasks.md",
+      "005-leak-and-routing-verification/tasks.md"
     ],
     "entities": [
       {
@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-23T15:50:52.671Z",
+    "last_save_at": "2026-10-23T20:34:28.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1c5db0d846fc57c85a0bf86ec84b10dc6b6c161a6ff0a8371ec2dac3aff79266",
+    "source_fingerprint": "sha256:a3b6cf584ccd1b3ab8cd8c32015daceebdfd3550c6d387a48566e42dc781c26b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6ce09a027219057c3cf3f01e255469e964748ced4404fcc8d6eb4b37a03dacb",

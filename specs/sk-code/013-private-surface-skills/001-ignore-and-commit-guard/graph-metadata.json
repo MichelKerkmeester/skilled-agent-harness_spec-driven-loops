@@ -49,6 +49,7 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/scripts/git-hooks/README.md",
       ".skilled/scripts/git-hooks/lib/gates.tsv",
       ".skilled/scripts/git-hooks/lib/gate-config.sh",
       ".skilled/scripts/install-git-hooks.sh",
@@ -101,6 +102,12 @@
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The two surfaces that are about to become private skills have no safe place to live yet",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-23T15:50:52.905Z",
+    "last_save_at": "2026-10-23T20:33:41.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be71f3ab5ff4f9e8421110a34c9442a50fafde55b1b15908d83ca4d90e514cf2",
+    "source_fingerprint": "sha256:98cdbe4e9ed9f0280a5284a391f4070cbaf78439a3a771dd89fff49081cb7199",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e624d11a60d869ad0a6fd8381b604ae6fce6d6bf40222d7148ca2e8fe9f32b9",
       "plan.md": "e1ce94b4f5bc49c5b9922dcdced4560352d66cec3bef4a2b89ce1c57696321af",
-      "tasks.md": "3cc7a59e57c903312ee7527caee8af85f49e8a6b49678f9ffbeb942b57728405",
+      "tasks.md": "8ad2f389bf795213b099450e0236de95215b1eb126ca3b159229dcec23418c79",
       "decision-record.md": "05c0e11c1b9c791d8a97be3783098484274958664af83e82e78497c9c59aa365",
-      "implementation-summary.md": "201532656f53067f69dbe97b4629f8e64844ca17eeea76a74a4a2f99d9bc7456"
+      "implementation-summary.md": "38a86dab11dc2b8a650561310b789d6ee44a50f6b40a2923a9d002aca840de7c"
     },
     "last_active_at": null
   }

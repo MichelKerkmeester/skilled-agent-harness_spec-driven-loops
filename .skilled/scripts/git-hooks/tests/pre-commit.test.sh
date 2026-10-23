@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Test harness for the pre-commit hook's two auto re-mint gates, compiled routing
-# and spec derived metadata, and for how every gate treats a source tree under
-# .skilled/ and a gate script that is missing.
+# and spec derived metadata, the private-skill guard, and how every gate treats a
+# source tree under .skilled/ and a gate script that is missing.
 #
 # Runs entirely inside a throwaway git repo carrying a fixture hub, a stub mint
 # tool and stub route modules, so it never touches the real clone's index, its
@@ -996,5 +996,80 @@ check "no staged skill doc is a silent no-op" 0 "$RC"
 grep -q 'doc-version-bump' "$TMP/out.log" && { echo "FAIL  doc-version gate spoke on an unrelated commit"; FAIL=$((FAIL + 1)); }
 
 echo ""
+# ── 74. a staged private skill is refused and the refusal names its repair ──
+setup_gate_fixture
+stage_new ".skilled/skills/local-webflow/SKILL.md" "private"
+run_hook; RC=$?
+check "a staged private skill is refused" 1 "$RC" "BLOCKED \[gate:private-skill\]"
+check "the refusal names the staged path" 1 "$RC" ".skilled/skills/local-webflow/SKILL.md"
+check "the refusal names the repair" 1 "$RC" "git rm --cached -r"
+
+# ── 75. the printed repair leaves a committable index ──
+setup_gate_fixture
+stage_new ".skilled/skills/local-webflow/SKILL.md" "private"
+git -C "$TMP" rm --cached -r -q -- ".skilled/skills/local-webflow/SKILL.md"
+run_hook; RC=$?
+check "the printed repair clears the block" 0 "$RC"
+
+# ── 76. every guarded skill root and a nested private file are refused ──
+setup_gate_fixture
+for ROOT in .skilled .opencode .claude .pi .devin .hermes .codex .cursor; do
+  stage_new "$ROOT/skills/local-probe/SKILL.md" "private"
+done
+stage_new ".skilled/skills/local-probe/references/deep.md" "private"
+run_hook; RC=$?
+if [[ "$RC" -ne 1 ]]; then
+  echo "FAIL  a private skill under every guarded root is refused: expected rc 1, got $RC"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  a private skill under every guarded root is refused"; PASS=$((PASS + 1))
+fi
+for ROOT in .skilled .opencode .claude .pi .devin .hermes .codex .cursor; do
+  if grep -qF "$ROOT/skills/local-probe/SKILL.md" "$TMP/out.log"; then
+    echo "PASS  the refusal names $ROOT"; PASS=$((PASS + 1))
+  else echo "FAIL  the refusal never named $ROOT"; FAIL=$((FAIL + 1)); fi
+done
+if grep -qF '.skilled/skills/local-probe/references/deep.md' "$TMP/out.log"; then
+  echo "PASS  the refusal names a file nested in a private skill"; PASS=$((PASS + 1))
+else echo "FAIL  a nested private file was not refused"; FAIL=$((FAIL + 1)); fi
+
+# ── 77. a local- name below the skill root is an ordinary file ──
+setup_gate_fixture
+stage_new ".skilled/skills/sk-code/local-notes.md" "an ordinary file"
+run_hook; RC=$?
+check "a local- file below the skill root is committable" 0 "$RC"
+if grep -q 'gate:private-skill' "$TMP/out.log"; then
+  echo "FAIL  the guard spoke on an ordinary file"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the guard stayed silent on an ordinary file"; PASS=$((PASS + 1))
+fi
+
+# ── 78. a renamed copy of a private skill is committable: the guard matches names ──
+setup_gate_fixture
+stage_new ".skilled/skills/local-webflow/SKILL.md" "private"
+stage_new ".skilled/skills/private-copy/SKILL.md" "private"
+git -C "$TMP" rm --cached -r -q -- ".skilled/skills/local-webflow/SKILL.md"
+run_hook; RC=$?
+check "a renamed copy of a private skill is committable" 0 "$RC"
+if grep -q 'gate:private-skill' "$TMP/out.log"; then
+  echo "FAIL  the guard claimed to catch a renamed copy"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the guard does not claim to catch a renamed copy"; PASS=$((PASS + 1))
+fi
+
+# ── 79. a staged symlink named local-* is refused ──
+setup_gate_fixture
+mkdir -p "$TMP/.skilled/skills" "$TMP/outside"
+printf 'private\n' > "$TMP/outside/SKILL.md"
+ln -s ../../outside "$TMP/.skilled/skills/local-link"
+git -C "$TMP" add -- ".skilled/skills/local-link"
+run_hook; RC=$?
+check "a staged symlink named local-* is refused" 1 "$RC" ".skilled/skills/local-link"
+
+# ── 80. a staged gitlink named local-* is refused ──
+setup_gate_fixture
+git -C "$TMP" update-index --add --cacheinfo 160000,1111111111111111111111111111111111111111,.skilled/skills/local-sub
+run_hook; RC=$?
+check "a staged gitlink named local-* is refused" 1 "$RC" ".skilled/skills/local-sub"
+
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

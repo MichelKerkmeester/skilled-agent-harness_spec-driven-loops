@@ -45,7 +45,7 @@ harness.
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Capture the phase base commit (none)
+- [x] T001 Capture the phase base commit (none)
   - **File:** `none`; writes `specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt`
   - **Anchor:** `new file`
   - **Change:**
@@ -62,7 +62,7 @@ harness.
   - **Rollback:** `rm specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt`
   - **Stop if:** the second command prints anything other than `commit`, because every later scope proof reads this file.
 
-- [ ] T002 Re-read the pre-commit insertion anchor (read-only)
+- [x] T002 Re-read the pre-commit insertion anchor (read-only)
   - **File:** `.skilled/scripts/git-hooks/pre-commit`
   - **Anchor:** line 96, exactly `# --- Comment hygiene gate (blocking) ---`
   - **Change:** none. This task only reads the anchor and reports it.
@@ -76,7 +76,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** line 96 is not that exact text, or the count is not `1`.
 
-- [ ] T003 Re-read the ignore-file insertion anchor (read-only)
+- [x] T003 Re-read the ignore-file insertion anchor (read-only)
   - **File:** `.gitignore`
   - **Anchor:** lines 227 to 229, the divider, the header `# Runtime state leaked into nested trees`, and the divider
   - **Change:** none. This task only reads the anchor and reports it.
@@ -90,7 +90,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** the header is not on line 228 or its divider pair does not bracket it.
 
-- [ ] T004 Re-read the harness anchors (read-only)
+- [x] T004 Re-read the harness anchors (read-only)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 2 `# Test harness for the pre-commit hook's two auto re-mint gates, compiled routing`; line 929 `# ── 67-73. doc-version bump: a staged skill doc whose body changed gets its version raised ──`; line 999 `echo "pre-commit gates: $PASS passed, $FAIL failed"`
   - **Change:** none. This task only reads the anchors and reports them.
@@ -105,7 +105,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** any of the three lines differs, because the case blocks and the header edit both attach to them.
 
-- [ ] T005 Record how the installed hook resolves in this worktree (read-only)
+- [x] T005 Record how the installed hook resolves in this worktree (read-only)
   - **File:** `.skilled/scripts/install-git-hooks.sh` (invoked, not edited)
   - **Anchor:** `n/a: status call`
   - **Change:** none. This task only runs the status command and records the result.
@@ -125,7 +125,7 @@ harness.
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 Add the four private-skill ignore rules (.gitignore)
+- [x] T006 Add the four private-skill ignore rules (.gitignore)
   - **File:** `.gitignore`
   - **Anchor:** lines 227 to 229, the divider, `# Runtime state leaked into nested trees`, and the divider
   - **Change:** replace those three lines with:
@@ -164,7 +164,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .gitignore`
   - **Stop if:** the count is not `4` or any of the four `check-ignore` lines is missing.
 
-- [ ] T007 Insert the blocking private-skill guard (.skilled/scripts/git-hooks/pre-commit)
+- [x] T007 Insert the blocking private-skill guard (.skilled/scripts/git-hooks/pre-commit)
   - **File:** `.skilled/scripts/git-hooks/pre-commit`
   - **Anchor:** line 96, exactly `# --- Comment hygiene gate (blocking) ---`
   - **Change:** replace that line with the block below followed by one blank line and then that same line:
@@ -208,7 +208,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/pre-commit`
   - **Stop if:** `bash -n` fails, the awk prints `order-wrong`, or the constant count is not `1`. Do not add a bypass variable or a `lib/gates.tsv` row to make a later check pass.
 
-- [ ] T008 Describe the new coverage in the harness header (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T008 Describe the new coverage in the harness header (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** lines 2 to 4:
     ```
@@ -231,7 +231,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Stop if:** the count is not `1`.
 
-- [ ] T009 Add harness case 74: a staged private skill is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T009 Add harness case 74: a staged private skill is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it. Later tasks reuse this same anchor, so each case lands after the previous one.
   - **Change:** insert:
@@ -254,7 +254,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`, which also removes the cases added after this one; re-run the later case tasks in order.
   - **Stop if:** `rc` is not `0` or the label count is not `1`.
 
-- [ ] T010 Add harness case 75: the printed repair clears the block (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T010 Add harness case 75: the printed repair clears the block (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 74.
   - **Change:** insert:
@@ -276,7 +276,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Stop if:** `rc` is not `0` or the label count is not `1`.
 
-- [ ] T011 Add harness case 76: all eight roots and a nested file (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T011 Add harness case 76: all eight roots and a nested file (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 75.
   - **Change:** insert:
@@ -313,7 +313,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Stop if:** the root count is not `8`. A count of `6` means the two added roots were dropped from the loop.
 
-- [ ] T012 Add harness case 77: a `local-` name below the skill root is committable (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T012 Add harness case 77: a `local-` name below the skill root is committable (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 76.
   - **Change:** insert:
@@ -340,7 +340,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Stop if:** either count is not `1`. A failure here means the pattern overreaches and must be fixed in the hook, not in the expectation.
 
-- [ ] T013 Add harness case 78: a renamed copy of a private skill is committable (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T013 Add harness case 78: a renamed copy of a private skill is committable (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 77.
   - **Change:** insert:
@@ -369,7 +369,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Stop if:** either count is not `1`. This case pins the documented limit; do not change it to expect a block.
 
-- [ ] T014 Add harness case 79: a staged symlink named `local-*` is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T014 Add harness case 79: a staged symlink named `local-*` is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 78.
   - **Change:** insert:
@@ -393,7 +393,7 @@ harness.
   - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Stop if:** `rc` is not `0` or the label count is not `1`.
 
-- [ ] T015 Add harness case 80: a staged gitlink named `local-*` is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+- [x] T015 Add harness case 80: a staged gitlink named `local-*` is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
   - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 79.
   - **Change:** insert:
@@ -420,7 +420,7 @@ harness.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T016 Run the whole harness and read the summary line (read-only)
+- [x] T016 Run the whole harness and read the summary line (read-only)
   - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` (executed, not edited)
   - **Anchor:** `n/a: pure command`
   - **Change:** none. A single `FAIL` line is a stop condition; fix the guard, not the expectation.
@@ -434,7 +434,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** `rc` is not `0`, the summary is not exactly that line, or any `FAIL` line appears.
 
-- [ ] T017 Prove the guard in a throwaway repository (none)
+- [x] T017 Prove the guard in a throwaway repository (none)
   - **File:** `none`; the probe builds a temporary repository under `mktemp -d` and removes it in the same command.
   - **Anchor:** `n/a: pure command`
   - **Change:** run the probe exactly as written:
@@ -459,7 +459,7 @@ harness.
   - **Rollback:** `n/a: the probe removes its own temporary directory in its last line`
   - **Stop if:** `rc` is not `1`, or the output omits the path or the repair. `HOOK` is captured before the `cd`, so the probe runs this checkout's hook and not a path inside the throwaway repository.
 
-- [ ] T018 Prove the ignore rules against a real symlink (.gitignore)
+- [x] T018 Prove the ignore rules against a real symlink (.gitignore)
   - **File:** `.gitignore` (read by git); the probe creates `.skilled/skills/local-probe`
   - **Anchor:** the four rules added in T006
   - **Change:** create the probe symlink and check it:
@@ -475,7 +475,7 @@ harness.
   - **Rollback:** `rm -f .skilled/skills/local-probe`
   - **Stop if:** `rc` is not `0`, or `.skilled/skills/local-probe` already exists before the `ln -s` (remove it first and re-check that nothing tracked lives there).
 
-- [ ] T019 Remove the symlink probe and confirm nothing is left (none)
+- [x] T019 Remove the symlink probe and confirm nothing is left (none)
   - **File:** `none`; removes the probe T018 created
   - **Anchor:** `n/a: pure command`
   - **Change:**
@@ -490,7 +490,7 @@ harness.
   - **Rollback:** `n/a: this task is itself the rollback of T018`
   - **Stop if:** the first count is not `1`, because that means T018 left no probe to remove.
 
-- [ ] T020 Confirm the scope and the comment hygiene of the diff (the three changed files)
+- [x] T020 Confirm the scope and the comment hygiene of the diff (the three changed files)
   - **File:** the three changed files, read through `git diff`
   - **Anchor:** `n/a: pure command`
   - **Change:** none. Any file outside the three, or any added comment naming a spec path, packet number or phase number, is removed rather than justified.
@@ -511,7 +511,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** a fourth path appears, or the second count is `0` (the pipeline is broken, not clean).
 
-- [ ] T021 Confirm the limits are recorded where a reader finds them (spec.md, read-only)
+- [x] T021 Confirm the limits are recorded where a reader finds them (spec.md, read-only)
   - **File:** `spec.md`
   - **Anchor:** `n/a: pure command`
   - **Change:** none.
@@ -527,7 +527,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** any count differs. A lower count means a limit was deleted; restore it rather than lowering the expectation.
 
-- [ ] T022 Reviewer round through the `subagent` tool, agent `review` (none)
+- [x] T022 Reviewer round through the `subagent` tool, agent `review` (none)
   - **File:** `none`; the reviewer reads the three changed files and this packet's six documents
   - **Anchor:** `n/a: pure command`
   - **Change:** none by the reviewer. The review runs through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. The reviewer reads the diff and the packet; findings come back as text; the writer repairs in-scope findings and the reviewer re-reads once. A finding that would widen the scope is recorded in `implementation-summary.md` and left to the phase that owns it. At most two rounds.
@@ -537,7 +537,7 @@ harness.
   - **Rollback:** `n/a: read-only session, nothing to undo`
   - **Stop if:** the second round still reports an unresolved in-scope finding. Do not start a third round; report the finding instead.
 
-- [ ] T023 Final strict validation (this packet)
+- [x] T023 Final strict validation (this packet)
   - **File:** this packet
   - **Anchor:** `n/a: pure command`
   - **Change:** none. Fix the documents until the command prints `RESULT: PASSED`; never edit the validator.
@@ -551,7 +551,7 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** `rc` is not `0`, or the log holds an error other than that one warning.
 
-- [ ] T024 Remove the scratch artifacts (none)
+- [x] T024 Remove the scratch artifacts (none)
   - **File:** `none`; removes `specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt`, `scratch/harness.log` and `scratch/validate.log`
   - **Anchor:** `n/a: pure command`
   - **Change:**
@@ -569,7 +569,7 @@ harness.
   - **Rollback:** `n/a: the files are disposable; re-run T001 and T016 to recreate the two that matter`
   - **Stop if:** any file other than `.gitkeep` remains.
 
-- [ ] T025 Stage the phase files and commit them (the three code files and this packet's documents)
+- [x] T025 Stage the phase files and commit them (the three code files and this packet's documents)
   - **File:** `.gitignore`, `.skilled/scripts/git-hooks/pre-commit`, `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`, and this packet's `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `goal.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`, plus the parent packet's `goal.md`
   - **Anchor:** `n/a: pure command`
   - **Change:** stage the files by name, never with `git add -A`, then commit:
@@ -598,7 +598,7 @@ harness.
   - **Rollback:** `git reset --soft HEAD~1` before the push, or `git revert --no-edit HEAD` after it.
   - **Stop if:** `git status --porcelain` shows a staged path outside the thirteen listed above. Unstage it rather than committing it.
 
-- [ ] T026 Push the phase commit to main (none)
+- [x] T026 Push the phase commit to main (none)
   - **File:** `none`
   - **Anchor:** `n/a: pure command`
   - **Change:**
@@ -615,7 +615,7 @@ harness.
   - **Rollback:** `n/a: a pushed commit is undone by the revert in the spec's Rollback section, not by a force push`
   - **Stop if:** the push is rejected. Report the rejection; do not force, and do not rebase onto a different tip.
 
-- [ ] T027 Confirm the worktree is clean and HEAD equals origin/main (none)
+- [x] T027 Confirm the worktree is clean and HEAD equals origin/main (none)
   - **File:** `none`
   - **Anchor:** `n/a: pure command`
   - **Change:** none.
@@ -670,9 +670,9 @@ harness.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -680,11 +680,11 @@ harness.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `bash -n .skilled/scripts/git-hooks/pre-commit` and `bash -n .skilled/scripts/git-hooks/tests/pre-commit.test.sh` both exit 0
-- [ ] CHK-011 [P0] The guard runs before the comment-hygiene gate and after the trust and kill-switch blocks
-- [ ] CHK-012 [P1] The guard starts no `node` and no `python3`
-- [ ] CHK-013 [P1] Code follows the hook's existing style: uppercase globals, `IFS= read -r -d ''`, and a `BLOCKED` message that names its gate
-- [ ] CHK-014 [P0] The guard carries no bypass variable and no `lib/gates.tsv` row
+- [x] CHK-010 [P0] `bash -n .skilled/scripts/git-hooks/pre-commit` and `bash -n .skilled/scripts/git-hooks/tests/pre-commit.test.sh` both exit 0
+- [x] CHK-011 [P0] The guard runs before the comment-hygiene gate and after the trust and kill-switch blocks
+- [x] CHK-012 [P1] The guard starts no `node` and no `python3`
+- [x] CHK-013 [P1] Code follows the hook's existing style: uppercase globals, `IFS= read -r -d ''`, and a `BLOCKED` message that names its gate
+- [x] CHK-014 [P0] The guard carries no bypass variable and no `lib/gates.tsv` row
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -692,11 +692,11 @@ harness.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete: the throwaway-repository probe and the symlink probe both run and are read
-- [ ] CHK-022 [P1] Edge cases tested: nested private file, `local-` below the skill root, staged deletion, all eight skill roots, a renamed copy, a staged symlink, a staged gitlink
-- [ ] CHK-023 [P1] Error scenarios validated: a refusal names its path and its repair
-- [ ] CHK-024 [P0] The harness exits 0 with `pre-commit gates: 131 passed, 0 failed`, and the existing cases were not edited
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Manual testing complete: the throwaway-repository probe and the symlink probe both run and are read
+- [x] CHK-022 [P1] Edge cases tested: nested private file, `local-` below the skill root, staged deletion, all eight skill roots, a renamed copy, a staged symlink, a staged gitlink
+- [x] CHK-023 [P1] Error scenarios validated: a refusal names its path and its repair
+- [x] CHK-024 [P0] The harness exits 0 with `pre-commit gates: 131 passed, 0 failed`, and the existing cases were not edited
 <!-- /ANCHOR:testing -->
 
 ---
@@ -704,13 +704,13 @@ harness.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep: `rg -n 'local-' .gitignore .skilled/scripts/git-hooks/`
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the changed pattern and message: `rg -n 'gate:private-skill|PRIVATE_SKILL_RE|PRIVATE_STAGED' .`
-- [ ] CHK-FIX-004 [P0] Path fixes include adversarial table tests for a space in the name, non-ASCII bytes, a staged deletion, a rename into the private path, and a `local-` name below the skill root
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: eight skill roots x three path shapes x four index actions
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state: the probe runs with no `skilled.trustRepoHooks` and an untrusted `SOURCE_ROOT`
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep: `rg -n 'local-' .gitignore .skilled/scripts/git-hooks/`
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for the changed pattern and message: `rg -n 'gate:private-skill|PRIVATE_SKILL_RE|PRIVATE_STAGED' .`
+- [x] CHK-FIX-004 [P0] Path fixes include adversarial table tests for a space in the name, non-ASCII bytes, a staged deletion, a rename into the private path, and a `local-` name below the skill root
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: eight skill roots x three path shapes x four index actions
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state: the probe runs with no `skilled.trustRepoHooks` and an untrusted `SOURCE_ROOT`
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -718,9 +718,9 @@ harness.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets, and no private content is read or written by this phase
-- [ ] CHK-031 [P0] Input validation implemented: the staged path is matched against an anchored pattern, never interpreted
-- [ ] CHK-032 [P1] The guard fails closed when it cannot read the staged names
+- [x] CHK-030 [P0] No hardcoded secrets, and no private content is read or written by this phase
+- [x] CHK-031 [P0] Input validation implemented: the staged path is matched against an anchored pattern, never interpreted
+- [x] CHK-032 [P1] The guard fails closed when it cannot read the staged names
 <!-- /ANCHOR:security -->
 
 ---
@@ -728,9 +728,9 @@ harness.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments explain the durable why and name no spec path, packet number or phase number
-- [ ] CHK-042 [P2] README updated (not applicable: the hook's header and the harness header already describe their own gates)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Code comments explain the durable why and name no spec path, packet number or phase number
+- [x] CHK-042 [P2] README updated (not applicable: the hook's header and the harness header already describe their own gates)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -738,8 +738,8 @@ harness.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion, and the three probes left nothing in the checkout
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion, and the three probes left nothing in the checkout
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -749,9 +749,9 @@ harness.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | [ ]/14 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-23
 <!-- /ANCHOR:summary -->

@@ -107,7 +107,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Parent planning documents finished | Done | `spec.md` map, handoff blocks and open questions rewritten, `goal.md` authored on 2026-10-23 |
-| Phase 001 | Pending | `001-ignore-and-commit-guard/tasks.md` |
+| Phase 001 | Done | Harness `pre-commit gates: 131 passed, 0 failed`, commit `chore(git-hooks): block staged private skills and ignore local-* skill paths` |
 | Phases 002 to 005 | Pending | Each child's `tasks.md`, in order |
 
 ### Deviations and findings

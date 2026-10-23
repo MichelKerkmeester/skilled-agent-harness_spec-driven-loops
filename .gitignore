@@ -225,6 +225,20 @@ sweep-reports/
 .skilled/skills/system-spec-kit/runtime/skill_advisor/scripts/out/*.json
 
 # ───────────────────────────────────────────
+# Private skills (operator-local only)
+# ───────────────────────────────────────────
+# A local-* skill belongs to the operator, not to this repository. No trailing
+# slash: git treats a symlink as a file, so a trailing slash would miss a symlink
+# to a repository outside this checkout. The runtime roots that link to .skilled/skills need no rule
+# of their own, because git cannot stage a path beneath a symlink. .hermes/skills,
+# .codex/skills and .cursor/skills are real directories when they exist, so each
+# carries its own rule.
+/.skilled/skills/local-*
+/.hermes/skills/local-*
+/.codex/skills/local-*
+/.cursor/skills/local-*
+
+# ───────────────────────────────────────────
 # Runtime state leaked into nested trees
 # ───────────────────────────────────────────
 /*/**/.opencode/logs/

@@ -93,6 +93,31 @@ fi
 # commit for output that was advisory and could not block, which made it the single
 # most expensive thing here for no enforcement in return.
 
+# --- Private skill guard (blocking) ---
+# A private skill belongs to the operator, not to this repository: staging one
+# publishes a file that exists only on this machine. Names are read NUL-separated,
+# so a path with a space or non-ASCII bytes is refused rather than skipped, and
+# --diff-filter=ACMR ignores a staged deletion, which publishes nothing. The match
+# is on the path name, so a renamed copy is not caught; a content match would need
+# a manifest of private bytes to compare against, and this guard owns no such
+# manifest. There is no bypass variable and no gate-config row: staging a private
+# skill is never correct.
+PRIVATE_SKILL_RE='^\.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)/skills/local-[^/]+(/|$)'
+PRIVATE_STAGED=()
+while IFS= read -r -d '' PRIVATE_PATH; do
+  if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE ]]; then
+    PRIVATE_STAGED+=("$PRIVATE_PATH")
+  fi
+done < <(git diff --cached --name-only -z --diff-filter=ACMR)
+if [[ "${#PRIVATE_STAGED[@]}" -gt 0 ]]; then
+  echo "BLOCKED [gate:private-skill]: a private skill is staged and would be published:" >&2
+  for PRIVATE_PATH in "${PRIVATE_STAGED[@]}"; do
+    echo "  $PRIVATE_PATH" >&2
+    echo "  Fix: git rm --cached -r -- \"$PRIVATE_PATH\"" >&2
+  done
+  exit 1
+fi
+
 # --- Comment hygiene gate (blocking) ---
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
