@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dc900cf152311fc68cf9cd7e1c620d47655116cb9e94dcfb22268beb7682fe83",
+  "corpusHash": "f40fd4fb2e5d66f865e39469e33acb4f831dfd413032bba0cfe42865e29348a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25724,
+  "includedPathCount": 25750,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12072,6 +12072,32 @@
     "specs/sk-code/012-sk-code-skilled-rename/review/resource-map.md",
     "specs/sk-code/012-sk-code-skilled-rename/review/review-report.md",
     "specs/sk-code/012-sk-code-skilled-rename/spec.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/plan.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/tasks.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/plan.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/tasks.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/plan.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/tasks.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/plan.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/tasks.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/plan.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md",
+    "specs/sk-code/013-private-surface-skills/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -25755,7 +25781,7 @@
     "specs/system-speckit/053-ci-workflow-efficiency/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c99aad54383a630b4fbd0646d49445d6b2006d57828b762622695288026e2c6c",
+  "manifestHash": "d49a9c7d4ff9025cd7fda63a24d95fa07f96638f5bfd4d727f1da5f4827281c0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28395,6 +28421,26 @@
     },
     {
       "path": "specs/sk-code/012-sk-code-skilled-rename/003-markdown-reference-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch",
       "reason": "excluded directory"
     },
     {

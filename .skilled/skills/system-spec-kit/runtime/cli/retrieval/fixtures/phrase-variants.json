@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c99aad54383a630b4fbd0646d49445d6b2006d57828b762622695288026e2c6c",
+  "manifestHash": "d49a9c7d4ff9025cd7fda63a24d95fa07f96638f5bfd4d727f1da5f4827281c0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9475,6 +9475,21 @@
     ],
     "advisor vocabulary chart": [
       "advisor vocabulary chart"
+    ],
+    "advisor vocabulary cleanup": [
+      "advisor vocabulary cleanup"
+    ],
+    "advisor vocabulary cleanup acceptance criteria": [
+      "advisor vocabulary cleanup acceptance criteria"
+    ],
+    "advisor vocabulary cleanup implementation summary": [
+      "advisor vocabulary cleanup implementation summary"
+    ],
+    "advisor vocabulary cleanup plan": [
+      "advisor vocabulary cleanup plan"
+    ],
+    "advisor vocabulary cleanup tasks": [
+      "advisor vocabulary cleanup tasks"
     ],
     "advisor vocabulary freshness": [
       "advisor vocabulary freshness"
@@ -52630,6 +52645,21 @@
     "hub surface precedence tasks": [
       "hub surface precedence tasks"
     ],
+    "hub surface removal": [
+      "hub surface removal"
+    ],
+    "hub surface removal acceptance criteria": [
+      "hub surface removal acceptance criteria"
+    ],
+    "hub surface removal implementation summary": [
+      "hub surface removal implementation summary"
+    ],
+    "hub surface removal plan": [
+      "hub surface removal plan"
+    ],
+    "hub surface removal tasks": [
+      "hub surface removal tasks"
+    ],
     "hub surface truth": [
       "hub surface truth"
     ],
@@ -53139,6 +53169,21 @@
     ],
     "ids safe access": [
       "ids safe access"
+    ],
+    "ignore and commit guard": [
+      "ignore and commit guard"
+    ],
+    "ignore and commit guard acceptance criteria": [
+      "ignore and commit guard acceptance criteria"
+    ],
+    "ignore and commit guard implementation summary": [
+      "ignore and commit guard implementation summary"
+    ],
+    "ignore and commit guard plan": [
+      "ignore and commit guard plan"
+    ],
+    "ignore and commit guard tasks": [
+      "ignore and commit guard tasks"
     ],
     "ignored folder consistency": [
       "ignored folder consistency"
@@ -56531,6 +56576,21 @@
     "leaf vs orchestrator": [
       "leaf vs orchestrator"
     ],
+    "leak and routing verification": [
+      "leak and routing verification"
+    ],
+    "leak and routing verification acceptance criteria": [
+      "leak and routing verification acceptance criteria"
+    ],
+    "leak and routing verification implementation summary": [
+      "leak and routing verification implementation summary"
+    ],
+    "leak and routing verification plan": [
+      "leak and routing verification plan"
+    ],
+    "leak and routing verification tasks": [
+      "leak and routing verification tasks"
+    ],
     "leaked chrome process": [
       "leaked chrome process"
     ],
@@ -58284,6 +58344,9 @@
     ],
     "local vision skill": [
       "local vision skill"
+    ],
+    "local webflow local obsidian": [
+      "local-webflow local-obsidian"
     ],
     "locate a click target": [
       "locate a click target"
@@ -72202,6 +72265,9 @@
     "phase 1 hook stdin deadlines": [
       "phase 1 hook stdin deadlines"
     ],
+    "phase 1 ignore and commit guard": [
+      "phase 1 ignore and commit guard"
+    ],
     "phase 1 made the preflight enforce but two": [
       "phase 1 made the preflight enforce but two"
     ],
@@ -72541,6 +72607,9 @@
     "phase 2 hooks readme voice": [
       "phase 2 hooks readme voice"
     ],
+    "phase 2 hub surface removal": [
+      "phase 2 hub surface removal"
+    ],
     "phase 2 leaf generator ignores": [
       "phase 2 leaf generator ignores"
     ],
@@ -72703,6 +72772,9 @@
     "phase 3 admission gold": [
       "phase 3 admission gold"
     ],
+    "phase 3 advisor vocabulary cleanup": [
+      "phase 3 advisor vocabulary cleanup"
+    ],
     "phase 3 agent disclosure": [
       "phase 3 agent disclosure"
     ],
@@ -72856,6 +72928,9 @@
     "phase 4 pi ambiguous denial": [
       "phase 4 pi ambiguous denial"
     ],
+    "phase 4 private local skills": [
+      "phase 4 private local skills"
+    ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
     ],
@@ -72939,6 +73014,9 @@
     ],
     "phase 5 implementation review": [
       "phase 5 implementation review"
+    ],
+    "phase 5 leak and routing verification": [
+      "phase 5 leak and routing verification"
     ],
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
@@ -76711,8 +76789,26 @@
     "priority timing patterns": [
       "priority timing patterns"
     ],
+    "private local skills": [
+      "private local skills"
+    ],
+    "private local skills acceptance criteria": [
+      "private local skills acceptance criteria"
+    ],
+    "private local skills implementation summary": [
+      "private local skills implementation summary"
+    ],
+    "private local skills plan": [
+      "private local skills plan"
+    ],
+    "private local skills tasks": [
+      "private local skills tasks"
+    ],
     "private procedure card structure": [
       "private procedure card structure"
+    ],
+    "private surface skills phase parent spec": [
+      "private surface skills phase parent spec"
     ],
     "proactive skill routing runtime": [
       "proactive skill routing runtime"
@@ -84029,6 +84125,9 @@
     "restore level upgrade vocabulary invariance": [
       "restore level upgrade vocabulary invariance"
     ],
+    "restore local skills tasks": [
+      "restore local skills tasks"
+    ],
     "restore never through symlink": [
       "restore never through symlink"
     ],
@@ -84061,6 +84160,9 @@
     ],
     "restore staged": [
       "restore staged"
+    ],
+    "restore surfaces from history": [
+      "restore surfaces from history"
     ],
     "restore template default": [
       "restore template default"

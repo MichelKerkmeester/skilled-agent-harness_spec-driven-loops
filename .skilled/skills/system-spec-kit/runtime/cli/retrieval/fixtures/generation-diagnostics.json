@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7249,
-    "ok": 14927,
+    "ok": 14953,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25724,
+  "documentsScanned": 25750,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c99aad54383a630b4fbd0646d49445d6b2006d57828b762622695288026e2c6c",
+  "manifestHash": "d49a9c7d4ff9025cd7fda63a24d95fa07f96638f5bfd4d727f1da5f4827281c0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37464,
+      "ok": 37498,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71015,6 +71015,26 @@
     },
     {
       "path": "specs/sk-code/012-sk-code-skilled-rename/003-markdown-reference-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch",
       "reason": "excluded directory"
     },
     {
