@@ -20,6 +20,12 @@ const { fileURLToPath } = require('node:url');
 
 const STATE_DIRECTORY_NAME = 'skilled-relaunch';
 const LEGACY_LOCK_MAX_AGE_MS = 10 * 60 * 1000;
+// How long an appender waits for another one, and when a lock left behind by a killed
+// appender may be reclaimed. The wait is short because history logging must never
+// stall a hook.
+const APPEND_LOCK_WAIT_MS = 2000;
+const APPEND_LOCK_STALE_MS = 10000;
+const APPEND_LOCK_SLEEP_CELL = new Int32Array(new SharedArrayBuffer(4));
 const HANDOFF_SECTIONS = Object.freeze(['Goal', 'Done', 'Remaining work', 'In-flight state']);
 const SPEC_FOLDER_PATTERN =
   /^specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -768,6 +774,59 @@ function isEntrypoint(moduleUrl, scriptPath = process.argv[1]) {
 }
 
 /**
+ * Run `fn` while holding the log's append lock.
+ *
+ * Every lock failure falls through to running `fn` without the lock: history logging
+ * must never block or fail a hook.
+ *
+ * @template T
+ * @param {string} logPath - Path of the log whose lock is taken.
+ * @param {() => T} fn - Work to run under the lock.
+ * @returns {T} Whatever `fn` returns.
+ */
+function withAppendLock(logPath, fn) {
+  const lockPath = `${logPath}.lock`;
+  const deadline = Date.now() + APPEND_LOCK_WAIT_MS;
+  let held = false;
+  // Every retry path re-checks the deadline here, so a lock that keeps going stale or
+  // vanishing cannot hold an appender past the wait bound.
+  while (!held && Date.now() < deadline) {
+    try {
+      fs.mkdirSync(lockPath, 0o700);
+      held = true;
+    } catch (error) {
+      if (error.code !== 'EEXIST') break;
+      try {
+        const ageMs = Date.now() - fs.statSync(lockPath).mtimeMs;
+        if (ageMs > APPEND_LOCK_STALE_MS) {
+          try {
+            fs.rmdirSync(lockPath);
+          } catch (removeError) {
+            if (removeError.code !== 'ENOENT') break;
+          }
+          continue;
+        }
+      } catch (statError) {
+        if (statError.code === 'ENOENT') continue;
+        break;
+      }
+      Atomics.wait(APPEND_LOCK_SLEEP_CELL, 0, 0, 2);
+    }
+  }
+  try {
+    return fn();
+  } finally {
+    if (held) {
+      try {
+        fs.rmdirSync(lockPath);
+      } catch {
+        // A lock already removed is not this appender's problem.
+      }
+    }
+  }
+}
+
+/**
  * Append one sanitized event line for operator-visible relaunch history.
  *
  * @param {string} event - Event name.
@@ -788,34 +847,38 @@ function appendLog(event, fields = {}, env = process.env, now) {
   const line = `${toIsoTimestamp(now)} ${event}${values.length ? ` ${values.join(' ')}` : ''}`;
   const directory = ensureStateDir(env);
   const logPath = path.join(directory, 'relaunch.log');
-  const fileDescriptor = fs.openSync(logPath, 'a+', 0o600);
-  try {
-    // A pre-existing log may carry a permissive mode; re-pin it on every append.
-    fs.fchmodSync(fileDescriptor, 0o600);
-    // A truncated write leaves a partial final line; the next event starts on
-    // its own line so readers keep one event per line.
-    let separator = '';
-    const size = fs.fstatSync(fileDescriptor).size;
-    if (size > 0) {
-      const lastByte = Buffer.alloc(1);
-      fs.readSync(fileDescriptor, lastByte, 0, 1, size - 1);
-      if (lastByte[0] !== 0x0a) separator = '\n';
+  withAppendLock(logPath, () => {
+    const fileDescriptor = fs.openSync(logPath, 'a+', 0o600);
+    try {
+      // A pre-existing log may carry a permissive mode; re-pin it on every append.
+      fs.fchmodSync(fileDescriptor, 0o600);
+      // A truncated write leaves a partial final line; the next event starts on
+      // its own line so readers keep one event per line. The peek and the write
+      // share one lock, because a concurrent appender's write can show a size
+      // that ends mid-line.
+      let separator = '';
+      const size = fs.fstatSync(fileDescriptor).size;
+      if (size > 0) {
+        const lastByte = Buffer.alloc(1);
+        fs.readSync(fileDescriptor, lastByte, 0, 1, size - 1);
+        if (lastByte[0] !== 0x0a) separator = '\n';
+      }
+      const text = `${separator}${line}\n`;
+      const expectedBytes = Buffer.byteLength(text);
+      const writtenBytes = fs.writeSync(fileDescriptor, text);
+      // A short write (disk full, file-size limit) truncates the event line while
+      // still looking like success; concurrent appenders rule out a retry loop, so
+      // the truncation is surfaced instead of silently losing the event.
+      if (writtenBytes < expectedBytes) {
+        throw new Error(
+          `relaunch log short write: wrote ${writtenBytes} of ${expectedBytes} bytes to ${logPath}`,
+        );
+      }
+      fs.fsyncSync(fileDescriptor);
+    } finally {
+      fs.closeSync(fileDescriptor);
     }
-    const text = `${separator}${line}\n`;
-    const expectedBytes = Buffer.byteLength(text);
-    const writtenBytes = fs.writeSync(fileDescriptor, text);
-    // A short write (disk full, file-size limit) truncates the event line while
-    // still looking like success; concurrent appenders rule out a retry loop, so
-    // the truncation is surfaced instead of silently losing the event.
-    if (writtenBytes < expectedBytes) {
-      throw new Error(
-        `relaunch log short write: wrote ${writtenBytes} of ${expectedBytes} bytes to ${logPath}`,
-      );
-    }
-    fs.fsyncSync(fileDescriptor);
-  } finally {
-    fs.closeSync(fileDescriptor);
-  }
+  });
   return line;
 }
 

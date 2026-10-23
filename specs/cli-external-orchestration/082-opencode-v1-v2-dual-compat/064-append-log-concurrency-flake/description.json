@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake",
+  "description": "Phase 64: append-log-concurrency-flake",
+  "keywords": [
+    "phase",
+    "append-log-concurrency-flake"
+  ],
+  "lastUpdated": "2026-10-23T04:12:27.037Z",
+  "specId": "064",
+  "folderSlug": "append-log-concurrency-flake",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -989,6 +989,43 @@ test('appendLog keeps every line when eight processes append concurrently', asyn
   assert.equal(written.size, workerCount * linesPerWorker);
 });
 
+test('appendLog waits for an in-flight append before peeking the last byte', async (t) => {
+  const sandbox = createSandbox(t);
+  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
+  const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  // Another appender is mid-write: its line has no terminator yet and it holds the lock.
+  fs.writeFileSync(logPath, 'torn');
+  fs.mkdirSync(`${logPath}.lock`);
+
+  const script = [
+    `const core = require(${JSON.stringify(corePath)});`,
+    `core.appendLog('waiter', { step: 1 }, { XDG_RUNTIME_DIR: ${JSON.stringify(sandbox.xdgRuntimeDir)} });`,
+    '',
+  ].join('\n');
+  const waiter = spawn(process.execPath, ['-e', script], { stdio: 'ignore' });
+  const waiterExit = new Promise((resolve) => {
+    waiter.once('error', () => resolve(-1));
+    waiter.once('exit', (code) => resolve(code ?? -1));
+  });
+  let waitTimer;
+  const waitElapsed = new Promise((resolve) => {
+    waitTimer = setTimeout(resolve, 500);
+  });
+  await Promise.race([waiterExit, waitElapsed]);
+  clearTimeout(waitTimer);
+
+  fs.appendFileSync(logPath, '-completed\n');
+  fs.rmdirSync(`${logPath}.lock`);
+  assert.equal(await waiterExit, 0);
+
+  const lines = fs.readFileSync(logPath, 'utf8').split('\n');
+  assert.equal(lines[0], 'torn-completed');
+  assert.match(lines[1], / waiter step=1$/);
+  assert.equal(lines[2], '');
+  assert.equal(lines.length, 3);
+});
+
 test('appendLog starts the next event on its own line after a partial line', (t) => {
   const sandbox = createSandbox(t);
   const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
