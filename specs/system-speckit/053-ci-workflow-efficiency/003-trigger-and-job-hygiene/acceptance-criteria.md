@@ -12,13 +12,8 @@ _memory:
     last_updated_at: "2026-10-23T11:20:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Authored the acceptance criteria for this planned phase"
-    next_safe_action: "Answer D2, D3, D4, D7 and D10, then run the phase's tasks"
+    next_safe_action: "Decisions answered; start at T006, the first non-decision task, then run the phase's tasks"
     blockers:
-      - "D2 unanswered"
-      - "D3 unanswered"
-      - "D4 unanswered"
-      - "D7 unanswered"
-      - "D10 unanswered"
       - "002-rebuild-fanout-removal baseline pending"
     key_files:
       - "spec.md"

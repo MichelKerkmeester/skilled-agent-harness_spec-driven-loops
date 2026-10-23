@@ -16,7 +16,7 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## EXECUTIVE SUMMARY
 
-Phases 001 through 004 remove two surfaces from the shipped hub and rebuild them as gitignored private skills, but a green local test run cannot show whether the removal held: a gitignored folder still sits on disk, CI rebuilds the committed trigger index after the push rather than during it, the advisor graph database is local and ignored, and `git commit --no-verify` bypasses the pre-commit guard. This phase answers that question with commands whose output is recorded: a fresh clone of the public remote, a throwaway advisor database, the four generated retrieval artifacts, and routing probes in both checkouts that consume this hub.
+Phases 001 through 004 remove two surfaces from the shipped hub and rebuild them as gitignored `local-*` skills, but a green local test run cannot show whether the removal held: a gitignored symlink still sits on disk, CI rebuilds the committed trigger index after the push rather than during it, the advisor graph database is local and ignored, and `git commit --no-verify` bypasses the pre-commit guard. This phase answers that question with commands whose output is recorded: a fresh clone of the public remote, a throwaway advisor database, the four generated retrieval artifacts, and routing probes in both checkouts that consume this hub.
 
 **Key Decisions**: verify from a fresh clone of `origin/main` rather than the working tree; scope the rebuilt-index zero check to live routing sources and allowlist the 69 retained `specs/sk-code/007-sk-code-obsidian-surface/` paths; compare git blob identities for new or changed private content, record the bytes the removal commit already carries as already public in history, and cover partial content with marker sweeps; run routing probes in the operator checkout and in the Obsidian Plugin checkout, never in the writer worktree.
 
@@ -32,7 +32,7 @@ Phases 001 through 004 remove two surfaces from the shipped hub and rebuild them
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-10-23 |
-| **Branch** | `deepseekpihigh` |
+| **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 5 |
 | **Predecessor** | 004-private-local-skills |
@@ -45,7 +45,7 @@ Phases 001 through 004 remove two surfaces from the shipped hub and rebuild them
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor routes specification.
+This is **Phase 5** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* skills that this checkout links to but never tracks, routed only by the operator's local advisor specification.
 
 **Scope Boundary**: In scope: the sk-code hub tree, tracked consumers that name `sk-code-webflow`, `sk-code-obsidian`, or the `WEBFLOW` / `OBSIDIAN` surface tokens, and the advisor's sk-code surface vocabulary. Out of scope, kept unchanged: generic Webflow/Obsidian words in other skills (mcp-tooling/mcp-obsidian, mcp-notion, mcp-code-mode's Webflow CMS vocabulary at `fusion.ts:602`, `explicit.ts:131`, `skill_advisor.py:2181`, the `P1-MCP-002` regression and holdout rows, sk-design style bundles); dated historical records (every `changelog/` file, `.skilled/changelog/skilled/*.md`, `benchmark/reports/`, `specs/**/z_archive/`, the `doctor-update-*` playbooks in `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/` that name units of the past v4.0.0.2 release, and the `anchor-repair-sample` test fixture); git history.
 
@@ -60,7 +60,7 @@ This phase changes no production code. It runs checks that read the repository, 
 
 **Dependencies**:
 - Phases 001 through 004 have landed on `main`, in that order. 004 depends only on 001 (the ignore rules must exist before any private file is written) but runs after 003 so the advisor scan already follows a `local-*` symlink.
-- The operator's main checkout `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public` holds the two private skills (`.skilled/skills/local-webflow/`, `.skilled/skills/local-obsidian/`), which phase 004 creates. Phase 004 runs in that checkout, not in a worktree of its own: the two trees are gitignored, so they exist on one disk and are never carried into another checkout.
+- The operator's main checkout `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public` holds two gitignored symlinks, `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, which phase 004 creates. Their targets are `local-skills/` folders in two external repositories: `local-obsidian` in a public repository by operator choice and `local-webflow` in a private one. Phase 004's content and link steps run there; its packet-document edits run in the `WORKTREE` checkout defined in `004-private-local-skills/tasks.md`'s Checkout rule (by default this same checkout): the symlinks are gitignored here and never carried into another checkout, and `SPECKIT_PRIVATE_SKILL_ROOTS` names both external `local-skills/` parents for every advisor process.
 - The Obsidian Plugin checkout at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin` resolves `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes`, `.opencode`, `.pi` and `.skilled` back into that same hub by symlink, which makes it a second live consumer of the routing table.
 - CI rebuilds `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and its three fixture sidecars after each push to `main` (the `chore(system-spec-kit): rebuild the trigger index` commits).
 - `git`, `node`, `sqlite3`, `jq` and an authenticated `gh` on the operator machine.
@@ -80,7 +80,7 @@ This phase changes no production code. It runs checks that read the repository, 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored private skills, but nothing yet proves the result. The leak paths are not visible from a green local test run: a gitignored folder still sits on disk, the committed trigger index is rebuilt by CI after the push rather than by the developer, the advisor graph database is local and ignored, and `git commit --no-verify` bypasses the pre-commit guard. A packet that closed on "the tests pass" could therefore ship a tracked file naming `sk-code-webflow`, an index line naming `local-obsidian`, or a routing table that sends a Webflow prompt to `sk-code`.
+Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored `local-*` symlinks, but nothing yet proves the result. The leak paths are not visible from a green local test run: a gitignored symlink still sits on disk, the committed trigger index is rebuilt by CI after the push rather than by the developer, the advisor graph database is local and ignored, and `git commit --no-verify` bypasses the pre-commit guard. A packet that closed on "the tests pass" could therefore ship a tracked file naming `sk-code-webflow`, an index line naming `local-obsidian`, or a routing table that sends a Webflow prompt to `sk-code`.
 
 ### Purpose
 Prove, with commands whose output is recorded, that the two surfaces left no tracked trace, no committed index entry, no sk-code-family advisor vocabulary and no routing hole, and that the private skills still win their own prompts locally in both checkouts that consume this hub.
@@ -125,7 +125,7 @@ Prove, with commands whose output is recorded, that the two surfaces left no tra
 | `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/04-d6-kept-records.md` | Create | The ten-prefix `git diff --stat 42b41dd286 HEAD` audit |
 | `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md` | Create | Throwaway DB build plus the zero-row query |
 | `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` | Create | The four regenerated retrieval artifacts, scoped and allowlisted |
-| `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` | Create | Six routing probes across two checkouts, the folder mode and the plugin symlink targets |
+| `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` | Create | Six routing probes across two checkouts, the two symlink targets and the plugin symlink targets |
 | `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md` | Create | `git status --porcelain` and `git check-ignore -v` in the operator checkout |
 | `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/09-ci.md` | Create | `gh run list` output for `main`, plus the stated limit that each evidence push's own runs are reported in the handoff |
 | `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md` | Create | Reviewer verdicts and how each finding was answered |
@@ -212,7 +212,7 @@ Prove, with commands whose output is recorded, that the two surfaces left no tra
 
 ### Rollback
 
-The phase changes no production file, so rollback is one command plus three deletions: `git revert --no-edit $(git log --format=%H --grep='Surface-Verification-Phase: 005' origin/main)` restores the packet documents to their committed state, `rm -rf /tmp/psurf-clone-main /tmp/psurf-final-tip /tmp/psurf-db /tmp/psurf-corpus-probe` removes the throwaway clone, the final-tip clone, the database and the probe repository, and `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` rebuilds the gitignored local graph the probes forced. `plan.md` section 7 owns the procedure and its trigger.
+The phase changes no production file, so rollback is one command plus three deletions: `git revert --no-edit $(git log --format=%H --grep='Surface-Verification-Phase: 005' origin/main)` restores the packet documents to their committed state, `rm -rf /tmp/psurf-clone-main /tmp/psurf-final-tip /tmp/psurf-db /tmp/psurf-corpus-probe` removes the throwaway clone, the final-tip clone, the database and the probe repository, and `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` rebuilds the gitignored local graph the probes forced. `plan.md` section 7 owns the procedure and its trigger. The rebuild exports both external `local-skills/` roots in `SPECKIT_PRIVATE_SKILL_ROOTS` first, so it keeps the symlinked skills in the graph.
 <!-- /ANCHOR:risks -->
 
 ---
@@ -228,7 +228,7 @@ The phase changes no production file, so rollback is one command plus three dele
 - **NFR-P02**: No check builds a search index over the whole repository, installs a dependency or downloads a model. The advisor database build is a metadata scan of the clone, and the corpus probe indexes four documents.
 
 ### Security
-- **NFR-S01**: The evidence contains command output only - no file bodies from `.skilled/skills/local-*`, no paths inside a private repository, no prompt text beyond the six fixed probe strings.
+- **NFR-S01**: The evidence contains command output only - no file bodies from `.skilled/skills/local-*`, no URLs for the two external repositories, while the public origin clone URL `https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops.git` is allowed, and no paths inside an external repository beyond the two `local-skills/` parents and the two symlink targets needed to prove the layout; no prompt text beyond the six fixed probe strings.
 - **NFR-S02**: The fresh clone, the final-tip clone, the throwaway database and the probe repository live outside the repository (`/tmp/psurf-clone-main`, `/tmp/psurf-final-tip`, `/tmp/psurf-db`, `/tmp/psurf-corpus-probe`) and are removed at close.
 - **NFR-S03**: The blob comparison publishes blob ids only, never file contents, so a private byte never enters a tracked file through the evidence.
 
@@ -269,7 +269,7 @@ The phase changes no production file, so rollback is one command plus three dele
 | Scope | [6/25] | No code; 15 evidence documents and 17 read-only checks across four artifacts, two checkouts and one temporary repository |
 | Risk | [5/25] | Read-only and reversible, no deployment; the only waits are two CI rebuilds and the only external state is a throwaway database |
 | Research | [8/20] | The checks, allowlists and baselines are fixed in `plan.md` and measured on disk before writing |
-| Multi-Agent | [0/15] | One writer and one read-only reviewer; no parallel workstreams |
+| Multi-Agent | [0/15] | One writer and one read-only reviewer, run through the `subagent` tool; no parallel workstreams |
 | Coordination | [3/15] | Three ordered commits and two CI waits; no cross-team dependency |
 | **Total** | **[22/100]** | **Level 3** |
 <!-- /ANCHOR:complexity -->

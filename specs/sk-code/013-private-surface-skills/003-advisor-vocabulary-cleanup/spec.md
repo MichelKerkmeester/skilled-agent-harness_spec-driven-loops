@@ -32,7 +32,7 @@ Phase 2 removes the Webflow and Obsidian surfaces from the shipped sk-code hub, 
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-10-23 |
-| **Branch** | `deepseekpi` |
+| **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 5 |
 | **Predecessor** | 002-hub-surface-removal |
@@ -45,14 +45,14 @@ Phase 2 removes the Webflow and Obsidian surfaces from the shipped sk-code hub, 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor routes specification.
+This is **Phase 3** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* skills that this checkout links to but never tracks, routed only by the operator's local advisor specification.
 
 **Scope Boundary**: In scope is the sk-code hub tree, the tracked consumers that name `sk-code-webflow`, `sk-code-obsidian` or the `WEBFLOW` / `OBSIDIAN` surface tokens, and the advisor's sk-code surface vocabulary. Out of scope, kept unchanged: generic Webflow/Obsidian words in other skills, dated historical records and git history (the full boundary is D6 in the parent packet and is repeated in §3).
 
 **Dependencies**:
 - `002-hub-surface-removal` merged first: the surfaces and their `mode-registry.json` / `hub-router.json` entries must already be gone, because this phase removes the vocabulary those entries declare and regenerates the tracked fallback graph afterwards.
 - The local advisor database built in this worktree (`node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true`). It is gitignored and it is what the advisor tests read; without it `advisor-surface-hint.vitest.ts` fails for an unrelated reason.
-- `004-private-local-skills` runs after this phase so that the advisor scan already follows a trusted `local-*` symlink by the time a private skill exists. When phase 4 links a private repository that lives outside the checkout, the operator must name its root in `SPECKIT_PRIVATE_SKILL_ROOTS`; a real folder under `.skilled/skills/local-*` needs no variable.
+- `004-private-local-skills` runs after this phase so that the advisor scan already follows a trusted `local-*` symlink by the time a private skill exists. Phase 4 uses the symlink mode: both `.skilled/skills/local-*` entries link to `local-skills/` folders in two external repositories, so the operator must name both `local-skills/` parents in `SPECKIT_PRIVATE_SKILL_ROOTS`.
 
 **Deliverables**:
 - No `WEBFLOW` / `OBSIDIAN` surface vocabulary left in the advisor scorer, plugin, tool schemas or their tests.
@@ -184,7 +184,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 |------|------|--------|------------|
 | Dependency | Phase 2 merged | The compiler regeneration would keep the surfaces' signals, and the plugin would drop a hint the hub still declares | Do not start until `002-hub-surface-removal` is on `main`; T002 proves both surface folders are absent |
 | Dependency | Local advisor database | `advisor-surface-hint.vitest.ts` reads it; a fresh worktree has none, and that file fails for an unrelated reason | Build it first with `advisor_rebuild --trusted --force true`; it is gitignored, so it never enters a commit |
-| Dependency | `SPECKIT_PRIVATE_SKILL_ROOTS` | A private repository linked from outside the checkout is invisible to the advisor until the operator names its root | Record the constraint for phase 4; a real folder under `.skilled/skills/local-*` needs no variable |
+| Dependency | `SPECKIT_PRIVATE_SKILL_ROOTS` | An external repository linked from outside the checkout is invisible to the advisor until the operator names its root | Record the constraint for phase 4, which links two external repositories and lists both `local-skills/` parents |
 | Risk | Removing the `obsidian plugin` hint moves a score | Low | The hub no longer declares that phrase, so the hint can only hand `sk-code` a phrase no surface owns; the scorer suites prove nothing else moved |
 | Risk | A symlink scan recurses somewhere it should not | Medium | The new condition is top-level only (`currentDir === skillDir` in the graph scan, a depth-1 filter in the signature), so no nested `local-*` name changes behavior |
 | Risk | A symlink whose target is missing or outside every trusted root | Low | `realpathSync` throws or containment fails, and the entry is simply absent rather than failing the scan |
@@ -263,7 +263,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 | R-002 | Phase 2 has not landed when the compiler runs | H | L | T002 stops unless both surface folders are absent, and T050 rejects any diff beyond the expected fields |
 | R-003 | The local advisor database is absent | M | H | T001 rebuilds it before the first suite runs; it is gitignored |
 | R-004 | The regenerated graph drops more than the sk-code signals | M | M | T050 inspects the diff and stops on any `mcp-tooling` change |
-| R-005 | The operator links an external private repository without naming its root | M | M | The phase records the `SPECKIT_PRIVATE_SKILL_ROOTS` constraint; a real folder needs no variable |
+| R-005 | The operator links an external repository without naming its root | M | M | The phase records the `SPECKIT_PRIVATE_SKILL_ROOTS` constraint; phase 4 lists both external roots |
 | R-006 | The Python conflict reader's inclusion is changed by accident | M | L | T034 pins the intended treatment with a test and ADR-002 records the choice |
 | R-007 | A skip is applied at every depth instead of the top level | M | L | Each skip uses the root listing or `current === directory`; AC-007 to AC-009 assert the top-level case only |
 | R-008 | The plugin suite count drifts because a row was deleted twice | L | M | T038 states the exact before and after counts (94 to 91) |
@@ -297,7 +297,7 @@ After this phase the advisor speaks only about the surface that still ships, and
 ## 12. OPEN QUESTIONS
 
 - No question is open. D1 through D7 in the parent packet fix every decision this phase would otherwise have to make.
-- **Inter-phase constraint for phase 4.** A symlink whose target lives outside the checkout is followed only when the operator lists that target's root in `SPECKIT_PRIVATE_SKILL_ROOTS`. A real folder at `.skilled/skills/local-*`, or a link to a folder inside the skills root, needs no variable. Phase 4 must record which mode it used.
+- **Inter-phase constraint for phase 4.** Phase 4 uses symlinks whose targets live outside the checkout, so it lists both target roots in `SPECKIT_PRIVATE_SKILL_ROOTS`; a symlink is followed only when its realpath is inside one of those roots. The variable must be set for every advisor process, CLI, plugin and hook alike.
 - **Corrected during the Level 3 rewrite.** The Python conflict-declaration reader starts at `skill_advisor.py:1250` and its `os.scandir` call sits at line 1266; the Level 2 draft and the research synthesis cited line 1265. `ci-leaf-manifest-freshness.cjs` finds manifests at line 103, not line 81, which is the start of `findManifestDirs`. The phase touches seven scans, not six: the Python conflict reader was missing from the inventory. A fourth Python reader, `_load_source_graph_signal_map` at line 1205 with its `os.scandir` at line 1211, already includes a `local-*` entry and writes no tracked file; it is screened with no change and is not counted among the seven. AC-001's sweep returns three `webflow cms` lines after the phase, not the four the draft implied, and `skill_advisor.py:2181` is outside that sweep's path list. The plugin test fixture targets sit at lines 356, 377 and 403, unchanged. The changed-file count is 23, not 22.
 <!-- /ANCHOR:questions -->
 

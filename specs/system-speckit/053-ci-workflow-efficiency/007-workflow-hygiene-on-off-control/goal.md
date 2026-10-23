@@ -16,7 +16,6 @@ _memory:
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers:
-      - "D6 is unanswered; the default is 10 minutes"
       - "003, 004, 005 and 006 have not landed"
       - "No fork is recorded for the switch probe"
     key_files:
@@ -52,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| G1 | Every timeout value is the `final` cell of that job's row in `scratch/r24/timeouts.md`, computed with D6's floor; the 10-minute default is the recommended default pending operator D6, and no value is copied from a sibling job or from this plan. |
+| G1 | Every timeout value is the `final` cell of that job's row in `scratch/r24/timeouts.md`, computed with D6's floor; the 10-minute default is the recommended default `D6=10` (operator, 2026-10-23), and no value is copied from a sibling job or from this plan. |
 | G2 | The passes run R25, then R24, then R26, so the job graph stops moving before anything is sized or gated. |
 | G3 | A switch on a job that already has a condition is ANDed on with both sides parenthesised; the original expression survives as the last conjunct. |
 | G4 | `dependabot-auto-merge.yml` is two jobs: `metadata` runs `dependabot/fetch-metadata` read-only, `auto-merge` holds both write scopes, runs only `gh pr merge`, and keeps the existing check name. |
@@ -89,7 +88,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Plan authored | Done | `spec.md` (REQ-001 to REQ-013), `plan.md` (L3 dependency graph, critical path, milestones and ADR index), `tasks.md` (T001 to T102), `acceptance-criteria.md` (AC-001 to AC-013), `decision-record.md` (ADR-001 to ADR-010) |
-| D6 | Pending | `scratch/decisions.md` is not written; the default is 10 minutes |
+| D6 | Done | `D6=10` (operator, 2026-10-23) recorded in `scratch/decisions.md` |
 | Permissions pass | Pending | Twelve workflow files still declare no `permissions:` block |
 | Timeout pass | Pending | No sample is taken and no value is written |
 | Switch pass | Pending | No job carries a `vars.SKILLED_CI` line |

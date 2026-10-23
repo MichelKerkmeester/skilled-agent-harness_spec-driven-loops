@@ -54,13 +54,13 @@ Every task below names one file, quotes the anchor text it edits, gives that anc
 
 ### T001 DECISION D6 (operator yes required) - approve or change the timeout floor (AC-010)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the `D6=` line.
 
 Default: `10` minutes. It is what `max(10, ceil(3 x job p50), ceil(2 x job p100))` uses, it caps a hang at 10 minutes instead of 360, and it is the value `006-sk-code-ci-surface`'s rule data names as the default.
 
 Alternative: `5` minutes. It detects a hang sooner and doubles the chance of killing a legitimately slow job; it is applied uniformly, never per job.
 
-Change: put the question to the operator, then write exactly one line to the new file: `D6=10` or `D6=5`.
+Change: the operator answered `D6=10` on 2026-10-23 and the file already holds that answer, so this task only runs its existing check; do not re-ask and do not rewrite the file.
 
 Check:
 
@@ -73,7 +73,7 @@ Expected: `1`.
 
 Rollback: delete the `D6=` line.
 
-Stop and escalate if: no answer arrives, or the answer is neither `5` nor `10`.
+Stop and escalate if: the `D6=` line is absent, or its value is neither `5` nor `10`.
 
 ---
 

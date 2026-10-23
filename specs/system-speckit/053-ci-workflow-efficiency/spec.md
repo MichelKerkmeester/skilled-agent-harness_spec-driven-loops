@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-10-23T08:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Planned phases 002-009 from the final review"
-    next_safe_action: "Operator decides D1, then implement 002-rebuild-fanout-removal"
+    next_safe_action: "D1-D7, D9 and D10 are recorded; next step is 002-rebuild-fanout-removal T002"
     blockers: []
     key_files:
       - "001-research/research/research.md"
@@ -164,18 +164,18 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 
 ### Operator Decisions
 
-| Decision | Phase folder | Recommended default |
-|----------|--------------|---------------------|
-| D1: how rebuild commits skip CI | 002-rebuild-fanout-removal | Option A, a `[skip ci]` token in the rebuild commit body; R1's acceptance check proves it on the first three rebuilds |
-| D2: cancel-in-progress on main | 003-trigger-and-job-hygiene | Pull requests only; on main it reclaims about 89 wall-min per window after R1 and costs per-commit verdicts |
-| D3: command-tree-parity path filter | 003-trigger-and-job-hygiene | Approve R4, worth about 123 runner-min/day after R1 |
-| D4: dispatch-enforcement-guard shape | 003-trigger-and-job-hygiene | Keep the two jobs and delete the duplicate `dispatch-audit` step, because the guard is protected and merging renames its checks |
-| D5: the hooks-node-tests merge renames a check | 004-setup-caching-provisioning | Approve the R15 merge and the renamed `plugin-and-hook-tests` check |
-| D6: timeout floor | 007-workflow-hygiene-on-off-control | 10 minutes, applied uniformly rather than per job |
-| D7: deep-loop-runtime `fetch-depth: 2` | 003-trigger-and-job-hygiene | Depth 2, because the mode-event suites need only the parent commit |
-| D8: job consolidation after re-measurement | 008-consolidation-decision | No merge; the decision record carries the numbers either way |
-| D9: `/doctor:ci` toggle writes variables or prints the command | 009-doctor-ci-review-wiring | Write when the R28 probe exits 0; otherwise print the command |
-| D10: changed-packet-validation filter | 003-trigger-and-job-hygiene | Skip it, because 33 of 38 human pushes touch `specs/` and it is worth about 10 runner-min/day |
+| Decision | Phase folder | Status / recorded answer (2026-10-23) |
+|----------|--------------|--------------------------------------|
+| D1: how rebuild commits skip CI | 002-rebuild-fanout-removal | A: `[skip ci]` token |
+| D2: cancel-in-progress on main | 003-trigger-and-job-hygiene | Pull requests only |
+| D3: command-tree-parity path filter | 003-trigger-and-job-hygiene | Approve R4 |
+| D4: dispatch-enforcement-guard shape | 003-trigger-and-job-hygiene | Drop only the duplicate step |
+| D5: the hooks-node-tests merge renames a check | 004-setup-caching-provisioning | Approve the merge |
+| D6: timeout floor | 007-workflow-hygiene-on-off-control | 10 minutes |
+| D7: deep-loop-runtime `fetch-depth: 2` | 003-trigger-and-job-hygiene | Depth 2 |
+| D8: job consolidation after re-measurement | 008-consolidation-decision | Pending: default no merge, asked in 008 with measured numbers |
+| D9: `/doctor:ci` toggle writes variables or prints the command | 009-doctor-ci-review-wiring | Probe pre-approved; R28 outcome decides write or print |
+| D10: changed-packet-validation filter | 003-trigger-and-job-hygiene | Skip |
 <!-- /ANCHOR:phase-map -->
 
 ---

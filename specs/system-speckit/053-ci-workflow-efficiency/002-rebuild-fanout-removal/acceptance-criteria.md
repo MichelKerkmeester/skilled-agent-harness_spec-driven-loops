@@ -12,9 +12,7 @@ _memory:
     last_updated_at: "2026-10-23T10:40:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Refreshed the acceptance criteria with R-id traces and expected results"
-    next_safe_action: "Answer decision D1, then run the phase's tasks"
-    blockers:
-      - "D1 unanswered"
+    next_safe_action: "Decisions answered; start at T002, the first non-decision task, then run the phase's tasks"
     key_files:
       - "spec.md"
       - "plan.md"

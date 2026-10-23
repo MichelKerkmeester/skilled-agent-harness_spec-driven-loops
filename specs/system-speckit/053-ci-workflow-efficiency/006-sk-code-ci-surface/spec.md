@@ -36,7 +36,7 @@ The 33 GitHub Actions workflows follow a set of rules that exist mostly in prose
 | **Priority** | P2 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 9 |
 | **Predecessor** | 004-setup-caching-provisioning (with 002-rebuild-fanout-removal) |
@@ -59,7 +59,7 @@ This is **Phase 6** of the CI efficiency implementation phases specification. It
 - `specs/sk-code/013-private-surface-skills/002-hub-surface-removal`: it removes `sk-code-webflow` and `sk-code-obsidian` from `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture. Both phases edit the same files, so the ordering is named in §6 and handled by T003, T004, T020 to T052, T064 and T067.
 - `gh` authenticated with `repo`, only for reading the ruleset that makes message-contract's context required; the phase itself makes no state-changing call.
 
-The concurrency template's main-branch value is not a phase dependency. It records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` as the recommended PR-only default until D2 is answered, and names `cancel-in-progress: true` on main as the alternative in one line.
+The concurrency template's main-branch value is not a phase dependency. It records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` as D2's recorded PR-only answer (2026-10-23), and names `cancel-in-progress: true` on main as the alternative in one line.
 
 **Deliverables**:
 - `.skilled/skills/sk-code/sk-code-ci/`: `SKILL.md`, `README.md`, `changelog/v0.1.0.0.md`, four `references/` documents, two `assets/` templates and three workflow-doctrine symlinks.
@@ -338,7 +338,7 @@ R22 saves 0 runner-minutes standalone and 0 after R1: it changes no workflow's t
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-None. This phase makes no operator decision. D1 is read from `002-rebuild-fanout-removal`'s `### Implementation Notes`. D2 is an operator decision in the parent spec, and this phase does not wait for its answer; the concurrency template records the recommended PR-only default until D2 lands. The `013-private-surface-skills/002-hub-surface-removal` ordering is a known risk with a recorded pre-phase snapshot, not an open question. The one question this phase cannot answer alone — whether `/doctor:ci report` reads the exception label — belongs to `009-doctor-ci-review-wiring`, and its acceptance criterion names that read.
+None. This phase makes no operator decision. D1 is read from `002-rebuild-fanout-removal`'s `### Implementation Notes`. D2 is an operator decision in the parent spec, recorded as `pr-only` on 2026-10-23; the concurrency template records that value. The `013-private-surface-skills/002-hub-surface-removal` ordering is a known risk with a recorded pre-phase snapshot, not an open question. The one question this phase cannot answer alone — whether `/doctor:ci report` reads the exception label — belongs to `009-doctor-ci-review-wiring`, and its acceptance criterion names that read.
 <!-- /ANCHOR:questions -->
 
 ---

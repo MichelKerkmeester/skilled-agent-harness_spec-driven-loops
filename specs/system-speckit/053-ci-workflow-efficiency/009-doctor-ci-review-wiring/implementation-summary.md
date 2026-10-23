@@ -11,9 +11,8 @@ _memory:
     last_updated_at: "2026-10-23T15:55:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded the planned state and the artifact that will carry the change"
-    next_safe_action: "Execute T001 after the operator answers the R28 probe"
+    next_safe_action: "Execute T001; the R28 probe is pre-approved"
     blockers:
-      - "D9 unanswered"
       - "006-sk-code-ci-surface pending"
       - "007-workflow-hygiene-on-off-control pending"
     key_files:

@@ -65,7 +65,7 @@ The shipped `sk-code` hub carries two surface packets, `sk-code-webflow` (161 tr
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: remove both packets from the tracked tree with `git rm -r`, leaving the content reachable at `42b41dd286`, and let phase 4 rebuild them as ignored private skills.
+**We chose**: remove both packets from the tracked tree with `git rm -r`, leaving the content reachable at `42b41dd286`, and let phase 4 rebuild them as ignored symlinked private skills.
 
 **How it works**: `git rm -r` records the deletion in the index, so the files survive in history and `git checkout 42b41dd286 -- <path>` restores any of them. Every registry, router, manifest and consumer that named the packets is stripped in the same phase, so the tracked tree never advertises a packet it does not ship.
 <!-- /ANCHOR:adr-001-decision -->
@@ -603,7 +603,7 @@ Five artifacts have a generator inside the repository: `leaf-manifest.json`, the
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | CI fails after the push and the index keeps the surface hits | M | Phase 5 owns the rebuild proof and reports a failed run |
-| A developer reruns the drift scripts locally and they see an ignored `local-*` root | L | Phase 5 owns that drift check; phase 4 creates the private roots |
+| A developer reruns the drift scripts locally and they see an ignored `local-*` root | L | Phase 5 owns that drift check; phase 4 creates both symlinked private skills |
 <!-- /ANCHOR:adr-006-consequences -->
 
 ---

@@ -24,7 +24,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Do the three drift scripts pass once both private roots exist? Recorded in 13-drift.md, not decided here."
+      - "Do the three drift scripts pass once both symlinked private skills exist? Recorded in 13-drift.md, not decided here."
       - "Does the operator want a history rewrite after this phase? ADR-005 leaves it open."
     answered_questions: []
 ---
@@ -67,7 +67,7 @@ The question this phase answers is whether the two surfaces left the artifact ot
 
 **We chose**: treat a fresh `git clone --no-local` of `origin/main` as the authority for every path, content, blob and artifact check.
 
-**How it works**: the packet's planning commit is already on `origin/main`, so the phase pushes only its evidence commits, clones the public URL into `/tmp/psurf-clone-main`, and runs every sweep there. The operator checkout supplies only what the clone cannot: the private files to hash and the routing probes that need them on disk.
+**How it works**: the packet's planning commit is already on `origin/main`, so the phase pushes only its evidence commits, clones the public URL into `/tmp/psurf-clone-main`, and runs every sweep there. The operator checkout supplies only what the clone cannot: the private trees to hash through their symlinks and the routing probes that need both external roots exported.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -267,7 +267,7 @@ The packet's sweeps search for four names and two uppercase tokens. A private fi
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: hash every complete file under the two private roots, classify the ids against the removal commit before comparing them with the clone, record the ids that were already public in history, and assert only that new or changed content is absent. Partial content is covered by the marker and token sweeps instead.
+**We chose**: hash every complete file under both private skill trees, classify the ids against the removal commit before comparing them with the clone, record the ids that were already public in history, and assert only that new or changed content is absent. Partial content is covered by the marker and token sweeps instead.
 
 **How it works**: `git hash-object --no-filters` over the 228 files produces the private id set; `git ls-tree -r 42b41dd286` over the two archived packets produces the 223-id base set. `comm -12` splits the private ids into the ones the base set already carries, which are recorded as already public in history and feed the history-rewrite decision, and the new or changed rest once the three hub references copied from `shared/references/` are set aside. `git cat-file --batch-all-objects --batch-check` over the clone produces every reachable blob id, and `comm -12` between that dump and the new-or-changed set must be empty. The same intersection with the whole private set must be at least one, which proves the comparison can detect a match; a zero there means the object dump is empty rather than clean.
 <!-- /ANCHOR:adr-003-decision -->
@@ -354,11 +354,11 @@ The packet's sweeps search for four names and two uppercase tokens. A private fi
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-Two checkouts route work through this hub. The operator checkout holds the private skills. The Obsidian Plugin checkout at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin` symlinks `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes`, `.opencode`, `.pi` and `.skilled` back into the same tree, which the surface README documents at line 75 and the hub's own stack-detection guide at line 67. The writer worktree holds neither private skill, so a probe there returns a hub skill and proves nothing.
+Two checkouts route work through this hub. The operator checkout holds two symlinks to `local-skills/` folders in two external repositories: `local-obsidian` in a public repository by operator choice and `local-webflow` in a private one. The Obsidian Plugin checkout at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin` symlinks `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes`, `.opencode`, `.pi` and `.skilled` back into the same tree, which the surface README documents at line 75 and the hub's own stack-detection guide at line 67. The writer worktree holds neither symlink, so a probe there returns a hub skill and proves nothing.
 
 ### Constraints
 
-- The private skills are gitignored and exist on one disk, so a probe must run where they are.
+- The private skills are gitignored symlinks whose targets sit in two external repositories, so a probe must run where both the symlinks and the two `local-skills/` roots are visible, with `SPECKIT_PRIVATE_SKILL_ROOTS` set for the advisor process.
 - The plugin checkout's path is an operator-machine fact, not a tracked one, so the phase must locate it and stop if it is gone.
 - A probe result depends on a fresh graph, because the daemon can serve a cached one.
 <!-- /ANCHOR:adr-004-context -->

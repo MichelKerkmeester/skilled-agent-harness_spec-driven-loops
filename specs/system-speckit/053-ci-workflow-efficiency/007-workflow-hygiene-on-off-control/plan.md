@@ -103,7 +103,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Implementation Notes
 
-- **D6 is the only operator decision, and its default is 10 minutes.** A lower floor tightens hang detection and raises the false-kill risk (`final-review.md:619`). The alternative, 5 minutes, is applied uniformly if the operator chooses it, never per job. T001 records the answer as one `D6=<n>` line in `scratch/decisions.md` before the first timeout is written, because changing the floor afterwards means re-deriving every value. The answer lives in the phase's scratch record, not in this plan, so the plan stays a plan and the record stays evidence.
+- **D6 is the only operator decision, and it is recorded as 10 minutes.** A lower floor tightens hang detection and raises the false-kill risk (`final-review.md:619`). The alternative, 5 minutes, would be applied uniformly if the operator ever chose it, never per job. The operator answered `D6=10` on 2026-10-23; T001 only verifies the one `D6=<n>` line in `scratch/decisions.md` before the first timeout is written, because changing the floor afterwards means re-deriving every value. The answer lives in the phase's scratch record, not in this plan, so the plan stays a plan and the record stays evidence.
 - **Internal order is R25, then R24, then R26.** The review numbers them R24, R25, R26, but the build order follows the job graph rather than the numbering: R25's split creates a job, R24 must size that job, and R26 must leave it alone. Sizing first would leave the new job uncovered, and switching first would put a line above every `runs-on:` that the timeout pass then has to step over.
 - **The timeout key sits after `runs-on:`, not before it.** All seven existing `timeout-minutes` lines in the tree sit on the line after `runs-on: ubuntu-latest` (`opencode-dual-version.yml:73-74`, `deep-loop-runtime.yml:35-36`, `hooks-node-tests.yml:45-46`, `opencode-plugin-tests.yml:53-54`, `skill-advisor-stress.yml:42-43`, `sk-doc-rename-harness.yml:30-31`), so the phase copies that position. The switch is inserted above `runs-on:` instead, which is where a job condition conventionally sits, so the two passes never contend for the same line.
 - **The six remaining timeout values are re-sized, not trusted.** `004` deletes `hooks-node-tests.yml`, which removes the seventh line, and raises `opencode-plugin-tests.yml` to 40. The six that survive are `opencode-dual-version.yml:74,172`, `deep-loop-runtime.yml:36`, `opencode-plugin-tests.yml:54`, `skill-advisor-stress.yml:43` and `sk-doc-rename-harness.yml:31`. Each is replaced by its table's final value whether or not it differs, so the tree and the table cannot disagree; the table records the old and the new value so a reader can see the comparison happened.
@@ -149,7 +149,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | `005-slow-and-failing-tests` | Internal | Pending | `deep-loop-runtime` and `spec-kit-check` durations are unsettled; sampling before it lands sizes the old shape |
 | `006-sk-code-ci-surface` | Internal | Pending | The rule text this phase applies does not exist; the formula and shape are still fixed by the review |
 | `002-rebuild-fanout-removal` baseline | Internal | Yellow until 002 lands | The saving arithmetic is unanchored; the phase's own criteria do not depend on it |
-| Operator decision D6 | Internal | Yellow until answered | No timeout may be written; the 10-minute floor is planned |
+| Operator decision D6 | Internal | Green | D6=10 (2026-10-23); T001 only verifies `scratch/decisions.md`; the recorded 10-minute floor is applied to every job |
 | `gh` with `repo` and `actions` scopes | External | Green | No sample and no probe; the phase cannot close |
 | A fork or throwaway test repository | External | Yellow | R26's behavioural proof cannot run; AC-008 stays `Unmet` |
 | `009-doctor-ci-review-wiring` | Internal | Blocked on this phase | It reads the six variable names; a rename here breaks its report |
@@ -264,7 +264,7 @@ Setup (inventory, D6, groups, fork) ──► R25 permissions + split ──► 
 4. **T062 to T098 - the switch pass, the three ANDed conditions and the README** - 2 hours - CRITICAL, because the fork probe and the closure both read them.
 5. **T099 to T102 - the fork probe, the 24 h kill read, the gates and the closure commit** - 1 hour, plus the wait for a Dependabot pull request - CRITICAL, because a green gate is the only closure evidence.
 
-**Total Critical Path**: 9 hours, plus operator latency on D6 and the wait for a Dependabot pull request.
+**Total Critical Path**: 9 hours, plus the wait for a Dependabot pull request.
 
 **Parallel Opportunities**:
 - T004 (the group assignment) and T005 (the constraints record) can run beside T002 once T003 has read the tree.

@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-23T13:40:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded the planned scope and the not-built state"
-    next_safe_action: "Answer D5, then run tasks.md from T002"
+    next_safe_action: "D5 is answered; run tasks.md from T002"
     blockers: []
     key_files:
       - "spec.md"
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing. This packet is a plan, and no file under `.github/` has changed. The plan is carried by `spec.md` (REQ-001 to REQ-013), `plan.md` (the L3 dependency graph, critical path, milestones and AI execution framework), `tasks.md` (T001 to T074), `acceptance-criteria.md` (AC-001 to AC-017), `decision-record.md` (ADR-001 to ADR-011) and `goal.md`.
+Nothing. This packet is a plan, and no file under `.github/` has changed. The plan is carried by `spec.md` (REQ-001 to REQ-013), `plan.md` (the L3 dependency graph, critical path, milestones and AI execution framework), `tasks.md` (82 tasks: T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G), `acceptance-criteria.md` (AC-001 to AC-017), `decision-record.md` (ADR-001 to ADR-011) and `goal.md`.
 
 ### Phase 4: setup-caching-provisioning
 
@@ -79,7 +79,7 @@ When it is built, `.github/actions/setup/action.yml` restores a cache, sets up b
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Planned in three tiers, in `tasks.md`: the D5 answer, the baseline rows and the pre-change inventory (T001 to T003); the gate scan and its four fixtures, the cache probe and the action (T004 to T014A); the five adoptions with the cold path, the merge, the install substitutions, the pip cache and the checkout trial (T015 to T070); then the whole-tree gates and the 24 h delta (T071 to T074). The gates are `bash .github/scripts/check-gate-inputs.sh`, its fixture suite, the YAML parse of every workflow and the action, and one cold dispatch run beside one warm run.
+Planned as 82 tasks (T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G), in three tiers, in `tasks.md`: the D5 answer, the baseline rows and the pre-change inventory (T001 to T003); the gate scan and its four fixtures, the cache probe and the action (T004 to T014A); the five adoptions with the cold path, the merge, the install substitutions, the pip cache and the checkout trial (T015 to T070); then the whole-tree gates and the 24 h delta (T071 to T074). The gates are `bash .github/scripts/check-gate-inputs.sh`, its fixture suite, the YAML parse of every workflow and the action, and one cold dispatch run beside one warm run.
 <!-- /ANCHOR:how-delivered -->
 
 ---

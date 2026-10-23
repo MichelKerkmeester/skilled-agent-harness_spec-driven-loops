@@ -32,7 +32,7 @@ Nothing in this repository stops a private `local-*` skill from being committed.
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-10-23 |
-| **Branch** | `deepseekpi` |
+| **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 5 |
 | **Predecessor** | None |
@@ -45,7 +45,7 @@ Nothing in this repository stops a private `local-*` skill from being committed.
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor routes specification.
+This is **Phase 1** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* skills that this checkout links to but never tracks, routed only by the operator's local advisor specification.
 
 **Scope Boundary**: Only three tracked files change: the root `.gitignore`, `.skilled/scripts/git-hooks/pre-commit` and `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`. This phase creates no skill folder, deletes no skill folder, touches no advisor code, regenerates no generated data and writes no private content. It only makes the private paths unstageable and refuses a staged one, so that the later phases have somewhere safe to write.
 
@@ -93,7 +93,7 @@ Make a private `local-*` skill impossible to stage by accident and impossible to
 - No `lib/gates.tsv` row and no `SPECKIT_SKIP_*` variable for the new guard - a bypass would defeat its only purpose.
 - No content-based detection. The guard matches the staged path name, so a private skill copied to a non-local name passes it; that limit is recorded in ADR-003 and covered by the blob comparison in phase 5, not by a manifest this phase would have to invent.
 - No history scrub. Removed content stays in git history; scrubbing it with filter-repo plus a force push is an optional operator decision, recorded as D7 and deliberately not taken.
-- No private skill content, no private repo link and no symlink creation beyond the disposable probe a single proof command makes and removes.
+- No private skill content, no link to an external repository and no symlink creation beyond the disposable probe a single proof command makes and removes.
 
 ### Files to Change
 
@@ -159,7 +159,7 @@ The pattern is anchored at the repository root and matches a `local-*` directory
 |------|------|--------|------------|
 | Dependency | The hook runs under `/bin/bash` 3.2 on macOS | A bash 4 idiom fails at commit time, not at review time | Every construct used is verified on 3.2: `[[ "${#ARR[@]}" -gt 0 ]]` on an empty array, `read -d ''`, and `=~` with an unquoted pattern variable |
 | Dependency | The installed hook is a symlink into the source tree, and in this worktree it is `SHADOWED` | A commit made here does not exercise the edit, so a green local commit proves nothing about the installed gate | Prove the guard with the harness and the throwaway-repo probe; after merge the main checkout's file carries the guard |
-| Risk | A trailing slash in the ignore rule | The rule silently misses a symlinked skill, which is the shape phase 4 may use | REQ-001 forbids the slash and AC-002 proves it with a real symlink |
+| Risk | A trailing slash in the ignore rule | The rule silently misses a symlinked skill, which is the shape phase 4 uses | REQ-001 forbids the slash and AC-002 proves it with a real symlink |
 | Risk | The guard blocks a legitimate path | Every commit in the repository becomes blocked | The pattern only matches a `local-*` directory directly under a skill root; AC-006 pins the false-positive boundary |
 | Risk | A commit made with `git commit --no-verify` publishes the skill anyway | Private content reaches the public repository | Recorded limit, REQ-005; the fresh-clone check in 005 is the backstop that catches it |
 | Risk | An operator turns every commit gate off through the shared kill switch | The guard does not run | The kill switch is repository-wide, not a per-gate bypass, and 005's fresh-clone check covers the result; this phase neither adds nor removes the switch |

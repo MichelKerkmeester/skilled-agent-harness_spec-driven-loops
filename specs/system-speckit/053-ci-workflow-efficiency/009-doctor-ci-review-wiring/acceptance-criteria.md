@@ -13,9 +13,8 @@ _memory:
     last_updated_at: "2026-10-23T15:45:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Refreshed the criteria with an R-id trace and a concrete check per row"
-    next_safe_action: "Answer D9 with the R28 probe, then build the command and the CI surface value"
+    next_safe_action: "The R28 probe is pre-approved; run it, then build the command and the CI surface value"
     blockers:
-      - "D9 unanswered"
       - "006-sk-code-ci-surface pending"
       - "007-workflow-hygiene-on-off-control pending"
     key_files:

@@ -188,7 +188,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | `006-sk-code-ci-surface` | Internal | Pending | No templates, no protected set and no rule index; the scaffold and the drift half of the report are blocked |
 | `007-workflow-hygiene-on-off-control` | Internal | Pending | No switch line, no six names and no README section; the report shows `switch: missing` and the switch-state criterion stays `Unmet` |
 | `002-rebuild-fanout-removal` | Internal | Pending | N17 is the condition the resolution handles; the report resolves the newest non-rebuild SHA before and after R1, so this dependency does not block the phase |
-| Operator decision D9 | Internal | Yellow until answered | The toggle route cannot be written; the R28 probe is the first task and needs an explicit yes |
+| Operator decision D9 | Internal | Yellow until the R28 probe runs | The probe is pre-approved (scratch/r28-probe-approval.md); T001 runs it first, and its outcome writes the D9 line the toggle route reads |
 | `gh` with `repo` and `workflow` scopes | External | Green | `gh variable list --json name,value` exits 0 with the scopes `gist, read:org, repo, workflow` and `viewerPermission: ADMIN`; without it the report degrades to `unknown` and the probe cannot run |
 | `.skilled` and advisor runtime installs | External | Yellow until installed | `derive-command-bridges.cjs` cannot parse the manifest and `doctor-phrase-reach.cjs` cannot load the built scorer; T002 installs and builds both |
 | `008-consolidation-decision` | Internal | Not a hard dependency | Phase order only; no file this phase reads is written by 008 |

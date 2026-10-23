@@ -39,13 +39,13 @@ Line numbers are the values on disk when that task runs, after the tasks before 
 
 ### T001 DECISION D5 (operator yes required) - approve or reject the hook-and-plugin merge (AC-015)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: `approve`. One workflow, one job titled `OpenCode plugin and hook node:test suites`, worth 124 runner-min/day standalone, about 53 after R1 and about 27 after R1 and R14. No required check is renamed, because the only active ruleset requires `message-contract.yml`'s context.
 
 Alternative: `reject`. Both workflows stay, T030 to T041 do not run, and the phase keeps the R14 action call in each file.
 
-Change: put the question to the operator, then write exactly one line to the new file: `D5=approve` or `D5=reject`.
+Change: the operator answered `D5=approve` on 2026-10-23 and the file already holds that answer, so this task only runs its existing check; do not re-ask and do not rewrite the file.
 
 Check:
 
@@ -3043,7 +3043,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-013, tasks.md T001 to T074, acceptance-criteria.md AC-001 to AC-017
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-013, tasks.md 82 tasks: T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G, acceptance-criteria.md AC-001 to AC-017
 - [ ] CHK-041 [P1] Code comments adequate - the action's description says the cache only shortens the work, and the merged workflow keeps both original rationale comments
 - [ ] CHK-042 [P2] README updated - `.github/workflows/README.md:37,42,69` (T039, T040)
 <!-- /ANCHOR:docs -->

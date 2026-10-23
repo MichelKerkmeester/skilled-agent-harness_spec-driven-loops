@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 4: private-local-skills"
-description: "The Webflow and Obsidian surfaces leave the shipped sk-code hub, but the operator still needs their evidence. This phase restores both trees from history into two gitignored local-* skills that only the operator's advisor routes, with no tracked file and no staged path."
+description: "The Webflow and Obsidian surfaces leave the shipped sk-code hub, but the operator still needs their evidence. This phase restores both trees into two external repositories under each repository's local-skills directory and links them as gitignored local-* skills, with no tracked file and no staged path in this checkout."
 trigger_phrases:
   - "private local skills"
   - "phase 4 private local skills"
@@ -17,15 +17,17 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## EXECUTIVE SUMMARY
 
-This phase restores the two removed evidence surfaces as gitignored skills at
-`.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, makes each one standalone, and
+This phase restores the two removed evidence surfaces as gitignored symlinks at
+`.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, pointing into two external
+repositories, makes each tree standalone, and
 gives each a skill-root `graph-metadata.json` so the operator's advisor can route it. It writes nothing
-tracked: both trees are ignored, the only commit carries this phase's documents, and the evidence is
-recorded as paths and counts.
+tracked in this checkout: both links are ignored, the only commit here carries this phase's documents,
+and each target repository gets its own commit that stages only `local-skills/<name>`.
 
-**Key Decisions**: the folder mode is one operator decision recorded in ADR-001; the restore is pinned
-to `42b41dd286`; the six workflow references become real copies written from that commit; phase 004
-starts only after phase 003's `local-*` compiler skip is on `main`.
+**Key Decisions**: ADR-001 records the operator's answer - symlink mode with two external repositories,
+one per skill, with the Obsidian repository public by operator choice and the Webflow repository private;
+the restore is pinned to `42b41dd286`; the six workflow references become real copies written from that
+commit; phase 004 starts only after phase 003's `local-*` compiler skip is on `main`.
 
 **Critical Dependencies**: phase 003's compiler skip on `origin/main`, phase 1's `local-*` ignore rules,
 and commit `42b41dd286` in the local object database.
@@ -40,12 +42,12 @@ and commit `42b41dd286` in the local object database.
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/215-private-surface-level3-plans` |
+| **Branch** | The checked-out branch, pushed with `git push origin HEAD:main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 5 |
 | **Predecessor** | 003-advisor-vocabulary-cleanup |
 | **Successor** | 005-leak-and-routing-verification |
-| **Handoff Criteria** | Both `local-*` skills exist at their decided path, every relative link resolves, each carries one skill-root `graph-metadata.json`, `git status --porcelain .skilled` is empty, `git diff --cached --name-only` is empty, and `validate.sh --strict` on this child prints `RESULT: PASSED` |
+| **Handoff Criteria** | Both `local-*` links resolve into their own repository's `local-skills/` directory, every relative link resolves, each carries one skill-root `graph-metadata.json`, both target-repository commits hold only their own skill, `git status --porcelain .skilled` is empty here, `git diff --cached --name-only` is empty here, `SPECKIT_PRIVATE_SKILL_ROOTS` holds both roots, and `validate.sh --strict` on this child prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,19 +55,21 @@ and commit `42b41dd286` in the local object database.
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor routes specification.
+This is **Phase 4** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into two gitignored local-* links that point into external repositories and that only the operator's local advisor routes specification.
 
-**Scope Boundary**: In scope are the two gitignored skill trees at `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, plus this child's own documents. No tracked file outside this child changes. The hub tree, the advisor runtime, the commit guard, the trigger index and the Hermes mirror belong to phases 1, 2, 3 and 5.
+**Scope Boundary**: In scope are the two local-* links at `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, their two external target trees, plus this child's own documents. No tracked file outside this child changes. The hub tree, the advisor runtime, the commit guard, the trigger index and the Hermes mirror belong to phases 1, 2, 3 and 5.
 
-**Checkout**: Two checkouts, split by what each one holds. The operator's main checkout, `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, owns the two `local-*` trees and every command that reads them: both trees are gitignored, and ignored files never travel between checkouts, so a tree restored inside a worktree stays in that worktree, invisible to the operator's checkout and to the advisor that serves it. The authoring worktree owns every packet-document edit, including `implementation-summary.md`, because this child's documents exist only there; the evidence is transcribed from readings taken in the operator's checkout, and the phase's single commit and push go through the worktree. No packet document is copied between the two checkouts, and no copy bridge exists or is needed.
+**Checkout**: The run splits by role, not by directory list. The operator's main checkout, `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, owns the two `local-*` links and every command that reads them: both links are gitignored, and ignored links never travel between checkouts, so a link created inside a separate worktree stays in that worktree, invisible to the operator's checkout and to the advisor that serves it. The target bytes live in the two external repositories. The `WORKTREE` checkout owns every packet-document edit, including `implementation-summary.md`: it is `OPERATOR` by default, and when the orchestrator chose a separate worktree the documents exist only there. The evidence is transcribed from readings taken in the operator's checkout and the target repositories, and the phase's single documents commit and push go through `WORKTREE`. No packet document is copied between checkouts, and no copy bridge exists or is needed.
 
 **Dependencies**:
-- `001-ignore-and-commit-guard` must have landed: `/.skilled/skills/local-*` and `/.hermes/skills/local-*` in the root `.gitignore`, and the pre-commit guard that refuses a staged `local-*` path. Without the ignore rules this phase would write tracked files.
-- `003-advisor-vocabulary-cleanup` must have landed: the advisor disk scan and the freshness scan accept a top-level `local-*` entry that is a symlink resolving to a directory, and the skill-graph compiler skips `local-*` before it probes. A real folder works without the symlink support; the symlink mode does not. An external private repository also needs `SPECKIT_PRIVATE_SKILL_ROOTS` set to that root in every advisor process.
+- `001-ignore-and-commit-guard` must have landed: `/.skilled/skills/local-*` and `/.hermes/skills/local-*` in the root `.gitignore`, and the pre-commit guard that refuses a staged `local-*` path. Without the ignore rules the two links would be tracked here.
+- `003-advisor-vocabulary-cleanup` must have landed: the advisor disk scan and the freshness scan accept a top-level `local-*` entry that is a symlink resolving to a directory, and the skill-graph compiler skips `local-*` before it probes. The recorded symlink mode requires that support. The two external roots must also be listed in `SPECKIT_PRIVATE_SKILL_ROOTS`, joined with `:`, in every advisor process.
 - Commit `42b41dd286` must be present in the local object database; it is the restore source and the base commit for every removed file.
 
 **Deliverables**:
-- `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, restored from `42b41dd286`, either as real folders or as symlinks to a private repository the operator owns.
+- `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`, restored from `42b41dd286` into two external repositories under each repository's `local-skills/` directory, then linked to those folders in this checkout and kept gitignored here.
+- Two target-repository commits and two pushes, each staging only `local-skills/<name>` by path and each push gated on an explicit operator yes.
+- A durable `SPECKIT_PRIVATE_SKILL_ROOTS` entry holding both roots, and an explicit two-root export in every advisor probe.
 - Two standalone skill identities: frontmatter `name` equal to the folder name, no `metadata.family`, no `packetKind`, and no prose claiming a parent hub bundles the skill.
 - One skill-root `graph-metadata.json` per skill, so the operator's local advisor can score and return it.
 - A recorded, local-only evidence trail in `implementation-summary.md`.
@@ -83,7 +87,7 @@ This is **Phase 4** of the Move the Webflow and Obsidian surfaces out of the shi
 The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and `.skilled/skills/sk-code/sk-code-obsidian/` (504K), 226 tracked files together. Phases 2 and 3 take them out of the public tree, the public routing vocabulary and the public advisor graph. Removing them without a replacement deletes working knowledge the operator still uses on real Webflow and Obsidian tasks, and the hub's surface framing makes them unusable anywhere else: every internal link is relative to a hub location, three workflow references are symlinks into the hub's shared tier, and the documents describe themselves as read-only evidence a parent hub attaches.
 
 ### Purpose
-Restore both surfaces from git history into two gitignored `local-*` skills that stand alone, so the operator keeps the evidence and the local advisor routes it, while no tracked file, no committed trigger index and no Hermes mirror ever names them again.
+Restore both surfaces from git history into two external repositories and expose them through two gitignored `local-*` links that stand alone, so the operator keeps the evidence and the local advisor routes it, while no tracked file in this checkout, no committed trigger index and no Hermes mirror ever names them again.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -92,12 +96,12 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 ## 3. SCOPE
 
 ### In Scope
-- Restoring both surface trees from commit `42b41dd286` into `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/` inside the operator's main checkout, in one of the two supported folder modes.
+- Restoring both surface trees from commit `42b41dd286` into two external repositories at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian` and `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow`, then linking them as `.skilled/skills/local-*` in the operator's main checkout.
 - Replacing the three `references/workflow-{implement,debug,verify}.md` symlinks in each skill with real file copies, and fixing the guardrail link inside those copies.
 - Rewriting every relative link in both skills that the move would break, so each one resolves to the target it resolved to at `42b41dd286`.
 - Rewriting every absolute `.skilled/skills/sk-code/sk-code-{webflow,obsidian}` path inside both skills to the new location, excluding `changelog/` and `benchmark/reports/`.
 - Turning each tree into a standalone skill: frontmatter identity, no hub-bundling or advisor-invisible prose, one skill-root `graph-metadata.json`.
-- Recording the evidence locally: ignored, unstaged, and summarised in `implementation-summary.md` without private content.
+- Recording the evidence locally: links ignored in this checkout, target trees committed in their own repositories, and a summary in `implementation-summary.md` without private content.
 
 ### Out of Scope
 - The hub tree, its registries, its manifests and its own docs - phase 2 owns every one of them.
@@ -113,13 +117,15 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/local-webflow/**` | Create (ignored) | Webflow evidence restored from `42b41dd286`, then made standalone |
-| `.skilled/skills/local-obsidian/**` | Create (ignored) | Obsidian evidence restored from `42b41dd286`, then made standalone |
+| `.skilled/skills/local-webflow`, `.skilled/skills/local-obsidian` | Create (ignored symlinks) | Links in this checkout to the two external repository targets; both stay gitignored here |
+| `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow/**` | Create (external, committed there) | Webflow evidence restored from `42b41dd286`, then made standalone; the repository is private |
+| `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian/**` | Create (external, committed there) | Obsidian evidence restored from `42b41dd286`, then made standalone; the repository is public by operator choice |
 | `.skilled/skills/local-webflow/graph-metadata.json` | Create (ignored) | Skill-root routing identity for the local advisor |
 | `.skilled/skills/local-obsidian/graph-metadata.json` | Create (ignored) | Skill-root routing identity for the local advisor |
+| `~/.zshrc` | Modify (outside this repository) | One quoted `export SPECKIT_PRIVATE_SKILL_ROOTS="..."` line, appended only after an explicit operator yes |
 | `implementation-summary.md` | Modify | The phase's local-only evidence trail |
 | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` | Modify | This plan and its gates |
-| `decision-record.md` | Modify | Seven decision records, one pending the operator's folder-mode answer |
+| `decision-record.md` | Modify | Seven decision records; ADR-001 records the operator's two-repository symlink answer |
 | `goal.md` | Create | The phase's durable directive and completion criteria |
 <!-- /ANCHOR:scope -->
 
@@ -132,24 +138,27 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | Both trees exist at `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/` in the operator's main checkout, restored from `42b41dd286` by `git archive` piped through `tar --strip-components=4`, in exactly one mode: a real folder, or a symlink to a private repository that holds the restored tree. The mode is the operator's decision and is recorded in `implementation-summary.md`. |
+| REQ-001 | Both trees exist in two external repositories under each repository's `local-skills/` directory - `local-obsidian` at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian` and `local-webflow` at `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow` - restored from `42b41dd286` by `git archive` piped through `tar --strip-components=4`, and both are linked as `.skilled/skills/local-*` in the operator's main checkout. Neither target sits under a repository's `.skilled`, `.opencode` or `.claude` symlink. ADR-001 records the operator's answer. |
 | REQ-002 | In each skill, `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md` are real files with the content of `.skilled/skills/sk-code/shared/references/workflow-*.md` at `42b41dd286`, and the `workflow-guardrails.md` link inside each copy resolves to `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md`. |
 | REQ-003 | Every relative link in both skills resolves to the same target it resolved to at `42b41dd286`. No link that resolved before the move may fail after it, and a link that was already broken stays untouched. |
 | REQ-004 | No file under either skill names `.skilled/skills/sk-code/sk-code-webflow` or `.skilled/skills/sk-code/sk-code-obsidian`, except files under `changelog/` and `benchmark/reports/`. |
 | REQ-005 | Each skill is standalone: `SKILL.md` frontmatter `name` equals the folder name (`local-webflow`, `local-obsidian`), carries no `metadata.family` and no `packetKind`, and neither `SKILL.md` nor `README.md` claims that a parent hub detects, bundles or projects the skill, or that the skill is advisor-invisible. |
 | REQ-006 | Each skill carries exactly one `graph-metadata.json`, at the skill root, with `skill_id` equal to the folder name, a `family` from the advisor's allowlist, non-empty `derived.trigger_phrases`, `key_topics`, `key_files`, `entities` and `source_docs`, and a `derived.causal_summary`. No nested `graph-metadata.json` or `description.json` exists below either skill root. |
-| REQ-007 | Nothing in either skill is tracked or staged: `git status --porcelain .skilled` prints nothing, `git diff --cached --name-only` prints nothing, `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian` reports both paths with the `!!` prefix and nothing else, and `git check-ignore -v` names the phase 1 ignore rule for each path. The two private paths are named explicitly, because a provisioned checkout already carries other ignored state under `.skilled/` and this requirement is about these two paths only. |
+| REQ-007 | In this checkout, nothing under the two symlinks is tracked or staged: `git status --porcelain .skilled` prints nothing, `git diff --cached --name-only` prints nothing, `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian` reports both paths with the `!!` prefix and nothing else, and `git check-ignore -v` names the phase 1 ignore rule for each path. The two target repositories track and commit their own `local-skills/<name>` content separately. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-008 | `implementation-summary.md` records the folder-mode decision, the restore command, the link audit before and after, the ignore evidence and the advisor-scan result, quoting no private file content beyond paths and counts. |
+| REQ-008 | `implementation-summary.md` records the two-repository symlink decision, both restore commands, both target-repository commits, the link audit before and after, the ignore evidence, the two-root environment value and the advisor-scan result, quoting no private file content beyond paths and counts. |
 | REQ-009 | No file inside either skill carries a spec path, a packet number or a phase number in a code comment; the only permitted occurrence is prose inside a document that already carried it at `42b41dd286`. |
 | REQ-010 | This phase does not start until phase 003's `local-*` skip is present in `.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py` on `origin/main` and in the operator's working copy, because that compiler follows a symlink today and would export a private skill into the tracked `skill-graph.json`. |
-| REQ-011 | This phase commits only its own documents, from the authoring worktree, by name, after every check passes, and pushes `HEAD:main` last; no path under `.skilled/skills/local-*` is ever staged. |
+| REQ-011 | This phase commits only its own documents, from the `WORKTREE` checkout, by name, after every check passes, and pushes `HEAD:main` last; no path under `.skilled/skills/local-*` is ever staged. Each target repository gets one commit that stages only `local-skills/<name>` by path and one push, and each push runs only after an explicit operator yes at run time. |
 | REQ-012 | A throwaway advisor database, selected with `SYSTEM_SKILL_ADVISOR_DB_DIR`, holds one `skill_nodes` row for `local-webflow` and one for `local-obsidian`, so the operator's advisor can score both skills. |
-| REQ-013 | One independent read-only review round confirms the phase's checks and records one `PASS` row per check before the documents are committed. |
+| REQ-013 | One independent read-only OpenCode 2 `subagent` review, run with agent `review` or `deep-review`, confirms the phase's checks and records one `PASS` row per check before the documents are committed; the prompt says it edits no file, and the before and after `git status --porcelain` outputs must match. |
+| REQ-014 | `.skilled/skills/local-webflow` and `.skilled/skills/local-obsidian` are symlinks that resolve into their own repository's `local-skills/` directory, and both links stay git-ignored in this checkout under phase 1's rule. |
+| REQ-015 | `SPECKIT_PRIVATE_SKILL_ROOTS` holds both roots joined by `:` for every advisor process. T006b appends one quoted export line to `~/.zshrc` only after an explicit operator yes and proves it with a fresh login shell; every advisor probe in the phase also exports both roots explicitly. |
+| REQ-016 | Each target repository receives one commit that stages only `local-skills/<name>` by path, and one push to `HEAD:main` (or the repository's current branch) that runs only after an explicit operator yes. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -160,10 +169,13 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `git status --porcelain .skilled` is empty and `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian` reports exactly two `!!` entries, one per `local-*` path, while `find .skilled/skills/local-webflow/ -type f | wc -l` prints `162` and `find .skilled/skills/local-obsidian/ -type f | wc -l` prints `66`, one more than the archived counts because each tree carries its skill-root `graph-metadata.json`.
-- **SC-002**: The link audit on both skills reports exactly one broken link, the pre-existing `-> target` placeholder in `references/javascript/quality-standards/shared-listener-and-weakmap.md`, which was broken at `42b41dd286` too.
+- **SC-001**: `git status --porcelain .skilled` is empty and `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian` reports exactly two `!!` entries, one per `local-*` link, while `find .skilled/skills/local-webflow/ -type f | wc -l` prints `162` and `find .skilled/skills/local-obsidian/ -type f | wc -l` prints `66`, one more than the archived counts because each tree carries its skill-root `graph-metadata.json`.
+- **SC-002**: The Webflow audit reports exactly one broken link, the pre-existing `-> target` placeholder, and ends `AUDIT_FAIL=1`; the Obsidian audit reports no broken link and ends `AUDIT_FAIL=0`.
 - **SC-003**: A throwaway advisor database built with `SYSTEM_SKILL_ADVISOR_DB_DIR` contains a `skill_nodes` row for `local-webflow` and one for `local-obsidian`.
 - **SC-004**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/004-private-local-skills --strict` prints `RESULT: PASSED`.
+- **SC-005**: Each `.skilled/skills/local-*` symlink resolves into its own repository's `local-skills/` directory, and both links stay git-ignored in this checkout.
+- **SC-006**: `git -C <repo> ls-files local-skills/<name>` lists `162` paths for `local-webflow` and `66` for `local-obsidian` after each target-repository commit, and each commit contains only its own target path.
+- **SC-007**: `zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'` prints both roots joined by `:`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -173,15 +185,19 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 1 ignore rules | High - without them the restore writes 226 tracked files into the repository | Do not start the restore until `git check-ignore -v .skilled/skills/local-webflow` names the `/.skilled/skills/local-*` rule |
-| Dependency | Phase 3 symlink-aware scan | Medium - a symlinked skill is invisible to the advisor and the phase's routing proof fails | Use the real-folder mode when phase 3 is not yet landed; the decision is the first task |
+| Dependency | Phase 1 ignore rules | High - without them the two links would be tracked here | Do not start the restore until `git check-ignore -v .skilled/skills/local-webflow` names the `/.skilled/skills/local-*` rule |
+| Dependency | Phase 3 symlink-aware scan | Medium - a symlinked skill is invisible to the advisor and the phase's routing proof fails | Phase 003 must land first; the recorded answer is symlink mode, so there is no real-folder fallback |
+| Dependency | The two external repositories | High - no link target exists without them | T002a proves both `local-skills/` targets are free and each repository's `.skilled` is a symlink; T005 and T006 restore into them |
+| Dependency | `SPECKIT_PRIVATE_SKILL_ROOTS` with both roots | High - the advisor skips a link whose realpath is outside the trusted roots | T006b sets both roots durably after an explicit operator yes; T095 exports them explicitly before the scan |
 | Dependency | Commit `42b41dd286` in the local object database | High - nothing can be restored without it | Verify with `git cat-file -t 42b41dd286` before the first restore command |
-| Risk | The restore is run in a worktree instead of the operator's main checkout | High - the ignored trees never reach the checkout the operator's advisor scans, so the evidence is lost when the worktree is removed | Run every step from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`; only the docs commit uses a worktree |
+| Risk | The restore is run in a worktree instead of the operator's main checkout | High - the ignored links never reach the checkout the operator's advisor scans, so the evidence is lost when the worktree is removed | Run every content step from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`; only the documents work runs in `WORKTREE` |
 | Risk | `cp` writes through a `references/workflow-*.md` symlink into the tracked hub file | High - a tracked file changes and the phase leaks | Remove each symlink with `rm` first, then copy; verify with `find -type l` returning zero and `git status --porcelain` staying empty |
 | Risk | A rewrite points at the hub's `sk-code/shared/` with the wrong depth after the move | Medium - links break silently in a private folder nothing validates | Recompute every escaping link from the new location and prove it with the link audit before and after |
 | Risk | A hand-written `graph-metadata.json` fails the advisor's parse (family allowlist, `skill_id` versus folder name, edge weight bands) | Medium - the skill is indexed by nothing and phase 5's routing probe fails | Follow the field table in `plan.md`; run the generator with `--write` and then a second run without it, which must report `unchanged`, because a bare dry run only reports `would-change` and repairs nothing |
 | Risk | `git add -f` or `git commit --no-verify` stages a private path | High - private content reaches the public repository | Run `git diff --cached --name-only` before the commit; the phase 1 guard blocks the ordinary path and phase 5 proves the fresh clone |
-| Risk | A symlinked skill is restored as a link into a private repository that later moves | Low - the skill disappears without a trace in the repo | Record the absolute private path in `implementation-summary.md` |
+| Risk | A symlink points into a repository that later moves | Low - the skill disappears without a trace in the repo | Record both absolute targets in `implementation-summary.md`; recreate each link with T006a |
+| Risk | A target repository commit stages an unrelated uncommitted file | High - unrelated work is published from that repository | T095a and T095b stage only `local-skills/<name>` by path and stop if anything else is staged |
+| Risk | The Obsidian push publishes content | High - the public repository gains the skill content | The push runs only after an explicit operator yes at run time |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -197,7 +213,7 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 - **NFR-P02**: The advisor's disk scan indexes both skills in the same pass that already indexes the public skills; no extra scan pass and no second database.
 
 ### Security
-- **NFR-S01**: No private path, private repository URL or private file content appears in any tracked file; the evidence text names paths and counts only.
+- **NFR-S01**: No private file content or credential appears in any tracked file. The planning documents may name the two operator-recorded roots, the two repository names and counts, because the operator supplied them; the evidence text quotes paths and counts only.
 - **NFR-S02**: The restore source is a public commit of this repository, so the restored content adds no new exposure beyond what history already holds.
 
 ### Reliability
@@ -221,8 +237,8 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 - Concurrent access: a running advisor daemon may hold the live database; the throwaway database directory keeps this phase off it.
 
 ### State Transitions
-- Partial completion: a restore that stops midway leaves an ignored, incomplete folder; the rollback is `rm -rf` of both paths, and no tracked file is involved.
-- Session expiry: the folder-mode decision is recorded in `implementation-summary.md` on the first task, so a resumed session reads the decision instead of re-asking.
+- Partial completion: a restore that stops midway leaves an incomplete folder in one target repository; the rollback is `rm -rf` of that target path and `rm` of its link, and no tracked file in this repository is involved.
+- Session expiry: ADR-001 and T002 record the two-repository symlink answer, so a resumed session reads it instead of re-asking.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -232,11 +248,11 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 14/25 | 226 restored files, two ignored trees, one generated JSON per skill; no tracked code |
+| Scope | 14/25 | 226 restored files across two external target trees, two ignored links, one generated JSON per skill; no tracked code in this checkout |
 | Risk | 18/25 | A wrong copy or a staged path leaks private content into the public repository |
-| Research | 8/20 | Every anchor is already verified at `42b41dd286`; the open variable is the operator's folder mode |
-| Multi-Agent | 5/15 | One implementer runs 109 tasks in order; one read-only reviewer checks the result; no parallel workstreams |
-| Coordination | 10/15 | Three phases must land first, two checkouts split the work, and one operator decision gates the restore |
+| Research | 8/20 | Every anchor is already verified at `42b41dd286`; the operator's two-repository answer is recorded |
+| Multi-Agent | 5/15 | One implementer runs 114 tasks in order; one read-only OpenCode subagent checks the result; no parallel workstreams |
+| Coordination | 10/15 | Three phases must land first, one or two checkouts and two target repositories split the work, and three operator-yes gates protect the profile edit and the two pushes |
 | **Total** | **55/100** | **Level 3** |
 <!-- /ANCHOR:complexity -->
 
@@ -248,20 +264,20 @@ Restore both surfaces from git history into two gitignored `local-*` skills that
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
 | R-001 | Phase 004 starts before phase 003's compiler skip lands, and the compiler exports a private skill into the tracked `skill-graph.json` | H | M | T001 gates on the exact skip text at `origin/main` and in the working copy, and stops the run on any count other than `1` |
-| R-002 | The restore runs in a worktree instead of the operator's main checkout, so the ignored trees never reach the advisor | H | M | Every content task names the operator's checkout, and T109 confirms the ignored entries there |
+| R-002 | The restore runs in a worktree instead of the operator's main checkout, so the links never reach the advisor | H | M | Every content task names the operator's checkout, and T109 confirms the two ignored links there |
 | R-003 | A `cp` writes through a `references/workflow-*.md` symlink into the tracked hub file | H | L | T007 to T012 run `rm` before writing from `git show`, and AC-004 fails if a link survives |
 | R-004 | A rewritten link points at the hub tier with the wrong depth after the move | M | M | The audit's intermediate reading counts 16 and 2 broken links, and its final reading must match the baseline |
 | R-005 | A hand-written `graph-metadata.json` fails the advisor's parse | M | L | T086 and T087 validate the shape, run the generator with `--write`, then confirm `unchanged` |
 | R-006 | `git add -f` or `--no-verify` stages a private path | H | L | T106 checks the staged list for `local-` and T107 reads the commit's file list |
-| R-007 | ADR-001 stays pending, so the phase cannot start | M | H | T002 stops with `BLOCKED` before any write, and both restore pairs are written out in full |
+| R-007 | A target sits under a repository's `.skilled`, `.opencode` or `.claude` symlink and loops | H | L | T002a proves both targets are free and each repository's `.skilled` is a symlink before the restore |
 
 ## 11. USER STORIES
 
 ### US-001: Keep the Webflow and Obsidian evidence on my machine (Priority: P0)
 
 **As the** operator who runs real Webflow and Obsidian tasks, **I want** both evidence trees restored
-as gitignored skills with every link resolving, **so that** the standards, patterns and procedures I
-already use stay available after the hub sheds them.
+into their own repositories and linked here as gitignored skills with every link resolving, **so that**
+the standards, patterns and procedures I already use stay available after the hub sheds them.
 
 **Acceptance criteria:** AC-003, AC-004, AC-005, AC-006, AC-007 and AC-008.
 
@@ -278,10 +294,12 @@ matching prompt, **so that** I do not have to remember where the trees live or i
 
 ### US-003: Keep every private byte out of the public repository (Priority: P1)
 
-**As the** repository owner, **I want** both trees ignored, untracked and unstaged, with only this
-phase's documents committed, **so that** the public repository never carries private content.
+**As the** repository owner, **I want** both links ignored in this checkout and only this phase's documents
+committed here, with each target repository carrying only its own skill commit, **so that** this public
+repository never carries the private content and the public Obsidian repository publishes only what the
+operator approved.
 
-**Acceptance criteria:** AC-013, AC-016 and AC-019.
+**Acceptance criteria:** AC-013, AC-016, AC-019, AC-020 and AC-021.
 
 ## RELATED DOCUMENTS
 
@@ -294,9 +312,9 @@ phase's documents committed, **so that** the public repository never carries pri
 
 ## 12. OPEN QUESTIONS
 
-- Which folder mode does the operator choose: a real folder, or a symlink to a private repository? The
-  phase blocks on this answer: T002 stops while ADR-001 reads `Pending operator decision`, and the
-  implementer runs exactly one restore pair once the answer is recorded.
+- The operator's answer is recorded: symlink mode, two external repositories, one per skill. T002 reads
+  it, T002a prechecks both targets, and only T005 and T006 restore; T003, T004 and T094 stay `[—]` as
+  recorded alternatives. No folder-mode question remains.
 - Should the private skills keep their `changelog/` and `benchmark/reports/` trees? They are restored
   as-is because the restore is a whole-tree archive, and the D6 boundary keeps their dated content
   unchanged.
@@ -317,7 +335,11 @@ phase's documents committed, **so that** the public repository never carries pri
   `tasks.md` records that in T080.
 - **Correction, branch rule.** The earlier `tasks.md` named branches `deepseekpi` and `deepseekpihigh`.
   Neither checkout is on either branch: the operator's main checkout is on `main`, and the authoring
-  worktree is on `worktrees/215-private-surface-level3-plans`. The rule now says so.
+  checkout is on its checked-out branch, pushed with `git push origin HEAD:main`. The current rule is
+  OpenCode-native: the runtime is OpenCode 2 with a DeepSeek orchestrator, and a review runs through the `subagent` tool with
+  agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction. No CLI
+  dispatch kit, kit branch or executor name (`deepseekpi`, `deepseekpihigh`, `dispatch.sh`, `cli-devin`,
+  `cli-pi`) is used anywhere; work is done by the orchestrator itself or the `code` / `markdown` subagents.
 - **Correction, workflow-copy source.** The earlier Step 2 copied from the hub's working tree. Phase 2
   removes the surface folders but leaves `sk-code/shared/`, so the copy would usually work; `git show`
   from `42b41dd286` is used instead so the bytes are pinned and a changed working tree cannot affect

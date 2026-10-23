@@ -97,7 +97,7 @@ Layered scan guards. One directory (`.skilled/skills/`) is read by seven consume
 | 22 | T051-T068 | none | Run the twelve green commands, the known-red ambiguity slice and the five closure checks |
 | 23 | T069-T070 | `implementation-summary.md` | Record the red-first evidence and the final counts |
 | 24 | T071 | none | Strict validation |
-| 25 | T072 | none | Independent review, read-only, at most two rounds |
+| 25 | T072 | none | Independent review through the `subagent` tool, read-only, at most two rounds |
 | 26 | T073 | none | Final strict validation |
 | 27 | T074-T076 | none | Commit by name, push `HEAD:main`, confirm the final state |
 
@@ -173,7 +173,7 @@ Four rules bind every step:
 
 1. **Test first.** T018, T019, T021, T022, T023, T025, T026, T028, T029, T031 and T033 land a failing or characterizing test before the matching code step. A red tree between a pair is expected and confined; the phase is not closeable while any of them is red.
 2. **Containment before following.** T017 creates the helper before T020 and T024 call it. No follow path may use a bare `statSync` check.
-3. **Branch.** Every step is a code change, including the one-line option description in the advisor README that must land with the code it describes, so every writer task runs on `deepseekpi`. `deepseekpihigh` is not used in this phase.
+3. **Executor.** Every step is a code change, including the one-line option description in the advisor README that must land with the code it describes, so the orchestrator or the `code` / `markdown` subagents write it in one OpenCode 2 session. No dispatch kit or executor branch name is used.
 4. **No ephemeral labels in code.** A comment added by this phase states the durable reason (a private skill lives only in the operator's checkout; a symlink is not a `Dirent` directory; a followed link must stay inside a trusted root) and never a packet, phase or spec path.
 
 **Commit and push last.** T074 to T076 run only after T051 to T073 pass: every suite green, the independent review closed, and `validate.sh --strict` printing `RESULT: PASSED`. Stage the files by name, commit, push `HEAD:main`, then confirm `git status --porcelain` is empty and `git rev-parse HEAD` equals `git rev-parse origin/main`.
@@ -203,7 +203,7 @@ Run from `.skilled/skills/system-skill-advisor/runtime` with `../../system-spec-
 |------------|------|--------|-------------------|
 | `002-hub-surface-removal` | Internal | Red until merged | The regenerated fallback graph keeps the surfaces' signals and the plugin drops a hint the hub still declares |
 | Local advisor database (`advisor_rebuild`) | Internal | Green once built | `advisor-surface-hint.vitest.ts` fails for a missing index, not for this phase's change |
-| `SPECKIT_PRIVATE_SKILL_ROOTS` | Internal (optional) | Unset by default | An external private repository linked into the tree is skipped; a real folder under `.skilled/skills/local-*` still works |
+| `SPECKIT_PRIVATE_SKILL_ROOTS` | Internal (optional) | Unset by default | An external repository linked into the tree is skipped; a real folder under `.skilled/skills/local-*` still works |
 | CI trigger-index rebuild | Internal | Green after the push | `trigger-index.json` keeps 200 surface mentions until CI regenerates it; phase 5 proves it |
 | `better-sqlite3` in the runtime `node_modules` | External | Green | The vitest suites that open a database cannot run |
 <!-- /ANCHOR:dependencies -->
@@ -371,7 +371,7 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 
 **Consequences**:
 - A link outside every trusted root is skipped, and the scan stays green.
-- An external private repository needs one environment variable; a real folder needs none.
+- An external repository needs one environment variable; a real folder needs none.
 - Every follow path shares one helper, so the rule cannot drift between the graph scan and the signature.
 
 **Alternatives Rejected**:
@@ -465,13 +465,13 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 
 **Status**: Accepted
 
-**Context**: Phase 4 may restore each private skill as a real folder or as a symlink to a private repository the operator owns. Containment rejects a link that leaves the checkout unless the operator declares the target root.
+**Context**: Phase 4 uses a symlink per private skill to a `local-skills/` folder in an external repository: Obsidian in a public repository by operator choice, Webflow in a private one. Containment rejects a link that leaves the checkout unless the operator declares the target root.
 
-**Decision**: Document the variable as an inter-phase constraint. A real folder at `.skilled/skills/local-*` or a link to a folder inside the skills root needs no configuration.
+**Decision**: Document the variable as an inter-phase constraint: phase 4 sets `SPECKIT_PRIVATE_SKILL_ROOTS` to both external `local-skills/` parents, joined with `:`, in every advisor process.
 
 **Consequences**:
 - The default is safe with no configuration.
-- Phase 4 must record which mode it used; an external link without the variable stays invisible to the advisor.
+- Phase 4 records the symlink mode and both roots; an external link without the variable stays invisible to the advisor.
 
 **Alternatives Rejected**:
 - Trust every link: defeats the containment decision.

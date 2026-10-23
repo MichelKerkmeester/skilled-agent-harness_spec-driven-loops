@@ -12,9 +12,8 @@ _memory:
     last_updated_at: "2026-10-23T13:30:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Refreshed the acceptance criteria for the Level 3 plan"
-    next_safe_action: "Answer D5, then run the phase's tasks from T002"
+    next_safe_action: "D5 is answered; run the phase's tasks from T002"
     blockers:
-      - "D5 unanswered"
       - "002-rebuild-fanout-removal baseline pending"
       - "003-trigger-and-job-hygiene R8 pending for R18"
     key_files:

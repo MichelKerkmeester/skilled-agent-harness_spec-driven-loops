@@ -208,9 +208,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored private skills, but nothing yet proves the result",
+    "causal_summary": "Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored `local-` symlinks, but nothing yet proves the result",
     "created_at": "2026-10-23T07:03:41Z",
-    "last_save_at": "2026-10-23T13:28:24.971Z",
+    "last_save_at": "2026-10-23T16:28:05.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:faba9c01c9f2332ddd4383e17f41c904ae0d3fea940ce497ef524db6c0e569f3",
+    "source_fingerprint": "sha256:7ab975f98efd4bb5a51e62bed5928f6c9ad97a9c1bee8f423bd25d92a35f0996",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3979d1a0f8dd170aee27ca57506126d07ec420949e8b678f2404d2a26b96a38",
-      "plan.md": "3e2e511493f4dda005b9444bc34fa0f130b86d6d4987b53c6a673506f059d786",
-      "tasks.md": "363d7c3cc0c924963b142eee870289bbfda06db83596554c686fa83583c3b068",
-      "decision-record.md": "95334b127b4a0d02f040eecabda9108c6002602401addce9bb9a4fb5400abe26",
-      "implementation-summary.md": "aa3ee5de4e74f6c5b0468e1289d68080d699f06c1b7373462e9f8dc18a44b399"
+      "spec.md": "464c582049b3c14d5ed209a69f2c37ddd7cff6a6f64cc91b26be2f85284d6011",
+      "plan.md": "f3c7da8ba94bb7009703e37ea8fd1872f5bf9331945107d64cc5c516cb09b5e2",
+      "tasks.md": "7b705db63589398e52b7e435e66d174934df8db40a8593fe6595ef4dd593d129",
+      "decision-record.md": "a3d4db31fa74373af6e8574542ee17674511c5a5cbd0465492f48444589c923b",
+      "implementation-summary.md": "2e2966d19fc7ef3dd5e22710d2737b0371b2c050d61c006f968fc7b7d18e4a3a"
     },
     "last_active_at": null
   }

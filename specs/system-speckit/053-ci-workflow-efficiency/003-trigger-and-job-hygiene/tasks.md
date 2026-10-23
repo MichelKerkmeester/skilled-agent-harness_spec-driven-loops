@@ -39,13 +39,13 @@ Line numbers are the values on disk when this plan was written. Tasks T007 to T0
 
 ### T001 DECISION D2 (operator yes required) - cancel on main or on pull requests only (AC-001, AC-002)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: pull requests only, `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. After R1, main cancellation reclaims about 89 wall-minutes per window across 23 pairs and costs a verdict on every commit but the newest.
 
 Alternative: `cancel-in-progress: true` on all 30 files. It reclaims 817 wall-minutes per window standalone and about 89 after R1, and it cancels a superseded `main` run.
 
-Change: put the question to the operator, then write exactly one line to the new file: `D2=pr-only` for the default or `D2=true` for the alternative.
+Change: the operator answered on 2026-10-23, and the file already holds the answer. Do not re-ask and do not rewrite the file; this task only runs the existing check.
 
 Check:
 
@@ -64,13 +64,13 @@ Stop and escalate if: no answer arrives, or the answer is neither `pr-only` nor 
 
 ### T002 DECISION D3 (operator yes required) - approve or reject the command-tree-parity filter (AC-003)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md`, anchor: the `D2=` line written by T001.
+File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: approve. The filter is worth ~265 runner-min/day standalone and ~123 after R1, because 30 of 38 human pushes touch none of its inputs.
 
 Alternative: reject. The workflow stays unfiltered, the comment at `:47-50` keeps saying so, and T007, T008, T009, T028 and the row move in T021 do not run.
 
-Change: append exactly one line, `D3=approve` or `D3=reject`.
+Change: the operator answered on 2026-10-23, and the file already holds the answer. Do not re-ask and do not rewrite the file; this task only runs the existing check.
 
 Check:
 
@@ -88,13 +88,13 @@ Stop and escalate if: no answer arrives, or the answer is neither `approve` nor 
 
 ### T003 DECISION D4 (operator yes required) - choose the dispatch-enforcement-guard shape (AC-005, AC-006)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md`, anchor: the `D3=` line written by T002.
+File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: `drop-step`. Keep both jobs and delete the duplicate `Run the dispatch audit core suite` step at `:41-50`. No check name changes, and the fail-closed rule-suite guard at `:31-35` stays byte-identical.
 
 Alternative: `merge`. One job holds the rule-suite step, one `npm --prefix .skilled ci`, and the whole-tree vitest run; the `hooks-vitest` job at `:52-67` is deleted and the remaining job is renamed. Both check names change, and the saving is inferred at 1-2 billed minutes per run.
 
-Change: append exactly one line, `D4=drop-step` or `D4=merge`.
+Change: the operator answered on 2026-10-23, and the file already holds the answer. Do not re-ask and do not rewrite the file; this task only runs the existing check.
 
 Check:
 
@@ -112,13 +112,13 @@ Stop and escalate if: the answer is `merge`. T012, T030 and the README row for t
 
 ### T004 DECISION D7 (operator yes required) - approve fetch-depth 2 on deep-loop-runtime (AC-008, AC-009)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md`, anchor: the `D4=` line written by T003.
+File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: `depth-2`. The mode-event suites bind a run to a commit and its parent (`deep-loop-runtime.yml:38-39`) and read nothing older.
 
 Alternative: `keep-0`. The file keeps `fetch-depth: 0` at `:42`, and T017 does not run.
 
-Change: append exactly one line, `D7=depth-2` or `D7=keep-0`.
+Change: the operator answered on 2026-10-23, and the file already holds the answer. Do not re-ask and do not rewrite the file; this task only runs the existing check.
 
 Check:
 
@@ -136,13 +136,13 @@ Stop and escalate if: no answer arrives, or the answer is neither `depth-2` nor 
 
 ### T005 DECISION D10 (operator yes required) - skip or build the changed-packet-validation filter (AC-004)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md`, anchor: the `D7=` line written by T004.
+File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: `skip`. The filter is worth about 10 runner-min/day after R1, because 33 of 38 human pushes touch `specs/**` and would still run it.
 
 Alternative: `filter`. Both events gain four `paths:` entries.
 
-Change: append exactly one line, `D10=skip` or `D10=filter`.
+Change: the operator answered on 2026-10-23, and the file already holds the answer. Do not re-ask and do not rewrite the file; this task only runs the existing check.
 
 Check:
 

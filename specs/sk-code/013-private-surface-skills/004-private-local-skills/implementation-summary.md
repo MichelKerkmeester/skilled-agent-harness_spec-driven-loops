@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T07:03:40Z"
+    last_updated_at: "2026-10-23T17:55:00Z"
     last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    recent_action: "Recorded the two-repository symlink answer for the evidence step"
+    next_safe_action: "Run T096 after both target repositories are committed and the phase checks pass"
     blockers: []
     key_files: []
     session_dedup:
@@ -20,7 +20,8 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Folder mode: symlink to two external repositories (operator, 2026-10-23)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -36,7 +37,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-private-local-skills |
-| **Completed** | 2026-10-23 |
+| **Status** | Planned |
+| **Planned** | 2026-10-23 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,6 +53,9 @@ _memory:
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]
+
+The recorded layout is in `decision-record.md` ADR-001: `local-obsidian` and `local-webflow` are
+symlinks into their own repositories' `local-skills/` directories.
 
 ### Files Changed
 

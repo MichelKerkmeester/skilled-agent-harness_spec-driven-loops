@@ -13,9 +13,8 @@ _memory:
     last_updated_at: "2026-10-23T15:40:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Authored twelve proposed decisions for the planned phase"
-    next_safe_action: "Answer D9 with the R28 probe, then execute T002"
+    next_safe_action: "The R28 probe is pre-approved; execute T001, then T002"
     blockers:
-      - "D9 unanswered"
       - "006-sk-code-ci-surface pending"
       - "007-workflow-hygiene-on-off-control pending"
     key_files:
@@ -48,9 +47,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator, maintainer |
+| **Deciders** | Operator (D9: R28 probe pre-approved 2026-10-23; outcome selects write or print), plan author |
 
 ---
 
@@ -184,7 +183,7 @@ The probe changes repository settings, and the operator may decline it. A phase 
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Print fallback (chosen)** | The phase completes without a repository write, and the command still works | The probe question stays unanswered | 8/10 |
+| **Print fallback (chosen)** | The phase completes without a repository write, and the command still works | The probe permission stays unconfirmed | 8/10 |
 | Block the phase | No unverified claim ships | A whole phase waits on one permission | 5/10 |
 | Ask again in a later phase | The probe may succeed later | The toggle ships unshaped, and the phase has no closure | 4/10 |
 

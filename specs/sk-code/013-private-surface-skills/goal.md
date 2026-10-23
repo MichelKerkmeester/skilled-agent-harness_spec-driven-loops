@@ -25,9 +25,9 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Phase 004 folder mode: real folder or symlink to a private repository?"
       - "Rewrite history after phase 005's read-only inventory?"
-    answered_questions: []
+    answered_questions:
+      - "Phase 004 layout: gitignored symlinks to two external local-skills/ folders, answered 2026-10-23."
 ---
 # Goal: Private Surface Skills
 
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Remove the Webflow and Obsidian surfaces from the shipped sk-code hub and return them as two gitignored private skills that only the operator's local advisor routes, with nothing about them reaching a tracked file, the committed trigger index or the Hermes mirror.
+**Objective:** Remove the Webflow and Obsidian surfaces from the shipped sk-code hub and return them as two `local-*` skills this checkout links to but never tracks, kept in two external repositories (Obsidian public by operator choice, Webflow private) and routed only by the operator's local advisor, with nothing reaching a tracked file, the committed trigger index or the Hermes mirror.
 
 ### Decisions
 
@@ -48,13 +48,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The hub ships `sk-code-quality`, `sk-code-review` and `sk-code-skilled`; the two surfaces return only as gitignored `local-*` skills. |
-| D2 | Four slash-less root rules ignore `local-*` under `.skilled`, `.hermes`, `.codex` and `.cursor`; a blocking guard refuses a staged `local-*` path under `.skilled`, `.opencode`, `.claude`, `.pi`, `.devin`, `.hermes`, `.codex` and `.cursor`. |
-| D3 | Recorded limits: `--no-verify` bypasses the guard, history keeps the removed content, a renamed copy passes, and no standing pre-push token guard exists. |
-| D4 | A followed top-level `local-*` symlink must resolve inside the skills root or a root in `SPECKIT_PRIVATE_SKILL_ROOTS`; no other link is followed. |
-| D5 | Every tracked-output writer skips a `local-*` name before its first filesystem probe. |
-| D6 | The boundary is the hub tree, tracked consumers naming the two surfaces, and the advisor's sk-code vocabulary; other skills' generic words, dated records and history stay unchanged. |
-| D7 | No history rewrite runs here; scrubbing is an optional operator decision after phase 5's read-only inventory. |
+| D1 | The hub ships `sk-code-quality`, `sk-code-review` and `sk-code-skilled`; the two surfaces return only as gitignored `local-*` symlinks to two external `local-skills/` folders. |
+| D2 | Four slash-less rules ignore `local-*` under `.skilled`, `.hermes`, `.codex`, `.cursor`; a blocking guard refuses a staged `local-*` path under all eight skill roots. |
+| D3 | Recorded limits: `--no-verify` bypasses the guard, history keeps the content, a renamed copy passes, and no standing pre-push token guard exists. |
+| D4 | A followed top-level `local-*` symlink must resolve inside the skills root or one of the two roots in `SPECKIT_PRIVATE_SKILL_ROOTS`; no other link is followed. |
+| D5 | Every tracked-output writer skips a `local-*` name before its first probe. |
+| D6 | The boundary is the hub tree, tracked consumers naming the two surfaces, and the advisor's sk-code vocabulary; generic words elsewhere, dated records and history stay unchanged. |
+| D7 | No history rewrite here; scrubbing is an optional decision after phase 5's inventory. |
 
 <!-- /ANCHOR:directive -->
 
@@ -88,9 +88,9 @@ string, not these files.
 
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills --recursive --strict` prints `RESULT: PASSED`.
 - [ ] `git ls-files` lists no path under `.skilled/skills/sk-code/sk-code-webflow/` or `.skilled/skills/sk-code/sk-code-obsidian/`, and `.skilled/skills/sk-code/mode-registry.json` declares `sk-code-quality`, `sk-code-review` and `sk-code-skilled`.
-- [ ] `.skilled/skills/local-webflow/SKILL.md` and `.skilled/skills/local-obsidian/SKILL.md` exist, each skill root holds one `graph-metadata.json`, and `git status --porcelain .skilled` prints nothing.
-- [ ] A fresh clone of `origin/main` prints `0 live` tracked paths matching `local-(webflow|obsidian)|sk-code-(webflow|obsidian)` from `git ls-files -- ':!specs/**'`, `108 retained` under `specs/`, and `336` at `42b41dd286`.
-- [ ] `node .skilled/bin/skill-advisor.cjs advisor_recommend` in the operator checkout returns `local-webflow` for `implement a responsive webflow animation module`, `local-obsidian` for `add an obsidian plugin command palette integration`, and `sk-code` for `add a responsive css layout to the settings page`.
+- [ ] `.skilled/skills/local-*/SKILL.md` exists through its symlink, each skill root holds one `graph-metadata.json`, and `git status --porcelain .skilled` prints nothing.
+- [ ] A fresh clone of `origin/main` prints `0 live` paths matching `local-(webflow|obsidian)|sk-code-(webflow|obsidian)` from `git ls-files -- ':!specs/**'`, `108 retained` under `specs/`, and `336` at `42b41dd286`.
+- [ ] `node .skilled/bin/skill-advisor.cjs advisor_recommend` in the operator checkout, with both external roots in `SPECKIT_PRIVATE_SKILL_ROOTS`, returns `local-webflow` for `implement a responsive webflow animation module`, `local-obsidian` for `add an obsidian plugin command palette integration`, and `sk-code` for `add a responsive css layout to the settings page`.
 <!-- /ANCHOR:completion -->
 
 ---

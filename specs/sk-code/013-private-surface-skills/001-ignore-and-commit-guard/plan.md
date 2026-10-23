@@ -262,10 +262,13 @@ Proof: the four `rg -c` counts on `spec.md` match `4`, `4`, `3` and `5`.
 
 ### Step 16 - Review round (T022)
 
-A separate read-only session reads the diff and the packet, at most two rounds. Findings
-are recorded, repaired where they are in scope, and re-reviewed once. A finding that
-would widen the scope is recorded and left to the phase that owns it. The reviewer ends
-with `VERDICT: PASS` or names the unresolved finding.
+The review runs through the `subagent` tool with agent `review` (agent `deep-review`
+for a multi-dimension pass), read-only by instruction: the prompt says it edits no
+file. The orchestrator captures `git status --porcelain` before and after and requires
+the two to be identical. The reviewer reads the diff and the packet, at most two rounds.
+Findings are recorded, repaired where they are in scope, and re-reviewed once. A finding
+that would widen the scope is recorded and left to the phase that owns it. The reviewer
+ends with `VERDICT: PASS` or names the unresolved finding.
 
 ### Step 17 - Final strict validation (T023)
 
@@ -325,7 +328,7 @@ unstaged, and a differing SHA means the push did not land.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the guard blocks a path that is not a private skill, or the harness fails after a repair attempt, or a review round finds the guard cannot be made correct within this phase's scope.
-- **Procedure**: the phase ships as one commit on `deepseekpi`, pushed as `HEAD:main`. Revert that commit with `git revert --no-edit HEAD`; the three files return to their phase-base content. Per file, without a commit: `git checkout HEAD~1 -- .gitignore .skilled/scripts/git-hooks/pre-commit .skilled/scripts/git-hooks/tests/pre-commit.test.sh`.
+- **Procedure**: the phase ships as one commit, pushed as `HEAD:main`. Revert that commit with `git revert --no-edit HEAD`; the three files return to their phase-base content. Per file, without a commit: `git checkout HEAD~1 -- .gitignore .skilled/scripts/git-hooks/pre-commit .skilled/scripts/git-hooks/tests/pre-commit.test.sh`.
 - **Verify the rollback**: `git check-ignore -v .skilled/skills/local-webflow` exits 1 again, `rg -c 'gate:private-skill' .skilled/scripts/git-hooks/pre-commit` prints `0`, and `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` still passes, because the revert removes only the new cases.
 - **Do not** delete anything under `.skilled/skills/local-*` or `.hermes/skills/local-*` as part of a phase 1 rollback. This phase creates no such path, and by the time it is reverted a later phase may own real private content there. Check first: `git status --porcelain --ignored | rg -c 'local-'` printing `0` means there is nothing to protect.
 <!-- /ANCHOR:rollback -->

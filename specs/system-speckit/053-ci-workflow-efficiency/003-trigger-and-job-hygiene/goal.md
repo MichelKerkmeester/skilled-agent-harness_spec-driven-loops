@@ -84,7 +84,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T038, `acceptance-criteria.md` AC-001 to AC-017, `decision-record.md` ADR-001 to ADR-011 |
-| Operator decisions | Pending | `scratch/decisions.md` is not written |
+| Operator decisions | Done | `scratch/decisions.md` records `D2=pr-only, D3=approve, D4=drop-step, D7=depth-2, D10=skip` |
 | Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet |
 | Implementation | Pending | No file named by `tasks.md` has changed |
 

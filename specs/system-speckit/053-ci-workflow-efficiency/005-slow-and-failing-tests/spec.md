@@ -34,7 +34,7 @@ contextType: "general"
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 9 |
 | **Predecessor** | 002-rebuild-fanout-removal (baseline only) |

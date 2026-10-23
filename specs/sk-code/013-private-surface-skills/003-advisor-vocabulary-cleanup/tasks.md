@@ -29,7 +29,7 @@ contextType: "general"
 
 **Anchor convention.** Every anchor below was read on the working tree at `583316d083`. Read the file, confirm the quoted text sits on the named line, then edit. When the text has moved, edit where the quoted text is and leave the line number alone. Never delete a range you have not read.
 
-**Branch.** Every task runs on `deepseekpi`. `deepseekpihigh` is not used in this phase, because even the one-line README description must land with the code it describes.
+**Executor.** Every task runs in an OpenCode 2 session with a DeepSeek orchestrator, written by the orchestrator or the `code` / `markdown` subagents. That includes the one-line README description, which must land with the code it describes. No dispatch kit or executor branch name is used.
 
 **Comment hygiene.** No task adds a spec path, packet number or phase number to a code comment. A new comment states the durable reason only.
 
@@ -1831,7 +1831,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
-- **Change:** dispatch a separate DeepSeek session on branch `deepseekpi` with read-only access. It checks: every follow path uses the containment helper and every skip is top-level only, every added comment states a durable reason and names no packet, phase or spec path, no tracked file in scope still names the removed surfaces, and each behavior change has a test that would fail without it. A finding is resolved in a follow-up task or recorded with its reason; two rounds without a new finding ends the review. The reviewer writes its report to `/tmp/phase3-review.txt` and closes it with a `VERDICT:` line.
+- **Change:** none. Run the review through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. It checks: every follow path uses the containment helper and every skip is top-level only, every added comment states a durable reason and names no packet, phase or spec path, no tracked file in scope still names the removed surfaces, and each behavior change has a test that would fail without it. A finding is resolved in a follow-up task or recorded with its reason; two rounds without a new finding ends the review. The reviewer returns its report in chat and closes it with a final `VERDICT:` line; the orchestrator writes that returned text to `/tmp/phase3-review.txt`.
 - **Proof:**
   ```bash
   tail -1 /tmp/phase3-review.txt

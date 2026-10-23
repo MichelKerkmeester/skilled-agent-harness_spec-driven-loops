@@ -2227,7 +2227,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 
 - **File:** `none`
 - **Anchor:** this folder's `tasks.md` and `acceptance-criteria.md`.
-- **Change:** none. A separate read-only session reads the phase diff against `42b41dd286`, checks each task's proof output and reports findings ranked P0/P1/P2. A P0 finding returns to the owning task; the writer fixes it and the reviewer re-reads once. After the second round, remaining P2 findings are recorded in `implementation-summary.md` as known limitations.
+- **Change:** none. The review runs through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. The reviewer reads the phase diff against `42b41dd286`, checks each task's proof output and reports findings ranked P0/P1/P2. A P0 finding returns to the owning task; the writer fixes it and the reviewer re-reads once. After the second round, remaining P2 findings are recorded in `implementation-summary.md` as known limitations.
 - **Proof:**
   ```bash
   test -s specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md && echo PRESENT

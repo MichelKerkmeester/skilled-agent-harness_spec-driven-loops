@@ -26,7 +26,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Do the three drift scripts pass once both private roots exist? Answered by 13-drift.md during execution."
+      - "Do the three drift scripts pass once both symlinked private skills exist? Answered by 13-drift.md during execution."
     answered_questions: []
 ---
 # Goal: Phase 5: leak-and-routing-verification
@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | The fresh clone of `origin/main` is the authority for every path, content, blob and artifact check; the working tree is not evidence. |
 | D2 | The artifact zero check is scoped to `.skilled/` paths, and the 69 retained `specs/sk-code/007-sk-code-obsidian-surface/` paths are counted against a written-out allowlist rather than folded into that zero. |
 | D3 | New or changed private content is proven absent by git blob identity, while the bytes the base tree already carried and the hub references copied from `shared/references/` are recorded as already public in history; partial content is covered by the marker and token sweeps, and neither check claims the other's ground. |
-| D4 | Routing is probed in the operator checkout and in the Obsidian Plugin checkout, never in the writer worktree, which holds no private skill. |
+| D4 | Routing is probed in the operator checkout and in the Obsidian Plugin checkout, never in the writer worktree, which holds neither symlink; both advisor processes export the two external `local-skills/` roots in `SPECKIT_PRIVATE_SKILL_ROOTS`. |
 | D5 | History, tags and release assets are inventoried read-only; no rewrite, force push or asset deletion runs in this phase. |
 | D6 | This phase writes only inside its own folder, never edits a private skill, a D6 kept record or a drift failure, and commits at three named points with the last push's CI result in the handoff. |
 
@@ -66,7 +66,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] in the final clone the live tracked-path count outside `specs/` is 0 while 108 retained `specs/` paths are counted separately, the content sweep leaves 8 allowlisted D6 paths and 0 others, and the bare-token count is 0
 - [ ] the rebuilt trigger index holds 0 `.skilled/` paths and 69 allowlisted `specs/sk-code/007-sk-code-obsidian-surface/` paths, and the manifest, diagnostics and variants print 69, 0 and 38
 - [ ] the blob comparison records the private ids the base tree already carried as already public in history, records the three hub references copied from `shared/references/`, and prints 0 for new or changed content while its control prints at least 1, and the corpus probe prints 0 for its marker while its control prints at least 1
-- [ ] both checkouts return local-webflow, local-obsidian and sk-code for the three fixed prompts
+- [ ] both checkouts return local-webflow, local-obsidian and sk-code for the three fixed prompts, with both external roots exported in `SPECKIT_PRIVATE_SKILL_ROOTS`
 - [ ] `validate.sh --strict` on this folder prints RESULT: PASSED
 - [ ] the last evidence commit is pushed with `git status --porcelain` empty and HEAD equal to origin/main
 <!-- /ANCHOR:completion -->

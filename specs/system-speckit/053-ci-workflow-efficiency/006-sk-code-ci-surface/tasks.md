@@ -31,7 +31,7 @@ Every task below names one file, quotes the anchor text it edits, gives that anc
 
 Line numbers are the values on disk when this plan was written. Read the file and locate the quoted anchor before editing; a moved line is not a changed edit. When the quoted anchor is absent, stop rather than editing a nearby line.
 
-**No operator decision gates this phase.** R22 and R23 change no workflow and no repository setting. D1 (the rebuild-skip form) is read from `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md`; D2 (main-branch cancellation) is an operator decision in the parent spec, and this phase does not wait for its answer; T002 records the recommended PR-only default until D2 lands.
+**No operator decision gates this phase.** R22 and R23 change no workflow and no repository setting. D1 (the rebuild-skip form) is read from `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md`; D2 (main-branch cancellation) is an operator decision in the parent spec, recorded as `pr-only` on 2026-10-23; T002 writes that recorded value.
 
 **Comment hygiene.** No task adds an R-id, a D-id or a phase number to a code comment, a JSON description, a template comment or a test name. Spec documents may cite them; the packet's code and JSON may not.
 
@@ -84,7 +84,7 @@ grep -n 'Option A' specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-f
 grep -c '^composite_action: absent$' specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md
 ```
 
-Expected: `composite_action: absent`; `0`; one `Option A` line from 002's notes; `1`. Write `d1: A` because 002's note freezes Option A (the `[skip ci]` token) as its default. Write `d2: pr-only` because this phase does not wait for D2, so the template records the recommended PR-only default until D2 is answered, `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. When `.github/actions/setup/action.yml` is present and the `github/actions` count is above 0, write `composite_action: present` instead and T014 writes the landed status.
+Expected: `composite_action: absent`; `0`; one `Option A` line from 002's notes; `1`. Write `d1: A` because 002's note freezes Option A (the `[skip ci]` token) as its default. Write `d2: pr-only` because D2's recorded answer on 2026-10-23 is `pr-only`, so the template records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. When `.github/actions/setup/action.yml` is present and the `github/actions` count is above 0, write `composite_action: present` instead and T014 writes the landed status.
 
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md`.
 
@@ -397,7 +397,7 @@ Check:
 
 ```bash
 cd .skilled/skills/sk-code/sk-code-ci/references && ln -s ../../shared/references/workflow-implement.md workflow-implement.md && ln -s ../../shared/references/workflow-debug.md workflow-debug.md && ln -s ../../shared/references/workflow-verify.md workflow-verify.md
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/214-ci-efficiency-phase-plans && test -L .skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md && echo LINK_OK
+cd "$(git rev-parse --show-toplevel)" && test -L .skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md && echo LINK_OK
 readlink .skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md
 ```
 

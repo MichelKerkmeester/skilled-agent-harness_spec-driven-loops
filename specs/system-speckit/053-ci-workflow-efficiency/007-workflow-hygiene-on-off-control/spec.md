@@ -35,7 +35,7 @@ Three hygiene passes close the gaps that let a hung job hold a runner for six ho
 | **Priority** | P2 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 7 of 9 |
 | **Predecessor** | 006-sk-code-ci-surface |

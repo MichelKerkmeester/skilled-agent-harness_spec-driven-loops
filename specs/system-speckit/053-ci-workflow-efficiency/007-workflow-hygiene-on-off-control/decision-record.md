@@ -14,9 +14,8 @@ _memory:
     last_updated_at: "2026-10-23T13:45:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded ten proposed ADRs for the planned phase"
-    next_safe_action: "Answer D6, then run the phase's tasks from T001"
+    next_safe_action: "D6 is answered; run the phase's tasks from T001"
     blockers:
-      - "D6 is unanswered; the default is 10 minutes"
       - "003, 004, 005 and 006 have not landed, so every job line is provisional"
       - "No fork or throwaway test repository is recorded for the R26 probe"
     key_files:
@@ -37,7 +36,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> **One operator decision gates this phase: D6, the timeout floor.** ADR-001 records it with its default and its alternative; T001 is the task that collects the answer, and every timeout value is derived after it. ADR-002 to ADR-010 are design choices this plan freezes, not questions for the operator.
+> **One operator decision gates this phase: D6, the timeout floor.** ADR-001 records the answer — `D6=10` on 2026-10-23 — with its alternative; T001 only verifies the recorded `scratch/decisions.md` line, and every timeout value is derived after it. ADR-002 to ADR-010 are design choices this plan freezes, not questions for the operator.
 
 ---
 
@@ -48,9 +47,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D6); plan author for the default |
+| **Deciders** | Operator (D6=10, 2026-10-23), plan author |
 
 ---
 
@@ -62,7 +61,7 @@ A `timeout-minutes` value has two terms: a measured one, from the job's own samp
 ### Constraints
 
 - `final-review.md:619` names 10 minutes as the proposal and says a lower floor tightens hang detection and raises the false-kill risk.
-- `006-sk-code-ci-surface` writes the formula with 10 as the default and `max(<floor>, ...)` as the parameterised form, so the packet does not need an edit whichever answer arrives.
+- `006-sk-code-ci-surface` writes the formula with 10 as the default and `max(<floor>, ...)` as the parameterised form, so the packet did not need an edit for the recorded answer.
 - Every value must be derived after the answer, because changing the floor afterwards re-derives every value in the tree.
 <!-- /ANCHOR:adr-001-context -->
 
@@ -929,7 +928,7 @@ Six variables need a membership rule. The README already classifies every workfl
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The operator picks 5 and a reader assumes 10 | L | T001 records the answer, and T060 asserts the minimum value is at least the recorded floor |
+| A later revision sets the floor to 5 and a reader assumes 10 | L | T001 verifies the recorded answer, and T060 asserts the minimum value is at least the recorded floor |
 | A later phase edits the packet anyway | L | ADR-009 names the reason not to; `006`'s AC-002 fails if the parameter is removed |
 <!-- /ANCHOR:adr-009-consequences -->
 

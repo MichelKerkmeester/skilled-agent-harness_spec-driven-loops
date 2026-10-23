@@ -34,19 +34,18 @@ contextType: "general"
 
 ### T001 DECISION D1 (operator yes required) - choose how rebuild commits skip CI (AC-001)
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
 Default: option A, the `[skip ci]` token on the commit body line at `.github/workflows/trigger-index-rebuild.yml:149`. It is one line, needs no filter entries and adds no new YAML pattern.
 
 Alternative: option B, a push-only `paths-ignore:` on the 9 unfiltered workflows plus `!` negations on the 4 path-filtered ones. That is 8 entries each, 104 in total across 13 files, plus an amendment to ordering rule 2, for about 2,002 runner-min/day with `message-contract` left unfiltered.
 
-Change: put the question to the operator, then, after the operator confirms A, write exactly one line to the new file.
+Change: the operator answered on 2026-10-23, and the file already holds the answer. Do not re-ask and do not rewrite the file; this task only runs the existing check.
 
 Check:
 
 ```bash
 mkdir -p specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch
-printf 'D1=A\n' > specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md
 cat specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md
 ```
 

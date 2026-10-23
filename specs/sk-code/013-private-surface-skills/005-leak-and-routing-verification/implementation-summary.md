@@ -36,7 +36,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-leak-and-routing-verification |
-| **Completed** | 2026-10-23 |
+| **Status** | Planned |
+| **Planned** | 2026-10-23 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 

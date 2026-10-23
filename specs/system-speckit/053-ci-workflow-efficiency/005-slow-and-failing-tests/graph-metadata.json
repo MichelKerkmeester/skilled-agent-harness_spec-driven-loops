@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`spec-kit-check`'s `check` job is the repository's most expensive job at 1,215 s, and 791 s of it, 65.1%, is one step: the `CLI vitest project` at `spec-kit-check.yml:124-128` runs 183 test files one after another because the `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-kit/vitest.config.ts:67` without a stated reason (`iteration-005.md:30-69`)",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-23T13:30:30.406Z",
+    "last_save_at": "2026-10-23T16:14:56.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26bced73d43bae1e7db6e11c68f86a48c5848eb2aa8732116fd27e1403c67e73",
+    "source_fingerprint": "sha256:c2a35a4ec02952365d5ec006da4d5c9e3805cb2c7aca9db12c03fa61cd2edca0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af2b62355fddb3057c2858f9fcbc5e90c9377d2f62baf6affc395b5975a5f2e4",
+      "spec.md": "46e7dff96273252cf75457b36768897cb38c2bd8f901f29583650a377b0d3824",
       "plan.md": "ab92420b82e2f2b76637d29f744f54d9570057a32f73a65e59bec1cdd810a75f",
       "tasks.md": "4935af703b75c5c2bae76a429813a4ee6764f3fbad63ac7d5ca5f1df86617479",
       "decision-record.md": "e7aaa36cfa4be1cf2c8cc8605f89a0d326a1fd305784c317de9dac91c65e3e0b",

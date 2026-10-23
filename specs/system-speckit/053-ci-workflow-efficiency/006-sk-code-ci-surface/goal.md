@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 | G5 | The rule data cites `.github/` files and lines, never a `specs/` path, and no packet file names an R-id, a D-id or a phase number. |
 | G6 | Generated artifacts are written only by their generators; `graph-metadata.json`'s `derived.causal_summary` is the one authored field. |
 | G7 | The hub release is `2.4.0.0`, or `2.5.0.0` when `changelog/v2.4.0.0.md` already exists. |
-| G8 | The concurrency template records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` as the recommended PR-only default pending operator D2, and names `cancel-in-progress: true` on main as the alternative in one line. No task reads a sibling phase for that value. |
+| G8 | The concurrency template records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` as the recommended PR-only default `D2=pr-only` (operator, 2026-10-23), and names `cancel-in-progress: true` on main as the alternative in one line. No task reads a sibling phase for that value. |
 
 <!-- /ANCHOR:directive -->
 

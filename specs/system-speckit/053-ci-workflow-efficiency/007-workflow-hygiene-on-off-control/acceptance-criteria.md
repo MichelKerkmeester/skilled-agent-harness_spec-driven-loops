@@ -13,9 +13,8 @@ _memory:
     last_updated_at: "2026-10-23T13:50:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Refreshed the acceptance criteria with an R-id trace and a concrete check per row"
-    next_safe_action: "Answer D6, then run the permissions pass, the timeout sample and the switch pass"
+    next_safe_action: "D6 is answered; run the permissions pass, the timeout sample and the switch pass"
     blockers:
-      - "D6 is unanswered; the default is 10 minutes"
       - "No fork or throwaway test repository is recorded for AC-008"
     key_files:
       - "spec.md"

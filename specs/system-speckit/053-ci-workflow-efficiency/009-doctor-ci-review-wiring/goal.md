@@ -16,7 +16,6 @@ _memory:
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers:
-      - "D9 is unanswered; the probe needs an operator yes"
       - "006-sk-code-ci-surface and 007-workflow-hygiene-on-off-control have not landed"
     key_files:
       - "spec.md"
@@ -53,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 | G2 | The report excludes a SHA whose last non-empty commit-message line is `Trigger-Index-Rebuild: ci`. |
 | G3 | The scaffold creates new `.github/workflows/` files only and refuses an existing path or a protected workflow name. |
 | G4 | `CI` sits second in the detection precedence, after `SKILLED`. |
-| G5 | The toggle shape follows the single `D9:` line; `print` is the recommended default pending operator D9 when the operator declines the probe. |
+| G5 | The toggle shape follows the single `D9:` line; the R28 probe is pre-approved (operator, 2026-10-23); its outcome writes `D9: write` or `D9: print`, and `print` applies only if the probe fails. |
 
 <!-- /ANCHOR:directive -->
 

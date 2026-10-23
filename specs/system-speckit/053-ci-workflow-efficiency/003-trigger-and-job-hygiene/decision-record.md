@@ -14,13 +14,8 @@ _memory:
     last_updated_at: "2026-10-23T12:40:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded eleven proposed ADRs for the planned phase"
-    next_safe_action: "Answer D2, D3, D4, D7 and D10, then run the phase's tasks"
+    next_safe_action: "Decisions answered; start at T006, the first non-decision task, then run the phase's tasks"
     blockers:
-      - "D2 unanswered"
-      - "D3 unanswered"
-      - "D4 unanswered"
-      - "D7 unanswered"
-      - "D10 unanswered"
       - "002-rebuild-fanout-removal baseline pending"
     key_files:
       - "spec.md"
@@ -51,9 +46,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D2, unanswered), plan author |
+| **Deciders** | Operator (D2 = pr-only, 2026-10-23), plan author |
 
 ---
 
@@ -158,9 +153,9 @@ On `main` the picture is different. The measured supersession is almost entirely
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D3, unanswered), plan author |
+| **Deciders** | Operator (D3 = approve, 2026-10-23), plan author |
 
 ---
 
@@ -264,9 +259,9 @@ On `main` the picture is different. The measured supersession is almost entirely
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D4, unanswered), plan author |
+| **Deciders** | Operator (D4 = drop-step, 2026-10-23), plan author |
 
 ---
 
@@ -370,9 +365,9 @@ The workflow is a protected guard: its failure invalidates other workflows' inpu
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D7, unanswered), plan author |
+| **Deciders** | Operator (D7 = depth-2, 2026-10-23), plan author |
 
 ---
 
@@ -471,9 +466,9 @@ The workflow is a protected guard: its failure invalidates other workflows' inpu
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D10, unanswered), plan author |
+| **Deciders** | Operator (D10 = skip, 2026-10-23), plan author |
 
 ---
 

@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| G1 | The skip is the `[skip ci]` token on the commit body line, the recommended default pending operator D1. Option B's 104 path-filter entries are not built. |
+| G1 | The skip is the `[skip ci]` token on the commit body line, the recommended default operator answered D1=A on 2026-10-23. Option B's 104 path-filter entries are not built. |
 | G2 | `Trigger-Index-Rebuild: ci` stays the message's last line, so the loop guard's suffix match keeps working. |
 | G3 | The assertion lives in `trigger-index-rebuild-workflow.vitest.ts`, and its negative proof uses that suite's `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH` override. |
 | G4 | The token, its case, both `spec-kit-check.yml` entries and both README rows land as one commit. |
@@ -80,7 +80,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T021, `acceptance-criteria.md` AC-001 to AC-007, `decision-record.md` ADR-001 to ADR-005 |
-| Decision D1 | Pending | `scratch/d1-answer.md` is not written |
+| Decision D1 | Done | `scratch/d1-answer.md` records `D1=A` |
 | Implementation | Pending | No file named by `tasks.md` has changed |
 
 ### Deviations and findings

@@ -32,7 +32,7 @@ The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian,
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-10-23 |
-| **Branch** | `deepseekpi` |
+| **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 5 |
 | **Predecessor** | 001-ignore-and-commit-guard |
@@ -45,7 +45,7 @@ The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian,
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor routes specification.
+This is **Phase 2** of the Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* skills that this checkout links to but never tracks, routed only by the operator's local advisor specification.
 
 **Scope Boundary**: D6, copied from the phase decision record. In scope: the sk-code hub tree, tracked consumers that name `sk-code-webflow`, `sk-code-obsidian`, or the `WEBFLOW` / `OBSIDIAN` surface tokens, and the advisor's sk-code surface vocabulary. Out of scope, kept unchanged: generic Webflow/Obsidian words in other skills (mcp-tooling/mcp-obsidian, mcp-notion, mcp-code-mode's Webflow CMS vocabulary at `fusion.ts:600-602`, `explicit.ts:131`, `skill_advisor.py:2181`, the `P1-MCP-002` regression and holdout rows, sk-design style bundles); dated historical records (every `changelog/` file, `.skilled/changelog/skilled/*.md`, `benchmark/reports/`, `specs/**/z_archive/`, the `doctor-update-*` playbooks in `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/` that name units of the past v4.0.0.2 release, and the `anchor-repair-sample` test fixture); git history.
 

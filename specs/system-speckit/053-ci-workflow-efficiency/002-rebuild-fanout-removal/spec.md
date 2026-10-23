@@ -34,7 +34,7 @@ The rebuild commit that repairs the trigger index after every corpus push re-run
 | **Priority** | P0 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 9 |
 | **Predecessor** | 001-research |
@@ -52,7 +52,7 @@ This is **Phase 2** of the CI efficiency implementation phases specification. It
 **Scope Boundary**: One commit-message token, two README rows, one vitest case, two `spec-kit-check.yml` filter entries, and one measured snapshot. No job, check name, trigger event, permission, timeout or concurrency setting changes. The 13 downstream workflows are not edited.
 
 **Dependencies**:
-- Operator decision D1 (`final-review.md:611-615`), which picks how rebuild commits skip CI. Default option A: the `[skip ci]` token.
+- Operator decision D1 (`final-review.md:611-615`), recorded as D1=A on 2026-10-23: the `[skip ci]` token, verified by T001.
 - `gh` authenticated with `repo` and `actions` scopes, for the run-data snapshot and the three-rebuild check.
 - A checkout with `.skilled/skills/system-spec-kit` dependencies installed (`npm --prefix .skilled/skills/system-spec-kit ci`, the install `spec-kit-check.yml:83` uses); the worktree that authored this plan has no build, so its vitest suite cannot run there.
 - No other phase. `003-trigger-and-job-hygiene`, `004-setup-caching-provisioning`, `005-slow-and-failing-tests`, `006-sk-code-ci-surface`, `007-workflow-hygiene-on-off-control`, `008-consolidation-decision` and `009-doctor-ci-review-wiring` all measure against this phase's baseline.
@@ -166,7 +166,7 @@ Each row states what the R-id must do, the edges it must survive, what can go wr
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Operator decision D1 | The phase cannot start | Default option A is planned end to end; option B is one paragraph in `plan.md` and its 104 entries stay out of scope until D1 flips |
+| Dependency | Operator decision D1 | None; D1=A (2026-10-23) recorded and T001 only verifies `scratch/d1-answer.md` | Option A is planned end to end; option B is one paragraph in `plan.md` and its 104 entries stay out of scope because D1 chose A |
 | Dependency | `gh` authenticated with `repo` and `actions` scopes | No baseline and no three-rebuild check | Record the commands and their output in `scratch/baseline-24h/`; a missing scope is a blocker, not a workaround |
 | Risk | GitHub documents `[skip ci]` but this repository has never exercised it, and whether it holds for a push made with the bypass-actor PAT is UNVERIFIED (`final-review.md:173`) | The fan-out stays and the phase's saving is 0 | REQ-005 proves it on the first three rebuilds; if it fails, fall back to option B (104 entries) without reverting the R2 test, which then asserts the ignore instead |
 | Risk | `main`'s tip carries no statuses after the change (N17, `final-review.md:186`) | A tool that reads statuses on `HEAD` sees none | Recorded here for phase 009: `/doctor:ci report` must resolve the newest non-rebuild SHA. No current consumer found |

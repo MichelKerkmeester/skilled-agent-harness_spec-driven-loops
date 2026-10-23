@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Both packets leave the tracked tree with `git rm -r`; the content stays reachable at `42b41dd286`, and phase 4 rebuilds it under ignored `local-*` paths. |
+| D1 | Both packets leave the tracked tree with `git rm -r`; the content stays reachable at `42b41dd286`, and phase 4 rebuilds it under ignored `local-*` symlinks to two external `local-skills/` folders. |
 | D2 | Only the named generator writes `leaf-manifest.json`, `graph-metadata.json`, the README manifests, the Hermes copies and the compiled-routing manifest. |
 | D3 | `ROUTER.md` and `graph-metadata.json`'s `causal_summary` are the only hand-edited artifacts in that generated set. |
 | D4 | Four `WEBFLOW:` tag lines in three files stay, and every `changelog/` and `benchmark/reports/` record stays byte-identical to `42b41dd286`. |

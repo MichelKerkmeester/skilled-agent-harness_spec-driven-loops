@@ -57,7 +57,7 @@ Every evidence path below is packet-relative and written out in full under `spec
 - [ ] T002 Record the preflight and the baselines (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md` (new file)
   - **Anchor**: `new file`
-  - **Change**: write the file with four blocks. Block 1, a heading `# 00 - Preflight` and one line naming the date and the writer branch `deepseekpihigh`. Block 2, a table with one row per command below, each row carrying the command, its output and its expected value: `git log --oneline -8`, `gh auth status`, `sqlite3 --version`, `jq --version`, `node --version`. Block 3, a table titled `Baselines` carrying exactly these rows: tracked paths naming a private skill or a removed surface `336` at `42b41dd286` and `336` at `583316d083`; tracked content lines outside the excluded paths `1528` and `1529`; trigger-index matching lines `200` and `200`; of which `.skilled/` paths `131` and `131`; of which `specs/sk-code/007-sk-code-obsidian-surface/` paths `69` and `69`; trigger-index space-normalized phrase keys `59` and `59`; `corpus-manifest.json` matching lines `not measured` and `260`; `generation-diagnostics.json` matching lines `not measured` and `60`; `phrase-variants.json` matching lines `58` and `59`; bare `WEBFLOW` and `OBSIDIAN` token lines before and after the `WEBFLOW:` filter `not measured` and `566 / 548`; retained content-sweep paths under the two D6 prefixes `not measured` and `8`; advisor `skill_nodes` rows from the step 5 query `1` and `1`; advisor `skillCount` `not measured` and `14`. Block 4, one line stating that the one-line difference between the two commits is `phrase-variants.json`, which the two intervening index rebuilds extended from 58 to 59 matching lines. End the file with `<!-- evidence:end -->`.
+  - **Change**: write the file with four blocks. Block 1, a heading `# 00 - Preflight` and one line naming the date and the OpenCode 2 orchestrator that wrote the file. Block 2, a table with one row per command below, each row carrying the command, its output and its expected value: `git log --oneline -8`, `gh auth status`, `sqlite3 --version`, `jq --version`, `node --version`. Block 3, a table titled `Baselines` carrying exactly these rows: tracked paths naming a private skill or a removed surface `336` at `42b41dd286` and `336` at `583316d083`; tracked content lines outside the excluded paths `1528` and `1529`; trigger-index matching lines `200` and `200`; of which `.skilled/` paths `131` and `131`; of which `specs/sk-code/007-sk-code-obsidian-surface/` paths `69` and `69`; trigger-index space-normalized phrase keys `59` and `59`; `corpus-manifest.json` matching lines `not measured` and `260`; `generation-diagnostics.json` matching lines `not measured` and `60`; `phrase-variants.json` matching lines `58` and `59`; bare `WEBFLOW` and `OBSIDIAN` token lines before and after the `WEBFLOW:` filter `not measured` and `566 / 548`; retained content-sweep paths under the two D6 prefixes `not measured` and `8`; advisor `skill_nodes` rows from the step 5 query `1` and `1`; advisor `skillCount` `not measured` and `14`. Block 4, one line stating that the one-line difference between the two commits is `phrase-variants.json`, which the two intervening index rebuilds extended from 58 to 59 matching lines. End the file with `<!-- evidence:end -->`.
   - **Proof**:
     ```bash
     grep -c '^|' specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md
@@ -121,7 +121,7 @@ Every evidence path below is packet-relative and written out in full under `spec
 - [ ] T006 Assert the planning documents on main, then commit the head sweep as C1 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md` (commit only)
   - **Anchor**: n/a - no line is edited
-  - **Change**: the six planning documents already landed on `main` in the packet's planning commit before this phase ran. Assert them first, then stage only the first evidence file by name and commit it on branch `deepseekpihigh`:
+  - **Change**: the six planning documents already landed on `main` in the packet's planning commit before this phase ran. Assert them first, then stage only the first evidence file by name and commit it:
     ```bash
     git fetch origin main
     for f in spec.md plan.md tasks.md acceptance-criteria.md decision-record.md goal.md; do
@@ -299,7 +299,7 @@ Every evidence path below is packet-relative and written out in full under `spec
     Expected: `228` files, `223` base ids, at least `1` already public in history, `3` copied references, at least `1` new or changed, at least `1` from the control, then `0` from the assertion
   - **AC**: AC-002
   - **Rollback**: `rm -f /tmp/psurf-private-blob-ids.txt /tmp/psurf-base-blob-ids.txt /tmp/psurf-history-exposure-blob-ids.txt /tmp/psurf-copied-reference-blob-ids.txt /tmp/psurf-new-blob-ids.txt /tmp/psurf-public-blob-ids.txt`
-  - **Stop if**: the file count is not `228` (the trees are incomplete or the folder mode changed), the base set is not `223`, the already-public count is `0` (the comparison is broken), the copied-reference count is not `3`, the new-or-changed count is `0` (nothing is left to test), the control is `0` (the object dump is empty), or the assertion is not `0`; record every value and name the file behind any unmatched id
+  - **Stop if**: the file count is not `228` (the trees are incomplete or a symlink target changed), the base set is not `223`, the already-public count is `0` (the comparison is broken), the copied-reference count is not `3`, the new-or-changed count is `0` (nothing is left to test), the control is `0` (the object dump is empty), or the assertion is not `0`; record every value and name the file behind any unmatched id
 
 - [ ] T015 State the partial-content policy (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (modify)
@@ -483,11 +483,12 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json | jq -r '.data.skillCount'
     ```
     Expected: `16` or greater, because both private skills add one node each to the 14 tracked nodes
   - **AC**: AC-005
-  - **Rollback**: `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` in the same checkout
+  - **Rollback**: `export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"` then `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` in the same checkout
   - **Stop if**: `skillCount` is below `14`, which means the rebuild did not scan the checkout
 
 - [ ] T028 Query the operator graph for local skill ids (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
@@ -511,6 +512,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0].skillId'
     ```
     Expected: `local-webflow`
@@ -525,6 +527,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0].skillId'
     ```
     Expected: `local-obsidian`
@@ -539,6 +542,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add a responsive css layout to the settings page"}' --format json | jq -r '.data.recommendations[0].skillId'
     ```
     Expected: `sk-code`
@@ -546,19 +550,21 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the top result is not `sk-code`; record the array and name phase 003 as the owner
 
-- [ ] T032 Record the operator's folder mode (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [ ] T032 Record the operator checkout's symlink targets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## F - Folder mode` section holding the fenced command below, its two output lines and one sentence naming the mode as `real folder` or `symlink`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## F - Symlink mode` section holding the fenced command below, its two directory lines, the two resolved targets and one sentence stating that both entries are symlinks into the two external `local-skills/` folders. End with the anchor line again.
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     ls -ld .skilled/skills/local-webflow .skilled/skills/local-obsidian
+    readlink .skilled/skills/local-webflow .skilled/skills/local-obsidian
     ```
-    Expected: two lines, each starting with `d` for a real folder or `l` for a symlink
+    Expected: two lines each starting with `l`, then the two external `local-skills/` target paths
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: either path is missing; the probes in sections C through E then have nothing to route to
+  - **Stop if**: either path is missing or is not a symlink; the probes in sections C through E then have nothing to route to
 
 - [ ] T033 Locate the Obsidian Plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
@@ -595,6 +601,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0].skillId'
     ```
     Expected: `local-webflow`
@@ -609,6 +616,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0].skillId'
     ```
     Expected: `local-obsidian`
@@ -623,6 +631,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Proof**:
     ```bash
     cd "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+    export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
     node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add a responsive css layout to the settings page"}' --format json | jq -r '.data.recommendations[0].skillId'
     ```
     Expected: `sk-code`
@@ -801,7 +810,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Change**: replace the anchor line with a `## B - Generation` section holding the fenced command below, its exit code, the four filenames it wrote and `Expected: exit 0 and four files under /tmp/psurf-corpus-probe/out/`. End with the anchor line again.
   - **Proof**:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+    cd "$(git rev-parse --show-toplevel)"
     node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --repo-root /tmp/psurf-corpus-probe --out /tmp/psurf-corpus-probe/out/trigger-index.json --quiet; echo "exit=$?"
     ls /tmp/psurf-corpus-probe/out/
     ```
@@ -829,7 +838,7 @@ Every evidence path below is packet-relative and written out in full under `spec
 - [ ] T051 Record the reviewer's verdict per criterion (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md` (new file)
   - **Anchor**: `new file`
-  - **Change**: write a heading `# 10 - Review`, a `## A - Verdicts` section, the exact table header `| AC-ID | Verdict | Observed |` followed by its divider row `|-------|---------|----------|`, then one row per criterion from AC-001 through AC-015, each carrying `Met` or `Unmet` and the output the reviewer saw. Dispatch a separate read-only DeepSeek reviewer session on branch `deepseekpi` with the packet path and the instruction to re-run each criterion's command. At most 2 rounds. End with `<!-- evidence:end -->`.
+  - **Change**: write a heading `# 10 - Review`, a `## A - Verdicts` section, the exact table header `| AC-ID | Verdict | Observed |` followed by its divider row `|-------|---------|----------|`, then one row per criterion from AC-001 through AC-015, each carrying `Met` or `Unmet` and the output the reviewer saw. Run the review through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. The reviewer takes the packet path and the instruction to re-run each criterion's command. At most 2 rounds. End with `<!-- evidence:end -->`.
   - **Proof**:
     ```bash
     grep -c "^| AC-[0-9]" specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md
@@ -911,7 +920,7 @@ Every evidence path below is packet-relative and written out in full under `spec
 - [ ] T057 Commit the evidence and the closed packet as C2 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: the fifteen evidence files, `implementation-summary.md`, `acceptance-criteria.md`, `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` and `goal.md` under `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/` (commit only)
   - **Anchor**: n/a - no line is edited
-  - **Change**: bring `deepseekpihigh` level with `origin/main` first, because C1's push started the trigger-index rebuild that commits to `main` and the branch has not integrated it, then tick the boxes for T001 through T059, then stage by name and commit on `deepseekpihigh`:
+  - **Change**: bring the working checkout level with `origin/main` (`git fetch origin` then `git merge --ff-only origin/main`) first, because C1's push started the trigger-index rebuild that commits to `main` and the checkout has not integrated it, then tick the boxes for T001 through T059, then stage by name and commit:
     ```bash
     git fetch origin main
     git merge --ff-only origin/main
@@ -1070,7 +1079,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 - [ ] T065 Commit the final-tip verification and the closed checklist as C3 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` and `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md` (commit only)
   - **Anchor**: n/a - no line is edited
-  - **Change**: bring `deepseekpihigh` level with `origin/main` first, because C2's push started the rebuild commit this final tip carries and the branch has not integrated it, then stage both files by name and commit on `deepseekpihigh`:
+  - **Change**: bring the working checkout level with `origin/main` (`git fetch origin` then `git merge --ff-only origin/main`) first, because C2's push started the rebuild commit this final tip carries and the checkout has not integrated it, then stage both files by name and commit:
     ```bash
     git fetch origin main
     git merge --ff-only origin/main
@@ -1095,7 +1104,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 - [ ] T066 Push C3 to main (none)
   - **File**: none - the command changes the remote
   - **Anchor**: n/a - no file is edited
-  - **Change**: confirm the branch is still ahead of `origin/main` only by C3, then push:
+  - **Change**: confirm the checkout is still ahead of `origin/main` only by C3, then push:
     ```bash
     git fetch origin main
     git merge-base --is-ancestor origin/main HEAD && echo ff-ready

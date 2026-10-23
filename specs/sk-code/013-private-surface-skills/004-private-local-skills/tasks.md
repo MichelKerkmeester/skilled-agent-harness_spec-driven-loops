@@ -9,12 +9,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T13:30:00Z"
+    last_updated_at: "2026-10-23T17:55:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Rewrote every task as one change with seven fields, an AC id and a rollback"
-    next_safe_action: "Record the operator's folder mode in ADR-001, then run T001"
-    blockers:
-      - "ADR-001 folder mode is pending the operator's decision"
+    recent_action: "Recorded the two-repository answer and the new tasks"
+    next_safe_action: "Run T001, T002 and T002a, then the T005/T006 restore pair"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -25,9 +24,9 @@ _memory:
       session_id: "planning-004-private-local-skills"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Real folder or symlink to a private repository?"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Folder mode: symlink to two external repositories (operator, 2026-10-23)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 4: private-local-skills
@@ -45,6 +44,7 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
+| `[—]` | Not used under the recorded decision; never executed |
 
 **Task Format**: `T### [P?] Description (file path)`
 
@@ -52,20 +52,29 @@ Every task carries seven fields in this order: **File**, **Anchor**, **Change**,
 **Rollback**, **Stop if**. A task changes one file, runs one command, or writes one artifact. Tasks run
 in numeric order; a task that stops ends the run.
 
-**Checkout rule.** Two checkouts, split by what each one holds.
+**Checkout rule.** The run splits by role, not by directory list.
 
 - `OPERATOR` is `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`. Every command
-  that creates, reads or edits `.skilled/skills/local-*` runs there, because an ignored tree never
-  travels between checkouts. T001 and T003 to T095 run in `OPERATOR`.
-- `WORKTREE` is
-  `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans`.
-  Every packet-document edit, the review report, the validator run and the commit run there. T002 and
-  T096 to T109 run in `WORKTREE`.
+  that creates, reads or edits `.skilled/skills/local-*` runs there, because an ignored link never
+  travels between checkouts. T001, T002, T002a and T005 to T095 run in `OPERATOR`.
+- `WORKTREE` is the checkout the orchestrator commits packet documents from. By default it is `OPERATOR`
+  itself; if the orchestrator chose a separate worktree, it is that worktree's root. Set it once with
+  `WORKTREE="$(git rev-parse --show-toplevel)"` from that checkout, after
+  `git fetch origin && git merge --ff-only origin/main`, and let every command block below re-establish
+  the same value the same way so a fresh shell cannot inherit a stale one. Every packet-document edit,
+  the review report, the validator run and the commit run there. T096 to T109 run in `WORKTREE`.
+- `TARGET-WEBFLOW` is `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com`, a private
+  repository. T095a runs there.
+- `TARGET-OBSIDIAN` is `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin`, a public
+  repository. T095b runs there.
+- `HOME` is the operator's home directory. T006b edits `~/.zshrc` there after an explicit operator yes.
 
-**Branch rule.** No task switches branches. The content commands in `OPERATOR` write only ignored
-paths and never touch the index, so they run with `main` checked out. The single commit in T106 is
-made in `WORKTREE` on the branch `worktrees/215-private-surface-level3-plans` and pushed to `main`
-by T108.
+**Branch rule.** No task switches branches. Content commands that write inside `OPERATOR` touch only ignored links and never the index, so they run with `main` checked out. T005 and T006 write the external target trees, T006a writes the ignored links, and T006b edits `~/.zshrc`. The single documents commit in T106 is made in `WORKTREE` on the checked-out branch, pushed with `git push origin HEAD:main` by T108. The target-repository commits in T095a and T095b run on each repository's current branch and push to `main` when that is the branch, or to the current branch when the operator confirms it is the repository's mainline.
+
+**Target-repository rule.** Both external repositories carry unrelated uncommitted files. T095a and
+T095b stage only `local-skills/<name>` by path, never `git add -A`, never `git add .`, and stop if
+anything outside that path is staged. The Obsidian repository is public; its push publishes the skill
+content and runs only after an explicit operator yes.
 
 **Line-number rule.** The anchor quotes text that exists in the file at the time the task runs; a
 writer that cannot find it re-reads the file once and stops if it is still missing. Line numbers were
@@ -108,8 +117,10 @@ Run this before every task, without exception.
 | `TASK-SEQ` | Run tasks in numeric order. Never start a task whose predecessor did not print its Expected value. |
 | `TASK-SCOPE` | Change only the file named in the task. Never widen an edit to a neighbouring file. |
 | `TASK-EXACT` | Replace the Anchor text exactly. Never use a tree-wide `sed` for a catalogue entry. |
-| `TASK-ONE-BRANCH` | T003 and T004 run only in Mode A; T005 and T006 run only in Mode B. Never run both pairs. |
-| `TASK-NO-STAGE` | Never run `git add`, `git add -f` or `git commit` before T106. |
+| `TASK-ONE-BRANCH` | T005 and T006 run in Mode B; T003 and T004 are the recorded Mode A alternative, carry `[—]` and never run. Never run both pairs. |
+| `TASK-REPO-STAGE` | T095a and T095b stage only `local-skills/<name>` by path and stop if anything else is staged. |
+| `TASK-OPERATOR-YES` | T006b and each push in T095a and T095b wait for an explicit operator yes at run time; no yes stops the task. |
+| `TASK-NO-STAGE` | Never run `git add`, `git add -f` or `git commit` in `OPERATOR` or `WORKTREE` before T106. T095a and T095b run their named `git add` and `git commit` only inside their target repositories. |
 | `TASK-PROOF` | Run the Proof block and read its output. A task is done only when the output matches Expected. |
 
 ### Status Reporting Format
@@ -123,7 +134,7 @@ T### <DONE|BLOCKED> expected=<Expected value> observed=<observed value>
 A run ends with one summary line:
 
 ```text
-PHASE 4 <COMPLETE|BLOCKED> tasks=<done count>/109 criteria=<met count>/19
+PHASE 4 <COMPLETE|BLOCKED> tasks=<done count>/114 criteria=<met count>/22
 ```
 
 ### Blocked Task Protocol
@@ -132,8 +143,11 @@ PHASE 4 <COMPLETE|BLOCKED> tasks=<done count>/109 criteria=<met count>/19
 2. Report the task id, the command, the observed output and the Expected value.
 3. If the failure is a missing Anchor after one re-read, report `BLOCKED: anchor drift at T###`.
 4. If the failure is the T001 gate, report `BLOCKED: phase 003 compiler skip is not on main`.
-5. If the failure is the T002 gate, report `BLOCKED: ADR-001 folder mode is pending the operator's decision`.
-6. Leave the working tree as it is. Do not clean up with `git` commands; the rollback field of the failed task names the safe undo.
+5. If the failure is the T002 gate, report `BLOCKED: ADR-001 does not record the two-repository symlink answer`.
+6. If the failure is the T002a precheck, report `BLOCKED: a target path already exists or a repository .skilled is not a symlink`.
+7. If the failure is the T006b environment task, report `BLOCKED: no explicit operator yes for ~/.zshrc`.
+8. If the failure is a target-repository push, report `BLOCKED: no explicit operator yes for <repo> push`.
+9. Leave the working tree as it is. Do not clean up with `git` commands; the rollback field of the failed task names the safe undo.
 <!-- /ANCHOR:ai-protocol -->
 
 ---
@@ -163,24 +177,50 @@ Expected: `commit`, then `1` and `1`.
 - **Rollback:** n/a: read-only.
 - **Stop if:** `git cat-file` does not print `commit`, or either count is not `1`. Report `BLOCKED: phase 003 compiler skip is not on main` or `BLOCKED: restore commit missing`.
 
-### T002 — Read ADR-001's folder mode, and stop while it is pending
+### T002 — Read ADR-001's recorded two-repository symlink answer
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md`
-- **Anchor:** `decision-record.md:47` — `| **Status** | Pending operator decision |`
+- **Anchor:** `decision-record.md` ADR-001 metadata — `| **Status** | Accepted: symlink to two external repositories |`
 - **Change:** n/a: read-only gate, no text changes.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
-awk '/<!-- ANCHOR:adr-001 -->/,/<!-- ANCHOR:adr-001-context -->/' specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md | grep -E '^[|] [*][*](Status|Folder mode|Private repository root)[*][*] [|]'
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
+awk '/<!-- ANCHOR:adr-001 -->/,/<!-- ANCHOR:adr-001-context -->/' specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md | grep -E '^[|] [*][*](Status|Folder mode|External repository roots)[*][*] [|]'
 ```
 
-Expected: three lines. `Status` reads `Accepted: real folder` or `Accepted: symlink to a private repository`; `Folder mode` reads `real folder` or `symlink`; `Private repository root` reads `n/a` or an absolute path starting with `/`.
+Expected: three lines. `Status` reads `Accepted: symlink to two external repositories`; `Folder mode` reads `symlink`; `External repository roots` names both `Obsidian Plugin/local-skills` and `Websites/anobel.com/local-skills`.
 
 - **AC:** AC-002
 - **Rollback:** n/a: read-only.
-- **Stop if:** `Status` still reads `Pending operator decision`. Report `BLOCKED: ADR-001 folder mode is pending the operator's decision` and stop the run.
+- **Stop if:** `Status` does not read `Accepted: symlink to two external repositories`, or either root is missing. Report `BLOCKED: ADR-001 does not record the two-repository symlink answer` and stop the run.
+
+### T002a — Precheck both target repositories and their `local-skills/` targets
+
+- **Status:** `[ ]`
+- **File:** none: read-only precheck of two external repositories.
+- **Anchor:** n/a: read-only precheck, no file edit.
+- **Change:** n/a: read-only precheck, no text changes.
+- **Proof:**
+
+```bash
+WEBFLOW_REPO="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+OBSIDIAN_REPO="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+test ! -e "$WEBFLOW_REPO/local-skills/local-webflow" && echo WEBFLOW_TARGET_FREE
+test ! -e "$OBSIDIAN_REPO/local-skills/local-obsidian" && echo OBSIDIAN_TARGET_FREE
+test -L "$WEBFLOW_REPO/.skilled" && echo WEBFLOW_SKILLED_SYMLINK
+test -L "$OBSIDIAN_REPO/.skilled" && echo OBSIDIAN_SKILLED_SYMLINK
+readlink "$WEBFLOW_REPO/.skilled"
+readlink "$OBSIDIAN_REPO/.skilled"
+```
+
+Expected: `WEBFLOW_TARGET_FREE`, `OBSIDIAN_TARGET_FREE`, `WEBFLOW_SKILLED_SYMLINK`, `OBSIDIAN_SKILLED_SYMLINK`, then two absolute paths that resolve back into this checkout. Both targets sit under `local-skills/`, never under `.skilled`, `.opencode` or `.claude`.
+
+- **AC:** AC-020
+- **Rollback:** n/a: read-only.
+- **Stop if:** either target path already exists, or either repository's `.skilled` is not a symlink, because a target under it would loop. Report `BLOCKED: a target path already exists or a repository .skilled is not a symlink`.
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -188,119 +228,138 @@ Expected: three lines. `Status` reads `Accepted: real folder` or `Accepted: syml
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Restore
 
-### T003 — Mode A: restore `local-webflow` as a real folder
+### T003 — Mode A (recorded alternative, not used): restore `local-webflow` as a real folder
 
-- **Status:** `[ ]`
+- **Status:** `[—]` not used under ADR-001
 - **File:** `.skilled/skills/local-webflow/` (new ignored tree)
 - **Anchor:** new file: the folder does not exist yet.
-- **Change:**
-
-```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-mkdir -p .skilled/skills/local-webflow
-git archive 42b41dd286 .skilled/skills/sk-code/sk-code-webflow | tar -x --strip-components=4 -C .skilled/skills/local-webflow
-```
-
-- **Proof:**
-
-```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-test -f .skilled/skills/local-webflow/SKILL.md && echo OK
-find .skilled/skills/local-webflow/ -type f | wc -l
-```
-
-Expected: `OK` and `158`.
-
+- **Change:** n/a under the recorded answer. This is the recorded Mode A alternative: `mkdir -p .skilled/skills/local-webflow` and `git archive 42b41dd286 .skilled/skills/sk-code/sk-code-webflow | tar -x --strip-components=4 -C .skilled/skills/local-webflow`.
+- **Proof:** n/a: never run under ADR-001's `Accepted: symlink to two external repositories`.
 - **AC:** AC-003, AC-013
-- **Rollback:** `rm -rf .skilled/skills/local-webflow`
-- **Stop if:** ADR-001's `Folder mode` is not `real folder`, or the count is not `158`.
+- **Rollback:** n/a: never run.
+- **Stop if:** always: ADR-001 records Mode B, so this task must not be executed.
 
-### T004 — Mode A: restore `local-obsidian` as a real folder
+### T004 — Mode A (recorded alternative, not used): restore `local-obsidian` as a real folder
 
-- **Status:** `[ ]`
+- **Status:** `[—]` not used under ADR-001
 - **File:** `.skilled/skills/local-obsidian/` (new ignored tree)
 - **Anchor:** new file: the folder does not exist yet.
-- **Change:**
-
-```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-mkdir -p .skilled/skills/local-obsidian
-git archive 42b41dd286 .skilled/skills/sk-code/sk-code-obsidian | tar -x --strip-components=4 -C .skilled/skills/local-obsidian
-```
-
-- **Proof:**
-
-```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-test -f .skilled/skills/local-obsidian/SKILL.md && echo OK
-find .skilled/skills/local-obsidian/ -type f | wc -l
-```
-
-Expected: `OK` and `62`.
-
+- **Change:** n/a under the recorded answer. This is the recorded Mode A alternative: `mkdir -p .skilled/skills/local-obsidian` and `git archive 42b41dd286 .skilled/skills/sk-code/sk-code-obsidian | tar -x --strip-components=4 -C .skilled/skills/local-obsidian`.
+- **Proof:** n/a: never run under ADR-001's `Accepted: symlink to two external repositories`.
 - **AC:** AC-003, AC-013
-- **Rollback:** `rm -rf .skilled/skills/local-obsidian`
-- **Stop if:** ADR-001's `Folder mode` is not `real folder`, or the count is not `62`.
+- **Rollback:** n/a: never run.
+- **Stop if:** always: ADR-001 records Mode B, so this task must not be executed.
 
-### T005 — Mode B: restore `local-webflow` into the private repository and link it
+### T005 — Mode B: restore `local-webflow` into its own repository
 
 - **Status:** `[ ]`
-- **File:** `.skilled/skills/local-webflow` (new symlink) and `$PRIVATE_ROOT/local-webflow/` (new ignored tree outside the checkout)
-- **Anchor:** new file: neither path exists yet.
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow/` (new tree in the private repository; the checkout link is created by T006a)
+- **Anchor:** new folder: the target does not exist yet, proved by T002a.
 - **Change:**
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-PRIVATE_ROOT=$(grep -F '| **Private repository root** | /' .worktrees/215-private-surface-level3-plans/specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md | cut -d'|' -f3 | sed 's/^ *//; s/ *$//')
-test -n "$PRIVATE_ROOT" && echo "PRIVATE_ROOT=$PRIVATE_ROOT"
-mkdir -p "$PRIVATE_ROOT/local-webflow"
-git archive 42b41dd286 .skilled/skills/sk-code/sk-code-webflow | tar -x --strip-components=4 -C "$PRIVATE_ROOT/local-webflow"
-ln -s "$PRIVATE_ROOT/local-webflow" .skilled/skills/local-webflow
+WEBFLOW_REPO="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+mkdir -p "$WEBFLOW_REPO/local-skills/local-webflow"
+git archive 42b41dd286 .skilled/skills/sk-code/sk-code-webflow | tar -x --strip-components=4 -C "$WEBFLOW_REPO/local-skills/local-webflow"
 ```
 
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-test -L .skilled/skills/local-webflow && echo LINK
-find .skilled/skills/local-webflow/ -type f | wc -l
+WEBFLOW_REPO="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+test -f "$WEBFLOW_REPO/local-skills/local-webflow/SKILL.md" && echo OK
+find "$WEBFLOW_REPO/local-skills/local-webflow/" -type f | wc -l
 ```
 
-Expected: `LINK` and `158`.
+Expected: `OK` and `158` (the three workflow references are still symlinks at this point).
 
-- **AC:** AC-003, AC-013
-- **Rollback:** `rm .skilled/skills/local-webflow` removes the link and leaves `$PRIVATE_ROOT/local-webflow` in place.
-- **Stop if:** ADR-001's `Folder mode` is not `symlink`, or `PRIVATE_ROOT` is empty or does not start with `/`, or `.skilled/skills/local-webflow` already exists.
+- **AC:** AC-003, AC-020
+- **Rollback:** `rm -rf "$WEBFLOW_REPO/local-skills/local-webflow"`; the target was free before this task.
+- **Stop if:** ADR-001's `Folder mode` is not `symlink`, either target path already exists, or the count is not `158`.
 
-### T006 — Mode B: restore `local-obsidian` into the private repository and link it
+### T006 — Mode B: restore `local-obsidian` into its own repository
 
 - **Status:** `[ ]`
-- **File:** `.skilled/skills/local-obsidian` (new symlink) and `$PRIVATE_ROOT/local-obsidian/` (new ignored tree outside the checkout)
-- **Anchor:** new file: neither path exists yet.
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian/` (new tree in the public repository; the checkout link is created by T006a)
+- **Anchor:** new folder: the target does not exist yet, proved by T002a.
 - **Change:**
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-PRIVATE_ROOT=$(grep -F '| **Private repository root** | /' .worktrees/215-private-surface-level3-plans/specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md | cut -d'|' -f3 | sed 's/^ *//; s/ *$//')
-test -n "$PRIVATE_ROOT" && echo "PRIVATE_ROOT=$PRIVATE_ROOT"
-mkdir -p "$PRIVATE_ROOT/local-obsidian"
-git archive 42b41dd286 .skilled/skills/sk-code/sk-code-obsidian | tar -x --strip-components=4 -C "$PRIVATE_ROOT/local-obsidian"
-ln -s "$PRIVATE_ROOT/local-obsidian" .skilled/skills/local-obsidian
+OBSIDIAN_REPO="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+mkdir -p "$OBSIDIAN_REPO/local-skills/local-obsidian"
+git archive 42b41dd286 .skilled/skills/sk-code/sk-code-obsidian | tar -x --strip-components=4 -C "$OBSIDIAN_REPO/local-skills/local-obsidian"
+```
+
+- **Proof:**
+
+```bash
+OBSIDIAN_REPO="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+test -f "$OBSIDIAN_REPO/local-skills/local-obsidian/SKILL.md" && echo OK
+find "$OBSIDIAN_REPO/local-skills/local-obsidian/" -type f | wc -l
+```
+
+Expected: `OK` and `62` (the three workflow references are still symlinks at this point).
+
+- **AC:** AC-003, AC-020
+- **Rollback:** `rm -rf "$OBSIDIAN_REPO/local-skills/local-obsidian"`; the target was free before this task.
+- **Stop if:** ADR-001's `Folder mode` is not `symlink`, either target path already exists, or the count is not `62`.
+
+### T006a — Create the two symlinks in this checkout and prove both are ignored here
+
+- **Status:** `[ ]`
+- **File:** `.skilled/skills/local-webflow` and `.skilled/skills/local-obsidian` (new symlinks in the operator's checkout)
+- **Anchor:** new paths: neither link exists yet, proved by T002a.
+- **Change:**
+
+```bash
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ln -s "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow" .skilled/skills/local-webflow
+ln -s "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian" .skilled/skills/local-obsidian
 ```
 
 - **Proof:**
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-test -L .skilled/skills/local-obsidian && echo LINK
-find .skilled/skills/local-obsidian/ -type f | wc -l
+test -L .skilled/skills/local-webflow && echo LINK_WEBFLOW
+test -L .skilled/skills/local-obsidian && echo LINK_OBSIDIAN
+readlink .skilled/skills/local-webflow
+readlink .skilled/skills/local-obsidian
+git check-ignore -v .skilled/skills/local-webflow .skilled/skills/local-obsidian | grep -c '/.skilled/skills/local-\*'
+git status --porcelain .skilled | wc -l || echo 0
 ```
 
-Expected: `LINK` and `62`.
+Expected: `LINK_WEBFLOW`, `LINK_OBSIDIAN`, the two absolute target paths from ADR-001, `2` from `check-ignore`, and `0` from the status check.
 
-- **AC:** AC-003, AC-013
-- **Rollback:** `rm .skilled/skills/local-obsidian` removes the link and leaves `$PRIVATE_ROOT/local-obsidian` in place.
-- **Stop if:** ADR-001's `Folder mode` is not `symlink`, or `PRIVATE_ROOT` is empty or does not start with `/`, or `.skilled/skills/local-obsidian` already exists.
+- **AC:** AC-020, AC-013
+- **Rollback:** `rm .skilled/skills/local-webflow .skilled/skills/local-obsidian`; the target folders stay intact.
+- **Stop if:** either link already exists, either target folder is missing, either `readlink` does not match ADR-001, or the two counts are not `2` and `0`.
+
+### T006b — Set `SPECKIT_PRIVATE_SKILL_ROOTS` durably after an explicit operator yes
+
+- **Status:** `[ ]`
+- **File:** `~/.zshrc` (the operator's shell profile, outside this repository)
+- **Anchor:** no export line: `grep -c '^export SPECKIT_PRIVATE_SKILL_ROOTS=' ~/.zshrc` prints `0`, or exactly one line already holds the two-root value.
+- **Change:** first run `grep -c '^export SPECKIT_PRIVATE_SKILL_ROOTS=' ~/.zshrc` and `zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'`. If the line is absent, ask the operator `May I append the two-root SPECKIT_PRIVATE_SKILL_ROOTS export to ~/.zshrc?`, wait for an explicit yes, then append one quoted line. If the line already prints the two-root value, report `UNCHANGED` and do not edit. Any other answer or value stops the task.
+
+```bash
+printf '\nexport SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"\n' >> ~/.zshrc
+```
+
+- **Proof:**
+
+```bash
+zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'
+grep -c '^export SPECKIT_PRIVATE_SKILL_ROOTS=' ~/.zshrc
+```
+
+Expected: `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills` and `1`.
+
+- **AC:** AC-022
+- **Rollback:** delete the single appended `export SPECKIT_PRIVATE_SKILL_ROOTS=` line from `~/.zshrc`; no other line changes.
+- **Stop if:** the line is absent and the operator does not answer yes, an existing value differs from the two-root value, or a fresh login shell does not print both roots joined by `:`.
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -332,7 +391,7 @@ git show 42b41dd286:.skilled/skills/sk-code/shared/references/workflow-implement
 Expected: `REGULAR` and `IDENTICAL`.
 
 - **AC:** AC-004
-- **Rollback:** `rm .skilled/skills/local-webflow/references/workflow-implement.md` and re-run T003 or T005, which recreates the symlink from the archive.
+- **Rollback:** `rm .skilled/skills/local-webflow/references/workflow-implement.md` and re-run T005, which recreates the symlink from the archive.
 - **Stop if:** `rm` reports the path missing, or `test ! -L` does not print `REGULAR`.
 
 ### T008 — Replace the Webflow `workflow-debug.md` symlink with a real copy
@@ -359,7 +418,7 @@ git show 42b41dd286:.skilled/skills/sk-code/shared/references/workflow-debug.md 
 Expected: `REGULAR` and `IDENTICAL`.
 
 - **AC:** AC-004
-- **Rollback:** `rm .skilled/skills/local-webflow/references/workflow-debug.md` and re-run T003 or T005.
+- **Rollback:** `rm .skilled/skills/local-webflow/references/workflow-debug.md` and re-run T005.
 - **Stop if:** `rm` reports the path missing, or `test ! -L` does not print `REGULAR`.
 
 ### T009 — Replace the Webflow `workflow-verify.md` symlink with a real copy
@@ -386,7 +445,7 @@ git show 42b41dd286:.skilled/skills/sk-code/shared/references/workflow-verify.md
 Expected: `REGULAR` and `IDENTICAL`.
 
 - **AC:** AC-004
-- **Rollback:** `rm .skilled/skills/local-webflow/references/workflow-verify.md` and re-run T003 or T005.
+- **Rollback:** `rm .skilled/skills/local-webflow/references/workflow-verify.md` and re-run T005.
 - **Stop if:** `rm` reports the path missing, or `test ! -L` does not print `REGULAR`.
 
 ### T010 — Replace the Obsidian `workflow-implement.md` symlink with a real copy
@@ -413,7 +472,7 @@ git show 42b41dd286:.skilled/skills/sk-code/shared/references/workflow-implement
 Expected: `REGULAR` and `IDENTICAL`.
 
 - **AC:** AC-004
-- **Rollback:** `rm .skilled/skills/local-obsidian/references/workflow-implement.md` and re-run T004 or T006.
+- **Rollback:** `rm .skilled/skills/local-obsidian/references/workflow-implement.md` and re-run T006.
 - **Stop if:** `rm` reports the path missing, or `test ! -L` does not print `REGULAR`.
 
 ### T011 — Replace the Obsidian `workflow-debug.md` symlink with a real copy
@@ -440,7 +499,7 @@ git show 42b41dd286:.skilled/skills/sk-code/shared/references/workflow-debug.md 
 Expected: `REGULAR` and `IDENTICAL`.
 
 - **AC:** AC-004
-- **Rollback:** `rm .skilled/skills/local-obsidian/references/workflow-debug.md` and re-run T004 or T006.
+- **Rollback:** `rm .skilled/skills/local-obsidian/references/workflow-debug.md` and re-run T006.
 - **Stop if:** `rm` reports the path missing, or `test ! -L` does not print `REGULAR`.
 
 ### T012 — Replace the Obsidian `workflow-verify.md` symlink with a real copy
@@ -467,7 +526,7 @@ git show 42b41dd286:.skilled/skills/sk-code/shared/references/workflow-verify.md
 Expected: `REGULAR` and `IDENTICAL`.
 
 - **AC:** AC-004
-- **Rollback:** `rm .skilled/skills/local-obsidian/references/workflow-verify.md` and re-run T004 or T006.
+- **Rollback:** `rm .skilled/skills/local-obsidian/references/workflow-verify.md` and re-run T006.
 - **Stop if:** `rm` reports the path missing, or `test ! -L` does not print `REGULAR`.
 
 <!-- /ANCHOR:phase-3 -->
@@ -2023,7 +2082,7 @@ git show 42b41dd286:.skilled/skills/sk-code/sk-code-webflow/README.md | grep -c 
 Expected: `0` from the zero check and `1` from the positive control.
 
 - **AC:** AC-008
-- **Rollback:** re-run T003 or T005 and repeat T020 to T053; the pinned archive restores the original paths.
+- **Rollback:** re-run T005 and repeat T020 to T053; the pinned archive restores the original paths.
 - **Stop if:** the zero check prints any file line, because a match would mean a file the loop skipped.
 
 <!-- /ANCHOR:phase-7 -->
@@ -3294,7 +3353,7 @@ git show 42b41dd286:.skilled/skills/sk-code/sk-code-obsidian/README.md | grep -c
 Expected: `0` from the zero check and `7` from the positive control.
 
 - **AC:** AC-008
-- **Rollback:** re-run T004 or T006 and repeat T055 to T084; the pinned archive restores the original paths.
+- **Rollback:** re-run T006 and repeat T055 to T084; the pinned archive restores the original paths.
 - **Stop if:** the zero check prints any file line, because a match would mean a file the loop skipped.
 
 <!-- /ANCHOR:phase-9 -->
@@ -3661,7 +3720,8 @@ Expected: `1`.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c '013-private-surface-skills' specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 rg -c '013-private-surface-skills|004-private-local-skills' .skilled/skills/local-webflow || echo 0
@@ -3682,7 +3742,8 @@ Expected: at least `1` from the positive control and `0` from the zero check.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c '013-private-surface-skills' specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 rg -c '013-private-surface-skills|004-private-local-skills' .skilled/skills/local-obsidian || echo 0
@@ -3694,30 +3755,18 @@ Expected: at least `1` from the positive control and `0` from the zero check.
 - **Rollback:** n/a: read-only.
 - **Stop if:** the zero check prints a file line.
 
-### T094 — Prove the advisor indexes both skills, real-folder mode
+### T094 — Prove the advisor indexes both skills, real-folder mode (recorded alternative, not used)
 
-- **Status:** `[ ]`
+- **Status:** `[—]` not used under ADR-001
 - **File:** none
 - **Anchor:** n/a: read-only command, except for the throwaway database it creates.
-- **Change:** n/a: read-only command.
-- **Proof:**
-
-```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-rm -rf /tmp/psurf-phase4/advisor-db
-export SYSTEM_SKILL_ADVISOR_DB_DIR=/tmp/psurf-phase4/advisor-db
-node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json > /tmp/psurf-phase4/scan.json
-sqlite3 /tmp/psurf-phase4/advisor-db/skill-graph.sqlite "SELECT id FROM skill_nodes WHERE id LIKE 'local-%' ORDER BY id;"
-unset SYSTEM_SKILL_ADVISOR_DB_DIR
-```
-
-Expected: `local-obsidian` and `local-webflow`, one per line.
-
+- **Change:** n/a under the recorded answer. This is the Mode A advisor probe.
+- **Proof:** n/a: never run under ADR-001's `Accepted: symlink to two external repositories`.
 - **AC:** AC-014
-- **Rollback:** `rm -rf /tmp/psurf-phase4/advisor-db`
-- **Stop if:** ADR-001's `Folder mode` is not `real folder`, the scan exits `75` twice, or the query prints no rows.
+- **Rollback:** n/a: never run.
+- **Stop if:** always: ADR-001 records Mode B, so this task must not be executed.
 
-### T095 — Prove the advisor indexes both skills, symlink mode
+### T095 — Prove the advisor indexes both skills, two-repository symlink mode
 
 - **Status:** `[ ]`
 - **File:** none
@@ -3727,8 +3776,8 @@ Expected: `local-obsidian` and `local-webflow`, one per line.
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-PRIVATE_ROOT=$(grep -F '| **Private repository root** | /' .worktrees/215-private-surface-level3-plans/specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md | cut -d'|' -f3 | sed 's/^ *//; s/ *$//')
-export SPECKIT_PRIVATE_SKILL_ROOTS="$PRIVATE_ROOT"
+PRIVATE_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
+export SPECKIT_PRIVATE_SKILL_ROOTS="$PRIVATE_ROOTS"
 rm -rf /tmp/psurf-phase4/advisor-db
 export SYSTEM_SKILL_ADVISOR_DB_DIR=/tmp/psurf-phase4/advisor-db
 node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json > /tmp/psurf-phase4/scan.json
@@ -3738,9 +3787,79 @@ unset SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_PRIVATE_SKILL_ROOTS
 
 Expected: `local-obsidian` and `local-webflow`, one per line.
 
-- **AC:** AC-014
+- **AC:** AC-014, AC-022
 - **Rollback:** `rm -rf /tmp/psurf-phase4/advisor-db`
-- **Stop if:** ADR-001's `Folder mode` is not `symlink`, the scan exits `75` twice, or the query prints no rows.
+- **Stop if:** ADR-001's `Folder mode` is not `symlink`, `SPECKIT_PRIVATE_SKILL_ROOTS` does not hold both roots, the scan exits `75` twice, or the query prints no rows.
+
+### T095a — Commit and push the Webflow repository
+
+- **Status:** `[ ]`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow/` and that repository's git index
+- **Anchor:** `git -C "$WEBFLOW_REPO" status --porcelain local-skills/local-webflow` reports the restored tree as untracked before this task.
+- **Change:** ask for an explicit operator yes before the push. Stage only the target path, and stop if anything else is staged.
+
+```bash
+WEBFLOW_REPO="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+test -z "$(git -C "$WEBFLOW_REPO" diff --cached --name-only)" && echo INDEX_CLEAN
+git -C "$WEBFLOW_REPO" add local-skills/local-webflow
+git -C "$WEBFLOW_REPO" diff --cached --name-only | grep -c '^local-skills/local-webflow/'
+git -C "$WEBFLOW_REPO" diff --cached --name-only | grep -c -v '^local-skills/local-webflow/' || true
+git -C "$WEBFLOW_REPO" commit -m "feat(skills): restore local-webflow"
+BRANCH=$(git -C "$WEBFLOW_REPO" branch --show-current)
+# Ask: May I push local-webflow to origin/$BRANCH? Wait for an explicit yes.
+git -C "$WEBFLOW_REPO" push origin "HEAD:$BRANCH"
+```
+
+- **Proof:**
+
+```bash
+WEBFLOW_REPO="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+BRANCH=$(git -C "$WEBFLOW_REPO" branch --show-current)
+git -C "$WEBFLOW_REPO" ls-files local-skills/local-webflow | wc -l
+git -C "$WEBFLOW_REPO" show --name-only --format= HEAD | grep -c -v '^local-skills/local-webflow/' || true
+test "$(git -C "$WEBFLOW_REPO" rev-parse HEAD)" = "$(git -C "$WEBFLOW_REPO" rev-parse "origin/$BRANCH")" && echo WEBFLOW_PUSHED
+```
+
+Expected: `162`, `0` and `WEBFLOW_PUSHED`.
+
+- **AC:** AC-021
+- **Rollback:** `git -C "$WEBFLOW_REPO" revert <commit>` creates a revert commit in that repository; if the commit was already pushed, push the revert after another explicit operator yes.
+- **Stop if:** anything outside `local-skills/local-webflow/` is staged, the operator does not answer yes to the push, or `origin/$BRANCH` does not match `HEAD` after the push.
+
+### T095b — Commit and push the Obsidian repository
+
+- **Status:** `[ ]`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian/` and that repository's git index
+- **Anchor:** `git -C "$OBSIDIAN_REPO" status --porcelain local-skills/local-obsidian` reports the restored tree as untracked before this task.
+- **Change:** ask for an explicit operator yes before the push, because this repository is public and the push publishes the skill content. Stage only the target path, and stop if anything else is staged.
+
+```bash
+OBSIDIAN_REPO="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+test -z "$(git -C "$OBSIDIAN_REPO" diff --cached --name-only)" && echo INDEX_CLEAN
+git -C "$OBSIDIAN_REPO" add local-skills/local-obsidian
+git -C "$OBSIDIAN_REPO" diff --cached --name-only | grep -c '^local-skills/local-obsidian/'
+git -C "$OBSIDIAN_REPO" diff --cached --name-only | grep -c -v '^local-skills/local-obsidian/' || true
+git -C "$OBSIDIAN_REPO" commit -m "feat(skills): restore local-obsidian"
+BRANCH=$(git -C "$OBSIDIAN_REPO" branch --show-current)
+# Ask: May I publish local-obsidian by pushing to origin/$BRANCH? Wait for an explicit yes.
+git -C "$OBSIDIAN_REPO" push origin "HEAD:$BRANCH"
+```
+
+- **Proof:**
+
+```bash
+OBSIDIAN_REPO="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+BRANCH=$(git -C "$OBSIDIAN_REPO" branch --show-current)
+git -C "$OBSIDIAN_REPO" ls-files local-skills/local-obsidian | wc -l
+git -C "$OBSIDIAN_REPO" show --name-only --format= HEAD | grep -c -v '^local-skills/local-obsidian/' || true
+test "$(git -C "$OBSIDIAN_REPO" rev-parse HEAD)" = "$(git -C "$OBSIDIAN_REPO" rev-parse "origin/$BRANCH")" && echo OBSIDIAN_PUBLISHED
+```
+
+Expected: `66`, `0` and `OBSIDIAN_PUBLISHED`.
+
+- **AC:** AC-021
+- **Rollback:** `git -C "$OBSIDIAN_REPO" revert <commit>` creates a revert commit in that repository; if the commit was already published, push the revert after another explicit operator yes.
+- **Stop if:** anything outside `local-skills/local-obsidian/` is staged, the operator does not answer yes to the publish, or `origin/$BRANCH` does not match `HEAD` after the push.
 
 <!-- /ANCHOR:phase-11 -->
 ---
@@ -3748,16 +3867,17 @@ Expected: `local-obsidian` and `local-webflow`, one per line.
 <!-- ANCHOR:phase-12 -->
 ## Phase 12: Evidence
 
-### T096 — Record the folder mode and restore commands in the summary
+### T096 — Record the two-repository mode and restore commands in the summary
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md`
-- **Anchor:** `implementation-summary.md:48` — `[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]` and `implementation-summary.md:52` — `[What this feature does and why it exists. 1-2 paragraphs. Use direct address.` / `Explain what the user gains, not what files you touched.]`
-- **Change:** replace the two placeholder blocks with prose that names the recorded folder mode and the two `git archive` commands, and replace the `Files Changed` table body with two rows, one per ignored tree. Quote paths and counts only.
+- **Anchor:** `implementation-summary.md` — `[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]` and `implementation-summary.md` — `[What this feature does and why it exists. 1-2 paragraphs. Use direct address.` / `Explain what the user gains, not what files you touched.]`
+- **Change:** replace the two placeholder blocks with prose that names the recorded folder mode as `Folder mode: symlink`, names both target repositories, and quotes the two `git archive` commands, and replace the `Files Changed` table body with two rows, one per link and its target repository. Quote paths and counts only.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c 'Folder mode' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
 grep -c 'git archive 42b41dd286' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
 grep -c 'Opening hook' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md || true
@@ -3773,12 +3893,13 @@ Expected: `1`, `2` and `0`.
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md`
-- **Anchor:** `implementation-summary.md:67` — `[How was this tested, verified and shipped? What was the rollout approach?]`
+- **Anchor:** `implementation-summary.md` — `[How was this tested, verified and shipped? What was the rollout approach?]`
 - **Change:** replace the placeholder with the four readings: the intermediate Webflow `AUDIT_FAIL=1` with 16 broken links, the intermediate Obsidian `AUDIT_FAIL=1` with 2, the final Webflow `AUDIT_FAIL=1` with the one pre-existing link, and the final Obsidian `AUDIT_FAIL=0`.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c 'AUDIT_FAIL' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
 grep -c 'How was this tested' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md || true
 ```
@@ -3793,18 +3914,20 @@ Expected: at least `4` and `0`.
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md`
-- **Anchor:** `implementation-summary.md:77` — `| [What was decided] | [Active-voice rationale with specific reasoning] |` and `implementation-summary.md:87` — `| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |`
-- **Change:** replace the decision table body with two rows, one for the folder mode and one for the copy-before-edit rule, and replace the verification table body with rows naming `check-ignore`, the two `!!` entries, the audit results and the `skill_nodes` query.
+- **Anchor:** `implementation-summary.md` — `| [What was decided] | [Active-voice rationale with specific reasoning] |` and `implementation-summary.md` — `| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |`
+- **Change:** replace the decision table body with two rows, one for the two-repository symlink mode and one for the copy-before-edit rule, and replace the verification table body with rows naming `check-ignore`, the two `!!` entries, the audit results, the `skill_nodes` query, the two target-repository commits and the two-root environment value.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c 'check-ignore' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
 grep -c 'skill_nodes' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
+grep -c 'SPECKIT_PRIVATE_SKILL_ROOTS' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
 grep -c '\[What was decided\]' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md || true
 ```
 
-Expected: at least `1`, at least `1` and `0`.
+Expected: at least `1`, at least `1`, at least `1` and `0`.
 
 - **AC:** AC-015
 - **Rollback:** restore the two placeholder rows.
@@ -3814,12 +3937,13 @@ Expected: at least `1`, at least `1` and `0`.
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md`
-- **Anchor:** `implementation-summary.md:95` — `1. **[Limitation]** [Specific detail with workaround if one exists.]`
-- **Change:** replace the placeholder with two limitations: the pre-existing `-> target` link in `shared-listener-and-weakmap.md` stays broken by design, and the Mode B link needs `SPECKIT_PRIVATE_SKILL_ROOTS` in every advisor process.
+- **Anchor:** `implementation-summary.md` — `1. **[Limitation]** [Specific detail with workaround if one exists.]`
+- **Change:** replace the placeholder with two limitations: the pre-existing `-> target` link in `shared-listener-and-weakmap.md` stays broken by design, and the two external-repository links need both roots in `SPECKIT_PRIVATE_SKILL_ROOTS` for every advisor process.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c 'shared-listener-and-weakmap.md' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md
 grep -c '\[Limitation\]' specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md || true
 ```
@@ -3853,7 +3977,7 @@ Expected: `REMOVED` and `0`.
 
 - **AC:** AC-013
 - **Rollback:** n/a: the directory is temporary and is recreated by T017 if a later run needs it.
-- **Stop if:** T088, T089, T094 or T095 has not printed its Expected value, because the readings would be lost.
+- **Stop if:** T088, T089, T095, T095a or T095b has not printed its Expected value, because the readings would be lost.
 
 <!-- /ANCHOR:phase-12 -->
 ---
@@ -3861,12 +3985,12 @@ Expected: `REMOVED` and `0`.
 <!-- ANCHOR:phase-13 -->
 ## Phase 13: Review and close
 
-### T101 — Run the independent review round
+### T101 — Run the independent review round through the OpenCode 2 `subagent` tool
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md`
 - **Anchor:** new file.
-- **Change:** dispatch one read-only reviewer session with the seven checks below, and write its report as a table with one row per check. The reviewer edits no file except this report.
+- **Change:** the runtime is OpenCode 2 with a DeepSeek orchestrator. Run the review through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. The orchestrator captures `git status --porcelain` before and after in both the `OPERATOR` and the `WORKTREE` checkout, once for each when they are the same directory, and requires each pair to be identical. No CLI dispatch kit, kit branch or executor name (`deepseekpi`, `deepseekpihigh`, `dispatch.sh`, `cli-devin`, `cli-pi`) is used anywhere; work is done by the orchestrator itself or the `code` / `markdown` subagents. After the two status readings match, the orchestrator writes the seven-check report below from the reviewer's returned findings.
 
 ```text
 | Check | Result | Evidence |
@@ -3883,17 +4007,27 @@ Expected: `REMOVED` and `0`.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+OPERATOR="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
+git -C "$OPERATOR" status --porcelain > /tmp/psurf-review-operator-before.txt
+[ "$WORKTREE" = "$OPERATOR" ] || git -C "$WORKTREE" status --porcelain > /tmp/psurf-review-worktree-before.txt
+# Dispatch the read-only `review` subagent here; its prompt says it edits no file.
+git -C "$OPERATOR" status --porcelain > /tmp/psurf-review-operator-after.txt
+[ "$WORKTREE" = "$OPERATOR" ] || git -C "$WORKTREE" status --porcelain > /tmp/psurf-review-worktree-after.txt
+cmp -s /tmp/psurf-review-operator-before.txt /tmp/psurf-review-operator-after.txt && echo OPERATOR_STATUS_IDENTICAL
+[ "$WORKTREE" = "$OPERATOR" ] || { cmp -s /tmp/psurf-review-worktree-before.txt /tmp/psurf-review-worktree-after.txt && echo WORKTREE_STATUS_IDENTICAL; }
+rm /tmp/psurf-review-*.txt
 test -f specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md && echo REPORT_PRESENT
 grep -c '^| CHECK-' specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md
 grep -c '^| CHECK-.*| PASS |' specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md
 ```
 
-Expected: `REPORT_PRESENT`, `7` and `7`.
+Expected: `OPERATOR_STATUS_IDENTICAL`, then `WORKTREE_STATUS_IDENTICAL` only when `WORKTREE` is not `OPERATOR`, then `REPORT_PRESENT`, `7` and `7`.
 
 - **AC:** AC-017
-- **Rollback:** `rm specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md`
-- **Stop if:** any row reports `FAIL`. Repair the finding, then re-run the review once; a second `FAIL` stops the phase.
+- **Rollback:** `rm specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md` and remove any `/tmp/psurf-review-*.txt` file.
+- **Stop if:** either checkout's before and after `git status --porcelain` outputs differ, which means the reviewer edited a file, or any row reports `FAIL`. Repair the finding, then re-run the review once; a second `FAIL` stops the phase.
 
 ### T102 — Run the strict packet validation
 
@@ -3904,7 +4038,8 @@ Expected: `REPORT_PRESENT`, `7` and `7`.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/004-private-local-skills --strict | grep -c 'RESULT: PASSED'
 ```
 
@@ -3918,18 +4053,19 @@ Expected: `1`.
 
 - **Status:** `[ ]`
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md`
-- **Anchor:** the 19 rows of the criteria table, each ending `| Unmet | - |`
+- **Anchor:** the 22 rows of the criteria table, each ending `| Unmet | - |`
 - **Change:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 python3 - <<'PY'
 from pathlib import Path
 p = Path("specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md")
 s = p.read_text()
 old = "| Unmet | - |"
 new = "| Met | - |"
-assert s.count(old) == 19, s.count(old)
+assert s.count(old) == 22, s.count(old)
 p.write_text(s.replace(old, new))
 PY
 ```
@@ -3937,17 +4073,18 @@ PY
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c '^| AC-[0-9][0-9][0-9] |' specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md
 grep -c '^| AC-[0-9][0-9][0-9] |.*| Met | - |' specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md
 grep -c '| Unmet | - |' specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md || true
 ```
 
-Expected: `19`, `19` and `0`.
+Expected: `22`, `22` and `0`.
 
 - **AC:** AC-018
 - **Rollback:** replace `| Met | - |` back with `| Unmet | - |`.
-- **Stop if:** the assert reports a count other than `19`, or any criterion's proof has not printed its Expected value.
+- **Stop if:** the assert reports a count other than `22`, or any criterion's proof has not printed its Expected value.
 
 ### T104 — Set the closure statement to closeable
 
@@ -3957,7 +4094,8 @@ Expected: `19`, `19` and `0`.
 - **Change:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 python3 - <<'PY'
 from pathlib import Path
 p = Path("specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md")
@@ -3972,7 +4110,8 @@ PY
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 grep -c '^\*\*Closeable:\*\* Yes' specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md
 ```
 
@@ -3980,7 +4119,7 @@ Expected: `1`.
 
 - **AC:** AC-018
 - **Rollback:** replace `**Closeable:** Yes` back with `**Closeable:** No`.
-- **Stop if:** T103 did not print `19`, `19` and `0`.
+- **Stop if:** T103 did not print `22`, `22` and `0`.
 
 ### T105 — Re-derive the phase metadata and re-run the strict validation
 
@@ -3990,14 +4129,16 @@ Expected: `1`.
 - **Change:** the two status edits in T103 and T104 changed the phase documents, so the generated metadata is stale. Re-derive it, then validate.
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/sk-code/013-private-surface-skills/004-private-local-skills --apply
 ```
 
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/004-private-local-skills --strict | grep -c 'RESULT: PASSED'
 ```
 
@@ -4015,7 +4156,8 @@ Expected: `1`, and the repair line reads `inspected=1 repaired=1 failed=0`.
 - **Change:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 git add specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md
 git add specs/sk-code/013-private-surface-skills/004-private-local-skills/plan.md
 git add specs/sk-code/013-private-surface-skills/004-private-local-skills/tasks.md
@@ -4027,13 +4169,14 @@ git add specs/sk-code/013-private-surface-skills/004-private-local-skills/descri
 git add specs/sk-code/013-private-surface-skills/004-private-local-skills/graph-metadata.json
 git add specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/review-round-1.md
 git diff --cached --name-only | grep -c 'skilled/skills/local-' || true
-git commit -m "docs(sk-code): close phase 4 private local skills" -m "Restore both surfaces as gitignored local skills, record the link audits and the advisor scan, and close the phase's criteria. The private trees stay in the operator's checkout."
+git commit -m "docs(sk-code): close phase 4 private local skills" -m "Restore both surfaces into two external repositories as gitignored links, record the link audits, the advisor scan and the target commits, and close the phase's criteria."
 ```
 
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 git show --name-only --format= HEAD | grep -c '^specs/sk-code/013-private-surface-skills/004-private-local-skills/'
 git show --name-only --format= HEAD | grep -c -v '^specs/sk-code/013-private-surface-skills/004-private-local-skills/' || true
 git status --porcelain | wc -l || echo 0
@@ -4042,7 +4185,7 @@ git status --porcelain | wc -l || echo 0
 Expected: at least `9` from the phase-folder control, `0` from the non-phase count, and `0` from the status check.
 
 - **AC:** AC-019
-- **Rollback:** `git reset --soft HEAD~1` returns the commit's content to the index without touching the ignored trees.
+- **Rollback:** `git reset --soft HEAD~1` returns the commit's content to the index without touching the two links or the target repositories.
 - **Stop if:** the staged `skilled/skills/local-` count is not `0`, or T105 did not print `1`.
 
 ### T107 — Prove the commit holds no private path
@@ -4054,7 +4197,8 @@ Expected: at least `9` from the phase-folder control, `0` from the non-phase cou
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 git show --name-only --format= HEAD | grep -c '^specs/sk-code/013-private-surface-skills/004-private-local-skills/'
 git show --name-only --format= HEAD | grep -c 'skilled/skills/local-' || true
 ```
@@ -4073,14 +4217,16 @@ Expected: at least `9` from the phase-folder control and `0` from the private-pa
 - **Change:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 git push origin HEAD:main
 ```
 
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 git fetch origin main
 git rev-list --count origin/main..HEAD
 ```
@@ -4100,17 +4246,24 @@ Expected: `0`.
 - **Proof:**
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+WORKTREE="$(git rev-parse --show-toplevel)"
+cd "$WORKTREE"
 git status --porcelain | wc -l || echo 0
 test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" && echo HEAD_EQUALS_ORIGIN_MAIN
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain .skilled | wc -l || echo 0
 git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian | grep -c '^!!'
+WEBFLOW_REPO="/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com"
+OBSIDIAN_REPO="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
+git -C "$WEBFLOW_REPO" ls-files local-skills/local-webflow | wc -l
+git -C "$OBSIDIAN_REPO" ls-files local-skills/local-obsidian | wc -l
+zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'
+grep -c '^export SPECKIT_PRIVATE_SKILL_ROOTS=' ~/.zshrc
 ```
 
-Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0` and `2`.
+Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root value, and `1`.
 
-- **AC:** AC-019, AC-013
+- **AC:** AC-019, AC-013, AC-021, AC-022
 - **Rollback:** n/a: read-only.
 - **Stop if:** any count differs from Expected.
 
@@ -4122,8 +4275,9 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0` and `2`.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every task from T001 to T109 carries `[x]`
+- [ ] Every executed task from T001 to T109 and every added task (T002a, T006a, T006b, T095a and T095b) carries `[x]`; T003, T004 and T094 carry `[—]`
 - [ ] No `[B]` blocked task remains
+- [ ] Both target-repository commits exist, each holds only `local-skills/<name>`, and both roots are set in `SPECKIT_PRIVATE_SKILL_ROOTS`
 - [ ] The reviewer report holds seven `PASS` rows
 - [ ] `validate.sh --strict` prints `RESULT: PASSED`
 - [ ] The phase commit is on `main` and both working trees are clean
@@ -4181,7 +4335,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0` and `2`.
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met, proven by the blocks in `acceptance-criteria.md`
-- [ ] CHK-021 [P0] Manual testing complete: T088 and T089's link audits and T094 or T095's advisor scan
+- [ ] CHK-021 [P0] Manual testing complete: T088 and T089's link audits and T095's advisor scan
 - [ ] CHK-022 [P1] Edge cases tested: the symlink mode and the pre-existing broken link are both covered
 - [ ] CHK-023 [P1] Error scenarios validated: a failed ignore precondition stops the phase at T001
 <!-- /ANCHOR:testing -->
@@ -4196,7 +4350,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0` and `2`.
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for the changed metadata files and the two skill roots
 - [ ] CHK-FIX-004 [P0] Path fixes include adversarial cases: an escaping link, an inside-skill link, an already-broken link and a prose path mention
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed
-- [ ] CHK-FIX-006 [P1] Hostile environment variant executed: the Mode B scan exports `SPECKIT_PRIVATE_SKILL_ROOTS`
+- [ ] CHK-FIX-006 [P1] Hostile environment variant executed: the two-repository symlink scan exports both `SPECKIT_PRIVATE_SKILL_ROOTS` roots
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to commit `42b41dd286` and to the phase commit, not a moving branch range
 <!-- /ANCHOR:fix-completeness -->
 
@@ -4206,7 +4360,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0` and `2`.
 ## Security
 
 - [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] No path under `.skilled/skills/local-*` is staged, proven by T106 and T107
+- [ ] CHK-031 [P0] No path under `.skilled/skills/local-*` is staged, proven by T106 and T107, and each target repository stages only `local-skills/<name>`, proven by T095a and T095b
 - [ ] CHK-032 [P1] Auth and authorization are not applicable: no auth surface
 <!-- /ANCHOR:security -->
 

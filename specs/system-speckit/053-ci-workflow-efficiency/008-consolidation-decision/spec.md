@@ -35,7 +35,7 @@ Nine workflows run on every push with no path filter. They spend 13 jobs and 25 
 | **Priority** | P2 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 8 of 9 |
 | **Predecessor** | 007-workflow-hygiene-on-off-control |

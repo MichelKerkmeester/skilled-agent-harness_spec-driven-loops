@@ -11,9 +11,7 @@ _memory:
     last_updated_at: "2026-10-23T10:38:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded the planned phase's intended delivery and verification"
-    next_safe_action: "Answer decision D1, then run tasks T001 to T021"
-    blockers:
-      - "D1 unanswered"
+    next_safe_action: "Decisions answered; start at T002, the first non-decision task, then run tasks T002 to T021"
     key_files:
       - "tasks.md"
       - "acceptance-criteria.md"

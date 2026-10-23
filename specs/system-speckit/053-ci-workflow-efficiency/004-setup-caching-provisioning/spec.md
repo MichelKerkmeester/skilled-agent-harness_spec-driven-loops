@@ -22,7 +22,7 @@ Nothing in this repository's CI is cached. Zero of the 33 workflows use `actions
 
 **Key Decisions**: D5 approves the hook-and-plugin merge and renames one check. The cache is an accelerator and the repository's own provisioning walk stays the authority. The gate learns to read composite actions before the first one exists.
 
-**Critical Dependencies**: the 002 24 h baseline, D5's answer, and phase 003's R8 for the checkout trial.
+**Critical Dependencies**: the 002 24 h baseline, D5=approve (2026-10-23), and phase 003's R8 for the checkout trial.
 
 ---
 
@@ -34,7 +34,7 @@ Nothing in this repository's CI is cached. Zero of the 33 workflows use `actions
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 9 |
 | **Predecessor** | 002-rebuild-fanout-removal |
@@ -185,7 +185,7 @@ R12's saving is 0: it closes the gap that would otherwise let the action hold CI
 |------|------|--------|------------|
 | Dependency | `002-rebuild-fanout-removal` baseline | Every "after R1" number is unanchored | The provisional baseline is `001-research/scratch/ci-run-data/summary.md`; T002 waits for the 002 snapshot and records which source it used |
 | Dependency | `003-trigger-and-job-hygiene` R8 | R18 has no shallow checkout to build on | R18's first task checks `grep -c 'fetch-depth' .github/workflows/rule-canary-sync.yml`; if it returns 1, R18 is blocked and the phase closes without it |
-| Dependency | Operator decision D5 | R15 cannot run | The merge is planned end to end with the renamed check named; the alternative is to keep both workflows and forgo ~53 runner-min/day after R1 |
+| Dependency | Operator decision D5 | None; D5=approve (2026-10-23) recorded and T001 only verifies `scratch/decisions.md` | The merge is approved and planned end to end with the renamed check named; the alternative is to keep both workflows and forgo ~53 runner-min/day after R1 |
 | Risk | A stale cache is accepted silently: `_wn_deps_satisfied` compares a name, not a version (`worktree-naming.sh:486-506`), so a key that omits a lockfile yields a green run with wrong versions | The gate proves less than it claims, with no red build | The key globs every lockfile rather than enumerating today's 13, and carries no `restore-keys`; R13's probe measures the entry before adoption |
 | Risk | A warm cache stops exercising the install path | A broken cold install merges green | `provision_worktree` still runs on a hit as the verification walk, and a weekly scheduled cold run plus a dispatchable `cold` input keep the miss path alive |
 | Risk | The 2.22 GB tree set compresses to roughly 0.7-1 GB per entry against a 10 GB budget (`iteration-012.md:287-295`), so dependabot churn can evict | Frequent cold runs, slower than today | R13 measures the entry and returns a go/no-go; if it exceeds budget, the `~/.npm` component is dropped first because it only helps cold runs |

@@ -80,8 +80,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T074, `acceptance-criteria.md` AC-001 to AC-017, `decision-record.md` ADR-001 to ADR-011 |
-| Operator decision D5 | Pending | `scratch/decisions.md` is not written |
+| Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` 82 tasks: T001-T074 plus the lettered tasks T011A, T014A, T027A, T040A, T061A, T062A, T066A and T070G, `acceptance-criteria.md` AC-001 to AC-017, `decision-record.md` ADR-001 to ADR-011 |
+| Operator decision D5 | Done | `scratch/decisions.md` records `D5=approve` |
 | Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet |
 | Implementation | Pending | No file named by `tasks.md` has changed |
 

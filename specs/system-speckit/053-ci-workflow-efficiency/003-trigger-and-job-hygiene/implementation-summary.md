@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-23T12:48:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded the planned scope and the not-built state"
-    next_safe_action: "Answer D2, D3, D4, D7 and D10, then run tasks.md"
+    next_safe_action: "Decisions answered; start at T006, the first non-decision task, then run tasks.md"
     blockers: []
     key_files:
       - "spec.md"

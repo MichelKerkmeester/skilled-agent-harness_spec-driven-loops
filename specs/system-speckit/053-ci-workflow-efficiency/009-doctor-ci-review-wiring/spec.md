@@ -34,7 +34,7 @@ The repository can switch its workflows off through six repository variables, bu
 | **Priority** | P2 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 9 of 9 |
 | **Predecessor** | 006-sk-code-ci-surface (with 007-workflow-hygiene-on-off-control) |
@@ -142,7 +142,7 @@ Give the operator one read-only report of every workflow's switch state and one 
 | R-id | What the phase must make true | Requirements | Tasks |
 |------|-------------------------------|--------------|-------|
 | R28 | One throwaway repository variable proves whether the owner's token may write repository settings, the four exit codes and both read-backs are recorded, the variable is deleted in the same task, and the answer selects the toggle's shape | REQ-001 | T001, T004, T030 |
-| R29 | `/doctor:ci` lists every workflow with its switch state and resolves the newest non-rebuild SHA, scaffolds a new workflow from the `sk-code-ci` templates after an explicit yes, toggles one of six named switches in the shape D9 selects, registers three routes and three advisor bridges, and appears in the `/doctor:setup` list | REQ-002, REQ-003, REQ-004, REQ-005 | T005 to T017, T027, T028 |
+| R29 | `/doctor:ci` lists every workflow with its switch state and resolves the newest non-rebuild SHA, scaffolds a new workflow from the `sk-code-ci` templates after an explicit yes, toggles one of six named switches in the shape D9 selects, registers three routes and three advisor bridges, and appears in the `/doctor:setup` list | REQ-002, REQ-003, REQ-004, REQ-005 | T005 to T017, T027, T028, T029 |
 | R30 | `CI` is the fifth `detect_surface_evidence` value, sits second in the precedence, is restated by every hub document that carries the order, and a regression test pins the three existing surfaces and the mixed and near-miss paths | REQ-006, REQ-007 | T018 to T026 |
 | Cross-cutting | The report writes nothing, no ephemeral id enters code or a command asset, the packet passes the strict validator, and the phase result records every gate | REQ-008, REQ-009, REQ-010, REQ-011 | T029 to T033 |
 

@@ -79,15 +79,15 @@ A push or PR changes files → GitHub matches the workflow's `paths:` list → a
 | `dependabot-auto-merge.yml:6-8` | PR-only, excluded from the group | unchanged | no `concurrency:` in the file |
 | `command-tree-parity.yml:5-8` | Unfiltered triggers | update: `paths:` on both events | `bash .github/scripts/check-gate-inputs.sh` passes; a nested-SKILL.md PR runs both jobs, a specs-only PR runs neither |
 | `command-tree-parity.yml:47-50` | Comment claiming no filter is narrow enough | update: describe the filter and the missed-input failure it guards | `sed -n '44,58p' .github/workflows/command-tree-parity.yml` |
-| `changed-packet-validation.yml:4-7` | Unfiltered triggers | unchanged by default (D10 skip); filtered only if D10 flips | `git diff --stat <phase-range> -- .github/workflows/changed-packet-validation.yml` is empty under the default |
-| `dispatch-enforcement-guard.yml:41-50` | Runs `dispatch-audit.test.mjs` explicitly, with its own install | update: delete the step under D4's default | `grep -c 'dispatch-audit.test.mjs' .github/workflows/dispatch-enforcement-guard.yml` returns 0 |
+| `changed-packet-validation.yml:4-7` | Unfiltered triggers | unchanged (D10=skip, 2026-10-23); filtered only if a later phase flips the choice | `git diff --stat <phase-range> -- .github/workflows/changed-packet-validation.yml` is empty under the recorded skip |
+| `dispatch-enforcement-guard.yml:41-50` | Runs `dispatch-audit.test.mjs` explicitly, with its own install | update: delete the step (D4=drop-step, 2026-10-23) | `grep -c 'dispatch-audit.test.mjs' .github/workflows/dispatch-enforcement-guard.yml` returns 0 |
 | `dispatch-enforcement-guard.yml:31-35,52-67` | Fail-closed rule-suite guard; whole-tree vitest run | unchanged | `git diff` shows no line touched inside either block; seven suite paths appear in a run log |
 | `.skilled/hooks/vitest.config.ts:38-45` | Decides which seven suites the whole-tree run collects | unchanged | `.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts --reporter=verbose` lists the seven |
 | `advisory-checks.yml:27,41,55` | `continue-on-error: true` on the three report steps | unchanged | `grep -c 'continue-on-error: true' .github/workflows/advisory-checks.yml` returns 3 |
 | `advisory-checks.yml:38,52,68` | Inner suppression that hides the step's status | update: explicit failing branch, message kept | a broken input shows the step `failure` and the job `success` |
 | `strict-pass-freshness-report.yml:165,172` | `continue-on-error` plus `\|\| true` on the repair report | update: capture the status, print the report, exit with it | the step `failure` / job `success` probe, and the report still in the log |
 | `rule-canary-sync.yml:13-15`, `repo-rules-corpus.yml:31-33` | Full-history checkout | update: delete the `with: fetch-depth: 0` block | `grep -c 'fetch-depth' .github/workflows/rule-canary-sync.yml` returns 0 |
-| `deep-loop-runtime.yml:38-42` | Full-history checkout for the parent commit | update: `fetch-depth: 2` if D7 approves | `grep -n 'fetch-depth' .github/workflows/deep-loop-runtime.yml` returns `:42 fetch-depth: 2` |
+| `deep-loop-runtime.yml:38-42` | Full-history checkout for the parent commit | update: `fetch-depth: 2` (D7=depth-2, 2026-10-23) | `grep -n 'fetch-depth' .github/workflows/deep-loop-runtime.yml` returns `:42 fetch-depth: 2` |
 | `agent-mirror-sync.yml:3-4` | Unfiltered PR trigger | update: `paths:` for the four agent roots, the checker and its lib at both roots, the spec-kit package at both roots and the workflow | a specs-only PR runs nothing; an agent-file PR and a lib-only PR run |
 | `skill-doc-frontmatter.yml:5-23` | Two filter lists that omit their own guard and workflow | update: add the guard at both roots and the workflow file to both lists | a guard-only PR runs the workflow; `grep -c 'check-skill-doc-frontmatter.sh'` returns 2 |
 | `.github/workflows/README.md:64-75` | Push/PR table | update: move `command-tree-parity.yml` to the path-filtered row; state `agent-mirror-sync.yml`'s filter | `sed -n '64,75p'` matches the YAML |
@@ -110,11 +110,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Implementation Notes
 
-- **Five decisions first, with the defaults frozen here and the answers recorded in `scratch/decisions.md`.** D2 (main cancellation) defaults to pull requests only: `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. The alternative is `cancel-in-progress: true`, which reclaims 817 wall-minutes per window standalone and about 89 after R1 (`final-review.md:615`).
-- **D3** defaults to approving R4, worth ~265 runner-min/day standalone and ~123 after R1. The alternative is to leave `command-tree-parity.yml` unfiltered, which keeps the comment at `:47-50` true and saves nothing.
-- **D4** defaults to keeping the two jobs and deleting the duplicate `dispatch-audit` step at `:41-50`, because the guard is protected and merging renames its checks. The alternative is one merged job with one checkout and one install, inferred at ~1-2 billed minutes per run (`final-review.md:260-273`).
-- **D7** defaults to `fetch-depth: 2` on `deep-loop-runtime.yml:42`, because the mode-event suites bind a run to a commit and its parent (`:38-39`) and need nothing older. The alternative is to keep depth 0.
-- **D10** defaults to skipping the `changed-packet-validation.yml` filter, worth about 10 runner-min/day after R1 and rejected as a meaningful saving because 33 of 38 human pushes touch `specs/` (`final-review.md:251-258`). The alternative is the filter, whose entries are listed in the task.
+- **Five decisions recorded 2026-10-23 in `scratch/decisions.md`, with the alternatives frozen here.** D2 (main cancellation) is pr-only: `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. The alternative is `cancel-in-progress: true`, which reclaims 817 wall-minutes per window standalone and about 89 after R1 (`final-review.md:615`).
+- **D3=approve** R4, worth ~265 runner-min/day standalone and ~123 after R1. The alternative is to leave `command-tree-parity.yml` unfiltered, which keeps the comment at `:47-50` true and saves nothing.
+- **D4=drop-step** keeps the two jobs and deletes the duplicate `dispatch-audit` step at `:41-50`, because the guard is protected and merging renames its checks. The alternative is one merged job with one checkout and one install, inferred at ~1-2 billed minutes per run (`final-review.md:260-273`).
+- **D7=depth-2** sets `fetch-depth: 2` on `deep-loop-runtime.yml:42`, because the mode-event suites bind a run to a commit and its parent (`:38-39`) and need nothing older. The alternative is to keep depth 0.
+- **D10=skip** leaves `changed-packet-validation.yml` unfiltered, worth about 10 runner-min/day after R1 and rejected as a meaningful saving because 33 of 38 human pushes touch `specs/` (`final-review.md:251-258`). The alternative is the filter, whose entries are listed in the task.
 - **R4's filter is derived from a full read, not from the review's summary.** R4 names the command trees, the agent trees, `SKILL.md`, `.hermes`, the checkers, the spec-kit package and the workflow file. The plan adds the roots the parity checker actually reads: `.claude/agents`, `.cursor/agents`, `.devin/agents`, `.cursor/commands`, the four hook configs and their four hook mirrors (`sync-runtime-mirrors.cjs:39,46-54,125-143`). Every added root is one a checker reads, so the filter stays a filter and not a re-run of the whole tree.
 - **The twin rule is not optional.** `check-gate-inputs.sh:110-122` matches twins within one filter group and raises `filter-twins` at `:336`. Every `.skilled/` entry in a `paths:` list needs its `.opencode/` twin in the same list. `.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.hermes/`, `specs/` and `.github/` entries self-twin and need no partner.
 - **R7 keeps the message and drops the suppression.** The `\|\| echo` at `advisory-checks.yml:52,68` carries the fix hint. It becomes an `if ! node ...; then echo "::error::<hint>"; exit 1; fi` branch, so the hint still prints and the step still fails. `strict-pass-freshness-report.yml:172` needs the same care in the other direction: with `set -euo pipefail`, dropping `\|\| true` would abort before the captured report prints, so the step captures the status and exits with it after `cat`.
@@ -122,7 +122,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - **No ephemeral ids in code.** No R-id, D-id or phase number goes into a workflow comment, a step name, a filter entry, the README row or the inventory document. Those ids belong to these spec documents; a code comment carries the durable WHY.
 - **One commit per concern.** The 30 concurrency blocks, the two filters, the deleted step, the suppression removal, the three depth changes, the README row and the inventory are separate commits, so a probe that fails names the commit that caused it.
 - **The concurrency block lands last.** Three inserted lines above `jobs:` shift every line below it. Four tasks anchor on lines below `jobs:` in the same file, so the block goes in after the content edits and every quoted line number stays valid. `jobs:` itself never moves, which is why it is the only anchor that block needs.
-- **`scratch/decisions.md` is the record, not the plan.** Each decision task writes one `Dn=<answer>` line. The defaults and alternatives stay in these notes, so a reader sees what was planned and what was answered without reading two documents against each other.
+- **`scratch/decisions.md` is the record, not the plan.** Each answer is one `Dn=<answer>` line in `scratch/decisions.md`, and its decision task verifies it. The alternatives stay in these notes, so a reader sees what was planned and what was answered without reading two documents against each other.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -150,11 +150,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `002-rebuild-fanout-removal` baseline | Internal | Pending | Every "after R1" number is unanchored and R3's main figure stays at 817 wall-min per window |
-| Operator decision D2 | Internal | Yellow until answered | R3 cannot pick `cancel-in-progress`; the PR-only default is planned |
-| Operator decision D3 | Internal | Yellow until answered | R4 cannot start; the filtered default is planned |
-| Operator decision D4 | Internal | Yellow until answered | R6 cannot start; the drop-only default is planned |
-| Operator decision D7 | Internal | Yellow until answered | The `deep-loop-runtime.yml` depth stays 0 |
-| Operator decision D10 | Internal | Yellow until answered | `changed-packet-validation.yml` stays unfiltered, which is the default |
+| Operator decision D2 | Internal | Green | D2=pr-only (2026-10-23); T001 only verifies `scratch/decisions.md` |
+| Operator decision D3 | Internal | Green | D3=approve (2026-10-23); T002 only verifies `scratch/decisions.md` |
+| Operator decision D4 | Internal | Green | D4=drop-step (2026-10-23); T003 only verifies `scratch/decisions.md` |
+| Operator decision D7 | Internal | Green | D7=depth-2 (2026-10-23); T004 only verifies `scratch/decisions.md` |
+| Operator decision D10 | Internal | Green | D10=skip (2026-10-23); T005 only verifies `scratch/decisions.md` |
 | `gh` with `repo` and `actions` scopes | External | Green | No trigger probes, no job timings, no phase delta |
 | `004-setup-caching-provisioning` | Internal | Pending, no dependency | It can run alongside; it adopts the composite action only in hooks-node-tests, opencode-plugin-tests and opencode-dual-version, so it shares no line with this phase |
 | `005-slow-and-failing-tests` | Internal | Pending, no dependency | It can run alongside; it owns `fileParallelism` in `.skilled/skills/system-spec-kit/vitest.config.ts:50,67` and this phase does not touch that file |
@@ -227,7 +227,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Pre-deployment Checklist
 - [ ] Backup created (if data changes) - not applicable, no data changes
-- [ ] Feature flag configured - not applicable; D2's answer is the only switch, and it is a YAML value
+- [ ] Feature flag configured - not applicable; D2=pr-only (2026-10-23) is the only switch, and it is a YAML value
 - [ ] Monitoring alerts set - the trigger probes and `scratch/phase-result.md` are the monitoring
 
 ### Rollback Procedure
@@ -284,7 +284,7 @@ The content edits precede the concurrency block for a mechanical reason: inserti
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| Five operator answers (T001 to T005) | Operator | Five lines in `scratch/decisions.md` | T007 to T023 where a decision gates them |
+| Five operator answers (T001 to T005) | `scratch/decisions.md` | Five verified lines | T007 to T023 where a decision gates them |
 | Baseline rows (T006) | `002-rebuild-fanout-removal` and its `scratch/baseline-24h/summary.md` | `scratch/phase-baseline.md` with the 002 total and ten workflow rows | T035 |
 | Command-tree-parity filter (T007 to T011) | T002, T006 | 23 entries on both events, a rewritten comment, a passing gate | T026, T027 |
 | Dispatch guard (T012, T013) | T003, T006 | One dispatch-audit execution and a green local suite run | T026, T029 |
@@ -302,7 +302,7 @@ The content edits precede the concurrency block for a mechanical reason: inserti
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **T001 to T005, the five operator answers** - operator latency, no upper bound - CRITICAL
+1. **T001 to T005, verify the five recorded operator answers** - ~10 minutes - CRITICAL
 2. **T006, the baseline rows** - ~10 minutes, and it cannot start until 002 has recorded its 24 h snapshot - CRITICAL
 3. **T007 to T021, the content edits** - ~2.5 hours across ten files, three scratch documents and the README - CRITICAL
 4. **T022 to T025, the concurrency block and the gates** - ~1 hour for 30 files and three checks - CRITICAL

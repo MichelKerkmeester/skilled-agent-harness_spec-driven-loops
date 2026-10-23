@@ -445,7 +445,7 @@ Default: `D8=no`. Nothing in `.github/workflows/` changes, the decision record c
 
 Alternative: `D8=yes`. All eight always-run FRESHNESS workflows merge into `.github/workflows/always-run-guards.yml` as one job inside `SKILLED_CI_FRESHNESS`, worth at most the measured bound. A yes is also the second named confirmation that `dispatch-enforcement-guard.yml` and `gate-inputs.yml`, both protected by function, may be edited (`001-research/research/research.md:184-187`).
 
-Change: put the question to the operator with the `Measurements` and `Signal cost` sections of `scratch/consolidation-decision.md` in hand, then write exactly one line to the new file: `D8=no` or `D8=yes`.
+Change: put the question to the operator with the `Measurements` and `Signal cost` sections of `scratch/consolidation-decision.md` in hand, then write exactly one line to the new file: `D8=no` or `D8=yes`. The operator's stated default on 2026-10-23 is no merge; ask with the measured numbers, and treat no answer as `D8=no`.
 
 Check:
 

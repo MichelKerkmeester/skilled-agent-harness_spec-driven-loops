@@ -107,7 +107,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Implementation Notes
 
-- **D5 defaults to approving the merge, and the renamed check is named.** The merged job is `plugin-and-hook-tests`, titled `OpenCode plugin and hook node:test suites`, in `opencode-plugin-tests.yml`. `research.md:94` confirms the only active ruleset requires `message-contract.yml`'s context, so no required check is renamed; the README and any personal bookmarks are the consumers that change. The alternative is to keep both workflows separate, which forgoes 124 runner-min/day standalone and ~53 after R1 (`final-review.md:362-372`).
+- **D5 approved the merge (2026-10-23), and the renamed check is named.** The merged job is `plugin-and-hook-tests`, titled `OpenCode plugin and hook node:test suites`, in `opencode-plugin-tests.yml`. `research.md:94` confirms the only active ruleset requires `message-contract.yml`'s context, so no required check is renamed; the README and any personal bookmarks are the consumers that change. The alternative is to keep both workflows separate, which forgoes 124 runner-min/day standalone and ~53 after R1 (`final-review.md:362-372`).
 - **R12 lands before the action exists.** The gate is a protected workflow by function (`research.md:187`): it is the sole enforcer of an invariant with no local gate. Adding the scan first means the action's first commit is already read by the gate, and the four fixture cases prove the scan before any real action can hide in it.
 - **The `description:` branch is part of R12, not an extra.** A composite action's `description:` and its input descriptions are prose, exactly like a step's `name:`. Without the label branch, an action whose prose names `.skilled/gone` fails `workflow-inputs` on a path that no job runs. Extending the existing `name:` branch at `:384` to `(name|description):` keeps the parser's fail-closed rule for `run:` lines while treating documentation as documentation.
 - **The cache key globs; it never enumerates.** `hashFiles('**/package-lock.json', '**/bun.lock', '**/bun.lockb', '.skilled/skills/sk-git/scripts/worktree-provision-paths.txt', '.skilled/skills/sk-git/scripts/worktree-naming.sh')` covers today's 13 lockfiles and every one added later, and it also invalidates when the provision list or the provisioner changes. `_wn_deps_satisfied` compares a name, not a version (`worktree-naming.sh:486-506`), so a key that misses a lockfile produces a green run with wrong versions and no red build. The glob is the structural answer to that.
@@ -152,7 +152,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |------------|------|--------|-------------------|
 | `002-rebuild-fanout-removal` baseline | Internal | Pending | Every saving is measured against the 001 dataset instead, and the "after R1" figures stay arithmetic |
 | `003-trigger-and-job-hygiene` R8 | Internal | Pending | R18 has no shallow checkout to build on; the phase closes without R18 and records it as blocked |
-| Operator decision D5 | Internal | Yellow until answered | R15 cannot run; the merged shape is planned end to end |
+| Operator decision D5 | Internal | Green | D5=approve (2026-10-23); T001 only verifies `scratch/decisions.md` |
 | `gh` with `repo` and `actions` scopes | External | Green | No cache sizes, no job timings, no dispatch runs |
 | `005-slow-and-failing-tests` | Internal | No dependency | It owns `.skilled/skills/system-spec-kit/vitest.config.ts`, which this phase does not touch |
 | `006-sk-code-ci-surface` | Internal | Blocked on this phase | It records the composite-action rule from this phase's real shape |
@@ -266,7 +266,7 @@ The two probes bracket the action on purpose. R13 measures the entry before the 
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| D5 answer (T001) | Operator | `scratch/decisions.md` with one `D5=` line | T030 to T041 |
+| D5 answer (T001) | `scratch/decisions.md` | A verified `D5=approve` line | T030 to T041 |
 | Baseline rows (T002, T003) | `002-rebuild-fanout-removal`, its `scratch/baseline-24h/summary.md` | `scratch/phase-baseline.md` with the 002 total, 15 workflow rows and 5 pre-change inventories | T029, T041, T062, T070, T072 |
 | Gate scan (T004 to T011) | T003's gate baseline | A gate that reads `.github/actions/**`, a `description:` label branch, four fixture cases, `RESULT: PASSED` | T014, T071 |
 | Cache probe (T012, T013) | T003, a throwaway branch, `gh` with `actions` | `scratch/cache-probe/summary.md` with a measured size and a go/no-go | T014 |
@@ -282,7 +282,7 @@ The two probes bracket the action on purpose. R13 measures the entry before the 
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **T001, the D5 answer** - operator latency, no upper bound - CRITICAL
+1. **T001, verify the recorded D5=approve answer** - ~2 minutes - CRITICAL
 2. **T002 and T003, the baseline rows and the pre-change inventory** - ~45 minutes, and they cannot start until 002 has recorded its 24 h snapshot - CRITICAL
 3. **T004 to T011, the gate scan and its four fixtures** - ~1.5 hours across one script and one test - CRITICAL
 4. **T012 and T013, the cache probe** - ~1 hour plus two CI runs on a throwaway branch - CRITICAL
@@ -336,7 +336,7 @@ The two probes bracket the action on purpose. R13 measures the entry before the 
 - Keep both workflows and share only the cache: leaves the second checkout and the second provision in place, and forgoes the 124 runner-min/day.
 - Merge into `hooks-node-tests.yml` instead: that file's path set is narrower, so every plugin-only change would stop running the plugin suites.
 
-The formal records, including D5's default and alternative and every design choice this plan freezes, are `decision-record.md` ADR-001 to ADR-011.
+The formal records, including D5's recorded answer and its alternative and every design choice this plan freezes, are `decision-record.md` ADR-001 to ADR-011.
 
 ---
 
@@ -345,7 +345,7 @@ The formal records, including D5's default and alternative and every design choi
 
 ### Tier 1: Sequential Foundation
 
-T001 to T014. D5's answer, the baseline rows, the pre-change inventory, the gate scan with its four fixtures, the cache probe and the action itself. Nothing here may be reordered: T001 gates every R15 task, T002 and T003 produce the numbers every later measurement compares against, T004 to T011 must land before an action file exists, and T013's go/no-go gates T014.
+T001 to T014. D5=approve (2026-10-23, verified by T001), the baseline rows, the pre-change inventory, the gate scan with its four fixtures, the cache probe and the action itself. Nothing here may be reordered: T001 gates every R15 task, T002 and T003 produce the numbers every later measurement compares against, T004 to T011 must land before an action file exists, and T013's go/no-go gates T014.
 
 ### Tier 2: Parallel Execution
 

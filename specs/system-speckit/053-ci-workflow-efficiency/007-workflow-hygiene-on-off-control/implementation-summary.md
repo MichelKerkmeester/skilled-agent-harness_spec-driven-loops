@@ -11,9 +11,8 @@ _memory:
     last_updated_at: "2026-10-23T14:00:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded the plan state"
-    next_safe_action: "Answer D6, then run the phase's tasks from T001"
+    next_safe_action: "D6 is answered; run the phase's tasks from T001"
     blockers:
-      - "D6 is unanswered; the default is 10 minutes"
       - "003, 004, 005 and 006 have not landed"
     key_files:
       - "spec.md"
@@ -118,7 +117,7 @@ Not delivered. The delivery plan is `tasks.md`: five phases, 102 tasks, one comm
 ## Known Limitations
 
 1. **The phase is planned, not built.** No workflow file has changed, so every acceptance row in `acceptance-criteria.md` is `Unmet`.
-2. **D6 is unanswered.** The default is 10 minutes; every timeout value depends on the answer.
+2. **D6 is answered, 10 minutes.** Every timeout value uses that floor.
 3. **A fork is required for AC-008.** Without one the switch's behavioural half stays `Unmet` rather than being waived.
 4. **A Dependabot pull request is required for AC-002.** Without one the split's live half stays `Unmet` until the next one arrives.
 <!-- /ANCHOR:limitations -->

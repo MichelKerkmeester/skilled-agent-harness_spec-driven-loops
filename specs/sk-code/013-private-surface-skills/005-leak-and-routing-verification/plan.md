@@ -38,7 +38,7 @@ The phase publishes three commits. **C1** carries the step 1 head sweep and exis
 
 ### Definition of Ready
 - [ ] Phases 001-004 are on `main` (`git log --oneline -8` shows the hub removal, the vocabulary cleanup and the private-skill commit)
-- [ ] The operator checkout holds `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`
+- [ ] The operator checkout holds `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/` as symlinks to the two external `local-skills/` folders, and both roots are listed in `SPECKIT_PRIVATE_SKILL_ROOTS`
 - [ ] `gh auth status` reports a logged-in account
 - [ ] `sqlite3 --version`, `jq --version` and `node --version` all print a version
 - [ ] The Obsidian Plugin checkout is present at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin`
@@ -59,15 +59,15 @@ The phase publishes three commits. **C1** carries the step 1 head sweep and exis
 Verification-only phase. Read the artifacts four producers leave behind - the tracked tree, the four committed retrieval artifacts, the local advisor graph and the two consumer checkouts - and compare each against a fixed expected value. Every zero check carries a positive control, so a pattern that stopped matching cannot read as a pass.
 
 ### Key Components
-- **Tracked tree**: `git ls-files` for paths and `git grep` for content, in a fresh clone of `origin/main`. The clone is the authority because the pre-commit guard is bypassable with `--no-verify` (D3 recorded limit) and because gitignored content on the operator disk is invisible to both.
-- **Blob identity**: `git hash-object --no-filters` over every complete file under the two private roots, classified against `git ls-tree -r 42b41dd286` and then compared with `git cat-file --batch-all-objects --batch-check` over the clone. A shared blob id proves an identical byte sequence, which a marker search cannot. The ids the removal commit already carries are already public by definition, so they are recorded as the history exposure and only new or changed content is asserted absent.
+- **Tracked tree**: `git ls-files` for paths and `git grep` for content, in a fresh clone of `origin/main`. The clone is the authority because the pre-commit guard is bypassable with `--no-verify` (D3 recorded limit) and because gitignored symlinks on the operator disk are invisible to both.
+- **Blob identity**: `git hash-object --no-filters` over every complete file under both private skill trees (read through their symlinks), classified against `git ls-tree -r 42b41dd286` and then compared with `git cat-file --batch-all-objects --batch-check` over the clone. A shared blob id proves an identical byte sequence, which a marker search cannot. The ids the removal commit already carries are already public by definition, so they are recorded as the history exposure and only new or changed content is asserted absent.
 - **Committed retrieval artifacts**: `trigger-index.json` under `runtime/data/` and its three sidecars `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json` under `runtime/cli/retrieval/fixtures/`, all four staged together by `.github/workflows/trigger-index-rebuild.yml` lines 80-83. The producer honours only committed `.gitignore` files (`corpus.mjs` `gitIgnoredPaths`, lines 200-210), so the D2 rules are what keep private skills out and no code change is needed.
 - **Advisor graph**: a SQLite file under `.skilled/skills/system-skill-advisor/runtime/database/` (gitignored by `runtime/database/.gitignore` `*.sqlite`), built by the metadata scan. `SYSTEM_SKILL_ADVISOR_DB_DIR` (`skill-graph-db.ts:271`) redirects it, which is how this phase builds one from the clone without touching the operator's graph.
-- **Routing probes**: `advisor_recommend` through `.skilled/bin/skill-advisor.cjs`, which returns `data.recommendations[0].skillId`. Two checkouts run them: the operator checkout and the Obsidian Plugin checkout, whose eight runtime symlinks resolve into the same hub.
+- **Routing probes**: `advisor_recommend` through `.skilled/bin/skill-advisor.cjs`, which returns `data.recommendations[0].skillId`. Two checkouts run them: the operator checkout and the Obsidian Plugin checkout, whose eight runtime symlinks resolve into the same hub. Both advisor processes export `SPECKIT_PRIVATE_SKILL_ROOTS` with the two external `local-skills/` roots, joined with `:`.
 - **Corpus boundary probe**: a four-document temporary repository whose ignored `local-probe` skill carries a unique marker and whose tracked control skill carries a second marker, indexed by `generate-trigger-index.mjs --repo-root` into a scratch output directory.
 
 ### Data Flow
-`origin/main` -> fresh clone at `/tmp/psurf-clone-main` -> `git ls-files` / `git grep` / blob comparison / advisor metadata scan / artifact counts -> evidence file. The operator checkout feeds the routing probes, the drift scripts and the invisibility check, because those need the private skills on disk. The final tip repeats the clone checks after C2, into `/tmp/psurf-final-tip`.
+`origin/main` -> fresh clone at `/tmp/psurf-clone-main` -> `git ls-files` / `git grep` / blob comparison / advisor metadata scan / artifact counts -> evidence file. The operator checkout feeds the routing probes, the drift scripts and the invisibility check, because those need the symlinks and both external roots on disk. The final tip repeats the clone checks after C2, into `/tmp/psurf-final-tip`.
 
 ### Anchors this plan reads (all verified on disk at `583316d083`; every file below is unchanged since `42b41dd286`)
 
@@ -106,7 +106,7 @@ This phase is verification-only, so the table records what each surface's *produ
 | `trigger-index.json` plus its three sidecars | tracked retrieval data, CI-rebuilt | unchanged | step 6: eight counts across four artifacts |
 | `skill_graph_compiler.py:200` | producer of the tracked fallback graph | unchanged (phase 003 added the `local-` skip) | step 4: clone `git grep` finds no private name in `runtime/scripts/skill-graph.json`; step 11: the export to `/tmp` is checked for `local-` ids |
 | `sync-skills-hermes.cjs` `listSkillFiles` (51-66) | producer of `.hermes/skills/` | unchanged (phase 003) | steps 3 and 4: `git ls-files` finds no `.hermes/skills/local-*` |
-| `ci-skill-root-metadata.cjs:143` | producer of skill-root metadata | unchanged (phase 003) | step 11: exit code recorded with both private roots present |
+| `ci-skill-root-metadata.cjs:143` | producer of skill-root metadata | unchanged (phase 003) | step 11: exit code recorded with both symlinked private skills present |
 | `skill-graph-freshness.cjs:146-148` | consumer of the on-disk skill list | unchanged (phase 003) | step 6: the tracked fallback is not reported stale after the rebuild |
 | advisor graph database | local, gitignored | not a tracked consumer | step 5: zero-row query, non-vacuous build |
 | `advisor_recommend` | consumer of the graph | unchanged | step 7: six probes across two checkouts |
@@ -115,7 +115,7 @@ This phase is verification-only, so the table records what each surface's *produ
 Required inventories:
 - Same-class producers: `git grep -n "isDirectory()" .skilled/skills/system-skill-advisor/runtime/lib .skilled/commands/doctor/scripts` - the D4 scans are phase 003's, and this phase only reads their output through the routing probes.
 - Consumers of the changed symbols: `git grep -n -E "sk-code-(webflow|obsidian)" -- ':!specs'` - every remaining hit is classified in step 3 as a retained D6 hit or an active leak.
-- Matrix axes: two folder modes (real folder, symlink to a private repo) crossed with two consumer checkouts. The modes are an axis for step 7; both are ignored by D2, so steps 3, 4 and 6 pass either way, and step 7 passes only after phase 003 makes the scan follow a `local-*` symlink. The plan records which mode the operator chose in `07-routing-probes.md`.
+- Matrix axes: two consumer checkouts (operator and plugin), one fixed symlink layout. The layout is no longer an axis: both `.skilled/skills/local-*` entries link to external `local-skills/` folders, so steps 3, 4 and 6 pass regardless and step 7 passes only after phase 003 makes the scan follow a `local-*` symlink into either external root. The plan records both targets in `07-routing-probes.md`.
 - Algorithm invariant: none. This phase contains no path, parser or redaction logic.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -187,7 +187,7 @@ A non-empty result here is fixed before the push: name the owning phase (002 for
 
 **Step 2 - Confirm the planning commit on `origin/main`, commit the head sweep as C1 and clone** (`specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md`)
 
-The six planning documents land on `main` in the packet's planning commit before any phase runs, so this step asserts them rather than committing them. Confirm each with `git cat-file`, commit the step 1 evidence file on branch `deepseekpihigh` with a prose body, push `HEAD:main`, then clone:
+The six planning documents land on `main` in the packet's planning commit before any phase runs, so this step asserts them rather than committing them. Confirm each with `git cat-file`, commit the step 1 evidence file with a prose body, push `HEAD:main`, then clone:
 
 ```bash
 CLONE=/tmp/psurf-clone-main
@@ -344,9 +344,10 @@ grep -c -E '"(sk-code-(obsidian|webflow)|local-(webflow|obsidian))' "$FIX/phrase
 
 **Step 7 - Routing probes in both checkouts** (`specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md`)
 
-Run in the operator's main checkout, `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, which holds the private skills. Phase 004 runs there too, not in a worktree of its own, because `.skilled/skills/local-*` is gitignored and never travels between checkouts. Do not run these probes in the writer worktree: it has no private skill on disk, so every probe would return a hub skill and prove nothing.
+Run in the operator's main checkout, `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, which holds the two symlinks. Their targets are `local-skills/` folders in two external repositories: `local-obsidian` in a public repository by operator choice and `local-webflow` in a private one. Phase 004's content and link steps run there; its packet-document edits run in the `WORKTREE` checkout defined in `004-private-local-skills/tasks.md`'s Checkout rule (by default this same checkout), because `.skilled/skills/local-*` is gitignored and never travels between checkouts. Do not run these probes in the writer worktree: it has no symlink on disk, so every probe would return a hub skill and prove nothing.
 
 ```bash
+export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
 node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json | jq -r '.data.skillCount'
 sqlite3 -readonly .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite \
   "SELECT id FROM skill_nodes WHERE id LIKE 'local-%' ORDER BY id"    # expect local-obsidian and local-webflow
@@ -356,7 +357,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an 
 node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add a responsive css layout to the settings page"}' --format json | jq -r '.data.recommendations[0].skillId'   # expect sk-code
 ```
 
-Record which folder mode the operator chose (real folder or symlink) and `ls -ld` output for both paths. A wrong top result is phase 004's to fix; record it and leave REQ-005 `Unmet`.
+Record the two symlink targets with `readlink` and `ls -ld` output for both paths, and state that both targets sit in the two external `local-skills/` folders. A wrong top result is phase 004's to fix; record it and leave REQ-005 `Unmet`.
 
 Then the second consumer. Locate it first and stop if the path is absent:
 
@@ -369,6 +370,7 @@ The measured answer is `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugi
 ```bash
 PLUGIN="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
 cd "$PLUGIN"
+export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
 for l in .claude .codex .cursor .devin .hermes .opencode .pi .skilled; do printf '%s -> %s\n' "$l" "$(readlink "$l")"; done
 node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0].skillId'   # expect local-webflow
 node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0].skillId'   # expect local-obsidian
@@ -379,14 +381,14 @@ Each `readlink` must resolve under `/Users/michelkerkmeester/MEGA/Development/Co
 
 **Step 8 - D5 invisibility** (`specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md`)
 
-Run in the same operator checkout as step 7, because that is the disk where the private skills exist.
+Run in the same operator checkout as step 7, because that is the checkout that holds both symlinks and can see their two external roots.
 
 ```bash
 git status --porcelain | grep -c -E "local-(webflow|obsidian)" || echo 0          # expect 0
 git check-ignore -v .skilled/skills/local-webflow .hermes/skills/local-obsidian | wc -l   # expect 2
 ```
 
-Expect the first command to print `0`, and the second to name `/.skilled/skills/local-*` and `/.hermes/skills/local-*` from the root `.gitignore`. `git check-ignore` evaluates patterns whether or not the path exists, so this step does not depend on which folder mode was chosen.
+Expect the first command to print `0`, and the second to name `/.skilled/skills/local-*` and `/.hermes/skills/local-*` from the root `.gitignore`. `git check-ignore` evaluates patterns whether or not a target exists, so this step does not depend on the symlink targets being present.
 
 **Step 9 - CI on main** (`specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/09-ci.md`)
 
@@ -447,7 +449,7 @@ git status --porcelain --ignored .skilled/skills/local-probe      # expect !! .s
 Then generate and assert:
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans
+cd "$(git rev-parse --show-toplevel)"
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --repo-root "$P" --out "$P/out/trigger-index.json" --quiet
 grep -ric -e 'psurf-control-marker-7f3c1a' -e 'psurf control marker 7f3c1a' "$P/out" | sort
 grep -ric -e 'psurf-corpus-probe-marker-7f3c1a' -e 'psurf corpus probe marker 7f3c1a' "$P/out" | sort
@@ -458,7 +460,7 @@ Expect the control to appear in `phrase-variants.json` and `trigger-index.json`,
 
 **Step 13 - Review, close and publish C2** (`specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md`)
 
-1. Hand the packet to a separate read-only DeepSeek reviewer session on branch `deepseekpi`, at most 2 rounds. The reviewer writes nothing; it returns findings in chat.
+1. Run the review through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. The reviewer takes the packet path and returns findings in chat, at most 2 rounds.
 2. Record each finding and its resolution in `10-review.md`. A finding that contradicts a criterion's evidence reopens that criterion.
 3. Transcribe the fifteen evidence files into `implementation-summary.md`: one row per check under Verification, plus the four limits under Known Limitations.
 4. Mark the `acceptance-criteria.md` rows `Met` with the observed value, and fill the closure statement.
@@ -492,7 +494,7 @@ Write the results into `11-final-tip.md`, tick the phase 3 checklist in `tasks.m
 
 ### Commit and push
 
-- Branch: `deepseekpihigh` (docs only). Stage files by name; never `git add -A`.
+- Executor: the OpenCode 2 orchestrator in one session (docs only). Stage files by name; never `git add -A`.
 - Push `HEAD:main` only, never a branch.
 - Every commit message needs a prose body explaining that this phase adds verification evidence and changes no code.
 - Three commits: **C1** the step 1 head sweep, after step 2 confirms the planning documents on `main` and before the clone; **C2** the remaining evidence and the closed packet, after step 13's validator run; **C3** `11-final-tip.md` and the closed checklist, after step 14's re-verification. C2 is the commit a reader can re-run. C3 is the one that proves the tip C2 produced is clean.
@@ -513,7 +515,7 @@ Write the results into `11-final-tip.md`, tick the phase 3 checklist in `tasks.m
 | Behavioural | Six routing probes across two checkouts | `skill-advisor.cjs advisor_recommend` |
 | Boundary | The ten audited D6 kept-record prefixes unchanged since `42b41dd286` | `git diff --stat` |
 | Corpus boundary | A temporary repository with an ignored marker and a tracked control | `generate-trigger-index.mjs --repo-root` |
-| Local drift | The three routing-registry drift scripts with both private roots present | `ci-skill-root-metadata.cjs`, `ci-leaf-manifest-freshness.cjs`, `ci-skill-derived-freshness.cjs`, `skill_graph_compiler.py` |
+| Local drift | The three routing-registry drift scripts with both symlinked private skills present | `ci-skill-root-metadata.cjs`, `ci-leaf-manifest-freshness.cjs`, `ci-skill-derived-freshness.cjs`, `skill_graph_compiler.py` |
 | Regression | CI on `main` after each push and after each index rebuild | `gh run list` |
 | Documentation | Evidence completeness and template conformance | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
@@ -526,7 +528,7 @@ Write the results into `11-final-tip.md`, tick the phase 3 checklist in `tasks.m
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phases 001-004 on `main` | Internal | Green | No verification target; the phase cannot start |
-| Private skills in the operator's main checkout `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public` (phase 004 runs there, because the trees are gitignored) | Internal | Green after phase 004 | Steps 3, 7, 8 and 11 cannot run; REQ-002, REQ-005, REQ-009 and REQ-014 stay `Unmet` |
+| Both private skills as gitignored symlinks in the operator's main checkout `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public` (phase 004 runs there, because the entries are ignored), with both external `local-skills/` roots in `SPECKIT_PRIVATE_SKILL_ROOTS` | Internal | Green after phase 004 | Steps 3, 7, 8 and 11 cannot run; REQ-002, REQ-005, REQ-009 and REQ-014 stay `Unmet` |
 | Obsidian Plugin checkout at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin` | External | Green | Step 7's last three probes cannot run; REQ-005 stays partly `Unmet` |
 | CI trigger-index rebuild | Internal | Green | Step 6 reads a stale index (200 matching lines) and cannot pass |
 | `gh` authenticated | External | Green | Steps 6, 9 and 10 cannot observe CI or releases; REQ-007 and REQ-013 stay `Unmet` |
@@ -546,6 +548,7 @@ Write the results into `11-final-tip.md`, tick the phase 3 checklist in `tasks.m
 git revert --no-edit $(git log --format=%H --grep='Surface-Verification-Phase: 005' origin/main)
 rm -rf /tmp/psurf-clone-main /tmp/psurf-final-tip /tmp/psurf-db /tmp/psurf-corpus-probe
 rm -f /tmp/psurf-private-blob-ids.txt /tmp/psurf-public-blob-ids.txt /tmp/psurf-tag-old-paths.txt /tmp/psurf-skill-graph.json
+export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
 node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json
 ```
 
@@ -619,7 +622,7 @@ Steps 0-1 (preflight, HEAD sweep) ──► C1 commit ──► C1 push ──�
 ### Rollback Procedure
 1. `git revert --no-edit $(git log --format=%H --grep='Surface-Verification-Phase: 005' origin/main)` - restores the packet to its committed state. Every phase commit body ends with the trailer `Surface-Verification-Phase: 005`, which is what the revert selects.
 2. `rm -rf /tmp/psurf-clone-main /tmp/psurf-final-tip /tmp/psurf-db /tmp/psurf-corpus-probe` - removes both clones, the database and the probe repository.
-3. `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` - rebuilds the local graph the probes forced.
+3. `export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"` then `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` - rebuilds the local graph the probes forced, with both external roots visible.
 4. Re-run `validate.sh --strict` and confirm `RESULT: PASSED` on the reverted packet.
 
 ### Data Reversal
@@ -668,7 +671,7 @@ Steps 0-1 (preflight, HEAD sweep) ──► C1 commit ──► C1 push ──�
 | C. Clone sweeps | B | `02-fresh-clone.md`, `03-fresh-clone-leak.md`, `04-d6-kept-records.md`, `05-advisor-db.md` | D, E, F, G |
 | D. Artifacts | C and the CI rebuild | `06-trigger-index.md` | G, H |
 | E. Probes | Phase 004 plus both checkouts | `07-routing-probes.md`, `08-local-invisibility.md` | G |
-| F. Aux checks | C, `gh`, both private roots | `09-ci.md`, `12-history-inventory.md`, `13-drift.md`, `14-corpus-boundary.md` | G |
+| F. Aux checks | C, `gh`, both symlinked private skills | `09-ci.md`, `12-history-inventory.md`, `13-drift.md`, `14-corpus-boundary.md` | G |
 | G. Review and C2 | C, D, E, F | closed packet plus C2 | H |
 | H. Final tip and C3 | G pushed and rebuilt | `11-final-tip.md` plus C3 | None |
 <!-- /ANCHOR:dependency-graph -->

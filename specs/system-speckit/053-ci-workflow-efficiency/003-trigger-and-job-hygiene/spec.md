@@ -35,7 +35,7 @@ Thirty of the repository's 33 workflows answer a pull request, and 32 of the 33 
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-10-23 |
-| **Branch** | `worktrees/214-ci-efficiency-phase-plans` |
+| **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 9 |
 | **Predecessor** | 002-rebuild-fanout-removal |
@@ -89,12 +89,12 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 ## 3. SCOPE
 
 ### In Scope
-- R3: a `concurrency:` block on the 30 PR-triggered workflows other than `dependabot-auto-merge.yml`, with `cancel-in-progress` on pull requests and D2's answer for main.
+- R3: a `concurrency:` block on the 30 PR-triggered workflows other than `dependabot-auto-merge.yml`, with `cancel-in-progress` on pull requests and D2=pr-only (2026-10-23) leaving main's runs alone.
 - R4: a `paths:` filter on both events of `command-tree-parity.yml`, naming every input its four checkers read, and a rewrite of the comment at `:47-50`.
-- R5: D10's answer on `changed-packet-validation.yml`, defaulting to no filter and a recorded decision.
+- R5: D10=skip (2026-10-23) leaves `changed-packet-validation.yml` unfiltered, with the skip recorded rather than filtered.
 - R6: removing the duplicate `dispatch-audit.test.mjs` step from `dispatch-enforcement-guard.yml` while keeping the whole-tree vitest run and the fail-closed rule-suite guard.
 - R7: dropping the inner suppression in `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172`, keeping `continue-on-error` in both.
-- R8: default-depth checkout on `rule-canary-sync.yml` and `repo-rules-corpus.yml`, and `fetch-depth: 2` on `deep-loop-runtime.yml` if D7 approves.
+- R8: default-depth checkout on `rule-canary-sync.yml` and `repo-rules-corpus.yml`, and `fetch-depth: 2` on `deep-loop-runtime.yml` under D7=depth-2 (2026-10-23).
 - R9: a `paths:` filter on `agent-mirror-sync.yml` for the four agent roots its checker reads, the checker and its verifier at both roots, and the spec-kit package it builds, with `comment-hygiene.yml` left unfiltered.
 - R10: `check-skill-doc-frontmatter.sh` at both roots and `.github/workflows/skill-doc-frontmatter.yml` added to both filter lists in `skill-doc-frontmatter.yml`.
 - R11: `scratch/pre-commit-inventory.md`, one row per pre-commit gate key, naming the workflow that duplicates it and whether to keep or drop it.
@@ -115,7 +115,7 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 |-----------|-------------|-------------|
 | `.github/workflows/advisory-checks.yml` and 29 other PR-triggered workflows | Modify | Add the `concurrency:` block above `jobs:` |
 | `.github/workflows/command-tree-parity.yml` | Modify | Add `paths:` to both events after `:5-8`; rewrite the comment at `:47-50` |
-| `.github/workflows/changed-packet-validation.yml` | Modify only if D10 flips | Add `paths:` to both events after `:4-7` |
+| `.github/workflows/changed-packet-validation.yml` | Unchanged under D10=skip (2026-10-23) | Add `paths:` to both events after `:4-7` only if a later phase flips the choice |
 | `.github/workflows/dispatch-enforcement-guard.yml` | Modify | Delete the `Run the dispatch audit core suite` step at `:41-50`; keep `:22-40` and `:52-67` |
 | `.github/workflows/advisory-checks.yml` | Modify | Replace `\|\| true` at `:38` and `\|\| echo` at `:52,68` with an explicit failing branch |
 | `.github/workflows/strict-pass-freshness-report.yml` | Modify | Capture the status at `:172` and exit with it after printing the report; keep `continue-on-error` at `:165` |
@@ -138,12 +138,12 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | **R3.** All 30 PR-triggered workflows except `dependabot-auto-merge.yml` carry `concurrency: group: ${{ github.workflow }}-${{ github.event.pull_request.number \|\| github.ref }}` and `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` above `jobs:`; `trigger-index-rebuild.yml` keeps its own group at `:21-23`, and D2's answer decides whether `cancel-in-progress` is `true` on main as well |
+| REQ-001 | **R3.** All 30 PR-triggered workflows except `dependabot-auto-merge.yml` carry `concurrency: group: ${{ github.workflow }}-${{ github.event.pull_request.number \|\| github.ref }}` and `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` above `jobs:`; `trigger-index-rebuild.yml` keeps its own group at `:21-23`, and D2=pr-only (2026-10-23) leaves `cancel-in-progress` off main |
 | REQ-002 | **R4.** `command-tree-parity.yml` carries a `paths:` list on both `pull_request:` and `push:`, naming every input `validate-command-tree-parity.sh`, `sync-runtime-mirrors.cjs`, `sync-skills-hermes.cjs` and `sync-prompts-hermes.cjs` read, with an `.opencode/` twin for every `.skilled/` entry, and the comment at `:47-50` describes the filter instead of claiming there is none |
-| REQ-003 | **R5.** D10 is answered. The default is no filter, recorded in `plan.md` with its ~10 runner-min/day figure; the alternative adds `paths:` (`specs/**`, `.skilled/skills/system-spec-kit/**`, `.opencode/skills/system-spec-kit/**`, the workflow file) to both events |
+| REQ-003 | **R5.** D10=skip (2026-10-23) is recorded in `plan.md` with its ~10 runner-min/day figure, so no filter is added; the alternative adds `paths:` (`specs/**`, `.skilled/skills/system-spec-kit/**`, `.opencode/skills/system-spec-kit/**`, the workflow file) to both events |
 | REQ-004 | **R6.** `dispatch-enforcement-guard.yml` runs `dispatch-audit.test.mjs` once per run, not twice: either the two jobs merge or the explicit step at `:41-50` is deleted. The whole-tree vitest run at `:67` keeps no project or path filter, and the fail-closed guard at `:31-35` stays byte-identical |
 | REQ-005 | **R7.** `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172` no longer suppress a failing command, while `continue-on-error: true` stays on the same steps (`advisory-checks.yml:27,41,55`, `strict-pass-freshness-report.yml:165`), so the step reports `failure` and the job reports `success` |
-| REQ-006 | **R8.** `rule-canary-sync.yml` and `repo-rules-corpus.yml` check out at the default depth, and `deep-loop-runtime.yml:42` reads `fetch-depth: 2` if D7 approves; the seven workflows that do read history keep `fetch-depth: 0` |
+| REQ-006 | **R8.** `rule-canary-sync.yml` and `repo-rules-corpus.yml` check out at the default depth, and `deep-loop-runtime.yml:42` reads `fetch-depth: 2` under D7=depth-2 (2026-10-23); the seven workflows that do read history keep `fetch-depth: 0` |
 | REQ-007 | **R9.** `agent-mirror-sync.yml` carries a `paths:` list under `pull_request:` naming `.opencode/agents/**`, `.skilled/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `check-agent-mirror-sync.cjs` at both roots and the workflow file; `comment-hygiene.yml` stays unfiltered |
 | REQ-008 | **R10.** Both filter lists in `skill-doc-frontmatter.yml` name `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`, its `.opencode/` twin, and `.github/workflows/skill-doc-frontmatter.yml` |
 | REQ-009 | **R11.** `scratch/pre-commit-inventory.md` lists every gate key in `.skilled/scripts/git-hooks/pre-commit` against every workflow step, names the workflow that duplicates each one, and says `keep` or `drop` with a reason |
@@ -157,7 +157,7 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 | REQ-012 | `scratch/phase-result.md` records the measured delta against `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` for every workflow this phase touches, including the R6 re-measurement |
 | REQ-013 | No R-id, D-id or phase number appears in any workflow comment, step name, filter entry, README row or inventory row: `git diff HEAD~6...HEAD \| grep -nE '\bR[0-9]+\b\|\bD[0-9]+\b\|[Pp]hase 0[0-9]'` prints nothing |
 
-R3's saving is unmeasured on pull requests, because the measured window held no PR runs; on main it is 817 reclaimable wall-minutes per window standalone and about 89 after R1, realized only if D2 flips (`final-review.md:231-234`). R4 is ~265 runner-min/day standalone and ~123 after R1, because 30 of 38 human pushes skip it. R5 is ~10 after R1 and skipped by default. R6's merged shape is inferred at ~75-150 standalone and 39-78 after R1; the planned drop-only shape is smaller and is re-measured rather than asserted. R8 is ~39 after R1 plus about 20 s of wall per job. R7, R10 and R11 save 0 minutes: they restore a signal and record a fact.
+R3's saving is unmeasured on pull requests, because the measured window held no PR runs; on main it is 817 reclaimable wall-minutes per window standalone and about 89 after R1, and D2=pr-only (2026-10-23) leaves those main-branch runs uncancelled (`final-review.md:231-234`). R4 is ~265 runner-min/day standalone and ~123 after R1, because 30 of 38 human pushes skip it. R5 is ~10 after R1 and skipped under D10=skip. R6's merged shape is inferred at ~75-150 standalone and 39-78 after R1; the D4=drop-step shape is smaller and is re-measured rather than asserted. R8 is ~39 after R1 plus about 20 s of wall per job. R7, R10 and R11 save 0 minutes: they restore a signal and record a fact.
 
 ### Per-R-id detail
 
@@ -253,10 +253,10 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `002-rebuild-fanout-removal` and its `scratch/baseline-24h/summary.md` | Every "after R1" number is unanchored, and R3's main-branch figure stays at the standalone 817 wall-min | The phase does not start until the baseline exists; `scratch/phase-baseline.md` copies the rows this phase touches |
-| Dependency | Operator decisions D2, D3, D4, D7, D10 | Five tasks are gated; no file may be edited before its answer | Each decision is its own first-phase task with a stated default, so a silent answer still yields a buildable plan |
+| Dependency | Operator decisions D2, D3, D4, D7, D10 | None; recorded 2026-10-23 (D2=pr-only, D3=approve, D4=drop-step, D7=depth-2, D10=skip) and T001 to T005 only verify `scratch/decisions.md` | The answers are fixed, so no file edit waits on the operator; each decision's alternative stays in `decision-record.md` for a later reopen |
 | Dependency | `gh` with `repo` and `actions` scopes | No trigger probes, no job timings, no phase delta | Every probe records its command and output under `scratch/`; a missing scope is a blocker, not a workaround |
 | Risk | R4's filter misses an input the parity checkers read, so a stale Hermes copy or a broken mirror lands green | Medium | The filter is derived from a full read of all four checkers, not from the review's summary, and both trigger probes are recorded |
-| Risk | R3's group key also groups `push` runs on the same ref, and GitHub keeps one running plus one pending run per group, so a third push replaces the pending one | Medium | `cancel-in-progress` stays false on push unless D2 flips it, so no running push is cancelled; the replacement behaviour is recorded in the edge cases and checked by the push half of the R3 probe. An operator who wants pushes left completely ungrouped can substitute `github.run_id` for `github.ref` in the fallback, which is a one-line change on the same 30 files |
+| Risk | R3's group key also groups `push` runs on the same ref, and GitHub keeps one running plus one pending run per group, so a third push replaces the pending one | Medium | `cancel-in-progress` stays false on push under D2=pr-only (2026-10-23), so no running push is cancelled; the replacement behaviour is recorded in the edge cases and checked by the push half of the R3 probe. An operator who wants pushes left completely ungrouped can substitute `github.run_id` for `github.ref` in the fallback, which is a one-line change on the same 30 files |
 | Risk | R6 touches a protected guard (`research.md:187`: its failure invalidates other workflows' inputs) | Medium | The default shape drops only the duplicate step, so no check name changes; the fail-closed guard stays, and a deleted-suite branch proves it still fails |
 | Risk | R8 removes history a checker quietly needs | Low | Both checkers were read and shell out to no git command; `deep-loop-runtime` keeps depth 2 rather than 1 because its suites read the parent commit |
 | Risk | The README table drifts from the YAML once two rows move | Low | The table is edited in the same commit, and the row-membership grep is an acceptance check |
@@ -336,7 +336,7 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 | R-004 | A report step that now exits non-zero breaks a consumer that reads the run status | M | L | `continue-on-error: true` stays, so the job concludes `success`; only the step's own conclusion changes, and the probe records both |
 | R-005 | A checker quietly needs history that the new checkout depth no longer fetches | M | L | Both shallow checkouts belong to checkers that shell out to no git command, and the probe compares each job against its 002 baseline |
 | R-006 | The 002 baseline does not exist, so no after number has a before number | M | H | The phase waits: T006 stops when `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is absent, and no research figure is substituted |
-| R-007 | An operator answer never arrives and a gated task cannot start | M | M | Each decision has a stated default in `plan.md` and a recorded alternative, so a late answer changes one line rather than the plan |
+| R-007 | A later reader treats a recorded operator answer as still open | L | Each answer is recorded in `scratch/decisions.md` and repeated in `plan.md`, and T001 to T005 verify it |
 | R-008 | A `.skilled/` filter entry lands without its `.opencode/` twin | M | L | `check-gate-inputs.sh` raises `filter-twins` and the gate fails before merge; T025 runs it over the real tree |
 | R-009 | The README push/PR table drifts from the YAML once two rows move | L | M | The table is edited in the same commit as the filters, and the row-membership grep is an acceptance check |
 | R-010 | The concurrency block lands below `jobs:` or inside another mapping, so the workflow parses but the group never applies | M | L | The anchor is the `jobs:` line at column 0, and T024 checks `grep -c '^concurrency:'` per file plus the YAML parse |
@@ -379,7 +379,7 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 ## 12. OPEN QUESTIONS
 
 - Does `cancel-in-progress` on pull requests leave the required `message-contract` context satisfied on the newest head? GitHub evaluates the context per SHA and the newest SHA always gets a run, so the expectation is yes; the R3 probe records the observed state rather than assuming it.
-- Do `deep-loop-runtime`'s mode-event suites need anything older than the parent commit? D7 answers it, and depth 2 is the planned default because the suites bind a run to a commit and its parent (`deep-loop-runtime.yml:38-39`).
+- Do `deep-loop-runtime`'s mode-event suites need anything older than the parent commit? D7=depth-2 (2026-10-23) answers it, because the suites bind a run to a commit and its parent (`deep-loop-runtime.yml:38-39`).
 - Which pre-commit gates have no CI counterpart, and should they? R11's inventory answers it with a keep-or-drop line per gate; nothing in this phase acts on the answer.
 - Does R6's drop-only shape recover as many minutes as the merge? The review infers 1-2 billed minutes per run for the merged shape and asks for a re-measurement; `scratch/phase-result.md` records whichever shape was built.
 <!-- /ANCHOR:questions -->

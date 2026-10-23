@@ -13,9 +13,7 @@ _memory:
     last_updated_at: "2026-10-23T10:35:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded five proposed ADRs for the planned phase"
-    next_safe_action: "Answer decision D1, then run the phase's tasks"
-    blockers:
-      - "D1 unanswered"
+    next_safe_action: "Decisions answered; start at T002, the first non-decision task, then run the phase's tasks"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -44,9 +42,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
-| **Deciders** | Operator (D1, unanswered), plan author |
+| **Deciders** | Operator (D1 = A, 2026-10-23), plan author |
 
 ---
 
@@ -70,7 +68,7 @@ Two mechanisms can stop it. A `[skip ci]` token in the commit body asks GitHub t
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Option A, the `[skip ci]` token on the rebuild commit's body line, as the default this phase plans and builds; option B stays the recorded alternative for an operator who rejects A.
+**We chose**: Option A, the `[skip ci]` token on the rebuild commit's body line, recorded on 2026-10-23; option B stays the recorded alternative for an operator who rejects A.
 
 **How it works**: `trigger-index-rebuild.yml:149` gains the token inside its existing `-m` argument, and `:150` keeps `Trigger-Index-Rebuild: ci` as the message's last line. GitHub then starts no push- or pull_request-triggered workflow for the pushed commit, and the loop guard's suffix match at `:33` still recognises a manual re-run.
 <!-- /ANCHOR:adr-001-decision -->
@@ -559,7 +557,7 @@ The research phase measured 23.5 h and scaled its figures by 24/23.5 (factor 1.0
 
 | ADR | Subject | Status | Gates |
 |-----|---------|--------|-------|
-| ADR-001 | D1: the `[skip ci]` token over 104 path-filter entries | Proposed | T004 to T011, T014 |
+| ADR-001 | D1: the `[skip ci]` token over 104 path-filter entries | Accepted | T004 to T011, T014 |
 | ADR-002 | The token on the body line, the trailer last | Proposed | T004, T005, T009, T016 |
 | ADR-003 | The workflow's own vitest suite is the guard | Proposed | T008 to T012, T018 |
 | ADR-004 | One commit carries token, test, filters and README | Proposed | T014 |

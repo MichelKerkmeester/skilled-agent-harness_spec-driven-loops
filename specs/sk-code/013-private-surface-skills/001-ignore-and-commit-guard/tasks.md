@@ -30,9 +30,9 @@ Every task carries seven fields in this order: **File**, **Anchor**, **Change**,
 the file at the time the task runs; a writer that cannot find it re-reads the file
 once and stops if it is still missing. Line numbers were checked against the files
 on disk when this plan was written, and the anchor text is what decides, not the
-number: earlier tasks move later line numbers. Branch names come from the parent
-packet's process rules: `deepseekpi` for code changes, `deepseekpihigh` for
-docs-only changes.
+number: earlier tasks move later line numbers. Work runs in an OpenCode 2 session
+with a DeepSeek orchestrator, and reviews run through the `subagent` tool with agent
+`review`, read-only by instruction; no dispatch kit or executor branch name is used.
 
 Every fenced block below is indented four spaces so it nests under its bullet. The
 text inside the fence is flush-left in the target file: strip the four-space list
@@ -135,7 +135,7 @@ harness.
     # ───────────────────────────────────────────
     # A local-* skill belongs to the operator, not to this repository. No trailing
     # slash: git treats a symlink as a file, so a trailing slash would miss a symlink
-    # to a private repo. The runtime roots that link to .skilled/skills need no rule
+    # to a repository outside this checkout. The runtime roots that link to .skilled/skills need no rule
     # of their own, because git cannot stage a path beneath a symlink. .hermes/skills,
     # .codex/skills and .cursor/skills are real directories when they exist, so each
     # carries its own rule.
@@ -527,10 +527,10 @@ harness.
   - **Rollback:** `n/a: read-only, nothing to undo`
   - **Stop if:** any count differs. A lower count means a limit was deleted; restore it rather than lowering the expectation.
 
-- [ ] T022 Reviewer round: a separate read-only session reads the diff and the packet (none)
+- [ ] T022 Reviewer round through the `subagent` tool, agent `review` (none)
   - **File:** `none`; the reviewer reads the three changed files and this packet's six documents
   - **Anchor:** `n/a: pure command`
-  - **Change:** none by the reviewer. Findings come back as text; the writer repairs in-scope findings and the reviewer re-reads once. A finding that would widen the scope is recorded in `implementation-summary.md` and left to the phase that owns it. At most two rounds.
+  - **Change:** none by the reviewer. The review runs through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. The reviewer reads the diff and the packet; findings come back as text; the writer repairs in-scope findings and the reviewer re-reads once. A finding that would widen the scope is recorded in `implementation-summary.md` and left to the phase that owns it. At most two rounds.
   - **Proof:** the reviewer's report is the proof.
     Expected: the report's final line reads `VERDICT: PASS` and lists no unresolved in-scope finding.
   - **AC:** AC-013

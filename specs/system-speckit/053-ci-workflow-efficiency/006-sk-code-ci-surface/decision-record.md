@@ -37,7 +37,7 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> **No operator decision gates this phase.** R22 and R23 change no workflow, no repository variable and no repository setting. D1 (the rebuild-skip form) is read from `002-rebuild-fanout-removal`'s `### Implementation Notes`. D2 (main-branch cancellation) is an operator decision in the parent spec, and this phase does not wait for its answer; the concurrency template records the recommended PR-only default until D2 lands. Every ADR below is a design choice this plan makes, not a question for the operator.
+> **No operator decision gates this phase.** R22 and R23 change no workflow, no repository variable and no repository setting. D1 (the rebuild-skip form) is read from `002-rebuild-fanout-removal`'s `### Implementation Notes`. D2 (main-branch cancellation) is an operator decision in the parent spec, recorded as `pr-only` on 2026-10-23; the concurrency template records that value. Every ADR below is a design choice this plan makes, not a question for the operator.
 
 ---
 

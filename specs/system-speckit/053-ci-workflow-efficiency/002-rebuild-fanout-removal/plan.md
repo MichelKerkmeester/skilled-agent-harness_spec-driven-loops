@@ -99,7 +99,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Implementation Notes
 
-- **D1 first, and recorded here.** Option A (recommended, default) is the `[skip ci]` token in the commit body: one line, no twin entries, no new YAML pattern. Option B is a push-only `paths-ignore:` on the 9 unfiltered workflows plus `!` negations on the 4 path-filtered ones, 8 entries each, 104 in total across 13 files, with ordering rule 2 amended, for about 2,002 runner-min/day with message-contract left unfiltered (`final-review.md:199-202`). If D1 picks B, tasks T004 to T007 and T010 to T011 are replaced by that edit set and T008 and T009 assert the ignore instead of the token; the baseline and gate tasks are unchanged.
+- **D1=A, recorded 2026-10-23 and frozen here.** Option A is the `[skip ci]` token in the commit body: one line, no twin entries, no new YAML pattern. Option B is a push-only `paths-ignore:` on the 9 unfiltered workflows plus `!` negations on the 4 path-filtered ones, 8 entries each, 104 in total across 13 files, with ordering rule 2 amended, for about 2,002 runner-min/day with message-contract left unfiltered (`final-review.md:199-202`). If a later phase reverses D1 to B, tasks T004 to T007 and T010 to T011 are replaced by that edit set and T008 and T009 assert the ignore instead of the token; the baseline and gate tasks are unchanged.
 - **One commit for the token and the test.** The suite is red between a test-only commit and a workflow-only commit, and spec-kit-check runs on any change under `.skilled/skills/system-spec-kit/**`. The token and its assertion therefore land in the same commit, so no commit is red and no commit carries an unguarded token.
 - **No ephemeral ids in code.** The workflow comment, the test's `it(...)` name and any new comment describe behaviour only. No R-id, D-id or phase number goes into a code comment, a test name or a README row; those ids belong to these spec documents.
 - **The trailer is not a place for the token.** It is a suffix match, so the token goes on the body line at `:149` and nowhere near `:150`.
@@ -128,7 +128,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Operator decision D1 | Internal | Yellow until answered | The phase cannot start; option A is the planned default |
+| Operator decision D1 | Internal | Green | D1=A (2026-10-23); T001 only verifies `scratch/d1-answer.md` |
 | `gh` with `repo` and `actions` scopes | External | Green | No baseline snapshot and no three-rebuild check |
 | A checkout with `.skilled/skills/system-spec-kit` dependencies installed | Internal | Yellow in this worktree (no build) | The vitest suite cannot run locally; spec-kit-check still runs it in CI |
 | Phase `003-trigger-and-job-hygiene`, `004-setup-caching-provisioning`, `005-slow-and-failing-tests`, `006-sk-code-ci-surface`, `007-workflow-hygiene-on-off-control`, `008-consolidation-decision` and `009-doctor-ci-review-wiring` | Internal | Pending | They measure against this phase's baseline; without it their savings are unanchored |
@@ -181,7 +181,7 @@ Setup (D1, pre-flight capture) ──► Change (token + test + filters + docs) 
 
 ### Pre-deployment Checklist
 - [ ] Backup created (if data changes) - not applicable, no data changes
-- [ ] Feature flag configured - not applicable; the token is the switch, and D1 records it as the default
+- [ ] Feature flag configured - not applicable; the token is the switch, and D1=A (2026-10-23) is the recorded choice
 - [ ] Monitoring alerts set - the three-rebuild check and the 24 h snapshot are the monitoring
 
 ### Rollback Procedure
@@ -240,7 +240,7 @@ Setup (D1, pre-flight capture) ──► Change (token + test + filters + docs) 
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| D1 answer (T001) | Operator | `scratch/d1-answer.md` naming A or B | T004 to T011 |
+| D1 answer (T001) | `scratch/d1-answer.md` | A verified `D1=A` line | T004 to T011 |
 | Pre-change capture (T002) | `gh` with `repo` and `actions` | `scratch/pre-change/<sha>.json`, 14 rows per SHA | T015's before number |
 | Suite baseline (T003) | An installed spec-kit workspace | A green pre-edit run of the workflow suite | T008, T009, T012 |
 | Token and README rows (T004 to T007) | T001, T002 | `[skip ci]` on the body line, two README rows | T014 |
@@ -254,7 +254,7 @@ Setup (D1, pre-flight capture) ──► Change (token + test + filters + docs) 
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **T001, the D1 answer** - operator latency, no upper bound - CRITICAL
+1. **T001, verify the recorded D1=A answer** - ~2 minutes - CRITICAL
 2. **T002, the pre-change capture** - ~10 minutes, three rebuild SHAs - CRITICAL
 3. **T004 to T013, the change set** - ~40 minutes, five files and two proofs - CRITICAL
 4. **T014, the one commit** - ~10 minutes including `validate-message.mjs` - CRITICAL
@@ -301,6 +301,6 @@ Setup (D1, pre-flight capture) ──► Change (token + test + filters + docs) 
 - Option B, push-only `paths-ignore` with `!` negations: 104 entries across 13 files and an amended ordering rule 2, for ~2,002 runner-min/day instead of ~2,073.
 - A `concurrency` group on the rebuild: it cancels queued runs, not triggers, so 13 runs still start.
 
-The formal records, including D1's default, its alternative and the design choices this plan freezes, are `decision-record.md` ADR-001 to ADR-005.
+The formal records, including D1's recorded answer, its alternative and the design choices this plan freezes, are `decision-record.md` ADR-001 to ADR-005.
 
 ---

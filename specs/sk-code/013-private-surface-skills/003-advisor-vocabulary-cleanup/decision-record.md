@@ -55,7 +55,7 @@ A top-level `local-*` symlink is how a private skill enters the advisor's tree. 
 ### Constraints
 
 - The advisor runtime is plain TypeScript on `node:fs`, with no configuration service.
-- Phase 4 may restore a private skill as a real folder or as a symlink to a private repository the operator owns.
+- Phase 4 links each private skill to a `local-skills/` folder in an external repository (Obsidian public by operator choice, Webflow private).
 - A scan must stay green when a link target is missing or unreadable.
 - The rule must be identical in the graph scan and the source signature.
 <!-- /ANCHOR:adr-001-context -->
@@ -95,7 +95,7 @@ A top-level `local-*` symlink is how a private skill enters the advisor's tree. 
 - The graph scan and the signature share one containment rule.
 
 **What it costs**:
-- An external private repository needs one environment variable. Mitigation: ADR-006 records the constraint for phase 4, and a real folder needs nothing.
+- An external repository needs one environment variable. Mitigation: ADR-006 records the constraint for phase 4, and a real folder needs nothing.
 
 **Risks**:
 
@@ -553,7 +553,7 @@ The gate walks the skills tree for every committed `leaf-manifest.json`. The res
 <!-- ANCHOR:adr-006-context -->
 ### Context
 
-Phase 4 may restore each private skill as a real folder or as a symlink to a private repository the operator owns. ADR-001 rejects a link that leaves the checkout unless the operator declares the target root. Without a recorded constraint, phase 4 could create a link the advisor silently ignores.
+Phase 4 uses a symlink per private skill to a `local-skills/` folder in an external repository: Obsidian in a public repository by operator choice, Webflow in a private one. ADR-001 rejects a link that leaves the checkout unless the operator declares the target root. Without a recorded constraint, a link without the variable would stay invisible to the advisor.
 
 ### Constraints
 
@@ -567,9 +567,9 @@ Phase 4 may restore each private skill as a real folder or as a symlink to a pri
 <!-- ANCHOR:adr-006-decision -->
 ### Decision
 
-**We chose**: record the variable as an inter-phase constraint in this phase's spec Open Questions and in this ADR. A real folder or a link inside the skills root needs no configuration; an external link needs `SPECKIT_PRIVATE_SKILL_ROOTS` set to the private repository root.
+**We chose**: record the variable as an inter-phase constraint in this phase's spec Open Questions and in this ADR. Phase 4 sets `SPECKIT_PRIVATE_SKILL_ROOTS` to both external `local-skills/` parents, joined with `:`, in every advisor process; a real folder or a link inside the skills root still needs no configuration.
 
-**How it works**: the helper reads the variable on every call, splits it on `path.delimiter`, resolves each entry and adds it to the trusted roots. Phase 4 must record which mode it used.
+**How it works**: the helper reads the variable on every call, splits it on `path.delimiter`, resolves each entry and adds it to the trusted roots. Phase 4 records the symlink mode and both roots.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -618,7 +618,7 @@ Phase 4 may restore each private skill as a real folder or as a symlink to a pri
 | 2 | **Beyond Local Maxima?** | PASS | Trust-all, hard-code and forbid were scored |
 | 3 | **Sufficient?** | PASS | One variable, read at call time, plus the five helper cases |
 | 4 | **Fits Goal?** | PASS | The private skill stays local and the tracked tree stays clean |
-| 5 | **Open Horizons?** | PASS | A new private repository is a configuration entry |
+| 5 | **Open Horizons?** | PASS | A new external repository is a configuration entry |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-006-five-checks -->

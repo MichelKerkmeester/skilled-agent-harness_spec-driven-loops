@@ -53,7 +53,7 @@ Every task below names one file, quotes the anchor text it edits or reads, gives
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe.md` (new file), and `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md`, anchor: the `phases` anchor close at line 160, the last line of the Implementation Notes block.
 
-Ask the operator for an explicit yes before the first command. `gh variable set` changes repository settings, and this is a stop-for-yes step. If the operator says no, write `D9: print` before the anchor, write `declined: operator said no` in the new scratch file, and stop this task; do not run any `gh` write.
+Read the operator's yes from `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe-approval.md`, which must exist and hold the approval line `R28 probe: approved by the operator on 2026-10-23`. `gh variable set` changes repository settings, so that recorded approval is the stop-for-yes gate. If the file is missing or lacks the approval line, run no `gh` write, stop this task and escalate.
 
 Change: run the four commands below in order, then write one line per command to the new scratch file in the form `<step> exit=<code>` plus the observed output, then insert the single line `D9: write` before the plan.md anchor when the set exits 0, or `D9: print` when it exits non-zero.
 

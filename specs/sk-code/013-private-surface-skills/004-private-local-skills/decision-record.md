@@ -10,12 +10,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T13:30:00Z"
+    last_updated_at: "2026-10-23T17:55:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Authored seven decision records"
-    next_safe_action: "Record the operator's folder mode in ADR-001, then execute the tasks"
-    blockers:
-      - "ADR-001 folder mode is pending the operator's decision"
+    recent_action: "Recorded the operator's two-repository symlink answer in ADR-001"
+    next_safe_action: "Run T001, T002 and T002a, then the T005/T006 restore pair"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,9 +25,9 @@ _memory:
       session_id: "planning-004-private-local-skills"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Real folder or symlink to a private repository?"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Folder mode: symlink to two external repositories (operator, 2026-10-23)"
 ---
 # Decision Record: Phase 4: private-local-skills
 
@@ -38,49 +37,63 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: Restore each private skill as a real folder or as a symlink to a private repository
+## ADR-001: Restore each private skill as a symlink to its own external repository
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | Pending operator decision |
-| **Folder mode** | Not chosen |
-| **Private repository root** | Not chosen |
+| **Status** | Accepted: symlink to two external repositories |
+| **Folder mode** | symlink |
+| **External repository roots** | `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills` (local-obsidian) and `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills` (local-webflow) |
 | **Date** | 2026-10-23 |
-| **Deciders** | The operator, who owns the private content; the phase planner records the choice |
+| **Deciders** | The operator, who owns the private content and chose the two repositories; the phase planner records the choice |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The two surfaces come back as gitignored skills at `.skilled/skills/local-webflow/` and
-`.skilled/skills/local-obsidian/`. Two shapes are legal at those paths, and they differ in where the
-bytes live, not in what the advisor sees:
+The two surfaces come back as gitignored symlinks at `.skilled/skills/local-webflow/` and
+`.skilled/skills/local-obsidian/`. The recorded answer is Mode B, symlink mode, with two external
+repositories, one per skill; Mode A, a real folder, is kept only as a recorded alternative.
 
-- **Mode A, a real folder.** The 161 Webflow files and the 65 Obsidian files sit inside the checkout,
-  under `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`.
-- **Mode B, a symlink.** The same trees live in a private repository the operator owns, and each
-  `.skilled/skills/local-*` path is a symlink to one folder in that repository.
+- **`local-obsidian`** lives at
+  `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian`, tracked
+  and committed in the public GitHub repository `MichelKerkmeester/obnotion_notion-cloned-into-obsidian`.
+  The operator chose the public repository and accepted that this content is public.
+- **`local-webflow`** lives at
+  `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow`, tracked
+  and committed in the private GitHub repository `MichelKerkmeester/anobel.com`.
 
-Phase 1's ignore rules match both shapes because `/.skilled/skills/local-*` carries no trailing slash.
+In this checkout, `.skilled/skills/local-obsidian` and `.skilled/skills/local-webflow` are symlinks to
+those two folders. Phase 1's `/.skilled/skills/local-*` ignore rule keeps both links, and therefore the
+content behind them, out of this public repository.
+
+Both targets sit under their repository's `local-skills/` directory, never under that repository's
+`.skilled`, `.opencode` or `.claude` directory. In both repositories those directories are symlinks
+back into this checkout, so a target placed there would loop. Both `local-skills/` paths were checked
+free on 2026-10-23.
+
 Phase 3's scans follow a top-level `local-*` symlink only when its realpath sits inside the skills
-root or a path listed in `SPECKIT_PRIVATE_SKILL_ROOTS`, so Mode B needs that variable set for the
-advisor daemon and Mode A needs nothing.
-
-The choice is one decision, taken once, and it changes only the restore task pair the implementer
-runs. Everything after the restore addresses `.skilled/skills/local-*`, which resolves in both modes.
+root or a path listed in `SPECKIT_PRIVATE_SKILL_ROOTS`. This phase therefore sets that variable to
+both roots, joined with `:` (path.delimiter), for every advisor process.
 
 ### Constraints
 
-- Ignored files never travel between checkouts, so both modes write inside the operator's main
-  checkout `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
-- Mode B stores an absolute link target, so the private repository must not move after the link is
-  created; a moved repository leaves a dangling link that the advisor skips.
-- Mode B needs `SPECKIT_PRIVATE_SKILL_ROOTS` in the environment of every advisor process that should
-  see the skills; the operator's shell and the daemon inherit it from the same profile.
-- Mode A makes the private bytes part of every backup and every local disk copy of the checkout.
+- The links are created in the operator's main checkout
+  `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`; the bytes stay in the two
+  external repositories.
+- A symlink stores an absolute target, so neither repository may move after the links are created; a
+  moved repository leaves a dangling link that the advisor skips.
+- `SPECKIT_PRIVATE_SKILL_ROOTS` must be set durably for every advisor process (CLI, OpenCode plugin,
+  hooks), with both roots joined by `:`.
+- A target must not sit under a repository's `.skilled`, `.opencode` or `.claude`; those are symlinks
+  back into this checkout.
+- Each target repository gets one commit that stages only `local-skills/<name>` by path, because both
+  repositories carry unrelated uncommitted files that must never be staged.
+- Each push is irreversible, and the Obsidian push publishes content; each push needs an explicit
+  operator yes at run time.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -88,19 +101,22 @@ runs. Everything after the restore addresses `.skilled/skills/local-*`, which re
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: not yet chosen. The status stays `Pending operator decision` until the operator records
-one of the two answers below in the metadata table.
+**We chose**: symlink mode with two external repositories, one per skill, recorded by the operator on
+2026-10-23. `local-obsidian` is tracked in the public `obnotion_notion-cloned-into-obsidian`
+repository; `local-webflow` is tracked in the private `anobel.com` repository. Both targets sit under
+their repository's `local-skills/` directory.
 
-**Option A, real folder.** Set `Status` to `Accepted: real folder`, `Folder mode` to `real folder`, and
-`Private repository root` to `n/a`. The restore task pair is T003 and T004.
+**Restore and commit**: T005 and T006 restore the two trees from `42b41dd286` into their own target
+folders. T003 and T004 are the recorded real-folder alternative and are not used. T006a creates the
+two symlinks in this checkout and proves both are ignored here. T006b appends one quoted
+`export SPECKIT_PRIVATE_SKILL_ROOTS="..."` line to `~/.zshrc` only after an explicit operator yes,
+and every advisor probe in the phase still exports the two-root value explicitly. T095a and T095b
+make one commit in each target repository, staging only `local-skills/<name>` by path, then one push
+per repository, each gated on an explicit operator yes at run time.
 
-**Option B, symlink to a private repository.** Set `Status` to `Accepted: symlink to a private
-repository`, `Folder mode` to `symlink`, and `Private repository root` to the absolute path of the
-private repository. The restore task pair is T005 and T006, and every advisor scan exports
-`SPECKIT_PRIVATE_SKILL_ROOTS` with that path.
-
-**How it works**: the implementer reads the three cells before the restore and runs exactly one task
-pair. A pending status stops the run before any file is written.
+**How it works**: T002 reads the three cells before the restore, T002a proves both targets are absent
+and each repository's `.skilled` is a symlink, and only the Mode B pair runs. Every advisor process
+that should see the skills inherits `SPECKIT_PRIVATE_SKILL_ROOTS` with both roots joined by `:`.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -110,13 +126,14 @@ pair. A pending status stops the run before any file is written.
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **A, real folder** | No configuration; the advisor sees the skill with no environment variable; one checkout holds everything; `git check-ignore` and the commit guard cover it unchanged | The private bytes join every local copy and backup of the checkout; a worktree checkout cannot see them | 8/10 |
-| **B, symlink to a private repository** | The private repository keeps its own history and remotes; the public checkout holds two links; a second machine can clone the private repository and relink | Needs `SPECKIT_PRIVATE_SKILL_ROOTS` for every advisor process; an absolute target breaks when the repository moves; the link is invisible to any tool that does not follow symlinks | 7/10 |
-| **A real folder inside the private repository only, with no link** | Nothing to misconfigure | The advisor never sees the skill, so phase 5's routing probe cannot pass | 2/10 |
+| **Two external repositories, one per skill (recorded answer)** | Each content owner keeps its own history and remote; the Obsidian repository stays public by operator choice; the Webflow repository stays private; the public checkout holds two links | Two extra repositories must be cloned on another machine; both roots need the environment variable; a target cannot sit under a repository's `.skilled`, `.opencode` or `.claude` | 9/10 |
+| **A, real folder (recorded alternative, not used)** | No configuration; the advisor sees the skill with no environment variable; one checkout holds everything; `git check-ignore` and the commit guard cover it unchanged | The private bytes join every local copy and backup of the checkout; a worktree checkout cannot see them; the Obsidian content would stop living in its existing repository | 8/10 |
+| **One private repository holding both skills** | One clone and one root | The Obsidian content would have to leave its existing public repository or be duplicated, and one root hides the operator's public choice | 4/10 |
 | **Copy the trees into both checkouts** | Each checkout is self-contained | Ignored files never travel, so the copies drift with no record of which one is current | 2/10 |
 
-**Why this one**: the operator decides, because the trade is private-data placement against
-configuration surface. The phase does not prefer either mode and both paths are written out in full.
+**Why this one**: the operator chose it on 2026-10-23, because each skill already belongs to a
+repository with its own history and visibility. The real-folder option stays recorded as the only
+serious alternative; the phase does not offer a live choice between modes.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -125,22 +142,26 @@ configuration surface. The phase does not prefer either mode and both paths are 
 ### Consequences
 
 **What improves**:
-- The operator keeps the Webflow and Obsidian evidence without shipping it.
-- The chosen shape is recorded in one place, so a later session reads the answer instead of asking again.
+- Each skill keeps the history, remote and visibility of its own repository.
+- The public checkout holds two ignored links and no content.
 
 **What it costs**:
-- Mode B adds one environment variable to every advisor process. Mitigation: `plan.md` Step 9 and
-  T095 export it, and `implementation-summary.md` records the absolute path.
-- Mode A adds roughly 2 MB of ignored content to the checkout. Mitigation: both paths are gitignored
-  and the commit guard refuses a staged `local-*` path.
+- The Obsidian content becomes public; the operator accepted that trade.
+- A second machine must clone two extra repositories and recreate the two links.
+- `SPECKIT_PRIVATE_SKILL_ROOTS` must be set durably with both roots, or the advisor sees neither
+  linked skill.
+- Two target repositories need one commit and one push each; every push needs an explicit operator
+  yes, and the Obsidian push publishes the content.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| A pending decision stalls the phase | M | T002 stops with `BLOCKED` before any write, so nothing is left half-restored |
-| A Mode B link points outside the trusted roots | H | T095 exports `SPECKIT_PRIVATE_SKILL_ROOTS` before the scan, and AC-014 fails if the nodes are absent |
-| The private repository moves after the link is made | M | `implementation-summary.md` records the absolute path, and the link is recreated from it |
+| A target sits under a repository's `.skilled`, `.opencode` or `.claude` symlink and loops | H | T002a proves both `local-skills/` targets are absent and each repository's `.skilled` is a symlink before the restore |
+| A repository moves after the link is made | M | `implementation-summary.md` records both absolute targets, and T006a recreates the links from them |
+| One root is missing from `SPECKIT_PRIVATE_SKILL_ROOTS` | H | T006b sets both roots durably, and T095 exports both roots explicitly before the scan |
+| A target repository stages an unrelated uncommitted file | H | T095a and T095b stage only `local-skills/<name>` by path and stop if anything else is staged |
+| The Obsidian push publishes content | H | The push runs only after an explicit operator yes at run time |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -151,10 +172,10 @@ configuration surface. The phase does not prefer either mode and both paths are 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | The parent packet requires both skills to exist at `.skilled/skills/local-*`, and phase 5 probes their routing |
-| 2 | **Beyond Local Maxima?** | PASS | Four shapes were scored; the two viable ones differ in where the bytes live, not in what the advisor reads |
-| 3 | **Sufficient?** | PASS | One metadata table holds the answer, and one task pair consumes it |
+| 2 | **Beyond Local Maxima?** | PASS | Four shapes were scored; the recorded answer keeps each skill in the repository that already owns it |
+| 3 | **Sufficient?** | PASS | One metadata table holds the answer, and the Mode B tasks consume it |
 | 4 | **Fits Goal?** | PASS | The restore is the phase's first write and everything else edits its output |
-| 5 | **Open Horizons?** | PASS | Either mode can be reversed by deleting two ignored paths and re-running the other pair |
+| 5 | **Open Horizons?** | PASS | The recorded mode can be reversed by deleting two links and reverting the two target-repository commits |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
@@ -166,9 +187,12 @@ configuration surface. The phase does not prefer either mode and both paths are 
 
 **What changes**:
 - `decision-record.md`: three metadata cells record the answer.
-- `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`: created as real folders (T003, T004) or as symlinks to the private repository (T005, T006).
+- The two target folders: restored by T005 and T006.
+- `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`: created as symlinks by T006a.
+- `~/.zshrc`: one quoted `export SPECKIT_PRIVATE_SKILL_ROOTS="..."` line, appended by T006b after an explicit operator yes.
+- The two target repositories: one commit and one push each, made by T095a and T095b.
 
-**How to roll back**: delete the two paths with `rm -rf .skilled/skills/local-webflow .skilled/skills/local-obsidian`. In Mode B this removes the links and leaves the private repository untouched; then set the three cells back to `Pending operator decision`.
+**How to roll back**: delete the two links with `rm .skilled/skills/local-webflow .skilled/skills/local-obsidian`. In each target repository, revert its phase commit with `git -C <repo> revert <commit>`; the targets stay intact. Set the three cells back only if the phase is re-planned around a different shape.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -209,7 +233,7 @@ Phase 003 adds three lines to that loop, with this exact text:
 ### Constraints
 
 - The skip must be on `origin/main`, not only in a local branch, because the phase's docs commit pushes to main.
-- A real folder is skipped by the same test, so the gate protects both folder modes.
+- A real folder would be skipped by the same test too, but the operator recorded the symlink mode, so only the two symlinked targets are in scope.
 - The gate must be a command a non-interactive implementer can run and read, with an exact expected value.
 <!-- /ANCHOR:adr-002-context -->
 
@@ -295,7 +319,7 @@ exact, so the implementer never has to judge whether phase 003 "looks landed".
 ---
 
 <!-- ANCHOR:adr-003 -->
-## ADR-003: The private trees live only in the operator's main checkout, and only this phase's documents are committed
+## ADR-003: The two symlinks live in the operator's main checkout, and only this phase's documents are committed there
 
 ### Metadata
 
@@ -310,20 +334,23 @@ exact, so the implementer never has to judge whether phase 003 "looks landed".
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-Git ignores are per-worktree in effect: an ignored file created inside
-`.worktrees/215-private-surface-level3-plans` stays there. It never appears in
+Git ignores are per-worktree in effect: an ignored link created inside a separate `WORKTREE` checkout
+stays there. It never appears in
 `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, which is the checkout the
-operator's advisor scans. A restore run in the worktree would therefore produce a skill the operator
-cannot route, and removing the worktree would delete the evidence with no trace.
+operator's advisor scans. The bytes live in the two external repositories, but the links that make
+the skills visible to the advisor belong in the operator's checkout. A link created in a separate
+worktree would produce a skill the operator cannot route, and removing that worktree would delete the
+link with no trace.
 
-The phase's own documents have the opposite property: they exist only in the worktree, because the
-packet is being planned there and the operator's checkout is on `main` without them.
+The phase's own documents follow the checkout the orchestrator commits from. When that is a separate
+`WORKTREE`, they exist only there, because the packet is being planned there and the operator's
+checkout is on `main` without them; when it is `OPERATOR` itself, one checkout holds both.
 
 ### Constraints
 
 - The advisor daemon scans the operator's main checkout.
-- The packet's planning and completion commits go to `main` through the worktree.
-- No packet document may be copied between the two checkouts, because two copies drift.
+- The packet's planning and completion commits go to `main` through `WORKTREE`.
+- No packet document may be copied between checkouts, because two copies drift.
 <!-- /ANCHOR:adr-003-context -->
 
 ---
@@ -331,14 +358,15 @@ packet is being planned there and the operator's checkout is on `main` without t
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: run every command that creates, reads or edits `.skilled/skills/local-*` in
-`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, and run every packet-document
-edit and the single commit in the authoring worktree
-`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/215-private-surface-level3-plans`.
+**We chose**: run every command that creates, reads or edits the two `.skilled/skills/local-*` links
+in `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`, and run every packet-document
+edit and the single documents commit in the `WORKTREE` checkout: by default `OPERATOR` itself, or the
+separate worktree the orchestrator chose. The two target-repository commits run in their own
+repositories.
 
 **How it works**: each task names its checkout. Evidence is transcribed from readings taken in the
-operator's checkout into the worktree copy of `implementation-summary.md`; the commit stages that
-worktree copy by name and pushes `HEAD:main`.
+operator's checkout into `implementation-summary.md` in `WORKTREE`; the commit stages that file by name
+and pushes `HEAD:main`.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -353,8 +381,8 @@ worktree copy by name and pushes `HEAD:main`.
 | Copy the documents into the operator's checkout | One checkout at commit time | Two copies drift, and the operator's checkout would carry uncommitted packet edits | 3/10 |
 | Commit from the operator's checkout after copying the docs back | Familiar git flow | Same drift, plus a copy step nobody verifies | 2/10 |
 
-**Why this one**: the split follows the two facts that cannot be changed, ignored files stay put and
-packet documents exist only in the worktree.
+**Why this one**: the split follows the fact that cannot be changed, ignored links stay put; the
+packet documents follow the checkout the orchestrator commits from.
 <!-- /ANCHOR:adr-003-alternatives -->
 
 ---
@@ -367,15 +395,15 @@ packet documents exist only in the worktree.
 - The commit contains only packet documents, so no private path can ride along.
 
 **What it costs**:
-- The implementer works in two directories. Mitigation: every task states its checkout in the first
-  line of its command block, and the paths are absolute.
+- The implementer may work in two directories. Mitigation: every task states its checkout in the first
+  line of its command block, and `WORKTREE` is resolved with `git rev-parse --show-toplevel`.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| A command runs in the wrong checkout | H | T001, T003 to T012 and T088 to T095 name the operator's checkout; T096 to T109 name the worktree |
-| A packet document is edited in the operator's checkout | M | The operator's checkout holds no copy, so the edit fails rather than diverging |
+| A command runs in the wrong checkout | H | T001, T002a, T005 to T012 and T088 to T095 name the operator's checkout; T095a and T095b name their target repositories; T096 to T109 resolve `WORKTREE` |
+| A packet document is edited outside `WORKTREE` | M | Every document task runs in `WORKTREE`; when it is a separate worktree, `OPERATOR` holds no copy, so an edit there fails rather than diverging |
 <!-- /ANCHOR:adr-003-consequences -->
 
 ---
@@ -387,7 +415,7 @@ packet documents exist only in the worktree.
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Ignored files do not travel between checkouts; the split is forced |
 | 2 | **Beyond Local Maxima?** | PASS | Four arrangements were scored; none avoids the two-checkout fact |
-| 3 | **Sufficient?** | PASS | Absolute paths in every command block remove the ambiguity |
+| 3 | **Sufficient?** | PASS | `WORKTREE` is resolved from the checkout before every document command, which removes the ambiguity |
 | 4 | **Fits Goal?** | PASS | The phase exists to give the operator's advisor the skills |
 | 5 | **Open Horizons?** | PASS | The same rule applies to phase 5's probes, which run in the operator's checkout |
 
@@ -432,7 +460,8 @@ repeatable so a partial run can be repaired by re-running it.
 ### Constraints
 
 - Phase 2 deletes both surface folders, so a working-tree copy is not a source.
-- The destination is gitignored, so a restore that stages anything is a defect.
+- The restore writes only the target tree; staging happens later, by path, in T095a and T095b.
+- The checkout link path is gitignored, so the restore must not create or stage anything here.
 - `--strip-components=4` must drop `.skilled/skills/sk-code/<surface>/` exactly.
 <!-- /ANCHOR:adr-004-context -->
 
@@ -508,9 +537,9 @@ a second run.
 ### Implementation
 
 **What changes**:
-- `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`: created by T003 and T004 (Mode A) or T005 and T006 (Mode B).
+- `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/`: restored into the two external repositories by T005 and T006, and linked in this checkout by T006a. T003 and T004 are the recorded Mode A alternative and do not run.
 
-**How to roll back**: `rm -rf` the two ignored paths and re-run the chosen pair.
+**How to roll back**: `rm -rf` the two target trees and `rm` the two links, then re-run T005 and T006. If a target commit already exists, revert it in that repository.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
 
@@ -585,8 +614,7 @@ working tree holds.
 - The three workflow documents travel with each skill.
 
 **What it costs**:
-- Six copies of the same three documents, about 40 KB each pair. Mitigation: the copies are ignored
-  and never enter the tracked tree.
+- Six copies of the same three documents, about 40 KB each pair. Mitigation: the copies travel only in each target repository and never enter this checkout's tracked tree.
 
 **Risks**:
 
@@ -758,7 +786,7 @@ even though the phase spends most of its commands there.
 ### Constraints
 
 - `git add -A` or `git add .` would pick up nothing ignored, but it would also pick up any unrelated
-  edit in the worktree; the commit names its files.
+  edit in `WORKTREE`; the commit names its files.
 - The phase-1 guard refuses a staged `local-*` path, and the commit still checks the index itself.
 - The summary may name paths and counts, never file content.
 <!-- /ANCHOR:adr-007-context -->
@@ -769,7 +797,7 @@ even though the phase spends most of its commands there.
 ### Decision
 
 **We chose**: write the summary from command readings only, then commit the phase's documents by name
-from the worktree, and prove the index is empty of `local-*` paths before and after the commit.
+from `WORKTREE`, and prove the index is empty of `local-*` paths before and after the commit.
 
 **How it works**: T096 to T099 fill four summary sections from the readings, T106 stages its phase
 documents by name, and T108 pushes `HEAD:main` only after AC-018 passes.
@@ -783,8 +811,8 @@ documents by name, and T108 pushes `HEAD:main` only after AC-018 passes.
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Named `git add` of the phase documents** | Stages exactly what is intended | The file list must be maintained | 9/10 |
-| `git add -A` in the worktree | One command | Stages any unrelated edit, and the phase cannot prove the index is clean | 3/10 |
-| Commit from the operator's checkout | Familiar | The documents are not there | 1/10 |
+| `git add -A` in `WORKTREE` | One command | Stages any unrelated edit, and the phase cannot prove the index is clean | 3/10 |
+| Commit from a checkout other than `WORKTREE` | Familiar | The documents are not there | 1/10 |
 | Quote sample file content in the summary | Richer evidence | Puts private bytes into a tracked file | 1/10 |
 
 **Why this one**: a named add is the only form where the staged set is itself the proof.
@@ -834,10 +862,10 @@ documents by name, and T108 pushes `HEAD:main` only after AC-018 passes.
 
 **What changes**:
 - `implementation-summary.md`: T096 to T099.
+- The two target repositories: T095a and T095b commit only `local-skills/<name>` by path and push after an explicit operator yes.
 - The git index: T106 stages the phase documents, T108 pushes.
 
-**How to roll back**: `git revert <phase-commit>` reverts the documents only; the ignored trees are
-removed with `rm -rf` as ADR-001 says.
+**How to roll back**: `git revert <phase-commit>` reverts the documents only; the two links are removed with `rm` and any target-repository commit is reverted as ADR-001 says.
 <!-- /ANCHOR:adr-007-impl -->
 <!-- /ANCHOR:adr-007 -->
 
