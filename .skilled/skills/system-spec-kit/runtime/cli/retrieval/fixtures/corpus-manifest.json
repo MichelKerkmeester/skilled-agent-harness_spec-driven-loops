@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d85ad2c33ee4cc42950d7a313e2b54797815416ae32d237a62ef6f38fc3f7202",
+  "corpusHash": "36f9a2e7baa2133eb699415d8b974a982515123450406d87273d695bea3202a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -25928,7 +25928,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "57f59d92e74dd1953192c7fb761ae9c6b57509b680baebd3b0643884c178ef67",
+  "manifestHash": "8aaf3787d51689b109ea130cf541be77bdf99a7a0e45dcb3e8998dd7a64e71e9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
