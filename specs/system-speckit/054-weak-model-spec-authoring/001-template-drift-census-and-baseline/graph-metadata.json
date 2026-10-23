@@ -39,7 +39,7 @@
       "authoring"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/ledger/ledger.jsonl",
+      "scratch/baseline/baseline.json",
+      "scratch/review/T011.txt",
+      "templates/scratch/.gitkeep",
+      "scratch/baseline/baseline.md",
+      "scratch/ledger/coverage.txt",
+      "scratch/baseline/hints-v2.2.txt",
+      "scratch/baseline/anchors-v2.2.txt",
+      "scratch/baseline/runs.jsonl",
+      "scratch/ledger/lane-a.jsonl",
+      "scratch/ledger/candidates.jsonl",
+      "scratch/baseline/status-start.txt",
       ".skilled/skills/system-spec-kit/SKILL.md",
-      "templates/.hashes",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".skilled/skills/sk-git/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
+      "templates/.hashes"
     ],
     "entities": [
       {
@@ -91,6 +100,78 @@
         "source": "derived"
       },
       {
+        "name": "ledger.jsonl",
+        "kind": "file",
+        "path": "scratch/ledger/ledger.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.json",
+        "kind": "config",
+        "path": "scratch/baseline/baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "T011.txt",
+        "kind": "file",
+        "path": "scratch/review/T011.txt",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "templates/scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage.txt",
+        "kind": "file",
+        "path": "scratch/ledger/coverage.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hints-v2.2.txt",
+        "kind": "file",
+        "path": "scratch/baseline/hints-v2.2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "anchors-v2.2.txt",
+        "kind": "file",
+        "path": "scratch/baseline/anchors-v2.2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "runs.jsonl",
+        "kind": "file",
+        "path": "scratch/baseline/runs.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "lane-a.jsonl",
+        "kind": "file",
+        "path": "scratch/ledger/lane-a.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "candidates.jsonl",
+        "kind": "file",
+        "path": "scratch/ledger/candidates.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "status-start.txt",
+        "kind": "file",
+        "path": "scratch/baseline/status-start.txt",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/SKILL.md",
@@ -125,83 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Why Bulleted Lists",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five template and doc defects are confirmed, but they came from a spot check, not a census, so the full list is unknown",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-23T16:23:20.496Z",
+    "last_save_at": "2026-10-23T22:23:48.186Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec2b2e8da8d5b7431e13ea08c3e2ce82fc8161344220e17d6e16cc627d8cd849",
+    "source_fingerprint": "sha256:5dec15b1fce2adb684d465b37ba47adea29350f670d61c9cf801b51f9d16c9f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6479b3f3342cca35e0b13c70911237dd76af2c9f69ff70c2e887607bf183ee78",
+      "spec.md": "7a28a554c7db5cc38f2d592d644e10c12d6daad911a1e19b834287641d5da55e",
       "plan.md": "c525be7e8f66720475e1701142ef1755e4db1d3783af4595b1fd01c9f55c3a10",
-      "tasks.md": "8b034abc9d9ea89c815dc71a4ec0c20303860b153307aed1e2491c0762b68676",
-      "implementation-summary.md": "da2be24c557d2add1685fe7121deacc366ef93f2cc1bb62ad74072e934124c67"
+      "tasks.md": "275c9b81cd94835a417a7962b8b0d9bfb24dbbbc2c88a83cfe9ce551ed90eb94",
+      "implementation-summary.md": "30c3886333b818c53e479492b5262d778dce10e1a5238ec4cc3dbb9b304a18ed"
     },
     "last_active_at": null
   }

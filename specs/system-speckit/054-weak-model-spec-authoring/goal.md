@@ -109,12 +109,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Launch precondition 1: workspace chosen (A worktree or B branch) | Pending | |
-| Launch precondition 2: `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017` and OpenCode v2 is logged in to llmgateway | Pending | |
+| Launch precondition 1: workspace chosen (A worktree or B branch) | Done | Operator chose A. `worktree-naming.sh create weak-model-spec-authoring main` created branch `worktrees/217-weak-model-spec-authoring` at `.worktrees/217-weak-model-spec-authoring`, HEAD `ac2be31ec60c3a15db527b3d8400ae68b373984a`, provisioned with `11 installed, 5 built, 3 already present, 0 failed`. |
+| Launch precondition 2: `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017` and OpenCode v2 is logged in to llmgateway | Done | `rg -c 'deepseek-v4.1-flash-1017' opencode.json` printed `3`. The session's provider is `llmgateway` on `deepseek-v4.1-flash-1017`, and `opencode2 --version` printed `opencode v2.1.4`, so the conductor's login is live and workers inherit it. |
 | Launch precondition 3: three-lane authorization | Done | Given by the operator before planning |
-| Launch precondition 4: conductor is an OpenCode v2 session with the goal bound | Pending | |
-| WORKTREE path | Pending | |
-| Start commit | Pending | |
+| Launch precondition 4: conductor is an OpenCode v2 session with the goal bound | Done | `opencode_goal({ action: "bind" })` returned `STATUS=OK ACTION=bind`, `mutation=bound`, `packet_bound=true`, goal id `goal-eccd2c3c-89fc-4674-b016-7ab897fad066`; the operator states this session is the conductor on DeepSeek V4.1 Flash max. |
+| WORKTREE path | Done | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring` |
+| Start commit | `ac2be31ec60c3a15db527b3d8400ae68b373984a` | Phase 001 T003 `git rev-parse HEAD` on the worktree before the first phase write. |
+| Phase 001 progress | Done | T001-T014 done. Ledger 72 rows, baseline 3 runs, review 47 findings with 47 T012 lines. `validate.sh --strict` printed `RESULT: PASSED` and the T014 status diff printed 0. |
 | BASE_REF | Pending | The git ref phase 008 builds its disposable worktree from. It must contain the phase 002 to 007 changes. Replace Pending with the ref |
 
 ### Deviations and findings
