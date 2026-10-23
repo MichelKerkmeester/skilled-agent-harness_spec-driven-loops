@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency/001-research",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency/001-research",
+  "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci workflow efficiency research",
+      "053 ci research",
+      "github actions cost research",
+      "doctor ci design research",
+      "sk-code-ci research",
+      "ci research plan",
+      "053 research plan",
+      "ci research tasks",
+      "053 research tasks",
+      "ci research acceptance criteria",
+      "ci research implementation summary",
+      "doctor ci command design"
+    ],
+    "key_topics": [
+      "workflow",
+      "efficiency",
+      "research",
+      "github",
+      "actions",
+      "cost",
+      "doctor",
+      "design",
+      "sk-code-ci",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      "research/deep-research-config.json",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "research/deep-research-strategy.md",
+      "scratch/ci-run-data/summary.md",
+      ".skilled/hooks/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "scratch/ci-run-data/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Collect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository runs 33 workflows",
+    "created_at": "2026-10-23T06:38:05Z",
+    "last_save_at": "2026-10-23T07:47:35.166Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:046f70e8d5a28d122a29896f66532ba23f783a501907adc1cd85ea7ce9378b72",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9487d3be38b7651e3c200cf2692567e78fb932e6d33393c586839d946376ea4a",
+      "plan.md": "784d7eacb30b0dac342e1752a7c280784357d91bbf17159dd75fb0c7b78b393e",
+      "tasks.md": "586116ca5941f3a0e1c21330eb8f8f24e33efbd1ff42c4db7ca2109f8a71e7eb",
+      "implementation-summary.md": "4f0f49456c0cf653f0a11d7f203c49625ec1f8520ff2dc68720805e5babe7bbc",
+      "research/research.md": "d92a4edde71d9bb9121b3cb7c7dff78490b4543c07dc54c6aa09d3e15d967d61"
+    },
+    "last_active_at": null
+  }
+}

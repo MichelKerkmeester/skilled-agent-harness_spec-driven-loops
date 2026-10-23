@@ -1,0 +1,1052 @@
+{
+  "sessionId": "2026-10-23T06:43:17.796Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-each-workflow-cost-in-wall-clock-and-runner-minutes-and-which-workflow",
+      "inboxId": null,
+      "text": "What does each workflow cost in wall-clock and runner minutes, and which workflows dominate the total?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-work-is-duplicated-across-workflows-and-what-does-the-repeated-provision-w",
+      "inboxId": null,
+      "text": "Which work is duplicated across workflows, and what does the repeated provision_worktree and bun install cost per run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-where-is-caching-missing-or-ineffective-for-npm-bun-provisioned-trees-and-openco",
+      "inboxId": null,
+      "text": "Where is caching missing or ineffective for npm, bun, provisioned trees and OpenCode installs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-triggers-and-path-filters-cause-needless-runs-including-the-run-burst-afte",
+      "inboxId": null,
+      "text": "Which triggers and path filters cause needless runs, including the run burst after each Trigger Index Rebuild commit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-are-parallelism-matrix-design-fail-fast-and-concurrency-cancel-in-progress-group",
+      "inboxId": null,
+      "text": "Are parallelism, matrix design, fail-fast and concurrency cancel-in-progress groups set well?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-which-tests-or-jobs-are-flaky-or-slow-and-are-job-timeouts-set-and-sized-right",
+      "inboxId": null,
+      "text": "Which tests or jobs are flaky or slow, and are job timeouts set and sized right?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-7-which-workflows-or-jobs-are-overengineered-such-as-duplicates-of-pre-commit-hook",
+      "inboxId": null,
+      "text": "Which workflows or jobs are overengineered, such as duplicates of pre-commit hooks or advisory jobs that never gate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-8-what-security-and-pinning-hygiene-gaps-exist-in-the-workflows",
+      "inboxId": null,
+      "text": "What security and pinning hygiene gaps exist in the workflows?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-9-what-on-off-control-design-lets-a-clone-or-base-repo-disable-workflows-or-groups",
+      "inboxId": null,
+      "text": "What on/off control design lets a clone or base repo disable workflows or groups without editing YAML?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-10-what-should-a-doctor-ci-command-do-how-is-it-made-safe-and-who-owns-it",
+      "inboxId": null,
+      "text": "What should a /doctor:ci command do, how is it made safe, and who owns it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 13,
+      "resolved": true
+    },
+    {
+      "id": "question-11-what-should-an-sk-code-ci-mode-contain-and-what-does-registering-a-new-sk-code-m",
+      "inboxId": null,
+      "text": "What should an sk-code-ci mode contain, and what does registering a new sk-code mode require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 14,
+      "resolved": true
+    },
+    {
+      "id": "question-12-how-do-the-ranked-recommendations-group-into-ordered-implementation-phases-002-a",
+      "inboxId": null,
+      "text": "How do the ranked recommendations group into ordered implementation phases 002 and later?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 19,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-each-workflow-cost-in-wall-clock-and-runner-minutes-and-which-workflow",
+      "inboxId": null,
+      "text": "What does each workflow cost in wall-clock and runner minutes, and which workflows dominate the total?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-work-is-duplicated-across-workflows-and-what-does-the-repeated-provision-w",
+      "inboxId": null,
+      "text": "Which work is duplicated across workflows, and what does the repeated provision_worktree and bun install cost per run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-where-is-caching-missing-or-ineffective-for-npm-bun-provisioned-trees-and-openco",
+      "inboxId": null,
+      "text": "Where is caching missing or ineffective for npm, bun, provisioned trees and OpenCode installs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-which-triggers-and-path-filters-cause-needless-runs-including-the-run-burst-afte",
+      "inboxId": null,
+      "text": "Which triggers and path filters cause needless runs, including the run burst after each Trigger Index Rebuild commit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-are-parallelism-matrix-design-fail-fast-and-concurrency-cancel-in-progress-group",
+      "inboxId": null,
+      "text": "Are parallelism, matrix design, fail-fast and concurrency cancel-in-progress groups set well?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-which-tests-or-jobs-are-flaky-or-slow-and-are-job-timeouts-set-and-sized-right",
+      "inboxId": null,
+      "text": "Which tests or jobs are flaky or slow, and are job timeouts set and sized right?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-7-which-workflows-or-jobs-are-overengineered-such-as-duplicates-of-pre-commit-hook",
+      "inboxId": null,
+      "text": "Which workflows or jobs are overengineered, such as duplicates of pre-commit hooks or advisory jobs that never gate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-8-what-security-and-pinning-hygiene-gaps-exist-in-the-workflows",
+      "inboxId": null,
+      "text": "What security and pinning hygiene gaps exist in the workflows?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-9-what-on-off-control-design-lets-a-clone-or-base-repo-disable-workflows-or-groups",
+      "inboxId": null,
+      "text": "What on/off control design lets a clone or base repo disable workflows or groups without editing YAML?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-10-what-should-a-doctor-ci-command-do-how-is-it-made-safe-and-who-owns-it",
+      "inboxId": null,
+      "text": "What should a /doctor:ci command do, how is it made safe, and who owns it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 13
+    },
+    {
+      "id": "question-11-what-should-an-sk-code-ci-mode-contain-and-what-does-registering-a-new-sk-code-m",
+      "inboxId": null,
+      "text": "What should an sk-code-ci mode contain, and what does registering a new sk-code mode require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 14
+    },
+    {
+      "id": "question-12-how-do-the-ranked-recommendations-group-into-ordered-implementation-phases-002-a",
+      "inboxId": null,
+      "text": "How do the ranked recommendations group into ordered implementation phases 002 and later?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 19
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What on/off control design lets a clone or base repo disable workflows or groups without editing YAML?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New, carried forward: are spec-kit tests fixture-collision-safe under `fileParallelism: true`?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should a /doctor:ci command do, how is it made safe, and who owns it?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which workflows or jobs are overengineered, such as duplicates of pre-commit hooks or advisory jobs that never gate?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should an sk-code-ci mode contain, and what does registering a new sk-code mode require?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do the ranked recommendations group into ordered implementation phases 002 and later?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New, carried forward: does `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` also set",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What security and pinning hygiene gaps exist in the workflows?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which workflows or jobs are overengineered, such as duplicates of pre-commit hooks or advisory jobs",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: are spec-kit tests fixture-collision-safe under fileParallelism true, and does the spec-kit vitest config also set it (iteration 5).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: what are the include globs of `.skilled/hooks/vitest.config.ts`, which decides how much of F3 is real.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should a `/doctor:ci` command do, how is it made safe, and who owns it?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward from iteration 5/7: which jobs are overengineered, such as duplicates of pre-commit hooks or advisory jobs that never gate?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should an `sk-code-ci` mode contain, and what does registering a new `sk-code` mode require?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward from iteration 5: are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and does `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` also set it?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What on/off control design lets a clone or base repo disable workflows or groups without editing YAML? *(half answered — the mechanism and limits are settled; the naming, master switch, branch-protection comparison and drift check move to part 2)*",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried forward, still open (iteration 5/7/9):** which jobs are overengineered — duplicates of pre-commit hooks, or advisory jobs that never gate?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried forward, still open (iteration 8):** what are the include globs of `.skilled/hooks/vitest.config.ts`?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried forward, still open (iteration 5):** are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and does `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` also set it?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should a `/doctor:ci` command do, how is it made safe, and who owns it? *(untouched; now better constrained — it can read `vars` state but cannot write repository variables without a token.)*",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and does `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` set it?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: what are the include globs of `.skilled/hooks/vitest.config.ts`?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: which jobs duplicate pre-commit hooks? (the advisory half of this is now partly closed by F8)",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should a `/doctor:ci` command do, how is it made safe, and who owns it? Now fully constrained: it can *read* `vars` state and report it, but writing repository variables needs an admin token the CLI does not have — so the command's toggle mode is a printed instruction plus a verification read, not a mutation.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should an `sk-code-ci` mode contain, and what does registering a new `sk-code` mode require? The gate shape in F5 and the `off`-token rule in F4 are its first two rules.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Blocking phase 002:** does a job skipped by `if:` satisfy a required status check? Two fetch attempts, both 404 (F6). Mitigated, not resolved, by shipping only the tests and reports groups first.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: which jobs duplicate pre-commit hooks?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: three components of the saving are inferred, not measured — cache restore throughput, the",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Blocking phase 002, unchanged:** does a job skipped by `if:` satisfy a required status check?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and does",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should a `/doctor:ci` command do, how is it made safe, and who owns it? Fully constrained by",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and what are the",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What should a `/doctor:ci` command do, how is it made safe, and who owns it? Now constrained by F16-9: a",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`/doctor:ci` as a new router file versus a target on an existing doctor command: the route manifest allows",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Blocking phase 002, unchanged:** does a job skipped by `if:` satisfy a required status check? `paths-ignore` sidesteps it for the rebuild commit because that push bypasses the ruleset, but not for a real commit.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which jobs duplicate pre-commit hooks? *(carried)*",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: what is the real per-job fixed floor (checkout + setup + scheduling) that F18-4's saving depends on? The dataset has no step timings, so the 700–900 min/day range is a model, not a measurement.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and what are the include globs of `.skilled/hooks/vitest.config.ts`? *(carried)*",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do the ranked recommendations group into ordered implementation phases 002 and later? *(now has three consolidation rows: paths-ignore, shared composite, job merge)*",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does every one of the 13 downstream workflows tolerate `paths-ignore` on all four generated files, or does one of them consume the sidecars?",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: which jobs duplicate pre-commit hooks?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: F19-2's residual - a future test that loads the committed index would be silently skipped on rebuild",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and what are the include",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Still blocking phase 004:** does a job skipped by `if:` satisfy a required status check? Unchanged.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: what is the real per-job fixed floor? Partly answered by the 50-76 s checkout table, still a model for",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: what is the real per-job fixed floor? Partly answered by the 50-76 s checkout table, still",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: are spec-kit tests fixture-collision-safe under `fileParallelism: true`, and what are the",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Still blocking 006:** does a job skipped by `if:` satisfy a required status check? Unchanged.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: F19-2's residual — a future test that loads the committed index would be silently skipped",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-5-2-doctor-scripts-job-149-165-s-checkout-49-51-s-install-test-dependencies-37-42-s",
+      "text": "`doctor-scripts` job: 149–165 s. Checkout 49–51 s, `Install test dependencies` 37–42 s,",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-mirrors-job-62-70-s-wall-checkout-49-51-s-setup-node-0-1-s-install-8-14-s-and",
+      "text": "`mirrors` job: 62–70 s wall. Checkout 49–51 s, `Setup Node` 0–1 s, install 8–14 s, and",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-sk-vision-bun-build-npm-install-no-save-prefix-runner-temp-bun-bun-1-3-9-then",
+      "text": "`sk-vision` bun build: `npm install --no-save --prefix \"$RUNNER_TEMP/bun\" bun@1.3.9` then",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-source-skilled-skills-system-deep-loop-runtime-vitest-config-ts-20-with-the-reas",
+      "text": "[SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:20], with the reason stated in",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-source-skilled-skills-system-skill-advisor-runtime-vitest-config-ts-39",
+      "text": "[SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.config.ts:39]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-source-skilled-skills-system-spec-kit-runtime-vitest-config-ts-38-fileparallelis",
+      "text": "[SOURCE: .skilled/skills/system-spec-kit/runtime/vitest.config.ts:38] `fileParallelism: false`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-source-skilled-skills-system-spec-kit-vitest-config-ts-50-and-its-second-project",
+      "text": "[SOURCE: .skilled/skills/system-spec-kit/vitest.config.ts:50] and its second project at",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-diagram-corpus-run-39406017176-fail-metadata-scripts-readme-md-version-1-0-1-0-i",
+      "text": "diagram-corpus run `39406017176`: `FAIL [metadata] scripts/README.md: version 1.0.1.0 is outside",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-skill-advisor-stress-run-39524217211-4-of-64-tests-in",
+      "text": "skill-advisor-stress run `39524217211`: 4 of 64 tests in",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-agent-mirror-sync-yml-additionally-builds-the-shared-package-that-its-checker-lo",
+      "text": "`agent-mirror-sync.yml` additionally builds the shared package that its checker loads [SOURCE: .github/workflows/agent-mirror-sync.yml:20-21], work the commit-time path does not need (line confirmed; the necessity of the build in CI is inferred from the step name).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-20-message-contract-yml-is-the-one-deliberate-cross-trigger-duplicate-and-it-gates-",
+      "text": "`message-contract.yml` is the one deliberate cross-trigger duplicate, and it gates because local hooks can be skipped [SOURCE: .github/workflows/README.md:73] (documented).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-24-pre-push-does-not-appear-anywhere-in-the-hooks-readme-rg-n-pre-push-skilled-hook",
+      "text": "`pre-push` does not appear anywhere in the hooks README (`rg -n pre-push .skilled/hooks/README.md` returned no match), and the commit-hook folder carries a single `pre-commit` [SOURCE: .skilled/hooks/git/pre-commit:1-10] (confirmed for this folder).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-22-pytest-8-4-2-is-installed-at-source-github-workflows-naming-standard-guard-yml-2",
+      "text": "`pytest==8.4.2` is installed at [SOURCE: .github/workflows/naming-standard-guard.yml:28], [SOURCE: .github/workflows/sk-doc-rename-harness.yml:46], [SOURCE: .github/workflows/sk-doc-script-tests.yml:37], two of them with `pyyaml==6.0.3` alongside (confirmed).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-23-all-three-are-path-filtered-and-run-on-pr-plus-push-so-the-install-is-paid-per-c",
+      "text": "All three are path-filtered and run on PR plus push, so the install is paid per change of their inputs (confirmed duplication; the saving is one cache key or one shared composite action, cost inferred as small).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-all-three-steps-carry-continue-on-error-true-source-github-workflows-advisory-ch",
+      "text": "All three steps carry `continue-on-error: true` [SOURCE: .github/workflows/advisory-checks.yml:27], [SOURCE: .github/workflows/advisory-checks.yml:41], [SOURCE: .github/workflows/advisory-checks.yml:55], and each command is *also* written to exit zero: `node \"$RUNNER\" || true` [SOURCE: .github/workflows/advisory-checks.yml:38], `node \"$VALIDATOR\" || echo ...` [SOURCE: .github/workflows/advisory-checks.yml:52], `node \"$GENERATOR\" --check || echo ...` [SOURCE: .github/workflows/advisory-checks.yml:66] (confirmed).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-ci-re-runs-the-same-two-checkers-source-github-workflows-comment-hygiene-yml-15-",
+      "text": "CI re-runs the same two checkers: [SOURCE: .github/workflows/comment-hygiene.yml:15], [SOURCE: .github/workflows/agent-mirror-sync.yml:26] (confirmed).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-commit-time-agent-mirror-sync-check-agent-mirror-sync-cjs-runs-over-staged-agent",
+      "text": "Commit-time agent mirror sync: `check-agent-mirror-sync.cjs` runs over staged agent files [SOURCE: .skilled/hooks/git/pre-commit:85-113] (confirmed).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-commit-time-comment-hygiene-the-checker-is-resolved-at-source-skilled-hooks-git-",
+      "text": "Commit-time comment hygiene: the checker is resolved at [SOURCE: .skilled/hooks/git/pre-commit:32] and run over the staged blobs at [SOURCE: .skilled/hooks/git/pre-commit:60] (confirmed). The primary installed hook `.skilled/scripts/git-hooks/pre-commit` is documented as carrying its own inline comment-hygiene gate rather than calling this folder's script [SOURCE: .skilled/hooks/README.md:242] (documented).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-cost-three-whole-repository-passes-run-node-tests-mjs-the-doc-model-validator-th",
+      "text": "Cost: three whole-repository passes (`run-node-tests.mjs`, the doc-model validator, the index generator walk) per pull request and per push to the integration branches, for a run that is green by construction (confirmed triggers; runner-minute cost is the class measured in earlier iterations, not re-measured here).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-26-if-it-holds-only-pre-commit-every-push-range-and-whole-history-check-has-no-loca",
+      "text": "If it holds only `pre-commit`, every push-range and whole-history check has no local counterpart, which is exactly the gap message-contract.yml fills [SOURCE: .github/workflows/README.md:73] (documented rationale).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-21-inside-the-weekly-report-the-baseline-round-trip-gh-run-list-gh-run-download-par",
+      "text": "Inside the weekly report, the baseline round trip (gh run list, gh run download, parse and validate) occupies [SOURCE: .github/workflows/strict-pass-freshness-report.yml:53-103] and its only consumer is a regression count printed as a warning [SOURCE: .github/workflows/strict-pass-freshness-report.yml:145-148] (confirmed shape; whether the time is well spent is a judgement, not a measurement).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-it-installs-the-hooks-workspace-source-github-workflows-dispatch-enforcement-gua",
+      "text": "It installs the hooks workspace [SOURCE: .github/workflows/dispatch-enforcement-guard.yml:60-61] and then runs `vitest run --config .skilled/hooks/vitest.config.ts` with no project, path or test-name filter [SOURCE: .github/workflows/dispatch-enforcement-guard.yml:66-67] (confirmed from the command line itself).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-its-two-named-dispatch-steps-are-separate-narrow-node-test-invocations-source-gi",
+      "text": "Its two named dispatch steps are separate, narrow `node --test` invocations [SOURCE: .github/workflows/dispatch-enforcement-guard.yml:22-29], [SOURCE: .github/workflows/dispatch-enforcement-guard.yml:41-42], so the vitest step is additional scope rather than the dispatch coverage.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-neither-workflow-is-path-filtered-comment-hygiene-yml-is-a-bare-pull-request-tri",
+      "text": "Neither workflow is path-filtered: `comment-hygiene.yml` is a bare pull_request trigger [SOURCE: .github/workflows/comment-hygiene.yml:3] (confirmed). The backstop is justified for forks and `--no-verify` commits, but it pays a checkout plus Node setup on every PR even when no commented file changed (inferred from the unfiltered trigger).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-19-non-gating-inventory-advisory-checks-three-continue-on-error-steps-source-github",
+      "text": "Non-gating inventory: `advisory-checks` (three continue-on-error steps, [SOURCE: .github/workflows/advisory-checks.yml:27]) and `strict-pass-freshness-report`, whose derived-repair step is also continue-on-error [SOURCE: .github/workflows/strict-pass-freshness-report.yml:164-165]. Both are documented as reporting only [SOURCE: .github/workflows/README.md:26], [SOURCE: .github/workflows/README.md:57] (documented). Every other workflow blocks.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-16-npm-ci-plus-tsc-build-plus-a-runtime-build-repeats-in-changed-packet-validation-",
+      "text": "npm ci plus `tsc --build` plus a runtime build repeats in changed-packet-validation [SOURCE: .github/workflows/changed-packet-validation.yml:30], command-tree-parity (twice, once per job) [SOURCE: .github/workflows/command-tree-parity.yml:22], [SOURCE: .github/workflows/command-tree-parity.yml:58], playbook-operator-contract [SOURCE: .github/workflows/playbook-operator-contract.yml:22], routing-registry-drift [SOURCE: .github/workflows/routing-registry-drift.yml:132], spec-kit-check [SOURCE: .github/workflows/spec-kit-check.yml:81], strict-pass-freshness-report [SOURCE: .github/workflows/strict-pass-freshness-report.yml:37], trigger-index-rebuild [SOURCE: .github/workflows/trigger-index-rebuild.yml:58] (confirmed step labels).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-18-scope-note-this-iteration-adds-the-count-not-new-timing-the-per-install-cost-bel",
+      "text": "Scope note: this iteration adds the count, not new timing. The per-install cost belongs to the earlier cost measurements and was not re-run.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-self-defeating-detail-the-header-instructs-the-reader-to-read-the-step-output-ra",
+      "text": "Self-defeating detail: the header instructs the reader to read the step output rather than the run status [SOURCE: .github/workflows/advisory-checks.yml:15], but the `||` fallbacks already force every step to success, so the step status is green too. The only surviving signal is free text in the log, and nothing parses it (confirmed for the code shape; the claim that no step can ever be red follows directly from `||` plus `continue-on-error`).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-17-several-fire-together-on-one-change-gate-inputs-yml-is-unfiltered-by-design-beca",
+      "text": "Several fire together on one change: `gate-inputs.yml` is unfiltered by design because a source-tree move is the one change a path filter would miss [SOURCE: .github/workflows/README.md:68], and the rest carry overlapping filters [SOURCE: .github/workflows/README.md:69-70] (documented).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-14-sibling-workflows-already-own-the-hook-test-trees-gate-inputs-yml-runs-the-test-",
+      "text": "Sibling workflows already own the hook test trees: `gate-inputs.yml` runs the `*.test.sh` hook suites [SOURCE: .github/workflows/gate-inputs.yml:41-42], and `hooks-node-tests.yml` runs the `node:test` suites and the installer test [SOURCE: .github/workflows/hooks-node-tests.yml:75-76], [SOURCE: .github/workflows/hooks-node-tests.yml:95-96] (confirmed).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-the-duplication-is-not-accidental-the-workflows-readme-states-it-the-review-time",
+      "text": "The duplication is not accidental; the workflows README states it: the review-time workflows exist while the pre-commit hook runs the same checkers on every commit [SOURCE: .github/workflows/README.md:71] (documented).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-25-the-primary-installer-is-skilled-scripts-git-hooks-pre-commit-per-source-skilled",
+      "text": "The primary installer is `.skilled/scripts/git-hooks/pre-commit` per [SOURCE: .skilled/hooks/git/install-hooks.sh:7], and this iteration did not enumerate `.skilled/scripts/git-hooks/`, so the repo-wide absence claim is inferred. Confirming check: list that directory.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-trigger-collision-step-three-verifies-the-committed-trigger-index-on-push-to-mai",
+      "text": "Trigger collision: step three verifies the committed trigger index on push to `main` [SOURCE: .github/workflows/advisory-checks.yml:66], while `trigger-index-rebuild.yml` fires on the same push [SOURCE: .github/workflows/trigger-index-rebuild.yml:7] and regenerates, verifies and commits that exact file [SOURCE: .github/workflows/trigger-index-rebuild.yml:72]. Trigger overlap confirmed; the conclusion that the freshness check can only report drift the sibling workflow is about to repair is inferred, because the two runs are not ordered against each other.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-triggers-with-no-path-filter-at-all-push-to-main-and-skilled-every-pull-request-",
+      "text": "Triggers with no path filter at all: push to `main` and `skilled/**`, every pull request, plus dispatch [SOURCE: .github/workflows/advisory-checks.yml:2-6] (confirmed).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-15-which-suites-the-unfiltered-vitest-run-actually-includes-is-inferred-from-the-mi",
+      "text": "Which suites the unfiltered vitest run actually includes is inferred from the missing filter; the confirming check is the `include` globs in `.skilled/hooks/vitest.config.ts`, which this iteration did not read.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-gh-pr-merge-auto-only-enables-auto-merge-the-actual-merge-waits-on-required-chec",
+      "text": "`gh pr merge --auto` only enables auto-merge; the actual merge waits on required checks `[SOURCE: .github/workflows/dependabot-auto-merge.yml:40]`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-secrets-github-token-on-the-two-dependabot-steps-source-github-workflows-dependa",
+      "text": "`secrets.GITHUB_TOKEN` on the two Dependabot steps `[SOURCE: .github/workflows/dependabot-auto-merge.yml:24]` and `[SOURCE: .github/workflows/dependabot-auto-merge.yml:36]`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-trigger-index-push-token-guarded-by-a-github-token-fallback-source-github-workfl",
+      "text": "`TRIGGER_INDEX_PUSH_TOKEN`, guarded by a `|| github.token` fallback `[SOURCE: .github/workflows/trigger-index-rebuild.yml:274]`;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-author-test-github-event-pull-request-user-login-dependabot-bot-reads-server-set",
+      "text": "author test `github.event.pull_request.user.login == 'dependabot[bot]'` reads server-set event data and is not spoofable by a fork `[SOURCE: .github/workflows/dependabot-auto-merge.yml:18]`;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-the-merge-is-narrowed-to-npm-and-yarn-and-npm-security-or-ungrouped-and-semver-p",
+      "text": "the merge is narrowed to `npm_and_yarn` and (`npm-security` or ungrouped) and `semver-patch` `[SOURCE: .github/workflows/dependabot-auto-merge.yml:31]`;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-trigger-is-pull-request-with-types-opened-reopened-synchronize-never-pull-reques",
+      "text": "trigger is `pull_request` with types `opened, reopened, synchronize` — never `pull_request_target` `[SOURCE: .github/workflows/dependabot-auto-merge.yml:7]`;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-source-github-workflows-dependabot-auto-merge-yml-18-github-event-pull-request-u",
+      "text": "[SOURCE: .github/workflows/dependabot-auto-merge.yml:18] — `github.event.pull_request.user.login == 'dependabot[bot]'`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-source-github-workflows-skill-doc-frontmatter-yml-52-github-event-name-pull-requ",
+      "text": "[SOURCE: .github/workflows/skill-doc-frontmatter.yml:52] — `github.event_name == 'pull_request'`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-source-github-workflows-trigger-index-rebuild-yml-186-needs-rebuild-outputs-comm",
+      "text": "[SOURCE: .github/workflows/trigger-index-rebuild.yml:186] — `needs.rebuild.outputs.committed == 'true'`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-source-github-workflows-trigger-index-rebuild-yml-33-endswith-github-event-head-",
+      "text": "[SOURCE: .github/workflows/trigger-index-rebuild.yml:33] — `!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-skilled-hooks-hook-flags-env-is-gitignored-source-gitignore-354-opencode-hooks-h",
+      "text": "`.skilled/hooks/hook-flags.env` is **gitignored** — [SOURCE: .gitignore:354] (`.opencode/hooks/hook-flags.env`) and [SOURCE: .gitignore:355] (`.skilled/hooks/hook-flags.env`). A gitignored file is never present in a GitHub Actions checkout, so no CI job can read it. Using it would mean the switch silently does nothing on the runner — the worst failure mode for a control.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-vars-and-env-are-not-available-in-on-push-on-pull-request-filters-no-context-is-",
+      "text": "`vars` and `env` are **not** available in `on.push`/`on.pull_request` filters (no context is available there).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-a-workflow-can-therefore-never-be-prevented-from-triggering-by-a-variable-it-can",
+      "text": "A workflow can therefore never be prevented from *triggering* by a variable. It can only be prevented from *doing work*.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-the-committed-sibling-is-the-example-source-skilled-hooks-hook-flags-env-example",
+      "text": "The committed sibling is the example — [SOURCE: .skilled/hooks/hook-flags.env.example:1] states the rule: copy to the local name and uncomment what you want OFF. `.env.example` is the one env file the ignore rules re-include: [SOURCE: .gitignore:30] (`!.env.example`).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-the-shape-worth-copying-committed-example-gitignored-local-override-everything-o",
+      "text": "The shape worth copying: **committed example, gitignored local override, everything ON by default, environment wins over file**. That is precisely the semantics a CI control needs, and `vars.*` reproduces it on GitHub's side: an unset repository variable resolves to an empty string, so a condition written as `vars.X != 'off'` evaluates TRUE and the job runs (expression semantics — **inferred** from the empty-string resolution of an undefined `vars` lookup; the default-on property is what matters and it is also the safer direction if my inference is wrong, since an error would fail the run rather than skip it silently).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-source-env-example-275-states-the-precedence-rule-the-shape-should-copy-may-also",
+      "text": "[SOURCE: .env.example:275] states the precedence rule the shape should copy: \"May also be set in .skilled/hooks/hook-flags.env (a real env var wins).\"",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-source-skilled-hooks-hook-flags-env-example-55-ci-never-reads-this-file-so-the-r",
+      "text": "[SOURCE: .skilled/hooks/hook-flags.env.example:55] — \"CI never reads this file, so the repository's own checks stay on there.\" That is a direct statement that the hook flag file is a local-only surface, by design.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-6-dependabot-auto-merge-gets-no-switch-it-is-safety-relevant-and-one-job-putting-i",
+      "text": "**`dependabot-auto-merge` gets no switch.** It is safety-relevant and one job; putting it behind a variable buys nothing and risks a silent auto-merge change.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-5-off-is-the-only-disable-token-vars-x-off-runs-the-job-for-0-false-no-disabled-an",
+      "text": "**`off` is the only disable token.** `vars.X != 'off'` runs the job for `0`, `false`, `no`, `disabled` and typos alike. That is deliberately fail-safe (a mistake leaves the gate on), and it must be documented, because someone will otherwise set `SKILLED_CI_TESTS=0`, see the suites still run, and conclude the switch is broken.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-8-and-never-replace-where-a-job-already-has-an-event-condition-the-switch-is-added",
+      "text": "**AND, never replace.** Where a job already has an event condition, the switch is added to it and both are parenthesised: `if: ${{ (vars.SKILLED_CI != 'off') && (!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')) }}`. Replacing the existing condition would silently drop the loop guard. This is the one place a scoped edit can regress behaviour, so it deserves a review rule of its own.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-7-no-wrapper-a-bare-job-level-if-is-already-an-expression-which-is-how-the-four-ex",
+      "text": "**No `${{ }}` wrapper.** A bare job-level `if:` is already an expression, which is how the four existing conditions are written — e.g. [SOURCE: .github/workflows/trigger-index-rebuild.yml:33]. Adding braces would be a stylistic difference with no behaviour change, so match the tree.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-9-the-switch-sits-above-permissions-and-runs-on-so-a-reader-sees-the-on-off-state-",
+      "text": "**The switch sits above `permissions:` and `runs-on:`**, so a reader sees the on/off state before the least-privilege block. Note 12 of the 33 workflows have no top-level `permissions:` at all; that is a separate hygiene item (angle 8), not something this gate introduces.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-the-committed-sibling-env-example-is-a-documentation-template-its-rows-are-comme",
+      "text": "The committed sibling `.env.example` is a *documentation template*: its rows are commented-out definitions, e.g. [SOURCE: .env.example:110] (`# SPECKIT_STOP_HOOK_ORPHAN_SWEEP=off`) and [SOURCE: .env.example:162], whose only uncommented rows are the empty secret placeholders of section 1, e.g. [SOURCE: .env.example:58]. A parser reading it would read comments and empty strings. It is the human-readable index, not a machine-read config.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-the-live-file-is-absent-from-disk-and-gitignored-source-gitignore-355-so-it-is-n",
+      "text": "The live file is absent from disk and gitignored ([SOURCE: .gitignore:355]), so it is not in an Actions checkout in the first place. A gate that read it would fail open on every runner — the worst failure mode for a control.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-12-10-restore-and-save-are-separate-steps-not-the-combined-actions-cache-post-step-the",
+      "text": "**`restore` and `save` are separate steps, not the combined `actions/cache` post-step.** The save",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-12-use-cache-input-defaulting-to-true-see-f8-s-blind-spot",
+      "text": "**`use-cache` input defaulting to true** — see F8's blind spot.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-a-stale-restore-is-accepted-silently-if-the-key-omits-a-lockfile-the-restored-tr",
+      "text": "**A stale restore is accepted silently.** If the key omits a lockfile, the restored tree keeps",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-15-cache-budget-a-2-22-gb-set-compresses-to-roughly-0-7-1-gb-per-entry-against-a-pe",
+      "text": "**Cache budget.** A 2.22 GB set compresses to roughly 0.7–1 GB per entry, against a per-repository",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-11-cache-the-stamps-f2-in-the-same-entry-as-the-artifacts-so-a-hit-skips-the-builds",
+      "text": "**Cache the stamps** (F2), in the same entry as the artifacts, so a hit skips the builds and a",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-17-five-jobs-now-depend-on-one-file-an-error-in-the-action-fails-all-five-at-once-l",
+      "text": "**Five jobs now depend on one file.** An error in the action fails all five at once — loud, not",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-7-glob-the-key-never-enumerate-it-hashfiles-over-package-lock-json-bun-lock",
+      "text": "**Glob the key, never enumerate it.** `hashFiles` over `**/package-lock.json`, `**/bun.lock`,",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-8-no-restore-keys-a-fallback-key-restores-a-tree-from-a-different-lockfile-set-whi",
+      "text": "**No `restore-keys`.** A fallback key restores a tree from a different lockfile set, which F1's",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-18-pr-cache-scope-caches-are-scoped-to-the-ref-that-wrote-them-so-a-fork-or-pr-cann",
+      "text": "**PR cache scope.** Caches are scoped to the ref that wrote them, so a fork or PR cannot seed the",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-9-provision-runs-on-a-hit-too-it-is-the-verification-walk-it-prints-skipped-alread",
+      "text": "**Provision runs on a hit too.** It is the verification walk: it prints `skipped already present`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-the-cache-is-possible-at-all-only-because-of-this-a-node-modules-restored-from-a",
+      "text": "**The cache is possible at all** only because of this. A `node_modules` restored from a cache",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-16-two-more-pinned-actions-cache-restore-cache-save-join-the-supply-chain-surface-t",
+      "text": "**Two more pinned actions** (`cache/restore`, `cache/save`) join the supply-chain surface that",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-13-add-github-actions-to-all-three-path-lists-push-and-pull-request-the-same-way-ea",
+      "text": "add `.github/actions/**` to all three path lists (push and pull request), the same way each",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-14-extend-the-existent-text-reading-gate-check-gate-inputs-sh-already-loops-every-w",
+      "text": "extend the existent text-reading gate. `check-gate-inputs.sh` already loops every workflow file",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-id-restore",
+      "text": "id: restore",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-if-steps-restore-outputs-cache-hit-true",
+      "text": "if: steps.restore.outputs.cache-hit != 'true'",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-6-if-steps-restore-outputs-cache-hit-true",
+      "text": "if: steps.restore.outputs.cache-hit != 'true'",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-shell-bash",
+      "text": "shell: bash",
+      "addedAtIteration": 12,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 12,
+    "carriedForwardOpenQuestions": 49,
+    "keyFindings": 77,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.58,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/211-ci-workflow-efficiency/specs/system-speckit/053-ci-workflow-efficiency/001-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

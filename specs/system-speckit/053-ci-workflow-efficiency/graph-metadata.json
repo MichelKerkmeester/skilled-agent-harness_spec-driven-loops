@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/053-ci-workflow-efficiency",
+  "spec_folder": "system-speckit/053-ci-workflow-efficiency",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/053-ci-workflow-efficiency/001-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci workflow efficiency phase parent spec",
+      "053 ci workflow efficiency",
+      "github actions efficiency packet",
+      "doctor ci and sk-code-ci packet"
+    ],
+    "key_topics": [
+      "workflow",
+      "efficiency",
+      "phase",
+      "parent",
+      "spec",
+      "github",
+      "actions",
+      "packet",
+      "doctor",
+      "sk-code-ci",
+      "repository",
+      "workflows"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-research/research/research.md",
+      ".github/workflows/README.md",
+      "001-research/acceptance-criteria.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
+    "created_at": "2026-10-23T06:38:05Z",
+    "last_save_at": "2026-10-23T07:46:09.293Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:50de9b359dcecb8f215c6e7c2f30b5976cc01dbcf628d7ac41fa10bf028237b0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "13b4f79ad519bbaa4af72cd39fbc2126d05ea35adcb97dd36aa0fd065e702f66"
+    },
+    "last_active_at": null
+  }
+}

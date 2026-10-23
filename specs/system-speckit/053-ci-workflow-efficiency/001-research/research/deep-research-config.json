@@ -1,0 +1,105 @@
+{
+  "topic": "Improve the efficiency and speed of every CI workflow in this repo (the 33 workflows in .github/workflows/, the README there, and the scripts and actions they call) and find overengineering, issues and optimization possibilities. Angles: (1) wall-clock and runner-minute cost per workflow measured from gh run list / gh run view --json jobs; (2) duplicate work across workflows, including the three workflows (opencode-dual-version.yml, opencode-plugin-tests.yml, hooks-node-tests.yml) that each source sk-git worktree-naming.sh and run provision_worktree with bun installed every time: measure cost per run and evaluate shared caching or one provisioning job feeding the others; (3) caching: npm, bun, provisioned trees, OpenCode installs, actions/cache and setup-node cache; (4) path filters and needless triggers, especially the Trigger Index Rebuild commit after every push to main that re-runs about 13 workflows; (5) parallelism, matrix design, fail-fast and concurrency cancel-in-progress groups; (6) flaky or slow tests and timeouts; (7) overengineering: duplicates of pre-commit hooks or each other, advisory jobs that never gate; (8) security and pinning hygiene; (9) an on/off control for clones and base repos: disable workflows or groups without editing YAML (vars.* in job-level if:, a committed config such as .skilled/ci.json or an env file read by a gate job, workflow_dispatch inputs), compare skipped-job branch-protection behavior, fork and clone defaults, pull_request_target security, reuse of hook-flags.env and .env.example, recommend one design defaulting to everything on; (10) a /doctor:ci command following the existing /doctor:* commands that lists workflows with on/off state, trigger and purpose, toggles them, customizes path filters, schedules and Node versions, and scaffolds a new pinned workflow with .skilled/ and .opencode/ path parity and a README row; specify its mode surface, safety rules (dry-run default, never edit a protected workflow without confirmation), advisor routing, and whether it lives with the doctor commands, sk-git, or splits between them; (11) a new sk-code mode sk-code-ci holding the standards for writing and reviewing workflow YAML (SHA-pinned actions, path parity per gate-inputs, README row, set -euo pipefail, timeouts, least-privilege permissions, fork and secret safety, caching, concurrency, matrix), registered in the sk-code hub (mode-registry.json, hub-router.json, leaf-manifest.json) with sk-code-review applying it, and /doctor:ci scaffolding from its templates. Every load-bearing claim cites file:line or a run id and is labelled confirmed, documented or inferred. End with ranked recommendations (saving, risk, effort) grouped into proposed implementation phases 002+.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 1200,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/053-ci-workflow-efficiency/001-research",
+  "createdAt": "2026-10-23T06:43:17.796Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 2400
+  },
+  "lineage": {
+    "sessionId": "2026-10-23T06:43:17.796Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "minIterations": 3,
+  "stopPolicy": "max-iterations",
+  "minIdeaObservations": 2,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

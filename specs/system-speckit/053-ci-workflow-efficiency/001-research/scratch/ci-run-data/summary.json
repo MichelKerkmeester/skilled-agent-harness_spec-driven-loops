@@ -1,0 +1,869 @@
+{
+  "windowHours": 23.5,
+  "windowFrom": "2026-10-22T07:07:25Z",
+  "windowTo": "2026-10-23T06:35:03Z",
+  "runsInWindow": 1000,
+  "estTotalBilledMinPerDay": 3812,
+  "rows": [
+    {
+      "file": "spec-kit-check.yml",
+      "name": "Spec-Kit Check",
+      "runs24h": 50,
+      "medWallSec": 1178,
+      "medJobMin": 23.9,
+      "medBilledMin": 25,
+      "estBilledMinPerDay": 1279,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 39
+      },
+      "sampleRunIds": [
+        39910111430,
+        39909844384,
+        39901840569,
+        39899611470,
+        39899002589
+      ],
+      "jobs": {
+        "Typecheck, import policy and test suites for the spec-kit packages": 1215,
+        "Runtime mirrors agree with their sources": 62,
+        "Doctor script test suites": 163
+      }
+    },
+    {
+      "file": "sk-doc-script-tests.yml",
+      "name": "sk-doc Script Tests",
+      "runs24h": 73,
+      "medWallSec": 199,
+      "medJobMin": 5,
+      "medBilledMin": 6,
+      "estBilledMinPerDay": 448,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381977,
+        39912170786,
+        39910111336,
+        39909844360,
+        39901840585
+      ],
+      "jobs": {
+        "No new broken citations": 77,
+        "Feature catalog packages validate": 56,
+        "sk-doc script tests": 167
+      }
+    },
+    {
+      "file": "command-tree-parity.yml",
+      "name": "Command Tree Parity",
+      "runs24h": 73,
+      "medWallSec": 76,
+      "medJobMin": 2.3,
+      "medBilledMin": 4,
+      "estBilledMinPerDay": 299,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912382147,
+        39912170577,
+        39910111451,
+        39909844400,
+        39901840613
+      ],
+      "jobs": {
+        "Hermes skill and prompt copies match their sources": 69,
+        "OpenCode and Claude command trees stay identical": 70
+      }
+    },
+    {
+      "file": "dispatch-enforcement-guard.yml",
+      "name": "Dispatch Enforcement Guard",
+      "runs24h": 73,
+      "medWallSec": 79,
+      "medJobMin": 2.3,
+      "medBilledMin": 4,
+      "estBilledMinPerDay": 299,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381887,
+        39912170500,
+        39910111587,
+        39909844456,
+        39901840561
+      ],
+      "jobs": {
+        "Every declared dispatch rule is reachable and discriminates": 72,
+        "Every hook vitest suite passes": 69
+      }
+    },
+    {
+      "file": "hooks-node-tests.yml",
+      "name": "Hook Node Tests",
+      "runs24h": 61,
+      "medWallSec": 201,
+      "medJobMin": 3.2,
+      "medBilledMin": 4,
+      "estBilledMinPerDay": 250,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381951,
+        39910111374,
+        39909844431,
+        39901840551,
+        39899611575
+      ],
+      "jobs": {
+        "Hook node:test suites": 194
+      }
+    },
+    {
+      "file": "opencode-plugin-tests.yml",
+      "name": "OpenCode Plugin Tests",
+      "runs24h": 61,
+      "medWallSec": 142,
+      "medJobMin": 2.3,
+      "medBilledMin": 3,
+      "estBilledMinPerDay": 187,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912382087,
+        39910111437,
+        39909844432,
+        39901840615,
+        39899611481
+      ],
+      "jobs": {
+        "OpenCode plugin tests": 138
+      }
+    },
+    {
+      "file": "changed-packet-validation.yml",
+      "name": "Changed Packet Validation",
+      "runs24h": 73,
+      "medWallSec": 100,
+      "medJobMin": 1.5,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 149,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381860,
+        39912170536,
+        39910111307,
+        39909844277,
+        39901841196
+      ],
+      "jobs": {
+        "Spec packets touched by this PR validate clean": 92
+      }
+    },
+    {
+      "file": "gate-inputs.yml",
+      "name": "Gate Inputs",
+      "runs24h": 73,
+      "medWallSec": 104,
+      "medJobMin": 1.7,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 149,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381844,
+        39912170480,
+        39910111300,
+        39909844383,
+        39901840701
+      ],
+      "jobs": {
+        "Every gate input resolves under both source roots": 101
+      }
+    },
+    {
+      "file": "message-contract.yml",
+      "name": "Message Contract",
+      "runs24h": 73,
+      "medWallSec": 82,
+      "medJobMin": 1.3,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 149,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912382045,
+        39912170583,
+        39910111533,
+        39909844339,
+        39901840676
+      ],
+      "jobs": {
+        "Commit messages, branch names and PR description follow the templates": 78
+      }
+    },
+    {
+      "file": "playbook-operator-contract.yml",
+      "name": "Playbook Operator Contract",
+      "runs24h": 73,
+      "medWallSec": 81,
+      "medJobMin": 1.3,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 149,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381959,
+        39912170580,
+        39910111367,
+        39909844592,
+        39901840689
+      ],
+      "jobs": {
+        "Manual-testing-playbook operator-scenario contract": 76
+      }
+    },
+    {
+      "file": "rule-canary-sync.yml",
+      "name": "Rule Canary Sync",
+      "runs24h": 73,
+      "medWallSec": 80,
+      "medJobMin": 1.3,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 149,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912382100,
+        39912170695,
+        39910111461,
+        39909844439,
+        39901840612
+      ],
+      "jobs": {
+        "Load-bearing rule wording stays in sync across copies": 78
+      }
+    },
+    {
+      "file": "advisory-checks.yml",
+      "name": "Advisory Checks",
+      "runs24h": 73,
+      "medWallSec": 65,
+      "medJobMin": 1,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 75,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381861,
+        39912170725,
+        39910111345,
+        39909844372,
+        39901840620
+      ],
+      "jobs": {
+        "Advisory — test suites and doc-model references": 60
+      }
+    },
+    {
+      "file": "opencode-dual-version.yml",
+      "name": "OpenCode Dual-Version Battery",
+      "runs24h": 7,
+      "medWallSec": 194,
+      "medJobMin": 7,
+      "medBilledMin": 9,
+      "estBilledMinPerDay": 64,
+      "events": {
+        "push": 31,
+        "pull_request": 9
+      },
+      "conclusions": {
+        "success": 39,
+        "failure": 1
+      },
+      "sampleRunIds": [
+        39909844429,
+        39898821046,
+        39877603254,
+        39858029403,
+        39843480114
+      ],
+      "jobs": {
+        "Battery on OpenCode v2": 156,
+        "Both versions installed at once": 148,
+        "Battery on OpenCode v1": 127
+      }
+    },
+    {
+      "file": "deep-loop-runtime.yml",
+      "name": "Deep-Loop Runtime Tests",
+      "runs24h": 5,
+      "medWallSec": 690,
+      "medJobMin": 11.5,
+      "medBilledMin": 12,
+      "estBilledMinPerDay": 61,
+      "events": {
+        "push": 33,
+        "pull_request": 7
+      },
+      "conclusions": {
+        "success": 27,
+        "failure": 13
+      },
+      "sampleRunIds": [
+        39909844320,
+        39877603319,
+        39858029393,
+        39843480132,
+        39782205245
+      ],
+      "jobs": {
+        "Deep-loop runtime vitest suites": 688
+      }
+    },
+    {
+      "file": "markdown-link-integrity.yml",
+      "name": "Markdown Link Integrity",
+      "runs24h": 49,
+      "medWallSec": 70,
+      "medJobMin": 1,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 50,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39912381995,
+        39910111621,
+        39909844373,
+        39901840655,
+        39899611439
+      ],
+      "jobs": {
+        "No broken markdown links in skills/commands/agents": 59
+      }
+    },
+    {
+      "file": "routing-registry-drift.yml",
+      "name": "Routing Registry Drift Guard",
+      "runs24h": 6,
+      "medWallSec": 201,
+      "medJobMin": 4.6,
+      "medBilledMin": 5,
+      "estBilledMinPerDay": 31,
+      "events": {
+        "push": 35,
+        "pull_request": 5
+      },
+      "conclusions": {
+        "success": 39,
+        "failure": 1
+      },
+      "sampleRunIds": [
+        39877603372,
+        39858029397,
+        39843479991,
+        39819175964,
+        39815869307
+      ],
+      "jobs": {
+        "Registry == advisor maps; compiled-routing freshness; parent-skill structure": 103,
+        "Gate-2 golden prompts — real scorer top-1/top-3 + joined compiled mode": 178
+      }
+    },
+    {
+      "file": "skill-doc-frontmatter.yml",
+      "name": "Skill Doc Frontmatter",
+      "runs24h": 7,
+      "medWallSec": 59,
+      "medJobMin": 0.9,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 7,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39909844448,
+        39898821116,
+        39877603360,
+        39858029359,
+        39843479739
+      ],
+      "jobs": {
+        "Skill reference/asset frontmatter contract": 55,
+        "Changed skill docs raise their version": 0
+      }
+    },
+    {
+      "file": "sk-doc-rename-harness.yml",
+      "name": "sk-doc Rename Harness",
+      "runs24h": 2,
+      "medWallSec": 172,
+      "medJobMin": 2.8,
+      "medBilledMin": 3,
+      "estBilledMinPerDay": 6,
+      "events": {
+        "push": 33,
+        "pull_request": 7
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39797243161,
+        39782205191,
+        39637171722,
+        39578213116,
+        39526699911
+      ],
+      "jobs": {
+        "Rename tooling fixture harness": 169
+      }
+    },
+    {
+      "file": "runtime-no-spec-import.yml",
+      "name": "Runtime No-Spec-Import Guard",
+      "runs24h": 5,
+      "medWallSec": 72,
+      "medJobMin": 0.6,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 5,
+      "events": {
+        "push": 33,
+        "pull_request": 7
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39877603376,
+        39858029728,
+        39843480032,
+        39815869206,
+        39782736836
+      ],
+      "jobs": {
+        "No runtime require/import from .opencode/specs": 35
+      }
+    },
+    {
+      "file": "sk-code-script-tests.yml",
+      "name": "sk-code Script Tests",
+      "runs24h": 2,
+      "medWallSec": 107,
+      "medJobMin": 1,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 4,
+      "events": {
+        "push": 5,
+        "pull_request": 5
+      },
+      "conclusions": {
+        "success": 10
+      },
+      "sampleRunIds": [
+        39815587890,
+        39782205075,
+        39578213161,
+        39512563089,
+        39479558537
+      ],
+      "jobs": {
+        "sk-code script tests": 62
+      }
+    },
+    {
+      "file": "agent-mirror-sync.yml",
+      "name": "Agent Mirror Sync",
+      "runs24h": 0,
+      "medWallSec": 94,
+      "medJobMin": 1.6,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39578213261,
+        39516104490,
+        39510066807,
+        39510056607,
+        39509019035
+      ],
+      "jobs": {
+        "Agent runtime mirrors stay in sync": 95
+      }
+    },
+    {
+      "file": "chart-corpus.yml",
+      "name": "Chart Corpus",
+      "runs24h": 0,
+      "medWallSec": 104,
+      "medJobMin": 1.3,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 11,
+        "push": 29
+      },
+      "conclusions": {
+        "success": 39,
+        "failure": 1
+      },
+      "sampleRunIds": [
+        39578213247,
+        39462324636,
+        39424040542,
+        39406017109,
+        39390303154
+      ],
+      "jobs": {
+        "Corpus contract and its mutation suite": 75
+      }
+    },
+    {
+      "file": "comment-hygiene.yml",
+      "name": "Comment Hygiene Gate",
+      "runs24h": 0,
+      "medWallSec": 76,
+      "medJobMin": 1.2,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39578213197,
+        39516104410,
+        39510066717,
+        39510056500,
+        39509018956
+      ],
+      "jobs": {
+        "No ephemeral-artifact pointers in code comments": 72
+      }
+    },
+    {
+      "file": "dependabot-auto-merge.yml",
+      "name": "Dependabot Auto-merge",
+      "runs24h": 0,
+      "medWallSec": 27,
+      "medJobMin": 0.1,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 27
+      },
+      "conclusions": {
+        "success": 27
+      },
+      "sampleRunIds": [
+        39578213432,
+        39516104669,
+        39510066521,
+        39510056471,
+        39509018894
+      ],
+      "jobs": {
+        "Auto-merge Dependabot security patch updates": 4
+      }
+    },
+    {
+      "file": "diagram-corpus.yml",
+      "name": "Diagram Corpus",
+      "runs24h": 0,
+      "medWallSec": 114,
+      "medJobMin": 1,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "push": 29,
+        "pull_request": 11
+      },
+      "conclusions": {
+        "success": 28,
+        "failure": 12
+      },
+      "sampleRunIds": [
+        39611546340,
+        39578213134,
+        39462324448,
+        39424040505,
+        39406017176
+      ],
+      "jobs": {
+        "Corpus contract, its mutation suite and both applicator gates": 61
+      }
+    },
+    {
+      "file": "naming-standard-guard.yml",
+      "name": "Naming Standard Guard",
+      "runs24h": 0,
+      "medWallSec": 92,
+      "medJobMin": 1.5,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 30,
+        "push": 10
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39578213244,
+        39516104690,
+        39510066629,
+        39510056359,
+        39509018844
+      ],
+      "jobs": {
+        "Enforce kebab-case filesystem names": 89
+      }
+    },
+    {
+      "file": "pi-extension-tests.yml",
+      "name": "Pi Extension Tests",
+      "runs24h": 0,
+      "medWallSec": 203,
+      "medJobMin": 2.4,
+      "medBilledMin": 3,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 6,
+        "push": 2
+      },
+      "conclusions": {
+        "success": 8
+      },
+      "sampleRunIds": [
+        39578213389,
+        39516104409,
+        39510056463,
+        39509009884,
+        39508434074
+      ],
+      "jobs": {
+        "Discover extensions": 53,
+        "pi-cache-optimizer tests": 46,
+        "pi-fast-mode-w-subagent-support tests": 43
+      }
+    },
+    {
+      "file": "prompt-card-sync.yml",
+      "name": "Prompt-Knowledge Card Sync",
+      "runs24h": 0,
+      "medWallSec": 58,
+      "medJobMin": 0.9,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "pull_request": 40
+      },
+      "conclusions": {
+        "success": 40
+      },
+      "sampleRunIds": [
+        39578213271,
+        39516104468,
+        39510066595,
+        39510056524,
+        39509018867
+      ],
+      "jobs": {
+        "Prompt-knowledge drift guard": 53
+      }
+    },
+    {
+      "file": "repo-rules-corpus.yml",
+      "name": "Repo Rules Corpus",
+      "runs24h": 0,
+      "medWallSec": 77,
+      "medJobMin": 1.4,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "push": 19
+      },
+      "conclusions": {
+        "success": 17,
+        "failure": 2
+      },
+      "sampleRunIds": [
+        38363499132,
+        38206184543,
+        38074353399,
+        37633711105,
+        37621940098
+      ],
+      "jobs": {
+        "Repo-rules corpus stays in sync": 81
+      }
+    },
+    {
+      "file": "sk-git-script-tests.yml",
+      "name": "sk-git Script Tests",
+      "runs24h": 0,
+      "medWallSec": 70,
+      "medJobMin": 1,
+      "medBilledMin": 1,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "push": 6,
+        "pull_request": 5
+      },
+      "conclusions": {
+        "success": 11
+      },
+      "sampleRunIds": [
+        39631215313,
+        39578213202,
+        39516104733,
+        39515394430,
+        39510056523
+      ],
+      "jobs": {
+        "sk-git script tests": 60
+      }
+    },
+    {
+      "file": "skill-advisor-stress.yml",
+      "name": "Skill Advisor Stress Tests",
+      "runs24h": 0,
+      "medWallSec": 115,
+      "medJobMin": 1.9,
+      "medBilledMin": 2,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "push": 29,
+        "pull_request": 7
+      },
+      "conclusions": {
+        "success": 26,
+        "failure": 10
+      },
+      "sampleRunIds": [
+        39636944064,
+        39578213355,
+        39564216421,
+        39554313820,
+        39524217211
+      ],
+      "jobs": {
+        "Skill advisor stress suite": 117
+      }
+    },
+    {
+      "file": "strict-pass-freshness-report.yml",
+      "name": "Strict Pass Freshness Report",
+      "runs24h": 0,
+      "medWallSec": 2577,
+      "medJobMin": 42.8,
+      "medBilledMin": 43,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "schedule": 8,
+        "workflow_dispatch": 1
+      },
+      "conclusions": {
+        "success": 8,
+        "failure": 1
+      },
+      "sampleRunIds": [
+        39200485518,
+        38205330444,
+        37783711329,
+        37265804421,
+        36378725834
+      ],
+      "jobs": {
+        "strict-pass-freshness": 2568
+      }
+    },
+    {
+      "file": "trigger-index-rebuild.yml",
+      "name": "Trigger Index Rebuild",
+      "runs24h": 73,
+      "medWallSec": 103,
+      "medJobMin": 0,
+      "medBilledMin": 0,
+      "estBilledMinPerDay": 0,
+      "events": {
+        "push": 40
+      },
+      "conclusions": {
+        "skipped": 20,
+        "success": 20
+      },
+      "sampleRunIds": [
+        39912381915,
+        39912170542,
+        39910111438,
+        39909844393,
+        39901840525
+      ],
+      "jobs": {
+        "Rebuild the trigger index": 0,
+        "Push the trigger index rebuild": 0
+      }
+    }
+  ]
+}
