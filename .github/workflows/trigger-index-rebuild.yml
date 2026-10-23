@@ -322,3 +322,5 @@ jobs:
           fi
           echo "::error::The push failed for a reason other than a non-fast-forward race or an authentication error; see the push output above."
           exit 1
+
+# Probe line: this exists only to prove the trigger fires.
