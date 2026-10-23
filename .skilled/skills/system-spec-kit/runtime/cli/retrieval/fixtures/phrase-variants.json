@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ea28d3b1370a07ee177f24b73ddb5a1769c7d82b3c45a087770617b034c55528",
+  "manifestHash": "405d2e9557383f8aa2fdedc584138caacf1afe5b8e2f5d24d7cd7debd1da4325",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -39312,6 +39312,18 @@
     "drop off annotation": [
       "drop off annotation"
     ],
+    "drop old deepseek from pi": [
+      "drop old deepseek from pi"
+    ],
+    "drop old deepseek from pi implementation summary": [
+      "drop old deepseek from pi implementation summary"
+    ],
+    "drop old deepseek from pi plan": [
+      "drop old deepseek from pi plan"
+    ],
+    "drop old deepseek from pi tasks": [
+      "drop old deepseek from pi tasks"
+    ],
     "drop the injected dispatch mandate": [
       "drop the injected dispatch mandate"
     ],
@@ -73029,6 +73041,9 @@
     ],
     "phase 64 append log concurrency flake": [
       "phase 64 append log concurrency flake"
+    ],
+    "phase 65 drop old deepseek from pi": [
+      "phase 65 drop old deepseek from pi"
     ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"

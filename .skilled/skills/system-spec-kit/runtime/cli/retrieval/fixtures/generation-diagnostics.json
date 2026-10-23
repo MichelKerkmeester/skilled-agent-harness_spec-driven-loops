@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7206,
-    "ok": 14916,
+    "ok": 14920,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25670,
+  "documentsScanned": 25674,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ea28d3b1370a07ee177f24b73ddb5a1769c7d82b3c45a087770617b034c55528",
+  "manifestHash": "405d2e9557383f8aa2fdedc584138caacf1afe5b8e2f5d24d7cd7debd1da4325",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37442,
+      "ok": 37447,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69329,6 +69329,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/scratch",
       "reason": "excluded directory"
     },
     {

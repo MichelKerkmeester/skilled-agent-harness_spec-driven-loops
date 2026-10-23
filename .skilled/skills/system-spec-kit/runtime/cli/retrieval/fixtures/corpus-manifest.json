@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bc04b7a7b4615d38404c2602ea7f3fa8d96b9908c93d35342b2b9030dbfd0eba",
+  "corpusHash": "1a5cc15a726bf30edb56d33965a189c0f249c10bc982b4ef384bd78df7ea769e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25670,
+  "includedPathCount": 25674,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9119,6 +9119,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25701,7 +25705,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ea28d3b1370a07ee177f24b73ddb5a1769c7d82b3c45a087770617b034c55528",
+  "manifestHash": "405d2e9557383f8aa2fdedc584138caacf1afe5b8e2f5d24d7cd7debd1da4325",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26913,6 +26917,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/scratch",
       "reason": "excluded directory"
     },
     {
