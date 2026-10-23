@@ -16,6 +16,12 @@
       "advisor vocabulary cleanup plan",
       "advisor vocabulary cleanup tasks",
       "advisor vocabulary cleanup acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "advisor vocabulary cleanup decision record",
+      "private skill scan containment decision",
       "advisor vocabulary cleanup implementation summary"
     ],
     "key_topics": [
@@ -27,10 +33,10 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "removes",
-      "webflow"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,22 +45,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts",
-      ".opencode/plugins/system-skill-advisor.js",
-      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
-      ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts",
-      ".skilled/skills/system-skill-advisor/README.md",
-      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs"
     ],
     "entities": [
       {
@@ -82,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -97,60 +115,6 @@
         "name": "trigger-index.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "lexical.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/system-skill-advisor.js",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor-plugin.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-surface-hint.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-cli-manifest.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-recommend.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "native-scorer.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts",
         "source": "derived"
       },
       {
@@ -178,7 +142,61 @@
         "source": "derived"
       },
       {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 2 removes the Webflow and Obsidian surfaces from the sk-code hub, but the advisor still declares them: the lexical lane carries an `obsidian plugin` hint token for `sk-code`, the OpenCode plugin detects an OBSIDIAN or WEBFLOW workspace, and two tool schemas plus the advisor README advertise `WEBFLOW` as the example surface hint",
     "created_at": "2026-10-23T07:03:39Z",
-    "last_save_at": "2026-10-23T07:49:52.269Z",
+    "last_save_at": "2026-10-23T13:24:43.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +218,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b88817f28bcb2134a3c4dd8370a4c82c861c9aa3c68f57ce4f7b0417139ad86e",
+    "source_fingerprint": "sha256:ed7491c9e3b00fc6994d340ce68d46c3ac8ab21701588482d398675a0aa45d66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a4c6ed4df74236bc043efd89517af1b61dd61a5e4e06cbd90cfab8c7a7c4ab9",
-      "plan.md": "be7d90bd073009cf6ad31a2df3c97761b14a4d9cb57ecf16a1791a0cf19fd380",
-      "tasks.md": "712bad11682e5f043e3b2de9e876741e8772b2cc6488304bbf6721e28ff410a8",
-      "implementation-summary.md": "b4130189a6c800994807d4327bcb19cc9979dfeb762fa164b00cf763ef74229c"
+      "spec.md": "9a6c4cb01583293c6968fee21497b8b4d5e88113430e6f96bd99e10476f208fb",
+      "plan.md": "75da0283647aa1f0ce9fdabfb7ca9b2ba409dc3877600c21510ce5c8218fc680",
+      "tasks.md": "232f1d7e26cb06b7a545004a4038e4d7b35b1a6afaedcb54a1ebdf6758a9fd45",
+      "decision-record.md": "17006eb9828e4c6be1542e9617acc0714090222fa65162d8f456edb629c04055",
+      "implementation-summary.md": "e0dfc53281146f7a0cb2ed525723d5f76bfe17ef35feaf6a0e72b7f1b0726b25"
     },
     "last_active_at": null
   }

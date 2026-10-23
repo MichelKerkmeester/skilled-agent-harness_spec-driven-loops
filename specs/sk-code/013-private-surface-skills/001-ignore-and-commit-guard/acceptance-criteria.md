@@ -8,15 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/001-ignore-and-commit-guard"
-    last_updated_at: "2026-10-23T07:03:38Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-10-23T10:34:19Z"
+    last_updated_by: "deepseek-v4.1-flash-1017"
+    recent_action: "Rewrote the criteria for Level 3 with one proof block per criterion"
+    next_safe_action: "Execute tasks.md and mark each criterion Met with observed evidence"
     blockers: []
-    key_files: []
+    key_files:
+      - ".gitignore"
+      - ".skilled/scripts/git-hooks/pre-commit"
+      - ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "planning-001-ignore-and-commit-guard"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -37,7 +40,7 @@ _memory:
 ## 1. METADATA
 
 **Packet:** 001-ignore-and-commit-guard
-**Level:** 2
+**Level:** 3
 **Status:** Draft
 **Date:** 2026-10-23
 <!-- /ANCHOR:metadata -->
@@ -47,21 +50,25 @@ _memory:
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
 
-One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
+One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. Every command lives in the proof block for its criterion in section 3, never in this table.
 
-| AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase commit, when `git check-ignore -v .skilled/skills/local-webflow/SKILL.md .hermes/skills/local-obsidian` runs, then two lines print, each naming `.gitignore` and its rule, and the command exits 0 | That exact command. Expected: two lines, one containing `/.skilled/skills/local-*` and one containing `/.hermes/skills/local-*`, exit status 0. Before the change the same command exits 1 | Unmet | - |
-| AC-002 | REQ-001 | Given a symlink at `.skilled/skills/local-probe` pointing at the checkout, when `git check-ignore -v .skilled/skills/local-probe` runs, then the `/.skilled/skills/local-*` rule is named, which is what a trailing slash would have missed | `rm -f .skilled/skills/local-probe && ln -s "$PWD" .skilled/skills/local-probe && git check-ignore -v .skilled/skills/local-probe`. Expected: one line naming `/.skilled/skills/local-*`. Then `rm .skilled/skills/local-probe` and `git status --porcelain` prints nothing for it | Unmet | - |
-| AC-003 | REQ-002 | Given a throwaway repository with `.skilled/skills/local-probe/SKILL.md` staged, when the real hook runs, then it exits 1 and the output names the path, the gate and the repair | The `plan.md` Step 9 probe. Expected: `rc=1`, output containing `BLOCKED [gate:private-skill]`, `.skilled/skills/local-probe/SKILL.md` and `git rm --cached -r` | Unmet | - |
-| AC-004 | REQ-002 | Given the same staged path, when the operator runs the repair the refusal printed, then the hook exits 0 on the next run, so the guard does not block its own fix | In the throwaway repository: `git rm --cached -r -q -- .skilled/skills/local-probe/SKILL.md`, then run the hook again. Expected: `rc=0`. The same property is pinned by harness case 75 | Unmet | - |
-| AC-005 | REQ-002 | Given the guard in place, when anyone looks for a way to switch it off, then there is none: no `SPECKIT_SKIP_*` read in the guard and no `lib/gates.tsv` row for it | `grep -c '^PRIVATE_SKILL_RE=' .skilled/scripts/git-hooks/pre-commit` prints `1`; `grep -c 'private' .skilled/scripts/git-hooks/lib/gates.tsv` prints `0`; `grep -c 'SPECKIT_SKIP_PRIVATE' .skilled/scripts/git-hooks/pre-commit` prints `0` | Unmet | - |
-| AC-006 | REQ-002 | Given a private skill staged under any of the six skill roots, or a file nested inside one, when the hook runs, then every such path is refused and named | Harness case 76. Expected: `PASS` for each of `.skilled`, `.opencode`, `.claude`, `.pi`, `.devin`, `.hermes`, plus `PASS  the refusal names a file nested in a private skill` | Unmet | - |
-| AC-007 | REQ-003 | Given the edited hook, when its syntax and its gate order are checked, then the file parses and the guard's closing `fi` is the last non-blank line before the comment-hygiene gate, with the required blank line between them | `bash -n .skilled/scripts/git-hooks/pre-commit` exits 0; `awk '/Comment hygiene gate \(blocking\)/{print last; exit} NF{last=$0}' .skilled/scripts/git-hooks/pre-commit` prints `fi` | Unmet | - |
-| AC-008 | REQ-004 | Given the harness with the new cases, when it runs, then it exits 0, every case passes, and no existing case was rewritten to make that true | `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh`. Expected: exit 0 and a last line `pre-commit gates: <N> passed, 0 failed` with `<N>` larger than before. Then `git diff 42b41dd286 -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`, with `---` header lines filtered out, shows one removed line: the harness header sentence that now names the guard, and no other | Unmet | - |
-| AC-009 | REQ-004 | Given a `local-` name that sits below the skill root rather than at it, when the hook runs, then nothing is refused, because the pattern must not overreach | Harness case 77. Expected: `PASS  a local- file below the skill root is committable`, and no `gate:private-skill` line in the log | Unmet | - |
-| AC-010 | REQ-005 | Given a reader looking for the limits, when they read `spec.md`, then they find that `git commit --no-verify` still bypasses the guard and that removed content stays in git history | `grep -c 'no-verify' spec.md` prints `3`; `grep -c 'git history' spec.md` prints at least `1` | Unmet | - |
-| AC-011 | REQ-006 | Given the phase commit, when the diff is inspected, then only the three code files and this packet's documents changed, and no added comment names a spec path, packet number or phase number | `git diff --name-only 42b41dd286` lists only `.gitignore`, `.skilled/scripts/git-hooks/pre-commit`, `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` and files under `specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/`; `git diff 42b41dd286 -- .gitignore .skilled/scripts/git-hooks/` added lines grepped with `specs/\|phase [0-9]\|013-private` prints `0` | Unmet | - |
+| AC-ID | REQ | Given / When / Then | Status | Waiver |
+|-------|-----|---------------------|--------|--------|
+| AC-001 | REQ-001 | Given the edited root ignore file, when `git check-ignore -v` runs for a private path under each of the four rule-bearing roots, then each of the four rules is named and the command exits 0 | Unmet | - |
+| AC-002 | REQ-001 | Given a symlink named `local-probe` under the skills tree, when the ignore layer is asked about it, then the slash-less rule matches it, and a `local-` file below the skill root is not ignored | Unmet | - |
+| AC-003 | REQ-002 | Given a throwaway repository with `.skilled/skills/local-probe/SKILL.md` staged, when the real hook runs, then it exits 1 and the log names the path, the gate and the repair | Unmet | - |
+| AC-004 | REQ-002 | Given the same staged path, when the operator runs the repair the refusal printed, then the hook exits 0 on the next run, so the guard does not block its own fix | Unmet | - |
+| AC-005 | REQ-004 | Given a private skill staged under each of the eight guarded roots plus a file nested inside one, when the harness runs, then every one of those paths is refused and named | Unmet | - |
+| AC-006 | REQ-004 | Given a `local-` name that sits below the skill root rather than at it, when the hook runs, then nothing is refused and the guard stays silent | Unmet | - |
+| AC-007 | REQ-003 | Given the edited hook, when its syntax and its gate order are checked, then the file parses, the guard's closing `fi` is the last non-blank line before the comment-hygiene gate, and no bypass exists for it | Unmet | - |
+| AC-008 | REQ-003 | Given the edited hook, when its index read and its pattern constant are inspected, then the read is NUL-separated with `--diff-filter=ACMR` and the constant names all eight roots | Unmet | - |
+| AC-009 | REQ-004 | Given a staged symlink named `local-*`, when the hook runs, then the symlink is refused with exit 1 | Unmet | - |
+| AC-010 | REQ-004 | Given a staged gitlink named `local-*`, when the hook runs, then the gitlink entry is refused with exit 1 | Unmet | - |
+| AC-011 | REQ-002 | Given a private skill copied to a tracked name that does not start with `local-`, when the hook runs, then the copy is committable with exit 0, and the limit is recorded in the spec and in ADR-003 | Unmet | - |
+| AC-012 | REQ-004 | Given the harness with the seven new cases, when it runs, then it exits 0 with `pre-commit gates: 131 passed, 0 failed`, and no existing case was rewritten to make that true | Unmet | - |
+| AC-013 | REQ-006 | Given the phase commit, when the diff is inspected, then only the three code files changed outside `specs/`, and no added code comment names a spec path, packet number or phase number | Unmet | - |
+| AC-014 | REQ-005 | Given a reader looking for the limits, when they read `spec.md`, then they find `--no-verify`, git-history retention, the renamed-copy limit and the absence of an ongoing pre-push surface-token guard | Unmet | - |
+| AC-015 | REQ-006 | Given the pushed phase commit, when the worktree and the refs are checked, then `git status --porcelain` prints nothing and HEAD equals `origin/main` | Unmet | - |
 
 ### Status values
 
@@ -83,11 +90,212 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 ---
 
+<!-- ANCHOR:proofs -->
+## 3. PROOF BLOCKS
+
+Run every block from the repository root. `scratch/` is this packet's scratch
+directory and its `*.log` files are gitignored. `HEAD~1` is the commit before the
+phase commit, because this phase ships as exactly one commit.
+
+### AC-001 - four ignore rules, each named
+
+```bash
+rg -c '^/\.(skilled|hermes|codex|cursor)/skills/local-\*$' .gitignore
+git check-ignore -v .skilled/skills/local-webflow/SKILL.md .hermes/skills/local-obsidian .codex/skills/local-probe .cursor/skills/local-probe | sed 's/^[^:]*:[0-9]*://'
+git check-ignore -q .cursor/skills/local-probe; echo "rc=$?"
+```
+
+Expected: the first command prints `4`. The second prints four lines, in this order:
+
+```
+/.skilled/skills/local-*	.skilled/skills/local-webflow/SKILL.md
+/.hermes/skills/local-*	.hermes/skills/local-obsidian
+/.codex/skills/local-*	.codex/skills/local-probe
+/.cursor/skills/local-*	.cursor/skills/local-probe
+```
+
+The third prints `rc=0`.
+
+### AC-002 - a symlink matches, a nested `local-` name does not
+
+```bash
+mkdir -p .skilled/skills
+ln -s "$PWD" .skilled/skills/local-probe
+git check-ignore -q .skilled/skills/local-probe; echo "rc=$?"
+git check-ignore -v .skilled/skills/local-probe | sed 's/^[^:]*:[0-9]*://'
+git check-ignore -q .skilled/skills/sk-code/local-notes.md; echo "rc=$?"
+```
+
+Expected: `rc=0`, then `/.skilled/skills/local-*	.skilled/skills/local-probe`, then `rc=1`. The first `rc=0` is the positive control for the last `rc=1`: the same command that ignores the symlink refuses to ignore the nested name.
+
+### AC-003 - a staged private skill is refused, and the refusal names its repair
+
+```bash
+HOOK="$PWD/.skilled/scripts/git-hooks/pre-commit"
+PROBE="$(mktemp -d)"; git -C "$PROBE" init -q
+git -C "$PROBE" config user.email t@example.com; git -C "$PROBE" config user.name t
+mkdir -p "$PROBE/.skilled/skills/local-probe"; echo private > "$PROBE/.skilled/skills/local-probe/SKILL.md"
+git -C "$PROBE" add .skilled/skills/local-probe/SKILL.md
+( cd "$PROBE" && bash "$HOOK" ); echo "rc=$?"
+rm -rf "$PROBE"
+```
+
+Expected:
+
+```
+BLOCKED [gate:private-skill]: a private skill is staged and would be published:
+  .skilled/skills/local-probe/SKILL.md
+  Fix: git rm --cached -r -- ".skilled/skills/local-probe/SKILL.md"
+rc=1
+```
+
+### AC-004 - the printed repair clears the block
+
+```bash
+HOOK="$PWD/.skilled/scripts/git-hooks/pre-commit"
+PROBE="$(mktemp -d)"; git -C "$PROBE" init -q
+git -C "$PROBE" config user.email t@example.com; git -C "$PROBE" config user.name t
+mkdir -p "$PROBE/.skilled/skills/local-probe"; echo private > "$PROBE/.skilled/skills/local-probe/SKILL.md"
+git -C "$PROBE" add .skilled/skills/local-probe/SKILL.md
+( cd "$PROBE" && bash "$HOOK" > "$PROBE/out.log" 2>&1 ); echo "rc-before=$?"
+rg -c 'gate:private-skill' "$PROBE/out.log"
+git -C "$PROBE" rm --cached -r -q -- .skilled/skills/local-probe/SKILL.md
+( cd "$PROBE" && bash "$HOOK" > "$PROBE/out.log" 2>&1 ); echo "rc-after=$?"
+rg -c 'gate:private-skill' "$PROBE/out.log" || echo 0
+rm -rf "$PROBE"
+```
+
+Expected: `rc-before=1`, then `1`, then `rc-after=0`, then `0`. The first `1` is the positive control: the same log pattern sees the refusal, so the zero after the repair is an absence and not a broken pipeline.
+
+### AC-005 - eight roots and a nested file
+
+```bash
+bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+rg -c '^PASS  the refusal names \.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)$' scratch/harness.log
+rg -c '^PASS  the refusal names a file nested in a private skill$' scratch/harness.log
+```
+
+Expected: `rc=0`, then `8`, then `1`.
+
+### AC-006 - the false-positive boundary
+
+```bash
+rg -c '^PASS  a local- file below the skill root is committable$' scratch/harness.log
+rg -c '^PASS  the guard stayed silent on an ordinary file$' scratch/harness.log
+```
+
+Expected: `1` and `1`.
+
+### AC-007 - placement, syntax and no bypass
+
+```bash
+bash -n .skilled/scripts/git-hooks/pre-commit; echo "rc=$?"
+awk '/Private skill guard \(blocking\)/{g=NR} /Comment hygiene gate \(blocking\)/{c=NR} END{print (g && c && g < c) ? "guard-before-hygiene" : "order-wrong"}' .skilled/scripts/git-hooks/pre-commit
+grep -c 'SPECKIT_SKIP_COMMENT_HYGIENE' .skilled/scripts/git-hooks/pre-commit
+grep -c 'SPECKIT_SKIP_PRIVATE' .skilled/scripts/git-hooks/pre-commit || echo 0
+rg -c 'pre-commit' .skilled/scripts/git-hooks/lib/gates.tsv
+rg -c 'private' .skilled/scripts/git-hooks/lib/gates.tsv || echo 0
+```
+
+Expected: `rc=0`, `guard-before-hygiene`, `6`, `0`, `9`, `0`. The `6` and the `9` are the positive controls: the same grep finds a bypass variable in the hook and a gate row in the registry, so the two zeros mean absence, not a broken pattern.
+
+### AC-008 - the index read and the pattern constant
+
+```bash
+grep -cF "PRIVATE_SKILL_RE='^\.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)/skills/local-[^/]+(/|$)'" .skilled/scripts/git-hooks/pre-commit
+grep -cF 'git diff --cached --name-only -z --diff-filter=ACMR' .skilled/scripts/git-hooks/pre-commit
+```
+
+Expected: `1` and `1`.
+
+### AC-009 - a staged symlink named `local-*`
+
+```bash
+rg -c '^PASS  a staged symlink named local-\* is refused$' scratch/harness.log
+```
+
+Expected: `1`.
+
+### AC-010 - a staged gitlink named `local-*`
+
+```bash
+rg -c '^PASS  a staged gitlink named local-\* is refused$' scratch/harness.log
+```
+
+Expected: `1`.
+
+### AC-011 - a renamed copy passes, and the limit is recorded
+
+```bash
+rg -c '^PASS  a renamed copy of a private skill is committable$' scratch/harness.log
+rg -c '^PASS  the guard does not claim to catch a renamed copy$' scratch/harness.log
+rg -c 'renamed copy' spec.md
+rg -c 'ADR-003' spec.md
+```
+
+Expected: `1`, `1`, `5`, `6`.
+
+### AC-012 - the whole harness is green and no existing case changed
+
+```bash
+bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+tail -1 scratch/harness.log
+git diff HEAD~1 -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh | rg -c '^\+.*gate:private-skill'
+git diff HEAD~1 -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh | rg -c '^-[^-]'
+git diff HEAD~1 -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh | rg -c '^-[^-].*(check |setup_|run_hook)' || echo 0
+```
+
+Expected: `rc=0`, `pre-commit gates: 131 passed, 0 failed`, `3`, `2`, `0`. The `3` is the positive control for the last zero: the same diff pipeline sees the added guard references. The `2` removed lines are the two harness-header comment lines that now describe the guard.
+
+### AC-013 - scope and comment hygiene
+
+```bash
+git diff --name-only HEAD~1 -- . ':(exclude)specs/**'
+git diff HEAD~1 -- .gitignore .skilled/scripts/git-hooks/ | rg -c '^\+.*local-' || echo 0
+git diff HEAD~1 -- .gitignore .skilled/scripts/git-hooks/ | rg -c '^\+.*(specs/|phase [0-9]|013-private)' || echo 0
+```
+
+Expected: exactly three paths, in this order:
+
+```
+.gitignore
+.skilled/scripts/git-hooks/pre-commit
+.skilled/scripts/git-hooks/tests/pre-commit.test.sh
+```
+
+Then `26` and `0`. The `26` is the positive control: the same added-line pipeline sees the new `local-` lines, so the zero is an absence and not a broken pipe.
+
+### AC-014 - the limits are where a reader finds them
+
+```bash
+rg -c 'no-verify' spec.md
+rg -c 'git history' spec.md
+rg -c 'ongoing pre-push surface-token guard' spec.md
+rg -c 'renamed copy' spec.md
+```
+
+Expected: `4`, `4`, `3`, `5`.
+
+### AC-015 - the phase commit is pushed last
+
+```bash
+test -z "$(git status --porcelain)" && echo "worktree-clean"
+test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" && echo "head-equals-origin-main"
+```
+
+Expected: `worktree-clean` and `head-equals-origin-main`.
+<!-- /ANCHOR:proofs -->
+
+---
+
 <!-- ANCHOR:closure -->
-## 3. CLOSURE STATEMENT
+## 4. CLOSURE STATEMENT
 
 **Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+The packet closes on AC-001 through AC-015, each proven by the block above and each
+recorded `Met` with the observed output. Two things are consciously left out: the
+guard is name-based, so a renamed copy passes it (AC-011 pins that exit code 0 and
+ADR-003 records why), and no recurring pre-push surface-token check exists after the
+one-time fresh-clone sweep in phase 5 (ADR-005).
 <!-- /ANCHOR:closure -->

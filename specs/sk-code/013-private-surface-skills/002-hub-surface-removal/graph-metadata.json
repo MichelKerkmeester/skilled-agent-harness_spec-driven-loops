@@ -16,7 +16,13 @@
       "hub surface removal plan",
       "hub surface removal tasks",
       "hub surface removal acceptance criteria",
-      "hub surface removal implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hub surface removal decision record",
+      "architecture decision",
+      "decision rationale"
     ],
     "key_topics": [
       "hub",
@@ -27,10 +33,10 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "shipped",
-      "sk-code"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,8 +45,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "runtime/data/trigger-index.json",
+      "shared/README.md",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/hub-router.json",
       ".skilled/skills/sk-code/leaf-manifest.json",
@@ -48,13 +59,8 @@
       ".skilled/skills/sk-code/SKILL.md",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
       ".skilled/skills/sk-code/shared/README.md",
-      ".skilled/skills/sk-code/description.json",
-      ".skilled/skills/sk-code/README.md",
-      ".skilled/skills/sk-code/graph-metadata.json",
-      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
-      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
-      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
-      ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh"
+      ".skilled/skills/sk-code/shared/references/phase-detection.md",
+      ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md"
     ],
     "entities": [
       {
@@ -82,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -91,6 +109,24 @@
         "name": "trigger-index.json",
         "kind": "config",
         "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
         "source": "derived"
       },
       {
@@ -130,49 +166,31 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "phase-detection.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/shared/README.md",
+        "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
         "source": "derived"
       },
       {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-surface-hint.test.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "canary-cases.v1.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "canary-router.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "typo-flags.test.sh",
-        "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+        "name": "universal-debugging-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian, that exist only for the operator's own work: 1.5M and 504K of stack knowledge, 226 tracked files together",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-23T08:20:29.670Z",
+    "last_save_at": "2026-10-23T13:28:30.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +218,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46b94863447156228e92a42fecfee414a4a395ca2102b8576cd188189a4c2cfb",
+    "source_fingerprint": "sha256:613a3fc0ad5792d041f26908abd4c2a708b9ff0a0d4a229a322f9bed6acb2c36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ac54b134dd369355f244b887bb144cbdb1e4c08930338dcd320149c6a7b8d416",
-      "plan.md": "dddb21b9f516e7a1cb4ab0f5d62b03faeb2b33204b2d665e9ee8729f3279e608",
-      "tasks.md": "71606b3f2e8c459d2b9f75764be5a08d0c7635d7a30912d51d62d8bf7046659f",
-      "implementation-summary.md": "c2c36f61c54035ac6ba97bba0e3762c3c075d6112ec694266e88075cdf7056e5"
+      "spec.md": "01d94f80b6c38517aed33d6cc5c2f39a6d35e919920efa71ca14a542d550241c",
+      "plan.md": "19be0a6a268c6dceecbf8f8876985df21376207c6474c18c86d42765e923afe2",
+      "tasks.md": "4ce7675b9a9bee517c492136f2529d40cd13ebd86be5a4f85d6ceaf2739d830f",
+      "decision-record.md": "2a79448002abfc3b074a2381942193c683665e0aa03eb6f31062c62b55fc95d0",
+      "implementation-summary.md": "bca847e69cf192c666ed0678751f2235dbd51704e3e8ab27bcabc693a32208c8"
     },
     "last_active_at": null
   }

@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-hub-surface-removal |
 | **Completed** | 2026-10-23 |
-| **Level** | 2 |
+| **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -9,7 +9,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 1: ignore-and-commit-guard
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 
 ---
 
@@ -25,7 +25,19 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Every task names its file, its anchor, the exact edit, the writer branch and the command that proves it. A writer that finds the anchor text missing stops and reports; it does not guess a line number. Branch names come from the parent packet's process rules: `deepseekpi` for code changes, `deepseekpihigh` for docs-only changes.
+Every task carries seven fields in this order: **File**, **Anchor**, **Change**,
+**Proof**, **AC**, **Rollback**, **Stop if**. The anchor quotes text that exists in
+the file at the time the task runs; a writer that cannot find it re-reads the file
+once and stops if it is still missing. Line numbers were checked against the files
+on disk when this plan was written, and the anchor text is what decides, not the
+number: earlier tasks move later line numbers. Branch names come from the parent
+packet's process rules: `deepseekpi` for code changes, `deepseekpihigh` for
+docs-only changes.
+
+Every fenced block below is indented four spaces so it nests under its bullet. The
+text inside the fence is flush-left in the target file: strip the four-space list
+indent before pasting, and never paste the indent into `.gitignore`, the hook or the
+harness.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -33,26 +45,79 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Author the four packet documents at planning time (specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/)
-  - **File**: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`
-  - **Anchor**: the scaffolded headings and anchors, kept in place
-  - **Edit**: replace placeholder text with the real problem, scope, requirements, steps, tasks and criteria
-  - **Branch**: `deepseekpihigh`
-  - **Proof**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard --strict` prints `RESULT: PASSED`
+- [ ] T001 Capture the phase base commit (none)
+  - **File:** `none`; writes `specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt`
+  - **Anchor:** `new file`
+  - **Change:**
+    ```bash
+    git rev-parse HEAD > specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt
+    ```
+  - **Proof:**
+    ```bash
+    wc -l < specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt
+    git cat-file -t "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)"
+    ```
+    Expected: `1` then `commit`.
+  - **AC:** AC-013
+  - **Rollback:** `rm specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt`
+  - **Stop if:** the second command prints anything other than `commit`, because every later scope proof reads this file.
 
-- [ ] T002 Re-read the three implementation anchors (read-only, no file change)
-  - **File**: `.skilled/scripts/git-hooks/pre-commit`, `.gitignore`, `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
-  - **Anchor**: `pre-commit` line 96 must be exactly `# --- Comment hygiene gate (blocking) ---`; read `.gitignore` and locate `# Runtime state leaked into nested trees`; read the test file and locate `echo "pre-commit gates: $PASS passed, $FAIL failed"`
-  - **Edit**: none. Report and stop if any anchor differs, because the plan's insertion points depend on them
-  - **Branch**: `deepseekpi`
-  - **Proof**: `awk 'NR==96' .skilled/scripts/git-hooks/pre-commit` prints the comment-hygiene line; `grep -c '# Runtime state leaked into nested trees' .gitignore` prints `1`; `grep -c 'pre-commit gates: \$PASS passed' .skilled/scripts/git-hooks/tests/pre-commit.test.sh` prints `1`
+- [ ] T002 Re-read the pre-commit insertion anchor (read-only)
+  - **File:** `.skilled/scripts/git-hooks/pre-commit`
+  - **Anchor:** line 96, exactly `# --- Comment hygiene gate (blocking) ---`
+  - **Change:** none. This task only reads the anchor and reports it.
+  - **Proof:**
+    ```bash
+    awk 'NR==96' .skilled/scripts/git-hooks/pre-commit
+    grep -c '^# --- Comment hygiene gate (blocking) ---$' .skilled/scripts/git-hooks/pre-commit
+    ```
+    Expected: the first command prints `# --- Comment hygiene gate (blocking) ---`; the second prints `1`.
+  - **AC:** AC-007
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** line 96 is not that exact text, or the count is not `1`.
 
-- [ ] T003 Record how the installed hook resolves in this worktree (read-only, no file change)
-  - **File**: `.skilled/scripts/install-git-hooks.sh` (invoked, not edited)
-  - **Anchor**: none; this is a status call
-  - **Edit**: none. Note whether the `pre-commit` entry reports `SHADOWED`, which means the global hook resolves to another checkout and a commit made here would not exercise the edit
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash .skilled/scripts/install-git-hooks.sh --status` prints a `pre-commit` entry with its `installed:` and `source:` lines
+- [ ] T003 Re-read the ignore-file insertion anchor (read-only)
+  - **File:** `.gitignore`
+  - **Anchor:** lines 227 to 229, the divider, the header `# Runtime state leaked into nested trees`, and the divider
+  - **Change:** none. This task only reads the anchor and reports it.
+  - **Proof:**
+    ```bash
+    awk 'NR>=227 && NR<=229' .gitignore
+    grep -c '^# Runtime state leaked into nested trees$' .gitignore
+    ```
+    Expected: three lines, a divider line of `# ` followed by 43 `─` characters, then `# Runtime state leaked into nested trees`, then the same divider; and the second command prints `1`.
+  - **AC:** AC-001
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** the header is not on line 228 or its divider pair does not bracket it.
+
+- [ ] T004 Re-read the harness anchors (read-only)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 2 `# Test harness for the pre-commit hook's two auto re-mint gates, compiled routing`; line 929 `# ── 67-73. doc-version bump: a staged skill doc whose body changed gets its version raised ──`; line 999 `echo "pre-commit gates: $PASS passed, $FAIL failed"`
+  - **Change:** none. This task only reads the anchors and reports them.
+  - **Proof:**
+    ```bash
+    awk 'NR==2' .skilled/scripts/git-hooks/tests/pre-commit.test.sh
+    awk 'NR==929' .skilled/scripts/git-hooks/tests/pre-commit.test.sh
+    awk 'NR==999' .skilled/scripts/git-hooks/tests/pre-commit.test.sh
+    ```
+    Expected: the three quoted lines, in that order, each printed exactly once.
+  - **AC:** AC-012
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** any of the three lines differs, because the case blocks and the header edit both attach to them.
+
+- [ ] T005 Record how the installed hook resolves in this worktree (read-only)
+  - **File:** `.skilled/scripts/install-git-hooks.sh` (invoked, not edited)
+  - **Anchor:** `n/a: status call`
+  - **Change:** none. This task only runs the status command and records the result.
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/install-git-hooks.sh --status | rg -A3 '^  pre-commit$'
+    bash .skilled/scripts/install-git-hooks.sh --status | rg -c 'SHADOWED: the installed hook resolves outside this checkout'
+    ```
+    Expected: a block starting `  pre-commit` whose `installed:` line names a path outside this worktree and whose fourth line begins `SHADOWED:`, then a count of `7`.
+  - **AC:** AC-012
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** the `pre-commit` block is absent. A shadowed hook is expected here and is not a stop: the harness and T017 are the proofs that do not depend on the installed copy.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,54 +125,294 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add the two private-skill ignore rules (.gitignore)
-  - **File**: `.gitignore`
-  - **Anchor**: read the file and locate the section header `# Runtime state leaked into nested trees`; insert immediately before it
-  - **Edit**: insert a commented section titled `# Private skills (operator-local only)` followed by exactly two patterns, `/.skilled/skills/local-*` and `/.hermes/skills/local-*`, each with no trailing slash, and a comment saying why the slash is omitted (git treats a symlink as a file)
-  - **Branch**: `deepseekpi`
-  - **Proof**: `git check-ignore -v .skilled/skills/local-webflow/SKILL.md .hermes/skills/local-obsidian` prints two lines, each naming `.gitignore` and its rule, and exits 0; the same command exited 1 before the edit
+- [ ] T006 Add the four private-skill ignore rules (.gitignore)
+  - **File:** `.gitignore`
+  - **Anchor:** lines 227 to 229, the divider, `# Runtime state leaked into nested trees`, and the divider
+  - **Change:** replace those three lines with:
+    ```gitignore
+    # ───────────────────────────────────────────
+    # Private skills (operator-local only)
+    # ───────────────────────────────────────────
+    # A local-* skill belongs to the operator, not to this repository. No trailing
+    # slash: git treats a symlink as a file, so a trailing slash would miss a symlink
+    # to a private repo. The runtime roots that link to .skilled/skills need no rule
+    # of their own, because git cannot stage a path beneath a symlink. .hermes/skills,
+    # .codex/skills and .cursor/skills are real directories when they exist, so each
+    # carries its own rule.
+    /.skilled/skills/local-*
+    /.hermes/skills/local-*
+    /.codex/skills/local-*
+    /.cursor/skills/local-*
 
-- [ ] T005 Insert the blocking private-skill guard (.skilled/scripts/git-hooks/pre-commit)
-  - **File**: `.skilled/scripts/git-hooks/pre-commit`
-  - **Anchor**: line 96, exactly `# --- Comment hygiene gate (blocking) ---`; insert immediately before that line, one blank line after the inserted block
-  - **Edit**: the `# --- Private skill guard (blocking) ---` block exactly as written in `plan.md` Step 2: the pattern `^\.(skilled|opencode|claude|pi|devin|hermes)/skills/local-[^/]+(/|$)`, a `while IFS= read -r -d ''` loop over `git diff --cached --name-only -z --diff-filter=ACMR`, an array length check, the `BLOCKED [gate:private-skill]` message naming each path and `git rm --cached -r -- "<path>"`, then `exit 1`. No `SPECKIT_SKIP_*` variable and no `lib/gates.tsv` row
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash -n .skilled/scripts/git-hooks/pre-commit` exits 0, and `awk '/Comment hygiene gate \(blocking\)/{print last; exit} NF{last=$0}' .skilled/scripts/git-hooks/pre-commit` prints `fi`, the guard's closing line (the proof reads the last non-blank line, because the required blank line sits between the block and the comment)
+    # ───────────────────────────────────────────
+    # Runtime state leaked into nested trees
+    # ───────────────────────────────────────────
+    ```
+  - **Proof:**
+    ```bash
+    rg -c '^/\.(skilled|hermes|codex|cursor)/skills/local-\*$' .gitignore
+    git check-ignore -v .skilled/skills/local-webflow/SKILL.md .hermes/skills/local-obsidian .codex/skills/local-probe .cursor/skills/local-probe | sed 's/^[^:]*:[0-9]*://'
+    ```
+    Expected: `4`, then four lines:
+    ```
+    /.skilled/skills/local-*	.skilled/skills/local-webflow/SKILL.md
+    /.hermes/skills/local-*	.hermes/skills/local-obsidian
+    /.codex/skills/local-*	.codex/skills/local-probe
+    /.cursor/skills/local-*	.cursor/skills/local-probe
+    ```
+  - **AC:** AC-001, AC-002
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .gitignore`
+  - **Stop if:** the count is not `4` or any of the four `check-ignore` lines is missing.
 
-- [ ] T006 Name the guard in the harness header (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
-  - **File**: `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
-  - **Anchor**: read the file and locate the header comment that begins `# Test harness for the pre-commit hook's two auto re-mint gates`
-  - **Edit**: extend that sentence so it also says the harness covers the private-skill guard; leave the surrounding comment lines unchanged
-  - **Branch**: `deepseekpi`
-  - **Proof**: `grep -c 'private-skill' .skilled/scripts/git-hooks/tests/pre-commit.test.sh` prints at least `1`
+- [ ] T007 Insert the blocking private-skill guard (.skilled/scripts/git-hooks/pre-commit)
+  - **File:** `.skilled/scripts/git-hooks/pre-commit`
+  - **Anchor:** line 96, exactly `# --- Comment hygiene gate (blocking) ---`
+  - **Change:** replace that line with the block below followed by one blank line and then that same line:
+    ```bash
+    # --- Private skill guard (blocking) ---
+    # A private skill belongs to the operator, not to this repository: staging one
+    # publishes a file that exists only on this machine. Names are read NUL-separated,
+    # so a path with a space or non-ASCII bytes is refused rather than skipped, and
+    # --diff-filter=ACMR ignores a staged deletion, which publishes nothing. The match
+    # is on the path name, so a renamed copy is not caught; a content match would need
+    # a manifest of private bytes to compare against, and this guard owns no such
+    # manifest. There is no bypass variable and no gate-config row: staging a private
+    # skill is never correct.
+    PRIVATE_SKILL_RE='^\.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)/skills/local-[^/]+(/|$)'
+    PRIVATE_STAGED=()
+    while IFS= read -r -d '' PRIVATE_PATH; do
+      if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE ]]; then
+        PRIVATE_STAGED+=("$PRIVATE_PATH")
+      fi
+    done < <(git diff --cached --name-only -z --diff-filter=ACMR)
+    if [[ "${#PRIVATE_STAGED[@]}" -gt 0 ]]; then
+      echo "BLOCKED [gate:private-skill]: a private skill is staged and would be published:" >&2
+      for PRIVATE_PATH in "${PRIVATE_STAGED[@]}"; do
+        echo "  $PRIVATE_PATH" >&2
+        echo "  Fix: git rm --cached -r -- \"$PRIVATE_PATH\"" >&2
+      done
+      exit 1
+    fi
 
-- [ ] T007 Add harness case 74: a staged private skill is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
-  - **File**: `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
-  - **Anchor**: read the file and locate `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert above it, after the last existing block `# ── 67-73. doc-version bump`
-  - **Edit**: case `# ── 74.` exactly as written in `plan.md` Step 4, using `setup_gate_fixture`, `stage_new` and `check`
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh 2>&1 | grep -c '^PASS  a staged private skill is refused'` prints `1`
+    # --- Comment hygiene gate (blocking) ---
+    ```
+  - **Proof:**
+    ```bash
+    bash -n .skilled/scripts/git-hooks/pre-commit; echo "rc=$?"
+    awk '/Comment hygiene gate \(blocking\)/{print last; exit} NF{last=$0}' .skilled/scripts/git-hooks/pre-commit
+    awk '/Private skill guard \(blocking\)/{g=NR} /Comment hygiene gate \(blocking\)/{c=NR} END{print (g && c && g < c) ? "guard-before-hygiene" : "order-wrong"}' .skilled/scripts/git-hooks/pre-commit
+    grep -cF "PRIVATE_SKILL_RE='^\.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)/skills/local-[^/]+(/|$)'" .skilled/scripts/git-hooks/pre-commit
+    ```
+    Expected: `rc=0`, then `fi`, then `guard-before-hygiene`, then `1`.
+  - **AC:** AC-003, AC-007, AC-008
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/pre-commit`
+  - **Stop if:** `bash -n` fails, the awk prints `order-wrong`, or the constant count is not `1`. Do not add a bypass variable or a `lib/gates.tsv` row to make a later check pass.
 
-- [ ] T008 Add harness case 75: the printed repair clears the block (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
-  - **File**: `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
-  - **Anchor**: the same insertion point, immediately after case 74
-  - **Edit**: case `# ── 75.` exactly as written in `plan.md` Step 5: stage the private path, run `git -C "$TMP" rm --cached -r -q -- <path>`, then assert the hook exits 0
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh 2>&1 | grep -c '^PASS  the printed repair clears the block'` prints `1`
+- [ ] T008 Describe the new coverage in the harness header (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** lines 2 to 4:
+    ```
+    # Test harness for the pre-commit hook's two auto re-mint gates, compiled routing
+    # and spec derived metadata, and for how every gate treats a source tree under
+    # .skilled/ and a gate script that is missing.
+    ```
+  - **Change:** replace those three lines with:
+    ```bash
+    # Test harness for the pre-commit hook's two auto re-mint gates, compiled routing
+    # and spec derived metadata, the private-skill guard, and how every gate treats a
+    # source tree under .skilled/ and a gate script that is missing.
+    ```
+  - **Proof:**
+    ```bash
+    rg -c 'private-skill' .skilled/scripts/git-hooks/tests/pre-commit.test.sh
+    ```
+    Expected: `1`, because the cases that add the other mentions do not exist yet.
+  - **AC:** AC-012
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** the count is not `1`.
 
-- [ ] T009 Add harness case 76: every skill root and a nested private file are refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
-  - **File**: `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
-  - **Anchor**: the same insertion point, immediately after case 75
-  - **Edit**: case `# ── 76.` exactly as written in `plan.md` Step 6: loop the six roots `.skilled`, `.opencode`, `.claude`, `.pi`, `.devin`, `.hermes`, stage `<root>/skills/local-probe/SKILL.md` for each, also stage `.skilled/skills/local-probe/references/deep.md`, then assert the log names every path
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh 2>&1 | grep -c 'the refusal names'` prints at least `7`
+- [ ] T009 Add harness case 74: a staged private skill is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it. Later tasks reuse this same anchor, so each case lands after the previous one.
+  - **Change:** insert:
+    ```bash
+    # ── 74. a staged private skill is refused and the refusal names its repair ──
+    setup_gate_fixture
+    stage_new ".skilled/skills/local-webflow/SKILL.md" "private"
+    run_hook; RC=$?
+    check "a staged private skill is refused" 1 "$RC" "BLOCKED \[gate:private-skill\]"
+    check "the refusal names the staged path" 1 "$RC" ".skilled/skills/local-webflow/SKILL.md"
+    check "the refusal names the repair" 1 "$RC" "git rm --cached -r"
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  a staged private skill is refused$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `1`.
+  - **AC:** AC-003
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`, which also removes the cases added after this one; re-run the later case tasks in order.
+  - **Stop if:** `rc` is not `0` or the label count is not `1`.
 
-- [ ] T010 Add harness case 77: a `local-` name below the skill root does not block (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
-  - **File**: `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
-  - **Anchor**: the same insertion point, immediately after case 76
-  - **Edit**: case `# ── 77.` exactly as written in `plan.md` Step 7: stage `.skilled/skills/sk-code/local-notes.md`, assert exit 0, and assert the guard never spoke
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh 2>&1 | grep -c '^PASS  a local- file below the skill root is committable'` prints `1`
+- [ ] T010 Add harness case 75: the printed repair clears the block (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 74.
+  - **Change:** insert:
+    ```bash
+    # ── 75. the printed repair leaves a committable index ──
+    setup_gate_fixture
+    stage_new ".skilled/skills/local-webflow/SKILL.md" "private"
+    git -C "$TMP" rm --cached -r -q -- ".skilled/skills/local-webflow/SKILL.md"
+    run_hook; RC=$?
+    check "the printed repair clears the block" 0 "$RC"
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  the printed repair clears the block$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `1`.
+  - **AC:** AC-004
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** `rc` is not `0` or the label count is not `1`.
+
+- [ ] T011 Add harness case 76: all eight roots and a nested file (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 75.
+  - **Change:** insert:
+    ```bash
+    # ── 76. every guarded skill root and a nested private file are refused ──
+    setup_gate_fixture
+    for ROOT in .skilled .opencode .claude .pi .devin .hermes .codex .cursor; do
+      stage_new "$ROOT/skills/local-probe/SKILL.md" "private"
+    done
+    stage_new ".skilled/skills/local-probe/references/deep.md" "private"
+    run_hook; RC=$?
+    if [[ "$RC" -ne 1 ]]; then
+      echo "FAIL  a private skill under every guarded root is refused: expected rc 1, got $RC"; FAIL=$((FAIL + 1))
+    else
+      echo "PASS  a private skill under every guarded root is refused"; PASS=$((PASS + 1))
+    fi
+    for ROOT in .skilled .opencode .claude .pi .devin .hermes .codex .cursor; do
+      if grep -qF "$ROOT/skills/local-probe/SKILL.md" "$TMP/out.log"; then
+        echo "PASS  the refusal names $ROOT"; PASS=$((PASS + 1))
+      else echo "FAIL  the refusal never named $ROOT"; FAIL=$((FAIL + 1)); fi
+    done
+    if grep -qF '.skilled/skills/local-probe/references/deep.md' "$TMP/out.log"; then
+      echo "PASS  the refusal names a file nested in a private skill"; PASS=$((PASS + 1))
+    else echo "FAIL  a nested private file was not refused"; FAIL=$((FAIL + 1)); fi
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  the refusal names \.(skilled|opencode|claude|pi|devin|hermes|codex|cursor)$' scratch/harness.log
+    rg -c '^PASS  the refusal names a file nested in a private skill$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `8`, then `1`.
+  - **AC:** AC-005
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** the root count is not `8`. A count of `6` means the two added roots were dropped from the loop.
+
+- [ ] T012 Add harness case 77: a `local-` name below the skill root is committable (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 76.
+  - **Change:** insert:
+    ```bash
+    # ── 77. a local- name below the skill root is an ordinary file ──
+    setup_gate_fixture
+    stage_new ".skilled/skills/sk-code/local-notes.md" "an ordinary file"
+    run_hook; RC=$?
+    check "a local- file below the skill root is committable" 0 "$RC"
+    if grep -q 'gate:private-skill' "$TMP/out.log"; then
+      echo "FAIL  the guard spoke on an ordinary file"; FAIL=$((FAIL + 1))
+    else
+      echo "PASS  the guard stayed silent on an ordinary file"; PASS=$((PASS + 1))
+    fi
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  a local- file below the skill root is committable$' scratch/harness.log
+    rg -c '^PASS  the guard stayed silent on an ordinary file$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `1`, then `1`.
+  - **AC:** AC-006
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** either count is not `1`. A failure here means the pattern overreaches and must be fixed in the hook, not in the expectation.
+
+- [ ] T013 Add harness case 78: a renamed copy of a private skill is committable (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 77.
+  - **Change:** insert:
+    ```bash
+    # ── 78. a renamed copy of a private skill is committable: the guard matches names ──
+    setup_gate_fixture
+    stage_new ".skilled/skills/local-webflow/SKILL.md" "private"
+    stage_new ".skilled/skills/private-copy/SKILL.md" "private"
+    git -C "$TMP" rm --cached -r -q -- ".skilled/skills/local-webflow/SKILL.md"
+    run_hook; RC=$?
+    check "a renamed copy of a private skill is committable" 0 "$RC"
+    if grep -q 'gate:private-skill' "$TMP/out.log"; then
+      echo "FAIL  the guard claimed to catch a renamed copy"; FAIL=$((FAIL + 1))
+    else
+      echo "PASS  the guard does not claim to catch a renamed copy"; PASS=$((PASS + 1))
+    fi
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  a renamed copy of a private skill is committable$' scratch/harness.log
+    rg -c '^PASS  the guard does not claim to catch a renamed copy$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `1`, then `1`.
+  - **AC:** AC-011
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** either count is not `1`. This case pins the documented limit; do not change it to expect a block.
+
+- [ ] T014 Add harness case 79: a staged symlink named `local-*` is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 78.
+  - **Change:** insert:
+    ```bash
+    # ── 79. a staged symlink named local-* is refused ──
+    setup_gate_fixture
+    mkdir -p "$TMP/.skilled/skills" "$TMP/outside"
+    printf 'private\n' > "$TMP/outside/SKILL.md"
+    ln -s ../../outside "$TMP/.skilled/skills/local-link"
+    git -C "$TMP" add -- ".skilled/skills/local-link"
+    run_hook; RC=$?
+    check "a staged symlink named local-* is refused" 1 "$RC" ".skilled/skills/local-link"
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  a staged symlink named local-\* is refused$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `1`.
+  - **AC:** AC-009
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** `rc` is not `0` or the label count is not `1`.
+
+- [ ] T015 Add harness case 80: a staged gitlink named `local-*` is refused (.skilled/scripts/git-hooks/tests/pre-commit.test.sh)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Anchor:** line 999, `echo "pre-commit gates: $PASS passed, $FAIL failed"`; insert immediately above it, which places the case after case 79.
+  - **Change:** insert:
+    ```bash
+    # ── 80. a staged gitlink named local-* is refused ──
+    setup_gate_fixture
+    git -C "$TMP" update-index --add --cacheinfo 160000,1111111111111111111111111111111111111111,.skilled/skills/local-sub
+    run_hook; RC=$?
+    check "a staged gitlink named local-* is refused" 1 "$RC" ".skilled/skills/local-sub"
+    ```
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    rg -c '^PASS  a staged gitlink named local-\* is refused$' scratch/harness.log
+    ```
+    Expected: `rc=0`, then `1`.
+  - **AC:** AC-010
+  - **Rollback:** `git checkout "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .skilled/scripts/git-hooks/tests/pre-commit.test.sh`
+  - **Stop if:** `rc` is not `0` or the label count is not `1`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -115,54 +420,214 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Run the whole harness and read the summary line
-  - **File**: `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` (executed, not edited)
-  - **Anchor**: the final line `pre-commit gates: <N> passed, <M> failed`
-  - **Edit**: none. A single `FAIL` line is a stop condition; fix the guard, not the expectation
-  - **Branch**: `deepseekpi`
-  - **Proof**: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` exits 0 and the last line reads `pre-commit gates: <N> passed, 0 failed`, with `<N>` larger than the count before this phase
+- [ ] T016 Run the whole harness and read the summary line (read-only)
+  - **File:** `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` (executed, not edited)
+  - **Anchor:** `n/a: pure command`
+  - **Change:** none. A single `FAIL` line is a stop condition; fix the guard, not the expectation.
+  - **Proof:**
+    ```bash
+    bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh > scratch/harness.log 2>&1; echo "rc=$?"
+    tail -1 scratch/harness.log
+    ```
+    Expected: `rc=0`, then `pre-commit gates: 131 passed, 0 failed`. The count is the 111 the harness printed before this phase plus 20 from the seven new cases.
+  - **AC:** AC-012
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** `rc` is not `0`, the summary is not exactly that line, or any `FAIL` line appears.
 
-- [ ] T012 Prove the guard in a throwaway repository (no file in this checkout changes)
-  - **File**: none; the probe builds a temporary repository under `mktemp -d`
-  - **Anchor**: none
-  - **Edit**: none. Run the probe exactly as written in `plan.md` Step 9 and delete the temporary repository afterwards
-  - **Branch**: `deepseekpi`
-  - **Proof**: the probe prints `rc=1` and its output contains `BLOCKED [gate:private-skill]` and `.skilled/skills/local-probe/SKILL.md`
+- [ ] T017 Prove the guard in a throwaway repository (none)
+  - **File:** `none`; the probe builds a temporary repository under `mktemp -d` and removes it in the same command.
+  - **Anchor:** `n/a: pure command`
+  - **Change:** run the probe exactly as written:
+    ```bash
+    HOOK="$PWD/.skilled/scripts/git-hooks/pre-commit"
+    PROBE="$(mktemp -d)"; git -C "$PROBE" init -q
+    git -C "$PROBE" config user.email t@example.com; git -C "$PROBE" config user.name t
+    mkdir -p "$PROBE/.skilled/skills/local-probe"; echo private > "$PROBE/.skilled/skills/local-probe/SKILL.md"
+    git -C "$PROBE" add .skilled/skills/local-probe/SKILL.md
+    ( cd "$PROBE" && bash "$HOOK" ); echo "rc=$?"
+    rm -rf "$PROBE"
+    ```
+  - **Proof:** the command above is its own proof.
+    Expected:
+    ```
+    BLOCKED [gate:private-skill]: a private skill is staged and would be published:
+      .skilled/skills/local-probe/SKILL.md
+      Fix: git rm --cached -r -- ".skilled/skills/local-probe/SKILL.md"
+    rc=1
+    ```
+  - **AC:** AC-003
+  - **Rollback:** `n/a: the probe removes its own temporary directory in its last line`
+  - **Stop if:** `rc` is not `1`, or the output omits the path or the repair. `HOOK` is captured before the `cd`, so the probe runs this checkout's hook and not a path inside the throwaway repository.
 
-- [ ] T013 Prove the ignore rules match a symlink, then clean the probe up (.gitignore)
-  - **File**: `.gitignore` (read by git); the probe creates and removes `.skilled/skills/local-probe`
-  - **Anchor**: the two rules added in T004
-  - **Edit**: none. `rm -f .skilled/skills/local-probe` first, then `ln -s "$PWD" .skilled/skills/local-probe`, check, then `rm .skilled/skills/local-probe` in the same command sequence so no probe survives
-  - **Branch**: `deepseekpi`
-  - **Proof**: `git check-ignore -v .skilled/skills/local-probe` names `/.skilled/skills/local-*`, and afterwards `git status --porcelain | grep -c local-probe` prints `0`
+- [ ] T018 Prove the ignore rules against a real symlink (.gitignore)
+  - **File:** `.gitignore` (read by git); the probe creates `.skilled/skills/local-probe`
+  - **Anchor:** the four rules added in T006
+  - **Change:** create the probe symlink and check it:
+    ```bash
+    mkdir -p .skilled/skills
+    ln -s "$PWD" .skilled/skills/local-probe
+    git check-ignore -q .skilled/skills/local-probe; echo "rc=$?"
+    git check-ignore -v .skilled/skills/local-probe | sed 's/^[^:]*:[0-9]*://'
+    ```
+  - **Proof:** the command above is its own proof.
+    Expected: `rc=0`, then `/.skilled/skills/local-*	.skilled/skills/local-probe`.
+  - **AC:** AC-002
+  - **Rollback:** `rm -f .skilled/skills/local-probe`
+  - **Stop if:** `rc` is not `0`, or `.skilled/skills/local-probe` already exists before the `ln -s` (remove it first and re-check that nothing tracked lives there).
 
-- [ ] T014 Confirm the scope and the comment hygiene of the diff (all three files)
-  - **File**: the three changed files, read through `git diff`
-  - **Anchor**: base commit `42b41dd286`
-  - **Edit**: none. Any file outside the three, or any added comment naming a spec path, packet number or phase number, is removed rather than justified
-  - **Branch**: `deepseekpi`
-  - **Proof**: `git diff --name-only 42b41dd286` lists only `.gitignore`, `.skilled/scripts/git-hooks/pre-commit`, `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` and this packet's documents; `git diff 42b41dd286 -- .gitignore .skilled/scripts/git-hooks/ | grep '^+' | grep -c -E 'specs/|phase [0-9]|013-private'` prints `0`
+- [ ] T019 Remove the symlink probe and confirm nothing is left (none)
+  - **File:** `none`; removes the probe T018 created
+  - **Anchor:** `n/a: pure command`
+  - **Change:**
+    ```bash
+    git status --porcelain --ignored=matching | rg -c 'local-probe'
+    rm -f .skilled/skills/local-probe
+    git status --porcelain | rg -c 'local-probe' || echo 0
+    ```
+  - **Proof:** the command above is its own proof.
+    Expected: `1`, then `0`. The `1` is the positive control: the status pipeline sees the ignored probe before the removal, so the zero after it is an absence and not a broken pipe.
+  - **AC:** AC-002
+  - **Rollback:** `n/a: this task is itself the rollback of T018`
+  - **Stop if:** the first count is not `1`, because that means T018 left no probe to remove.
 
-- [ ] T015 Reviewer round: a separate read-only DeepSeek session reads the diff and the packet, at most two rounds
-  - **File**: the three changed files and this packet's four documents
-  - **Anchor**: none
-  - **Edit**: none by the reviewer. Findings come back as text; the writer repairs in-scope findings and the reviewer re-reads once. A finding that would widen the scope is recorded in `implementation-summary.md` and left to the phase that owns it
-  - **Branch**: `deepseekpi` (reviewer session is read-only)
-  - **Proof**: the reviewer's report names no unresolved in-scope finding after the second round, or names the ones deferred with the phase that owns them
+- [ ] T020 Confirm the scope and the comment hygiene of the diff (the three changed files)
+  - **File:** the three changed files, read through `git diff`
+  - **Anchor:** `n/a: pure command`
+  - **Change:** none. Any file outside the three, or any added comment naming a spec path, packet number or phase number, is removed rather than justified.
+  - **Proof:**
+    ```bash
+    git diff --name-only "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- . ':(exclude)specs/**'
+    git diff "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .gitignore .skilled/scripts/git-hooks/ | rg -c '^\+.*local-' || echo 0
+    git diff "$(cat specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt)" -- .gitignore .skilled/scripts/git-hooks/ | rg -c '^\+.*(specs/|phase [0-9]|013-private)' || echo 0
+    ```
+    Expected: exactly three paths:
+    ```
+    .gitignore
+    .skilled/scripts/git-hooks/pre-commit
+    .skilled/scripts/git-hooks/tests/pre-commit.test.sh
+    ```
+    then `26`, then `0`. The `26` is the positive control: the added-line pipeline sees the new `local-` lines, so the zero is an absence.
+  - **AC:** AC-013
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** a fourth path appears, or the second count is `0` (the pipeline is broken, not clean).
 
-- [ ] T016 Final validation
-  - **File**: this packet
-  - **Anchor**: none
-  - **Edit**: none. Fix the documents until the command prints `RESULT: PASSED`; never edit the validator
-  - **Branch**: `deepseekpihigh`
-  - **Proof**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard --strict` prints `RESULT: PASSED`
+- [ ] T021 Confirm the limits are recorded where a reader finds them (spec.md, read-only)
+  - **File:** `spec.md`
+  - **Anchor:** `n/a: pure command`
+  - **Change:** none.
+  - **Proof:**
+    ```bash
+    rg -c 'no-verify' specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md
+    rg -c 'git history' specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md
+    rg -c 'ongoing pre-push surface-token guard' specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md
+    rg -c 'renamed copy' specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md
+    ```
+    Expected: `4`, `4`, `3`, `5`.
+  - **AC:** AC-014
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** any count differs. A lower count means a limit was deleted; restore it rather than lowering the expectation.
 
-- [ ] T017 Commit the phase and push it to main
-  - **File**: `.gitignore`, `.skilled/scripts/git-hooks/pre-commit`, `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` and this packet's four documents
-  - **Anchor**: none; this is the phase's single commit, the one section 7 of `plan.md` reverts
-  - **Edit**: stage the files by name (never `git add -A`), commit with a conventional subject plus a prose body that names the ignore rules and the guard, then push `HEAD:main`. Do not create a branch, and do not push anything else
-  - **Branch**: `deepseekpi`
-  - **Proof**: `git log --oneline -1` shows the phase commit, `git status --porcelain` prints nothing, and `git log --oneline -1 origin/main` is that same commit after the push
+- [ ] T022 Reviewer round: a separate read-only session reads the diff and the packet (none)
+  - **File:** `none`; the reviewer reads the three changed files and this packet's six documents
+  - **Anchor:** `n/a: pure command`
+  - **Change:** none by the reviewer. Findings come back as text; the writer repairs in-scope findings and the reviewer re-reads once. A finding that would widen the scope is recorded in `implementation-summary.md` and left to the phase that owns it. At most two rounds.
+  - **Proof:** the reviewer's report is the proof.
+    Expected: the report's final line reads `VERDICT: PASS` and lists no unresolved in-scope finding.
+  - **AC:** AC-013
+  - **Rollback:** `n/a: read-only session, nothing to undo`
+  - **Stop if:** the second round still reports an unresolved in-scope finding. Do not start a third round; report the finding instead.
+
+- [ ] T023 Final strict validation (this packet)
+  - **File:** this packet
+  - **Anchor:** `n/a: pure command`
+  - **Change:** none. Fix the documents until the command prints `RESULT: PASSED`; never edit the validator.
+  - **Proof:**
+    ```bash
+    bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard --strict > scratch/validate.log 2>&1; echo "rc=$?"
+    rg -c '^RESULT: PASSED$' scratch/validate.log
+    ```
+    Expected: `rc=0`, then `1`. A `SPEC_DOC_SUFFICIENCY` warning naming `implementation-summary.md` is expected before implementation and does not fail the run.
+  - **AC:** AC-012, AC-013, AC-014
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** `rc` is not `0`, or the log holds an error other than that one warning.
+
+- [ ] T024 Remove the scratch artifacts (none)
+  - **File:** `none`; removes `specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt`, `scratch/harness.log` and `scratch/validate.log`
+  - **Anchor:** `n/a: pure command`
+  - **Change:**
+    ```bash
+    rm -f specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/phase-base.txt \
+          specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/harness.log \
+          specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/validate.log
+    ```
+  - **Proof:**
+    ```bash
+    ls specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/scratch/
+    ```
+    Expected: `.gitkeep` and nothing else.
+  - **AC:** AC-015
+  - **Rollback:** `n/a: the files are disposable; re-run T001 and T016 to recreate the two that matter`
+  - **Stop if:** any file other than `.gitkeep` remains.
+
+- [ ] T025 Stage the phase files and commit them (the three code files and this packet's documents)
+  - **File:** `.gitignore`, `.skilled/scripts/git-hooks/pre-commit`, `.skilled/scripts/git-hooks/tests/pre-commit.test.sh`, and this packet's `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `goal.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`, plus the parent packet's `goal.md`
+  - **Anchor:** `n/a: pure command`
+  - **Change:** stage the files by name, never with `git add -A`, then commit:
+    ```bash
+    git add .gitignore .skilled/scripts/git-hooks/pre-commit .skilled/scripts/git-hooks/tests/pre-commit.test.sh \
+            specs/sk-code/013-private-surface-skills/goal.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/plan.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/tasks.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/acceptance-criteria.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/decision-record.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/goal.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/implementation-summary.md \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/description.json \
+            specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/graph-metadata.json
+    git commit -m "chore(git-hooks): block staged private skills and ignore local-* skill paths" -m "Add four slash-less ignore rules and a pre-commit guard covering eight skill roots, with seven harness cases for the block, the repair, the false-positive boundary, a renamed copy, a symlink and a gitlink."
+    ```
+  - **Proof:**
+    ```bash
+    git log --oneline -1
+    git show --name-only --format='' HEAD | rg -c '^(\.gitignore|\.skilled/scripts/git-hooks/pre-commit|\.skilled/scripts/git-hooks/tests/pre-commit\.test\.sh)$'
+    git show --name-only --format='' HEAD | rg -vc '^(\.gitignore|\.skilled/scripts/git-hooks/pre-commit|\.skilled/scripts/git-hooks/tests/pre-commit\.test\.sh|specs/sk-code/013-private-surface-skills/goal\.md|specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/.+)$' || echo 0
+    ```
+    Expected: one commit whose subject starts `chore(git-hooks): block staged private skills`, then `3`, then `0`. The `3` is the positive control for the zero: the commit lists all three code files, so the zero means no path outside the allowed set.
+  - **AC:** AC-015
+  - **Rollback:** `git reset --soft HEAD~1` before the push, or `git revert --no-edit HEAD` after it.
+  - **Stop if:** `git status --porcelain` shows a staged path outside the thirteen listed above. Unstage it rather than committing it.
+
+- [ ] T026 Push the phase commit to main (none)
+  - **File:** `none`
+  - **Anchor:** `n/a: pure command`
+  - **Change:**
+    ```bash
+    git push origin HEAD:main
+    ```
+  - **Proof:**
+    ```bash
+    git log --oneline -1 origin/main
+    git log --oneline -1 HEAD
+    ```
+    Expected: the same commit subject and SHA on both lines.
+  - **AC:** AC-015
+  - **Rollback:** `n/a: a pushed commit is undone by the revert in the spec's Rollback section, not by a force push`
+  - **Stop if:** the push is rejected. Report the rejection; do not force, and do not rebase onto a different tip.
+
+- [ ] T027 Confirm the worktree is clean and HEAD equals origin/main (none)
+  - **File:** `none`
+  - **Anchor:** `n/a: pure command`
+  - **Change:** none.
+  - **Proof:**
+    ```bash
+    test -z "$(git status --porcelain)" && echo "worktree-clean"
+    test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" && echo "head-equals-origin-main"
+    ```
+    Expected: `worktree-clean`, then `head-equals-origin-main`.
+  - **AC:** AC-015
+  - **Rollback:** `n/a: read-only, nothing to undo`
+  - **Stop if:** either line is missing. A dirty worktree after the commit means a file was left unstaged; commit it in the same phase or revert it.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -172,8 +637,8 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: T011, T012 and T013 each read, not assumed
-- [ ] T017 pushed: the phase commit is the tip of `origin/main`, so phase 002's "landed on main" dependency holds
+- [ ] Manual verification read: T016, T017, T018 and T019
+- [ ] Push confirmed: T026 landed the phase commit as the tip of `origin/main`, so phase 002's "landed on main" dependency holds
 <!-- /ANCHOR:completion -->
 
 ---
@@ -218,7 +683,7 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 - [ ] CHK-010 [P0] `bash -n .skilled/scripts/git-hooks/pre-commit` and `bash -n .skilled/scripts/git-hooks/tests/pre-commit.test.sh` both exit 0
 - [ ] CHK-011 [P0] The guard runs before the comment-hygiene gate and after the trust and kill-switch blocks
 - [ ] CHK-012 [P1] The guard starts no `node` and no `python3`
-- [ ] CHK-013 [P1] Code follows the hook's existing style: uppercase globals, `IFS= read -r -d ''`, `BLOCKED [gate:<name>]` message shape
+- [ ] CHK-013 [P1] Code follows the hook's existing style: uppercase globals, `IFS= read -r -d ''`, and a `BLOCKED` message that names its gate
 - [ ] CHK-014 [P0] The guard carries no bypass variable and no `lib/gates.tsv` row
 <!-- /ANCHOR:code-quality -->
 
@@ -229,9 +694,9 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 
 - [ ] CHK-020 [P0] All acceptance criteria met
 - [ ] CHK-021 [P0] Manual testing complete: the throwaway-repository probe and the symlink probe both run and are read
-- [ ] CHK-022 [P1] Edge cases tested: nested private file, `local-` below the skill root, staged deletion, all six skill roots
+- [ ] CHK-022 [P1] Edge cases tested: nested private file, `local-` below the skill root, staged deletion, all eight skill roots, a renamed copy, a staged symlink, a staged gitlink
 - [ ] CHK-023 [P1] Error scenarios validated: a refusal names its path and its repair
-- [ ] CHK-024 [P0] The harness exits 0 with `0 failed`, and the existing cases were not edited
+- [ ] CHK-024 [P0] The harness exits 0 with `pre-commit gates: 131 passed, 0 failed`, and the existing cases were not edited
 <!-- /ANCHOR:testing -->
 
 ---
@@ -243,7 +708,7 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep: `rg -n 'local-' .gitignore .skilled/scripts/git-hooks/`
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for the changed pattern and message: `rg -n 'gate:private-skill|PRIVATE_SKILL_RE|PRIVATE_STAGED' .`
 - [ ] CHK-FIX-004 [P0] Path fixes include adversarial table tests for a space in the name, non-ASCII bytes, a staged deletion, a rename into the private path, and a `local-` name below the skill root
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: six skill roots x three path shapes x four index actions
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: eight skill roots x three path shapes x four index actions
 - [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state: the probe runs with no `skilled.trustRepoHooks` and an untrusted `SOURCE_ROOT`
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range
 <!-- /ANCHOR:fix-completeness -->
@@ -274,7 +739,7 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 ## File Organization
 
 - [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion, and the two probes left nothing in the checkout
+- [ ] CHK-051 [P1] scratch/ cleaned before completion, and the three probes left nothing in the checkout
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -292,4 +757,3 @@ Every task names its file, its anchor, the exact edit, the writer branch and the
 <!-- /ANCHOR:summary -->
 
 ---
-

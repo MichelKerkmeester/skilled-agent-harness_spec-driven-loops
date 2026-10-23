@@ -19,7 +19,10 @@
       "private local skills tasks",
       "restore local skills tasks",
       "private local skills acceptance criteria",
-      "private local skills implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "private",
@@ -42,10 +45,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
       ".skilled/skills/sk-code/sk-code-webflow/README.md",
-      ".skilled/skills/sk-git/graph-metadata.json"
+      ".skilled/skills/sk-git/graph-metadata.json",
+      "specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md",
+      "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
+      "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+      "specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json"
     ],
     "entities": [
       {
@@ -69,19 +79,37 @@
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "acceptance-criteria.md",
+        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "workflow-guardrails.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
         "source": "derived"
       },
       {
@@ -97,6 +125,12 @@
         "source": "derived"
       },
       {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,6 +143,18 @@
         "source": "derived"
       },
       {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,18 +162,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -167,35 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and `.skilled/skills/sk-code/sk-code-obsidian/` (504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:40Z",
-    "last_save_at": "2026-10-23T08:15:53.527Z",
+    "last_save_at": "2026-10-23T13:23:57.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +213,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc12d288ff44c60c08636a6362d1541029cd4cf7d1af4399ed418a32b2d37f4b",
+    "source_fingerprint": "sha256:3219ae7b675b9b08cf8f03d6f607974cd476c28f79eb6e62db1b03e33232b8d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d51171744de8bbf74113504f5c818fa0856a2b6e479bcbff1030f1eb7e756b0",
-      "plan.md": "8720a987a32fdc66816e35f8d257ffdc2aab11656de9ab3a43edfd68a2d4434c",
-      "tasks.md": "6187126b45437f1684e44c5960daab42b31ef5d95b6a4a3f311ef3f8fd14ba26",
-      "implementation-summary.md": "fbd8de29c5fd4de4493b088ab12d36de0cb400890b5beb0dcc77318073a71dae"
+      "spec.md": "63fa0f56abca9c96594aeb3d21363d0c3be872bbb48a1eaea56eb38d284a03ac",
+      "plan.md": "298153caf058ef7c21713ae1dcb5a49b52bb69787c605e38b85011a100aa13ff",
+      "tasks.md": "6796ad3a58d4ecf0ffc87d22cd8915d2464d33fe58863cd3a823dabb84909d44",
+      "decision-record.md": "172eda4ea600e022bd9f6499f843213ef2da227bb65048b4889ef5293db6a46d",
+      "implementation-summary.md": "a6540cab47bf6e29af32bb5d26a666911cbeb0f09c895911d93e2bc122f9351f"
     },
     "last_active_at": null
   }

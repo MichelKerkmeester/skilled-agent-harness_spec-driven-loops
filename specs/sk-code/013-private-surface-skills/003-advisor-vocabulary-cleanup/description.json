@@ -5,7 +5,7 @@
     "phase",
     "advisor-vocabulary-cleanup"
   ],
-  "lastUpdated": "2026-10-23T07:03:40.121Z",
+  "lastUpdated": "2026-10-23T13:10:00.000Z",
   "specId": "003",
   "folderSlug": "advisor-vocabulary-cleanup",
   "parentChain": [
@@ -14,5 +14,5 @@
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
-  "level": "2"
+  "level": "3"
 }
