@@ -1265,7 +1265,7 @@ Review amendment 2026-10-24: the `cache:` line follows the `both` job's `with:` 
 
 ---
 
-### T027A Commit the five adoption sites (AC-005, AC-006, AC-009, AC-017)
+### T027A [x] Commit the five adoption sites (AC-005, AC-006, AC-009, AC-017)
 
 File: `.github/workflows/hooks-node-tests.yml`, `.github/workflows/opencode-plugin-tests.yml`, `.github/workflows/opencode-dual-version.yml`, `.github/workflows/spec-kit-check.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -1293,9 +1293,13 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-adoptions.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside the four adoption files.
 
+Done 2026-10-24: the adoption is on `main` as `68e735d630` (`ci(workflows): adopt the cached setup action at four sites`), the action as `fafaaa4e49` and its key fix as `5efe36e731`. `git merge-base --is-ancestor HEAD origin/main` printed `adoption-on-main`.
+
+Drift: the commit holds four call sites in three workflows and not the five in four files this task lists, because `spec-kit-check.yml` adopts at T045.
+
 ---
 
-### T028 Run the cold path and record it (AC-006)
+### T028 [x] Run the cold path and record it (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Gate after R12` section T011 wrote.
 
@@ -1320,9 +1324,13 @@ Rollback: delete the `## R14 cold run` section.
 
 Stop and escalate if: `git merge-base` reports that the adoption commit is not an ancestor of `origin/main`, `gh workflow run` reports that the workflow has no `workflow_dispatch` trigger, the conclusion is not `success`, or the log holds no `provisioning` line.
 
+Done 2026-10-24: `workflow_dispatch` with `cold=true` on `main` gave run 40107101405 for `opencode-plugin-tests.yml` (head `0029a3ead5`, conclusion `success`, 11 `provisioning` lines, summary `11 installed, 5 built, 3 already present, 0 failed`, restore and save steps not run) and run 40107567830 for `opencode-dual-version.yml` (head `b0b52243f0`, `success`, 11 `provisioning` lines in each of its three jobs, same summary). A first dual-version dispatch, run 40107103375, was `cancelled` by the concurrency group when a newer push run replaced it and was dispatched again. The `R14 cold run` section is in `scratch/phase-result.md` and the per-job figures are in `scratch/cache-adoption-runs.md`.
+
+Drift: `hooks-node-tests.yml` has no `workflow_dispatch` trigger, so it has no cold run. The check's `gh run list --limit 1` can pick a push run, so the run ids were read from the dispatch output.
+
 ---
 
-### T029 Prove the warm run and the gate (AC-005, AC-006)
+### T029 [x] Prove the warm run and the gate (AC-005, AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 cold run` section T028 wrote.
 
@@ -1355,6 +1363,10 @@ Expected: `1`.
 Rollback: delete the `## R14 warm run` section.
 
 Stop and escalate if: a job is not green, a workflow has no run at `MAIN_SHA`, or a job's provision step is not shorter than its baseline. Record the figure and revert that file's adoption rather than editing the measurement.
+
+Done 2026-10-24: every run is green and every provision step is below the 56 to 67 s baseline. The first push runs at `0029a3ead5` missed and saved one 1121994943 byte entry. The warm push runs at `e00fef3e76` (40107240022, 40107240008, 40107239943) hit the cache and printed `0 installed, 3 built, 14 already present` at 45, 46 and 41/46/42 s. Attempt 2 of the first runs (40107034084, 40107034118, 40107034090) hit it at the same commit and printed `0 installed, 0 built, 14 already present, 0 failed` at 45, 34 and 44/36/29 s, with the save step skipped. The gate printed `files=46` and `RESULT: PASSED`, and the three greps returned the AC-005 counts. `grep -c '^## R14 warm run'` printed `1`.
+
+Drift: the walk prints `provisioned: N installed, M built, K already present, 0 failed` and never `skipped already present`, so the summary line is the warm proof. The saving is about 25 s at the median (11 to 38 s), short of the 40 s the task expects, because the 1.12 GB restore costs 15 to 29 s. AC-006 stays Unmet on that figure.
 
 ---
 
