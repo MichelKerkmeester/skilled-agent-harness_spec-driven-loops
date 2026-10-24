@@ -14,7 +14,18 @@ jobs:
     name: Load-bearing rule wording stays in sync across copies
     runs-on: ubuntu-latest
     steps:
+      # The canary reads AGENTS.md and the sk-code skill tree, and the step below calls
+      # it through the .opencode/skills link, so those three paths are all it needs on
+      # disk. A file the checker starts reading must be added to this list, or the step
+      # fails closed on a runner that never checked it out.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /AGENTS.md
+            /.skilled/skills/sk-code/
+            /.opencode/skills
+          sparse-checkout-cone-mode: false
       - name: Check that load-bearing rule wording has not drifted
         run: |
           set -euo pipefail
