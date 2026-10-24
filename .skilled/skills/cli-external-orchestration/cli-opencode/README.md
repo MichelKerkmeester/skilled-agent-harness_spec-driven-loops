@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.16.0
+version: 1.4.17.0
 ---
 
 # cli-opencode
@@ -36,7 +36,7 @@ An external session that needs the project's whole runtime has no native path to
 
 ### What It Does
 
-cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. OpenCode 2 is the expected and recommended version: on OpenCode 2 (2.0.32) the default dispatch is `cd <repo-root> && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`. On OpenCode 1 (1.19.3), supported for now as a fallback for users who have not updated, it is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. OpenCode 2 is the expected and recommended version: on OpenCode 2 (2.0.32) the default dispatch is `cd <repo-root> && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`. On OpenCode 1 (1.19.3), supported for now as a fallback for users who have not updated, it is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
 
@@ -62,7 +62,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 command -v opencode2 || command -v opencode
 ```
 
-If nothing prints, install with `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`. `opencode2` is preferred; `opencode` alone (OpenCode 1) still works as the fallback.
+If nothing prints, install with `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`. On the recommended layout `opencode` is OpenCode 2 and `opencode1` is the OpenCode 1 fallback; a machine with only OpenCode 1 answers to `opencode`.
 
 **Step 2: Run the provider auth pre-flight.**
 
@@ -76,7 +76,7 @@ Expected when configured: a table of providers with status and default indicator
 
 ```bash
 # On OpenCode 2 (2.0.32), the expected version:
-cd "$REPO_ROOT" && opencode2 run --standalone \
+cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "Act as a context-retrieval agent: search the spec docs with the ripgrep retrieval conventions and return the top findings." \
@@ -93,7 +93,7 @@ opencode run \
   </dev/null
 ```
 
-The two versions do not always list the same providers, so on OpenCode 2 check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. OpenCode 2 lists no `opencode-go` provider on this machine, and the `opencode-go` Go-plan quota is spent on OpenCode 1, so `llmgateway/deepseek-v4.1-flash-1017` is the single default on both versions.
+The two versions do not always list the same providers, so on OpenCode 2 check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. OpenCode 2 lists no `opencode-go` provider on this machine, and the `opencode-go` Go-plan quota is spent on OpenCode 1, so `llmgateway/deepseek-v4.1-flash-1017` is the single default on both versions.
 
 You get structured JSON events streamed to stdout as the session runs: `step_start`, `tool_use`, `text` and `step_finish`, every one carrying a `sessionID`, with the reply text in `text` events. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
 
@@ -145,7 +145,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill checks each provider on OpenCode 2 by filtering `opencode2 models --standalone` for the `<provider-id>/` prefix, or, on OpenCode 1 (fallback), with `opencode models <provider-id>`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default provider is missing (`llmgateway` on both versions) the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill checks each provider on OpenCode 2 by filtering `opencode models --standalone` for the `<provider-id>/` prefix, or, on OpenCode 1 (fallback), with `opencode models <provider-id>`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default provider is missing (`llmgateway` on both versions) the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 
@@ -241,7 +241,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `command not found: opencode` | CLI not installed or PATH not updated | `brew install opencode` or `curl -fsSL https://opencode.ai/install \| bash`, then restart your terminal |
 | Dispatch hangs at 0% CPU after the snapshot line | Missing `</dev/null` on a non-interactive run | Append `</dev/null` before any `> stdout.log 2> stderr.log` redirect |
 | `--agent general` fails or warns | The default path is selected by omitting `--agent` | Omit `--agent general`. Use `orchestrate` only when it is the documented primary route and help-verified. Route `context`, `review`, `debug` and `ai-council` through the documented primary path (or, for `ai-council`, `/deep:ai-council`) instead of a direct top-level `--agent`. |
-| `provider/model not found` or `401 Unauthorized` | The default provider is not configured on this machine (`llmgateway` on both versions) | Run `opencode providers list` (OpenCode 1) or `opencode2 models --standalone` (OpenCode 2), then log in the missing provider |
+| `provider/model not found` or `401 Unauthorized` | The default provider is not configured on this machine (`llmgateway` on both versions) | Run `opencode providers list` (OpenCode 1) or `opencode models --standalone` (OpenCode 2), then log in the missing provider |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
 | `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |
 | Unknown `--variant` flag on OpenCode 1 | Binary older than the documented baseline | Run `opencode --version` and `opencode run --help`, then upgrade. It has no `run` form on OpenCode 2. See [`references/install-and-versions.md`](./references/install-and-versions.md) |
@@ -281,7 +281,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | On OpenCode 2, `cd . && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "Say hello" </dev/null` returns a JSON event stream that starts with a `step_start` event, holds at least one `text` event, carries a `sessionID` on every event, and exits 0. On OpenCode 1 (fallback), the equivalent is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir . "Say hello" </dev/null`, with the same event names |
+| Default dispatch | On OpenCode 2, `cd . && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "Say hello" </dev/null` returns a JSON event stream that starts with a `step_start` event, holds at least one `text` event, carries a `sessionID` on every event, and exits 0. On OpenCode 1 (fallback), the equivalent is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir . "Say hello" </dev/null`, with the same event names |
 
 ---
 

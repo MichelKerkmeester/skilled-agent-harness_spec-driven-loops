@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -69,13 +69,13 @@ opencode run \
 
 ```bash
 # OpenCode 2 (2.0.32):
-cd "$REPO_ROOT" && opencode2 run --standalone \
+cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
 
-On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`). On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, but these examples omit it and use the default agent, as on OpenCode 1.
+On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`). On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, but these examples omit it and use the default agent, as on OpenCode 1.
 
 On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
 
@@ -147,7 +147,7 @@ opencode run \
 
 ```bash
 # OpenCode 2 (2.0.32):
-cd /repo && opencode2 run --standalone \
+cd /repo && opencode run --standalone \
   --format json \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   "<prompt>" 2>/dev/null | while IFS= read -r line; do
@@ -187,7 +187,7 @@ opencode run \
 
 ```bash
 # OpenCode 2 (2.0.32):
-cd /repo && opencode2 run --standalone \
+cd /repo && opencode run --standalone \
   --agent deep-review \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
@@ -225,7 +225,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 # From a session in repo A, dispatch into repo B's runtime
-cd /path/to/other-repo && opencode2 run --standalone \
+cd /path/to/other-repo && opencode run --standalone \
   --agent general \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \

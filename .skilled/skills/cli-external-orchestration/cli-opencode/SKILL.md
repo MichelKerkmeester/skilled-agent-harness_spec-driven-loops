@@ -11,11 +11,11 @@ version: 1.5.0.0
 
 > **CRITICAL: SELF-INVOCATION PROHIBITED**
 >
-> This skill dispatches to the OpenCode CLI binary (`opencode2`, or `opencode` on an install that has no v2 binary). If the agent reading this skill is itself running inside OpenCode (TUI / acp / serve / run modes, detection signals in §2), it MUST refuse to load and return the documented error message instead of dispatching. The only exception is an explicit "parallel detached" request that intentionally spawns a SEPARATE session with its own session id and state directory.
+> This skill dispatches to the OpenCode CLI binary (`opencode`; an `opencode2` that the v2 package installed is also accepted). If the agent reading this skill is itself running inside OpenCode (TUI / acp / serve / run modes, detection signals in §2), it MUST refuse to load and return the documented error message instead of dispatching. The only exception is an explicit "parallel detached" request that intentionally spawns a SEPARATE session with its own session id and state directory.
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only**, never self-invocation.
 
-Orchestrate OpenCode 2's `opencode2 run` (OpenCode 1's `opencode run` as the fallback) from external AI assistants (Claude Code, OpenCode, raw shell) AND from inside an existing OpenCode session for parallel detached workers. Three documented use cases keep the cycle risk explicit and give every dispatch path a copy-paste invocation shape.
+Orchestrate OpenCode 2's `opencode run` (OpenCode 1's `opencode run` as the fallback) from external AI assistants (Claude Code, OpenCode, raw shell) AND from inside an existing OpenCode session for parallel detached workers. Three documented use cases keep the cycle risk explicit and give every dispatch path a copy-paste invocation shape.
 
 **Core Principle**: The calling AI stays the conductor. Delegate to OpenCode for what it does best: the full plugin, skill, and MCP runtime in a one-shot dispatch. Validate and integrate the output.
 
@@ -133,7 +133,7 @@ The `route_opencode_resources(task)` body lives in [`shared-smart-router.md`](..
 
 **Verified versions.** Verified against OpenCode 2.1.4 on 2026-10-24 and OpenCode 1.19.3 on 2026-10-19. Flag and provider observations that name 2.0.32 were read on that release and have not been re-read on 2.1.4. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
 
-The resolver takes the first `opencode2` anywhere on `PATH` and falls back to the first `opencode` only when no `opencode2` exists. `OPENCODE_BIN` still overrides both.
+The resolver takes the first `opencode2` anywhere on `PATH` and falls back to the first `opencode` only when no `opencode2` exists. `OPENCODE_BIN` still overrides both. The recommended side-by-side layout has no `opencode2`, so the resolver lands on `opencode`, which is OpenCode 2 there. OpenCode 1 answers only to `opencode1` in that layout: the OpenCode 1 command lines in this skill name `opencode`, which is right on a v1-only machine, so side by side run them as `opencode1` or set `OPENCODE_BIN=opencode1`.
 
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
@@ -177,7 +177,7 @@ Core flags on OpenCode 2: the effort collapses onto `-m provider/model#<level>`,
 
 ### Model Selection
 
-On OpenCode 2, run `opencode2 models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). On OpenCode 1 (fallback), run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
+On OpenCode 2, run `opencode models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). On OpenCode 1 (fallback), run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
 
 **Four providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md). This file deliberately does not restate it: two copies of a model list is how the two disagree.
 
@@ -247,7 +247,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 1. OpenCode CLI is not installed and user has not acknowledged (provide `brew install opencode` or `curl -fsSL https://opencode.ai/install | bash`).
 2. Operator asks for a share URL. OpenCode 2 `run` has no share flag, and OpenCode 1.19.3 discontinued session sharing, so say there is no URL to publish.
-3. Binary version differs from the OpenCode 2 (2.1.4, expected) or OpenCode 1 (1.19.3, fallback) baseline. Run `opencode2 --version` / `opencode --version` and `run --help`, then surface drift and fall back or require approval.
+3. Binary version differs from the OpenCode 2 (2.1.4, expected) or OpenCode 1 (1.19.3, fallback) baseline. Run `opencode --version` (`opencode1 --version` for the side-by-side OpenCode 1) and `run --help`, then surface drift and fall back or require approval.
 4. Smart router cannot map the prompt to one of the three use cases. Surface the disambiguation checklist from UNKNOWN_FALLBACK.
 5. Self-invocation guard trips AND the prompt is ambiguous. Surface the refusal with three remediation options (sibling cli-* / fresh shell / parallel-session keywords).
 

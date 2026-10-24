@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire opencode2 name",
+      "phase 68 retire opencode2",
+      "retire opencode2 name plan",
+      "retire opencode2 name tasks",
+      "retire opencode2 name implementation summary"
+    ],
+    "key_topics": [
+      "retire",
+      "opencode2",
+      "name",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "three",
+      "names",
+      "reached",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Name",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three names reached two binaries: `opencode` and `opencode2` both ran OpenCode 2",
+    "created_at": "2026-10-24T08:39:54Z",
+    "last_save_at": "2026-10-24T08:44:46.039Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0d417a81fe27d2b3e69db51d5526cc19f9949086e5094ed3c6930654ea61aa75",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "070ab732765747a84dc870bf077ab7d2caa0d86632eaea75aebc1cd3f3a3074e",
+      "plan.md": "d30bd2e3c8c68fe84fe0d1b68e037f4438688c3a2e689a19b044912b244e0751",
+      "tasks.md": "9fa308a5aa957dbd59237fdd6762d81506c175b25c69d66af1fdff0defd85732",
+      "implementation-summary.md": "ffe40ed521c2338f6992f9739f9c0bf5e4e8f92a97750111a9bcddda50b2ef49"
+    },
+    "last_active_at": null
+  }
+}

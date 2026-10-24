@@ -53,7 +53,7 @@ contextType: "general"
 
 - [x] T007 node:test suites 129 of 129 outside the vitest file; `dispatch-audit.test.mjs` 124 of 124 under vitest
 - [x] T008 Workflow YAML parses; shellcheck clean
-- [ ] T009 Dual-version battery green in CI on the pushed commit
+- [x] T009 Dual-version battery green in CI on `12fa1b7b60` (v1, v2 and both legs), with all 17 CI runs on that commit green
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,7 +63,7 @@ contextType: "general"
 
 - [x] All local tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] CI green on the pushed commit
+- [x] CI green on the pushed commit
 <!-- /ANCHOR:completion -->
 
 ---

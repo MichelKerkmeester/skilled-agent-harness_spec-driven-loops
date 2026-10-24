@@ -11,7 +11,7 @@ trigger_phrases:
   - "install opencode v2 and v1"
 importance_tier: important
 contextType: implementation
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # OpenCode CLI - Install and Version Layouts
@@ -38,7 +38,7 @@ Claims in the prose carry one of three labels. The layout table in section 3 sum
 
 ### The Fact Behind Every Collision
 
-Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin` returns `{ opencode: 'bin/opencode.exe' }` and `npm view @opencode/cli bin` returns `{ opencode: 'bin/opencode.exe', opencode2: 'bin/opencode.exe' }`]. One prefix therefore cannot hold both versions under that name. v2 is the expected version, so it keeps both of its names, `opencode` and `opencode2`, and v1 is the one that moves: side by side it answers only to the `opencode1` launcher.
+Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin` returns `{ opencode: 'bin/opencode.exe' }` and `npm view @opencode/cli bin` returns `{ opencode: 'bin/opencode.exe', opencode2: 'bin/opencode.exe' }`]. One prefix therefore cannot hold both versions under that name. v2 is the expected version, so it keeps the name `opencode`, and v1 is the one that moves: side by side it answers only to the `opencode1` launcher. The second v2 name, `opencode2`, is retired in that layout.
 
 ### When to Use
 
@@ -112,22 +112,21 @@ opencode --version    # opencode v2.1.4
 
 ### Layout 2: Side by Side (Recommended for One Machine)
 
-v2 takes the default names and v1 moves to `opencode1`. The working layout is four artifacts [confirmed: this is the state of this machine on 2026-10-24].
+v2 takes the name `opencode` and v1 moves to `opencode1`; no `opencode2` is on `PATH`. The working layout is four artifacts [confirmed: this is the state of this machine on 2026-10-24].
 
 1. v1 in the default npm prefix, `~/.local/lib/node_modules/opencode-ai`. Its npm install writes `~/.local/bin/opencode`, and the next step takes that name back.
-2. v2 in a second prefix, `~/.local/opencode-v2`. The install lands two names there, `opencode` and `opencode2`, both pointing at one binary [confirmed: `~/.local/opencode-v2/bin/` holds both symlinks to `../lib/node_modules/@opencode/cli/bin/opencode.exe`].
-3. `~/.local/bin/opencode` and `~/.local/bin/opencode2`, both symlinks to `../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe`. A bare `opencode` and `opencode2` both run v2, against the default `opencode.db`.
-4. The launcher at `~/.local/bin/opencode1`, a `/bin/sh` script that sets `OPENCODE_DB=opencode-v1.db` and execs the v1 binary.
+2. v2 in a second prefix, `~/.local/opencode-v2`. The install lands two names there, `opencode` and `opencode2`, both pointing at one binary [confirmed: `~/.local/opencode-v2/bin/` holds both symlinks to `../lib/node_modules/@opencode/cli/bin/opencode.exe`]. That prefix bin is not on `PATH`.
+3. `~/.local/bin/opencode`, a symlink to `../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe`. A bare `opencode` runs v2 against the default `opencode.db`.
+4. The launcher at `~/.local/bin/opencode1`, a `/bin/sh` script that sets `OPENCODE_DB=opencode-v1.db` and `OPENCODE_DISABLE_AUTOUPDATE=1` and execs the v1 binary.
 
 ```bash
 npm install -g --prefix "$HOME/.local" opencode-ai@1.19.3
 npm install -g --prefix "$HOME/.local/opencode-v2" @opencode/cli@2.1.4
 ln -sfn ../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe "$HOME/.local/bin/opencode"
-ln -sfn ../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe "$HOME/.local/bin/opencode2"
 # then write ~/.local/bin/opencode1 (the text is in section 4)
 ```
 
-Order matters: the links come after the v1 install, because that install writes the name `opencode`. Whether a later `npm install` of `opencode-ai` into `~/.local` overwrites the v2 link or stops on `EEXIST` was not probed [unknown]. Run `opencode-setup.sh check` after any v1 npm operation, and rerun `both` if `opencode` reports v1.
+Order matters: the link comes after the v1 install, because that install writes the name `opencode`. Any later reinstall of `opencode-ai` into `~/.local` takes the name back. v1's own auto-update does exactly that [confirmed: on 2026-10-24 v1 updated itself to 1.19.4 and `~/.local/bin/opencode` pointed at v1 again], which is why the launcher turns auto-update off. Run `opencode-setup.sh check` after any v1 npm operation, and rerun `both` if `opencode` reports v1.
 
 Before the first v2 run on a machine that already has v1 history, copy `opencode.db` for v1, because v2 migrates it in place:
 
@@ -153,7 +152,7 @@ No launcher is needed, because with only v1 present there is nothing to disambig
 | Mode | What it does |
 |------|--------------|
 | `v2` (recommended) | Installs v2 to the standard prefix. Refuses when a v1 `opencode` already resolves and prints the `both` hint. |
-| `both` (recommended) | Installs v1 and v2 into the two prefixes, links `opencode` and `opencode2` to v2, writes the `opencode1` launcher last, then reports all three names. A file left at either v2 name by an earlier layout is moved aside to `<name>.pre-v2-default`, never deleted. |
+| `both` (recommended) | Installs v1 and v2 into the two prefixes, links `opencode` to v2, retires `opencode2`, writes the `opencode1` launcher last, then reports both names. An `opencode2` link into the v2 prefix is removed; any other file at `opencode` or `opencode2` is moved aside to `<name>.pre-v2-default`, never deleted. |
 | `v1` (fallback) | Installs v1 only, for users who have not updated. Refuses when a v2 `opencode` already resolves and prints the `both` hint. |
 | `check` | Changes nothing. Reports the resolved path and the version for each name. |
 
@@ -192,8 +191,10 @@ The launcher carries the isolation, not the packages. Its text, verbatim [confir
 #!/bin/sh
 # OpenCode 1 fallback. OpenCode 2 owns opencode.db and migrates it in place,
 # so v1 keeps its own copy. A relative OPENCODE_DB resolves under the shared data directory.
+# An auto-update reinstalls the v1 package, which takes the opencode name back from v2.
 : "${OPENCODE_DB:=opencode-v1.db}"
-export OPENCODE_DB
+: "${OPENCODE_DISABLE_AUTOUPDATE:=1}"
+export OPENCODE_DB OPENCODE_DISABLE_AUTOUPDATE
 exec "$HOME/.local/lib/node_modules/opencode-ai/bin/opencode.exe" "$@"
 ```
 
@@ -226,7 +227,7 @@ The runtime resolves the executor in this order [documented: the cli-opencode di
 2. Otherwise take `opencode2` from anywhere on `PATH`.
 3. Only when no `opencode2` exists anywhere on `PATH`, fall back to the first `opencode`.
 
-Both halves are worth knowing. With no `OPENCODE_BIN`, the pick on this machine is `~/.local/bin/opencode2`, so a bare dispatch runs v2 [confirmed]. In the side-by-side layout `opencode` is v2 as well, so reaching v1 takes `OPENCODE_BIN=opencode1` [confirmed: `opencode1 --version` reports `1.19.3`]. A v2-only layout that installs only `opencode` reaches v2 through step 3, and a v1-only machine reaches v1 the same way.
+Both halves are worth knowing. With no `OPENCODE_BIN`, the side-by-side layout has no `opencode2`, so the pick on this machine is `~/.local/bin/opencode` and a bare dispatch runs v2 [confirmed]. Reaching v1 takes `OPENCODE_BIN=opencode1` [confirmed: `opencode1 --version` reports a 1.x version]. A v2-only layout that installs only `opencode` reaches v2 through step 3, and a v1-only machine reaches v1 the same way.
 
 The rule is deliberately v2-first. OpenCode 2 is the version the repository expects and recommends; OpenCode 1 is kept only as a fallback for machines that have not updated. Resolution therefore never lets an earlier `opencode` on `PATH` beat an `opencode2` that exists later, and a `check` that reports `1.19.3` for a bare `opencode` is reporting the fallback.
 
@@ -252,14 +253,14 @@ The two versions list different providers, so a model id that works on one can b
 
 | Command | Roster-relevant providers listed |
 |---------|----------------------------------|
-| `opencode2 models --standalone` (2.0.32, recommended) | llmgateway-providers, llmgateway, opencode |
+| `opencode models --standalone` (2.0.32, recommended) | llmgateway-providers, llmgateway, opencode |
 | `opencode models` (1.19.3, fallback) | llmgateway-providers, llmgateway, opencode-go, openai, opencode, minimax |
 
 A listing also shows any provider whose credential is still in the local auth store, including one that is off the roster. Such a provider is not a dispatch target.
 
-v2 2.0.32 lists `llmgateway`, `llmgateway-providers` and `opencode`; v1 1.19.3 lists `opencode-go`, `openai` and `minimax`, which v2 2.0.32 does not [confirmed: both versions' model listings on 2026-10-18, and `opencode2 models --standalone` on 2026-10-20, which lists the same v2 provider prefixes]. The former OpenCode 1 default model, `opencode-go/deepseek-v4.1-flash`, names the `opencode-go` provider, which v2 does not list [confirmed: `opencode models` on 1.19.3], so the default on both versions is `llmgateway/deepseek-v4.1-flash-1017`, which v2 does list.
+v2 2.0.32 lists `llmgateway`, `llmgateway-providers` and `opencode`; v1 1.19.3 lists `opencode-go`, `openai` and `minimax`, which v2 2.0.32 does not [confirmed: both versions' model listings on 2026-10-18, and `opencode models --standalone` on 2026-10-20, which lists the same v2 provider prefixes]. The former OpenCode 1 default model, `opencode-go/deepseek-v4.1-flash`, names the `opencode-go` provider, which v2 does not list [confirmed: `opencode models` on 1.19.3], so the default on both versions is `llmgateway/deepseek-v4.1-flash-1017`, which v2 does list.
 
-Check the provider on the version you are about to dispatch. For a v2 run, list with `opencode2 models --standalone` and look for the `<provider>/` prefix: v2 `models` takes no provider argument, and without `--standalone` it asks the shared background service. For a v1 run, use `opencode1 models` side by side, or `opencode models` on a v1-only machine. Whether credentials added on one version reach the other was not probed [unknown].
+Check the provider on the version you are about to dispatch. For a v2 run, list with `opencode models --standalone` and look for the `<provider>/` prefix: v2 `models` takes no provider argument, and without `--standalone` it asks the shared background service. For a v1 run, use `opencode1 models` side by side, or `opencode models` on a v1-only machine. Whether credentials added on one version reach the other was not probed [unknown].
 
 ---
 
@@ -269,13 +270,12 @@ Check the provider on the version you are about to dispatch. For a v2 run, list 
 
 ```bash
 opencode --version    # opencode v2.1.4   -> v2 (recommended)
-opencode2 --version   # opencode v2.1.4   -> v2 (recommended)
-opencode1 --version   # 1.19.3            -> v1 (fallback)
+opencode1 --version   # 1.19.4            -> v1 (fallback)
 ```
 
-All three lines are observed output on this machine on 2026-10-24 [confirmed].
+Both lines are observed output on this machine on 2026-10-24 [confirmed]. The v1 line reads 1.19.4 because v1 updated itself before the launcher turned auto-update off; the pin is still 1.19.3.
 
-Do not detect by name. A v1-only machine answers v1 to `opencode`, every other layout answers v2 to it, and only the side-by-side layout has `opencode1` [documented: the npm registry, where `@opencode/cli` declares both `opencode` and `opencode2`]. Classify by what the binary prints:
+Do not detect by name. A v1-only machine answers v1 to `opencode`, every other layout answers v2 to it, and only the side-by-side layout has `opencode1` [documented: the npm registry, where `@opencode/cli` declares both `opencode` and `opencode2`, so a plain v2 install also answers to `opencode2`]. Classify by what the binary prints:
 
 - an `opencode v2.0.32` shape, a word before the number, is v2
 - a bare `1.19.3` shape, digits and dots only, is v1
@@ -298,14 +298,13 @@ The setup helper points `XDG_DATA_HOME` at a temporary folder for each `--versio
 
 ```bash
 "$HOME/.local/bin/opencode" --version    # v2
-"$HOME/.local/bin/opencode2" --version   # v2
 "$HOME/.local/bin/opencode1" --version   # v1
 ls -1 "$HOME/.local/share/opencode"/*.db
 ```
 
 ### The `check` Mode
 
-`../scripts/opencode-setup.sh check` runs all of the above and changes nothing. It prints the resolved path and the reported version for `opencode`, `opencode2` and `opencode1`, which version the bare word `opencode` runs, and the database files present [documented: the helper contract].
+`../scripts/opencode-setup.sh check` runs all of the above and changes nothing. It prints the resolved path and the reported version for `opencode`, `opencode1` and any leftover `opencode2`, which version the bare word `opencode` runs, and the database files present [documented: the helper contract].
 
 ---
 
@@ -360,18 +359,18 @@ npm uninstall -g --prefix "$HOME/.local/opencode-v2" @opencode/cli   # when the 
 # v1 leg (fallback)
 npm uninstall -g --prefix "$HOME/.local" opencode-ai
 
-# after the v2 leg: remove ~/.local/bin/opencode and ~/.local/bin/opencode2, now dangling links
+# after the v2 leg: remove ~/.local/bin/opencode, now a dangling link
 # after the v1 leg: remove ~/.local/bin/opencode1, now a launcher with no binary
 # after either: DO NOT delete ~/.config/opencode
 ```
 
 ### Order Matters
 
-Each leg leaves names behind. Removing v2 leaves `opencode` and `opencode2` pointing at a missing binary, and removing v1 leaves `opencode1` execing one [documented: the links' targets and the launcher's exec line]. The leftovers are harmless but confusing, and the next `check` reports names that no longer work. Whether `npm uninstall` of `opencode-ai` also removes the `opencode` link, which now points into the v2 prefix, was not probed [unknown]. Run `check` afterwards.
+Each leg leaves names behind. Removing v2 leaves `opencode` pointing at a missing binary, and removing v1 leaves `opencode1` execing one [documented: the links' targets and the launcher's exec line]. The leftovers are harmless but confusing, and the next `check` reports names that no longer work. Whether `npm uninstall` of `opencode-ai` also removes the `opencode` link, which now points into the v2 prefix, was not probed [unknown]. Run `check` afterwards.
 
 ### What v2's Uninstall Keeps
 
-`opencode2 uninstall` is described as `Uninstall OpenCode, keeping session data, configuration, and state`, and it offers `--dry-run` to print the manifest and `--force` to skip confirmation [confirmed: `uninstall --help` on 2.0.32]. Run `--dry-run` first, read it, then `--force`.
+`opencode uninstall` is described as `Uninstall OpenCode, keeping session data, configuration, and state`, and it offers `--dry-run` to print the manifest and `--force` to skip confirmation [confirmed: `uninstall --help` on 2.0.32]. Run `--dry-run` first, read it, then `--force`.
 
 On the v1 side, `npm uninstall -g --prefix ~/.local opencode-ai` removes the package. The session data in `~/.local/share/opencode/` is untouched by the npm operation [documented: the npm registry].
 
@@ -389,10 +388,10 @@ Whether the v2 background service outlives the uninstall was not probed [unknown
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| `opencode --version` prints `1.19.3` on a side-by-side machine | A v1 npm operation took the `opencode` name back | Rerun `opencode-setup.sh both`, which relinks `opencode` to v2 |
+| `opencode --version` prints `1.19.3` on a side-by-side machine | A v1 npm operation or a v1 auto-update took the `opencode` name back | Rerun `opencode-setup.sh both`, which relinks `opencode` to v2 |
 | A v1 run opens the database v2 migrated | `OPENCODE_DB` is unset and the run bypassed the `opencode1` launcher | Run `opencode1` from `~/.local/bin`, or set `OPENCODE_DB=opencode-v1.db` yourself |
 | A dispatch picks a version you did not expect | `$OPENCODE_BIN` is set; otherwise the first `opencode2` anywhere on `PATH` wins, and the first `opencode` is the fallback only when no `opencode2` exists | Read the resolved path, then pin `$OPENCODE_BIN` for the run |
-| `provider/model not found` on v2 for a model that works on v1 | The provider lists differ per version | Confirm the provider with `models` on the v2 name in your layout (`opencode2` side by side, `opencode` in a v2-only layout) before the dispatch |
+| `provider/model not found` on v2 for a model that works on v1 | The provider lists differ per version | Confirm that `opencode models --standalone` lists the `<provider>/` prefix before the dispatch |
 | `opencode1` prints `No such file or directory` and exits 126 [confirmed: a launcher whose target is missing, run on this machine] | The v1 package was uninstalled or moved | Reinstall v1, or remove the launcher |
 | `npm` aborts with a dyld `Library not loaded` error | The node that npm runs cannot start [confirmed: Homebrew node 26.11.1 on this machine] | Put a working node earlier on `PATH` |
 
@@ -404,7 +403,7 @@ These constraints survive every layout. Plan around them rather than trying to f
 2. **`upgrade --major` is a migration that removes v1.** No recipe makes it safe on a side-by-side machine.
 3. **The config directory is shared.** One `~/.config/opencode` serves both versions, and a key written for one is live on the other immediately. No isolation exists to document.
 4. **The default database is shared.** Both versions open `opencode.db` unless `OPENCODE_DB` is set, and v2 migrates it. The `opencode1` launcher is the only thing keeping v1 off the migrated file.
-5. **v2's background service has no v1 analogue [confirmed: `opencode2 --help` lists a `service` group that `opencode --help` does not, and one service process serves the v2 clients on this machine].** Whether it outlives an uninstall was not probed [unknown].
+5. **v2's background service has no v1 analogue [confirmed: `opencode --help` lists a `service` group that `opencode --help` does not, and one service process serves the v2 clients on this machine].** Whether it outlives an uninstall was not probed [unknown].
 6. **`upgrade --method` and `--log-level` are version-specific.** A shared recipe must omit both.
 7. **bun and pnpm two-prefix behaviour is unestablished.** Only npm was verified for the two-prefix layout. Treat the other managers as single-version rather than implying parity.
 
@@ -412,7 +411,7 @@ These constraints survive every layout. Plan around them rather than trying to f
 
 | Question | Status |
 |----------|--------|
-| Does the v2 service outlive `opencode2 uninstall`? | [unknown] Not probed. |
+| Does the v2 service outlive `opencode uninstall`? | [unknown] Not probed. |
 | Do `bun add -g` and `pnpm add -g` support the two-prefix layout? | [unknown] Not probed. |
 | Does `upgrade --major` prompt before it acts? | [unknown] Not probed. |
 | Do the `@opencode/cli` install scripts start a service? | [unknown] Not probed. |

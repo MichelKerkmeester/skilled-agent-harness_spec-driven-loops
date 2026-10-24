@@ -6,8 +6,9 @@
 
 // The helper derives every path from HOME, so each test builds a throwaway HOME
 // that already holds both pinned packages. The installs are then skipped and
-// only the name wiring runs: opencode and opencode2 must answer with v2, and the
-// opencode1 launcher must run v1 against its own database.
+// only the name wiring runs: opencode must answer with v2, opencode2 must be
+// retired, and the opencode1 launcher must run v1 against its own database with
+// auto-update off.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND PATHS
@@ -46,7 +47,7 @@ function buildEarlierLayout() {
   fs.writeFileSync(path.join(v1Pkg, 'package.json'), JSON.stringify({ version: V1_VERSION }));
   writeExecutable(
     path.join(v1Pkg, 'bin', 'opencode.exe'),
-    `#!/bin/sh\nif [ "$1" = "--version" ]; then echo ${V1_VERSION}; else echo "db=$OPENCODE_DB"; fi\n`,
+    `#!/bin/sh\nif [ "$1" = "--version" ]; then echo ${V1_VERSION}; else echo "db=$OPENCODE_DB autoupdate-off=$OPENCODE_DISABLE_AUTOUPDATE"; fi\n`,
   );
 
   const v2Pkg = path.join(local, 'opencode-v2', 'lib', 'node_modules', '@opencode', 'cli');
@@ -78,25 +79,35 @@ function runHelper(home, bin, mode) {
 // 3. TESTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('both gives opencode and opencode2 to v2 and opencode1 to v1 on its own database', (t) => {
+test('both gives opencode to v2, retires opencode2 and runs opencode1 on its own database', (t) => {
   const { home, bin } = buildEarlierLayout();
   t.after(() => fs.rmSync(home, { recursive: true, force: true }));
 
   const result = runHelper(home, bin, 'both');
   assert.equal(result.status, 0, result.stderr);
 
-  for (const name of ['opencode', 'opencode2']) {
-    assert.equal(fs.readlinkSync(path.join(bin, name)), V2_LINK_TARGET, name);
-  }
+  assert.equal(fs.readlinkSync(path.join(bin, 'opencode')), V2_LINK_TARGET);
+  assert.ok(!fs.existsSync(path.join(bin, 'opencode2')), 'opencode2 is retired');
   assert.ok(fs.existsSync(path.join(bin, 'opencode2.pre-v2-default')), 'the earlier launcher is kept aside');
 
   const launched = spawnSync(path.join(bin, 'opencode1'), ['run'], { encoding: 'utf8', env: { HOME: home } });
-  assert.equal(launched.stdout, 'db=opencode-v1.db\n');
+  assert.equal(launched.stdout, 'db=opencode-v1.db autoupdate-off=1\n');
 
   const rerun = runHelper(home, bin, 'both');
   assert.equal(rerun.status, 0, rerun.stderr);
-  assert.match(rerun.stdout, /opencode2: left unchanged/);
+  assert.match(rerun.stdout, /opencode: left unchanged/);
   assert.match(rerun.stdout, /launcher: left unchanged/);
+});
+
+test('both removes an opencode2 link into the v2 prefix', (t) => {
+  const { home, bin } = buildEarlierLayout();
+  t.after(() => fs.rmSync(home, { recursive: true, force: true }));
+  fs.rmSync(path.join(bin, 'opencode2'));
+  fs.symlinkSync(V2_LINK_TARGET, path.join(bin, 'opencode2'));
+
+  const result = runHelper(home, bin, 'both');
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(!fs.existsSync(path.join(bin, 'opencode2')) && !fs.existsSync(path.join(bin, 'opencode2.pre-v2-default')));
 });
 
 test('both refuses to move a file aside onto an earlier aside copy', (t) => {

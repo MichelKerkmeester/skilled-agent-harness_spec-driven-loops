@@ -195,8 +195,10 @@ launcher_content() {
 #!/bin/sh
 # OpenCode 1 fallback. OpenCode 2 owns opencode.db and migrates it in place,
 # so v1 keeps its own copy. A relative OPENCODE_DB resolves under the shared data directory.
+# An auto-update reinstalls the v1 package, which takes the opencode name back from v2.
 : "${OPENCODE_DB:=opencode-v1.db}"
-export OPENCODE_DB
+: "${OPENCODE_DISABLE_AUTOUPDATE:=1}"
+export OPENCODE_DB OPENCODE_DISABLE_AUTOUPDATE
 exec "$HOME/.local/lib/node_modules/opencode-ai/bin/opencode.exe" "$@"
 LAUNCHER_EOF
 }
@@ -223,6 +225,27 @@ link_v2_name() {
     fi
     ln -sfn "$V2_LINK_TARGET" "$path"
     log_info "$name: now runs v2 ($path)"
+}
+
+# Retire the opencode2 name: a link into the v2 prefix is removed, anything else is moved aside, never deleted
+retire_opencode2() {
+    local path="$BIN/opencode2" aside="$BIN/opencode2.pre-v2-default"
+    if [[ ! -e "$path" ]] && [[ ! -L "$path" ]]; then
+        return 0
+    fi
+    if [[ -L "$path" ]] && [[ "$(readlink "$path")" == "$V2_LINK_TARGET" ]]; then
+        print_step "remove \"$path\"" "ln -s \"$V2_LINK_TARGET\" \"$path\""
+        rm "$path"
+    else
+        if [[ -e "$aside" ]] || [[ -L "$aside" ]]; then
+            log_error "$aside already exists; moving $path aside would overwrite it"
+            log_error "Nothing was moved; remove or rename $aside and rerun this mode"
+            exit 1
+        fi
+        print_step "move \"$path\" aside to \"$aside\"" "mv \"$aside\" \"$path\""
+        mv "$path" "$aside"
+    fi
+    log_info "opencode2: retired ($path)"
 }
 
 # Write the launcher only when absent or byte-different, so reruns stay idempotent
@@ -267,7 +290,7 @@ verify_one() {
 # Verify all three names after the launcher lands; every line prints before any failure exit
 verify_pair() {
     local failed=0 name want
-    for name in opencode:v2 opencode2:v2 opencode1:v1; do
+    for name in opencode:v2 opencode1:v1; do
         want="${name#*:}"
         name="${name%%:*}"
         if ! probe_shape "$BIN/$name" "$want"; then
@@ -352,7 +375,7 @@ mode_check() {
     log_pass "check complete; nothing under HOME was changed"
 }
 
-# Build the side-by-side layout: both packages installed, opencode and opencode2 linked to v2, the opencode1 launcher last
+# Build the side-by-side layout: both packages installed, opencode linked to v2, opencode2 retired, the opencode1 launcher last
 mode_both() {
     print_paths
     require_npm
@@ -385,7 +408,7 @@ mode_both() {
 
     # The v1 install takes the name opencode, so the v2 links are written after it
     link_v2_name opencode
-    link_v2_name opencode2
+    retire_opencode2
     write_launcher
 
     if [[ -e "$DB_DIR/opencode.db" ]] && [[ ! -e "$DB_DIR/opencode-v1.db" ]]; then
@@ -396,7 +419,7 @@ mode_both() {
 
     ensure_probe_dir
     verify_pair
-    log_pass "v2 answers to opencode and opencode2; v1 answers to opencode1"
+    log_pass "v2 answers to opencode; v1 answers to opencode1"
 }
 
 # Install v1 only; refuse when a v2 already answers to the name opencode
@@ -482,7 +505,7 @@ Usage: $SCRIPT_NAME <v2|both|v1|check>
 
 Modes:
   v2     Install v2 only into the default prefix (recommended)
-  both   Install v1 and v2 side by side: opencode and opencode2 run v2, the opencode1 launcher runs v1 (recommended)
+  both   Install v1 and v2 side by side: opencode runs v2, the opencode1 launcher runs v1 (recommended)
   v1     Install v1 only into the default prefix (fallback for users who have not updated)
   check  Report what each name resolves to; change nothing
 

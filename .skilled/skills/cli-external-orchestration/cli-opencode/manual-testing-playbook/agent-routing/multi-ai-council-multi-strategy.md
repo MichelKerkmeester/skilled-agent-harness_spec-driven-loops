@@ -1,12 +1,12 @@
 ---
 title: "CO-017 -- Ultra-think multi-strategy planning"
 description: "This scenario validates the ai-council scoped-write agent for `CO-017`. It focuses on confirming `--agent orchestrate` dispatching `@ai-council` (mode: subagent) produces multiple distinct strategies scored across a rubric and respects the scoped-write constraint (writes ONLY under the pre-bound packet's `ai-council/**` subtree, no writes elsewhere)."
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # CO-017 -- Ultra-think multi-strategy planning
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-017`.
 

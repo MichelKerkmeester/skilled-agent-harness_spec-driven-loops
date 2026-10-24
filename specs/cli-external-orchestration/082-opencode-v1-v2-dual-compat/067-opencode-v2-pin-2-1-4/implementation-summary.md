@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-24T08:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Moved the OpenCode 2 pin to 2.1.4 and verified it with the v2 battery"
-    next_safe_action: "Watch the OpenCode Dual-Version Battery on the pushed commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-067-opencode-v2-pin-2-1-4"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -93,7 +93,7 @@ The v2 battery ran on the installed 2.1.4 before any text changed. The edits wer
 | node:test unit and hook suites | PASS: 129 of 129 (the one other file is a vitest suite) |
 | `dispatch-audit.test.mjs` under vitest | PASS: 124 of 124 |
 | Workflow YAML parse, shellcheck | PASS |
-| CI on the pushed commit | Pending |
+| CI on `12fa1b7b60` | PASS: OpenCode Dual-Version Battery (v1, v2, both) and all 17 runs green |
 <!-- /ANCHOR:verification -->
 
 ---

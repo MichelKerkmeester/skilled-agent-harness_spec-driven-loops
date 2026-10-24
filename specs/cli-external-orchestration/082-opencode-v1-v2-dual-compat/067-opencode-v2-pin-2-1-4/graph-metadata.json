@@ -32,7 +32,7 @@
       "installed"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The skill pinned OpenCode 2 at 2.0.32, but 2.1.4 is the npm `latest` and the installed version",
     "created_at": "2026-10-24T07:52:29Z",
-    "last_save_at": "2026-10-24T07:53:35.969Z",
+    "last_save_at": "2026-10-24T08:44:44.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c5feb5eb759bd4156e99c471b8c3af22acfa5738a5dd7c4c9dae15c1d9e17fc",
+    "source_fingerprint": "sha256:a16f4a313db55f9c0e58f0d4c8213a17609f7a9c3ebfb931ed2d8ec11806d725",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ddc50a546f04439fb259866b80f0244cf66992bf71b594bea8ec829215f5186a",
       "plan.md": "fefe00a5e1f8a2bbc575813ab5d9ab7dc711a2578e7812ddea2cdd7ec0727fcf",
-      "tasks.md": "81d8ad4f13d282e94e0e17abcaada35efae56ce72da0e00608d592b6aff557a1",
-      "implementation-summary.md": "c4a81346bfdf310b4d6d7563291cabdced8915635e64c890faab0a7abcad6123"
+      "tasks.md": "31c6426144b8b2f84c5a5d7112e6372d3d60a207e3133d82f58ace4f058fed6e",
+      "implementation-summary.md": "9859361ec595fef985d47609c8ff31110761748d8e1d0fb8df8c7f8008f65a7f"
     },
     "last_active_at": null
   }

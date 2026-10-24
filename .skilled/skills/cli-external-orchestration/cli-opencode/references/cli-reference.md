@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.22.0
+version: 1.4.23.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -41,7 +41,7 @@ Provide a single-source reference for the OpenCode CLI surface: every subcommand
 
 | Source | URL |
 |--------|-----|
-| **Binary** | `$(command -v opencode2)` for OpenCode 2, the recommended target; `opencode` (typically `~/.superset/bin/opencode` or another local bin path) is the OpenCode 1 fallback. With no `OPENCODE_BIN`, resolution takes the first `opencode2` anywhere on `PATH` and only falls back to the first `opencode` in `PATH` order when none exists |
+| **Binary** | `opencode` for OpenCode 2, the recommended target; side by side, the OpenCode 1 fallback is `opencode1`, and a v1-only machine names it `opencode`. With no `OPENCODE_BIN`, resolution takes the first `opencode2` anywhere on `PATH` and only falls back to the first `opencode` in `PATH` order when none exists |
 | **Repository** | https://github.com/sst/opencode |
 | **Version baseline** | OpenCode 2 (recommended): 2.1.4 |
 | **Version baseline** | OpenCode 1 (fallback): 1.19.3 |
@@ -81,7 +81,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `opencode debug` | Debugging and troubleshooting tools | YES (for `debug skill` and `debug agent` listings) |
 | `opencode mcp` | Manage MCP server registrations | No |
 | `opencode providers` (alias `auth`) | Manage AI providers and credentials | No (operator-driven setup) |
-| `opencode2 models --standalone` on OpenCode 2 | List available models (OpenCode 2; takes no provider argument. On OpenCode 1 the form is `opencode models [provider]`) | YES (for capability discovery) |
+| `opencode models --standalone` on OpenCode 2 | List available models (OpenCode 2; takes no provider argument. On OpenCode 1 the form is `opencode models [provider]`) | YES (for capability discovery) |
 | `opencode session` | Manage sessions | No (state inspection only) |
 | `opencode export [sessionID]` | Export session data as JSON | YES (for memory handback flows) |
 | `opencode stats` | Token and cost statistics | No |
@@ -100,7 +100,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 
 OpenCode 2 (2.0.32) is the recommended target, so its `run` surface comes first. The OpenCode 1 (1.19.3) fallback surface and the flags only it takes follow. The full per-version flag delta and the side-by-side layouts are in [install-and-versions.md](./install-and-versions.md).
 
-**OpenCode 2 (recommended), `opencode2 run`:**
+**OpenCode 2 (recommended), `opencode run`:**
 
 | Flag / Option | Type | Purpose |
 |---------------|------|---------|
@@ -154,7 +154,7 @@ The skill builds every dispatch from a base shape and overlays use-case-specific
 
 ```bash
 # OpenCode 2 (recommended)
-cd "$REPO_ROOT" && opencode2 run --standalone \
+cd "$REPO_ROOT" && opencode run --standalone \
   --agent <agent-slug> \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
@@ -172,7 +172,7 @@ opencode run \
   "<prompt>"
 ```
 
-On OpenCode 2 the working directory moves into the `cd`, and the `--variant max` effort becomes the `#max` suffix on `-m`. On OpenCode 1 the working directory rides in `--dir` and effort stays in `--variant`. A child dispatch adds `--standalone`. OpenCode 2 lists no `opencode-go` provider on this machine and the `opencode-go` Go-plan quota is spent on OpenCode 1, so `llmgateway/deepseek-v4.1-flash-1017` is the single default on both versions; a v2 reader confirms that `opencode2 models --standalone` lists the `llmgateway/` prefix first.
+On OpenCode 2 the working directory moves into the `cd`, and the `--variant max` effort becomes the `#max` suffix on `-m`. On OpenCode 1 the working directory rides in `--dir` and effort stays in `--variant`. A child dispatch adds `--standalone`. OpenCode 2 lists no `opencode-go` provider on this machine and the `opencode-go` Go-plan quota is spent on OpenCode 1, so `llmgateway/deepseek-v4.1-flash-1017` is the single default on both versions; a v2 reader confirms that `opencode models --standalone` lists the `llmgateway/` prefix first.
 
 | Flag | Default | Reason |
 |------|---------|--------|
@@ -180,7 +180,7 @@ On OpenCode 2 the working directory moves into the `cd`, and the `--variant max`
 | `--model`, `--variant max` (OpenCode 1, fallback) | `llmgateway/deepseek-v4.1-flash-1017`, variant max | Same default model. The default is max-tier-pinned by policy, so a lower requested effort is upgraded automatically. On OpenCode 2 the effort rides on `-m` as `#max` |
 | `--agent` | per use case | Required for use case 1 / 3, optional for use case 2 |
 | `--format json` | json | Structured event stream is what external runtimes parse |
-| `--dir` (OpenCode 1, fallback) | repo root | Pin the working directory to avoid CWD ambiguity. On OpenCode 2 there is no `--dir`, so start the dispatch in the repo root: `cd "$REPO_ROOT" && opencode2 run ...` |
+| `--dir` (OpenCode 1, fallback) | repo root | Pin the working directory to avoid CWD ambiguity. On OpenCode 2 there is no `--dir`, so start the dispatch in the repo root: `cd "$REPO_ROOT" && opencode run ...` |
 
 ### Stdin handling: `</dev/null` is required for non-interactive dispatch
 
@@ -206,13 +206,13 @@ On OpenCode 2, `--port` is absent on `run` (see [install-and-versions.md](./inst
 
 ### Provider Auth Pre-Flight (smart fallback)
 
-Before the first dispatch in a session, run a one-shot auth pre-flight so a missing default doesn't fail mid-dispatch. OpenCode 2 (2.0.32) is the recommended path: list with `opencode2 models --standalone` and filter for the `<provider-id>/` prefix, because v2 `models` takes no provider argument. On the OpenCode 1 fallback, `opencode models <provider-id>` exits 0 when the provider is configured and 1 when it is not; OpenCode 2 rejects that form with `Unexpected positional argument`. `--standalone` runs a private server instead of asking the shared background service. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
+Before the first dispatch in a session, run a one-shot auth pre-flight so a missing default doesn't fail mid-dispatch. OpenCode 2 (2.0.32) is the recommended path: list with `opencode models --standalone` and filter for the `<provider-id>/` prefix, because v2 `models` takes no provider argument. On the OpenCode 1 fallback, `opencode models <provider-id>` exits 0 when the provider is configured and 1 when it is not; OpenCode 2 rejects that form with `Unexpected positional argument`. `--standalone` runs a private server instead of asking the shared background service. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
 
-Run the block for the version you are about to dispatch. A v2-only layout names its binary `opencode`; use the OpenCode 2 block there and replace `opencode2` with `opencode`.
+Run the block for the version you are about to dispatch. Side by side, OpenCode 1 answers to `opencode1`, so replace `opencode` with `opencode1` in the OpenCode 1 block there.
 
 ```bash
 # OpenCode 2 pre-flight: `models` takes no provider argument, so list once on a private server and filter per provider
-V2_MODELS=$(opencode2 models --standalone 2>/dev/null)
+V2_MODELS=$(opencode models --standalone 2>/dev/null)
 printf '%s\n' "$V2_MODELS" | grep '^llmgateway/'  >/dev/null && LLMGATEWAY_OK=1 || LLMGATEWAY_OK=0    # LLM Gateway (DevPass); the default route
 printf '%s\n' "$V2_MODELS" | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0  # OpenCode Go gateway (2.0.32 lists none here unless logged in separately)
 DEFAULT_OK=$LLMGATEWAY_OK                                                                             # OpenCode 2 default is on LLM Gateway
@@ -232,7 +232,7 @@ echo "default=$DEFAULT_OK opencode_go=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOK
 
 | State | DEFAULT_OK | Action |
 |-------|----------------|--------|
-| Default available | 1 | Proceed with `-m llmgateway/deepseek-v4.1-flash-1017#max` on OpenCode 2 (confirm that `opencode2 models --standalone` lists the `llmgateway/` prefix first), or `--model llmgateway/deepseek-v4.1-flash-1017 --variant max` on the OpenCode 1 fallback |
+| Default available | 1 | Proceed with `-m llmgateway/deepseek-v4.1-flash-1017#max` on OpenCode 2 (confirm that `opencode models --standalone` lists the `llmgateway/` prefix first), or `--model llmgateway/deepseek-v4.1-flash-1017 --variant max` on the OpenCode 1 fallback |
 | Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up the default provider — `llmgateway` on both versions — and retry, C: name a different model). Do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan, Direct API is the pay-per-token alternative):
@@ -248,7 +248,7 @@ echo "default=$DEFAULT_OK opencode_go=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOK
 
 ```bash
 # OpenCode 2 default (recommended) — LLM Gateway (DevPass). Interactive: pick "DevPass (LLM Gateway)".
-opencode2 providers login llmgateway
+opencode providers login llmgateway
 
 # OpenCode 1 default (fallback) — LLM Gateway (DevPass). Interactive: pick "DevPass (LLM Gateway)".
 opencode providers login llmgateway
@@ -266,7 +266,7 @@ opencode providers login minimax
 opencode auth login          # → provider zai-coding-plan; model zai-coding-plan/glm-5.2
 ```
 
-> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). On OpenCode 2, confirm live LLM Gateway slugs with `opencode2 models --standalone` filtered for `llmgateway/` (OpenCode 2 lists no minimax provider). On the OpenCode 1 fallback, confirm live model ids with `opencode models minimax-coding-plan` and live LLM Gateway slugs with `opencode models llmgateway`.
+> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). On OpenCode 2, confirm live LLM Gateway slugs with `opencode models --standalone` filtered for `llmgateway/` (OpenCode 2 lists no minimax provider). On the OpenCode 1 fallback, confirm live model ids with `opencode models minimax-coding-plan` and live LLM Gateway slugs with `opencode models llmgateway`.
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 
@@ -281,7 +281,7 @@ The skill default is not configured on this machine (`llmgateway/deepseek-v4.1-f
 A configured fallback is available. Pick one:
   A) Use `-m openai/gpt-6-sol#high` on OpenCode 2 or `openai/gpt-6-sol --variant high` on the OpenCode 1 fallback (OpenAI flagship persona, configured now, paid)
   B) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
-  C) Run the default provider's login first (`opencode2 providers login llmgateway` on OpenCode 2, `opencode providers login llmgateway` on the OpenCode 1 fallback), then retry the original dispatch
+  C) Run the default provider's login first (`opencode providers login llmgateway` on OpenCode 2, `opencode providers login llmgateway` on the OpenCode 1 fallback), then retry the original dispatch
   D) Name a different model — paste the `--model <provider/model>` you want to use
 ```
 
@@ -305,7 +305,7 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-On OpenCode 2 the default is `-m llmgateway/deepseek-v4.1-flash-1017#max` (DevPass LLM Gateway, with flash max-tier-pinned by policy), once `opencode2 models --standalone` lists the `llmgateway/` prefix. On OpenCode 1 the default is the same model as `llmgateway/deepseek-v4.1-flash-1017 --variant max`, with reasoning effort expressed through `--variant`, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. On OpenCode 2, list with `opencode2 models --standalone` and filter for the `<provider>/` prefix; `opencode models <provider>` lists the live options on OpenCode 1.
+On OpenCode 2 the default is `-m llmgateway/deepseek-v4.1-flash-1017#max` (DevPass LLM Gateway, with flash max-tier-pinned by policy), once `opencode models --standalone` lists the `llmgateway/` prefix. On OpenCode 1 the default is the same model as `llmgateway/deepseek-v4.1-flash-1017 --variant max`, with reasoning effort expressed through `--variant`, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. On OpenCode 2, list with `opencode models --standalone` and filter for the `<provider>/` prefix; `opencode models <provider>` lists the live options on OpenCode 1.
 
 **Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
 

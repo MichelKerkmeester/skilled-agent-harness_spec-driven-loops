@@ -1,7 +1,7 @@
 ---
 title: "CO-045 -- session-cleanup live utilization on OpenCode 1 and 2"
 description: "This scenario validates session-cleanup for `CO-045`. It focuses on confirming that startup safety warnings are injected and the dispose hook writes its log line on both OpenCode versions."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # CO-045 -- session-cleanup live utilization on OpenCode 1 and 2
@@ -32,7 +32,7 @@ Operators run the exact prompt and command sequence for `CO-045` and confirm the
 - Evidence requirements: Capture events, capture JSON, effects and exit for both versions, plus the contents of `SESSION_CLEANUP_LOG_PATH`.
 - Desired user-visible outcome: A per-version verdict for the startup half and the dispose half, quoting the injected warning line and the log line.
 - Pass/fail: PASS if both halves hold on that version. FAIL if the warning line is absent or no dispose line is written. Record each half separately when only one holds.
-- Failure triage: Confirm `SESSION_CLEANUP_LOG_PATH` is exported to the run so the log is not written to a default path. For a missing startup warning, check whether the session delivered `session.created`; on OpenCode 2 the bridge delivers it once per session, before that session's first event or system transform, because `opencode2 run` sends none for its own session.
+- Failure triage: Confirm `SESSION_CLEANUP_LOG_PATH` is exported to the run so the log is not written to a default path. For a missing startup warning, check whether the session delivered `session.created`; on OpenCode 2 the bridge delivers it once per session, before that session's first event or system transform, because `opencode run` sends none for its own session.
 
 ---
 
@@ -68,7 +68,7 @@ trap - EXIT
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-045 | session-cleanup live utilization on OpenCode 1 and 2 | Confirm the startup warning and the dispose log line on both versions | `Reply with the single word OK.` | 1. Export a fresh `SESSION_CLEANUP_LOG_PATH` -> 2. Run `baseline` on v1 -> 3. Grep the capture for the startup line and read the log -> 4. Run on v2 -> 5. Repeat both reads -> 6. Remove the temporary log directory | System prompt holds `[session-cleanup] Startup safety warnings:`; the log gains a line such as `action=skip reason=no-session-pid` | `baseline.v1.txt`, `baseline.v2.txt` | PASS if both halves hold on that version; FAIL if the warning or the dispose line is missing | Confirm the log path is exported; a missing startup warning points at `session.created`, which the v2 bridge delivers once per session, before that session's first event or system transform, because `opencode2 run` sends none for its own session |
+| CO-045 | session-cleanup live utilization on OpenCode 1 and 2 | Confirm the startup warning and the dispose log line on both versions | `Reply with the single word OK.` | 1. Export a fresh `SESSION_CLEANUP_LOG_PATH` -> 2. Run `baseline` on v1 -> 3. Grep the capture for the startup line and read the log -> 4. Run on v2 -> 5. Repeat both reads -> 6. Remove the temporary log directory | System prompt holds `[session-cleanup] Startup safety warnings:`; the log gains a line such as `action=skip reason=no-session-pid` | `baseline.v1.txt`, `baseline.v2.txt` | PASS if both halves hold on that version; FAIL if the warning or the dispose line is missing | Confirm the log path is exported; a missing startup warning points at `session.created`, which the v2 bridge delivers once per session, before that session's first event or system transform, because `opencode run` sends none for its own session |
 
 ---
 

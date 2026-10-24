@@ -178,6 +178,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 65 | 065-drop-old-deepseek-from-pi/ | Delete the undated 2026-09-10 DeepSeek V4.1 Flash from Pi's `.pi/models.json` and both cli-pi rosters, so only the dated 2026-10-17 id is registered and a lineage pinned to the old id is rejected up front | Complete |
 | 66 | 066-opencode-v2-default-name/ | Give the `opencode` and `opencode2` names to OpenCode 2 on the default `opencode.db` and move OpenCode 1 to an `opencode1` launcher on its own `opencode-v1.db`, on this machine and in the setup helper and install reference | Complete |
 | 67 | 067-opencode-v2-pin-2-1-4/ | Move the OpenCode 2 pin from 2.0.32 to 2.1.4 in the setup helper, the dual-version CI workflow and the baseline statements, and correct the v1 channel statement | Complete |
+| 68 | 068-retire-opencode2-name/ | Retire the local `opencode2` name so `opencode` runs OpenCode 2 and `opencode1` runs OpenCode 1, rewrite the documented v2 commands to `opencode`, and turn off OpenCode 1's auto-update, which had taken the `opencode` name back | Complete |
 
 ### Phase Transition Rules
 
@@ -252,4 +253,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 064-append-log-concurrency-flake | 065-drop-old-deepseek-from-pi | 064's flake fix is on main | `065/implementation-summary.md`; CI green on the pushed commit |
 | 065-drop-old-deepseek-from-pi | 066-opencode-v2-default-name | 065's Pi roster change is on main | `066/implementation-summary.md`; `opencode-setup.sh check` reports v2, v2, v1 |
 | 066-opencode-v2-default-name | 067-opencode-v2-pin-2-1-4 | 066's name swap is in the same commit | `067/implementation-summary.md`; CI green on the pushed commit |
+| 067-opencode-v2-pin-2-1-4 | 068-retire-opencode2-name | 067 is on main as `12fa1b7b60` with 17 of 17 CI runs green | `068/implementation-summary.md`; CI green on the pushed commit |
 <!-- /ANCHOR:phase-map -->
