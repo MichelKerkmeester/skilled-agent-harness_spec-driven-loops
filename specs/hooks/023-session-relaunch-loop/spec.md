@@ -68,6 +68,8 @@ The nine child phases define a runtime-neutral core, the runtime-specific trigge
 - Phase 007 lets a session with no Gate 3 answer write its handoff note without an operator prompt, and pins the OpenCode default model.
 - Phase 008 fixes the fifteen findings of the third deep review, a DeepSeek and Luna fan-out run after phase 007.
 - Phase 009 fixes the verified findings of the DeepSeek and Luna research run after phase 008, moves the decisions every adapter repeats into the shared core and adds an adapter conformance suite.
+- Phases 24 to 28 keep the session goal across a hand-over: four probes settle what Claude, Codex and Hermes allow, the note and launcher carry the sender's goal packet, every runtime binds or requests the goal in the receiver, and live hops prove it.
+- Phase 29 captures the thin live evidence the phase 23 runs left and corrects two playbook lines that disagree with a run.
 
 ### Out of Scope
 - Changing autoCompactEnabled or autoCompactWindow.
@@ -124,6 +126,12 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 21 | 021-fork-nudge-and-precompact-guards/ | [Phase 21 scope] | Pending |
 | 22 | 022-runtime-certainty-claude-pi-opencode/ | Live certification of S1 to S13 on Claude, Pi and OpenCode, with the defects it found fixed test-first | Complete |
 | 23 | 023-relaunch-cancel-and-test-isolation/ | Test isolation from the loop environment, withdraw or cancel of a prepared hand-over, and a hop line written only when the wrapper relaunches | Complete |
+| 24 | 024-goal-rebind-claude-codex-hermes-probes/ | Run four recorded probes with controls: Claude start prompt as a command, a Claude start hook sending `/goal`, a Codex goal from seed or hook context, and Hermes with `HERMES_SPEC_FOLDER`, then name the phase 27 path | Pending |
+| 25 | 025-goal-binding-record-and-launcher/ | The hand-over note records the sender's goal packet, claim and `skilled-loop` pass it to the receiver, and `SESSION_RELAUNCH_GOAL=0` turns it off | Pending |
+| 26 | 026-goal-rebind-shared-core-and-opencode/ | Pi, Devin, Cursor, Hermes and OpenCode bind the hand-over goal packet on the first turn when they have no goal of their own | Pending |
+| 27 | 027-goal-rebind-claude-and-codex/ | A Claude or Codex receiver sets the hand-over goal from `goal.md` on the path phase 24 proved, within the 4,000-character slice limit, or asks for the fenced slice | Pending |
+| 28 | 028-goal-rebind-live-proof-and-docs/ | Live hops prove the goal survives a hand-over on each runtime, with switch-off and no-goal controls, playbook scenarios and doc updates | Pending |
+| 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Pending |
 
 ### Phase Transition Rules
 
@@ -158,6 +166,12 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 020-fork-session-guards | 021-fork-nudge-and-precompact-guards | [Criteria TBD] | [Verification TBD] |
 | 021-fork-nudge-and-precompact-guards | 022-runtime-certainty-claude-pi-opencode | [Criteria TBD] | [Verification TBD] |
 | 022-runtime-certainty-claude-pi-opencode | 023-relaunch-cancel-and-test-isolation | Phase 22 live matrix closed | 022 acceptance-criteria.md all rows Met, Waived or Superseded |
+| 023-relaunch-cancel-and-test-isolation | 024-goal-rebind-claude-codex-hermes-probes | Phase 23 is Complete and the operator asked for goal persistence across a hand-over | `validate.sh 023-relaunch-cancel-and-test-isolation --strict` RESULT: PASSED |
+| 024-goal-rebind-claude-codex-hermes-probes | 025-goal-binding-record-and-launcher | None. Phase 25 needs no probe verdict, so the two can run side by side | Phase 25 baseline gate recorded |
+| 025-goal-binding-record-and-launcher | 026-goal-rebind-shared-core-and-opencode | Phase 25 is Complete and the launcher hands the packet to the receiver | `validate.sh 025-goal-binding-record-and-launcher --strict` RESULT: PASSED, and the relaunch gate is at or above its baseline |
+| 026-goal-rebind-shared-core-and-opencode | 027-goal-rebind-claude-and-codex | Phases 24 and 25 are Complete, so the probe verdicts pick the Claude and Codex path | `024` implementation summary holds a verdict per probe and names the phase 27 path |
+| 027-goal-rebind-claude-and-codex | 028-goal-rebind-live-proof-and-docs | Phases 25 to 27 are Complete | `validate.sh` strict RESULT: PASSED for each, and the goal suites at their baselines |
+| 023-relaunch-cancel-and-test-isolation | 029-relaunch-evidence-gaps-and-playbook-drift | Phase 23 is Complete and its live runs recorded the four evidence gaps and two playbook lines | The gaps are listed in the 023 implementation summary |
 <!-- /ANCHOR:phase-map -->
 
 ---

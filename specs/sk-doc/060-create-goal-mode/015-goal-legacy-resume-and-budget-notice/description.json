@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/060-create-goal-mode/015-goal-legacy-resume-and-budget-notice",
+  "description": "Phase 15: goal-legacy-resume-and-budget-notice",
+  "keywords": [
+    "phase",
+    "goal-legacy-resume-and-budget-notice"
+  ],
+  "lastUpdated": "2026-10-24T19:03:22.549Z",
+  "specId": "015",
+  "folderSlug": "goal-legacy-resume-and-budget-notice",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

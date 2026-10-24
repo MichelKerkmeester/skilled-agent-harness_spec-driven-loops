@@ -26,7 +26,13 @@
     "hooks/023-session-relaunch-loop/020-fork-session-guards",
     "hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards",
     "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
-    "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation"
+    "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+    "hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes",
+    "hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher",
+    "hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode",
+    "hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex",
+    "hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
+    "hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift"
   ],
   "manual": {
     "depends_on": [],
@@ -208,7 +214,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-24T09:53:17.085Z",
+    "last_save_at": "2026-10-24T19:10:45.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +222,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6b26bc89bce2cebf0c59828109e23a7db53224e597fcc07304a1c3100b7306e1",
+    "source_fingerprint": "sha256:d26ecbec8c3b95902757eeab067d01bce45a2e73ebe2e7855d945455af37ce71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df78afb7160ccbb4cf915766bbfe0e2d058f1918417e9f401b0cda7f531a8e67",
+      "spec.md": "9155db06d9b14e39381e21417ca54b9d8ee2b61e54a529857975bf5820a2481c",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
-    "last_active_child_id": "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
-    "last_active_at": "2026-10-22T11:28:04.362Z"
+    "last_active_child_id": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+    "last_active_at": "2026-10-24T16:22:52.544Z"
   }
 }

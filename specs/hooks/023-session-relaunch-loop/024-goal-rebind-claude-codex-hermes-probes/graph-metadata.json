@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes",
+  "spec_folder": "hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal rebind probes",
+      "phase 24 goal rebind claude codex hermes probes",
+      "claude goal as start prompt",
+      "session start hook goal command",
+      "goal rebind probes plan",
+      "goal rebind probes tasks",
+      "goal rebind probes acceptance criteria",
+      "goal rebind probes implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "rebind",
+      "probes",
+      "phase",
+      "claude",
+      "codex",
+      "hermes",
+      "start",
+      "prompt",
+      "session",
+      "hook",
+      "command"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Observe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After a hand-over the new session has a new session id, and each runtime keeps its goal under the id of the session that set it, so the new session finds none",
+    "created_at": "2026-10-24T19:03:11Z",
+    "last_save_at": "2026-10-24T19:14:39.246Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8ad4182b7eeea4c032bb685e25d9b0c0f191b940f1b140bbb218e4dcf1c881a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "14b7019ecdb180b1f7a439789d207e4ecb2c62fa9ae2849fe59acd5f02f29c0f",
+      "plan.md": "aa27d17abd6f84d5b6177db3df6ae800fd9debc5693cdc40fa056b712acb3875",
+      "tasks.md": "b6bbcef815a0b3da96679a7b349e5222861ffc214c27684f47fb2aaf1dc8fad0",
+      "implementation-summary.md": "4bb4281d5df250074e4f86f298966776391c825e85cf5787ff8425aa0ae54b85"
+    },
+    "last_active_at": null
+  }
+}
