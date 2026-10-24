@@ -7,7 +7,7 @@ trigger_phrases:
   - "mode append gateway flow"
   - "deep-loop package topology"
 importance_tier: "important"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Architecture: system-deep-loop
@@ -163,3 +163,4 @@ Other consumers call the runtime directly: the `/deep:*` workflow YAMLs through 
 - [runtime/references/integration-points.md](./runtime/references/integration-points.md): Consumers and call shapes
 - [feature-catalog/](./feature-catalog/): Feature inventory
 - [manual-testing-playbook/](./manual-testing-playbook/): Operator scenarios
+
