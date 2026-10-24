@@ -32,7 +32,7 @@ Step 2 of the spec folder write recipe shows an `mv` command whose destination l
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

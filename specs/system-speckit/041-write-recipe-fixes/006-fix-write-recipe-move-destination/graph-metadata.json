@@ -38,7 +38,7 @@
       "applier"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,9 +46,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/applied.txt",
+      "scratch/census.txt",
       ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+      "scratch/changed-files.txt",
       "references/debugging/troubleshooting.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
+      "scratch/review/T009.txt",
+      "scratch/known-rows.jsonl",
+      "scratch/recheck.txt",
+      "scratch/review/T009.err",
+      "scratch/status-start.txt",
+      "scratch/suite-end.txt",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      "scratch/briefs/T009.txt",
+      "scratch/suite-start.txt"
     ],
     "entities": [
       {
@@ -88,9 +99,27 @@
         "source": "derived"
       },
       {
+        "name": "applied.txt",
+        "kind": "file",
+        "path": "scratch/applied.txt",
+        "source": "derived"
+      },
+      {
+        "name": "census.txt",
+        "kind": "file",
+        "path": "scratch/census.txt",
+        "source": "derived"
+      },
+      {
         "name": "spec-folder-write-recipe.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed-files.txt",
+        "kind": "file",
+        "path": "scratch/changed-files.txt",
         "source": "derived"
       },
       {
@@ -100,9 +129,51 @@
         "source": "derived"
       },
       {
+        "name": "T009.txt",
+        "kind": "file",
+        "path": "scratch/review/T009.txt",
+        "source": "derived"
+      },
+      {
+        "name": "known-rows.jsonl",
+        "kind": "file",
+        "path": "scratch/known-rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.txt",
+        "kind": "file",
+        "path": "scratch/recheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "T009.err",
+        "kind": "file",
+        "path": "scratch/review/T009.err",
+        "source": "derived"
+      },
+      {
+        "name": "status-start.txt",
+        "kind": "file",
+        "path": "scratch/status-start.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite-end.txt",
+        "kind": "file",
+        "path": "scratch/suite-end.txt",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "suite-start.txt",
+        "kind": "file",
+        "path": "scratch/suite-start.txt",
         "source": "derived"
       },
       {
@@ -134,71 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Step 2 of `.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` moves the scaffold into the selected track",
     "created_at": "2026-10-23T11:48:59Z",
-    "last_save_at": "2026-10-23T16:11:11.585Z",
+    "last_save_at": "2026-10-24T11:50:03.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:734138f15a350fcba872cbf3d44af1aa51419d9c2e7c1f1ec057dbd79ba482b5",
+    "source_fingerprint": "sha256:4e1bcadaf9dd625afd723d5f3e9eb2a78a667e23317912b7379777c2f2fa4743",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea64159616085e730b05b92d0ac24f1589c7470428d3623aaa931a34f7d0b6c4",
+      "spec.md": "60c94fa200d81a76b2ab4beae491b7bac86a0fec22338ad45ef8e12dc4c191cf",
       "plan.md": "cda2fbb2095675a37ca57268c172d65730ce3352c1048912a853fc7f386afd20",
-      "tasks.md": "c3c1d16edfce1471d5d5bd0d43034c0841461b88eedded07892a4fe77da49b2b",
-      "implementation-summary.md": "6584e4ad143586830871e4e50970a089c541092bb4309b4b21c15c85e3244877"
+      "tasks.md": "9e1c8f50bcf8017f0d9eb2c7399cc17e3ab783f79b10b6bd1cb15290577ba652",
+      "implementation-summary.md": "093711d6dcfc75f1f0d0d3945ae0ad8262833a6a8ad441e0ba5be8b6202a4a83"
     },
     "last_active_at": null
   }
