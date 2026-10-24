@@ -115,7 +115,7 @@ The conductor ran `tasks.md` T001 to T021 with saved tools and no worker model e
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The era report flips (OP-1).** The manifest bump makes `repo-era.mjs` count v2.2 stamps as legacy: `templateMarkers` is now `{"new":1451,"legacy":17869,"none":510}`, against `{"new":16871,"legacy":2374,"none":510}` measured at planning time. The operator decides whether to accept it.
+1. **The era report flips (OP-1).** The manifest bump makes `repo-era.mjs` count v2.2 stamps as legacy: `templateMarkers` is now `{"new":1451,"legacy":17869,"none":510}`, against `{"new":16871,"legacy":2374,"none":510}` measured at planning time. Fixed after the phase commit by operator decision on 2026-10-24: `repo-era.mjs` counts only stamps older than v2.2 as legacy, and `templateMarkers` is back to `{"new":16944,"legacy":2376,"none":510}`, equal to the pre-bump script on the same documents.
 2. **The post-edit scanner is blind in two ways (OP-2).** `probe-fence exit=1` (a hint inside a fenced block) and `probe-token exit=0` (a token with a colon). This phase records both and fixes neither.
 3. **`upgrade-level.sh` copies tokens into older docs (OP-3).** A v2.2 doc that gains a template section then holds tokens that error. The one test that hard-coded the old plan stamp was fixed in T013.
 4. **Other docs still say `[PLACEHOLDER]` (OP-4).** `README.md` and `assets/template-mapping.md` are left to phase 7.
