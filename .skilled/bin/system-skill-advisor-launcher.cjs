@@ -142,6 +142,9 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_COMPILED_ROUTING',
   'SPECKIT_ADVISOR_FRESHNESS',
   'SPECKIT_ADVISOR_DOC_TRIGGERS',
+  // Trusted roots for private `local-*` skill links. The daemon resolves each
+  // link against these roots, so without the key it indexes no private skill.
+  'SPECKIT_PRIVATE_SKILL_ROOTS',
   'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
   'SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW',
   'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED',
