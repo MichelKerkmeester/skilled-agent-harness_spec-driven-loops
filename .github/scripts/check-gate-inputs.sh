@@ -15,14 +15,14 @@
 #                    command uses, every variable assigned a literal <root>/<path> and every
 #                    quoted literal <root>/<path> handed to a command other than git
 #                    resolves, where <root> is .opencode or .skilled
-#   workflow-inputs  every literal .opencode/<path> a workflow runs resolves, a glob
-#                    with *, ? or brackets matches something, and the directory that
-#                    installs or builds a node_modules or dist path exists. A path that
-#                    continues into a variable is dynamic, and echo and printf text runs
-#                    nothing
-#   filter-twins     every workflow path filter, negated or not, dependabot directory,
-#                    hook pathspec and regex that names one root also names the other,
-#                    within the same filter, update entry, array or command
+#   workflow-inputs  every literal .opencode/<path> a workflow or composite action
+#                    runs resolves, a glob with *, ? or brackets matches something, and
+#                    the directory that installs or builds a node_modules or dist path
+#                    exists. A path that continues into a variable is dynamic, and echo
+#                    and printf text runs nothing
+#   filter-twins     every workflow or composite action path filter, negated or not,
+#                    dependabot directory, hook pathspec, array and regex that names
+#                    one root also names the other, within the same filter or command
 #   parser-miss      every command, array entry, filter or directory that names a root
 #                    outside a comment is read by one of these rules or recognized as a
 #                    message, a label or a path read through the link, so a shape the
@@ -381,7 +381,7 @@ function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss",
     }
     next
   }
-  if (code ~ /^[ ]*-?[ ]*name:/) { if (code ~ /\.(opencode|skilled)/) emit("note", "label"); next }
+  if (code ~ /^[ ]*-?[ ]*(name|description):/) { if (code ~ /\.(opencode|skilled)/) emit("note", "label"); next }
   if (code ~ /^[ ]*(-[ ]+)?run:[ ]+"/) { sub(/run:[ ]+"/, "run: ", code); sub(/"$/, "", code); gsub(/\\"/, "\"", code) }
   else if (code ~ /^[ ]*(-[ ]+)?run:[ ]+\047/) { sub(/run:[ ]+\047/, "run: ", code); sub(/\047$/, "", code); gsub(/\047\047/, "\047", code) }
   n = (code ~ /[;|&]|\$\(/) ? segments(code, parts) : 1
@@ -483,6 +483,15 @@ for wf in "$ROOT"/.github/workflows/*.yml "$ROOT"/.github/workflows/*.yaml; do
   FILES=$((FILES + 1))
   scan_workflow "${wf#"$ROOT"/}"
 done
+
+# Composite actions hold the same run paths a workflow does, so the same parser reads
+# them. The directory test keeps the file count stable while no action exists.
+if [[ -d "$ROOT/.github/actions" ]]; then
+  while IFS= read -r act; do
+    FILES=$((FILES + 1))
+    scan_workflow "${act#"$ROOT"/}"
+  done < <(find "$ROOT/.github/actions" -type f \( -name action.yml -o -name action.yaml \) | sort)
+fi
 
 if [[ -f "$ROOT/.github/dependabot.yml" ]]; then
   FILES=$((FILES + 1))

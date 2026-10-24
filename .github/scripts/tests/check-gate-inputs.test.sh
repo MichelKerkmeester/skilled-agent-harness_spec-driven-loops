@@ -486,6 +486,62 @@ echo 'cp "$REPO_ROOT/.opencode/bin/gone.sh" /dev/null/.skilled-untrusted' >> "$T
 run_check; RC=$?
 expect "a missing path beside the sentinel still fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/scripts/git-hooks/pre-commit:4 $REPO_ROOT/.opencode/bin/gone.sh resolves nowhere'
 
+# ── 50. a composite action in the tree is scanned and passes ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions the demo tree
+runs:
+  using: composite
+  steps:
+    - run: bash .opencode/bin/tool.sh
+ACTION
+run_check; RC=$?
+expect "a composite action in the tree is scanned and passes" 0 "$RC" "RESULT: PASSED"
+
+# ── 51. an unresolved path in a composite action fails workflow-inputs ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions the demo tree
+runs:
+  using: composite
+  steps:
+    - run: bash .skilled/bin/gone.sh
+ACTION
+run_check; RC=$?
+expect "an unresolved path in a composite action fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/actions/demo/action.yml:6 .skilled/bin/gone.sh resolves nowhere"
+
+# ── 52. an unreadable root shape in a composite action fails parser-miss ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions the demo tree
+runs:
+  using: composite
+  steps:
+    - run: npm --prefix "$GITHUB_WORKSPACE/.skilled" ci
+ACTION
+run_check; RC=$?
+expect "an unreadable root shape in a composite action fails parser-miss" 1 "$RC" "FAIL parser-miss: .github/actions/demo/action.yml:6 names a source root that no rule reads"
+
+# ── 53. a description that names a path is a label ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions .skilled/bin/gone.sh and .opencode/bin/gone.sh
+runs:
+  using: composite
+  steps:
+    - run: bash .opencode/bin/tool.sh
+ACTION
+run_check; RC=$?
+expect "a description that names a path is a label" 0 "$RC" "RESULT: PASSED"
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
