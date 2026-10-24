@@ -1,0 +1,14 @@
+ ▐▛███▛█   Claude Code v2.1.310
+▝▜██████▀  Sonnet 5.5 · Claude Max
+ ▝▝   ▝▝   /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bf59c2c4-b852-41a2-886d-00232422ac9e/scratchpad/probe/a5
+
+
+❯ /goal Probe A5 oversize goal, the file /nonexistent/probe-a5-never exists on disk.
+  ⎿  Goal condition is limited to 4000 characters (got 4394)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ auto mode on (shift+tab to cycle) · ← for agents                                                                                                                               ◐ medium · /effort
+                                                                                                                                                                                                   /rc
+

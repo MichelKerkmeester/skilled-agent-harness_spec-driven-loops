@@ -35,13 +35,23 @@
       "command"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/probe-a-claude-start-prompt.md",
+      "scratch/probe-b-claude-start-hook.md",
+      "scratch/probe-c-codex-goal.md",
+      "scratch/probe-d-hermes-spec-folder.md",
+      "scratch/raw/d-request-dump-extract.json",
+      "scratch/raw/run-claude.sh",
+      ".skilled/commands/speckit/handoff.md",
+      ".opencode/cli.json",
+      "scratch/raw/d1.out",
+      "scratch/operator-approval.md"
     ],
     "entities": [
       {
@@ -72,6 +82,66 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-a-claude-start-prompt.md",
+        "kind": "doc",
+        "path": "scratch/probe-a-claude-start-prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-b-claude-start-hook.md",
+        "kind": "doc",
+        "path": "scratch/probe-b-claude-start-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-c-codex-goal.md",
+        "kind": "doc",
+        "path": "scratch/probe-c-codex-goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-d-hermes-spec-folder.md",
+        "kind": "doc",
+        "path": "scratch/probe-d-hermes-spec-folder.md",
+        "source": "derived"
+      },
+      {
+        "name": "d-request-dump-extract.json",
+        "kind": "config",
+        "path": "scratch/raw/d-request-dump-extract.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-claude.sh",
+        "kind": "script",
+        "path": "scratch/raw/run-claude.sh",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli.json",
+        "kind": "config",
+        "path": ".opencode/cli.json",
+        "source": "derived"
+      },
+      {
+        "name": "d1.out",
+        "kind": "file",
+        "path": "scratch/raw/d1.out",
+        "source": "derived"
+      },
+      {
+        "name": "operator-approval.md",
+        "kind": "doc",
+        "path": "scratch/operator-approval.md",
         "source": "derived"
       },
       {
@@ -127,71 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Run",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Observe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After a hand-over the new session has a new session id, and each runtime keeps its goal under the id of the session that set it, so the new session finds none",
     "created_at": "2026-10-24T19:03:11Z",
-    "last_save_at": "2026-10-24T19:14:39.246Z",
+    "last_save_at": "2026-10-24T22:22:11.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8ad4182b7eeea4c032bb685e25d9b0c0f191b940f1b140bbb218e4dcf1c881a",
+    "source_fingerprint": "sha256:4e8521127c3892bac5a69354eec81301f5310ee0abcbc05766bba2b7c62885f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14b7019ecdb180b1f7a439789d207e4ecb2c62fa9ae2849fe59acd5f02f29c0f",
+      "spec.md": "70e3dc0f00c810ba9fda9bba8848ef1bc0199b41a7fee6d5b40bfbbd8d4315a8",
       "plan.md": "aa27d17abd6f84d5b6177db3df6ae800fd9debc5693cdc40fa056b712acb3875",
-      "tasks.md": "b6bbcef815a0b3da96679a7b349e5222861ffc214c27684f47fb2aaf1dc8fad0",
-      "implementation-summary.md": "4bb4281d5df250074e4f86f298966776391c825e85cf5787ff8425aa0ae54b85"
+      "tasks.md": "c019bb6ce0a887f4b7ac2aa7bf251636f58fc1698e52b6b63f94482b7172069c",
+      "implementation-summary.md": "e299597bddd5dfcc76229ecbbba4b8c0fd40601885820c7747932199ef5eb79f"
     },
     "last_active_at": null
   }

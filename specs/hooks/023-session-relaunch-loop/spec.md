@@ -126,8 +126,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 21 | 021-fork-nudge-and-precompact-guards/ | [Phase 21 scope] | Pending |
 | 22 | 022-runtime-certainty-claude-pi-opencode/ | Live certification of S1 to S13 on Claude, Pi and OpenCode, with the defects it found fixed test-first | Complete |
 | 23 | 023-relaunch-cancel-and-test-isolation/ | Test isolation from the loop environment, withdraw or cancel of a prepared hand-over, and a hop line written only when the wrapper relaunches | Complete |
-| 24 | 024-goal-rebind-claude-codex-hermes-probes/ | Run four recorded probes with controls: Claude start prompt as a command, a Claude start hook sending `/goal`, a Codex goal from seed or hook context, and Hermes with `HERMES_SPEC_FOLDER`, then name the phase 27 path | Pending |
-| 25 | 025-goal-binding-record-and-launcher/ | The hand-over note records the sender's goal packet, claim and `skilled-loop` pass it to the receiver, and `SESSION_RELAUNCH_GOAL=0` turns it off | Pending |
+| 24 | 024-goal-rebind-claude-codex-hermes-probes/ | Run four recorded probes with controls: Claude start prompt as a command, a Claude start hook sending `/goal`, a Codex goal from seed or hook context, and Hermes with `HERMES_SPEC_FOLDER`, then name the phase 27 path | Complete |
+| 25 | 025-goal-binding-record-and-launcher/ | The hand-over note records the sender's goal packet, claim and `skilled-loop` pass it to the receiver, and `SESSION_RELAUNCH_GOAL=0` turns it off | Complete |
 | 26 | 026-goal-rebind-shared-core-and-opencode/ | Pi, Devin, Cursor, Hermes and OpenCode bind the hand-over goal packet on the first turn when they have no goal of their own | Pending |
 | 27 | 027-goal-rebind-claude-and-codex/ | A Claude or Codex receiver sets the hand-over goal from `goal.md` on the path phase 24 proved, within the 4,000-character slice limit, or asks for the fenced slice | Pending |
 | 28 | 028-goal-rebind-live-proof-and-docs/ | Live hops prove the goal survives a hand-over on each runtime, with switch-off and no-goal controls, playbook scenarios and doc updates | Pending |

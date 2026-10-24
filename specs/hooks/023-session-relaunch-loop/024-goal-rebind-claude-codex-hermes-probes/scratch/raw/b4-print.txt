@@ -1,0 +1,4 @@
+PLAINMSG-RECEIVED
+
+ok
+exit=0
