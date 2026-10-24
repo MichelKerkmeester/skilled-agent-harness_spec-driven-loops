@@ -132,6 +132,10 @@ Seven gate outcomes, each read on the tree at `c903c0d103` on 2026-10-24:
 
 An eighth check, `skill-graph-freshness.cjs --strict`, was not in the gate list and failed in CI on `028bd0f5cd`. It prints `SIGNAL DRIFT compiled vs disk: none` with exit `0` after `c903c0d103`. CI for `c903c0d103` was not all complete when this was written (see the table above).
 
-T066 is ticked on the phase commit `028bd0f5cd`. T068, the closure commit, follows this record and is not ticked.
+T066 is ticked on the phase commit `028bd0f5cd`. T068, the closure commit, landed as `25aa533f0b` and is ticked.
 
 follow-up: the hub-surface removal landed in e00fef3e76 and the registration snapshot is re-checked at closure, and keep sk-code-ci in mode-registry.json, hub-router.json, ROUTER.md and SKILL.md
+
+## CI state at final close-out
+
+Read on 2026-10-24 at 22:05 UTC with `gh run view 40113489423 --json name,status,conclusion,headSha` and `gh run list --commit c903c0d103b59c7d51838d45b598d1e7981f5056 --json name,status,conclusion --limit 40`. Run `40113489423` is Routing Registry Drift Guard, status `completed`, conclusion `success`, head sha `c903c0d103b59c7d51838d45b598d1e7981f5056`. The commit has 15 runs and all 15 are `completed` with `success`, so the one run that was `in_progress` in the table above finished green. The closure commit `25aa533f0b` is on `origin/main`.

@@ -185,7 +185,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Packet, Registration,
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the hub gates stay red after T060 to T065 with no scoped repair, or the registration conflict with `013/002` cannot be resolved additively.
-- **Procedure**: `git revert` the phase commit. The packet folder, its registry entry, the generated manifests, the canary case, the compiled-route test case and the playbook scenario all disappear together, because they are one commit. Regenerate `leaf-manifest.json` and `graph-metadata.json` from the reverted registry, then re-run `parent-skill-check.cjs` and `run-all-drift-guards.sh` to confirm the hub is back to its pre-phase state.
+- **Procedure**: `git revert` the phase commit. The packet folder, its registry entry, the generated manifests, the canary case, the compiled-route test case and the playbook scenario all disappear together, because they are one commit. Regenerate `leaf-manifest.json` and `graph-metadata.json` from the reverted registry, and regenerate the compiled skill graph with `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --export-json`, because the advisor phrases the phase added live in that graph too. Then re-run `parent-skill-check.cjs` and `run-all-drift-guards.sh` to confirm the hub is back to its pre-phase state.
 <!-- /ANCHOR:rollback -->
 
 ---

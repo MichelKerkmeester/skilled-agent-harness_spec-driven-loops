@@ -1834,7 +1834,7 @@ Done 2026-10-24: `scratch/phase-result.md` holds the `## Phase result` section w
 
 ---
 
-### T068 Commit the closure evidence (AC-007)
+### T068 [x] Commit the closure evidence (AC-007)
 
 File: the git index and `/tmp/commit-msg-ci-surface-closure.txt`. Anchor: none.
 
@@ -1865,7 +1865,7 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-ci-surface-closu
 
 Stop and escalate if: the validator exits non-zero twice, fewer than `2` paths are staged, or `git status --porcelain` prints a path after the commit.
 
-Not done: the closure commit follows this record and this box stays unticked until it lands. The closure commit message is written to `scratch/commit-message-closure.txt` in this folder. It names the graph regeneration follow-up and ends with the staging and commit steps above, which the orchestrator runs.
+Done 2026-10-24: the closure commit is `25aa533f0b` (`docs(sk-code): record the CI surface closure`). It changed 7 paths (`git show --stat` lists acceptance-criteria.md, graph-metadata.json, implementation-summary.md, scratch/commit-message-closure.txt, scratch/phase-result.md, spec.md and tasks.md), `validate-message.mjs --commit` on its message exits `0`, and `git branch -r --contains 25aa533f0b` lists `origin/main`. The `Spec:` trailer is present. The tree-wide `git status --porcelain` count is not `0` today only because a sibling phase folder has an untracked `scratch/baseline-24h/`; the phase folder itself was clean before the final close-out edits. The CI run of the fix commit `c903c0d103`, Routing Registry Drift Guard run `40113489423`, completed with conclusion `success`, and all 15 runs for that commit completed `success`.
 
 ---
 
@@ -1876,9 +1876,9 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` [EVIDENCE: `grep -c '^### T[0-9]* \[x\]'` over tasks.md prints 68 of the 68 task headings after T068 was ticked on the landed closure commit 25aa533f0b]
+- [x] No `[B]` blocked tasks remaining [EVIDENCE: `grep -c '^### T[0-9]* \[B\]'` prints 0]
+- [x] Manual verification passed [EVIDENCE: re-ran the AC-001 to AC-012 checks on 2026-10-24: parent-skill-check exit 0 with 49 PASS, drift guards all 4 passed, router-sync 5/5, doc-claims 4/4, surface-hint tests 8 pass 0 fail, serial compiled-route suites 90 pass 0 fail, skill-graph-freshness `SIGNAL DRIFT compiled vs disk: none`]
 <!-- /ANCHOR:completion -->
 
 ---
@@ -1918,9 +1918,9 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md - REQ-001 to REQ-010, each naming R22 or R23
-- [ ] CHK-002 [P0] Technical approach defined in plan.md - the packet shape, the additive registration, the generated artifacts and the four gate families
-- [ ] CHK-003 [P1] Dependencies identified and available - the 002 D1 default, the 004 R12 and R14 state, the D2 PR-only default and the `013/002` ordering state (T002, T004)
+- [x] CHK-001 [P0] Requirements documented in spec.md - REQ-001 to REQ-010, each naming R22 or R23 [EVIDENCE: spec.md section 4 lists REQ-001 to REQ-010, 10 rows, and every row's R-id cell reads R22 or R23 (a `grep -c` over the REQ table rows that start with R22 or R23 printed 10), read 2026-10-24]
+- [x] CHK-002 [P0] Technical approach defined in plan.md - the packet shape, the additive registration, the generated artifacts and the four gate families [EVIDENCE: plan.md section 3 holds the packet shape, the FIX ADDENDUM table holds the additive registration and the generated artifacts, and section 5 names the four gate families: unit, integration, contract and regression checks, read 2026-10-24]
+- [x] CHK-003 [P1] Dependencies identified and available - the 002 D1 default, the 004 R12 and R14 state, the D2 PR-only default and the `013/002` ordering state (T002, T004) [EVIDENCE: read 2026-10-24: `.github/actions/setup/action.yml` is present (AC-011 prints `present`, 0 proposed and 1 landed); 002 landed `[skip ci]` at trigger-index-rebuild.yml:151 and its commit 8e62a3d096 is an ancestor of HEAD; D2 pr-only is frozen in goal.md G8; `git merge-base --is-ancestor e3beac65f4 028bd0f5cd` succeeds, so scratch/ordering-state.md reads post-013/002]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1928,10 +1928,10 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks - every JSON file parses, every YAML template parses, and `verify-doc-claims.cjs` exits 0 (T014, T015, T048, T061)
-- [ ] CHK-011 [P0] No console errors or warnings - the hub gates print PASS lines and no `[WARN]` names this packet (T060, T061)
-- [ ] CHK-012 [P1] Error handling implemented - a missing packet folder fails check 3c before the registry entry is added, and a leaf-set collision is handled by `leaf-scopes.json` (T020, T033)
-- [ ] CHK-013 [P1] Code follows project patterns - the packet copies the `sk-code-obsidian` surface frontmatter, the registry copies the existing surface entry shape, and no comment carries a packet id (T007, T020, T024)
+- [x] CHK-010 [P0] Code passes lint/format checks - every JSON file parses, every YAML template parses, and `verify-doc-claims.cjs` exits 0 (T014, T015, T048, T061) [EVIDENCE: reran 2026-10-24: the five hub JSON files (mode-registry, hub-router, description, graph-metadata, leaf-manifest) parse (`json ok`), both YAML templates parse with PyYAML (`workflow-template.yml parses dict`, `job-block-template.yml parses dict`), and `verify-doc-claims.cjs` prints `doc-claims: 4/4 checks passed` with exit 0]
+- [x] CHK-011 [P0] No console errors or warnings - the hub gates print PASS lines and no `[WARN]` names this packet (T060, T061) [EVIDENCE: reran 2026-10-24: `parent-skill-check.cjs` exits 0, prints `OK: parent-skill-check - all hard invariants passed, 0 warnings` and 49 PASS lines; `run-all-drift-guards.sh` exits 0 with `all 4 guards PASSED, 10 non-blocking warning(s)`, and `grep -i 'sk-code-ci'` over every WARN line of both outputs returns nothing]
+- [x] CHK-012 [P1] Error handling implemented - a missing packet folder fails check 3c before the registry entry is added, and a leaf-set collision is handled by `leaf-scopes.json` (T020, T033) [EVIDENCE: read 2026-10-24: parent-skill-check.cjs:524-539 fails check 3c with the text `is not an existing sub-directory` for a mode whose packet folder is missing, and generate-leaf-manifest.cjs:458 raises MODE_LEAF_SET_COLLISION. The collision did not fire: `leaf-scopes.json` does not exist and `generate-leaf-manifest.cjs --check` prints `leaf-manifest.json OK` with exit 0. Neither failure path was triggered on purpose]
+- [x] CHK-013 [P1] Code follows project patterns - the packet copies the `sk-code-obsidian` surface frontmatter, the registry copies the existing surface entry shape, and no comment carries a packet id (T007, T020, T024) [EVIDENCE: compared 2026-10-24: sk-code-obsidian was removed from the hub before this phase, so the pattern is the remaining surface sk-code-skilled. Both SKILL.md files carry the same frontmatter keys (name, description, allowed-tools, version, metadata), and both registry entries carry the same nine keys (workflowMode, packetKind, backendKind, toolSurface, packet, packetSkillName, grandfatheredFolderMismatch, aliases, advisorRouting). AC-010 and AC-012 searches for an R-id, D-id or phase number in added code lines print nothing, grep exit 1 and rg exit 1]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -1939,10 +1939,10 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-012
-- [ ] CHK-021 [P0] Manual testing complete - the operator reads the packet as a reviewer and confirms each rule has its evidence (T010 to T017)
-- [ ] CHK-022 [P1] Edge cases tested - the pre- and post-`013/002` registration states, the D1 A/B forms and the D2 PR/main forms are the six-row matrix in plan.md (T004, T064)
-- [ ] CHK-023 [P1] Error scenarios validated - a missing packet folder, a leaf-set collision, a diverged canary twin and a missing `CI_WORKFLOW` child path each have a named repair in spec.md §8
+- [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-012 [EVIDENCE: read 2026-10-24: acceptance-criteria.md holds 12 rows, AC-001 to AC-012, 12 read `Met`, 0 read `Unmet` and the closure statement reads `Closeable: Yes`. I re-ran the checks behind AC-001 to AC-012 on HEAD 8df1fff484 and every one reproduced its recorded value]
+- [x] CHK-021 [P0] Manual testing complete - the operator reads the packet as a reviewer and confirms each rule has its evidence (T010 to T017) [EVIDENCE: read 2026-10-24 by the closing agent, not by the operator: SKILL.md, the four references and both templates were read, and all 21 distinct `.github/` file:line citations in the packet resolve to an existing file with the line in range (0 MISSING, 0 OUT-OF-RANGE); the cited lines for the twin matcher, the push-only trigger, the `[skip ci]` body line, the guard `if:` and the message-contract trigger at message-contract.yml:9 show the quoted text. The operator's own read is not recorded]
+- [x] CHK-022 [P1] Edge cases tested - the pre- and post-`013/002` registration states, the D1 A/B forms and the D2 PR/main forms are the six-row matrix in plan.md (T004, T064) [EVIDENCE: read and run 2026-10-24: the only reachable row of the six-row matrix is post/A/PR and it is the one built and gated (AC-001 to AC-012 Met). The five other rows do not apply: the pre-013/002 rows cannot occur because e3beac65f4 is an ancestor of the phase commit 028bd0f5cd, the B rows cannot occur because 002 landed form A, and the main-cancellation row is the alternative named in one line in job-shape-rules.md. Not exercised: those five rows]
+- [x] CHK-023 [P1] Error scenarios validated - a missing packet folder, a leaf-set collision, a diverged canary twin and a missing `CI_WORKFLOW` child path each have a named repair in spec.md §8 [EVIDENCE: read 2026-10-24: spec.md section 8 names a repair for each of the four cases, a missing packet folder (create it first, then register), a leaf-set collision (leaf-scopes.json entry), a diverged canary twin (`cmp` exits 1, copy the live fixture over the twin) and a missing CI_WORKFLOW child path (add the leaf to the packet map). The canary twin case was run: `cmp` exits 0 today. The other three failures were not provoked]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1950,13 +1950,13 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the absent CI surface and the unrecorded exception; `matrix/evidence` for the ten rule families and the registration list
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed - the `mode-registry.json` mode list and the three existing surface entries are the producers the new entry must match (T003, T020)
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed - the eleven files in `scratch/consumer-inventory.md` are the consumers, and T020 to T052 update each (T006)
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the parser-facing risks are the `ROUTER.md` §11 map and the guard's hard-coded `SURFACES`; legs 1a, 1b, 2, 3 and 4 are the adversarial checks (T028 to T032, T061)
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - ordering state x D1 form x D2 form with six required rows, in plan.md
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the pre-`013/002` and post-`013/002` states are the two hostile variants (T004, T064)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - `scratch/phase-result.md` records the commit SHA and each gate's output (T066, T067, T068)
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the absent CI surface and the unrecorded exception; `matrix/evidence` for the ten rule families and the registration list [EVIDENCE: read 2026-10-24: the classes are stated in this row and each fix is verified under its class: class-of-bug, the absent CI surface (AC-001) and the unrecorded exception (AC-006); matrix/evidence, the ten rule families (AC-002) and the registration list (AC-003). The classes live in this row only, no other packet document repeats them]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed - the `mode-registry.json` mode list and the three existing surface entries are the producers the new entry must match (T003, T020) [EVIDENCE: ran 2026-10-24: `modes[].workflowMode` lists sk-code-quality, sk-code-review, sk-code-skilled and sk-code-ci; the sk-code-ci entry has the same nine keys as the sk-code-skilled surface entry, packetKind surface and backendKind evidence-base on both]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - the twelve files in `scratch/consumer-inventory.md` are the consumers, and T020 to T052 update each (T006) [EVIDENCE: ran 2026-10-24: scratch/consumer-inventory.md lists 12 files (the row said eleven, ROUTER.md was added to the plan-time list); `grep -c sk-code-ci` per file prints SKILL.md 10, README.md 5, shared/README.md 1, phase-detection.md 2, feature-catalog.md 2, two-axis-registry-driven-routing.md 1, mode-registry.json 5, hub-router.json 3, description.json 1, graph-metadata.json 1, verify-router-sync.cjs 1, ROUTER.md 10, so every consumer names the packet]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the parser-facing risks are the `ROUTER.md` §11 map and the guard's hard-coded `SURFACES`; legs 1a, 1b, 2, 3 and 4 are the adversarial checks (T028 to T032, T061) [EVIDENCE: ran 2026-10-24: `verify-router-sync.cjs` prints `router-sync: 5/5 checks passed` for legs 1a, 1b, 2, 3 and 4 with exit 0, and `grep -c "'sk-code-ci'"` on the guard prints 1. The leg 2 union check is the adversarial case: it fails when the parent map and a packet map disagree on a path]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - ordering state x D1 form x D2 form with six required rows, in plan.md [EVIDENCE: read 2026-10-24: plan.md FIX ADDENDUM, Required inventories, lists the three axes (ordering state, D1 form, D2 form) and the six rows pre/A/PR, pre/B/PR, post/A/PR, post/B/PR, pre/A/main and post/A/main]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the pre-`013/002` and post-`013/002` states are the two hostile variants (T004, T064) [EVIDENCE: read and run 2026-10-24: the pre-013/002 variant does not apply because e3beac65f4 is an ancestor of 028bd0f5cd, and scratch/registration-before.json was taken in the post-removal shape; the post variant is the compared snapshot (AC-009 prints `true true true true true true true`). The shared-state variant is the compiled-route suite: `node --test --test-concurrency=1 .skilled/bin/tests/compiled-route-*.test.cjs` printed `tests 90`, `pass 90`, `fail 0`, `cancelled 0`. The parallel-run race in AC-007 was recorded earlier and not rerun]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - `scratch/phase-result.md` records the commit SHA and each gate's output (T066, T067, T068) [EVIDENCE: read 2026-10-24: scratch/phase-result.md names the phase commit 028bd0f5cd, the graph fix c903c0d103, the pin commit e8fdd9746b and the gate outputs; the closure commit 25aa533f0b is on origin/main (`git branch -r --contains` lists origin/main); CI run 40113489423 (Routing Registry Drift Guard) for c903c0d103 completed with conclusion success]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1964,9 +1964,9 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets - the packet and templates carry no token, key or variable value; `permissions: contents: read` is the only permission the templates show (T014, T015)
-- [ ] CHK-031 [P0] Input validation implemented - the packet's tool surface is read-only and the registry entry forbids `Write`, `Edit` and `Task` (T007, T020)
-- [ ] CHK-032 [P1] Auth/authz working correctly - no workflow permission, secret or repository variable is changed; the only state-changing call is a generator writing its own artifact (T056, T057)
+- [x] CHK-030 [P0] No hardcoded secrets - the packet and templates carry no token, key or variable value; `permissions: contents: read` is the only permission the templates show (T014, T015) [EVIDENCE: scanned 2026-10-24: a case-insensitive `rg` for a GitHub token prefix, an AWS key prefix, a private-key header and the word password over sk-code-ci exits 1 with no match; the two templates contain no `secrets.` reference, only the switch `vars.SKILLED_CI` and `vars.SKILLED_CI_TESTS` names in an `if:`, and the only permission either shows is `contents: read`]
+- [x] CHK-031 [P0] Input validation implemented - the packet's tool surface is read-only and the registry entry forbids `Write`, `Edit` and `Task` (T007, T020) [EVIDENCE: read 2026-10-24: the sk-code-ci registry entry has toolSurface allowed Read, Bash, Grep, Glob and forbidden Write, Edit, Task with mutatesWorkspace false; SKILL.md declares `allowed-tools: [Read, Bash, Grep, Glob]` and parent-skill-check 3g passes]
+- [x] CHK-032 [P1] Auth/authz working correctly - no workflow permission, secret or repository variable is changed; the only state-changing call is a generator writing its own artifact (T056, T057) [EVIDENCE: ran 2026-10-24: `git diff --name-only 028bd0f5cd~1 028bd0f5cd -- .github` lists 0 paths, so no workflow, permission or script changed; the phase diff has 0 package or lock files; the generators wrote only their own artifacts (leaf-manifest.json OK, derived freshness `checked=14 fresh=14 stale=0 errored=0`)]
 <!-- /ANCHOR:security -->
 
 ---
@@ -1974,9 +1974,9 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-010, tasks.md T001 to T068, acceptance-criteria.md AC-001 to AC-012
-- [ ] CHK-041 [P1] Code comments adequate - the templates explain why each block exists and the packet explains its refusal boundary (T007, T014, T015)
-- [ ] CHK-042 [P2] README updated - the packet README and the hub README surface table (T008, T045)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-010, tasks.md T001 to T068, acceptance-criteria.md AC-001 to AC-012 [EVIDENCE: counted 2026-10-24: spec.md REQ-001 to REQ-010 (10 ids), tasks.md T001 to T068 (68 task headings, 68 ticked after T068), acceptance-criteria.md AC-001 to AC-012 (12 ids), and the tasks cross-reference table maps R22 and R23 to the same AC ids]
+- [x] CHK-041 [P1] Code comments adequate - the templates explain why each block exists and the packet explains its refusal boundary (T007, T014, T015) [EVIDENCE: read 2026-10-24: workflow-template.yml carries 22 comment lines and job-block-template.yml 9, each explaining why a block exists (for example the permissions block says to use it only when the workflow declares `permissions: {}`), and README.md line 43 states `The packet never writes`, the refusal boundary]
+- [x] CHK-042 [P2] README updated - the packet README and the hub README surface table (T008, T045) [EVIDENCE: read 2026-10-24: sk-code-ci/README.md exists with its packet kind and tools rows, and the hub README.md names sk-code-ci 5 times, including the surface table row at line 55]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1984,8 +1984,8 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only - the baseline, the pattern inputs, the registration snapshots, the ordering state, the anchors, the inventory and the result all live in the phase's `scratch/`
-- [ ] CHK-051 [P1] scratch/ cleaned before completion - the eight documents are kept on purpose: they are the pre-phase snapshot and the gate evidence a later rebase reads
+- [x] CHK-050 [P1] Temp files in scratch/ only - the baseline, the pattern inputs, the registration snapshots, the ordering state, the anchors, the inventory and the result all live in the phase's `scratch/` [EVIDENCE: listed 2026-10-24: scratch/ holds 19 entries (18 files plus .gitkeep: the baseline, the pattern inputs, the registration snapshots, the ordering state, the anchors, the inventory, the result, the gate logs and the closure commit message) and `git status --short` over the phase folder shows no stray file outside scratch/]
+- [x] CHK-051 [P1] scratch/ cleaned before completion - the scratch documents are kept on purpose: they are the pre-phase snapshot and the gate evidence a later rebase reads [EVIDENCE: listed 2026-10-24: the row said eight documents, scratch/ holds 18 files plus .gitkeep, all kept on purpose as the pre-phase snapshot and gate evidence; the T068 temp message file `/tmp/commit-msg-ci-surface-closure.txt` does not exist (`ls /tmp/commit-msg-ci-surface*.txt` finds nothing)]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1995,11 +1995,11 @@ Not done: the closure commit follows this record and this box stays unticked unt
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 0/15 |
-| P1 Items | 23 | 0/23 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 15 | 15/15 |
+| P1 Items | 23 | 23/23 |
+| P2 Items | 9 | 9/9 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---
@@ -2007,10 +2007,10 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] Architecture decisions documented - ADR-001 to ADR-010 in `decision-record.md`
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted) - all ten are `Proposed`
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale - each ADR names its rejected alternatives and why
-- [ ] CHK-103 [P2] Migration path documented - the `013/002` ordering and the `2.4.0.0` release are the migration path (plan.md Implementation Notes)
+- [x] CHK-100 [P0] Architecture decisions documented - ADR-001 to ADR-010 in `decision-record.md` [EVIDENCE: read 2026-10-24: decision-record.md holds ADR-001 to ADR-010, ten decision sections, plus the 2026-10-24 amendment]
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) - all ten are `Accepted` [EVIDENCE: read 2026-10-24: all ten ADRs read `Accepted`, each with its own evidence row (`grep -c Proposed` prints 0)]
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale - each ADR names its rejected alternatives and why [EVIDENCE: read 2026-10-24: decision-record.md carries 10 Alternatives Considered sections (20 anchor lines, open and close), each with an options table and a Why this one line]
+- [x] CHK-103 [P2] Migration path documented - the `013/002` ordering and the `2.4.0.0` release are the migration path (plan.md Implementation Notes) [EVIDENCE: read 2026-10-24: plan.md Implementation Notes, Ordering with 013/002 bullet, gives the order and the preservation rule, and the 2.4.0.0 release with its changelog is ADR-007 (changelog/v2.4.0.0.md exists, one distinct version value across the four fields)]
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -2018,10 +2018,10 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01) - the phase adds no CI job and no runner minute
-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02) - one more `modes[]` entry and two vocabulary classes are the only routing cost
-- [ ] CHK-112 [P2] Load testing completed - not applicable; the packet is reference data
-- [ ] CHK-113 [P2] Performance benchmarks documented - R22 and R23 save 0 standalone and 0 after R1, recorded in spec.md §4
+- [x] CHK-110 [P1] Response time targets met (NFR-P01) - the phase adds no CI job and no runner minute [EVIDENCE: ran 2026-10-24: the phase commit changed 0 `.github` paths (`git diff --name-only 028bd0f5cd~1 028bd0f5cd -- .github` lists none), so it adds no CI job and no runner minute]
+- [x] CHK-111 [P1] Throughput targets met (NFR-P02) - one more `modes[]` entry and two vocabulary classes are the only routing cost [EVIDENCE: ran 2026-10-24: one new modes[] entry (sk-code-ci, 4 modes now against 3 before) and 2 vocabulary classes (`code-ci-aliases`, `code-ci-runtime`) are the routing additions; `node --test compiled-route-surface-hint.test.cjs` runs 8 tests in a single process with `fail 0`]
+- [x] CHK-112 [P2] Load testing completed - not applicable; the packet is reference data [EVIDENCE: n/a because the packet is reference data (Markdown, JSON and YAML), has no service or request path, and nothing runs under load]
+- [x] CHK-113 [P2] Performance benchmarks documented - R22 and R23 save 0 standalone and 0 after R1, recorded in spec.md §4 [EVIDENCE: read 2026-10-24: spec.md section 4 states `R22 saves 0 runner-minutes standalone and 0 after R1` and `R23 saves 0`]
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -2029,11 +2029,11 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested - plan.md §7 and spec.md §6 revert one commit and regenerate the two manifests
-- [ ] CHK-121 [P0] Feature flag configured - not applicable; the packet is additive and the advisor identity is unchanged
-- [ ] CHK-122 [P1] Monitoring/alerting configured - the hub gates are the monitoring; T060 to T062 run them
-- [ ] CHK-123 [P1] Runbook created - plan.md's AI Execution Protocol and tasks.md are the runbook
-- [ ] CHK-124 [P2] Deployment runbook reviewed - the phase handoff names the four gate commands
+- [x] CHK-120 [P0] Rollback procedure documented and tested - plan.md §7 and spec.md §6 revert the phase commit and regenerate the two manifests and the compiled skill graph [EVIDENCE: ran 2026-10-24: plan.md section 7 and spec.md section 6 name the revert and the two regeneration commands. Tested without changing anything: `git diff 028bd0f5cd~1 028bd0f5cd -- . ':!specs'` (1,701 lines) piped to `git apply -R --check` against the current tree exits 0, so the phase commit reverses cleanly. Gap found and fixed in plan.md and spec.md: after the revert the compiled skill graph also needs `skill_graph_compiler.py --export-json`, because c903c0d103 regenerated it separately]
+- [x] CHK-121 [P0] Feature flag configured - not applicable; the packet is additive and the advisor identity is unchanged [EVIDENCE: n/a because the packet is additive reference data with no runtime behaviour to switch, and the advisor identity is unchanged (no new advisor skill id, only phrases for the existing sk-code id)]
+- [x] CHK-122 [P1] Monitoring/alerting configured - the hub gates are the monitoring; T060 to T062 run them [EVIDENCE: observed 2026-10-24: the hub gates run in CI; `gh run view 40113489423` prints name Routing Registry Drift Guard, status completed, conclusion success, headSha c903c0d103b59c7d51838d45b598d1e7981f5056, and `gh run list --commit c903c0d103...` shows 15 runs, 15 completed success]
+- [x] CHK-123 [P1] Runbook created - plan.md's AI Execution Protocol and tasks.md are the runbook [EVIDENCE: read 2026-10-24: plan.md has an AI EXECUTION PROTOCOL section (pre-task checklist, execution rules, status format, blocked-task protocol) and tasks.md holds 68 tasks with command, expected result, rollback and stop condition each]
+- [x] CHK-124 [P2] Deployment runbook reviewed - the phase handoff names its five commands [EVIDENCE: read 2026-10-24: spec.md Handoff Criteria names five commands (the row said four gate commands): parent-skill-check.cjs, run-all-drift-guards.sh, the compiled-route-surface-hint test, the message-contract `git diff --exit-code` and validate.sh --strict. All five were run this session]
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -2041,10 +2041,10 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Security review completed - the read-only surface and the protected set are reviewed in T013 and T020
-- [ ] CHK-131 [P1] Dependency licenses compatible - no dependency is added; the packet is Markdown, JSON and YAML
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed - not applicable; no request handling, input parsing or authentication is added
-- [ ] CHK-133 [P2] Data handling compliant with requirements - no data is stored or transmitted
+- [x] CHK-130 [P1] Security review completed - the read-only surface and the protected set are reviewed in T013 and T020 [EVIDENCE: read 2026-10-24: the read-only boundary is proved by parent-skill-check 3g PASS and the registry forbidden list, and the protected set is protected-set.md, which names three classes (sole enforcer, token-eligibility split, input guard) of workflow that are never weakened or switched off lightly; no write tool is granted anywhere in the packet]
+- [x] CHK-131 [P1] Dependency licenses compatible - no dependency is added; the packet is Markdown, JSON and YAML [EVIDENCE: ran 2026-10-24: the phase diff touches 0 package.json, lock, requirements or Gemfile paths (`git diff --name-only 028bd0f5cd~1 028bd0f5cd` filtered for them counts 0)]
+- [x] CHK-132 [P2] OWASP Top 10 checklist completed - not applicable; no request handling, input parsing or authentication is added [EVIDENCE: n/a because the phase adds no request handling, input parsing, authentication or network call, only Markdown, JSON and YAML reference data]
+- [x] CHK-133 [P2] Data handling compliant with requirements - no data is stored or transmitted [EVIDENCE: n/a because the phase stores and transmits no data; the only writes are the two generators regenerating their own committed artifacts]
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -2052,10 +2052,10 @@ Not done: the closure commit follows this record and this box stays unticked unt
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized - spec.md, plan.md, tasks.md, acceptance-criteria.md and goal.md name the same R22 and R23 scope
-- [ ] CHK-141 [P1] API documentation complete - the packet's reference map and machine-readable block are its API (T007)
-- [ ] CHK-142 [P2] User-facing documentation updated - the hub README surface table and the packet README (T008, T045)
-- [ ] CHK-143 [P2] Knowledge transfer documented - plan.md Implementation Notes and `scratch/phase-result.md`
+- [x] CHK-140 [P1] All spec documents synchronized - spec.md, plan.md, tasks.md, acceptance-criteria.md and goal.md name the same R22 and R23 scope [EVIDENCE: read 2026-10-24: spec.md, plan.md, tasks.md and acceptance-criteria.md name R22 and R23. goal.md named neither and still read Pending, so goal.md was brought in line the same day: its log now names the built state and its seven completion criteria are ticked with observed values]
+- [x] CHK-141 [P1] API documentation complete - the packet's reference map and machine-readable block are its API (T007) [EVIDENCE: read 2026-10-24: sk-code-ci/SKILL.md carries the machine-readable block at lines 56-64 (`DEFAULT_RESOURCE`, `INTENT_SIGNALS`, `RESOURCE_MAP`) and the same four paths appear in the hub ROUTER.md `CI_WORKFLOW` entry (`grep -c '"CI_WORKFLOW"'` prints 2)]
+- [x] CHK-142 [P2] User-facing documentation updated - the hub README surface table and the packet README (T008, T045) [EVIDENCE: read 2026-10-24: the hub README.md surface table row at line 55 and the packet README.md both name the packet; `grep -q sk-code-ci` finds it in all five prose files the AC-008 loop checks]
+- [x] CHK-143 [P2] Knowledge transfer documented - plan.md Implementation Notes and `scratch/phase-result.md` [EVIDENCE: read 2026-10-24: plan.md Implementation Notes (12 bullets) and scratch/phase-result.md (phase result, closure re-run, the finding the gates missed and the CI state) record the working knowledge]
 <!-- /ANCHOR:docs-verify -->
 
 ---

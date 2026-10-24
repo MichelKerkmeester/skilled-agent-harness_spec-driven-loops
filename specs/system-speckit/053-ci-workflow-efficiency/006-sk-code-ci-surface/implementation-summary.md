@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built and landed on main as 028bd0f5cd: the read-only sk-code-ci surface packet with ten rule families, registered in every sk-code hub artifact, with the message-contract exception and the routing evidence. All twelve acceptance rows are Met. The phase gates missed one stale compiled skill graph, fixed in c903c0d103, and the CI run of that fix was still in progress at closure."
+description: "Built and landed on main as 028bd0f5cd and closed in 25aa533f0b: the read-only sk-code-ci surface packet with ten rule families, registered in every sk-code hub artifact, with the message-contract exception and the routing evidence. All twelve acceptance rows are Met and the verification checklist is ticked. The phase gates missed one stale compiled skill graph, fixed in c903c0d103, and the CI run of that fix finished green."
 trigger_phrases:
   - "sk code ci surface implementation summary"
 importance_tier: "normal"
@@ -8,13 +8,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface"
-    last_updated_at: "2026-10-24T17:00:00Z"
+    last_updated_at: "2026-10-24T22:10:00Z"
     last_updated_by: "markdown"
-    recent_action: "Re-ran every acceptance check on c903c0d103 and recorded the closure evidence"
-    next_safe_action: "Commit the closure files, then read CI for c903c0d103"
-    blockers:
-      - "The CI run of c903c0d103 was in progress at closure: Routing Registry Drift Guard was not completed"
-      - "T068, the closure commit, is not made yet"
+    recent_action: "Closed the phase: checklist ticked, ADRs accepted, CI green"
+    next_safe_action: "None; operator signs off and commits the close-out"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -25,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-006-sk-code-ci-surface"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,9 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-sk-code-ci-surface |
-| **Completed** | Built and landed on main (028bd0f5cd), closure commit and the CI read of c903c0d103 pending |
+| **Completed** | 2026-10-24: built and landed on main (028bd0f5cd), closure record 25aa533f0b, CI run of the graph fix c903c0d103 green |
 | **Level** | 3 |
-| **Status** | In progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -94,7 +92,7 @@ The phase is built and landed on `origin/main` as commit `028bd0f5cd` (`feat(sk-
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered in five phases, in `tasks.md`: the gate baseline, the pattern inputs, the pre-phase registration, the ordering state, the ten anchors and the consumer inventory (T001 to T006), then the packet files, the rule data, the exception and the playbook scenario (T007 to T019), then the registry, router, `ROUTER.md`, guard, generated artifacts, hub prose, release, canary, compiled-route test, Hermes mirror and compiled policy (T020 to T058), then the durable-directory manifest, the gate runs, the scope proof, the registration proof and the validator (T059 to T065), and last the phase commit, the phase result and the closure evidence (T066 to T068). The orchestrator made the phase commit `028bd0f5cd` with its own message. The closure commit, T068, follows this record. The gates are `parent-skill-check.cjs`, `run-all-drift-guards.sh`, the compiled-route suites, `verify-router-sync.cjs`, `verify-doc-claims.cjs` and `validate.sh --strict`, and the closure added `skill-graph-freshness.cjs --strict` after CI showed the graph had gone stale.
+Delivered in five phases, in `tasks.md`: the gate baseline, the pattern inputs, the pre-phase registration, the ordering state, the ten anchors and the consumer inventory (T001 to T006), then the packet files, the rule data, the exception and the playbook scenario (T007 to T019), then the registry, router, `ROUTER.md`, guard, generated artifacts, hub prose, release, canary, compiled-route test, Hermes mirror and compiled policy (T020 to T058), then the durable-directory manifest, the gate runs, the scope proof, the registration proof and the validator (T059 to T065), and last the phase commit, the phase result and the closure evidence (T066 to T068). The orchestrator made the phase commit `028bd0f5cd` with its own message. The closure commit, T068, landed as `25aa533f0b`. The gates are `parent-skill-check.cjs`, `run-all-drift-guards.sh`, the compiled-route suites, `verify-router-sync.cjs`, `verify-doc-claims.cjs` and `validate.sh --strict`, and the closure added `skill-graph-freshness.cjs --strict` after CI showed the graph had gone stale.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -135,14 +133,14 @@ Delivered in five phases, in `tasks.md`: the gate baseline, the pattern inputs, 
 | `run-all-drift-guards.sh` | Exit `0` with `all 4 guards PASSED, 10 non-blocking warning(s)` (AC-007) |
 | `node --test --test-concurrency=1 .skilled/bin/tests/compiled-route-*.test.cjs` | Exit `0` with `tests 90`, `pass 90`, `fail 0` (AC-007) |
 | `skill-graph-freshness.cjs --strict` | Exit `0` with `SIGNAL DRIFT compiled vs disk: none` after `c903c0d103` (AC-007) |
-| `validate.sh <this folder> --strict` | `RESULT: PASSED` (AC-007) |
+| `validate.sh <this folder> --strict --no-recursive` | `RESULT: PASSED` with `Errors: 0  Warnings: 0` (AC-007) |
 | The four version fields and the hub changelog | One distinct value, `2.4.0.0`, and `changelog-ok` (AC-008) |
 | `verify-doc-claims.cjs` | `doc-claims: 4/4 checks passed` (AC-008) |
 | The registration before and after comparison | `true true true true true true true` (AC-009) |
 | The ephemeral-id search over the phase diff | No output, `grep` exit `1` (AC-010) |
 | The composite-action status line | `present`, `0` proposed and `1` landed (AC-011) |
 | `rg -c 'specs/'` and the id search over the packet | No matches, `rg` exits `1` for both (AC-012) |
-| CI runs on `main` | `028bd0f5cd`: 18 of 19 completed success and 1 failure (Routing Registry Drift Guard). `c903c0d103`: 14 of 15 completed success and 1 in progress (Routing Registry Drift Guard) at 16:58 UTC. The table is in `scratch/phase-result.md` |
+| CI runs on `main` | `028bd0f5cd`: 18 of 19 completed success and 1 failure (Routing Registry Drift Guard). `c903c0d103`: 15 of 15 completed success, including Routing Registry Drift Guard run `40113489423` (`completed`, `success`), read again at closing time. The table is in `scratch/phase-result.md` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -159,9 +157,10 @@ Delivered in five phases, in `tasks.md`: the gate baseline, the pattern inputs, 
 7. **Three routing changes outside the frozen scope were approved on 2026-10-24.** The operator approved them and they are done. Bare runtime keywords such as `matrix`, `ruleset`, `cache key`, `fail-fast` and `concurrency group` became multi-word phrases, because non-CI prompts were being pulled into `sk-code-ci`. Eight multi-word CI phrases were added to the advisor `intent_signals` in `graph-metadata.json`, so `pin the actions/checkout sha in the github actions workflow` and `add a timeout to the ci workflow` now reach `sk-code`. The overlapping CI aliases were trimmed from twelve to eight. A second read-only review (a DeepSeek pass) found seven non-CI prompts still selecting the surface, and the same intent was applied again: `workflow timeout`, `workflow concurrency` and `workflow permissions` became `github workflow ...`, `required status check` became `required status check workflow`, `protected workflow` was dropped, `fail-fast` became `fail-fast: false`, and the runtime list settled on `strategy matrix`, `ruleset context` and `actions concurrency group`. All of it amends the frozen line in `spec.md` that ruled out advisor vocabulary changes, and the amendment section of `decision-record.md` holds the reasons and the replay table.
 8. **The earlier canary prompt no longer bundles, accepted by the operator.** `review the github actions workflow yaml` resolves to `surfaceBundle` `[sk-code-review, sk-code-ci]` and is now the canary and test prompt. `code review the github actions workflow` routes to `sk-code-review` alone, because `code review` scores twice on the review side and no CI weight or alias set in range bundles both. Bundling both needs `routerPolicy.ambiguityDelta` raised from 1, which affects every two-mode prompt in the hub. The operator ruled on 2026-10-24 to accept the limitation and keep the tolerance at 1. A bare surface prompt does not defer, contrary to the earlier ADR-001 wording: `add a timeout to the ci workflow` resolves to `single` `[sk-code-ci]`.
 9. **The pinned gold-corpus failure predates the phase and is resolved.** `the live corpus holds the pinned number of gold scenarios` read `85 !== 82` at `compiled-route-admission.test.cjs:241`, because the pin was set to 82 on 2026-10-11 and the live corpus holds 85. The orchestrator reproduced it in a clean checkout of `113d8b56d1` before any edit of this phase. The operator approved raising the pin to 85 on 2026-10-24 and commit `e8fdd9746b` did so. The serial run prints `tests 90`, `pass 90` and `fail 0` with exit `0`. CI does not run this suite.
-10. **The phase gates missed a stale compiled skill graph, and its fix is not yet confirmed by CI.** The phase commit `028bd0f5cd` failed the CI job Routing Registry Drift Guard with `SIGNAL DRIFT compiled vs disk: sk-code`, because the advisor signals gained CI phrases and `skill-graph.json` was not regenerated. The freshness check was not in the phase's gate list. Commit `c903c0d103` regenerated the graph and `skill-graph-freshness.cjs --strict` prints `SIGNAL DRIFT compiled vs disk: none` with exit `0`. At 16:58 UTC the CI run of Routing Registry Drift Guard for `c903c0d103` was still in progress, so the fix is confirmed locally and not by CI yet.
+10. **The phase gates missed a stale compiled skill graph, and its fix is confirmed by CI.** The phase commit `028bd0f5cd` failed the CI job Routing Registry Drift Guard with `SIGNAL DRIFT compiled vs disk: sk-code`, because the advisor signals gained CI phrases and `skill-graph.json` was not regenerated. The freshness check was not in the phase's gate list. Commit `c903c0d103` regenerated the graph and `skill-graph-freshness.cjs --strict` prints `SIGNAL DRIFT compiled vs disk: none` with exit `0`. Run `40113489423` of Routing Registry Drift Guard for `c903c0d103` finished `completed` with conclusion `success`, and all 15 runs for that commit finished `success`.
 11. **The phase commit message differs from the task text.** The orchestrator's commit carries a `Commit-Id` trailer and no `Spec:` line, so T066's `Spec:` grep reads `0` and not `1`. The ephemeral-id count over the message is `0`.
-12. **The Verification Checklist rows in `tasks.md` are not ticked.** The acceptance rows are the closure gate and all twelve are `Met`, but the `CHK-` rows and the three completion lines stay open until the closure commit lands and the packet status flips to `Complete`.
+12. **The checklist and the ADRs are closed at the end.** All 47 `CHK-` rows and the three completion lines in `tasks.md` are ticked with observed evidence, and the ten ADRs moved from `Proposed` to `Accepted` with the evidence for each. Two judgment calls are recorded in the rows: `CHK-022` and `CHK-FIX-006` are ticked on the one reachable row of the six-row matrix, and the five rows that cannot occur (pre-removal ordering, the push-only rebuild form, main cancellation) are marked as not applicable. The operator sign-off table in `tasks.md` stays `Pending`.
+13. **Two documents outside this folder still carry stale text.** `.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md` names the deleted `hooks-node-tests.yml` workflow at lines 40 and 103 and its timeout table says `6 of 33` workflows carry a timeout on seven lines, while the tree today shows 5 of 33 workflows with 6 lines (`grep -l 'timeout-minutes' .github/workflows/*.yml` lists 5 files). The file is outside this folder, so it is recorded here and not edited.
 <!-- /ANCHOR:limitations -->
 
 ---

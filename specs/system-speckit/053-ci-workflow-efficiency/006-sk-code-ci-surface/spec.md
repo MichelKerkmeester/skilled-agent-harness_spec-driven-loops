@@ -34,7 +34,7 @@ The 33 GitHub Actions workflows follow a set of rules that exist mostly in prose
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |
@@ -216,7 +216,7 @@ R22 saves 0 runner-minutes standalone and 0 after R1: it changes no workflow's t
 
 ### Rollback by R-id
 
-- **R22 rollback**: `git revert` the phase commit. The packet folder, the registry entry, the router entry, the generated manifests, the canary case, the compiled-route test, the packet playbook and the hub release disappear together, because they are one commit. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code` and `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write` so both generated artifacts match the reverted registry, and re-run `parent-skill-check.cjs` and `run-all-drift-guards.sh`.
+- **R22 rollback**: `git revert` the phase commit. The packet folder, the registry entry, the router entry, the generated manifests, the canary case, the compiled-route test, the packet playbook and the hub release disappear together, because they are one commit. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code` and `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write` so both generated artifacts match the reverted registry, then run `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --export-json` so the compiled skill graph drops the phase's advisor phrases too, and re-run `parent-skill-check.cjs` and `run-all-drift-guards.sh`.
 - **R23 rollback**: delete the `## Intentional exceptions` section from `references/trigger-and-filter-rules.md` and re-run `grep -c 'intentional-exception'` to confirm 0. No other file changes, because the workflow is never edited.
 - **Partial rollback**: a registration task that turns a gate red is reverted by deleting the inserted entry, not by deleting the packet. The packet folder is inert while no registry entry names it, because `parent-skill-check` 6a only walks hub children and `sk-code-ci/` is a registered packet once T020 lands.
 <!-- /ANCHOR:risks -->

@@ -11,14 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface"
-    last_updated_at: "2026-10-23T15:10:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded ten proposed ADRs for the planned phase"
-    next_safe_action: "Run the phase's tasks from T001"
-    blockers:
-      - "004-setup-caching-provisioning has not landed; .github/actions/setup/action.yml is absent"
-      - "specs/sk-code/013-private-surface-skills/002-hub-surface-removal is Draft and edits the same registration files"
-      - "The worktree is not provisioned, so parent-skill-check leg 12-lib fails before this phase starts"
+    last_updated_at: "2026-10-24T22:06:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Accepted all ten ADRs with evidence"
+    next_safe_action: "None; reopen only for a failing gate"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -28,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-006-sk-code-ci-surface"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,8 +45,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: parent-skill-check 3g reads `all 2 surface packet(s) are read-only evidence-base and advisor-invisible`; the registry entry for sk-code-ci carries toolSurface allowed Read, Bash, Grep, Glob and forbidden Write, Edit, Task with mutatesWorkspace false |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -148,8 +146,9 @@ The CI rules are stack knowledge consumed by two acting modes: authoring under `
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: the before and after registration snapshots compare `true true true true true true true`; the registry holds sk-code-quality, sk-code-review, sk-code-skilled and sk-code-ci, and the three modes present before are all still present |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -248,8 +247,9 @@ The CI rules are stack knowledge consumed by two acting modes: authoring under `
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: trigger-and-filter-rules.md carries 2 `intentional-exception` hits for the message-contract row; `git diff --exit-code 028bd0f5cd~1 HEAD -- .github/workflows/message-contract.yml` exits 0 |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -347,8 +347,9 @@ The CI rules are stack knowledge consumed by two acting modes: authoring under `
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: the scenario sits at sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md and `verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`, leg 4 included |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -447,8 +448,9 @@ The CI rules are stack knowledge consumed by two acting modes: authoring under `
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: trigger-and-filter-rules.md section 3 records the `[skip ci]` form and names the push-only paths-ignore form once; the sibling phase landed the same form (the body line at trigger-index-rebuild.yml:151 ends in `[skip ci]`, commit 8e62a3d096 is an ancestor of HEAD) |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -547,8 +549,9 @@ D1 asks how a rebuild commit skips CI. `002-rebuild-fanout-removal/plan.md` free
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: `grep -c '"CI_WORKFLOW"'` on ROUTER.md reads 2, `grep -c 'sk-code-ci/references/'` reads 8, and router-sync legs 1a, 1b, 2 and 3 pass |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -647,8 +650,9 @@ D1 asks how a rebuild commit skips CI. `002-rebuild-fanout-removal/plan.md` free
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: mode-registry.json, hub-router.json, description.json and SKILL.md hold one distinct version, 2.4.0.0; changelog/v2.4.0.0.md exists and parent-skill-check 13b-version passes |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -747,8 +751,9 @@ The hub version is `2.3.0.0` in `SKILL.md:5`, `mode-registry.json:3`, `hub-route
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: references/ holds ci-workflow-standards.md, trigger-and-filter-rules.md, job-shape-rules.md and protected-set.md, and the AC-002 token loop prints no `missing:` line |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -847,8 +852,9 @@ R22 names ten rule families: the twin rule, the rebuild-skip rule, push-only sco
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: `rg -c 'specs/' .skilled/skills/sk-code/sk-code-ci` prints nothing and exits 1; the 21 distinct `.github/` citations all resolve to a file and a line in range |
 | **Deciders** | Plan author; no operator decision |
 
 ---
@@ -946,8 +952,9 @@ The packet ships inside `.skilled/skills/sk-code/`, which a clone may copy or ve
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
+| **Accepted** | 2026-10-24, built and observed: `generate-leaf-manifest.cjs --check` prints `leaf-manifest.json OK` with exit 0 and `ci-skill-derived-freshness.cjs` prints `checked=14 fresh=14 stale=0 errored=0`; the compiled skill graph miss was repaired by its generator in c903c0d103 |
 | **Deciders** | Plan author; no operator decision |
 
 ---
