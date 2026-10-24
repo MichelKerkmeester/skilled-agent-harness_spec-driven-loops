@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Claude Code sets a goal when the operator types the native `/goal` command",
     "created_at": "2026-10-24T16:17:08Z",
-    "last_save_at": "2026-10-24T16:25:40.591Z",
+    "last_save_at": "2026-10-24T22:11:36.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6de945e7c34d5e4b455d5b789d015ffb56cb8dba5c449b9346889c9c6654690",
+    "source_fingerprint": "sha256:08925c369835a2337d8c32a8a8b8282a841d9cc3c9ee044df1e0422da06b3c0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "419d3c2caacdf2f7d6b1e3381308db49bdb666e3bb7288ecd37a31bba84db70c",
       "plan.md": "19d848746a851450b72ce71ed4eb9c9548963a24a3c7f55161a8273acdf993e7",
       "tasks.md": "1a3195904dc7e060ebc8525c6dea32735449dcfc1aa9938adc6a2d6d5677e48e",
-      "implementation-summary.md": "8962a8fe0339f815659e8d07119acbcc5283db88c145ae967c9b972b1c3e8e5e"
+      "implementation-summary.md": "0c813778d4d156d1a72156d4b6cb1d0ad91d35486a815b15af70360e0ab245df"
     },
     "last_active_at": null
   }

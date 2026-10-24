@@ -60,7 +60,7 @@ Everything else about the send is unchanged. The agent still sends only the `cha
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `AGENTS.md` | Modified | One sentence in the goal posture rule: "On Claude Code, send the slice inside one fenced code block that holds the slice and nothing else, with a fence the slice cannot break, so the operator can copy it into `/goal` whole." |
+| `AGENTS.md` | Modified | One sentence in the goal posture rule: "On Claude Code, send it alone in one fenced block." The full fence rule lives in section 4 of `budget-and-handoff.md`, which the sentence before it already cites, because a longer sentence pushed the `Blast-Radius Management` section past the 16,384-byte delivery prefix that `check-rule-copies.js` guards |
 | `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md` | Modified | Full rule in section 4, Claude Code matrix row extended, Codex row says it takes no fence |
 | `.skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md` | Modified | Resend step: "On Claude Code, send it as one fenced code block that holds the slice and nothing else." |
 | `.skilled/commands/speckit/assets/speckit-plan.yaml`, `speckit-implement.yaml`, `speckit-complete.yaml` | Modified | `bind_by_runtime.claude-code` and `resend.payload` carry the rule |
