@@ -60,5 +60,10 @@ jobs:
           npm --prefix .opencode/skills/system-deep-loop ci
           npm --prefix .opencode/skills/system-deep-loop/runtime ci
 
+      # A stale compiled contract fails the suite after the whole run. Checking
+      # the same fact first fails in seconds and names the contract to rebuild.
+      - name: Refuse a stale compiled command contract before the full suite
+        run: node .opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs
+
       - name: Run the deep-loop runtime suites
         run: npm --prefix .opencode/skills/system-deep-loop/runtime test
