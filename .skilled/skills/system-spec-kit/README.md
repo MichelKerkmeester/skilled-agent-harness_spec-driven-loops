@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.11.0
+version: 2.7.12.0
 ---
 
 # System Spec Kit
@@ -447,7 +447,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── contracts/              # Typed trace/envelope contracts
 │   ├── embeddings/             # Provider implementations
 │   └── ...                     # Chunker, scoring, parsing, utilities
-├── references/                 # Reference documentation (41 files)
+├── references/                 # Reference documentation (42 files)
 ├── assets/                     # Decision matrices, YAML configs
 ├── feature-catalog/            # Feature documentation catalog
 └── manual-testing-playbook/    # Manual validation scenarios
@@ -535,7 +535,7 @@ There is no paraphrase matching to fall back to. Retrieval is lexical.
 | Spec folder fails validation | run `validate.sh --verbose` and read each failing rule |
 | Retrieval seems wrong | rerun the lookup and read the exit status: `0` hit, `1` clean miss, `2` broken |
 | Session context lost after crash | use `/speckit:resume` to select the fresher folder-local source |
-| Placeholder check fails | run `check-placeholders.sh` and replace every `[YOUR_VALUE_HERE: ...]` token. A Draft packet may warn and still pass strict |
+| Placeholder check fails | run `check-placeholders.sh` and replace every `[YOUR_VALUE_HERE: ...]` token. A Draft packet stamped v2.3 or later may warn and still pass strict, and any other packet fails on an unfilled token |
 | Stale results after save | rerun `runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Too many near-duplicate results | check that the interference penalty is active in feature flags |
 | Trigger index absent in a fresh clone | it is committed at `runtime/data/trigger-index.json`; a missing file means a bad checkout, not a build step |

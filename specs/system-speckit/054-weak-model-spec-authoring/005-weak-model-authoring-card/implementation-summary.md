@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-24T20:40:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 005: card, router, inventory, guard, three smoke runs and one review"
-    next_safe_action: "Start phase 006 and decide the two card amendments from the review"
+    next_safe_action: "Phase closed; card amended on 2026-10-24"
     blockers: []
     key_files:
       - "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md"
@@ -104,7 +104,7 @@ One execution agent ran `tasks.md` T001 to T015 and dispatched no subagent. The 
 
 | Check | Result |
 |-------|--------|
-| Strict validation of this phase folder | `validate.sh <this folder> --strict` printed `RESULT: PASSED` (T015) |
+| Strict validation of this phase folder | `validate.sh specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card --strict` printed `RESULT: PASSED` |
 | Card sync guard | Nine `PASS` lines, `CARD SYNC OK`, exit 0. On a copy without the card: `exit=1`, `FAIL card-exists: missing references/workflows/spec-authoring-card.md`, `CARD SYNC FAILED` |
 | Card length and scans | `wc -l` printed `172`, and the vocabulary, em dash, semicolon and unfilled-hint scans printed nothing |
 | Router | 4 intent blocks name the card, 0 name the guide, the guide appears once in `ON_DEMAND` |
@@ -115,7 +115,7 @@ One execution agent ran `tasks.md` T001 to T015 and dispatched no subagent. The 
 | Full suite | Start baseline reused from phase 004 (`exit=0`, 276 passed of 279 files, 4162 tests). Fresh end suite `exit=0`: the first run is identical, the second run grew from 183 to 184 files and from 2084 to 2085 tests (the card-sync test) |
 | Review | `scratch/review/T014.txt` holds 3 P1 and 5 P2 lines. 0 applied, 8 recorded with a reason in `goal.md` section 4 |
 
-**Amendment 2026-10-24.** On the operator's decision "Amend before 009", the two review P1 defects in the card are fixed. Step 2 now says to use `--level 1` when `recommend-level.sh` prints Level 0, and the step 3 command now passes `--with-goal`, so the scaffold holds the `goal.md` that steps 8, 9 and 11 write to. The frozen card block in `plan.md` carries the same two edits and `diff` against the card printed nothing. The card is still 172 lines. A Level 1 scaffold made with the new command held `goal.md` and `validate.sh --strict` printed `RESULT: PASSED`. `CARD SYNC OK`, `card-sync.vitest.ts` 1 passed, `workflow-invariance.vitest.ts` with the card 2 passed, the full suite matched phase 006, and one read-only review returned `NO FINDINGS`. Status stays Complete and every acceptance row stays Met.
+**Amendment 2026-10-24.** On the operator's decision "Amend before 009", the two review P1 defects in the card are fixed. Step 2 now says to use `--level 1` when `recommend-level.sh` prints Level 0, and the step 3 command now passes `--with-goal`, so the scaffold holds the `goal.md` that steps 8, 9 and 11 write to. The frozen card block in `plan.md` carries the same two edits and `diff` against the card differs only in the frontmatter `version:` line (`1.0.0.0` in the plan block, `1.0.1.0` in the card, bumped by the commit hook). The card is still 172 lines. A Level 1 scaffold made with the new command held `goal.md` and `validate.sh --strict` printed `RESULT: PASSED`. `CARD SYNC OK`, `card-sync.vitest.ts` 1 passed, `workflow-invariance.vitest.ts` with the card 2 passed, the full suite matched phase 006, and one read-only review returned `NO FINDINGS`. Status stays Complete and every acceptance row stays Met.
 <!-- /ANCHOR:verification -->
 
 ---
