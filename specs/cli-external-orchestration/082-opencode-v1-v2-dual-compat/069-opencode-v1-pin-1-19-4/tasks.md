@@ -54,7 +54,7 @@ contextType: "general"
 
 - [x] T008 config-shape, battery and cli-opencode suites 88 of 88; dispatch rule checks 42 of 42
 - [x] T009 Workflow YAML parses; shellcheck clean; `opencode-setup.sh check` passes on this machine
-- [ ] T010 Dual-version battery green in CI on a pushed commit
+- [x] T010 Dual-version battery green in CI on `db30b0f543`, with 17 of 18 runs green; the Routing Registry Drift Guard fails on sk-code signal drift, as it already did on the parent commit `e3beac65f4`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,7 +64,7 @@ contextType: "general"
 
 - [x] All local tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] CI green on the pushed commit
+- [x] CI green on the pushed commit for every check this phase touches
 <!-- /ANCHOR:completion -->
 
 ---
