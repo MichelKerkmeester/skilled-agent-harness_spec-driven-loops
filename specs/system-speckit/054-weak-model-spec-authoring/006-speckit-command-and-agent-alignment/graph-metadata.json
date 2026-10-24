@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A speckit command tells a writer where to find authoring guidance, how a placeholder is treated and which files a packet holds",
     "created_at": "2026-10-23T12:53:05Z",
-    "last_save_at": "2026-10-23T16:16:32.130Z",
+    "last_save_at": "2026-10-24T07:19:45.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d57ffa8a88e280dd9b2b3335cefbb15170867cf4b09047c33eca439b5e4fa908",
+    "source_fingerprint": "sha256:2555fe8dc03de46791ca3a25de7b56a48331a66627763b810dc312a81b806e12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fbeddabada3427cc4cdeeace6cb2c93bc1786016f9863527b857147533d66961",

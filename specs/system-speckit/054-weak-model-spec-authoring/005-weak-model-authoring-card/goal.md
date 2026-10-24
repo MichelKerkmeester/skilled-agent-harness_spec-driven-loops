@@ -97,4 +97,6 @@ and findings belong here.
 | Generated metadata refresh | A spec-doc edit changes the hashed source docs, so `repair-derived.cjs --apply` re-derived `graph-metadata.json` after the last doc write. No file other than `graph-metadata.json` changed in that repair. |
 | Amendment: conductor and worker runtime | The conductor is the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, and each worker is one Task subagent that inherits the session model. The six packet docs name that dispatch, and no doc names `opencode2` as the worker runtime. |
 | Derived metadata refresh for the amendment | The six-doc amendment changed the hashed source docs, so the validator's own `repair-derived.cjs --apply` re-derived `graph-metadata.json`. No other generated file changed. |
+| Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
+| Smoke subject | The three smoke runs run on cli-devin `swe-2-max` and compare with the `swe-2-max` baseline in phase 001 `scratch/baseline-swe/`. |
 <!-- /ANCHOR:log -->

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-23T16:02:17.468Z",
+    "last_save_at": "2026-10-24T07:19:47.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e880e0452c5e59437d123f52b93bee4593a180d187f073d7bb467d86bd7e26b",
+    "source_fingerprint": "sha256:65ee2adc2f3a0e5e07dfbae618d83c6740dcd5b5c82460ecbd8fbc1ca53630a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa3b5214ef8910eaa26aa8b07e3a2dd83a05bea929e4060de04df07f08383358",

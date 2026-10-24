@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 | D3 | Every row is applied by `apply_row.py`, which refuses unless the locator occurs exactly once in its file. |
 | D4 | Generated mirrors are rebuilt by their own generators. `.claude/agents` is the one authored sibling, edited by six MIRROR rows. |
 | D5 | The suite and the trigger index are compared with the phase start, not with phase 1. The cumulative difference is recorded as information, not as a pass condition. |
-| D6 | One read-only frontier review runs through `cli-codex` with `gpt-6-luna`. No DeepSeek worker runs in this phase, because every text change is frozen in a row. |
+| D6 | One read-only review runs through `cli-devin` with `swe-2-max`. No writer worker runs in this phase, because every text change is frozen in a row. |
 
 <!-- /ANCHOR:directive -->
 
@@ -103,5 +103,6 @@ and findings belong here.
 | Suite comparison C8 | ADR-003 is approved by the orchestrator: compare the suite with the phase start, not with phase 001's `suite-start.txt`. Phase 001 records that file when it runs. |
 | Shared template text | The `../changelog/` line in `spec.md` and the `decision-record.md` waiver line in `acceptance-criteria.md` are fixed template text shared by every phase. Left unchanged. |
 | Generated metadata | Editing the six docs changed `graph-metadata.json`'s `source_fingerprint`, so `repair-derived.cjs --apply` re-derived that generated file. `validate.sh --strict` enforces the match. No authored content changed. |
+| Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
 <!-- /ANCHOR:log -->
 

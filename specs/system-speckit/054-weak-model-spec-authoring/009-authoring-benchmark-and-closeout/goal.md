@@ -43,7 +43,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The run task text is copied byte for byte from phase 1 T009. No word changes on the final side. |
 | D2 | M2 counts bare v2.2 hint occurrences plus v2.3 value token occurrences. The two patterns are disjoint and each unfilled instruction counts once. |
-| D3 | Three final runs, serial, on `llmgateway/deepseek-v4.1-flash-1017#max`. No run is dropped when it is bad. |
+| D3 | Three final runs, serial, on cli-devin `swe-2-max`, compared with the 3 `swe-2-max` baseline runs. No run is dropped when it is bad. |
 | D4 | The report folder is `.skilled/skills/system-spec-kit/benchmark/reports/$DATE--model-eval--authoring-baseline/`, dated by execution. |
 | D5 | This phase is the only one allowed to edit the parent `spec.md`, the parent `goal.md` and the 041 phase map row for `006-fix-write-recipe-move-destination`. |
 | D6 | A parent goal box is ticked only after its `C<n>` line reads PASS in `scratch/closeout/criteria.txt`. |
@@ -101,4 +101,6 @@ and findings belong here.
 | Nested changelog file names | The generator prints `changelog-054-root.md` and `changelog-054-009-authoring-benchmark-and-closeout.md` on this tree. The workflow reference describes the shape more loosely, so the generator output wins and the literal names in this phase use it. |
 | Three runs cannot support a significance claim | The report prints a range and says so. A reader who needs an effect size needs more runs. |
 | Bracket scan false positives | The bracket-hint scan matches the status format token in `plan.md` and the folder-name regex in `tasks.md`. Both sit inside fenced code blocks and are intentional literals, not unfilled hints. |
+| Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
+| T014 precondition rows | The OpenCode run already set parent preconditions 2 and 4 to Done, and the takeover added two rows beside them. T014 checks those rows as they stand instead of rewriting them from Pending. |
 <!-- /ANCHOR:log -->

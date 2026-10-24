@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 1 measured a fresh Level 2 scaffold at 87 distinct hint strings and 97 occurrences, and strict validation passes it",
     "created_at": "2026-10-23T11:27:21Z",
-    "last_save_at": "2026-10-23T16:23:25.826Z",
+    "last_save_at": "2026-10-24T07:19:42.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60e499b4b2ba1034be5617d6a2282e82c34aab3106f272d8c9ad472a997dcc04",
+    "source_fingerprint": "sha256:96d2f9f4f2711ec34ce536de926c49b470ea34c8887da44588196caea2a0035e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5caf8c23adf553e18354409b4065d601a8e49f140bc7d052ccceafed3f7794ae",

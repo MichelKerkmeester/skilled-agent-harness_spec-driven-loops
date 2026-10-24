@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 | D3 | Both the orchestrator function `validatePlaceholders` and the shell rule `check-placeholders.sh` get the lifecycle, and one test file compares them. |
 | D4 | Only the five templates `core/spec.md.tmpl`, `core/plan.md.tmpl`, `core/tasks.md.tmpl`, `core/implementation-summary.md.tmpl` and `addons/acceptance-criteria.md.tmpl` are converted, by `convert_hints.py`, and the scaffolder's own placeholders stay as they are. |
 | D5 | Every edit is made by a tool or a quoted heredoc. No worker model edits a file in this phase. |
-| D6 | The phase closes on a failing-first test, three red mutations, identical strict counts over `specs/` before and after, a suite match plus the new test, and one read-only frontier review through `cli-codex` with `gpt-6-luna`. |
+| D6 | The phase closes on a failing-first test, three red mutations, identical strict counts over `specs/` before and after, a suite match plus the new test, and one read-only review through `cli-devin` with `swe-2-max`. |
 | D7 | The post-edit scanner, the era report and `upgrade-level.sh` are not edited. Their side effects are recorded as operator items. |
 | D8 | The phase makes no commit. The operator commits. |
 
@@ -119,4 +119,5 @@ Write each as a row in the table below with its probe output when T016 runs. The
 | Item | Note |
 |------|------|
 | None yet | |
+| Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
 <!-- /ANCHOR:log -->

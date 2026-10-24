@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D5 | The report package copies the real file set of an existing report folder: `README.md`, `results.csv`, `source.md` and `outcomes/`. The ten `sk-create-benchmark` section headings live inside `README.md`. |
 | D6 | Durable writes land in this phase folder plus the one report folder and one reports index row. No source file under `.skilled/` is edited by hand. |
 | D7 | The report folder is written before the worktree is removed, so no evidence depends on a deleted directory. |
-| D8 | The conductor is the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max. Every worker is one Task subagent, and no nested CLI dispatch is used from that session. |
+| D8 | The conductor is a Claude Code session. Every worker is one cli-codex gpt-6-luna max fast dispatch, with cli-devin swe-2-max as fallback. |
 
 <!-- /ANCHOR:directive -->
 
@@ -100,4 +100,5 @@ and findings belong here.
 | Scenario map source | Phase 007 plan section 3.1 freezes the eight ids and paths. This phase copies them into `scratch/scenarios.tsv` and stops with `NO_FILE` or `AMBIGUOUS` when a scenario file is missing or an index row is duplicated. |
 | Fix patch | A fix edits a tracked file under `.skilled/`, so T016 saves the worktree diff to `scratch/fixes/fix.patch` and its status to `scratch/fixes/status.txt` before removal. The operator or the phase 009 conductor applies that patch to the build worktree. |
 | Bracket scan | The scan flags JavaScript destructuring inside fenced code blocks in `tasks.md`. A fenced block is not an unfilled scaffold hint, so the literal scripts stay and this row records the result. |
+| Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
 <!-- /ANCHOR:log -->

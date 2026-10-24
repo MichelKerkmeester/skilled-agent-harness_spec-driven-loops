@@ -45,8 +45,8 @@ Frozen choices. Changing one is an amendment.
 | D2 | Only the files named by the 25 known rows in `tasks.md` T004, by owner `002` ledger rows and `templates/.hashes` change. No file under `templates/core`, `templates/addons` or `templates/packet-types` changes. |
 | D3 | `templates/.hashes` is deleted only when both reader searches in `tasks.md` T008 exit with code 1. |
 | D4 | Rows owned by the write recipe (`041-006`) and by phases 3 to 6 are not touched here. |
-| D5 | One Task subagent fixes only a row the applier could not apply as a swap, one row and one file per brief, with at most 3 Task calls in one message and never two that write the same file. |
-| D6 | The phase closes on a matching suite comparison and one read-only frontier review through `cli-codex` with `gpt-6-luna`. |
+| D5 | One worker fixes only a row the applier could not apply as a swap, one row and one file per brief, with at most 3 workers at once and never two that write the same file. |
+| D6 | The phase closes on a matching suite comparison and one read-only review through `cli-devin` with `swe-2-max`. |
 
 <!-- /ANCHOR:directive -->
 
@@ -80,7 +80,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase 1 closed with a reviewed ledger (T001) | Pending | |
 | Tools checked (T002) | Pending | |
-| Phase start commit | Pending | |
+| Phase start commit | Done | 9615cf324cd1a87f3992d96a8afcd3903eb4316f |
 | Known rows saved (T004) | Pending | |
 | Applier saved and tested (T005) | Pending | |
 | 25 known rows applied (T006) | Pending | |
@@ -97,4 +97,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | None yet | |
+| Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
 <!-- /ANCHOR:log -->

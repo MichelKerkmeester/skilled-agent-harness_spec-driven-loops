@@ -52,7 +52,6 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/sk-git/SKILL.md",
-      "scratch/test/fixture-scenario.md",
       ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
     ],
     "entities": [
@@ -114,12 +113,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "fixture-scenario.md",
-        "kind": "doc",
-        "path": "scratch/test/fixture-scenario.md",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 007 adds scenarios that claim the placeholder gate warns in Draft, fails at Complete, the drift guard catches a leaked description, the golden render holds, the router loads the card, the sync guard fails on drift and a DeepSeek worker can author a Level 1 packet from the card",
     "created_at": "2026-10-23T11:27:26Z",
-    "last_save_at": "2026-10-23T16:33:29.290Z",
+    "last_save_at": "2026-10-24T07:19:46.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc9f8f782c214307c3be38b96829c755de228021c75ebbf39795d854e9e36d39",
+    "source_fingerprint": "sha256:33dbc23f34a646431e0956a169bc26ada168cf273640e150eb59791ef68892c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "738114290b096e244b77f143d4029a2aeddc7da76dc3e2199d5b5c21db02896e",

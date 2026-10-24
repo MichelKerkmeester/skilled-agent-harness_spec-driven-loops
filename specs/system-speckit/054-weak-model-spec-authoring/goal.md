@@ -1,5 +1,5 @@
 ---
-title: "Goal: Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm"
+title: "Goal: Make system-spec-kit templates and authoring docs followable by a weak-model agent swarm"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
-# Goal: Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm
+# Goal: Make system-spec-kit templates and authoring docs followable by a weak-model agent swarm
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** A DeepSeek V4.1 Flash swarm authors valid, filled spec packets from the system-spec-kit templates, proved by a measured before and after, with no change to the verdict of any existing packet.
+**Objective:** A weak-model swarm authors valid, filled spec packets from the system-spec-kit templates, proved by a before and after measured on SWE 2 Max, with no change to the verdict of any existing packet.
 
 ### Decisions
 
@@ -46,12 +46,12 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Nine phases, 001 to 009, plus one write-recipe child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
 | D2 | The placeholder gate applies to new docs only, through the v2.3 template marker. An existing or external packet never gets a new failure. |
-| D3 | At most 3 parallel DeepSeek lanes, never two on one file. |
-| D4 | Every phase closes on scripted gates plus one read-only frontier review (cli-codex, gpt-6-luna). |
+| D3 | At most 3 parallel worker lanes, never two on one file. |
+| D4 | Every phase closes on scripted gates plus one read-only review (cli-devin, swe-2-max). |
 | D5 | Phase 008 runs the playbooks in a disposable sk-git worktree. |
 | D6 | Every phase is Level 3 with its own goal, bound below. |
-| D7 | The conductor is the operator's OpenCode v2 session on DeepSeek V4.1 Flash max. Workers are Task subagents (no nested `opencode run`). |
-| D8 | Cli-opencode rule 15 L4 prefers a Copilot gpt-6-sol executor. The operator chose DeepSeek, so keep L1 to L3: banned operations and allowed write paths in each prompt, a fresh worktree and a baseline commit. |
+| D7 | The conductor is a Claude Code session. Writers are cli-codex gpt-6-luna max fast, with cli-devin swe-2-max as fallback. A child's Task dispatch runs as this CLI dispatch, same brief and reply file. |
+| D8 | The benchmark subject is cli-devin swe-2-max. Its 3 baseline runs rerun at the start commit, and phases 005 and 009 compare against them. |
 
 <!-- /ANCHOR:directive -->
 
@@ -91,7 +91,7 @@ string, not these files.
 - [ ] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
 - [ ] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
 - [ ] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
-- [ ] The phase 009 report lists min and max for five metrics over 3 baseline and 3 final runs, and the final runs' lowest `leftover_hints` is below the baseline's lowest
+- [ ] The phase 009 report lists min and max for five metrics over 3 SWE 2 Max baseline and 3 final runs, and the final runs' lowest `leftover_hints` is below the baseline's lowest
 - [ ] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL named in the log with its escalation
 - [ ] The swarm commits only on the build worktree and never pushes
 <!-- /ANCHOR:completion -->
@@ -113,9 +113,13 @@ and findings belong here.
 | Launch precondition 2: `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017` and OpenCode v2 is logged in to llmgateway | Done | `rg -c 'deepseek-v4.1-flash-1017' opencode.json` printed `3`. The session's provider is `llmgateway` on `deepseek-v4.1-flash-1017`, and `opencode2 --version` printed `opencode v2.1.4`, so the conductor's login is live and workers inherit it. |
 | Launch precondition 3: three-lane authorization | Done | Given by the operator before planning |
 | Launch precondition 4: conductor is an OpenCode v2 session with the goal bound | Done | `opencode_goal({ action: "bind" })` returned `STATUS=OK ACTION=bind`, `mutation=bound`, `packet_bound=true`, goal id `goal-eccd2c3c-89fc-4674-b016-7ab897fad066`; the operator states this session is the conductor on DeepSeek V4.1 Flash max. |
+| Launch precondition 2 after the takeover: cli-codex and cli-devin logged in | Done | `codex login status` printed `Logged in using ChatGPT` and `devin auth status` printed `Logged in (via Devin)` on 2026-10-24 |
+| Launch precondition 4 after the takeover: conductor is a Claude Code session | Done | The operator handed the run to this session on 2026-10-24 and sets the updated goal before work resumes |
 | WORKTREE path | Done | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring` |
 | Start commit | `ac2be31ec60c3a15db527b3d8400ae68b373984a` | Phase 001 T003 `git rev-parse HEAD` on the worktree before the first phase write. |
 | Phase 001 progress | Done | T001-T014 done. Ledger 72 rows, baseline 3 runs, review 47 findings with 47 T012 lines. `validate.sh --strict` printed `RESULT: PASSED` and the T014 status diff printed 0. |
+| Phase 002 progress | Partial | The OpenCode run stopped after T001 to T003: start commit `9615cf324c` recorded, `scratch/status-start.txt` and `scratch/ledger/known-rows.jsonl` written. No template or example file changed. |
+| SWE 2 Max rebaseline | Pending | 3 runs at start commit `ac2be31ec6`, stored in `001-template-drift-census-and-baseline/scratch/baseline-swe/` |
 | BASE_REF | Pending | The git ref phase 008 builds its disposable worktree from. It must contain the phase 002 to 007 changes. Replace Pending with the ref |
 
 ### Deviations and findings
@@ -123,4 +127,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Cli-opencode rule 15 L4 | The operator chose DeepSeek Task subagents over a Copilot gpt-6-sol executor. See D8 |
+| Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
 <!-- /ANCHOR:log -->

@@ -136,6 +136,12 @@
         "source": "derived"
       },
       {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Replace Pending",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -154,13 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
+        "name": "cli-devin",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -168,17 +168,17 @@
     ],
     "causal_summary": "A DeepSeek V4.1 Flash worker that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-23T22:24:07.376Z",
+    "last_save_at": "2026-10-24T07:19:40.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:baa5c7c17051e5a7aeb79a61eea82bef6d60abbede4313b91692d7ad28ebe17f",
+    "source_fingerprint": "sha256:1a93a1bea5ff1e9a441fa55dcddc82fb38ff72c1a0c3416a40e23fbaaaf09ac7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb291daf5078bd86d65efc1ef3b03d520d7eafc12b8d83fb93d8d3b9d5da2eb7"
+      "spec.md": "0466ead7f0acc10c1ae8b39acc919546762016f466ec2064294e3ad36ff52bd9"
     },
     "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline",
     "last_active_at": "2026-10-23T11:45:12.996Z"
