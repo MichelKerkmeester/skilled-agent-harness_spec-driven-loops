@@ -133,9 +133,16 @@ jobs:
 
       - name: CLI vitest project
         run: |
-          set -euo pipefail
+          set -uo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
-          npx vitest run --config ../../vitest.config.ts --project cli
+          npx vitest run --config ../../vitest.config.ts --project cli --shard=1/2 &
+          first=$!
+          npx vitest run --config ../../vitest.config.ts --project cli --shard=2/2 &
+          second=$!
+          status=0
+          wait "$first" || status=1
+          wait "$second" || status=1
+          exit "$status"
 
       - name: Legacy module lanes and the bash validation suites
         # These lanes are what `npm test` runs after the vitest project, and they
