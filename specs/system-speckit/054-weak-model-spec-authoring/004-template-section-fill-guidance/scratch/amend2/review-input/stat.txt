@@ -1,0 +1,9 @@
+ .../scaffold-golden-snapshots.vitest.ts.snap       | 24 +++++++++++-----------
+ .../system-spec-kit/templates/core/plan.md.tmpl    | 10 ++++-----
+ .../implementation-summary.md                      |  4 +++-
+ .../004-template-section-fill-guidance/plan.md     | 12 ++++++-----
+ .../007-playbook-catalog-readme-alignment/goal.md  |  5 +++--
+ .../implementation-summary.md                      |  6 +++---
+ ...gelog-054-004-template-section-fill-guidance.md |  2 +-
+ ...og-054-007-playbook-catalog-readme-alignment.md |  6 +++---
+ 8 files changed, 37 insertions(+), 32 deletions(-)

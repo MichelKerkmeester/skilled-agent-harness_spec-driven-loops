@@ -1,0 +1,24 @@
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementa
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write \`N/A\` with one re
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementa
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write \`N/A\` with one reason, or 
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementa
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write \`N/A\` with one re
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementa
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write \`N/A\` with one reason, or 
+-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: 
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write \`N/A\` with one reason, or del
+-<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 4
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write \`N/A\` with one reason, or delet
+-<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. \`rg -n quiet
++<!-- FILL: Name three milestones with a command-checkable success criterion. Write \`N/A\` with one reason, or delete t
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementa
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write \`N/A\` with one re
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementa
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write \`N/A\` with one reason, or 
+-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: 
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write \`N/A\` with one reason, or del
+-<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 4
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write \`N/A\` with one reason, or delet
+-<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. \`rg -n quiet
++<!-- FILL: Name three milestones with a command-checkable success criterion. Write \`N/A\` with one reason, or delete t

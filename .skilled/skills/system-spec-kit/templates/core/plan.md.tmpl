@@ -184,7 +184,7 @@ N/A — record rollback steps beyond reverting the scoped change here.
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Phase 1 (Setup) ──────┐
@@ -204,7 +204,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write `N/A` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
@@ -245,7 +245,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Script to test to close. WEAK: Components depend on each other. -->
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
@@ -273,7 +273,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
-<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
 
 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
@@ -290,7 +290,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:milestones -->
 ## L3: MILESTONES
-<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
+<!-- FILL: Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|

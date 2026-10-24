@@ -1,0 +1,3 @@
+files 12
+refs 73 resolved 72 unresolved 1
+UNRESOLVED manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md -> specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt

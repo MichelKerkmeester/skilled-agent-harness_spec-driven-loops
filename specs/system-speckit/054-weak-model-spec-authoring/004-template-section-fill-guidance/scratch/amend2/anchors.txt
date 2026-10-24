@@ -1,0 +1,19 @@
+== level 2
+optional_anchor	phase-deps
+optional_anchor	effort
+== level 3
+optional_anchor	phase-deps
+optional_anchor	effort
+optional_anchor	dependency-graph
+optional_anchor	critical-path
+optional_anchor	milestones
+== level 3+
+optional_anchor	phase-deps
+optional_anchor	effort
+optional_anchor	dependency-graph
+optional_anchor	critical-path
+optional_anchor	milestones
+== AI execution anchors (level 3+)
+optional_anchor	ai-execution
+optional_anchor	workstreams
+optional_anchor	communication

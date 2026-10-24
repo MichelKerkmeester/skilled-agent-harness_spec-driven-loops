@@ -1,0 +1,2 @@
+attempt1: exit 127 (timeout binary missing), no review
+attempt2: exit=0, 7 finding lines (3 P1 semicolons fixed, P2s handled in 004 goal.md row)

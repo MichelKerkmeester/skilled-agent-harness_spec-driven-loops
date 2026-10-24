@@ -1,0 +1,31 @@
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md b/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md
+index f2e00f83ac..70b2827791 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md
+@@ -173,12 +173,12 @@ Insert the constructed line immediately below the heading. When a section has tw
+ | B16 | `core/spec.md.tmpl` | `## EXECUTIVE SUMMARY` | Write three sentences: the problem, the change and the proof. | Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. | This document describes the feature. |
+ | B17 | `core/spec.md.tmpl` | `## RELATED DOCUMENTS` | Leave the four links in place. | - | - |
+ | B18 | `core/plan.md.tmpl` | `## FIX ADDENDUM: AFFECTED SURFACES` | Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. | `recommend-level.sh`: owns the output. Action: update. | Various files. |
+-| B19 | `core/plan.md.tmpl` | `## L2: PHASE DEPENDENCIES` | Draw the phase order in the fence, then fill the table with depends-on and blocks. | Setup to Implementation to Verification. Verification blocks close. | Phases depend on each other. |
+-| B20 | `core/plan.md.tmpl` | `## L2: EFFORT ESTIMATION` | Give each phase an estimate and a total. Mark the total as an assumption. | Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. | A few hours. |
++| B19 | `core/plan.md.tmpl` | `## L2: PHASE DEPENDENCIES` | Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. | Setup to Implementation to Verification. Verification blocks close. | Phases depend on each other. |
++| B20 | `core/plan.md.tmpl` | `## L2: EFFORT ESTIMATION` | Give each phase an estimate and a total. Mark the total as an assumption. Write `N/A` with one reason, or delete the whole section. | Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. | A few hours. |
+ | B21 | `core/plan.md.tmpl` | `## L2: ENHANCED ROLLBACK` | Name the trigger, the steps and the data reversal. Write `No` when no data changes. Delete the whole section when the packet ships no deployable service. | Trigger: default output changes. Steps: revert one commit, rerun the two commands. | Roll back if needed. |
+-| B22 | `core/plan.md.tmpl` | `## L3: DEPENDENCY GRAPH` | Draw the component order and fill the matrix with produces and blocks. | Script to test to close. | Components depend on each other. |
+-| B23 | `core/plan.md.tmpl` | `## L3: CRITICAL PATH` | Name the longest chain and its total. List what can run in parallel. | Implementation to verification, 40 minutes. Docs run in parallel. | The critical path is the main path. |
+-| B24 | `core/plan.md.tmpl` | `## L3: MILESTONES` | Name three milestones with a command-checkable success criterion. | M1: the branch exists. `rg -n quiet` prints it. | Milestones are tracked. |
++| B22 | `core/plan.md.tmpl` | `## L3: DEPENDENCY GRAPH` | Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. | Script to test to close. | Components depend on each other. |
++| B23 | `core/plan.md.tmpl` | `## L3: CRITICAL PATH` | Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. | Implementation to verification, 40 minutes. Docs run in parallel. | The critical path is the main path. |
++| B24 | `core/plan.md.tmpl` | `## L3: MILESTONES` | Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. | M1: the branch exists. `rg -n quiet` prints it. | Milestones are tracked. |
+ | B25 | `core/plan.md.tmpl` | `## L3: ARCHITECTURE DECISION RECORD` | Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. | ADR-001: a flag, because callers already pass flags. | We made a decision. |
+ | B26 | `core/plan.md.tmpl` | `## L3+: AI EXECUTION FRAMEWORK` | Name the workers, their files and the order. Keep file ownership disjoint. | One worker owns the script. One owns the test. | Agents work in parallel. |
+ | B27 | `core/plan.md.tmpl` | `## L3+: WORKSTREAM COORDINATION` | Name each workstream, its owner and its files. One file per owner. | W-A owns the script. W-B owns the test. | Work is split into streams. |
+@@ -284,6 +284,8 @@ A weak model fills `Feature flag configured`, `OWASP Top 10 checklist completed`
+ | `## L3+: Architecture Verification` | The anchor is `optional` at Level 3 and Level 3+. | Delete the section when the packet records no ADR. |
+ | `## L3+: Documentation Verification` | The anchor is `optional` at Level 3 and Level 3+. | Delete the section when the packet holds no paired documents. |
+ | `## L3+: Sign-Off` | The anchor is `optional` at Level 3 and Level 3+. | Write `N/A` or delete the section when no sign-off applies. |
++| `## L2: PHASE DEPENDENCIES`, `## L2: EFFORT ESTIMATION` | Both anchors are `optional` at Levels 2, 3 and 3+. | Write `N/A` with one reason, or delete the whole section. |
++| `## L3: DEPENDENCY GRAPH`, `## L3: CRITICAL PATH`, `## L3: MILESTONES` | All three anchors are `optional` at Level 3 and Level 3+. | Write `N/A` with one reason, or delete the whole section. |
+ 
+ Evidence: `node runtime/cli/utils/template-structure.js compare 3+ spec.md templates/examples/level-3+/spec.md anchors` prints `required_anchor compliance-checkpoints`, and the same command on `2 plan.md` prints `optional_anchor enhanced-rollback`.
+ 
