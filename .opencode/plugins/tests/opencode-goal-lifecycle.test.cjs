@@ -295,7 +295,7 @@ test('message.updated performs one write cycle for one event', async () => {
   }
 });
 
-test('message.updated crosses the token budget and suppresses continuation', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+test('message.updated crossing the token budget keeps the goal running', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
@@ -338,10 +338,10 @@ test('message.updated crosses the token budget and suppresses continuation', asy
   });
 
   const goal = await helpers.readGoal('session-life', { stateDir });
-  assert.equal(goal.status, 'budget_limited');
+  assert.equal(goal.status, 'active');
   assert.equal(goal.tokensUsed, 105);
-  assert.equal(goal.continuationSuppressed, true);
-  assert.equal(goal.continuationSuppressedReason, 'token budget reached');
+  assert.equal(goal.continuationSuppressed, false);
+  assert.equal(goal.continuationSuppressedReason, null);
 }));
 
 test('interleaved message totals are charged by delta', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
@@ -384,11 +384,11 @@ test('interleaved message totals are charged by delta', async () => withState(as
   });
   const goal = await helpers.readGoal('session-interleaved-usage', { stateDir });
   assert.equal(goal.tokensUsed, 110);
-  assert.equal(goal.status, 'budget_limited');
-  assert.equal(goal.continuationSuppressedReason, 'token budget reached');
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.continuationSuppressedReason, null);
 }));
 
-test('budget-limited goals do not charge later usage updates', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+test('usage past the token budget is still charged and the goal stays active', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
@@ -420,7 +420,7 @@ test('budget-limited goals do not charge later usage updates', async () => withS
         info: {
           id: 'msg-3',
           role: 'assistant',
-          content: 'This update must not charge after the budget stop.',
+          content: 'This update is charged past the budget.',
           usage: {
             totalTokens: 30,
             source: 'unit-usage',
@@ -431,11 +431,11 @@ test('budget-limited goals do not charge later usage updates', async () => withS
   });
 
   const goal = await helpers.readGoal('session-life', { stateDir });
-  assert.equal(goal.status, 'budget_limited');
-  assert.equal(goal.tokensUsed, 105);
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.tokensUsed, 135);
 }));
 
-test('budget-limited goals resume only after the budget is raised', async () => withState(async ({ helpers, stateDir }) => {
+test('a goal an older version left budget-limited resumes without raising the budget', async () => withState(async ({ helpers, stateDir }) => {
   const budgetGoal = await helpers.setGoal('session-budget-resume', 'Resume after budget increases', {
     stateDir,
     nowMs: 1000,
@@ -450,24 +450,10 @@ test('budget-limited goals resume only after the budget is raised', async () => 
     continuationSuppressedReason: 'token budget reached',
   }, { stateDir });
 
-  const rejectedResume = await helpers.executeGoalAction(
-    { action: 'resume' },
-    { sessionID: 'session-budget-resume' },
-    { stateDir, nowMs: 2000, includeInjectionPreview: false },
-  );
-  assert.match(rejectedResume, /STATUS=FAIL ACTION=resume/);
-  const stillLimitedGoal = await helpers.readGoal('session-budget-resume', { stateDir });
-  assert.equal(stillLimitedGoal.status, 'budget_limited');
-  assert.equal(stillLimitedGoal.continuationSuppressed, true);
-
-  await helpers.writeGoalAtomic({
-    ...stillLimitedGoal,
-    tokenBudget: 200,
-  }, { stateDir });
   const resumed = await helpers.executeGoalAction(
     { action: 'resume' },
     { sessionID: 'session-budget-resume' },
-    { stateDir, nowMs: 3000, includeInjectionPreview: false },
+    { stateDir, nowMs: 2000, includeInjectionPreview: false },
   );
   assert.match(resumed, /STATUS=OK ACTION=resume/);
   assert.match(resumed, /status=active/);
@@ -477,7 +463,7 @@ test('budget-limited goals resume only after the budget is raised', async () => 
   assert.equal(activeGoal.continuationSuppressedReason, null);
 }));
 
-test('same objective after a terminal state creates a reset goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+test('same objective after completion creates a reset goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const plugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: 1000,
@@ -501,6 +487,7 @@ test('same objective after a terminal state creates a reset goal', async () => w
       },
     },
   });
+  await helpers.markGoalStatus('session-life', 'complete', { stateDir, nowMs: 1500 });
   const resetGoal = await helpers.setGoal('session-life', 'Finish inside the token budget', {
     stateDir,
     nowMs: 2000,

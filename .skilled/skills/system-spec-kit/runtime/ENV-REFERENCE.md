@@ -378,7 +378,7 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 
 ## OPENCODE GOAL PLUGIN
 
-Environment variables consumed by the local `.skilled/plugins/opencode-goal.js` plugin. These are plugin-level controls, not runtime flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`. Status output includes `remaining_auto_turns`, `remaining_wall_ms`, `provider_retry_after_ms`, and verifier provenance via `verifier_source` alongside the existing budget fields.
+Environment variables consumed by the local `.skilled/plugins/opencode-goal.js` plugin. These are plugin-level controls, not runtime flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`. Status output includes `provider_retry_after_ms` and verifier provenance via `verifier_source` alongside the existing budget fields. No budget, turn count or elapsed time limits a goal.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -390,8 +390,6 @@ Environment variables consumed by the local `.skilled/plugins/opencode-goal.js` 
 | `OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | number (positive int, clamped to 4000) | Maximum generated `goalPrompt` length. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_MAX_INJECTION_CHARS` | `4800` | number (positive int) | Maximum `[active_goal]` system-injection block length. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_MAX_EVIDENCE_CHARS` | `1200` | number (positive int) | Maximum verifier evidence retained in goal state. | `.skilled/plugins/opencode-goal.js` |
-| `OPENCODE_GOAL_MAX_AUTO_TURNS` | `8` | number (positive int) | Maximum guarded auto-continuation turns for new and normalized goal state. `/goal show` reports `remaining_auto_turns`. | `.skilled/plugins/opencode-goal.js` |
-| `OPENCODE_GOAL_MAX_WALL_MS` | `1800000` | number (positive int, ms) | Maximum guarded auto-continuation wall-clock duration. `/goal show` reports `remaining_wall_ms`. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | number (positive int, days) | Retention window before an archived goal-state file is pruned. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | number (positive int, days) | Age threshold before an orphaned active-state file is swept and archived. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-active-state sweep passes. | `.skilled/plugins/opencode-goal.js` |

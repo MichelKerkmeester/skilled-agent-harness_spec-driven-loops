@@ -100,7 +100,7 @@ test('both renderers emit the same ordered labels and blocks, differing only whe
     const pluginUsage = lineFor(pluginBlock, 'usage');
     assert.notEqual(coreUsage, pluginUsage, 'the usage line differs between the runtimes');
     assert.match(coreUsage, /^usage: tokens n\/a\/none; time \d+s; iteration \d+ \(source: turn-count-estimate\)$/);
-    assert.match(pluginUsage, /^usage: tokens \d+\/none; time \d+s; iteration \d+\/\d+$/);
+    assert.match(pluginUsage, /^usage: tokens \d+\/none; time \d+s; iteration \d+$/);
   } finally {
     await rm(stateDir, { recursive: true, force: true });
     await rm(coreStateDir, { recursive: true, force: true });

@@ -702,31 +702,18 @@ test('same-objective refresh resumes paused timing without charging the pause', 
     stateDir,
     nowMs: 1000,
     goalIdFactory: () => 'paused-refresh-goal',
-    maxWallMs: 10000,
   });
   await helpers.markGoalStatus('session-paused-refresh', 'paused', {
     stateDir,
     nowMs: 2000,
-    maxWallMs: 10000,
   });
-  const pausedStatus = await helpers.executeGoalStatus(
-    { sessionID: 'session-paused-refresh' },
-    { stateDir, nowMs: 10000, maxWallMs: 10000, includeInjectionPreview: false },
-  );
-  assert.match(pausedStatus, /remaining_wall_ms=9000/);
 
   const refreshed = await helpers.setGoal('session-paused-refresh', 'Refresh paused goal timing', {
     stateDir,
     nowMs: 10000,
-    maxWallMs: 10000,
   });
   assert.equal(refreshed.startedAtMs, 9000);
   assert.equal(refreshed.activeWallMs, 0);
-  const resumedStatus = await helpers.executeGoalStatus(
-    { sessionID: 'session-paused-refresh' },
-    { stateDir, nowMs: 11000, maxWallMs: 10000, includeInjectionPreview: false },
-  );
-  assert.match(resumedStatus, /remaining_wall_ms=8000/);
 }));
 
 test('transform appends active goal injection after existing system context', async () => withState(async ({ pluginModule, stateDir }) => {

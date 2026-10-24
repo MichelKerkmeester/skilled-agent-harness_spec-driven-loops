@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/014-goal-no-budget-stop",
+  "spec_folder": "sk-doc/060-create-goal-mode/014-goal-no-budget-stop",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal no budget stop",
+      "phase 14 goal no budget stop",
+      "goal never stops on a budget",
+      "opencode goal turn cap",
+      "opencode goal wall clock cap",
+      "budget_limited goal status",
+      "goal no budget stop plan",
+      "goal no budget stop tasks",
+      "goal no budget stop acceptance criteria",
+      "goal no budget stop implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "budget",
+      "stop",
+      "phase",
+      "never",
+      "stops",
+      "opencode",
+      "turn",
+      "cap",
+      "wall",
+      "clock",
+      "status"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/plugins/opencode-goal.js",
+      ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+      ".skilled/hooks/goal/lib/goal-core.test.cjs",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/commands/goal-opencode.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
+      "manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-capabilities.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Subtraction",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The OpenCode goal plugin stopped a goal three ways",
+    "created_at": "2026-10-24T16:29:49Z",
+    "last_save_at": "2026-10-24T16:59:01.108Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2cec9d81319c4171738d7347c6e3f7bb6e63c15234bb0b073a5a7c9372b377da",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45263a5029f6fc1714bc6dcdf4912bd6115a708b2d3cc412cb08d585c3601abe",
+      "plan.md": "3937d41125a245401241aaeb304d484e9fcfbbff4f19e9811fd952b302db6049",
+      "tasks.md": "c96851069140252e564a21eb7e09bb1fb25342d66edb2d6f9a7d112c8b60f552",
+      "implementation-summary.md": "4bccad1928a64c322d109876ea9246c6e81d1bc5c4b6a66a1fe97a39dd51f2cd"
+    },
+    "last_active_at": null
+  }
+}

@@ -42,14 +42,14 @@ This command is state-free. It never reads or writes `.skilled/skills/.state/goa
 - `resent` routes to `opencode_goal` with `action: "resent"`, recording that the current durable slice was resent in chat so the reminder stops.
 - `log <item> | <state> | <evidence>` routes to `opencode_goal` with `action: "log"` and the three parts; the row lands below the packet's log anchor under the per-packet lock and never touches the durable slice.
 - `packet <packet-path>` routes to `opencode_goal` with `action: "packet"` and `packetPath`: a session-free read of the packet's durable slice, hash and size.
-- `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`.
+- `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`. The budget is a recorded reading only and never stops a goal.
 - `set <objective>` routes to `opencode_goal` with `action: "set"` and `objective: REST`.
 - Bare text routes to `opencode_goal` with `action: "set"` and `objective: QUERY`.
 - `history`, `doctor`, and `health` route to read-only `opencode_goal` actions. `history` returns `archive_count` and `archive_N_*` fields. `doctor`/`health` return `active_state_file_count`, `archive_file_count`, log byte sizes, `last_sweep_at`, and `orphan_candidate_count`.
 - `clear`, `complete`, `resume`, and `pause [reason]` route to `opencode_goal`.
 - Any other non-empty `QUERY` is treated as bare goal text and routes to `opencode_goal` with `action: "set"` and `objective: QUERY`.
 
-Status output reports continuation budget fields affected by `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS`: `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
+Status output reports the continuation field `provider_retry_after_ms`. No budget, turn count or elapsed time limits continuation.
 
 Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line; `bind` responses carry `mutation=bound` or `mutation=rebound` plus `packet_path`, `packet_nested`, `packet_slice_hash` and `resend_pending`. `created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
 

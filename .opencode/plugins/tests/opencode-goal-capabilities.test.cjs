@@ -223,27 +223,25 @@ test('token budget appears in status and invalid set budgets fail closed', async
   assert.match(invalid, /code=INVALID_TOKEN_BUDGET/);
 }));
 
-test('env caps configure new goals and status exposes remaining budgets', async () => withState(async ({ helpers, stateDir }) => {
+test('the retired cap env vars change nothing and status reports no cap fields', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_MAX_AUTO_TURNS = '3';
   process.env.OPENCODE_GOAL_MAX_WALL_MS = '4000';
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
   const ctx = { sessionID: 'session-env-caps' };
-  await helpers.executeGoalAction({ action: 'set', objective: 'Use env caps' }, ctx, { stateDir, nowMs: 1000, includeInjectionPreview: false });
+  await helpers.executeGoalAction({ action: 'set', objective: 'Ignore retired caps' }, ctx, { stateDir, nowMs: 1000, includeInjectionPreview: false });
   const status = await helpers.executeGoalStatus(ctx, { stateDir, nowMs: 2000, includeInjectionPreview: false });
-  assert.match(status, /max_auto_turns=3/);
-  assert.match(status, /remaining_auto_turns=3/);
-  assert.match(status, /max_wall_ms=4000/);
-  assert.match(status, /remaining_wall_ms=3000/);
+  assert.doesNotMatch(status, /max_auto_turns|remaining_auto_turns|max_wall_ms|remaining_wall_ms/);
 
-  const cappedGoal = await helpers.readGoal(ctx.sessionID, { stateDir });
-  await helpers.writeGoalAtomic({ ...cappedGoal, autoTurnsUsed: 3 }, { stateDir });
+  const longRunning = await helpers.readGoal(ctx.sessionID, { stateDir });
+  await helpers.writeGoalAtomic({ ...longRunning, autoTurnsUsed: 3 }, { stateDir });
   const result = await helpers.maybeContinueGoal(ctx.sessionID, {
     stateDir,
-    nowMs: 2500,
+    nowMs: 2500 + 60 * 60 * 1000,
     client: { session: { async promptAsync() {} } },
     runtimeState: activeRuntimeState(ctx.sessionID),
   });
-  assert.equal(result.reason, 'auto_turn_cap_reached');
+  assert.equal(result.decision, 'fired');
+  assert.equal(result.reason, 'prompt_async_sent');
 }));
 
 test('provider-limit detection accepts 429 variants and quota patterns only', async () => withState(async ({ helpers, pluginModule, stateDir }) => {

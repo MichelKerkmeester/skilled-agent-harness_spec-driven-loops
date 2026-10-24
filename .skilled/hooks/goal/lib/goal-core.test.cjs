@@ -290,6 +290,19 @@ test('a malformed current record never falls through to the legacy scoped record
   );
 });
 
+test('a recorded token budget never ends or silences a goal that keeps running', () => {
+  const options = scopedOpts('pi', 'budget-session');
+  core.setGoal({ objective: 'Keep going past any budget', tokenBudget: 1 }, options);
+  for (let turn = 0; turn < 40; turn += 1) core.recordTurn({}, options);
+
+  const goal = core.showGoal(options);
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.turnsUsed, 40);
+  const block = core.renderGoalBrief({ goal, runtimeLabel: 'Pi', maxChars: 4800 });
+  assert.match(block, /^\[active_goal:/);
+  assert.match(block, /iteration 40 /);
+});
+
 test('explicit legacy migration binds one validated scope and quarantines the source', () => {
   const legacyPath = join(stateDir, 'active-goal.json');
   const legacy = {

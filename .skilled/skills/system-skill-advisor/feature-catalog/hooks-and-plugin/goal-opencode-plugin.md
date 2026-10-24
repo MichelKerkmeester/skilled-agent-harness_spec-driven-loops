@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode_goal"
   - "active goal injection"
   - "OPENCODE_GOAL_AUTONOMY"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Goal OpenCode Plugin
@@ -32,7 +32,7 @@ The plugin registers `experimental.chat.system.transform`. When a session has an
 
 ### Tools And Lifecycle
 
-The plugin exposes two OpenCode tools: `opencode_goal` for mutation/read-only command verbs and `opencode_goal_status` for readback with the exact injection preview. Goal state supports `active`, `paused`, `blocked`, `usage_limited`, `budget_limited` and `complete`; `/goal resume` reactivates `paused`, `usage_limited` and `budget_limited`; the runtime-neutral core resumes `paused` only, because the other states exist on this plugin alone. Idle events run supervisor verification; `met` marks the goal complete, `blocked` marks it blocked, and ambiguous or missing evidence keeps it active while incrementing iterations. Injected verifiers keep precedence. Without an injected verifier, `OPENCODE_GOAL_VERIFIER=heuristic` uses the deterministic fail-closed default; `OPENCODE_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync`. Status output includes `verifier_source` with `injected`, `default-heuristic`, or `default-llm` provenance after a verifier run.
+The plugin exposes two OpenCode tools: `opencode_goal` for mutation/read-only command verbs and `opencode_goal_status` for readback with the exact injection preview. Goal state supports `active`, `paused`, `blocked`, `usage_limited`, `budget_limited` and `complete`; `/goal resume` reactivates `paused`, `usage_limited` and `budget_limited` (an older version wrote the last status, nothing sets it now); the runtime-neutral core resumes `paused` only, because the other states exist on this plugin alone. Idle events run supervisor verification; `met` marks the goal complete, `blocked` marks it blocked, and ambiguous or missing evidence keeps it active while incrementing iterations. Injected verifiers keep precedence. Without an injected verifier, `OPENCODE_GOAL_VERIFIER=heuristic` uses the deterministic fail-closed default; `OPENCODE_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync`. Status output includes `verifier_source` with `injected`, `default-heuristic`, or `default-llm` provenance after a verifier run.
 
 ### Archive And Cleanup
 
@@ -40,7 +40,7 @@ Goal state does not accumulate unboundedly. `session.deleted` archives the sessi
 
 ### Guarded Continuation
 
-Continuation is default-off. `OPENCODE_GOAL_AUTONOMY=smoke` logs that a continuation would fire without calling the runtime, and `OPENCODE_GOAL_AUTONOMY=active` may call `ctx.client.session.promptAsync` only after all gates pass: plugin enabled, real session id, active unsuppressed goal, no in-flight continuation, no pending permission or question, idle runtime status, cooldown elapsed, cap not exceeded and budget not exhausted. Continuation is capped by `OPENCODE_GOAL_MAX_AUTO_TURNS` (default `8`), `OPENCODE_GOAL_MAX_WALL_MS` (default `1800000`) and a 1500 ms cooldown; status output includes `remaining_auto_turns`, `remaining_wall_ms` and `provider_retry_after_ms`.
+Continuation is default-off. `OPENCODE_GOAL_AUTONOMY=smoke` logs that a continuation would fire without calling the runtime, and `OPENCODE_GOAL_AUTONOMY=active` may call `ctx.client.session.promptAsync` only after all gates pass: plugin enabled, real session id, active unsuppressed goal, no in-flight continuation, no pending permission or question, idle runtime status and cooldown elapsed. Only a 1500 ms cooldown paces continuation. No token budget, turn count or elapsed time stops it, and status output includes `provider_retry_after_ms`.
 
 Live verification: the plugin is registered and driven end-to-end in a real OpenCode session. A `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set, and a live model turn calls `opencode_goal` and persists per-session state. Earlier the tools failed to surface because the file carried multiple named exports — OpenCode treats every export of a plugin module as its own plugin, so the helper exports broke whole-file loading; the module now exports only its `default` plugin (the test surface hangs off `MkGoalPlugin.__test`), matching the sibling plugins. Coverage: unit suite + tool-path test (real `ToolContext` persist/read/clear) + the live serve smoke. Active continuation remains opt-in (default-off) by design.
 
@@ -65,11 +65,11 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 | `.skilled/plugins/tests/opencode-goal-export-contract.test.cjs` | Automated test | Export surface contract and full test helper key list |
 | `.skilled/plugins/tests/opencode-goal-render-parity.test.cjs` | Automated test | Cross-implementation injection label parity and brief cache key sensitivity |
 | `.skilled/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
-| `.skilled/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, budget, env caps, provider-limit detection and retry-after recovery |
+| `.skilled/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, token budget display, retired cap env vars, provider-limit detection and retry-after recovery |
 | `.skilled/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Real tool execute path and ToolContext session resolution |
 | `.skilled/plugins/tests/opencode-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping, injected precedence, default verifier safety matrix, LLM verifier mode and provenance |
 | `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
-| `.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
+| `.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and goals that keep running past the token budget |
 | `manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Manual playbook | Operator scenario for `/goal` command and plugin behavior |
 
 ---

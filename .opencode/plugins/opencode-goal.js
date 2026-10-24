@@ -45,9 +45,7 @@ const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
 const DEFAULT_MAX_INJECTION_CHARS = 4800;
 const DEFAULT_MAX_REASON_CHARS = 280;
 const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
-const DEFAULT_MAX_AUTO_TURNS = 8;
 const DEFAULT_CONTINUATION_COOLDOWN_MS = 1500;
-const DEFAULT_MAX_WALL_MS = 30 * 60 * 1000;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
@@ -92,8 +90,6 @@ const DEFAULT_VERIFIER_MODE = 'heuristic';
 const ARCHIVE_RETENTION_DAYS_ENV = 'OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS';
 const ACTIVE_RETENTION_DAYS_ENV = 'OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS';
 const SWEEP_INTERVAL_MS_ENV = 'OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS';
-const MAX_AUTO_TURNS_ENV = 'OPENCODE_GOAL_MAX_AUTO_TURNS';
-const MAX_WALL_MS_ENV = 'OPENCODE_GOAL_MAX_WALL_MS';
 const VERIFIER_TIMEOUT_MS_ENV = 'OPENCODE_GOAL_VERIFIER_TIMEOUT_MS';
 const CONTINUATION_TIMEOUT_MS_ENV = 'OPENCODE_GOAL_CONTINUATION_TIMEOUT_MS';
 const JSONL_MAX_BYTES_ENV = 'OPENCODE_GOAL_JSONL_MAX_BYTES';
@@ -261,8 +257,6 @@ function normalizeOptions(rawOptions = {}) {
   const envMaxGoalPromptChars = Number(process.env.OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS);
   const envMaxInjectionChars = Number(process.env.OPENCODE_GOAL_MAX_INJECTION_CHARS);
   const envMaxEvidenceChars = Number(process.env.OPENCODE_GOAL_MAX_EVIDENCE_CHARS);
-  const envMaxAutoTurns = Number(process.env[MAX_AUTO_TURNS_ENV]);
-  const envMaxWallMs = Number(process.env[MAX_WALL_MS_ENV]);
   const envVerifierTimeoutMs = Number(process.env[VERIFIER_TIMEOUT_MS_ENV]);
   const envContinuationTimeoutMs = Number(process.env[CONTINUATION_TIMEOUT_MS_ENV]);
   const envJsonlMaxBytes = Number(process.env[JSONL_MAX_BYTES_ENV]);
@@ -291,14 +285,6 @@ function normalizeOptions(rawOptions = {}) {
     maxEvidenceChars: normalizePositiveInt(
       options.maxEvidenceChars,
       normalizePositiveInt(envMaxEvidenceChars, DEFAULT_MAX_EVIDENCE_CHARS),
-    ),
-    maxAutoTurns: normalizePositiveInt(
-      options.maxAutoTurns,
-      normalizePositiveInt(envMaxAutoTurns, DEFAULT_MAX_AUTO_TURNS),
-    ),
-    maxWallMs: normalizePositiveInt(
-      options.maxWallMs,
-      normalizePositiveInt(envMaxWallMs, DEFAULT_MAX_WALL_MS),
     ),
     verifierTimeoutMs: normalizePositiveInt(
       options.verifierTimeoutMs,
@@ -783,9 +769,9 @@ function disabledAutonomyReason(mode) {
   return mode === 'passive' ? 'autonomy_passive' : 'autonomy_disabled';
 }
 
-function normalizeAutoTurns(value, maxAutoTurns = DEFAULT_MAX_AUTO_TURNS) {
+function normalizeAutoTurns(value) {
   if (!Number.isFinite(value)) return 0;
-  return Math.max(0, Math.min(maxAutoTurns, Math.trunc(value)));
+  return Math.max(0, Math.trunc(value));
 }
 
 function normalizeDeadlineMs(value) {
@@ -1251,10 +1237,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
     createdAt: typeof rawGoal.createdAt === 'string' ? rawGoal.createdAt : isoFromMs(createdAtMs),
     updatedAt: typeof rawGoal.updatedAt === 'string' ? rawGoal.updatedAt : isoFromMs(updatedAtMs),
     continuationSuppressed: rawGoal.continuationSuppressed === true,
-    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed, options.maxAutoTurns),
-    maxAutoTurns: Number.isFinite(rawGoal.maxAutoTurns)
-      ? Math.max(0, Math.min(options.maxAutoTurns, Math.trunc(rawGoal.maxAutoTurns)))
-      : options.maxAutoTurns,
+    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed),
     startedAtMs: Number.isFinite(rawGoal.startedAtMs) ? Math.max(0, Math.trunc(rawGoal.startedAtMs)) : createdAtMs,
     activeWallMs: Number.isFinite(rawGoal.activeWallMs) ? Math.max(0, Math.trunc(rawGoal.activeWallMs)) : 0,
     lastActivityAtMs: Number.isFinite(rawGoal.lastActivityAtMs) ? Math.max(0, Math.trunc(rawGoal.lastActivityAtMs)) : 0,
@@ -2035,7 +2018,6 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     updatedAt: isoFromMs(timestamp),
     continuationSuppressed: false,
     autoTurnsUsed: 0,
-    maxAutoTurns: options.maxAutoTurns,
     startedAtMs: timestamp,
     activeWallMs: 0,
     lastActivityAtMs: 0,
@@ -2290,9 +2272,6 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
       throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
     }
     const timestamp = nowMs(rawOptions);
-    if (current.status === 'budget_limited' && status === 'active' && budgetWasCrossed(current.tokensUsed, current.tokenBudget)) {
-      throw new GoalError('INVALID_STATUS_TRANSITION', 'Cannot resume goal while token budget is still exhausted');
-    }
     const activeWallMs = current.status !== 'paused' && status === 'paused'
       ? Math.max(0, (current.activeWallMs || 0) + (timestamp - current.startedAtMs))
       : current.activeWallMs || 0;
@@ -2328,10 +2307,6 @@ async function recoverProviderUsageLimitIfDue(sessionID, rawOptions = {}) {
   const deadline = normalizeDeadlineMs(goal?.providerRetryAfterMs);
   if (!goal || goal.status !== 'usage_limited' || deadline === null || nowMs(rawOptions) < deadline) return goal;
   return resumeGoal(normalizedSessionID, rawOptions);
-}
-
-function budgetWasCrossed(nextTokensUsed, tokenBudget) {
-  return Number.isFinite(tokenBudget) && tokenBudget > 0 && nextTokensUsed >= tokenBudget;
 }
 
 async function patchGoalIfCurrent(sessionID, goalID, patch, rawOptions = {}) {
@@ -2390,20 +2365,15 @@ async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = 
       };
     }
 
-    const nextTokensUsed = current.tokensUsed + chargeTokenDelta;
-    const nextStatus = budgetWasCrossed(nextTokensUsed, current.tokenBudget) ? 'budget_limited' : current.status;
     return {
       ...current,
-      status: nextStatus,
-      tokensUsed: nextTokensUsed,
+      tokensUsed: current.tokensUsed + chargeTokenDelta,
       timeUsedSeconds: current.timeUsedSeconds + timeDeltaSeconds,
       lastAccountedMessageID: messageID || current.lastAccountedMessageID,
       accountedMessageUsage: messageID
         ? rememberAccountedMessage(accountedMessageUsage, messageID, tokenDelta)
         : accountedMessageUsage,
       usageSource,
-      continuationSuppressed: nextStatus === 'budget_limited' ? true : current.continuationSuppressed,
-      continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : current.continuationSuppressedReason,
       updatedAtMs: timestamp,
       updatedAt: isoFromMs(timestamp),
     };
@@ -2480,20 +2450,15 @@ async function recordMessageUpdated(sessionID, event, rawOptions = {}) {
       };
     }
 
-    const nextTokensUsed = afterActivity.tokensUsed + chargeTokenDelta;
-    const nextStatus = budgetWasCrossed(nextTokensUsed, afterActivity.tokenBudget) ? 'budget_limited' : afterActivity.status;
     return {
       ...afterActivity,
-      status: nextStatus,
-      tokensUsed: nextTokensUsed,
+      tokensUsed: afterActivity.tokensUsed + chargeTokenDelta,
       timeUsedSeconds: afterActivity.timeUsedSeconds + timeDeltaSeconds,
       lastAccountedMessageID: messageID || afterActivity.lastAccountedMessageID,
       accountedMessageUsage: messageID
         ? rememberAccountedMessage(accountedMessageUsage, messageID, tokenDelta)
         : accountedMessageUsage,
       usageSource,
-      continuationSuppressed: nextStatus === 'budget_limited' ? true : afterActivity.continuationSuppressed,
-      continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : afterActivity.continuationSuppressedReason,
     };
   }, options);
 }
@@ -2831,21 +2796,6 @@ function continuationRuntimeStatus(runtimeState, sessionID) {
   return sanitizeInlineText(rawStatus?.type || rawStatus || '', 80).toLowerCase() || null;
 }
 
-function continuationCapReason(goal, timestamp, rawOptions = {}) {
-  const options = normalizeOptions(rawOptions);
-  const maxAutoTurns = Math.min(goal.maxAutoTurns || options.maxAutoTurns, options.maxAutoTurns);
-  if (goal.autoTurnsUsed >= maxAutoTurns) return 'auto_turn_cap_reached';
-  if (timestamp - goal.startedAtMs >= options.maxWallMs) return 'wall_clock_cap_reached';
-  return null;
-}
-
-function continuationBudgetReason(goal) {
-  if (Number.isFinite(goal.tokenBudget) && goal.tokenBudget > 0 && goal.tokensUsed >= goal.tokenBudget) {
-    return 'budget_exhausted';
-  }
-  return null;
-}
-
 async function recordContinuationReason(sessionID, goalID, reason, rawOptions = {}, suppress = false, errorText = null) {
   return patchGoalIfCurrent(sessionID, goalID, (current) => ({
     continuationSuppressed: suppress ? true : current.continuationSuppressed,
@@ -2854,14 +2804,6 @@ async function recordContinuationReason(sessionID, goalID, reason, rawOptions = 
       ? sanitizeInlineText(errorText, DEFAULT_MAX_REASON_CHARS)
       : current.lastContinuationError,
   }), rawOptions);
-}
-
-async function recordContinuationBudgetStop(sessionID, goalID, rawOptions = {}) {
-  return patchGoalIfCurrent(sessionID, goalID, {
-    status: 'budget_limited',
-    continuationSuppressed: true,
-    continuationSuppressedReason: 'budget_exhausted',
-  }, rawOptions);
 }
 
 async function recordProviderUsageLimit(sessionID, goalID, error = null, rawOptions = {}) {
@@ -2875,8 +2817,6 @@ async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
   let previousReservation = null;
   const goal = await mutateGoal(sessionID, (current) => {
     if (!current || current.goalId !== normalizedGoalID || current.status !== 'active') return undefined;
-    const maxAutoTurns = Math.min(current.maxAutoTurns || rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS);
-    if (current.autoTurnsUsed >= maxAutoTurns) return undefined;
     const timestamp = nowMs(rawOptions);
     didReserve = true;
     previousReservation = {
@@ -3014,18 +2954,6 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
       return decision('suppressed', 'cooldown', autoTurnsUsed);
     }
 
-    const capReason = continuationCapReason(goal, timestamp, options);
-    if (capReason) {
-      await recordContinuationReason(normalizedSessionID, goal.goalId, capReason, options, true);
-      return decision('suppressed', capReason, autoTurnsUsed);
-    }
-
-    const budgetReason = continuationBudgetReason(goal);
-    if (budgetReason) {
-      await recordContinuationBudgetStop(normalizedSessionID, goal.goalId, options);
-      return decision('suppressed', budgetReason, autoTurnsUsed);
-    }
-
     if (autonomyMode === 'smoke') return decision('would_fire', 'smoke_mode', autoTurnsUsed);
 
     const promptAsync = rawOptions.client?.session?.promptAsync;
@@ -3036,7 +2964,7 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
 
     const reserved = await reserveContinuationTurn(normalizedSessionID, goal.goalId, options);
     if (!reserved.didReserve) {
-      return decision('suppressed', 'auto_turn_cap_reached', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
+      return decision('suppressed', 'goal_not_active', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
     }
 
     try {
@@ -3151,7 +3079,6 @@ function renderGoalInjection(goal, rawOptions = {}) {
   const tokensUsed = Number.isFinite(goal.tokensUsed) ? Math.max(0, Math.trunc(goal.tokensUsed)) : 0;
   const timeUsedSeconds = Number.isFinite(goal.timeUsedSeconds) ? Math.max(0, Math.trunc(goal.timeUsedSeconds)) : 0;
   const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
-  const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : DEFAULT_MAX_AUTO_TURNS;
   const verdict = sanitizeInlineText(goal.lastVerifierVerdict || 'not_evaluated', 80) || 'not_evaluated';
   const goalId = normalizeGoalID(goal.goalId);
   const directive = 'directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.';
@@ -3165,9 +3092,10 @@ function renderGoalInjection(goal, rawOptions = {}) {
     `last_check: ${verdict} ; reason: ${reason}`,
     // Every label here is shared with the runtime-neutral renderer and pinned
     // by a parity test. The one intended difference is this line's content:
-    // OpenCode has a native token feed and an auto-turn cap, so it reports
-    // real counts and a ratio where the other runtimes report a turn estimate.
-    `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}/${maxAutoTurns}`,
+    // OpenCode has a native token feed, so it reports real counts where the
+    // other runtimes report a turn estimate. The budget figure is a reading
+    // only: nothing ends or pauses a goal when usage passes it.
+    `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}`,
     directive,
     '[/active_goal]',
   ].join('\n');
@@ -3294,12 +3222,6 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
 
   const stateAgeMs = Math.max(0, nowMs(rawOptions) - goal.updatedAtMs);
   const options = normalizeOptions(rawOptions);
-  const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : options.maxAutoTurns;
-  const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
-  const wallElapsedMs = goal.status === 'active'
-    ? Math.max(0, nowMs(options) - goal.startedAtMs)
-    : Math.max(0, goal.activeWallMs || 0);
-  const remainingWallMs = Math.max(0, options.maxWallMs - wallElapsedMs);
   const lines = [
     `STATUS=OK ACTION=${action}`,
     'goal_present=true',
@@ -3323,10 +3245,6 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
     `token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
     `tokens_used=${goal.tokensUsed}`,
     `time_used_seconds=${goal.timeUsedSeconds}`,
-    `max_auto_turns=${maxAutoTurns}`,
-    `remaining_auto_turns=${Math.max(0, maxAutoTurns - autoTurnsUsed)}`,
-    `max_wall_ms=${options.maxWallMs}`,
-    `remaining_wall_ms=${remainingWallMs}`,
     `provider_retry_after_ms=${goal.providerRetryAfterMs === null || goal.providerRetryAfterMs === undefined ? 'none' : goal.providerRetryAfterMs}`,
     `usage_source=${goal.usageSource || 'unavailable'}`,
     `budget_tokens_used=${goal.tokensUsed}`,
