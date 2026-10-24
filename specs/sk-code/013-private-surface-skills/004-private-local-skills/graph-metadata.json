@@ -48,14 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/orchestrator-steps.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+      "scratch/link-audit-logical.sh",
+      ".skilled/skills/local-webflow/graph-metadata.json",
+      ".skilled/skills/local-obsidian/graph-metadata.json",
       ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
-      ".skilled/skills/sk-code/sk-code-webflow/README.md",
-      ".skilled/skills/sk-git/graph-metadata.json",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json"
+      ".skilled/skills/local-webflow/references/workflow-implement.md",
+      ".skilled/skills/local-webflow/references/workflow-verify.md",
+      ".skilled/skills/local-obsidian/references/workflow-implement.md",
+      ".skilled/skills/local-obsidian/references/workflow-verify.md",
+      ".skilled/skills/sk-git/graph-metadata.json"
     ],
     "entities": [
       {
@@ -79,7 +84,7 @@
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -91,13 +96,43 @@
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator-steps.md",
+        "kind": "doc",
+        "path": "scratch/orchestrator-steps.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-private-skill-roots.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "link-audit-logical.sh",
+        "kind": "script",
+        "path": "scratch/link-audit-logical.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/local-webflow/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -113,21 +148,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "workflow-implement.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/README.md",
+        "path": ".skilled/skills/local-webflow/references/workflow-implement.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-git/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json",
+        "name": "workflow-verify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/local-webflow/references/workflow-verify.md",
         "source": "derived"
       },
       {
@@ -177,35 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Obsidian Plugin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and `.skilled/skills/sk-code/sk-code-obsidian/` (504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:40Z",
-    "last_save_at": "2026-10-23T16:28:03.909Z",
+    "last_save_at": "2026-10-24T16:15:20.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a2babe74d399936f671ce052da6a25b1d6a1e2895786426f988de0217d3edbb",
+    "source_fingerprint": "sha256:bd64e85a0dc7dd943701ba414e2c6cbdc517a9113e5c986d198d95a3521e7072",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aae102947a382ecf3104b32845f45ac98d457c113a5c6156648b6fc71ea74eb9",
-      "plan.md": "f746464562328492eda23b621dfa6c6c3d1921c79adce073bf7a0d1830809646",
-      "tasks.md": "8b9f126bace9bc17db8968b77fe8a94e2609a5911ebf1e63a6f3901356207469",
-      "decision-record.md": "95dc3233007ea02b76488e246144e454af4fbe562f5cd5088ee8de1ca8fd7af4",
-      "implementation-summary.md": "e060208025bc6dd32925d57634730bbe602fde2dea8a001ddc044578ee6bb0db"
+      "spec.md": "386c3bc89c227181ad0798ba561ee97eb1a6b6c71b973de4ed9f9e81625bae0d",
+      "plan.md": "fa2955fa8a87157cac9aa21a52f66aae33472ca0a08e09bf9899f83dd1721c2b",
+      "tasks.md": "67458a945e3f21242662698f05db3337f7963baa8b76550b51dc49e3db274cfd",
+      "decision-record.md": "e317626a08af6619aa27b0494d7ac2d577acc9ff0f440b51050c123c60072d0b",
+      "implementation-summary.md": "6e17647cc5b41fbb67f1ade89a833ec1166033b2e87fbba9c5a0530f2cb0f23c"
     },
     "last_active_at": null
   }

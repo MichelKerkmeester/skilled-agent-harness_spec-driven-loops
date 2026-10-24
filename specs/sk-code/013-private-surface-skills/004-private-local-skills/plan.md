@@ -24,7 +24,7 @@ contextType: "general"
 | **Language/Stack** | Markdown skill documents, JSON skill metadata, Bash restore commands |
 | **Framework** | sk-code skill contract (SKILL.md frontmatter, `graph-metadata.json`, references/assets tree) |
 | **Storage** | None in this checkout. The two skills live as symlinks into two external repositories, one public and one private; the advisor database is throwaway |
-| **Testing** | Link audit over both trees, `regenerate-skill-derived.cjs --write` followed by a confirming dry run, throwaway advisor database with `sqlite3`, `validate.sh --strict` |
+| **Testing** | Link audit over both trees, the `node -e` field check, a dead-path check over every `derived` path, and the generator's `Refusing a private skill root` refusal with exit 2 (decision-record.md Amendment 4), throwaway advisor database with `sqlite3`, `validate.sh --strict` |
 
 ### Overview
 The restore is a single `git archive` pipeline pinned to `42b41dd286`, so both skills are byte-identical to what the hub shipped. Everything after it is a consequence of the move: three `references/workflow-*.md` symlinks become real copies, every relative link that escapes the skill root is recomputed from the new depth, every absolute `.skilled/skills/sk-code/sk-code-*` path names the new folder, and the hub-surface prose becomes standalone-skill prose. Each skill ends with one skill-root `graph-metadata.json` so the operator's advisor can score it.
@@ -88,7 +88,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | Root `.gitignore` (phase 1) | Owns the ignore rules | not a consumer, unchanged | `git check-ignore -v` names the rule for each path |
 | `.skilled/scripts/git-hooks/pre-commit` (phase 1) | Refuses a staged `local-*` path | not a consumer, unchanged | `git diff --cached --name-only` is empty |
 | Advisor disk scan `skill-graph-db.ts:733` (phase 3) | Reads skill-root `graph-metadata.json` | not a consumer of this phase's code, but it must accept the two symlink targets | throwaway database contains both `local-*` nodes |
-| `regenerate-skill-derived.cjs` | Repairs `derived` drift | consumer of the new metadata | `--write` reports `written` or `unchanged` and a following dry run reports `unchanged`, never `error` |
+| `regenerate-skill-derived.cjs` | Repairs `derived` drift for fleet skills | not a consumer: it refuses a `local-*` root with exit 2 | a run against either root prints `Refusing a private skill root` and exits 2, and the dead-path check reports `MISSING=0` (decision-record.md Amendment 4) |
 | This child's documents | Plan and gates | update | `validate.sh --strict` prints `RESULT: PASSED` |
 
 Required inventories:
@@ -261,7 +261,7 @@ One file per skill. Shape reference: `.skilled/skills/sk-git/graph-metadata.json
 
 `key_files` and `entities[].path` are repository-root-relative, because the generator resolves them with `path.join(REPO_ROOT, rel)` and a bare `SKILL.md` or `references/css/style-guide.md` is dead at the repo root. `source_docs` are skill-relative. Every path must exist, because the generator prunes a dead path and errors on an empty required array.
 
-Proof: `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-webflow --write` (and the same for `local-obsidian`) reports `"status": "written"` or `"status": "unchanged"`, never `"status": "error"`, and a second run of each without `--write` reports `"status": "unchanged"`. The `--write` run is what repairs the file; the dry run alone only reports `"status": "would-change"` and changes nothing, so a bare dry run cannot prove the file is correct.
+Proof: the generator `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-webflow` (and the same for `local-obsidian`) refuses a private root. It prints `Refusing a private skill root` and exits 2, so it neither writes nor confirms the hand-written file (decision-record.md Amendment 4). The replacement proof is the `node -e` field check that prints `OK`, plus a dead-path check that resolves every `key_files`, `entities[].path` and `source_docs` path on disk and prints `PATHS=15 MISSING=0` for each skill, which restores the dead-path check the generator's `--write` run used to perform.
 
 ### Step 9 - Prove the advisor sees both skills
 
@@ -273,9 +273,16 @@ export SPECKIT_PRIVATE_SKILL_ROOTS="$PRIVATE_ROOTS"
 export SYSTEM_SKILL_ADVISOR_DB_DIR="/tmp/psurf-phase4/advisor-db"
 node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
 sqlite3 "$SYSTEM_SKILL_ADVISOR_DB_DIR/skill-graph.sqlite" "SELECT id FROM skill_nodes WHERE id LIKE 'local-%' ORDER BY id;"
+STATE="$SYSTEM_SKILL_ADVISOR_DB_DIR/.system-skill-advisor-launcher.json"
+DAEMON_PID="$(node -e "console.log(require(process.argv[1]).pid)" "$STATE")"
+SOCK_DIR="$(node -e "console.log(require('path').dirname(require(process.argv[1]).socketPath))" "$STATE")"
+kill "$DAEMON_PID"
+case "$SOCK_DIR" in /tmp/system-skill-advisor/*) rm -rf "$SOCK_DIR";; esac
 unset SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_PRIVATE_SKILL_ROOTS
 rm -rf /tmp/psurf-phase4/advisor-db
 ```
+
+The scan starts a daemon for the throwaway database, so the `kill` stops it. It takes the pid from the throwaway state file only and never signals any other advisor daemon.
 
 The database lives at the absolute path `/tmp/psurf-phase4/advisor-db` and is deleted in the same step, so it is never written inside a checkout, never shows up in `git status --porcelain`, and nothing is left behind. The override relocates it away from the live database.
 
@@ -1256,7 +1263,7 @@ NEW:
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | Link resolution in both skills | `/tmp/psurf-phase4/link-audit.sh` from Step 4 |
-| Unit | `graph-metadata.json` shape and `derived` completeness | `node .skilled/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root <skill>` |
+| Unit | `graph-metadata.json` shape, `derived` completeness and dead paths | the `node -e` field check and the dead-path check in AC-011 and AC-012, because the generator refuses a `local-*` root with exit 2 |
 | Integration | The advisor indexes both skills | `SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills" SYSTEM_SKILL_ADVISOR_DB_DIR=$(mktemp -d) node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted` plus `sqlite3` |
 | Integration | README structure still passes after the prose rewrite | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <README> --type readme` |
 | Manual | Nothing leaked into git | `git status --porcelain .skilled`, `git diff --cached --name-only`, `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian`, `git check-ignore -v` |
@@ -1501,11 +1508,11 @@ Seven decisions govern this phase, each recorded in full in `decision-record.md`
 
 **Status**: Accepted
 
-**Decision**: One file per skill root, generated and then confirmed `unchanged`.
+**Decision**: One file per skill root, hand-written to the field table and checked by the `node -e` field check and the dead-path check, because the generator refuses a `local-*` root with exit 2 (decision-record.md Amendment 4).
 
 **Consequences**:
 - One identity per skill.
-- The `derived` block must be generated, not hand-tuned.
+- The `derived` block is hand-written, so the dead-path check stands in for the generator's prune of dead paths.
 
 **Alternatives Rejected**:
 - A `description.json`: no leaf skill carries one and no consumer reads it.

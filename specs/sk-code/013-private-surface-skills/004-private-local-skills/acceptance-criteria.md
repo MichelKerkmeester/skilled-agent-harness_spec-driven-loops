@@ -58,28 +58,28 @@ table cell. Each block starts from the operator's main checkout unless its first
 
 | AC-ID | REQ | Given / When / Then | Status | Waiver |
 |-------|-----|---------------------|--------|--------|
-| AC-001 | REQ-010 | Given phase 004 restores a skill that phase 003's compiler would export, When the ordering gate runs, Then phase 003's `local-*` skip is present on `origin/main` and in the working copy | Unmet | - |
-| AC-002 | REQ-001 | Given the operator recorded the layout on 2026-10-23, When the phase starts, Then ADR-001 records `Accepted: symlink to two external repositories`, `Folder mode: symlink`, and both target roots | Unmet | - |
-| AC-003 | REQ-001 | Given commit `42b41dd286`, When both trees are restored, Then each skill root holds the archived entry count | Unmet | - |
-| AC-004 | REQ-002 | Given the restored trees, When the workflow references are made real, Then no symlink remains and each copy is byte-identical to the pinned blob | Unmet | - |
-| AC-005 | REQ-002 | Given the four copies that carry a guardrail link, When the link is rewritten, Then it resolves to the guardrail document from the new depth | Unmet | - |
-| AC-006 | REQ-003 | Given the Webflow skill after the move, When the link audit runs, Then the only broken link is the one that was already broken at `42b41dd286` | Unmet | - |
-| AC-007 | REQ-003 | Given the Obsidian skill after the move, When the link audit runs, Then no link is broken | Unmet | - |
-| AC-008 | REQ-004 | Given both skills, When the absolute self-paths are rewritten, Then no file outside the dated records names the old hub location | Unmet | - |
-| AC-009 | REQ-005 | Given the Webflow skill, When the standalone rewrite is applied, Then its identity names `local-webflow` and claims no hub bundle | Unmet | - |
-| AC-010 | REQ-005 | Given the Obsidian skill, When the standalone rewrite is applied, Then its identity names `local-obsidian` and claims no hub bundle | Unmet | - |
-| AC-011 | REQ-006 | Given the Webflow skill, When the metadata is written, Then its root carries exactly one advisor-readable identity that the generator leaves unchanged | Unmet | - |
-| AC-012 | REQ-006 | Given the Obsidian skill, When the metadata is written, Then its root carries exactly one advisor-readable identity that the generator leaves unchanged | Unmet | - |
-| AC-013 | REQ-007 | Given both skills present, When git is asked about them in this checkout, Then they are ignored, untracked and unstaged; the target repositories track them separately | Unmet | - |
-| AC-014 | REQ-012 | Given a throwaway advisor database, When the graph scan runs, Then it holds one node per private skill | Unmet | - |
-| AC-015 | REQ-008 | Given the phase is complete, When the summary is read, Then it records the mode, the restore commands, both audits, the ignore evidence and the scan result | Unmet | - |
-| AC-016 | REQ-009 | Given both skills, When their comments and docs are scanned, Then no new packet id or spec path appears in them | Unmet | - |
-| AC-017 | REQ-013 | Given the phase's checks have run, When an independent read-only OpenCode subagent review reads them, Then every checklist item reports a pass with its command output | Unmet | - |
-| AC-018 | SC-004 | Given the final state, When the packet gate runs, Then the packet passes strict validation | Unmet | - |
+| AC-001 | REQ-010 | Given phase 004 restores a skill that phase 003's compiler would export, When the ordering gate runs, Then phase 003's `local-*` skip is present on `origin/main` and in the working copy | Met | - |
+| AC-002 | REQ-001 | Given the operator recorded the layout on 2026-10-23, When the phase starts, Then ADR-001 records `Accepted: symlink to two external repositories`, `Folder mode: symlink`, and both target roots | Met | - |
+| AC-003 | REQ-001 | Given commit `42b41dd286`, When both trees are restored, Then each skill root holds the archived entry count | Met | - |
+| AC-004 | REQ-002 | Given the restored trees, When the workflow references are made real, Then no symlink remains and each copy is byte-identical to the pinned blob | Met | - |
+| AC-005 | REQ-002 | Given the four copies that carry a guardrail link, When the link is rewritten, Then it resolves to the guardrail document from the new depth | Met | - |
+| AC-006 | REQ-003 | Given the Webflow skill after the move, When the link audit runs, Then the only broken link is the one that was already broken at `42b41dd286` | Met | - |
+| AC-007 | REQ-003 | Given the Obsidian skill after the move, When the link audit runs, Then no link is broken | Met | - |
+| AC-008 | REQ-004 | Given both skills, When the absolute self-paths are rewritten, Then no file outside the dated records names the old hub location | Met | - |
+| AC-009 | REQ-005 | Given the Webflow skill, When the standalone rewrite is applied, Then its identity names `local-webflow` and claims no hub bundle | Met | - |
+| AC-010 | REQ-005 | Given the Obsidian skill, When the standalone rewrite is applied, Then its identity names `local-obsidian` and claims no hub bundle | Met | - |
+| AC-011 | REQ-006 | Given the Webflow skill, When the metadata is written, Then its root carries exactly one advisor-readable identity, and the generator refuses the private root by design | Met | - |
+| AC-012 | REQ-006 | Given the Obsidian skill, When the metadata is written, Then its root carries exactly one advisor-readable identity, and the generator refuses the private root by design | Met | - |
+| AC-013 | REQ-007 | Given both skills present, When git is asked about them in this checkout, Then they are ignored, untracked and unstaged; the target repositories track them separately | Met | - |
+| AC-014 | REQ-012 | Given a throwaway advisor database, When the graph scan runs, Then it holds one node per private skill | Met | - |
+| AC-015 | REQ-008 | Given the phase is complete, When the summary is read, Then it records the mode, the restore commands, both audits, the ignore evidence and the scan result | Met | - |
+| AC-016 | REQ-009 | Given both skills, When their comments and docs are scanned, Then no new packet id or spec path appears in them | Met | - |
+| AC-017 | REQ-013 | Given the phase's checks have run, When an independent read-only OpenCode subagent review reads them, Then every checklist item reports a pass with its command output | Met | - |
+| AC-018 | SC-004 | Given the final state, When the packet gate runs, Then the packet passes strict validation | Met | - |
 | AC-019 | REQ-011 | Given every check has passed, When the documents are committed and pushed, Then the commit holds only this phase's documents and HEAD equals `origin/main` | Unmet | - |
-| AC-020 | REQ-014 | Given the two external repositories, When the links are created, Then each symlink resolves into its repository's `local-skills/` directory and both links stay git-ignored in this checkout | Unmet | - |
-| AC-021 | REQ-016 | Given each target repository, When its commit is made, Then only `local-skills/<name>` is staged, `git -C <repo> ls-files local-skills/<name>` lists the skill, and its push ran only after an explicit operator yes | Unmet | - |
-| AC-022 | REQ-015 | Given the operator's shell, When a fresh login shell reads the environment, Then `SPECKIT_PRIVATE_SKILL_ROOTS` holds both roots joined by `:` | Unmet | - |
+| AC-020 | REQ-014 | Given the two external repositories, When the links are created, Then each symlink resolves into its repository's `local-skills/` directory and both links stay git-ignored in this checkout | Met | - |
+| AC-021 | REQ-016 | Given each target repository, When its commit is made, Then only `local-skills/<name>` is staged, `git -C <repo> ls-files local-skills/<name>` lists the skill, and its push ran only after an explicit operator yes | Met | - |
+| AC-022 | REQ-015 | Given the operator's shell, When a fresh login shell reads the environment, Then `SPECKIT_PRIVATE_SKILL_ROOTS` holds both roots joined by `:` | Met | - |
 
 ### Status values
 
@@ -158,12 +158,12 @@ git archive 42b41dd286 .skilled/skills/sk-code/sk-code-obsidian | tar -tv | grep
 find .skilled/skills/local-webflow/ .skilled/skills/local-obsidian/ -type l | wc -l || echo 0
 for skill in local-webflow local-obsidian; do
   for phase in implement debug verify; do
-    git show "42b41dd286:.skilled/skills/sk-code/shared/references/workflow-$phase.md" | cmp - ".skilled/skills/$skill/references/workflow-$phase.md" && echo "$skill $phase IDENTICAL"
+    git show "42b41dd286:.skilled/skills/sk-code/shared/references/workflow-$phase.md" | sed 's#\.\./\.\./sk-code-skilled/#../../sk-code/sk-code-skilled/#g' | cmp - ".skilled/skills/$skill/references/workflow-$phase.md" && echo "$skill $phase IDENTICAL"
   done
 done
 ```
 
-Expected: `3`, `3`, `0`, then six `IDENTICAL` lines.
+Expected: `3`, `3`, `0`, then six `IDENTICAL` lines. The `sed` maps the pinned guardrail link to its AC-005 form, which is the one intended difference.
 
 ### AC-005 — the guardrail link resolves
 
@@ -174,27 +174,30 @@ for skill in local-webflow local-obsidian; do
     printf '%s %s %s\n' "$skill" "$phase" "$(grep -c 'sk-code-skilled/references/shared/workflow-guardrails.md' ".skilled/skills/$skill/references/workflow-$phase.md")"
   done
 done
-test -f .skilled/skills/local-webflow/references/../../sk-code/sk-code-skilled/references/shared/workflow-guardrails.md && echo RESOLVES_WEBFLOW
-test -f .skilled/skills/local-obsidian/references/../../sk-code/sk-code-skilled/references/shared/workflow-guardrails.md && echo RESOLVES_OBSIDIAN
+for skill in webflow obsidian; do
+  test -f "$(python3 -c 'import os,sys;print(os.path.normpath(sys.argv[1]))' ".skilled/skills/local-$skill/references/../../sk-code/sk-code-skilled/references/shared/workflow-guardrails.md")" && echo "RESOLVES_$(echo $skill | tr a-z A-Z)"
+done
 ```
 
 Expected: `local-webflow implement 1`, `local-webflow debug 0`, `local-webflow verify 2`,
 `local-obsidian implement 1`, `local-obsidian debug 0`, `local-obsidian verify 2`, then
-`RESOLVES_WEBFLOW` and `RESOLVES_OBSIDIAN`.
+`RESOLVES_WEBFLOW` and `RESOLVES_OBSIDIAN`. The link resolves by logical path, as the reader opens it through the symlink.
 
 ### AC-006 — the Webflow link audit reaches its baseline
 
-Run this block after T017 and before T100, which removes the audit script. Positive control first: the
-audit reports a broken link when one exists.
+The audit resolves each link by logical path, the way a reader opens it through the symlink, using the kept
+script `scratch/link-audit-logical.sh`. Positive control first: the audit reports a broken link when one exists.
 
 ```bash
-mkdir -p /tmp/psurf-phase4/control
-printf '[x](missing.md)\n' > /tmp/psurf-phase4/control/broken.md
-bash /tmp/psurf-phase4/link-audit.sh /tmp/psurf-phase4/control | grep -c BROKEN
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-bash /tmp/psurf-phase4/link-audit.sh .skilled/skills/local-webflow | grep -c BROKEN
-bash /tmp/psurf-phase4/link-audit.sh .skilled/skills/local-webflow | grep 'BROKEN'
-bash /tmp/psurf-phase4/link-audit.sh .skilled/skills/local-webflow | tail -1
+AUDIT=specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/link-audit-logical.sh
+CONTROL="$(mktemp -d)"
+printf '[x](missing.md)\n' > "$CONTROL/broken.md"
+bash "$AUDIT" "$CONTROL" | grep -c BROKEN
+bash "$AUDIT" .skilled/skills/local-webflow | grep -c BROKEN
+bash "$AUDIT" .skilled/skills/local-webflow | grep 'BROKEN'
+bash "$AUDIT" .skilled/skills/local-webflow | tail -1
+rm -rf "$CONTROL"
 ```
 
 Expected: `1` from the control, `1` from the Webflow count, one line
@@ -203,14 +206,18 @@ Expected: `1` from the control, `1` from the Webflow count, one line
 
 ### AC-007 — the Obsidian link audit reports nothing broken
 
-Run this block after T017 and before T100, which removes the audit script. Positive control first: the
-same audit reports a broken link on the control fixture.
+The audit resolves each link by logical path, using the kept script `scratch/link-audit-logical.sh`.
+Positive control first: the same audit reports a broken link on a control fixture.
 
 ```bash
-bash /tmp/psurf-phase4/link-audit.sh /tmp/psurf-phase4/control | grep -c BROKEN
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-bash /tmp/psurf-phase4/link-audit.sh .skilled/skills/local-obsidian | grep -c BROKEN || true
-bash /tmp/psurf-phase4/link-audit.sh .skilled/skills/local-obsidian | tail -1
+AUDIT=specs/sk-code/013-private-surface-skills/004-private-local-skills/scratch/link-audit-logical.sh
+CONTROL="$(mktemp -d)"
+printf '[x](missing.md)\n' > "$CONTROL/broken.md"
+bash "$AUDIT" "$CONTROL" | grep -c BROKEN
+bash "$AUDIT" .skilled/skills/local-obsidian | grep -c BROKEN || true
+bash "$AUDIT" .skilled/skills/local-obsidian | tail -1
+rm -rf "$CONTROL"
 ```
 
 Expected: `1` from the control, `0` from the Obsidian count, and `AUDIT_FAIL=0`.
@@ -264,24 +271,24 @@ checks, and `1` from the document validator.
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 node -e "const j=require('./.skilled/skills/local-webflow/graph-metadata.json');if(j.skill_id!=='local-webflow')process.exit(1);if(!['cli','mcp','sk-code','sk-hub','deep-loop','sk-util','system'].includes(j.family))process.exit(1);for(const k of ['trigger_phrases','key_topics','key_files','entities','source_docs'])if(!Array.isArray(j.derived[k])||j.derived[k].length===0)process.exit(1);if(!j.derived.causal_summary)process.exit(1);console.log('OK')"
-node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-webflow --write | grep -c -E '"status": "(written|unchanged)"'
-node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-webflow | grep -c '"status": "unchanged"'
-find .skilled/skills/local-webflow \( -name graph-metadata.json -o -name description.json \) | wc -l
+node -e "const fs=require('fs');const d=require('./.skilled/skills/local-webflow/graph-metadata.json').derived;const p=[...d.key_files,...d.entities.map(e=>e.path),...d.source_docs.map(x=>'.skilled/skills/local-webflow/'+x)];const m=p.filter(x=>!fs.existsSync(x));m.forEach(x=>console.log('MISSING',x));console.log('PATHS='+p.length+' MISSING='+m.length);process.exit(m.length?1:0)"
+node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-webflow 2>&1 | grep -c 'Refusing a private skill root'
+find .skilled/skills/local-webflow/ \( -name graph-metadata.json -o -name description.json \) | wc -l
 ```
 
-Expected: `OK`, `1`, `1`, `1`.
+Expected: `OK`, `PATHS=15 MISSING=0`, `1`, `1`. The dead-path line resolves every `key_files`, `entities[].path` and `source_docs` path on disk, which restores the check the generator's `--write` run used to perform. The generator refuses a `local-*` root by design with exit 2, so it never rewrites the hand-written file, and the `find` argument carries a trailing slash so it follows the symlink.
 
 ### AC-012 — the Obsidian metadata is valid and stable
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 node -e "const j=require('./.skilled/skills/local-obsidian/graph-metadata.json');if(j.skill_id!=='local-obsidian')process.exit(1);if(!['cli','mcp','sk-code','sk-hub','deep-loop','sk-util','system'].includes(j.family))process.exit(1);for(const k of ['trigger_phrases','key_topics','key_files','entities','source_docs'])if(!Array.isArray(j.derived[k])||j.derived[k].length===0)process.exit(1);if(!j.derived.causal_summary)process.exit(1);console.log('OK')"
-node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-obsidian --write | grep -c -E '"status": "(written|unchanged)"'
-node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-obsidian | grep -c '"status": "unchanged"'
-find .skilled/skills/local-obsidian \( -name graph-metadata.json -o -name description.json \) | wc -l
+node -e "const fs=require('fs');const d=require('./.skilled/skills/local-obsidian/graph-metadata.json').derived;const p=[...d.key_files,...d.entities.map(e=>e.path),...d.source_docs.map(x=>'.skilled/skills/local-obsidian/'+x)];const m=p.filter(x=>!fs.existsSync(x));m.forEach(x=>console.log('MISSING',x));console.log('PATHS='+p.length+' MISSING='+m.length);process.exit(m.length?1:0)"
+node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/local-obsidian 2>&1 | grep -c 'Refusing a private skill root'
+find .skilled/skills/local-obsidian/ \( -name graph-metadata.json -o -name description.json \) | wc -l
 ```
 
-Expected: `OK`, `1`, `1`, `1`.
+Expected: `OK`, `PATHS=15 MISSING=0`, `1`, `1`. The dead-path line resolves every `key_files`, `entities[].path` and `source_docs` path on disk, which restores the check the generator's `--write` run used to perform. The generator refuses a `local-*` root by design with exit 2, so it never rewrites the hand-written file, and the `find` argument carries a trailing slash so it follows the symlink.
 
 ### AC-013 — both paths are ignored, untracked and unstaged
 
@@ -308,13 +315,24 @@ The recorded mode is two-repository symlink mode, so this block exports both roo
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 PRIVATE_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
 export SPECKIT_PRIVATE_SKILL_ROOTS="$PRIVATE_ROOTS"
-export SYSTEM_SKILL_ADVISOR_DB_DIR=/tmp/psurf-phase4/advisor-db
-node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json > /tmp/psurf-phase4/scan.json
-sqlite3 /tmp/psurf-phase4/advisor-db/skill-graph.sqlite "SELECT id FROM skill_nodes WHERE id LIKE 'local-%' ORDER BY id;"
+SCRATCH="$(mktemp -d)"
+export SYSTEM_SKILL_ADVISOR_DB_DIR="$SCRATCH/advisor-db"
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json > "$SCRATCH/scan.json" || true
+sqlite3 "$SCRATCH/advisor-db/skill-graph.sqlite" "SELECT id FROM skill_nodes WHERE id LIKE 'local-%' ORDER BY id;"
+# Stop only the throwaway daemon, whose pid the scan wrote into its own scratch state file.
+STATE="$SCRATCH/advisor-db/.system-skill-advisor-launcher.json"
+DAEMON_PID="$(node -e "console.log(require(process.argv[1]).pid)" "$STATE")"
+SOCK_DIR="$(node -e "console.log(require('path').dirname(require(process.argv[1]).socketPath))" "$STATE")"
+kill "$DAEMON_PID"
+for i in 1 2 3 4 5 6 7 8 9 10; do kill -0 "$DAEMON_PID" 2>/dev/null || break; sleep 1; done
+kill -0 "$DAEMON_PID" 2>/dev/null && echo STILL_RUNNING || echo DAEMON_STOPPED
+case "$SOCK_DIR" in /tmp/system-skill-advisor/*) rm -rf "$SOCK_DIR";; esac
+rm -rf "$SCRATCH"
+test ! -e "$SCRATCH" && echo SCRATCH_REMOVED
 unset SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_PRIVATE_SKILL_ROOTS
 ```
 
-Expected: `local-obsidian` and `local-webflow`, one per line.
+Expected: `local-obsidian` and `local-webflow`, one per line, then `DAEMON_STOPPED` and `SCRATCH_REMOVED`. The scan starts a daemon for the throwaway database, and the cleanup stops it and removes the scratch directory. The kill takes the pid read from the throwaway state file only, so it never signals any other advisor daemon such as the one a live session owns. A scan against a cold database can exit 75 while the daemon starts, so the rows from the query are the proof and the scan exit status is not.
 
 ### AC-015 — the summary records the evidence
 
@@ -418,6 +436,31 @@ grep -c '^export SPECKIT_PRIVATE_SKILL_ROOTS=' ~/.zshrc
 
 Expected: `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills`
 and `1`.
+
+### Observed 2026-10-24
+
+Each line below is the output of the proof block above, read on 2026-10-24 at origin `main` HEAD `a393488d82` or later.
+
+- AC-001: `1` and `1`, and `git fetch origin main` exited 0.
+- AC-002: `1`, `1` and `1`.
+- AC-003: `161`, `65`, `162` and `66`.
+- AC-004: `3`, `3`, `0`, then six `IDENTICAL` lines with the guardrail link mapped to its rewritten form.
+- AC-005: `1`, `0`, `2` for both skills, then `RESOLVES_WEBFLOW` and `RESOLVES_OBSIDIAN` by logical path.
+- AC-006: control `1`, Webflow count `1`, the one `shared-listener-and-weakmap.md -> target` line, and `AUDIT_FAIL=1`.
+- AC-007: control `1`, Obsidian count `0`, and `AUDIT_FAIL=0`.
+- AC-008: `1` and `0`.
+- AC-009 and AC-010: `1`, `1`, `0`, `0` and `1` for each skill.
+- AC-011 and AC-012: `OK`, `PATHS=15 MISSING=0`, `1` refusal line and `1` metadata file for each skill. The generator exits 2 on both private roots.
+- AC-013: after the launcher fix landed as a local commit, `git status --porcelain .skilled` prints nothing, and the ignored, untracked and unstaged counts read `2`, `0`, `0` and `2`, with `git diff --cached --name-only` empty (2026-10-24 rerun).
+- AC-014: with the launcher allowlist carrying the roots, `skill_graph_scan --trusted` exited 0 against a throwaway database and the query printed `local-obsidian` and `local-webflow`. A cold-start rerun that added the cleanup steps exited 75 on the scan while the query still printed both rows, then printed `DAEMON_STOPPED` and `SCRATCH_REMOVED`, and the live daemon was left running.
+- AC-015: `1`, `6`, `1` and `1`.
+- AC-016: `1` and `0`.
+- AC-020: both `readlink` values match, `WEBFLOW_TARGET_OK`, `OBSIDIAN_TARGET_OK` and `2`.
+- AC-021: `162`, `0`, `66` and `0`. Webflow `origin/main` equals `4434c1b3` and Obsidian `origin/main` equals `c6cd64b7`.
+- AC-022: the login shell prints both roots joined by `:` and the export count is `1`.
+- AC-017: an independent read-only Opus review ran the seven checks on 2026-10-24 and every row reads PASS, with the command output in `scratch/review-round-1.md`. An earlier review round found one P1 and five P2 findings, all fixed before this run.
+- AC-018: `validate.sh --strict` prints `RESULT: PASSED` with `Errors: 0  Warnings: 0` on the 2026-10-24 rerun.
+- AC-019: Unmet until the documents are committed and pushed. The closing commit records the result.
 <!-- /ANCHOR:proofs -->
 
 ---

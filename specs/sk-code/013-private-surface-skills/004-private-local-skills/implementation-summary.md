@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T17:55:00Z"
+    last_updated_at: "2026-10-24T16:00:00Z"
     last_updated_by: "template-author"
-    recent_action: "Recorded the two-repository symlink answer for the evidence step"
-    next_safe_action: "Run T096 after both target repositories are committed and the phase checks pass"
+    recent_action: "Both target commits pushed, shell export set, launcher allowlist fixed"
+    next_safe_action: "Run T101 (independent review), then T102 to T109"
     blockers: []
     key_files: []
     session_dedup:
@@ -47,12 +47,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The Webflow and Obsidian evidence skills are back as `local-webflow` and `local-obsidian`, each living in its own repository and linked into the operator's main checkout through an ignored symlink. This checkout tracks neither link nor content. Both target-repository commits are pushed and the shell export is in `~/.zshrc`. The review, the strict validation and the phase commit are still open, so the phase is not closed.
 
 ### Phase 4: private-local-skills
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The recorded folder mode is symlink. The Webflow tree lives in the private repository `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com` under `local-skills/local-webflow` and holds 162 files. The Obsidian tree lives in the public repository `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin` under `local-skills/local-obsidian` and holds 66 files. Each tree was restored from the pinned commit with one command.
+
+`git archive 42b41dd286 .skilled/skills/sk-code/sk-code-webflow | tar -x --strip-components=4 -C "<webflow repo>/local-skills/local-webflow"`
+
+`git archive 42b41dd286 .skilled/skills/sk-code/sk-code-obsidian | tar -x --strip-components=4 -C "<obsidian repo>/local-skills/local-obsidian"`
+
+The archive leaves 158 and 62 regular files plus three workflow-reference symlinks per tree. Each symlink was replaced with a regular copy, so the counts rise to 161 and 65, and each tree gains one skill-root `graph-metadata.json`, which makes 162 and 66.
 
 The recorded layout is in `decision-record.md` ADR-001: `local-obsidian` and `local-webflow` are
 symlinks into their own repositories' `local-skills/` directories.
@@ -61,7 +66,8 @@ symlinks into their own repositories' `local-skills/` directories.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.skilled/skills/local-webflow` | Created (ignored symlink) | Points at `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills/local-webflow` in the private repository |
+| `.skilled/skills/local-obsidian` | Created (ignored symlink) | Points at `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills/local-obsidian` in the public repository |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +75,26 @@ symlinks into their own repositories' `local-skills/` directories.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Four link-audit readings were taken, each resolving a link by its logical path.
+
+- Intermediate Webflow: `AUDIT_FAIL=1` with 16 broken links.
+- Intermediate Obsidian: `AUDIT_FAIL=1` with 2 broken links.
+- Final Webflow: `AUDIT_FAIL=1` with the one pre-existing broken link.
+- Final Obsidian: `AUDIT_FAIL=0` with none.
+
+A physical resolution of the same links reads 18 and 4 broken, because a `..` followed through the symlink leaves the external repository.
+
+Both trees were first written into working-tree files only. Each target repository carries unrelated uncommitted files (31 and 931 at the start), and none of them was staged or touched.
+
+The orchestrator then ran the commits, the pushes and the `~/.zshrc` export from `scratch/orchestrator-steps.md`.
+
+- Webflow: commit `4434c1b3` `feat(skills): restore local-webflow`, 162 files and none outside `local-skills/local-webflow`, pushed `2276660c..4434c1b3` to `main`.
+- Obsidian: commit `c6cd64b7` `feat(skills): restore local-obsidian`, 66 files and none outside `local-skills/local-obsidian`, pushed `88819fc80..c6cd64b79` to `main`.
+- Shell: `~/.zshrc` gained one export line, and a login shell prints both roots joined by `:`.
+
+Three things differed from the plan. The repository comment-hygiene gate stopped the first Webflow commit on a spec pointer at `assets/patterns/performance-patterns.js:11`, so the pointer was removed and the durable sentence kept. The Webflow repository's `core.hooksPath` has no `prepare-commit-msg`, so the commit ran with `-c core.hooksPath=$HOME/.config/git/hooks` and received `Commit-Id: 0000001`. The Obsidian `main` was 246 commits behind `origin/main`, so only this commit was replayed onto `origin/main` with `git replay` and that SHA was pushed. The local `main` kept its own commit `756f7b86`, which is the same patch and drops on the owner's next rebase.
+
+The launcher child-env allowlist now carries `SPECKIT_PRIVATE_SKILL_ROOTS`, so a daemon-backed scan and rebuild index both private skills. `.skilled/bin/system-skill-advisor-launcher.cjs` and the new `.skilled/bin/launcher-private-skill-roots.vitest.ts` are outside this phase's documents and are committed separately.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,7 +104,8 @@ symlinks into their own repositories' `local-skills/` directories.
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| One symlink per skill into its own external repository | Each skill keeps the history, remote and visibility of the repository that owns it, and this checkout tracks no content |
+| Copy the workflow references before editing them | The archive restores three symlinks per tree that point into the old hub layout, so each is replaced by a regular copy before any rewrite |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -89,7 +115,16 @@ symlinks into their own repositories' `local-skills/` directories.
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `git check-ignore -v` on both links | PASS: both match `.gitignore:236:/.skilled/skills/local-*` |
+| `git status --porcelain --ignored` on both links | PASS: exactly two `!!` entries, and `git status --porcelain .skilled` lists no path under either `local-*` link. Before the launcher edit and its test are committed it also lists `.skilled/bin/system-skill-advisor-launcher.cjs` and `.skilled/bin/launcher-private-skill-roots.vitest.ts`, and once they are committed it prints nothing |
+| Webflow link audit | PASS: one `BROKEN` line, `shared-listener-and-weakmap.md -> target`, and `AUDIT_FAIL=1` (logical resolution) |
+| Obsidian link audit | PASS: no `BROKEN` line and `AUDIT_FAIL=0` (logical resolution) |
+| Throwaway database `skill_nodes` query | PASS: `local-obsidian` and `local-webflow`, first through the in-process indexer, then through the daemon-backed `skill_graph_scan` and `advisor_rebuild` once the launcher allowlist carried the roots |
+| Mirror and compiled graph | PASS: the Hermes sync check reports 66 copies in sync, and the compiler discovers 14 files and emits no `local-*` name |
+| Target-repository commits | PASS: `git ls-files` lists 162 and 66 files, `git show --name-only` finds 0 files outside each skill folder, and `origin/main` equals `4434c1b3` (Webflow) and `c6cd64b7` (Obsidian) |
+| `SPECKIT_PRIVATE_SKILL_ROOTS` in a login shell | PASS: `zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'` prints both roots and `grep -c '^export SPECKIT_PRIVATE_SKILL_ROOTS=' ~/.zshrc` prints `1` |
+| Launcher allowlist | PASS: the new test fails with the key absent and passes with it present, and a rebuild through the daemon indexes both `local-*` rows |
+| Temporary directory | PASS: `/tmp/psurf-phase4` is removed and the logical audit script is kept in `scratch/link-audit-logical.sh` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,7 +132,10 @@ symlinks into their own repositories' `local-skills/` directories.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The pre-existing broken link stays broken by design.** `references/javascript/quality-standards/shared-listener-and-weakmap.md` holds a link whose target is the literal word `target`. It came from the pinned commit and the Webflow audit counts it as its one `BROKEN` line.
+2. **Both external roots must be in `SPECKIT_PRIVATE_SKILL_ROOTS` for every advisor process.** The launcher now forwards the variable, but a daemon that started before the change keeps its old environment. It adopts the roots only after a fresh session respawns it, and a rebuild run against such a daemon still indexes no `local-*` row.
+3. **Relative hub links resolve by logical path only.** A tool that follows `..` physically through the symlink lands in the external repository and reports 18 Webflow and 4 Obsidian links as broken. The same links are physically broken for GitHub rendering of the two external repositories and for any agent that works inside them, because the hub tree they climb into does not exist there.
+4. **The skill-root metadata cannot be regenerated.** `regenerate-skill-derived.cjs` refuses a `local-*` root by design, so both `graph-metadata.json` files are hand-written.
 <!-- /ANCHOR:limitations -->
 
 ---

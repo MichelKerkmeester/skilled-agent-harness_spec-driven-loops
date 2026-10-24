@@ -162,6 +162,8 @@ serious alternative; the phase does not offer a live choice between modes.
 | One root is missing from `SPECKIT_PRIVATE_SKILL_ROOTS` | H | T006b sets both roots durably, and T095 exports both roots explicitly before the scan |
 | A target repository stages an unrelated uncommitted file | H | T095a and T095b stage only `local-skills/<name>` by path and stop if anything else is staged |
 | The Obsidian push publishes content | H | The push runs only after an explicit operator yes at run time |
+| A reader resolves a relative hub link physically through the symlink | M | Observed: the rewritten hub links resolve only by logical path, so a physical `..` leaves the external repository. The literal audit prints 18 and 4 broken links where the logical audit prints 1 and 0. The audits in T088 and T089 are read logically. The 18 Webflow and 4 Obsidian links are also broken on GitHub rendering and for agents working inside the external repositories |
+| The advisor daemon does not inherit `SPECKIT_PRIVATE_SKILL_ROOTS` | H | Observed: the launcher child-env allowlist omits the variable, so a daemon-backed scan indexes no `local-*` row even with the export set. The in-process indexer finds both. The fix belongs to the advisor, outside this phase |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -868,5 +870,55 @@ documents by name, and T108 pushes `HEAD:main` only after AC-018 passes.
 **How to roll back**: `git revert <phase-commit>` reverts the documents only; the two links are removed with `rm` and any target-repository commit is reverted as ADR-001 says.
 <!-- /ANCHOR:adr-007-impl -->
 <!-- /ANCHOR:adr-007 -->
+
+---
+
+<!-- ANCHOR:amendments-2026-10-24 -->
+## Dated Amendments, 2026-10-24
+
+These amendments record what the orchestrator run and the follow-up fix showed. They change no accepted ADR. Each one names the proof or task it touches.
+
+### Amendment 1: the link audit is met under logical path resolution
+
+A reader opens a link through the symlink path `.skilled/skills/local-webflow/...`, where `..` climbs the skills tree. The audit therefore resolves each link by its logical path.
+
+A physical resolver follows `..` through the symlink into the external repository and reads 18 broken Webflow links and 4 broken Obsidian links. The logical audit reads 1 and 0, which are the baseline AC-006 and AC-007 expect. The same physical breakage shows on GitHub rendering of the two external repositories and for any agent working inside them, because the hub tree the links climb into does not exist there.
+
+The kept script is `scratch/link-audit-logical.sh`, and the AC-006 and AC-007 proof blocks now run it because T100 removed the temporary directory that held the first script.
+
+The same logical rule changes two neighbouring proofs. The AC-005 `RESOLVES` lines normalise the path before `test -f`, because the kernel resolves `..` physically. The AC-004 byte comparison maps the pinned guardrail link to the form AC-005 writes, because those links are the one intended difference between the copies and the pinned blobs.
+
+### Amendment 2: the launcher child-env allowlist carries `SPECKIT_PRIVATE_SKILL_ROOTS`
+
+The advisor daemon is spawned by `.skilled/bin/system-skill-advisor-launcher.cjs`, which passes the child only the keys in `CHILD_ENV_ALLOWLIST`. The trusted roots were not among them, so the daemon could not confirm that a `local-*` link resolves inside a trusted root and indexed no private skill, even with the export set. The in-process indexer read the variable directly, which hid the gap until the daemon-backed scan ran.
+
+Phase 005's routing probe asks the daemon to rank the private skills, so it needed the key. The fix is one allowlist entry and a test, `.skilled/bin/launcher-private-skill-roots.vitest.ts`, that fails without the key and passes with it.
+
+End to end, with the roots exported and a throwaway database, both `skill_graph_scan` and `advisor_rebuild` index `local-obsidian` and `local-webflow`. A Webflow frontend prompt ranks `local-webflow` second behind `sk-code`, and an Obsidian plugin prompt ranks `local-obsidian` first.
+
+The edit sits outside this phase's frozen documents, so it is committed on its own. A daemon that started before the edit keeps its old environment and adopts the roots only after a fresh session respawns it.
+
+### Amendment 3: the hygiene edit, the hooks path and the replay
+
+The Webflow repository's comment-hygiene gate blocked the first commit on a spec pointer at `assets/patterns/performance-patterns.js:11`. The orchestrator removed the pointer and kept the durable sentence, and the hygiene checker then found no hit in either tree.
+
+The same repository's `core.hooksPath` points at a local hook folder that has no `prepare-commit-msg`, so nothing stamped the `Commit-Id` its `commit-msg` hook requires. The commit ran with `-c core.hooksPath=$HOME/.config/git/hooks`, the machine-wide set, and received `Commit-Id: 0000001`.
+
+The Obsidian repository's local `main` was 246 commits behind `origin/main`. The orchestrator replayed only this commit onto `origin/main` with `git replay` and pushed that SHA as `c6cd64b7`. The local branch was left as it was, and its commit `756f7b86` is the same patch and drops on the owner's next rebase.
+
+### Amendment 4: the generator counts cannot print for a private root
+
+`regenerate-skill-derived.cjs` refuses a `local-*` root by design, with `Refusing a private skill root` and exit 2. The two generator counts in T086, T087, AC-011 and AC-012 therefore cannot print `1`.
+
+The hand-written `graph-metadata.json` files pass the field check, and the `find` count reads `1` only with a trailing slash on the root. The AC-011 and AC-012 proofs now assert the refusal line and drop the two generator-stability lines, and their Then clause says the generator refuses the private root.
+
+The review of this phase found that the first wording still claimed exit 0 in several places and that the rewrite dropped the dead-path check the `--write` run used to perform. The follow-up fix changed these places:
+
+- `spec.md`: the metadata risk row and R-005 now name the field check, the dead-path check and the generator refusal.
+- `plan.md`: the Testing row, the generator row of the consumer table, the Step 8 proof, the unit row of the test table and the ADR-006 decision and consequence lines.
+- `tasks.md`: T086 and T087 proofs, Expected lines and Stop-if lines, CHK-011 and the T095 proof, which now stops its throwaway daemon.
+- `acceptance-criteria.md`: the AC-011 and AC-012 proofs gain the dead-path line, which resolves every `key_files`, `entities[].path` and `source_docs` path on disk and prints `PATHS=15 MISSING=0` for each skill. The AC-014 proof gains the daemon stop and scratch cleanup.
+- ADR-006 in this file keeps its accepted wording. Its lines that say the generator repairs the `derived` block with `--write`, that it errors on a dead path and that T086 and T087 run a confirming dry run are superseded by this amendment.
+<!-- /ANCHOR:amendments-2026-10-24 -->
 
 ---
