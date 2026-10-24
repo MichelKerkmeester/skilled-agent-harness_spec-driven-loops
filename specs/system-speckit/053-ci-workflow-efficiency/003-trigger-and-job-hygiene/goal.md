@@ -98,5 +98,5 @@ and findings belong here.
 | T021 wording | `README.md:71` names three inputs (`check-agent-mirror-sync.cjs`, both agent trees, the workflow file); accepted as more accurate, 2026-10-24 |
 | AC-011 count | The guard regex returns 4, not the planned 2 (both roots' guards and the workflow file in both lists); amendment 2026-10-24 |
 | Inventory shape | The hook has 13 gate keys (`private-skill` arrived with `7648ae8b56`) and the table carries a sixth `Reason` column; T035 and AC-012 corrected to 13/13/13 |
-| T013 local/CI split | Local hooks vitest fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs`; CI run 40026353792 is green; triage is the next build step |
+| T013 local/CI version split | CI run `40026353792` is green with all seven suites. On 2026-10-24, the focused test printed `Tests 7 passed (7)` with `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`, but `Tests 2 failed \| 5 passed (7)` with local OpenCode v2.1.4 visible; the v1-only rule is skipped locally. The test is not hermetic, and pinning its resolved version belongs to dispatch-hooks, outside this packet |
 <!-- /ANCHOR:log -->

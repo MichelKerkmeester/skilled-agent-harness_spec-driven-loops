@@ -104,7 +104,7 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 |-------|--------|
 | `bash .github/scripts/check-gate-inputs.sh` | `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, `RESULT: PASSED` (AC-013) |
 | YAML parse of all 33 workflows | Exit 0, no output (AC-014) |
-| Seven hooks vitest suites | CI run 40026353792 green; local run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs`, triage queued under T013 (AC-005) |
+| Seven hooks vitest suites | CI run `40026353792` is green with all seven suites. On 2026-10-24, the focused test printed `Tests 7 passed (7)` with `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`; with local OpenCode v2.1.4 visible it printed `Tests 2 failed \| 5 passed (7)`. T013 is done; the local version-resolution issue is a dispatch-hooks limitation (AC-005) |
 | Two trigger probes per filtered workflow | Not run; T027 to T034 remain (AC-003, AC-010, AC-011) |
 | `scratch/phase-result.md` against the 002 baseline | Not run; blocked on the 002 24 h snapshot via T006 (AC-016) |
 <!-- /ANCHOR:verification -->
@@ -117,7 +117,7 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 1. **No number is measured yet.** Every saving in this packet comes from `001-research/research/synthesis-reviews/final-review.md` and is restated as a target, not an observation. `scratch/phase-result.md` replaces it with a measured delta against `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md`.
 2. **The PR-side cancellation cannot be measured from the 23.5 h window**, which held no pull-request runs. It is recorded as unmeasured rather than as zero, and the T027 probe is the direct observation.
 3. **The delta cannot start until 002 records its baseline.** T006 stops when `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is absent, because no research figure may stand in for a measured before number; the implementation landed ahead of it, so only T006 and T036 wait.
-4. **The hooks suite diverges between local and CI.** The local vitest run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs` while CI run 40026353792 is green; triage is queued under T013.
+4. **The dispatch test is not hermetic to OpenCode version.** `no-bare-agent-general` in `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` declares `appliesTo: ["v1"]`; `evaluate()` resolves the local binary through `resolveOpencodeVersionSync`. Local OpenCode v2.1.4 skips the rule and causes 2 failures in `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs`. With `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`, the version resolves to `unknown`, the rule remains, and the focused test prints `Tests 7 passed (7)`. CI has no OpenCode binary, so it also resolves `unknown`; run `40026353792` is green. Pinning the resolved version belongs to the dispatch-hooks owner, outside this packet.
 <!-- /ANCHOR:limitations -->
 
 ---

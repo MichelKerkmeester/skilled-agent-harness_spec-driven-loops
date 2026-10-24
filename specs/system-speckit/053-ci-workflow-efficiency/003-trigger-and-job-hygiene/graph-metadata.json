@@ -60,7 +60,7 @@
       ".github/workflows/skill-doc-frontmatter.yml",
       ".github/workflows/README.md",
       "scratch/decisions.md",
-      ".github/workflows/changed-packet-validation.yml"
+      ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json"
     ],
     "entities": [
       {
@@ -178,9 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "changed-packet-validation.yml",
+        "name": "hard-rules.json",
         "kind": "config",
-        "path": ".github/workflows/changed-packet-validation.yml",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for",
     "created_at": "2026-10-23T08:47:51Z",
-    "last_save_at": "2026-10-24T09:00:13.210Z",
+    "last_save_at": "2026-10-24T09:58:33.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd6767fa505ffe9ee188a4c83dc89deaa59edf5e81a884307e2a07d8c2ec9e49",
+    "source_fingerprint": "sha256:0168e86f0ab1ee812d100b7b418ef4bc6383c161209f74769d6bbfce0bc2460c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d7761f262e34047f9b55c0388b27ee04380d3d162a79057d49c5da6e92d83777",
       "plan.md": "b0c51ce0f8c4f149439176104907322af73f333fbb7996462235e785237a40b4",
-      "tasks.md": "404c2a3f82e64d8d5473530fa1872648049b85b89089fa0e08d2bdc68a919cf7",
+      "tasks.md": "aca70c0956053b0a8469e4d17df63d408ed0e0933ac794d425da4cda5fa52731",
       "decision-record.md": "182903279b25a83d9b21ab883cde42471e7de7fda83ead84c9454403cbbf76bb",
-      "implementation-summary.md": "b97ab276f4e8aff22a6b2cc6712ba71159a1d9fc843eaf27418f743222a8bc2f"
+      "implementation-summary.md": "d81975044ba1a39ce170d32ed7df88e0136972898a6f893ad1f13c3486cc7245"
     },
     "last_active_at": null
   }
