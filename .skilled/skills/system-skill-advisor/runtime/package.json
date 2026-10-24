@@ -19,7 +19,7 @@
     "@spec-kit/shared": "file:../../system-spec-kit/shared",
     "better-sqlite3": "^12.11.1",
     "chokidar": "^4.0.3",
-    "zod": "^4.1.12"
+    "zod": "^4.6.6"
   },
   "overrides": {
     "@hono/node-server": "^2.0.5",
