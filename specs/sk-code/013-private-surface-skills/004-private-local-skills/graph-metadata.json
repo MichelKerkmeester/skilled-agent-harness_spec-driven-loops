@@ -3,6 +3,7 @@
   "packet_id": "sk-code/013-private-surface-skills/004-private-local-skills",
   "spec_folder": "sk-code/013-private-surface-skills/004-private-local-skills",
   "parent_id": "sk-code/013-private-surface-skills",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,6 +52,7 @@
       "scratch/orchestrator-steps.md",
       ".skilled/bin/system-skill-advisor-launcher.cjs",
       ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+      "scratch/review-round-1.md",
       "scratch/link-audit-logical.sh",
       ".skilled/skills/local-webflow/graph-metadata.json",
       ".skilled/skills/local-obsidian/graph-metadata.json",
@@ -59,8 +61,7 @@
       ".skilled/skills/local-webflow/references/workflow-implement.md",
       ".skilled/skills/local-webflow/references/workflow-verify.md",
       ".skilled/skills/local-obsidian/references/workflow-implement.md",
-      ".skilled/skills/local-obsidian/references/workflow-verify.md",
-      ".skilled/skills/sk-git/graph-metadata.json"
+      ".skilled/skills/local-obsidian/references/workflow-verify.md"
     ],
     "entities": [
       {
@@ -121,6 +122,12 @@
         "name": "launcher-private-skill-roots.vitest.ts",
         "kind": "test",
         "path": ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-round-1.md",
+        "kind": "doc",
+        "path": "scratch/review-round-1.md",
         "source": "derived"
       },
       {
@@ -200,17 +207,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and `.skilled/skills/sk-code/sk-code-obsidian/` (504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:40Z",
-    "last_save_at": "2026-10-24T16:15:20.190Z",
+    "last_save_at": "2026-10-24T16:18:30.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd64e85a0dc7dd943701ba414e2c6cbdc517a9113e5c986d198d95a3521e7072",
+    "source_fingerprint": "sha256:0a58985af19b9f5c1863f7643bf13789bea3720c10764f991b5e3fba19eaf3c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "386c3bc89c227181ad0798ba561ee97eb1a6b6c71b973de4ed9f9e81625bae0d",
-      "plan.md": "fa2955fa8a87157cac9aa21a52f66aae33472ca0a08e09bf9899f83dd1721c2b",
-      "tasks.md": "67458a945e3f21242662698f05db3337f7963baa8b76550b51dc49e3db274cfd",
-      "decision-record.md": "e317626a08af6619aa27b0494d7ac2d577acc9ff0f440b51050c123c60072d0b",
-      "implementation-summary.md": "6e17647cc5b41fbb67f1ade89a833ec1166033b2e87fbba9c5a0530f2cb0f23c"
+      "spec.md": "5ff284a5e5b2ce33fcb112c029de62a7df3c243ab9ad00e85b7ff41a01b6bfad",
+      "plan.md": "5899e1ef598d5371fb7c150981eb55ed48cc14cfa9cd8f1b33650ec8add570e3",
+      "tasks.md": "92542c92aaeb20ca427e36096b19db480c777330c0e758b92ca016d2c006f144",
+      "decision-record.md": "f3628cc55bf64826a9bc025c4935ae04972343284a47e860bd4173682abecaba",
+      "implementation-summary.md": "a3ad5cadec62c0019c3f600e800c6287e884e86757e715a7d8fc6bcbefd97c7d"
     },
     "last_active_at": null
   }

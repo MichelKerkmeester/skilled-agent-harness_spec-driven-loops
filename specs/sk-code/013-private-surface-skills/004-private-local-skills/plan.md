@@ -39,17 +39,17 @@ The restore is a single `git archive` pipeline pinned to `42b41dd286`, so both s
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable
 - [x] Dependencies identified
-- [ ] Phase 003's compiler skip is on `origin/main` and in the operator's working copy (T001 proves it; it is not assumed)
-- [ ] `git cat-file -t 42b41dd286` prints `commit` in the operator's main checkout (T001 proves it)
-- [ ] `git check-ignore -v .skilled/skills/local-webflow` names the phase 1 rule (T006a proves it)
-- [ ] ADR-001 records the two-repository symlink answer, both roots and the public Obsidian choice (T002 reads it)
+- [x] Phase 003's compiler skip is on `origin/main` and in the operator's working copy (T001 proves it; it is not assumed)
+- [x] `git cat-file -t 42b41dd286` prints `commit` in the operator's main checkout (T001 proves it)
+- [x] `git check-ignore -v .skilled/skills/local-webflow` names the phase 1 rule (T006a proves it)
+- [x] ADR-001 records the two-repository symlink answer, both roots and the public Obsidian choice (T002 reads it)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Link audit on both skills reports only the one pre-existing broken link
-- [ ] `git status --porcelain .skilled` and `git diff --cached --name-only` are both empty
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] The phase commit is on `main` and `HEAD` equals `origin/main`
+- [x] All acceptance criteria met
+- [x] Link audit on both skills reports only the one pre-existing broken link
+- [x] `git status --porcelain .skilled` and `git diff --cached --name-only` are both empty
+- [x] Docs updated (spec/plan/tasks)
+- [x] The phase commit is on `main` and `HEAD` equals `origin/main`
 <!-- /ANCHOR:quality-gates -->
 
 ---

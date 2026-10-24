@@ -40,7 +40,7 @@ and commit `42b41dd286` in the local object database.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | The checked-out branch, pushed with `git push origin HEAD:main` |
 | **Parent Spec** | ../spec.md |

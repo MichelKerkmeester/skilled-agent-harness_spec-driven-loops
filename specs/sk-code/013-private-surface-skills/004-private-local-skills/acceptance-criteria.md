@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T17:55:00Z"
+    last_updated_at: "2026-10-24T16:20:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Recorded the two-repository answer and the new criteria"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Closed the phase: both commits pushed, 22 of 22 criteria Met"
+    next_safe_action: "Run phase 005 verification"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-004-private-local-skills"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Folder mode: symlink to two external repositories (operator, 2026-10-23)"
@@ -43,7 +43,7 @@ _memory:
 
 **Packet:** `sk-code/013-private-surface-skills/004-private-local-skills`
 **Level:** 3
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-23
 <!-- /ANCHOR:metadata -->
 
@@ -76,7 +76,7 @@ table cell. Each block starts from the operator's main checkout unless its first
 | AC-016 | REQ-009 | Given both skills, When their comments and docs are scanned, Then no new packet id or spec path appears in them | Met | - |
 | AC-017 | REQ-013 | Given the phase's checks have run, When an independent read-only OpenCode subagent review reads them, Then every checklist item reports a pass with its command output | Met | - |
 | AC-018 | SC-004 | Given the final state, When the packet gate runs, Then the packet passes strict validation | Met | - |
-| AC-019 | REQ-011 | Given every check has passed, When the documents are committed and pushed, Then the commit holds only this phase's documents and HEAD equals `origin/main` | Unmet | - |
+| AC-019 | REQ-011 | Given every check has passed, When the documents are committed and pushed, Then the commit holds only this phase's documents and HEAD equals `origin/main` | Met | - |
 | AC-020 | REQ-014 | Given the two external repositories, When the links are created, Then each symlink resolves into its repository's `local-skills/` directory and both links stay git-ignored in this checkout | Met | - |
 | AC-021 | REQ-016 | Given each target repository, When its commit is made, Then only `local-skills/<name>` is staged, `git -C <repo> ls-files local-skills/<name>` lists the skill, and its push ran only after an explicit operator yes | Met | - |
 | AC-022 | REQ-015 | Given the operator's shell, When a fresh login shell reads the environment, Then `SPECKIT_PRIVATE_SKILL_ROOTS` holds both roots joined by `:` | Met | - |
@@ -460,7 +460,7 @@ Each line below is the output of the proof block above, read on 2026-10-24 at or
 - AC-022: the login shell prints both roots joined by `:` and the export count is `1`.
 - AC-017: an independent read-only Opus review ran the seven checks on 2026-10-24 and every row reads PASS, with the command output in `scratch/review-round-1.md`. An earlier review round found one P1 and five P2 findings, all fixed before this run.
 - AC-018: `validate.sh --strict` prints `RESULT: PASSED` with `Errors: 0  Warnings: 0` on the 2026-10-24 rerun.
-- AC-019: Unmet until the documents are committed and pushed. The closing commit records the result.
+- AC-019: commit `e8256b8044` (the launcher allowlist fix and its test) and commit `ff993936c7` (the phase documents, 10 paths under the phase folder and 0 paths containing `skilled/skills/local-`) were pushed with `git push origin HEAD:refs/heads/main`, range `75ef2608d0..ff993936c7`. After the push `git rev-parse HEAD origin/main` printed `ff993936c7ddd2d08b8051c1152642a82ce7cb65` twice and `git rev-list --count origin/main..HEAD` printed `0`. `git status --porcelain .skilled | wc -l` printed `0`, the ignored count for the two links printed `2`, `git ls-files` printed `162` for the Webflow skill and `66` for the Obsidian skill, the login shell printed both roots joined by `:` and the `~/.zshrc` export count is `1`. Deviation: the launcher code landed in its own commit, the phase documents in a second commit, and this closing edit lands as a third commit, so the closing commit is not the one the proof block reads as `HEAD`.
 <!-- /ANCHOR:proofs -->
 
 ---
@@ -468,9 +468,9 @@ Each line below is the output of the proof block above, read on 2026-10-24 at or
 <!-- ANCHOR:closure -->
 ## 4. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The packet closes when AC-001 to AC-022 are all `Met`. The criteria that carry the phase are AC-001,
+The packet is closed because AC-001 to AC-022 all read `Met`. The criteria that carry the phase are AC-001,
 because a phase that starts before phase 003 lands exports private signals into the tracked graph,
 AC-006 and AC-007, because a private skill nobody can navigate is a private skill nobody uses,
 AC-013, because one staged path puts private content into the public repository, and AC-020 to AC-022,

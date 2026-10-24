@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T17:55:00Z"
+    last_updated_at: "2026-10-24T16:20:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Recorded the operator's two-repository symlink answer"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed the phase: both commits pushed, 22 of 22 criteria Met"
+    next_safe_action: "Run phase 005 verification"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-004-private-local-skills"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Folder mode: symlink to two external repositories (operator, 2026-10-23)"
@@ -61,13 +61,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] both `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/` are symlinks into their own repository's `local-skills/` directory, both are ignored here, the target trees hold 162 and 66 files, `git status --porcelain .skilled` and `git diff --cached --name-only` print nothing, and `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian` prints exactly two `!!` lines
-- [ ] `git -C /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com ls-files local-skills/local-webflow` lists 162 paths and `git -C "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin" ls-files local-skills/local-obsidian` lists 66 after each target commit
-- [ ] `zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'` prints `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills`
-- [ ] the Webflow link audit prints exactly one `BROKEN ... -> target` line and `AUDIT_FAIL=1` while the Obsidian audit prints no `BROKEN` line and `AUDIT_FAIL=0`
-- [ ] each `SKILL.md` carries `name: local-webflow` or `name: local-obsidian`, no `packetKind`, and each skill root holds exactly one `graph-metadata.json`
-- [ ] a throwaway advisor database holds one `skill_nodes` row for each of `local-webflow` and `local-obsidian`
-- [ ] `validate.sh --strict` on the phase folder prints `RESULT: PASSED`, the phase commit's file list holds no path outside the phase folder, ADR-001 records the two-repository symlink answer, and `implementation-summary.md` names both repositories
+- [x] both `.skilled/skills/local-webflow/` and `.skilled/skills/local-obsidian/` are symlinks into their own repository's `local-skills/` directory, both are ignored here, the target trees hold 162 and 66 files, `git status --porcelain .skilled` and `git diff --cached --name-only` print nothing, and `git status --porcelain --ignored .skilled/skills/local-webflow .skilled/skills/local-obsidian` prints exactly two `!!` lines
+- [x] `git -C /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com ls-files local-skills/local-webflow` lists 162 paths and `git -C "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin" ls-files local-skills/local-obsidian` lists 66 after each target commit
+- [x] `zsh -lic 'printenv SPECKIT_PRIVATE_SKILL_ROOTS'` prints `/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills`
+- [x] the Webflow link audit prints exactly one `BROKEN ... -> target` line and `AUDIT_FAIL=1` while the Obsidian audit prints no `BROKEN` line and `AUDIT_FAIL=0`
+- [x] each `SKILL.md` carries `name: local-webflow` or `name: local-obsidian`, no `packetKind`, and each skill root holds exactly one `graph-metadata.json`
+- [x] a throwaway advisor database holds one `skill_nodes` row for each of `local-webflow` and `local-obsidian`
+- [x] `validate.sh --strict` on the phase folder prints `RESULT: PASSED`, the phase commit's file list holds no path outside the phase folder, ADR-001 records the two-repository symlink answer, and `implementation-summary.md` names both repositories
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,11 +83,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | Planning documents written; no task has run |
+| Phase opened | Done | Planning documents written, then every task ran |
+| Target commits | Done | Webflow `4434c1b3` and Obsidian `c6cd64b7`, each on its `origin/main` |
+| Phase commits | Done | `e8256b8044` (launcher allowlist fix and test) and `ff993936c7` (phase documents), pushed `75ef2608d0..ff993936c7`; `HEAD` and `origin/main` both read `ff993936c7ddd2d08b8051c1152642a82ce7cb65` |
+| Independent review | Done | 7 PASS rows in `scratch/review-round-1.md` |
+| Strict validation | Done | `RESULT: PASSED`, 0 errors and 0 warnings |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Commit split | The launcher code went in its own commit `e8256b8044`, the phase documents in `ff993936c7`, and the closing edit lands as a third commit, so the closing commit is not the one T106 shows |
 <!-- /ANCHOR:log -->

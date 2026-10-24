@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Obsidian Plugin",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "Frozen Decisions",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -175,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "Run Provenance",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -188,12 +188,6 @@
       },
       {
         "name": "Executive Summary",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Obsidian Plugin",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -209,11 +203,17 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Clone Proof Sufficiency",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-24T15:29:29.928Z",
+    "last_save_at": "2026-10-24T16:19:06.585Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:58e95602753b8f602217b613444119da795963346010940f0726dade448fdac3",
+    "source_fingerprint": "sha256:913617a7f2f8326f97df4ed6a37aa8bbb8d5a4bc0b48c6c1d2e2fb2698206b4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2850932c055509001149def12f2814678b841d4a8244c52352b69ff97e2b2c87",

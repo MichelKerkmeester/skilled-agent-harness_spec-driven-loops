@@ -110,7 +110,8 @@ and findings belong here.
 | Phase 001 | Done | Harness `pre-commit gates: 131 passed, 0 failed`, commit `7648ae8b56` on `origin/main` |
 | Phase 002 | Done | Commit `e3beac65f4` plus the compiled-graph follow-up `1218b94938` on `origin/main`, CI 15 of 15 green |
 | Phase 003 | Done | Four review rounds closed with no open P0 or P1; advisor suite 147 files green, Python `pass=84`; committed with the advisor refactor on 2026-10-24 |
-| Phases 004 and 005 | Pending | Each child's `tasks.md`, in order; phase 004 operator approvals recorded in `004-private-local-skills/scratch/operator-approvals.md` |
+| Phase 004 | Done | Commits `e8256b8044` and `ff993936c7` on `origin/main`, plus the external commits `4434c1b` (anobel.com) and `c6cd64b7` (Obsidian Plugin); operator approvals recorded in `004-private-local-skills/scratch/operator-approvals.md` |
+| Phase 005 | Pending | Its `tasks.md`, in order |
 
 ### Deviations and findings
 

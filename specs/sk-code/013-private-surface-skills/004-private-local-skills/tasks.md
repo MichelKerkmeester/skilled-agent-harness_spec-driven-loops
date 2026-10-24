@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/004-private-local-skills"
-    last_updated_at: "2026-10-23T17:55:00Z"
+    last_updated_at: "2026-10-24T16:20:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Recorded the two-repository answer and the new tasks"
-    next_safe_action: "Run T001, T002 and T002a, then the T005/T006 restore pair"
+    recent_action: "Closed the phase: both commits pushed, 22 of 22 criteria Met"
+    next_safe_action: "Run phase 005 verification"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-004-private-local-skills"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Folder mode: symlink to two external repositories (operator, 2026-10-23)"
@@ -4081,7 +4081,8 @@ Expected: `1`.
 
 ### T103 — Mark every acceptance criterion Met
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, the criteria table holds 22 rows, 22 read `Met` and 0 read `Unmet`. AC-019 flipped last, after the push proof printed.
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md`
 - **Anchor:** the 22 rows of the criteria table, each ending `| Unmet | - |`
 - **Change:**
@@ -4118,7 +4119,8 @@ Expected: `22`, `22` and `0`.
 
 ### T104 — Set the closure statement to closeable
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, `**Closeable:** Yes` is set in `acceptance-criteria.md` and the packet status reads `Complete`.
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md`
 - **Anchor:** `acceptance-criteria.md` closure section — `**Closeable:** No`
 - **Change:**
@@ -4153,7 +4155,8 @@ Expected: `1`.
 
 ### T105 — Re-derive the phase metadata and re-run the strict validation
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, the closing edit ran `repair-derived.cjs --apply` and it printed `inspected=1 repaired=1 failed=0`, then `validate.sh --strict` printed `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
 - **File:** `specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json` and `graph-metadata.json` (generated)
 - **Anchor:** the `level` field in `description.json` and the `derived` block in `graph-metadata.json`.
 - **Change:** the two status edits in T103 and T104 changed the phase documents, so the generated metadata is stale. Re-derive it, then validate.
@@ -4180,7 +4183,8 @@ Expected: `1`, and the repair line reads `inspected=1 repaired=1 failed=0`.
 
 ### T106 — Commit this phase's documents by name
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, deviation recorded. The launcher code went in its own commit `e8256b8044` and the phase documents in `ff993936c7` (10 paths under the phase folder, 0 paths containing `skilled/skills/local-`), so this closing edit lands as a third commit and the closing commit message is not the one shown above.
 - **File:** `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `decision-record.md`, `goal.md`, `description.json`, `graph-metadata.json`, `scratch/review-round-1.md`
 - **Anchor:** n/a: git command, no file edit.
 - **Change:**
@@ -4220,7 +4224,8 @@ Expected: at least `9` from the phase-folder control, `0` from the non-phase cou
 
 ### T107 — Prove the commit holds no private path
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, `git show --name-only --format= ff993936c7` lists 10 paths under the phase folder and 0 paths containing `skilled/skills/local-`.
 - **File:** none
 - **Anchor:** n/a: read-only command.
 - **Change:** n/a: read-only command.
@@ -4241,7 +4246,8 @@ Expected: at least `9` from the phase-folder control and `0` from the private-pa
 
 ### T108 — Push `HEAD:main`
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, `git push origin HEAD:refs/heads/main` pushed the range `75ef2608d0..ff993936c7`. Afterwards `git rev-list --count origin/main..HEAD` printed `0`.
 - **File:** none
 - **Anchor:** n/a: git command, no file edit.
 - **Change:**
@@ -4269,7 +4275,8 @@ Expected: `0`.
 
 ### T109 — Confirm the final state
 
-- **Status:** `[ ]`
+- **Status:** `[x]`
+- **Done evidence:** 2026-10-24, `git rev-parse HEAD origin/main` printed `ff993936c7ddd2d08b8051c1152642a82ce7cb65` twice, `git status --porcelain .skilled | wc -l` printed `0`, the ignored count for the two links printed `2`, the Webflow and Obsidian `ls-files` counts printed `162` and `66`, the login shell printed both roots joined by `:` and the `~/.zshrc` export count is `1`. The whole-checkout `git status --porcelain` is not `0`, because unrelated paths in other spec folders stay untracked or deleted in the operator checkout, so only the `.skilled` count is claimed clean.
 - **File:** none
 - **Anchor:** n/a: read-only command.
 - **Change:** n/a: read-only command.
@@ -4305,11 +4312,11 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every executed task from T001 to T109 and every added task (T002a, T006a, T006b, T095a and T095b) carries `[x]`; T003, T004 and T094 carry `[—]`
-- [ ] No `[B]` blocked task remains
-- [ ] Both target-repository commits exist, each holds only `local-skills/<name>`, and both roots are set in `SPECKIT_PRIVATE_SKILL_ROOTS`
-- [ ] The reviewer report holds seven `PASS` rows
-- [ ] `validate.sh --strict` prints `RESULT: PASSED`
+- [x] Every executed task from T001 to T109 and every added task (T002a, T006a, T006b, T095a and T095b) carries `[x]`; T003, T004 and T094 carry `[—]`
+- [x] No `[B]` blocked task remains
+- [x] Both target-repository commits exist, each holds only `local-skills/<name>`, and both roots are set in `SPECKIT_PRIVATE_SKILL_ROOTS`
+- [x] The reviewer report holds seven `PASS` rows
+- [x] `validate.sh --strict` prints `RESULT: PASSED`
 - [ ] The phase commit is on `main` and both working trees are clean
 <!-- /ANCHOR:completion -->
 
@@ -4364,7 +4371,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met, proven by the blocks in `acceptance-criteria.md`
+- [x] CHK-020 [P0] All acceptance criteria met, proven by the blocks in `acceptance-criteria.md` [EVIDENCE: 2026-10-24, the criteria table holds 22 rows, 22 read `Met` and 0 read `Unmet`, and the closure statement reads `Closeable: Yes`. AC-019 flipped after the push proof printed `HEAD` and `origin/main` equal at `ff993936c7ddd2d08b8051c1152642a82ce7cb65`]
 - [x] CHK-021 [P0] Manual testing complete: T088 and T089's link audits and T095's advisor scan [EVIDENCE: T088, T089 and T095 are `[x]`. Reran the logical link audit 2026-10-24: Webflow control `1`, one BROKEN line `shared-listener-and-weakmap.md -> target`, `AUDIT_FAIL=1`, Obsidian `0` BROKEN and `AUDIT_FAIL=0`. The advisor scan is the AC-014 Observed reading (`local-obsidian`, `local-webflow`, `DAEMON_STOPPED`, `SCRATCH_REMOVED`), not rerun]
 - [x] CHK-022 [P1] Edge cases tested: the symlink mode and the pre-existing broken link are both covered [EVIDENCE: symlink mode: AC-020 Observed readlink values and `TARGET_OK` lines, and the audits and counts follow the symlink through a trailing-slash `find`. Pre-existing broken link: reran the Webflow audit 2026-10-24 and it reports exactly that one line, untouched]
 - [x] CHK-023 [P1] Error scenarios validated: a failed ignore precondition stops the phase at T006a [EVIDENCE: T006a stops when the `check-ignore` and status counts are not `2` and `0`, and both read `2` and `0` at execution; the guard was not tripped, so the stop itself was not exercised]
@@ -4381,7 +4388,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 - [x] CHK-FIX-004 [P0] Path fixes include adversarial cases: an escaping link, an inside-skill link, an already-broken link and a prose path mention [EVIDENCE: plan.md line 98 lists the four cases plus a cross-skill escape. Evidence: escaping links rewritten (intermediate audits 16 and 2, final Webflow one line and Obsidian none), inside-skill links unchanged (audit clean), the already-broken link remains the single BROKEN line, prose self-paths rewritten (reran `rg -L -c` for the old hub paths outside changelog and benchmark reports: `0`)]
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed [EVIDENCE: plan.md required inventories list the three matrix axes, and the acceptance table holds 22 rows]
 - [x] CHK-FIX-006 [P1] Hostile environment variant executed: the two-repository symlink scan exports both `SPECKIT_PRIVATE_SKILL_ROOTS` roots [EVIDENCE: T095 and the AC-014 block export both roots in `SPECKIT_PRIVATE_SKILL_ROOTS` with `SYSTEM_SKILL_ADVISOR_DB_DIR` on a throwaway database. AC-014 Observed 2026-10-24: both `local-*` rows, daemon stopped, scratch removed. Not rerun now]
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to commit `42b41dd286` and to the phase commit, not a moving branch range
+- [x] CHK-FIX-007 [P1] Evidence is pinned to commit `42b41dd286` and to the phase commit, not a moving branch range [EVIDENCE: 2026-10-24, the restore proofs name `42b41dd286`, the target-repository proofs name `4434c1b3` and `c6cd64b7`, and AC-019 names the phase commits `e8256b8044` and `ff993936c7` with the pushed range `75ef2608d0..ff993936c7`, not a branch range]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -4390,7 +4397,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets [EVIDENCE: scanned 228 files in both skill trees (`rg -L --files`) plus this packet folder 2026-10-24: no AKIA, sk-, ghp_, xox, PEM header or JWT match (exit 1), no quoted key/secret/token/password assignment, and no .env, .pem, .key or credentials file. The only loose `password` hits are three security-doc lines (localStorage warning, an input selector and a vulnerable-example snippet)]
-- [ ] CHK-031 [P0] No path under `.skilled/skills/local-*` is staged, proven by T106 and T107, and each target repository stages only `local-skills/<name>`, proven by T095a and T095b
+- [x] CHK-031 [P0] No path under `.skilled/skills/local-*` is staged, proven by T106 and T107, and each target repository stages only `local-skills/<name>`, proven by T095a and T095b [EVIDENCE: 2026-10-24, commit `ff993936c7` lists 10 paths under the phase folder and 0 paths containing `skilled/skills/local-`, and `git status --porcelain .skilled | wc -l` printed `0`. The AC-021 reading is `162`, `0`, `66` and `0`, with Webflow `4434c1b3` and Obsidian `c6cd64b7` on each `origin/main`. T106, T107, T095a and T095b are `[x]`]
 - [x] CHK-032 [P1] Auth and authorization are not applicable: no auth surface [EVIDENCE: n/a because the phase adds no auth surface]
 <!-- /ANCHOR:security -->
 
@@ -4399,7 +4406,7 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan, tasks and criteria are synchronized
+- [x] CHK-040 [P1] Spec, plan, tasks and criteria are synchronized [EVIDENCE: 2026-10-24, `spec.md`, `acceptance-criteria.md` and `implementation-summary.md` read Status `Complete`, every task status is `[x]` except T003, T004 and T094 which carry `[—]`, the plan definition of done is ticked, and every continuity block reads `completion_pct: 100`]
 - [x] CHK-041 [P1] No comment names a spec path, a packet number or a phase number, proven by T092 and T093 [EVIDENCE: scanned code files (js, ts, css, sh, py, mjs, cjs) in both skills 2026-10-24 for spec paths and phase or packet numbers: no hit. AC-016 zero check reran `0` (control also follows the symlink). The one spec path in prose, `local-obsidian/README.md:170`, is in the archive at `42b41dd286` (line 174), so it is permitted prose and not new. T092 and T093 are `[x]`]
 - [x] CHK-042 [P2] Both skill READMEs are rewritten by T041 to T053 and T073 to T084 [EVIDENCE: T041 to T053 and T073 to T084 are all `[x]` (25 tasks). Reran 2026-10-24: `validate_document.py --type readme` prints `VALID` with 0 issues for both READMEs, and the standalone-vocabulary greps (hub bundles, packetKind, advisor-invisible, parent hub) print `0` for each skill]
 <!-- /ANCHOR:docs -->
@@ -4420,11 +4427,11 @@ Expected: `0`, `HEAD_EQUALS_ORIGIN_MAIN`, `0`, `2`, `162`, `66`, the two-root va
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---
