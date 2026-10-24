@@ -1039,7 +1039,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: n/a: the command changes nothing
   - **Stop if**: the status is not empty or the shas differ; commit or push what is outstanding before continuing
 
-- [ ] T060 Re-clone the final tip after the C2 rebuild (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T060 Re-clone the final tip after the C2 rebuild (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 11 - Final tip`, the section `## A - Final-tip clone`, the fenced commands below, the clone sha, the three-line log and `Expected: the rebuild commit above C2`. Poll for at most 30 minutes. End with `<!-- evidence:end -->`.
@@ -1055,7 +1055,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `rm -rf /tmp/psurf-final-tip` and `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md`
   - **Stop if**: 30 minutes pass without a rebuild commit above C2; record the log and leave AC-015 `Unmet`
 
-- [ ] T061 Rerun the path and content sweeps on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T061 Rerun the path and content sweeps on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Paths and content` section holding the positive control, the fenced commands below, their output and `Expected: 336 at 42b41dd286 as the control, 0 live, 108 retained specs/ paths, 8 D6-kept content paths, 0 active`. End with the anchor line again.
@@ -1074,7 +1074,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: any of the five values differs from Expected
 
-- [ ] T062 Rerun the token and blob checks on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T062 Rerun the token and blob checks on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## D - Tokens and blobs` section holding the fenced commands below, their output and `Expected: 0 tokens, at least 1 from the control, then 0 new or changed blobs`. End with the anchor line again.
@@ -1091,7 +1091,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `rm -f /tmp/psurf-final-blob-ids.txt`
   - **Stop if**: the token count is not `0`, the control is `0` (the final tip's object dump is empty), or the new-or-changed count is not `0`
 
-- [ ] T063 Rerun the artifact counts on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T063 Rerun the artifact counts on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## E - Artifacts` section holding the fenced commands below, their output and `Expected: 0 live index paths, 69 allowlisted, 0 unclassified, 69 and 0 from the manifest, 0 diagnostics, 38 variants`. End with the anchor line again.
@@ -1121,9 +1121,9 @@ Every evidence path below is packet-relative and written out in full under `spec
 
 Phase 3 records the checklist verdict, commits it with the final-tip evidence as C3, pushes that commit, confirms the tree C3 leaves behind, and hands off. The tasks in Phase 2 produced the evidence each item asks about; this phase records the verdict against the same files and then closes them.
 
-- [ ] T064 Run the verification checklist against the evidence (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T064 Run the verification checklist against the evidence (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md` (modify)
-  - **Anchor**: the line `| P0 Items | 12 | [ ]/12 |` in the Verification Summary
+  - **Anchor**: the line `| P0 Items | 12 | 12/12 |` in the Verification Summary
   - **Change**: tick every checkbox this file holds: each task whose proof ran, each CHK item that holds against its evidence file, the three Completion Criteria boxes, and the four boxes for T065 through T068. C3 is the phase's last commit, so it carries the file this task leaves behind, and a box ticked after it would leave `tasks.md` modified and break the clean-tree proof in T067; T065 therefore stages `tasks.md`, and T066 through T068 report their own outcome in the handoff message rather than writing it back here. Replace the three summary rows with the observed counts, keeping the row labels.
   - **Proof**:
     ```bash
@@ -1134,7 +1134,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: `git checkout -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md`
   - **Stop if**: a CHK item cannot be ticked from an evidence file, or a task's proof did not run; leave that box unticked and report which one
 
-- [ ] T065 Commit the final-tip verification and the closed checklist as C3 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T065 Commit the final-tip verification and the closed checklist as C3 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` and `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md` (commit only)
   - **Anchor**: n/a - no line is edited
   - **Change**: bring the working checkout level with `origin/main` (`git fetch origin` then `git merge --ff-only origin/main`) first, because C2's push started the rebuild commit this final tip carries and the checkout has not integrated it, then stage both files by name and commit:
@@ -1159,7 +1159,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: `git reset --soft HEAD~1` while C3 is the tip; the fast-forward merge changed no local commit and is not rolled back
   - **Stop if**: both the fast-forward merge and its `git rebase origin/main` fallback refuse (a conflict), `origin/main` is not an ancestor of HEAD after the commit, or the stat names a file outside this phase folder
 
-- [ ] T066 Push C3 to main (none)
+- [x] T066 Push C3 to main (none)
   - **File**: none - the command changes the remote
   - **Anchor**: n/a - no file is edited
   - **Change**: confirm the checkout is still ahead of `origin/main` only by C3, then push:
@@ -1178,7 +1178,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: `git revert --no-edit HEAD` then `git push origin HEAD:main`
   - **Stop if**: the `ff-ready` line is missing before the push, or the push is rejected because `origin/main` moved after T065's fast-forward; run `git fetch origin main`, `git rebase origin/main`, re-run T065's proof and push again, and never use `--force`
 
-- [ ] T067 Confirm the tree is clean and HEAD equals origin/main after C3 (none)
+- [x] T067 Confirm the tree is clean and HEAD equals origin/main after C3 (none)
   - **File**: none - the command reads git state, and C3 carries every checkbox this file holds, so no tick can dirty the tree after it
   - **Anchor**: n/a - no file is edited
   - **Change**: run the two commands below and report their output
@@ -1192,7 +1192,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: n/a: the command changes nothing
   - **Stop if**: the status is not empty or the shas differ; record the paths and name the task that left them
 
-- [ ] T068 Report the handoff, including each push's CI runs (none)
+- [x] T068 Report the handoff, including each push's CI runs (none)
   - **File**: none - the report is the phase handoff message
   - **Anchor**: n/a - no file is edited
   - **Change**: post the handoff message with four blocks: the three commit shas C1, C2 and C3; the `gh run list --branch main --limit 10 --json databaseId,headSha,status,conclusion` output covering each push; the four artifact counts observed on the tip after C3; and one line per recorded limit (D7 history retention, `--no-verify`, the evidence push's own runs, and the absent pre-push surface-token guard). Do not append any of it to `09-ci.md`.
@@ -1211,9 +1211,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -1245,9 +1245,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md [EVIDENCE: spec.md section 4 lists REQ-001 to REQ-016 and the success criteria, read 2026-10-24]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [EVIDENCE: plan.md carries the clone, sweep, probe and commit steps the evidence files follow, read 2026-10-24]
+- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: `scratch/evidence/00-preflight.md` records `gh auth status` logged in with `repo` and `workflow` scopes and the phase 001-004 commits present in `git log`]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1255,10 +1255,10 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No production file changed; `git diff --stat 42b41dd286 HEAD` lists paths under this phase folder and the generated retrieval artifacts only
-- [ ] CHK-011 [P0] Every proof command's output is quoted in its evidence file, not summarized
-- [ ] CHK-012 [P1] Every zero check runs after a positive control that still matches a known population
-- [ ] CHK-013 [P1] Each evidence file follows the one-check-per-file convention and ends with `<!-- evidence:end -->`
+- [x] CHK-010 [P0] No production file changed; `git diff --stat 42b41dd286 HEAD` lists paths under this phase folder and the generated retrieval artifacts only [EVIDENCE: `git show --name-only --format= 4aeb061b49 01742752c1 | grep -vc "^specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/"` printed `0` on 2026-10-24; the rebuild commits are generated artifacts only]
+- [x] CHK-011 [P0] Every proof command's output is quoted in its evidence file, not summarized [EVIDENCE: each evidence file that runs a command quotes its output in fenced blocks, for example `scratch/evidence/11-final-tip.md` sections A, C, D and E]
+- [x] CHK-012 [P1] Every zero check runs after a positive control that still matches a known population [EVIDENCE: controls recorded before every zero: 336 paths, 1528 content hits, 566 raw tokens, 139 already-public blobs, 200, 60 and 59 artifact lines at the earlier commits (`11-final-tip.md` sections C, D, E)]
+- [x] CHK-013 [P1] Each evidence file follows the one-check-per-file convention and ends with `<!-- evidence:end -->` [EVIDENCE: all 15 files under `scratch/evidence/` end with `<!-- evidence:end -->`, checked with `tail -1` on 2026-10-24]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -1266,10 +1266,10 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: `acceptance-criteria.md` holds 15 rows, all `Met`, with no waiver]
+- [x] CHK-021 [P0] Manual testing complete [EVIDENCE: every check was run by hand against a fresh clone or the operator checkout, outputs quoted in `scratch/evidence/00` to `14`]
+- [x] CHK-022 [P1] Edge cases tested [EVIDENCE: edge cases covered in `14-corpus-boundary.md` (marker with and without the ignore rule) and `03-fresh-clone-leak.md` section E (the `find -L` correction for a vacuous zero)]
+- [x] CHK-023 [P1] Error scenarios validated [EVIDENCE: fail-closed handling recorded: a vacuous blob assertion was caught and rerun, and two review rounds answered 25 findings in `10-review.md`]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1277,13 +1277,13 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. [EVIDENCE: n/a because this phase changes no code; review findings are answered in `scratch/evidence/10-review.md` without a fix class]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. [EVIDENCE: n/a because this phase is read-only and fixes nothing]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. [EVIDENCE: n/a because no helper, policy, schema field or test changed]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. [EVIDENCE: n/a because no security, path, parser or redaction code changed]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. [EVIDENCE: n/a because no matrix is claimed]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. [EVIDENCE: n/a because no test reads process-wide state]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [EVIDENCE: evidence rows are pinned to named shas (`9129007915`, `1c0c3534cf`, `a60192ef4e`, `634c32b3c7`), never to a moving range]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1291,9 +1291,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets [EVIDENCE: `rg` for AWS, GitHub, Slack, PEM and JWT patterns over this phase folder exited 1 with no match, and no `.env`, `.pem` or `.key` file exists, 2026-10-24]
+- [x] CHK-031 [P0] Input validation implemented [EVIDENCE: n/a because the phase only reads and accepts no input]
+- [x] CHK-032 [P1] Auth/authz working correctly [EVIDENCE: n/a because the phase has no auth surface]
 <!-- /ANCHOR:security -->
 
 ---
@@ -1301,9 +1301,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: `validate.sh --strict` on this folder prints `RESULT: PASSED` after the status reconciliation (see `scratch/evidence/10-review.md`)]
+- [x] CHK-041 [P1] Code comments adequate [EVIDENCE: n/a because no code changed]
+- [x] CHK-042 [P2] README updated (if applicable) [EVIDENCE: n/a because no README is affected]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1311,8 +1311,8 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] `scratch/` holds only the evidence record - no temporary working file remains
+- [x] CHK-050 [P1] Temp files in scratch/ only [EVIDENCE: `find scratch -type f` lists `.gitkeep` and the 15 evidence files only]
+- [x] CHK-051 [P1] `scratch/` holds only the evidence record - no temporary working file remains [EVIDENCE: same listing: no temporary working file remains in `scratch/`]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1322,11 +1322,11 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---

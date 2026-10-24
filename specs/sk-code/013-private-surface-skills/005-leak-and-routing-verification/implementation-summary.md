@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/005-leak-and-routing-verification"
-    last_updated_at: "2026-10-23T07:03:41Z"
+    last_updated_at: "2026-10-24T22:30:00Z"
     last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    recent_action: "Closed the phase: final-tip re-clone at 634c32b3c7 matched, 15 of 15 criteria Met"
+    next_safe_action: "Check the parent goal criteria and run recursive strict validation"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-leak-and-routing-verification"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-leak-and-routing-verification |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Planned** | 2026-10-23 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A fresh clone of `origin/main` at `9129007915` holds no live path for either removed surface, and the private skills still rank second in the advisor for the operator. Fourteen evidence files record the commands and their output. Every check recorded so far holds against the expectations as the operator amended them on 2026-10-24, and two independent review rounds found 25 defects in the evidence, all answered. The final-tip re-clone (AC-015) and the fifteenth evidence file are still open, so this phase is not closed.
+A fresh clone of `origin/main` at `9129007915` holds no live path for either removed surface, and the private skills still rank second in the advisor for the operator. Fifteen evidence files record the commands and their output. Every check holds against the expectations as the operator amended them on 2026-10-24, and two independent review rounds found 25 defects in the evidence, all answered. A second fresh clone at the final tip `634c32b3c7`, taken after the evidence push and its trigger-index rebuild, printed the same values as the first, so all fifteen criteria are met.
 
 ### Phase 5: leak-and-routing-verification
 
@@ -89,11 +89,7 @@ C1 carried the head sweep, `scratch/evidence/01-head-leak-sweep.md`, and is alre
 
 The clone checks in `scratch/evidence/02-fresh-clone.md` through `scratch/evidence/06-trigger-index.md` ran against a fresh public clone of `origin/main` at `9129007915`, taken with `git clone --no-local`. The routing probes, the invisibility check and the drift scripts ran in the operator checkout because they need the private roots. The probe repository for the corpus boundary check lives in a scratch folder.
 
-Still to come:
-- C2 carries the review file and the packet documents, with thirteen of fifteen criteria met. Its push starts the second CI wait for the rebuild.
-- C3 carries `11-final-tip.md`, the re-verification of the tip that C2 produces.
-- `11-final-tip.md` is to be recorded.
-- Each evidence push's own CI runs go into the phase handoff message.
+C2 carried the review file and the packet documents with thirteen of fifteen criteria met, pushed as `01742752c1`. Its push started the trigger-index rebuild `634c32b3c7`. C3 carries `11-final-tip.md`, the re-verification of that tip, and closes the last two criteria. Each evidence push's own CI runs go into the phase handoff message.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -136,7 +132,7 @@ Still to come:
 | Drift scripts, `scratch/evidence/13-drift.md` | PASS. Root metadata `checked=14 passed=14 failed=0`, leaf manifest `fresh=14`, derived freshness `fresh=14 stale=0`, all exit `0`. The exported graph holds `0` `local-` ids. |
 | Corpus boundary, `scratch/evidence/14-corpus-boundary.md` | PASS. The tracked control marker reads `2` in phrase variants and `1` in the index, the ignored private marker reads `0` in all four artifacts. With the ignore rule removed the private marker reads `2` and `1` in those two files, so the ignore rule causes the zero. |
 | Review rounds, `scratch/evidence/10-review.md` | PASS. Two rounds ran, the second re-ran the read-only commands and returned 1 blocking finding (the missing evidence files and a failing validator, both expected before closure) and 15 others, each answered in the file. |
-| Final-tip re-verification, `scratch/evidence/11-final-tip.md` | To be recorded. |
+| Final-tip re-verification, `scratch/evidence/11-final-tip.md` | PASS. A fresh clone at `634c32b3c7` printed paths `336`, `0`, `0`, `108`, content `1528` then 17 paths (8 kept, 9 accepted), tokens `4` raw then `0`, blobs with control `139` and assertion `0`, and artifacts `0`, `69`, `0`, `69 0`, `0`, `38`. Every value equals the earlier run. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -151,7 +147,7 @@ Still to come:
 5. **The routing confidence bound cannot fail on its own.** Every non-leading recommendation reads `0.82` or `0.8325`, so a private skill ranked second always clears `0.8`. This floor is inferred from the rows and the advisor source was not read. The rank is the test that carries weight (`scratch/evidence/07-routing-probes.md` section L).
 6. **The drift scripts do not read the private roots.** Output was byte-identical with and without `SPECKIT_PRIVATE_SKILL_ROOTS`, so those scripts say nothing about the two private skills (`scratch/evidence/13-drift.md` section E).
 7. **The corpus generator honours only the repository's own `.gitignore`.** It does not read the machine-wide ignore file (`scratch/evidence/14-corpus-boundary.md` section D). The private skills are covered because the repository's own rule ignores them.
-8. **The retrieval artifact counts are provisional.** They were measured before the pull of the rebuild commit and are rerun at the final tip (`scratch/evidence/06-trigger-index.md`).
+8. **The first retrieval artifact counts were provisional.** They were measured before the pull of the rebuild commit, and the final-tip rerun in `scratch/evidence/11-final-tip.md` section E reproduced them.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -30,7 +30,7 @@ Phases 001 through 004 remove two surfaces from the shipped hub and rebuild them
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |

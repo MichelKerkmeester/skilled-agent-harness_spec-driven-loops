@@ -16,19 +16,19 @@ Round 2, as returned, with the state of each row after the fixes in section B:
 |---|---|---|---|---|
 | AC-001 | Met | `03-fresh-clone-leak.md` section A | control `336`, live `0`, specs `108`, at the clone tip and at `9129007915` | Met |
 | AC-002 | Met (amended) | `03-fresh-clone-leak.md` B to F | control `1528`, 17 paths, 8 kept, 9 unmatched, token sweep `566`, `4`, `0`, blob check values reproduced | Met |
-| AC-003 | Met (provisional) | `06-trigger-index.md` C to H | `200`, then `0`, `69`, `0`, `38`, `0`, `69 0`, `0`, `38` at both commits | Met, provisional until the final-tip rerun |
+| AC-003 | Met (provisional) | `06-trigger-index.md` C to H | `200`, then `0`, `69`, `0`, `38`, `0`, `69 0`, `0`, `38` at both commits | Met, and the final-tip rerun held |
 | AC-004 | Met | `05-advisor-db.md` A and B | `14`, `0` from the saved rebuild JSON, family control `1` and surface `0` on the existing database | Met, with one control recorded as inferred (F-15) |
 | AC-005 | Met (amended) | `07-routing-probes.md` A to L | all six probes: ranks and the `sk-code` first place hold, scores drift in the fourth decimal | Met |
 | AC-006 | Met (amended) | `04-d6-kept-records.md` | only `skill_advisor.py` differs, from `e00fef3e76`, control `2` | Met |
 | AC-007 | Partial | `09-ci.md` | `10 completed/success`, then `40 completed/success`, run ids confirmed | Met after F-11 and F-12 |
-| AC-008 | Unmet | `00-preflight.md` and this file | 13 of 15 evidence files, validator `RESULT: FAILED` with 3 errors | Open until `10-review.md`, `11-final-tip.md` and a passing validator exist (F-10) |
+| AC-008 | Unmet | `00-preflight.md` and this file | 13 of 15 evidence files, validator `RESULT: FAILED` with 3 errors | Met: 15 evidence files exist and the strict validator prints `RESULT: PASSED` (F-10 closed) |
 | AC-009 | Met | `08-local-invisibility.md` | `!!` markers, `0` and `0`, `.gitignore:236` and `:237` | Met |
 | AC-010 | Met | `implementation-summary.md`, `09-ci.md` | the four limit words present, pre-push grep `0`, pre-commit control `15` | Met |
-| AC-011 | Unmet | this file | no review file yet | Met once this file is committed with both round tables |
+| AC-011 | Unmet | this file | no review file yet | Met: this file holds both round tables and one verdict per criterion |
 | AC-012 | Met | `14-corpus-boundary.md` A to D | not re-run, read existing outputs | Met, with the isolated control of section D |
 | AC-013 | Met (amended) | `12-history-inventory.md` | `1681`, `157`, `18`, `30` releases, `146 0` | Met |
 | AC-014 | Met | `13-drift.md` A to E | three scripts exit `0`, export has no `local-` id | Met, with the workflow's own form recorded |
-| AC-015 | Not in scope of round 2 | `11-final-tip.md` | needs the re-clone after the evidence push | Unmet until the final-tip rerun |
+| AC-015 | Not in scope of round 2 | `11-final-tip.md` | needs the re-clone after the evidence push | Met: `11-final-tip.md` reproduced every value at `634c32b3c7` |
 
 ## B - Findings
 
@@ -44,8 +44,8 @@ Round 1 findings are F-1 to F-9. Round 2 findings are F-10 to F-25 and map one t
 | F-6 | P2 | AC-012 | The control was non-zero in only 2 of 4 artifacts, and the probe `specs/probe/spec.md` is gitignored yet indexed. | `14-corpus-boundary.md` section D explains the two path-only artifacts and records the machine-wide ignore observation. | 1 |
 | F-7 | P2 | AC-014 | The criterion cited drift workflow lines 201 to 203, which are now 198 to 200. | Corrected in `spec.md`, `acceptance-criteria.md` and `plan.md`. | 1 |
 | F-8 | P2 | AC-014 | No `diff -q` output was recorded for the env-set drift rerun. | `13-drift.md` section E records it with the raw byte counts. | 1 |
-| F-9 | P2 | AC-015 | The clone evidence is pinned to `9129007915` while main is later. | Open by design: the final-tip rerun in `11-final-tip.md` closes it. | 1 |
-| F-10 | P0 | AC-008, AC-011 | Only 13 of 15 evidence files exist, and `validate.sh --strict` prints `RESULT: FAILED` with 3 errors (a metadata fingerprint, metadata drift and a status mismatch between `spec.md` and `implementation-summary.md`). | Open until this file and `11-final-tip.md` exist and the validator passes. This file is the tenth, and the validator is run after the status reconciliation, not before. | 2 |
+| F-9 | P2 | AC-015 | The clone evidence is pinned to `9129007915` while main is later. | Resolved: the final-tip rerun in `11-final-tip.md` pins the evidence to `634c32b3c7` and reproduces every value. | 1 |
+| F-10 | P0 | AC-008, AC-011 | Only 13 of 15 evidence files exist, and `validate.sh --strict` prints `RESULT: FAILED` with 3 errors (a metadata fingerprint, metadata drift and a status mismatch between `spec.md` and `implementation-summary.md`). | Resolved: all 15 files exist and `validate.sh --strict` prints `RESULT: PASSED` after the status reconciliation. | 2 |
 | F-11 | P1 | AC-007 | `09-ci.md` said the 40-run window covered earlier sk-code commits, but all 40 runs are on three CI efficiency shas. | The sentence now names the three shas. | 2 |
 | F-12 | P1 | AC-007 | The window held none of this phase's pushes. | `09-ci.md` now reads each phase push by commit: `4aeb061b49` `10 completed/success`, `25aa533f0b` `10 completed/success`, `aecc4258c0` `1 completed/success`. | 2 |
 | F-13 | P2 | AC-003 | The header of `06-trigger-index.md` said sections A and B were not recorded, though they are. | Header corrected. | 2 |
