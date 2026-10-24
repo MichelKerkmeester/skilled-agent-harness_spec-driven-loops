@@ -542,6 +542,30 @@ ACTION
 run_check; RC=$?
 expect "a description that names a path is a label" 0 "$RC" "RESULT: PASSED"
 
+# ── 54. an ignored build output under an existing directory passes ──
+setup_fixture
+git -C "$TMP/repo" init -q
+echo '.opencode/bin/built.cjs' > "$TMP/repo/.gitignore"
+echo '      - run: node .opencode/bin/built.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "an ignored absent file under an existing directory passes" 0 "$RC" "RESULT: PASSED"
+
+# ── 55. an ignored build output under a missing directory fails workflow-inputs ──
+setup_fixture
+git -C "$TMP/repo" init -q
+echo '.opencode/gone/built.cjs' > "$TMP/repo/.gitignore"
+echo '      - run: node .opencode/gone/built.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "an ignored absent file under a missing directory fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/workflows/demo.yml:12 .opencode/gone/built.cjs is generated under .opencode/gone, which resolves nowhere"
+
+# ── 56. a missing path that git does not ignore still fails workflow-inputs ──
+setup_fixture
+git -C "$TMP/repo" init -q
+echo '.opencode/bin/built.cjs' > "$TMP/repo/.gitignore"
+echo '      - run: node .opencode/bin/other.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "a missing path that is not ignored still fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/workflows/demo.yml:12 .opencode/bin/other.cjs resolves nowhere"
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

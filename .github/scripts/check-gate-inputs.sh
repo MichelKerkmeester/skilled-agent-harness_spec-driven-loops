@@ -18,8 +18,11 @@
 #   workflow-inputs  every literal .opencode/<path> a workflow or composite action
 #                    runs resolves, a glob with *, ? or brackets matches something, and
 #                    the directory that installs or builds a node_modules or dist path
-#                    exists. A path that continues into a variable is dynamic, and echo
-#                    and printf text runs nothing
+#                    exists. A literal path that git ignores is a build output a fresh
+#                    checkout does not hold, so only its parent directory is checked and
+#                    it must exist. A path that is not ignored must exist itself. A path
+#                    that continues into a variable is dynamic, and echo and printf text
+#                    runs nothing
 #   filter-twins     every workflow or composite action path filter, negated or not,
 #                    dependabot directory, hook pathspec, array and regex that names
 #                    one root also names the other, within the same filter or command
@@ -432,6 +435,13 @@ scan_workflow() { # scan_workflow <relpath>
             else fail workflow-inputs "$rel:$ln" "$tok matches nothing"; fi ;;
           *)
             if [[ -e "$ROOT/$tok" ]]; then RESOLVED=$((RESOLVED + 1))
+            elif git -c core.excludesFile=/dev/null -C "$ROOT" check-ignore -q -- "$tok" 2>/dev/null; then
+              # An ignored path is build output that a checkout does not hold, so only
+              # the directory it is generated under can be checked. A personal global
+              # ignore file is left out so that this machine and CI agree.
+              owner="${tok%/*}"
+              if [[ -d "$ROOT/$owner" ]]; then DYNAMIC=$((DYNAMIC + 1))
+              else fail workflow-inputs "$rel:$ln" "$tok is generated under $owner, which resolves nowhere"; fi
             else fail workflow-inputs "$rel:$ln" "$tok resolves nowhere"; fi ;;
         esac ;;
       bare) DYNAMIC=$((DYNAMIC + 1)) ;;
