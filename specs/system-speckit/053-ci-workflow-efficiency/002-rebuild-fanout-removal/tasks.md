@@ -600,11 +600,11 @@ Stop and escalate if: no run is listed for the probe head SHA, or the pull reque
 
 ---
 
-### T019 Record the 24 h baseline (AC-006)
+### T019 [x] Record the 24 h baseline (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/` (new directory). Anchor: none.
 
-Partial: collected 2026-10-24T21:58Z and every command exited 0. `runs-last-1000.json` holds 1000 runs reaching back to 2026-10-23T15:24:36Z, `window.json` holds 795 runs from 2026-10-23T21:59:34Z, `run-ids.txt` holds 191 ids with 191 `jobs/<id>.json` files, and `summary.md` records the window, the per-workflow rows and the total. The measured total for `.github/workflows/` runs is 2,191 runner-min in the 24 h window, outside the 1,700-1,850 band; the 67 `dynamic` runs (about 584 min, 420 of them `Push on main`) are on a separate line. Runs started by the 19 rebuild commits in the window: 0 (push, pull_request and schedule events). The stop condition below fired, so the number is reported as measured and the task stays open.
+Done: collected 2026-10-24T21:58Z and every command exited 0. `runs-last-1000.json` holds 1000 runs reaching back to 2026-10-23T15:24:36Z, `window.json` holds 795 runs from 2026-10-23T21:59:34Z, `run-ids.txt` holds 191 ids with 191 `jobs/<id>.json` files, and `summary.md` records the window, the per-workflow rows and the total. The measured total for `.github/workflows/` runs is 2,191 runner-min in the 24 h window, outside the original 1,700-1,850 band; the 67 `dynamic` runs (about 584 min, 420 of them `Push on main`) are on a separate line. Runs started by the 19 rebuild commits in the window: 0 (push, pull_request and schedule events). The stop condition below fired, the number was reported as measured, and on 2026-10-25 the operator ruled "Amend the band to the measured value." (ADR-006). The total was recomputed from the window run list and the 191 job samples on 2026-10-25 and is 2,191; the saving against 3,812 is 1,621 runner-min, 42.5%. The task is done against the amended band.
 
 Change: create the run list, the per-workflow run-id selection, the job samples and `summary.md`.
 
@@ -652,19 +652,19 @@ Expected: one `jobs/<id>.json` per id in `run-ids.txt`.
 
 Write `scratch/baseline-24h/summary.md` with the window bounds, the per-workflow run counts, the median per run, and `sum over non-skipped jobs of ceil(job seconds / 60)` per run.
 
-Expected: the total in `summary.md` falls in 1,700-1,850 runner-min/day, against 3,812 before the change, and the per-rebuild-SHA run count in the window is 0.
+Expected: the total in `summary.md` equals the amended band of 2,191 runner-min/day (originally 1,700-1,850; ADR-006), against 3,812 before the change, and the per-rebuild-SHA run count in the window is 0.
 
 Rollback: `rm -rf specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h` and re-collect after another 24 h.
 
-Stop and escalate if: fewer than 24 hours have passed, or the total falls outside 1,700-1,850. Report the measured number; do not rescale or adjust it.
+Stop and escalate if: fewer than 24 hours have passed, or the total falls outside the band. Report the measured number; do not rescale or adjust it. (This condition fired once at 2,191 and ended in the operator's band amendment, ADR-006.)
 
 ---
 
-### T020 Close the acceptance criteria with evidence (AC-006)
+### T020 [x] Close the acceptance criteria with evidence (AC-006)
 
 File: `acceptance-criteria.md`, the Status cell of each row. Anchor: `| Unmet | - |` at the end of each criterion row.
 
-Partial: AC-001 to AC-005 and AC-007 read `Met`. AC-006 reads `Unmet` because the measured total (2,191) is outside its band; `grep -c '| Unmet |'` prints `1`, not `0`.
+Done: AC-001 to AC-007 all read `Met`. AC-006 moved from `Unmet` to `Met` on 2026-10-25 after the operator's band amendment (ADR-006), with the observed values and `summary.md` line references in its Verification cell; the Closure Statement reads `Closeable: Yes`.
 
 Change: set each row's Status to `Met` and copy the observed number into its Verification cell.
 
@@ -682,11 +682,11 @@ Stop and escalate if: any check from T012 to T019 has not passed.
 
 ---
 
-### T021 Commit the closure (AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007)
+### T021 [ ] Commit the closure (AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal` (the packet folder). Anchor: `| AC-007 | Gates | REQ-007 |` at `acceptance-criteria.md:65`.
 
-Pending: the closure commit is the operator's to make and waits on the AC-006 decision; the packet edits are uncommitted in the working tree.
+Pending: the AC-006 decision is now made (ADR-006). The orchestrator makes the closure commit; no closure commit exists yet and the packet edits are uncommitted in the working tree, so this task stays `[ ]` until that commit lands.
 
 Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, write its message, validate it, and commit, so the closure edits T019 and T020 made are not left uncommitted.
 
@@ -721,9 +721,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked `[x]` [OPEN: T021, the closure commit, is the orchestrator's and is not made yet; T001 to T020 are `[x]`]
+- [x] No `[B]` blocked tasks remaining [EVIDENCE: `grep -c '\[B\]'` over the task headings finds none; no task is blocked]
+- [x] Manual verification passed [EVIDENCE: the T012, T013, T015 and T019 checks were run and their output and exit status read; the 24 h total was recomputed to 2,191 on 2026-10-25]
 <!-- /ANCHOR:completion -->
 
 ---
@@ -784,7 +784,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-007 (T020, T021) [OPEN: AC-006 reads `Unmet`; the measured 24 h total of 2,191 runner-min is outside its 1,700-1,850 band, so 6 of 7 rows are `Met`]
+- [x] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-007 (T020, T021) [EVIDENCE: all 7 rows read `Met` on 2026-10-25; `grep -c '| Unmet |' acceptance-criteria.md` returns 0; AC-006 met against the band the operator amended to the measured 2,191 runner-min (ADR-006, `scratch/baseline-24h/summary.md:12`)]
 - [x] CHK-021 [P0] Manual testing complete - three rebuild SHAs, the loop-guard suffix, and the workflow-only pull request (T015 to T018) [EVIDENCE: reran 2026-10-25: `gh run list --commit` for `08bd79a68a`, `27490113c2` and `c9d4deed31` returns 0 push, pull_request or schedule runs each (exit 0); `git log -1 --format=%B c9d4deed31` ends `[skip ci]` then `Trigger-Index-Rebuild: ci`; T017 and T018 are `[x]` with run 40018919244 and run 40021934338 both `success`]
 - [x] CHK-022 [P1] Edge cases tested - the token-stripped variant (T012) and the empty-change path, where no commit is made [EVIDENCE: token-stripped variant: T012 rerun 2026-10-25, stripped copy exits 1 naming the new case and the real workflow exits 0. Empty-change path: `.github/workflows/trigger-index-rebuild.yml:138-139` prints `Trigger index is current; nothing to commit.` before any commit is made, so no token is involved]
 - [x] CHK-023 [P1] Error scenarios validated - a race-rejected push exits 0 with a notice, and `message-contract` still passes the new message text (T014) [EVIDENCE: race path: the suite cases under `when origin moves before the push` (`exits 0 with a notice and pushes nothing`) pass in the 60-pass run; message contract: `node .skilled/skills/sk-git/scripts/validate-message.mjs --commit` on the body of rebuild `c9d4deed31` exits 0]
@@ -819,7 +819,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-007, tasks.md T001 to T021, acceptance-criteria.md AC-001 to AC-007 [EVIDENCE: spec.md REQ-001 to REQ-007, tasks.md T001 to T021 and acceptance-criteria.md AC-001 to AC-007 agree after the 2026-10-25 edits; all three read Status `In progress` and AC-006 `Unmet`]
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-007, tasks.md T001 to T021, acceptance-criteria.md AC-001 to AC-007 [EVIDENCE: spec.md REQ-001 to REQ-007, tasks.md T001 to T021 and acceptance-criteria.md AC-001 to AC-007 agree after the 2026-10-25 edits; spec.md and acceptance-criteria.md read Status `Complete`, AC-006 reads `Met`, and all three state the amended 2,191 band]
 - [x] CHK-041 [P1] Code comments adequate - the token's comment says why the token exists and why the trailer stays last, with no packet id (T005) [EVIDENCE: the T005 comment lines say why the token exists and the adjacent line says why the trailer stays; neither names a packet id or spec path (read `trigger-index-rebuild.yml:147-149`)]
 - [x] CHK-042 [P2] README updated - `.github/workflows/README.md:58` and `:75` (T006, T007) [EVIDENCE: `grep -c` on `.github/workflows/README.md` for `starts no workflow run; the loop guard stays as the fallback` prints `1` (row at `:57`) and for `no other workflow runs on it` prints `1` (row at `:74`)]
 <!-- /ANCHOR:docs -->
@@ -840,7 +840,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 

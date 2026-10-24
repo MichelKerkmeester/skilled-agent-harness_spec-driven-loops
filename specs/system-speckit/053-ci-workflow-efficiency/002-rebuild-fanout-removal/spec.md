@@ -32,7 +32,7 @@ The rebuild commit that repairs the trigger index after every corpus push re-run
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -153,7 +153,7 @@ Each row states what the R-id must do, the edges it must survive, what can go wr
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The push-to-`main` total falls from 3,812 to about 1,739 runner-min/day, a drop of about 2,073 (`final-review.md:193-209`), measured on the fresh 24 h snapshot rather than asserted.
+- **SC-001**: The push-to-`main` total falls from 3,812 to the measured 2,191 runner-min/day, a drop of 1,621 or 42.5%, on the fresh 24 h snapshot rather than asserted. The research predicted about 1,739 (a drop of about 2,073, `final-review.md:193-209`); the operator amended the band to the measured value on 2026-10-25 (ADR-006) because the prediction left out the rebuild workflow's own 90 min and 114 min of manual dispatches.
 - **SC-002**: Every rebuild SHA on `main` after the change shows 0 workflow runs, where each of the 35 rebuild SHAs in the measured window showed 14.
 - **SC-003**: The token is guarded: removing it makes the vitest suite fail, and a pull request that touches only the rebuild workflow starts spec-kit-check.
 - **SC-004**: `scratch/baseline-24h/summary.md` exists with the total and the per-workflow rows, so phases 003 to 009 can state deltas against it.
@@ -180,7 +180,7 @@ Each row states what the R-id must do, the edges it must survive, what can go wr
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Push-to-`main` runner-minutes per day fall by about 2,073, from 3,812 to about 1,739, measured on a 24 h window.
+- **NFR-P01**: Push-to-`main` runner-minutes per day fall from 3,812 to the measured 2,191 on a 24 h window, a drop of 1,621 (42.5%); the research prediction of about 1,739 was amended to this value on 2026-10-25 (ADR-006).
 - **NFR-P02**: The rebuild workflow's own cost does not change: the commit step gains no command, and the token is one string in an existing `-m` argument.
 
 ### Security

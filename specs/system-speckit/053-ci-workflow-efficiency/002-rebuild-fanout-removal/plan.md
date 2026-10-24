@@ -279,7 +279,7 @@ Setup (D1, pre-flight capture) ──► Change (token + test + filters + docs) 
 | M1 | Decision and before-state captured | D1 recorded in `scratch/d1-answer.md`; three pre-change SHAs each show 14 runs; the suite is green before any edit | After T001 to T003 |
 | M2 | Change committed | One commit on `main` carries the token, the case, both filter entries and both README rows; gate-inputs prints `RESULT: PASSED` | After T014 |
 | M3 | Skip proven on real rebuilds | Three consecutive rebuild SHAs show 0 runs; the trailer still ends the message; spec-kit-check is green; a workflow-only pull request starts it | After T018 |
-| M4 | Baseline recorded and phase closed | `scratch/baseline-24h/summary.md` records a 24 h total in 1,700-1,850 runner-min/day and 0 runs per rebuild SHA; every acceptance row is `Met` | After T020 |
+| M4 | Baseline recorded and phase closed | `scratch/baseline-24h/summary.md` records a 24 h total of 2,191 runner-min (the band amended from 1,700-1,850 on 2026-10-25, ADR-006) and 0 runs per rebuild SHA; every acceptance row is `Met` | After T020 |
 <!-- /ANCHOR:milestones -->
 
 ## L3: ARCHITECTURE DECISION RECORD

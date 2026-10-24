@@ -553,6 +553,115 @@ The research phase measured 23.5 h and scaled its figures by 24/23.5 (factor 1.0
 
 ---
 
+<!-- ANCHOR:adr-006 -->
+## ADR-006: The 24 h baseline band is amended to the measured 2,191 runner-minutes
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-25 |
+| **Deciders** | Operator (ruling 2026-10-25: "Amend the band to the measured value."), plan author |
+
+---
+
+<!-- ANCHOR:adr-006-context -->
+### Context
+
+AC-006 expected the 24 h post-change total in a band of 1,700 to 1,850 runner-min, about 1,739 predicted, against 3,812 before the change. The snapshot in `scratch/baseline-24h/summary.md` measured 2,191 runner-min for `.github/workflows/` runs over the window 2026-10-23T21:59:34Z to 2026-10-24T21:59:34Z (`summary.md:12`), outside the band. The number was reported as measured and not rescaled, as ADR-005 required, and AC-006 stayed `Unmet` until the operator ruled.
+
+Two costs in the 2,191 were not in the original estimate (`summary.md:66-69`):
+- The Trigger Index Rebuild workflow's own runs bill 90 min: 30 runs at a median of 3 min. The pre-change dataset counted it at 0 because its sampled runs were loop-guard rows with skipped jobs.
+- Manual `workflow_dispatch` runs bill 114 min: Strict Pass Freshness Report 52, OpenCode Dual-Version Battery 36, OpenCode Plugin Tests 12, Diagram Corpus 14.
+
+Removing both still leaves 2,191 - 90 - 114 = 1,987, above 1,850 (`summary.md:69`). The remaining gap is not explained by these items, and the 321 pull_request runs in the window were not traced to a cause.
+
+### Constraints
+
+- ADR-005 and T019 forbid rescaling or adjusting the measured number; the amendment moves the band, never the measurement.
+- The 67 GitHub-managed `dynamic` runs (about 584 min) stay on a separate line and are not part of the 2,191 (`summary.md:16-20`).
+- Phases 003 to 009 state their deltas against this total, so the figure they read has to be the one the file records.
+<!-- /ANCHOR:adr-006-context -->
+
+---
+
+<!-- ANCHOR:adr-006-decision -->
+### Decision
+
+**We chose**: Amend the AC-006 band to the measured 2,191 runner-min for the 24 h window, on the operator's ruling of 2026-10-25.
+
+**How it works**: The total is recomputed from the recorded data (the per-workflow table sums to 2,191, and 90 + 114 matches the two uncounted costs). Against the 3,812 pre-change reference the saving is 3,812 - 2,191 = 1,621 runner-min, 42.5%. The zero-run result for the 19 rebuild commits in the window is unchanged and still part of AC-006. Later phases measure their deltas against 2,191.
+<!-- /ANCHOR:adr-006-decision -->
+
+---
+
+<!-- ANCHOR:adr-006-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Amend the band to the measured 2,191** | Records what the deployed state costs; later phases get one honest baseline; no wait | The band no longer tests the saving; the remaining 137 min over the old top edge stay unexplained | 8/10 |
+| Re-collect a quieter window | Might land in the old band | Costs another day; picks a window for its result, which is the opposite of a baseline | 3/10 |
+| Rescale or drop the two uncounted costs | Reaches 1,987 or lower | Edits the measurement, which ADR-005 forbids; 1,987 is still above 1,850 | 0/10 |
+
+**Why this one**: The band was an estimate that left out two real costs; the measurement is the fact. The operator chose to correct the estimate rather than the data.
+<!-- /ANCHOR:adr-006-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-006-consequences -->
+### Consequences
+
+**What improves**:
+- AC-006 closes on a number that was observed, with its window bounds and per-workflow rows on file.
+- Phases 003 to 009 have one stated baseline: 2,191 runner-min for `.github/workflows/` runs.
+
+**What it costs**:
+- The measured saving, 1,621 runner-min (42.5%), is below the 2,073 the research predicted for the fan-out alone. Mitigation: the zero-run result on 19 rebuild commits shows the fan-out is gone; the gap is in what else the day contains.
+- The band can no longer fail on a regression of this size. Mitigation: later phases state deltas against 2,191 instead of a band.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The unexplained 137 min above the old band hides a second fan-out | M | Phase 003 onward measure per-workflow deltas against the recorded table |
+| One quiet or busy window is not typical | M | The window bounds and the 795-run sample size are recorded in `summary.md` |
+<!-- /ANCHOR:adr-006-consequences -->
+
+---
+
+<!-- ANCHOR:adr-006-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | AC-006 could not close while its band disagreed with the measurement |
+| 2 | **Beyond Local Maxima?** | PASS | Three ways to close the row were compared, including a re-collected window |
+| 3 | **Sufficient?** | PASS | One band edit in AC-006, spec, plan and goal; the measurement is untouched |
+| 4 | **Fits Goal?** | PASS | The goal is a measured baseline for later phases, not a number in a range |
+| 5 | **Open Horizons?** | PASS | Later phases keep stating deltas against a recorded total |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-006-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-006-impl -->
+### Implementation
+
+**What changes**:
+- `acceptance-criteria.md`: AC-006 carries an amendment note, reads the amended band and is marked `Met`.
+- `spec.md` (SC-001, NFR-P01), `plan.md` (M4), `goal.md` (last completion criterion) and `tasks.md` (T019) state the amended band.
+
+**Gated tasks**: T019, T020.
+
+**How to roll back**: Restore the 1,700-1,850 wording and set AC-006 back to `Unmet`; no tracked file outside this packet changes.
+<!-- /ANCHOR:adr-006-impl -->
+<!-- /ANCHOR:adr-006 -->
+
+---
+
 ## Amendments
 
 - **Amendment (2026-10-24, anchor drift)**: T005's two comment lines landed above the `:147` anchor and pushed it to `:149`; the body `-m` carrying `[skip ci]` sits at `:151` and the trailer `-m` at `:152`. The task, spec, summary and AC-001 line references now read the post-change numbers, and AC-001's check is `sed -n '150,152p'` so it shows the `-m` block rather than the comment lines.
@@ -571,3 +680,4 @@ The research phase measured 23.5 h and scaled its figures by 24/23.5 (factor 1.0
 | ADR-003 | The workflow's own vitest suite is the guard | Proposed | T008 to T012, T018 |
 | ADR-004 | One commit carries token, test, filters and README | Proposed | T014 |
 | ADR-005 | A fresh 24 h baseline, not a scaled window | Proposed | T019, T020 |
+| ADR-006 | The 24 h baseline band is amended to the measured 2,191 runner-minutes | Accepted | T019, T020 |
