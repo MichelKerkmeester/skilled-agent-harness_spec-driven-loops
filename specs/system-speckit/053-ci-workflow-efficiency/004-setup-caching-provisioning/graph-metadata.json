@@ -51,6 +51,7 @@
       ".github/scripts/check-gate-inputs.sh",
       ".github/scripts/tests/check-gate-inputs.test.sh",
       "scratch/decisions.md",
+      "scratch/phase-result.md",
       ".github/workflows/hooks-node-tests.yml",
       ".github/workflows/opencode-plugin-tests.yml",
       ".github/workflows/opencode-dual-version.yml",
@@ -59,8 +60,7 @@
       ".github/workflows/README.md",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
       ".github/workflows/spec-kit-check.yml",
-      ".github/workflows/skill-advisor-stress.yml",
-      ".github/workflows/sk-doc-script-tests.yml"
+      ".github/workflows/skill-advisor-stress.yml"
     ],
     "entities": [
       {
@@ -124,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
         "name": "hooks-node-tests.yml",
         "kind": "config",
         "path": ".github/workflows/hooks-node-tests.yml",
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "sk-doc-script-tests.yml",
-        "kind": "config",
-        "path": ".github/workflows/sk-doc-script-tests.yml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-24T08:20:25.229Z",
+    "last_save_at": "2026-10-24T09:29:28.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66ab3bd66a60c4d32acabcd9443bc8ed4abf0e1c064be52bcd1dc3258f77211a",
+    "source_fingerprint": "sha256:2bb82f0af1ad2ad34e481d5fbcd6f0d1d3449d0b6d3cded8f416375ea403c0ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "321f8e5e1f8748f9d270399a896fbe01342b2249e6fd4df15bb85b4769973f87",
       "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "89fa32793e90b9576df9d40cad2777a0829e1400d619e15e4ff65220c48929c8",
-      "decision-record.md": "747be85ec1f71ec88da4bce7931becf2aa9dc5f504c5f67be80c2f340a1920dc",
+      "tasks.md": "859812f66580081b358dbbc88ee722df772b132682fdbb7b2e7991e53f01d665",
+      "decision-record.md": "09e9068f11a61e9470ca37d4e5ad4ac466667a4ad27913fcfe070e5766bdf42e",
       "implementation-summary.md": "ea7ec7596ab5eed29c7478df32790f664144ffa06b13bbaaf2ac76da78c6e91f"
     },
     "last_active_at": null

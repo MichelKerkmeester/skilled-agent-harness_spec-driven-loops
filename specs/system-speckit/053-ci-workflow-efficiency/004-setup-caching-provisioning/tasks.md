@@ -64,11 +64,11 @@ Stop and escalate if: no answer arrives, or the answer is neither `approve` nor 
 
 ---
 
-### T002 Copy the baseline rows this phase measures against (AC-014)
+### T002 [x] Copy the baseline rows this phase measures against (AC-014)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md` (new file). Anchor: none.
 
-Change: copy the first 40 lines of the 002 summary, then append one row per workflow this phase touches: `hooks-node-tests`, `opencode-plugin-tests`, `opencode-dual-version`, `spec-kit-check`, `routing-registry-drift`, `skill-advisor-stress`, `sk-doc-script-tests`, `sk-doc-rename-harness`, `deep-loop-runtime`, `skill-doc-frontmatter`, `playbook-operator-contract`, `gate-inputs`, `command-tree-parity`, `naming-standard-guard`, `rule-canary-sync`.
+Change: copy the first 40 lines of the 002 summary, then append one row per workflow this phase touches: `hooks-node-tests`, `opencode-plugin-tests`, `opencode-dual-version`, `spec-kit-check`, `routing-registry-drift`, `skill-advisor-stress`, `sk-doc-script-tests`, `sk-doc-rename-harness`, `deep-loop-runtime`, `skill-doc-frontmatter`, `playbook-operator-contract`, `gate-inputs`, `command-tree-parity`, `naming-standard-guard`, `rule-canary-sync`. Keep those appended rows under `## Workflows this phase touches`; the copied 001 summary already carries rows for the same workflows.
 
 Check:
 
@@ -92,18 +92,20 @@ Then append the fifteen rows, each naming the workflow and its baseline runner-m
 Check:
 
 ```bash
-grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md
+awk '/^## Workflows this phase touches/{f=1;next} /^## /{f=0} f' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md | grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)'
 ```
 
-Expected: `15`.
+Expected: `15` in the phase section. The whole file contains `30` matching rows because the copied 001 summary already carries the same fifteen workflows.
 
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`.
 
 Stop and escalate if: neither summary file exists, or the row count is not 15.
 
+Done: `BASELINE_MISSING`; the 001 fallback prefix matched, the whole-file count was `30`, and the phase-section count was `15`.
+
 ---
 
-### T003 Record the pre-change inventory (AC-001, AC-002, AC-014)
+### T003 [x] Record the pre-change inventory (AC-001, AC-002, AC-014)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`, anchor: the last row T002 wrote.
 
@@ -132,6 +134,8 @@ Expected: at least `5` (the five section headings; the copied 002 summary may ad
 Rollback: delete the five appended sections.
 
 Stop and escalate if: the gate fails, its counters differ from the measured baseline `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, the fixture suite is not `54 passed, 0 failed`, the bun site count is not `5`, the lockfile count is not `13`, or the install count is not `10`.
+
+Done: gate printed `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`; fixture suite printed `check-gate-inputs: 54 passed, 0 failed`; counts were `5`, `13`, `10`, dispatcher count `1`, and heading count `6`.
 
 ---
 
@@ -386,7 +390,7 @@ Stop and escalate if: the anchor is not on the file, or the count is not 54. Thi
 
 ---
 
-### T010 Name composite actions in the rule comment (AC-001)
+### T010 [x] Name composite actions in the rule comment (AC-001)
 
 File: `.github/scripts/check-gate-inputs.sh:18-25`, anchor:
 
@@ -400,8 +404,6 @@ File: `.github/scripts/check-gate-inputs.sh:18-25`, anchor:
 #                    hook pathspec and regex that names one root also names the other,
 #                    within the same filter, update entry, array or command
 ```
-
-Not done: the rule comment at `:18-25` still reads "a workflow runs"; `grep -c 'composite action'` returns 0 (the scan-loop code comment T004 added says "Composite actions" with a capital C, which this case-sensitive grep does not count).
 
 Change: replace those eight lines with these eight:
 
@@ -428,13 +430,13 @@ Rollback: replace the eight new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file at `:18-25`, or the count is not 2.
 
+Done: `grep -c 'composite action' .github/scripts/check-gate-inputs.sh` printed `2`.
+
 ---
 
-### T011 Prove the gate after the scan change (AC-001, AC-002, AC-013)
+### T011 [x] Prove the gate after the scan change (AC-001, AC-002, AC-013)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md` (new file), anchor: none.
-
-Partial: all three gates pass on today's tree — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`, `check-gate-inputs: 54 passed, 0 failed`, YAML parse exits 0 — but `scratch/phase-result.md` with its `## Gate after R12` section does not exist yet, so the record step remains.
 
 Change: create the file and record the three command outputs under `## Gate after R12`.
 
@@ -459,6 +461,8 @@ Expected: `1`.
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`.
 
 Stop and escalate if: any of the three checks fails, or `files` is not 45.
+
+Done: gate printed `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`; fixture suite printed `check-gate-inputs: 54 passed, 0 failed`; YAML parse exited `0` with no output; heading count printed `1`.
 
 ---
 
