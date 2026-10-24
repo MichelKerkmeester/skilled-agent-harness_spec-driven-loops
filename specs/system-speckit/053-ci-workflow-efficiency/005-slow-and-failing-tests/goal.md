@@ -11,14 +11,14 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests"
-    last_updated_at: "2026-10-24T13:00:00Z"
+    last_updated_at: "2026-10-25T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Applied review findings; rebalanced the CLI split"
-    next_safe_action: "Commit the split and the drift step, then read the CI step time"
+    recent_action: "Appended CI step samples 3 and 4 and closed AC-010"
+    next_safe_action: "Time the fifth green Spec-Kit Check run on main, then re-read the deep-loop-runtime window"
     blockers:
       - "002-rebuild-fanout-removal baseline pending; the 001 dataset stands in as provisional"
-      - "Rebalanced CLI split awaits a CI measurement after commit; the 400 s ceiling and the 5-run streak are open"
-      - "deep-loop-runtime is red on an open Dependabot pull request; skill-advisor-stress needs three more natural runs"
+      - "AC-003 has 4 of 5 post-change runs (median 382 s so far); the fifth green run on main decides it"
+      - "deep-loop-runtime has an open main failure (jsonl-repair, run 40107240026) with no root cause or filed row; AC-006 is Unmet for it"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-005-slow-and-failing-tests"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 92
     open_questions: []
     answered_questions: []
 ---
@@ -93,10 +93,10 @@ and findings belong here.
 | Probe | Done, with a disclosed deviation | `scratch/r19-probe.md` records the serial and three parallel runs. Parallel runs 2 and 3 failed on 30 s timeouts with an empty collision log, so the planned rules would have stopped as unclassified; the operator ruled on 2026-10-24, after the data, to count parallel-only timeouts as a concurrency result and take the shard |
 | Config flip or shard | Done, rebalanced | The probe selected the shard. `spec-kit-check.yml` now runs two concurrent processes in the existing step: the `upgrade-legacy` file alone and every other file through `--exclude`, both statuses propagated. Locally 313.90 s and 356.56 s, both exit 0 |
 | Re-check | Done | `scratch/r21-recheck.md` holds the three 40-run tables, four root-cause rows, the drift verdict, five stale-failure rows closed (routing-registry-drift on the operator's ruling), and the no-retry proof scoped to `.github/workflows` |
-| Implementation | Done | The rebalanced split and the fast-fail drift step are on disk and uncommitted; the drift step was proven against a stale contract (exit 2, then exit 0) |
-| CLI step measurement | Awaiting runs 2 of 5 | The count-based split read 643 s and 482 s, both over 400 s; the rebalanced split read 459 s (40102448836) and 299 s (40107239895). Per the operator ruling of 2026-10-24, AC-003 is judged on the median of five green runs, so it stays Unmet until three more exist |
-| Streaks | In progress | diagram-corpus `all_green=true count=10` after seven dispatched reruns; deep-loop-runtime is red on an open Dependabot pull request and carries a `filed` row; skill-advisor-stress is not red but needs three more natural runs; Spec-Kit Check has 2 of 5 post-rebalance runs |
-| Acceptance | 8 of 11 Met | AC-003 (runs 2 of 5), AC-006 (skill-advisor-stress and deep-loop-runtime windows) and AC-010 (commits) are Unmet |
+| Implementation | Done | The rebalanced split (`04d9b0c84f`) and the fast-fail drift step (`e094a852ed`) are committed; the drift step was proven against a stale contract (exit 2, then exit 0) |
+| CLI step measurement | Awaiting run 5 of 5 | The count-based split read 643 s and 482 s, both over 400 s; the rebalanced split read 459 s (40102448836), 299 s (40107239895), 313 s (40123498034) and 451 s (40125544852), a running median of 382 s. Per the operator ruling of 2026-10-24, AC-003 is judged on the median of five green runs, so it stays Unmet until a fifth exists |
+| Streaks | In progress | Re-pulled 2026-10-25: diagram-corpus and skill-advisor-stress each read ten `success`; deep-loop-runtime reads `all_green=false` with the filed Dependabot failure and a new main failure (run 40107240026, `tests/unit/jsonl-repair.vitest.ts:461`) recorded open; Spec-Kit Check has 4 of 5 post-rebalance runs |
+| Acceptance | 9 of 11 Met | AC-003 (run 4 of 5 read) and AC-006 (deep-loop-runtime window) are Unmet; AC-010 is Met on commits `04d9b0c84f` and `e094a852ed` |
 
 ### Deviations and findings
 
@@ -109,5 +109,6 @@ and findings belong here.
 | The probe outcome rests on an operator ruling | The planned rules covered only collision tokens, so the 30 s parallel-only timeouts would have stopped the script as unclassified. The operator ruled on 2026-10-24, after the data, to count them as a concurrency result and take the shard (ADR-001) |
 | routing-registry-drift closed on the operator's ruling | Its newest failures are dated 2026-10-24, not the planned 2026-10-17; they are a stale compiled skill graph fixed by `1218b94938`, with all 15 runs on that commit green (ADR-010) |
 | The shard commit body is corrected | The scripted body said the runs collided on a fixture; the probe found no collision, only 30 s timeouts under load, and the committed body says so |
-| skill-advisor-stress is windowed, not red | Seven consecutive greens; its older failures leave the latest-10 window after three more natural runs, so AC-006 stays Unmet for it and no filed row applies |
+| skill-advisor-stress is windowed, not red | Seven consecutive greens on 2026-10-24; by 2026-10-25 its latest ten runs are all `success`, so the window no longer holds it back |
+| deep-loop-runtime has a new main failure | Run 40107240026 at e00fef3 failed one concurrent-writer case in `tests/unit/jsonl-repair.vitest.ts` (expected 9 records, got 8); the next two main runs passed with no change under the runtime directory; its cause is not established and nothing is filed |
 <!-- /ANCHOR:log -->

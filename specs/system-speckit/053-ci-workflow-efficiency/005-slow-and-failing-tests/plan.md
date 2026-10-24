@@ -36,13 +36,14 @@ Prove file parallelism safe with three local runs of the `cli` project, then set
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified (`gh` scopes, a checkout with the spec-kit, deep-loop and advisor dependencies installed; no operator decision)
+- [x] Problem statement clear and scope documented [EVIDENCE: spec.md Executive Summary and section 3 read 2026-10-25]
+- [x] Success criteria measurable [EVIDENCE: spec.md SC-001 to SC-005 each name a number or a count, and every AC row carries a runnable check, read 2026-10-25]
+- [x] Dependencies identified (`gh` scopes, a checkout with the spec-kit, deep-loop and advisor dependencies installed; no operator decision) [EVIDENCE: `gh run list` and `gh run view` read the runs on 2026-10-25 from this checkout]
 
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] The probe recorded, the config flip or the shard applied, and the CLI step under 400 s with 5 green CI runs
+  - The 400 s ceiling is judged on the median of five green runs on main, by the operator ruling of 2026-10-24 on AC-003, recorded in `decision-record.md` (ADR-003 amendment) and measured in `scratch/r20-ci-step.md`.
 - [ ] Each of the three workflows at 10 green runs or a filed root cause, and the five stale failures recorded closed
 - [ ] `check-gate-inputs.sh` and `validate.sh --strict` both `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
@@ -191,9 +192,9 @@ Setup (install, serial baseline, R19 probe) ──► Change (R20 config or shar
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) - not applicable, no data changes
-- [ ] Feature flag configured - not applicable; the one `fileParallelism` line is the switch
-- [ ] Monitoring alerts set - the CI step seconds and the 5-run green streak are the monitoring
+- [x] Backup created (if data changes) - not applicable, no data changes [EVIDENCE: n/a because the two commits change only workflow YAML]
+- [x] Feature flag configured - not applicable; the one `fileParallelism` line is the switch [EVIDENCE: n/a because the shard branch left `vitest.config.ts` unmodified and the split sits in the workflow step]
+- [x] Monitoring alerts set - the CI step seconds and the 5-run green streak are the monitoring [EVIDENCE: n/a because no alert exists; `scratch/r20-ci-step.md` records the step seconds per run, four of five read on 2026-10-25]
 
 ### Rollback Procedure
 1. Revert the config commit, or the shard-step commit, on `main`.

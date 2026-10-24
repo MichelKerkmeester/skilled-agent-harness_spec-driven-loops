@@ -208,3 +208,13 @@ skill-advisor-stress is not red. It has seven consecutive `success` runs, newest
 ## Filed root causes
 
 One Root causes row carries a `filed:` action, for deep-loop-runtime (the open Dependabot pull request). skill-advisor-stress has none, because it is not red.
+
+## Window re-pull
+
+Re-pulled read-only on 2026-10-25 with `gh run list --workflow <name>.yml --limit 10`, all events, the same window the Green streaks section used. The Green streaks lines above are the 2026-10-24 reading and stay as written.
+
+skill-advisor-stress now reads all ten `success` (newest 40126001005, oldest in the window 40080059819), so the three older fixed-class failures have left the window. Its criterion is met on this reading.
+
+diagram-corpus still reads all ten `success`; seven of them are the dispatched reruns noted above and the newest are two Dependabot pull-request runs.
+
+deep-loop-runtime still reads `all_green=false`, now for a different reason than before: the window holds two failures, the Dependabot run 40080059696 (filed above) and a new push run on main, 40107240026 at e00fef3 (2026-10-24T15:30:01Z). The old fixed-class failure 39843480132 has left the window. The new failure is test `tests/unit/jsonl-repair.vitest.ts`, the case "does not drop a plain appendJsonlRecord write racing a concurrent mergeJsonlUnderLock", line 461, `AssertionError: expected [ ... ] to have a length of 9 but got 8` (one of nine concurrently written records missing; 166 of 167 files and 2806 tests passed). The next three main runs of the workflow (40107240026 is followed by 40123498287 and 40125544874, then the pull-request runs) are `success` at 1c0c353 and 666844f, with no commit touching the deep-loop runtime directory in between (`git log e00fef3e76..666844f806` over that path prints nothing), so it looks intermittent, but its cause is not established here: it is either a lost-write race in the append-versus-merge path or a load flake of the concurrent subprocess writers, and the fix is a code change outside this phase. No row with a `filed:` action is written for it, because nothing has been filed anywhere; it is recorded as open. No retry or rerun was added.

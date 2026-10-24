@@ -174,6 +174,7 @@ R19's saving is 0: it is the probe that decides R20. R20's saving is ~460 runner
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The `CLI vitest project` step is under 400 s on CI, down from 791 s, and 5 consecutive `Spec-Kit Check` runs are green.
+  - The step time is judged on the median of five green runs on main, by the operator ruling of 2026-10-24 on AC-003, recorded in `decision-record.md` (ADR-003 amendment) and measured in `scratch/r20-ci-step.md`.
 - **SC-002**: The probe is recorded and the decision is explicit: three green parallel runs choose the config flip, and any collision chooses the two-way shard.
 - **SC-003**: Each of deep-loop-runtime, diagram-corpus and skill-advisor-stress shows 10 consecutive green runs, or a filed root cause that names the test, the error class and the SHA.
 - **SC-004**: The five single old failures are recorded closed with their date, SHA and the later green run that proves them stale.
