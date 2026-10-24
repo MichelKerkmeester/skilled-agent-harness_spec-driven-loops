@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.9.0
+version: 1.0.10.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -186,7 +186,7 @@ Run from the repository root with `tmux`, `node` and the runtime you test. A she
 ~~~bash
 repo_root="$(git rev-parse --show-toplevel)"
 if [ -n "${XDG_RUNTIME_DIR:-}" ]; then state="$XDG_RUNTIME_DIR/skilled-relaunch"; else state="${TMPDIR:-/tmp}/skilled-relaunch-$(id -u)"; fi
-cli="node $repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+cli() { node "$repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs" "$@"; }
 runtime=pi   # or opencode
 session_name="relaunch-$runtime-$$"
 
@@ -230,7 +230,7 @@ first_prompt="Gate 3 is answered: D) Skip. Run the shell command 'echo probe'. W
 Run the live Pi or OpenCode hop above, or start the runtime with `start_runtime` and say `$first_prompt`. Let the receiving session claim and complete the note, then read the history:
 
 ~~~bash
-$cli history --last 3
+cli history --last 3
 ~~~
 
 Expected, with the time and your folder name in place of the examples:
@@ -256,9 +256,9 @@ loop_id=$(wait_for_record armed)
 say "Stay in this session. Reply with the single word STAYING."
 sleep 8
 record_field "$loop_id" status; record_field "$loop_id" disarmReason
-$cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
+cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
 grep -E ' (arm-cancelled|killer-signal|relaunch) ' "$state/relaunch.log" | tail -5
-$cli history --last 2
+cli history --last 2
 screen | tail -20
 ~~~
 
@@ -320,13 +320,13 @@ Evidence: both nudge-file reads and the pane text. PASS when the first read hold
 start_runtime
 say "$first_prompt"
 loop_id=$(wait_for_record 'pending|armed')
-$cli cancel --loop-id "$loop_id"; echo "exit $?"
-$cli cancel --loop-id "$loop_id"; echo "exit $?"
+cli cancel --loop-id "$loop_id"; echo "exit $?"
+cli cancel --loop-id "$loop_id"; echo "exit $?"
 sleep 8
 record_field "$loop_id" disarmReason
-$cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
+cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
 grep -E ' (cancel|decline|killer-signal) ' "$state/relaunch.log" | tail -4
-$cli history --last 1
+cli history --last 1
 screen | tail -15
 ~~~
 

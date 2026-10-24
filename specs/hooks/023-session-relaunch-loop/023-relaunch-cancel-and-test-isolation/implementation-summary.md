@@ -8,29 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation"
-    last_updated_at: "2026-10-24T10:05:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Shared the withdraw across runtimes after a second review; full gate green in three environments"
-    next_safe_action: "Commit the worktree once the operator approves"
+    last_updated_at: "2026-10-24T16:22:52Z"
+    last_updated_by: "generate-context"
+    recent_action: "Committed f801971285 and started the live OpenCode playbook run"
+    next_safe_action: "Check the live playbook results"
     blockers: []
     key_files:
+      - ".skilled/hooks/session-relaunch/lib/withdraw.cjs"
       - ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
-      - ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
-      - ".skilled/hooks/session-relaunch/claude/context-nudge.mjs"
-      - ".skilled/hooks/session-relaunch/claude/stop-arm.mjs"
-      - ".skilled/hooks/session-relaunch/lib/hop-history.cjs"
       - ".skilled/bin/skilled-loop"
-      - ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      - ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:daa09e8d7282f89e4fbdb9760fd042582b08fc75e6f312d30fb32b0d413f6094"
       session_id: "1020489c-074c-4d37-89f4-75a670e5a052"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
-    answered_questions:
-      - "Withdraw on a new prompt, not a preparedAt expiry: operator decision"
-      - "Flagging stale claimed notes: dropped by the operator"
-      - "Fix the review limitations and the adjacent defects: operator decision after the review"
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -74,6 +68,12 @@ The wrapper now calls plain `consume`, reads the note state and only then calls 
 ### After the second review
 
 A fresh review found that the shared `withdrawn` outcome had changed Pi and OpenCode without their follow-up. Both already disarmed a hand-over when a new turn started, but they wrote no `withdrawn` line, granted no extra nudge and still seeded a claim of the note after compaction. Every runtime that withdraws now calls one helper in `lib/withdraw.cjs`. It disarms under the record lock, then records the `withdrawn` line and grants the extra nudge. Pi and OpenCode compaction now gives the same read-only pointer as Claude. On Claude and Codex, an operator prompt now also withdraws an armed record, so a new turn is not ended by the killer onto the old note. The pending write and the consume unlink now take the record lock too. The wrapper prints a manual claim command only for a note that command could claim. `/speckit:handoff` now names notes by the full session id, as the code does.
+
+### After the live runs
+
+The live runs found one real defect in the playbooks. They defined the CLI as a string variable and ran it unquoted, which works in bash and fails in zsh, so a zsh operator saw exit 127 on `should-relaunch` and `history`. The three relaunch playbooks now define a `cli` function instead. The scripted probes still print all eleven PASS lines.
+
+The hand-over also had a gap for sessions that work in a git worktree. Notes live in the checkout the CLI runs from, so a packet that only the worktree holds was refused as missing. `prepare` and `keep` now accept a packet that exists under the note's own working directory, and a test pins it. The relaunch gate is 752 of 752 with the loop variables set, unset and foreign.
 
 ### Files Changed
 
@@ -137,7 +137,7 @@ The work ran in worktree `.worktrees/220-relaunch-cancel-and-test-isolation` on 
 | Real `relaunch.log` across the final three runs | Unchanged: 366 lines and 84 `loopId=100` lines, before and after. The 5 lines added since the first commit came from a real hop of loop 45978 |
 | Fresh Opus review of the committed hand-over logic | Two P1 and five P2 findings, each read against the code and fixed in this pass |
 | sk-code skilled alignment of every touched code file | No P0, four P1 or trivial P2 items fixed, `verify_alignment_drift.py --fail-on-warn` 0 findings, shellcheck adds none, drift guards pass |
-| Playbook scenarios CL-0 to CL-7, CX-0 to CX-5, PO-0 to PO-6 and the CO-046 supplement | The model-free probes and the Pi and OpenCode non-interactive runs passed as written. The live tmux scenarios run next |
+| Playbook scenarios CL-0 to CL-7, CX-0 to CX-5, PO-0 to PO-6 and the CO-046 supplement | Live runs on 2026-10-24: OpenCode and Pi PO-0 to PO-6 and CO-046 PASS. Claude CL-0 to CL-7 PASS, with CL-3's extra nudge arriving only after the retry its triage text prescribes. Codex CX-0, CX-1, CX-3 and CX-5 PASS, CX-4 PASS when the script ran as written, and CX-2's record and withdraw notice were confirmed in the session log while the model's reply was cut off by the 30-second wait |
 | Each new test against the code before its fix | Every new behavior test failed there first, and the guard tests for unchanged defaults passed there |
 | Independent Haiku verification | 726 of 726 in three environments, then four race findings, each confirmed in the code and fixed |
 | `bash -n` and `node --check` on changed files, comment hygiene grep | Clean, exit 0 on the final state |

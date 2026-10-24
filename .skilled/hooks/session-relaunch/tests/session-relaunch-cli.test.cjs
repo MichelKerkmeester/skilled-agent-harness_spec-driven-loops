@@ -807,6 +807,23 @@ test('prepare and keep refuse a spec folder the repository does not hold', (t) =
   assert.equal(fs.existsSync(path.join(handoffDirectory(sandbox), '..', 'hop-history.log')), false);
 });
 
+test('prepare and keep accept a spec folder that only the note cwd checkout holds', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { createSpecFolder: false });
+  const worktree = path.join(path.dirname(sandbox.repoRoot), 'worktree');
+  fs.mkdirSync(path.join(worktree, SPEC_FOLDER), { recursive: true });
+  const note = fs.readFileSync(handoffPath, 'utf8')
+    .replace(/^cwd: .*$/m, `cwd: ${worktree}`);
+  fs.writeFileSync(handoffPath, note);
+
+  const prepared = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(prepared.status, 3, prepared.stderr);
+  assert.ok(prepared.stdout.includes(SPEC_FOLDER_SUFFIX), prepared.stdout);
+
+  const kept = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.doesNotMatch(kept.stderr, /does not exist in this repository/);
+});
+
 test('prepare refuses a spec folder that is a file, and accepts the real folder', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox, { createSpecFolder: false });

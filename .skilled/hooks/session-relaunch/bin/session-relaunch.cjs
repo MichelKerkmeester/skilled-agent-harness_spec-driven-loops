@@ -371,11 +371,13 @@ function validatedNote(options, runtime) {
 
   // An answer the note cannot carry forward would drop silently downstream.
   let specFolder = '';
+  let noteCwd = '';
   try {
     const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
     specFolder = typeof note.frontmatter.spec_folder === 'string'
       ? note.frontmatter.spec_folder
       : '';
+    noteCwd = typeof note.frontmatter.cwd === 'string' ? note.frontmatter.cwd : '';
   } catch {}
   if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
     throw new Error(
@@ -383,15 +385,20 @@ function validatedNote(options, runtime) {
     );
   }
   // A shaped path can still name a packet this repository never had, and the fresh session
-  // would then answer Gate 3 with a folder that is not there.
+  // would then answer Gate 3 with a folder that is not there. Notes live in the checkout the
+  // CLI runs from, yet the session may work in a git worktree whose packet that checkout does
+  // not hold yet, and the fresh session starts in the note's own working directory.
   if (specFolder !== '' && specFolder !== 'none') {
-    const packet = path.join(nudge.resolveRepoRoot(process.env), specFolder);
-    let isDirectory = false;
-    try {
-      isDirectory = fs.statSync(packet).isDirectory();
-    } catch {
-      // An unreadable path is a missing one, and the check below names it.
-    }
+    const roots = [nudge.resolveRepoRoot(process.env)];
+    if (path.isAbsolute(noteCwd)) roots.push(noteCwd);
+    const isDirectory = roots.some((root) => {
+      try {
+        return fs.statSync(path.join(root, specFolder)).isDirectory();
+      } catch {
+        // An unreadable path is a missing one, and the check below names it.
+        return false;
+      }
+    });
     if (!isDirectory) {
       throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
     }

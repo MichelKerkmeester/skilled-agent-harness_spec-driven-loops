@@ -1,18 +1,20 @@
 {
+  "level": "2",
   "specFolder": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
   "description": "Phase 23: relaunch-cancel-and-test-isolation",
   "keywords": [
     "phase",
     "relaunch-cancel-and-test-isolation"
   ],
-  "lastUpdated": "2026-10-24T09:00:17.547Z",
+  "lastUpdated": "2026-10-24T16:22:52.504Z",
   "specId": "023",
   "folderSlug": "relaunch-cancel-and-test-isolation",
   "parentChain": [
     "hooks",
     "023-session-relaunch-loop"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-10-26_17-22__shared-one-hand-over-withdraw-across-claude-codex.md"
+  ]
 }

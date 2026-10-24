@@ -206,8 +206,8 @@
     ],
     "causal_summary": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
     "created_at": "2026-10-24T09:00:16Z",
-    "last_save_at": "2026-10-24T15:43:06.985Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-24T16:58:02.945Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b5da4f344c8ae9c036f128ef6d886b95eefce62083cc9ed3f992b7e9f7fbf28",
+    "source_fingerprint": "sha256:13e941e6f51defce9225d6f383a4124e13c1973f545780bf807b7ebcba549884",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c986e75a2c16492b6452ce1c7160d3df18f4f2380d59fa4eb330043233365ffd",
       "plan.md": "126e827808f922ecbd5e6113f1dd265dba4e388ba2511197b807df3d6cc93b6b",
-      "tasks.md": "e4e6bfe52ca89e0c6969b6cff7b40d992d724c4281e17268a826cbd3cf6241a1",
-      "implementation-summary.md": "ceee0d30bf551c3eea58666922ff98489070e7a32187d757b3b2dc81aad9632f"
+      "tasks.md": "4f65c2df608f307ac0106523010bfc399c10610ec53b2aeec4af29e57a982fa5",
+      "implementation-summary.md": "83a478587a788293c5a3aa0f3d32c1a2f84054014a010963a2b77001044daf43"
     },
     "last_active_at": null
   }

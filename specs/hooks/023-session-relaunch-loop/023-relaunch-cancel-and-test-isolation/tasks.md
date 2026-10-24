@@ -68,6 +68,9 @@ contextType: "general"
 - [x] T021 Lock the pending write and the consume unlink, and fix the prepare help text (`lib/relaunch-core.cjs`, `bin/session-relaunch.cjs`)
 - [x] T022 Print a claim command only for a note it could claim, keep the warning for a different unclaimed note, and name notes by the full id in `/speckit:handoff` (`.skilled/bin/skilled-loop`, `handoff.md`)
 - [x] T023 Check every touched code file against the sk-code skilled checklists, and add live and automatable playbook scenarios for each new behavior on Claude, Codex, OpenCode and Pi
+- [x] T024 Run the live playbook scenarios: OpenCode and Pi (PO-0 to PO-6, CO-046), Codex (CX-0 to CX-5) and Claude (CL-0 to CL-7)
+- [x] T025 Replace the word-splitting `$cli` variable in the three relaunch playbooks with a `cli` function, because the snippets failed under zsh (`session-relaunch-claude.md`, `session-relaunch-command-runtimes.md`, `session-relaunch-pi-opencode.md`)
+- [x] T026 Check a spec folder against the note's own working directory as well as the CLI's checkout, so a worktree-only packet is accepted (`bin/session-relaunch.cjs`, `tests/session-relaunch-cli.test.cjs`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

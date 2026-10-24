@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.9.0
+version: 1.0.10.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -455,7 +455,7 @@ Run from the repository root with `tmux`, `node` and a Claude Code install that 
 ~~~bash
 repo_root="$(git rev-parse --show-toplevel)"
 if [ -n "${XDG_RUNTIME_DIR:-}" ]; then state="$XDG_RUNTIME_DIR/skilled-relaunch"; else state="${TMPDIR:-/tmp}/skilled-relaunch-$(id -u)"; fi
-cli="node $repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+cli() { node "$repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs" "$@"; }
 session_name="relaunch-claude-$$"
 
 start_claude() {
@@ -494,7 +494,7 @@ Run one check at a time and only one looped session at once, because `wait_for_r
 Run the primary scenario above, or any hop that reaches `done`, then read the history:
 
 ~~~bash
-$cli history --last 3
+cli history --last 3
 ~~~
 
 Expected, with the time and your folder name in place of the examples:
@@ -520,9 +520,9 @@ loop_id=$(wait_for_record armed)
 say "Stay in this session. Reply with the single word STAYING."
 sleep 8
 record_field "$loop_id" status; record_field "$loop_id" disarmReason
-$cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
+cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
 grep -E ' (withdrawn|killer-signal|relaunch) ' "$state/relaunch.log" | tail -5
-$cli history --last 2
+cli history --last 2
 screen | tail -20
 ~~~
 
@@ -558,7 +558,7 @@ loop_id=$(wait_for_record pending)
 until grep -q deferredAt "$state/relaunch-$loop_id.json"; do sleep 1; done
 session_id=$(grep -oE '"sessionId":"[^"]*"' "$state/relaunch-$loop_id.json" | cut -d'"' -f4)
 record_field "$loop_id" status; record_field "$loop_id" deferredAt
-$cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
+cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
 ~~~
 
 Expected before you type: `"status":"pending"`, a `deferredAt` stamp, `{"relaunch":false,"reason":"not-armed",...}` with `exit 1` and a `deferred-background-tasks` line in `relaunch.log`. Now spend the session's nudge levels, so a nudge can only come from the extra one, then type the prompt:
@@ -570,7 +570,7 @@ sleep 25
 record_field "$loop_id" disarmReason
 cat "$state/nudge-$session_id.json"
 screen | tail -30
-$cli history --last 2
+cli history --last 2
 ~~~
 
 Expected:
@@ -595,7 +595,7 @@ loop_id=$(wait_for_record pending)
 until grep -q deferredAt "$state/relaunch-$loop_id.json"; do sleep 1; done
 sleep 45
 grep -E ' (deferred-background-tasks|withdrawn|killer-signal|relaunch) ' "$state/relaunch.log" | tail -6
-$cli history --last 3
+cli history --last 3
 screen | tail -20
 ~~~
 
@@ -612,12 +612,12 @@ start_claude
 say "Gate 3 is answered: D) Skip. Run the shell command 'echo probe'. When the [session-relaunch] instructions arrive, follow them: write the note with spec_folder none and run prepare. Only after prepare exits 0, start 'sleep 40' as a background shell task and end your turn."
 loop_id=$(wait_for_record pending)
 until grep -q deferredAt "$state/relaunch-$loop_id.json"; do sleep 1; done
-$cli cancel --loop-id "$loop_id"; echo "exit $?"
-$cli cancel --loop-id "$loop_id"; echo "exit $?"
+cli cancel --loop-id "$loop_id"; echo "exit $?"
+cli cancel --loop-id "$loop_id"; echo "exit $?"
 record_field "$loop_id" disarmReason
-$cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
+cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
 grep -E ' (cancel|decline) ' "$state/relaunch.log" | tail -3
-$cli history --last 1
+cli history --last 1
 sleep 45
 screen | tail -15
 ~~~
@@ -648,7 +648,7 @@ unset SKILLED_LOOP_HOPS SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_NAME SKILLED_L
 export XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo" SKILLED_LOOP_ID=$$ SKILLED_LOOP_RUNTIME=claude
 mkdir -p "$XDG_RUNTIME_DIR" "$SESSION_RELAUNCH_REPO_ROOT/.skilled/skills/.state/session-relaunch/handoffs"
 hooks="$repo_root/.skilled/hooks/session-relaunch"
-cli="node $hooks/bin/session-relaunch.cjs"
+cli() { node "$hooks/bin/session-relaunch.cjs" "$@"; }
 state="$XDG_RUNTIME_DIR/skilled-relaunch"
 record="$state/relaunch-$SKILLED_LOOP_ID.json"
 sid=probe-claude-0001
@@ -659,7 +659,7 @@ check() { if eval "$2"; then echo "PASS: $1"; else echo "FAIL: $1"; exit 1; fi; 
 prompt() { printf '{"hook_event_name":"UserPromptSubmit","session_id":"%s","cwd":"%s","prompt":"%s"}' "$sid" "$sandbox" "$1" | node "$hooks/claude/context-nudge.mjs"; }
 arm() { node -e "require('$hooks/lib/relaunch-core.cjs').arm({loopId: process.env.SKILLED_LOOP_ID, cwd: '$sandbox'})"; }
 
-$cli prepare --handoff "$note" --session "$sid" --runtime claude > /dev/null
+cli prepare --handoff "$note" --session "$sid" --runtime claude > /dev/null
 check "an operator prompt leaves a pending record that no Stop deferred" \
   '[ -z "$(prompt "keep going")" ] && grep -q "\"status\":\"pending\"" "$record"'
 arm
@@ -670,21 +670,21 @@ check "an operator prompt withdraws the armed record" \
   'grep -q "\"disarmReason\":\"user-message\"" "$record"'
 check "the session is told it was withdrawn" \
   'printf "%s" "$out" | grep -q "The prepared hand-over was withdrawn"'
-decision="$($cli should-relaunch --loop-id "$SKILLED_LOOP_ID")" && status=0 || status=$?
+decision="$(cli should-relaunch --loop-id "$SKILLED_LOOP_ID")" && status=0 || status=$?
 check "should-relaunch reports withdrawn and exits 1" \
   '[ "$status" = 1 ] && printf "%s" "$decision" | grep -q "\"reason\":\"withdrawn\""'
 check "the nudge state holds one extra nudge" 'grep -q "\"rearm\"" "$state/nudge-$sid.json"'
-shown="$($cli history --last 1)"
+shown="$(cli history --last 1)"
 check "the hop history lists a withdrawn line" 'printf "%s" "$shown" | grep -q " withdrawn "'
 check "the log holds a withdrawn line and no killer signal" \
   'grep -q " withdrawn " "$state/relaunch.log" && ! grep -q "killer-signal" "$state/relaunch.log"'
 
-$cli prepare --handoff "$note" --session "$sid" --runtime claude > /dev/null
-cancel_out="$($cli cancel)"
+cli prepare --handoff "$note" --session "$sid" --runtime claude > /dev/null
+cancel_out="$(cli cancel)"
 check "cancel names the note and says it stays open" \
   'printf "%s" "$cancel_out" | grep -q "cancelled the prepared hand-over for .*; the note stays open"'
 check "the record is disarmed with reason cancelled" 'grep -q "\"disarmReason\":\"cancelled\"" "$record"'
-again="$($cli cancel)" && status=0 || status=$?
+again="$(cli cancel)" && status=0 || status=$?
 check "a second cancel finds nothing and exits 1" \
   '[ "$status" = 1 ] && [ "$again" = "no prepared hand-over to cancel" ]'
 BASH
