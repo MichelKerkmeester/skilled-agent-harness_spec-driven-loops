@@ -48,7 +48,6 @@ runs:
           .skilled/skills/sk-design/sk-design-md-generator/backend/dist
           .skilled/skills/system-spec-kit/.node-version-marker
           .git/provision-stamps
-          ~/.npm
         key: provision-${{ runner.os }}-node${{ steps.node.outputs.major }}-bun${{ inputs.bun-version }}-${{ hashFiles('**/package-lock.json', '**/bun.lock', '**/bun.lockb', '.skilled/package.json', '.opencode/package.json', '.skilled/skills/sk-vision/vision-runtime/package.json', '.skilled/skills/system-spec-kit/package.json', '.skilled/skills/system-spec-kit/shared/package.json', '.skilled/skills/system-spec-kit/runtime/package.json', '.skilled/skills/system-spec-kit/runtime/cli/package.json', '.skilled/skills/system-skill-advisor/runtime/package.json', '.skilled/skills/system-deep-loop/package.json', '.skilled/skills/system-deep-loop/runtime/package.json', '.skilled/skills/sk-doc/package.json', '.pi/extensions/pi-cache-optimizer/package.json', '.pi/extensions/pi-fast-mode-w-subagent-support/package.json', '.skilled/skills/sk-design/sk-design-md-generator/backend/package.json', '.skilled/skills/system-spec-kit/.npmrc', '.skilled/skills/system-spec-kit/tsconfig.json', '.skilled/skills/system-spec-kit/runtime/tsconfig.json', '.skilled/skills/sk-git/scripts/worktree-provision-paths.txt', '.skilled/skills/sk-git/scripts/worktree-naming.sh', '.github/actions/setup/action.yml') }}
 
     - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
@@ -86,4 +85,3 @@ runs:
           .skilled/skills/sk-design/sk-design-md-generator/backend/dist
           .skilled/skills/system-spec-kit/.node-version-marker
           .git/provision-stamps
-          ~/.npm
