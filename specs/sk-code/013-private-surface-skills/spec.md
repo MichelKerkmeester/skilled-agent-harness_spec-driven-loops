@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | None (top-level packet) |
@@ -136,7 +136,7 @@ Summary of the areas each phase touches; per-phase file detail lives in each chi
 | 2 | 002-hub-surface-removal/ | Delete both surface folders (226 tracked files) and strip every tracked consumer, regenerating generated artifacts and hand-editing `ROUTER.md` and `graph-metadata.json`; the hub keeps three packets | In progress |
 | 3 | 003-advisor-vocabulary-cleanup/ | Remove the surface vocabulary from the advisor scorer, plugin, schemas and tests, and give seven skill-tree scans an explicit `local-*` rule with realpath containment; regenerate the tracked fallback graph | Pending |
 | 4 | 004-private-local-skills/ | Link `.skilled/skills/local-*` to `local-skills/` folders in two external repositories and restore both surfaces there from `42b41dd286`, each standalone with one skill-root `graph-metadata.json` | Pending |
-| 5 | 005-leak-and-routing-verification/ | Prove from a fresh clone that no private path, byte or routing signal is tracked, and that six routing probes in two consumer checkouts still return both private skills | Pending |
+| 5 | 005-leak-and-routing-verification/ | Prove from a fresh clone that no private path, byte or routing signal is tracked, and that six routing probes in two consumer checkouts still return both private skills | Done |
 
 ### Phase Transition Rules
 

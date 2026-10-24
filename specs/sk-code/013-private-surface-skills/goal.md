@@ -86,11 +86,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills --recursive --strict` prints `RESULT: PASSED`.
-- [ ] `git ls-files` lists no path under `.skilled/skills/sk-code/sk-code-webflow/` or `.skilled/skills/sk-code/sk-code-obsidian/`, and `.skilled/skills/sk-code/mode-registry.json` declares `sk-code-quality`, `sk-code-review` and `sk-code-skilled`.
-- [ ] `.skilled/skills/local-*/SKILL.md` exists through its symlink, each skill root holds one `graph-metadata.json`, and `git status --porcelain .skilled` prints nothing.
-- [ ] A fresh clone of `origin/main` prints `0 live` paths matching `local-(webflow|obsidian)|sk-code-(webflow|obsidian)` from `git ls-files -- ':!specs/**'`, `108 retained` under `specs/`, and `336` at `42b41dd286`.
-- [ ] `node .skilled/bin/skill-advisor.cjs advisor_recommend` in the operator checkout, with both external roots in `SPECKIT_PRIVATE_SKILL_ROOTS`, returns `local-webflow` for `implement a responsive webflow animation module`, `local-obsidian` for `add an obsidian plugin command palette integration`, and `sk-code` for `add a responsive css layout to the settings page`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills --recursive --strict` prints `RESULT: PASSED`.
+- [x] `git ls-files` lists no path under `.skilled/skills/sk-code/sk-code-webflow/` or `.skilled/skills/sk-code/sk-code-obsidian/`, and `.skilled/skills/sk-code/mode-registry.json` declares `sk-code-quality`, `sk-code-review` and `sk-code-skilled`.
+- [x] `.skilled/skills/local-*/SKILL.md` exists through its symlink, each skill root holds one `graph-metadata.json`, and `git status --porcelain .skilled` prints nothing.
+- [x] A fresh clone of `origin/main` prints `0 live` paths matching `local-(webflow|obsidian)|sk-code-(webflow|obsidian)` from `git ls-files -- ':!specs/**'`, `108 retained` under `specs/`, and `336` at `42b41dd286`.
+- [x] `node .skilled/bin/skill-advisor.cjs advisor_recommend` in the operator checkout, with both external roots in `SPECKIT_PRIVATE_SKILL_ROOTS`, returns `local-webflow` for `implement a responsive webflow animation module`, `local-obsidian` for `add an obsidian plugin command palette integration`, and `sk-code` for `add a responsive css layout to the settings page`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -111,7 +111,7 @@ and findings belong here.
 | Phase 002 | Done | Commit `e3beac65f4` plus the compiled-graph follow-up `1218b94938` on `origin/main`, CI 15 of 15 green |
 | Phase 003 | Done | Four review rounds closed with no open P0 or P1; advisor suite 147 files green, Python `pass=84`; committed with the advisor refactor on 2026-10-24 |
 | Phase 004 | Done | Commits `e8256b8044` and `ff993936c7` on `origin/main`, plus the external commits `4434c1b` (anobel.com) and `c6cd64b7` (Obsidian Plugin); operator approvals recorded in `004-private-local-skills/scratch/operator-approvals.md` |
-| Phase 005 | Pending | Its `tasks.md`, in order |
+| Phase 005 | Done | Commits `01742752c1` and `ee0fdc94eb` on `origin/main`; 15 of 15 criteria Met, a final-tip clone at `634c32b3c7` matched the earlier run, strict validation passed |
 
 ### Deviations and findings
 
