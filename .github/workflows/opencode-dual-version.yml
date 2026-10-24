@@ -1,6 +1,6 @@
 name: OpenCode Dual-Version Battery
 
-# OpenCode 1.19.3 and 2.1.4 are separate npm packages that both claim the name
+# OpenCode 1.19.4 and 2.1.4 are separate npm packages that both claim the name
 # `opencode`, and the repo's plugins register differently on each major. Neither
 # family ran anywhere, so a plugin that loads on one major and not the other
 # reached a commit unseen. Each pinned package is installed into its own prefix,
@@ -83,7 +83,7 @@ jobs:
       matrix:
         include:
           - family: v1
-            package: opencode-ai@1.19.3
+            package: opencode-ai@1.19.4
             name: opencode
           - family: v2
             package: '@opencode/cli@2.1.4'
@@ -194,7 +194,7 @@ jobs:
       - name: Install both versions into their own prefixes
         run: |
           set -euo pipefail
-          npm install -g --prefix "$RUNNER_TEMP/opencode-v1" opencode-ai@1.19.3
+          npm install -g --prefix "$RUNNER_TEMP/opencode-v1" opencode-ai@1.19.4
           npm install -g --prefix "$RUNNER_TEMP/opencode-v2" @opencode/cli@2.1.4
 
       # v2 opens the same database as v1 by default and migrates it in place, so
@@ -237,8 +237,8 @@ jobs:
           v2_out="$(opencode2 --version | tr -d '\r')"
           printf 'opencode --version -> %s\n' "$v1_out"
           printf 'opencode2 --version -> %s\n' "$v2_out"
-          if [ "$v1_out" != "1.19.3" ]; then
-            echo "::error::opencode reports '$v1_out', expected 1.19.3"
+          if [ "$v1_out" != "1.19.4" ]; then
+            echo "::error::opencode reports '$v1_out', expected 1.19.4"
             exit 1
           fi
           if [ "$v2_out" != "opencode v2.1.4" ]; then

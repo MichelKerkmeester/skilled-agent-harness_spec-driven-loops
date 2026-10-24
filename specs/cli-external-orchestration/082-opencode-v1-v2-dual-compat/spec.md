@@ -179,6 +179,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 66 | 066-opencode-v2-default-name/ | Give the `opencode` and `opencode2` names to OpenCode 2 on the default `opencode.db` and move OpenCode 1 to an `opencode1` launcher on its own `opencode-v1.db`, on this machine and in the setup helper and install reference | Complete |
 | 67 | 067-opencode-v2-pin-2-1-4/ | Move the OpenCode 2 pin from 2.0.32 to 2.1.4 in the setup helper, the dual-version CI workflow and the baseline statements, and correct the v1 channel statement | Complete |
 | 68 | 068-retire-opencode2-name/ | Retire the local `opencode2` name so `opencode` runs OpenCode 2 and `opencode1` runs OpenCode 1, rewrite the documented v2 commands to `opencode`, and turn off OpenCode 1's auto-update, which had taken the `opencode` name back | Complete |
+| 69 | 069-opencode-v1-pin-1-19-4/ | Move the OpenCode 1 pin from 1.19.3 to 1.19.4, the installed npm `latest`, in the setup helper, the dual-version CI workflow and the baseline statements | Complete |
 
 ### Phase Transition Rules
 
@@ -254,4 +255,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 065-drop-old-deepseek-from-pi | 066-opencode-v2-default-name | 065's Pi roster change is on main | `066/implementation-summary.md`; `opencode-setup.sh check` reports v2, v2, v1 |
 | 066-opencode-v2-default-name | 067-opencode-v2-pin-2-1-4 | 066's name swap is in the same commit | `067/implementation-summary.md`; CI green on the pushed commit |
 | 067-opencode-v2-pin-2-1-4 | 068-retire-opencode2-name | 067 is on main as `12fa1b7b60` with 17 of 17 CI runs green | `068/implementation-summary.md`; CI green on the pushed commit |
+| 068-retire-opencode2-name | 069-opencode-v1-pin-1-19-4 | 068 is on main as `0bf53bfadc` with 19 of 19 CI runs green | `069/implementation-summary.md`; CI green on the pushed commit |
 <!-- /ANCHOR:phase-map -->

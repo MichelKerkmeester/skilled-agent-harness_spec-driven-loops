@@ -27,7 +27,7 @@ fi
 
 readonly SCRIPT_NAME="${0##*/}"
 
-readonly V1_PKG="opencode-ai@1.19.3"
+readonly V1_PKG="opencode-ai@1.19.4"
 readonly V2_PKG="@opencode/cli@2.1.4"
 
 # Every path derives from HOME, so a throwaway HOME isolates the whole run
