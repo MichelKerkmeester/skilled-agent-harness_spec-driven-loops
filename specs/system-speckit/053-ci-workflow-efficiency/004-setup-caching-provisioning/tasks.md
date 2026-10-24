@@ -466,11 +466,11 @@ Done: gate printed `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340
 
 ---
 
-### T011A Commit the gate scan (AC-001, AC-002, AC-017)
+### T011A [x] Commit the gate scan (AC-001, AC-002, AC-017)
 
 File: `.github/scripts/check-gate-inputs.sh`, `.github/scripts/tests/check-gate-inputs.test.sh`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
-Not done: both files carry the T004-T009 edits but remain uncommitted; no `ci(gate-inputs): scan composite actions…` commit exists.
+Done: committed cd58109fc5 'ci(gate-inputs): scan composite actions for input paths'; validate-message exit 0; id grep empty; pushed with 12c4a00612, CI 10/10 success.
 
 Change: stage the gate scan, write its message, validate it, scan the staged diff for ephemeral ids, and commit.
 

@@ -606,6 +606,8 @@ File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-remova
 
 Change: create the run list, the per-workflow run-id selection, the job samples and `summary.md`.
 
+Counting note: Count only workflow runs from `.github/workflows/` in this baseline and in the deltas for 003 T036 and phase 008. Report any CodeQL default-setup `dynamic` run on a separate line so totals remain comparable with the pre-change baseline.
+
 Check: at least 24 hours after T014 merges, run every block in this task from `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal`:
 
 ```bash

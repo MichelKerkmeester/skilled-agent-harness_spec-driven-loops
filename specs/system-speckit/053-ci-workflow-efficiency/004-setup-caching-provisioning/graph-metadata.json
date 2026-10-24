@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-24T09:29:28.952Z",
+    "last_save_at": "2026-10-24T09:41:56.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +222,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bb82f0af1ad2ad34e481d5fbcd6f0d1d3449d0b6d3cded8f416375ea403c0ad",
+    "source_fingerprint": "sha256:0d8ccd68a70805fd071914e2376c2141ec8c721008ed7897b68032569204bc97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "321f8e5e1f8748f9d270399a896fbe01342b2249e6fd4df15bb85b4769973f87",
       "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "859812f66580081b358dbbc88ee722df772b132682fdbb7b2e7991e53f01d665",
+      "tasks.md": "99c5d1cbc988d65d7d13c475f417edee3fe7148aa07ef653781263fe7fa88250",
       "decision-record.md": "09e9068f11a61e9470ca37d4e5ad4ac466667a4ad27913fcfe070e5766bdf42e",
       "implementation-summary.md": "ea7ec7596ab5eed29c7478df32790f664144ffa06b13bbaaf2ac76da78c6e91f"
     },

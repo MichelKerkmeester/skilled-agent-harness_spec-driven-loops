@@ -110,6 +110,7 @@ Delivered through T018 except for the T012 negative arm. D1 answered (`scratch/d
 1. **The result covers four observed rebuilds.** The three qualifying SHAs `08bd79a68a`, `27490113c2` and `c9d4deed31` each returned `[]`, and the additional SHA `c7c5bfb51b` did too. Future rebuilds remain unobserved; the 24 h baseline is still pending.
 2. **`main`'s tip carries no statuses after a rebuild.** Phase 009's `/doctor:ci report` must resolve the newest non-rebuild SHA. No current consumer was found.
 3. **The baseline waits for traffic.** A quiet 24 h window records a small sample instead of scaling a shorter one, so a later phase can see the sample size.
+4. **GitHub CodeQL default-setup runs sit outside this packet's workflow count.** Since 2026-10-24, the repository has GitHub's CodeQL default-setup code scanning enabled. This packet did not enable it. Each push to `main` starts one `Push on main` run with event `dynamic`, including a `[skip ci]` rebuild commit, because `[skip ci]` does not suppress code scanning. Rebuild `a191ba6f70` shows one such run and no run from `.github/workflows/`. The three-zero-run criterion counts runs from `.github/workflows/` only. It was met by `08bd79a68a`, `27490113c2` and `c9d4deed31`. Baselines and deltas in 002 T019, 003 T036 and phase 008 count `.github/workflows/` runs and report the CodeQL dynamic run on a separate line. This keeps totals comparable with the pre-change baseline.
 <!-- /ANCHOR:limitations -->
 
 ---
