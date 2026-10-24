@@ -121,6 +121,7 @@ and findings belong here.
 | Phase 002 progress | Done | T001 to T017 done, 7 of 7 acceptance rows Met, strict `RESULT: PASSED`, suite `SUITE_MATCH`. The phase start commit was re-recorded as `800c89b504`. The operator kept the core and addons rows (phase 003 counts now 14 and 217) and had five disk-fact evidence commands in the phase 001 ledger rewritten |
 | SWE 2 Max rebaseline | Done | Level 3 version of the phase 001 T009 task, 3 serial cli-devin swe-2-max runs on templates identical to start commit `ac2be31ec6` (`git diff ac2be31ec6 HEAD -- .skilled` printed nothing). Runs 1 to 3: `leftover_hints` 1, 0, 1, `seconds` 326, 317, 384, all `strict_passed` 1, `missing_anchors` 0, `out_of_scope_writes` 0. Stored in `001-template-drift-census-and-baseline/scratch/baseline-swe-l3/` with `hints-l3.txt` (121 patterns) and `anchors-l3.txt` (spec 7, plan 14, tasks 21, acceptance-criteria 3). Devin sessions `marked-platypus`, `shrub-syringa` and `cautious-utensil` show 0 tool calls naming `baseline-swe`, `bench-packets` or `/private/tmp` |
 | BASE_REF | Pending | The git ref phase 008 builds its disposable worktree from. It must contain the phase 002 to 007 changes. Replace Pending with the ref |
+| Conductor session 24ab0085 | Done | 041-006 72001d694f, phase 003 8b60bfc041 verified, era fix 2ed9c2e0b9, decisions e75e7b4f95; phase 004 next |
 
 ### Deviations and findings
 
