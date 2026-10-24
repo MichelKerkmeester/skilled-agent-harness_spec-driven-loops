@@ -115,6 +115,22 @@ consumed_spec_folder() {
   printf '%s' "$spec_folder"
 }
 
+# Prints the goal packet consume reported, or nothing. The CLI applies the goal switch and
+# the packet checks, so an empty answer covers a switch that is off as well as no goal.
+consumed_goal_packet() {
+  local goal_packet=''
+  if [[ -n "$consumed_record_json" ]]; then
+    goal_packet=$(node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      process.stdout.write(
+        typeof record.goal_packet === "string" ? record.goal_packet : "",
+      );
+    ' <<< "$consumed_record_json") || goal_packet=''
+  fi
+  printf '%s' "$goal_packet"
+}
+
 # Prints the note's state through the core, so the wrapper judges a note exactly as a
 # claim and a should-relaunch decision would.
 handoff_note_state() {
@@ -335,7 +351,8 @@ pi_extension_arguments=()
 pi_extension_arguments_set=0
 pi_no_extensions_seen=0
 codex_no_daemon_seen=0
-unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER
+# The packet belongs to one hop, so a value from an outer session never reaches a first launch.
+unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SESSION_RELAUNCH_GOAL_PACKET
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -549,6 +566,13 @@ while true; do
       record_hand_over "$handoff_path" "$SKILLED_LOOP_HOPS"
 
       spec_folder=$(consumed_spec_folder)
+      # A hop without a goal must not inherit the previous hop's packet.
+      goal_packet=$(consumed_goal_packet)
+      if [[ -n "$goal_packet" ]]; then
+        export SESSION_RELAUNCH_GOAL_PACKET="$goal_packet"
+      else
+        unset SESSION_RELAUNCH_GOAL_PACKET
+      fi
       relaunched_handoff="$handoff_path"
       relaunched_spec_folder="$spec_folder"
       seed="[session-relaunch] claim and continue handoff $handoff_path"

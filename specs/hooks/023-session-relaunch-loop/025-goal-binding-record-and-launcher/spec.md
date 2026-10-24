@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-24 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |
@@ -72,7 +72,7 @@ The receiver is told which packet goal the sender was working under, or that the
 ## 3. SCOPE
 
 ### In Scope
-- Read first whether `spec_folder` plus the presence of `goal.md` is enough. If it is, this phase adds no note field and only the launcher pass and the switch remain.
+- Read first whether `spec_folder` plus the presence of `goal.md` is enough. The operator default settled this: it is not, so the phase adds the note field.
 - An optional `goal_packet` frontmatter field, validated as a repo-relative directory that holds `goal.md`, the way `spec_folder` is validated.
 - Per-runtime resolution at prepare and keep: the goal record under `.skilled/skills/.state/goal/` for OpenCode, Pi, Devin, Cursor and Hermes, the session log goal entries for Claude, and `spec_folder` with a `goal.md` for Codex.
 - Claim prints the packet, and `skilled-loop` exports it to the receiver as `SESSION_RELAUNCH_GOAL_PACKET`.
@@ -196,8 +196,8 @@ The receiver is told which packet goal the sender was working under, or that the
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Is `spec_folder` with a `goal.md` enough on its own, which would drop the new field? The recommendation is to keep the field, because it also records that the sender had an active goal, and that is the only consent signal the receiver has.
-- Does the operator want the switch? The recommendation is to keep it, because the receiver sets a goal without a keystroke.
+- **Decided (operator default): keep the separate `goal_packet` field.** `spec_folder` with a `goal.md` is not enough on its own, because it cannot tell whether the sender actually had a goal, and that is the only consent signal the receiver has. A receiver that bound a goal from `spec_folder` alone would set one the sender never had. Codex is the one runtime that still resolves from `spec_folder` and a `goal.md`, since it keeps no goal record.
+- **Decided: keep the switch.** The receiver sets a goal without a keystroke, so `SESSION_RELAUNCH_GOAL=0` stays as the off ramp. With it off, `prepare` and `keep` neither write nor check the field, and `claim` and the wrapper pass nothing on.
 <!-- /ANCHOR:questions -->
 
 ---

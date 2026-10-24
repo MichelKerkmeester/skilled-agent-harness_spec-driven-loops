@@ -35,16 +35,16 @@ Resolve the packet once at prepare and keep, write it as an optional note field,
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Phase 024 verdicts read if they are in, though they are not required
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Phase 024 verdicts read if they are in, though they are not required (not read: the phase does not depend on them)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] The gate passes in all three environments against the recorded baseline
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
+- [x] The gate passes in all three environments against the recorded baseline
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -162,8 +162,8 @@ Resolver ──► Note field ──► Claim output ──► Launcher export
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline gate numbers recorded in all three environments
-- [ ] Claude log format re-read
+- [x] Baseline gate numbers recorded in all three environments
+- [x] Claude log format re-read
 
 ### Rollback Procedure
 1. Revert the diff for the core, CLI, wrapper, command and tests.

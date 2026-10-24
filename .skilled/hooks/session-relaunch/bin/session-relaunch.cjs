@@ -16,6 +16,7 @@ const withdraw = require('../lib/withdraw.cjs');
 const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = core.RUNTIMES;
+const GOAL_FILENAME = 'goal.md';
 // Non-shell children run no job the killer could interrupt, so they are not detected.
 const LIVE_SHELL_NAMES = new Set([
   'sh', 'bash', 'zsh', 'fish', 'dash', 'ksh', 'mksh', 'tcsh', 'csh', 'nu', 'pwsh',
@@ -41,7 +42,7 @@ const SUBCOMMANDS = {
   },
   claim: {
     syntax: 'claim <handoff-path> [--session <session-id>]',
-    summary: 'Mark an open note claimed and print its body.',
+    summary: 'Mark an open note claimed and print its body, then the goal packet it carries.',
   },
   complete: {
     syntax: 'complete <handoff-path>',
@@ -49,7 +50,8 @@ const SUBCOMMANDS = {
   },
   consume: {
     syntax: 'consume --loop-id <loop-id>',
-    summary: 'Print the handoff path and its spec folder, then remove the relaunch record.',
+    summary: 'Print the handoff path, its spec folder and its goal packet, then remove the'
+      + ' relaunch record.',
   },
   cancel: {
     syntax: 'cancel [--loop-id <loop-id>]',
@@ -361,6 +363,50 @@ function sessionIdFor(options, runtime) {
   return sessionId;
 }
 
+// The checkouts a note's packet may live in: this repository, and the working directory the
+// fresh session starts in, which a git worktree session does not share with the CLI's checkout.
+function goalRoots(noteCwd) {
+  const roots = [nudge.resolveRepoRoot(process.env)];
+  if (path.isAbsolute(noteCwd)) roots.push(noteCwd);
+  return roots;
+}
+
+// A packet the note carries and the receiver may be given: the switch is on and the packet
+// still holds a goal.md, which it may have lost since the note was written.
+function usableGoalPacket(frontmatter) {
+  const packet = typeof frontmatter.goal_packet === 'string' ? frontmatter.goal_packet : '';
+  if (packet === '' || !core.goalSwitchOn(resolvedSwitches())) return '';
+  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
+  return core.goalPacketProblem(packet, goalRoots(noteCwd)) === null ? packet : '';
+}
+
+// A packet the sender wrote is held to the rules a spec folder is, and an empty field is
+// filled from the goal the sending session was working under. A session that never had a goal
+// leaves the field empty, and a failed write leaves it so too, since a hand-over never fails
+// for want of a goal.
+function recordGoalPacket({ handoffPath, written, noteCwd, specFolder, runtime, sessionId }) {
+  if (!core.goalSwitchOn(resolvedSwitches())) return;
+  const roots = goalRoots(noteCwd);
+  if (written !== '') {
+    const problem = core.goalPacketProblem(written, roots);
+    if (problem !== null) throw new Error(problem);
+    return;
+  }
+  const resolved = core.resolveGoalPacket({
+    runtime,
+    sessionId,
+    specFolder: specFolder === 'none' ? '' : specFolder,
+    roots,
+    env: process.env,
+  });
+  if (resolved === '') return;
+  try {
+    core.recordGoalPacket(handoffPath, resolved);
+  } catch {
+    // The note stays as written, and the receiver is simply told nothing.
+  }
+}
+
 // prepare and keep accept the same note, so they share one check of it.
 function validatedNote(options, runtime) {
   if (!options['--handoff']) throw new Error('--handoff is required');
@@ -372,12 +418,16 @@ function validatedNote(options, runtime) {
   // An answer the note cannot carry forward would drop silently downstream.
   let specFolder = '';
   let noteCwd = '';
+  let writtenGoalPacket = '';
   try {
     const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
     specFolder = typeof note.frontmatter.spec_folder === 'string'
       ? note.frontmatter.spec_folder
       : '';
     noteCwd = typeof note.frontmatter.cwd === 'string' ? note.frontmatter.cwd : '';
+    writtenGoalPacket = typeof note.frontmatter.goal_packet === 'string'
+      ? note.frontmatter.goal_packet
+      : '';
   } catch {}
   if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
     throw new Error(
@@ -403,6 +453,9 @@ function validatedNote(options, runtime) {
       throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
     }
   }
+  recordGoalPacket({
+    handoffPath, written: writtenGoalPacket, noteCwd, specFolder, runtime, sessionId,
+  });
   return { handoffPath, sessionId, specFolder };
 }
 
@@ -589,9 +642,16 @@ function claim(args) {
       : '--session';
     throw new Error(`session id is required through ${sessionSource}`);
   }
-  core.claimHandoff(handoffPath, { sessionId });
+  const claimed = core.claimHandoff(handoffPath, { sessionId });
   hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
+  const goalPacket = usableGoalPacket(claimed.frontmatter);
+  if (goalPacket !== '') {
+    process.stdout.write(
+      `\nGoal packet: ${goalPacket} (the goal the sending session worked under;`
+        + ` read its ${GOAL_FILENAME})\n`,
+    );
+  }
   return 0;
 }
 
@@ -642,6 +702,7 @@ function consume(args) {
   const record = core.readRelaunchFile(loopId);
   const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
   let specFolder = '';
+  let goalPacket = '';
   let invalidSpecFolder = false;
   if (handoffPath) {
     let handoffText = '';
@@ -653,6 +714,7 @@ function consume(args) {
         : '';
       if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
+      goalPacket = usableGoalPacket(note.frontmatter);
     } catch {
       ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }
@@ -674,9 +736,10 @@ function consume(args) {
       core.appendLog('spec-folder-dropped', { loopId });
     } catch {}
   }
-  process.stdout.write(
-    `${JSON.stringify({ handoff: handoffPath, spec_folder: specFolder, note })}\n`,
-  );
+  // A note with no goal packet keeps the output it always had.
+  const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
+  if (goalPacket !== '') consumed.goal_packet = goalPacket;
+  process.stdout.write(`${JSON.stringify(consumed)}\n`);
   return 0;
 }
 

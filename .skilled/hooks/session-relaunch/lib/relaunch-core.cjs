@@ -10,7 +10,7 @@
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { randomUUID } = require('node:crypto');
+const { createHash, randomUUID } = require('node:crypto');
 const { spawnSync } = require('node:child_process');
 const { fileURLToPath } = require('node:url');
 
@@ -45,6 +45,17 @@ const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
 const SPEC_FOLDER_MARKER = ' | Spec folder: ';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
 const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+const GOAL_FILENAME = 'goal.md';
+// Runtimes whose goal record names the packet the session is bound to; the lookup differs
+// only in how the record is keyed.
+const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor', 'hermes']);
+// The packet a Claude goal names is read from a bounded tail of the session log, so a long
+// session costs the same as a short one.
+const GOAL_LOG_TAIL_BYTES = 262144;
+const GOAL_LOG_MAX_TAIL_BYTES = 16 * 1024 * 1024;
+const GOAL_LOG_PACKET_PATTERN = /specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*/g;
+const GOAL_LOG_MAX_CANDIDATES = 8;
+const GOAL_SWITCH_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 // Defaults for a record that names no limits; the wrapper reads the same values.
 const DEFAULT_MAX_HOPS = 10;
 const DEFAULT_MAX_AGE_MIN = 10;
@@ -345,6 +356,253 @@ function noteState(filePath) {
   } catch {
     return 'invalid';
   }
+}
+
+function insideDirectory(parent, child) {
+  const relative = path.relative(parent, child);
+  return relative !== ''
+    && relative !== '..'
+    && !relative.startsWith(`..${path.sep}`)
+    && !path.isAbsolute(relative);
+}
+
+/**
+ * Say why a goal packet cannot be carried to the next session, or null when it can. The
+ * packet is shaped like a spec folder, and it must be a real directory whose goal.md is a
+ * real file, both inside one of the roots once links are followed, so a link out of the
+ * repository never reaches the receiver.
+ *
+ * @param {string} goalPacket - Repo-relative packet directory taken from a note or a record.
+ * @param {string[]} roots - Absolute checkouts the packet may live in.
+ * @returns {string|null} The reason the packet is refused, or null when it is usable.
+ */
+function goalPacketProblem(goalPacket, roots) {
+  if (!validSpecFolder(goalPacket)) {
+    return 'goal_packet must be the repo-relative packet path, or empty';
+  }
+  let reason = `goal_packet ${goalPacket} holds no ${GOAL_FILENAME} in this repository`;
+  for (const root of roots) {
+    try {
+      const realRoot = fs.realpathSync(root);
+      const realPacket = fs.realpathSync(path.join(root, goalPacket));
+      const realGoal = fs.realpathSync(path.join(realPacket, GOAL_FILENAME));
+      if (!insideDirectory(realRoot, realPacket) || !insideDirectory(realRoot, realGoal)) {
+        reason = `goal_packet ${goalPacket} resolves outside the repository`;
+      } else if (fs.statSync(realPacket).isDirectory() && fs.statSync(realGoal).isFile()) {
+        return null;
+      }
+    } catch {
+      // A missing path is a packet without a goal.md, which the reason already says.
+    }
+  }
+  return reason;
+}
+
+/**
+ * Read the goal switch. On unless the operator turned it off, so a hand-over carries the
+ * sender's goal without any setup.
+ *
+ * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
+ * @returns {boolean} False only when SESSION_RELAUNCH_GOAL is an off value.
+ */
+function goalSwitchOn(switches) {
+  const value = String(switches?.SESSION_RELAUNCH_GOAL ?? '').trim().toLowerCase();
+  return !GOAL_SWITCH_OFF_VALUES.includes(value);
+}
+
+// A spec folder and the packets above it, nearest first: a child packet rarely holds the
+// goal.md that its parent packet does.
+function packetLineage(specFolder) {
+  const lineage = [];
+  let current = specFolder;
+  while (validSpecFolder(current)) {
+    lineage.push(current);
+    current = path.posix.dirname(current);
+  }
+  return lineage;
+}
+
+function firstUsablePacket(candidates, roots, accepts = () => true) {
+  return candidates.find((candidate) => (
+    goalPacketProblem(candidate, roots) === null && accepts(candidate)
+  )) ?? '';
+}
+
+// The goal record a runtime keeps for one session. OpenCode keys its record by the session
+// digest alone; the runtime-neutral core scopes it by workspace, runtime and session.
+function goalRecordFor(runtime, sessionId, workspace) {
+  const goalCore = require('../../goal/lib/goal-core.cjs');
+  if (runtime !== 'opencode') {
+    return goalCore.readGoalRecord({ scope: { workspace, runtime, sessionId } });
+  }
+  const digest = createHash('sha256').update(sessionId, 'utf8').digest('hex');
+  const recordPath = path.join(goalCore.resolveStateDir({ workspace }), `${digest}.json`);
+  return JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+}
+
+function readLogTail(filePath, byteCount) {
+  const fileDescriptor = fs.openSync(filePath, 'r');
+  try {
+    const size = fs.fstatSync(fileDescriptor).size;
+    const start = Math.max(0, size - byteCount);
+    const buffer = Buffer.alloc(size - start);
+    const bytesRead = fs.readSync(fileDescriptor, buffer, 0, buffer.length, start);
+    return { text: buffer.subarray(0, bytesRead).toString('utf8'), whole: start === 0 };
+  } finally {
+    fs.closeSync(fileDescriptor);
+  }
+}
+
+// What the goal log last said about the session's goal. A goal ends when its status entry
+// reports it met or failed, and a `/goal clear` command ends it too.
+function goalLogEntry(entry) {
+  if (entry?.attachment?.type === 'goal_status') {
+    const status = entry.attachment;
+    return {
+      active: status.met === false && !status.failed,
+      condition: typeof status.condition === 'string' ? status.condition : '',
+    };
+  }
+  if (entry?.type === 'system' && entry.subtype === 'local_command'
+    && /<command-name>\/goal<\/command-name>[\s\S]*<command-args>\s*clear\s*<\/command-args>/
+      .test(String(entry.content ?? ''))) {
+    return { active: false, condition: '' };
+  }
+  return null;
+}
+
+// The newest goal entry of one Claude session log, widening the tail while the read starts
+// mid-file and holds none. Null when the log has none.
+function latestGoalLogEntry(logPath) {
+  let byteCount = GOAL_LOG_TAIL_BYTES;
+  for (;;) {
+    const tail = readLogTail(logPath, byteCount);
+    const lines = tail.text.split(/\r?\n/);
+    // A tail that starts mid-file begins inside a line, which cannot be parsed.
+    if (!tail.whole) lines.shift();
+    let latest = null;
+    for (const line of lines) {
+      if (!line.includes('goal')) continue;
+      let entry;
+      try {
+        entry = JSON.parse(line);
+      } catch {
+        continue;
+      }
+      latest = goalLogEntry(entry) ?? latest;
+    }
+    if (latest !== null || tail.whole || byteCount >= GOAL_LOG_MAX_TAIL_BYTES) return latest;
+    byteCount = Math.min(byteCount * 4, GOAL_LOG_MAX_TAIL_BYTES);
+  }
+}
+
+// Session logs sit under a per-project folder named from the working directory, which the
+// CLI cannot rebuild exactly, so the folders are searched for the session's own log.
+function claudeSessionLogPath(sessionId, env) {
+  if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
+  const configDirectory = env?.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude');
+  const projectsDirectory = path.join(configDirectory, 'projects');
+  for (const project of fs.readdirSync(projectsDirectory)) {
+    const candidate = path.join(projectsDirectory, project, `${sessionId}.jsonl`);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return null;
+}
+
+function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
+  const lineage = packetLineage(specFolder);
+  let logPath = null;
+  try {
+    logPath = claudeSessionLogPath(sessionId, env);
+  } catch {
+    // An unreadable projects folder reads like a missing log.
+  }
+  // No log to read means nothing contradicts the packet the note names, so it stands.
+  if (logPath === null) return firstUsablePacket(lineage, roots);
+  let latest;
+  try {
+    latest = latestGoalLogEntry(logPath);
+  } catch {
+    return firstUsablePacket(lineage, roots);
+  }
+  if (latest === null || !latest.active) return '';
+  const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
+  const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
+  const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
+  // The log keeps the goal's text, not its packet, so a packet is the sender's only when its
+  // goal.md carries the text's opening line.
+  return firstUsablePacket(candidates, roots, (candidate) => {
+    for (const root of roots) {
+      try {
+        const goalText = fs.readFileSync(path.join(root, candidate, GOAL_FILENAME), 'utf8');
+        if (headline !== '' && goalText.includes(headline)) return true;
+      } catch {
+        // The next root may hold the file.
+      }
+    }
+    return false;
+  });
+}
+
+function recordedGoalPacket({ runtime, sessionId, roots }) {
+  for (const root of roots) {
+    let record = null;
+    try {
+      record = goalRecordFor(runtime, sessionId, root);
+    } catch {
+      // A record that cannot be read is a goal that cannot be proven.
+    }
+    const packet = record?.status === 'active' && typeof record.packetPath === 'string'
+      ? record.packetPath
+      : '';
+    if (packet !== '' && goalPacketProblem(packet, roots) === null) return packet;
+  }
+  return '';
+}
+
+/**
+ * Find the packet the sending session's goal is bound to, or '' when it had none. Every
+ * reader fails closed: a log or record that cannot be read leaves the answer empty, so a
+ * hand-over never fails for want of a goal.
+ *
+ * @param {Object} options - The session to resolve.
+ * @param {string} options.runtime - Runtime that owns the session.
+ * @param {string} options.sessionId - The session's identifier.
+ * @param {string} [options.specFolder] - The note's spec folder, the only signal Codex gives.
+ * @param {string[]} options.roots - Absolute checkouts the packet may live in.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
+ * @returns {string} A repo-relative packet directory holding goal.md, or ''.
+ */
+function resolveGoalPacket({
+  runtime, sessionId, specFolder = '', roots = [], env = process.env,
+} = {}) {
+  try {
+    if (!nonEmptyString(sessionId) || roots.length === 0) return '';
+    if (GOAL_RECORD_RUNTIMES.includes(runtime)) {
+      return recordedGoalPacket({ runtime, sessionId, roots });
+    }
+    if (runtime === 'claude') return claudeGoalPacket({ sessionId, specFolder, roots, env });
+    if (runtime === 'codex') return firstUsablePacket(packetLineage(specFolder), roots);
+  } catch {
+    // Resolution is a convenience for the receiver, never a reason to refuse a hand-over.
+  }
+  return '';
+}
+
+/**
+ * Write the sender's goal packet into an open note, replacing nothing it already carries.
+ *
+ * @param {string} filePath - Handoff note path.
+ * @param {string} goalPacket - A packet goalPacketProblem accepted.
+ * @returns {boolean} True when the field was written, false when the note already held one.
+ */
+function recordGoalPacket(filePath, goalPacket) {
+  return withAppendLock(filePath, () => {
+    const text = readHandoffText(filePath);
+    if (nonEmptyString(parseHandoff(text).frontmatter.goal_packet)) return false;
+    writeHandoffUpdate(filePath, updateFrontmatter(text, { goal_packet: goalPacket }));
+    return true;
+  });
 }
 
 /**
@@ -1351,6 +1609,10 @@ module.exports = {
   SPEC_FOLDER_SKIP_SUFFIX,
   validSpecFolder,
   specFolderSuffix,
+  goalPacketProblem,
+  goalSwitchOn,
+  resolveGoalPacket,
+  recordGoalPacket,
   parentMapFromTable,
   stateDir,
   ensureStateDir,

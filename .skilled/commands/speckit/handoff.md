@@ -94,7 +94,7 @@ created_at: <ISO-8601 UTC>
 <non-empty>
 ```
 
-Frontmatter is flat `key: value` lines only: no nesting, no lists. `loop_id` is `$SKILLED_LOOP_ID`, empty when the session is not running under the wrapper. `runtime` is the runtime that wrote the note. Every section must be non-empty. Goal states what the work is for. Done records finished work. Remaining work lists the claimable tail. In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
+Frontmatter is flat `key: value` lines only: no nesting, no lists. `loop_id` is `$SKILLED_LOOP_ID`, empty when the session is not running under the wrapper. `runtime` is the runtime that wrote the note. `goal_packet` is an optional field that the template leaves out. `prepare` and `keep` add it when the session works under a packet goal: the repo-relative directory of the packet whose `goal.md` holds that goal. Leave it out unless you know the packet, and when you write it, the directory must hold a `goal.md` or the command exits 2. `SESSION_RELAUNCH_GOAL=0` turns the field off. Every section must be non-empty. Goal states what the work is for. Done records finished work. Remaining work lists the claimable tail. In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
 
 ### Step 4: Prepare
 
@@ -130,7 +130,7 @@ The CLI and wrapper place each path `!` in single quotes outside the seed's doub
 
 A session seeded with `[session-relaunch] claim and continue handoff <path>` is on the other side of this protocol. It:
 
-1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body. Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`. A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
+1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body. When the note carries a `goal_packet`, the output ends with a `Goal packet: <path>` line. Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`. A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
 2. Reads the note's Goal, Done, Remaining work and In-flight state sections.
 3. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
 4. Continues the Remaining work.

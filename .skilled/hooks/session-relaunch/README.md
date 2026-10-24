@@ -145,6 +145,20 @@ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <note-path> 
 node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <note-path>
 ~~~
 
+### Goal Packet
+
+A note can carry an optional `goal_packet` frontmatter field: the repo-relative directory of the packet whose `goal.md` holds the sending session's goal. `prepare` and `keep` fill an empty field from the sender's goal and leave it empty when the session had none. A value the sender already wrote is kept. Where the goal is found depends on the sender's runtime:
+
+| Sender | Where the goal is read |
+|---|---|
+| OpenCode, Pi, Devin, Cursor, Hermes | The session's active goal record under `.skilled/skills/.state/goal/`, which names the bound packet. A paused, completed or cleared goal counts as none. |
+| Claude | The newest goal entry in the session log. A goal that is met, failed or cleared counts as none. The packet is the spec folder, one of its parent packets or a packet the goal text names, and its `goal.md` must carry the goal's opening line. With no readable log, the nearest packet from the spec folder upward that holds a `goal.md`. |
+| Codex | The nearest packet from the spec folder upward that holds a `goal.md`. Codex keeps no goal record, so this shows a goal packet and not a goal the sender set. |
+
+The value is checked the way `spec_folder` is. It must be a repo-relative packet path whose directory and `goal.md` stay inside the repository once links are followed, in this checkout or in the working directory the note names. Otherwise `prepare` and `keep` exit 2 and name the reason. A resolver that finds nothing or cannot read its source leaves the field empty and never fails the hand-over. The note carries the path and never the goal text, because a copy would go stale while `goal.md` changes. A note written before this field claims and hands over unchanged.
+
+`claim` ends its output with a `Goal packet: <path>` line when the packet still holds a `goal.md`. `consume` reports the packet as `goal_packet`, and `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session only. The wrapper removes the variable from the first launch and from any hop whose note carries no packet. Binding the goal in the receiving runtime is the receiving adapter's work: this layer records the packet and passes it on. `SESSION_RELAUNCH_GOAL=0` turns all of it off. `prepare` and `keep` then neither write nor check the field, and `claim` and the wrapper pass nothing on.
+
 ### Outside The Loop
 
 A session started without `skilled-loop`, such as one opened before the shell shim was sourced, cannot relaunch. Auto-compaction then shortens its context to a summary, and the summary drops detail: merge decisions, open conflicts and exact next steps. At the threshold the nudge therefore says the session cannot relaunch and asks it to write the same note, run `/speckit:save` when a packet is bound, and then run `keep`:
@@ -217,6 +231,8 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 | `SESSION_RELAUNCH_MAX_HOPS` | `10` | Highest completed hop count allowed. The cap is enforced at three points: the wrapper declines a record at or above it, `prepare` at that count writes no record, prints its hop-limit line with the manual claim command and exits 3, and the killer unarms the record with reason `hop-cap` and signals nothing. Inside the loop, no adapter nudges at the cap. Zero is accepted and declines every hop. Unset, empty, negative, non-integer or non-numeric values use 10. |
 | `SESSION_RELAUNCH_MAX_AGE_MIN` | `10` | Maximum age in minutes for an armed relaunch record. Zero is accepted and makes any older record stale. Unset, empty, negative or non-numeric values use 10. |
 | `SESSION_RELAUNCH_NOTIFY_HOPS` | unset, off | Set to `1` for a macOS notice titled "Session handed over" each time the wrapper relaunches a session. It names the runtime, the session folder and the note's goal. Off by default, so a clone shows no notice until its owner sets it. |
+| `SESSION_RELAUNCH_GOAL` | unset, on | Set to `0`, `false`, `off` or `no` to stop the hand-over from carrying the sender's goal packet. Also read from `.skilled/hooks/hook-flags.env`. |
+| `SESSION_RELAUNCH_GOAL_PACKET` | wrapper-managed | Exported by `skilled-loop` to the relaunched session when the consumed note carries a usable goal packet. Never set it by hand. |
 | `SESSION_RELAUNCH_REPO_ROOT` | unset, the install root | Absolute path to the repository that holds the concern. Planned handoff note paths resolve under it, so a runtime started in a subdirectory still writes under the repo root. The generic `REPO_ROOT` is not read. |
 | `SKILLED_LOOP_HOPS` | `0` | Wrapper-managed completed-hop count. It must be a non-negative integer. |
 
@@ -236,6 +252,7 @@ A prepare exit code of 2 means the note or loop cannot be prepared. Common reaso
 - The handoffs directory is reached through a symlink below the repository root.
 - The note has invalid flat frontmatter, a non-open status, a different supplied session id, a missing required field or an empty required section.
 - The note's `spec_folder` is a packet path that does not exist as a directory in the repository. `keep` refuses it the same way.
+- The note's `goal_packet` is not a repo-relative packet path, resolves outside the repository or names a packet with no `goal.md`. `keep` refuses it the same way, and `SESSION_RELAUNCH_GOAL=0` skips the check.
 - No session id reached `prepare` or `claim`. Only Claude can fall back to `CLAUDE_CODE_SESSION_ID`. Other runtimes must pass `--session`.
 - `SYSTEM_SESSION_RELAUNCH_DISABLED` or the master hook switch disables the concern.
 - Inside `skilled-loop`, the runtime still has a live child shell from the list in section 3. The prepare command does not run this check outside the loop.

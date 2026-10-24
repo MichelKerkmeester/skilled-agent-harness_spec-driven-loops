@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher"
-    last_updated_at: "2026-10-24T19:40:00Z"
+    last_updated_at: "2026-10-25T00:30:00Z"
     last_updated_by: "claude-sonnet-5-5"
-    recent_action: "Authored the acceptance criteria for this planned phase"
-    next_safe_action: "Run the baseline relaunch gate in the three environments"
+    recent_action: "Built the goal packet field, the claim print, the wrapper export and the switch"
+    next_safe_action: "Phases 26 and 27 read the packet and bind the goal in each runtime"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-25-goal-binding-record-and-launcher"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,8 +38,8 @@ _memory:
 
 **Packet:** hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher
 **Level:** 2
-**Status:** Draft
-**Date:** 2026-10-24
+**Status:** Complete
+**Date:** 2026-10-25
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a sender with a resolvable goal, When prepare or keep runs, Then the note holds `goal_packet`, and with no goal it is empty | A CLI test per runtime value, failing against the code before the phase | Unmet | - |
-| AC-002 | REQ-002 | Given a `goal_packet` outside the repository or without `goal.md`, When prepare or keep runs, Then it exits non-zero with the reason | The adversarial table test and its output | Unmet | - |
-| AC-003 | REQ-003 | Given a note with the field, When claim and the wrapper run, Then claim prints the packet and the receiver gets `SESSION_RELAUNCH_GOAL_PACKET`, and `SESSION_RELAUNCH_GOAL=0` removes both | Wrapper runtime suite with the switch on and off | Unmet | - |
-| AC-004 | REQ-004 | Given a note with no `goal_packet`, When it is claimed, Then behavior is unchanged | The existing claim tests pass unchanged | Unmet | - |
-| AC-005 | REQ-005 | Given the changed docs, When read, Then they name the field and the switch | `rg -n "goal_packet|SESSION_RELAUNCH_GOAL"` across the four docs | Unmet | - |
+| AC-001 | REQ-001 | Given a sender with a resolvable goal, When prepare or keep runs, Then the note holds `goal_packet`, and with no goal it is empty | Observed: 14 CLI tests in `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2049` (7 sender runtimes, each for `prepare` and `keep`) write `goal_packet`, and every one fails against a `git archive HEAD` copy. The no-goal case at `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2067`, the unreadable-record and the empty-field cases leave the note byte-for-byte unchanged. 806 of 806 pass in the final gate | Met | - |
+| AC-002 | REQ-002 | Given a `goal_packet` outside the repository or without `goal.md`, When prepare or keep runs, Then it exits non-zero with the reason | Observed: the table at `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2167` runs outside-repository, absolute, space-joined, dot-dot, symlinked-packet and no-`goal.md` values through `prepare` and `keep`, each exits 2 with its reason on stderr, and both table tests fail against the old code. `.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1948` adds symlinked `goal.md`, a `goal.md` directory, newline-joined and empty values | Met | - |
+| AC-003 | REQ-003 | Given a note with the field, When claim and the wrapper run, Then claim prints the packet and the receiver gets `SESSION_RELAUNCH_GOAL_PACKET`, and `SESSION_RELAUNCH_GOAL=0` removes both | Observed: `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2225` (claim prints the packet), `:2239` (claim prints nothing for an older note, a switch that is off or a lost goal.md) and `:2265` (consume) cover the CLI. The wrapper tests at `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2304` and `:2318` show the relaunched stub receives `SESSION_RELAUNCH_GOAL_PACKET` and nothing is exported with `SESSION_RELAUNCH_GOAL=0`, with no packet in the note, or after the packet lost `goal.md`. The export and the inherited-value cases fail against the old code | Met | - |
+| AC-004 | REQ-004 | Given a note with no `goal_packet`, When it is claimed, Then behavior is unchanged | Observed: no existing test was edited except the stub's recorded environment and the sandbox scrub lists. `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1314` (claim), `:1668` (consume `deepEqual`) and every wrapper hop test pass in 806 of 806 | Met | - |
+| AC-005 | REQ-005 | Given the changed docs, When read, Then they name the field and the switch | Observed: `rg -n "goal_packet\|SESSION_RELAUNCH_GOAL"` hits `.skilled/hooks/session-relaunch/README.md:150`, `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:113`, `.env.example:587` and `.skilled/commands/speckit/handoff.md:97`. `validate_document.py` reports 0 issues on the README and the command | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is Unmet because the phase is planned and nothing in it has been built or run. The packet closes when the gate passes in every environment and each new test fails against the earlier code.
+Every row is Met with observed evidence. The relaunch gate went from 752 to 806 of 806 in the loop-set, loop-unset and foreign-loop environments, and 37 of the 54 new tests fail against the earlier code. The other 17 pin behavior that must not change, so they pass on the old code by design.
 <!-- /ANCHOR:closure -->

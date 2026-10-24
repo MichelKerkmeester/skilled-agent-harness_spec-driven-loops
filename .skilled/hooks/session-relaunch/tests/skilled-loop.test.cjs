@@ -162,7 +162,9 @@ const record = {
     SKILLED_LOOP_PROVIDER: process.env.SKILLED_LOOP_PROVIDER || "",
     SKILLED_LOOP_MANUAL_TEMPLATE: process.env.SKILLED_LOOP_MANUAL_TEMPLATE || "",
     hasModel: Object.hasOwn(process.env, "SKILLED_LOOP_MODEL"),
-    hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER")
+    hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER"),
+    SESSION_RELAUNCH_GOAL_PACKET: process.env.SESSION_RELAUNCH_GOAL_PACKET || "",
+    hasGoalPacket: Object.hasOwn(process.env, "SESSION_RELAUNCH_GOAL_PACKET")
   }
 };
 fs.appendFileSync(recordPath, JSON.stringify(record) + "\\n");
@@ -237,6 +239,8 @@ function createSandbox(t) {
     'SKILLED_LOOP_PROVIDER',
     'SESSION_RELAUNCH_MAX_HOPS',
     'SESSION_RELAUNCH_MAX_AGE_MIN',
+    'SESSION_RELAUNCH_GOAL',
+    'SESSION_RELAUNCH_GOAL_PACKET',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, binDir, recordedCwd, env };
@@ -2279,4 +2283,85 @@ test('wrapper declines a record without a cwd and keeps the runtime exit code', 
   assert.equal(readRecords(recordPath).length, 1);
   assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
   assert.match(readLog(sandbox), /reason=incomplete-record/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL PACKET
+// ─────────────────────────────────────────────────────────────────────────────
+
+const GOAL_PACKET = 'specs/hooks/023-session-relaunch-loop';
+
+function writeGoalNote(sandbox, handoffPath, { packetHoldsGoal = true } = {}) {
+  const packetPath = path.join(sandbox.repoRoot, GOAL_PACKET);
+  fs.mkdirSync(packetPath, { recursive: true });
+  if (packetHoldsGoal) fs.writeFileSync(path.join(packetPath, 'goal.md'), '# Goal: Example\n');
+  fs.writeFileSync(
+    handoffPath,
+    `---\nstatus: open\nspec_folder: ${GOAL_PACKET}\ngoal_packet: ${GOAL_PACKET}\n---\n`,
+  );
+}
+
+test('wrapper exports the goal packet to the relaunched session only', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+});
+
+test('wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1', SESSION_RELAUNCH_GOAL: '0',
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+  assert.deepEqual(records[1].args, [
+    `${SEED} ${handoffPath} | Spec folder: ${GOAL_PACKET}${SPEC_FOLDER_SUFFIX}`,
+  ]);
+});
+
+test('wrapper exports no goal packet for a note without one or a packet that lost goal.md', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeSpecFolderNote(handoffPath, GOAL_PACKET);
+
+  assert.equal(runWrapper(sandbox, ['claude']).status, 0);
+  let records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+
+  fs.rmSync(recordPath);
+  writeGoalNote(sandbox, handoffPath, { packetHoldsGoal: false });
+  assert.equal(runWrapper(sandbox, ['claude']).status, 0);
+  records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+});
+
+test('wrapper drops a goal packet inherited from an outer session on every launch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1', SESSION_RELAUNCH_GOAL_PACKET: 'specs/hooks/999-outer-session',
+  });
+  writeSpecFolderNote(handoffPath, GOAL_PACKET);
+
+  assert.equal(runWrapper(sandbox, ['claude']).status, 0);
+
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(records[1].env.hasGoalPacket, false);
 });
