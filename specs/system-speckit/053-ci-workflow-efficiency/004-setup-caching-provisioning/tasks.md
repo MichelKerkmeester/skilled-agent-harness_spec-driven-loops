@@ -30,6 +30,8 @@ contextType: "general"
 Every task below names one file, quotes the anchor text it edits, gives that anchor's line number, puts every command in a fenced block, states the expected result, names the acceptance criterion it satisfies, gives a rollback, and gives one concrete stop condition.
 
 Line numbers are the values on disk when that task runs, after the tasks before it in the same file. Within a workflow file the install block is replaced before the filter lists above it are extended, so each quoted number stays valid. `hooks-node-tests.yml` is edited before T038 deletes it.
+**Review amendment (2026-10-24):** the action derives the Node major itself and has no `node-major` input, so every call block below that shows a `node-major:` line drops it, and an action call is then `uses:` alone or `uses:` with a `cache:` line. Its cache lists name 21 paths (the 18 planned plus the shared dist, the sk-vision bundle and the Node version marker) and its key also hashes the action file, the bun version and 14 package manifests. Task text that quotes the older shape is superseded by the `Drift:` notes under T014 to T027.
+
 <!-- /ANCHOR:notation -->
 
 ---
@@ -498,7 +500,7 @@ Stop and escalate if: the validator exits non-zero twice, the id search prints a
 
 ---
 
-### T012 Create the cache probe workflow on a throwaway branch (AC-003)
+### T012 [x] Create the cache probe workflow on a throwaway branch (AC-003)
 
 File: `.github/workflows/cache-probe.yml` (new file, on branch `probe/provision-cache` only; never merged). Anchor: none.
 
@@ -618,9 +620,13 @@ Rollback: `git switch -` and `git branch -D probe/provision-cache`.
 
 Stop and escalate if: the branch cannot be created, or the YAML parse fails twice.
 
+Done 2026-10-24: created `branches/031-probe-provision-cache` from `origin/main` (`78b171b005`) with `worktree-naming.sh create-branch probe-provision-cache origin/main`, and wrote `cache-probe.yml` in the separate probe worktree only. YAML parse printed `ok` and `actionlint` exited `0`.
+
+Drift: the throwaway branch name `branches/031-probe-provision-cache` replaces `probe/provision-cache` in the push filter and everywhere else, per the operator's recorded probe-branch approval, and the branch was made without `git switch -c`. `<cache-sha>` resolved to `0057852bfaa89a56745cba8c7296529d2fc39830`, written as `# v4.3.0` because the `v4` tag and `v4.3.0` point at the same commit.
+
 ---
 
-### T013 Run the probe twice and record the go/no-go (AC-003)
+### T013 [x] Run the probe twice and record the go/no-go (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe/summary.md` (new file). Anchor: none.
 
@@ -671,9 +677,13 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/004-setup-cachi
 
 Stop and escalate if: either run is not green, or the remote branch holds no `cache-probe.yml`. Write `verdict=no-go` and stop T014 to T066 when the largest `provision-` entry is 2 GB or more, or their total is 5 GB or more.
 
+Done 2026-10-24: both runs green. Cold run 40104579813 on `474eaf6357` and warm run 40104779129 on `0c19bb2514`, both with Message Contract green. The one `provision-` entry is 1,278,641,883 bytes (1.28 GB), so the largest entry and the total are both under the 2 GB and 5 GB ceilings. Restore 24 s on the hit (6 s on the miss), `provision_worktree` 35 s cold (`11 installed, 5 built`) against 1 s warm (`0 installed, 0 built, 14 already present`), and `grep -cE` on `scratch/cache-probe/summary.md` printed `5`. Verdict `go`. The saving per job is thinner than planned: about 29 s warm (restore 24, bun 4, walk 1) against about 40 s uncached (bun 5, walk 35), roughly 10 s. Raw numbers sit in `scratch/cache-probe/observations.md` and `scratch/cache-probe/caches-raw.json`. Cleanup done: the cache entry deleted, the remote and local probe branches deleted, the probe worktree removed, no pull request opened.
+
+Drift: the commit messages sit in the session scratchpad rather than `/tmp`. The local pre-commit hook blocked the first probe commit in the new worktree with `BLOCKED [gate:mirror-parity]` and `Cannot find module 'js-yaml'`, because the worktree held no dependency trees. No bypass was used. `provision_worktree` was run in the probe worktree and the unchanged hook then passed. The pre-push hook refused to create and later to delete the remote probe branch until the push named it with `SPECKIT_ALLOW_REMOTE_PUSH=branches/031-probe-provision-cache`, the hook's own one-off form, under the recorded operator approval. `gh run list --workflow cache-probe.yml` returns HTTP 404 for a workflow that exists on no default branch, so the runs were read with `--branch`. The warm run reads `provision_seconds=1` because the restored build stamps make every path count as present.
+
 ---
 
-### T014 Create the composite setup action (AC-004)
+### T014 [x] Create the composite setup action (AC-004)
 
 File: `.github/actions/setup/action.yml` (new file). Anchor: none.
 
@@ -787,9 +797,17 @@ Rollback: `rm -r .github/actions/setup`.
 
 Stop and escalate if: the gate reports a failure naming the action, or `restore-keys` is present, or `files` is not 46.
 
+Done 2026-10-24: T013's verdict was `go`, so `.github/actions/setup/action.yml` was written in the working tree and left uncommitted for T014A. Checks printed `ok`, `0`, `1`, `1`, `1`, `2`. The gate printed `files=46 inputs_resolved=239 dynamic_inputs=37 twin_pairs=340 failures=0` and `RESULT: PASSED`, the fixture suite printed `check-gate-inputs: 54 passed, 0 failed`, and the YAML parse of every workflow exited `0`.
+
+Drift: `<cache-sha>` is `0057852bfaa89a56745cba8c7296529d2fc39830` (`# v4.3.0`) and `<bun-sha>` is `0c5077e51419868618aeaa5fe8019c62421857d6` (`# v2.2.0`), the commits the `v4` and `v2` tags resolve to. The gate counters moved from `inputs_resolved=235 dynamic_inputs=9` to `239` and `37` after the 18 cache path lines and the key expression entered the scan (not traced further, and the planned figures never named these two counters for the action), and `failures` stays `0`. `actionlint` is a workflow linter and rejects an `action.yml` for lacking `jobs` and `on`, so it is not a valid check for this file.
+
+Review amendment 2026-10-24: the action was rewritten after review. Counts now read `ok`, `0`, `1`, `1`, `1` and `0` for `restore-keys`, `hashFiles`, `provision_worktree`, `cache-hit` and `node-major`, and the gate prints `files=46 inputs_resolved=251 dynamic_inputs=39 twin_pairs=340 failures=0` with `RESULT: PASSED`.
+
+Drift: the `node-major` input is gone, so the planned count `2` is now `0`, and the first step `node` prints the major that the key reads through `steps.node.outputs.major`. The cache lists name 21 paths, the restore and save blocks are byte-identical, the key also hashes `.github/actions/setup/action.yml`, `inputs.bun-version` and 14 explicit manifests, and the description claims only what the walk checks. The gate counters rose again because the longer lists and key entered the scan, and `failures` stays `0`.
+
 ---
 
-### T014A Commit the composite action (AC-004, AC-017)
+### T014A [x] Commit the composite action (AC-004, AC-017)
 
 File: `.github/actions/setup/action.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -817,9 +835,11 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-setup-action.txt
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside `.github/actions/setup/action.yml`.
 
+Done 2026-10-24: committed by the coordinator as 3073f372c9 `ci(actions): add the cached setup action`, local only, not pushed.
+
 ---
 
-### T015 Replace the hooks provision step with the action (AC-005)
+### T015 [x] Replace the hooks provision step with the action (AC-005)
 
 File: `.github/workflows/hooks-node-tests.yml:57-64`, anchor:
 
@@ -856,9 +876,15 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the eight-line block in `hooks-node-tests.yml` is now the four-line action call. `grep -c 'uses: ./.github/actions/setup'` printed `1` and `grep -c 'bun@1.3.9'` printed `0`.
+
+Drift: the block sat at lines 61-68 rather than 57-64 and was located by its content. The bun comment line lived inside the replaced `run:` block, so only the two comment lines above the step stayed.
+
+Review amendment 2026-10-24: the call is the single line `uses: ./.github/actions/setup` with no `with:` block, because the `node-major` input is removed.
+
 ---
 
-### T016 Put `.github/actions/**` in both hook-test filters (AC-005)
+### T016 [x] Put `.github/actions/**` in both hook-test filters (AC-005)
 
 File: `.github/workflows/hooks-node-tests.yml:37` and `:24`, anchors:
 
@@ -881,9 +907,13 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice in the file, or the gate fails.
 
+Done 2026-10-24: `'.github/actions/**'` sits before the workflow entry in both lists. The count printed `2` and the gate printed `RESULT: PASSED`.
+
+Drift: the entries were at `:37` and `:24`, found by content. The grep patterns in this task and in T020, T026 and T027 that contain `\${{` match nothing under macOS grep, so the counts were read with `grep -cF` against the literal text.
+
 ---
 
-### T017 Replace the plugin provision step with the action (AC-005)
+### T017 [x] Replace the plugin provision step with the action (AC-005)
 
 File: `.github/workflows/opencode-plugin-tests.yml:63-73`, anchor:
 
@@ -923,9 +953,15 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the plugin provision step is the four-line action call. The counts printed `1` and `0`.
+
+Drift: the block sat at lines 70-77 rather than 63-73 and was located by its content, with the three comment lines above it kept.
+
+Review amendment 2026-10-24: the call is `uses:` alone, with no `with:` block, because the `node-major` input is removed.
+
 ---
 
-### T018 Put `.github/actions/**` in both plugin-test filters (AC-005)
+### T018 [x] Put `.github/actions/**` in both plugin-test filters (AC-005)
 
 File: `.github/workflows/opencode-plugin-tests.yml:45` and `:28`, anchors:
 
@@ -948,9 +984,13 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice in the file, or the gate fails.
 
+Done 2026-10-24: the count printed `2` and the gate printed `RESULT: PASSED`.
+
+Drift: the entries were at `:45` and `:28`, located by content.
+
 ---
 
-### T019 Add the `cold` dispatch input to the plugin workflow (AC-006)
+### T019 [x] Add the `cold` dispatch input to the plugin workflow (AC-006)
 
 File: `.github/workflows/opencode-plugin-tests.yml:47`, anchor:
 
@@ -986,9 +1026,11 @@ Rollback: delete the inserted block.
 
 Stop and escalate if: the anchor is not on the file, or the YAML parse fails.
 
+Done 2026-10-24: the `workflow_dispatch` block with the `cold` choice input sits after the last push filter entry and before `permissions:`. The counts printed `1` and `1` and the YAML parse printed `ok`.
+
 ---
 
-### T020 Pass the `cold` input to the plugin action call (AC-006)
+### T020 [x] Pass the `cold` input to the plugin action call (AC-006)
 
 File: `.github/workflows/opencode-plugin-tests.yml:77-78`, anchor:
 
@@ -1015,9 +1057,13 @@ Rollback: delete the `cache:` line.
 
 Stop and escalate if: the anchor appears more than once, or the count is not 1.
 
+Done 2026-10-24: `cache: ${{ inputs.cold != 'true' }}` follows `node-major: '22'` in the plugin action call, at line 83. `grep -cF` printed `1`.
+
+Review amendment 2026-10-24: with `node-major` removed the `with:` block holds only the `cache:` line, so the anchor `node-major: '22'` no longer exists and the line follows `with:`. `grep -cF` still prints `1`.
+
 ---
 
-### T021 Replace the dual-version battery provision step with the action (AC-005)
+### T021 [x] Replace the dual-version battery provision step with the action (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:98-105`, anchor:
 
@@ -1054,9 +1100,15 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor does not appear exactly twice before the edit, or the action-call count is not 1.
 
+Done 2026-10-24: the battery step is the four-line action call. The counts printed `1` and `1`. Before the edit the step name appeared twice.
+
+Drift: the block sat at lines 102-109 rather than 98-105.
+
+Review amendment 2026-10-24: the call is `uses:` alone, with no `with:` block, until T026 adds the `cache:` line.
+
 ---
 
-### T022 Replace the dual-version `both` provision step with the action (AC-005)
+### T022 [x] Replace the dual-version `both` provision step with the action (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:177-184`, anchor: the same eight-line block T021 quoted, now at this position. Locate the block by its first line when the number has moved.
 
@@ -1075,9 +1127,11 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the `both` step is the four-line action call. The counts printed `2` and `0`.
+
 ---
 
-### T023 Delete the redundant bun PATH export in the sk-vision step (AC-005)
+### T023 [x] Delete the redundant bun PATH export in the sk-vision step (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:124`, anchor:
 
@@ -1099,9 +1153,13 @@ Rollback: restore the deleted line at the same position.
 
 Stop and escalate if: the anchor does not appear exactly once, or the count is not 0.
 
+Done 2026-10-24: the bun `PATH` export in the sk-vision step is deleted, and `grep -c 'RUNNER_TEMP/bun'` printed `0`.
+
+Drift: the line was at `:132`, found as the only remaining match.
+
 ---
 
-### T024 Put `.github/actions/**` in both dual-version filters (AC-005)
+### T024 [x] Put `.github/actions/**` in both dual-version filters (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:65` and `:37`, anchors:
 
@@ -1124,9 +1182,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice, or the gate fails.
 
+Done 2026-10-24: the count printed `2` and the gate printed `RESULT: PASSED`.
+
 ---
 
-### T025 Add the `cold` dispatch input to the dual-version workflow (AC-006)
+### T025 [x] Add the `cold` dispatch input to the dual-version workflow (AC-006)
 
 File: `.github/workflows/opencode-dual-version.yml:67`, anchor:
 
@@ -1151,9 +1211,11 @@ Rollback: delete the inserted block.
 
 Stop and escalate if: the anchor is not on the file, or the YAML parse fails.
 
+Done 2026-10-24: the dispatch block is in place, `grep -c '^  workflow_dispatch:'` printed `1` and the YAML parse printed `ok`.
+
 ---
 
-### T026 Pass the `cold` input to the battery action call (AC-006)
+### T026 [x] Pass the `cold` input to the battery action call (AC-006)
 
 File: `.github/workflows/opencode-dual-version.yml:110`, anchor: the first of the file's two `          node-major: '22'` lines, inside the `battery` job.
 
@@ -1171,9 +1233,13 @@ Rollback: delete the `cache:` line.
 
 Stop and escalate if: the file does not hold exactly two `node-major: '22'` lines, or the count is not 1.
 
+Done 2026-10-24: the battery action call carries the `cache:` line, at line 115. The file held exactly two `node-major: '22'` lines before the edit.
+
+Review amendment 2026-10-24: the anchor `node-major: '22'` no longer exists, so the `cache:` line follows the battery job's `with:`. The file holds two such `with:` blocks after T027 and the count is `2` for the file.
+
 ---
 
-### T027 Pass the `cold` input to the `both` action call (AC-006)
+### T027 [x] Pass the `cold` input to the `both` action call (AC-006)
 
 File: `.github/workflows/opencode-dual-version.yml:190`, anchor: the second `          node-major: '22'` line, inside the `both` job. Locate the second line by the job when the number has moved.
 
@@ -1190,6 +1256,12 @@ Expected: `2`.
 Rollback: delete the second `cache:` line.
 
 Stop and escalate if: the count is not 2.
+
+Done 2026-10-24: the `both` action call carries the `cache:` line, at line 194. `grep -cF` printed `2` for the file.
+
+Drift for T027A: that task lists `spec-kit-check.yml` and its message says the spec-kit job adopts the action, but this phase adopts it there at T045, so the staged diff holds only the three workflows edited here and the message should say so.
+
+Review amendment 2026-10-24: the `cache:` line follows the `both` job's `with:` line. The file count is `2`, and the three workflows hold no `node-major` line.
 
 ---
 
