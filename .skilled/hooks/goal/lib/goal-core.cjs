@@ -46,6 +46,9 @@ const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
 const RELAUNCH_GOAL_PACKET_ENV = 'SESSION_RELAUNCH_GOAL_PACKET';
 const RELAUNCH_GOAL_SWITCH_ENV = 'SESSION_RELAUNCH_GOAL';
 const RELAUNCH_GOAL_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
+// A dispatched child session inherits the receiver's environment, packet variable included,
+// and is not the receiver. This marker is how every repo hook tells such a child apart.
+const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
 const STATE_SUBDIR = '.skilled/skills/.state/goal';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
@@ -1178,6 +1181,17 @@ function relaunchGoalEnabled(env = process.env) {
   return !RELAUNCH_GOAL_OFF_VALUES.includes(String(raw ?? '').trim().toLowerCase());
 }
 
+/**
+ * Whether the environment marks a dispatched child session. Such a session inherits the
+ * hand-over variables from the process that spawned it, but only the receiver binds.
+ *
+ * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default.
+ * @returns {boolean} True when AI_SESSION_CHILD is 1.
+ */
+function relaunchSessionIsChild(env = process.env) {
+  return String(env[CHILD_SESSION_ENV] ?? '').trim() === '1';
+}
+
 // A packet from the environment is a repo-relative directory. The slice reader would
 // also accept an absolute path inside the workspace, but a hand-over never carries one,
 // so anything else is refused before it reaches a bind.
@@ -1233,15 +1247,17 @@ function bindGoalIfUnbound({ packetPath = '', runtimeLabel = null } = {}, rawOpt
 /**
  * Bind the packet a relaunch hand-over named, read from `SESSION_RELAUNCH_GOAL_PACKET`, to a
  * session that has no goal of its own. Reads nothing but the environment until a packet is
- * named, so a session that was never handed one pays no file access.
+ * named, so a session that was never handed one pays no file access. A session running with
+ * `AI_SESSION_CHILD=1` never binds: it is a dispatched child, not the receiver.
  *
  * @param {Object} [rawOptions] - Scope options.
  * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default.
- * @returns {{bound: boolean, reason: string}} The outcome, with `no-packet` or `switched-off` for the quiet cases.
+ * @returns {{bound: boolean, reason: string}} The outcome, with `no-packet`, `child-session` or `switched-off` for the quiet cases.
  */
 function bindRelaunchGoal(rawOptions = {}, env = process.env) {
   const packetPath = typeof env[RELAUNCH_GOAL_PACKET_ENV] === 'string' ? env[RELAUNCH_GOAL_PACKET_ENV].trim() : '';
   if (!packetPath) return { bound: false, reason: 'no-packet' };
+  if (relaunchSessionIsChild(env)) return { bound: false, reason: 'child-session' };
   if (!relaunchGoalEnabled(env)) return { bound: false, reason: 'switched-off' };
   return bindGoalIfUnbound({ packetPath }, rawOptions);
 }
@@ -1733,6 +1749,7 @@ module.exports = {
   bindGoalIfUnbound,
   bindRelaunchGoal,
   relaunchGoalEnabled,
+  relaunchSessionIsChild,
   relaunchPacketShapeOk,
   RELAUNCH_GOAL_PACKET_ENV,
   RELAUNCH_GOAL_SWITCH_ENV,

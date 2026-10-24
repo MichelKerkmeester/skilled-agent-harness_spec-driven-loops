@@ -92,7 +92,10 @@ The bind happens only when all of these hold, and does nothing otherwise:
 - The variable names a repo-relative directory that holds a `goal.md`, inside the repository once links are followed. A missing, absolute, `..`, empty or linked-out value binds nothing.
 - `SESSION_RELAUNCH_GOAL` is not `0`, `false`, `off` or `no`, in the environment or in `hook-flags.env`. The receiver binds without asking, and this switch is the off setting.
 - The session has no goal of its own: no live record of any status, no archived one (a goal that was cleared or completed leaves an archive entry, and the session is not handed a second goal after it), and no record that cannot be read. The bind never overwrites, and a second turn changes nothing.
-- In OpenCode, the session is the first top-level session of the process. A child session or a later session in the same process is not the receiver.
+- The session is not a dispatched child. A process that runs with `AI_SESSION_CHILD=1` never binds, on any runtime, because it inherited the variable from the receiver that spawned it. The marker is the only signal the core reads, so a child launched without it still binds (the paragraph below).
+- In OpenCode, the session is also the first top-level session of the process. An in-process child session (one with a parent session) or a later session in the same process is not the receiver.
+
+The bind covers the one session that was relaunched. Pi, Devin and Cursor key the record by session id, so they cannot tell a spawned child from a receiver except through that marker. The dispatch recipes are meant to set `AI_SESSION_CHILD=1` for every child they start; a child started without it inherits the packet and binds its own record to it.
 
 A failed bind never blocks a session: Devin and Cursor write one stderr line for an unusable packet or an unexpected error, OpenCode writes a debug line under `OPENCODE_GOAL_DEBUG`, and Pi stays silent.
 
@@ -150,6 +153,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `OPENCODE_GOAL_STATE_DIR` | Override the state root (tests and isolated probes use this to avoid touching the real `.state/goal/` tree). |
 | `SESSION_RELAUNCH_GOAL_PACKET` | Set by the relaunch launcher for a receiver session. A repo-relative packet directory the receiver binds when it has no goal of its own. Not an operator setting. |
 | `SESSION_RELAUNCH_GOAL=0` | Turns the hand-over bind off, in the environment or in `hook-flags.env`. On by default. |
+| `AI_SESSION_CHILD=1` | Read only, never set by this concern. Marks a dispatched child session, which never binds the hand-over packet. |
 
 Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Pi discovery can additionally be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`.
 

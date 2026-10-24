@@ -52,6 +52,7 @@
       ".skilled/hooks/goal/cursor/goal-cursor.test.mjs",
       ".opencode/plugins/opencode-goal.js",
       ".opencode/plugins/tests/opencode-goal-handover.test.cjs",
+      ".skilled/skills/.state/goal/README.md",
       ".skilled/hooks/goal/goal-plugin.md",
       ".skilled/hooks/goal/README.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md"
@@ -142,15 +143,15 @@
         "source": "derived"
       },
       {
-        "name": "goal-plugin.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "path": ".skilled/skills/.state/goal/README.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "goal-plugin.md",
         "kind": "doc",
-        "path": ".skilled/hooks/goal/README.md",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
         "source": "derived"
       },
       {
@@ -204,7 +205,7 @@
     ],
     "causal_summary": "A goal record is keyed by the session id, and a hop creates a new session, so the Pi, Devin, Cursor, Hermes and OpenCode receivers start with no record",
     "created_at": "2026-10-24T19:03:13Z",
-    "last_save_at": "2026-10-24T22:36:26.350Z",
+    "last_save_at": "2026-10-24T22:56:29.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48b77bc2608c8908fc6fe1894578ce1baad2c5abe68b5439e0ce99e09b86d727",
+    "source_fingerprint": "sha256:8b8b253ed42c5216e10abbd051175622af869071e03275835ee4f6e2147c13fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23e5603dcf4beaae7b7b9796b2937cf7d593526241b15733ea2e5a1bd479e1a1",
       "plan.md": "ed6d630a7724367d0c6047d6e634976d2ab8f1d6216615c1eada3be8db2a5cda",
-      "tasks.md": "eaf3e90451fd3ff329a0ae7affcd0afe78d67ea03ded784cf2001fc5a2eac474",
-      "implementation-summary.md": "46e4e95a67f266ec393bddb7062c6ff10997a964bbed37821242e28fe17fcd5a"
+      "tasks.md": "d746031df429135a6fe1d6b1f3c6a7f934378d6790b2982a41322423935194ba",
+      "implementation-summary.md": "4b339186f1c357587cce0d5dae9af7e0b7b8624a2056a7a4aa2ee4d16f9a9325"
     },
     "last_active_at": null
   }

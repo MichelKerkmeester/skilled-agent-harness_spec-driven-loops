@@ -60,6 +60,17 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Review Remediation
+
+- [x] T012 A dispatched child (`AI_SESSION_CHILD=1`) never binds the hand-over packet on any runtime path, and the docs say which sessions bind (`goal-core.cjs`, `opencode-goal.js`, `goal-plugin.md`, `README.md`) `relaunchSessionIsChild` and the `child-session` refusal in `bindRelaunchGoal`, the same check in the OpenCode helper; 7 tests added (core 2, Pi, Cursor, Devin, OpenCode child test and the lock race test), all 7 fail against the pre-fix source.
+- [x] T013 OpenCode checks and binds under one mutation turn and can never replace a record (`opencode-goal.js`) `bindRelaunchGoal` runs in one `mutateGoal` turn and builds a fresh record through the shared `packetBoundRecord`; the lock-race test holds the session lock, lands a goal, releases, and finds the goal untouched.
+- [x] T014 Correct the continuation checks in the state folder README (`.skilled/skills/.state/goal/README.md`) The line now lists the checks `maybeContinueGoal` makes and says no turn cap, wall-clock cap or token budget stops continuation.
+- [x] T015 Rerun the whole gate in both environments and update the playbook suite count Hooks gate 178 to 183, plugins 549 to 551, exit 0 each with `AI_SESSION_CHILD` unset and set to 1; playbook count 164/164 to 166/166.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -107,7 +118,7 @@ contextType: "general"
 ## Code Quality
 
 - [x] CHK-010 [P0] Changed code files pass `node --check` and `bash -n` where they apply `node --check` clean on the core, the two hook adapters, the plugin and the new test; Pi's `.ts` loads through the Pi suite.
-- [x] CHK-011 [P0] No console errors or warnings in the suite output No `not ok` line in the final TAP output of either gate (178 and 549).
+- [x] CHK-011 [P0] No console errors or warnings in the suite output No `not ok` line in the final TAP output of either gate (183 and 551 after the remediation, in both environments).
 - [x] CHK-012 [P1] Error handling implemented, and a failed step never blocks a session start Every bind path returns a reason and never throws (`bindGoalIfUnbound` catches, the OpenCode helper catches, Devin and Cursor wrap it in their existing try), and a test covers an unreadable record and an invalid packet.
 - [x] CHK-013 [P1] Code follows project patterns and carries no artifact ids in comments `check-comment-hygiene` over the ten changed code files: exit 0, no output.
 <!-- /ANCHOR:code-quality -->
@@ -118,8 +129,8 @@ contextType: "general"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] All acceptance criteria met (see acceptance-criteria.md) See acceptance-criteria.md.
-- [x] CHK-021 [P0] The OpenCode goal suites, the shared hook suites and the Hermes tests pass in the final state, delta reported Hooks gate 178 of 178 and plugins 549 of 549, exit 0 each; Hermes 61 of 62 unchanged from baseline.
-- [x] CHK-022 [P1] Edge cases tested Variable empty or unset, switch off values, record active, paused, cleared and completed, unparseable record, second turn, child session, second session.
+- [x] CHK-021 [P0] The OpenCode goal suites, the shared hook suites and the Hermes tests pass in the final state, delta reported Hooks gate 183 of 183 and plugins 551 of 551 after the review remediation, exit 0 each, with `AI_SESSION_CHILD` unset and set to 1; Hermes 61 of 62 unchanged from baseline and not rerun in the remediation.
+- [x] CHK-022 [P1] Edge cases tested Variable empty or unset, switch off values, record active, paused, cleared and completed, unparseable record, second turn, in-process child session, dispatched child (`AI_SESSION_CHILD=1`, with the marker `0` binding), a goal landing while the bind waits for the lock, second session.
 - [x] CHK-023 [P1] Error scenarios validated Outside the repository, absolute, `..` joined, backslash, NUL byte, doubled slash, symlinked packet, symlinked goal.md, missing goal.md and an empty directory each bind nothing.
 <!-- /ANCHOR:testing -->
 
@@ -128,12 +139,12 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence` or `test-isolation`. Class: cross-consumer, since the core is shared by Pi, Devin, Cursor and the CLI and the plugin reads its switch. No review finding is being fixed.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence` or `test-isolation`. Class: cross-consumer, since the core is shared by Pi, Devin, Cursor and the CLI and the plugin reads its switch. The review remediation fixed three findings: dispatched children bound the parent's packet (class-of-bug across Pi, Devin, Cursor and OpenCode, fixed once in the shared check), OpenCode's check and bind were two steps (instance-only), and a stale continuation-checks line in the state README (instance-only).
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. `rg -n "bindGoal" .skilled/hooks/goal .opencode/plugins` lists the producers: the core `bindGoal`, the OpenCode `bindGoal` and the CLI bind action; the new function is the only one that reads the hand-over variable.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for the shared core: Pi, Devin, Cursor, Hermes and the CLI each named with `file:line`. Consumers of the core: Pi `goal-context.ts` (`bindHandOverGoal`), Devin `goal-inject.mjs` and Cursor `goal-inject.mjs` (`bindHandOverGoal`), the OpenCode plugin (switch and packet check imports), the CLI `goal.cjs` (unchanged, its suite passes). Hermes reaches the core through the CLI `bind`, unchanged.
 - [x] CHK-FIX-004 [P0] The packet path is re-validated with outside-root, joined-path, symlink-out and no-`goal.md` cases. The core, Pi, Devin, Cursor and OpenCode suites each carry refusal cases; the core table has 11 packet shapes including symlink-out, a goal.md linked out and no goal.md.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Axes: runtime (Pi, Devin, Cursor, OpenCode, Hermes), record (none, active, paused, cleared, completed, unreadable), variable (set, empty, unset), switch (on, off), packet (valid, 11 invalid shapes). 28 new tests; Hermes is covered by its existing bind tests.
-- [x] CHK-FIX-006 [P1] Hostile env and global-state variant executed when tests or code read process-wide state. The hook tests scrub `SESSION_RELAUNCH_GOAL_PACKET` and `SESSION_RELAUNCH_GOAL` from their environment, and both gates were rerun with the packet variable set to a real packet: 178 of 178 and 549 of 549.
+- [x] CHK-FIX-006 [P1] Hostile env and global-state variant executed when tests or code read process-wide state. The hook tests scrub `SESSION_RELAUNCH_GOAL_PACKET`, `SESSION_RELAUNCH_GOAL` and `AI_SESSION_CHILD` from their environment, and both gates were rerun with the packet variable set to a real packet (178 of 178 and 549 of 549 at the time) and, after the remediation, with `AI_SESSION_CHILD=1` in the calling shell and unset: 183 of 183 and 551 of 551 each.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or an explicit diff range, not a moving branch-relative range. Evidence is the working tree on top of 6b745c4f12; nothing is committed.
 <!-- /ANCHOR:fix-completeness -->
 

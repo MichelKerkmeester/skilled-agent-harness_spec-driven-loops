@@ -19,7 +19,7 @@ const { restoreEnv } = require('./helpers/continuation-log.cjs');
 const testDir = dirname(__filename);
 const pluginUrl = pathToFileURL(join(testDir, '..', 'opencode-goal.js')).href;
 const PACKET = 'specs/t/001-fixture';
-const HAND_OVER_ENV = ['SESSION_RELAUNCH_GOAL_PACKET', 'SESSION_RELAUNCH_GOAL'];
+const HAND_OVER_ENV = ['SESSION_RELAUNCH_GOAL_PACKET', 'SESSION_RELAUNCH_GOAL', 'AI_SESSION_CHILD'];
 
 async function loadHelpers(pluginModule) {
   const coreModule = await import(pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href);
@@ -170,6 +170,38 @@ test('only the first top-level session of the process is the receiver', async ()
   await plugin.event({ event: sessionCreated('second-top-level') });
   assert.equal((await helpers.readGoal('first-top-level', { stateDir })).packetPath, PACKET);
   assert.equal(await helpers.readGoal('second-top-level', { stateDir }), null);
+}));
+
+test('a dispatched child process binds nothing, even as the first top-level session it sees', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = PACKET;
+  process.env.AI_SESSION_CHILD = '1';
+  const plugin = await newPlugin();
+  await plugin.event({ event: sessionCreated('dispatched-child') });
+  assert.equal(await helpers.readGoal('dispatched-child', { stateDir }), null);
+  assert.deepEqual((await readdir(stateDir)).filter((name) => name.endsWith('.json')), []);
+}));
+
+test('a goal set while the bind waits for the session lock is kept, never replaced', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = PACKET;
+  await helpers.setGoal('seed-session', 'The operator own goal', { stateDir });
+  const seed = JSON.parse(await readFile(helpers.goalPathForSession('seed-session', { stateDir }), 'utf8'));
+  await rm(helpers.goalPathForSession('seed-session', { stateDir }), { force: true });
+
+  // Hold the session's mutation lock as another writer would, start the bind, let it reach
+  // the lock, then land the operator's goal and release.
+  await helpers.ensureGoalStateDir({ stateDir });
+  const lockPath = join(stateDir, `.lock-${helpers.sessionKeyForSession('racing-session')}`);
+  await symlink(String(process.pid), lockPath);
+  const plugin = await newPlugin();
+  const bind = plugin.event({ event: sessionCreated('racing-session') });
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  await helpers.writeGoalAtomic({ ...seed, sessionId: 'racing-session' }, { stateDir });
+  await rm(lockPath, { force: true });
+  await bind;
+
+  const goal = await helpers.readGoal('racing-session', { stateDir });
+  assert.equal(goal.objective, 'The operator own goal');
+  assert.ok(!goal.packetPath, 'the record still points at no packet');
 }));
 
 test('the plugin kill switch stops the hand-over bind', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {

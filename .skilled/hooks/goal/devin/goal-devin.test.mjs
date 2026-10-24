@@ -50,6 +50,7 @@ function runHook(input, envOverrides = {}) {
         OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
         SESSION_RELAUNCH_GOAL_PACKET: undefined,
         SESSION_RELAUNCH_GOAL: undefined,
+        AI_SESSION_CHILD: undefined,
         ...envOverrides,
       },
       encoding: 'utf8',
@@ -138,6 +139,16 @@ test('a later turn leaves the bound record as it is and a goal of the session ow
     .hookSpecificOutput.additionalContext;
   assert.ok(brief.includes('objective: The operator own goal'));
   assert.equal(core.showGoal(opts('own-goal-session')).packetPath, undefined);
+});
+
+test('a dispatched child session that inherited the packet binds nothing', () => {
+  writePacket(PACKET);
+  const input = payload({ hook_event_name: 'SessionStart' });
+  assert.equal(runHook(input, { SESSION_RELAUNCH_GOAL_PACKET: PACKET, AI_SESSION_CHILD: '1' }).stdout, '{}');
+  assert.equal(core.showGoal(opts()), null);
+  assert.equal(core.showGoal(opts('child-with-fresh-id')), null);
+  assert.equal(runHook(payload({ session_id: 'child-with-fresh-id' }), { SESSION_RELAUNCH_GOAL_PACKET: PACKET, AI_SESSION_CHILD: '1' }).stdout, '{}');
+  assert.equal(core.showGoal(opts('child-with-fresh-id')), null);
 });
 
 test('the switch, an empty variable and a missing or escaping packet bind nothing', () => {

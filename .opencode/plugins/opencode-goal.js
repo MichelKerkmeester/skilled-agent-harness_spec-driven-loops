@@ -31,6 +31,7 @@ const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
 const {
   appendPacketLog: appendPacketLogShared,
   relaunchGoalEnabled,
+  relaunchSessionIsChild,
   relaunchPacketShapeOk,
   RELAUNCH_GOAL_PACKET_ENV,
 } = require('../hooks/goal/lib/goal-core.cjs');
@@ -2138,6 +2139,32 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
 }
 
 /**
+ * Point a goal record at a packet: the packet's objective becomes the record's operator
+ * copy and the pointer, bind time and resend bookkeeping are set. Pure; writes nothing.
+ *
+ * @param {Object} base - Record to build on, an existing one or a fresh one
+ * @param {{packet: Object, objective: string, tokenBudget: number|null, workspace: string, options: Object}} input
+ * @returns {Object} The record bound to the packet
+ */
+function packetBoundRecord(base, { packet, objective, tokenBudget, workspace, options }) {
+  const timestamp = nowMs(options);
+  const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
+  return {
+    ...base,
+    objective,
+    goalPrompt: promptFields.goalPrompt,
+    promptEnhancement: promptFields.promptEnhancement,
+    tokenBudget,
+    packetPath: packet.packetPath,
+    workspace: resolvePath(workspace),
+    boundAtMs: timestamp,
+    lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
+    updatedAtMs: timestamp,
+    updatedAt: isoFromMs(timestamp),
+  };
+}
+
+/**
  * Bind the session to a packet. The packet goal.md becomes the directive; the
  * record keeps the pointer, an operator copy derived from it, and bookkeeping.
  * The path must resolve inside the workspace and the document must exist.
@@ -2181,26 +2208,12 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
         writeDebugStderr('bindGoal.archivePrior', error);
       }
     }
-    const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
-    const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
     const base = current && (current.status === 'active' || current.status === 'paused')
       ? { ...current, status: 'active' }
       : buildNewGoal(sessionID, objective, tokenBudget, options);
     if (current) mutation = 'rebound';
-    return {
-      ...base,
-      objective,
-      goalPrompt: promptFields.goalPrompt,
-      promptEnhancement: promptFields.promptEnhancement,
-      tokenBudget,
-      packetPath: packet.packetPath,
-      workspace: resolvePath(workspace),
-      boundAtMs: timestamp,
-      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
-      updatedAtMs: timestamp,
-      updatedAt: isoFromMs(timestamp),
-    };
+    return packetBoundRecord(base, { packet, objective, tokenBudget, workspace, options });
   }, options);
   if (goal && typeof goal === 'object') {
     Object.defineProperty(goal, 'mutation', { value: mutation, enumerable: false, configurable: true });
@@ -2211,11 +2224,13 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
 /**
  * Bind the packet a relaunch hand-over named to a session that has no goal of its own.
  *
- * Nothing happens without `SESSION_RELAUNCH_GOAL_PACKET`, with the switch off, or when the
- * session has a record of any status or an archived one (a cleared or completed goal leaves
- * one, and the session must not be handed a second goal after it ended its first). A record
- * that cannot be read counts as a goal. No text is sent: the system transform injects from
- * the packet's goal.md like any bound session. Never throws.
+ * Nothing happens without `SESSION_RELAUNCH_GOAL_PACKET`, in a dispatched child session
+ * (`AI_SESSION_CHILD=1`), with the switch off, or when the session has a record of any status
+ * or an archived one (a cleared or completed goal leaves one, and the session must not be
+ * handed a second goal after it ended its first). A record that cannot be read counts as a
+ * goal. The check and the write share one turn of the session's mutation lock, so a goal set
+ * in between is kept and the bind never replaces a record. No text is sent: the system
+ * transform injects from the packet's goal.md like any bound session. Never throws.
  *
  * @param {string} sessionID - OpenCode session id
  * @param {Object} [rawOptions] - State helper options; `directory` is the workspace
@@ -2225,19 +2240,29 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
 async function bindRelaunchGoal(sessionID, rawOptions = {}, env = process.env) {
   const packetPath = typeof env[RELAUNCH_GOAL_PACKET_ENV] === 'string' ? env[RELAUNCH_GOAL_PACKET_ENV].trim() : '';
   if (!packetPath) return { bound: false, reason: 'no-packet' };
+  if (relaunchSessionIsChild(env)) return { bound: false, reason: 'child-session' };
   if (!relaunchGoalEnabled(env)) return { bound: false, reason: 'switched-off' };
   try {
     const options = normalizeOptions(rawOptions);
     if (!options.enabled) return { bound: false, reason: 'plugin-disabled' };
     if (!relaunchPacketShapeOk(packetPath)) return { bound: false, reason: 'packet-invalid' };
-    if (await readGoal(sessionID, options)) return { bound: false, reason: 'has-goal' };
-    const archiveKey = `${sessionKeyForSession(sessionID)}.`;
-    const archived = await readDirectoryEntries(join(options.stateDir, '.archive'));
-    if (archived.some((entry) => entry.name.startsWith(archiveKey))) return { bound: false, reason: 'has-goal' };
     const workspace = goalSlice.resolveWorkspaceRoot(options.directory || process.cwd());
-    if (!goalSlice.readPacketGoal(workspace, packetPath)) return { bound: false, reason: 'packet-invalid' };
-    await bindGoal(sessionID, packetPath, options);
-    return { bound: true, reason: 'bound' };
+    const packet = goalSlice.readPacketGoal(workspace, packetPath);
+    if (!packet) return { bound: false, reason: 'packet-invalid' };
+    const objective = sanitizeInlineText(packet.objectiveSlice, options.maxObjectiveChars);
+    const archiveKey = `${sessionKeyForSession(sessionID)}.`;
+    let outcome = 'has-goal';
+    await mutateGoal(sessionID, async (current) => {
+      if (current) return null;
+      const archived = await readDirectoryEntries(join(options.stateDir, '.archive'));
+      if (archived.some((entry) => entry.name.startsWith(archiveKey))) return null;
+      outcome = 'bound';
+      return packetBoundRecord(
+        buildNewGoal(sessionID, objective, null, options),
+        { packet, objective, tokenBudget: null, workspace, options },
+      );
+    }, options);
+    return { bound: outcome === 'bound', reason: outcome };
   } catch (error) {
     writeDebugStderr('bindRelaunchGoal', error);
     return { bound: false, reason: 'error' };

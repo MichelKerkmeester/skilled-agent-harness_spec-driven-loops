@@ -1329,6 +1329,33 @@ test('nothing is bound without the packet variable, with it empty, or with the s
   assert.equal(core.bindRelaunchGoal(scoped, handOverEnv({ SESSION_RELAUNCH_GOAL: '1' })).bound, true);
 });
 
+test('a dispatched child session binds nothing, whatever packet its environment carries', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const child = scopedOpts('pi', 'child-session');
+  assert.deepEqual(core.bindRelaunchGoal(child, handOverEnv({ AI_SESSION_CHILD: '1' })), { bound: false, reason: 'child-session' });
+  assert.equal(core.showGoal(child), null);
+  assert.equal(core.relaunchSessionIsChild({ AI_SESSION_CHILD: '1' }), true);
+  assert.equal(core.relaunchSessionIsChild({ AI_SESSION_CHILD: '0' }), false);
+  assert.equal(core.relaunchSessionIsChild({}), false);
+  assert.equal(core.bindRelaunchGoal(scopedOpts('pi', 'not-a-child'), handOverEnv({ AI_SESSION_CHILD: '0' })).bound, true);
+});
+
+test('the live environment marks a child too, not only an environment passed in', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const previous = { packet: process.env.SESSION_RELAUNCH_GOAL_PACKET, child: process.env.AI_SESSION_CHILD };
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.AI_SESSION_CHILD = '1';
+  try {
+    assert.deepEqual(core.bindRelaunchGoal(scopedOpts('pi', 'live-child')), { bound: false, reason: 'child-session' });
+    assert.equal(core.showGoal(scopedOpts('pi', 'live-child')), null);
+  } finally {
+    for (const [name, value] of [['SESSION_RELAUNCH_GOAL_PACKET', previous.packet], ['AI_SESSION_CHILD', previous.child]]) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+});
+
 test('the switch is also read from the operator flags file, and the environment wins over it', () => {
   writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
   const flagsFile = join(stateDir, 'hook-flags.env');
@@ -1336,9 +1363,11 @@ test('the switch is also read from the operator flags file, and the environment 
   const previous = process.env.HOOK_FLAGS_CONFIG;
   const previousPacket = process.env.SESSION_RELAUNCH_GOAL_PACKET;
   const previousSwitch = process.env.SESSION_RELAUNCH_GOAL;
+  const previousChild = process.env.AI_SESSION_CHILD;
   process.env.HOOK_FLAGS_CONFIG = flagsFile;
   process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
   delete process.env.SESSION_RELAUNCH_GOAL;
+  delete process.env.AI_SESSION_CHILD;
   try {
     assert.equal(core.relaunchGoalEnabled(), false);
     assert.deepEqual(core.bindRelaunchGoal(scopedOpts('pi', 'flags-session')), { bound: false, reason: 'switched-off' });
@@ -1346,7 +1375,7 @@ test('the switch is also read from the operator flags file, and the environment 
     assert.equal(core.relaunchGoalEnabled(), true);
     assert.equal(core.bindRelaunchGoal(scopedOpts('pi', 'flags-session')).bound, true);
   } finally {
-    for (const [name, value] of [['HOOK_FLAGS_CONFIG', previous], ['SESSION_RELAUNCH_GOAL_PACKET', previousPacket], ['SESSION_RELAUNCH_GOAL', previousSwitch]]) {
+    for (const [name, value] of [['HOOK_FLAGS_CONFIG', previous], ['SESSION_RELAUNCH_GOAL_PACKET', previousPacket], ['SESSION_RELAUNCH_GOAL', previousSwitch], ['AI_SESSION_CHILD', previousChild]]) {
       if (value === undefined) delete process.env[name];
       else process.env[name] = value;
     }

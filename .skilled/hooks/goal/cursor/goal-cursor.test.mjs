@@ -54,6 +54,7 @@ function runHook(input, envOverrides = {}) {
         OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
         SESSION_RELAUNCH_GOAL_PACKET: undefined,
         SESSION_RELAUNCH_GOAL: undefined,
+        AI_SESSION_CHILD: undefined,
         ...envOverrides,
       },
       encoding: 'utf8',
@@ -295,6 +296,17 @@ test('a goal of the session own, active or already cleared, is never replaced by
     const dropped = JSON.parse(runHook(payload('dropped'), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
     assert.deepEqual(dropped, { permission: 'allow' });
     assert.equal(core.showGoal(options('dropped')), null);
+  });
+});
+
+test('a dispatched child session that inherited the packet binds nothing', () => {
+  withHandOverWorkspace(({ options, payload }) => {
+    const none = { permission: 'allow' };
+    for (const sessionId of ['test-session', 'child-with-fresh-id']) {
+      const response = JSON.parse(runHook(payload(sessionId), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET, AI_SESSION_CHILD: '1' }).stdout);
+      assert.deepEqual(response, none, sessionId);
+      assert.equal(core.showGoal(options(sessionId)), null, sessionId);
+    }
   });
 });
 

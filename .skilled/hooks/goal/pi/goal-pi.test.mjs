@@ -33,9 +33,11 @@ beforeEach(() => {
   previousHandOver = {
     SESSION_RELAUNCH_GOAL_PACKET: process.env.SESSION_RELAUNCH_GOAL_PACKET,
     SESSION_RELAUNCH_GOAL: process.env.SESSION_RELAUNCH_GOAL,
+    AI_SESSION_CHILD: process.env.AI_SESSION_CHILD,
   };
   delete process.env.SESSION_RELAUNCH_GOAL_PACKET;
   delete process.env.SESSION_RELAUNCH_GOAL;
+  delete process.env.AI_SESSION_CHILD;
 });
 
 afterEach(() => {
@@ -560,6 +562,18 @@ test('a goal of the session own is never replaced, and a cleared one is not hand
     core.clearGoal(scoped('handover-cleared'));
     assert.deepEqual(await pi.registered.input(event, fakeContext('handover-cleared', workspace)), { action: 'continue' });
     assert.equal(core.showGoal(scoped('handover-cleared')), null);
+  });
+});
+
+test('a dispatched child session that inherited the packet binds nothing in Pi', async () => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.AI_SESSION_CHILD = '1';
+  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+    await pi.registered.session_start({ type: 'session_start' }, fakeContext('child-start', workspace));
+    assert.equal(core.showGoal(scoped('child-start')), null);
+    const event = { type: 'input', text: 'continue', source: 'interactive' };
+    assert.deepEqual(await pi.registered.input(event, fakeContext('child-input', workspace)), { action: 'continue' });
+    assert.equal(core.showGoal(scoped('child-input')), null);
   });
 });
 
