@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1ad849b7fe9a0665e85b4f86142bc092823ad48ba9c75b84b9b457146d8f9209",
+  "corpusHash": "69029e531846df0a835ef046a471e49de1be0d5e5537de1d3f7b764d7ee040fc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25905,
+  "includedPathCount": 25909,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9131,6 +9131,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25936,7 +25940,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0927b3176b385eb2550c4959761a48001388a2f2c26a1277dacf0688e3741135",
+  "manifestHash": "fb80845b688454811d100f7407d16b4e299780d5e6c5fd2d4e2503d5395b3c44",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27160,6 +27164,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name/scratch",
       "reason": "excluded directory"
     },
     {

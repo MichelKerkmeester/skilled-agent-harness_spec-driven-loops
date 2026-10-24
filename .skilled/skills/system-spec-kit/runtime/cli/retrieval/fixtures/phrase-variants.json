@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0927b3176b385eb2550c4959761a48001388a2f2c26a1277dacf0688e3741135",
+  "manifestHash": "fb80845b688454811d100f7407d16b4e299780d5e6c5fd2d4e2503d5395b3c44",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -73648,6 +73648,9 @@
     "phase 67 opencode v2 pin": [
       "phase 67 opencode v2 pin"
     ],
+    "phase 68 retire opencode2": [
+      "phase 68 retire opencode2"
+    ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"
     ],
@@ -85003,6 +85006,18 @@
     ],
     "retire memory learn": [
       "retire memory:learn"
+    ],
+    "retire opencode2 name": [
+      "retire opencode2 name"
+    ],
+    "retire opencode2 name implementation summary": [
+      "retire opencode2 name implementation summary"
+    ],
+    "retire opencode2 name plan": [
+      "retire opencode2 name plan"
+    ],
+    "retire opencode2 name tasks": [
+      "retire opencode2 name tasks"
     ],
     "retire sidecar": [
       "retire sidecar"
