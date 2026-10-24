@@ -106,7 +106,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 — Confirm the checkout is provisioned and hook-trusted
+### [x] T001 — Confirm the checkout is provisioned and hook-trusted
 
 - **File:** `none`
 - **Anchor:** `.skilled/skills/sk-code/README.md:110-115`, the hub README "Before You Start" block; line 110 is `### Before You Start`.
@@ -124,8 +124,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-014
 - **Rollback:** n/a: a local git config flag and installed hooks change no tracked file, and both commands are re-runnable.
 - **Stop if:** the command prints anything other than `true` after all three setup commands ran.
+- **Evidence:** `git config --local --get skilled.trustRepoHooks` prints `true`.
 
-### T002 — Confirm the predecessor phase landed
+### [x] T002 — Confirm the predecessor phase landed
 
 - **File:** `none`
 - **Anchor:** `specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md`, frontmatter line 2 `title:`.
@@ -140,8 +141,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-014
 - **Rollback:** n/a: read-only.
 - **Stop if:** the tree count is not `2`, or the last line is not `RESULT: PASSED`.
+- **Evidence:** `git ls-tree -r origin/main -- .gitignore pre-commit` prints `2`; the phase-001 `validate.sh --strict` re-ran to `RESULT: PASSED`.
 
-### T003 — Record the three baselines
+### [x] T003 — Record the three baselines
 
 - **File:** `none`
 - **Anchor:** the baseline table in the Task Notation section of this file, which names all three commands.
@@ -161,6 +163,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** n/a: three files under `/tmp`, outside the repository.
 - **Stop if:** the second number is not exactly six more than the first, because the difference is the six tracked `.hermes` files and any other gap means the query changed. The broad count is recorded rather than asserted: another phase landing before this one changes it, and the recorded value is the baseline this phase measures against.
+- **Evidence:** `/tmp/phase2-baseline-filtered.txt` 158, `/tmp/phase2-baseline-hidden.txt` 164, `/tmp/phase2-baseline-broad.txt` 1338; 164 = 158+6 satisfies the stop rule.
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -169,7 +172,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Delete the packets
 
-### T004 — Delete both surface packet folders from the tracked tree
+### [x] T004 — Delete both surface packet folders from the tracked tree
 
 - **File:** `.skilled/skills/sk-code/sk-code-webflow/`, `.skilled/skills/sk-code/sk-code-obsidian/`
 - **Anchor:** `name: sk-code-webflow` at `sk-code-webflow/SKILL.md:2` and `name: sk-code-obsidian` at `sk-code-obsidian/SKILL.md:2`.
@@ -186,6 +189,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/sk-code-webflow .skilled/skills/sk-code/sk-code-obsidian`
 - **Stop if:** the first count is not `226`, which means the base commit or the pattern is wrong.
+- **Evidence:** 226 paths at `42b41dd286`, `git ls-files` prints 0, both folders absent on disk; staged as 226 deletions.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -194,7 +198,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Registries
 
-### T005 — Rewrite the registry description to one surface
+### [x] T005 — Rewrite the registry description to one surface
 
 - **File:** `.skilled/skills/sk-code/mode-registry.json`
 - **Anchor:** line 5, the `"description"` value, which contains `the SURFACE axis (sk-code-webflow/sk-code-skilled/sk-code-obsidian) is read-only domain evidence`.
@@ -211,8 +215,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/mode-registry.json`
 - **Stop if:** the second count is not `0`, because a later task in this phase also removes registry mentions and the file is not clean yet.
+- **Evidence:** `description` replaced verbatim; `rg -ci 'webflow|obsidian' mode-registry.json` prints 0 (base 10).
 
-### T006 — Reduce the declared surface axis
+### [x] T006 — Reduce the declared surface axis
 
 - **File:** `.skilled/skills/sk-code/mode-registry.json`
 - **Anchor:** line 19, `      "surfaces": ["sk-code-webflow", "sk-code-skilled", "sk-code-obsidian"]`
@@ -228,8 +233,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/mode-registry.json`
 - **Stop if:** the command throws, which means the JSON no longer parses.
+- **Evidence:** `extensions.surface-axis.surfaces` reads `["sk-code-skilled"]`.
 
-### T007 — Delete the `sk-code-webflow` mode entry
+### [x] T007 — Delete the `sk-code-webflow` mode entry
 
 - **File:** `.skilled/skills/sk-code/mode-registry.json`
 - **Anchor:** line 60, `    {` immediately above line 61 `      "workflowMode": "sk-code-webflow",`; the object closes at line 77 `    },`.
@@ -242,8 +248,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/mode-registry.json`
 - **Stop if:** the output still lists `sk-code-webflow` or the JSON throws.
+- **Evidence:** `sk-code-webflow` modes entry deleted; the JSON parses.
 
-### T008 — Delete the `sk-code-obsidian` mode entry
+### [x] T008 — Delete the `sk-code-obsidian` mode entry
 
 - **File:** `.skilled/skills/sk-code/mode-registry.json`
 - **Anchor:** line 97, `    {` immediately above line 98 `      "workflowMode": "sk-code-obsidian",`; the object closes at line 114 `    }` and line 115 is `  ]`.
@@ -256,8 +263,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/mode-registry.json`
 - **Stop if:** the JSON throws, because the last element kept a dangling comma.
+- **Evidence:** `sk-code-obsidian` modes entry deleted with no dangling comma; `modes` is `sk-code-quality,sk-code-review,sk-code-skilled`.
 
-### T009 — Reduce the tie-break order
+### [x] T009 — Reduce the tie-break order
 
 - **File:** `.skilled/skills/sk-code/hub-router.json`
 - **Anchor:** line 7, `    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-skilled", "sk-code-obsidian", "sk-code-webflow"],`
@@ -273,8 +281,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-003
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/hub-router.json`
 - **Stop if:** the output still names a removed surface.
+- **Evidence:** `tieBreak` reads `["sk-code-quality","sk-code-review","sk-code-skilled"]`.
 
-### T010 — Delete the `sk-code-webflow` router-signals entry
+### [x] T010 — Delete the `sk-code-webflow` router-signals entry
 
 - **File:** `.skilled/skills/sk-code/hub-router.json`
 - **Anchor:** line 31, `    "sk-code-webflow": {`; the entry closes at line 35 `    },`.
@@ -287,8 +296,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-003
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/hub-router.json`
 - **Stop if:** the output still lists `sk-code-webflow` or the JSON throws.
+- **Evidence:** `routerSignals` no longer lists `sk-code-webflow`.
 
-### T011 — Delete the `sk-code-obsidian` router-signals entry and the dangling comma
+### [x] T011 — Delete the `sk-code-obsidian` router-signals entry and the dangling comma
 
 - **File:** `.skilled/skills/sk-code/hub-router.json`
 - **Anchor:** line 42, `    "sk-code-obsidian": {`; the entry closes at line 46 `    }`. Line 40 is `    },` and line 47 is `  },`.
@@ -305,8 +315,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-003
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/hub-router.json`
 - **Stop if:** the JSON throws, because the comma edit and the deletion disagree.
+- **Evidence:** `routerSignals` is `sk-code-quality,sk-code-review,sk-code-skilled`; the trailing comma is fixed and the JSON parses.
 
-### T012 — Delete the two Webflow vocabulary classes
+### [x] T012 — Delete the two Webflow vocabulary classes
 
 - **File:** `.skilled/skills/sk-code/hub-router.json`
 - **Anchor:** line 73, `    "code-webflow-aliases": {`; line 76, `    "code-webflow-runtime": {`; the second class closes at line 78 `    },`.
@@ -319,8 +330,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-003
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/hub-router.json`
 - **Stop if:** the output still lists a `code-webflow-*` class.
+- **Evidence:** no `code-webflow-*` vocabulary classes remain.
 
-### T013 — Delete the two Obsidian vocabulary classes
+### [x] T013 — Delete the two Obsidian vocabulary classes
 
 - **File:** `.skilled/skills/sk-code/hub-router.json`
 - **Anchor:** line 89, `    "code-obsidian-aliases": {`; line 92, `    "code-obsidian-runtime": {`; the second class closes at line 94 `    }`.
@@ -333,6 +345,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-003
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/hub-router.json`
 - **Stop if:** the JSON throws or an `code-obsidian-*` class remains.
+- **Evidence:** `vocabularyClasses` holds exactly the 11 expected keys; the JSON parses.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -341,7 +354,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Generated manifest
 
-### T014 — Regenerate the leaf manifest
+### [x] T014 — Regenerate the leaf manifest
 
 - **File:** `.skilled/skills/sk-code/leaf-manifest.json`
 - **Anchor:** the generator invocation documented at `.skilled/skills/sk-code/README.md:123`, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
@@ -358,6 +371,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-004
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/leaf-manifest.json`
 - **Stop if:** the generator exits non-zero with `MODE_LEAF_SET_COLLISION`, which means a remaining packet copies another packet's leaf set.
+- **Evidence:** `leaf-manifest.json` names no removed packet and its modes are quality/review/skilled; `generate-leaf-manifest.cjs --check` prints `leaf-manifest.json OK`.
 
 <!-- /ANCHOR:phase-4 -->
 
@@ -368,7 +382,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 
 `ROUTER.md` is hand-owned and carries 172 surface lines. It is edited one section at a time. Do not renumber sections: `verify-router-sync.cjs` scans from the first `## N. <NAME> MAP` heading to the literal `## 7. VERIFICATION COMMANDS`, so both that heading and the surviving `## 6. SKILLED MAP` heading must keep their text.
 
-### T015 — Strip section 1 of `ROUTER.md`
+### [x] T015 — Strip section 1 of `ROUTER.md`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 26 `The smart router maps a detected surface (SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN)`; line 30 `determines SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN`; line 37 `(OpenCode vs Obsidian vs Webflow vs UNKNOWN)`; line 39 `### Bundled Evidence Surfaces`; line 41, the paragraph beginning `Beyond the Webflow and OpenCode prose maps`; line 45 `surface detection (SKILLED/OBSIDIAN/WEBFLOW/UNKNOWN)`.
@@ -389,8 +403,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0` after all five edits.
+- **Evidence:** `ROUTER.md` section 1 `webflow|obsidian` count 0.
 
-### T016 — Strip section 2 of `ROUTER.md`
+### [x] T016 — Strip section 2 of `ROUTER.md`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 94 `Multi-symptom prompts like \`fix Webflow animation flicker\``; line 96, the paragraph beginning `Motion.dev API or decision prompts should load MOTION_DEV as a resource intent.`; line 100, the bullet beginning `- **WEBFLOW** intent scoring`.
@@ -410,8 +425,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** `ROUTER.md` section 2 `webflow|obsidian` count 0.
 
-### T017 — Strip section 3 of `ROUTER.md`
+### [x] T017 — Strip section 3 of `ROUTER.md`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 112, the row beginning `| SURFACE | After WEBFLOW, SKILLED or OBSIDIAN detection |`; line 115, the row beginning `| ON_DEMAND | Explicit deep-dive keywords |`.
@@ -431,8 +447,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** `ROUTER.md` section 3 `webflow|obsidian` count 0.
 
-### T018 — Delete the WEBFLOW MAP section
+### [x] T018 — Delete the WEBFLOW MAP section
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 119 `## 4. WEBFLOW MAP`; line 155 `## 5. MOTION_DEV MAP`.
@@ -446,8 +463,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section heading survives or the following heading is no longer `## 5. MOTION_DEV MAP`.
+- **Evidence:** `## 4. WEBFLOW MAP` gone; `## 6. SKILLED MAP` intact.
 
-### T019 — Delete the MOTION_DEV MAP section
+### [x] T019 — Delete the MOTION_DEV MAP section
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 155 `## 5. MOTION_DEV MAP`; line 200 `## 6. SKILLED MAP`.
@@ -461,8 +479,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section heading survives or `## 6. SKILLED MAP` is gone.
+- **Evidence:** `## 5. MOTION_DEV MAP` gone; `## 6. SKILLED MAP` intact.
 
-### T020 — Delete the WEBFLOW verification row
+### [x] T020 — Delete the WEBFLOW verification row
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 250, the row beginning `| WEBFLOW |`.
@@ -476,8 +495,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** `ROUTER.md` section 7 verification `webflow|obsidian` count 0.
 
-### T021 — Strip section 8 of `ROUTER.md`
+### [x] T021 — Strip section 8 of `ROUTER.md`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 260 `1. Is this Webflow/frontend code, \`.skilled/\` system code, or Obsidian plugin code?`; line 265 `Canonical sk-code only owns the WEBFLOW, SKILLED and OBSIDIAN surfaces plus the MOTION_DEV resource category.`; line 271 `- Confirm the active runtime surface (SKILLED, OBSIDIAN or WEBFLOW)`
@@ -496,8 +516,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** `ROUTER.md` section 8 `webflow|obsidian` count 0; the rewritten lines verified at ROUTER.md:173 and :184.
 
-### T022 — Strip section 9 of `ROUTER.md`
+### [x] T022 — Strip section 9 of `ROUTER.md`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 283 `- Honor the WEBFLOW implementation trio contract on every WEBFLOW invocation`; line 290 `- Load all of \`sk-code-webflow/\` or all of \`sk-code-skilled/\` indiscriminately ("just in case")`; line 293 `- Skip the implementation trio for WEBFLOW`
@@ -516,8 +537,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** `ROUTER.md` section 9 `webflow|obsidian` count 0.
 
-### T023 — Strip section 10 of `ROUTER.md`
+### [x] T023 — Strip section 10 of `ROUTER.md`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 300 `- [\`stack-detection.md\`](shared/references/stack-detection.md) — surface detection (SKILLED/OBSIDIAN/WEBFLOW/UNKNOWN) + SKILLED language sub-detection`
@@ -534,8 +556,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** `ROUTER.md` section 10 `webflow|obsidian` count 0.
 
-### T024 — Prune the section 11 intro and `INTENT_SIGNALS`
+### [x] T024 — Prune the section 11 intro and `INTENT_SIGNALS`
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 309 `This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface maps (§4 Webflow, §5 Motion.dev, §6 OpenCode).`; line 331 `"TESTING":`; line 332 `"DEPLOYMENT":`; line 334 `"ANIMATION":`; line 335 `"MOTION_DEV":`; line 336 `"ACCESSIBILITY":`; line 337 `"FORMS":`; line 338 `"VIDEO":`; line 341 `"LANGUAGE_STANDARDS":`; line 346 `"OBSIDIAN_PLUGIN":`.
@@ -558,8 +581,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the second count is not `0`, because a key survived and T025 will leave an orphan map.
+- **Evidence:** `INTENT_SIGNALS` pruned-key count 0; the section 11 intro (ROUTER.md:220) reads "the per-surface map (§6 SKILLED)".
 
-### T025 — Prune `RESOURCE_MAP` to the shipped surface
+### [x] T025 — Prune `RESOURCE_MAP` to the shipped surface
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 351 `RESOURCE_MAP = {`; line 426 `"TESTING": [`; line 429 `"DEPLOYMENT": [`; line 449 `"ANIMATION": [`; line 458 `"MOTION_DEV": [`; line 470 `"ACCESSIBILITY": [`; line 480 `"FORMS": [`; line 487 `"VIDEO": [`; line 502 `"LANGUAGE_STANDARDS": [`; line 554 `"OBSIDIAN_PLUGIN": [`.
@@ -587,8 +611,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the third count is not `0`, because a key is left empty and `verify-router-sync.cjs` treats an empty map entry as invalid.
+- **Evidence:** `RESOURCE_MAP` has 0 removed-packet paths and 0 empty `"KEY": []` entries; 12 keys remain.
 
-### T026 — Rewrite the surface-aware loading prose
+### [x] T026 — Rewrite the surface-aware loading prose
 
 - **File:** `.skilled/skills/sk-code/ROUTER.md`
 - **Anchor:** line 607 `- the Motion.dev overlay (\`sk-code-webflow/references/animation/*\`) when a \`MOTION_DEV\` intent fires.`; line 609, the paragraph beginning `It does not load the other surface's resources`; line 617, the bullet beginning `- A mixed-marker task keeps the slice of each surface`; line 618, the bullet beginning `- No keyword match, or an \`UNKNOWN\` surface`.
@@ -609,6 +634,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-005
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/ROUTER.md`
 - **Stop if:** the second count is not `0`.
+- **Evidence:** whole-file `webflow|obsidian` count 0 (base 172); `verify-router-sync.cjs` still prints `router-sync: 5/5 checks passed`.
 
 <!-- /ANCHOR:phase-5 -->
 
@@ -617,7 +643,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-6 -->
 ## Phase 6: Hub documents
 
-### T027 — Rewrite the hub skill's surface identity
+### [x] T027 — Rewrite the hub skill's surface identity
 
 - **File:** `.skilled/skills/sk-code/SKILL.md`
 - **Anchor:** line 11 the `<!-- Keywords:` comment; line 15 `The **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (sk-code-webflow, sk-code-skilled, sk-code-obsidian).`; line 17 `` `sk-code-obsidian` carries a pre-release `0.x` line in its own changelog.``; line 36, the row beginning `| **sk-code-webflow** |`; line 38, the row beginning `| **sk-code-obsidian** |`; line 40, the sentence beginning `**Surface list.** The hub has exactly three surfaces:`.
@@ -639,8 +665,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/SKILL.md`
 - **Stop if:** the section check is not `0` or the surface table loses its `sk-code-skilled` row.
+- **Evidence:** SKILL.md lines 1-45 token count 0; line 15's one-surface wording and line 38's "exactly one surface" verified.
 
-### T028 — Rewrite the hub skill's routing examples
+### [x] T028 — Rewrite the hub skill's routing examples
 
 - **File:** `.skilled/skills/sk-code/SKILL.md`
 - **Anchor:** line 63 `for example \`--surface-hint WEBFLOW\``; line 70 `the public mode/packet key: \`sk-code-quality\`, \`sk-code-review\` (workflow) or \`sk-code-webflow\`, \`sk-code-skilled\`, \`sk-code-obsidian\` (surface).`; line 74, the paragraph beginning `"review my webflow animation for jank"`; line 82 `"Confirm whether this is sk-code-quality, sk-code-review, Webflow, OpenCode, or Obsidian work",`
@@ -660,8 +687,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/SKILL.md`
 - **Stop if:** the section check is not `0`.
+- **Evidence:** SKILL.md lines 46-100 token count 0.
 
-### T029 — Rewrite the hub skill's detection, layout and backend prose
+### [x] T029 — Rewrite the hub skill's detection, layout and backend prose
 
 - **File:** `.skilled/skills/sk-code/SKILL.md`
 - **Anchor:** line 139 `Surface detection (\`SKILLED\`, \`OBSIDIAN\`, \`WEBFLOW\`, \`UNKNOWN\`, at precedence SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN)`; line 164, the layout line beginning `  sk-code-webflow/`; line 166 `  sk-code-obsidian/      # obsidian surface packet (read-only evidence)`; line 173, the paragraph beginning `It centralizes SKILLED, OBSIDIAN, WEBFLOW, and UNKNOWN detection`; line 203 `- Surface evidence packets: \`sk-code-webflow/SKILL.md\`, \`sk-code-skilled/SKILL.md\`, \`sk-code-obsidian/SKILL.md\`.`
@@ -681,8 +709,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/SKILL.md`
 - **Stop if:** the section check is not `0` or the layout block loses its `sk-code-skilled/` line.
+- **Evidence:** SKILL.md lines 101-209 token count 0; `## ` heading count preserved (5=5); the layout block keeps `sk-code-skilled/`.
 
-### T030 — Strip the surface detection contract
+### [x] T030 — Strip the surface detection contract
 
 - **File:** `.skilled/skills/sk-code/shared/references/stack-detection.md`
 - **Anchor:** line 3 `description: Surface detection (WEBFLOW/SKILLED/OBSIDIAN/UNKNOWN) and SKILLED language sub-detection. Primary routing key for sk-code.`; line 6 `  - "webflow opencode detection"`; line 16 `the same repository can contain Webflow frontend code and OpenCode system code.`; lines 28-30 the WEBFLOW, SKILLED and OBSIDIAN marker rows; line 33 the Motion.dev peer note; line 39 the precedence sentence; lines 45-56 the OBSIDIAN and WEBFLOW branch comments; lines 65-97 the why-paragraphs and the negative-language guard; lines 103-105 and 133-146 the example tables.
@@ -709,8 +738,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/stack-detection.md`
 - **Stop if:** the second count is not `0`, or the SKILLED marker row and its detection branch are gone.
+- **Evidence:** stack-detection.md token count 0; `**Precedence**: SKILLED > UNKNOWN` and the `# 1. SKILLED` branch kept.
 
-### T031 — Strip the shared index
+### [x] T031 — Strip the shared index
 
 - **File:** `.skilled/skills/sk-code/shared/README.md`
 - **Anchor:** line 17, the sentence beginning `\`shared/\` holds the routing and doctrine references common to every sk-code surface packet`; line 30 `Surface detection (SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN)`; line 52 `across WEBFLOW or SKILLED`; line 71, the paragraph beginning `The shared tier ships no pattern assets.`.
@@ -730,8 +760,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/README.md`
 - **Stop if:** the second count is not `0`.
+- **Evidence:** shared/README.md token count 0.
 
-### T032 — Strip the per-surface phases from the phase contract
+### [x] T032 — Strip the per-surface phases from the phase contract
 
 - **File:** `.skilled/skills/sk-code/shared/references/phase-detection.md`
 - **Anchor:** line 16 `All three surfaces in the hub \`SKILL.md\` surface list (WEBFLOW, SKILLED and OBSIDIAN) follow the same lifecycle.`; line 28 `- When planning work on the WEBFLOW, SKILLED or OBSIDIAN surface.`; line 57 `## 3. WEBFLOW PHASES`; line 69 `## 4. SKILLED PHASES`; line 81 `### Cross-Stack Motion.dev Resources`; line 87 `## 5. OBSIDIAN PHASES`; line 101 `## 6. IRON LAWS`; line 109 `## 7. TRANSITIONS`; line 121 `## 8. RELATED RESOURCES`.
@@ -757,8 +788,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/phase-detection.md`
 - **Stop if:** the section count is not `6`, because the renumbering left a gap or a duplicate.
+- **Evidence:** phase-detection.md token count 0; sections renumbered cleanly 1-6.
 
-### T033 — Strip the debugging checklist
+### [x] T033 — Strip the debugging checklist
 
 - **File:** `.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md`
 - **Anchor:** line 16 `across the WEBFLOW and SKILLED surfaces`; line 22 `(Chrome DevTools for WEBFLOW, package/script diagnostics for SKILLED)`; line 69, the row beginning `| WEBFLOW |`; line 91, the bullet beginning `- \`.skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md\``.
@@ -778,8 +810,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/universal-debugging-checklist.md`
 - **Stop if:** the second count is not `0`.
+- **Evidence:** universal-debugging-checklist.md token count 0.
 
-### T034 — Strip the verification checklist
+### [x] T034 — Strip the verification checklist
 
 - **File:** `.skilled/skills/sk-code/shared/references/universal-verification-checklist.md`
 - **Anchor:** line 16 `across WEBFLOW or SKILLED`; line 22 `(the Webflow minification scripts plus a browser matrix for WEBFLOW, and alignment/test commands for SKILLED)`; line 26 `For WEBFLOW, also walk the browser matrix in Section 4.`; line 36 `for WEBFLOW: open browser; for SKILLED: run targeted unit/integration checks where available.`; line 38 `5. [ ] **VERIFY (WEBFLOW)** — multi-viewport (mobile + desktop) + DevTools console clean.`; line 51, the row beginning `| WEBFLOW |`; line 57 `## 4. WEBFLOW BROWSER MATRIX`; line 71 the full-matrix pointer; line 90 the anti-pattern bullet; line 106 the evidence line; line 120 the related-resource bullet.
@@ -806,8 +839,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/universal-verification-checklist.md`
 - **Stop if:** the second count is not `0` or a `Section N` reference points at a deleted section.
+- **Evidence:** universal-verification-checklist.md token count 0; sections renumbered 1-7 with no gap and the `Section N` references resolve.
 
-### T035 — Strip the loading checklist pointers
+### [x] T035 — Strip the loading checklist pointers
 
 - **File:** `.skilled/skills/sk-code/shared/references/performance-loading-checklist.md`
 - **Anchor:** line 98 `- [interaction-gated-loading.md](../../sk-code-webflow/references/performance/interaction-gated-loading.md) - Gate selection and exclusions`; line 99 the `cwv-remediation.md` row; line 100 the `interaction-gate-patterns.js` row.
@@ -821,8 +855,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/performance-loading-checklist.md`
 - **Stop if:** the second count is not `0`.
+- **Evidence:** performance-loading-checklist.md token count 0.
 
-### T036 — Strip the code style guide
+### [x] T036 — Strip the code style guide
 
 - **File:** `.skilled/skills/sk-code/shared/references/universal/code-style-guide.md`
 - **Anchor:** line 3, the `description` value, which ends `for WEBFLOW, SKILLED and OBSIDIAN code surfaces.`; line 24, the sentence beginning `Codifies the style principles`, which names `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/`; line 39, the line beginning `- Surface style guides:`; line 58, the row beginning `| WEBFLOW (vanilla JS) |`; line 87, the row beginning `| WEBFLOW JS  | File header`; line 120, the sentence beginning `This guide owns the comment-density rule.`, which names the Webflow surface budget; line 139, the sentence beginning `This is the canonical rule for both the SKILLED and WEBFLOW surfaces`; line 151 the kept tag row `| A platform / library name (\`WEBFLOW:\`, \`MOTION:\`, \`LENIS:\`) | Yes | Names a durable platform, not a tracking artifact |`; line 194, the parenthetical beginning `(WEBFLOW JS uses three-line file headers`; line 204 `| WEBFLOW JS  | Prettier |`; line 225, the row beginning `| WEBFLOW  |`; line 234 `- Surface standards under \`.skilled/skills/sk-code/sk-code-webflow/references/\` and \`.skilled/skills/sk-code/sk-code-skilled/references/\`.
@@ -852,8 +887,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/universal/code-style-guide.md`
 - **Stop if:** the count drops to `0`, because that means the kept tag line was deleted.
+- **Evidence:** code-style-guide.md token count 1 — the kept `WEBFLOW:` tag line, now at :149.
 
-### T037 — Strip the error recovery guide
+### [x] T037 — Strip the error recovery guide
 
 - **File:** `.skilled/skills/sk-code/shared/references/universal/error-recovery.md`
 - **Anchor:** line 3, the `description` value, which names WEBFLOW; line 43 a removed-packet path; line 88, the row beginning `| WEBFLOW (Node tooling) |`; line 89, the row beginning `| WEBFLOW (Wrangler / R2) |`; lines 108 and 133 removed-packet paths.
@@ -872,8 +908,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/universal/error-recovery.md`
 - **Stop if:** the second count is not `0`.
+- **Evidence:** error-recovery.md token count 0.
 
-### T038 — Strip the multi-agent research guide
+### [x] T038 — Strip the multi-agent research guide
 
 - **File:** `.skilled/skills/sk-code/shared/references/universal/multi-agent-research.md`
 - **Anchor:** line 50 a removed-packet path; line 172 `A WEBFLOW project's performance audit`; line 216 a removed-packet path.
@@ -892,6 +929,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/universal/multi-agent-research.md`
 - **Stop if:** the second count is not `0`.
+- **Evidence:** multi-agent-research.md token count 0.
 
 ### T039 — Strip the code quality standards
 
@@ -915,6 +953,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** `git checkout 42b41dd286 -- .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md`
 - **Stop if:** the second count is not `0`.
+- **Status:** Partial — the ~82, ~118 (row delete) and ~177 edits are applied, but `code-quality-standards.md` still holds 5 `webflow|obsidian` lines at :16 (`across WEBFLOW and SKILLED`), :24 (`snake_case for WEBFLOW JS`), :39 (`Webflow JavaScript and CSS`), :49 (decision-ladder WEBFLOW row) and :56 (`SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN` precedence). Expected 0, actual 5; finish these five line edits next.
 
 ### T040 — Strip the hub description
 
@@ -2195,6 +2234,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 
 ### T103 — Prove the hub still routes to the Skilled surface
 
+- **Status:** Partial — `advisor_recommend` returns `sk-code` first, but `compiledRoute` is absent because `compiled-route.cjs` answers the designed `{"servingAuthority":"legacy"}` sentinel; targets show only after the T100 rebuild and the T108 manifest refresh. Verified 2026-10-24.
 - **File:** `none`
 - **Anchor:** the live advisor CLI at `.skilled/bin/skill-advisor.cjs`.
 - **Change:** none.
@@ -2222,6 +2262,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 - **AC:** AC-011
 - **Rollback:** n/a: read-only.
 - **Stop if:** the control count is not `20`, or either zero check is not `0`, because a kept record moved.
+- **Evidence:** done now — control 20 deleted kept-record files inside the removed folders; surviving-records diff 0; `z_archive` diff besides the two excluded twins 0. Verified 2026-10-24, re-run at closure.
 
 ### T105 — Run the reviewer pass
 
@@ -2250,6 +2291,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 - **AC:** AC-014
 - **Rollback:** n/a: read-only.
 - **Stop if:** the last line is not `RESULT: PASSED`.
+- **Evidence:** done now — `validate.sh specs/sk-code/013-private-surface-skills/002-hub-surface-removal --strict` prints `RESULT: PASSED` (Errors 0, Warnings 0). Verified 2026-10-24, re-run at closure.
 
 ### T107 — Run the phase-wide closure greps
 

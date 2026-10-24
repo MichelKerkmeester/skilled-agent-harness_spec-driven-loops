@@ -39,7 +39,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,10 +48,6 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "runtime/data/trigger-index.json",
-      "shared/README.md",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/hub-router.json",
       ".skilled/skills/sk-code/leaf-manifest.json",
@@ -60,7 +56,11 @@
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
       ".skilled/skills/sk-code/shared/README.md",
       ".skilled/skills/sk-code/shared/references/phase-detection.md",
-      ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md"
+      ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
+      ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md",
+      ".skilled/skills/sk-code/shared/references/performance-loading-checklist.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+      ".skilled/skills/sk-code/shared/references/universal/error-recovery.md"
     ],
     "entities": [
       {
@@ -106,30 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": "runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "canary-cases.v1.json",
-        "kind": "config",
-        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
-        "source": "derived"
-      },
-      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/mode-registry.json",
@@ -166,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/README.md",
+        "source": "derived"
+      },
+      {
         "name": "phase-detection.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
@@ -175,6 +157,30 @@
         "name": "universal-debugging-checklist.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "universal-verification-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "performance-loading-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/performance-loading-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "error-recovery.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/error-recovery.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian, that exist only for the operator's own work: 1.5M and 504K of stack knowledge, 226 tracked files together",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-23T15:55:17.360Z",
+    "last_save_at": "2026-10-24T08:12:37.286Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56a58f29d908603f6c8624949eb92d93016f3e40ea601d29afc39555072625d2",
+    "source_fingerprint": "sha256:9d016620a664ec0b86b1a9893a83097d3491088c8c8dfbe6fd1f9a5a1dd6d84a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa22a9cbbfc4775acfac75d4ea08c3959a368c76732abc926cc8a5616b7bfe0d",
+      "spec.md": "dd3eeabc1d7d65393d51fed895032698df750c515b2f03057d143ee0f5d61eac",
       "plan.md": "19be0a6a268c6dceecbf8f8876985df21376207c6474c18c86d42765e923afe2",
-      "tasks.md": "a5f431810ac3eb6236a50920f005b9435d3ce9be7e1c9009558fc110ebab52a3",
+      "tasks.md": "f10c2865d9f32648644183ba9fcb1d6874705bd831edb0c193ee9fb2783143f2",
       "decision-record.md": "c6be4a5a04549c00c68897342b2fd97591611aa7f9e2c498fc3f791f9597529d",
-      "implementation-summary.md": "bca847e69cf192c666ed0678751f2235dbd51704e3e8ab27bcabc693a32208c8"
+      "implementation-summary.md": "df5e8b790aaf3ae648a783521cd648a2e951156c5c61df536136eb543b32a505"
     },
     "last_active_at": null
   }

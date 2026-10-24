@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-23T16:45:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
     recent_action: "Landed the private-skill guard and its harness cases"
-    next_safe_action: "Flip AC-015 after the phase commit is pushed"
+    next_safe_action: "Phase complete; continue in phase 002"
     blockers: []
     key_files:
       - ".gitignore"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-001-ignore-and-commit-guard"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -160,4 +160,5 @@ Proof beyond the harness came from two probes. A throwaway repository with `.ski
 |-----------|---------------|
 | The installed pre-commit hook is not shadowed in this checkout | `install-git-hooks.sh --status` reports `installed:` and `source:` both inside this checkout, so a local commit does exercise the edited file. The plan expected a shadowed copy and a count of 7 for the `SHADOWED:` line, and the search found no such line. The T005 stop condition, a missing `pre-commit` block, did not fire. |
 | The legacy `.opencode/hooks/git/pre-commit` helper and `.skilled/scripts/git-hooks/README.md` still say "ten blocking sub-gates" | The README counts ten and this phase adds an eleventh. Both sit outside the phase's frozen three files, so they are recorded here for a docs phase rather than changed in this one. |
+| T008's proof expected `private-skill` to appear exactly once in the harness | The expectation predates cases 74 to 80, which carry the gate name in their assertions; the file now holds `private-skill` four times and the count drift is expected, not a defect. |
 <!-- /ANCHOR:deviations -->

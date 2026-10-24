@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills"
     last_updated_at: "2026-10-23T14:10:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Finish the phase map, handoff blocks, open questions and parent goal"
-    next_safe_action: "Run phase 001-ignore-and-commit-guard"
+    recent_action: "Phase 001 landed on main as 7648ae8b56; phase 002 in progress uncommitted"
+    next_safe_action: "Finish phase 002 T039, then continue at T040"
     blockers: []
     key_files:
       - "spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 27
     open_questions: []
     answered_questions: []
 ---
@@ -132,8 +132,8 @@ Summary of the areas each phase touches; per-phase file detail lives in each chi
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-ignore-and-commit-guard/ | Land four slash-less `local-*` ignore rules and a blocking pre-commit guard over eight skill roots, with seven harness cases, before any private file exists | Pending |
-| 2 | 002-hub-surface-removal/ | Delete both surface folders (226 tracked files) and strip every tracked consumer, regenerating generated artifacts and hand-editing `ROUTER.md` and `graph-metadata.json`; the hub keeps three packets | Pending |
+| 1 | 001-ignore-and-commit-guard/ | Land four slash-less `local-*` ignore rules and a blocking pre-commit guard over eight skill roots, with seven harness cases, before any private file exists | Done (7648ae8b56) |
+| 2 | 002-hub-surface-removal/ | Delete both surface folders (226 tracked files) and strip every tracked consumer, regenerating generated artifacts and hand-editing `ROUTER.md` and `graph-metadata.json`; the hub keeps three packets | In progress |
 | 3 | 003-advisor-vocabulary-cleanup/ | Remove the surface vocabulary from the advisor scorer, plugin, schemas and tests, and give seven skill-tree scans an explicit `local-*` rule with realpath containment; regenerate the tracked fallback graph | Pending |
 | 4 | 004-private-local-skills/ | Link `.skilled/skills/local-*` to `local-skills/` folders in two external repositories and restore both surfaces there from `42b41dd286`, each standalone with one skill-root `graph-metadata.json` | Pending |
 | 5 | 005-leak-and-routing-verification/ | Prove from a fresh clone that no private path, byte or routing signal is tracked, and that six routing probes in two consumer checkouts still return both private skills | Pending |

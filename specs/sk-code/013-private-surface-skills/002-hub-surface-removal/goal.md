@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "specs/sk-code/013-private-surface-skills/002-hub-surface-removal"
     last_updated_at: "2026-10-23T12:40:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Applied T001 to T038 uncommitted in the main checkout; T039 partial"
+    next_safe_action: "Finish T039 (code-quality-standards.md lines 16, 24, 39, 49, 56), then continue at T040"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deepseek-v4.1-flash-1017-002-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 35
     open_questions: []
     answered_questions: []
 ---
@@ -81,11 +81,16 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | `tasks.md` holds 108 tasks in execution order |
+| Phase opened | Done | `tasks.md` holds 108 tasks in execution order |
+| Setup, baselines and deletions | Done | T001 to T004: hook trusted, phase 001 on `origin/main`, baselines 158/164/1338 recorded, 226 staged deletions |
+| Registries and leaf manifest | Done | T005 to T014: three modes and one surface declared, `vocabularyClasses` at 11 keys, `leaf-manifest.json OK` from the generator check |
+| `ROUTER.md` and hub documents | In progress | T015 to T038 applied uncommitted; T039 partial with five `code-quality-standards.md` lines still to edit |
+| Consumers, tests and closure | Pending | T040 to T108 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No task has run |
+| T039 partial | `code-quality-standards.md` still holds 5 `webflow\|obsidian` lines at :16, :24, :39, :49 and :56; the ~82, ~118 and ~177 edits are applied |
+| Work uncommitted | All phase-002 work is in the worktree only: 226 staged deletions plus 15 modified files; nothing is committed or pushed |
 <!-- /ANCHOR:log -->

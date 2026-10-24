@@ -85,7 +85,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Pending | Planning documents written; no task has run |
-| Baselines measured | Done | 336 tracked paths, 1528 content lines at `42b41dd286`, 200 index lines (131 `.skilled`, 69 `specs/007`), 59 phrase keys, 1 advisor row |
+| Planning controls measured | Done | Positive controls at `42b41dd286`, used as expected values in acceptance-criteria.md: 336 tracked paths, 1528 content lines, 200 index lines (131 `.skilled`, 69 `specs/007`), 59 phrase keys, 1 advisor row |
+| Phase 002 baselines | Done in phase 002 | T003 wrote `/tmp/phase2-baseline-filtered.txt` 158, `/tmp/phase2-baseline-hidden.txt` 164, `/tmp/phase2-baseline-broad.txt` 1338; this phase re-measures in T002's `00-preflight.md` |
 
 ### Deviations and findings
 

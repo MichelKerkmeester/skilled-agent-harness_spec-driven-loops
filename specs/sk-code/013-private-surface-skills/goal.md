@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills"
     last_updated_at: "2026-10-23T14:10:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Phase 001 landed on main as 7648ae8b56; phase 002 in progress uncommitted"
+    next_safe_action: "Finish phase 002 T039, then continue at T040"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-013-private-surface-skills"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 27
     open_questions:
       - "Rewrite history after phase 005's read-only inventory?"
     answered_questions:
@@ -107,8 +107,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Parent planning documents finished | Done | `spec.md` map, handoff blocks and open questions rewritten, `goal.md` authored on 2026-10-23 |
-| Phase 001 | Done | Harness `pre-commit gates: 131 passed, 0 failed`, commit `chore(git-hooks): block staged private skills and ignore local-* skill paths` |
-| Phases 002 to 005 | Pending | Each child's `tasks.md`, in order |
+| Phase 001 | Done | Harness `pre-commit gates: 131 passed, 0 failed`, commit `7648ae8b56` on `origin/main` |
+| Phase 002 | In progress | T001 to T038 applied uncommitted in the main checkout; T039 partial (code-quality-standards.md lines 16, 24, 39, 49, 56 still to edit) |
+| Phases 003 to 005 | Pending | Each child's `tasks.md`, in order |
 
 ### Deviations and findings
 

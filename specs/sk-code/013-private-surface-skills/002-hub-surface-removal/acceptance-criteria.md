@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills/002-hub-surface-removal"
     last_updated_at: "2026-10-23T12:40:00Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Rewrote the criteria with fenced proof commands and positive controls"
-    next_safe_action: "Run the tasks in tasks.md, then mark each criterion Met with observed evidence"
+    recent_action: "Applied T001 to T038 uncommitted; T039 partial; six rows already hold their end state"
+    next_safe_action: "Finish T039 (code-quality-standards.md lines 16, 24, 39, 49, 56), then continue at T040"
     blockers: []
     key_files:
       - "tasks.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deepseek-v4.1-flash-1017-002-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 35
     open_questions: []
     answered_questions: []
 ---
@@ -68,6 +68,18 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-012 | REQ-009 | Given the canary fixture was edited, When it is compared with its authored twin and the link is checked, Then the twin matches and `.opencode/skills` still resolves | Unmet | - |
 | AC-013 | SC-002 | Given the hub now ships three packets, When a plain system-code prompt is routed, Then the hub still wins and the Skilled surface is its target | Unmet | - |
 | AC-014 | REQ-010 | Given the phase is committed and pushed to `main`, When the packet validator runs on the final state, Then the packet passes and the remote matches the local commit | Unmet | - |
+
+#### Progress notes (uncommitted worktree state, 2026-10-24)
+
+Every row stays `Unmet` until the phase commit lands; the notes below record rows
+whose end state is already true in the worktree.
+
+- AC-001 — Partial (uncommitted): 226 paths at `42b41dd286`, 0 under `git ls-files`, both folders absent on disk
+- AC-002 — Partial (uncommitted): registry prints `sk-code-quality,sk-code-review,sk-code-skilled` and `["sk-code-skilled"]`
+- AC-003 — Partial (uncommitted): tie-break, router signals and vocabulary classes name no removed surface
+- AC-004 — Partial (uncommitted): regenerated manifest names no removed packet; `--check` prints `leaf-manifest.json OK`
+- AC-005 — Partial (uncommitted): `ROUTER.md` `webflow|obsidian` count 0 and `router-sync: 5/5 checks passed`
+- AC-011 — Partial (uncommitted): surviving D6 records diff 0 and `z_archive` diff 0 besides the two excluded twins; verified 2026-10-24, re-run at closure
 
 ### AC-001
 

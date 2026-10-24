@@ -39,7 +39,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The two surfaces that are about to become private skills have no safe place to live yet",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-23T20:33:41.444Z",
+    "last_save_at": "2026-10-24T08:12:35.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98cdbe4e9ed9f0280a5284a391f4070cbaf78439a3a771dd89fff49081cb7199",
+    "source_fingerprint": "sha256:0432f338eeccc03cf05b6d74bc990d8e566619ffdaef5f5a6b0cff37bbe97f9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e624d11a60d869ad0a6fd8381b604ae6fce6d6bf40222d7148ca2e8fe9f32b9",
-      "plan.md": "e1ce94b4f5bc49c5b9922dcdced4560352d66cec3bef4a2b89ce1c57696321af",
-      "tasks.md": "8ad2f389bf795213b099450e0236de95215b1eb126ca3b159229dcec23418c79",
+      "spec.md": "b2397c0d6be0e3b5fb223a88a9c3b4e099b9cc8c0cd1f05bb3ca03eca461925e",
+      "plan.md": "45c7aa0ec090ddab9ef97b76734ce2cf1b352795a73d2cfd3404a9e13f8d1844",
+      "tasks.md": "84467316196b6891ba327cb9e32a0f357640deaed8b5e4bfce0b082ca092ff10",
       "decision-record.md": "05c0e11c1b9c791d8a97be3783098484274958664af83e82e78497c9c59aa365",
-      "implementation-summary.md": "38a86dab11dc2b8a650561310b789d6ee44a50f6b40a2923a9d002aca840de7c"
+      "implementation-summary.md": "fe8dcd8d2b3955ff8392e6dcb2529a52bbcca50d2cda21515b1fac09ab6071b7"
     },
     "last_active_at": null
   }

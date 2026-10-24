@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored `local-` symlinks, but nothing yet proves the result",
     "created_at": "2026-10-23T07:03:41Z",
-    "last_save_at": "2026-10-23T16:28:05.741Z",
+    "last_save_at": "2026-10-24T08:12:38.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ab975f98efd4bb5a51e62bed5928f6c9ad97a9c1bee8f423bd25d92a35f0996",
+    "source_fingerprint": "sha256:c7dbb99c8fb055c6876ee4329387c7a0d04bf623991529aa41aed0d7ee8e8490",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "464c582049b3c14d5ed209a69f2c37ddd7cff6a6f64cc91b26be2f85284d6011",

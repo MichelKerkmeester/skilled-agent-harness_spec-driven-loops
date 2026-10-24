@@ -635,10 +635,10 @@ harness.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification read: T016, T017, T018 and T019
-- [ ] Push confirmed: T026 landed the phase commit as the tip of `origin/main`, so phase 002's "landed on main" dependency holds
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification read: T016, T017, T018 and T019
+- [x] Push confirmed: T026 landed the phase commit as the tip of `origin/main`, so phase 002's "landed on main" dependency holds
 <!-- /ANCHOR:completion -->
 
 ---

@@ -30,7 +30,7 @@ The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian,
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In progress |
 | **Created** | 2026-10-23 |
 | **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |

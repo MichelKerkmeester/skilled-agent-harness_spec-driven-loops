@@ -30,7 +30,7 @@ Nothing in this repository stops a private `local-*` skill from being committed.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
