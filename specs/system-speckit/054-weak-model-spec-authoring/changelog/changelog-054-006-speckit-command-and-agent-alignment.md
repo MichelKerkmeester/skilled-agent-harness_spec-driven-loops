@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ### Summary
 
-The phase applied the rows in scratch/audit/applied.txt, regenerated every mirror and closed with the suite at the phase start.
+The speckit, create and deep commands and the doc-authoring agents now send a writer to the authoring card and a filled example, state the v2.3 Draft warning in both placeholder classifiers, and no longer point at the retired `checklist.md`. 78 exact text rows were applied, the Codex, Pi and Hermes agent copies and the deep/review compiled contract were regenerated, and the suite matches the phase start.
 
 ### Added
 
@@ -32,7 +32,7 @@ The phase applied the rows in scratch/audit/applied.txt, regenerated every mirro
 - The `checklist.md` doc is gone from the continuity ladder of both resume assets, the `orchestrate`, `code` and `context` agents in `.skilled` and `.claude`, and the 14 creator command assets.
 - The creator commands that need verification now require, route and output `acceptance-criteria.md` where they named `checklist.md`.
 - `deep-review-auto.yaml` and `deep-review-confirm.yaml` read `acceptance-criteria.md` for spec folders and child specs, and the AC_COVERAGE signal checks for `acceptance-criteria.md`.
-- The Codex and Pi copies of the code, context, markdown and orchestrate agents were regenerated from the corrected sources.
+- The Codex, Pi and Hermes copies of the code, context, markdown and orchestrate agents were regenerated from the corrected sources.
 - The deep/review compiled contract was recompiled, which updated the two source digests of the edited assets.
 
 ### Fixed
@@ -48,7 +48,6 @@ The phase applied the rows in scratch/audit/applied.txt, regenerated every mirro
 - Search gates - A1 to A4 and A6 ended in 1, GUARD_REFS 6
 - Contract drift - Two vitest files passed (43 tests) and check-contract-drift.cjs printed [CONTRACT DRIFT] OK commands=3
 - Suite comparison with the phase start - SUITE_MATCH, exit=0 (scratch/suite-end.txt)
-- Tasks complete - 64 completed task item(s) recorded
 
 ### Files Changed
 
@@ -61,6 +60,7 @@ The phase applied the rows in scratch/audit/applied.txt, regenerated every mirro
 | `.skilled/commands/create/assets/*.yaml (14 files)` | Modified | Retired checklist doc replaced or dropped |
 | `.skilled/commands/deep/assets/deep-review-auto.yaml, deep-review-confirm.yaml` | Modified | Retired checklist doc replaced |
 | `.codex/agents/` TOMLs and `.pi/agents/` files, 4 each | Regenerated | Generated mirrors of the four agents |
+| `.hermes/skills/agent-code/SKILL.md`, `agent-context`, `agent-markdown`, `agent-orchestrate` (4 files) | Regenerated | Generated mirrors of the four agents, written by `sync-skills-hermes.cjs` when the mirror-parity hook required it. The commit holds 45 paths outside the phase folder |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Regenerated | Derived output required by the source digest check |
 | `spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md, implementation-summary.md, scratch/` | Modified or created | Phase record and evidence |
 

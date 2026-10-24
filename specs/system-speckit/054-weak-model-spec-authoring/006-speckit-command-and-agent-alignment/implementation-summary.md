@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 6 applied 78 exact text rows to the speckit, create and deep command assets and the doc-authoring agents, regenerated the Codex and Pi agent mirrors and the deep/review compiled contract, and closed with the suite unchanged."
+description: "Phase 6 applied 78 exact text rows to the speckit, create and deep command assets and the doc-authoring agents, regenerated the Codex, Pi and Hermes agent mirrors and the deep/review compiled contract, and closed with the suite unchanged."
 trigger_phrases:
   - "speckit command and agent alignment implementation summary"
 importance_tier: "normal"
@@ -55,7 +55,7 @@ The phase applied the rows in scratch/audit/applied.txt, regenerated every mirro
 
 51 extra rows (R-028 to R-078) cover the 45 `checklist.md` mentions in 14 `/create:*` and 2 `/deep:review` workflow assets. Ladders and memory-load lists drop the doc. Required-file, route and output lists name `acceptance-criteria.md`, and six creator commands list its filled level-2 example.
 
-The Codex and Pi agent mirrors came from their generators (4 files each, no prompt changed). Editing the two deep-review assets made the deep/review compiled contract stale, so the contract was recompiled once and its two source digests changed.
+The Codex and Pi agent mirrors came from their generators (4 files each, no prompt changed). The mirror-parity hook at commit time also required `sync-skills-hermes.cjs`, which regenerated 4 Hermes agent skill copies (`scratch/mirrors/gen-hermes.txt`). The commit therefore holds 45 paths outside this folder: 32 row files, 12 generated mirror files and 1 compiled contract. The 41 paths T011 listed ran before the Hermes step. Editing the two deep-review assets made the deep/review compiled contract stale, so the contract was recompiled once and its two source digests changed.
 
 The rows were applied to the real tree. The applier self-test ran on a throw-away copy that was deleted afterwards.
 
@@ -70,6 +70,7 @@ The rows were applied to the real tree. The applier self-test ran on a throw-awa
 | `.skilled/commands/create/assets/*.yaml` (14 files) | Modified | Retired checklist doc replaced or dropped |
 | `.skilled/commands/deep/assets/deep-review-auto.yaml`, `deep-review-confirm.yaml` | Modified | Retired checklist doc replaced |
 | `.codex/agents/*.toml`, `.pi/agents/*.md` (4 files each) | Regenerated | Generated mirrors of the four agents |
+| `.hermes/skills/agent-code/SKILL.md`, `agent-context`, `agent-markdown`, `agent-orchestrate` (4 files) | Regenerated | Generated mirrors of the four agents, written by `sync-skills-hermes.cjs` ("Wrote 4 of 68") |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Regenerated | Derived output required by the source digest check |
 | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`, `scratch/` | Modified or created | Phase record and evidence |
 <!-- /ANCHOR:what-built -->

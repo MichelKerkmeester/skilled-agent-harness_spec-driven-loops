@@ -47,9 +47,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/mirrors/gen-hermes.txt",
       ".skilled/commands/speckit/plan.md",
       ".skilled/agents/markdown.md",
       ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".hermes/skills/agent-code/SKILL.md",
       ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
       "scratch/suite-end.txt",
       ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
@@ -58,9 +60,7 @@
       "runtime/cli/spec/check-card-sync.sh",
       "runtime/cli/spec/check-example-drift.sh",
       "scratch/audit/applied.txt",
-      "scratch/audit/searches.txt",
-      "scratch/suite-before.txt",
-      ".skilled/commands/speckit/assets/speckit-plan.yaml"
+      "scratch/audit/searches.txt"
     ],
     "entities": [
       {
@@ -100,6 +100,12 @@
         "source": "derived"
       },
       {
+        "name": "gen-hermes.txt",
+        "kind": "file",
+        "path": "scratch/mirrors/gen-hermes.txt",
+        "source": "derived"
+      },
+      {
         "name": "markdown.md",
         "kind": "doc",
         "path": ".skilled/agents/markdown.md",
@@ -112,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/agent-code/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-review.contract.markdown",
         "kind": "file",
         "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
@@ -121,12 +133,6 @@
         "name": "suite-end.txt",
         "kind": "file",
         "path": "scratch/suite-end.txt",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
         "source": "derived"
       },
       {
@@ -166,18 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "suite-before.txt",
-        "kind": "file",
-        "path": "scratch/suite-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-plan.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A speckit command tells a writer where to find authoring guidance, how a placeholder is treated and which files a packet holds",
     "created_at": "2026-10-23T12:53:05Z",
-    "last_save_at": "2026-10-24T19:50:53.536Z",
+    "last_save_at": "2026-10-24T20:39:10.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e055429929aad9f5693c83909c8d93153a90e28e6f140a137bd6f83f31c83052",
+    "source_fingerprint": "sha256:3964738fdda2fdd667180ea0183bc441b2a6924dac8dc62853fbf7e418cb5d82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a486e0da1e1e8f118fb5de2e98851914e9d9b106267a741c6ba84d7e47178909",
-      "plan.md": "f677bfea405111bcbd1eeed4ee812d244a0f890eab203932bc55caf51f5ce486",
-      "tasks.md": "cc922b45c062ef8fa405b78b309f38aa3dcf4fcafef363f6cda2f0f202bd4a7b",
-      "implementation-summary.md": "41917714ab27b15a07f063f677ab95c50110042113257a7d6eba804d98bf9561"
+      "plan.md": "77d4a9b8abc0355559706849dd53915bbb9a36b9ce2e71c93146694e28766650",
+      "tasks.md": "5fd4a1c73993fbde86e059fd60ab08fa10e62fc94f418dcdb2130bee67b2021f",
+      "implementation-summary.md": "32197e92a92f40776f1d4c3cc553c6662744614c5e4e0bdcba45673206800f47"
     },
     "last_active_at": null
   }

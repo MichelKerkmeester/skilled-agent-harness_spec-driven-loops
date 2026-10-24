@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
-    last_updated_at: "2026-10-23T13:10:00Z"
-    last_updated_by: "author"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-10-24T22:00:00Z"
+    last_updated_by: "conductor"
+    recent_action: "Closed phase 006: all eight criteria Met"
+    next_safe_action: "Start phase 007"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,8 +52,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the 27 frozen rows, When T004 has run, Then `rows.jsonl` parses and every locator occurs exactly once | `jq -c . scratch/audit/rows.jsonl \| wc -l` prints `27`, and T004 prints `27 1` | Met | - |
-| AC-002 | REQ-002 | Given `rows.jsonl`, When T006 has run, Then every row was applied by the script and changed only the file it names | T006 prints `27`, `27` and `27`, and `grep -c '^CHECK R-.* extra_paths=0$' scratch/audit/applied.txt` prints `27` | Met | - |
-| AC-003 | REQ-003 | Given the corrected tree, When T007 has run, Then the four A1 to A4 searches print nothing and six files name a guard script | `scratch/audit/searches.txt` holds `A1_rc=1`, `A2_rc=1`, `A3_rc=1`, `A4_rc=1` and `GUARD_REFS=6` | Met | - |
+| AC-002 | REQ-002 | Given `rows.jsonl`, When T006 has run, Then every row was applied by the script and changed only the file it names | T006 printed `78`, `78` and `78` (27 frozen rows plus 51 extra rows), and `grep -c '^CHECK R-.* extra_paths=0$' scratch/audit/applied.txt` printed `78` | Met | - |
+| AC-003 | REQ-003 | Given the corrected tree, When T007 has run, Then the four A1 to A4 searches print nothing and six files name a guard script | `scratch/audit/searches.txt` holds `A1_rc=1`, `A2_rc=1`, `A3_rc=1`, `A4_rc=1`, `GUARD_REFS=6` and `A6_rc=1` (the widened search of the 16 extra-row files) | Met | - |
 | AC-004 | REQ-004 | Given the regenerated trees, When T008 has run, Then all eight mirror checks exit 0 | `grep -c 'rc=0$' scratch/mirrors/summary.txt` prints `8` | Met | - |
 | AC-005 | REQ-005 | Given the doctor:speckit checks, When T009 has run, Then the lookup and the gate pointer check pass and the index staleness set is unchanged | T009 prints `INDEX_STALENESS_SAME`, `gate1_exit=0` and a lookup exit of 0 or 1 | Met | - |
 | AC-006 | REQ-006 | Given the suite at the phase start and at close, When T012 has run, Then the summary lines and the exit line are identical | T012 prints `SUITE_MATCH` | Met | - |

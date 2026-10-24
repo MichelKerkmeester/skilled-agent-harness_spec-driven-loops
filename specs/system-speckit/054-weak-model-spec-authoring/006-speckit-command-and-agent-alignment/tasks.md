@@ -319,6 +319,8 @@ rm -rf "$T"
   grep -vE '^\.(codex|pi)/(agents|prompts)/' "$A/changed-files.txt" > "$A/changed-outside-generated.txt"
   comm -13 "$A/allowed-files.txt" "$A/changed-outside-generated.txt" | tee "$A/unexplained-files.txt" | wc -l | tr -d ' '
   ```
+
+  Recorded result: T011 listed 41 changed paths (32 row files, 8 generated mirror files, 1 compiled contract) and 0 unexplained. That count is kept as run. Final count at the commit: 45 paths outside this folder, because the mirror-parity hook then required `sync-skills-hermes.cjs`, which regenerated the 4 `.hermes/skills/agent-{code,context,markdown,orchestrate}/SKILL.md` copies (`scratch/mirrors/gen-hermes.txt`), giving 12 generated mirror files.
 <!-- /ANCHOR:phase-2 -->
 
 ---
