@@ -6,7 +6,6 @@ on:
     paths:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
-      - '.github/actions/**'
       - '.github/workflows/spec-kit-check.yml'
       # The rebuild workflow's own suite pins the commit message it writes, so a
       # change to that workflow has to run the suite that guards it.
@@ -38,7 +37,6 @@ on:
     paths:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
-      - '.github/actions/**'
       - '.github/workflows/spec-kit-check.yml'
       # The rebuild workflow's own suite pins the commit message it writes, so a
       # change to that workflow has to run the suite that guards it.
@@ -85,11 +83,36 @@ jobs:
         with:
           node-version: '22'
 
-      # The repository's provisioning list installs every workspace and builds the
-      # five artifacts the check gate maps back to their sources, the sk-vision
-      # plugin bundle among them, so one provisioned tree replaces nine installs.
-      - name: Provision the dependency trees the spec-kit checks load
-        uses: ./.github/actions/setup
+      # Only the package root carries a lockfile; shared, runtime and
+      # runtime/cli are workspaces of it, so the root install provisions all
+      # three. The CLI's check gate maps dist files back to sources, so every
+      # package is built before it runs.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
+      # The plugins-folder purity test imports every plugin entrypoint, including the
+      # sk-vision link, whose target is a bundle bun builds and git ignores.
+      - name: Build the sk-vision plugin bundle
+        run: |
+          set -euo pipefail
+          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
+          cd .opencode/skills/sk-vision/vision-runtime
+          bun install --frozen-lockfile
+          bun run build
+          test -f dist/plugin.js
 
       # The CLI check is the only gate that rejects a reverse import into the
       # engine's internals; before this workflow nothing ran it outside a
@@ -159,8 +182,11 @@ jobs:
       # stops being invisible to CI.
       # The sync scripts require @spec-kit/shared through the workspace link,
       # which only an install creates on a clean runner.
-      - name: Provision the dependency trees the mirror checks load
-        uses: ./.github/actions/setup
+      - name: Install the workspace and build its shared package
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
 
       - name: Mirror parity checks
         run: |
@@ -193,18 +219,24 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/spec-kit-check.yml
 
-      # The mutation-class guard parses its manifest with PyYAML.
-      - name: Install the Python test dependency
-        run: python3 -m pip install pyyaml==6.0.3
-
-      # The mirror checks require @spec-kit/shared through the workspace link, the
-      # hub check loads sk-doc's contract libraries, which import the same package
+      # The mutation-class guard parses its manifest with PyYAML. The mirror
+      # checks require @spec-kit/shared through the workspace link, the hub
+      # check loads sk-doc's contract libraries, which import the same package
       # through sk-doc's own install, and the freshness panel suite runs on the
       # advisor runtime's vitest. The advisor route-contract test parses the
       # route manifest with the yaml package declared in .skilled/package.json.
       # The doctor update integration test runs upgrade-legacy, which imports the built runtime.
-      - name: Provision the dependency trees the doctor suites load
-        uses: ./.github/actions/setup
+      - name: Install test dependencies
+        run: |
+          set -euo pipefail
+          python3 -m pip install pyyaml==6.0.3
+          npm --prefix .skilled ci
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/sk-doc ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
 
       # One runner, so CI and a developer execute the same set of suites.
       - name: Run every doctor script suite

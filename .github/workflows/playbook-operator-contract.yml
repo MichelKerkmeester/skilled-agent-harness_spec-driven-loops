@@ -23,8 +23,17 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '20'
-      - name: Provision the dependency trees the contract checkers load
-        uses: ./.github/actions/setup
+      - name: Install the spec-kit workspace and build its shared package
+        # The checkers require @spec-kit/shared, a workspace package that only
+        # resolves after an install links it, and its .js subpaths point at the
+        # compiled dist, so a bare checkout cannot find the module.
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          # sk-doc's checkers import the same package through their own file: dependency,
+          # which only exists once sk-doc is installed as well.
+          npm --prefix .opencode/skills/sk-doc ci
 
       # Every bail-out below is a hard failure, never a skip. This gate exists because a
       # backlog once grew while builds stayed green: the corpus scan silently covered a

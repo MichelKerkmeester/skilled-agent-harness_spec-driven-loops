@@ -14,7 +14,6 @@ on:
       - '.skilled/commands/deep/**'
       - '.opencode/skills/system-spec-kit/shared/**'
       - '.skilled/skills/system-spec-kit/shared/**'
-      - '.github/actions/**'
       - '.github/workflows/deep-loop-runtime.yml'
   push:
     branches: [main, 'skilled/**']
@@ -25,7 +24,6 @@ on:
       - '.skilled/commands/deep/**'
       - '.opencode/skills/system-spec-kit/shared/**'
       - '.skilled/skills/system-spec-kit/shared/**'
-      - '.github/actions/**'
       - '.github/workflows/deep-loop-runtime.yml'
 
 permissions:
@@ -52,8 +50,15 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Provision the dependency trees the runtime suites load
-        uses: ./.github/actions/setup
+      # The runtime links @spec-kit/shared by path, so the spec-kit workspace is
+      # installed and the shared package built before the runtime's own install.
+      - name: Install the deep-loop runtime and the shared package it links
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-deep-loop ci
+          npm --prefix .opencode/skills/system-deep-loop/runtime ci
 
       # A stale compiled contract fails the suite after the whole run. Checking
       # the same fact first fails in seconds and names the contract to rebuild.

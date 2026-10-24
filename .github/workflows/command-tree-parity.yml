@@ -71,8 +71,14 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '20'
-      - name: Provision the dependency trees the parity checkers load
-        uses: ./.github/actions/setup
+      - name: Install the spec-kit workspace
+        # The checkers require @spec-kit/shared, a workspace package that only
+        # resolves after an install links it, so a bare checkout cannot
+        # find the module; the checker imports a checked-in source module, so no
+        # build is needed.
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
       - name: Compare command trees
         run: |
           set -euo pipefail
@@ -101,8 +107,10 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '20'
-      - name: Provision the dependency trees the Hermes checkers load
-        uses: ./.github/actions/setup
+      - name: Install the spec-kit workspace
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
       - name: Compare the Hermes copies with their sources
         run: |
           set -euo pipefail
