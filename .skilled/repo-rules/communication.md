@@ -225,3 +225,4 @@ asked waits.
 - [ ] When the reader did not follow, I changed modality instead of repeating the same explanation at greater length.
 - [ ] A plain re-render is a copy edit that keeps claims, numbers and caveats at the same strength, keeps code, paths and quotations byte-exact and yields when plainer wording would change the claim.
 - [ ] Nothing I cut for concision was something they needed.
+
