@@ -41,7 +41,7 @@ Output:
 
 Expected: 1528 at 42b41dd286 as the control, then 0
 
-Result: BLOCKED. The control held (1528) but the live count is 256, not 0. The working tree and `HEAD` agree (`git grep -c ... HEAD` also sums to 256), so the live count is not a dirty-tree artifact. `git grep -l` over the same pathspec prints 17 paths and the per-path counts at `HEAD` are:
+Result: BLOCKED against the original expectation of 0, and held under the operator ruling of 2026-10-24, which reclassified the 17 paths as 8 kept records, 6 test fixtures and 3 retrieval artifacts (see `03-fresh-clone-leak.md` section B). The count itself is unchanged. The control held (1528) but the live count is 256, not 0. The working tree and `HEAD` agree (`git grep -c ... HEAD` also sums to 256), so the live count is not a dirty-tree artifact. `git grep -l` over the same pathspec prints 17 paths and the per-path counts at `HEAD` are:
 
 ```text
 HEAD:.skilled/scripts/git-hooks/tests/pre-commit.test.sh:6
