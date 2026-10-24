@@ -172,7 +172,7 @@ Stop and escalate if: no answer arrives, or the answer is neither `skip` nor `fi
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md` (new file). Anchor: none.
 
-Not done: `scratch/phase-baseline.md` does not exist; the copy waits on the 002 24 h baseline (`scratch/baseline-24h/summary.md`), which has not yet been recorded. This also blocks T036.
+Not done, re-checked 2026-10-25: `test -f` on `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` printed `BASELINE_MISSING`. The 002 collection is only partly on disk (`window.json`, `runs-last-1000.json`, `run-ids.txt` and `jobs/`, no `summary.md`), and its window starts at 2026-10-24T06:40:51Z. This phase's six commits reached `main` earlier: CI run `40026353792` on head `3ab67b70cb` was created at 2026-10-23T21:23:01Z. A 002 baseline over that window therefore already contains this phase's changes and cannot serve as its before number. This also blocks T036.
 
 Change: copy the 002 summary's first 40 lines, then append one row per workflow this phase touches: `advisory-checks`, `agent-mirror-sync`, `changed-packet-validation`, `command-tree-parity`, `dispatch-enforcement-guard`, `deep-loop-runtime`, `repo-rules-corpus`, `rule-canary-sync`, `skill-doc-frontmatter`, `strict-pass-freshness-report`.
 
@@ -1567,7 +1567,7 @@ Stop and escalate if: the first count differs from the second, or a row carries 
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md` (new file). Anchor: none.
 
-Not done: blocked on T006 — `scratch/phase-baseline.md` waits on the 002 24 h snapshot — and on the 24 h post-merge window.
+Not done, checked 2026-10-25: more than 24 h have passed since the changes merged (2026-10-23T21:23Z), so the window condition holds, but T006 has not run and the 002 `summary.md` is absent. The 002 collection now on disk starts at 2026-10-24T06:40:51Z, after this phase landed, so it holds no before number for this phase. Stopped here by this task's own rule: a delta needs ten baseline rows, and no research figure may stand in for a measured one. The operator decides which pre-change window is the baseline (see `implementation-summary.md`, Known Limitations).
 
 Change: at least 24 h after the last change merges, collect the run history and one job sample per workflow this phase touched, then write the file with the ten rows from `scratch/phase-baseline.md`, the after numbers, and the delta.
 
@@ -1592,7 +1592,7 @@ Stop and escalate if: fewer than 24 h have passed, or fewer than ten rows are re
 
 ### T037 Close the acceptance rows with evidence (AC-001 to AC-017)
 
-Partly done 2026-10-24: the rows the probes decide are closed with run ids. AC-002, AC-003, AC-006, AC-007, AC-010, AC-011 and AC-012 are `Met`. AC-009 stays `Unmet` because its proof needs the seconds recorded in `scratch/phase-result.md` against an 002 baseline sample and neither exists. AC-016 stays `Unmet` until T036. The check below still returns `2` until T036 has run and those two rows close.
+Partly done 2026-10-24: the rows the probes decide are closed with run ids. AC-002, AC-003, AC-006, AC-007, AC-010, AC-011 and AC-012 are `Met`. AC-009 stays `Unmet` because its proof needs the seconds recorded in `scratch/phase-result.md` against an 002 baseline sample and neither exists. AC-016 stays `Unmet` until T036. Re-checked 2026-10-25: `grep -c '| Unmet |'` still returns `2` (AC-009 and AC-016) and the strict validator prints `RESULT: PASSED` with the phase In progress. The check below returns `2` until T036 has run and those two rows close.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: the `| Unmet | - |` status cell of each row.
 
@@ -1616,6 +1616,8 @@ Stop and escalate if: any row has no observed evidence, or the validator does no
 ### T038 Commit the closure evidence (AC-017)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: `| AC-017 | R3-R11 | REQ-013 |` at `:80`, the row whose Verification cell names the id-hygiene check.
+
+Not done 2026-10-25: held back by instruction, no commit, stage or push in this pass, and the closure statement reads `Closeable: No` while AC-009 and AC-016 are `Unmet`.
 
 Change: stage the T037 acceptance edit and commit it with this message. No other path is staged.
 
@@ -1700,8 +1702,8 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming its R-id or a gate
-- [ ] CHK-002 [P0] Technical approach defined in plan.md - the concurrency shape, the filter derivation from the four checkers, the deleted step, the status-capture form and the two depth values
+- [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming its R-id or a gate [EVIDENCE: spec.md holds REQ-001 to REQ-013, 13 rows by `grep -cE '^\| REQ-0(0[1-9]|1[0-3]) '`, read 2026-10-25]
+- [x] CHK-002 [P0] Technical approach defined in plan.md - the concurrency shape, the filter derivation from the four checkers, the deleted step, the status-capture form and the two depth values [EVIDENCE: plan.md carries the Affected Surfaces, the filter matrix and the dependency matrix; read 2026-10-25]
 - [ ] CHK-003 [P1] Dependencies identified and available - the 002 baseline (T006), D2, D3, D4, D7 and D10 (T001 to T005), and `gh` with `repo` and `actions`
 <!-- /ANCHOR:pre-impl -->
 
@@ -1710,10 +1712,10 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks - the gates this change touches are `bash .github/scripts/check-gate-inputs.sh` and the YAML parse (T025); both must pass
-- [ ] CHK-011 [P0] No console errors or warnings - the gate prints `failures=0`, the parse prints nothing, and the vitest tree exits 0 (T013, T025)
-- [ ] CHK-012 [P1] Error handling implemented - the three suppressed commands now fail their step explicitly, and the repair report keeps its status instead of discarding it (T014, T015)
-- [ ] CHK-013 [P1] Code follows project patterns - every new comment explains why, the concurrency block matches the one existing group's shape at `trigger-index-rebuild.yml:21-23`, and no comment carries a packet id (T026)
+- [x] CHK-010 [P0] Code passes lint/format checks - the gates this change touches are `bash .github/scripts/check-gate-inputs.sh` and the YAML parse (T025); both must pass [EVIDENCE: reran 2026-10-25: `bash .github/scripts/check-gate-inputs.sh` printed `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` and `RESULT: PASSED`; `check-gate-inputs.test.sh` printed `check-gate-inputs: 57 passed, 0 failed`; the YAML parse over `.github/workflows/*.yml` exited 0 with no output (32 files at HEAD, after a sibling phase removed `hooks-node-tests.yml`)]
+- [x] CHK-011 [P0] No console errors or warnings - the gate prints `failures=0`, the parse prints nothing, and the vitest tree exits 0 (T013, T025) [EVIDENCE: gate `failures=0` and a silent YAML parse reran 2026-10-25; the dispatch-enforcement-guard run `40026353792` on head `3ab67b70cb` concluded `success` (`gh run view`, exit 0). The local focused test is not hermetic to the OpenCode version (see Known Limitations in implementation-summary.md), so the CI run is the proof]
+- [x] CHK-012 [P1] Error handling implemented - the three suppressed commands now fail their step explicitly, and the repair report keeps its status instead of discarding it (T014, T015) [EVIDENCE: reran 2026-10-25: `grep -cE '\|\| (true|echo)' .github/workflows/advisory-checks.yml` prints 0, `continue-on-error: true` counts 3 (advisory-checks) and 1 (strict-pass-freshness-report); run `40101235126` printed the error line once with the job `success`]
+- [x] CHK-013 [P1] Code follows project patterns - every new comment explains why, the concurrency block matches the one existing group's shape at `trigger-index-rebuild.yml:21-23`, and no comment carries a packet id (T026) [EVIDENCE: reran 2026-10-25: `message-contract.yml:16-18` carries the same three-line block as `trigger-index-rebuild.yml:21-23` (group, cancel-in-progress); the id grep over `df0f97a4fe~1...3ab67b70cb` printed nothing]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -1722,9 +1724,9 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-017
-- [ ] CHK-021 [P0] Manual testing complete - the trigger probes (T027 to T034) and the job-shape probes (T030, T031) are recorded in `scratch/phase-result.md`
-- [ ] CHK-022 [P1] Edge cases tested - a specs-only pull request for each newly filtered workflow, a third push while one run is pending, and a `workflow_dispatch` run
-- [ ] CHK-023 [P1] Error scenarios validated - the deleted-suite branch still fails its job (T030), and a broken doc-model reference shows a failed step under a green job (T031)
+- [x] CHK-021 [P0] Manual testing complete - the trigger probes (T027 to T034) and the job-shape probes (T030, T031) are recorded in `scratch/phase-result.md` [EVIDENCE: the trigger and job-shape probes T027 to T034 are recorded in `scratch/probe-results.md` with head SHAs and run ids (`scratch/phase-result.md` does not exist yet, so the record lives in the probe file)]
+- [x] CHK-022 [P1] Edge cases tested - a specs-only pull request for each newly filtered workflow, a third push while one run is pending, and a `workflow_dispatch` run [EVIDENCE: specs-only negatives: command-tree-parity `[]` on head `15f1bf7844` and agent-mirror-sync `[]` on head `4d4e797b83`; the pushed-twice cancel in run `40100004699`; the dispatch run `40101537374`; all in `scratch/probe-results.md`, read 2026-10-25]
+- [x] CHK-023 [P1] Error scenarios validated - the deleted-suite branch still fails its job (T030), and a broken doc-model reference shows a failed step under a green job (T031) [EVIDENCE: run `40101163105` concluded `failure` with `##[error]Dispatch rule suite not found`; run `40101235126` shows the step error under a `success` job (`scratch/probe-results.md`, AC-006, AC-007)]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1732,13 +1734,13 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the 30 missing concurrency groups, `instance-only` for the duplicate step and the three depths, `matrix/evidence` for the two filters and the inventory
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed - `rg -n '^concurrency:' .github/workflows` and `rg -n 'fetch-depth: 0' .github/workflows` in plan.md, Affected Surfaces
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed - `dispatch-audit.test.mjs` (the explicit step and the vitest include), the seven suite paths, `check-gate-inputs.sh`'s twin rule and the README rows, each with its verification in plan.md
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the filter matrix in plan.md covers a filter entry under the wrong event, a `.skilled/` entry with no twin, a per-run group key and a checker whose path changed without its filter entry
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (3) x workflow class (3) with 7 required rows, in plan.md
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the throwaway branch with a deleted suite and the branch with a broken doc-model reference are the hostile variants (T030, T031)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every probe records the head SHA and the run id in `scratch/phase-result.md`
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - `class-of-bug` for the 30 missing concurrency groups, `instance-only` for the duplicate step and the three depths, `matrix/evidence` for the two filters and the inventory [EVIDENCE: plan.md Affected Surfaces carries the finding classes; read 2026-10-25]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed - `rg -n '^concurrency:' .github/workflows` and `rg -n 'fetch-depth: 0' .github/workflows` in plan.md, Affected Surfaces [EVIDENCE: reran 2026-10-25: `grep -L '^concurrency:'` lists `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml`, and `grep -rn 'fetch-depth: 0' .github/workflows` returns 7 lines, matching AC-001 and AC-008]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - `dispatch-audit.test.mjs` (the explicit step and the vitest include), the seven suite paths, `check-gate-inputs.sh`'s twin rule and the README rows, each with its verification in plan.md [EVIDENCE: plan.md Affected Surfaces, Consumers of changed symbols (line 98), lists the dispatch-audit step and include glob, the seven suite paths and the frontmatter guard, each with its `rg` command; read 2026-10-25]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - the filter matrix in plan.md covers a filter entry under the wrong event, a `.skilled/` entry with no twin, a per-run group key and a checker whose path changed without its filter entry [EVIDENCE: plan.md line 101 lists the four adversarial cases (wrong event, a `.skilled/` entry with no twin, a per-run group key, a checker path changed without its filter entry); the twin cases are run by `check-gate-inputs.test.sh` (57 passed, 0 failed, 2026-10-25) and the others by the AC-003 and AC-010 probes]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (3) x workflow class (3) with 7 required rows, in plan.md [EVIDENCE: plan.md line 99 names the axes (event by workflow class) and seven required rows; read 2026-10-25]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the throwaway branch with a deleted suite and the branch with a broken doc-model reference are the hostile variants (T030, T031) [EVIDENCE: the deleted-suite branch (PR #77, run `40101163105`) and the broken-input run `40101235126` are the hostile variants and both ran, per `scratch/probe-results.md`]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - every probe records the head SHA and the run id in `scratch/phase-result.md` [EVIDENCE: `scratch/probe-results.md` pins each probe to its PR, head SHA and run id (AC-002 to AC-011 cite them); `scratch/phase-result.md` does not exist, so the pins live in the probe file]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1746,9 +1748,9 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets - every edit is a trigger, a group name, a path literal or a shell branch; no token, key or PAT value appears in an edited file
-- [ ] CHK-031 [P0] Input validation implemented - each `paths:` entry is a repository-relative literal, and the concurrency group interpolates only `github.workflow`, `github.event.pull_request.number` and `github.ref`
-- [ ] CHK-032 [P1] Auth/authz working correctly - no `permissions:` block is added, removed or reordered; `trigger-index-rebuild.yml` keeps its own group and its token split
+- [x] CHK-030 [P0] No hardcoded secrets - every edit is a trigger, a group name, a path literal or a shell branch; no token, key or PAT value appears in an edited file [EVIDENCE: reran 2026-10-25: the added lines of `git diff df0f97a4fe~1 3ab67b70cb -- .github` match none of `ghp_`, `gho_`, `token:` or `secret`]
+- [x] CHK-031 [P0] Input validation implemented - each `paths:` entry is a repository-relative literal, and the concurrency group interpolates only `github.workflow`, `github.event.pull_request.number` and `github.ref` [EVIDENCE: reran 2026-10-25: every concurrency group is `${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}` in 29 files at HEAD (30 when the change landed, before `hooks-node-tests.yml` was merged away), plus the untouched rebuild group]
+- [x] CHK-032 [P1] Auth/authz working correctly - no `permissions:` block is added, removed or reordered; `trigger-index-rebuild.yml` keeps its own group and its token split [EVIDENCE: reran 2026-10-25: the diff over the six commits adds or removes no `permissions:` line in any of the 32 touched files, and `trigger-index-rebuild.yml:21-23` still reads `cancel-in-progress: false`]
 <!-- /ANCHOR:security -->
 
 ---
@@ -1756,9 +1758,9 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-013, tasks.md T001 to T038, acceptance-criteria.md AC-001 to AC-017
-- [ ] CHK-041 [P1] Code comments adequate - the rewritten `command-tree-parity.yml` comment names the inputs and the failure it guards, and the suppression branches name the fix
-- [ ] CHK-042 [P2] README updated (if applicable) - `.github/workflows/README.md:66,69,71` (T021)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-013, tasks.md T001 to T038, acceptance-criteria.md AC-001 to AC-017 [EVIDENCE: counted 2026-10-25: spec.md carries 13 REQ rows, tasks.md 38 task headings, acceptance-criteria.md 17 AC rows, and the ids match across the three files]
+- [x] CHK-041 [P1] Code comments adequate - the rewritten `command-tree-parity.yml` comment names the inputs and the failure it guards, and the suppression branches name the fix [EVIDENCE: reran 2026-10-25: the comment at `command-tree-parity.yml:98-102` explains the sources the filter names and the stale-copy failure it guards]
+- [x] CHK-042 [P2] README updated (if applicable) - `.github/workflows/README.md:66,69,71` (T021) [EVIDENCE: reran 2026-10-25: the path-filtered row in `.github/workflows/README.md` now sits at `:68` and the agent-mirror-sync row at `:70`, one line up from the planned `:69` and `:71` because a sibling phase removed a row; both read as the AC-015 wording]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1766,7 +1768,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only - the decisions, baseline rows, inventory, after-run JSON and result all live in `scratch/`
+- [x] CHK-050 [P1] Temp files in scratch/ only - the decisions, baseline rows, inventory, after-run JSON and result all live in `scratch/` [EVIDENCE: reran 2026-10-25: `ls -a scratch/` shows decisions.md, pre-commit-inventory.md, probe-branch-approval.md and probe-results.md; no stray temp file, and the `/tmp` commit message file does not exist]
 - [ ] CHK-051 [P1] scratch/ cleaned before completion - the five documents are kept on purpose: `decisions.md` records the answers, `phase-baseline.md` and `phase-result.md` are the before and after numbers a later phase measures against, `pre-commit-inventory.md` is the phase's own deliverable, and `runs-after.json` is the raw sample behind the delta
 <!-- /ANCHOR:file-org -->
 
@@ -1777,11 +1779,11 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 11/12 |
+| P1 Items | 13 | 11/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---

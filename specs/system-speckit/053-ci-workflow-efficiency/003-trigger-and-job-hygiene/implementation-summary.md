@@ -10,9 +10,10 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Recorded probe results and deviations; 15 of 17 rows Met"
-    next_safe_action: "Run T036 after the 002 baseline, close AC-009 and AC-016, then commit"
-    blockers: []
+    recent_action: "Re-ran gates; T036 stopped on missing baseline"
+    next_safe_action: "Name a baseline, then run T036"
+    blockers:
+      - "002 baseline summary absent and its window postdates this phase"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -49,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Built and probed, not closed. The six concern commits landed on `main`: 30 PR-triggered workflows carry the concurrency block, `command-tree-parity.yml` and `agent-mirror-sync.yml` are filtered to their checkers' inputs, the duplicate dispatch-audit step is gone, both suppression layers are removed, and the three checkouts read only the history they need. The README table matches the YAML, and `scratch/pre-commit-inventory.md` records the 13 gate keys with a `Reason` column. The CI probes T027 to T035 ran on 2026-10-24 and 15 of 17 acceptance rows are `Met`. Still open: AC-009 (its proof needs the checkout seconds in `scratch/phase-result.md` against an 002 baseline sample, and neither exists) and AC-016 (the T036 delta, blocked on the 002 24 h baseline via T006), then the rest of T037 and the T038 commit.
+Built and probed, not closed. The six concern commits landed on `main`: 30 PR-triggered workflows carry the concurrency block, `command-tree-parity.yml` and `agent-mirror-sync.yml` are filtered to their checkers' inputs, the duplicate dispatch-audit step is gone, both suppression layers are removed, and the three checkouts read only the history they need. The README table matches the YAML, and `scratch/pre-commit-inventory.md` records the 13 gate keys with a `Reason` column. The CI probes T027 to T035 ran on 2026-10-24 and 15 of 17 acceptance rows are `Met`. Still open as of 2026-10-25: AC-009 (its proof needs the checkout seconds in `scratch/phase-result.md` against an 002 baseline sample, and neither exists) and AC-016 (the T036 delta, blocked on a pre-change baseline via T006), then the rest of T037 and the T038 commit. The phase stays In progress.
 
 ### Phase 3: trigger-and-job-hygiene
 
@@ -111,7 +112,8 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 | Report-only steps | Run `40101235126`: `##[error]doc-model drift` once in the log, one failure annotation, job `success`. Dispatch `40101537374`: 175 `would repair` lines and one error line, job `success` (AC-007, proof changed by the 2026-10-24 operator ruling) |
 | Checkout depth | Three runs green and each checkout shorter, `rule-canary-sync` job 24 s, and the 002-baseline record is missing (AC-009 `Unmet`) |
 | Pre-commit inventory | 13 keys, 13 rows, 13 verdicts (AC-012) |
-| `scratch/phase-result.md` against the 002 baseline | Not run; blocked on the 002 24 h snapshot via T006 (AC-016) |
+| `scratch/phase-result.md` against the 002 baseline | Not run. Re-checked 2026-10-25: `BASELINE_MISSING` for the 002 summary, and the 002 window being collected starts at 2026-10-24T06:40:51Z, after this phase landed (run `40026353792`, created 2026-10-23T21:23:01Z) (AC-016 `Unmet`) |
+| Gates re-run at the current head 2026-10-25 | `check-gate-inputs.sh` `RESULT: PASSED` (`twin_pairs=336 failures=0`), `check-gate-inputs: 57 passed, 0 failed`, YAML parse exit 0 over 32 files, and the id grep over the six commits prints nothing. The PR-cancel count is 29 and the file count 32 because a sibling phase merged `hooks-node-tests.yml` away |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -135,7 +137,7 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 
 1. **No number is measured yet.** Every saving in this packet comes from `001-research/research/synthesis-reviews/final-review.md` and is restated as a target, not an observation. `scratch/phase-result.md` replaces it with a measured delta against `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md`.
 2. **The PR-side cancellation cannot be measured from the 23.5 h window**, which held no pull-request runs. It is recorded as unmeasured rather than as zero, and the T027 probe is the direct observation.
-3. **The delta cannot start until 002 records its baseline.** T006 stops when `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is absent, because no research figure may stand in for a measured before number; the implementation landed ahead of it, so only T006 and T036 wait.
+3. **The delta cannot start until a pre-change baseline exists.** T006 stops when `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is absent, because no research figure may stand in for a measured before number; the implementation landed ahead of it, so only T006 and T036 wait. As of 2026-10-25 the 002 collection on disk starts at 2026-10-24T06:40:51Z, after this phase landed on `main`, so even a finished 002 summary would measure the changed state, not the state before it. The operator decides which window is the before number (the 001 dataset covers 2026-10-22 to 2026-10-23, and 004 used it as a provisional source).
 4. **The dispatch test is not hermetic to OpenCode version.** `no-bare-agent-general` in `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` declares `appliesTo: ["v1"]`; `evaluate()` resolves the local binary through `resolveOpencodeVersionSync`. Local OpenCode v2.1.4 skips the rule and causes 2 failures in `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs`. With `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`, the version resolves to `unknown`, the rule remains, and the focused test prints `Tests 7 passed (7)`. CI has no OpenCode binary, so it also resolves `unknown`; run `40026353792` is green. Pinning the resolved version belongs to the dispatch-hooks owner, outside this packet.
 <!-- /ANCHOR:limitations -->
 

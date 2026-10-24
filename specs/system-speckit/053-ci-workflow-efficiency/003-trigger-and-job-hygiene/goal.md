@@ -13,9 +13,10 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Recorded the 2026-10-24 probe results; 15 of 17 rows Met"
-    next_safe_action: "Run T036 after the 002 baseline, close AC-009 and AC-016, then commit"
-    blockers: []
+    recent_action: "Re-ran gates; T036 stopped on missing baseline"
+    next_safe_action: "Name a baseline, then run T036"
+    blockers:
+      - "002 baseline summary absent and its window postdates this phase"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -85,7 +86,7 @@ and findings belong here.
 |------|-------|----------|
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T038, `acceptance-criteria.md` AC-001 to AC-017, `decision-record.md` ADR-001 to ADR-011 |
 | Operator decisions | Done | `scratch/decisions.md` records `D2=pr-only, D3=approve, D4=drop-step, D7=depth-2, D10=skip` |
-| Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet; T006 and T036 wait on it |
+| Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` still does not exist (re-checked 2026-10-25), and the 002 window being collected starts at 2026-10-24T06:40:51Z, after this phase landed; T006 and T036 wait on an operator-named pre-change baseline |
 | Implementation | Done | Six concern commits on `main`: concurrency on 30 workflows, both filters, the dedup, both suppression removals, the three depth changes, the README table and the 13-key inventory |
 | CI probes | Done | T027 to T035 ran on 2026-10-24 in `scratch/probe-results.md`: concurrency cancel (`40100004699` cancelled, `40100024617` success), both filter pairs, the D10 run, the deleted-suite failure (`40101163105`), the report-only steps (`40101235126`, `40101537374`), the three checkout depths and the 13/13/13 inventory re-check |
 | Acceptance rows | Partly done | 15 of 17 `Met`. AC-009 is `Unmet`: its proof needs the checkout seconds in `scratch/phase-result.md` against an 002 baseline sample, and neither exists. AC-016 waits on T036 |
