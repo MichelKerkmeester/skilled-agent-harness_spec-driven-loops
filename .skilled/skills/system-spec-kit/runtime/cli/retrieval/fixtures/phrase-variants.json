@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8aaf3787d51689b109ea130cf541be77bdf99a7a0e45dcb3e8998dd7a64e71e9",
+  "manifestHash": "6ab02b9f8545afd94ac4b95d2646f3be534d0483bd6bab52112af34a29e9c484",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -69302,6 +69302,30 @@
     "opencode v1 v2 open questions": [
       "opencode v1 v2 open questions"
     ],
+    "opencode v2 default name": [
+      "opencode v2 default name"
+    ],
+    "opencode v2 default name implementation summary": [
+      "opencode v2 default name implementation summary"
+    ],
+    "opencode v2 default name plan": [
+      "opencode v2 default name plan"
+    ],
+    "opencode v2 default name tasks": [
+      "opencode v2 default name tasks"
+    ],
+    "opencode v2 pin 2 1 4": [
+      "opencode v2 pin 2.1.4"
+    ],
+    "opencode v2 pin 2 1 4 implementation summary": [
+      "opencode v2 pin 2.1.4 implementation summary"
+    ],
+    "opencode v2 pin 2 1 4 plan": [
+      "opencode v2 pin 2.1.4 plan"
+    ],
+    "opencode v2 pin 2 1 4 tasks": [
+      "opencode v2 pin 2.1.4 tasks"
+    ],
     "opencode v2 plugin migration": [
       "opencode v2 plugin migration"
     ],
@@ -69332,8 +69356,8 @@
     "opencode worktree isolation dispatch": [
       "opencode worktree isolation dispatch"
     ],
-    "opencode2 launcher": [
-      "opencode2 launcher"
+    "opencode1 launcher": [
+      "opencode1 launcher"
     ],
     "opencode2 models provider check": [
       "opencode2 models provider check"
@@ -73617,6 +73641,12 @@
     ],
     "phase 65 drop old deepseek from pi": [
       "phase 65 drop old deepseek from pi"
+    ],
+    "phase 66 opencode v2 default name": [
+      "phase 66 opencode v2 default name"
+    ],
+    "phase 67 opencode v2 pin": [
+      "phase 67 opencode v2 pin"
     ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"

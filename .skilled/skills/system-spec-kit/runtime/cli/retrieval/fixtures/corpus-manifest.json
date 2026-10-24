@@ -1,5 +1,5 @@
 {
-  "corpusHash": "36f9a2e7baa2133eb699415d8b974a982515123450406d87273d695bea3202a8",
+  "corpusHash": "57ed8567e2bbbf321721d8e7944761ec4e0f100ed3f7b448d384876bfd980360",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25897,
+  "includedPathCount": 25905,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9123,6 +9123,14 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25928,7 +25936,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8aaf3787d51689b109ea130cf541be77bdf99a7a0e45dcb3e8998dd7a64e71e9",
+  "manifestHash": "6ab02b9f8545afd94ac4b95d2646f3be534d0483bd6bab52112af34a29e9c484",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27144,6 +27152,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4/scratch",
       "reason": "excluded directory"
     },
     {
