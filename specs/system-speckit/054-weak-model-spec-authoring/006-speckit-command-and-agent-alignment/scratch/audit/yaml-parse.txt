@@ -1,0 +1,22 @@
+PARSE_OK .skilled/commands/create/assets/create-agent-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-agent-confirm.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-benchmark-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-benchmark-confirm.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-command-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-command-confirm.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-feature-catalog-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-feature-catalog-confirm.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-skill-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-skill-confirm.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-skill-parent-auto.yaml changed
+PARSE_OK .skilled/commands/create/assets/create-skill-parent-confirm.yaml changed
+PARSE_OK .skilled/commands/deep/assets/deep-review-auto.yaml changed
+PARSE_OK .skilled/commands/deep/assets/deep-review-confirm.yaml changed
+PARSE_OK .skilled/commands/speckit/assets/speckit-complete.yaml changed
+PARSE_OK .skilled/commands/speckit/assets/speckit-implement.yaml changed
+PARSE_OK .skilled/commands/speckit/assets/speckit-plan.yaml changed
+PARSE_OK .skilled/commands/speckit/assets/speckit-resume-auto.yaml changed
+PARSE_OK .skilled/commands/speckit/assets/speckit-resume-confirm.yaml changed
+yaml files 21 bad 0

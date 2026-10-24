@@ -1,0 +1,6 @@
+A1_rc=1
+A2_rc=1
+A3_rc=1
+A4_rc=1
+GUARD_REFS=6
+A6_rc=1

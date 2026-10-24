@@ -1,0 +1,37 @@
+{
+  "corpusManifestHash": "4591bffa09c3b322474bba9d158ce6379dd5505200461f898ed9f1a9880dbf23",
+  "documentsScanned": 25900,
+  "durationMs": 4230.367083,
+  "fresh": false,
+  "indexManifestHash": "ea30bfda6fd83050d9ca945f538fc6e19436a259f26a4b459c7739dd28d0584e",
+  "indexPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+  "missingDocuments": 3,
+  "obsoletePaths": [],
+  "staleDocuments": [
+    {
+      "added": [
+        "fill a spec scaffold",
+        "spec authoring card",
+        "spec folder authoring steps",
+        "write a spec packet"
+      ],
+      "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "weak model spec authoring template section fill guidance changelog"
+      ],
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "weak model spec authoring weak model authoring card changelog"
+      ],
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-005-weak-model-authoring-card.md",
+      "removed": []
+    }
+  ],
+  "untrustedDocuments": []
+}

@@ -1,0 +1,12 @@
+
+/doctor agent-roster-mirror — read-only coverage check
+canonical: .claude/agents (11 agents)
+
+  OK   cursor    11/11 symlinked
+  OK   devin     11/11 symlinked
+  OK   opencode  11/11 present
+  OK   codex     11/11 present
+  OK   pi        11/11 present
+
+STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+

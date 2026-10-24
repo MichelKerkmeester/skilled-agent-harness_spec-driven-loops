@@ -1,0 +1,3 @@
+# first attempt without --command: 'node compile-command-contracts.cjs --write' printed '--command is required', exit=1, wrote nothing
+.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+exit=0

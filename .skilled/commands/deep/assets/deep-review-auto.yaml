@@ -420,7 +420,7 @@ workflow:
         action: "Resolve review target to a concrete file list based on target type"
         resolve:
           spec-folder: |
-            1. Inspect spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, and goal-file-manifest.txt when present
+            1. Inspect spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md, and goal-file-manifest.txt when present
             2. If goal-file-manifest.txt exists, parse one repo-relative path per non-empty, non-comment line; reject absolute paths, traversal outside repo_root, duplicates, missing paths, and non-file entries
             3. Fail before dispatch with line-numbered validation errors when any manifest entry is invalid; otherwise set scope = the validated manifest paths in declared order
             4. When no manifest exists, discover implementation files referenced in the canonical spec artifacts
@@ -438,7 +438,7 @@ workflow:
             3. Set scope = all discovered agent files
           track: |
             1. List all child spec folders under specs/{track}/ or .opencode/specs/{track}/
-            2. For each: read spec.md + checklist.md
+            2. For each: read spec.md + acceptance-criteria.md
             3. Set scope = all child spec artifacts
           files: |
             1. Expand glob patterns from review_target
@@ -2259,7 +2259,7 @@ workflow:
           - p2_count: "Total P2 findings across all iterations (deduped)"
           - dimensions_covered: "List of reviewed dimensions"
           - dimension_coverage: "covered / total"
-          - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and checklist.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
+          - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and acceptance-criteria.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
           - last_3_summaries: "Summarize the latest 3 iteration records"
           - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
 

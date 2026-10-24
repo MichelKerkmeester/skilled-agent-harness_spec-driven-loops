@@ -1,0 +1,10 @@
+{
+  "fresh": false,
+  "missingDocuments": 3,
+  "obsoletePaths": [],
+  "stale": [
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md",
+    "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-005-weak-model-authoring-card.md"
+  ]
+}

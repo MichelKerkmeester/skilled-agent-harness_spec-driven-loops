@@ -45,7 +45,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Paths in row
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check that phases 1, 4 and 5 closed (no file). Run the block below. Verify: it prints `LEDGER_OK`, `CARD_OK`, `CARD_SYNC_OK` and `EXAMPLE_DRIFT_OK`. When a line is missing, write `MISSING <name>` in `goal.md` section 4 and continue, because T006 records each dependent row as `SKIP-MISSING` and the phase can still close with that row recorded.
+- [x] T001 Check that phases 1, 4 and 5 closed (no file). Run the block below. Verify: it prints `LEDGER_OK`, `CARD_OK`, `CARD_SYNC_OK` and `EXAMPLE_DRIFT_OK`. When a line is missing, write `MISSING <name>` in `goal.md` section 4 and continue, because T006 records each dependent row as `SKIP-MISSING` and the phase can still close with that row recorded.
 
   ```bash
   cd "$WORKTREE"
@@ -55,9 +55,9 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Paths in row
   test -x "$S/runtime/cli/spec/check-example-drift.sh" && echo EXAMPLE_DRIFT_OK
   ```
 
-- [ ] T002 Check the tools (no file). Verify: `python3 --version && jq --version && rg --version | head -1 && node --version && npm --version && git --version` prints six lines. A Python older than 3.8 or a Node older than v20 stops the phase.
+- [x] T002 Check the tools (no file). Verify: `python3 --version && jq --version && rg --version | head -1 && node --version && npm --version && git --version` prints six lines. A Python older than 3.8 or a Node older than v20 stops the phase.
 
-- [ ] T003 Record the start state (`goal.md`, `scratch/status-start.txt`, `scratch/suite-before.txt`, `scratch/doctor-before.json`). Run the block below. Write the hash `git rev-parse` prints into the `Phase start commit` row of `goal.md` section 4 as `| Phase start commit | Done | <the 40 character hash> |`. Verify: `grep -cE 'Phase start commit \| Done \| [0-9a-f]{40}' "$PHASE/goal.md"` prints `1`, `tail -1 "$PHASE/scratch/suite-before.txt"` starts with `exit=`, and `jq -e . "$PHASE/scratch/doctor-before.json" > /dev/null && echo DOCTOR_OK` prints `DOCTOR_OK`. The suite run takes several minutes.
+- [x] T003 Record the start state (`goal.md`, `scratch/status-start.txt`, `scratch/suite-before.txt`, `scratch/doctor-before.json`). Run the block below. Write the hash `git rev-parse` prints into the `Phase start commit` row of `goal.md` section 4 as `| Phase start commit | Done | <the 40 character hash> |`. Verify: `grep -cE 'Phase start commit \| Done \| [0-9a-f]{40}' "$PHASE/goal.md"` prints `1`, `tail -1 "$PHASE/scratch/suite-before.txt"` starts with `exit=`, and `jq -e . "$PHASE/scratch/doctor-before.json" > /dev/null && echo DOCTOR_OK` prints `DOCTOR_OK`. The suite run takes several minutes.
 
   ```bash
   cd "$WORKTREE"
@@ -68,7 +68,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Paths in row
   node "$S/runtime/cli/retrieval/generate-trigger-index.mjs" --check --json > "$PHASE/scratch/doctor-before.json" 2> "$PHASE/scratch/doctor-before.err"; echo "exit=$?" > "$PHASE/scratch/doctor-before.exit"
   ```
 
-- [ ] T004 Save the 27 frozen rows (`scratch/audit/rows.jsonl`). Run the heredoc block that follows this line exactly as written. The file holds one JSON object per line with the fields `id`, `file`, `locator`, `expected_text`, `check` and `precheck`. The applier reads the first four and ignores the last two. Verify: the two commands under the block print `27` and then `27 1`. A line other than `27 1` means a `locator` no longer occurs exactly once in its file because the tree changed after this packet was written. Write that row id in `goal.md` section 4 and continue, because T006 reports the row as `BLOCKED`.
+- [x] T004 Save the 27 frozen rows (`scratch/audit/rows.jsonl`). Run the heredoc block that follows this line exactly as written. The file holds one JSON object per line with the fields `id`, `file`, `locator`, `expected_text`, `check` and `precheck`. The applier reads the first four and ignores the last two. Verify: the two commands under the block print `27` and then `27 1`. A line other than `27 1` means a `locator` no longer occurs exactly once in its file because the tree changed after this packet was written. Write that row id in `goal.md` section 4 and continue, because T006 reports the row as `BLOCKED`.
 
   ```bash
   cd "$WORKTREE"
@@ -108,7 +108,7 @@ JSONL
   jq -r '[.file,.locator] | @tsv' "$ROWS" | while IFS=$'\t' read -r f l; do grep -cF -- "$l" "$f"; done | sort | uniq -c | awk '{print $1, $2}'
   ```
 
-- [ ] T005 Save the tools, then test the applier on a copy (`scratch/tools/apply_row.py`, `scratch/tools/check_rows.py`, `scratch/tools/lib.sh`). Run the four heredocs below, then the self-test. Verify: the self-test prints, in order, a line that starts with `APPLIED R-001`, a line that starts with `FAIL R-001: expected text already present`, `exit=1`, and `1`. The last number is the count of changed lines in the copy, so it proves the applier changed one line and ran only once. Then `bash -n "$PHASE/scratch/tools/lib.sh" && echo SYNTAX_OK` prints `SYNTAX_OK`.
+- [x] T005 Save the tools, then test the applier on a copy (`scratch/tools/apply_row.py`, `scratch/tools/check_rows.py`, `scratch/tools/lib.sh`). Run the four heredocs below, then the self-test. Verify: the self-test prints, in order, a line that starts with `APPLIED R-001`, a line that starts with `FAIL R-001: expected text already present`, `exit=1`, and `1`. The last number is the count of changed lines in the copy, so it proves the applier changed one line and ran only once. Then `bash -n "$PHASE/scratch/tools/lib.sh" && echo SYNTAX_OK` prints `SYNTAX_OK`.
 
   `apply_row.py` reads a ledger path, a row id and an optional root directory. It refuses a row whose `expected_text` is `OWNED BY PHASE` or `DELETE FILE`. It refuses when the expected text is already in the file, so a second apply cannot append or replace twice. It refuses unless the `locator` occurs exactly once in the row's file. It replaces that one occurrence, prints `APPLIED <id> <file>` and exits 0. Every refusal prints `FAIL <id>: <reason>` and exits 1. The expected-text guard is the reason a second apply fails, because an append-style row keeps its old text as a prefix and the locator alone would still occur once.
 
@@ -203,7 +203,7 @@ rm -rf "$T"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 Apply the 27 rows, one at a time (`scratch/audit/applied.txt` and the 16 files the rows name). Run the block below. Do not edit any of those files by hand. Verify: the three counts under the block print `27`, `27` and `27`. A row that printed `BLOCKED` is recorded in `goal.md` section 4 and is not retried by hand. A row that printed `SKIP-MISSING` is recorded there with the pre-check that failed.
+- [x] T006 Apply the 27 rows, one at a time (`scratch/audit/applied.txt` and the 16 files the rows name). Run the block below. Do not edit any of those files by hand. Verify: the three counts under the block print `27`, `27` and `27`. A row that printed `BLOCKED` is recorded in `goal.md` section 4 and is not retried by hand. A row that printed `SKIP-MISSING` is recorded there with the pre-check that failed.
 
   ```bash
   cd "$WORKTREE"
@@ -228,7 +228,7 @@ rm -rf "$T"
 
   When a pre-check failed, the second and third counts are lower by the number of `SKIP-MISSING` rows. The gate is then `grep -c '^SKIP-MISSING ' "$PHASE/scratch/audit/applied.txt"` equals the number of missing artifacts in T001, and every skipped row is recorded in `goal.md` section 4.
 
-- [ ] T007 Rerun the four A1 to A4 searches and count the A5 references (`scratch/audit/searches.txt`). Run the block below. Verify: it prints `A1_rc=1`, `A2_rc=1`, `A3_rc=1`, `A4_rc=1` and `GUARD_REFS=6`. A code of 1 means ripgrep found nothing. A code of 0 means stale text is still there: read the saved search file, apply no hand edit, and mark this task `[B]`.
+- [x] T007 Rerun the four A1 to A4 searches and count the A5 references (`scratch/audit/searches.txt`). Run the block below. Verify: it prints `A1_rc=1`, `A2_rc=1`, `A3_rc=1`, `A4_rc=1` and `GUARD_REFS=6`. A code of 1 means ripgrep found nothing. A code of 0 means stale text is still there: read the saved search file, apply no hand edit, and mark this task `[B]`.
 
   ```bash
   cd "$WORKTREE"
@@ -242,7 +242,7 @@ rm -rf "$T"
   cat "$A/searches.txt"
   ```
 
-- [ ] T008 Regenerate every mirror and run the eight checks (`scratch/mirrors/*.txt`, `scratch/mirrors/summary.txt`). Run the first block, then the second. The first block runs five generators in order and writes each one's output to its own file. The second block runs the eight read-only checks and records each exit code. Verify: `grep -c 'rc=0$' "$PHASE/scratch/mirrors/summary.txt"` prints `8`, and `grep -cE 'PASS|STATUS=OK|all mirrors in sync' "$PHASE/scratch/mirrors/summary.txt"` prints `8`, because the summary holds exactly one line per check. When a check exits 1, rerun its generator once and check again. A second failure marks this task `[B]`.
+- [x] T008 Regenerate every mirror and run the eight checks (`scratch/mirrors/*.txt`, `scratch/mirrors/summary.txt`). Run the first block, then the second. The first block runs five generators in order and writes each one's output to its own file. The second block runs the eight read-only checks and records each exit code. Verify: `grep -c 'rc=0$' "$PHASE/scratch/mirrors/summary.txt"` prints `8`, and `grep -cE 'PASS|STATUS=OK|all mirrors in sync' "$PHASE/scratch/mirrors/summary.txt"` prints `8`, because the summary holds exactly one line per check. When a check exits 1, rerun its generator once and check again. A second failure marks this task `[B]`.
 
   ```bash
   cd "$WORKTREE"
@@ -269,7 +269,7 @@ rm -rf "$T"
   cat "$M/summary.txt"
   ```
 
-- [ ] T009 Run the read-only doctor:speckit checks and compare the index staleness set (`scratch/doctor-after.json`, `scratch/index-before.json`, `scratch/index-after.json`). Run the block below. Verify: it prints `INDEX_STALENESS_SAME`, `gate1_exit=0` and `lookup_exit=0` or `lookup_exit=1`. An exit of 2 or higher from the lookup is an execution error, not a no-hit: mark this task `[B]`. `INDEX_STALENESS_DIFF` means this phase changed a document the index reads, which it must not: mark this task `[B]` and read the diff.
+- [x] T009 Run the read-only doctor:speckit checks and compare the index staleness set (`scratch/doctor-after.json`, `scratch/index-before.json`, `scratch/index-after.json`). Run the block below. Verify: it prints `INDEX_STALENESS_SAME`, `gate1_exit=0` and `lookup_exit=0` or `lookup_exit=1`. An exit of 2 or higher from the lookup is an execution error, not a no-hit: mark this task `[B]`. `INDEX_STALENESS_DIFF` means this phase changed a document the index reads, which it must not: mark this task `[B]` and read the diff.
 
   ```bash
   cd "$WORKTREE"
@@ -282,7 +282,7 @@ rm -rf "$T"
   node "$S/runtime/cli/retrieval/lookup-trigger-index.mjs" --json -- "spec authoring card" > "$PHASE/scratch/lookup.json" 2>&1; echo "lookup_exit=$?"
   ```
 
-- [ ] T010 Check the phase 1 ledger rows owned by this phase (`scratch/audit/owner-006.tsv`, `scratch/audit/owner-006-open.txt`, `goal.md`). Run the block below. It prints `OWNER006=LEDGER_MISSING` when the ledger is absent. Otherwise it prints `OWNER006_TOTAL=<n>`, `OWNER006_OPEN=<m>`, one `COVERED` or `OPEN` line per owner `006` row and then `OWNER006_COUNTS_OK`. Verify: the block prints `OWNER006_COUNTS_OK`, so the status file matches both summary numbers. When the ledger is absent it prints `OWNER006=LEDGER_MISSING` instead and the task closes with it. Write both numbers and the path `scratch/audit/owner-006-open.txt` into the `Owner 006 ledger rows recorded (T010)` row of `goal.md` section 4. That file already holds every `OPEN` line verbatim, so no line is copied by hand. An `OPEN` row is not fixed here, because its text was not audited at authoring time. When `LED` is missing, write `OWNER006=LEDGER_MISSING` in the same row and the task closes with it.
+- [x] T010 Check the phase 1 ledger rows owned by this phase (`scratch/audit/owner-006.tsv`, `scratch/audit/owner-006-open.txt`, `goal.md`). Run the block below. It prints `OWNER006=LEDGER_MISSING` when the ledger is absent. Otherwise it prints `OWNER006_TOTAL=<n>`, `OWNER006_OPEN=<m>`, one `COVERED` or `OPEN` line per owner `006` row and then `OWNER006_COUNTS_OK`. Verify: the block prints `OWNER006_COUNTS_OK`, so the status file matches both summary numbers. When the ledger is absent it prints `OWNER006=LEDGER_MISSING` instead and the task closes with it. Write both numbers and the path `scratch/audit/owner-006-open.txt` into the `Owner 006 ledger rows recorded (T010)` row of `goal.md` section 4. That file already holds every `OPEN` line verbatim, so no line is copied by hand. An `OPEN` row is not fixed here, because its text was not audited at authoring time. When `LED` is missing, write `OWNER006=LEDGER_MISSING` in the same row and the task closes with it.
 
   ```bash
   cd "$WORKTREE"
@@ -309,7 +309,7 @@ rm -rf "$T"
   fi
   ```
 
-- [ ] T011 Check that only the rows and the generators changed (`scratch/audit/allowed-files.txt`, `scratch/audit/changed-files.txt`). Run the block below. Verify: the last command prints `0`. A path it lists is a change no row and no generator explains. Restore it with `git restore --source="$P6START" -- <path>`, rerun T008, and record it in `goal.md` section 4.
+- [x] T011 Check that only the rows and the generators changed (`scratch/audit/allowed-files.txt`, `scratch/audit/changed-files.txt`). Run the block below. Verify: the last command prints `0`. A path it lists is a change no row and no generator explains. Restore it with `git restore --source="$P6START" -- <path>`, rerun T008, and record it in `goal.md` section 4.
 
   ```bash
   cd "$WORKTREE"
@@ -326,7 +326,7 @@ rm -rf "$T"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Compare the spec-kit suite with the phase start (`scratch/suite-end.txt`, `scratch/suite-summary.txt`). Run the first block. It takes several minutes. Then run the second block. Verify: it prints `SUITE_MATCH` and `CUMULATIVE` lines that name the phase 1 difference. A `SUITE_DIFF` means this phase broke a test: read the lines that start with `FAIL` in the end file, rerun the first block once, and mark this task `[B]` on a second difference.
+- [x] T012 Compare the spec-kit suite with the phase start (`scratch/suite-end.txt`, `scratch/suite-summary.txt`). Run the first block. It takes several minutes. Then run the second block. Verify: it prints `SUITE_MATCH` and `CUMULATIVE` lines that name the phase 1 difference. A `SUITE_DIFF` means this phase broke a test: read the lines that start with `FAIL` in the end file, rerun the first block once, and mark this task `[B]` on a second difference.
 
   ```bash
   cd "$WORKTREE"
@@ -343,7 +343,7 @@ rm -rf "$T"
   diff <(grep -E '^ *(Test Files|Tests) ' "$P1/scratch/baseline/suite-start.txt" | sed -E 's/^ +//; s/ +$//') <(grep -E '^ *(Test Files|Tests) ' "$PHASE/scratch/suite-end.txt" | sed -E 's/^ +//; s/ +$//') || true
   ```
 
-- [ ] T013 Frontier review of the diff (`scratch/review/T013.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Use its read-only invocation with the `gpt-6-luna` model, as phase 1 did. Write the brief with the first block and send it with the second block. The reply lands in `scratch/review/T013.txt`. Verify: `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$PHASE/scratch/review/T013.txt"` prints `0`.
+- [x] T013 Frontier review of the diff (`scratch/review/T013.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Use its read-only invocation with the `gpt-6-luna` model, as phase 1 did. Write the brief with the first block and send it with the second block. The reply lands in `scratch/review/T013.txt`. Verify: `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$PHASE/scratch/review/T013.txt"` prints `0`.
 
 ```bash
 cd "$WORKTREE"
@@ -374,7 +374,7 @@ BRIEF
   PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
   ```
 
-- [ ] T014 Apply the review findings and close the phase (this folder and one local commit). For each `P0` or `P1` line, apply the exact text in the finding's third column when it names one of the 16 row files, then rerun T007, T008 and T012. For each `P2` line, apply that same text under the same condition. For every finding that names a path outside the 16 row files, copy the finding line verbatim into the `Deviations and findings` table of `goal.md` section 4 and raise it to the operator. Do not edit a file outside the 16 row files.
+- [x] T014 Apply the review findings and close the phase (this folder and one local commit). For each `P0` or `P1` line, apply the exact text in the finding's third column when it names one of the 16 row files, then rerun T007, T008 and T012. For each `P2` line, apply that same text under the same condition. For every finding that names a path outside the 16 row files, copy the finding line verbatim into the `Deviations and findings` table of `goal.md` section 4 and raise it to the operator. Do not edit a file outside the 16 row files.
 
   Write the four literal close-out values below without rewording them. The date is the day T014 runs, as `YYYY-MM-DD`.
 
@@ -398,9 +398,9 @@ BRIEF
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every acceptance criterion marked `Met` with its evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every acceptance criterion marked `Met` with its evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -432,9 +432,9 @@ BRIEF
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phases 1, 4 and 5 closed with their artifacts present, shown by T001
-- [ ] CHK-002 [P0] T001 to T005 done with their verify output recorded in `goal.md` section 4
-- [ ] CHK-003 [P1] `apply_row.py` self-test printed the expected four lines
+- [x] CHK-001 [P0] Phases 1, 4 and 5 closed with their artifacts present, shown by T001
+- [x] CHK-002 [P0] T001 to T005 done with their verify output recorded in `goal.md` section 4
+- [x] CHK-003 [P1] `apply_row.py` self-test printed the expected four lines
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -442,10 +442,10 @@ BRIEF
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `rows.jsonl` holds 27 lines and every `locator` occurs once before T006 runs
-- [ ] CHK-011 [P0] No audited file was edited by hand or by a model
-- [ ] CHK-012 [P1] Every applied row printed `extra_paths=0`
-- [ ] CHK-013 [P1] No row's `expected_text` names a file that does not exist
+- [x] CHK-010 [P0] `rows.jsonl` holds 27 lines and every `locator` occurs once before T006 runs
+- [x] CHK-011 [P0] No audited file was edited by hand or by a model
+- [x] CHK-012 [P1] Every applied row printed `extra_paths=0`
+- [x] CHK-013 [P1] No row's `expected_text` names a file that does not exist
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -453,10 +453,10 @@ BRIEF
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] T007 printed four codes of 1 and `GUARD_REFS=6`
-- [ ] CHK-022 [P1] T012 printed `SUITE_MATCH`
-- [ ] CHK-023 [P1] A row that failed is recorded with its error and not silently dropped
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] T007 printed four codes of 1 and `GUARD_REFS=6`
+- [x] CHK-022 [P1] T012 printed `SUITE_MATCH`
+- [x] CHK-023 [P1] A row that failed is recorded with its error and not silently dropped
 <!-- /ANCHOR:testing -->
 
 ---
@@ -464,13 +464,13 @@ BRIEF
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every row ends in one of three states: applied, skipped because a phase 2 to 5 artifact is missing, or blocked with its error
-- [ ] CHK-FIX-002 [P0] Each of the six checks A1 to A6 was searched over the whole inventory, not one file
-- [ ] CHK-FIX-003 [P0] The six MIRROR rows carry the same text as the six agent rows they mirror
-- [ ] CHK-FIX-004 [P1] Every generated tree came from a generator run, shown by the five `gen-*.txt` files
-- [ ] CHK-FIX-005 [P1] The 6 by 12 matrix is reported as 21 CHANGE cells and the OK table covers the rest
-- [ ] CHK-FIX-006 [P1] Evidence is pinned to the phase start commit recorded in T003
-- [ ] CHK-FIX-007 [P1] The trigger index staleness set is identical before and after, shown by T009
+- [x] CHK-FIX-001 [P0] Every row ends in one of three states: applied, skipped because a phase 2 to 5 artifact is missing, or blocked with its error
+- [x] CHK-FIX-002 [P0] Each of the six checks A1 to A6 was searched over the whole inventory, not one file
+- [x] CHK-FIX-003 [P0] The six MIRROR rows carry the same text as the six agent rows they mirror
+- [x] CHK-FIX-004 [P1] Every generated tree came from a generator run, shown by the five `gen-*.txt` files
+- [x] CHK-FIX-005 [P1] The 6 by 12 matrix is reported as 21 CHANGE cells and the OK table covers the rest
+- [x] CHK-FIX-006 [P1] Evidence is pinned to the phase start commit recorded in T003
+- [x] CHK-FIX-007 [P1] The trigger index staleness set is identical before and after, shown by T009
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -478,9 +478,9 @@ BRIEF
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No brief contains a credential, token or key
-- [ ] CHK-031 [P0] `apply_row.py` wrote only the file each row names
-- [ ] CHK-032 [P1] The reviewer ran with a read-only sandbox and wrote nothing
+- [x] CHK-030 [P0] No brief contains a credential, token or key
+- [x] CHK-031 [P0] `apply_row.py` wrote only the file each row names
+- [x] CHK-032 [P1] The reviewer ran with a read-only sandbox and wrote nothing
 <!-- /ANCHOR:security -->
 
 ---
@@ -488,9 +488,9 @@ BRIEF
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks agree on the 27 rows
-- [ ] CHK-041 [P1] `goal.md` section 4 records the phase start commit, each skip and each blocker
-- [ ] CHK-042 [P2] `scratch/audit/searches.txt` and `scratch/mirrors/summary.txt` are kept as the record of what ran
+- [x] CHK-040 [P1] Spec, plan and tasks agree on the 27 rows
+- [x] CHK-041 [P1] `goal.md` section 4 records the phase start commit, each skip and each blocker
+- [x] CHK-042 [P2] `scratch/audit/searches.txt` and `scratch/mirrors/summary.txt` are kept as the record of what ran
 <!-- /ANCHOR:docs -->
 
 ---
@@ -498,8 +498,8 @@ BRIEF
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Working files are under this phase's `scratch/` only
-- [ ] CHK-051 [P1] `scratch/selftest/` does not exist at phase close
+- [x] CHK-050 [P1] Working files are under this phase's `scratch/` only
+- [x] CHK-051 [P1] `scratch/selftest/` does not exist at phase close
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -509,11 +509,11 @@ BRIEF
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 24 | 0/24 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 24 | 24/24 |
+| P2 Items | 9 | 9/9 |
 
-**Verification Date**: not yet run
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---
@@ -521,10 +521,10 @@ BRIEF
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001, ADR-002 and ADR-003 in `plan.md` are followed by T006, T008 and T012
-- [ ] CHK-101 [P1] All three ADRs have status Accepted
-- [ ] CHK-102 [P1] Each ADR names the alternative it rejected and why
-- [ ] CHK-103 [P2] No migration applies to this phase
+- [x] CHK-100 [P0] ADR-001, ADR-002 and ADR-003 in `plan.md` are followed by T006, T008 and T012
+- [x] CHK-101 [P1] All three ADRs have status Accepted
+- [x] CHK-102 [P1] Each ADR names the alternative it rejected and why
+- [x] CHK-103 [P2] No migration applies to this phase
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -532,10 +532,10 @@ BRIEF
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] The 27 rows were applied by script with no model call (NFR-P01)
-- [ ] CHK-111 [P1] Applying a row twice failed the second time (NFR-R01)
-- [ ] CHK-112 [P2] No load test applies to this phase
-- [ ] CHK-113 [P2] The suite run time is recorded in `goal.md` section 4
+- [x] CHK-110 [P1] The 27 rows were applied by script with no model call (NFR-P01)
+- [x] CHK-111 [P1] Applying a row twice failed the second time (NFR-R01)
+- [x] CHK-112 [P2] No load test applies to this phase
+- [x] CHK-113 [P2] The suite run time is recorded in `goal.md` section 4
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -543,11 +543,11 @@ BRIEF
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback in `plan.md` section 7 was not needed, or was run and recorded
-- [ ] CHK-121 [P0] Nothing outside the rows and the generated trees changed, shown by T011
-- [ ] CHK-122 [P1] Phase 7 can start: every mirror check is green and the suite matches
-- [ ] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
-- [ ] CHK-124 [P2] No deployment applies to this phase
+- [x] CHK-120 [P0] Rollback in `plan.md` section 7 was not needed, or was run and recorded
+- [x] CHK-121 [P0] Nothing outside the rows and the generated trees changed, shown by T011
+- [x] CHK-122 [P1] Phase 7 can start: every mirror check is green and the suite matches
+- [x] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
+- [x] CHK-124 [P2] No deployment applies to this phase
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -555,10 +555,10 @@ BRIEF
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Frontier review ran read-only and its reply is saved
-- [ ] CHK-131 [P1] No new dependency was installed
-- [ ] CHK-132 [P2] No user data is handled by this phase
-- [ ] CHK-133 [P2] No OWASP surface is touched by this phase
+- [x] CHK-130 [P1] Frontier review ran read-only and its reply is saved
+- [x] CHK-131 [P1] No new dependency was installed
+- [x] CHK-132 [P2] No user data is handled by this phase
+- [x] CHK-133 [P2] No OWASP surface is touched by this phase
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -566,10 +566,10 @@ BRIEF
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
-- [ ] CHK-141 [P1] `implementation-summary.md` cites `applied.txt` and the T012 result
-- [ ] CHK-142 [P2] No user-facing documentation changes in this phase
-- [ ] CHK-143 [P2] The count of applied, skipped and blocked rows is recorded for phase 7
+- [x] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
+- [x] CHK-141 [P1] `implementation-summary.md` cites `applied.txt` and the T012 result
+- [x] CHK-142 [P2] No user-facing documentation changes in this phase
+- [x] CHK-143 [P2] The count of applied, skipped and blocked rows is recorded for phase 7
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -579,8 +579,8 @@ BRIEF
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Conductor | Runs and verifies every task | Pending | |
-| Frontier reviewer | Reads the diff read-only | Pending | |
+| Conductor | Runs and verifies every task | Done | 2026-10-24 |
+| Frontier reviewer | Reads the diff read-only | Done (NO FINDINGS) | 2026-10-24 |
 | Operator | Merges the phase commit | Pending | |
 <!-- /ANCHOR:sign-off -->
 

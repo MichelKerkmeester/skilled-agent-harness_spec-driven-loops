@@ -1,0 +1,8 @@
+runtime-mirrors [runtime-mirror-sync] PASS: 194 mirrors across 8 trees are in sync. rc=0
+codex-agents [codex-agent-sync] PASS: 11 agents are in sync. rc=0
+codex-prompts [codex-prompt-sync] PASS: 38 prompts are in sync. rc=0
+pi-agents [pi-agent-sync] PASS: 11 agents are in sync. rc=0
+pi-prompts [pi-prompt-sync] PASS: 38 prompts are in sync. rc=0
+agent-roster STATUS=OK agent-roster-mirror: every runtime covers the canonical roster rc=0
+command-catalog STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree rc=0
+agent-bodies agent-mirror-sync: 11 agent(s) checked — all mirrors in sync — OK rc=0

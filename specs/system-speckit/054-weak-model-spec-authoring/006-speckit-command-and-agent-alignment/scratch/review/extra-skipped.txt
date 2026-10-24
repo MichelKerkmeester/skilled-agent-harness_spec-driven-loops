@@ -1,0 +1,4 @@
+SKIPPED: 0 mentions.
+Every one of the 45 `checklist.md` hits in .skilled/commands/create/assets/* (14 files) and .skilled/commands/deep/assets/* (2 files) tells a command to read, require, route or create a spec-folder `checklist.md`, a doc that has no template any more. Each hit has a row (R-028 to R-078; the six template-anchor rows R-040, R-046, R-051, R-057, R-065 and R-071 add a filled example for the new acceptance-criteria.md output and replace no checklist mention).
+No mention is a historical file name or a non-spec checklist.
+Left alone on purpose: .skilled/commands/create/assets/tests/ holds no checklist.md hit (rg printed nothing).

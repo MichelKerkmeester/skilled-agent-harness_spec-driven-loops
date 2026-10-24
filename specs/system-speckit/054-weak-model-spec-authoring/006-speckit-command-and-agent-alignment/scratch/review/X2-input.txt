@@ -1,0 +1,703 @@
+EXTRA ROWS UNDER REVIEW. Each block shows: the row id, the file, the locator (the exact text that is replaced), the replacement, and 3 lines of file context before and after the locator as the file stands BEFORE the row is applied. File line numbers are given.
+
+=== R-028 | .skilled/commands/create/assets/create-agent-auto.yaml | locator occurrences in file: 1 | locator lines 256-256
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  253|     order:
+  254|       - "Read {spec_path}/handover.md when present and recent"
+  255|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  256|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  257|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  258|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  259|   output: memory_loaded
+
+=== R-029 | .skilled/commands/create/assets/create-agent-confirm.yaml | locator occurrences in file: 1 | locator lines 203-203
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  200|     order:
+  201|       - "Read {spec_path}/handover.md when present and recent"
+  202|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  203|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  204|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  205|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  206|   behavior:
+
+=== R-030 | .skilled/commands/create/assets/create-agent-confirm.yaml | locator occurrences in file: 1 | locator lines 208-208
+LOCATOR: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md)"
+REPLACEMENT: "Load canonical spec docs (tasks.md, plan.md, decision-record.md)"
+CONTEXT:
+  205|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  206|   behavior:
+  207|     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
+  208|     memory_choice_B: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md) in {spec_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"
+  209|     memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  210|   when_to_skip: ["New spec folder (spec_choice == B, Create new) with no prior context", "spec_choice == D (Skip documentation)", "User says 'skip context' or 'fresh start'"]
+  211|   output: memory_loaded
+
+=== R-031 | .skilled/commands/create/assets/create-benchmark-auto.yaml | locator occurrences in file: 1 | locator lines 135-136
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  132|     - spec.md
+  133|     - plan.md
+  134|     - tasks.md
+  135|     - checklist.md
+  136|   note: "Benchmark package creation needs verification because it publishes stable authoring inputs into a skill or mode surface"
+  137| 
+  138| defaults:
+  139|   skill_path: .skilled/skills/
+
+=== R-032 | .skilled/commands/create/assets/create-benchmark-auto.yaml | locator occurrences in file: 1 | locator lines 258-258
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  255|     order:
+  256|       - "Read {source_packet_path}/handover.md when present and recent"
+  257|       - "Read the _memory.continuity frontmatter block in {source_packet_path}/implementation-summary.md"
+  258|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  259|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {source_packet_path} as the search root"
+  260|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  261|   output: memory_loaded
+
+=== R-033 | .skilled/commands/create/assets/create-benchmark-confirm.yaml | locator occurrences in file: 1 | locator lines 170-171
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  167|     - spec.md
+  168|     - plan.md
+  169|     - tasks.md
+  170|     - checklist.md
+  171|   note: "Benchmark package creation needs verification because it publishes stable authoring inputs into a skill or mode surface"
+  172| 
+  173| defaults:
+  174|   skill_path: .skilled/skills/
+
+=== R-034 | .skilled/commands/create/assets/create-benchmark-confirm.yaml | locator occurrences in file: 1 | locator lines 113-113
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  110|     order:
+  111|       - "Read {source_packet_path}/handover.md when present and recent"
+  112|       - "Read the _memory.continuity frontmatter block in {source_packet_path}/implementation-summary.md"
+  113|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  114|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {source_packet_path} as the search root"
+  115|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  116|   behavior:
+
+=== R-035 | .skilled/commands/create/assets/create-command-auto.yaml | locator occurrences in file: 1 | locator lines 195-195
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  192|     order:
+  193|       - "Read {spec_path}/handover.md when present and recent"
+  194|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  195|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  196|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  197|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  198|   output: memory_loaded
+
+=== R-036 | .skilled/commands/create/assets/create-command-confirm.yaml | locator occurrences in file: 1 | locator lines 207-207
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  204|     order:
+  205|       - "Read {spec_path}/handover.md when present and recent"
+  206|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  207|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  208|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  209|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  210|   behavior:
+
+=== R-037 | .skilled/commands/create/assets/create-feature-catalog-auto.yaml | locator occurrences in file: 1 | locator lines 120-121
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  117|     - spec.md
+  118|     - plan.md
+  119|     - tasks.md
+  120|     - checklist.md
+  121|   note: "Feature catalog package creation typically needs verification because it spans root and per-feature docs"
+  122| 
+  123| defaults:
+  124|   skill_path: .skilled/skills/
+
+=== R-038 | .skilled/commands/create/assets/create-feature-catalog-auto.yaml | locator occurrences in file: 1 | locator lines 228-228
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  225|     order:
+  226|       - "Read {spec_path}/handover.md when present and recent"
+  227|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  228|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  229|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  230|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  231|   when_to_skip: ["New spec folder (spec_choice == B, Create new) with no prior context", "spec_choice == D (Skip documentation)"]
+
+=== R-039 | .skilled/commands/create/assets/create-feature-catalog-auto.yaml | locator occurrences in file: 1 | locator lines 258-258
+LOCATOR: "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance"
+REPLACEMENT: "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance"
+CONTEXT:
+  255|       - Create folder: specs/[NNN]-[skill_name]-feature-catalog/
+  256|     - IF spec_choice == A or C (Existing or Related):
+  257|       - Use selected spec_path
+  258|     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+  259|     templates:
+  260|     # Use Level 2 templates as default for feature catalog package creation
+  261|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+
+=== R-040 | .skilled/commands/create/assets/create-feature-catalog-auto.yaml | locator occurrences in file: 1 | locator lines 263-264
+LOCATOR: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    outputs:"
+REPLACEMENT: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md\n    outputs:"
+CONTEXT:
+  260|     # Use Level 2 templates as default for feature catalog package creation
+  261|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+  262|     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+  263|     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+  264|     outputs:
+  265|     - spec_path_resolved
+  266|     - spec.md: created_or_updated
+  267|     - plan.md: created_or_updated
+
+=== R-041 | .skilled/commands/create/assets/create-feature-catalog-auto.yaml | locator occurrences in file: 1 | locator lines 269-269
+LOCATOR: "    - checklist.md: created_or_updated"
+REPLACEMENT: "    - acceptance-criteria.md: created_or_updated"
+CONTEXT:
+  266|     - spec.md: created_or_updated
+  267|     - plan.md: created_or_updated
+  268|     - tasks.md: created_or_updated
+  269|     - checklist.md: created_or_updated
+  270| 
+  271|   step_2_source_discovery:
+  272|     purpose: Resolve source strategy and inventory inputs
+
+=== R-042 | .skilled/commands/create/assets/create-feature-catalog-confirm.yaml | locator occurrences in file: 1 | locator lines 155-156
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  152|     - spec.md
+  153|     - plan.md
+  154|     - tasks.md
+  155|     - checklist.md
+  156|   note: "Feature catalog package creation typically needs verification because it spans root and per-feature docs"
+  157| 
+  158| defaults:
+  159|   skill_path: .skilled/skills/
+
+=== R-043 | .skilled/commands/create/assets/create-feature-catalog-confirm.yaml | locator occurrences in file: 1 | locator lines 112-112
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  109|     order:
+  110|       - "Read {spec_path}/handover.md when present and recent"
+  111|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  112|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  113|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  114|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  115|   behavior:
+
+=== R-044 | .skilled/commands/create/assets/create-feature-catalog-confirm.yaml | locator occurrences in file: 1 | locator lines 117-117
+LOCATOR: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md)"
+REPLACEMENT: "Load canonical spec docs (tasks.md, plan.md, decision-record.md)"
+CONTEXT:
+  114|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  115|   behavior:
+  116|     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
+  117|     memory_choice_B: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md) in {spec_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"
+  118|     memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  119|   when_to_skip: ["New spec folder (spec_choice == B, Create new) with no prior context", "spec_choice == D (Skip documentation)", "User says 'skip context' or 'fresh start'"]
+  120|   output: memory_loaded
+
+=== R-045 | .skilled/commands/create/assets/create-feature-catalog-confirm.yaml | locator occurrences in file: 1 | locator lines 288-288
+LOCATOR: "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance"
+REPLACEMENT: "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance"
+CONTEXT:
+  285|       - Create folder: specs/[NNN]-[skill_name]-feature-catalog/
+  286|     - IF spec_choice == A or C (Existing or Related):
+  287|       - Use selected spec_path
+  288|     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+  289|     templates:
+  290|     # Use Level 2 templates as default for feature catalog package creation
+  291|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+
+=== R-046 | .skilled/commands/create/assets/create-feature-catalog-confirm.yaml | locator occurrences in file: 1 | locator lines 293-294
+LOCATOR: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    outputs:"
+REPLACEMENT: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md\n    outputs:"
+CONTEXT:
+  290|     # Use Level 2 templates as default for feature catalog package creation
+  291|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+  292|     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+  293|     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+  294|     outputs:
+  295|     - spec_path_resolved
+  296|     - spec.md: created_or_updated
+  297|     - plan.md: created_or_updated
+
+=== R-047 | .skilled/commands/create/assets/create-feature-catalog-confirm.yaml | locator occurrences in file: 1 | locator lines 299-299
+LOCATOR: "    - checklist.md: created_or_updated"
+REPLACEMENT: "    - acceptance-criteria.md: created_or_updated"
+CONTEXT:
+  296|     - spec.md: created_or_updated
+  297|     - plan.md: created_or_updated
+  298|     - tasks.md: created_or_updated
+  299|     - checklist.md: created_or_updated
+  300|     checkpoint:
+  301|       question: "Spec folder resolved at [spec_path]. Continue to source discovery?"
+  302|       options:
+
+=== R-048 | .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml | locator occurrences in file: 1 | locator lines 120-121
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  117|     - spec.md
+  118|     - plan.md
+  119|     - tasks.md
+  120|     - checklist.md
+  121|   note: "Testing playbook package creation typically needs verification because it spans root and per-feature docs"
+  122| 
+  123| defaults:
+  124|   skill_path: .skilled/skills/
+
+=== R-049 | .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml | locator occurrences in file: 1 | locator lines 234-234
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  231|     order:
+  232|       - "Read {spec_path}/handover.md when present and recent"
+  233|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  234|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  235|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  236|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  237|   output: memory_loaded
+
+=== R-050 | .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml | locator occurrences in file: 1 | locator lines 264-264
+LOCATOR: "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance"
+REPLACEMENT: "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance"
+CONTEXT:
+  261|       - Create folder: specs/[NNN]-[skill_name]-testing-playbook/
+  262|     - IF spec_choice == A or C (Existing or Related):
+  263|       - Use selected spec_path
+  264|     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+  265|     templates:
+  266|     # Use Level 2 templates as default for testing playbook package creation
+  267|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+
+=== R-051 | .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml | locator occurrences in file: 1 | locator lines 269-270
+LOCATOR: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    outputs:"
+REPLACEMENT: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md\n    outputs:"
+CONTEXT:
+  266|     # Use Level 2 templates as default for testing playbook package creation
+  267|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+  268|     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+  269|     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+  270|     outputs:
+  271|     - spec_path_resolved
+  272|     - spec.md: created_or_updated
+  273|     - plan.md: created_or_updated
+
+=== R-052 | .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml | locator occurrences in file: 1 | locator lines 275-275
+LOCATOR: "    - checklist.md: created_or_updated"
+REPLACEMENT: "    - acceptance-criteria.md: created_or_updated"
+CONTEXT:
+  272|     - spec.md: created_or_updated
+  273|     - plan.md: created_or_updated
+  274|     - tasks.md: created_or_updated
+  275|     - checklist.md: created_or_updated
+  276| 
+  277|   step_2_source_discovery:
+  278|     purpose: Resolve source strategy and scenario inventory
+
+=== R-053 | .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml | locator occurrences in file: 1 | locator lines 134-135
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  131|     - spec.md
+  132|     - plan.md
+  133|     - tasks.md
+  134|     - checklist.md
+  135|   note: "Testing playbook package creation typically needs verification because it spans root and per-feature docs"
+  136| 
+  137| defaults:
+  138|   skill_path: .skilled/skills/
+
+=== R-054 | .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml | locator occurrences in file: 1 | locator lines 253-253
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  250|     order:
+  251|       - "Read {spec_path}/handover.md when present and recent"
+  252|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  253|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  254|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  255|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  256|   behavior:
+
+=== R-055 | .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml | locator occurrences in file: 1 | locator lines 258-258
+LOCATOR: "Load canonical spec docs (spec.md, plan.md, tasks.md, checklist.md)"
+REPLACEMENT: "Load canonical spec docs (spec.md, plan.md, tasks.md)"
+CONTEXT:
+  255|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  256|   behavior:
+  257|     memory_choice_A: "Load handover.md plus implementation-summary.md _memory.continuity for spec_path; sets memory_loaded: handover"
+  258|     memory_choice_B: "Load canonical spec docs (spec.md, plan.md, tasks.md, checklist.md) for spec_path up to a recent cap; sets memory_loaded: spec_docs"
+  259|     memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  260|   when_to_skip: ["New spec folder or target with no prior context", "User says 'skip context' or 'fresh start'"]
+  261|   output: memory_loaded
+
+=== R-056 | .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml | locator occurrences in file: 1 | locator lines 295-295
+LOCATOR: "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance"
+REPLACEMENT: "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance"
+CONTEXT:
+  292|       - Create folder: specs/[NNN]-[skill_name]-testing-playbook/
+  293|     - IF spec_choice == A or C (Existing or Related):
+  294|       - Use selected spec_path
+  295|     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+  296|     templates:
+  297|     # Use Level 2 templates as default for testing playbook package creation
+  298|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+
+=== R-057 | .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml | locator occurrences in file: 1 | locator lines 300-301
+LOCATOR: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    outputs:"
+REPLACEMENT: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md\n    outputs:"
+CONTEXT:
+  297|     # Use Level 2 templates as default for testing playbook package creation
+  298|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+  299|     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+  300|     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+  301|     outputs:
+  302|     - spec_path_resolved
+  303|     - spec.md: created_or_updated
+  304|     - plan.md: created_or_updated
+
+=== R-058 | .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml | locator occurrences in file: 1 | locator lines 306-306
+LOCATOR: "    - checklist.md: created_or_updated"
+REPLACEMENT: "    - acceptance-criteria.md: created_or_updated"
+CONTEXT:
+  303|     - spec.md: created_or_updated
+  304|     - plan.md: created_or_updated
+  305|     - tasks.md: created_or_updated
+  306|     - checklist.md: created_or_updated
+  307|     checkpoint:
+  308|       question: "Spec folder resolved at [spec_path]. Continue to source discovery?"
+  309|       options:
+
+=== R-059 | .skilled/commands/create/assets/create-skill-auto.yaml | locator occurrences in file: 1 | locator lines 280-280
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  277|     order:
+  278|       - "Read {spec_path}/handover.md when present and recent"
+  279|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  280|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  281|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  282|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  283|   output: memory_loaded
+
+=== R-060 | .skilled/commands/create/assets/create-skill-confirm.yaml | locator occurrences in file: 1 | locator lines 116-116
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  113|     order:
+  114|       - "Read {spec_path}/handover.md when present and recent"
+  115|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  116|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  117|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  118|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  119|   behavior:
+
+=== R-061 | .skilled/commands/create/assets/create-skill-confirm.yaml | locator occurrences in file: 1 | locator lines 121-121
+LOCATOR: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md)"
+REPLACEMENT: "Load canonical spec docs (tasks.md, plan.md, decision-record.md)"
+CONTEXT:
+  118|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  119|   behavior:
+  120|     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
+  121|     memory_choice_B: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md) in {spec_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"
+  122|     memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  123|   when_to_skip: ["New spec folder (spec_choice == B, Create new) with no prior context", "spec_choice == D (Skip documentation)", "User says 'skip context' or 'fresh start'"]
+  124|   output: memory_loaded
+
+=== R-062 | .skilled/commands/create/assets/create-skill-parent-auto.yaml | locator occurrences in file: 1 | locator lines 124-125
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  121|     - spec.md
+  122|     - plan.md
+  123|     - tasks.md
+  124|     - checklist.md
+  125|   note: "Parent-skill scaffolding spans a hub, a registry, multiple packets, and an identity invariant, so it needs verification"
+  126| 
+  127| defaults:
+  128|   skill_path: .skilled/skills/
+
+=== R-063 | .skilled/commands/create/assets/create-skill-parent-auto.yaml | locator occurrences in file: 1 | locator lines 341-341
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  338|     order:
+  339|       - "Read {spec_path}/handover.md when present and recent"
+  340|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  341|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  342|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  343|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  344|   output: memory_loaded
+
+=== R-064 | .skilled/commands/create/assets/create-skill-parent-auto.yaml | locator occurrences in file: 1 | locator lines 373-373
+LOCATOR: "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance"
+REPLACEMENT: "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance"
+CONTEXT:
+  370|       - Create folder: specs/[NNN]-[skill_name]-parent/
+  371|     - IF spec_choice == A or C (Existing or Related):
+  372|       - Use selected spec_path
+  373|     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+  374|     templates:
+  375|     # Use Level 2 templates as default for parent-skill scaffolding
+  376|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+
+=== R-065 | .skilled/commands/create/assets/create-skill-parent-auto.yaml | locator occurrences in file: 1 | locator lines 378-379
+LOCATOR: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    outputs:"
+REPLACEMENT: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md\n    outputs:"
+CONTEXT:
+  375|     # Use Level 2 templates as default for parent-skill scaffolding
+  376|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+  377|     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+  378|     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+  379|     outputs:
+  380|     - spec_path_resolved
+  381|     - spec.md: created_or_updated
+  382|     - plan.md: created_or_updated
+
+=== R-066 | .skilled/commands/create/assets/create-skill-parent-auto.yaml | locator occurrences in file: 1 | locator lines 384-384
+LOCATOR: "    - checklist.md: created_or_updated"
+REPLACEMENT: "    - acceptance-criteria.md: created_or_updated"
+CONTEXT:
+  381|     - spec.md: created_or_updated
+  382|     - plan.md: created_or_updated
+  383|     - tasks.md: created_or_updated
+  384|     - checklist.md: created_or_updated
+  385| 
+  386|   step_2_mode_planning:
+  387|     purpose: Resolve the mode list and per-packet plan
+
+=== R-067 | .skilled/commands/create/assets/create-skill-parent-confirm.yaml | locator occurrences in file: 1 | locator lines 159-160
+LOCATOR: "    - checklist.md\n  note:"
+REPLACEMENT: "    - acceptance-criteria.md\n  note:"
+CONTEXT:
+  156|     - spec.md
+  157|     - plan.md
+  158|     - tasks.md
+  159|     - checklist.md
+  160|   note: "Parent-skill scaffolding spans a hub, a registry, multiple packets, and an identity invariant, so it needs verification"
+  161| 
+  162| defaults:
+  163|   skill_path: .skilled/skills/
+
+=== R-068 | .skilled/commands/create/assets/create-skill-parent-confirm.yaml | locator occurrences in file: 1 | locator lines 112-112
+LOCATOR: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md\""
+REPLACEMENT: "\"Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md\""
+CONTEXT:
+  109|     order:
+  110|       - "Read {spec_path}/handover.md when present and recent"
+  111|       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
+  112|       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+  113|       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+  114|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  115|   behavior:
+
+=== R-069 | .skilled/commands/create/assets/create-skill-parent-confirm.yaml | locator occurrences in file: 1 | locator lines 117-117
+LOCATOR: "Load canonical spec docs (spec.md, plan.md, tasks.md, checklist.md)"
+REPLACEMENT: "Load canonical spec docs (spec.md, plan.md, tasks.md)"
+CONTEXT:
+  114|     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
+  115|   behavior:
+  116|     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
+  117|     memory_choice_B: "Load canonical spec docs (spec.md, plan.md, tasks.md, checklist.md) in {spec_path} up to a recent cap (3 most recently modified); sets memory_loaded: canonical_docs"
+  118|     memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  119|   when_to_skip: ["New spec folder (spec_choice == B, Create new) with no prior context", "spec_choice == D (Skip documentation)", "User says 'skip context' or 'fresh start'"]
+  120|   output: memory_loaded
+
+=== R-070 | .skilled/commands/create/assets/create-skill-parent-confirm.yaml | locator occurrences in file: 1 | locator lines 398-398
+LOCATOR: "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance"
+REPLACEMENT: "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance"
+CONTEXT:
+  395|       - Create folder: specs/[NNN]-[skill_name]-parent/
+  396|     - IF spec_choice == A or C (Existing or Related):
+  397|       - Use selected spec_path
+  398|     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+  399|     templates:
+  400|     # Use Level 2 templates as default for parent-skill scaffolding
+  401|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+
+=== R-071 | .skilled/commands/create/assets/create-skill-parent-confirm.yaml | locator occurrences in file: 1 | locator lines 403-404
+LOCATOR: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    outputs:"
+REPLACEMENT: "    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md\n    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md\n    outputs:"
+CONTEXT:
+  400|     # Use Level 2 templates as default for parent-skill scaffolding
+  401|     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+  402|     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+  403|     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+  404|     outputs:
+  405|     - spec_path_resolved
+  406|     - spec.md: created_or_updated
+  407|     - plan.md: created_or_updated
+
+=== R-072 | .skilled/commands/create/assets/create-skill-parent-confirm.yaml | locator occurrences in file: 1 | locator lines 409-409
+LOCATOR: "    - checklist.md: created_or_updated"
+REPLACEMENT: "    - acceptance-criteria.md: created_or_updated"
+CONTEXT:
+  406|     - spec.md: created_or_updated
+  407|     - plan.md: created_or_updated
+  408|     - tasks.md: created_or_updated
+  409|     - checklist.md: created_or_updated
+  410|     checkpoint:
+  411|       question: "Spec folder resolved at [spec_path]. Continue to mode planning?"
+  412|       options:
+
+=== R-073 | .skilled/commands/deep/assets/deep-review-auto.yaml | locator occurrences in file: 1 | locator lines 423-423
+LOCATOR: "1. Inspect spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md,"
+REPLACEMENT: "1. Inspect spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md,"
+CONTEXT:
+  420|         action: "Resolve review target to a concrete file list based on target type"
+  421|         resolve:
+  422|           spec-folder: |
+  423|             1. Inspect spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, and goal-file-manifest.txt when present
+  424|             2. If goal-file-manifest.txt exists, parse one repo-relative path per non-empty, non-comment line; reject absolute paths, traversal outside repo_root, duplicates, missing paths, and non-file entries
+  425|             3. Fail before dispatch with line-numbered validation errors when any manifest entry is invalid; otherwise set scope = the validated manifest paths in declared order
+  426|             4. When no manifest exists, discover implementation files referenced in the canonical spec artifacts
+
+=== R-074 | .skilled/commands/deep/assets/deep-review-auto.yaml | locator occurrences in file: 1 | locator lines 441-441
+LOCATOR: "2. For each: read spec.md + checklist.md"
+REPLACEMENT: "2. For each: read spec.md + acceptance-criteria.md"
+CONTEXT:
+  438|             3. Set scope = all discovered agent files
+  439|           track: |
+  440|             1. List all child spec folders under specs/{track}/ or .opencode/specs/{track}/
+  441|             2. For each: read spec.md + checklist.md
+  442|             3. Set scope = all child spec artifacts
+  443|           files: |
+  444|             1. Expand glob patterns from review_target
+
+=== R-075 | .skilled/commands/deep/assets/deep-review-auto.yaml | locator occurrences in file: 1 | locator lines 2262-2262
+LOCATOR: "if level is 2+ and checklist.md exists and"
+REPLACEMENT: "if level is 2+ and acceptance-criteria.md exists and"
+CONTEXT:
+ 2259|           - p2_count: "Total P2 findings across all iterations (deduped)"
+ 2260|           - dimensions_covered: "List of reviewed dimensions"
+ 2261|           - dimension_coverage: "covered / total"
+ 2262|           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and checklist.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
+ 2263|           - last_3_summaries: "Summarize the latest 3 iteration records"
+ 2264|           - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
+ 2265| 
+
+=== R-076 | .skilled/commands/deep/assets/deep-review-confirm.yaml | locator occurrences in file: 1 | locator lines 407-407
+LOCATOR: "1. Read spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md"
+REPLACEMENT: "1. Read spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md"
+CONTEXT:
+  404|         action: "Resolve review target to a concrete file list based on target type"
+  405|         resolve:
+  406|           spec-folder: |
+  407|             1. Read spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md
+  408|             2. Discover implementation files referenced in spec artifacts
+  409|             3. Discover test files associated with implementation
+  410|             4. Set scope = all discovered files
+
+=== R-077 | .skilled/commands/deep/assets/deep-review-confirm.yaml | locator occurrences in file: 1 | locator lines 423-423
+LOCATOR: "2. For each: read spec.md + checklist.md"
+REPLACEMENT: "2. For each: read spec.md + acceptance-criteria.md"
+CONTEXT:
+  420|             3. Set scope = all discovered agent files
+  421|           track: |
+  422|             1. List all child spec folders under specs/{track}/ or .opencode/specs/{track}/
+  423|             2. For each: read spec.md + checklist.md
+  424|             3. Set scope = all child spec artifacts
+  425|           files: |
+  426|             1. Expand glob patterns from review_target
+
+=== R-078 | .skilled/commands/deep/assets/deep-review-confirm.yaml | locator occurrences in file: 1 | locator lines 1726-1726
+LOCATOR: "if level is 2+ and checklist.md exists and"
+REPLACEMENT: "if level is 2+ and acceptance-criteria.md exists and"
+CONTEXT:
+ 1723|           - p2_count: "Total P2 findings across all iterations (deduped)"
+ 1724|           - dimensions_covered: "List of reviewed dimensions"
+ 1725|           - dimension_coverage: "covered / total"
+ 1726|           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and checklist.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
+ 1727|           - last_3_summaries: "Summarize the latest 3 iteration records"
+ 1728|           - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
+ 1729| 
+
+=== SKIPPED LIST (file scratch/audit/extra-skipped.txt)
+SKIPPED: 0 mentions.
+Every one of the 45 `checklist.md` hits in .skilled/commands/create/assets/* (14 files) and .skilled/commands/deep/assets/* (2 files) tells a command to read, require, route or create a spec-folder `checklist.md`, a doc that has no template any more. Each hit has a row (R-028 to R-078; the six template-anchor rows R-040, R-046, R-051, R-057, R-065 and R-071 add a filled example for the new acceptance-criteria.md output and replace no checklist mention).
+No mention is a historical file name or a non-spec checklist.
+Left alone on purpose: .skilled/commands/create/assets/tests/ holds no checklist.md hit (rg printed nothing).
+
+=== TREE FACTS (output of the commands shown, run by the dispatcher)
+$ ls .skilled/skills/system-spec-kit/templates/examples/level-2
+acceptance-criteria.md
+description.json
+implementation-summary.md
+plan.md
+spec.md
+tasks.md
+$ ls .skilled/skills/system-spec-kit/templates/core .skilled/skills/system-spec-kit/templates/addons
+.skilled/skills/system-spec-kit/templates/addons:
+acceptance-criteria.md.tmpl
+before-after.md.tmpl
+debug-delegation.md.tmpl
+decision-record.md.tmpl
+goal.md.tmpl
+handover.md.tmpl
+research.md.tmpl
+resource-map.md.tmpl
+roadmap.md.tmpl
+timeline.md.tmpl
+
+.skilled/skills/system-spec-kit/templates/core:
+implementation-summary.md.tmpl
+plan.md.tmpl
+spec.md.tmpl
+tasks.md.tmpl
+$ ls .skilled/skills/system-spec-kit/templates | rg -i checklist ; echo rc=$?
+rc=1
+$ rg -n "checklist" .skilled/skills/system-spec-kit/templates -l ; echo rc=$?
+.skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl
+.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
+.skilled/skills/system-spec-kit/templates/examples/README.md
+.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+.skilled/skills/system-spec-kit/templates/scratch/README.md
+.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
+rc=0
+$ sed -n 20,30p .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md   (level table)
+## 1. BOUNDS
+
+You write one packet, in one folder. The folder is the one `create.sh` prints.
+
+Allowed writes: the packet folder and its `scratch/` folder.
+Forbidden: `git commit`, `git push`, `git checkout`, `git switch`, `git branch`, `git reset`, `git stash`, `generate-context.js`, `/speckit:save`. Do not edit `.skilled/`, another packet or a source file. Do not run `create.sh` twice.
+
+Acceptance: you can name the packet folder and the one command you will run to check it.
+Verify: `pwd` prints the repository root, and `ls <packet folder>` lists `spec.md`.
+
+## 2. PICK THE LEVEL
+$ rg -n "ac_file=" .skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh   (the AC_COVERAGE rule reads this file)
+145:    local ac_file="$1"
+161:    local ac_file="$folder/acceptance-criteria.md"
+239:    local ac_file="$1"
+247:    local ac_file="$folder/acceptance-criteria.md"
+284:    local ac_file="$1"
+515:    local ac_file="$folder/acceptance-criteria.md"
+NOTE: frozen rows R-014 and R-017 (already decided) drop checklist.md from the continuity ladder and the doc lists without adding another doc; the extra rows follow the same choice for ladder and memory-load lists, and name acceptance-criteria.md only where a Level 2 command creates or requires the doc set.
+
+$ rg -n "^\| [123] \|" .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md   (the level table of the card)
+42:| 1 | `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` once implementation starts |
+43:| 2 | the Level 1 files plus `acceptance-criteria.md` |
+44:| 3 | the Level 2 files plus the architecture sections and a decision record when one is written |
+$ rg -n -i "checklist" .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl | head -3   (a checklist is a section inside tasks.md, not a separate doc)
+19:  - "verification checklist"
+114:## Verification Checklist
+115:<!-- FILL: Fill each checklist section below. -->

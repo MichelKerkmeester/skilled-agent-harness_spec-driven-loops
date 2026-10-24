@@ -1,0 +1,1 @@
+[gate1-pointer-sync] PASS: 1 instruction files carry the root Gate 1 lookup.

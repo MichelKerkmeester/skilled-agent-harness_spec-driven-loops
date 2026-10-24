@@ -420,7 +420,7 @@ TASK #2: Implement Notification System
 ### Rule 5: Spec Documentation Governance
 **Trigger:** Any task that creates or substantively writes spec folder template documents.
 **Action:** The main agent writes spec-folder docs directly using `Level template contract`, runs `validate.sh --strict` after each doc write, and routes continuity via `/speckit:save`.
-**Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
+**Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, research/research.md, and any other markdown documentation.
 **Exceptions:**
 - `scratch/` subdirectory → temporary workspace, any agent may write
 - `research/research.md` → `@deep-research` agent exclusively (iterative investigation findings)
@@ -438,7 +438,7 @@ TASK #2: Implement Notification System
 
 | Violation Type                | Detection Signal                                                                                                | Correct Routing                |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
+| **Wrong Route for Spec Docs** | Task creates `specs/*/spec.md`, `plan.md`, `tasks.md`, `decision-record.md` without templates or validation evidence | Main agent + templates + `validate.sh --strict` |
 | **Template Bypass**           | Write tool used on spec folder paths WITHOUT prior Read from `Level template contract`                               | REJECT → Must use templates    |
 | **Level Not Determined**      | Spec-doc authoring without explicit Level (1/2/3/3+) in task context                                             | REJECT → Determine level first |
 | **No Validation**             | Spec-doc completion claim without `validate.sh` output                                                          | REJECT → Run validation        |

@@ -150,7 +150,7 @@ Every exploration uses the layers needed for a complete answer within scope. If 
 **Process**:
 - Inspect `handover.md` when present; it is the first continuity input for interrupted work.
 - Read `_memory.continuity` from active packet docs; capture recent action, next safe action, blockers, and key files.
-- Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) for canonical state.
+- Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`) for canonical state.
 - Read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and match the request against its declared trigger phrases to surface prior work.
 - Run a ripgrep recipe from `retrieval-conventions.md` through the Grep tool only when packet-local continuity leaves gaps or broader history is needed.
 

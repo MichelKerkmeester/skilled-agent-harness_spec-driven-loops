@@ -283,6 +283,7 @@ available_templates:
 template_compliance:
   # cadence: declared once; each step's own gate below states why it re-runs this command
   strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+  guard_scripts_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
   prompt_contract:
     rule: "When this workflow writes tasks.md or implementation-summary.md, embed the matching inline scaffold below in the authoring prompt and preserve required ANCHOR/H2 order."
   inline_scaffolds:

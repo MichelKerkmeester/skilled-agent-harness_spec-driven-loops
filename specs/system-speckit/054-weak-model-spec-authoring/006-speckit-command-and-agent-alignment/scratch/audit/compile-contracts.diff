@@ -1,0 +1,19 @@
+diff --git a/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown b/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+index 4989ac5b84..1191d13435 100644
+--- a/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
++++ b/.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+@@ -22,12 +22,12 @@
+     },
+     {
+       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+-      "sha256": "b19fb55e3a4081285e61d3ca13b5a8a0a2d59efa08ea1541981592b97429ddd6",
++      "sha256": "757ee6b13820441cc09220c0eb9c22e4efda519f6d831a3cad08a6f752f871b0",
+       "section": "full"
+     },
+     {
+       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+-      "sha256": "25bf73c6f8a1533df2e4c9f76e35e916a97b85cdc245f88a5d02fddb81a4f033",
++      "sha256": "7772bc7ec97e39b954395bd24930c14a1c89816ffdd8eca7b3ab5935c7c1aac7",
+       "section": "full"
+     },
+     {

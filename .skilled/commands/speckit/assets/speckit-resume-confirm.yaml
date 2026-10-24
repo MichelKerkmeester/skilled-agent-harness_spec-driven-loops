@@ -90,7 +90,7 @@ session_detection:
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
   # The canonical packet is the recovery ladder. Grep only fills a gap the packet named and did not answer.
-  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/checklist/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
   note: "Recover from the canonical packet first, then let the user choose whether a scoped ripgrep pass is needed"
 
 packet_graph_metadata:

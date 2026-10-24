@@ -1,0 +1,16 @@
+.claude/agents/code.md
+.claude/agents/context.md
+.claude/agents/markdown.md
+.claude/agents/orchestrate.md
+.skilled/agents/code.md
+.skilled/agents/context.md
+.skilled/agents/markdown.md
+.skilled/agents/orchestrate.md
+.skilled/commands/speckit/assets/speckit-complete.yaml
+.skilled/commands/speckit/assets/speckit-implement.yaml
+.skilled/commands/speckit/assets/speckit-plan.yaml
+.skilled/commands/speckit/assets/speckit-resume-auto.yaml
+.skilled/commands/speckit/assets/speckit-resume-confirm.yaml
+.skilled/commands/speckit/complete.md
+.skilled/commands/speckit/implement.md
+.skilled/commands/speckit/plan.md
