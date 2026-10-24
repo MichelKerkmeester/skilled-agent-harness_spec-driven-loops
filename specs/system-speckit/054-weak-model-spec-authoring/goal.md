@@ -50,7 +50,7 @@ Frozen choices. Changing one is an amendment.
 | D4 | Every phase closes on scripted gates plus one read-only review (cli-devin, swe-2-max). |
 | D5 | Phase 008 runs the playbooks in a disposable sk-git worktree. |
 | D6 | Every phase is Level 3 with its own goal, bound below. |
-| D7 | The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents. |
+| D7 | The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash 1017 max for single-change lanes. |
 | D8 | The benchmark subject is cli-devin swe-2-max. Its 3 baseline runs rerun at the start commit, and phases 005 and 009 compare against them. |
 
 <!-- /ANCHOR:directive -->
@@ -139,5 +139,6 @@ and findings belong here.
 | Packet changelog on 2026-10-24 | Phases 004 to 009 say to refresh `../changelog/` at close and no changelog folder existed. The operator chose to create it: each phase from 004 runs `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <phase folder> --write` at close, and the conductor backfills phases 001 to 003 the same way |
 | Doctor commands in phase 006 on 2026-10-24 | The parent scope table marks the doctor speckit entries Modify for phase 006, while the phase 006 plan audits them all as OK. The operator ordered a read-only re-audit on Opus 5.5 medium before phase 006 runs. Rows are added only for real authoring findings. Result: 91 doctor files checked with the plan's detectors and wider terms, 0 authoring findings, so the plan's OK stands and phase 006 adds no doctor row. One non-authoring side effect: `doctor-update-check.yaml:140` counts `templateMarkers.legacy` as a pre-v4 signal, which the phase 003 manifest bump inflates (phase 003 OP-1). Report: conductor scratchpad `audit-doctor-006.md` |
 | L-A-015 and L-A-016 handoff on 2026-10-24 | The operator accepted the conductor's call: the two missing Level 3 anchors in core `spec.md.tmpl` are not added in phase 003. Phase 004's frozen alignment table removes `risk-matrix` and `user-stories` from the level-3 example instead, and no gate requires them in a scaffold |
+| DeepSeek lanes on 2026-10-24 | The operator directed: "Also use deepseek v4.1 flash max 1017 cli pi llm gateway as needed." D7 now adds cli-pi `llmgateway/deepseek-v4.1-flash-1017` at `--thinking max` as a second executor. Per the cli-pi contract it gets one change per brief (file, edit, check), the child preamble, `AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 PI_BLACKHOLE_PASSIVE=true`, `--offline` and `</dev/null`. Its output is verified by the conductor or a Sonnet pass like any other lane. Reviews (D4) and the benchmark subject (D8) do not change |
 | Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
 <!-- /ANCHOR:log -->
