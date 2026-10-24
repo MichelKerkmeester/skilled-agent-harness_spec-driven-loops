@@ -533,8 +533,15 @@ while true; do
         else
           printf 'warning: the handoff note is %s; not relaunching\n' "$note_state" >&2
         fi
-        spec_folder=$(consumed_spec_folder)
-        print_manual_command "$handoff_path" "$spec_folder" || true
+        # A claim throws on a claimed, done or missing note, so a command for one could
+        # never work. An invalid note can be repaired and an unread state may hide an open
+        # note, so those two keep the command.
+        case "$note_state" in
+          ''|invalid)
+            spec_folder=$(consumed_spec_folder)
+            print_manual_command "$handoff_path" "$spec_folder" || true
+            ;;
+        esac
         exit 1
       fi
       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
@@ -581,9 +588,13 @@ while true; do
             # applies: its note describes work that came before.
             printf 'warning: the prepared hand-over was withdrawn in the session; %s stays open and out of date\n' \
               "$handoff_path" >&2
-            # The one line above already says what happened to the note, so the
-            # unclaimed-note warning below would contradict it.
-            manual_command_printed=1
+            # The line above already says what happened to this note, so the unclaimed-note
+            # warning for it would contradict it. A different note the relaunched session
+            # was seeded with is still open and keeps its warning. Both paths come from
+            # the same absolute form the prepare step records.
+            if [[ "$handoff_path" == "$relaunched_handoff" ]]; then
+              manual_command_printed=1
+            fi
             ;;
           not-armed|stale|hop-cap|incomplete-record)
             spec_folder=$(consumed_spec_folder)

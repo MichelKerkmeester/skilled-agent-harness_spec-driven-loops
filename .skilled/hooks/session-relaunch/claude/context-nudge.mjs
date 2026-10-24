@@ -13,11 +13,10 @@ import {
   dropNestedLoop,
   isEntrypoint,
   payloadEventName,
-  withdrawDeferred,
 } from '../lib/relaunch-core.cjs';
 import { readClaudeFill, resolveWindow, fillRatio } from '../lib/context-usage.cjs';
 import nudge from '../lib/nudge.cjs';
-import hopHistory from '../lib/hop-history.cjs';
+import withdraw from '../lib/withdraw.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -27,11 +26,6 @@ const CONCERN = 'session-relaunch';
 // Claude delivers a background task's completion as a prompt, and that completion is what a
 // deferred hand-over waits for, so it must never count as the operator carrying on.
 const TASK_NOTIFICATION_PATTERN = /^\s*<task-notification>/;
-const WITHDRAWN_NOTICE = '[session-relaunch] The prepared hand-over was withdrawn because'
-  + ' a new prompt arrived while it waited for background tasks. Keep working here. The open'
-  + ' note no longer matches the work, and one more context nudge will come once the context'
-  + ' fills further. That nudge is when to update the note and hand over again. Do not run'
-  + ' consume or claim by hand.';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -54,32 +48,32 @@ function logEvent(event, fields) {
   } catch {}
 }
 
-// Only a prompt the operator typed means the session carries on past its deferred hand-over.
+// Only a prompt the operator typed means the session carries on past its hand-over. A record
+// the session just prepared is left alone, but one a Stop deferred or armed is called off: the
+// killer signals an armed session after a few quiet seconds, and a new turn running one long
+// tool would be ended mid-turn and relaunched onto a note that predates it.
 function withdrawOnOperatorPrompt(eventName, prompt, sessionId) {
   const loopId = process.env.SKILLED_LOOP_ID;
   if (eventName !== 'UserPromptSubmit' || !loopId) return false;
   if (typeof prompt !== 'string' || TASK_NOTIFICATION_PATTERN.test(prompt)) return false;
   let withdrawnRecord;
   try {
-    withdrawnRecord = withdrawDeferred({ loopId, sessionId, env: process.env });
-    if (withdrawnRecord === null) return false;
+    // The withdrawn session may already have spent its last nudge, so the helper grants one
+    // more. The grant is fixed to a fill ratio by the nudge decision that follows on this prompt.
+    withdrawnRecord = withdraw.withdrawHandOver({
+      loopId,
+      sessionId,
+      reason: 'user-message',
+      env: process.env,
+      onError: (stage, error) => {
+        logEvent('context-nudge-error', { stage, message: error.message });
+      },
+    });
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'withdraw', message: error.message });
     return false;
   }
-  // The withdrawn session may already have spent its last nudge, so it is granted one more.
-  // The grant is fixed to a fill ratio by the nudge decision that follows on this prompt.
-  try {
-    nudge.rearmAfterWithdraw({ sessionId, env: process.env });
-  } catch (error) {
-    logEvent('context-nudge-error', { stage: 'rearm', message: error.message });
-  }
-  // The history marks the note as still with its session, so it is not reported as unclaimed.
-  try {
-    hopHistory.recordHop('withdrawn', withdrawnRecord.handoff, { session: sessionId });
-  } catch (error) {
-    logEvent('context-nudge-error', { stage: 'history', message: error.message });
-  }
+  if (withdrawnRecord === null) return false;
   logEvent('withdrawn', { loopId, sessionId, reason: 'user-message' });
   return true;
 }
@@ -120,7 +114,7 @@ async function main() {
 
   const withdrawn = withdrawOnOperatorPrompt(eventName, payload.prompt, sessionId);
   // Every quiet exit below still tells the session its hand-over was withdrawn.
-  const quiet = () => (withdrawn ? emit(eventName, WITHDRAWN_NOTICE) : done());
+  const quiet = () => (withdrawn ? emit(eventName, nudge.WITHDRAWN_NOTICE) : done());
 
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) return quiet();
 

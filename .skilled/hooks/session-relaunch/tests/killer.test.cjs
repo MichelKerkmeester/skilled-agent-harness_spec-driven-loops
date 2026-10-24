@@ -1129,6 +1129,50 @@ test('killer unarms an armed record at the hop limit without signalling', async 
   }
 });
 
+// A new turn withdraws the arm after Stop, while the killer already watches the record. The
+// withdraw lands after the freshness check, and the killer's last read has to see it.
+test('killer does not signal when an operator prompt withdraws the arm after its freshness check', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  const preloadPath = path.join(sandbox.root, 'withdraw-after-freshness.cjs');
+  fs.writeFileSync(preloadPath, `
+    const nudge = require(${JSON.stringify(path.resolve(__dirname, '../lib/nudge.cjs'))});
+    const { withdrawHandOver } = require(${JSON.stringify(path.resolve(__dirname, '../lib/withdraw.cjs'))});
+    const realCurrent = nudge.armedRecordStillCurrent;
+    nudge.armedRecordStillCurrent = (...args) => {
+      const current = realCurrent(...args);
+      withdrawHandOver({
+        loopId: process.env.SKILLED_LOOP_ID,
+        reason: 'user-message',
+        pending: 'none',
+        env: process.env,
+      });
+      return current;
+    };
+  `);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100, preloadPath });
+  try {
+    const result = await waitForExit(killer, 2500);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.existsSync(signalPath), false, 'a withdrawn hand-over must not signal');
+    assert.equal(process.kill(target.pid, 0), true);
+    const record = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'disarmed');
+    assert.equal(record.disarmReason, 'user-message');
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-called-off/);
+    assert.doesNotMatch(killerLog, /killer-signal/);
+  } finally {
+    killChild(killer);
+    killChild(target);
+  }
+});
+
 test('killer still signals an armed record below the hop limit', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);

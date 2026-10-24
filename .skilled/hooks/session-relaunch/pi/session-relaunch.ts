@@ -43,15 +43,6 @@ interface CoreModule {
   dropNestedLoop(env: NodeJS.ProcessEnv, options: { hostPid: number }): boolean;
   parseHandoff(text: string): { frontmatter: Record<string, unknown> };
   readRelaunchFile(loopId: string, env: NodeJS.ProcessEnv): RelaunchRecord | null;
-  unarm(options: {
-    loopId: string;
-    reason: string;
-    expectedStatus?: string;
-    expectedHandoff?: string;
-    expectedArmedAt?: string;
-    expectedArmId?: string;
-    env: NodeJS.ProcessEnv;
-  }): RelaunchRecord | null;
 }
 
 // CoreModule is a hand-written view of a CommonJS module no compiler checks it against,
@@ -64,7 +55,6 @@ const CORE_FUNCTIONS = [
   'dropNestedLoop',
   'parseHandoff',
   'readRelaunchFile',
-  'unarm',
 ] as const;
 
 interface ContextUsageModule {
@@ -122,14 +112,31 @@ interface NudgeModule {
     sessionId: string;
     env?: NodeJS.ProcessEnv;
   }): NudgeDecision;
+  handoffWithdrawn(options: {
+    sessionId: string;
+    notePath: string;
+    env?: NodeJS.ProcessEnv;
+  }): boolean;
+  staleNoteText(options: { notePath: string }): string;
   validSessionId(sessionId: unknown): boolean;
   writeState(sessionId: string, level: number, env: NodeJS.ProcessEnv): void;
+}
+
+interface WithdrawModule {
+  withdrawHandOver(options: {
+    loopId: string;
+    reason: string;
+    sessionId?: string;
+    pending?: 'deferred' | 'any' | 'none';
+    env?: NodeJS.ProcessEnv;
+  }): RelaunchRecord | null;
 }
 
 type AdapterModules = {
   core: CoreModule;
   contextUsage: ContextUsageModule;
   nudge: NudgeModule;
+  withdraw: WithdrawModule;
 };
 
 // The ambient extension shim declares the events its extensions registered, and the
@@ -208,10 +215,25 @@ async function loadNudge(): Promise<NudgeModule> {
   }
 }
 
+async function loadWithdraw(): Promise<WithdrawModule> {
+  let withdraw: WithdrawModule;
+  try {
+    withdraw = asModule<WithdrawModule>(await import('../lib/withdraw.cjs' as string));
+  } catch {
+    withdraw = asModule<WithdrawModule>(
+      await import('../../.skilled/hooks/session-relaunch/lib/withdraw.cjs'),
+    );
+  }
+  if (typeof withdraw.withdrawHandOver !== 'function') {
+    throw new Error('session-relaunch withdraw does not export withdrawHandOver as a function');
+  }
+  return withdraw;
+}
+
 function loadModules(): Promise<AdapterModules> {
   if (modulesPromise === null) {
-    modulesPromise = Promise.all([loadCore(), loadContextUsage(), loadNudge()])
-      .then(([core, contextUsage, nudge]) => {
+    modulesPromise = Promise.all([loadCore(), loadContextUsage(), loadNudge(), loadWithdraw()])
+      .then(([core, contextUsage, nudge, withdraw]) => {
         // A nested run inherits the loop variables of the session that started it, and the host
         // shares one process environment, so they are dropped before any handler reads
         // SKILLED_LOOP_ID and hands off under a loop this process does not own. Resolving the
@@ -220,7 +242,7 @@ function loadModules(): Promise<AdapterModules> {
         try {
           core.dropNestedLoop(process.env, { hostPid: process.pid });
         } catch {}
-        return { core, contextUsage, nudge };
+        return { core, contextUsage, nudge, withdraw };
       })
       .catch((error: unknown) => {
         modulesPromise = null;
@@ -307,9 +329,14 @@ function logSpawnError(core: CoreModule, loopId: string, error: unknown): void {
 
 // The pointer is recorded in the same log as every other handoff step, and a state-dir write
 // that fails must not be the reason the session is left without its note.
-function logPointer(core: CoreModule, sessionId: string, notePath: string): void {
+function logPointer(
+  core: CoreModule,
+  sessionId: string,
+  notePath: string,
+  event = 'compact-pointer',
+): void {
   try {
-    core.appendLog('compact-pointer', { sessionId, note: notePath }, process.env);
+    core.appendLog(event, { sessionId, note: notePath }, process.env);
   } catch {}
 }
 
@@ -514,21 +541,17 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       const loopId = process.env.SKILLED_LOOP_ID;
       if (!loopId) return;
 
-      const record = modules.core.readRelaunchFile(loopId, process.env);
-      if (record?.status !== 'armed' || record.sessionId !== sessionId) return;
-
-      // The withdrawal matches every field the arm carried, so a stop that re-armed the record
-      // between this read and this call is not undone on the strength of the older record.
-      const disarmed = modules.core.unarm({
+      // The withdrawal reads, judges and disarms under one lock, so a stop that re-armed the
+      // record is never undone on the strength of an older read. It also grants the session one
+      // more nudge and lists the note as still with its session, as a cancel does.
+      const withdrawn = modules.withdraw.withdrawHandOver({
         loopId,
+        sessionId,
         reason: 'user-message',
-        expectedStatus: 'armed',
-        expectedHandoff: record.handoff,
-        expectedArmedAt: record.armedAt,
-        expectedArmId: record.armId,
+        pending: 'none',
         env: process.env,
       });
-      if (disarmed === null) return;
+      if (withdrawn === null) return;
       logArmCancelled(modules.core, loopId, sessionId);
     } catch {
       return undefined;
@@ -561,6 +584,18 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
         sessionId,
       });
       if (notePath === null) return;
+
+      // The operator carried on after the hand-over was withdrawn, so the work since is not in
+      // the note, and pointing the session at a claim would resume work that is already done.
+      if (modules.nudge.handoffWithdrawn({ sessionId, notePath, env: process.env })) {
+        logPointer(modules.core, sessionId, notePath, 'compact-pointer-stale-note');
+        pi.sendMessage({
+          customType: CONCERN,
+          content: modules.nudge.staleNoteText({ notePath }),
+          display: false,
+        });
+        return;
+      }
 
       logPointer(modules.core, sessionId, notePath);
       const specFolder = await noteSpecFolder(modules.core, notePath);

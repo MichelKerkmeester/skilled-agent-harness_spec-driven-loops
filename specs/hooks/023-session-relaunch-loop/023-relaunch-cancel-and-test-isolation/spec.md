@@ -39,7 +39,7 @@ contextType: "general"
 
 This is **Phase 23** of the session relaunch loop specification. It fixes the defects an audit of the loop found on 2026-10-24.
 
-**Scope Boundary**: The shared relaunch core, the relaunch CLI, the Claude hooks, the `skilled-loop` wrapper, their tests and the four docs that describe them. Pi, OpenCode and the other runtimes keep their behavior, because their withdraw-on-prompt paths already exist.
+**Scope Boundary**: The shared relaunch core, the relaunch CLI, the Claude hooks, the `skilled-loop` wrapper, their tests and the docs that describe them. A second review widened it to the Codex, Pi and OpenCode withdraw and compaction paths, because the shared `withdrawn` outcome had changed what those runtimes print. Hermes keeps its behavior, because it arms at session end and no later prompt exists to withdraw on.
 
 **Dependencies**:
 - Phase 022, which added the Pi and OpenCode `user-message` withdraw that this phase brings to Claude.
@@ -75,6 +75,7 @@ The suite passes in any environment without touching real state, a session that 
 - A `hand-over --loop-id` subcommand that consumes the record and records the hop only when the note is open, called by the wrapper on its relaunch path.
 - An eighth `session` column on the `claimed` history line, shown by `history` as `by <id>`.
 - Widened by the operator after the review: one more context nudge after a withdraw or cancel, a compaction pointer that does not seed a claim of a withdrawn note, a killer that leaves a cancelled record alone, the hop line written only after the wrapper reads its decision, the nested-run check in `cancel`, a withdrawn note no longer shown as unclaimed work, and a lock around the record writes.
+- Widened by the operator after a second review: one shared withdraw that Claude, Codex, Pi, OpenCode and `cancel` all call, an armed record withdrawn on an operator prompt on Claude and Codex, the withdrawn-note pointer on Pi and OpenCode compaction, locks on the pending write and the consume unlink, a claim command printed only for a note it could claim, and the full session id in `/speckit:handoff`.
 - Widened by the operator, the adjacent defects: a lock around note claim and complete, a spec-folder existence check at prepare and keep, every `SKILLED_LOOP_*` variable dropped by `dropNestedLoop`, and the v4.0.0.13 release note corrected where it promised Devin a `/speckit:handoff` command.
 
 ### Out of Scope
@@ -124,6 +125,8 @@ The suite passes in any environment without touching real state, a session that 
 | REQ-008 | The `handed-over` line is written only after the wrapper has read an open note from the consumed record |
 | REQ-009 | Record writes and note claim and complete run under a lock, and `cancel` drops an inherited loop id from a nested run |
 | REQ-010 | `dropNestedLoop` drops every `SKILLED_LOOP_*` variable, and prepare and keep refuse a note whose spec folder does not exist |
+| REQ-011 | Every runtime that withdraws a hand-over goes through one helper that records the `withdrawn` line and grants the extra nudge, an operator prompt on Claude and Codex also withdraws an armed record, and Pi and OpenCode compaction does not seed a claim of a withdrawn note |
+| REQ-012 | The wrapper prints a manual claim command only for a note that command could claim, a withdrawn decision still warns about a different unclaimed note, and `/speckit:handoff` names notes by the full session id |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

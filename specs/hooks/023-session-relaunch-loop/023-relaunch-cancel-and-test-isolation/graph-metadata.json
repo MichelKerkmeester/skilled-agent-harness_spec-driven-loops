@@ -44,6 +44,10 @@
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
       ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/lib/withdraw.cjs",
+      ".skilled/hooks/session-relaunch/codex/shared.mjs",
+      ".opencode/plugins/session-relaunch.js",
+      ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
@@ -52,8 +56,7 @@
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       ".skilled/bin/README.md",
       ".skilled/changelog/skilled/v4.0.0.13.md",
-      ".devin/SYNC.md",
-      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts"
+      ".devin/SYNC.md"
     ],
     "entities": [
       {
@@ -96,6 +99,30 @@
         "name": "killer.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/withdraw.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "shared.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
         "source": "derived"
       },
       {
@@ -153,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "session-relaunch.test.ts",
-        "kind": "test",
-        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Run",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
     "created_at": "2026-10-24T09:00:16Z",
-    "last_save_at": "2026-10-24T13:24:07.111Z",
+    "last_save_at": "2026-10-24T15:43:06.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0eb5fb49b1dde36355f6c888fcca469719930be273e24e78a49358ea4c486df1",
+    "source_fingerprint": "sha256:0b5da4f344c8ae9c036f128ef6d886b95eefce62083cc9ed3f992b7e9f7fbf28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba0dfc24cae7f53cfb615b5df0ac7bc99eef57ca33df004301876f4d91a904db",
+      "spec.md": "c986e75a2c16492b6452ce1c7160d3df18f4f2380d59fa4eb330043233365ffd",
       "plan.md": "126e827808f922ecbd5e6113f1dd265dba4e388ba2511197b807df3d6cc93b6b",
-      "tasks.md": "3fa4417b0d1cfa61833616d4de04be2e8da9150cdb97754e929301c22e644157",
-      "implementation-summary.md": "b13ad5449717eb5fcf2bde9a57bd979467173d476f8818ca03cbde58aae3ed6a"
+      "tasks.md": "e4e6bfe52ca89e0c6969b6cff7b40d992d724c4281e17268a826cbd3cf6241a1",
+      "implementation-summary.md": "ceee0d30bf551c3eea58666922ff98489070e7a32187d757b3b2dc81aad9632f"
     },
     "last_active_at": null
   }

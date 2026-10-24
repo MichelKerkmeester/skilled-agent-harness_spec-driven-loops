@@ -31,9 +31,14 @@ const CONTINUITY_WRITER_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/
   + 'dist/continuity/generate-context.js';
 const NUDGE_STEP = 0.05;
 const LAST_NUDGE_LEVEL = 1;
-// A record disarmed for either reason means the operator kept the session going after its
-// hand-over was prepared, so the note it names stopped matching the work.
-const WITHDRAWN_DISARM_REASONS = new Set(['cancelled', 'user-message']);
+// What a session is told when its prepared hand-over was withdrawn by a prompt: the prompt
+// itself carries this and nothing else, because a nudge on the same turn would ask for the
+// hand-over the session was just freed from.
+const WITHDRAWN_NOTICE = '[session-relaunch] The prepared hand-over was withdrawn because'
+  + ' a new prompt arrived before it took effect. Keep working here. The open'
+  + ' note no longer matches the work, and one more context nudge will come once the context'
+  + ' fills further. That nudge is when to update the note and hand over again. Do not run'
+  + ' consume or claim by hand.';
 const DEFAULT_THRESHOLD = 0.8;
 // The wrapper's own ceiling on completed hops, used when no cap is configured.
 const DEFAULT_MAX_HOPS = core.DEFAULT_MAX_HOPS;
@@ -477,7 +482,7 @@ function handoffWithdrawn({ sessionId, notePath, env = process.env } = {}) {
     const record = core.readRelaunchFile(loopId, env);
     if (!record || typeof record !== 'object') return false;
     if (record.loopId !== loopId || record.sessionId !== sessionId) return false;
-    if (record.status !== 'disarmed' || !WITHDRAWN_DISARM_REASONS.has(record.disarmReason)) {
+    if (record.status !== 'disarmed' || !core.WITHDRAWN_DISARM_REASONS.has(record.disarmReason)) {
       return false;
     }
     if (
@@ -703,6 +708,7 @@ module.exports = {
   handoffText,
   seedText,
   staleNoteText,
+  WITHDRAWN_NOTICE,
   completeCommandFor,
   claimCommandFor,
   isSeedPrompt,

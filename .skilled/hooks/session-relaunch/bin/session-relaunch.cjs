@@ -12,6 +12,7 @@ const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const hopHistory = require('../lib/hop-history.cjs');
+const withdraw = require('../lib/withdraw.cjs');
 const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = core.RUNTIMES;
@@ -26,8 +27,8 @@ const USAGE_PROGRAM = 'node .skilled/hooks/session-relaunch/bin/session-relaunch
 const SUBCOMMANDS = {
   prepare: {
     syntax: 'prepare --handoff <handoff-path> [--session <session-id>] [--runtime <runtime>]',
-    summary: 'Validate the note and arm the relaunch; outside a loop, or at the hop limit'
-      + ' inside one, it prints the claim command and exits 3.',
+    summary: 'Validate the note and write the pending record that the runtime arms on its own stop event;'
+      + ' outside a loop, or at the hop limit inside one, it prints the claim command and exits 3.',
   },
   'should-relaunch': {
     syntax: 'should-relaunch --loop-id <loop-id>',
@@ -388,7 +389,9 @@ function validatedNote(options, runtime) {
     let isDirectory = false;
     try {
       isDirectory = fs.statSync(packet).isDirectory();
-    } catch {}
+    } catch {
+      // An unreadable path is a missing one, and the check below names it.
+    }
     if (!isDirectory) {
       throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
     }
@@ -651,11 +654,14 @@ function consume(args) {
   // the fresh session and loses the hop, so it prints the manual command instead.
   const note = core.noteState(handoffPath);
   const statePath = core.relaunchFilePath(loopId);
-  try {
-    fs.unlinkSync(statePath);
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
+  // A withdraw rewrites the record under its lock, so the unlink waits for the same lock.
+  core.withAppendLock(statePath, () => {
+    try {
+      fs.unlinkSync(statePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+  });
   if (invalidSpecFolder) {
     try {
       core.appendLog('spec-folder-dropped', { loopId });
@@ -690,7 +696,9 @@ function handOver(args) {
   try {
     hopHistory.recordHop('handed-over', handoffPath, { hop, runtime });
     hopHistory.notifyHandOver(handoffPath, { switches: resolvedSwitches(), runtime });
-  } catch {}
+  } catch {
+    // The history and the notice are a record for the operator; the hop goes ahead without them.
+  }
   return 0;
 }
 
@@ -706,33 +714,21 @@ function cancel(args) {
   const { options } = parseArgs(args, { flags: ['--loop-id'] });
   const loopId = options['--loop-id'] || process.env.SKILLED_LOOP_ID;
   if (!loopId) throw new Error('--loop-id is required outside a loop');
-  const record = core.readRelaunchFile(loopId);
-  if (record?.status !== 'pending' && record?.status !== 'armed') {
+  // The helper reads, judges and disarms under one lock, so a record a Stop armed or a
+  // withdraw replaced in the meantime is never cancelled on the strength of an older read.
+  const cancelled = withdraw.withdrawHandOver({ loopId, reason: 'cancelled', pending: 'any' });
+  if (cancelled === null) {
     process.stdout.write('no prepared hand-over to cancel\n');
     return 1;
   }
-  const cancelled = core.unarm({
-    loopId,
-    reason: 'cancelled',
-    expectedStatus: record.status,
-    expectedHandoff: record.handoff,
-  });
-  if (cancelled === null) {
-    process.stdout.write('the prepared hand-over changed while cancelling; run cancel again\n');
-    return 1;
+  try {
+    // Only an armed record carries an armedAt, so the stamp says which state was cancelled.
+    core.appendLog('cancel', { loopId, status: cancelled.armedAt ? 'armed' : 'pending' });
+  } catch {
+    // The cancel is already done; its log is best-effort.
   }
-  try {
-    core.appendLog('cancel', { loopId, status: record.status });
-  } catch {}
-  // Each follow-up is best-effort: the cancel has happened, and neither may fail it.
-  try {
-    nudge.rearmAfterWithdraw({ sessionId: record.sessionId });
-  } catch {}
-  try {
-    hopHistory.recordHop('withdrawn', record.handoff, { session: record.sessionId });
-  } catch {}
   process.stdout.write(
-    `cancelled the prepared hand-over for ${path.basename(String(record.handoff ?? ''))};`
+    `cancelled the prepared hand-over for ${path.basename(String(cancelled.handoff ?? ''))};`
       + ' the note stays open\n',
   );
   return 0;

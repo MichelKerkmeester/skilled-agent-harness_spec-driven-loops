@@ -19,6 +19,7 @@ import {
   resolveCodexWindow,
 } from '../lib/context-usage.cjs';
 import nudge from '../lib/nudge.cjs';
+import withdraw from '../lib/withdraw.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -50,6 +51,34 @@ function logEvent(event, fields) {
   } catch {}
 }
 
+// A prompt payload carries the operator's text and nothing else a hook could tell apart: Codex
+// delivers no background-task completions as prompts, and the one prompt the hand-over itself
+// produces is the relaunch seed, which the caller has already answered. So any other prompt
+// means the session carries on past a hand-over a Stop armed, and the killer, which signals
+// after a few quiet seconds, would otherwise end that turn mid-way.
+function withdrawOnOperatorPrompt(eventName, sessionId) {
+  const loopId = process.env.SKILLED_LOOP_ID;
+  if (eventName !== 'UserPromptSubmit' || !loopId) return false;
+  try {
+    const withdrawn = withdraw.withdrawHandOver({
+      loopId,
+      sessionId,
+      reason: 'user-message',
+      pending: 'none',
+      env: process.env,
+      onError: (stage, error) => {
+        logEvent('context-nudge-error', { stage, message: error.message });
+      },
+    });
+    if (withdrawn === null) return false;
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'withdraw', message: error.message });
+    return false;
+  }
+  logEvent('withdrawn', { loopId, sessionId, reason: 'user-message' });
+  return true;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -76,20 +105,24 @@ async function main(expectedEvent) {
     return seed === null ? done() : emit(eventName, seed);
   }
 
+  const withdrawn = withdrawOnOperatorPrompt(eventName, sessionId);
+  // Every quiet exit below still tells the session its hand-over was withdrawn.
+  const quiet = () => (withdrawn ? emit(eventName, nudge.WITHDRAWN_NOTICE) : done());
+
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
-    return done();
+    return quiet();
   }
 
   let usage;
   let windowTokens;
   try {
     usage = readCodexUsage(payload.transcript_path);
-    if (usage === null) return done();
+    if (usage === null) return quiet();
     windowTokens = resolveCodexWindow(usage.modelContextWindow, process.env);
-    if (windowTokens === null) return done();
+    if (windowTokens === null) return quiet();
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'usage', message: error.message });
-    return done();
+    return quiet();
   }
 
   const ratio = fillRatio(usage.fillTokens, windowTokens);
@@ -98,7 +131,8 @@ async function main(expectedEvent) {
     threshold: nudge.relaunchThreshold(config),
     sessionId,
   });
-  if (!decision.nudge) return done();
+  // The withdraw prompt answers with the notice alone; its decision only fixes the re-arm floor.
+  if (!decision.nudge || withdrawn) return quiet();
 
   const notePath = nudge.plannedNotePath({ cwd: payload.cwd, sessionId });
   try {

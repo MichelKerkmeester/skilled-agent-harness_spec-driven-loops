@@ -566,7 +566,7 @@ test('stop-arm defers pending state when background tasks exist and logs the rea
   );
 });
 
-function deferredPromptCase(t, { prompt, deferred = true }) {
+function deferredPromptCase(t, { prompt, deferred = true, armed = false }) {
   const sandbox = createSandbox(t);
   const loopId = 'claude-loop-deferred-0001';
   sandbox.env.SKILLED_LOOP_ID = loopId;
@@ -574,7 +574,13 @@ function deferredPromptCase(t, { prompt, deferred = true }) {
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
   const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
-  if (deferred) {
+  if (armed) {
+    // A Stop that found no background work armed the record and started its killer.
+    record.status = 'armed';
+    record.armedAt = new Date().toISOString();
+    record.armId = 'arm-before-the-prompt';
+    fs.writeFileSync(recordPath, JSON.stringify(record));
+  } else if (deferred) {
     record.deferredAt = new Date().toISOString();
     fs.writeFileSync(recordPath, JSON.stringify(record));
   }
@@ -638,7 +644,12 @@ test('the withdraw prompt carries only the notice, then one nudge comes a step a
     cwd: sandbox.repoRoot,
     prompt: 'Continue here.',
   };
-  const toolPayload = { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot };
+  const toolPayload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
   const fillAt = (tokens) => writeTranscript(sandbox, tokens);
 
   // At the threshold a fresh level would nudge, but the withdraw prompt answers with the notice alone.
@@ -682,6 +693,65 @@ test('context-nudge keeps a handoff that was prepared and never deferred', async
   const result = await run();
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+// The killer signals after a short silence in the transcript, so a new turn that runs one
+// long tool would otherwise be ended mid-turn and relaunched onto a note that predates it.
+test('context-nudge withdraws an armed handoff when the operator sends a prompt', async (t) => {
+  const { sandbox, recordPath, run } = deferredPromptCase(t, {
+    prompt: 'Continue here.',
+    armed: true,
+  });
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+  );
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'user-message');
+  const lines = fs.readFileSync(historyPath, 'utf8').trim().split('\n');
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0].split('\t')[1], 'withdrawn');
+});
+
+test('context-nudge keeps an armed handoff when a background task reports back', async (t) => {
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: '<task-notification>\n<task-id>task-1</task-id>\n</task-notification>',
+    armed: true,
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('context-nudge keeps an armed handoff for a relaunch seed prompt', async (t) => {
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: '[session-relaunch] claim and continue handoff /tmp/handoff.md',
+    armed: true,
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('context-nudge leaves another session\'s armed handoff alone', async (t) => {
+  const { sandbox, recordPath, record } = deferredPromptCase(t, {
+    prompt: 'Continue here.',
+    armed: true,
+  });
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    session_id: 'session-adapter-00000002',
+    transcript_path: writeTranscript(sandbox, 500),
+    cwd: sandbox.repoRoot,
+    prompt: 'Continue here.',
+  });
+  assert.equal(result.code, 0, result.stderr);
   assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
 });
 

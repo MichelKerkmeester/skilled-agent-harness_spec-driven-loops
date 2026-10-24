@@ -22,7 +22,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 **Outputs:**
 
-- A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<first 8 chars of the session id>.md`.
+- A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<session id>.md`, with the full session id because Pi and OpenCode ids share a time-based prefix.
 - One `STATUS=` line per the exit code in Step 5: `STATUS=OK RESULT=prepared HANDOFF=<path>`, `STATUS=OK RESULT=manual HANDOFF=<path>` or `STATUS=FAIL ERROR="<reason>"`.
 - When a spec packet is bound: save continuity before `prepare` runs. The nudge asks for the note first, and either order works. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
 
@@ -33,6 +33,8 @@ The relaunch loop carries work into a fresh session near the end of this session
 | `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
+| `keep --handoff <path> --session <id> [--runtime <name>]` | Outside the loop only: validate the note, record it in the hop history and print the claim command to run after auto-compaction | `0` kept, `2` refused, including a call from inside the loop |
+| `cancel [--loop-id <id>]` | Call off the prepared hand-over so the session keeps running. The note stays open. The loop id defaults to `SKILLED_LOOP_ID` | `0` cancelled, `1` nothing to cancel or the record changed meanwhile, `2` refused |
 
 ---
 
@@ -70,7 +72,7 @@ Create the directory first:
 mkdir -p .skilled/skills/.state/session-relaunch/handoffs
 ```
 
-Name the file `<UTC yyyymmddThhmmssZ>-<first 8 chars of session id>.md`. `date -u +%Y%m%dT%H%M%SZ` produces the stamp and `${SESSION_ID:0:8}` the suffix. The note format is exact:
+Name the file `<UTC yyyymmddThhmmssZ>-<session id>.md`. `date -u +%Y%m%dT%H%M%SZ` produces the stamp and the full session id is the suffix. Do not shorten it, because Pi and OpenCode ids share a time-based prefix and a short form would collide. The note format is exact:
 
 ```markdown
 ---

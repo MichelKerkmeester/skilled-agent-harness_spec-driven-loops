@@ -1,8 +1,8 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-10-04"
-version: 2.1.2.0
+last_updated: "2026-10-24"
+version: 2.1.3.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -299,9 +299,9 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | session-cleanup-plugin | Session cleanup plugin | [session-cleanup-plugin](plugins-and-hooks/session-cleanup-plugin.md) | [orphan-sweep-stop-hook-activation](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
 | spec-mutation-gate-enforce | Spec mutation gate enforce | [spec-mutation-gate-enforce](plugins-and-hooks/spec-mutation-gate-enforce.md) | — |
 | speckit-completion-exposer | Speckit completion exposer | [speckit-completion-exposer](plugins-and-hooks/speckit-completion-exposer.md) | [completion-verification-workflow](../feature-catalog/tooling-and-scripts/completion-verification-workflow.md) |
-| session-relaunch-claude | Claude session relaunch loop | [session-relaunch-claude](plugins-and-hooks/session-relaunch-claude.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
-| session-relaunch-pi-opencode | Pi and OpenCode session relaunch adapters | [session-relaunch-pi-opencode](plugins-and-hooks/session-relaunch-pi-opencode.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
-| session-relaunch-command-runtimes | Codex, Cursor, Hermes and Devin session relaunch | [session-relaunch-command-runtimes](plugins-and-hooks/session-relaunch-command-runtimes.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
+| session-relaunch-claude | Claude session relaunch loop, with the hop history (CL-1), operator-prompt withdraw (CL-2, CL-3), task-notification control (CL-4), cancel (CL-5) and the model-free probe (CL-6) | [session-relaunch-claude](plugins-and-hooks/session-relaunch-claude.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
+| session-relaunch-pi-opencode | Pi and OpenCode session relaunch adapters, with the hop history (PO-1), new-turn withdraw (PO-2), extra nudge (PO-3), cancel (PO-4) and the non-interactive withdraw run (PO-5) | [session-relaunch-pi-opencode](plugins-and-hooks/session-relaunch-pi-opencode.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
+| session-relaunch-command-runtimes | Codex, Cursor, Hermes and Devin session relaunch, with the Codex hop history (CX-1), operator-prompt withdraw and extra nudge (CX-2), cancel (CX-3) and the model-free probe (CX-4) | [session-relaunch-command-runtimes](plugins-and-hooks/session-relaunch-command-runtimes.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
 
 ### 7.6 UX Hooks
 

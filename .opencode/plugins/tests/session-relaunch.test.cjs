@@ -1675,3 +1675,122 @@ test('a user message before the arm does not disarm', async (t) => {
   // for the session.idle that arms it.
   assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
 });
+
+// The hand-over a new turn calls off is the same withdrawal Claude and the cancel command
+// make, so its follow-ups must match theirs: a history line, a grant of one more nudge, and
+// a held nudge that does not come back on the very next turn.
+async function withdrawnByUserMessage(t, sessionID) {
+  const started = await startLoopNudge(t, sessionID);
+  const { root, loopId, hooks, notePath } = started;
+  writeHandoffNote(notePath, sessionID);
+  core.preparePending({
+    loopId,
+    handoffPath: notePath,
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: root,
+    env: process.env,
+  });
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-withdraws-arm', role: 'user' } },
+  } });
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'disarmed');
+  return started;
+}
+
+test('a new user message that withdraws an arm lists the note as withdrawn in the hop history', async (t) => {
+  const sessionID = 'ses_2c7e9a4b1d3fKQrJWCjyWiOfRa';
+  const { root, notePath } = await withdrawnByUserMessage(t, sessionID);
+  const historyFile = path.join(
+    root, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+  );
+
+  const lines = fs.readFileSync(historyFile, 'utf8').trim().split('\n').map((line) => line.split('\t'));
+
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0][1], 'withdrawn');
+  assert.equal(lines[0][6], path.basename(notePath));
+  assert.equal(lines[0][7], sessionID.slice(0, 8));
+});
+
+test('a withdrawn arm drops the held nudge and grants one more a step above the fill', async (t) => {
+  const sessionID = 'ses_3d8f0b5c2e4aKQrJWCjyWiOfRb';
+  const { hooks } = await withdrawnByUserMessage(t, sessionID);
+
+  // The nudge that asked for the hand-over is spent with it, so it is not shown again.
+  assert.deepEqual(await transform(hooks, sessionID), []);
+  // The first fill after the withdraw fixes the floor and stays quiet.
+  await hooks.event(assistantEvent(sessionID, 'assistant-after-withdraw', 90));
+  assert.deepEqual(await transform(hooks, sessionID), []);
+  await hooks.event(assistantEvent(sessionID, 'assistant-below-floor', 94));
+  assert.deepEqual(await transform(hooks, sessionID), []);
+  await hooks.event(assistantEvent(sessionID, 'assistant-at-floor', 95));
+  const granted = await transform(hooks, sessionID);
+  assert.equal(granted.length, 1);
+  assert.match(granted[0], /prepare --handoff/);
+});
+
+test('a compaction after a withdrawn arm tells the session not to claim the stale note', async (t) => {
+  const sessionID = 'ses_4e9a1c6d3f5bKQrJWCjyWiOfRc';
+  const root = setupEnv(t);
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  const loopId = 'opencode-loop-withdrawn-compact-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  const notePath = writeOpenNote(root, sessionID);
+  core.preparePending({
+    loopId,
+    handoffPath: notePath,
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: root,
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: root });
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-withdraws-arm', role: 'user' } },
+  } });
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'disarmed');
+
+  await hooks.event({ event: { type: 'session.compacted', properties: { sessionID } } });
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  assert.equal(output[0], nudge.staleNoteText({ notePath }));
+  assert.doesNotMatch(output[0], /claim '/);
+});
+
+test('the stale-note text ends once the session has updated the withdrawn note', async (t) => {
+  const sessionID = 'ses_5f0b2d7e4a6cKQrJWCjyWiOfRd';
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-loop-withdrawn-update-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  const notePath = writeOpenNote(root, sessionID);
+  core.preparePending({
+    loopId,
+    handoffPath: notePath,
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: root,
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: root });
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-withdraws-arm', role: 'user' } },
+  } });
+  await hooks.event({ event: { type: 'session.compacted', properties: { sessionID } } });
+  assert.equal((await transform(hooks, sessionID)).length, 1);
+
+  const later = new Date(Date.now() + 60_000);
+  fs.utimesSync(notePath, later, later);
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});

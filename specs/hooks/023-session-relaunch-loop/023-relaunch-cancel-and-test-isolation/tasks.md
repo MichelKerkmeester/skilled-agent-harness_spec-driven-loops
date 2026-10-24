@@ -64,6 +64,10 @@ contextType: "general"
 - [x] T017 Give `cancel` the nested-run check, record `withdrawn` hops, call `hand-over` only after the wrapper reads an open note, handle `withdrawn` in the wrapper, and refuse a missing spec folder (`bin/session-relaunch.cjs`, `lib/hop-history.cjs`, `.skilled/bin/skilled-loop`)
 - [x] T018 Correct the Devin hand-over lines in the v4.0.0.13 release note and update the relaunch docs
 - [x] T019 Verify independently and rerun the full gate in three environments
+- [x] T020 Route every runtime's withdraw through one helper, withdraw an armed record on a Claude or Codex operator prompt, and give Pi and OpenCode compaction the withdrawn-note pointer (`lib/withdraw.cjs`, adapters)
+- [x] T021 Lock the pending write and the consume unlink, and fix the prepare help text (`lib/relaunch-core.cjs`, `bin/session-relaunch.cjs`)
+- [x] T022 Print a claim command only for a note it could claim, keep the warning for a different unclaimed note, and name notes by the full id in `/speckit:handoff` (`.skilled/bin/skilled-loop`, `handoff.md`)
+- [x] T023 Check every touched code file against the sk-code skilled checklists, and add live and automatable playbook scenarios for each new behavior on Claude, Codex, OpenCode and Pi
 <!-- /ANCHOR:phase-3 -->
 
 ---

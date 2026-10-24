@@ -300,6 +300,63 @@ test('UserPromptSubmit adapter nudges when a non-seed prompt crosses threshold',
   assert.match(output.hookSpecificOutput.additionalContext, /prepare --handoff.*--runtime 'codex'/);
 });
 
+// The killer ends a Codex turn that stays silent in the rollout for a few seconds, so a
+// prompt the operator sends after Stop armed the record has to call the hand-over off.
+function armedPromptCase(t, prompt) {
+  const sandbox = createSandbox(t);
+  const loopId = 'codex-loop-armed-prompt-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, 'armed');
+  record.armedAt = new Date().toISOString();
+  record.armId = 'arm-before-the-prompt';
+  fs.writeFileSync(recordPath, JSON.stringify(record));
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    prompt,
+    transcript_path: writeRollout(sandbox, 500),
+    cwd: sandbox.repoRoot,
+  };
+  return { sandbox, recordPath, record, payload };
+}
+
+test('UserPromptSubmit withdraws an armed handoff when the operator sends a prompt', async (t) => {
+  const { sandbox, recordPath, payload } = armedPromptCase(t, 'Continue the current task');
+
+  const result = await runAdapter(sandbox, PROMPT_SEED_PATH, payload);
+
+  assert.equal(result.code, 0, result.stderr);
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'user-message');
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+});
+
+test('UserPromptSubmit keeps an armed handoff for a relaunch seed prompt', async (t) => {
+  const { sandbox, recordPath, record, payload } = armedPromptCase(t, SEED_PROMPT);
+
+  const result = await runAdapter(sandbox, PROMPT_SEED_PATH, payload);
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('PostToolUse keeps an armed handoff', async (t) => {
+  const { sandbox, recordPath, record, payload } = armedPromptCase(t, 'Continue the current task');
+
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...payload,
+    hook_event_name: 'PostToolUse',
+    prompt: undefined,
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
 test('Stop arms a matching pending record and spawns the killer with its transcript', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.ppid);

@@ -184,7 +184,9 @@ if (markerPath && fs.existsSync(markerPath)) {
       status: disarmed ? "disarmed" : status,
       ...(disarmed ? { disarmReason: process.env.DISARM_REASON || "cancelled" } : {}),
       loopId,
-      handoff: process.env.HANDOFF_PATH,
+      handoff: disarmed && process.env.DISARMED_HANDOFF_PATH
+        ? process.env.DISARMED_HANDOFF_PATH
+        : process.env.HANDOFF_PATH,
       sessionId: "session-wrapper-0001",
       runtime: process.env.SESSION_RELAUNCH_TEST_RUNTIME || "claude",
       name: process.env.SKILLED_LOOP_NAME || null,
@@ -2053,6 +2055,8 @@ for (const runtimeCase of COMMAND_ONLY_RUNTIMES) {
         note: '---\nstatus: claimed\n---\n',
         status: 1,
         warning: /warning: the handoff note is claimed; not relaunching/,
+        // A claim on a claimed note throws, so a printed command could never work.
+        commandPrinted: false,
       },
     ]) {
       const sandbox = createSandbox(t);
@@ -2071,7 +2075,7 @@ for (const runtimeCase of COMMAND_ONLY_RUNTIMES) {
       assert.equal(records.length, 1, message);
       assert.deepEqual(
         result.stdout.split('\n').filter((line) => line.startsWith('skilled-loop ')),
-        [manualCommand(handoffPath)],
+        scenario.commandPrinted === false ? [] : [manualCommand(handoffPath)],
         message,
       );
       assert.equal(
@@ -2131,10 +2135,13 @@ test('wrapper consumes a pending decline record and preserves the runtime exit c
   assert.equal(fs.existsSync(relaunchPath), false);
 });
 
-for (const [label, writeNote, state] of [
-  ['missing', (handoffPath) => fs.rmSync(handoffPath), 'missing'],
-  ['unparseable', (handoffPath) => fs.writeFileSync(handoffPath, 'status: open\n'), 'invalid'],
-  ['already claimed', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: claimed\n---\n'), 'claimed'],
+// A claim only succeeds on an open note, so a claimed, done or missing note gets the warning
+// alone. An invalid note is one the operator can repair and then claim, so it keeps its command.
+for (const [label, writeNote, state, claimable] of [
+  ['missing', (handoffPath) => fs.rmSync(handoffPath), 'missing', false],
+  ['unparseable', (handoffPath) => fs.writeFileSync(handoffPath, 'status: open\n'), 'invalid', true],
+  ['already claimed', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: claimed\n---\n'), 'claimed', false],
+  ['already done', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: done\n---\n'), 'done', false],
 ]) {
   test(`wrapper does not relaunch a claim for a ${label} note`, (t) => {
     const sandbox = createSandbox(t);
@@ -2146,7 +2153,11 @@ for (const [label, writeNote, state] of [
     assert.equal(result.status, 1, result.stderr);
     assert.equal(readRecords(recordPath).length, 1);
     assert.match(result.stderr, new RegExp(`warning: the handoff note is ${state}; not relaunching`));
-    assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+    assert.equal(
+      result.stdout.includes(expectedClaudeManualCommand(handoffPath)),
+      claimable,
+      result.stdout + result.stderr,
+    );
     // The decision approved this hop, but the wrapper declined it, so no hand-over happened.
     assert.deepEqual(handOverLines(sandbox), []);
   });
@@ -2207,6 +2218,38 @@ test('wrapper prints only the withdrawn line when a relaunched session calls off
   assert.equal(
     (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
     false,
+  );
+});
+
+// The withdrawal speaks only for the note it names. A note the relaunched session was
+// seeded with and never claimed is a different note, still open, and still owed its warning.
+test('wrapper still warns about an unclaimed seed note when a different next hand-over is withdrawn', (t) => {
+  const sandbox = createSandbox(t);
+  const otherNote = path.join(handoffsDirectory(sandbox), 'other.md');
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1,2',
+    DISARMED_ON_INVOCATION: '2',
+    DISARM_REASON: 'cancelled',
+    DISARMED_HANDOFF_PATH: otherNote,
+  });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  fs.writeFileSync(otherNote, OPEN_NOTE);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.match(
+    result.stderr,
+    new RegExp(`the prepared hand-over was withdrawn in the session; ${otherNote} stays open`),
+  );
+  assert.ok(
+    result.stderr.includes(`the relaunched session ended before claiming ${handoffPath}`),
+    result.stderr,
+  );
+  assert.equal(
+    result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
+    expectedClaudeManualCommand(handoffPath, SPEC_FOLDER),
   );
 });
 

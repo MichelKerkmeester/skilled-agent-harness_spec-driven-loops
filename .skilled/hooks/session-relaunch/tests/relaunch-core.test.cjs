@@ -20,7 +20,7 @@ const {
   arm,
   unarm,
   markDeferred,
-  withdrawDeferred,
+  withdrawRecord,
   readRelaunchFile,
   shouldRelaunch,
   claimHandoff,
@@ -1799,33 +1799,81 @@ test('arm, unarm and markDeferred each take the record lock once and release it'
   assert.equal(fs.existsSync(`${recordPath}.lock`), false);
 });
 
-test('withdrawDeferred takes the record lock once and disarms only a deferred record', (t) => {
+test('preparePending writes the record under the record lock', (t) => {
+  const sandbox = createSandbox(t);
+  const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const taken = trackLocks(t);
+  const realRenameSync = fs.renameSync;
+  const heldAtWrite = [];
+  fs.renameSync = (from, to) => {
+    if (path.resolve(String(to)) === path.resolve(recordPath)) {
+      heldAtWrite.push(fs.existsSync(`${recordPath}.lock`));
+    }
+    return realRenameSync(from, to);
+  };
+  t.after(() => {
+    fs.renameSync = realRenameSync;
+  });
+
+  preparePending({
+    loopId: LOOP_ID,
+    handoffPath: '/repo/note.md',
+    sessionId: SESSION_ID,
+    cwd: '/repo',
+    env: sandbox.env,
+    now: NOW,
+  });
+
+  assert.deepEqual(heldAtWrite, [true]);
+  assert.deepEqual(taken, [`${recordPath}.lock`]);
+  assert.equal(fs.existsSync(`${recordPath}.lock`), false);
+});
+
+test('withdrawRecord takes the record lock once and disarms only a record it accepts', (t) => {
   const sandbox = createSandbox(t);
   const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
   const taken = trackLocks(t);
   writeRelaunchRecord(sandbox, {
     loopId: LOOP_ID,
-    status: 'pending',
+    status: 'armed',
     handoff: '/repo/note.md',
     sessionId: SESSION_ID,
-    deferredAt: NOW.toISOString(),
   });
+  const seen = [];
 
-  const withdrawn = withdrawDeferred({
+  const refused = withdrawRecord({
     loopId: LOOP_ID,
-    sessionId: SESSION_ID,
+    reason: 'user-message',
+    accept: (record) => {
+      seen.push(record.status);
+      return false;
+    },
+    env: sandbox.env,
+    now: NOW,
+  });
+  assert.equal(refused, null);
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).status, 'armed');
+
+  const withdrawn = withdrawRecord({
+    loopId: LOOP_ID,
+    reason: 'user-message',
+    accept: (record) => record.status === 'armed',
     env: sandbox.env,
     now: NOW,
   });
   assert.equal(withdrawn.status, 'disarmed');
   assert.equal(withdrawn.disarmReason, 'user-message');
+  assert.deepEqual(seen, ['armed']);
   // The inner disarm must not take the lock the withdraw already holds.
-  assert.deepEqual(taken, [`${recordPath}.lock`]);
+  assert.deepEqual(taken, [`${recordPath}.lock`, `${recordPath}.lock`]);
 
-  assert.equal(
-    withdrawDeferred({ loopId: LOOP_ID, sessionId: SESSION_ID, env: sandbox.env, now: NOW }),
-    null,
-  );
+  const absent = withdrawRecord({
+    loopId: 'loop-absent-00000001',
+    reason: 'user-message',
+    accept: () => true,
+    env: sandbox.env,
+  });
+  assert.equal(absent, null);
   assert.equal(fs.existsSync(`${recordPath}.lock`), false);
 });
 

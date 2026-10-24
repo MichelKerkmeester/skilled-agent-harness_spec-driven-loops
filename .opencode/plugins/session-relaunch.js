@@ -16,6 +16,7 @@ const fs = require('node:fs');
 const core = require('../hooks/session-relaunch/lib/relaunch-core.cjs');
 const contextUsage = require('../hooks/session-relaunch/lib/context-usage.cjs');
 const nudge = require('../hooks/session-relaunch/lib/nudge.cjs');
+const withdraw = require('../hooks/session-relaunch/lib/withdraw.cjs');
 const hookFlags = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -235,21 +236,43 @@ function spawnKiller(loopId) {
 
 // The killer runs without a transcript, so it never sees the operator's next turn arrive;
 // the arm is withdrawn here, before its fixed idle wait ends and it signals a relaunch.
+// Returns whether an arm was withdrawn, so the caller can drop what the hand-over made stale.
 function withdrawArmForUserMessage(loopId, sessionID) {
   try {
-    const record = core.readRelaunchFile(loopId, process.env);
-    if (record?.status !== 'armed' || record.sessionId !== sessionID) return;
-    core.unarm({
+    const withdrawn = withdraw.withdrawHandOver({
       loopId,
+      sessionId: sessionID,
       reason: 'user-message',
-      expectedStatus: 'armed',
-      expectedHandoff: record.handoff,
-      expectedArmedAt: record.armedAt,
-      expectedArmId: record.armId,
+      pending: 'none',
       env: process.env,
     });
+    if (withdrawn === null) return false;
     logEvent('arm-cancelled', { loopId, sessionId: sessionID, reason: 'user-message' });
-  } catch {}
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// What a compaction tells the session about its open note. A note whose hand-over was
+// withdrawn predates the work done since, so it is background to read, never a claim.
+function compactionSeed(sessionID, notePath) {
+  if (nudge.handoffWithdrawn({ sessionId: sessionID, notePath, env: process.env })) {
+    logEvent('compact-pointer-stale-note', { sessionId: sessionID, note: notePath });
+    return { notePath, withdrawn: true, text: nudge.staleNoteText({ notePath }) };
+  }
+  logEvent('compact-pointer', { sessionId: sessionID, note: notePath });
+  return {
+    notePath,
+    withdrawn: false,
+    text: nudge.seedText({
+      notePath,
+      specFolder: noteSpecFolder(notePath),
+      sessionId: sessionID,
+      cliPath: nudge.CLI_COMMAND,
+      afterCompaction: true,
+    }),
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -311,8 +334,16 @@ function sessionRelaunchPlugin(ctx = {}) {
               && state.activeSeed?.messageID !== null
               && info.id !== state.activeSeed?.messageID
             ) state.activeSeed = null;
-            if (isNewUserMessage && process.env.SKILLED_LOOP_ID) {
-              withdrawArmForUserMessage(process.env.SKILLED_LOOP_ID, sessionID);
+            if (
+              isNewUserMessage
+              && process.env.SKILLED_LOOP_ID
+              && withdrawArmForUserMessage(process.env.SKILLED_LOOP_ID, sessionID)
+            ) {
+              // The nudge that asked for the withdrawn hand-over is spent with it. Held on, it
+              // would be shown again at the next turn, ahead of the one nudge the session was
+              // granted for a step above its fill.
+              state.activeNudge = null;
+              state.pendingNudge = null;
             }
             state.latestUserMessageId = info.id;
             return;
@@ -410,18 +441,8 @@ function sessionRelaunchPlugin(ctx = {}) {
           });
           if (notePath === null) return;
 
-          logEvent('compact-pointer', { sessionId: sessionID, note: notePath });
-          stateFor(sessionStates, sessionID).activeSeed = {
-            messageID: null,
-            notePath,
-            text: nudge.seedText({
-              notePath,
-              specFolder: noteSpecFolder(notePath),
-              sessionId: sessionID,
-              cliPath: nudge.CLI_COMMAND,
-              afterCompaction: true,
-            }),
-          };
+          const seed = compactionSeed(sessionID, notePath);
+          stateFor(sessionStates, sessionID).activeSeed = { messageID: null, ...seed };
         }
       } catch {
         return undefined;
@@ -456,7 +477,18 @@ function sessionRelaunchPlugin(ctx = {}) {
         if (state.activeSeed) {
           const seed = state.activeSeed;
           const status = core.noteState(seed.notePath);
-          if (status === 'open' || NOTE_NOT_WRITTEN.has(status)) {
+          // The stale-note text lasts only while the withdrawal does: once the session updates
+          // the note or prepares again, it no longer describes the note.
+          if (
+            seed.withdrawn
+            && !nudge.handoffWithdrawn({
+              sessionId: sessionID,
+              notePath: seed.notePath,
+              env: process.env,
+            })
+          ) {
+            state.activeSeed = null;
+          } else if (status === 'open' || NOTE_NOT_WRITTEN.has(status)) {
             if (!output.system.includes(seed.text)) output.system.push(seed.text);
           } else if (status === 'claimed') {
             const reminder = claimedReminder(seed);

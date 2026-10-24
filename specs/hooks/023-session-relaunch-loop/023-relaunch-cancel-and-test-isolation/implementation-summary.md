@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation"
     last_updated_at: "2026-10-24T10:05:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Fixed the review limitations and adjacent defects; full gate green in three environments"
+    recent_action: "Shared the withdraw across runtimes after a second review; full gate green in three environments"
     next_safe_action: "Commit the worktree once the operator approves"
     blockers: []
     key_files:
@@ -71,12 +71,19 @@ The operator then asked for the review's remaining findings and the adjacent def
 
 The wrapper now calls plain `consume`, reads the note state and only then calls `hand-over` to write the hop line, so a declined hop leaves no `handed-over` line. `cancel` drops a loop id inherited by a nested run. The record writes and the note claim, complete and supersede steps each run under a lock. `dropNestedLoop` drops every `SKILLED_LOOP_*` variable. prepare and keep refuse a spec folder the repository does not hold. The v4.0.0.13 release note no longer promises Devin a `/speckit:handoff` command, because Devin has no command surface by an earlier operator decision.
 
+### After the second review
+
+A fresh review found that the shared `withdrawn` outcome had changed Pi and OpenCode without their follow-up. Both already disarmed a hand-over when a new turn started, but they wrote no `withdrawn` line, granted no extra nudge and still seeded a claim of the note after compaction. Every runtime that withdraws now calls one helper in `lib/withdraw.cjs`. It disarms under the record lock, then records the `withdrawn` line and grants the extra nudge. Pi and OpenCode compaction now gives the same read-only pointer as Claude. On Claude and Codex, an operator prompt now also withdraws an armed record, so a new turn is not ended by the killer onto the old note. The pending write and the consume unlink now take the record lock too. The wrapper prints a manual claim command only for a note that command could claim. `/speckit:handoff` now names notes by the full session id, as the code does.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` | Modified | `markDeferred` and `withdrawDeferred`, record and note locks, the `withdrawn` reason, a full nested-run scrub |
 | `.skilled/hooks/session-relaunch/lib/killer.cjs` | Modified | Leaves a cancelled record alone at timeout and before the signal |
+| `.skilled/hooks/session-relaunch/lib/withdraw.cjs` | Created | The one withdraw every runtime and `cancel` call |
+| `.skilled/hooks/session-relaunch/codex/shared.mjs`, `pi/session-relaunch.ts`, `.opencode/plugins/session-relaunch.js` | Modified | Withdraw through the shared helper, and point compaction at a withdrawn note without a claim seed |
+| `.skilled/commands/speckit/handoff.md` | Modified | Full session id in the note name, `keep` and `cancel` in the CLI table |
 | `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs` | Modified | Points at a withdrawn note without a claim seed |
 | `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs` | Modified | `cancel` and `hand-over` subcommands, no history write in `should-relaunch`, session on the claim line, the spec-folder existence check |
 | `.skilled/hooks/session-relaunch/claude/stop-arm.mjs` | Modified | Stamps a deferred record |
@@ -123,11 +130,14 @@ The work ran in worktree `.worktrees/220-relaunch-cancel-and-test-isolation` on 
 
 | Check | Result |
 |-------|--------|
-| `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs`, loop variables set | PASS, 730 of 730, exit 0. Baseline was 669 of 682 |
-| Same command, loop variables unset | PASS, 730 of 730, exit 0 |
-| Same command, every loop variable set to foreign values, including a manual template that carries `--model opus` | PASS, 730 of 730, exit 0 |
-| Pi vitest (`.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts`) | PASS, 49 of 49, exit 0 |
-| Real `relaunch.log` across the final three runs | Unchanged: 361 lines and 84 `loopId=100` lines, before and after |
+| `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs`, loop variables set | PASS, 751 of 751, exit 0. Baseline was 669 of 682 |
+| Same command, loop variables unset | PASS, 751 of 751, exit 0 |
+| Same command, every loop variable set to foreign values, including a manual template that carries `--model opus` | PASS, 751 of 751, exit 0 |
+| Pi vitest (`.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts`) | PASS, 52 of 52, exit 0 |
+| Real `relaunch.log` across the final three runs | Unchanged: 366 lines and 84 `loopId=100` lines, before and after. The 5 lines added since the first commit came from a real hop of loop 45978 |
+| Fresh Opus review of the committed hand-over logic | Two P1 and five P2 findings, each read against the code and fixed in this pass |
+| sk-code skilled alignment of every touched code file | No P0, four P1 or trivial P2 items fixed, `verify_alignment_drift.py --fail-on-warn` 0 findings, shellcheck adds none, drift guards pass |
+| Playbook scenarios CL-0 to CL-7, CX-0 to CX-5, PO-0 to PO-6 and the CO-046 supplement | The model-free probes and the Pi and OpenCode non-interactive runs passed as written. The live tmux scenarios run next |
 | Each new test against the code before its fix | Every new behavior test failed there first, and the guard tests for unchanged defaults passed there |
 | Independent Haiku verification | 726 of 726 in three environments, then four race findings, each confirmed in the code and fixed |
 | `bash -n` and `node --check` on changed files, comment hygiene grep | Clean, exit 0 on the final state |
@@ -141,9 +151,11 @@ The work ran in worktree `.worktrees/220-relaunch-cancel-and-test-isolation` on 
 
 1. **No live hop was run.** Every result here comes from automated tests. A live Claude hop that defers and then gets an operator prompt would confirm the withdraw end to end.
 2. **The `<task-notification>` prefix is Claude's, not ours.** If Claude changes it, a completion would withdraw the hand-over it was waiting for. The prefix is one constant in `claude/context-nudge.mjs`.
-3. **The extra nudge and the withdrawn-note pointer are Claude and `cancel` only.** Pi and OpenCode already withdraw on an operator prompt, but they grant no extra nudge, and their compaction still seeds a claim of a withdrawn note. This phase left those runtimes as they were.
+3. **The armed withdraw on Claude was not seen live.** The review inferred that the killer could end a new turn onto the old note, and the fix withdraws an armed record on an operator prompt. A live Claude loop with a long tool call right after Stop would confirm both.
 4. **A cancel below the threshold delays the first nudge.** Its grant stays pending until the fill reaches the threshold, so that nudge lands 5 points later than it would have.
-5. **Signal and pid reuse.** The killer reads the record once more just before the signal, after the ancestry check. A pid reused in that short window still cannot be ruled out, because Node offers no process handle.
+5. **A cancelled note never retires on its own.** It stays listed as withdrawn in `history` until a session claims and completes it or supersedes it with a new note.
+6. **`history` piped into a reader that closes early crashes with EPIPE.** It writes its output in two parts and does not handle a closed pipe, so `history --last 1 | grep -q` fails. The playbook steps avoid that shape.
+7. **Signal and pid reuse.** The killer reads the record once more just before the signal, after the ancestry check. A pid reused in that short window still cannot be ruled out, because Node offers no process handle.
 <!-- /ANCHOR:limitations -->
 
 ---

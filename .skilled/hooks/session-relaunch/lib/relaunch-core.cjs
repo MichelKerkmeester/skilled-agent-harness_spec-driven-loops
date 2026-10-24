@@ -33,6 +33,9 @@ const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
 // The runtimes skilled-loop can launch. The CLI refuses any other, so a runtime the wrapper
 // gains has to be added here or prepare refuses the loops that run it.
 const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']);
+// A record disarmed for either reason means the operator kept the session going after its
+// hand-over was prepared, so the note it names stopped matching the work.
+const WITHDRAWN_DISARM_REASONS = new Set(['cancelled', 'user-message']);
 // preparePending's default, which every reader also assumes for a record without a runtime.
 const DEFAULT_RUNTIME = 'claude';
 // The stop and session-end hooks and the CLI all wait on a process-table read, so a hung
@@ -383,7 +386,10 @@ function preparePending({
     preparedAt: toIsoTimestamp(now),
   };
   ensureStateDir(env);
-  atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(record)}\n`);
+  // The write shares the lock every other record writer takes, so it cannot land between a
+  // writer's read and its write and be overwritten by that writer's older copy.
+  const filePath = relaunchFilePath(loopId, env);
+  withAppendLock(filePath, () => atomicWriteFile(filePath, `${JSON.stringify(record)}\n`));
   return record;
 }
 
@@ -526,39 +532,26 @@ function markDeferred({ loopId, env = process.env, now }) {
 }
 
 /**
- * Withdraw this session's deferred hand-over. A deferred record waits for the next clean
- * Stop, and the nudge stays silent while it waits, so once the operator carries on in the
- * session the record would later end it onto a note that no longer describes the work.
- * Withdrawing it keeps the session running. The nudge level is not reset here; the
- * caller grants the session one more nudge, since it may already have spent its last.
+ * Disarm a record when `accept` approves what is on disk. The read, the verdict and the
+ * disarm share one lock, so a Stop cannot arm the record between the verdict and the write.
+ * Callers do not use this directly: `withdraw.cjs` wraps it with the follow-ups every
+ * withdrawal owes the session, and the guarded `unarm` stays for transitions that are not
+ * the session calling its hand-over off.
  *
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
- * @param {string} options.sessionId - Session the prompt arrived in.
+ * @param {string} options.reason - Why the record was disarmed.
+ * @param {(record: Object) => boolean} options.accept - Verdict on the record found.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
- * @returns {Object|null} The disarmed record, or null when nothing deferred was withdrawn.
+ * @returns {Object|null} The disarmed record, or null when none exists or `accept` refused it.
  */
-function withdrawDeferred({ loopId, sessionId, env = process.env, now }) {
-  // One lock spans the read and the disarm, so a Stop cannot arm the record between them.
+function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
   // The disarm runs through the unlocked helper because the mkdir lock is not reentrant.
   return withAppendLock(relaunchFilePath(loopId, env), () => {
     const record = readRelaunchFile(loopId, env);
-    if (
-      record?.status !== 'pending'
-      || record.sessionId !== sessionId
-      || !nonEmptyString(record.deferredAt)
-    ) {
-      return null;
-    }
-    return unarmLocked({
-      loopId,
-      env,
-      reason: 'user-message',
-      expectedStatus: 'pending',
-      expectedHandoff: record.handoff,
-      now,
-    });
+    if (!record || typeof record !== 'object' || !accept(record)) return null;
+    return unarmLocked({ loopId, env, reason, now });
   });
 }
 
@@ -613,7 +606,7 @@ function shouldRelaunch(
     // A hand-over the session itself called off leaves nothing to claim, so the wrapper
     // must not offer the note as a manual claim the way it does for other unarmed records.
     const calledOff = record.status === 'disarmed'
-      && (record.disarmReason === 'cancelled' || record.disarmReason === 'user-message');
+      && WITHDRAWN_DISARM_REASONS.has(record.disarmReason);
     return { relaunch: false, reason: calledOff ? 'withdrawn' : 'not-armed' };
   }
 
@@ -1349,6 +1342,7 @@ function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) 
 module.exports = {
   HANDOFF_SECTIONS,
   RUNTIMES,
+  WITHDRAWN_DISARM_REASONS,
   PROCESS_TABLE_TIMEOUT_MS,
   DEFAULT_MAX_HOPS,
   DEFAULT_MAX_AGE_MIN,
@@ -1369,7 +1363,7 @@ module.exports = {
   armableRecord,
   unarm,
   markDeferred,
-  withdrawDeferred,
+  withdrawRecord,
   readRelaunchFile,
   shouldRelaunch,
   claimHandoff,
@@ -1380,6 +1374,7 @@ module.exports = {
   payloadEventName,
   isEntrypoint,
   appendLog,
+  withAppendLock,
   readLockState,
   lockOwnerPid,
   lockIsExpired,

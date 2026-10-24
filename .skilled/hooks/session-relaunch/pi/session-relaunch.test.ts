@@ -15,7 +15,7 @@ import type {
   ExtensionContext,
   MessageEndEvent,
 } from '@earendil-works/pi-coding-agent';
-import { readState, writeState } from '../lib/nudge.cjs';
+import { readState, staleNoteText, writeState } from '../lib/nudge.cjs';
 import relaunchCore, {
   arm,
   preparePending,
@@ -871,6 +871,70 @@ describe('session-relaunch Pi extension', () => {
     // the stop that arms it.
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
   });
+
+  // The turn that withdraws an arm makes the same withdrawal the cancel command does, so the
+  // note is listed as still with its session and the session is granted one more nudge.
+  it('agent_start lists the withdrawn note in the hop history', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-history-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_start', {}, ctx);
+
+    const historyFile = path.join(
+      process.env.SESSION_RELAUNCH_REPO_ROOT!,
+      '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+    );
+    const lines = readFileSync(historyFile, 'utf8').trim().split('\n').map((line) => line.split('\t'));
+    expect(lines).toHaveLength(1);
+    expect(lines[0][1]).toBe('withdrawn');
+    expect(lines[0][6]).toBe('handoff.md');
+    expect(lines[0][7]).toBe('pi-sessi');
+  });
+
+  it('agent_start grants one more nudge a step above the fill it next sees', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-rearm-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    const fillAt = (input: number) => emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input } },
+    }, ctx);
+    const delivered = () => api.sendMessage.mock.calls.filter(([message]) =>
+      /full/.test(String((message as { content: string }).content))).length;
+    await emit(handlers, 'agent_end', {}, ctx);
+    await emit(handlers, 'agent_start', {}, ctx);
+
+    await fillAt(80);
+    await emit(handlers, 'agent_end', {}, ctx);
+    await fillAt(84);
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(delivered()).toBe(0);
+    await fillAt(85);
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(delivered()).toBe(1);
+  });
 });
 
 // A compacted session keeps its id but loses the detail its open note holds, so the
@@ -947,6 +1011,31 @@ describe('session_compact pointer', () => {
     const nudges = api.sendMessage.mock.calls.filter(([message]) =>
       message.customType === 'session-relaunch' && /full/.test(String(message.content)));
     expect(nudges).toHaveLength(0);
+  });
+
+  it('tells a session whose arm a new turn withdrew not to claim the stale note', async () => {
+    setupEnv();
+    const notePath = writeOpenNote();
+    const loopId = 'pi-compact-withdrawn-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: notePath,
+      sessionId: SESSION_ID,
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID));
+    await emit(handlers, 'agent_start', {}, makeContext(SESSION_ID));
+
+    await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
+
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const message = api.sendMessage.mock.calls[0][0] as { content: string };
+    expect(message.content).toBe(staleNoteText({ notePath }));
   });
 
   it('adds nothing while a prepared hop owns the note', async () => {

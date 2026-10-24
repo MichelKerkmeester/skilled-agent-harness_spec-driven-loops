@@ -1023,6 +1023,10 @@ test('prepare resolves an absolute note under the CLI repository from a subdirec
     path.resolve(__dirname, '../lib/hop-history.cjs'),
     path.join(path.dirname(copiedNudge), 'hop-history.cjs'),
   );
+  fs.copyFileSync(
+    path.resolve(__dirname, '../lib/withdraw.cjs'),
+    path.join(path.dirname(copiedNudge), 'withdraw.cjs'),
+  );
   fs.copyFileSync(path.resolve(__dirname, '../../shared/hook-flags.cjs'), copiedHookFlags);
   fs.copyFileSync(
     path.resolve(__dirname, '../../shared/env-aliases.cjs'),
@@ -1341,8 +1345,11 @@ test('prepare usage names the outside-a-loop and hop-limit declines', (t) => {
   assert.equal(result.status, 0, result.stderr);
   const summary = result.stdout
     .split('\n')
-    .find((line) => line.includes('Validate the note and arm the relaunch'));
+    .find((line) => line.includes('Validate the note and'));
   assert.ok(summary, result.stdout);
+  // Prepare writes a pending record. The runtime's own stop or idle event arms it.
+  assert.match(summary, /pending record/);
+  assert.doesNotMatch(summary, /arm the relaunch/);
   assert.match(summary, /outside a loop/);
   assert.match(summary, /hop limit/);
   assert.match(summary, /exits 3/);
@@ -1603,6 +1610,37 @@ test('consume exits zero and removes the relaunch file', (t) => {
   const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
   assert.equal(result.status, 0, result.stderr);
   assert.equal(fs.existsSync(filePath), false);
+});
+
+// A withdraw rewrites the record under its lock, so the unlink that ends it has to wait for
+// the same lock or it can remove a record a withdraw is mid-way through replacing.
+test('consume removes the relaunch file under the record lock', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed' });
+  const probePath = path.join(sandbox.root, 'unlink-probe.json');
+  const preloadPath = path.join(sandbox.root, 'unlink-probe.cjs');
+  fs.writeFileSync(preloadPath, `
+    const fs = require('node:fs');
+    const realUnlinkSync = fs.unlinkSync;
+    fs.unlinkSync = (target, ...rest) => {
+      if (String(target) === ${JSON.stringify(filePath)}) {
+        fs.writeFileSync(${JSON.stringify(probePath)}, JSON.stringify({
+          lockHeld: fs.existsSync(${JSON.stringify(`${filePath}.lock`)}),
+        }));
+      }
+      return realUnlinkSync(target, ...rest);
+    };
+  `);
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID], {
+    ...sandbox.env,
+    NODE_OPTIONS: `--require=${preloadPath}`,
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(fs.existsSync(filePath), false);
+  assert.deepEqual(JSON.parse(fs.readFileSync(probePath, 'utf8')), { lockHeld: true });
+  assert.equal(fs.existsSync(`${filePath}.lock`), false);
 });
 
 test('consume returns the handoff path and its spec folder', (t) => {
