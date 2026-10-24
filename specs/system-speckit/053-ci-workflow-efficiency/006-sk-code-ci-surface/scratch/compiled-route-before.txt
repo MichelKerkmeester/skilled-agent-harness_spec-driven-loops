@@ -1,0 +1,15 @@
+✔ without a hint the only shipped surface is selected (1.373541ms)
+✔ a matching surface hint preserves the single-surface route (1.045583ms)
+✔ a hint the prompt did not match, UNKNOWN or an unknown name changes nothing (1.654708ms)
+✔ a workflow mode stays first with the shipped surface (0.467125ms)
+✔ a hub without surface packets ignores the hint (33.389833ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (98.524958ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 192.323291
+exit=0

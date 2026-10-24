@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 776,
+  "derived_count": 777,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -370,6 +370,7 @@
     ".skilled/skills/sk-code/benchmark/reports/baseline",
     ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands",
     ".skilled/skills/sk-code/shared",
+    ".skilled/skills/sk-code/sk-code-ci",
     ".skilled/skills/sk-code/sk-code-quality",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports",
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live",

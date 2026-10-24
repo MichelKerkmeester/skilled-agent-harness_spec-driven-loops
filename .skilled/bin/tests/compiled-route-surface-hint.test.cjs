@@ -85,6 +85,31 @@ test('a workflow mode stays first with the shipped surface', () => {
   assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-skilled']);
 });
 
+test('a CI workflow prompt bundles the CI surface', () => {
+  const route = resolveRoute('sk-code', 'review the github actions workflow yaml');
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-ci']);
+});
+
+// A matrix, a ruleset, a cache key, a fail-fast check, a concurrency group or a
+// workflow timeout also names non-CI code, so the CI surface keys on the GitHub
+// Actions form of each phrase and these prompts must stay off it.
+test('non-CI prompts that share CI words do not select the CI surface', () => {
+  for (const prompt of [
+    'fix the cache key in the bun lockfile loader',
+    'the ruleset in the advisor scorer is wrong',
+    'write a vitest test matrix for the parser',
+    'make the config loader fail-fast on a missing DATABASE_URL',
+    'assign each tenant its own concurrency group inside the worker pool',
+    'the Temporal workflow timeout on order-fulfilment is too short, raise it',
+  ]) {
+    const route = resolveRoute('sk-code', prompt);
+    assert.ok(route, prompt);
+    assert.ok(!modes(route).includes('sk-code-ci'), prompt);
+  }
+});
+
 test('a hub without surface packets ignores the hint', () => {
   for (const hubId of ['sk-doc', 'mcp-tooling']) {
     for (const prompt of ['create a new skill and validate the docs', 'use the figma mcp transport']) {

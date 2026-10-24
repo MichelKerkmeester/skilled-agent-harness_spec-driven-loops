@@ -107,7 +107,7 @@ The CI rules are stack knowledge consumed by two acting modes: authoring under `
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | A later contributor adds Write to the packet's tool set | H | Check `3g` fails any surface that is not read-only, and it runs in T060 |
-| The packet is bundled where no workflow mode scores | M | `routerPolicy.defaultMode` is `null`, so a bare surface prompt still defers rather than acting alone |
+| The packet is bundled where no workflow mode scores | M | The engine does not defer a bare surface prompt, whatever `routerPolicy.defaultMode` (`null`) suggests: `add a timeout to the ci workflow` resolves to `single` `[sk-code-ci]` and `implement a new function in the typescript module` to `single` `[sk-code-skilled]`, both observed 2026-10-24 and both true before this phase's routing change. A surface with no scoring workflow mode therefore acts alone as read-only evidence, which is the native surface's behavior too |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -1038,3 +1038,64 @@ Four artifacts this phase changes are generated: `leaf-manifest.json`, `graph-me
 <!-- /ANCHOR:adr-010 -->
 
 ---
+
+<!-- ANCHOR:amendment-2026-10-24 -->
+## AMENDMENT 2026-10-24: routing vocabulary changes the operator approved after first landing
+
+The accepted ADR text above stays as written, apart from the one corrected sentence in ADR-001's risk table. This amendment records what changed after the packet first landed and why. ADR-001's statement that the hub gains no new advisor identity still holds: no advisor identity was added, only advisor phrases for the existing `sk-code` identity.
+
+**Approval**: the operator approved all three changes on 2026-10-24. They sit outside the frozen scope that `spec.md` set, and the amendment note in `spec.md` records the change to that scope.
+
+### Change 1: narrower runtime keywords
+
+Bare words in the `code-ci-runtime` class of `hub-router.json` became multi-word phrases. `matrix`, `ruleset` and `cache key` came first, because replaying `fix the cache key in the bun lockfile loader`, `the ruleset in the advisor scorer is wrong` and `write a vitest test matrix for the parser` showed all three being pulled into `sk-code-ci`, a CI surface that has nothing to say about them. `fail-fast` and `concurrency group` were narrowed the same way. On 2026-10-24 the class holds `fail-fast: false`, `strategy matrix`, `ruleset context`, `actions concurrency group` and `actions cache key`. A second read-only review (a DeepSeek pass) found seven non-CI prompts that still selected `sk-code-ci`, and the same approved intent was applied again, which produced the forms above. The narrowed forms moved more than once during the pass, so `hub-router.json` is the source for the live list. `compiled-route-surface-hint.test.cjs` now holds a test that keeps the three replay prompts off the surface.
+
+### Change 2: eight advisor phrases
+
+Eight multi-word CI phrases were added to `intent_signals` in `.skilled/skills/sk-code/graph-metadata.json`: `github actions workflow`, `github actions yaml`, `ci workflow`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `workflow path filters` and `timeout-minutes`. Before the change a CI prompt never reached `sk-code`. After it, `pin the actions/checkout sha in the github actions workflow` went from `sk-git` 0.82 first to `sk-code` 0.8357 first, and `add a timeout to the ci workflow` went from `mcp-tooling` to `sk-code` 0.8933, as measured when the phrases first landed.
+
+### Change 3: overlapping aliases dropped
+
+`actions workflow`, `ci workflow standards` and `workflow yaml` left the alias list in `mode-registry.json` and the matching keyword lists, because each one counted a single phrase two or three times and inflated the CI score. `protected workflow` left later and four more aliases gained a qualifier. The second review narrowed `workflow timeout`, `workflow concurrency` and `workflow permissions` to their `github workflow ...` forms and `required status check` to `required status check workflow`, and three of the eight advisor phrases in `graph-metadata.json` took the same `github workflow ...` form. On 2026-10-24 eight aliases remain: `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions` and `required status check workflow`. Tasks T020, T025 and T029 describe the original twelve and carry a drift note.
+
+### Known limitation: the earlier canary prompt no longer bundles
+
+`review the github actions workflow yaml` now resolves to `surfaceBundle` `[sk-code-review, sk-code-ci]`, where it resolved to `single` `[sk-code-ci]` before the change (CI score 12 against review score 4). The canary case `surface-bundle-ci` and its test use this prompt. The earlier prompt `code review the github actions workflow` used to bundle and now routes to `sk-code-review` alone, because `code review` scores twice on the review side. No CI weight or alias set in range bundles both prompts. Bundling both needs `routerPolicy.ambiguityDelta` raised from 1, which changes the result of every two-mode prompt in the hub.
+
+**Operator ruling 2026-10-24**: accept the limitation. `code review the github actions workflow` routes to `sk-code-review` alone and `routerPolicy.ambiguityDelta` stays at 1, so no two-mode prompt elsewhere in the hub changes.
+
+### Corrected statement: a bare surface prompt does not defer
+
+ADR-001's risk table said that `routerPolicy.defaultMode` being `null` makes a bare surface prompt defer. The engine does not do that. Replaying on 2026-10-24, `add a timeout to the ci workflow` resolves to `single` `[sk-code-ci]` and `implement a new function in the typescript module` resolves to `single` `[sk-code-skilled]`, and both did so before this phase's routing change. The sentence in the table now says so.
+
+### Replays after the second narrowing
+
+Observed 2026-10-24 with `compiledRoute("sk-code", <prompt>, {})`:
+
+| Prompt | Result |
+|--------|--------|
+| `make the config loader fail-fast on a missing DATABASE_URL` | `single` `[sk-code-skilled]` |
+| `build matrix factorization recommender in python` | `single` `[sk-code-skilled]` |
+| `assign each tenant its own concurrency group inside the worker pool` | `defer` |
+| `the Temporal workflow timeout on order-fulfilment is too short, raise it` | `defer` |
+| `the approval workflow permissions should let a manager approve only their own team requests` | `defer` |
+| `our branch ruleset should block force-pushes to release branches` | `defer` |
+| `add a required status check to main and document the override` | `defer` |
+| `review the github actions workflow yaml` | `surfaceBundle` `[sk-code-review, sk-code-ci]` |
+| `review the ci workflow` | `surfaceBundle` `[sk-code-review, sk-code-ci]` |
+| `add a timeout to the ci workflow` | `single` `[sk-code-ci]` |
+| `pin the actions/checkout sha in the github actions workflow` | `single` `[sk-code-ci]` |
+| `fix the timeout-minutes in the workflow yaml` | `single` `[sk-code-ci]` |
+
+### Operator rulings
+
+On 2026-10-24 the operator accepted that `code review the github actions workflow` routes to `sk-code-review` alone, and approved raising the pinned gold-corpus size in `compiled-route-admission.test.cjs` from 82 to 85. The pin was set to 82 on 2026-10-11 and the live corpus holds 85. The failure predates this phase: the orchestrator reproduced `85 !== 82` in a clean checkout of `113d8b56d1` before any edit of this phase. The pin raise resolves it, and the serial run `node --test --test-concurrency=1 .skilled/bin/tests/compiled-route-*.test.cjs` printed `pass 90` and `fail 0` with exit `0`.
+
+### Effect on the compiled policy
+
+The activation manifest `effectivePolicyHash` moved off `095a492e239cf97d0ce41e8f9d2a737778f739b64fb587c39385f33e6b429c2d` and starts `37718f51` on 2026-10-24, still at generation 2. It moves again whenever the routing lists change, so read the live value from `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json`. `compiled-route-sync.cjs --check` prints `all 55 served copies match their authored files`.
+
+### Rollback
+
+`git checkout` the routing files named above and rerun `compiled-route-manifest.cjs refresh` so the policy hash follows the registry.
+<!-- /ANCHOR:amendment-2026-10-24 -->

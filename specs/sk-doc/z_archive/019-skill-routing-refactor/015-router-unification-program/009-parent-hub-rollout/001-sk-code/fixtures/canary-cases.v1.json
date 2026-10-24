@@ -166,6 +166,25 @@
         ],
         "expectedResources": []
       }
+    },
+    {
+      "id": "surface-bundle-ci",
+      "prompt": "review the github actions workflow yaml",
+      "riskSlice": "actor:mutating:composite",
+      "certificateFixture": "valid-composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": [
+        "sk-code-review",
+        "sk-code-ci"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-review",
+          "sk-code-ci"
+        ],
+        "expectedResources": []
+      }
     }
   ],
   "certificateCases": [

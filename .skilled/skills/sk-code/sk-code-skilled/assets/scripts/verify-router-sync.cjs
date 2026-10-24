@@ -30,7 +30,7 @@ const NON_ROUTED_ALLOWLIST = new Set([
 ]);
 // A hub may ship without an example surface, so each list keeps only the packets present on disk.
 const onDisk = (packet) => fs.existsSync(path.join(SKCODE, packet));
-const SURFACES = ['sk-code-skilled'].filter(onDisk);
+const SURFACES = ['sk-code-ci', 'sk-code-skilled'].filter(onDisk);
 const SURFACE_PACKETS = new Set([...SURFACES]);
 // The hub-level shared controls are declared once in ROUTER.md: its SHARED_CONTROL_RESOURCES
 // list plus its DEFAULT_RESOURCE preamble, and leg 2 reads both. A parent-map path under a

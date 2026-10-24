@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.17.0
+version: 2.2.18.0
 ---
 
 # sk-code
@@ -20,7 +20,7 @@ version: 2.2.17.0
 |---|---|
 | **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
 | **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
-| **Works on** | The shared surface-detection router for the one surface the hub `SKILL.md` lists: the native SKILLED surface |
+| **Works on** | The shared surface-detection router for the two surfaces the hub `SKILL.md` lists: the native SKILLED surface and the `sk-code-ci` CI standards surface |
 | **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface |
 
 ---
@@ -52,6 +52,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 
 | Surface | Carries |
 |---|---|
+| `sk-code-ci` | GitHub Actions workflow standards: trigger and filter rules, job shape, the protected set and the scaffold templates |
 | `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
 
 ---
@@ -65,6 +66,7 @@ A code request resolves through the hub to a primary workflow mode and one or mo
 | Request | Resolves to |
 |---|---|
 | "review my typescript module for jank" | `[sk-code-review, sk-code-skilled]` |
+| "review the github actions workflow yaml" | `[sk-code-review, sk-code-ci]` |
 | "run my implementation through the author-side quality gates" | `[sk-code-quality]` |
 
 ### The Implement To Verify Doctrine
@@ -101,7 +103,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 ## 5. ADAPTING TO YOUR STACK
 
-sk-code ships one native surface. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
+sk-code ships one native surface and one CI standards surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
 
@@ -186,4 +188,5 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
+| [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |
 | [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | Skilled surface packet |

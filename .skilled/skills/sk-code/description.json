@@ -1,7 +1,7 @@
 {
   "name": "sk-code",
   "description": "Coding standards, references, and assets for this framework's own system code. Provides surface-aware code-quality patterns, checklists, and verification recipes for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
-  "version": "2.3.0.0",
+  "version": "2.4.0.0",
   "importance_tier": "high",
   "keywords": [
     "sk-code",
@@ -42,6 +42,7 @@
     "verification",
     "sk-code-quality",
     "sk-code-review",
+    "sk-code-ci",
     "sk-code-skilled",
     "restraint",
     "yagni",

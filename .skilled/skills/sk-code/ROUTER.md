@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.14.0
+version: 2.2.15.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -155,6 +155,19 @@ When SKILLED intent is `authoring-new-X`, additionally load the matching authori
 | New MCP server | `sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | Spec folder write | Now in system-spec-kit: `system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` + `system-spec-kit/references/workflows/spec-folder-write-recipe.md` |
 
+### CI Workflow Map
+
+When the request names a GitHub Actions workflow, the hub bundles `sk-code-ci` from the request vocabulary and the `CI_WORKFLOW` intent loads its four rule references:
+
+| Resource | Carries |
+| --- | --- |
+| `sk-code-ci/references/ci-workflow-standards.md` | The rule index: path parity, SHA pins, README row, `set -euo pipefail`, fork and secret safety, matrix and `fail-fast` |
+| `sk-code-ci/references/trigger-and-filter-rules.md` | The twin rule, the rebuild-commit skip rule, push-only scope and the intentional exceptions table |
+| `sk-code-ci/references/job-shape-rules.md` | Timeouts, permissions, the concurrency template, the composite setup action and the switch `if:` shape |
+| `sk-code-ci/references/protected-set.md` | The workflows protected by function and the rules that follow |
+
+The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so the two stay equal.
+
 ---
 
 ## 7. VERIFICATION COMMANDS
@@ -247,6 +260,7 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"]},
 }
 
 RESOURCE_MAP = {
@@ -347,6 +361,12 @@ RESOURCE_MAP = {
         "sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md",
         "sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
         "sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md",
+    ],
+    "CI_WORKFLOW": [
+        "sk-code-ci/references/ci-workflow-standards.md",
+        "sk-code-ci/references/trigger-and-filter-rules.md",
+        "sk-code-ci/references/job-shape-rules.md",
+        "sk-code-ci/references/protected-set.md",
     ],
 }
 

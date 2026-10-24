@@ -3,7 +3,7 @@ title: sk-code shared
 description: Shared surface-router and cross-mode reference index for sk-code: navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references consumed by every sk-code mode.
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-code shared
@@ -14,7 +14,7 @@ version: 1.0.2.0
 
 ## 1. OVERVIEW
 
-`shared/` holds the routing and doctrine references common to the sk-code surface packet (`sk-code-skilled`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads the universal quality standards below for its Phase 1.5 gate.
+`shared/` holds the routing and doctrine references common to the sk-code surface packets (`sk-code-ci`, `sk-code-skilled`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads the universal quality standards below for its Phase 1.5 gate.
 
 Layout:
 

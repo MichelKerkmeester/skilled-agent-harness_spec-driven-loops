@@ -8,12 +8,12 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Router Reference - Phase Lifecycle
 
-All surfaces in the hub `SKILL.md` surface list (SKILLED) follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
+All surfaces in the hub `SKILL.md` surface list (`sk-code-ci` and SKILLED) follow the same lifecycle. Stack detection selects only SKILLED or UNKNOWN. It never selects `sk-code-ci`, which the hub bundles from request vocabulary alone. Once a surface is active, it changes which resources and verification evidence apply.
 
 ---
 
@@ -25,7 +25,7 @@ Define the shared execution lifecycle for supported code surfaces so research, i
 
 ### When to Use
 
-- When planning work on the SKILLED surface.
+- When planning work on the `sk-code-ci` or SKILLED surface.
 - When deciding which phase-specific references and checklists to load.
 - When a failed quality or verification gate requires a controlled transition back to debugging or implementation.
 - When checking whether completion evidence is sufficient.

@@ -1,10 +1,10 @@
 {
   "skill": "sk-code",
-  "version": "2.3.0.0",
+  "version": "2.4.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-skilled"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-ci", "sk-code-skilled"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -32,6 +32,11 @@
       "weight": 4,
       "classes": ["code-skilled-aliases", "code-skilled-runtime", "code-skilled-authoring"],
       "resources": ["sk-code-skilled/SKILL.md"]
+    },
+    "sk-code-ci": {
+      "weight": 4,
+      "classes": ["code-ci-aliases", "code-ci-runtime"],
+      "resources": ["sk-code-ci/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -67,6 +72,12 @@
     },
     "code-skilled-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
+    },
+    "code-ci-aliases": {
+      "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"]
+    },
+    "code-ci-runtime": {
+      "keywords": ["runner-minutes", "timeout-minutes", "paths-ignore", "pull_request_target", "permissions: contents: read", "actions/cache", "setup-bun", "fail-fast: false", "strategy matrix", "ruleset context", "trigger-index rebuild", "workflow_dispatch", "actions concurrency group", "actions cache key"]
     }
   }
 }

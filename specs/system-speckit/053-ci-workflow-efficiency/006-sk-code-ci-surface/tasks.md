@@ -43,7 +43,7 @@ Line numbers are the values on disk when this plan was written. Read the file an
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 Record the pre-phase gate baseline (AC-007)
+### T001 [x] Record the pre-phase gate baseline (AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-baseline.md` (new file). Anchor: none; the file does not exist yet.
 
@@ -67,9 +67,12 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-
 
 Stop and escalate if: a baseline exit differs from the values above, or the parent-skill failure is on a leg other than `12-lib`.
 
+Done 2026-10-24: baselines written to `scratch/*-before.txt` and `scratch/phase-baseline.md`: parent-skill `exit=0` (49 PASS, 0 FAIL), drift guards `exit=0` with `run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)`, compiled-route `pass 6` `fail 0`, leaf manifest `leaf-manifest.json OK`, derived freshness `checked=14 fresh=14 stale=0 errored=0`.
+Drift: the parent-skill baseline is `exit=0` with no `12-lib` failure, because the worktree is provisioned now. The other four match the plan values.
+
 ---
 
-### T002 Record the pattern inputs and the two recorded defaults (AC-002, AC-011)
+### T002 [x] Record the pattern inputs and the two recorded defaults (AC-002, AC-011)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md` (new file). Anchor: none.
 
@@ -90,9 +93,12 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-sur
 
 Stop and escalate if: 002's plan has no `### Implementation Notes` section, or its note freezes neither Option A nor Option B.
 
+Done 2026-10-24: `scratch/pattern-inputs.md` holds `composite_action: present`, `github_actions_refs_in_gate_inputs: 2`, `d1: A` (the rebuild plan freezes Option A, the `[skip ci]` token) and `d2: pr-only`.
+Drift: the composite action is present and the gate names `github/actions` twice, so the file records `present` and T012 writes `status: landed`. The plan expected `absent` and `0`. The `Option A` grep hit `002-rebuild-fanout-removal/plan.md:102`.
+
 ---
 
-### T003 Record the pre-phase registration (AC-009)
+### T003 [x] Record the pre-phase registration (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json` (new file). Anchor: none.
 
@@ -111,9 +117,12 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-sur
 
 Stop and escalate if: the printed count is neither `5 3 5 18` nor `3 1 3 18`.
 
+Done 2026-10-24: `scratch/registration-before.json` written. The count command printed `3 1 3 7`.
+Drift: the plan expected `5 3 5 18` or `3 1 3 18`. The surface removal landed, so modes, surfaces and signals match the post-removal shape, and the canary count is 7 because that change also removed the removed surfaces' canary cases.
+
 ---
 
-### T004 Record the ordering state against the sibling removal (AC-009)
+### T004 [x] Record the ordering state against the sibling removal (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md` (new file). Anchor: none.
 
@@ -134,9 +143,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-sur
 
 Stop and escalate if: the state is `mixed`, because neither registration order is safe against a half-removed hub.
 
+Done 2026-10-24: `webflow: absent`, `obsidian: absent`, so `scratch/ordering-state.md` holds `ordering-state: post-013/002`, one line, with the registry log.
+
 ---
 
-### T005 Record the ten rule anchors (AC-002)
+### T005 [x] Record the ten rule anchors (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md` (new file). Anchor: none.
 
@@ -158,15 +169,18 @@ grep -l '^concurrency:' .github/workflows/*.yml | wc -l
 grep -c '^ANCHOR ' specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md
 ```
 
-Expected: `function twin` at `.github/scripts/check-gate-inputs.sh:113`; `twin-one` at `:336`; the repo-rules comment at `.github/workflows/repo-rules-corpus.yml:9`; the push trigger at `.github/workflows/trigger-index-rebuild.yml:6-9`; the four generated paths at `:78-84`; the message-contract comment at `:2-7` and `branches: ['**']` at `:9`; the README row at `.github/workflows/README.md:73`; `6` workflows with a timeout; `12` without `permissions:`; `1` with `concurrency:`; and `10` `ANCHOR ` lines.
+Expected: `function twin` at `.github/scripts/check-gate-inputs.sh:116`; `twin-one` at `:339`; the repo-rules comment at `.github/workflows/repo-rules-corpus.yml:9`; the push trigger at `.github/workflows/trigger-index-rebuild.yml:6-9`; the four generated paths at `:78-84`; the message-contract comment at `:2-7` and `branches: ['**']` at `:9`; the README row at `.github/workflows/README.md:73`; `6` workflows with a timeout; `12` without `permissions:`; `1` with `concurrency:`; and `10` `ANCHOR ` lines.
 
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md`.
 
 Stop and escalate if: the timeout count is not `6`, the missing-permissions count is not `12`, or the concurrency count is not `1`.
 
+Done 2026-10-24: `scratch/source-anchors.md` holds ten `ANCHOR` headings with current line numbers. The counts read `6` workflows with a timeout, `12` without `permissions:` and `31` with `concurrency:`.
+Drift: `concurrency:` is on 31 of 33 workflows, not 1, because the earlier phases landed it, so the stop condition does not apply and the rule data records 31. The generated-path list is now `trigger-index-rebuild.yml:79-84` (the comment above it starts at `:78`), `repo-rules-corpus.yml` repeats the inert-twin comment at `:9-11` and `:20-22`, and `twin-one` also fails at `check-gate-inputs.sh:420` and `:468`. Re-derived 2026-10-24 after a later change to that script added three lines: `function twin` is at `:116`, the `twin-one` failures are at `:339`, `:423` and `:478`, the twin matcher is `:112-124` and the `paths:` matcher is `:372-375`. The README row `workflows/README.md:73` and `message-contract.yml:9` hold.
+
 ---
 
-### T006 Record the consumer inventory (AC-003, AC-008)
+### T006 [x] Record the consumer inventory (AC-003, AC-008)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md` (new file). Anchor: none.
 
@@ -185,6 +199,9 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-sur
 
 Stop and escalate if: the file count is not eleven, or a listed file is outside `.skilled/skills/sk-code`.
 
+Done 2026-10-24: `scratch/consumer-inventory.md` lists the files that name or count surfaces, with line numbers.
+Drift: the file set differs from the plan's eleven: `sk-code-webflow` and `sk-code-obsidian` are gone, `ROUTER.md` is added (the CI map and the `CI_WORKFLOW` entries land there), and `sk-code-quality` and `sk-code-review` mention `sk-code-skilled` without counting surfaces. The table has twelve rows.
+
 ---
 
 <!-- /ANCHOR:phase-1 -->
@@ -194,7 +211,7 @@ Stop and escalate if: the file count is not eleven, or a listed file is outside 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-### T007 Create the packet contract (AC-001, AC-003)
+### T007 [x] Create the packet contract (AC-001, AC-003)
 
 File: `.skilled/skills/sk-code/sk-code-ci/SKILL.md` (new file). Anchor: none.
 
@@ -216,9 +233,12 @@ Rollback: `rm -r .skilled/skills/sk-code/sk-code-ci`.
 
 Stop and escalate if: the four-part `version:` line is missing, or `allowed-tools` names `Write`, `Edit` or `Task`.
 
+Done 2026-10-24: `.skilled/skills/sk-code/sk-code-ci/SKILL.md` written. The five checks printed `1`, `1`, `1`, `1`, `0`, and `validate_document.py --type skill` reports `VALID`.
+Drift: section 3 is titled `SURFACE STANDARDS (the non-negotiables)` and holds the ALWAYS, NEVER and ESCALATE lists, because `validate_document.py --type skill` requires a `surface_standards` section for a surface packet. The task named it `RULES`.
+
 ---
 
-### T008 Create the packet README (AC-001)
+### T008 [x] Create the packet README (AC-001)
 
 File: `.skilled/skills/sk-code/sk-code-ci/README.md` (new file). Anchor: none.
 
@@ -237,9 +257,11 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/README.md`.
 
 Stop and escalate if: a heading is missing, or the README claims the packet can write.
 
+Done 2026-10-24: `README.md` written. The heading grep printed `4` and the reference grep printed `1`, and `validate_document.py --type readme` reports `VALID`.
+
 ---
 
-### T009 Create the packet changelog (AC-001)
+### T009 [x] Create the packet changelog (AC-001)
 
 File: `.skilled/skills/sk-code/sk-code-ci/changelog/v0.1.0.0.md` (new file). Anchor: none.
 
@@ -258,13 +280,15 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/changelog/v0.1.0.0.md`.
 
 Stop and escalate if: the version line differs from the file name.
 
+Done 2026-10-24: `changelog/v0.1.0.0.md` written. The checks printed `1` and `1`, and `validate_document.py --type changelog` reports `VALID`.
+
 ---
 
-### T010 Create the rule index (AC-002)
+### T010 [x] Create the rule index (AC-002)
 
 File: `.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md` (new file). Anchor: none.
 
-Change: write a normative table with one row per rule and a `file:line` citation for each: `.skilled/` and `.opencode/` path parity (`check-gate-inputs.sh:109-121`), SHA-pinned `uses:` (33 of 33 today), one README row per workflow (`.github/workflows/README.md:18-45`), `set -euo pipefail` in a multi-line `run:` (29 of 33), fork and secret safety (no `pull_request_target`, no `github.event` in `run:`), matrix and `fail-fast` guidance. State beside each row whether a machine gate enforces it, and state that a rule with no enforcement is honour-system.
+Change: write a normative table with one row per rule and a `file:line` citation for each: `.skilled/` and `.opencode/` path parity (`check-gate-inputs.sh:112-124`), SHA-pinned `uses:` (33 of 33 today), one README row per workflow (`.github/workflows/README.md:18-45`), `set -euo pipefail` in a multi-line `run:` (29 of 33), fork and secret safety (no `pull_request_target`, no `github.event` in `run:`), matrix and `fail-fast` guidance. State beside each row whether a machine gate enforces it, and state that a rule with no enforcement is honour-system.
 
 Check:
 
@@ -278,18 +302,21 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standard
 
 Stop and escalate if: any token prints as missing.
 
+Done 2026-10-24: `references/ci-workflow-standards.md` written. The token loop printed nothing.
+Drift: the SHA-pin example cites `advisory-checks.yml:26`, not `:21`, and the `set -euo pipefail` count is 28 of 29 files with a multi-line `run:` (`advisory-checks.yml` uses `set -uo pipefail` on purpose for report-only steps). The fork-safety rule is stated as no free-text event field in `run:`, because the tree interpolates SHAs and numbers in `run:` (`agent-mirror-sync.yml:51-52`) and passes branch name and body through `env:`.
+
 ---
 
-### T011 Create the trigger and filter rules (AC-002)
+### T011 [x] Create the trigger and filter rules (AC-002)
 
 File: `.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md` (new file). Anchor: none.
 
-Change: write three sections. (a) `## The twin rule`: four generated paths times two source roots make 8 entries, the `.opencode/` twin is inert where the tree is absent, and the citations are `check-gate-inputs.sh:109-121`, `:336`, `:369-372` and `repo-rules-corpus.yml:9-11`. (b) `## Rebuild commits`: the rebuild-skip rule in T002's form. For `d1: A` write that a rebuild commit carries `[skip ci]` in its body, with the `trigger-index-rebuild.yml:78-84` generated-path list as the reason, and name the push-only `paths-ignore` alternative in one line, including its `104` twin-matched entries across 13 files. For `d1: B` write the push-only form instead. State that ignoring the four generated paths on the 13 downstream workflows saves about `2,073` runner-min/day. (c) `## Push-only scope`: generated-path rules are push-only, because the rebuild workflow triggers on `push` alone (`trigger-index-rebuild.yml:6-9`) and a `pull_request:` ignore would leave a required check Pending.
+Change: write three sections. (a) `## The twin rule`: four generated paths times two source roots make 8 entries, the `.opencode/` twin is inert where the tree is absent, and the citations are `check-gate-inputs.sh:112-124`, `:339`, `:372-375` and `repo-rules-corpus.yml:9-11`. (b) `## Rebuild commits`: the rebuild-skip rule in T002's form. For `d1: A` write that a rebuild commit carries `[skip ci]` in its body, with the `trigger-index-rebuild.yml:78-84` generated-path list as the reason, and name the push-only `paths-ignore` alternative in one line, including its `104` twin-matched entries across 13 files. For `d1: B` write the push-only form instead. State that ignoring the four generated paths on the 13 downstream workflows saves about `2,073` runner-min/day. (c) `## Push-only scope`: generated-path rules are push-only, because the rebuild workflow triggers on `push` alone (`trigger-index-rebuild.yml:6-9`) and a `pull_request:` ignore would leave a required check Pending.
 
 Check:
 
 ```bash
-for t in '8 entries' 'inert' 'push-only' 'trigger-index-rebuild.yml:6-9' 'check-gate-inputs.sh:109-121'; do grep -q "$t" .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md || echo "missing: $t"; done
+for t in '8 entries' 'inert' 'push-only' 'trigger-index-rebuild.yml:6-9' 'check-gate-inputs.sh:112-124'; do grep -q "$t" .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md || echo "missing: $t"; done
 grep -Ec 'skip ci|paths-ignore' .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md
 ```
 
@@ -299,9 +326,12 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-r
 
 Stop and escalate if: T002 recorded no `d1:` value, or the section names a `specs/` path.
 
+Done 2026-10-24: `references/trigger-and-filter-rules.md` written with the twin rule, the rebuild-commit rule in the `[skip ci]` form, push-only scope and the exceptions table. The token loop printed nothing and the `skip ci|paths-ignore` count is `5`.
+Drift: the plan's line numbers moved: the generated-path list is cited as `trigger-index-rebuild.yml:78-84` and the commit-body token as `:151`. The skip token is already landed in the rebuild workflow.
+
 ---
 
-### T012 Create the job-shape rules (AC-002, AC-011)
+### T012 [x] Create the job-shape rules (AC-002, AC-011)
 
 File: `.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md` (new file). Anchor: none.
 
@@ -320,9 +350,12 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md`.
 
 Stop and escalate if: a token prints as missing, or the status line disagrees with T002's `composite_action:` value.
 
+Done 2026-10-24: `references/job-shape-rules.md` written. The token loop printed nothing and `grep -c '^status: '` printed `1`, the line reading `status: landed`.
+Drift: `status: landed`, not `proposed`, because T002 recorded the composite action as present. The counts are the current ones: 31 of 33 workflows carry `concurrency:`, 21 of 33 declare `permissions:`, 6 of 33 carry a timeout. The action has no `node-major` input, so the rule says the key reads the Node major from the runner.
+
 ---
 
-### T013 Create the protected set (AC-002)
+### T013 [x] Create the protected set (AC-002)
 
 File: `.skilled/skills/sk-code/sk-code-ci/references/protected-set.md` (new file). Anchor: none.
 
@@ -341,9 +374,11 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/references/protected-set.md`.
 
 Stop and escalate if: a workflow name prints as missing.
 
+Done 2026-10-24: `references/protected-set.md` written. The name loop printed nothing and `second named confirmation` printed `1`.
+
 ---
 
-### T014 Create the workflow scaffold template (AC-002, AC-008)
+### T014 [x] Create the workflow scaffold template (AC-002, AC-008)
 
 File: `.skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml` (new file). Anchor: none.
 
@@ -364,9 +399,11 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml`.
 
 Stop and escalate if: the YAML does not parse, or the template contains a real token, key or secret value.
 
+Done 2026-10-24: `assets/workflow-template.yml` written. The YAML parsed, the keyword grep printed `3`, the pinned checkout line printed `1` and the 40-hex pin grep printed `1`.
+
 ---
 
-### T015 Create the job scaffold template (AC-002, AC-008)
+### T015 [x] Create the job scaffold template (AC-002, AC-008)
 
 File: `.skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml` (new file). Anchor: none.
 
@@ -385,9 +422,12 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml`.
 
 Stop and escalate if: the YAML does not parse, or the count is not `3`.
 
+Done 2026-10-24: `assets/job-block-template.yml` written. The YAML parsed and the keyword grep printed `3`.
+Drift: the provisioning step passes `cache: 'true'`, the action's real input, because the action has no `node-major` input.
+
 ---
 
-### T016 Link the workflow doctrine into the packet (AC-001)
+### T016 [x] Link the workflow doctrine into the packet (AC-001)
 
 File: `.skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` (new symlinks). Anchor: none.
 
@@ -407,9 +447,11 @@ Rollback: `rm .skilled/skills/sk-code/sk-code-ci/references/workflow-implement.m
 
 Stop and escalate if: a target does not exist, or `readlink` prints an absolute path.
 
+Done 2026-10-24: the three `workflow-*.md` symlinks created. `LINK_OK` printed and `readlink` printed `../../shared/references/workflow-implement.md`.
+
 ---
 
-### T017 Record the message-contract exception (AC-006)
+### T017 [x] Record the message-contract exception (AC-006)
 
 File: `.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md`, anchor: the `## Push-only scope` heading T011 wrote at the end of the file.
 
@@ -430,9 +472,12 @@ Rollback: delete the `## Intentional exceptions` section.
 
 Stop and escalate if: the anchor heading is absent, or the workflow diff is not empty.
 
+Done 2026-10-24: the `## Intentional exceptions` table is in `trigger-and-filter-rules.md` (section 5 after the overview was added). The greps printed `2`, `1`, `1` and `git diff --exit-code -- .github/workflows/message-contract.yml` exited `0` with no output. The workflow blob is `22342b9f9ffba023be6ebc7e699cdbdb72b0405a`.
+Drift: the first grep is `2` because the section intro also names the label. The ruleset read through `gh api` confirms `message-contract-required` is the only ruleset with `required_status_checks`.
+
 ---
 
-### T018 Create the packet playbook index (AC-005)
+### T018 [x] Create the packet playbook index (AC-005)
 
 File: `.skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md` (new file). Anchor: none.
 
@@ -451,9 +496,12 @@ Rollback: `rm -r .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook`.
 
 Stop and escalate if: the file is named `README.md`, because the replay skips that name.
 
+Done 2026-10-24: `manual-testing-playbook/manual-testing-playbook.md` written. The checks printed `1` and `2`, and `validate_document.py --type playbook` reports `VALID`.
+Drift: the index carries the overview, preconditions, evidence and command-notation sections the playbook validator requires.
+
 ---
 
-### T019 Create the packet playbook scenario (AC-005)
+### T019 [x] Create the packet playbook scenario (AC-005)
 
 File: `.skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md` (new file). Anchor: none.
 
@@ -473,6 +521,8 @@ Rollback: `rm -r .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-s
 
 Stop and escalate if: a path in `expected_resources` carries a `sk-code-ci/` prefix, because the replay resolves them against the packet root.
 
+Done 2026-10-24: `manual-testing-playbook/ci-surface/ci-surface.md` written. The checks printed `1`, `4`, `1`, and `verify-router-sync.cjs --checks 4` prints `PASS check 4`.
+
 ---
 
 <!-- /ANCHOR:phase-2 -->
@@ -482,7 +532,7 @@ Stop and escalate if: a path in `expected_resources` carries a `sk-code-ci/` pre
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Implementation (continued)
 
-### T020 Register the mode entry (AC-003)
+### T020 [x] Register the mode entry (AC-003)
 
 File: `.skilled/skills/sk-code/mode-registry.json:110-116`, anchor:
 
@@ -511,9 +561,13 @@ Rollback: delete the inserted object and the comma before it.
 
 Stop and escalate if: the JSON does not parse, or the alias array is shorter than twelve entries.
 
+Done 2026-10-24: the `sk-code-ci` entry is in `mode-registry.json`. The check printed `surface,evidence-base,false,metadata` with 12 aliases and the mode count is `4`.
+Drift: the plan expected `6` or `4`, and the post-removal state gives `4`.
+Amended 2026-10-24 (operator-approved routing change): the alias array no longer holds twelve entries. Overlapping aliases were trimmed and four gained a qualifier, so the registry lists eight. The stop condition above reads against the amended count, and `mode-registry.json` is the source for the text.
+
 ---
 
-### T021 Append the surface-axis membership (AC-003)
+### T021 [x] Append the surface-axis membership (AC-003)
 
 File: `.skilled/skills/sk-code/mode-registry.json:19`, anchor:
 
@@ -535,9 +589,12 @@ Rollback: remove `"sk-code-ci",` from the array.
 
 Stop and escalate if: the array is not exactly the four-entry line above, because the sibling phase changed it.
 
+Done 2026-10-24: `surfaces` reads `["sk-code-ci", "sk-code-skilled"]`. The check printed `true true 2`.
+Drift: the array held one entry, so the length is 2 and not 4.
+
 ---
 
-### T022 Name the CI surface in the registry description (AC-008)
+### T022 [x] Name the CI surface in the registry description (AC-008)
 
 File: `.skilled/skills/sk-code/mode-registry.json:5`, anchor: the `"description"` line containing `the SURFACE axis (sk-code-webflow/sk-code-skilled/sk-code-obsidian) is read-only domain evidence`.
 
@@ -556,9 +613,12 @@ Rollback: restore the original parenthetical.
 
 Stop and escalate if: the anchor parenthetical is absent.
 
+Done 2026-10-24: the parenthetical now reads `(sk-code-ci/sk-code-skilled)`. The greps printed `1` and `sk-code`.
+Drift: the anchor held only `sk-code-skilled`, so the replacement is `sk-code-ci/sk-code-skilled`.
+
 ---
 
-### T023 Insert the tie-break slot (AC-003)
+### T023 [x] Insert the tie-break slot (AC-003)
 
 File: `.skilled/skills/sk-code/hub-router.json:7`, anchor:
 
@@ -580,9 +640,12 @@ Rollback: remove `"sk-code-ci",` from the array.
 
 Stop and escalate if: the array is not the six-entry line above.
 
+Done 2026-10-24: `tieBreak` reads `["sk-code-quality", "sk-code-review", "sk-code-ci", "sk-code-skilled"]`. The check printed `true true true 4`.
+Drift: the array held three entries, so the length is 4 and not 6.
+
 ---
 
-### T024 Add the router signal (AC-003)
+### T024 [x] Add the router signal (AC-003)
 
 File: `.skilled/skills/sk-code/hub-router.json:42-47`, anchor:
 
@@ -609,9 +672,12 @@ Rollback: delete the inserted entry and its trailing comma.
 
 Stop and escalate if: the JSON does not parse, or the signal names a class that T025 and T026 do not define.
 
+Done 2026-10-24: the `sk-code-ci` router signal is in. The check printed `true 4`.
+Drift: the count is 4 because the hub held three signals.
+
 ---
 
-### T025 Define the `code-ci-aliases` class (AC-003)
+### T025 [x] Define the `code-ci-aliases` class (AC-003)
 
 File: `.skilled/skills/sk-code/hub-router.json:92-95`, anchor:
 
@@ -637,9 +703,13 @@ Rollback: delete the inserted class.
 
 Stop and escalate if: an alias from T020 is absent, because check `5k-alias` fails on it.
 
+Done 2026-10-24: the `code-ci-aliases` class is in with the twelve aliases. The check printed `true 12`.
+Drift: the class holds exactly the twelve aliases, which are also the twelve keywords the task lists.
+Amended 2026-10-24 (operator-approved routing change): the class now holds eight keywords, the same eight as the registry aliases, so the check prints `true 8` and its `at least 12` bound no longer applies. `actions workflow`, `ci workflow standards` and `workflow yaml` were dropped because each counted one phrase two or three times, and `protected workflow` followed.
+
 ---
 
-### T026 Define the `code-ci-runtime` class (AC-003)
+### T026 [x] Define the `code-ci-runtime` class (AC-003)
 
 File: `.skilled/skills/sk-code/hub-router.json`, anchor: the `code-ci-aliases` class T025 wrote.
 
@@ -657,9 +727,12 @@ Rollback: delete the inserted class.
 
 Stop and escalate if: the class key differs from `code-ci-runtime`, because T024 names it.
 
+Done 2026-10-24: the `code-ci-runtime` class is in. The check printed `true 14`.
+Amended 2026-10-24 (operator-approved routing change): the bare words `matrix`, `ruleset`, `cache key`, `fail-fast` and `concurrency group` were narrowed to `strategy matrix`, `ruleset context`, `actions cache key`, `fail-fast: false` and `actions concurrency group`, because `fix the cache key in the bun lockfile loader`, `the ruleset in the advisor scorer is wrong` and `write a vitest test matrix for the parser` were all pulled into the CI surface. The class still holds 14 keywords.
+
 ---
 
-### T027 Add the description keyword (AC-003)
+### T027 [x] Add the description keyword (AC-003)
 
 File: `.skilled/skills/sk-code/description.json:49`, anchor:
 
@@ -681,9 +754,12 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor line is absent.
 
+Done 2026-10-24: `sk-code-ci` is in `description.json` keywords, before `sk-code-skilled`. The check printed `true`.
+Drift: the anchor `sk-code-obsidian` is gone, so the keyword sits before `sk-code-skilled`.
+
 ---
 
-### T028 Add the ROUTER.md CI map (AC-004)
+### T028 [x] Add the ROUTER.md CI map (AC-004)
 
 File: `.skilled/skills/sk-code/ROUTER.md:242-246`, anchor:
 
@@ -711,9 +787,12 @@ Rollback: delete the inserted subsection.
 
 Stop and escalate if: the §7 heading count is not `1`, or the anchor table row is absent.
 
+Done 2026-10-24: the `### CI Workflow Map` subsection is in `ROUTER.md`. The greps printed `1`, `8` and `1`.
+Drift: the section 6 table now ends at the authoring table, and the anchor row `Spec folder write` still holds. The subsection says the hub bundles the packet from the request vocabulary.
+
 ---
 
-### T029 Add `CI_WORKFLOW` to `INTENT_SIGNALS` (AC-004)
+### T029 [x] Add `CI_WORKFLOW` to `INTENT_SIGNALS` (AC-004)
 
 File: `.skilled/skills/sk-code/ROUTER.md:345`, anchor:
 
@@ -735,9 +814,13 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor line is absent, or the keyword list differs from T020's alias array.
 
+Done 2026-10-24: the `CI_WORKFLOW` entry is in `INTENT_SIGNALS`.
+Drift: the insertion follows the `RUST` line, since the `OBSIDIAN_PLUGIN` anchor is gone.
+Amended 2026-10-24 (operator-approved routing change): the `CI_WORKFLOW` keyword list in `ROUTER.md` follows the amended alias list, so it holds eight phrases and the `T020` equality still holds.
+
 ---
 
-### T030 Add `CI_WORKFLOW` to `RESOURCE_MAP` (AC-004)
+### T030 [x] Add `CI_WORKFLOW` to `RESOURCE_MAP` (AC-004)
 
 File: `.skilled/skills/sk-code/ROUTER.md:578-580`, anchor:
 
@@ -763,9 +846,12 @@ Rollback: delete the inserted array.
 
 Stop and escalate if: leg 2 reports a missing or extra child path, because the parent array and T007's packet array must carry the same four paths.
 
+Done 2026-10-24: the `CI_WORKFLOW` array of four paths is in `RESOURCE_MAP`. The greps printed `2` and `8`, and `verify-router-sync.cjs --checks 1a,1b,2,3,4` printed `router-sync: 5/5 checks passed`.
+Drift: the check ran legs 1a to 4 and the plan's `--checks 1,2` form does not exist.
+
 ---
 
-### T031 Add `sk-code-ci` to the guard's `SURFACES` (AC-004)
+### T031 [x] Add `sk-code-ci` to the guard's `SURFACES` (AC-004)
 
 File: `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:33`, anchor:
 
@@ -787,9 +873,11 @@ Rollback: remove `'sk-code-ci',` from the array.
 
 Stop and escalate if: the anchor line is absent, because the sibling removal phase rewrote it.
 
+Done 2026-10-24: `SURFACES` reads `['sk-code-ci', 'sk-code-skilled'].filter(onDisk)`. The grep printed `1`.
+
 ---
 
-### T032 Add `sk-code-ci` to the guard's `SURFACE_PACKETS` (AC-004)
+### T032 [x] Add `sk-code-ci` to the guard's `SURFACE_PACKETS` (AC-004)
 
 File: `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:34`, anchor:
 
@@ -812,9 +900,12 @@ Rollback: remove `, 'sk-code-ci'` from the second array.
 
 Stop and escalate if: leg 2 or leg 4 fails, because the packet map and the parent projection disagree.
 
+Done 2026-10-24: no edit needed. `SURFACE_PACKETS` is built from `SURFACES` now, so T031 already reaches it. `verify-router-sync.cjs --checks 1a,1b,2,3,4` printed `router-sync: 5/5 checks passed`.
+Drift: the second array no longer exists as a separate list, and the grep counts `1`, not `2`.
+
 ---
 
-### T033 Regenerate the leaf manifest (AC-003)
+### T033 [x] Regenerate the leaf manifest (AC-003)
 
 File: `.skilled/skills/sk-code/leaf-manifest.json` (generated). Anchor: none; the generator writes it.
 
@@ -834,9 +925,11 @@ Rollback: `git checkout -- .skilled/skills/sk-code/leaf-manifest.json` and delet
 
 Stop and escalate if: the generator exits non-zero twice with the same code.
 
+Done 2026-10-24: `generate-leaf-manifest.cjs --write` printed `leaf-manifest.json written (ca0983ef...)` and `--check` printed `leaf-manifest.json OK` with exit `0`. The `sk-code-ci` mode holds 9 leaves. No collision, so no `leaf-scopes.json`.
+
 ---
 
-### T034 Regenerate the skill-derived graph (AC-003)
+### T034 [x] Regenerate the skill-derived graph (AC-003)
 
 File: `.skilled/skills/sk-code/graph-metadata.json` (generated). Anchor: none; the generator writes every derived field except `causal_summary`.
 
@@ -855,9 +948,12 @@ Rollback: `git checkout -- .skilled/skills/sk-code/graph-metadata.json`.
 
 Stop and escalate if: the freshness check reports a stale hub after the write.
 
+Done 2026-10-24: `regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write` reported the hub `unchanged`, and `ci-skill-derived-freshness.cjs` printed `checked=14 fresh=14 stale=0 errored=0`.
+Drift: this ran after the hub document edits instead of before, so the generator saw the final documents. The derived fields did not change.
+
 ---
 
-### T035 Name the CI surface in `causal_summary` (AC-008)
+### T035 [x] Name the CI surface in `causal_summary` (AC-008)
 
 File: `.skilled/skills/sk-code/graph-metadata.json`, anchor: the `"causal_summary"` string containing `bundles one of three read-only surface evidence packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian)`.
 
@@ -876,9 +972,12 @@ Rollback: restore the original clause.
 
 Stop and escalate if: the anchor clause is absent, because the generator preserved a different wording.
 
+Done 2026-10-24: `causal_summary` reads `bundles one of two read-only surface evidence packets (sk-code-ci, sk-code-skilled)`. The grep printed `1` and freshness printed `stale=0`.
+Drift: the clause held one packet, so it now says two, and the next sentence says `Each surface carries`.
+
 ---
 
-### T036 Add the hub surface table row (AC-008)
+### T036 [x] Add the hub surface table row (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:38`, anchor:
 
@@ -901,9 +1000,11 @@ Rollback: delete the inserted row.
 
 Stop and escalate if: check `6b` reports the mode as absent after the insert.
 
+Done 2026-10-24: the `sk-code-ci` row is in the hub surface table. `grep -c` printed `10` and `6b` passes.
+
 ---
 
-### T037 Rewrite the surface-list sentence (AC-008)
+### T037 [x] Rewrite the surface-list sentence (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:40`, anchor:
 
@@ -926,9 +1027,12 @@ Rollback: restore the original sentence.
 
 Stop and escalate if: the guard reports a count that differs from `mode-registry.json`.
 
+Done 2026-10-24: the sentence now reads `exactly two surfaces`. The grep printed `1` and `verify-doc-claims.cjs` printed `PASS check surfaces`.
+Drift: the plan's `three` to `four` is `one` to `two` on this hub.
+
 ---
 
-### T038 Rewrite the hub intro paragraph (AC-008)
+### T038 [x] Rewrite the hub intro paragraph (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:15`, anchor: the sentence `The **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (sk-code-webflow, sk-code-skilled, sk-code-obsidian).`
 
@@ -946,9 +1050,12 @@ Rollback: restore the original sentence.
 
 Stop and escalate if: the anchor sentence is absent.
 
+Done 2026-10-24: the intro now reads `two read-only evidence packets`. The grep printed `1`.
+Drift: the sentence also says `Each carries the shared doctrine plus its own domain knowledge`.
+
 ---
 
-### T039 Name the CI surface in the discriminator list (AC-008)
+### T039 [x] Name the CI surface in the discriminator list (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:70`, anchor:
 
@@ -970,9 +1077,11 @@ Rollback: remove the inserted name.
 
 Stop and escalate if: the anchor line is absent.
 
+Done 2026-10-24: the discriminator line names `sk-code-ci`, `sk-code-skilled` (surface). The grep printed `1`.
+
 ---
 
-### T040 Add the packet to the hub layout block (AC-008)
+### T040 [x] Add the packet to the hub layout block (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:164-166`, anchor:
 
@@ -996,9 +1105,12 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the three-line anchor is absent.
 
+Done 2026-10-24: the layout block carries the `sk-code-ci/` line before the skilled line. The grep printed `1`.
+Drift: the webflow anchor is gone, so the line sits before the skilled line.
+
 ---
 
-### T041 Add the packet to the backend paragraph (AC-008)
+### T041 [x] Add the packet to the backend paragraph (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:173`, anchor: the clause `read-only domain evidence (`sk-code-webflow/`, `sk-code-skilled/`, `sk-code-obsidian/`)`.
 
@@ -1016,9 +1128,12 @@ Rollback: remove the inserted name.
 
 Stop and escalate if: the anchor clause is absent.
 
+Done 2026-10-24: the backend paragraph names `sk-code-ci/`, `sk-code-skilled/`. The grep printed `1`.
+Drift: the same pass also updated the layout, tie-break prose, routing checklist and the references list in `SKILL.md`, and added one sentence saying stack detection does not select `sk-code-ci`.
+
 ---
 
-### T042 Cut the hub release version (AC-008)
+### T042 [x] Cut the hub release version (AC-008)
 
 File: `.skilled/skills/sk-code/SKILL.md:5`, `mode-registry.json:3`, `hub-router.json:3` and `description.json:3`, anchors:
 
@@ -1044,9 +1159,12 @@ Rollback: restore `2.3.0.0` in all four fields.
 
 Stop and escalate if: the four fields disagree, or `changelog/v2.4.0.0.md` and `changelog/v2.5.0.0.md` both already exist.
 
+Done 2026-10-24: all four fields read `2.4.0.0`. The check printed `1 2.4.0.0,2.4.0.0,2.4.0.0 2.4.0.0`.
+Drift: `changelog/v2.4.0.0.md` did not exist, so the release is `2.4.0.0`.
+
 ---
 
-### T043 Write the hub changelog (AC-008)
+### T043 [x] Write the hub changelog (AC-008)
 
 File: `.skilled/skills/sk-code/changelog/v2.4.0.0.md` (new file). Anchor: none. When T042 chose `2.5.0.0`, the path is `changelog/v2.5.0.0.md`.
 
@@ -1065,9 +1183,11 @@ Rollback: `rm .skilled/skills/sk-code/changelog/v2.4.0.0.md`.
 
 Stop and escalate if: the file name and the frontmatter version differ, or `13b-version` fails.
 
+Done 2026-10-24: `changelog/v2.4.0.0.md` written. `13b-version` passes and `validate_document.py --type changelog` reports `VALID`.
+
 ---
 
-### T044 Rewrite the README works-on row (AC-008)
+### T044 [x] Rewrite the README works-on row (AC-008)
 
 File: `.skilled/skills/sk-code/README.md:23`, anchor:
 
@@ -1093,9 +1213,12 @@ Rollback: restore the original row.
 
 Stop and escalate if: the anchor row is absent.
 
+Done 2026-10-24: the works-on row reads `the two surfaces ... the native SKILLED surface and the sk-code-ci CI standards surface`. The grep printed `1`.
+Drift: the plan's `four surfaces` is `two surfaces`.
+
 ---
 
-### T045 Add the README surface table row (AC-008)
+### T045 [x] Add the README surface table row (AC-008)
 
 File: `.skilled/skills/sk-code/README.md:57`, anchor:
 
@@ -1117,9 +1240,11 @@ Rollback: delete the inserted row.
 
 Stop and escalate if: the anchor row is absent.
 
+Done 2026-10-24: the `sk-code-ci` row is in the README surface table. The grep printed `1`.
+
 ---
 
-### T046 Correct the README adapting section (AC-008)
+### T046 [x] Correct the README adapting section (AC-008)
 
 File: `.skilled/skills/sk-code/README.md:106`, anchor: the sentence `sk-code ships one native surface and two optional examples.`
 
@@ -1137,9 +1262,12 @@ Rollback: restore the original sentence.
 
 Stop and escalate if: the anchor sentence is absent.
 
+Done 2026-10-24: the adapting section reads `one native surface and one CI standards surface`. The grep printed `1`.
+Drift: the plan's wording named two optional examples, which no longer exist. The README also gained a routing example row and a related-documents row.
+
 ---
 
-### T047 Add the packet to `shared/README.md` (AC-008)
+### T047 [x] Add the packet to `shared/README.md` (AC-008)
 
 File: `.skilled/skills/sk-code/shared/README.md:17`, anchor: the sentence `common to every sk-code surface packet (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`).`
 
@@ -1157,9 +1285,11 @@ Rollback: remove the inserted name.
 
 Stop and escalate if: the anchor parenthetical is absent.
 
+Done 2026-10-24: `shared/README.md` names `sk-code-ci`. The grep printed `1`.
+
 ---
 
-### T048 Correct `phase-detection.md` line 16 (AC-008)
+### T048 [x] Correct `phase-detection.md` line 16 (AC-008)
 
 File: `.skilled/skills/sk-code/shared/references/phase-detection.md:16`, anchor:
 
@@ -1186,9 +1316,12 @@ Rollback: restore the original sentence.
 
 Stop and escalate if: the guard reports a count that differs from the registry.
 
+Done 2026-10-24: `phase-detection.md` line 16 names `sk-code-ci` and SKILLED. The grep printed `1`.
+Drift: the line held no count word, so no count was added.
+
 ---
 
-### T049 Add the CI surface to the phase-detection use list (AC-008)
+### T049 [x] Add the CI surface to the phase-detection use list (AC-008)
 
 File: `.skilled/skills/sk-code/shared/references/phase-detection.md:28`, anchor:
 
@@ -1214,9 +1347,11 @@ Rollback: restore the original bullet.
 
 Stop and escalate if: the anchor bullet is absent.
 
+Done 2026-10-24: the use-list bullet reads `When planning work on the sk-code-ci or SKILLED surface.` The grep printed `1`.
+
 ---
 
-### T050 Add the packet to the feature-catalog inventory (AC-008)
+### T050 [x] Add the packet to the feature-catalog inventory (AC-008)
 
 File: `.skilled/skills/sk-code/feature-catalog/feature-catalog.md:15`, anchor: the clause below.
 
@@ -1238,9 +1373,11 @@ Rollback: remove the inserted name.
 
 Stop and escalate if: the anchor parenthetical is absent.
 
+Done 2026-10-24: the feature-catalog inventory names `sk-code-ci`.
+
 ---
 
-### T051 Add the packet to the feature-catalog current reality (AC-008)
+### T051 [x] Add the packet to the feature-catalog current reality (AC-008)
 
 File: `.skilled/skills/sk-code/feature-catalog/feature-catalog.md:35`, anchor: the clause `` `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` are advisor-invisible SURFACE packets ``.
 
@@ -1258,9 +1395,11 @@ Rollback: remove the inserted name.
 
 Stop and escalate if: the anchor clause is absent.
 
+Done 2026-10-24: the current-reality sentence names `sk-code-ci` and `sk-code-skilled`. The grep printed `2`.
+
 ---
 
-### T052 Add the packet to the two-axis description (AC-008)
+### T052 [x] Add the packet to the two-axis description (AC-008)
 
 File: `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md:26`, anchor: the clause `` `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` (each `backendKind: evidence-base`) ``.
 
@@ -1278,9 +1417,11 @@ Rollback: remove the inserted name.
 
 Stop and escalate if: the anchor clause is absent.
 
+Done 2026-10-24: the two-axis paragraph names `sk-code-ci`. The grep printed `1`.
+
 ---
 
-### T053 Add the canary case (AC-005)
+### T053 [x] Add the canary case (AC-005)
 
 File: `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json:323`, anchor:
 
@@ -1302,9 +1443,13 @@ Rollback: delete the inserted case and its trailing comma.
 
 Stop and escalate if: the JSON does not parse, or `cases.length` is not `19`.
 
+Done 2026-10-24: the `surface-bundle-ci` case is in the live canary fixture. The check printed `true 8`.
+Drift: the case prompt is `code review the github actions workflow`, not `review the github actions workflow yaml`. The engine scores a mode by matched keyword count times weight, so the longer prompt matches three CI keywords against one review keyword and resolves to `single` `[sk-code-ci]`, and only the shorter prompt ties and bundles `[sk-code-review, sk-code-ci]`. The case count is 8, not 19, because the surface removal trimmed the fixture to 7.
+Amended 2026-10-24 (operator-approved routing change): the case prompt is `review the github actions workflow yaml` again, as the task text says. The replay prints `surfaceBundle sk-code-review, sk-code-ci`. The earlier prompt `code review the github actions workflow` now routes to `sk-code-review` alone, because `code review` scores twice on the review side and no CI weight or alias set in range bundles both prompts. Bundling both needs `routerPolicy.ambiguityDelta` raised from 1 for the whole hub, and the operator ruled on 2026-10-24 to accept the limitation and keep the tolerance at 1. A second read-only review (a DeepSeek pass) then found seven non-CI prompts still selecting the surface, so aliases and runtime keywords were narrowed again and the replay table is in the amendment section of `decision-record.md`. The case count is still 8.
+
 ---
 
-### T054 Copy the canary fixture to its authored twin (AC-005)
+### T054 [x] Copy the canary fixture to its authored twin (AC-005)
 
 File: `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`, anchor: none; the copy replaces it.
 
@@ -1323,9 +1468,12 @@ Rollback: `git checkout -- specs/sk-doc/z_archive/019-skill-routing-refactor/015
 
 Stop and escalate if: `cmp` reports a difference after the copy, or `5k-canary` fails.
 
+Done 2026-10-24: the live fixture was copied over the authored twin. `cmp` exited `0` and `5k-canary` passes.
+Drift: the twin was byte-identical to the live fixture at HEAD before the copy.
+
 ---
 
-### T055 Add the compiled-route test case (AC-005)
+### T055 [x] Add the compiled-route test case (AC-005)
 
 File: `.skilled/bin/tests/compiled-route-surface-hint.test.cjs`, anchor: the block that ends the resolver section:
 
@@ -1353,9 +1501,13 @@ Rollback: delete the inserted test.
 
 Stop and escalate if: the resolver returns a `selectionKind` other than `surfaceBundle`, or the test fails twice after T057.
 
+Done 2026-10-24: the test `a CI workflow prompt bundles the CI surface` is in. `node --test` printed `pass 7` and `fail 0`.
+Drift: the test uses `code review the github actions workflow`, for the reason in T053.
+Amended 2026-10-24 (operator-approved routing change): the test uses `review the github actions workflow yaml`, as the task text says, and the suite gained a second test that keeps the cache key, scorer ruleset and test matrix prompts off the CI surface. `node --test` on the file prints `pass 8` and `fail 0`, not `pass 7`.
+
 ---
 
-### T056 Refresh the Hermes mirror (AC-001)
+### T056 [x] Refresh the Hermes mirror (AC-001)
 
 File: `.hermes/skills/sk-code-ci/SKILL.md` (generated). Anchor: none; the sync script writes it.
 
@@ -1375,9 +1527,12 @@ Rollback: `rm -r .hermes/skills/sk-code-ci` and rerun the sync.
 
 Stop and escalate if: the check reports a difference after the sync.
 
+Done 2026-10-24: `sync-skills-hermes.cjs` wrote the copies and `--check` printed `PASS: 67 Hermes skill copies in sync`. `.hermes/skills/sk-code-ci/SKILL.md` exists and `.hermes/skills/sk-code/SKILL.md` was refreshed.
+Drift: the sync ran again after the `SKILL.md` section rename, and the check passes from the final state.
+
 ---
 
-### T057 Refresh the compiled-routing policy (AC-005)
+### T057 [x] Refresh the compiled-routing policy (AC-005)
 
 File: `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` (generated). Anchor: none; the refresh writes it.
 
@@ -1397,9 +1552,13 @@ Rollback: `git checkout -- .skilled/bin/lib/compiled-routing/013-live-activation
 
 Stop and escalate if: the freshness output reads `"fresh":false` after the refresh.
 
+Done 2026-10-24: `compiled-route-manifest.cjs refresh` printed `"refreshed":true` and `freshness` printed `"fresh":true`. Only `effectivePolicyHash` changed in the manifest (from `9457a0d9...` to `095a492e...`, generation 2). `compiled-route-sync.cjs --check` printed `SYNC FAILED: 1 served file(s) out of sync`.
+Drift: the sync check cannot print `all 55 served copies match`: `009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` differs from its authored copy by one comment line (`SKILLED` against `WEBFLOW`). The surface removal changed the served file only, and the same difference exists at HEAD. The fix is to copy the served file over the authored one, outside this phase's files, so it is left for the coordinator. Update 2026-10-24: the served file was synced to its authored copy afterwards and `compiled-route-sync.cjs --check` now prints `all 55 served copies match their authored files`.
+Amended 2026-10-24 (operator-approved routing change): the routing edits moved `effectivePolicyHash` off `095a492e...` again, still at generation 2, and the hash moves each time the lists change, so read it from the manifest. The refresh, the freshness check and `compiled-route-sync.cjs --check` were re-run and the last prints `all 55 served copies match their authored files`.
+
 ---
 
-### T058 Copy the activation manifest to its authored twin (AC-005)
+### T058 [x] Copy the activation manifest to its authored twin (AC-005)
 
 File: `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`, anchor: none; the copy replaces it.
 
@@ -1417,6 +1576,8 @@ Rollback: `git checkout -- specs/sk-doc/z_archive/019-skill-routing-refactor/015
 
 Stop and escalate if: `cmp` reports a difference after the copy.
 
+Done 2026-10-24: the live manifest was copied over the authored twin. `cmp` exited `0`.
+
 ---
 
 <!-- /ANCHOR:phase-3 -->
@@ -1426,7 +1587,7 @@ Stop and escalate if: `cmp` reports a difference after the copy.
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Verification
 
-### T059 Stage the tree and regenerate the durable-directory manifest (AC-001)
+### T059 [x] Stage the tree and regenerate the durable-directory manifest (AC-001)
 
 File: `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` (generated). Anchor: none; the test script writes it.
 
@@ -1447,9 +1608,12 @@ Rollback: `git checkout -- .skilled/skills/sk-doc/scripts/tests/code-folder/dura
 
 Stop and escalate if: the derived count is not `787`, because a second new directory belongs to another in-flight phase.
 
+Done 2026-10-24: the durable-directory manifest was regenerated with a scratch index that adds the new packet, not the repository index. `WROTE ... directories=777`, then `SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible` with exit `0`.
+Drift: the count is 777 and not 787: the only added directory is `.skilled/skills/sk-code/sk-code-ci`. The repository index was not touched, so the real-index run of this test stays at `derived=777 frozen=777` only after the coordinator stages the packet.
+
 ---
 
-### T060 Run the hub's parent-skill check (AC-007)
+### T060 [x] Run the hub's parent-skill check (AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md` (new file). Anchor: none.
 
@@ -1469,9 +1633,12 @@ Rollback: delete the `## Parent-skill check` section and `scratch/parent-skill-a
 
 Stop and escalate if: a FAIL line other than `12-lib` appears, or a named leg prints `FAIL`.
 
+Done 2026-10-24: `scratch/parent-skill-after.txt` holds `exit=0` with 49 PASS and 0 FAIL, including the seven named PASS lines. `scratch/phase-result.md` carries the section.
+Drift: there is no `12-lib` failure, so the expected `1` FAIL is `0`.
+
 ---
 
-### T061 Run the router drift guards (AC-007)
+### T061 [x] Run the router drift guards (AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Parent-skill check` section T060 wrote.
 
@@ -1491,9 +1658,11 @@ Rollback: delete the `## Drift guards` section and `scratch/drift-guards-after.t
 
 Stop and escalate if: a guard prints `FAIL`, or the exit status is not `0`.
 
+Done 2026-10-24: `scratch/drift-guards-after.txt` holds `exit=0`, the four `PASS:` lines and `run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)`.
+
 ---
 
-### T062 Run the compiled-route suites and the router union (AC-005, AC-007)
+### T062 [x] Run the compiled-route suites and the router union (AC-005, AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Drift guards` section T061 wrote.
 
@@ -1513,9 +1682,13 @@ Rollback: delete the `## Suites` section and `scratch/suites-after.txt`.
 
 Stop and escalate if: leg 4 reports `no routing scenarios found`, because the packet playbook is then invisible to the replay.
 
+Done 2026-10-24: `scratch/suites-after.txt` holds `pass 55` `fail 1` for the surface-hint, manifest and front-door suites, and `verify-router-sync.cjs --checks 4` printed `router-sync: 1/1 checks passed`.
+Drift: the full `compiled-route-*.test.cjs` run in parallel reports `pass 87 fail 2`. One failure is the pinned gold corpus `85 !== 82`, which fails on a clean export of HEAD too. The other, `checking every live hub scores each one and leaves the activation state untouched`, is an activation-state hash race between test files run in parallel, not comment drift in `canary-router.cjs` (that drift was synced). It passes alone and under `node --test --test-concurrency=1`, where the run reports `pass 88 fail 1` and the gold corpus is the only failure.
+Amended 2026-10-24: the gold corpus failure `85 !== 82` at `compiled-route-admission.test.cjs:241` predates the phase, because the orchestrator reproduced it in a clean checkout of `113d8b56d1` before any edit of this phase, and CI does not run the suite. The operator approved raising the pin from 82 to 85 and the orchestrator did so. Re-run on the final tree, `node --test --test-concurrency=1 .skilled/bin/tests/compiled-route-*.test.cjs` exited `0` and printed `tests 90`, `pass 90` and `fail 0`, so the earlier `fail 1` no longer holds.
+
 ---
 
-### T063 Prove the diff is scoped (AC-006, AC-010)
+### T063 [x] Prove the diff is scoped (AC-006, AC-010)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Suites` section T062 wrote.
 
@@ -1535,9 +1708,12 @@ Rollback: delete the `## Scope` section.
 
 Stop and escalate if: the first command names a `.github/` path, or the second prints a line.
 
+Done 2026-10-24: the scope proof is in `scratch/phase-result.md`: no `.github/` path changed, `message-contract.yml` is byte-identical, and the added-line search over the tracked diff and every new file printed nothing.
+Drift: the proof reads the working tree because the index is the coordinator's. `git diff --cached` was not used.
+
 ---
 
-### T064 Prove the registration survived (AC-009)
+### T064 [x] Prove the registration survived (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json` (new file). Anchor: none.
 
@@ -1555,6 +1731,8 @@ Expected: `true true true true true true true`.
 Rollback: delete `scratch/registration-after.json` and the appended block.
 
 Stop and escalate if: a before entry is missing from the after snapshot, because a registration task replaced an array instead of inserting into it.
+
+Done 2026-10-24: `scratch/registration-after.json` written. The comparison printed `true true true true true true true`.
 
 ---
 
@@ -1577,6 +1755,10 @@ Expected: `RESULT: PASSED` and `0`.
 Rollback: restore the previous Status cells, the closure statement and the two generated metadata files with `git checkout`.
 
 Stop and escalate if: a row cannot name observed evidence, or the validator prints `RESULT: FAILED`.
+
+Partly done 2026-10-24 (left open because the phase commit and the closure commit do not exist yet): `acceptance-criteria.md` rows carry observed output, and all twelve rows are `Met` now that the gold corpus pin is raised. `repair-derived.cjs --apply` and `validate.sh --strict` ran, and their output is in the report.
+Drift: the phase closes only after T066 to T068, which need a commit. The one pre-existing compiled-route failure was repaired by the operator-approved pin raise.
+Amended 2026-10-24: the pre-existing compiled-route failure is resolved by the operator-approved pin raise, and the serial run prints `pass 90` and `fail 0`. AC-007 is `Met` and the closure statement reads closeable. T065 to T068 stay open and unticked: the acceptance rows are written, but the commit tasks T066 to T068 need a commit and none exists yet.
 
 ---
 
@@ -1636,7 +1818,7 @@ grep -c '^## ' specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-su
 grep -c '^follow-up: ' specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md
 ```
 
-Expected: at least `6` and `1`. The follow-up line reads `follow-up: rerun T064 after specs/sk-code/013-private-surface-skills/002-hub-surface-removal lands, and keep sk-code-ci in mode-registry.json, hub-router.json, ROUTER.md and SKILL.md`.
+Expected: at least `6` and `1`. The follow-up line reads `follow-up: the hub-surface removal landed in e00fef3e76 and the registration snapshot is re-checked at closure, and keep sk-code-ci in mode-registry.json, hub-router.json, ROUTER.md and SKILL.md`.
 
 Rollback: delete the `## Phase result` section.
 

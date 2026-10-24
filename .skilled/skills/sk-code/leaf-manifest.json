@@ -2,6 +2,21 @@
   "modes": [
     {
       "leaves": [
+        "assets/job-block-template.yml",
+        "assets/workflow-template.yml",
+        "references/ci-workflow-standards.md",
+        "references/job-shape-rules.md",
+        "references/protected-set.md",
+        "references/trigger-and-filter-rules.md",
+        "references/workflow-debug.md",
+        "references/workflow-implement.md",
+        "references/workflow-verify.md"
+      ],
+      "packet": "sk-code-ci",
+      "workflowMode": "sk-code-ci"
+    },
+    {
+      "leaves": [
         "assets/code-quality-checklist/naming-init-formatting-and-css.md",
         "assets/code-quality-checklist/overview-header-and-comments.md",
         "assets/code-quality-checklist/verification-quick-reference-and-related.md"

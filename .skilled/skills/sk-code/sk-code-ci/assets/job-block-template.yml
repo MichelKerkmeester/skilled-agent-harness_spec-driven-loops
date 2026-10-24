@@ -1,0 +1,29 @@
+# Job scaffold. Paste the job under jobs: in a workflow that already carries the
+# workflow-level permissions and concurrency blocks. Replace every prose placeholder.
+jobs:
+  example:
+    name: Say what this job proves
+    # Switch condition: job-level, ANDed onto any existing condition, off disables.
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    # Size from measured runs: max(10, 3 x p50, 2 x p100) minutes.
+    timeout-minutes: 10
+    # Use this block only when the workflow declares permissions: {} at the top. A write
+    # scope belongs to a job that runs no repository code. Delete it when the workflow
+    # already grants contents: read to every job.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Provision the dependency trees through the composite action. Set cache to false
+      # to force a cold provision. bun-version is the only other input.
+      - name: Provision the dependency trees
+        uses: ./.github/actions/setup
+        with:
+          cache: 'true'
+
+      - name: Run the check
+        run: |
+          set -euo pipefail
+          echo "replace this with the check"
