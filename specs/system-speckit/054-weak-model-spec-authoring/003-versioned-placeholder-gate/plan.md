@@ -80,7 +80,7 @@ A stamp-gated lifecycle. The template stamp says which contract a doc was writte
 4. The five scaffolder texts `NAME`, `Feature Name`, `YYYY-MM-DD`, `###-feature-name` and `1/2/3/3+`, and any text that starts with `template:`. `create.sh` replaces or strips them, so a token there would stay in every scaffold.
 5. A text that already starts with `YOUR_VALUE_HERE`.
 
-**Counts the conversion must give.** Converted per file: `spec.md.tmpl` 96, `plan.md.tmpl` 90, `tasks.md.tmpl` 7, `implementation-summary.md.tmpl` 11, `acceptance-criteria.md.tmpl` 10, so 214 in all. The total hint count of each file does not change, because a token is itself a hint under this regex. The bare hints left are exactly the ones in `tasks.md` T011.
+**Counts the conversion must give.** Converted per file: `spec.md.tmpl` 96, `plan.md.tmpl` 90, `tasks.md.tmpl` 7, `implementation-summary.md.tmpl` 14, `acceptance-criteria.md.tmpl` 10, so 217 in all. The total hint count of each file does not change, because a token is itself a hint under this regex. The bare hints left are exactly the ones in `tasks.md` T011.
 
 **Stamp.** The 7 stamp lines of those five templates change from `| v2.2 -->` to `| v2.3 -->`: 3 in `spec.md.tmpl` and 1 each in the other four. The five manifest entries change the same way.
 
@@ -319,7 +319,7 @@ Setup (T001-T005) ──► Census before (T006) ──► Failing test (T007) �
 |-----------|-------------|------------------|--------|
 | M1 | Setup and census before done | T001 to T006 marked `[x]` with evidence | Start of phase |
 | M2 | Validator done | Test green, three mutations red, shell harness green | Mid phase |
-| M3 | Templates done | 214 tokens, 7 stamps, snapshot regenerated, smoke test as expected | Mid phase |
+| M3 | Templates done | 217 tokens, 7 stamps, snapshot regenerated, smoke test as expected | Mid phase |
 | M4 | Phase closeable | Census same, suite matches, review answered, every acceptance criterion `Met` | End of phase |
 <!-- /ANCHOR:milestones -->
 
@@ -453,7 +453,7 @@ Write it as a row in the progress table of `goal.md` section 4.
 
 **Status**: Accepted
 
-**Context**: By the frozen regex the five templates hold 254 bracketed hints. Of those, 214 are to convert, 38 are texts that `create.sh` replaces or strips and 2 sit inside an inline code span. A hand edit by a weak model would miss some and corrupt others.
+**Context**: By the frozen regex the five templates hold 257 bracketed hints. Of those, 217 are to convert, 38 are texts that `create.sh` replaces or strips and 2 sit inside an inline code span. A hand edit by a weak model would miss some and corrupt others.
 
 **Decision**: `convert_hints.py` converts by the frozen rule and prints how many it changed. Counts before and after, and the list of bare texts left, are checked by commands.
 

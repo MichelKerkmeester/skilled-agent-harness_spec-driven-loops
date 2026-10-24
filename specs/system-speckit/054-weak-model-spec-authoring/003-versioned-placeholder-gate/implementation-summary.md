@@ -51,7 +51,7 @@ Nothing is built yet. This summary is rewritten when the phase closes.
 
 ### Phase 3: versioned-placeholder-gate
 
-When it runs, this phase turns 214 authoring hints in the five core templates into `[YOUR_VALUE_HERE: ...]` tokens and stamps the templates v2.3. A packet scaffolded from them then fails strict validation once its Status leaves Draft with a hint still unfilled, and only warns while it is Draft. Packets with an older stamp keep exactly the verdict they have today. The planning session measured this against a scratch copy of the repository: strict results over 4,766 folders came out identical before and after, and the new test failed first and went red under all three scripted breaks.
+When it runs, this phase turns 217 authoring hints in the five core templates into `[YOUR_VALUE_HERE: ...]` tokens and stamps the templates v2.3. A packet scaffolded from them then fails strict validation once its Status leaves Draft with a hint still unfilled, and only warns while it is Draft. Packets with an older stamp keep exactly the verdict they have today. The planning session measured this against a scratch copy of the repository: strict results over 4,766 folders came out identical before and after, and the new test failed first and went red under all three scripted breaks.
 
 The planning session also found three side effects it does not fix. They are listed under Known Limitations and in `goal.md` section 4 as operator items.
 

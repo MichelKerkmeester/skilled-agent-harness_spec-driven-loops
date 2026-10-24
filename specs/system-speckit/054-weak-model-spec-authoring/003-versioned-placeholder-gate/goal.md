@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `npx vitest run --config ../../vitest.config.ts --project cli tests/placeholder-token-gate.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime/cli`, prints `Tests  5 passed (5)`, `scratch/test-red.txt` shows it failed once before the code change, and `tasks.md` T010 printed `M1_RED`, `M2_RED`, `M3_RED` and `GREEN_AGAIN`
-- [ ] The five templates hold 214 value tokens, `LEFTOVERS_SAME` printed in T011, and `rg -n 'SPECKIT_TEMPLATE_SOURCE:[^|]*\| v2\.2'` over them prints nothing
+- [ ] The five templates hold 217 value tokens, `LEFTOVERS_SAME` printed in T011, and `rg -n 'SPECKIT_TEMPLATE_SOURCE:[^|]*\| v2\.2'` over them prints nothing
 - [ ] A Level 1 scaffold in `specs/zz-bench-gate/` validates `RESULT: PASSED` with a `PLACEHOLDER_FILLED` warning at Draft, shows an `error` at Complete and shows an `error` with a v2.2 stamp, and the track is deleted
 - [ ] `scratch/census/a-before.tsv` equals `a-after.tsv`, and the path, verdict and placeholder columns of `b-before.tsv` equal those of `b-after.tsv`
 - [ ] `python3 -I "$PHASE/scratch/tools/suite_compare.py" "$P1/scratch/baseline/suite-start.txt" "$PHASE/scratch/suite-end.txt" 1 5` prints `SUITE_MATCH_PLUS_NEW_TEST`
@@ -118,6 +118,7 @@ Write each as a row in the table below with its probe output when T016 runs. The
 
 | Item | Note |
 |------|------|
+| Counts moved by phase 002 | Phase 002 applied ledger rows L-A-002 to L-A-004, which put three `[PACKET-ID]` values in `core/implementation-summary.md.tmpl`. The operator chose to keep them, so this phase's counts moved: implementation-summary converts 14 hints, not 11, its T005 line reads `20 14`, and the total is 217 tokens out of 257 hints. Measured by running this phase's T005 test on a copy of the post-002 templates. `create.sh` rewrites every `packet_pointer` line at scaffold time, so the Level 2 counts in T014 do not move |
 | None yet | |
 | Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
 <!-- /ANCHOR:log -->

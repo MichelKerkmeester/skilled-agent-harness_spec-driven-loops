@@ -274,7 +274,7 @@ done
 node --check "$SC/tools/strict-census.mjs" && echo NODE_OK
 ```
 
-- [ ] T005 Test the conversion tool on a copy and save the expected leftover list (`scratch/expected-leftovers.txt`). Run the first block, then the second. Verify: the second block prints five `converted` lines with `96`, `90`, `7`, `11` and `10`, then five `converted 0` lines, then five lines of the form `<file> total=<n> tokens=<m>` with `106 96`, `101 90`, `17 7`, `17 11` and `13 10`, then `LEFTOVERS_SAME`. The template files themselves are not touched by this task: `git status --porcelain $TPL` prints nothing.
+- [ ] T005 Test the conversion tool on a copy and save the expected leftover list (`scratch/expected-leftovers.txt`). Run the first block, then the second. Verify: the second block prints five `converted` lines with `96`, `90`, `7`, `14` and `10`, then five `converted 0` lines, then five lines of the form `<file> total=<n> tokens=<m>` with `106 96`, `101 90`, `17 7`, `20 14` and `13 10`, then `LEFTOVERS_SAME`. The template files themselves are not touched by this task: `git status --porcelain $TPL` prints nothing.
 
 ```bash
 cd "$WORKTREE"
@@ -897,7 +897,7 @@ out=$(gate_test)
 if printf '%s' "$out" | grep -qE 'Tests +5 passed \(5\)'; then echo GREEN_AGAIN; else echo NOT_GREEN; fi
 ```
 
-- [ ] T011 Convert the five templates, stamp them and update the manifest (`.skilled/skills/system-spec-kit/templates/core/*.tmpl` for spec, plan, tasks and implementation-summary, `templates/addons/acceptance-criteria.md.tmpl`, `templates/spec-kit-docs.json`, `scratch/templates-before/`). Run the first block, then the second. Verify: the first block prints five `converted` lines with `96`, `90`, `7`, `11` and `10`. In the second block the stamp count prints five lines with 7 stamps in all, the manifest count prints `5`, the leftover check prints `LEFTOVERS_SAME`, the token total prints `214`, and the check for old stamps prints nothing. A different converted number means the template differs from the one this plan was written against: restore from `scratch/templates-before/`, write the difference in `goal.md` section 4 and block the task.
+- [ ] T011 Convert the five templates, stamp them and update the manifest (`.skilled/skills/system-spec-kit/templates/core/*.tmpl` for spec, plan, tasks and implementation-summary, `templates/addons/acceptance-criteria.md.tmpl`, `templates/spec-kit-docs.json`, `scratch/templates-before/`). Run the first block, then the second. Verify: the first block prints five `converted` lines with `96`, `90`, `7`, `14` and `10`. In the second block the stamp count prints five lines with 7 stamps in all, the manifest count prints `5`, the leftover check prints `LEFTOVERS_SAME`, the token total prints `217`, and the check for old stamps prints nothing. A different converted number means the template differs from the one this plan was written against: restore from `scratch/templates-before/`, write the difference in `goal.md` section 4 and block the task.
 
 ```bash
 cd "$WORKTREE"
@@ -1292,7 +1292,7 @@ fi
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every hint of the five templates is a token or is on the kept list: `LEFTOVERS_SAME` in T011 and `214` tokens.
+- [ ] CHK-FIX-001 [P0] Every hint of the five templates is a token or is on the kept list: `LEFTOVERS_SAME` in T011 and `217` tokens.
 - [ ] CHK-FIX-002 [P0] The 7 stamp lines and the 5 manifest entries read v2.3, and no old stamp is left in the five templates.
 - [ ] CHK-FIX-003 [P0] The orchestrator and the shell rule agree on the four pinned cells, shown by the shell assertions in the test.
 - [ ] CHK-FIX-004 [P1] The four cells the test does not pin keep their old behavior, shown by the 8 isolated and 3 edge cases of the harness.
@@ -1316,7 +1316,7 @@ fi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks agree on the lifecycle table, the 214 conversions and the 7 stamp lines
+- [ ] CHK-040 [P1] Spec, plan and tasks agree on the lifecycle table, the 217 conversions and the 7 stamp lines
 - [ ] CHK-041 [P1] `goal.md` section 4 records the start commit, each census total, each blocker and each operator item
 - [ ] CHK-042 [P2] `implementation-summary.md` names the exact commands that produced each number
 <!-- /ANCHOR:docs -->
