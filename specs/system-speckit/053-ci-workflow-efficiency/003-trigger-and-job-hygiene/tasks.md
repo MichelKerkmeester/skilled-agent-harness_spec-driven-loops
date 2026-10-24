@@ -168,11 +168,11 @@ Stop and escalate if: no answer arrives, or the answer is neither `skip` nor `fi
 
 ---
 
-### T006 Copy the 002 baseline rows this phase measures against (AC-016)
+### T006 [x] Copy the baseline rows this phase measures against (AC-016)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md` (new file). Anchor: none.
 
-Not done, re-checked 2026-10-25: `test -f` on `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` printed `BASELINE_MISSING`. The 002 collection is only partly on disk (`window.json`, `runs-last-1000.json`, `run-ids.txt` and `jobs/`, no `summary.md`), and its window starts at 2026-10-24T06:40:51Z. This phase's six commits reached `main` earlier: CI run `40026353792` on head `3ab67b70cb` was created at 2026-10-23T21:23:01Z. A 002 baseline over that window therefore already contains this phase's changes and cannot serve as its before number. This also blocks T036.
+Done 2026-10-25 under the operator's ruling: "Use the 001 research data as the baseline for this phase." The 002 `summary.md` this task names covers 2026-10-23T21:59:34Z to 2026-10-24T21:59:34Z, which starts after this phase reached `main` (run `40026353792`, head `3ab67b70cb`, created 2026-10-23T21:23:01Z), so it is the after-state and not a before number. The source used is `../001-research/scratch/ci-run-data/summary.md` (runs from 2026-10-22T07:07:25Z to 2026-10-23T06:35:03Z), copied the way phase 004 copies it in its `scratch/phase-baseline.md`. The file carries `source: 001 dataset` on its first line, the reason, the method and the ten workflow rows. The `BASELINE_PRESENT` check below names the 002 file and does not apply to the ruled source; the check that applies is that `scratch/phase-baseline.md` exists and carries the ten rows.
 
 Change: copy the 002 summary's first 40 lines, then append one row per workflow this phase touches: `advisory-checks`, `agent-mirror-sync`, `changed-packet-validation`, `command-tree-parity`, `dispatch-enforcement-guard`, `deep-loop-runtime`, `repo-rules-corpus`, `rule-canary-sync`, `skill-doc-frontmatter`, `strict-pass-freshness-report`.
 
@@ -1563,11 +1563,11 @@ Stop and escalate if: the first count differs from the second, or a row carries 
 
 ---
 
-### T036 Measure the phase delta (AC-016)
+### T036 [x] Measure the phase delta (AC-016)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md` (new file). Anchor: none.
 
-Not done, checked 2026-10-25: more than 24 h have passed since the changes merged (2026-10-23T21:23Z), so the window condition holds, but T006 has not run and the 002 `summary.md` is absent. The 002 collection now on disk starts at 2026-10-24T06:40:51Z, after this phase landed, so it holds no before number for this phase. Stopped here by this task's own rule: a delta needs ten baseline rows, and no research figure may stand in for a measured one. The operator decides which pre-change window is the baseline (see `implementation-summary.md`, Known Limitations).
+Done 2026-10-25. The window condition holds: the 002 24 h window was collected 24 h 35 min after the changes merged (2026-10-23T21:23Z). Under the operator's ruling the baseline is the 001 dataset (see T006) and the after-state is the 002 window `../002-rebuild-fanout-removal/scratch/baseline-24h/` (read only). `scratch/runs-after.json` is a byte copy of that window's `window.json` (795 runs) rather than a fresh `gh run list`, because a list run today would cover a different window. `scratch/phase-result.md` carries the ten rows (the first grep prints `10`) and `unmeasured` (the second grep prints `6`). Raw ten-workflow delta 1039 to 610 runner-min/day (-429); net of phase 002: `command-tree-parity` -136, `rule-canary-sync` -49, `dispatch-enforcement-guard` 0.
 
 Change: at least 24 h after the last change merges, collect the run history and one job sample per workflow this phase touched, then write the file with the ten rows from `scratch/phase-baseline.md`, the after numbers, and the delta.
 
@@ -1592,7 +1592,7 @@ Stop and escalate if: fewer than 24 h have passed, or fewer than ten rows are re
 
 ### T037 Close the acceptance rows with evidence (AC-001 to AC-017)
 
-Partly done 2026-10-24: the rows the probes decide are closed with run ids. AC-002, AC-003, AC-006, AC-007, AC-010, AC-011 and AC-012 are `Met`. AC-009 stays `Unmet` because its proof needs the seconds recorded in `scratch/phase-result.md` against an 002 baseline sample and neither exists. AC-016 stays `Unmet` until T036. Re-checked 2026-10-25: `grep -c '| Unmet |'` still returns `2` (AC-009 and AC-016) and the strict validator prints `RESULT: PASSED` with the phase In progress. The check below returns `2` until T036 has run and those two rows close.
+Partly done, updated 2026-10-25: 16 of 17 rows are `Met`. AC-016 closed with the T036 delta (net of phase 002, `command-tree-parity` -136 against about -123 and `rule-canary-sync` -49 against about -39). AC-009 stays `Unmet` on its own wording: `repo-rules-corpus` is 21 s shorter and `deep-loop-runtime` 23 s, but `rule-canary-sync` is 52 s shorter (71 s on the window median), which is not about 20 s; the job is under 60 s at 24 s. The operator rules on whether an overshoot satisfies the row. The check below returns `1` until that row closes.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: the `| Unmet | - |` status cell of each row.
 
@@ -1617,7 +1617,7 @@ Stop and escalate if: any row has no observed evidence, or the validator does no
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: `| AC-017 | R3-R11 | REQ-013 |` at `:80`, the row whose Verification cell names the id-hygiene check.
 
-Not done 2026-10-25: held back by instruction, no commit, stage or push in this pass, and the closure statement reads `Closeable: No` while AC-009 and AC-016 are `Unmet`.
+Not done 2026-10-25: the orchestrator makes this commit, not this pass, and the closure statement reads `Closeable: No` while AC-009 is `Unmet`.
 
 Change: stage the T037 acceptance edit and commit it with this message. No other path is staged.
 
@@ -1652,7 +1652,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
 <!-- /ANCHOR:completion -->
 
@@ -1664,7 +1664,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Recommendations**: See `../001-research/research/synthesis-reviews/final-review.md` (`:223-325` for R3 to R11, `:552-560` for the phase plan)
-- **Baseline to beat**: See `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md`
+- **Baseline to beat**: See `../001-research/scratch/ci-run-data/summary.md` (the before-state, by the operator's ruling of 2026-10-25); `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is the after-state
 - **Original research**: See `../001-research/research/research.md` (`:88-117` for triggers, concurrency and timeouts)
 
 | R-id | Requirements | Tasks | Acceptance criteria |
@@ -1704,7 +1704,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 
 - [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-013, each naming its R-id or a gate [EVIDENCE: spec.md holds REQ-001 to REQ-013, 13 rows by `grep -cE '^\| REQ-0(0[1-9]|1[0-3]) '`, read 2026-10-25]
 - [x] CHK-002 [P0] Technical approach defined in plan.md - the concurrency shape, the filter derivation from the four checkers, the deleted step, the status-capture form and the two depth values [EVIDENCE: plan.md carries the Affected Surfaces, the filter matrix and the dependency matrix; read 2026-10-25]
-- [ ] CHK-003 [P1] Dependencies identified and available - the 002 baseline (T006), D2, D3, D4, D7 and D10 (T001 to T005), and `gh` with `repo` and `actions`
+- [x] CHK-003 [P1] Dependencies identified and available - the baseline (T006), D2, D3, D4, D7 and D10 (T001 to T005), and `gh` with `repo` and `actions` [EVIDENCE: 2026-10-25: the baseline is the 001 dataset by the operator's ruling, in `scratch/phase-baseline.md`; `scratch/decisions.md` holds D2, D3, D4, D7 and D10; read-only `gh run view 40101304274` returned the job JSON]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1723,7 +1723,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-017
+- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-017 [NOT MET 2026-10-25: 16 of 17 rows `Met`; AC-009 stays `Unmet` because `rule-canary-sync` checkout is 52 s shorter against an about-20-s row, and awaits the operator]
 - [x] CHK-021 [P0] Manual testing complete - the trigger probes (T027 to T034) and the job-shape probes (T030, T031) are recorded in `scratch/phase-result.md` [EVIDENCE: the trigger and job-shape probes T027 to T034 are recorded in `scratch/probe-results.md` with head SHAs and run ids (`scratch/phase-result.md` does not exist yet, so the record lives in the probe file)]
 - [x] CHK-022 [P1] Edge cases tested - a specs-only pull request for each newly filtered workflow, a third push while one run is pending, and a `workflow_dispatch` run [EVIDENCE: specs-only negatives: command-tree-parity `[]` on head `15f1bf7844` and agent-mirror-sync `[]` on head `4d4e797b83`; the pushed-twice cancel in run `40100004699`; the dispatch run `40101537374`; all in `scratch/probe-results.md`, read 2026-10-25]
 - [x] CHK-023 [P1] Error scenarios validated - the deleted-suite branch still fails its job (T030), and a broken doc-model reference shows a failed step under a green job (T031) [EVIDENCE: run `40101163105` concluded `failure` with `##[error]Dispatch rule suite not found`; run `40101235126` shows the step error under a `success` job (`scratch/probe-results.md`, AC-006, AC-007)]
@@ -1769,7 +1769,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only - the decisions, baseline rows, inventory, after-run JSON and result all live in `scratch/` [EVIDENCE: reran 2026-10-25: `ls -a scratch/` shows decisions.md, pre-commit-inventory.md, probe-branch-approval.md and probe-results.md; no stray temp file, and the `/tmp` commit message file does not exist]
-- [ ] CHK-051 [P1] scratch/ cleaned before completion - the five documents are kept on purpose: `decisions.md` records the answers, `phase-baseline.md` and `phase-result.md` are the before and after numbers a later phase measures against, `pre-commit-inventory.md` is the phase's own deliverable, and `runs-after.json` is the raw sample behind the delta
+- [x] CHK-051 [P1] scratch/ cleaned before completion - the seven documents are kept on purpose: `decisions.md` records the answers, `phase-baseline.md` and `phase-result.md` are the before and after numbers a later phase measures against, `pre-commit-inventory.md` is the phase's own deliverable, `probe-results.md` and `probe-branch-approval.md` are the probe record, and `runs-after.json` is the raw sample behind the delta [EVIDENCE: `ls -a scratch/` on 2026-10-25 lists exactly those seven files plus `.gitkeep`; the analysis script lived in the session scratchpad outside the phase, and no temp file remains here]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1780,7 +1780,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 11/12 |
-| P1 Items | 13 | 11/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-25

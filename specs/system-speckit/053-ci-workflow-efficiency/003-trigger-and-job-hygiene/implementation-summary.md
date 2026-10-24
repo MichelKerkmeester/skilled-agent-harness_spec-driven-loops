@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "In progress, built and probed but unclosed: this phase added a concurrency group to the 30 PR-triggered workflows, filtered command-tree-parity and agent-mirror-sync to the inputs their checkers read, deleted dispatch-enforcement-guard's duplicate dispatch-audit step, removed one suppression layer from the two report-only workflows, and checks out at the depth each job reads. The CI probes ran on 2026-10-24 and close 15 of 17 acceptance rows. The checkout-timing record (AC-009) and the 24 h delta (AC-016) remain."
+description: "In progress, built, probed and measured but unclosed: this phase added a concurrency group to the 30 PR-triggered workflows, filtered command-tree-parity and agent-mirror-sync to the inputs their checkers read, deleted dispatch-enforcement-guard's duplicate dispatch-audit step, removed one suppression layer from the two report-only workflows, and checks out at the depth each job reads. The CI probes ran on 2026-10-24 and the 24 h delta was measured on 2026-10-25 against the 001 research dataset; 16 of 17 acceptance rows are met. AC-009 (checkout shortening of about 20 s) stays unmet for `rule-canary-sync` and awaits an operator ruling."
 trigger_phrases:
   - "trigger and job hygiene implementation summary"
 importance_tier: "normal"
@@ -8,12 +8,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
-    last_updated_at: "2026-10-24T09:00:00Z"
+    last_updated_at: "2026-10-25T01:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Re-ran gates; T036 stopped on missing baseline"
-    next_safe_action: "Name a baseline, then run T036"
+    recent_action: "Ran T006 and T036 on the 001 baseline; AC-016 Met, AC-009 stays Unmet"
+    next_safe_action: "Operator rules on AC-009, then T038 closure commit"
     blockers:
-      - "002 baseline summary absent and its window postdates this phase"
+      - "AC-009 Unmet: rule-canary-sync checkout 52 s shorter against an about-20-s row"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-trigger-and-job-hygiene |
-| **Completed** | Built and probed, not closed (the checkout-timing record and the delta pending) |
+| **Completed** | Built, probed and measured, not closed (AC-009 awaits an operator ruling; the T038 closure commit is the orchestrator's) |
 | **Level** | 3 |
 | **Status** | In progress |
 <!-- /ANCHOR:metadata -->
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Built and probed, not closed. The six concern commits landed on `main`: 30 PR-triggered workflows carry the concurrency block, `command-tree-parity.yml` and `agent-mirror-sync.yml` are filtered to their checkers' inputs, the duplicate dispatch-audit step is gone, both suppression layers are removed, and the three checkouts read only the history they need. The README table matches the YAML, and `scratch/pre-commit-inventory.md` records the 13 gate keys with a `Reason` column. The CI probes T027 to T035 ran on 2026-10-24 and 15 of 17 acceptance rows are `Met`. Still open as of 2026-10-25: AC-009 (its proof needs the checkout seconds in `scratch/phase-result.md` against an 002 baseline sample, and neither exists) and AC-016 (the T036 delta, blocked on a pre-change baseline via T006), then the rest of T037 and the T038 commit. The phase stays In progress.
+Built, probed and measured, not closed. The six concern commits landed on `main`: 30 PR-triggered workflows carry the concurrency block, `command-tree-parity.yml` and `agent-mirror-sync.yml` are filtered to their checkers' inputs, the duplicate dispatch-audit step is gone, both suppression layers are removed, and the three checkouts read only the history they need. The README table matches the YAML, and `scratch/pre-commit-inventory.md` records the 13 gate keys with a `Reason` column. The CI probes T027 to T035 ran on 2026-10-24. On 2026-10-25, by the operator's ruling ("Use the 001 research data as the baseline for this phase"), T006 and T036 ran with the 001 dataset as the before-state and the 002 24 h window as the after-state, and 16 of 17 acceptance rows are `Met`. Still open: AC-009 (`rule-canary-sync` checkout is 52 s shorter against a row that says about 20 s; `repo-rules-corpus` is 21 s and `deep-loop-runtime` 23 s), then the T038 closure commit, which the orchestrator makes. The phase stays In progress.
 
 ### Phase 3: trigger-and-job-hygiene
 
@@ -71,7 +71,7 @@ This phase gives 30 PR-triggered workflows one concurrency slot each, so a secon
 | `.github/workflows/deep-loop-runtime.yml` | Modified | `fetch-depth: 0` became `fetch-depth: 2` at `:46` after the concurrency block (the pre-block position was `:42`) |
 | `.github/workflows/README.md` | Modified | The push/PR table matches the YAML; `:71` carries the delivered three-input wording |
 | `scratch/decisions.md`, `scratch/pre-commit-inventory.md` | Created | The five answers and the 13-gate inventory with its `Reason` column |
-| `scratch/phase-baseline.md`, `scratch/phase-result.md`, `scratch/runs-after.json` | Pending | The 002 baseline rows and the measured delta; blocked on the 002 24 h snapshot |
+| `scratch/phase-baseline.md`, `scratch/phase-result.md`, `scratch/runs-after.json` | Created | The 001 baseline rows, the measured delta, and a copy of the 002 24 h window's run list (the after-state) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -79,7 +79,7 @@ This phase gives 30 PR-triggered workflows one concurrency slot each, so a secon
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005), the content edits (T007 to T021), the concurrency block and the whole-tree gates (T022 to T025), and the six concern commits (T026) are done, the probes and the inventory re-check (T027 to T035) ran on 2026-10-24. T006's baseline copy, T036's delta and the closure (T037's last two rows, T038) remain. The gates pass: `check-gate-inputs.sh` prints `RESULT: PASSED` (`twin_pairs=340`), the YAML parse exits 0 over all 33 workflows, and `check-gate-inputs: 54 passed, 0 failed`. The probes opened throwaway pull requests, observed the runs and deleted the branches. Still owed: the delta and the closure commit.
+Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005), the content edits (T007 to T021), the concurrency block and the whole-tree gates (T022 to T025), and the six concern commits (T026) are done, the probes and the inventory re-check (T027 to T035) ran on 2026-10-24. T006's baseline copy and T036's delta ran on 2026-10-25 under the operator's baseline ruling; the AC-009 row and the closure commit (T038) remain. The gates pass: `check-gate-inputs.sh` prints `RESULT: PASSED` (`twin_pairs=340`), the YAML parse exits 0 over all 33 workflows, and `check-gate-inputs: 54 passed, 0 failed`. The probes opened throwaway pull requests, observed the runs and deleted the branches. Still owed: the AC-009 ruling and the closure commit, which the orchestrator makes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -110,9 +110,9 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 | Positive and negative trigger probes | command-tree-parity `40100373828` and no run for a specs-only head, agent-mirror-sync `40102573620` and `40102589221`, no run for a specs-only head, skill-doc-frontmatter `40102614545` (AC-003, AC-010, AC-011) |
 | Deleted rule suite | Run `40101163105` concluded `failure` with `##[error]Dispatch rule suite not found` (AC-006) |
 | Report-only steps | Run `40101235126`: `##[error]doc-model drift` once in the log, one failure annotation, job `success`. Dispatch `40101537374`: 175 `would repair` lines and one error line, job `success` (AC-007, proof changed by the 2026-10-24 operator ruling) |
-| Checkout depth | Three runs green and each checkout shorter, `rule-canary-sync` job 24 s, and the 002-baseline record is missing (AC-009 `Unmet`) |
+| Checkout depth | Against the 001 baseline medians: `repo-rules-corpus` 72 s to 51 s (-21), `deep-loop-runtime` 74 s to 51 s (-23), `rule-canary-sync` 73 s to 21 s (-52, run `40101304274`), canary job 24 s against 78 s. AC-009 stays `Unmet` because 52 s is not about 20 s |
 | Pre-commit inventory | 13 keys, 13 rows, 13 verdicts (AC-012) |
-| `scratch/phase-result.md` against the 002 baseline | Not run. Re-checked 2026-10-25: `BASELINE_MISSING` for the 002 summary, and the 002 window being collected starts at 2026-10-24T06:40:51Z, after this phase landed (run `40026353792`, created 2026-10-23T21:23:01Z) (AC-016 `Unmet`) |
+| `scratch/phase-result.md` delta | Ten workflows 1039 to 610 runner-min/day, raw -429. Net of phase 002: `command-tree-parity` -136, `rule-canary-sync` -49, `dispatch-enforcement-guard` 0; PR-side cancellation unmeasured (AC-016 `Met`) |
 | Gates re-run at the current head 2026-10-25 | `check-gate-inputs.sh` `RESULT: PASSED` (`twin_pairs=336 failures=0`), `check-gate-inputs: 57 passed, 0 failed`, YAML parse exit 0 over 32 files, and the id grep over the six commits prints nothing. The PR-cancel count is 29 and the file count 32 because a sibling phase merged `hooks-node-tests.yml` away |
 <!-- /ANCHOR:verification -->
 
@@ -121,7 +121,7 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 <!-- ANCHOR:deviations -->
 ## Deviations
 
-1. **The shortening is not a uniform 20 s (T032).** Checkout fell by 47 to 67 s for `rule-canary-sync` against three main samples that spanned 68 to 88 s, by 11 s for `repo-rules-corpus` and by 13 s for `deep-loop-runtime`. The baselines are single pre-change main runs, because `scratch/phase-baseline.md` does not exist, and checkout time varies by tens of seconds run to run. The post-change main run of `rule-canary-sync` took 51 s against 21 s on the probe.
+1. **The shortening is not a uniform 20 s (T032, T036).** Against the 001 baseline medians, `repo-rules-corpus` is 21 s shorter and `deep-loop-runtime` 23 s, but `rule-canary-sync` is 52 s shorter on the phase-only run (`40101304274`, checkout 21 s against 73 s). The 24 h window median for the canary is 2 s, which is a later phase's sparse checkout (`ea39cd7b2c`), not this phase. The row says about 20 s, so AC-009 stays `Unmet` and the operator rules.
 2. **Probes needed pull requests (T027 to T034).** The push triggers of the probed workflows list `main` and `skilled/**` only, so a probe-branch push starts nothing. Each probe opened a throwaway pull request against `main`, and the branches and PRs were deleted afterwards.
 3. **A shared scratch worktree after T029.** After T029, the probe commits ran in one shared scratch worktree instead of one worktree per probe. Its ignored `node_modules` and `dist` were cloned copy-on-write from the packet worktree, because a bare worktree makes the pre-commit hook fail with `Cannot find module`.
 4. **Mirror regeneration in probe commits.** The mirror-parity hook blocked probes that touched a skill or agent file until `sync-skills-hermes.cjs` and `codex/sync-agents.cjs` ran and their output was staged. The spec-remint, route-remint and doc-version-bump hooks also added files to some probe commits.
@@ -135,9 +135,9 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No number is measured yet.** Every saving in this packet comes from `001-research/research/synthesis-reviews/final-review.md` and is restated as a target, not an observation. `scratch/phase-result.md` replaces it with a measured delta against `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md`.
-2. **The PR-side cancellation cannot be measured from the 23.5 h window**, which held no pull-request runs. It is recorded as unmeasured rather than as zero, and the T027 probe is the direct observation.
-3. **The delta cannot start until a pre-change baseline exists.** T006 stops when `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is absent, because no research figure may stand in for a measured before number; the implementation landed ahead of it, so only T006 and T036 wait. As of 2026-10-25 the 002 collection on disk starts at 2026-10-24T06:40:51Z, after this phase landed on `main`, so even a finished 002 summary would measure the changed state, not the state before it. The operator decides which window is the before number (the 001 dataset covers 2026-10-22 to 2026-10-23, and 004 used it as a provisional source).
+1. **The measured figures carry confounds.** The 001 baseline holds phase 002's per-rebuild-commit fan-out (73 runs per unfiltered push workflow against 49 after), covers Thursday into Friday against a Saturday after-window, and shows 0 runs for pull-request-only workflows. `scratch/phase-result.md` records raw deltas and the figures netted against the same window's 49-run reference; the net figures are inferred, not observed with this phase reverted.
+2. **The PR-side cancellation stays unmeasured.** The after-window shows 13 cancelled pull_request runs, but their job minutes are not sampled and there is no counterfactual, so no runner-minute figure is claimed. T027 is the direct observation.
+3. **The baseline source was changed by ruling.** `spec.md` REQ-012 and T006 name the 002 summary as the baseline; on 2026-10-25 the operator ruled that the 001 research dataset is the baseline, because the 002 window postdates this phase. The 002 window is used as the after-state. The requirement text is not rewritten.
 4. **The dispatch test is not hermetic to OpenCode version.** `no-bare-agent-general` in `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` declares `appliesTo: ["v1"]`; `evaluate()` resolves the local binary through `resolveOpencodeVersionSync`. Local OpenCode v2.1.4 skips the rule and causes 2 failures in `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs`. With `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`, the version resolves to `unknown`, the rule remains, and the focused test prints `Tests 7 passed (7)`. CI has no OpenCode binary, so it also resolves `unknown`; run `40026353792` is green. Pinning the resolved version belongs to the dispatch-hooks owner, outside this packet.
 <!-- /ANCHOR:limitations -->
 

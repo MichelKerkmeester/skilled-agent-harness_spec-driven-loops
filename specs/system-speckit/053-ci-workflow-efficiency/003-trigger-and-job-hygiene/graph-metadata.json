@@ -60,7 +60,7 @@
       ".github/workflows/skill-doc-frontmatter.yml",
       ".github/workflows/README.md",
       "scratch/decisions.md",
-      "codex/sync-agents.cjs"
+      "scratch/phase-baseline.md"
     ],
     "entities": [
       {
@@ -178,9 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "codex/sync-agents.cjs",
+        "name": "phase-baseline.md",
+        "kind": "doc",
+        "path": "scratch/phase-baseline.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for",
     "created_at": "2026-10-23T08:47:51Z",
-    "last_save_at": "2026-10-24T22:04:26.951Z",
+    "last_save_at": "2026-10-24T22:30:24.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a3fc8a4258e6614cc085a4ec9ae2d0fcc44e918680182531962943f98ba7c69",
+    "source_fingerprint": "sha256:b9bc897f75e0774166515a0a292325215db931854576577a7eef72bd06b47cdd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2fd8d51d2b44bfd8a5a72bd4ed0a23bc3e8512da040e19004c6a7a8969b69ff",
       "plan.md": "b0c51ce0f8c4f149439176104907322af73f333fbb7996462235e785237a40b4",
-      "tasks.md": "dffd3d0d701aace70d75d655fbb120535b0b90e21dc21c3ace275abab9066918",
+      "tasks.md": "fb9b9f9d33e64e71af9af438f82ab3d5adcd1612813b8f3202643462c3aebc8b",
       "decision-record.md": "3316ae03556a3b0985de6f7a0ba2c5b96c316cef973fe3d70bf089d1a81aa5cb",
-      "implementation-summary.md": "cde35bb5e8ea2d04abad2e34393099bc598bcf1c9be943c0dfd704d765fe092f"
+      "implementation-summary.md": "e29a1b6eab7456bcc53492541aec264b38cdbdd458d93360b30961306652ff4c"
     },
     "last_active_at": null
   }
