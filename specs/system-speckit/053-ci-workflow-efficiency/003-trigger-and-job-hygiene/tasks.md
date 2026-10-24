@@ -37,9 +37,11 @@ Line numbers are the values on disk when this plan was written. Tasks T007 to T0
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 DECISION D2 (operator yes required) - cancel on main or on pull requests only (AC-001, AC-002)
+### T001 [x] DECISION D2 (operator yes required) - cancel on main or on pull requests only (AC-001, AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D2=pr-only`, and all 30 delivered groups carry the pull-request expression.
 
 Default: pull requests only, `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. After R1, main cancellation reclaims about 89 wall-minutes per window across 23 pairs and costs a verdict on every commit but the newest.
 
@@ -62,9 +64,11 @@ Stop and escalate if: no answer arrives, or the answer is neither `pr-only` nor 
 
 ---
 
-### T002 DECISION D3 (operator yes required) - approve or reject the command-tree-parity filter (AC-003)
+### T002 [x] DECISION D3 (operator yes required) - approve or reject the command-tree-parity filter (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D3=approve`, and T007 to T009 and the row move in T021 ran under it.
 
 Default: approve. The filter is worth ~265 runner-min/day standalone and ~123 after R1, because 30 of 38 human pushes touch none of its inputs.
 
@@ -86,9 +90,11 @@ Stop and escalate if: no answer arrives, or the answer is neither `approve` nor 
 
 ---
 
-### T003 DECISION D4 (operator yes required) - choose the dispatch-enforcement-guard shape (AC-005, AC-006)
+### T003 [x] DECISION D4 (operator yes required) - choose the dispatch-enforcement-guard shape (AC-005, AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D4=drop-step`, and T012 ran under it.
 
 Default: `drop-step`. Keep both jobs and delete the duplicate `Run the dispatch audit core suite` step at `:41-50`. No check name changes, and the fail-closed rule-suite guard at `:31-35` stays byte-identical.
 
@@ -110,9 +116,11 @@ Stop and escalate if: the answer is `merge`. T012, T030 and the README row for t
 
 ---
 
-### T004 DECISION D7 (operator yes required) - approve fetch-depth 2 on deep-loop-runtime (AC-008, AC-009)
+### T004 [x] DECISION D7 (operator yes required) - approve fetch-depth 2 on deep-loop-runtime (AC-008, AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D7=depth-2`, and T017 ran under it.
 
 Default: `depth-2`. The mode-event suites bind a run to a commit and its parent (`deep-loop-runtime.yml:38-39`) and read nothing older.
 
@@ -134,9 +142,11 @@ Stop and escalate if: no answer arrives, or the answer is neither `depth-2` nor 
 
 ---
 
-### T005 DECISION D10 (operator yes required) - skip or build the changed-packet-validation filter (AC-004)
+### T005 [x] DECISION D10 (operator yes required) - skip or build the changed-packet-validation filter (AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D10=skip`, and `changed-packet-validation.yml` carries no `paths:` block (count 0).
 
 Default: `skip`. The filter is worth about 10 runner-min/day after R1, because 33 of 38 human pushes touch `specs/**` and would still run it.
 
@@ -161,6 +171,8 @@ Stop and escalate if: no answer arrives, or the answer is neither `skip` nor `fi
 ### T006 Copy the 002 baseline rows this phase measures against (AC-016)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-baseline.md` (new file). Anchor: none.
+
+Not done: `scratch/phase-baseline.md` does not exist; the copy waits on the 002 24 h baseline (`scratch/baseline-24h/summary.md`), which has not yet been recorded. This also blocks T036.
 
 Change: copy the 002 summary's first 40 lines, then append one row per workflow this phase touches: `advisory-checks`, `agent-mirror-sync`, `changed-packet-validation`, `command-tree-parity`, `dispatch-enforcement-guard`, `deep-loop-runtime`, `repo-rules-corpus`, `rule-canary-sync`, `skill-doc-frontmatter`, `strict-pass-freshness-report`.
 
@@ -201,9 +213,9 @@ Stop and escalate if: `BASELINE_PRESENT` is not printed. Phase 002 has not recor
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-### T007 Rewrite the command-tree-parity comment so it describes the filter (AC-003)
+### T007 [x] Rewrite the command-tree-parity comment so it describes the filter (AC-003)
 
-File: `.github/workflows/command-tree-parity.yml:47-50`, anchor:
+File: `.github/workflows/command-tree-parity.yml:98-102` after the filters landed (`:47-50` when planned), anchor:
 
 ```yaml
     # The Hermes runtime reads generated copies of every skill's SKILL.md and of the
@@ -211,6 +223,8 @@ File: `.github/workflows/command-tree-parity.yml:47-50`, anchor:
     # narrow enough to keep a heavier workflow cheap sees every such edit, so the copies
     # are compared here, on every push and pull request.
 ```
+
+Done: the replacement four lines sit at `:98-102`; `sed -n '98,102p'` shows `The filter above names each of those sources` (grep count=1). The 48 filter lines T008 and T009 inserted moved the block.
 
 Change: replace those four lines with these four:
 
@@ -224,20 +238,22 @@ Change: replace those four lines with these four:
 Check:
 
 ```bash
-sed -n '47,50p' .github/workflows/command-tree-parity.yml | grep -c 'The filter above names each of those sources'
+sed -n '98,102p' .github/workflows/command-tree-parity.yml | grep -c 'The filter above names each of those sources'
 ```
 
 Expected: `1`.
 
 Rollback: replace the four new lines with the four quoted anchor lines.
 
-Stop and escalate if: the four anchor lines are not on the file at `:47-50`.
+Stop and escalate if: the four anchor lines are not on the file at `:98-102` (the filters moved them from `:47-50`).
 
 ---
 
-### T008 Add the push filter to command-tree-parity (AC-003)
+### T008 [x] Add the push filter to command-tree-parity (AC-003)
 
 File: `.github/workflows/command-tree-parity.yml:7-8`, anchor:
+
+Done: the 24 `paths:` lines sit under `push:`; the file holds 46 `      - '` entries across both events.
 
 ```yaml
   push:
@@ -287,9 +303,11 @@ Stop and escalate if: the anchor is not at `:7-8`, or the count is not 23.
 
 ---
 
-### T009 Add the pull-request filter to command-tree-parity (AC-003)
+### T009 [x] Add the pull-request filter to command-tree-parity (AC-003)
 
 File: `.github/workflows/command-tree-parity.yml:5-6`, anchor:
+
+Done: counts confirmed — `      - '` = 46, `^    paths:` = 2, `command-tree-parity.yml'` = 2.
 
 ```yaml
   pull_request:
@@ -314,9 +332,11 @@ Stop and escalate if: the anchor is not at `:5-6`, or any count differs.
 
 ---
 
-### T010 Run the twin gate over the new parity filter (AC-003, AC-013)
+### T010 [x] Run the twin gate over the new parity filter (AC-003, AC-013)
 
 File: `.github/scripts/check-gate-inputs.sh` (read-only; no edit). Anchor: none.
+
+Done: `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, `RESULT: PASSED` (twin_pairs ≥ 311).
 
 Change: none. This task proves the filter's twin pairs.
 
@@ -334,9 +354,11 @@ Stop and escalate if: the gate prints `filter-twins` twice for the same entry, o
 
 ---
 
-### T011 Record D10 and add the changed-packet-validation filter only if it flipped (AC-004)
+### T011 [x] Record D10 and add the changed-packet-validation filter only if it flipped (AC-004)
 
 File: `.github/workflows/changed-packet-validation.yml:5` and `:7`, anchors:
+
+Done: `D10=skip` is recorded and no YAML edit ran; `grep -c 'paths:'` on the file returns 0.
 
 ```yaml
     branches: [main, 'skilled/**']
@@ -382,9 +404,11 @@ Stop and escalate if: the `D10=` line is absent, or the filter answer leaves few
 
 ---
 
-### T012 Delete the duplicate dispatch-audit step (AC-006)
+### T012 [x] Delete the duplicate dispatch-audit step (AC-006)
 
 File: `.github/workflows/dispatch-enforcement-guard.yml:41-50`, anchor:
+
+Done: the ten lines are gone — `dispatch-audit.test.mjs` count is 0 and `vitest run --config .skilled/hooks/vitest.config.ts` count is 1; the rule-suite guard and the `hooks-vitest` job are unchanged.
 
 ```yaml
       - name: Run the dispatch audit core suite
@@ -421,6 +445,8 @@ Stop and escalate if: the anchor is not at `:41-50`, or the diff shows any added
 
 File: `.skilled/hooks/vitest.config.ts` (read-only; no edit). Anchor: none.
 
+Partial: the seven suites collect and CI run 40026353792 (`hooks-vitest` on the delivered workflow) is green, but the local hooks vitest run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs`; the local/CI divergence is under triage.
+
 Change: none. This task proves the deleted step was a duplicate.
 
 Check:
@@ -431,7 +457,7 @@ npm --prefix .skilled ci
 grep -oE '\.skilled/hooks/[a-z0-9/-]+\.(test|spec)\.(ts|mjs)' /tmp/hooks-vitest.log | sort -u | wc -l
 ```
 
-Expected: `exit=0`, then `7`: `classifier-injection-screen/pi/classifier-injection-screen.test.ts`, `dispatch/codex/codex-shell-tool.test.mjs`, `dispatch/devin/devin-dispatch-audit.test.mjs`, `dispatch/lib/dispatch-audit.test.mjs`, `dispatch/pi/directive-dedup.test.ts`, `dispatch/pi/dispatch-preflight-lint.test.ts`, `session-relaunch/pi/session-relaunch.test.ts`.
+Expected: `7` suites are collected; CI run `40026353792` is green. The local run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs` and remains under triage.
 
 Rollback: none; the task changes no tracked file.
 
@@ -439,9 +465,11 @@ Stop and escalate if: the count is not 7, or a suite fails.
 
 ---
 
-### T014 Remove the double suppression in advisory-checks (AC-007)
+### T014 [x] Remove the double suppression in advisory-checks (AC-007)
 
 File: `.github/workflows/advisory-checks.yml:38`, `:52` and `:68`, anchors:
+
+Done: `grep -cE '\|\| (true|echo)'` returns 0 and `continue-on-error: true` returns 3; all three steps now fail explicitly.
 
 ```yaml
           node "$RUNNER" || true
@@ -490,9 +518,11 @@ Stop and escalate if: any anchor is absent, or either count differs.
 
 ---
 
-### T015 Remove the double suppression in strict-pass-freshness-report without losing the report (AC-007)
+### T015 [x] Remove the double suppression in strict-pass-freshness-report without losing the report (AC-007)
 
 File: `.github/workflows/strict-pass-freshness-report.yml:172`, anchor:
+
+Done: `exit "$status"` count is 1 and `continue-on-error: true` count is 1; `cat`/`rm` still precede the exit.
 
 ```yaml
           node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs > "$report" 2>&1 || true
@@ -523,9 +553,11 @@ Stop and escalate if: the anchor is absent, or `exit "$status"` lands before `ca
 
 ---
 
-### T016 Drop full history from the two workflows whose checkers read none (AC-008)
+### T016 [x] Drop full history from the two workflows whose checkers read none (AC-008)
 
 File: `.github/workflows/rule-canary-sync.yml:14-15`, anchor:
+
+Done: `fetch-depth` count is 0 in both `rule-canary-sync.yml` and `repo-rules-corpus.yml`.
 
 ```yaml
         with:
@@ -555,9 +587,11 @@ Stop and escalate if: either anchor is absent, or a count is not 0.
 
 ---
 
-### T017 Set deep-loop-runtime to fetch-depth 2 (AC-008)
+### T017 [x] Set deep-loop-runtime to fetch-depth 2 (AC-008)
 
-File: `.github/workflows/deep-loop-runtime.yml:42`, anchor:
+File: `.github/workflows/deep-loop-runtime.yml` (the fetch-depth line is `:42` before the concurrency block, `:46` after), anchor:
+
+Done: the fetch-depth line moved from `:42` before the concurrency block to `:46` after it, where it reads `fetch-depth: 2`; the tree-wide `fetch-depth: 0` count is 7.
 
 ```yaml
           fetch-depth: 0
@@ -572,17 +606,19 @@ grep -n 'fetch-depth' .github/workflows/deep-loop-runtime.yml
 grep -rn 'fetch-depth: 0' .github/workflows/*.yml | wc -l
 ```
 
-Expected: `42:          fetch-depth: 2`, then `7`.
+Expected: `46:          fetch-depth: 2`, then `7`.
 
 Rollback: restore `          fetch-depth: 0`.
 
-Stop and escalate if: the anchor is not at `:42`, or the remaining depth-0 count is not 7.
+Stop and escalate if: the fetch-depth line positions are not `:42` before the concurrency block and `:46` after it, or the remaining depth-0 count is not 7.
 
 ---
 
-### T018 Add the agent-mirror-sync path filter (AC-010)
+### T018 [x] Add the agent-mirror-sync path filter (AC-010)
 
 File: `.github/workflows/agent-mirror-sync.yml:3-4`, anchor:
+
+Done: counts confirmed — `      - '` = 11, `agents/\*\*` = 4, `mirror-sync-verify.cjs` = 2; `.cursor/agents` and `.devin/agents` stay out.
 
 ```yaml
   pull_request:
@@ -624,9 +660,11 @@ Stop and escalate if: the anchor is not at `:3-4`, or any count differs.
 
 ---
 
-### T019 Name the guard and the workflow in both skill-doc-frontmatter filter lists (AC-011)
+### T019 [x] Name the guard and the workflow in both skill-doc-frontmatter filter lists (AC-011)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:23` and `:14`, anchors:
+
+Done: both lists carry the three entries; the guard-line count across both roots is 4 per AC-011's own regex (the 2026-10-24 amendment corrects the expected 2).
 
 ```yaml
       - '.skilled/skills/**/assets/**'
@@ -664,13 +702,15 @@ Stop and escalate if: either anchor is absent, or any count differs.
 
 ---
 
-### T020 Write the pre-commit duplication inventory (AC-012)
+### T020 [x] Write the pre-commit duplication inventory (AC-012)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (new file). Anchor: none.
 
-Change: create the file with a header, one sentence stating that nothing in this phase acts on it, and one row per gate key in `.skilled/scripts/git-hooks/pre-commit` (not the 115-line compatibility helper at `.skilled/hooks/git/pre-commit`). Columns: gate key, checker path, installed-hook line, CI counterpart, verdict. The verdict is `keep CI` when a workflow repeats the checker, `drop CI` when the workflow adds nothing, and `local only` when no workflow repeats it.
+Done: `scratch/pre-commit-inventory.md` exists with 13 rows and a sixth `Reason` column; the row regex returns 13 and the verdict-cell regex returns 13 (both observed 2026-10-24). The thirteenth key, `private-skill`, was added to the installed hook by `7648ae8b56` after this plan was written — the 2026-10-24 amendment corrects the expected twelve to thirteen and the expected five columns to six.
 
-The twelve keys and their counterparts:
+Change: create the file with a header, one sentence stating that nothing in this phase acts on it, and one row per gate key in `.skilled/scripts/git-hooks/pre-commit` (not the 115-line compatibility helper at `.skilled/hooks/git/pre-commit`). Columns: gate key, checker path, installed-hook line, CI counterpart, verdict, reason. The verdict is `keep CI` when a workflow repeats the checker, `drop CI` when the workflow adds nothing, and `local only` when no workflow repeats it.
+
+The thirteen keys and their counterparts:
 
 | Gate key | CI counterpart |
 |----------|----------------|
@@ -686,24 +726,27 @@ The twelve keys and their counterparts:
 | `mcp-mutation-class` | none |
 | `hook-flags` | none, by design |
 | `hook-trust` | none, by design |
+| `private-skill` | none, by design |
 
 Check:
 
 ```bash
-grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|private-skill|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
 ```
 
-Expected: `12`.
+Expected: `13`.
 
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md`.
 
-Stop and escalate if: the hook names a gate key outside the twelve, or the count is not 12.
+Stop and escalate if: the hook names a gate key outside the thirteen, or the count is not 13.
 
 ---
 
-### T021 Make the README push/PR table match the YAML (AC-015)
+### T021 [x] Make the README push/PR table match the YAML (AC-015)
 
 File: `.github/workflows/README.md:66`, anchor:
+
+Done: `command-tree-parity.yml` moved from the `:66` whole-tree row into the `:69` path-filtered row (counts 0 then 1), and the `:71` Why cell carries the delivered wording the 2026-10-24 amendment accepted — `Review-time checks. agent-mirror-sync.yml runs only when an agent file, the mirror checker or the shared package it loads changes; the pre-commit hook runs the same checkers on every commit` — which names the filter's three input kinds rather than the tasked "only when an agent file changes".
 
 ```markdown
 | `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
@@ -723,7 +766,7 @@ File: `.github/workflows/README.md:71`, anchor:
 
 Change, under `D3=approve`: remove `` `command-tree-parity.yml`, `` from line 66 and insert `` `command-tree-parity.yml`, `` after `` `chart-corpus.yml`, `` on line 69. Under `D3=reject`: leave lines 66 and 69 unchanged.
 
-Change in both cases: line 71's Why cell becomes `Review-time checks. agent-mirror-sync.yml runs only when an agent file changes; the pre-commit hook runs the same checkers on every commit`.
+Change in both cases: line 71's Why cell becomes `Review-time checks. agent-mirror-sync.yml runs only when an agent file, the mirror checker or the shared package it loads changes; the pre-commit hook runs the same checkers on every commit`.
 
 Leave `changed-packet-validation.yml`'s row at `:70` untouched.
 
@@ -732,7 +775,7 @@ Check, under `D3=approve`:
 ```bash
 sed -n '66p' .github/workflows/README.md | grep -c 'command-tree-parity'
 sed -n '69p' .github/workflows/README.md | grep -c 'command-tree-parity'
-sed -n '71p' .github/workflows/README.md | grep -c 'only when an agent file changes'
+sed -n '71p' .github/workflows/README.md | grep -c 'the mirror checker or the shared package it loads changes'
 ```
 
 Expected: `0`, then `1`, then `1`.
@@ -741,7 +784,7 @@ Check, under `D3=reject`:
 
 ```bash
 sed -n '66p' .github/workflows/README.md | grep -c 'command-tree-parity'
-sed -n '71p' .github/workflows/README.md | grep -c 'only when an agent file changes'
+sed -n '71p' .github/workflows/README.md | grep -c 'the mirror checker or the shared package it loads changes'
 ```
 
 Expected: `1`, then `1`.
@@ -752,9 +795,11 @@ Stop and escalate if: a row is not at its quoted line, or a count differs.
 
 ---
 
-### T022 Add the concurrency block to the 21 workflows this phase edits nowhere else (AC-001)
+### T022 [x] Add the concurrency block to the 21 workflows this phase edits nowhere else (AC-001)
 
 File: `.github/workflows/` - 21 files, each anchored on its `jobs:` line at column 0:
+
+Done: each of the 21 files carries one `^concurrency:` line with the pull-request cancel expression (`D2=pr-only`).
 
 | File | `jobs:` line |
 |------|--------------|
@@ -808,9 +853,11 @@ Stop and escalate if: a `jobs:` line is not at its quoted number in a file this 
 
 ---
 
-### T023 Add the concurrency block to the 9 workflows this phase also edits (AC-001)
+### T023 [x] Add the concurrency block to the 9 workflows this phase also edits (AC-001)
 
 File: `.github/workflows/` - nine files, each anchored on its `jobs:` line at column 0. Four of these files already carry an edit above `jobs:`, so their number is the post-edit value: `agent-mirror-sync.yml` (T018), `changed-packet-validation.yml` (T011, 22 under `D10=filter` and 12 under `D10=skip`), `command-tree-parity.yml` (T008 and T009), and `skill-doc-frontmatter.yml` (T019). Locate the `jobs:` line by text in those four files and treat the number as confirmation:
+
+Done: `grep -L '^concurrency:'` returns exactly `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml`; all nine carry the block.
 
 | File | `jobs:` line |
 |------|--------------|
@@ -840,9 +887,11 @@ Stop and escalate if: the command lists any file beyond those two.
 
 ---
 
-### T024 Prove the concurrency count, the rebuild group and the YAML (AC-001, AC-014)
+### T024 [x] Prove the concurrency count, the rebuild group and the YAML (AC-001, AC-014)
 
 File: `.github/workflows/` (read-only). Anchor: none.
+
+Done: the PR-cancel expression count is 30 and the rebuild workflow's own group at `:21-23` keeps `cancel-in-progress: false`.
 
 Change: none. This task proves T022 and T023.
 
@@ -864,9 +913,11 @@ Stop and escalate if: the count is not 30, the parse exits non-zero, or the rebu
 
 ---
 
-### T025 Run the whole-tree gates (AC-013, AC-014)
+### T025 [x] Run the whole-tree gates (AC-013, AC-014)
 
 File: `.github/scripts/check-gate-inputs.sh` and `.github/workflows/` (read-only). Anchor: none.
+
+Done: `check-gate-inputs: 54 passed, 0 failed`; the gate prints `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`; the YAML parse exits 0; the file count is 33.
 
 Change: none. This task proves the whole change set.
 
@@ -887,9 +938,11 @@ Stop and escalate if: `RESULT: PASSED` is absent, or the gate fails twice on the
 
 ---
 
-### T026 Commit the change as one commit per concern (AC-017)
+### T026 [x] Commit the change as one commit per concern (AC-017)
 
 File: `.github/workflows/`, `.github/workflows/README.md`, `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+
+Done: the six concern commits landed on `main` — the concurrency block, the parity and companion filters, the deleted duplicate step, the removed suppression, the three checkout depths, and the README table plus inventory.
 
 Change: six commits, one per concern, with these full messages, in this order. Each block writes its message to a file, validates it, stages that concern's paths and commits with `git commit -F`.
 
@@ -1453,17 +1506,19 @@ Stop and escalate if: no run starts.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (read-only). Anchor: none.
 
+Not done: the formal re-check is still owed. The counts below are corrected for the thirteenth gate key (`private-skill`, added to the hook by `7648ae8b56`) and the inventory's sixth `Reason` column per the 2026-10-24 amendment; run under the corrected regexes on 2026-10-24 they return `13`, `13`, `13`.
+
 Change: none. This task checks T020 against its source.
 
 Check:
 
 ```bash
 grep -oE 'gate:[a-z-]+' .skilled/scripts/git-hooks/pre-commit | sort -u | wc -l
-grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
-grep -cE '^\| .* \| (keep CI|drop CI|local only) \|$' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+grep -cE '^\| (agent-mirror-sync|comment-hygiene|doc-version-bump|hook-flags|hook-trust|mcp-mutation-class|mirror-parity|private-skill|prompt-card-sync|route-remint|skill-authoring|spec-remint|template-phrase-lint)' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
+grep -cE '\| (keep CI|drop CI|local only) \|' specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md
 ```
 
-Expected: `12`, then `12`, then `12`.
+Expected: `13`, then `13`, then `13`. The third regex matches the verdict cell inside the six-column row; the old end-anchored form predates the `Reason` column and returns `0` on the delivered table.
 
 Rollback: none; the task changes no file.
 
@@ -1474,6 +1529,8 @@ Stop and escalate if: the first count differs from the second, or a row carries 
 ### T036 Measure the phase delta (AC-016)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/phase-result.md` (new file). Anchor: none.
+
+Not done: blocked on T006 — `scratch/phase-baseline.md` waits on the 002 24 h snapshot — and on the 24 h post-merge window.
 
 Change: at least 24 h after the last change merges, collect the run history and one job sample per workflow this phase touched, then write the file with the ten rows from `scratch/phase-baseline.md`, the after numbers, and the delta.
 

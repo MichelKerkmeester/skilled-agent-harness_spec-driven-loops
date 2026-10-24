@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
-    last_updated_at: "2026-10-23T12:40:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded eleven proposed ADRs for the planned phase"
-    next_safe_action: "Decisions answered; start at T006, the first non-decision task, then run the phase's tasks"
+    last_updated_at: "2026-10-24T09:00:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Recorded the 2026-10-24 amendments for the delivered wording, the AC-011 count, and the 13-key six-column inventory"
+    next_safe_action: "Run the CI probes T027 to T034, then T035's inventory re-check and T036's 24 h delta once the 002 baseline exists; T037 and T038 close the phase"
     blockers:
       - "002-rebuild-fanout-removal baseline pending"
     key_files:
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 60
     open_questions:
       - "Does cancel-in-progress on pull requests leave the required message-contract context satisfied on the newest head?"
       - "Do deep-loop-runtime's mode-event suites need anything older than the parent commit?"
@@ -1175,5 +1175,16 @@ The phase changes 30 workflow files plus a README table and three scratch docume
 **How to roll back**: `git reset --soft HEAD~6` restores the staged tree without losing a file.
 <!-- /ANCHOR:adr-011-impl -->
 <!-- /ANCHOR:adr-011 -->
+
+---
+
+## Amendments
+
+- **Amendment (2026-10-24, T021 wording)**: the delivered `README.md:71` Why cell — "agent-mirror-sync.yml runs only when an agent file, the mirror checker or the shared package it loads changes" — names the filter's three input kinds, more accurate than the tasked "only when an agent file changes". Accepted; T021's expected text and grep and AC-015's check now match the delivered sentence.
+- **Amendment (2026-10-24, AC-011 count)**: the guard entry lands in both filter lists at both mirror roots, so AC-011's own regex returns `4`, not the planned `2`. The row and T019 now expect `4`.
+- **Amendment (2026-10-24, inventory shape)**: the installed pre-commit hook gained a thirteenth gate key, `private-skill`, in `7648ae8b56`, and the delivered `scratch/pre-commit-inventory.md` carries a sixth `Reason` column. T020, T035 and AC-012 now expect 13 keys and the six-column table; T035's verdict-row regex matches the verdict cell inside the row (the old end-anchored form returned `0`; the corrected form returns `13`, observed 2026-10-24).
+- **Amendment (2026-10-24, T007 anchor)**: the rewritten comment moved from `:47-50` to `:98-102` when T008 and T009 inserted the 48 filter lines above it; the task and AC-003 reference the post-filter position.
+- **Amendment (2026-10-24, T013 caveat)**: the local hooks vitest run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs` while CI run 40026353792 is green; the divergence is recorded under T013 and queued for triage.
+- **Amendment (2026-10-24, T017 line position)**: the four-line concurrency block moved the delivered `fetch-depth: 2` from `:42` before the block to `:46` after it in [deep-loop-runtime.yml](../../../../.github/workflows/deep-loop-runtime.yml#L46); the original D7 decision text remains historical.
 
 ---

@@ -11,13 +11,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning"
-    last_updated_at: "2026-10-23T13:20:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded eleven proposed ADRs for the planned phase"
-    next_safe_action: "D5 is answered; run the phase's tasks from T002"
+    last_updated_at: "2026-10-24T09:00:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Amended the stale gate constants and recorded the out-of-order T004-T009 delivery"
+    next_safe_action: "Run T002/T003 for the baseline and inventory (T002 takes the 001-dataset fallback until the 002 baseline exists), then T010's comment, T011's phase-result.md and T011A's commit of the two gate files"
     blockers:
       - "002-rebuild-fanout-removal baseline pending"
-      - "003-trigger-and-job-hygiene R8 pending for R18"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-004-setup-caching-provisioning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 10
     open_questions:
       - "Does a 2.22 GB tree set compress under the 10 GB budget with room for dependabot churn?"
       - "Does filter: blob:none save anything on a single-commit checkout?"
@@ -1136,3 +1135,8 @@ The phase touches one gate, one test, one new action, 13 workflow files and one 
 <!-- /ANCHOR:adr-011 -->
 
 ---
+
+## Amendments
+
+- **Amendment (2026-10-24, stale gate constants)**: T003, T004 and T011 planned `inputs_resolved` at least `236`, `dynamic_inputs=11`, `twin_pairs` at least `311` and a `50`-case fixture suite. Phase 003's filter additions and this phase's T005 `description:`-as-label rule moved the real values, which now measure `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` with `check-gate-inputs: 54 passed, 0 failed`. The task expectations, stop conditions and AC-001's post-action arm now compare against that measured baseline instead of the stale constants.
+- **Amendment (2026-10-24, delivery order)**: T004 through T009 landed before T002 and T003 and remain uncommitted, ahead of the planned baseline-first order. The baseline and inventory are not invalidated by the gate edits — T003 records whatever the commands print — so the sequence deviation is accepted and the next safe action starts at T002.

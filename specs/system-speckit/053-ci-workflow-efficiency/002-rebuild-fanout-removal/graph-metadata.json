@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Every push to `main` that changes the spec-kit corpus is followed by a bot commit that rebuilds the trigger index, and that commit starts the whole push gate again",
     "created_at": "2026-10-23T08:47:50Z",
-    "last_save_at": "2026-10-23T16:28:12.515Z",
+    "last_save_at": "2026-10-24T08:57:05.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83d9079d9b786a53f3b88b4b665f5f3d2b45f4486194bc3c57646de11d7c97c9",
+    "source_fingerprint": "sha256:7c9dd74e704aea6b128da9d9f75b7e500c76cdb47ae82b537ccbb9e67613833e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5004b4f1fa79f71387f71be73e567321dfa0fc38246f4016250f8a8f45d2bfdc",
+      "spec.md": "0ca010985b3ff4c5b0d96fbf82b27af12fe180c0e3d29cf9d4f019e1a7d21a68",
       "plan.md": "de3ea57824e3ab482f515961102a6fea2f7d233298bfe7fde8982a16c24f65ef",
-      "tasks.md": "755c38af2218917cabfc33f318d1fee7c94d07188acb62d9816572522a99b3d1",
-      "decision-record.md": "5e7095af2ebd8e119920d635c88e595f37c0b84ee7c2390a199f66f53d01c0ef",
-      "implementation-summary.md": "af12bd526f6040d3eab004a084791cef304f5f286713e21defcf2a251d23b5c6"
+      "tasks.md": "c3558dce392f80ed56c6c5ac79bc3045cbaa12dc407d5117ca8b7bdfd7504db0",
+      "decision-record.md": "1b7400d7b5510abb33d52a769dd7668f2bdd921ab92800ed85717b503bfc31eb",
+      "implementation-summary.md": "5a582fc06325063126bf8949b70fdc004c5db78a43d68a35447554339a684875"
     },
     "last_active_at": null
   }

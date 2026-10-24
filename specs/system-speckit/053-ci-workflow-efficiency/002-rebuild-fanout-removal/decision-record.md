@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-002-rebuild-fanout-removal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions:
       - "Does [skip ci] suppress runs for a push made with the bypass-actor PAT?"
     answered_questions: []
@@ -70,7 +70,7 @@ Two mechanisms can stop it. A `[skip ci]` token in the commit body asks GitHub t
 
 **We chose**: Option A, the `[skip ci]` token on the rebuild commit's body line, recorded on 2026-10-23; option B stays the recorded alternative for an operator who rejects A.
 
-**How it works**: `trigger-index-rebuild.yml:149` gains the token inside its existing `-m` argument, and `:150` keeps `Trigger-Index-Rebuild: ci` as the message's last line. GitHub then starts no push- or pull_request-triggered workflow for the pushed commit, and the loop guard's suffix match at `:33` still recognises a manual re-run.
+**How it works**: `trigger-index-rebuild.yml:151` gains the token inside its existing `-m` argument, and `:152` keeps `Trigger-Index-Rebuild: ci` as the message's last line. GitHub then starts no push- or pull_request-triggered workflow for the pushed commit, and the loop guard's suffix match at `:33` still recognises a manual re-run.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -131,7 +131,7 @@ Two mechanisms can stop it. A `[skip ci]` token in the commit body asks GitHub t
 ### Implementation
 
 **What changes**:
-- `.github/workflows/trigger-index-rebuild.yml:149`: the body `-m` gains ` [skip ci]`.
+- `.github/workflows/trigger-index-rebuild.yml:151`: the body `-m` gains ` [skip ci]`.
 - `.github/workflows/README.md:58` and `:75`: both rows state the skip.
 - `trigger-index-rebuild-workflow.vitest.ts`: one case pins the token and the trailer.
 - `.github/workflows/spec-kit-check.yml:9` and `:37`: both path lists name the workflow.
@@ -160,7 +160,7 @@ Two mechanisms can stop it. A `[skip ci]` token in the commit body asks GitHub t
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-The commit step builds the message from three `-m` arguments: subject at `:148`, body at `:149`, trailer at `:150`. The loop guard at `:33` is `!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')`, a suffix match, so the trailer's position is load-bearing.
+The commit step builds the message from three `-m` arguments: subject at `:150`, body at `:151`, trailer at `:152`. The loop guard at `:33` is `!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')`, a suffix match, so the trailer's position is load-bearing.
 
 ### Constraints
 
@@ -236,13 +236,13 @@ The commit step builds the message from three `-m` arguments: subject at `:148`,
 ### Implementation
 
 **What changes**:
-- `trigger-index-rebuild.yml:149`: the body line gains the token.
-- `trigger-index-rebuild.yml:147`: a two-line comment states why the token exists and why the trailer stays last.
+- `trigger-index-rebuild.yml:151`: the body line gains the token.
+- `trigger-index-rebuild.yml:147-148`: a two-line comment states why the token exists and why the trailer stays last.
 - `trigger-index-rebuild-workflow.vitest.ts`: the case asserts the body line and the final line.
 
 **Gated tasks**: T004, T005, T009, T016.
 
-**How to roll back**: Revert `:149` to the quoted anchor; the comment and the case are reverted with the same commit.
+**How to roll back**: Revert `:151` to the quoted anchor; the comment and the case are reverted with the same commit.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -550,6 +550,15 @@ The research phase measured 23.5 h and scaled its figures by 24/23.5 (factor 1.0
 **How to roll back**: Delete `scratch/baseline-24h/` and re-collect after another 24 h. No tracked file changes.
 <!-- /ANCHOR:adr-005-impl -->
 <!-- /ANCHOR:adr-005 -->
+
+---
+
+## Amendments
+
+- **Amendment (2026-10-24, anchor drift)**: T005's two comment lines landed above the `:147` anchor and pushed it to `:149`; the body `-m` carrying `[skip ci]` sits at `:151` and the trailer `-m` at `:152`. The task, spec, summary and AC-001 line references now read the post-change numbers, and AC-001's check is `sed -n '150,152p'` so it shows the `-m` block rather than the comment lines.
+- **Amendment (2026-10-24, T006 wording)**: the delivered `README.md:58` sentence — "…starts no workflow run; the loop guard stays as the fallback that skips a run if a commit carrying the trailer ever starts one anyway" — describes the guard's fallback role more accurately than the tasked "…and the guard remains only for a manual re-run". Accepted; T006's expected text and grep now match the delivered sentence.
+- **Amendment (2026-10-24, T018 branch)**: the probe branch landed as `branches/018-probe-rebuild-workflow-trigger` (PR #71, head `6c51acecb2f8`, spec-kit-check run 40021934338 `success`, closed unmerged 2026-10-23T21:03Z) rather than `probe/rebuild-workflow-trigger`. Accepted; the actual name is recorded in T018.
+- **Amendment (2026-10-24, unasked change)**: `8e62a3d096` also rewrote the six-line job-level loop-guard comment in `trigger-index-rebuild.yml` (`~:28-33`), beyond T005's scope. The content is accurate — it explains the guard is now a fallback — so the rewrite is accepted as delivered.
 
 ---
 

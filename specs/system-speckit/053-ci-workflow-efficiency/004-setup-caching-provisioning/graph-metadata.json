@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      "scratch/decisions.md",
       ".github/workflows/hooks-node-tests.yml",
       ".github/workflows/opencode-plugin-tests.yml",
       ".github/workflows/opencode-dual-version.yml",
-      ".github/scripts/check-gate-inputs.sh",
       ".github/workflows/rule-canary-sync.yml",
-      ".github/scripts/tests/check-gate-inputs.test.sh",
       ".github/workflows/routing-registry-drift.yml",
       ".github/workflows/README.md",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
       ".github/workflows/spec-kit-check.yml",
       ".github/workflows/skill-advisor-stress.yml",
-      ".github/workflows/sk-doc-script-tests.yml",
-      ".github/workflows/sk-doc-rename-harness.yml"
+      ".github/workflows/sk-doc-script-tests.yml"
     ],
     "entities": [
       {
@@ -106,6 +106,24 @@
         "source": "derived"
       },
       {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.md",
+        "kind": "doc",
+        "path": "scratch/decisions.md",
+        "source": "derived"
+      },
+      {
         "name": "hooks-node-tests.yml",
         "kind": "config",
         "path": ".github/workflows/hooks-node-tests.yml",
@@ -124,21 +142,9 @@
         "source": "derived"
       },
       {
-        "name": "check-gate-inputs.sh",
-        "kind": "script",
-        "path": ".github/scripts/check-gate-inputs.sh",
-        "source": "derived"
-      },
-      {
         "name": "rule-canary-sync.yml",
         "kind": "config",
         "path": ".github/workflows/rule-canary-sync.yml",
-        "source": "derived"
-      },
-      {
-        "name": "check-gate-inputs.test.sh",
-        "kind": "script",
-        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
         "source": "derived"
       },
       {
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "sk-doc-rename-harness.yml",
-        "kind": "config",
-        "path": ".github/workflows/sk-doc-rename-harness.yml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-23T16:28:16.459Z",
+    "last_save_at": "2026-10-24T08:20:25.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d508eda27f3ed3cd2ddc151cd42c873a8d4f711c128b7d4898d1d52ece84ee1a",
+    "source_fingerprint": "sha256:66ab3bd66a60c4d32acabcd9443bc8ed4abf0e1c064be52bcd1dc3258f77211a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49bd8b4e263b986c73b6f8b10a35e3c94726349c714d3a0da3ee56453dd7859a",
+      "spec.md": "321f8e5e1f8748f9d270399a896fbe01342b2249e6fd4df15bb85b4769973f87",
       "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "e1311fe0d41a00b19684e4b6215a34938a899f510a556f69defdef20fea81907",
-      "decision-record.md": "30031fbf80aad15047c101d97fc5cd87ea99da9583f66b552e4cb440f4c6cc34",
-      "implementation-summary.md": "fcd538f47f4da8002beac06e55ce3edd0b086277dfab96e9dc392550303ee521"
+      "tasks.md": "89fa32793e90b9576df9d40cad2777a0829e1400d619e15e4ff65220c48929c8",
+      "decision-record.md": "747be85ec1f71ec88da4bce7931becf2aa9dc5f504c5f67be80c2f340a1920dc",
+      "implementation-summary.md": "ea7ec7596ab5eed29c7478df32790f664144ffa06b13bbaaf2ac76da78c6e91f"
     },
     "last_active_at": null
   }

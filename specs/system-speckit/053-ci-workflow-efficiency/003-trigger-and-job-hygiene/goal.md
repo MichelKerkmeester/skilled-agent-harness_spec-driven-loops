@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
-    last_updated_at: "2026-10-23T12:45:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-24T09:00:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Marked the six landed checkboxes and recorded the remaining probe, delta and closure work"
+    next_safe_action: "Run T027 to T034 CI probes, then T035/T036 once the 002 baseline exists; T037/T038 close"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -61,12 +61,12 @@ The packet's operator decisions are D2, D3, D4, D7 and D10 in `plan.md`; the G-n
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `grep -L '^concurrency:' .github/workflows/*.yml` lists exactly `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml`
-- [ ] `grep -lF "cancel-in-progress: \${{ github.event_name == 'pull_request' }}" .github/workflows/*.yml | wc -l` returns `30`
-- [ ] `grep -c "^      - '" .github/workflows/command-tree-parity.yml` returns `46` and `grep -c "^      - '" .github/workflows/agent-mirror-sync.yml` returns `11`
-- [ ] `grep -c 'dispatch-audit.test.mjs' .github/workflows/dispatch-enforcement-guard.yml` returns `0`
-- [ ] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
-- [ ] `python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]"` exits `0`
+- [x] `grep -L '^concurrency:' .github/workflows/*.yml` lists exactly `dependabot-auto-merge.yml` and `strict-pass-freshness-report.yml`
+- [x] `grep -lF "cancel-in-progress: \${{ github.event_name == 'pull_request' }}" .github/workflows/*.yml | wc -l` returns `30`
+- [x] `grep -c "^      - '" .github/workflows/command-tree-parity.yml` returns `46` and `grep -c "^      - '" .github/workflows/agent-mirror-sync.yml` returns `11`
+- [x] `grep -c 'dispatch-audit.test.mjs' .github/workflows/dispatch-enforcement-guard.yml` returns `0`
+- [x] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
+- [x] `python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]"` exits `0`
 - [ ] `scratch/phase-result.md` exists, carries ten workflow rows and contains the word `unmeasured`
 <!-- /ANCHOR:completion -->
 
@@ -85,12 +85,18 @@ and findings belong here.
 |------|-------|----------|
 | Plan authored | Done | `spec.md`, `plan.md`, `tasks.md` T001 to T038, `acceptance-criteria.md` AC-001 to AC-017, `decision-record.md` ADR-001 to ADR-011 |
 | Operator decisions | Done | `scratch/decisions.md` records `D2=pr-only, D3=approve, D4=drop-step, D7=depth-2, D10=skip` |
-| Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet |
-| Implementation | Pending | No file named by `tasks.md` has changed |
+| Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet; T006 and T036 wait on it |
+| Implementation | Done | Six concern commits on `main`: concurrency on 30 workflows, both filters, the dedup, both suppression removals, the three depth changes, the README table and the 13-key inventory |
+| CI probes | Pending | T027 to T034: the concurrency cancel observation and the positive/negative trigger probes per filtered workflow |
+| Delta and closure | Pending | T035 inventory re-check, T036 delta against the 002 baseline, T037/T038 closure evidence and commit |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | The phase has not started, so no work has diverged from the directive |
+| T007 anchor drift | The rewritten comment sits at `command-tree-parity.yml:98-102`, not the planned `:47-50`; amendment 2026-10-24 |
+| T021 wording | `README.md:71` names three inputs (`check-agent-mirror-sync.cjs`, both agent trees, the workflow file); accepted as more accurate, 2026-10-24 |
+| AC-011 count | The guard regex returns 4, not the planned 2 (both roots' guards and the workflow file in both lists); amendment 2026-10-24 |
+| Inventory shape | The hook has 13 gate keys (`private-skill` arrived with `7648ae8b56`) and the table carries a sixth `Reason` column; T035 and AC-012 corrected to 13/13/13 |
+| T013 local/CI split | Local hooks vitest fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs`; CI run 40026353792 is green; triage is the next build step |
 <!-- /ANCHOR:log -->

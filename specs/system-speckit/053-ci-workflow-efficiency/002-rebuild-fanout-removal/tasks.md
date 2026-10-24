@@ -32,11 +32,13 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 DECISION D1 (operator yes required) - choose how rebuild commits skip CI (AC-001)
+### T001 [x] DECISION D1 (operator yes required) - choose how rebuild commits skip CI (AC-001)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/d1-answer.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
 
-Default: option A, the `[skip ci]` token on the commit body line at `.github/workflows/trigger-index-rebuild.yml:149`. It is one line, needs no filter entries and adds no new YAML pattern.
+Done: `scratch/d1-answer.md` holds `D1=A`.
+
+Default: option A, the `[skip ci]` token on the commit body line at `.github/workflows/trigger-index-rebuild.yml:151`. It is one line, needs no filter entries and adds no new YAML pattern.
 
 Alternative: option B, a push-only `paths-ignore:` on the 9 unfiltered workflows plus `!` negations on the 4 path-filtered ones. That is 8 entries each, 104 in total across 13 files, plus an amendment to ordering rule 2, for about 2,002 runner-min/day with `message-contract` left unfiltered.
 
@@ -57,9 +59,11 @@ Stop and escalate if: the operator answers B, or no answer arrives. This task li
 
 ---
 
-### T002 Capture the pre-change fan-out for three rebuild SHAs (AC-005)
+### T002 [x] Capture the pre-change fan-out for three rebuild SHAs (AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/pre-change/` (new directory). Anchor: none.
+
+Done: `scratch/pre-change/` holds `ac2be31ec6…`, `b786d850c7…` and `bf2bd5ca8a….json`, each 14 rows; they are the three rebuild commits immediately preceding 8e62a3d096.
 
 Change: create one `gh run list` JSON per rebuild SHA, so AC-005 has a before number.
 
@@ -96,9 +100,11 @@ Stop and escalate if: fewer than three SHAs are listed, or any captured file hol
 
 ---
 
-### T003 Install the spec-kit workspace and record a green baseline (AC-003)
+### T003 [x] Install the spec-kit workspace and record a green baseline (AC-003)
 
 File: `.skilled/skills/system-spec-kit/` (dependencies only; no tracked file changes). Anchor: none.
+
+Done: `.skilled/skills/system-spec-kit/node_modules` installed; the vitest run exits 0 with `Tests 60 passed | 1 skipped (61)` in `trigger-index-rebuild-workflow.vitest.ts`.
 
 Change: install the workspace with the command `spec-kit-check.yml:83` runs, then run the workflow suite before any edit.
 
@@ -122,11 +128,13 @@ Stop and escalate if: the install or the suite exits non-zero before any file is
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-### T004 Add the skip token to the rebuild commit body (AC-001)
+### T004 [x] Add the skip token to the rebuild commit body (AC-001)
 
-File: `.github/workflows/trigger-index-rebuild.yml:149`. Anchor:
+File: `.github/workflows/trigger-index-rebuild.yml:151`. Anchor:
 
 `            -m "The pushed corpus changed the committed trigger index, so this job rebuilt it." \`
+
+Done: `[skip ci]` sits on the body `-m` at `:151`; `sed -n '150,152p'` shows the subject, body and trailer `-m` lines in order.
 
 Change: replace that line with:
 
@@ -141,22 +149,24 @@ grep -c 'rebuilt it\. \[skip ci\]"' .github/workflows/trigger-index-rebuild.yml
 Expected: `1`.
 
 ```bash
-sed -n '148,150p' .github/workflows/trigger-index-rebuild.yml
+sed -n '150,152p' .github/workflows/trigger-index-rebuild.yml
 ```
 
 Expected: the subject `-m`, then the body line ending `[skip ci]" \`, then `-m "Trigger-Index-Rebuild: ci"` as the last line.
 
 Rollback: revert the line to the quoted anchor.
 
-Stop and escalate if: the anchor text is not on line 149, or the count is not 1.
+Stop and escalate if: the anchor text is not on line 151, or the count is not 1.
 
 ---
 
-### T005 Explain the token in the commit step (AC-001)
+### T005 [x] Explain the token in the commit step (AC-001)
 
-File: `.github/workflows/trigger-index-rebuild.yml:147`. Anchor:
+File: `.github/workflows/trigger-index-rebuild.yml:149`. Anchor:
 
 `          # The guard above matches this trailer to recognize the job's own push.`
+
+Done: the two comment lines sit at `:147-148` and the anchor moved from `:147` to `:149`; grep count=1.
 
 Change: insert these two lines directly above the anchor, keeping the anchor where it is:
 
@@ -175,24 +185,26 @@ Expected: `1`.
 
 Rollback: delete the two inserted lines.
 
-Stop and escalate if: the anchor text is not on line 147, or the count is not 1.
+Stop and escalate if: the anchor text is not on line 149, or the count is not 1.
 
 ---
 
-### T006 State the skip in the rebuild README row (AC-002)
+### T006 [x] State the skip in the rebuild README row (AC-002)
 
 File: `.github/workflows/README.md:58`. Anchor: the sentence
 
 ``The loop guard skips commits whose message ends with the `Trigger-Index-Rebuild: ci` trailer.``
 
+Done: the sentence sits at `README.md:58` with the delivered wording the 2026-10-24 amendment accepted; the check grep returns 1.
+
 Change: insert this sentence immediately after the anchor sentence, inside the same table cell:
 
-``The commit body carries `[skip ci]`, so the pushed rebuild starts no workflow run and the guard remains only for a manual re-run.``
+``The commit body carries `[skip ci]`, so the pushed rebuild starts no workflow run; the loop guard stays as the fallback that skips a run if a commit carrying the trailer ever starts one anyway.``
 
 Check:
 
 ```bash
-grep -c 'The commit body carries `\[skip ci\]`' .github/workflows/README.md
+grep -c 'starts no workflow run; the loop guard stays as the fallback' .github/workflows/README.md
 ```
 
 Expected: `1`.
@@ -203,11 +215,13 @@ Stop and escalate if: the anchor sentence is not on line 58, or the count is not
 
 ---
 
-### T007 State the skip in the push and pull-request README row (AC-002)
+### T007 [x] State the skip in the push and pull-request README row (AC-002)
 
 File: `.github/workflows/README.md:75`. Anchor cell text:
 
 `Rebuilds the committed index after a push. Also runs by hand`
+
+Done: `README.md:75` carries `…carries \`[skip ci]\` so no other workflow runs on it`; grep count=1.
 
 Change: replace the cell text with:
 
@@ -227,11 +241,13 @@ Stop and escalate if: the anchor cell is not on line 75, or the count is not 1.
 
 ---
 
-### T008 Add the SKIP_TOKEN constant (AC-003)
+### T008 [x] Add the SKIP_TOKEN constant (AC-003)
 
 File: `.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts:84`. Anchor:
 
 `const LOOP_GUARD_TRAILER = 'Trigger-Index-Rebuild: ci';`
+
+Done: `const SKIP_TOKEN = '[skip ci]';` sits at `:85`, directly after the `:84` anchor; grep count=1.
 
 Change: insert this line directly after the anchor:
 
@@ -253,9 +269,11 @@ Stop and escalate if: the anchor is not on line 84, or the count is not 1.
 
 ---
 
-### T009 Assert the token and the trailer in one case (AC-003)
+### T009 [x] Assert the token and the trailer in one case (AC-003)
 
 File: `.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts`, after the test that ends at `:892` before T008 lands and `:893` after it. Anchor: the closing block
+
+Done: the `it('marks the rebuild commit…')` case sits at `:895` and the suite exits 0 (`Tests 60 passed | 1 skipped (61)`).
 
 ```ts
       expect(lines[lines.length - 1]).toBe(LOOP_GUARD_TRAILER);
@@ -296,9 +314,11 @@ Stop and escalate if: the anchor block is not found once, the count is not 1, or
 
 ---
 
-### T010 Name the workflow in the push filter (AC-004)
+### T010 [x] Name the workflow in the push filter (AC-004)
 
 File: `.github/workflows/spec-kit-check.yml:9`. Anchor: the first occurrence of
+
+Done: `spec-kit-check.yml:12` names `trigger-index-rebuild.yml` inside the `push:` block.
 
 `      - '.github/workflows/spec-kit-check.yml'`
 
@@ -326,9 +346,11 @@ Stop and escalate if: the anchor is not the first occurrence in the file, it is 
 
 ---
 
-### T011 Name the workflow in the pull-request filter (AC-004)
+### T011 [x] Name the workflow in the pull-request filter (AC-004)
 
 File: `.github/workflows/spec-kit-check.yml:37` before T010 lands, `:40` after it. Anchor: the second occurrence of
+
+Done: `spec-kit-check.yml:43` carries the same entry inside `pull_request:`; the file's total count is 2.
 
 `      - '.github/workflows/spec-kit-check.yml'`
 
@@ -353,6 +375,8 @@ Stop and escalate if: the anchor is not inside the `pull_request:` block, or the
 ### T012 Prove the case fails without the token (AC-003)
 
 File: `/tmp/trigger-index-rebuild.no-token.yml` (a copy; no tracked file changes). Anchor: the body line T004 wrote.
+
+Partial: the stripped-variant run was not re-executed under the read-only reconciliation pass because it writes `/tmp/trigger-index-rebuild.no-token.yml`; the `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH` override exists (test file `:34`) and the positive arm is green, so only the non-zero stripped run remains to confirm.
 
 Change: none in the repository. This task produces the negative proof for AC-003.
 
@@ -384,9 +408,11 @@ Stop and escalate if: the stripped copy still contains the token, the stripped r
 
 ---
 
-### T013 Run the filter gate over the two new entries (AC-007)
+### T013 [x] Run the filter gate over the two new entries (AC-007)
 
 File: `.github/scripts/check-gate-inputs.sh` (unchanged; it is the check). Anchor: none.
+
+Done: `check-gate-inputs: 54 passed, 0 failed`; the gate prints `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED` (twin_pairs ≥ 311).
 
 Change: none. This task runs the gate over the T010 and T011 edits.
 
@@ -405,9 +431,11 @@ Stop and escalate if: either command exits non-zero, or `RESULT: PASSED` is abse
 
 ---
 
-### T014 Commit the change as one commit (AC-001)
+### T014 [x] Commit the change as one commit (AC-001)
 
 File: `.github/workflows/trigger-index-rebuild.yml`, `.github/workflows/README.md`, `.github/workflows/spec-kit-check.yml` and `.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts`. Anchor: none.
+
+Done: commit `8e62a3d096` carries the tasked message and staged exactly the four named files; it also carried one unplanned edit, the loop-guard comment rewrite the 2026-10-24 amendment accepted.
 
 Change: stage them and commit with the message below, so the token and its guard land together. The operator pushes and merges the commit; this task stops at the commit, and T015 starts once it is on `main`.
 
@@ -453,9 +481,11 @@ Stop and escalate if: the staged list is not exactly four paths, the id grep pri
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-### T015 Confirm three rebuild SHAs start no workflow run (AC-005)
+### T015 [x] Confirm three rebuild SHAs start no workflow run (AC-005)
 
 File: none; the check reads GitHub's run history. Anchor: none.
+
+Done: the three qualifying post-change rebuild SHAs `08bd79a68a`, `27490113c2` and `c9d4deed31` each have a captured `[]` result; a fourth SHA, `c7c5bfb51b`, also has `[]` (`scratch/post-change/`).
 
 Change: none. This task observes the pushed rebuild commits after T014 lands on `main`.
 
@@ -481,9 +511,11 @@ Stop and escalate if: any SHA returns a non-empty list, or fewer than three rebu
 
 ---
 
-### T016 Confirm the loop guard still matches (AC-001)
+### T016 [x] Confirm the loop guard still matches (AC-001)
 
 File: none; the check reads a commit message. Anchor: none.
+
+Done: `git log -1 --format=%B` on both rebuild SHAs ends with the `[skip ci]` body then `Trigger-Index-Rebuild: ci`; the suffix check exits 0 on each.
 
 Change: none.
 
@@ -507,9 +539,11 @@ Stop and escalate if: the suffix check exits 1, or the token is missing from the
 
 ---
 
-### T017 Confirm spec-kit-check is green on the change (AC-007)
+### T017 [x] Confirm spec-kit-check is green on the change (AC-007)
 
 File: none; the check reads the workflow run. Anchor: none.
+
+Done: `gh run list --workflow spec-kit-check.yml --commit 8e62a3d096…` returns one run, `databaseId` 40018919244, conclusion `success`.
 
 Change: none.
 
@@ -527,11 +561,13 @@ Stop and escalate if: no run is listed for the change SHA, or its conclusion is 
 
 ---
 
-### T018 Confirm the new trigger fires on a workflow-only pull request (AC-004)
+### T018 [x] Confirm the new trigger fires on a workflow-only pull request (AC-004)
 
 File: `.github/workflows/trigger-index-rebuild.yml:322` on a throwaway branch (a probe comment, never merged). Anchor:
 
 `          exit 1`
+
+Done: PR #71 "Probe: rebuild workflow trigger" on `branches/018-probe-rebuild-workflow-trigger` (the branch name the 2026-10-24 amendment records in place of `probe/rebuild-workflow-trigger`), head `6c51acecb2f8`, produced one `pull_request` spec-kit-check run 40021934338, conclusion `success`; closed unmerged 2026-10-23T21:03Z.
 
 Change: append one comment line on a probe branch and open a pull request against `main`, so the `pull_request:` filter is exercised.
 

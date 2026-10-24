@@ -32,7 +32,7 @@ Nothing in this repository's CI is cached. Zero of the 33 workflows use `actions
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In progress |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -53,7 +53,7 @@ This is **Phase 4** of the CI efficiency implementation phases specification. It
 
 **Dependencies**:
 - `002-rebuild-fanout-removal`: its 24 h snapshot is the baseline every saving in this phase is measured against, and its rebuild-skip change sets the volume the "after R1" figures assume.
-- `003-trigger-and-job-hygiene`: not a predecessor. Only R18's T021 waits on that phase's R8, which drops `fetch-depth: 0` from `rule-canary-sync.yml:15` before this phase trials a partial checkout on the same step. That phase's R6 also removes one of `dispatch-enforcement-guard.yml`'s two installs, so T003 recounts the inventory as eleven files and marks its `dispatch-enforcement-guard.yml` row conditional until R6 lands; the ten-file count in this phase's scope assumes it has.
+- `003-trigger-and-job-hygiene`: not a predecessor. That phase's R8 has landed — `rule-canary-sync.yml` carries no `fetch-depth` — so R18's T067 check reads `0` and the trial is unblocked. Its R6 also landed, leaving `dispatch-enforcement-guard.yml` with one install, so T003's inventory counts ten multi-install files.
 - Operator decision D5 (`final-review.md:618`), which approves the check rename the R15 merge causes.
 - `gh` authenticated with `repo` and `actions`, for cache sizes, job step timings and dispatch runs.
 - A checkout with `.skilled/skills/system-spec-kit` dependencies installed for the spec-kit gates; the worktree that authored this plan has no build.
@@ -184,7 +184,7 @@ R12's saving is 0: it closes the gap that would otherwise let the action hold CI
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `002-rebuild-fanout-removal` baseline | Every "after R1" number is unanchored | The provisional baseline is `001-research/scratch/ci-run-data/summary.md`; T002 waits for the 002 snapshot and records which source it used |
-| Dependency | `003-trigger-and-job-hygiene` R8 | R18 has no shallow checkout to build on | R18's first task checks `grep -c 'fetch-depth' .github/workflows/rule-canary-sync.yml`; if it returns 1, R18 is blocked and the phase closes without it |
+| Dependency | `003-trigger-and-job-hygiene` R8 | Landed 2026-10-23 — `rule-canary-sync.yml` carries no `fetch-depth`, so R18's shallow checkout exists | R18's first task still checks `grep -c 'fetch-depth' .github/workflows/rule-canary-sync.yml`; a return of `1` would mark R18 blocked and the phase closes without it |
 | Dependency | Operator decision D5 | None; D5=approve (2026-10-23) recorded and T001 only verifies `scratch/decisions.md` | The merge is approved and planned end to end with the renamed check named; the alternative is to keep both workflows and forgo ~53 runner-min/day after R1 |
 | Risk | A stale cache is accepted silently: `_wn_deps_satisfied` compares a name, not a version (`worktree-naming.sh:486-506`), so a key that omits a lockfile yields a green run with wrong versions | The gate proves less than it claims, with no red build | The key globs every lockfile rather than enumerating today's 13, and carries no `restore-keys`; R13's probe measures the entry before adoption |
 | Risk | A warm cache stops exercising the install path | A broken cold install merges green | `provision_worktree` still runs on a hit as the verification walk, and a weekly scheduled cold run plus a dispatchable `cold` input keep the miss path alive |
@@ -267,7 +267,7 @@ R12's saving is 0: it closes the gap that would otherwise let the action hold CI
 | R-007 | The merged job loses a suite or the installer test during the move | H | L | T035 copies the three hook steps verbatim, and T041 reads the run log for every suite and the installer test line |
 | R-008 | The merge renames a check a consumer depends on | M | L | `research.md:94` shows the only active ruleset requires `message-contract.yml`'s context; D5 records the rename, and the README rows move with it |
 | R-009 | The 002 baseline does not exist, so no after number has a before number | M | H | T002 stops when `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` is absent and records the 001 dataset as provisional instead |
-| R-010 | Phase 003's R8 has not landed, so R18 has no shallow checkout to build on | L | M | T067 checks `grep -c 'fetch-depth' .github/workflows/rule-canary-sync.yml`; a count of 1 marks R18 blocked and the phase closes without it |
+| R-010 | Phase 003's R8 landed 2026-10-23, so R18's shallow checkout exists; the residual risk is a later reversion | L | M | T067 checks `grep -c 'fetch-depth' .github/workflows/rule-canary-sync.yml`; a count of 1 marks R18 blocked and the phase closes without it |
 | R-011 | A `setup-python` cache key has no dependency file to hash, because the repository holds no requirements file | M | M | `cache-dependency-path` names the workflow file itself, whose pins are what change (T051 to T054) |
 | R-012 | The sparse checkout cone names `.opencode` paths that are symlinks, so the checkout omits the real files | M | L | The cone names the `.skilled` targets, and the canary job proves it by logging `All rule invariants present` (T057) |
 

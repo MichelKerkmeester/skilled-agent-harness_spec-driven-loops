@@ -1,0 +1,6 @@
+chore(system-spec-kit): rebuild the trigger index
+
+The pushed corpus changed the committed trigger index, so this job rebuilt it. [skip ci]
+
+Trigger-Index-Rebuild: ci
+

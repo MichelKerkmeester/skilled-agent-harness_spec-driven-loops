@@ -39,7 +39,7 @@
       "parity"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,6 +48,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/pre-commit-inventory.md",
       ".github/workflows/command-tree-parity.yml",
       ".github/workflows/agent-mirror-sync.yml",
       ".github/workflows/dispatch-enforcement-guard.yml",
@@ -59,8 +60,7 @@
       ".github/workflows/skill-doc-frontmatter.yml",
       ".github/workflows/README.md",
       "scratch/decisions.md",
-      ".github/workflows/changed-packet-validation.yml",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh"
+      ".github/workflows/changed-packet-validation.yml"
     ],
     "entities": [
       {
@@ -103,6 +103,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit-inventory.md",
+        "kind": "doc",
+        "path": "scratch/pre-commit-inventory.md",
         "source": "derived"
       },
       {
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "check-skill-doc-frontmatter.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for",
     "created_at": "2026-10-23T08:47:51Z",
-    "last_save_at": "2026-10-23T16:28:14.886Z",
+    "last_save_at": "2026-10-24T09:00:13.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bdfe985187a4811892a4937f25d66ff7be6d91a2ace11defd3e10c2a6d27f67",
+    "source_fingerprint": "sha256:fd6767fa505ffe9ee188a4c83dc89deaa59edf5e81a884307e2a07d8c2ec9e49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea529491e5c471771189e7789b9cc8a1427a0e7c139145b23c6250f5ae490a2a",
-      "plan.md": "0434cd181f5963bb242f2504170324fa2c752a2f11f637dbd8eb0e52e7f9e265",
-      "tasks.md": "3a8470bcbe9e34dbd7df25d6252467a24b58bd5e91222df539d14ec1f6036d02",
-      "decision-record.md": "18f718a81d8f5193626959587b5aa8aabe7e2e8f968cf8d2859c57f302d22fbe",
-      "implementation-summary.md": "9f476cd030cf4890fa8b75721bf179061b3d307b96ec834face0403e226b6e41"
+      "spec.md": "d7761f262e34047f9b55c0388b27ee04380d3d162a79057d49c5da6e92d83777",
+      "plan.md": "b0c51ce0f8c4f149439176104907322af73f333fbb7996462235e785237a40b4",
+      "tasks.md": "404c2a3f82e64d8d5473530fa1872648049b85b89089fa0e08d2bdc68a919cf7",
+      "decision-record.md": "182903279b25a83d9b21ab883cde42471e7de7fda83ead84c9454403cbbf76bb",
+      "implementation-summary.md": "b97ab276f4e8aff22a6b2cc6712ba71159a1d9fc843eaf27418f743222a8bc2f"
     },
     "last_active_at": null
   }

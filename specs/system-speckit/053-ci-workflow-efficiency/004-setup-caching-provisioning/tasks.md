@@ -37,9 +37,11 @@ Line numbers are the values on disk when that task runs, after the tasks before 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 DECISION D5 (operator yes required) - approve or reject the hook-and-plugin merge (AC-015)
+### T001 [x] DECISION D5 (operator yes required) - approve or reject the hook-and-plugin merge (AC-015)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D5=approve` (grep `^D5=` count 1).
 
 Default: `approve`. One workflow, one job titled `OpenCode plugin and hook node:test suites`, worth 124 runner-min/day standalone, about 53 after R1 and about 27 after R1 and R14. No required check is renamed, because the only active ruleset requires `message-contract.yml`'s context.
 
@@ -74,7 +76,7 @@ Check:
 test -f specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
 ```
 
-Expected: `BASELINE_PRESENT`. When it prints `BASELINE_MISSING`, copy `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md` instead and write `source: 001 dataset (provisional)` as the file's first line.
+Expected: `BASELINE_PRESENT`. When it prints `BASELINE_MISSING`, copy `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md` instead and write `source: 001 dataset (provisional)` as the file's first line. As of 2026-10-24 it prints `BASELINE_MISSING`, so the 001-dataset fallback is the expected path until the 002 baseline exists.
 
 Then:
 
@@ -117,7 +119,7 @@ find . \( -name package-lock.json -o -name bun.lock -o -name bun.lockb \) -not -
 cd .github/workflows && for f in *.yml; do c=$(grep -cE 'npm --prefix [^ ]+ ci$' "$f"); [ "$c" -ge 2 ] && echo "$f"; done | wc -l
 ```
 
-Expected: `files=45`, `failures=0` and `RESULT: PASSED`; `inputs_resolved` at least `236`; `dynamic_inputs=11`; `twin_pairs` at least `311`; `check-gate-inputs: 50 passed, 0 failed`; `5`; `13`; `11` when `grep -cE 'npm --prefix [^ ]+ ci$' .github/workflows/dispatch-enforcement-guard.yml` returns `2`, and `10` after phase 003's R6 leaves `1`. The `236` and `311` are the pre-003 minima; phase 003's R4, R9 and R10 add twin-matched filter entries, so both rise when 003 lands first.
+Expected: the gate output matches this phase's measured baseline on the post-003 tree — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` — with `RESULT: PASSED`; `check-gate-inputs: 54 passed, 0 failed`; `5`; `13`; and `10`, since phase 003's R6 left `dispatch-enforcement-guard.yml` with one install. The planned constants (`inputs_resolved` at least `236`, `dynamic_inputs=11`, `twin_pairs` at least `311`, suite `50`) went stale when 003's filters and this phase's T005 description-as-label rule landed; the 2026-10-24 amendment replaces them with the measured baseline.
 
 Then:
 
@@ -129,7 +131,7 @@ Expected: at least `5` (the five section headings; the copied 002 summary may ad
 
 Rollback: delete the five appended sections.
 
-Stop and escalate if: the gate fails, `inputs_resolved` is below `236`, `twin_pairs` is below `311`, `dynamic_inputs` is not `11`, the fixture suite is not `50 passed, 0 failed`, the bun site count is not `5`, the lockfile count is not `13`, or the install count is neither `10` nor `11`.
+Stop and escalate if: the gate fails, its counters differ from the measured baseline `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, the fixture suite is not `54 passed, 0 failed`, the bun site count is not `5`, the lockfile count is not `13`, or the install count is not `10`.
 
 ---
 
@@ -140,7 +142,7 @@ Stop and escalate if: the gate fails, `inputs_resolved` is below `236`, `twin_pa
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-### T004 Add the composite-action scan loop to the gate (AC-001)
+### T004 [x] Add the composite-action scan loop to the gate (AC-001)
 
 File: `.github/scripts/check-gate-inputs.sh:484-485`, anchor:
 
@@ -148,6 +150,8 @@ File: `.github/scripts/check-gate-inputs.sh:484-485`, anchor:
   scan_workflow "${wf#"$ROOT"/}"
 done
 ```
+
+Done: the `.github/actions` scan loop sits after this `done` at `~:487-494` (uncommitted edit); the real-tree gate still prints `files=45 … RESULT: PASSED` because no `.github/actions/` directory exists yet.
 
 Change: insert this block immediately after `done`:
 
@@ -168,21 +172,23 @@ Check:
 bash .github/scripts/check-gate-inputs.sh
 ```
 
-Expected: `files=45`, `failures=0` and `RESULT: PASSED`; `inputs_resolved` at least `236`; `dynamic_inputs=11`; `twin_pairs` at least `311`.
+Expected: the gate output matches this phase's measured baseline — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` — with `RESULT: PASSED` (the planned `≥236`/`11`/`≥311` constants went stale post-003 and post-T005; see the 2026-10-24 amendment).
 
 Rollback: delete the inserted block and the blank line above it, restoring the quoted anchor.
 
-Stop and escalate if: the anchor text is not on the file, `files` is not `45`, `inputs_resolved` is below `236`, `twin_pairs` is below `311`, or the gate does not print `RESULT: PASSED`.
+Stop and escalate if: the anchor text is not on the file, the gate counters differ from the measured baseline `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, or the gate does not print `RESULT: PASSED`.
 
 ---
 
-### T005 Treat a `description:` line as a label (AC-001)
+### T005 [x] Treat a `description:` line as a label (AC-001)
 
 File: `.github/scripts/check-gate-inputs.sh:384`, anchor:
 
 ```awk
   if (code ~ /^[ ]*-?[ ]*name:/) { if (code ~ /\.(opencode|skilled)/) emit("note", "label"); next }
 ```
+
+Done: `(name|description):` sits at the awk label rule (uncommitted edit); `grep -cF '(name|description):'` returns 1.
 
 Change: replace it with:
 
@@ -204,7 +210,7 @@ Stop and escalate if: the anchor text is not on the file, or the count is not 1.
 
 ---
 
-### T006 Add fixture case 50, a clean composite action passes (AC-002)
+### T006 [x] Add fixture case 50, a clean composite action passes (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:489`, anchor:
 
@@ -212,6 +218,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:489`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 50 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -246,7 +254,7 @@ Stop and escalate if: the anchor is not on the file, or the count is not 51.
 
 ---
 
-### T007 Add fixture case 51, an unresolved path in an action fails `workflow-inputs` (AC-002)
+### T007 [x] Add fixture case 51, an unresolved path in an action fails `workflow-inputs` (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:503`, anchor:
 
@@ -254,6 +262,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:503`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 51 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -288,7 +298,7 @@ Stop and escalate if: the anchor is not on the file, the count is not 52, or the
 
 ---
 
-### T008 Add fixture case 52, an unreadable root shape in an action fails `parser-miss` (AC-002)
+### T008 [x] Add fixture case 52, an unreadable root shape in an action fails `parser-miss` (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:517`, anchor:
 
@@ -296,6 +306,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:517`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 52 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -330,7 +342,7 @@ Stop and escalate if: the anchor is not on the file, the count is not 53, or the
 
 ---
 
-### T009 Add fixture case 53, a description that names a path is a label (AC-002)
+### T009 [x] Add fixture case 53, a description that names a path is a label (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:531`, anchor:
 
@@ -338,6 +350,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:531`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 53 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -387,6 +401,8 @@ File: `.github/scripts/check-gate-inputs.sh:18-25`, anchor:
 #                    within the same filter, update entry, array or command
 ```
 
+Not done: the rule comment at `:18-25` still reads "a workflow runs"; `grep -c 'composite action'` returns 0 (the scan-loop code comment T004 added says "Composite actions" with a capital C, which this case-sensitive grep does not count).
+
 Change: replace those eight lines with these eight:
 
 ```bash
@@ -418,6 +434,8 @@ Stop and escalate if: the anchor is not on the file at `:18-25`, or the count is
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md` (new file), anchor: none.
 
+Partial: all three gates pass on today's tree — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`, `check-gate-inputs: 54 passed, 0 failed`, YAML parse exits 0 — but `scratch/phase-result.md` with its `## Gate after R12` section does not exist yet, so the record step remains.
+
 Change: create the file and record the three command outputs under `## Gate after R12`.
 
 Check:
@@ -428,7 +446,7 @@ bash .github/scripts/tests/check-gate-inputs.test.sh | tail -1
 python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]"
 ```
 
-Expected: `files=45` with `failures=0` and `RESULT: PASSED`; `check-gate-inputs: 54 passed, 0 failed`; exit `0` with no output.
+Expected: the gate output matches this phase's measured baseline — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` — with `RESULT: PASSED` (the planned `inputs_resolved` ≥`236` and `dynamic_inputs=11` went stale post-003 and post-T005; see the 2026-10-24 amendment); `check-gate-inputs: 54 passed, 0 failed`; exit `0` with no output.
 
 Then:
 
@@ -447,6 +465,8 @@ Stop and escalate if: any of the three checks fails, or `files` is not 45.
 ### T011A Commit the gate scan (AC-001, AC-002, AC-017)
 
 File: `.github/scripts/check-gate-inputs.sh`, `.github/scripts/tests/check-gate-inputs.test.sh`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+
+Not done: both files carry the T004-T009 edits but remain uncommitted; no `ci(gate-inputs): scan composite actions…` commit exists.
 
 Change: stage the gate scan, write its message, validate it, scan the staged diff for ephemeral ids, and commit.
 
