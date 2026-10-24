@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Recorded the 2026-10-24 amendments for the delivered wording, the AC-011 count, and the 13-key six-column inventory"
-    next_safe_action: "Run the CI probes T027 to T034, then T035's inventory re-check and T036's 24 h delta once the 002 baseline exists; T037 and T038 close the phase"
+    recent_action: "Recorded the AC-007 operator ruling and two proof wording fixes"
+    next_safe_action: "Run T036 after the 002 baseline, close AC-009 and AC-016, then commit"
     blockers:
       - "002-rebuild-fanout-removal baseline pending"
     key_files:
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 85
     open_questions:
       - "Does cancel-in-progress on pull requests leave the required message-contract context satisfied on the newest head?"
       - "Do deep-loop-runtime's mode-event suites need anything older than the parent commit?"
@@ -1186,5 +1186,7 @@ The phase changes 30 workflow files plus a README table and three scratch docume
 - **Amendment (2026-10-24, T007 anchor)**: the rewritten comment moved from `:47-50` to `:98-102` when T008 and T009 inserted the 48 filter lines above it; the task and AC-003 reference the post-filter position.
 - **Amendment (2026-10-24, T013 caveat)**: the local hooks vitest run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs` while CI run 40026353792 is green; the divergence is recorded under T013 and queued for triage.
 - **Amendment (2026-10-24, T017 line position)**: the four-line concurrency block moved the delivered `fetch-depth: 2` from `:42` before the block to `:46` after it in [deep-loop-runtime.yml](../../../../.github/workflows/deep-loop-runtime.yml#L46); the original D7 decision text remains historical.
+- **Amendment (2026-10-24, AC-007 and T031 proof, operator ruling)**: the operator ruled that the report-only steps keep `continue-on-error: true` by design (T014 and T015 say so), and that AC-007 is proven by the step's error line and failure annotations while the job concludes `success`, plus the repair report text still printed by `strict-pass-freshness-report.yml`. The old proof `{"job":"success","steps":["failure"]}` was unobservable. GitHub's REST jobs API reports a failed `continue-on-error` step as `conclusion: success` and exposes the real result only in the `outcome` context, so the literal value can never appear for a step built this way. T031's Expected and Check, and AC-007's proof cell, now assert on `##[error]doc-model drift` in the run log (the `::error::` command prints as `##[error]` once it runs, and the bare `::error::` form also matches the echoed script source in every run, so it cannot tell a failure from a pass) and on the check run's failure annotations. Observed 2026-10-24 against Advisory Checks run `40101235126` (check run `120893637299`): the log grep returns `1`, the annotation count for `doc-model drift` returns `1`, and the job reads `success`. For `strict-pass-freshness-report.yml` run `40101537374`: the `Derived-repair drift report` step logs `175` `would repair` lines and one `##[error]Process completed with exit code 1.`, and the job reads `success`.
+- **Amendment (2026-10-24, AC-005 and AC-006 proof wording)**: found while closing the probes, and a drift correction, not a lowered bar. AC-005's log grep returns eight paths, not seven, because the rule-engine job's `SUITE=` line also names `dispatch/lib/dispatch-rule-checks.test.mjs`. In run `40026353792` each of the seven vitest suites appears exactly once, all in the `Every hook vitest suite passes` job. AC-005's command now filters to that job's lines before the `grep -oE`. AC-006 asks for `::error::Dispatch rule suite not found` in the log of the deleted-suite run, but a run that does not fail also echoes that source line, so the discriminating text is the printed `##[error]Dispatch rule suite not found` line plus the `failure` conclusion. The AC-006 proof now says so. The operator has not yet confirmed these two wording corrections.
 
 ---

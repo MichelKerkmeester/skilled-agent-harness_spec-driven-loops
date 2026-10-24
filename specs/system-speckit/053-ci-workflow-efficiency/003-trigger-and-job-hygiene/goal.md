@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Marked the six landed checkboxes and recorded the remaining probe, delta and closure work"
-    next_safe_action: "Run T027 to T034 CI probes, then T035/T036 once the 002 baseline exists; T037/T038 close"
+    recent_action: "Recorded the 2026-10-24 probe results; 15 of 17 rows Met"
+    next_safe_action: "Run T036 after the 002 baseline, close AC-009 and AC-016, then commit"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -87,8 +87,9 @@ and findings belong here.
 | Operator decisions | Done | `scratch/decisions.md` records `D2=pr-only, D3=approve, D4=drop-step, D7=depth-2, D10=skip` |
 | Baseline rows | Pending | `../002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` does not exist yet; T006 and T036 wait on it |
 | Implementation | Done | Six concern commits on `main`: concurrency on 30 workflows, both filters, the dedup, both suppression removals, the three depth changes, the README table and the 13-key inventory |
-| CI probes | Pending | T027 to T034: the concurrency cancel observation and the positive/negative trigger probes per filtered workflow |
-| Delta and closure | Pending | T035 inventory re-check, T036 delta against the 002 baseline, T037/T038 closure evidence and commit |
+| CI probes | Done | T027 to T035 ran on 2026-10-24 in `scratch/probe-results.md`: concurrency cancel (`40100004699` cancelled, `40100024617` success), both filter pairs, the D10 run, the deleted-suite failure (`40101163105`), the report-only steps (`40101235126`, `40101537374`), the three checkout depths and the 13/13/13 inventory re-check |
+| Acceptance rows | Partly done | 15 of 17 `Met`. AC-009 is `Unmet`: its proof needs the checkout seconds in `scratch/phase-result.md` against an 002 baseline sample, and neither exists. AC-016 waits on T036 |
+| Delta and closure | Pending | T036 delta against the 002 baseline, the last two T037 rows and the T038 commit |
 
 ### Deviations and findings
 
@@ -98,5 +99,9 @@ and findings belong here.
 | T021 wording | `README.md:71` names three inputs (`check-agent-mirror-sync.cjs`, both agent trees, the workflow file); accepted as more accurate, 2026-10-24 |
 | AC-011 count | The guard regex returns 4, not the planned 2 (both roots' guards and the workflow file in both lists); amendment 2026-10-24 |
 | Inventory shape | The hook has 13 gate keys (`private-skill` arrived with `7648ae8b56`) and the table carries a sixth `Reason` column; T035 and AC-012 corrected to 13/13/13 |
+| AC-007 proof | Operator ruling 2026-10-24: the REST API reports a `continue-on-error` step as `success`, so the proof is the step's `##[error]` line and failure annotations while the job stays `success`, plus the repair report text. Amendment in `decision-record.md` |
+| AC-005 and AC-006 wording | The AC-005 grep returns eight paths without a job filter, and AC-006 asserts on the printed `##[error]` line. Corrected in `decision-record.md`, awaiting operator confirmation |
+| Probe deviations | Pull requests were needed because push triggers list `main` and `skilled/**` only, probe commits after T029 shared one scratch worktree, hooks forced mirror regeneration, and new probe branches pushed with `SPECKIT_ALLOW_REMOTE_PUSH`. Detail in `implementation-summary.md`, Deviations |
+| Checkout shortening | Not a uniform 20 s: 47 to 67 s for `rule-canary-sync`, 11 s and 13 s for the other two, against single-sample baselines (T032) |
 | T013 local/CI version split | CI run `40026353792` is green with all seven suites. On 2026-10-24, the focused test printed `Tests 7 passed (7)` with `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`, but `Tests 2 failed \| 5 passed (7)` with local OpenCode v2.1.4 visible; the v1-only rule is skipped locally. The test is not hermetic, and pinning its resolved version belongs to dispatch-hooks, outside this packet |
 <!-- /ANCHOR:log -->

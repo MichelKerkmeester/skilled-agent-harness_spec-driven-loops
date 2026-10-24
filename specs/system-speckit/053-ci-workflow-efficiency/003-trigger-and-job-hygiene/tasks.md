@@ -1081,7 +1081,10 @@ git commit -F /tmp/probe-commit-msg.txt
 
 For a commit that changes no file, use `git commit --allow-empty -F /tmp/probe-commit-msg.txt`; for a commit that changes files, stage them with `git add` first. The installed `prepare-commit-msg` hook stamps the `Commit-Id` trailer. Each probe also needs the operator's yes before its first push, because it opens a pull request or starts runs on the remote.
 
-### T027 Probe the concurrency group (AC-002)
+### T027 [x] Probe the concurrency group (AC-002)
+
+Done 2026-10-24: branch `branches/019-probe-concurrency`, PR #74 (closed unmerged, branch deleted). Message Contract pull_request runs: `40100004699` on the first head `5586429cef` is `cancelled`, `40100024617` on the second head `09ab649f5d` is `success`. The two push runs (`40099994803`, `40100020162`) both ended `success`, because cancel-in-progress is false for push. `Commit messages, branch names and PR description follow the templates` reports `SUCCESS` on the newest head. `validate-message.mjs` exited 0 for both messages.
+Drift: the branch name is the `worktree-naming.sh create-branch` form instead of `probe/concurrency`, and the commits ran in a scratch worktree with the operator-approved naming. A fresh worktree has no `node_modules` or `dist`, so the pre-commit hook blocked with `Cannot find module`. The ignored toolchain directories were cloned copy-on-write from this worktree and the hooks then passed with no skip. The push of a new branch needed `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`, the pre-push gate's own approval. Raw data: `scratch/probe-results.md`.
 
 File: `.github/workflows/message-contract.yml` (read-only during the probe). Anchor: none.
 
@@ -1127,7 +1130,10 @@ Stop and escalate if: `gh` exits non-zero with a scope error, or the older run i
 
 ---
 
-### T028 Probe the command-tree-parity filter both ways (AC-003)
+### T028 [x] Probe the command-tree-parity filter both ways (AC-003)
+
+Done 2026-10-24: positive `branches/020-probe-parity-positive` (PR #75, head `e54cb748d5`) started exactly one run, `40100373828`, and both jobs concluded `success`. Negative `branches/021-probe-parity-negative` (PR #76, head `15f1bf7844`) returned `[]` for the parity workflow while 12 other workflows ran on the same PR head. Both branches and PRs are gone.
+Drift: the workflow's push trigger lists `main` and `skilled/**` only, so a probe-branch push starts no run and both cases needed a test PR to make the pull_request filter observable. `.opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` is `.skilled/skills/...` now. The spec-remint hook also staged `graph-metadata.json` on the negative commit.
 
 File: `.github/workflows/command-tree-parity.yml` (read-only during the probe). Anchor: none.
 
@@ -1183,7 +1189,10 @@ Stop and escalate if: the positive case produces no run, or the negative case pr
 
 ---
 
-### T029 Probe the D10 answer (AC-004)
+### T029 [x] Probe the D10 answer (AC-004)
+
+Done 2026-10-24: under `D10=skip`, `branches/022-probe-d10` (PR #78, head `4b184b7b7b`) started one run, `40101181490`, event `pull_request`, `success`. That is the unfiltered pre-phase behaviour.
+Drift: the workflow has no `paths:` block and its push trigger lists `main` and `skilled/**` only, so the run needed a test PR.
 
 File: `.github/workflows/changed-packet-validation.yml` (read-only during the probe). Anchor: none.
 
@@ -1216,7 +1225,10 @@ Stop and escalate if: `gh` returns a scope error, or the observed state matches 
 
 ---
 
-### T030 Probe the dispatch guard (AC-005, AC-006)
+### T030 [x] Probe the dispatch guard (AC-005, AC-006)
+
+Done 2026-10-24: `7482f4e880` was pushed with later commits, so `--commit 7482f4e880` returns `[]`. The first main run holding the change is `40026353792` (tip `3ab67b70cb`), `success`, and its `Every hook vitest suite passes` job lists the seven suites (dispatch-audit, dispatch-preflight-lint, session-relaunch, directive-dedup, classifier-injection-screen, devin-dispatch-audit, codex-shell-tool). The eighth path in the grep, `dispatch-rule-checks.test.mjs`, is the rule-engine job's `SUITE=` line. Guard probe: `branches/023-probe-guard-deleted` (PR #77, head `19e80ea464`), run `40101163105` concluded `failure` with an `##[error]` annotation reading `Dispatch rule suite not found at .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` and then `failing closed` The vitest job stayed `success`.
+Drift: a PR was needed because the push trigger lists `main` and `skilled/**` only.
 
 File: `.github/workflows/dispatch-enforcement-guard.yml` (read-only during the probe). Anchor: none.
 
@@ -1257,7 +1269,11 @@ Stop and escalate if: the deleted-suite run concludes `success`.
 
 ---
 
-### T031 Probe the report-only steps (AC-007)
+### T031 [x] Probe the report-only steps (AC-007)
+
+Done 2026-10-24, proof changed by the operator ruling in `decision-record.md` (Amendment 2026-10-24, AC-007 and T031 proof): the steps keep `continue-on-error: true` by design, and GitHub's REST API always reports such a step's `conclusion` as `success`, so the old `{"job":"success","steps":["failure"]}` value could never be observed. The proof is now the step's `##[error]` log line and its failure annotations while the job concludes `success`, plus the repair report text. Commands run 2026-10-24: `gh run view 40101235126 --log | grep -c '##\[error\]doc-model drift'` returned `1`; the annotation query on check run `120893637299` returned `1`, and the job conclusion read `success`. For run `40101537374` the `Derived-repair drift report` step lines held `175` `would repair` entries and `1` `##[error]Process completed with exit code 1.`, and the job read `success`. Probe record: `branches/024-probe-report` (PR #79, head `244d13db2f`) ran Advisory Checks `40101235126`. Job `120893637299` concluded `success`. The step `Doc-model reference drift (report-only)` logged `DRIFT DETECTED`, the drift line for `sk-doc/SKILL.md:189`, `##[error]doc-model drift found` and exit code 1, and the check run holds 5 failure-level annotations (and one notice), while the REST step conclusion read `success`. Dispatched `strict-pass-freshness-report.yml` on the probe branch, run `40101537374`, `success`. Its `Derived-repair drift report` step still printed 175 `would repair` entries and ended with `##[error]Process completed with exit code 1.` PR closed, branch deleted.
+
+Drift: the task's `.opencode/skills/sk-doc/SKILL.md` is `.skilled/skills/sk-doc/SKILL.md`. A PR was needed because the push trigger lists `main` and `skilled/\*\*` only. The mirror-parity hook needed `.hermes/skills/sk-doc/SKILL.md` regenerated and the route-remint hook staged two manifests, so the commit holds 4 files.
 
 File: `.github/workflows/advisory-checks.yml` and `.github/workflows/strict-pass-freshness-report.yml` (read-only during the probe). Anchor: none.
 
@@ -1281,20 +1297,33 @@ node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/probe-msg
 git commit -F /tmp/probe-msg-report.txt
 git push -u origin probe/report
 gh run list --workflow advisory-checks.yml --commit "$(git rev-parse HEAD)" --json databaseId
-gh api repos/:owner/:repo/actions/jobs/<job-id> --jq '{job: .conclusion, steps: [.steps[] | select(.name | test("Doc-model")) | .conclusion]}'
+gh run view <run-id> --log | grep -c '##\[error\]doc-model drift'
+gh api repos/:owner/:repo/check-runs/<job-id>/annotations --jq '[.[] | select(.annotation_level=="failure" and (.message | test("doc-model drift")))] | length'
+gh api repos/:owner/:repo/actions/jobs/<job-id> --jq .conclusion
 ```
 
-Expected: `validate-message.mjs` exits `0`; `{"job":"success","steps":["failure"]}`. The appended line cites a legacy model name beside the word `default`, which is what `validate-doc-model-refs.js` reports as drift; the validator exits non-zero and the step, no longer suppressed, reports `failure`.
+Expected: `validate-message.mjs` exits `0`, the log grep prints `1`, the annotation count prints `1` and the job conclusion prints `success`. The appended line cites a legacy model name beside the word `default`, which is what `validate-doc-model-refs.js` reports as drift. The validator exits non-zero, and the step, no longer suppressed, prints its error line and carries a failure annotation while `continue-on-error` keeps the job green. The grep targets `##[error]`, the form the runner prints once the `::error::` command executes. A bare `::error::doc-model drift` grep also matches the echoed script source in every run, so it cannot tell a failure from a pass.
 
-Then dispatch `strict-pass-freshness-report.yml` by hand, read its `Derived-repair drift report` step the same way, and confirm the report text is still in the log.
+Then dispatch `strict-pass-freshness-report.yml` by hand and check its `Derived-repair drift report` step:
+
+```bash
+gh run view <freshness-run-id> --log | grep 'Derived-repair drift report' | grep -c 'would repair'
+gh run view <freshness-run-id> --log | grep 'Derived-repair drift report' | grep -c '##\[error\]Process completed with exit code 1'
+gh api repos/:owner/:repo/actions/jobs/<freshness-job-id> --jq .conclusion
+```
+
+Expected: the first count is at least `1` (the repair report text is still printed), the second prints `1`, and the job conclusion prints `success`.
 
 Rollback: `git switch main`, then `git branch -D probe/report` and `git push origin --delete probe/report`.
 
-Stop and escalate if: the job concludes `failure`, or the step concludes `success`.
+Stop and escalate if the job concludes `failure`, the log holds no `##[error]doc-model drift` line, or the report text is missing from the freshness run.
 
 ---
 
-### T032 Probe the checkout depth (AC-009)
+### T032 [x] Probe the checkout depth (AC-009)
+
+Done 2026-10-24: `scratch/phase-baseline.md` does not exist, so each baseline is the newest main run before `9794ad69cc`. rule-canary-sync probe `40101304274`: job 24 s, checkout 21 s (baselines `40021863689` 73 s, `40020331318` 88 s, `40018919176` 68 s). repo-rules-corpus probe `40101304407`: checkout 51 s (baseline `38363499132` 62 s). deep-loop-runtime probe `40102189314`: checkout 50 s (baseline `39909844320` 63 s). All three succeeded and every checkout shortened, by 47 to 67 s, 11 s and 13 s, so the `about 20 s` figure is not reproduced as a uniform value. rule-canary-sync's job is under 60 s.
+Drift: PRs were opened because all three push triggers list `main` and `skilled/**` only. The doc-version-bump hook raised `ARCHITECTURE.md` to 1.0.2.0 in the deep-loop commit. Branches `025` and `026` (PRs #80, #81) are gone.
 
 File: `.github/workflows/rule-canary-sync.yml`, `.github/workflows/repo-rules-corpus.yml` and `.github/workflows/deep-loop-runtime.yml` (read-only during the probe). Anchor: none.
 
@@ -1364,7 +1393,10 @@ Stop and escalate if: a run concludes `failure`, or a checkout step does not sho
 
 ---
 
-### T033 Probe the agent-mirror-sync filter three ways (AC-010)
+### T033 [x] Probe the agent-mirror-sync filter three ways (AC-010)
+
+Done 2026-10-24: agent file `branches/027-probe-agent-file` (PR #82, head `0eae5a540a`) started one pull_request run `40102573620`, `success`. Verifier only `branches/028-probe-agent-lib` (PR #83, head `0e566ed9c2`) started one pull_request run `40102589221`, `success`. Negative `branches/029-probe-agent-negative` (PR #84, head `4d4e797b83`) returned `[]` while 14 other runs existed on that head. All PRs are closed and the branches deleted.
+Drift: the mirror-parity hook required the `.codex` and `.hermes` agent copies to be regenerated and staged, so the agent-file commit holds 3 files.
 
 File: `.github/workflows/agent-mirror-sync.yml` (read-only during the probe). Anchor: none.
 
@@ -1459,7 +1491,10 @@ Stop and escalate if: either positive case produces no run, or the negative case
 
 ---
 
-### T034 Probe the skill-doc-frontmatter filter (AC-011)
+### T034 [x] Probe the skill-doc-frontmatter filter (AC-011)
+
+Done 2026-10-24: `branches/030-probe-frontmatter-guard` (PR #85, head `ea214ad3ab`) started one pull_request run, `40102614545`, `success`. Job `Skill reference/asset frontmatter contract` ran the step `Run skill-doc frontmatter guard (coverage mode)` and it succeeded. PR closed, branch deleted.
+Drift: the push list on main already names the guard, but push only runs on `main` and `skilled/**`, so the probe needed the PR either way.
 
 File: `.github/workflows/skill-doc-frontmatter.yml` (read-only during the probe). Anchor: none.
 
@@ -1502,11 +1537,13 @@ Stop and escalate if: no run starts.
 
 ---
 
-### T035 Review the inventory against the hook (AC-012)
+### T035 [x] Review the inventory against the hook (AC-012)
+
+Done 2026-10-24: the three greps return `13`, `13`, `13`, and the verdict cells split 8 keep CI, 0 drop CI, 5 local only, with no row missing a verdict. The hook is unchanged since `7648ae8b56`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch/pre-commit-inventory.md` (read-only). Anchor: none.
 
-Not done: the formal re-check is still owed. The counts below are corrected for the thirteenth gate key (`private-skill`, added to the hook by `7648ae8b56`) and the inventory's sixth `Reason` column per the 2026-10-24 amendment; run under the corrected regexes on 2026-10-24 they return `13`, `13`, `13`.
+The formal re-check ran on 2026-10-24 (see the Done line). The counts below are corrected for the thirteenth gate key (`private-skill`, added to the hook by `7648ae8b56`) and the inventory's sixth `Reason` column per the 2026-10-24 amendment; run under the corrected regexes on 2026-10-24 they return `13`, `13`, `13`.
 
 Change: none. This task checks T020 against its source.
 
@@ -1554,6 +1591,8 @@ Stop and escalate if: fewer than 24 h have passed, or fewer than ten rows are re
 ---
 
 ### T037 Close the acceptance rows with evidence (AC-001 to AC-017)
+
+Partly done 2026-10-24: the rows the probes decide are closed with run ids. AC-002, AC-003, AC-006, AC-007, AC-010, AC-011 and AC-012 are `Met`. AC-009 stays `Unmet` because its proof needs the seconds recorded in `scratch/phase-result.md` against an 002 baseline sample and neither exists. AC-016 stays `Unmet` until T036. The check below still returns `2` until T036 has run and those two rows close.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: the `| Unmet | - |` status cell of each row.
 

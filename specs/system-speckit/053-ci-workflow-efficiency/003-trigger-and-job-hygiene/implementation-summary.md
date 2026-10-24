@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "In progress, built but unclosed: this phase added a concurrency group to the 30 PR-triggered workflows, filtered command-tree-parity and agent-mirror-sync to the inputs their checkers read, deleted dispatch-enforcement-guard's duplicate dispatch-audit step, removed one suppression layer from the two report-only workflows, and checks out at the depth each job reads. The CI probes, the inventory re-check and the 24 h delta remain."
+description: "In progress, built and probed but unclosed: this phase added a concurrency group to the 30 PR-triggered workflows, filtered command-tree-parity and agent-mirror-sync to the inputs their checkers read, deleted dispatch-enforcement-guard's duplicate dispatch-audit step, removed one suppression layer from the two report-only workflows, and checks out at the depth each job reads. The CI probes ran on 2026-10-24 and close 15 of 17 acceptance rows. The checkout-timing record (AC-009) and the 24 h delta (AC-016) remain."
 trigger_phrases:
   - "trigger and job hygiene implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Reconciled the summary with the six landed concern commits and the open probe and delta work"
-    next_safe_action: "Run the CI probes T027 to T034, then T035's inventory re-check and T036's 24 h delta once the 002 baseline exists; T037 and T038 close the phase"
+    recent_action: "Recorded probe results and deviations; 15 of 17 rows Met"
+    next_safe_action: "Run T036 after the 002 baseline, close AC-009 and AC-016, then commit"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-trigger-and-job-hygiene |
-| **Completed** | Built, not closed (probes and delta pending) |
+| **Completed** | Built and probed, not closed (the checkout-timing record and the delta pending) |
 | **Level** | 3 |
 | **Status** | In progress |
 <!-- /ANCHOR:metadata -->
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Built but not closed. The six concern commits landed on `main`: 30 PR-triggered workflows carry the concurrency block, `command-tree-parity.yml` and `agent-mirror-sync.yml` are filtered to their checkers' inputs, the duplicate dispatch-audit step is gone, both suppression layers are removed, and the three checkouts read only the history they need. The README table matches the YAML, and `scratch/pre-commit-inventory.md` records the 13 gate keys with a `Reason` column. Still open: the T027 to T034 CI probes, the T035 inventory re-check, the T036 delta (blocked on the 002 24 h baseline via T006), and T037/T038 closure.
+Built and probed, not closed. The six concern commits landed on `main`: 30 PR-triggered workflows carry the concurrency block, `command-tree-parity.yml` and `agent-mirror-sync.yml` are filtered to their checkers' inputs, the duplicate dispatch-audit step is gone, both suppression layers are removed, and the three checkouts read only the history they need. The README table matches the YAML, and `scratch/pre-commit-inventory.md` records the 13 gate keys with a `Reason` column. The CI probes T027 to T035 ran on 2026-10-24 and 15 of 17 acceptance rows are `Met`. Still open: AC-009 (its proof needs the checkout seconds in `scratch/phase-result.md` against an 002 baseline sample, and neither exists) and AC-016 (the T036 delta, blocked on the 002 24 h baseline via T006), then the rest of T037 and the T038 commit.
 
 ### Phase 3: trigger-and-job-hygiene
 
@@ -78,7 +78,7 @@ This phase gives 30 PR-triggered workflows one concurrency slot each, so a secon
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005), the content edits (T007 to T021), the concurrency block and the whole-tree gates (T022 to T025), and the six concern commits (T026) are done; T006's baseline copy and the probes, review, delta and closure (T027 to T038) remain. The gates pass: `check-gate-inputs.sh` prints `RESULT: PASSED` (`twin_pairs=340`), the YAML parse exits 0 over all 33 workflows, and `check-gate-inputs: 54 passed, 0 failed`. Still owed: one positive and one negative trigger probe per filtered workflow, the hooks-suite log check, the inventory re-check, the delta, and the closure commit.
+Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005), the content edits (T007 to T021), the concurrency block and the whole-tree gates (T022 to T025), and the six concern commits (T026) are done, the probes and the inventory re-check (T027 to T035) ran on 2026-10-24. T006's baseline copy, T036's delta and the closure (T037's last two rows, T038) remain. The gates pass: `check-gate-inputs.sh` prints `RESULT: PASSED` (`twin_pairs=340`), the YAML parse exits 0 over all 33 workflows, and `check-gate-inputs: 54 passed, 0 failed`. The probes opened throwaway pull requests, observed the runs and deleted the branches. Still owed: the delta and the closure commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -105,9 +105,28 @@ Delivered in six steps per `tasks.md`: the five operator answers (T001 to T005),
 | `bash .github/scripts/check-gate-inputs.sh` | `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, `RESULT: PASSED` (AC-013) |
 | YAML parse of all 33 workflows | Exit 0, no output (AC-014) |
 | Seven hooks vitest suites | CI run `40026353792` is green with all seven suites. On 2026-10-24, the focused test printed `Tests 7 passed (7)` with `opencode` hidden from `PATH` and `OPENCODE_BIN=/nonexistent/opencode`; with local OpenCode v2.1.4 visible it printed `Tests 2 failed \| 5 passed (7)`. T013 is done; the local version-resolution issue is a dispatch-hooks limitation (AC-005) |
-| Two trigger probes per filtered workflow | Not run; T027 to T034 remain (AC-003, AC-010, AC-011) |
+| Concurrency probe | Older run `40100004699` `cancelled`, newest `40100024617` `success` (AC-002) |
+| Positive and negative trigger probes | command-tree-parity `40100373828` and no run for a specs-only head, agent-mirror-sync `40102573620` and `40102589221`, no run for a specs-only head, skill-doc-frontmatter `40102614545` (AC-003, AC-010, AC-011) |
+| Deleted rule suite | Run `40101163105` concluded `failure` with `##[error]Dispatch rule suite not found` (AC-006) |
+| Report-only steps | Run `40101235126`: `##[error]doc-model drift` once in the log, one failure annotation, job `success`. Dispatch `40101537374`: 175 `would repair` lines and one error line, job `success` (AC-007, proof changed by the 2026-10-24 operator ruling) |
+| Checkout depth | Three runs green and each checkout shorter, `rule-canary-sync` job 24 s, and the 002-baseline record is missing (AC-009 `Unmet`) |
+| Pre-commit inventory | 13 keys, 13 rows, 13 verdicts (AC-012) |
 | `scratch/phase-result.md` against the 002 baseline | Not run; blocked on the 002 24 h snapshot via T006 (AC-016) |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:deviations -->
+## Deviations
+
+1. **The shortening is not a uniform 20 s (T032).** Checkout fell by 47 to 67 s for `rule-canary-sync` against three main samples that spanned 68 to 88 s, by 11 s for `repo-rules-corpus` and by 13 s for `deep-loop-runtime`. The baselines are single pre-change main runs, because `scratch/phase-baseline.md` does not exist, and checkout time varies by tens of seconds run to run. The post-change main run of `rule-canary-sync` took 51 s against 21 s on the probe.
+2. **Probes needed pull requests (T027 to T034).** The push triggers of the probed workflows list `main` and `skilled/**` only, so a probe-branch push starts nothing. Each probe opened a throwaway pull request against `main`, and the branches and PRs were deleted afterwards.
+3. **A shared scratch worktree after T029.** After T029, the probe commits ran in one shared scratch worktree instead of one worktree per probe. Its ignored `node_modules` and `dist` were cloned copy-on-write from the packet worktree, because a bare worktree makes the pre-commit hook fail with `Cannot find module`.
+4. **Mirror regeneration in probe commits.** The mirror-parity hook blocked probes that touched a skill or agent file until `sync-skills-hermes.cjs` and `codex/sync-agents.cjs` ran and their output was staged. The spec-remint, route-remint and doc-version-bump hooks also added files to some probe commits.
+5. **`SPECKIT_ALLOW_REMOTE_PUSH` approvals.** Each new non-allowlisted probe branch was pushed with `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`, and branch deletes used `SPECKIT_ALLOW_REMOTE_PUSH=1`. No `--no-verify` or hook skip was used. The operator's approval is in `scratch/probe-branch-approval.md`.
+6. **The AC-007 proof changed (T031).** The operator ruled on 2026-10-24 that the proof is the step's error line and failure annotations while the job stays `success`. See `decision-record.md`, Amendments.
+7. **Two proof wordings corrected (AC-005, AC-006).** The AC-005 grep needs a job filter to return seven paths, and AC-006 asserts on the printed `##[error]` line. See `decision-record.md`, Amendments. The operator has not yet confirmed these.
+<!-- /ANCHOR:deviations -->
 
 ---
 
