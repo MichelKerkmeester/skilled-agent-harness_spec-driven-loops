@@ -67,6 +67,8 @@ No repository code. Four probes ran against the real runtimes in throwaway direc
 
 Confidence: Claude path high (a positive run, a limit run and a control, repeated in two modes, one version). Codex path medium (n = 1 per route, model-mediated, limit second-hand). Hermes bind high, model-visible use unobserved.
 
+A later review found three runs whose evidence was not kept: A4 (the 3,900-character accept) has no raw capture, the B1 print-mode transcript was deleted with the probe's project logs, and the B2 print-mode control has no raw file. The probe records now say so. The A4 accept matters to phase 27, since it is the only run showing a slice near the limit is taken, so phase 27 re-proves it with a captured run before relying on it. The interactive verdicts for A and B and the captured A1, A2, A5, A6 and B4 runs are unaffected.
+
 ### Files Changed
 
 | File | Action | Purpose |

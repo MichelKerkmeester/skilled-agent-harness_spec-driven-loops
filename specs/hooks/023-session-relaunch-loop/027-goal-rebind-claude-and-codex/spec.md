@@ -76,9 +76,10 @@ After a hop, a Claude or Codex receiver has the goal set from `goal.md`, or is t
 - Codex: a seed instruction in `prompt-seed.mjs` that asks the model to create the goal from the slice, within the limit probe C showed.
 - Render the slice with `goal.cjs packet <packet> --workspace <repo root>` and send only the `chat_slice`, only at `packet_budget=ok`, with no frontmatter.
 - Do nothing when `SESSION_RELAUNCH_GOAL=0`, when the note holds no packet, or when the slice is over budget, and say why in one line.
+- Hermes: `skilled-loop` exports the note's goal packet as `HERMES_SPEC_FOLDER` to a Hermes receiver while `SESSION_RELAUNCH_GOAL` is on, because phase 24 probe D showed the Hermes plugin binds from that variable and phase 26 added no Hermes code. Added after phase 26 named it as a required follow-up.
 
 ### Out of Scope
-- Pasting the goal text into the seed - a copy goes stale, and Claude has one start prompt which the claim already uses
+- Writing the goal text into the note or the seed at hand-over time - that copy goes stale. A slice rendered from `goal.md` at launch, as the Claude start-prompt path does, is not this, because it is read fresh on every hop. Phase 24 selected that path (`024-goal-rebind-claude-codex-hermes-probes/implementation-summary.md`), so the claim moves out of the start prompt as the In Scope Claude bullet allows
 - Claude model tool for setting goals - it caps at 500 characters and refuses non-interactive sessions
 - Trimming an over-budget goal.md - the rule is to cut the file first, which is the operator or `/create:goal`
 
@@ -91,6 +92,7 @@ After a hop, a Claude or Codex receiver has the goal set from `goal.md`, or is t
 | .skilled/hooks/session-relaunch/lib/ | Modify | A helper that renders the slice and applies the budget check |
 | .skilled/hooks/session-relaunch/tests/*.test.cjs | Modify | Failing-first tests per path |
 | .skilled/hooks/session-relaunch/README.md | Modify | Describe the path and its limits |
+| .skilled/bin/skilled-loop | Modify | Launch a Claude receiver with the rendered `/goal` start prompt, and export `HERMES_SPEC_FOLDER` for a Hermes receiver |
 <!-- /ANCHOR:scope -->
 
 ---

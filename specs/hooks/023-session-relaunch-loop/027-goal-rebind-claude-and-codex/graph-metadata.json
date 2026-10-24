@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Claude has a built-in `/goal` command and Codex creates a goal through the model, so a hop receiver on either has no way to bind a record",
     "created_at": "2026-10-24T19:03:14Z",
-    "last_save_at": "2026-10-24T19:14:39.244Z",
+    "last_save_at": "2026-10-24T22:48:23.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ab6ae2a4dcf41b0da4f910b10ad7e4f69c9259ff1e1351e238bb0cee97a5e9b",
+    "source_fingerprint": "sha256:81b6c416c3cee99b6246a285b07340a75c1050ab24dfa713a9cf946e4fba6d70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af43ab0862b5ffcf87b3d0fb3827467f70e61206b840e0e2235e2195d43b113e",
+      "spec.md": "115b6d3607c77d606121c25b4a8fa651a98a6351529123d94a7b51834cf86d31",
       "plan.md": "90d63be815f04ae2dc5a4578ec97f7b0ae368e345e155990b19bc18a0c168c0c",
       "tasks.md": "641774757a5faa8a12f1ff524b36952cea719964d11735c4020aea2016580a50",
       "implementation-summary.md": "214909b47336522eb4fb17214988923407c6ab08972a9d10cbdcc42f2d3cb12c"

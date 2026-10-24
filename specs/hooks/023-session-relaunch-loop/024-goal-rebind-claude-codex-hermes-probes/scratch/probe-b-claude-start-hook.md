@@ -10,7 +10,7 @@ Claude 2.1.310 documents a `SessionStart` hook output field `initialUserMessage`
 |-----|--------------|------|----------|
 | B1 | `hookSpecificOutput.initialUserMessage = "/goal Probe B1 ... never exists on disk"` | interactive, no start prompt | `hook-ran.log` shows the hook ran (`source=startup`); (the B4 debug log, same field, shows the hook output parsed and `provided initialUserMessage (63 chars)`); no message submitted; `/goal` printed `No goal set`. Raw: `raw/b1-pane-interactive-nostartprompt.txt` |
 | B1 | same | interactive, start prompt `say ok` | hook ran, model answered `ok`, `/goal` printed `No goal set`. Raw: `raw/b1-pane-interactive-with-startprompt-status.txt` |
-| B1 | same | `claude -p 'say ok'`, exit 0 | the transcript holds `queue-operation enqueue` for the `/goal ...` message first and `say ok` second, then `<command-name>/goal</command-name>` and a `goal_status` attachment. The hook message ran as the command. Raw: `raw/b1-print.txt` |
+| B1 | same | `claude -p 'say ok'`, exit 0 | the transcript holds `queue-operation enqueue` for the `/goal ...` message first and `say ok` second, then `<command-name>/goal</command-name>` and a `goal_status` attachment. The hook message ran as the command. Raw: `raw/b1-print.txt` holds only the empty stdout and `exit=0`; the transcript this row reads was deleted with the probe's project logs, so the queue and `goal_status` details are the prober's record only. The B4 print row, which is captured, shows the same delivery mechanism |
 | B4 | `initialUserMessage = "Reply with exactly the word PLAINMSG-RECEIVED ..."` | interactive | hook ran, debug log `provided initialUserMessage (63 chars)`, nothing was submitted; the transcript has no queue entry and no PLAINMSG turn. Interactive transcript holds only the hook's `hook_success` attachment and the typed turn, with no `queue-operation`. Raw: `raw/b4-pane-interactive-idle.txt`, `raw/b4-pane-after-typed-turn.txt`, `raw/b4-debug-excerpt.txt` |
 | B4 | same | `claude -p 'say ok'`, exit 0 | stdout `PLAINMSG-RECEIVED` then `ok`: the hook message was delivered as a user turn first. Raw: `raw/b4-print.txt` |
 | B2 | `additionalContext = "/goal Probe B2 ..."` | interactive, start prompt `say ok` | hook ran; `/goal` printed `No goal set`. Raw: `raw/b2-pane-interactive-status.txt` |
@@ -22,7 +22,7 @@ Claude 2.1.310 documents a `SessionStart` hook output field `initialUserMessage`
 |-----|--------------|------|----------|
 | B3 | silent (no output) | interactive | hook ran; `/goal` printed `No goal set`. Raw: `raw/b3-pane-interactive-status.txt` |
 | B3 | silent | `claude -p 'say ok'`, exit 0 | stdout `ok`; transcript has zero `goal_status` attachments and only `say ok` queued. Raw: `raw/b3-print.txt` |
-| B2 | `additionalContext` carrying the `/goal` text, `-p` | exit 0 | stdout `ok`; zero `goal_status` attachments. Context text alone never runs the command |
+| B2 | `additionalContext` carrying the `/goal` text, `-p` | exit 0 | stdout `ok`; zero `goal_status` attachments. Context text alone never runs the command. No raw file was saved for this run; the interactive B2 row is captured |
 
 The print-mode B1 versus B3 pair is the control that could have shown the opposite: the same hook and mode, with and without the `initialUserMessage` payload, differ in whether a goal exists.
 

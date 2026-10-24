@@ -1,6 +1,6 @@
 # Probe D: Hermes with HERMES_SPEC_FOLDER
 
-Runtime: Hermes Agent v0.21.1, run from this worktree root (the repo plugin `repo-guards` is listed under `plugins.enabled` in the user config and loads with `HERMES_ENABLE_PROJECT_PLUGINS=1`). Clean env via `raw/run-hermes.sh`; the key is passed through the environment and never printed. `OPENCODE_GOAL_STATE_DIR` pointed at the scratchpad. Read-only: no `--yolo`, toolset `file`.
+Runtime: Hermes Agent v0.21.1, run from this worktree root (the repo plugin `repo-guards` is listed under `plugins.enabled` in the user config and loads with `HERMES_ENABLE_PROJECT_PLUGINS=1`). Clean env via `raw/run-hermes.sh`, which also sets `AI_SESSION_CHILD=1` (in the Hermes plugin that flag gates only the spec gate, so the bind verdict is unaffected); the `goal.cjs show` outputs below were not saved to `raw/`, and the request extract is the captured evidence; the key is passed through the environment and never printed. `OPENCODE_GOAL_STATE_DIR` pointed at the scratchpad. Read-only: no `--yolo`, toolset `file`.
 
 Command shape (after the wrapper sets the env): `hermes chat -Q --oneshot --query-file q.md --provider llmgateway --model deepseek-v4.1-flash-1017 --reasoning low --ignore-rules --source tool --max-turns 4 --run-budget 150 -t file --in <worktree> </dev/null`
 

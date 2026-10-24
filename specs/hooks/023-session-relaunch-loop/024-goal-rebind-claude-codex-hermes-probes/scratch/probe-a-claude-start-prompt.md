@@ -8,7 +8,7 @@ Runtime: Claude Code 2.1.310, default permission mode, `--setting-sources projec
 |-----|------------------------------|----------|
 | A1 | `claude '/goal Probe A goal marker: say hello once'` | `Goal set: Probe A goal marker: say hello once`, then the model said Hello and the status line printed `Goal achieved (3s, 1 turn)`. Raw: `raw/a1-pane.txt` |
 | A2 | `claude '/goal Probe A2 unachievable: the file /nonexistent/probe-a2-never exists on disk'` | Status bar `/goal active`. Typing `/goal` afterwards printed `Goal active ... Goal: Probe A2 unachievable ...` with a `Last check` line from the evaluator. `/goal clear` printed `Goal cleared`, and `/goal` then printed `No goal set`. Raw: `raw/a2-pane-active.txt`, `raw/a2-pane-status.txt`, `raw/a2-pane-cleared.txt` |
-| A4 | same, start prompt of 3,900 characters over many lines | `/goal` status showed the goal active. The transcript `goal_status` attachment stored a 3,894-character condition (3,900 minus the `/goal ` prefix) |
+| A4 | same, start prompt of 3,900 characters over many lines | `/goal` status showed the goal active. The transcript `goal_status` attachment stored a 3,894-character condition (3,900 minus the `/goal ` prefix). No raw capture was saved for this run, so this row is the prober's record only, not reproducible evidence. A5's refusal at 4,394 characters is captured |
 | A5 | same, 4,400 characters | `Goal condition is limited to 4000 characters (got 4394)`. No goal set. Raw: `raw/a5-pane.txt` |
 | A6 | `claude -p '/goal Probe A6 print mode: ...'` | Exit 0. The model answered under a goal Stop hook ("The hook's finding is accurate ..."), so the command ran in print mode too. Raw: `raw/a6-print.txt` |
 
