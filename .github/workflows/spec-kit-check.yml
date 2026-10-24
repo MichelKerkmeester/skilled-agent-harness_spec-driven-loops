@@ -131,13 +131,18 @@ jobs:
       - name: Install ripgrep
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
 
+      # One file, upgrade-legacy, takes about half of the project's serial time,
+      # so the project runs as two processes: that file alone, and every other
+      # file. Splitting by file count instead left the heavy file's half several
+      # times slower than the other. If the heavy file is renamed, the first
+      # process finds no test file and fails, so the split cannot silently drop it.
       - name: CLI vitest project
         run: |
           set -uo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
-          npx vitest run --config ../../vitest.config.ts --project cli --shard=1/2 &
+          npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts &
           first=$!
-          npx vitest run --config ../../vitest.config.ts --project cli --shard=2/2 &
+          npx vitest run --config ../../vitest.config.ts --project cli --exclude tests/upgrade-legacy.vitest.ts &
           second=$!
           status=0
           wait "$first" || status=1
