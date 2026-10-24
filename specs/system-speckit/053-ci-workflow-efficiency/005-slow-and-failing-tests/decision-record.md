@@ -47,9 +47,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Amended 2026-10-24, operator ruling recorded |
 | **Date** | 2026-10-23 |
-| **Deciders** | Plan author; no operator decision |
+| **Deciders** | Plan author; operator ruling of 2026-10-24 (question tool) |
 
 ---
 
@@ -73,6 +73,8 @@ The `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-
 **We chose**: copy the real config to `vitest.config.parallel-probe.ts` beside it, flip only the `cli` project's `fileParallelism`, run the project three times, delete the copy, and edit the real file only when all three runs exit 0.
 
 **How it works**: the copy is byte-identical apart from one line, which a `diff` against a `sed`-rewritten copy proves. The three runs write `scratch/r19-run-{1,2,3}.log`, and the copy is deleted in T009 before T011 or T013 touches a real file.
+
+**Amendment (2026-10-24, operator ruling, written after the data)**: the probe did not run clean. The serial run passed all 183 collected files; parallel run 1 passed, and parallel runs 2 and 3 each failed one test with a 30-second timeout (`tests/auto-detection-fixes.vitest.ts` and `tests/trigger-phrase-no-prose-bigrams.vitest.ts`), with an empty collision log. The planned rules only named a collision token (`EEXIST`, `EADDRINUSE`, `SQLITE_BUSY`) as the shard trigger, so the planned T010 script would have stopped as unclassified and its Stop-if fired. The operator ruled on 2026-10-24, after seeing these rows, to accept the shard: a timeout that appears only in parallel rows while the serial row passed counts as a concurrency result alongside the collision tokens. This ruling is a disclosed deviation from the planned rule, not a reading of it.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -147,7 +149,7 @@ The `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: the probe selected the shard (see Amendment, 2026-10-24) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -173,6 +175,8 @@ Five `fileParallelism` sites live in four files, because `.opencode/skills` is a
 **We chose**: set `fileParallelism: true` on the `cli` project only, and leave the four other sites serial.
 
 **How it works**: T012 replaces the one line at `:67` with a three-line reason and the new value. The root project's `:50` line is untouched, and the acceptance proves one `true` and one `false` remain in that file.
+
+**Amendment (2026-10-24)**: the probe selected the shard, so no `fileParallelism` site was flipped. `rg -n 'fileParallelism' .skilled/skills --glob 'vitest.config.ts'` still finds 5 sites in 4 files, all `false`, and `vitest.config.ts` is unmodified. The comment rewrite and the setting flip are skipped by the shard branch; the `cli` project stays serial inside each shard.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -247,9 +251,9 @@ Five `fileParallelism` sites live in four files, because `.opencode/skills` is a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Amended 2026-10-24, operator ruling recorded |
 | **Date** | 2026-10-23 |
-| **Deciders** | Plan author; no operator decision |
+| **Deciders** | Plan author; operator ruling of 2026-10-24 (question tool) |
 
 ---
 
@@ -273,6 +277,8 @@ If the probe collides, the config stays serial and the step still has to fall un
 **We chose**: run `--shard=1/2` and `--shard=2/2` as two background processes inside the existing step, capture both pids, wait for each with `|| status=1`, and exit with the accumulated status.
 
 **How it works**: T013 replaces the three-line `run:` block with ten lines: `set -uo pipefail`, the same `cd`, the two shards with `&`, `first=$!`, `second=$!`, `status=0`, two `wait` lines and `exit "$status"`. T014 proves both halves locally.
+
+**Amendment (2026-10-24, operator ruling)**: the count-based `--shard=1/2` and `--shard=2/2` split was committed and measured, and it did not reach the ceiling. Spec-Kit Check run 40090109005 timed the `CLI vitest project` step at 643 s and run 40094302049 at 482 s, against 791 s in run 39909844384; the reference moved between 776 s and 950 s across four planning samples, so two samples do not establish a gain, and both are over 400 s. The cause is the split: the local sequential halves took 145.13 s and 561.58 s, and one file, `tests/upgrade-legacy.vitest.ts`, takes about half of the project's serial time (369.0 of 709 s of per-file time in a timing run), so a file-count split cannot balance it. The spec's rule for a miss is to re-measure and not relax the ceiling, and the operator ruled on 2026-10-24 to keep two shards and rebalance them by hand. The step now runs two concurrent processes inside the existing step, with the same wait-and-propagate block: the first runs `tests/upgrade-legacy.vitest.ts` alone and the second runs every other file through `--exclude`. This stays inside G3 (two shards, one step, no job count or check name change). Local check, one process after the other: 313.90 s for the heavy file (exit 0, 67 tests) and 356.56 s for the 182 others (exit 0, 1995 passed, 20 skipped), covering all 183 files and the serial run's 2062 passed and 20 skipped. AC-003 stays Unmet, awaiting CI measurement after the commit; the cost of the hand-kept split is that a new slow file, or a rename of the heavy one, changes the balance (a rename fails loudly, because the first process then finds no test file).
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -346,7 +352,7 @@ If the probe collides, the config stays serial and the step still has to fall un
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: the probe selected the shard (see Amendment, 2026-10-24) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -444,7 +450,7 @@ The repository bans ephemeral identifiers in code comments: no spec path, packet
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Pending: the plan is accepted and the 40-run re-pull is done (AC-004 is Met), but it stays Pending until the packet's closure gate passes |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -543,7 +549,7 @@ The research phase recorded deep-loop-runtime at 13 failures in 40, diagram-corp
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Pending: the plan is accepted and the no-retry check is done (AC-007 is Met), but it stays Pending until AC-006 settles, because that is where a workflow that stays red is filed and not retried |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -568,7 +574,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 **We chose**: fix the cause the log names, and add no `retry`, `rerun` or `continue-on-error` to any of the three workflows. A workflow that stays red after its fix gets a filed root cause instead of a retry.
 
-**How it works**: T029 greps the three workflows and the staged diff for the three tokens and records `retry-proof: clean`. T037 appends a `filed` row for any workflow still red, and AC-006 accepts that branch.
+**How it works**: T029 greps the three workflows and the unstaged diff of the workflow files for the three tokens and records `retry-proof: clean`. T037 appends a `filed` row for any workflow still red, and AC-006 accepts that branch.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -642,7 +648,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Pending: the plan is accepted and the fast-fail step is added and proven (AC-009 is Met), but it stays Pending until the packet's closure gate passes |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -742,7 +748,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Pending: the plan is accepted and it becomes Accepted when AC-006 is Met, with either three all_green=true lines or a filed row for each red workflow |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -841,7 +847,7 @@ R21's acceptance is 10 consecutive green runs for each of three workflows, or a 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Pending: the plan is accepted and it becomes Accepted when the ten-run watch in AC-006 finishes, which for the two path-filtered workflows waits on natural runs |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -940,9 +946,9 @@ The 10-green acceptance needs ten runs per workflow. `diagram-corpus.yml` declar
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Amended 2026-10-24, operator ruling recorded |
 | **Date** | 2026-10-23 |
-| **Deciders** | Plan author; no operator decision |
+| **Deciders** | Plan author; operator ruling of 2026-10-24 (question tool) |
 
 ---
 
@@ -966,6 +972,8 @@ Five workflows carry one old failure each: repo-rules-corpus on 2026-09-18 at `6
 **We chose**: record one row per workflow with the failure date, the failure SHA, the failure run id, the newest green run id and the verdict `closed`, and change no file for them.
 
 **How it works**: T029 reads the newest failure in the last 100 runs and the newest run for each workflow, writes the five rows, and requires the newest run to be `success`. A workflow with no failure in its last 100 runs gets a `no failure in 100` row instead.
+
+**Amendment (2026-10-24, operator ruling)**: T029's Stop-if fired on routing-registry-drift. Its newest failures are `e3beac65f4` (run 40089268105) and `db30b0f543` (run 40089318887), both dated 2026-10-24 and newer than the planned 2026-10-17 `407de0d` failure. Both failed with `STALE COMPILED: skill-graph.json generated_at 2026-10-17T10:21:42 is older than the newest source stamp 2026-10-24T00:00:00Z (sk-code)`. `e3beac65f4` is the sk-code hub commit that moved the stamp; `db30b0f543` is an OpenCode pin commit stacked on it. The fix is `1218b94938`, which regenerated the compiled skill graph, and all 15 workflow runs on that commit are `success` (`gh api repos/{owner}/{repo}/actions/runs?head_sha=1218b94938b2e0b1bed55907425f50368caf8537` returned `total_count` 15, all `success`), including routing-registry-drift run 40089725657. The operator ruled on 2026-10-24 to close the workflow on this evidence: the row records the 2026-10-24 failures and the `1218b94938` fix, and the verdict is `closed`.
 <!-- /ANCHOR:adr-010-decision -->
 
 ---

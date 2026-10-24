@@ -39,7 +39,7 @@
       "loop"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".github/workflows/spec-kit-check.yml",
+      "scratch/r21-recheck.md",
       ".github/workflows/deep-loop-runtime.yml",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
-      ".github/workflows/spec-kit-check.yml",
-      ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown",
       ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
       ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
-      ".skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
-      "scripts/README.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      ".skilled/skills/sk-design/sk-design-diagram/SKILL.md",
-      "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md",
-      ".github/workflows/README.md"
+      "scratch/r19-probe.md",
+      "scratch/r20-ci-step.md",
+      "scratch/gate-run.md",
+      "scratch/validate.md",
+      "scratch/gate-run.log",
+      "scratch/validate.log",
+      ".skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs"
     ],
     "entities": [
       {
@@ -84,7 +84,7 @@
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -106,6 +106,18 @@
         "source": "derived"
       },
       {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "r21-recheck.md",
+        "kind": "doc",
+        "path": "scratch/r21-recheck.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-loop-runtime.yml",
         "kind": "config",
         "path": ".github/workflows/deep-loop-runtime.yml",
@@ -115,18 +127,6 @@
         "name": "vitest.config.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-kit-check.yml",
-        "kind": "config",
-        "path": ".github/workflows/spec-kit-check.yml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council.contract.markdown",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown",
         "source": "derived"
       },
       {
@@ -142,27 +142,45 @@
         "source": "derived"
       },
       {
+        "name": "r19-probe.md",
+        "kind": "doc",
+        "path": "scratch/r19-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "r20-ci-step.md",
+        "kind": "doc",
+        "path": "scratch/r20-ci-step.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-run.md",
+        "kind": "doc",
+        "path": "scratch/gate-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.md",
+        "kind": "doc",
+        "path": "scratch/validate.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-run.log",
+        "kind": "file",
+        "path": "scratch/gate-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "validate.log",
+        "kind": "file",
+        "path": "scratch/validate.log",
+        "source": "derived"
+      },
+      {
         "name": "check-contract-drift.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-diagram-corpus.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "seat-diversity-patterns.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-design/sk-design-diagram/SKILL.md",
         "source": "derived"
       },
       {
@@ -188,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Kit Check",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`spec-kit-check`'s `check` job is the repository's most expensive job at 1,215 s, and 791 s of it, 65.1%, is one step: the `CLI vitest project` at `spec-kit-check.yml:124-128` runs 183 test files one after another because the `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-kit/vitest.config.ts:67` without a stated reason (`iteration-005.md:30-69`)",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-23T16:14:56.296Z",
+    "last_save_at": "2026-10-24T13:50:06.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2a35a4ec02952365d5ec006da4d5c9e3805cb2c7aca9db12c03fa61cd2edca0",
+    "source_fingerprint": "sha256:8c39dcea50bfc51eebd9d5f4a79fb3f3a7705c506bb92596f06d7c0d5bb29d90",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46e7dff96273252cf75457b36768897cb38c2bd8f901f29583650a377b0d3824",
-      "plan.md": "ab92420b82e2f2b76637d29f744f54d9570057a32f73a65e59bec1cdd810a75f",
-      "tasks.md": "4935af703b75c5c2bae76a429813a4ee6764f3fbad63ac7d5ca5f1df86617479",
-      "decision-record.md": "e7aaa36cfa4be1cf2c8cc8605f89a0d326a1fd305784c317de9dac91c65e3e0b",
-      "implementation-summary.md": "c6e68029d4f57f88ef9ec063c920930293594c48ea8e590f1b6f7361000312f7"
+      "spec.md": "54463308d491606d79431b4dd03f29b1babd157bf4ab713c7486d3317f0679c8",
+      "plan.md": "069b459355e86a8e8c4c5ad1e83d5e80e649e9a4f9fbb7c9b8edabebfbef73cb",
+      "tasks.md": "6546455d3b93bce7d39283ba7ced121eebeb82a8fc9fcc2653818c37f56c1a53",
+      "decision-record.md": "8ecb001118c5989e4c9b9df16a870c3e06c676d7dde5d88d041cb3834b97ef9e",
+      "implementation-summary.md": "3ece2bed355bc4364fd2d75caf9654ee21eaec19147d21ac4d4e62298af9dea4"
     },
     "last_active_at": null
   }

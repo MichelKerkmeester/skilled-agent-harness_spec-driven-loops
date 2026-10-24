@@ -257,7 +257,7 @@ The R19 block is strictly serial: the real config is not touched until the probe
 | Deep-loop drift fix (T023 to T026) | T002, T021 | A fresh contract when the checker exits 2, a fast-fail step before the suite, a proven negative | T030, T033 |
 | Diagram and advisor fixes (T027, T028) | T002, T021 | The newest run recorded closed, or one corrected version or module-shape line | T033 |
 | Stale confirmations (T029) | `gh` | Five rows with date, SHA, later green run and `closed` | T039 |
-| No-retry proof (T030) | T023 to T029 | An empty grep over the three workflows and the staged diff | T033 |
+| No-retry proof (T030) | T023 to T029 | An empty grep over the three workflows and the unstaged diff of the workflow files | T033 |
 | Gates and commits (T031 to T033) | Every edit above | `RESULT: PASSED`, a clean YAML parse, two validated commit messages, no ephemeral id in the diff | T034 to T040 |
 | CI measurement and streaks (T034 to T037) | T032, real CI traffic | The post-change step seconds, 5 green `Spec-Kit Check` runs, 10 green runs per workflow or a filed row | T038 to T040 |
 | Closure (T038 to T040) | Every task above | Every acceptance row `Met`, `validate.sh --strict` `RESULT: PASSED`, one closure commit | `007-workflow-hygiene-on-off-control` |

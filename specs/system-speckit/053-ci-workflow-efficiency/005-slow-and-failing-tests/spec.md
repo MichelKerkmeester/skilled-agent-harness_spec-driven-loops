@@ -32,7 +32,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In progress |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -313,7 +313,7 @@ R19's saving is 0: it is the probe that decides R20. R20's saving is ~460 runner
 
 - Do the 183 CLI test files share a mutable fixture that only collides under parallelism? R19 answers it with three runs; a collision is the shard trigger, not a redesign.
 - Will 10 green runs accumulate at this repository's traffic? diagram-corpus can be dispatched through `workflow_dispatch` at `:15`; deep-loop-runtime and skill-advisor-stress are path-filtered, so the phase waits for natural runs rather than rerunning a failed one.
-- Is 791 s a stable baseline? Four samples read 776, 791, 950 and 795 s (`iteration-005.md:47`), and a later run reads 642 s, so the step moves with runner load. The acceptance is an absolute ceiling of 400 s on the first post-change run plus 5 green runs, not a ratio against 791.
+- Is 791 s a stable baseline? Four samples read 776, 791, 950 and 795 s (`iteration-005.md:47`), so the step moves with runner load. The acceptance is an absolute ceiling of 400 s on the first post-change run plus 5 green runs, not a ratio against 791.
 - Does the `STALE_SOURCE_DIGEST` class still appear in the latest 40 deep-loop-runtime runs? The sample read on 2026-10-23 has 13 failures, the newest on `b1f6c78` at 2026-10-22, and the newest three runs pass, so the class is in the window and its fix may already be in the tree. The re-check records which, and the fast-fail step is added either way because the class recurs whenever a contract source is edited without recompiling.
 <!-- /ANCHOR:questions -->
 

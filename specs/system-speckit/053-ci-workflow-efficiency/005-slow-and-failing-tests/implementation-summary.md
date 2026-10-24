@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built: this phase probes the spec-kit CLI vitest project under file parallelism, flips the cli project or shards the step, re-checks the three real-failure workflows and fixes what is still red without a retry, adds a fast-fail contract-drift step, and records the five single old failures closed. Nothing in this folder has been implemented yet."
+description: "Built and measured: the probe selected a two-way split of the spec-kit CLI vitest project, hand-balanced after the count-based shard stayed over the 400 s ceiling; the three-workflow re-check is root-caused, the five old failures are closed, and a fast-fail contract-drift step guards deep-loop-runtime. Three acceptance rows stay Unmet."
 trigger_phrases:
   - "slow and failing tests implementation summary"
 importance_tier: "normal"
@@ -8,13 +8,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests"
-    last_updated_at: "2026-10-23T14:20:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded the planned scope and the not-built state"
-    next_safe_action: "Run tasks.md from T001"
+    last_updated_at: "2026-10-24T13:00:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Recorded the rebalanced split and review findings"
+    next_safe_action: "Commit the split and the drift step, then read the CI step time"
     blockers:
       - "002-rebuild-fanout-removal baseline pending; the 001 dataset stands in as provisional"
-      - "runtime/cli/dist and the deep-loop and advisor trees are not installed in this worktree"
+      - "Rebalanced CLI split awaits a CI measurement after commit; the 400 s ceiling and the 5-run streak are open"
+      - "deep-loop-runtime is red on an open Dependabot pull request; skill-advisor-stress needs three more natural runs"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -24,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-005-slow-and-failing-tests"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -42,9 +43,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-slow-and-failing-tests |
-| **Completed** | Not built |
+| **Completed** | Not closed: AC-003, AC-008 and AC-010 are Unmet |
 | **Level** | 3 |
-| **Status** | Planned |
+| **Status** | In progress |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,24 +53,23 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing. This packet is a plan, and no file under `.github/` or `.skilled/` has changed. The plan is carried by `spec.md` (REQ-001 to REQ-007), `plan.md` (the L3 dependency graph, critical path, milestones and AI execution framework), `tasks.md` (T001 to T040), `acceptance-criteria.md` (AC-001 to AC-011), `decision-record.md` (ADR-001 to ADR-010) and `goal.md`.
+The three-run parallelism probe ran on a copy of the config. Two of the three parallel runs failed on 30 s test timeouts while the serial run passed and the collision log stayed empty; the operator ruled on 2026-10-24, after the data, to count that as a concurrency result and take the shard (a disclosed deviation from the planned rule). The first split was count-based (`--shard=1/2` and `--shard=2/2`, `b2a1663ee9`) and read 643 s and 482 s on CI, still over the ceiling, because one file, `upgrade-legacy`, takes about half of the serial time. The operator then ruled to rebalance by hand: `.github/workflows/spec-kit-check.yml` now runs that file alone and every other file through `--exclude`, as two concurrent processes in the existing step, failing when either fails. That change is on disk and uncommitted. `scratch/r21-recheck.md` holds the latest 40 runs of deep-loop-runtime, diagram-corpus and skill-advisor-stress, four root-cause rows, the five old failures recorded closed, the no-retry proof and the streaks. `.github/workflows/deep-loop-runtime.yml` gains a `check-contract-drift.cjs` step above the suite, proven to exit 2 on a stale contract and 0 once restored; that edit is on disk and awaits its commit.
 
 ### Phase 5: slow-and-failing-tests
 
-When it is built, `.skilled/skills/system-spec-kit/vitest.config.ts:67` runs the `cli` project's 183 test files in parallel, or `.github/workflows/spec-kit-check.yml:124-128` runs them as two shards when the probe collides, so the `CLI vitest project` step falls from 791 s to under 400 s. `scratch/r19-probe.md` records the serial baseline, the three parallel runs and the one outcome token. `scratch/r21-recheck.md` records the latest 40 runs of deep-loop-runtime, diagram-corpus and skill-advisor-stress, one root-cause row per live class, the five single old failures closed, the no-retry proof and the green streaks. `.github/workflows/deep-loop-runtime.yml` gains a `check-contract-drift.cjs` step above the suite, so a stale compiled contract fails in seconds instead of after the whole run.
+Measured, not planned. Serial run 625.44 s; the three parallel runs 292.33 s (pass), 305.59 s (one timeout) and 311.91 s (one timeout). The count-based halves ran locally in 145.13 s and 561.58 s. On CI the `CLI vitest project` step read 791 s before the change and 643 s and 482 s with the count-based split; the reference moved between 776 s and 950 s across planning samples, so those two samples show no established gain. The rebalanced halves ran locally in 313.90 s (the heavy file, 67 tests) and 356.56 s (182 files, 1995 passed, 20 skipped), together equal to the serial run's 2062 passed and 20 skipped. No CI run has used the rebalanced split, so the CI step time is the open measurement.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/system-spec-kit/vitest.config.ts` | Planned modify | `fileParallelism: true` at `:67` with a behavioural reason, and a comment at `:14-17` that no longer claims both projects are serial |
-| `.github/workflows/spec-kit-check.yml` | Planned modify only when the probe collides | Two `--shard` halves inside the `CLI vitest project` step at `:124-128`, with both statuses propagated |
-| `.github/workflows/deep-loop-runtime.yml` | Planned modify | A `check-contract-drift.cjs` step between the install step at `:51-57` and the suite at `:59-60` |
-| `.skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown` | Planned modify only when the checker exits 2 | The regenerated contract, written by `compile-command-contracts.cjs --write` |
-| `.skilled/skills/sk-design/sk-design-diagram/scripts/README.md` | Planned modify only when diagram-corpus still fails | The `version:` line at `:9`, inside the anchor's major.minor era |
-| `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts` | Planned modify only when skill-advisor-stress still fails | The default import at `:20` and the three assertions at `:101-104` |
-| `scratch/r19-probe.md`, `scratch/r20-ci-step.md`, `scratch/r21-recheck.md` | Planned create | The probe rows and outcome, the before and after step seconds with the 5-run streak, and the re-check tables with the root causes and the five stale rows |
-| `scratch/r19-*.log`, `scratch/r21-*-runs.json`, `scratch/r21-*-failures.log`, `scratch/gate-run.log`, `scratch/validate.log` | Planned create | The raw evidence every acceptance row cites |
+| `.github/workflows/spec-kit-check.yml` | Modified: count-based split committed in `b2a1663ee9`, rebalanced split uncommitted | Two concurrent processes in the `CLI vitest project` step with both statuses propagated: the `upgrade-legacy` file alone, and every other file |
+| `.github/workflows/deep-loop-runtime.yml` | Modified, uncommitted | A `check-contract-drift.cjs` step above the suite, so a stale compiled contract fails in seconds |
+| `.skilled/skills/system-spec-kit/vitest.config.ts` | Not changed | The shard branch leaves `fileParallelism: false` in place |
+| `.skilled/commands/deep/assets/compiled/` | Not changed | The drift verdict was `fresh`, so nothing was regenerated |
+| `.skilled/skills/sk-design/sk-design-diagram/scripts/README.md`, `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts` | Not changed | diagram-corpus and skill-advisor-stress closed green on their newest runs |
+| `scratch/r19-probe.md`, `scratch/r20-ci-step.md`, `scratch/r21-recheck.md`, `scratch/gate-run.md`, `scratch/validate.md` | Created | The probe rows, run environments and quoted log lines; the CI step samples, per-file timings and the rebalanced split check; the re-check tables and root causes; the gate and validation lines |
+| `scratch/r19-*.log`, `scratch/r20-split-*.log`, `scratch/r21-*-failures.log`, `scratch/gate-run.log`, `scratch/validate.log`, `scratch/r21-*-runs.json` | Created, logs gitignored | Raw evidence; the deciding lines are quoted in the `.md` files |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,7 +77,7 @@ When it is built, `.skilled/skills/system-spec-kit/vitest.config.ts:67` runs the
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Planned in three tiers, in `tasks.md`: the reference timing and the provisioned tree (T001, T002); the probe header, the serial baseline, the one-setting copy and three parallel runs, the deleted copy and the recorded outcome (T003 to T010); the config flip or the two-way shard (T011 to T014); the three 40-run pulls, the re-check tables and the root causes (T015 to T022); the drift verdict, the regeneration, the fast-fail step and its negative proof (T023 to T026); the two conditional fixes, the five stale confirmations and the no-retry proof (T027 to T030); then the gates, two commits, the post-change step measurement, the 5- and 10-run streaks, the acceptance rows, the packet validation and the closure commit (T031 to T040). The gates are `bash .github/scripts/check-gate-inputs.sh`, its fixture suite, the YAML parse of every workflow and `validate.sh --strict`.
+Through `tasks.md` in order. T001 to T032 are done, with the probe outcome (T010) and the routing-registry-drift row (T029) resting on operator rulings, and T004 recording its failed first attempt. T033 is open: the deep-loop change is modified and unstaged for the orchestrator's commit. T034 and T035 wait on CI after the rebalance commit. T036 and T037 are partial: diagram-corpus reached ten greens through seven dispatched reruns, deep-loop-runtime is filed, and skill-advisor-stress waits for three natural runs. T038 and T039 are done, and T040 is left to the orchestrator. Amendments dated 2026-10-24 in `decision-record.md` cover the probe ruling (ADR-001), the skipped flip (ADR-002), the rebalance (ADR-003) and routing-registry-drift (ADR-010).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -87,15 +87,14 @@ Planned in three tiers, in `tasks.md`: the reference timing and the provisioned 
 
 | Decision | Why |
 |----------|-----|
-| Probe on a copy, then change the real config | The real file stays untouched until the setting is proven three times against the real suite |
-| Flip the `cli` project only | It is the wall-clock tail; the root, advisor and deep-loop suites share mutable state |
-| A two-way shard inside the existing step | It keeps the job count and the check name, so phase 007 measures the same shape |
-| A behavioural comment with no packet id | The reason stays readable after the packet closes, and the pre-commit gate passes |
-| Re-pull 40 runs before fixing anything | The newest runs of two workflows already pass, so the research counts are stale |
-| Fix causes and add no retry | The failures correlate across workflows, which is a defect signature, not flake |
-| Fail a stale contract in seconds | The class recurs on any contract-source edit, and the suite only reports it after about 12 minutes |
-| File a cause for a workflow that stays red | The phase closes on evidence rather than on a colour |
-| Record the five old failures closed | A later green run is the proof, and a re-fix would touch files the failure no longer reaches |
+| Probe on a copy, then change the real config | The real file stayed untouched; the copy is deleted |
+| Accept the shard on parallel-only timeouts, disclosed | The planned rule named only collision tokens; the operator ruled after the data, and the deviation is recorded in ADR-001 |
+| Keep `fileParallelism: false` and split the step | The probe was not clean three times, so no flip |
+| Hand-balance the two processes around the heavy file | A file-count shard cannot divide one file that is half the serial time; the ceiling is not relaxed |
+| Fix causes and add no retry | The scoped no-retry proof returned `0` lines and `retry-proof: clean` |
+| Fail a stale contract in seconds | The checker runs first; on the current tree it exits 0 |
+| File a cause only for a workflow that is red | deep-loop-runtime has an open Dependabot pull request; skill-advisor-stress is windowed, not red, so its criterion stays Unmet |
+| Close routing-registry-drift on today's evidence | The operator ruled on its 2026-10-24 failures and the `1218b94938` fix |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -105,17 +104,17 @@ Planned in three tiers, in `tasks.md`: the reference timing and the provisioned 
 
 | Check | Result |
 |-------|--------|
-| `grep -cE '^outcome: (parallel\|shard)$' scratch/r19-probe.md` | Planned: `1` (AC-001) |
-| `grep -c 'fileParallelism: true' .skilled/skills/system-spec-kit/vitest.config.ts` | Planned: `1`, with `fileParallelism: false` still `1` (AC-002, AC-011) |
-| The `CLI vitest project` step on the first post-change run | Planned: under `400` s, against `791` in run `39909844384` (AC-003) |
-| `grep -c '^all_green: true$' scratch/r20-ci-step.md` | Planned: `1` over 5 runs (AC-003) |
-| `scratch/r21-recheck.md` root-cause rows | Planned: one per live class, each with a test, a class and a seven-character SHA (AC-004) |
-| `grep -c '\| closed \|' scratch/r21-recheck.md` | Planned: `5` (AC-005) |
-| The three workflows' 10-run streak | Planned: `3` `all_green=true count=10` lines, or a `filed` row per red workflow (AC-006) |
-| `rg -n 'retry\|rerun\|continue-on-error'` over the three workflows | Planned: `0` lines, and `retry-proof: clean` recorded (AC-007) |
-| `bash .github/scripts/check-gate-inputs.sh` | Planned: `RESULT: PASSED` (AC-008) |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PWD/…/005-slow-and-failing-tests" --strict` | Planned: `RESULT: PASSED` (AC-008) |
-| The fast-fail step against a stale contract | Planned: exit `2` with `STALE_SOURCE_DIGEST`, then exit `0` after the restore (AC-009) |
+| Probe rows and `outcome` token in `scratch/r19-probe.md` | `1`, `3`, `4`, `1`; probe config gone (AC-001 Met) |
+| `grep -c -- '--exclude' .github/workflows/spec-kit-check.yml`, the two waits, YAML | `1`, `1`, `1`, `YAML_OK`; local halves 313.90 s and 356.56 s (AC-002 Met) |
+| The `CLI vitest project` step on CI | Count-based split 643 s and 482 s; rebalanced split awaiting CI measurement after commit (AC-003 Unmet) |
+| Root-cause rows with a seven-character SHA | `4` (AC-004 Met) |
+| Stale-failure rows and `closed` verdicts | `5` and `5` (AC-005 Met) |
+| The three workflows' streaks | diagram-corpus `all_green=true count=10`; deep-loop-runtime filed; skill-advisor-stress needs three natural runs (AC-006 Unmet) |
+| `rg -c` over the three workflows; scoped diff search; `retry-proof: clean` | exit `1` with no output, `0`, `1` (AC-007 Met) |
+| Gates: fixture suite, real-tree gate, YAML parse; strict validation | `54 passed, 0 failed`, `RESULT: PASSED`, `YAML_OK`; `RESULT: PASSED` (AC-008 Met) |
+| The fast-fail step against a stale contract | exit `2` with `STALE_SOURCE_DIGEST`, then exit `0` (AC-009 Met) |
+| Commits | Pending (AC-010 Unmet) |
+| `fileParallelism` sites | `5` sites in `4` files, all `false` (AC-011 Met) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,10 +122,10 @@ Planned in three tiers, in `tasks.md`: the reference timing and the provisioned 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No number is measured yet.** Every figure in this packet comes from `001-research/research/synthesis-reviews/final-review.md` and is restated as a target, not an observation. `scratch/r20-ci-step.md` replaces the 791 s reference with a measured after number.
-2. **The 400 s ceiling is absolute, not a ratio.** The step's samples span 776 to 950 s, and a later run reads 642 s, so the acceptance reads the first post-change run rather than a percentage of 791.
-3. **The probe cannot run in this worktree as it stands.** `.skilled/skills/system-spec-kit/node_modules` exists, but `runtime/cli/dist` and the deep-loop and advisor trees do not, so T002 builds and installs before T004.
-4. **Two workflows cannot be dispatched.** deep-loop-runtime and skill-advisor-stress have no `workflow_dispatch`, so their 10-run streaks wait on repository traffic; T037 files a cause when a workflow cannot reach ten.
+1. **The CI step time is not measured yet.** The count-based split read 643 s and 482 s; the rebalanced split is checked locally (313.90 s and 356.56 s) but no CI run has used it, so the 5-run green streak is at 0 of 5. The hand-kept split can drift: a new slow file, or a rename of the heavy one, changes the balance.
+2. **The 400 s ceiling is absolute, not a ratio.** The step's planning samples span 776 to 950 s, so the acceptance reads the first post-change run rather than a percentage of 791.
+3. **Concurrent halves on CI versus sequential halves locally.** If flakes appear, consider per-shard logs or a higher `testTimeout`.
+4. **Two workflows cannot be dispatched.** deep-loop-runtime and skill-advisor-stress have no `workflow_dispatch`, so their 10-run streaks wait on repository traffic. deep-loop-runtime is filed; skill-advisor-stress needs three more natural runs.
 5. **The five stale failures are recorded, not fixed.** A later green run proves each one stale, and no file outside this phase changes for them.
 <!-- /ANCHOR:limitations -->
 
