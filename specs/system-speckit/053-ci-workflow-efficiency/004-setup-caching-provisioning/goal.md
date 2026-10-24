@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
     recent_action: "Marked the two landed checkboxes and recorded the uncommitted gate work plus the open remainder"
-    next_safe_action: "Run T002/T003 for the baseline and inventory, then T010's comment, T011's phase-result.md and T011A's commit"
+    next_safe_action: "Build the hook-and-plugin merge (T030)"
     blockers: []
     key_files: []
     session_dedup:

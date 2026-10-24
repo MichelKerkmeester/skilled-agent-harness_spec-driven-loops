@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Reconciled the summary with the uncommitted T004-T009 gate work and the open remainder"
-    next_safe_action: "Run T002/T003 for the baseline and inventory (T002 takes the 001-dataset fallback until the 002 baseline exists), then T010's comment, T011's phase-result.md and T011A's commit of the two gate files"
+    recent_action: "Recorded the warm-run saving and the AC-006 ruling"
+    next_safe_action: "Build the hook-and-plugin merge (T030)"
     blockers: []
     key_files:
       - "spec.md"
@@ -107,7 +107,7 @@ Delivered so far as a partial first tier: T001's `D5=approve` is recorded, and T
 | `bash .github/scripts/check-gate-inputs.sh` | `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, `RESULT: PASSED`; the `files=46` arm waits on the action (AC-001, AC-013) |
 | `bash .github/scripts/tests/check-gate-inputs.test.sh` | `54 passed, 0 failed`, all four new labels present (AC-002, met) |
 | YAML parse of every workflow and the action | Exit `0` over the workflows today; the action-file arm waits on T014 (AC-013) |
-| Cold dispatch and warm run | Not run; T028/T029 remain (AC-006) |
+| Cold dispatch and warm run | Run 2026-10-24 and green; after the `~/.npm` drop a clean warm provision step is 29 to 34 s against the 56 to 67 s baseline, a 31 s saving at the median (AC-006, `scratch/cache-adoption-runs.md` Round 2) |
 | Merged-job log | Not run; the merge is unbuilt (AC-008) |
 | `scratch/phase-result.md` against the 002 baseline | Not run; T002 takes the 001-dataset fallback until the 002 baseline exists (AC-014) |
 <!-- /ANCHOR:verification -->

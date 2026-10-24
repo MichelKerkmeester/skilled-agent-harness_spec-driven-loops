@@ -59,8 +59,8 @@
       ".github/workflows/rule-canary-sync.yml",
       ".github/workflows/routing-registry-drift.yml",
       ".github/workflows/README.md",
-      ".skilled/skills/system-spec-kit/vitest.config.ts",
-      ".github/workflows/spec-kit-check.yml"
+      "scratch/cache-adoption-runs.md",
+      ".skilled/skills/system-spec-kit/vitest.config.ts"
     ],
     "entities": [
       {
@@ -172,15 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "name": "cache-adoption-runs.md",
+        "kind": "doc",
+        "path": "scratch/cache-adoption-runs.md",
         "source": "derived"
       },
       {
-        "name": "spec-kit-check.yml",
-        "kind": "config",
-        "path": ".github/workflows/spec-kit-check.yml",
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-24T15:49:10.782Z",
+    "last_save_at": "2026-10-24T16:09:07.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67a1e9edf2f3bcadff9460ff26f2c01477fe6e6d31edffc74d76cbda4f6fdb07",
+    "source_fingerprint": "sha256:ba0f3a0e9572e591a51cebcccb241b4d7f2eb6cb9fdb263c7b321a53f9ad02a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "321f8e5e1f8748f9d270399a896fbe01342b2249e6fd4df15bb85b4769973f87",
       "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "9f9a85119afe43d03ce302579987c6f02e4002d9521d01405616d9617a424e68",
-      "decision-record.md": "8ae022eb98f66f81022b8d435289ef22fc99fdeab61f92388a54b128eec9d071",
-      "implementation-summary.md": "ea7ec7596ab5eed29c7478df32790f664144ffa06b13bbaaf2ac76da78c6e91f"
+      "tasks.md": "8121a9408da1249f95af25c771f90828fd203d697f7beb51249cb355ce345cb3",
+      "decision-record.md": "69f6b92070587abcfea391bfd99770f3f7fd20e4a9648880074142b9e59848e0",
+      "implementation-summary.md": "d8afdc9a01afd19cc5c96e2bac3935fc2510b5fc02cfdfcfebe106269339c5fc"
     },
     "last_active_at": null
   }

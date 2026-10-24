@@ -46,3 +46,16 @@ The provision step was 56 to 67 s before the action. Warm B saves about 25 s at 
 Static checks: `grep -c 'uses: ./.github/actions/setup'` printed `1`, `1`, `2` for hooks, plugin and dual-version. `grep -c 'bun@1.3.9'` printed `0` for each. `grep -c "'.github/actions/\*\*'"` printed `2` for each.
 
 Gate: `bash .github/scripts/check-gate-inputs.sh` printed `files=46 inputs_resolved=254 dynamic_inputs=39 twin_pairs=340 failures=0` and `RESULT: PASSED`.
+
+### Round 2 after dropping `~/.npm`
+
+Operator ruling 2026-10-24: drop `~/.npm` from the cached paths, re-run one cold and one warm round, and accept the saving. The change is `a4d92ea8e0`; main was `113d8b56d1` for the miss round and `75ef2608d0` for the dispatches. Per-job figures are in `scratch/cache-adoption-runs.md` under `Round 2`.
+
+| Set | Run ids | Conclusion | Restore | Provision summary | Provision step seconds |
+|---|---|---|---|---|---|
+| Miss, push at `113d8b56d1` | 40108770493, 40108770392, 40108770355 | all success | not found, one save won | `11 installed, 5 built, 3 already present, 0 failed` | 71, 87, 90/57/66 |
+| Cold, `cold=true` at `75ef2608d0` | 40109540094, 40109542114 | all success | skipped | `11 installed, 5 built, 3 already present, 0 failed` | 65, 50/52/50 |
+| Warm dispatch, `cold=false` at `75ef2608d0` | 40109118557, 40109120309 | all success | hit | `0 installed, 2 built, 14 already present, 0 failed` | 35, 40/35/34 |
+| Warm rerun, attempt 2 at `113d8b56d1` | 40108770493, 40108770392, 40108770355 | all success | hit | `0 installed, 0 built, 14 already present, 0 failed` | 34, 29, 30/30/30 |
+
+The new entry is 864407808 bytes, down from 1121994943. A clean warm hit saves 31 s at the median against the 61 s baseline median (22 to 38 s per job), against 25 s before the trim. AC-006 is met at that figure under the operator ruling.
