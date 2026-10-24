@@ -509,3 +509,4 @@ if [[ "$FAILS" -eq 0 ]]; then
 fi
 echo "RESULT: FAILED"
 exit 1
+
