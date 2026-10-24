@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7191,
-    "ok": 14972,
+    "missing-frontmatter": 7194,
+    "ok": 14979,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25711,
+  "documentsScanned": 25721,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "458ca0c0180543efd3007f27df6efa84b47da01565cf19558d01e0adaa44e0d4",
+  "manifestHash": "228073f2a78b66580e088eecd180a7c58ba35f16e390f599b690bc1d63785338",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37269,
+      "ok": 37292,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10807,6 +10807,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/shared/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -68504,6 +68522,18 @@
     {
       "path": ".skilled/skills/sk-code/benchmark/fixtures",
       "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md",
+      "reason": "duplicate of an already-indexed document"
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md",

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "89133b47a9a6a1649565baf257a670f8c4adddae6d0ad8414a26752b04b91423",
+  "corpusHash": "520cf4acb7d39cf461ca3f1cc0c5d32915b33257ae719893e27901317fef745f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25711,
+  "includedPathCount": 25721,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2716,6 +2716,7 @@
     ".skilled/skills/sk-code/changelog/v2.2.8.0.md",
     ".skilled/skills/sk-code/changelog/v2.2.9.0.md",
     ".skilled/skills/sk-code/changelog/v2.3.0.0.md",
+    ".skilled/skills/sk-code/changelog/v2.4.0.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2752,6 +2753,15 @@
     ".skilled/skills/sk-code/shared/references/workflow-debug.md",
     ".skilled/skills/sk-code/shared/references/workflow-implement.md",
     ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+    ".skilled/skills/sk-code/sk-code-ci/README.md",
+    ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v0.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
+    ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+    ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+    ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md",
+    ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
     ".skilled/skills/sk-code/sk-code-quality/README.md",
     ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
     ".skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/naming-init-formatting-and-css.md",
@@ -25742,7 +25752,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "458ca0c0180543efd3007f27df6efa84b47da01565cf19558d01e0adaa44e0d4",
+  "manifestHash": "228073f2a78b66580e088eecd180a7c58ba35f16e390f599b690bc1d63785338",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26219,6 +26229,18 @@
     {
       "path": ".skilled/skills/sk-code/benchmark/fixtures",
       "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md",
+      "reason": "duplicate of an already-indexed document"
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md",

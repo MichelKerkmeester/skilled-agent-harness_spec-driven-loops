@@ -1,5 +1,5 @@
 {
-  "manifestHash": "458ca0c0180543efd3007f27df6efa84b47da01565cf19558d01e0adaa44e0d4",
+  "manifestHash": "228073f2a78b66580e088eecd180a7c58ba35f16e390f599b690bc1d63785338",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17751,6 +17751,9 @@
     "ci switch adr": [
       "ci switch adr"
     ],
+    "ci switch condition": [
+      "ci switch condition"
+    ],
     "ci switch tasks": [
       "ci switch tasks"
     ],
@@ -17801,6 +17804,12 @@
     ],
     "ci workflow rule data": [
       "ci workflow rule data"
+    ],
+    "ci workflow rules": [
+      "ci workflow rules"
+    ],
+    "ci workflow standards": [
+      "ci workflow standards"
     ],
     "ci workflow status report": [
       "ci workflow status report"
@@ -25693,6 +25702,9 @@
     ],
     "composite convergence vote": [
       "composite convergence vote"
+    ],
+    "composite setup action": [
+      "composite setup action"
     ],
     "composite setup action cache": [
       "composite setup action cache"
@@ -48105,6 +48117,9 @@
     "github actions schedule": [
       "github actions schedule"
     ],
+    "github actions workflow rules": [
+      "github actions workflow rules"
+    ],
     "github actions workflow standards": [
       "github actions workflow standards"
     ],
@@ -54045,6 +54060,9 @@
     ],
     "intent signals resource map": [
       "intent signals resource map"
+    ],
+    "intentional trigger exception": [
+      "intentional trigger exception"
     ],
     "intentional use of flat resources": [
       "intentional use of flat resources"
@@ -65846,6 +65864,9 @@
     "never run test files wired or deleted": [
       "never-run test files wired or deleted"
     ],
+    "never switch off workflow": [
+      "never switch off workflow"
+    ],
     "new broken citation blocks": [
       "new broken citation blocks"
     ],
@@ -77201,6 +77222,12 @@
     "prose wall rewrite": [
       "prose wall rewrite"
     ],
+    "protected workflow": [
+      "protected workflow"
+    ],
+    "protected workflow set": [
+      "protected workflow set"
+    ],
     "protocol and catalog alignment": [
       "protocol and catalog alignment"
     ],
@@ -82471,6 +82498,9 @@
     ],
     "required section validation": [
       "required section validation"
+    ],
+    "required status check": [
+      "required status check"
     ],
     "required templates by level": [
       "required templates by level"
@@ -90392,6 +90422,9 @@
     "sgqs test runner": [
       "sgqs test runner"
     ],
+    "sha pinned actions": [
+      "sha pinned actions"
+    ],
     "shadcn adoptions": [
       "shadcn adoptions"
     ],
@@ -91920,6 +91953,9 @@
     "sk code 2 3 0 0": [
       "sk-code 2.3.0.0"
     ],
+    "sk code 2 4 0 0": [
+      "sk-code 2.4.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -92055,6 +92091,9 @@
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
     ],
+    "sk code ci 0 1 0 0": [
+      "sk-code-ci 0.1.0.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -92065,7 +92104,8 @@
       "sk-code-ci research"
     ],
     "sk code ci surface": [
-      "sk code ci surface"
+      "sk code ci surface",
+      "sk-code-ci surface"
     ],
     "sk code ci surface acceptance criteria": [
       "sk code ci surface acceptance criteria"
@@ -92084,6 +92124,9 @@
     ],
     "sk code ci surface tasks": [
       "sk code ci surface tasks"
+    ],
+    "sk code ci v0 1 0 0": [
+      "sk-code-ci v0.1.0.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -93055,6 +93098,9 @@
     ],
     "sk code v2 3 0 0": [
       "sk-code v2.3.0.0"
+    ],
+    "sk code v2 4 0 0": [
+      "sk-code v2.4.0.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -107845,6 +107891,9 @@
     "twenty seven packet task list": [
       "twenty seven packet task list"
     ],
+    "twin path filter rule": [
+      "twin path filter rule"
+    ],
     "two advisories warned about problems that did": [
       "two advisories warned about problems that did"
     ],
@@ -111946,6 +111995,9 @@
     "workflow assets literal replacement": [
       "workflow assets literal replacement"
     ],
+    "workflow concurrency": [
+      "workflow concurrency"
+    ],
     "workflow concurrency and path filter plan": [
       "workflow concurrency and path filter plan"
     ],
@@ -111988,6 +112040,15 @@
     "workflow packet acceptance": [
       "workflow packet acceptance"
     ],
+    "workflow path filters": [
+      "workflow path filters"
+    ],
+    "workflow permissions": [
+      "workflow permissions"
+    ],
+    "workflow rule index": [
+      "workflow rule index"
+    ],
     "workflow run failed emails": [
       "workflow run failed emails"
     ],
@@ -112006,8 +112067,14 @@
     "workflow support clearer": [
       "workflow support clearer"
     ],
+    "workflow timeout": [
+      "workflow timeout"
+    ],
     "workflow trigger index fresh": [
       "workflow trigger index fresh"
+    ],
+    "workflow trigger rules": [
+      "workflow trigger rules"
     ],
     "workflow vs transport routing": [
       "workflow vs transport routing"
@@ -112023,6 +112090,9 @@
     ],
     "workflow yaml audit plan": [
       "workflow yaml audit plan"
+    ],
+    "workflow yaml evidence": [
+      "workflow yaml evidence"
     ],
     "workflow yaml schema": [
       "workflow yaml schema"
