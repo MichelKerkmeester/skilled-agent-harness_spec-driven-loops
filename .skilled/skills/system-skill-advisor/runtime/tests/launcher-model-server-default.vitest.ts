@@ -3,12 +3,18 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
+import { copyFileSync, mkdtempSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
+  acquireOwnerLeaseFile: () => { acquired: boolean; lease?: Record<string, unknown> };
+  buildOwnerLease: () => Record<string, unknown>;
+  clearOwnerLeaseFile: () => void;
+  configureLauncherPathsForTesting: (paths: { runtimeDir?: string; dbDir: string; lockDir: string; stateFile: string }) => void;
+  readOwnerLeaseFile: () => Record<string, unknown> | null;
   isModelServerEnabled: () => boolean;
   modelServerSetting: () => 'default-on' | 'explicit-on' | 'off';
   pinModelServerToAdvisorDatabase: (env: NodeJS.ProcessEnv) => string | null;
@@ -16,6 +22,7 @@ const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as
 };
 
 const FLAG = 'SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED';
+const DB_DIR_ENV = 'SYSTEM_SKILL_ADVISOR_DB_DIR';
 const original = process.env[FLAG];
 
 function setFlag(value: string | undefined): void {
@@ -53,6 +60,77 @@ describe('skill-advisor model-server spawn default', () => {
       expect(launcher.isModelServerEnabled(), value).toBe(false);
     }
   });
+});
+
+describe('owner lease records the launcher supervision decision', () => {
+  const tempDirs: string[] = [];
+  const originalDbDir = process.env[DB_DIR_ENV];
+
+  function configureTempLauncher(target: typeof launcher = launcher): void {
+    const root = mkdtempSync(join(tmpdir(), 'advisor-lease-supervision-'));
+    tempDirs.push(root);
+    const runtimeDir = join(root, 'runtime');
+    const dbDir = join(runtimeDir, 'database');
+    mkdirSync(dbDir, { recursive: true });
+    target.configureLauncherPathsForTesting({
+      runtimeDir,
+      dbDir,
+      lockDir: join(dbDir, '.system-skill-advisor-launcher.lockdir'),
+      stateFile: join(dbDir, '.system-skill-advisor-launcher.json'),
+    });
+  }
+
+  // The path resolver prefers this variable over the configured database
+  // directory, so a value inherited from the shell would redirect the lease
+  // file away from the temp directory these cases inspect.
+  beforeEach(() => {
+    delete process.env[DB_DIR_ENV];
+  });
+
+  afterEach(() => {
+    try { launcher.clearOwnerLeaseFile(); } catch { /* ignore */ }
+    if (originalDbDir === undefined) delete process.env[DB_DIR_ENV];
+    else process.env[DB_DIR_ENV] = originalDbDir;
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it.each([
+    [undefined, true],
+    ['', true],
+    ['1', true],
+    ['0', false],
+    ['off', false],
+  ])('writes supervisesModelServer for the flag %j', (value, expected) => {
+    configureTempLauncher();
+    setFlag(value);
+
+    expect(launcher.acquireOwnerLeaseFile().acquired).toBe(true);
+
+    expect(launcher.readOwnerLeaseFile()?.supervisesModelServer).toBe(expected);
+  });
+
+  it.each([undefined, '1'])(
+    'writes false when the flag is %j but the supervision library is absent',
+    (value) => {
+      // A launcher copied beside no lib/ directory loads without the supervision
+      // module, the same shape as a package that shipped without it.
+      const isolatedRoot = mkdtempSync(join(tmpdir(), 'advisor-launcher-no-supervision-'));
+      tempDirs.push(isolatedRoot);
+      const isolatedBin = join(isolatedRoot, 'bin');
+      mkdirSync(isolatedBin, { recursive: true });
+      const isolatedLauncherPath = join(isolatedBin, 'system-skill-advisor-launcher.cjs');
+      copyFileSync(require.resolve('../../../../bin/system-skill-advisor-launcher.cjs'), isolatedLauncherPath);
+      const isolated = require(isolatedLauncherPath) as typeof launcher;
+      configureTempLauncher(isolated);
+      setFlag(value);
+
+      expect(isolated.isModelServerEnabled()).toBe(true);
+      expect(isolated.buildOwnerLease().supervisesModelServer).toBe(false);
+    },
+  );
 });
 
 describe('sandboxed launcher model-server isolation', () => {

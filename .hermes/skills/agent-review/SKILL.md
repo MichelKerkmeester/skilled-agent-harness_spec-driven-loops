@@ -75,7 +75,7 @@ The connected-code reads named in the mode's Phase 1 are planned reads. Their st
 
 **Route selection**:
 - Use `sk-code` smart routing to select standards evidence.
-- If the route is UNKNOWN, note the uncertainty and review only against baseline security/correctness minimums.
+- If the route is UNKNOWN or ambiguous, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, review against that skill's `SKILL.md` plus the baseline security/correctness minimums. Otherwise, note the uncertainty and review only against baseline security/correctness minimums.
 
 ### Tools
 

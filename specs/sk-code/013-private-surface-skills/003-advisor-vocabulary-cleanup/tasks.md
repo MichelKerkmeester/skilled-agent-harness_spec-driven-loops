@@ -75,7 +75,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 — Build the local advisor database
+### [x] T001 — Build the local advisor database
 
 - **File:** none
 - **Anchor:** `.skilled/bin/skill-advisor.cjs`, line 1 `#!/usr/bin/env node`.
@@ -91,8 +91,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-014
 - **Rollback:** n/a: the database is gitignored local state, rebuilt by the same command.
 - **Stop if:** the command exits non-zero or prints no `skillCount:` line.
+- **Evidence:** `advisor_rebuild --trusted --force true --format text` printed `advisor_rebuild: rebuilt` and `skillCount: 14`.
+- **Drift:** The proof's `tail -3` drops the `rebuilt` line because the command prints five lines; the orchestrator ran it outside the Codex sandbox, where the advisor daemon cannot start.
 
-### T002 — Prove phase 2 removed both surface folders
+### [x] T002 — Prove phase 2 removed both surface folders
 
 - **File:** none
 - **Anchor:** `specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md`, line 2 `title: "Feature Specification: Phase 2: hub-surface-removal"`.
@@ -114,8 +116,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-029
 - **Rollback:** n/a: read-only.
 - **Stop if:** the first count is `0`, the second is not `0`, or the output is `present`, which means phase 2 has not landed on `origin/main` and the graph regeneration would keep the surface signals.
+- **Evidence:** `412`, `0`, `absent`.
 
-### T003 — Capture the skill-graph-db baseline
+### [x] T003 — Capture the skill-graph-db baseline
 
 - **File:** none
 - **Anchor:** `tests/skill-graph-db.vitest.ts`, line 13 `describe('skill graph database indexing', () => {`.
@@ -131,8 +134,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `9`, because every later expectation is measured from it.
+- **Evidence:** `Tests  9 passed (9)`.
 
-### T004 — Capture the advisor-status baseline
+### [x] T004 — Capture the advisor-status baseline
 
 - **File:** none
 - **Anchor:** `tests/handlers/advisor-status.vitest.ts`, line 129 `describe('advisor_status handler', () => {`.
@@ -148,8 +152,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `18`.
+- **Evidence:** `Tests  18 passed (18)`.
 
-### T005 — Capture the Python suite baseline
+### [x] T005 — Capture the Python suite baseline
 
 - **File:** none
 - **Anchor:** `tests/python/test_skill_advisor.py`, line 2138 `def main():`.
@@ -165,8 +170,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the summary is not `pass=69, fail=0`.
+- **Evidence:** `Summary: pass=69, fail=0`.
 
-### T006 — Capture the Hermes suite baseline
+### [x] T006 — Capture the Hermes suite baseline
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs`, line 41 `test('writes one markdown-only folder per SKILL.md, flat by frontmatter name, skipping node_modules', () => {`.
@@ -182,8 +188,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the test count is not `4`.
+- **Evidence:** `ℹ tests 4`, `ℹ pass 4`, `ℹ fail 0`.
 
-### T007 — Capture the root-metadata contract baseline
+### [x] T007 — Capture the root-metadata contract baseline
 
 - **File:** none
 - **Anchor:** `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs`, line 68 `function makeRoot(skillsDir, skillId, files) {`.
@@ -199,8 +206,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the line is absent or the exit code is non-zero.
+- **Evidence:** `[sk-doc] skill-root-metadata contract + fleet gate coverage passed`.
 
-### T008 — Capture the freshness-panel baseline
+### [x] T008 — Capture the freshness-panel baseline
 
 - **File:** none
 - **Anchor:** `tests/doctor/skill-graph-freshness-panel.vitest.ts`, line 110 `it('clean panel: compiled newer than every stamp, db matching, all diffs none', () => {`.
@@ -216,8 +224,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `18`.
+- **Evidence:** `Tests  18 passed (18)`.
 
-### T009 — Capture the plugin node:test baseline
+### [x] T009 — Capture the plugin node:test baseline
 
 - **File:** none
 - **Anchor:** `.opencode/plugins/tests/system-skill-advisor.test.cjs`, line 356 `const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);`.
@@ -233,8 +242,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the test count is not `42`.
+- **Evidence:** `ℹ tests 42`, `ℹ pass 42`, `ℹ fail 0`.
 
-### T010 — Capture the plugin vitest baseline
+### [x] T010 — Capture the plugin vitest baseline
 
 - **File:** none
 - **Anchor:** `tests/system-skill-advisor-plugin.vitest.ts`, line 700 `['an Obsidian plugin', (dir: string) => writeFileSync(join(dir, 'manifest.json'), '{"id":"x","minAppVersion":"1.4.0"}'), 'OBSIDIAN'],`.
@@ -250,8 +260,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `94`.
+- **Evidence:** `Tests  94 passed (94)`.
 
-### T011 — Capture the surface-hint baseline
+### [x] T011 — Capture the surface-hint baseline
 
 - **File:** none
 - **Anchor:** `tests/advisor-surface-hint.vitest.ts`, line 16 `const SURFACE_HINT = 'WEBFLOW';`.
@@ -267,8 +278,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `3` or the failure names a missing advisor projection, which means T001 did not build the database.
+- **Evidence:** `Tests  3 passed (3)`.
 
-### T012 — Capture the native-scorer baseline
+### [x] T012 — Capture the native-scorer baseline
 
 - **File:** none
 - **Anchor:** `tests/scorer/native-scorer.vitest.ts`, line 387 `const result = scoreAdvisorPrompt('implement a responsive webflow animation module', {`.
@@ -284,8 +296,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `22`.
+- **Evidence:** `Tests  22 passed (22)`.
 
-### T013 — Capture the lexical pair baseline
+### [x] T013 — Capture the lexical pair baseline
 
 - **File:** none
 - **Anchor:** `tests/scorer/lexical-candidate-dedup.vitest.ts`, line 1 `// ───────────────────────────────────────────────────────────────`.
@@ -301,8 +314,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `10`.
+- **Evidence:** `Tests  10 passed (10)`.
 
-### T014 — Capture the ambiguity-slice baseline
+### [x] T014 — Capture the ambiguity-slice baseline
 
 - **File:** none
 - **Anchor:** `tests/scorer/ambiguity-slice.vitest.ts`, line 112 `).toBeGreaterThanOrEqual(baselineCorrect);`.
@@ -318,8 +332,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** n/a: read-only.
 - **Stop if:** the run exits 0, because this gate is expected red at baseline and a green run means the baseline moved.
+- **Evidence:** `live=17/24 baseline=19`; the run exits non-zero, red as required.
 
-### T015 — Record the baseline table
+### [x] T015 — Record the baseline table
 
 - **File:** `implementation-summary.md`
 - **Anchor:** line 92, the limitations anchor comment, immediately followed by line 93 `## Known Limitations`.
@@ -353,6 +368,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** delete the `### Baseline` heading and its table from `implementation-summary.md`.
 - **Stop if:** the anchor is absent or the count is not `14`.
+- **Evidence:** The Baseline table is in `implementation-summary.md`; counted to the next heading it has 14 table lines.
+- **Drift:** The original proof counts to the end of the file and holds only while the block is last; see the 2026-10-24 amendment in `decision-record.md`.
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -361,7 +378,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Containment helper
 
-### T016 — Add the containment helper tests
+### [x] T016 — Add the containment helper tests
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts`
 - **Anchor:** new file.
@@ -450,8 +467,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-019
 - **Rollback:** `rm .skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts`
 - **Stop if:** the run passes, because the module already exists and this task would then be testing an existing helper.
+- **Evidence:** Red: `Test Files 1 failed`, `Tests no tests`; the module is unresolved.
 
-### T017 — Create the containment helper
+### [x] T017 — Create the containment helper
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts`
 - **Anchor:** new file.
@@ -507,6 +525,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-019
 - **Rollback:** `rm .skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts`
 - **Stop if:** any case fails, because the helper's contract is the five cases.
+- **Evidence:** `Tests  5 passed (5)`.
+- **Drift:** Ran `npm run build` first because the advisor `dist/` was stale; `dist/` is generated and ignored.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -515,7 +535,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Follow-scans
 
-### T018 — Add the graph linked-inside test
+### [x] T018 — Add the graph linked-inside test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts`
 - **Anchor:** line 5 `import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';` and lines 14-17:
@@ -551,8 +571,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002
 - **Rollback:** delete the new `it` block and remove `symlinkSync` from the import.
 - **Stop if:** the new case passes, because the graph scan would already follow the link.
+- **Evidence:** Red: `1 failed | 9 passed (10)`; the failure is the linked `local-beta` case.
 
-### T019 — Add the graph linked-outside test
+### [x] T019 — Add the graph linked-outside test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts`
 - **Anchor:** the closing block written by T018:
@@ -592,8 +613,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-020
 - **Rollback:** delete the new `it` block.
 - **Stop if:** the case fails for a reason other than the linked-inside case, because the only expected red is T018's case.
+- **Evidence:** `1 failed | 10 passed (11)`; the one failure is T018's case, so this case passes before the code change.
 
-### T020 — Follow a trusted link in the graph scan
+### [x] T020 — Follow a trusted link in the graph scan
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts`
 - **Anchor:** line 8 `import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';` and lines 730-733:
@@ -625,8 +647,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002, AC-020
 - **Rollback:** remove the import and restore the bare `if (entry.isDirectory()) {` line.
 - **Stop if:** either the linked-inside or the linked-outside case fails.
+- **Evidence:** `Tests  11 passed (11)`.
 
-### T021 — Add the signature linked-inside test
+### [x] T021 — Add the signature linked-inside test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts`
 - **Anchor:** line 5 `import { mkdtempSync, mkdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';` and lines 130-131:
@@ -656,8 +679,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-004
 - **Rollback:** delete the new `it` block and remove `symlinkSync` from the import.
 - **Stop if:** the new case passes, because the signature would already follow the link.
+- **Evidence:** Red: `1 failed | 18 passed (19)`.
+- **Drift:** The new case sits above the `// drift: verified against shipped behavior` comment so the comment stays attached to its own test.
 
-### T022 — Add the signature linked-outside test
+### [x] T022 — Add the signature linked-outside test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts`
 - **Anchor:** the closing block written by T021:
@@ -690,8 +715,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-021
 - **Rollback:** delete the new `it` block.
 - **Stop if:** the case fails for a reason other than T021's case.
+- **Evidence:** `1 failed | 19 passed (20)`; the one failure is T021's case, so this case passes before the code change.
+- **Drift:** The real closing block is `join(skills, '.private', 'private-beta', ...)`, not the quoted `join(skills, 'private-beta', ...)`.
 
-### T023 — Add the signature declared-root test
+### [x] T023 — Add the signature declared-root test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts`
 - **Anchor:** the closing block written by T022:
@@ -730,8 +757,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-021
 - **Rollback:** delete the new `it` block.
 - **Stop if:** the case fails for a reason other than T021's case.
+- **Evidence:** Red: `2 failed | 19 passed (21)`.
+- **Drift:** Expected `20 passed, 1 failed`. The case asserts `not.toBe(before)` on a link nothing follows yet, so it is red like T021's, not a guard.
 
-### T024 — Follow a trusted link in the source signature
+### [x] T024 — Follow a trusted link in the source signature
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/lib/freshness.ts`
 - **Anchor:** line 12 `import { join, resolve } from 'node:path';` and line 143:
@@ -756,6 +785,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-004, AC-021
 - **Rollback:** remove the import and restore the single filter line.
 - **Stop if:** any of the three new cases fails.
+- **Evidence:** `Tests  21 passed (21)`.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -764,7 +794,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Skip-scans
 
-### T025 — Add the compiler real-folder test
+### [x] T025 — Add the compiler real-folder test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
 - **Anchor:** lines 2134-2136:
@@ -799,8 +829,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-006
 - **Rollback:** delete the new case.
 - **Stop if:** the new case passes, because the compiler would already skip the name.
+- **Evidence:** Red: `Summary: pass=69, fail=1` (`T246-GC-013`).
 
-### T026 — Add the compiler symlink test
+### [x] T026 — Add the compiler symlink test
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
 - **Anchor:** the last line written by T025:
@@ -834,8 +865,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-022
 - **Rollback:** delete the new case.
 - **Stop if:** the case passes, because the compiler would already exclude a linked target.
+- **Evidence:** Red: `Summary: pass=69, fail=2` (`GC-013`, `GC-014`).
 
-### T027 — Skip a private skill in compiler discovery
+### [x] T027 — Skip a private skill in compiler discovery
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`
 - **Anchor:** line 200 `    for entry in sorted(os.listdir(skills_dir)):`
@@ -854,8 +886,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-006, AC-022
 - **Rollback:** delete the three inserted lines.
 - **Stop if:** either new case still fails.
+- **Evidence:** `Summary: pass=71, fail=0`.
 
-### T028 — Add the Hermes real-folder test
+### [x] T028 — Add the Hermes real-folder test
 
 - **File:** `.skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs`
 - **Anchor:** line 41 `test('writes one markdown-only folder per SKILL.md, flat by frontmatter name, skipping node_modules', () => {`
@@ -882,8 +915,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007
 - **Rollback:** delete the new test.
 - **Stop if:** the new test passes, because the walk would already skip a real `local-*` folder.
+- **Evidence:** Red: `ℹ tests 5`, `ℹ pass 4`, `ℹ fail 1`.
 
-### T029 — Add the Hermes symlink test
+### [x] T029 — Add the Hermes symlink test
 
 - **File:** `.skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs`
 - **Anchor:** the closing block written by T028:
@@ -921,8 +955,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-023
 - **Rollback:** delete the new test.
 - **Stop if:** the test fails for a reason other than T028's test.
+- **Evidence:** `ℹ tests 6`, `ℹ pass 5`, `ℹ fail 1`; the one failure is T028's case, so this case passes before the code change.
 
-### T030 — Skip a top-level private skill in the Hermes walk
+### [x] T030 — Skip a top-level private skill in the Hermes walk
 
 - **File:** `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`
 - **Anchor:** line 56 `      const absolute = path.join(current, entry.name);`
@@ -940,8 +975,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007, AC-023
 - **Rollback:** delete the three inserted lines.
 - **Stop if:** either new test still fails.
+- **Evidence:** `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`.
 
-### T031 — Add the CI root-discovery test
+### [x] T031 — Add the CI root-discovery test
 
 - **File:** `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs`
 - **Anchor:** line 248 `function testFleetDiscoveryUsesTheAuthoredMarker() {` and line 611 `  testGateRejectsNonDirectorySkillsDir();`
@@ -966,8 +1002,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-008
 - **Rollback:** delete the new function and its call.
 - **Stop if:** the script passes, because `findSkillRoots` would already skip the name.
+- **Evidence:** Red: `AssertionError`, actual `['alpha','local-webflow']` against expected `['alpha']`.
 
-### T032 — Skip a private skill in root discovery
+### [x] T032 — Skip a private skill in root discovery
 
 - **File:** `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
 - **Anchor:** line 144 `    .filter((entry) => entry.isDirectory() && entry.name !== 'node_modules' && !entry.name.startsWith('.'))`
@@ -984,8 +1021,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-008
 - **Rollback:** restore the single filter line.
 - **Stop if:** the contract line is absent.
+- **Evidence:** `[sk-doc] skill-root-metadata contract + fleet gate coverage passed`, exit 0.
 
-### T033 — Add the freshness-panel private-skill case
+### [x] T033 — Add the freshness-panel private-skill case
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts`
 - **Anchor:** lines 109-110:
@@ -1018,8 +1056,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-009
 - **Rollback:** delete the new `it` block.
 - **Stop if:** the case passes, because the panel would already skip the name.
+- **Evidence:** Red: `1 failed | 18 passed (19)`.
 
-### T034 — Skip a private skill in the doctor on-disk read
+### [x] T034 — Skip a private skill in the doctor on-disk read
 
 - **File:** `.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`
 - **Anchor:** line 147 `    if (!entry.isDirectory()) continue;`
@@ -1037,6 +1076,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-009
 - **Rollback:** delete the three inserted lines.
 - **Stop if:** the new case still fails.
+- **Evidence:** `Tests  19 passed (19)`.
 
 <!-- /ANCHOR:phase-4 -->
 
@@ -1045,7 +1085,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Python conflict reader
 
-### T035 — Pin the conflict reader's inclusion of a private skill
+### [x] T035 — Pin the conflict reader's inclusion of a private skill
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
 - **Anchor:** lines 2134-2136:
@@ -1093,6 +1133,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-024
 - **Rollback:** delete the new function and its call.
 - **Stop if:** the case fails, because the reader would then need a code change that this phase has not planned.
+- **Evidence:** `Summary: pass=72, fail=0`.
+- **Drift:** The specified body uses `advisor`, which is function-local to `test_advisor_module`; the new test loads it with `advisor = load_module("skill_advisor", "skill_advisor.py")` and adds no `ok()` of its own on load success. The phase adds three `ok()` calls in all (T025, T026 and T035), taking the count from 69 to 72.
 
 <!-- /ANCHOR:phase-5 -->
 
@@ -1101,7 +1143,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-6 -->
 ## Phase 6: Vocabulary sweep
 
-### T036 — Delete the removed surface's hint token
+### [x] T036 — Delete the removed surface's hint token
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts`
 - **Anchor:** lines 37-39:
@@ -1120,8 +1162,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** restore the two comment lines and append `, 'obsidian plugin'` to the `sk-code` array.
 - **Stop if:** the file still reports a match.
+- **Evidence:** `rg -n -i 'obsidian' lexical.ts || echo 0` printed `0`; the control printed `2`.
 
-### T037 — Keep only the SKILLED workspace surface
+### [x] T037 — Keep only the SKILLED workspace surface
 
 - **File:** `.opencode/plugins/system-skill-advisor.js`
 - **Anchor:** lines 722-738, from the comment through the WEBFLOW branch.
@@ -1181,8 +1224,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** restore the deleted comment, `manifestPath` line and both `else if` branches.
 - **Stop if:** `existsSync`, `readFileSync`, `join` or `sep` becomes unused, because that would mean another function relied on the deleted code.
+- **Evidence:** `rg -n 'OBSIDIAN|WEBFLOW' .opencode/plugins/system-skill-advisor.js || echo 0` printed `0`; the control printed `3`.
 
-### T038 — Rename the plugin fixture target
+### [x] T038 — Rename the plugin fixture target
 
 - **File:** `.opencode/plugins/tests/system-skill-advisor.test.cjs`
 - **Anchor:** lines 356, 377 and 403, each `const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);`
@@ -1195,8 +1239,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** replace `'skilled'` with `'webflow'` in the same three arrays.
 - **Stop if:** the suite reports a count other than `42`.
+- **Evidence:** `ℹ tests 42`, `ℹ pass 42`, `ℹ fail 0`; the fixture target is `'skilled'` at lines 356, 377 and 403.
 
-### T039 — Delete the removed surface-detection rows
+### [x] T039 — Delete the removed surface-detection rows
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts`
 - **Anchor:** line 6 `import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';` and lines 700-702:
@@ -1214,8 +1259,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** restore the three rows.
 - **Stop if:** the count is not `91`.
+- **Evidence:** `Tests  91 passed (91)`; three detection rows deleted.
+- **Drift:** The unused `writeFileSync` import was removed with the rows.
 
-### T040 — Point the surface-hint test at a surface that still ships
+### [x] T040 — Point the surface-hint test at a surface that still ships
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts`
 - **Anchor:** line 16 `const SURFACE_HINT = 'WEBFLOW';`
@@ -1228,8 +1275,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-014
 - **Rollback:** restore `const SURFACE_HINT = 'WEBFLOW';`.
 - **Stop if:** the suite fails on the argv assertion.
+- **Evidence:** `Tests  3 passed (3)` with `SURFACE_HINT = 'SKILLED'`.
 
-### T041 — Correct the CLI manifest description
+### [x] T041 — Correct the CLI manifest description
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts`
 - **Anchor:** line 58 `surfaceHint: { type: 'string', minLength: 1, maxLength: 64, description: 'Surface the caller already knows, such as WEBFLOW, forwarded to the compiled-route front door as --surface-hint. An unknown surface is ignored there.' },`
@@ -1243,8 +1291,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-015
 - **Rollback:** change `such as SKILLED` back to `such as WEBFLOW`.
 - **Stop if:** the file still reports a match.
+- **Evidence:** `rg -n 'such as WEBFLOW' skill-advisor-cli-manifest.ts || echo 0` printed `0`; the control printed `1`.
 
-### T042 — Correct the tool description
+### [x] T042 — Correct the tool description
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts`
 - **Anchor:** line 24 `surfaceHint: { type: 'string', minLength: 1, maxLength: 64, description: 'Surface the caller already knows, such as WEBFLOW, forwarded to the compiled-route front door as --surface-hint. An unknown surface is ignored there.' },`
@@ -1258,8 +1307,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-015
 - **Rollback:** change `such as SKILLED` back to `such as WEBFLOW`.
 - **Stop if:** the file still reports a match.
+- **Evidence:** `rg -n 'such as WEBFLOW' advisor-recommend.ts || echo 0` printed `0`; the control printed `1`.
 
-### T043 — Correct the advisor README
+### [x] T043 — Correct the advisor README
 
 - **File:** `.skilled/skills/system-skill-advisor/README.md`
 - **Anchor:** line 117, the sentence containing `` such as `WEBFLOW` ``.
@@ -1273,6 +1323,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-015
 - **Rollback:** change `` `SKILLED` `` back to `` `WEBFLOW` ``.
 - **Stop if:** the file still reports a match.
+- **Evidence:** The `WEBFLOW` token at `README.md:117` is replaced; T065 re-measured `0` for `WEBFLOW` across the README and both tool files.
 
 <!-- /ANCHOR:phase-6 -->
 
@@ -1281,7 +1332,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-7 -->
 ## Phase 7: No-change screens
 
-### T044 — Confirm the native-scorer prompt needs no edit
+### [x] T044 — Confirm the native-scorer prompt needs no edit
 
 - **File:** none
 - **Anchor:** `tests/scorer/native-scorer.vitest.ts`, line 387 `const result = scoreAdvisorPrompt('implement a responsive webflow animation module', {`.
@@ -1297,8 +1348,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-016
 - **Rollback:** n/a: read-only.
 - **Stop if:** the assertion names a surface other than `sk-code`, because the hub would no longer own the frontend prompt.
+- **Evidence:** `sed -n '387,392p'` shows `expect(result.topSkill).toBe('sk-code');`; the suite reports `Tests  22 passed (22)`.
 
-### T045 — Run the zero-hit surface-id re-check
+### [x] T045 — Run the zero-hit surface-id re-check
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts`, line 1.
@@ -1316,8 +1368,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-016
 - **Rollback:** n/a: read-only.
 - **Stop if:** the control prints `0`, because the pattern would then be broken rather than the files clean.
+- **Evidence:** The zero check printed `0` across `aliases.ts`, `leaf-aliases.json` and `scorer-calibration-baseline.json`; the corrected control `rg -c -i 'webflow|obsidian' skill_advisor.py` printed `1` (line 2181, the D6-kept `webflow cms` entry).
+- **Drift:** The control as written, `rg -c -i 'obsidian' skill_advisor.py`, prints nothing (exit 1) at `42b41dd286`, at `HEAD` and now: the file holds no `obsidian`. The control is corrected to `webflow|obsidian`.
 
-### T046 — Run the leaf-manifest screen
+### [x] T046 — Run the leaf-manifest screen
 
 - **File:** none
 - **Anchor:** `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs`, line 81 `function findManifestDirs(skillsDir) {`.
@@ -1337,8 +1391,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-025
 - **Rollback:** n/a: read-only.
 - **Stop if:** the first count is not `14`, because the control would then be wrong.
+- **Evidence:** `14`, `0`, `checked=14 fresh=14 failed=0`.
 
-### T047 — Record the three no-change decisions
+### [x] T047 — Record the three no-change decisions
 
 - **File:** `implementation-summary.md`
 - **Anchor:** line 92, the limitations anchor comment, immediately followed by line 93 `## Known Limitations`.
@@ -1360,6 +1415,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-016, AC-025
 - **Rollback:** delete the `### No-change decisions` heading and its table.
 - **Stop if:** the count is not `4`.
+- **Evidence:** The `### No-change decisions` table has 4 table lines counted to the next heading.
+- **Drift:** The second row records the corrected `skill_advisor.py` control (see T045). The original proof counts to the end of the file and holds only while the block is last.
 
 <!-- /ANCHOR:phase-7 -->
 
@@ -1368,7 +1425,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-8 -->
 ## Phase 8: Regenerate the tracked graph
 
-### T048 — Regenerate the tracked fallback graph
+### [x] T048 — Regenerate the tracked fallback graph
 
 - **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`
 - **Anchor:** line 1, the single JSON line that begins `{"schema_version": 1, "generated_at":`.
@@ -1384,8 +1441,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-011, AC-012
 - **Rollback:** `git checkout -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`
 - **Stop if:** the command prints a validation error or a skill count other than `14`.
+- **Evidence:** `Compiled skill-graph.json: ... (14 skills)`.
 
-### T049 — Verify the sk-code surface signals are gone
+### [x] T049 — Verify the sk-code surface signals are gone
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the `signals` object.
@@ -1403,8 +1461,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-011
 - **Rollback:** n/a: read-only.
 - **Stop if:** the control is not `3`, because the predicate would then be broken rather than the signals clean.
+- **Evidence:** `3`, then `[]`.
 
-### T050 — Verify the regenerated graph diff is limited
+### [x] T050 — Verify the regenerated graph diff is limited
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, line 1.
@@ -1423,6 +1482,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-012
 - **Rollback:** n/a: read-only.
 - **Stop if:** the diff names any file other than `skill-graph.json`, or any `mcp-tooling` line changed, because that means the compiler ran before phase 2 or the skip is wrong.
+- **Evidence:** `git diff --stat` shows one file changed, +1 -1; the `sk-code` line count is `2`; a semantic compare against `HEAD` prints `["generated_at"]` as the only differing top-level key.
+- **Drift:** `skill-graph.json` is one JSON line, so the `mcp-tooling` grep matches both diff lines (count `2`, not `0`). The semantic compare shows `mcp-tooling` is unchanged, so the intent holds.
 
 <!-- /ANCHOR:phase-8 -->
 
@@ -1431,7 +1492,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:phase-9 -->
 ## Phase 9: Verification
 
-### T051 — Re-run the containment helper suite
+### [x] T051 — Re-run the containment helper suite
 
 - **File:** none
 - **Anchor:** `tests/private-skill-target.vitest.ts`, line 26 `describe('private skill link containment', () => {`.
@@ -1447,8 +1508,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-019
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `5`.
+- **Evidence:** `Tests  5 passed (5)` when first run; `Tests  8 passed (8)` after the review follow-up added three cases (the plan's `5` is superseded).
 
-### T052 — Re-run the graph-scan suite
+### [x] T052 — Re-run the graph-scan suite
 
 - **File:** none
 - **Anchor:** `tests/skill-graph-db.vitest.ts`, line 13 `describe('skill graph database indexing', () => {`.
@@ -1464,8 +1526,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-002, AC-020
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `11`.
+- **Evidence:** `Tests  11 passed (11)`.
 
-### T053 — Re-run the advisor-status suite
+### [x] T053 — Re-run the advisor-status suite
 
 - **File:** none
 - **Anchor:** `tests/handlers/advisor-status.vitest.ts`, line 129 `describe('advisor_status handler', () => {`.
@@ -1481,8 +1544,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-004, AC-021
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `21`.
+- **Evidence:** `Tests  21 passed (21)` when first run; `Tests  22 passed (22)` after the review follow-up added the status-scan case.
 
-### T054 — Re-run the Python suite
+### [x] T054 — Re-run the Python suite
 
 - **File:** none
 - **Anchor:** `tests/python/test_skill_advisor.py`, line 2138 `def main():`.
@@ -1498,8 +1562,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-006, AC-022, AC-024
 - **Rollback:** n/a: read-only.
 - **Stop if:** the summary is not `pass=72, fail=0`.
+- **Evidence:** `Summary: pass=72, fail=0` when first run; `Summary: pass=76, fail=0` after the review follow-up added four trust tests, and `pass=83` after round 2 added six discovery tests and one compiler test.
 
-### T055 — Re-run the Hermes suite
+### [x] T055 — Re-run the Hermes suite
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs`, line 41 `test('writes one markdown-only folder per SKILL.md, flat by frontmatter name, skipping node_modules', () => {`.
@@ -1515,8 +1580,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-007, AC-023
 - **Rollback:** n/a: read-only.
 - **Stop if:** the test count is not `6`.
+- **Evidence:** `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`, exit 0.
 
-### T056 — Re-run the root-metadata contract
+### [x] T056 — Re-run the root-metadata contract
 
 - **File:** none
 - **Anchor:** `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs`, line 68 `function makeRoot(skillsDir, skillId, files) {`.
@@ -1532,8 +1598,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-008
 - **Rollback:** n/a: read-only.
 - **Stop if:** the line is absent.
+- **Evidence:** `[sk-doc] skill-root-metadata contract + fleet gate coverage passed`, exit 0.
 
-### T057 — Re-run the freshness-panel suite
+### [x] T057 — Re-run the freshness-panel suite
 
 - **File:** none
 - **Anchor:** `tests/doctor/skill-graph-freshness-panel.vitest.ts`, line 109 `describe('skill-graph freshness panel', () => {`.
@@ -1549,8 +1616,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-009
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `19`.
+- **Evidence:** `Tests  19 passed (19)`.
 
-### T058 — Re-run the plugin node:test suite
+### [x] T058 — Re-run the plugin node:test suite
 
 - **File:** none
 - **Anchor:** `.opencode/plugins/tests/system-skill-advisor.test.cjs`, line 356 `  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'skilled', 'typescript']);`.
@@ -1566,8 +1634,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** n/a: read-only.
 - **Stop if:** the test count is not `42`.
+- **Evidence:** `ℹ tests 42`, `ℹ pass 42`, `ℹ fail 0`, exit 0.
 
-### T059 — Re-run the plugin vitest suite
+### [x] T059 — Re-run the plugin vitest suite
 
 - **File:** none
 - **Anchor:** `tests/system-skill-advisor-plugin.vitest.ts`, line 700 `['a folder inside the hub', (_dir: string) => undefined, 'SKILLED'],`.
@@ -1583,8 +1652,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `91`.
+- **Evidence:** `Tests  91 passed (91)`.
 
-### T060 — Re-run the surface-hint suite
+### [x] T060 — Re-run the surface-hint suite
 
 - **File:** none
 - **Anchor:** `tests/advisor-surface-hint.vitest.ts`, line 16 `const SURFACE_HINT = 'SKILLED';`.
@@ -1600,8 +1670,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-014
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `3`.
+- **Evidence:** `Tests  3 passed (3)`.
 
-### T061 — Re-run the native-scorer suite
+### [x] T061 — Re-run the native-scorer suite
 
 - **File:** none
 - **Anchor:** `tests/scorer/native-scorer.vitest.ts`, line 387 `const result = scoreAdvisorPrompt('implement a responsive webflow animation module', {`.
@@ -1617,8 +1688,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-016
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `22`.
+- **Evidence:** `Tests  22 passed (22)`.
 
-### T062 — Re-run the lexical pair
+### [x] T062 — Re-run the lexical pair
 
 - **File:** none
 - **Anchor:** `tests/scorer/lexical-candidate-dedup.vitest.ts`, line 1 `// ───────────────────────────────────────────────────────────────`.
@@ -1634,8 +1706,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** n/a: read-only.
 - **Stop if:** the count is not `10`.
+- **Evidence:** `Tests  10 passed (10)` over 2 files.
 
-### T063 — Re-run the ambiguity slice
+### [x] T063 — Re-run the ambiguity slice
 
 - **File:** none
 - **Anchor:** `tests/scorer/ambiguity-slice.vitest.ts`, line 112 `).toBeGreaterThanOrEqual(baselineCorrect);`.
@@ -1651,8 +1724,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-017
 - **Rollback:** n/a: read-only.
 - **Stop if:** the `live=` value is below `17/24`, because that is a regression this phase must not ship.
+- **Evidence:** `ambiguity top-1 regressed: live=17/24 baseline=19`; `Tests  1 failed | 2 passed (3)`, red against the baseline as required and no lower than `17/24`.
 
-### T064 — Run the in-scope surface sweep
+### [x] T064 — Run the in-scope surface sweep
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts`, line 39, the `sk-code` array.
@@ -1669,8 +1743,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-001
 - **Rollback:** n/a: read-only.
 - **Stop if:** the sweep returns more than three lines, or any line other than `fusion.ts:600`, `fusion.ts:602` and `explicit.ts:131`.
+- **Evidence:** `2`, then 3 lines: `fusion.ts:600`, `fusion.ts:602`, `explicit.ts:131`.
 
-### T065 — Verify the three description files carry no WEBFLOW
+### [x] T065 — Verify the three description files carry no WEBFLOW
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/README.md`, line 117.
@@ -1688,8 +1763,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-015
 - **Rollback:** n/a: read-only.
 - **Stop if:** the control prints `0`, because the pattern would then be broken.
+- **Evidence:** `1`, then `0`.
 
-### T066 — Verify the sk-code signals with a positive control
+### [x] T066 — Verify the sk-code signals with a positive control
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the `signals` object.
@@ -1707,8 +1783,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-011
 - **Rollback:** n/a: read-only.
 - **Stop if:** the control is not `3`.
+- **Evidence:** `3`, then `[]`.
 
-### T067 — Verify the zero-hit surface-id files with a positive control
+### [x] T067 — Verify the zero-hit surface-id files with a positive control
 
 - **File:** none
 - **Anchor:** `.skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts`, line 1.
@@ -1726,8 +1803,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-016
 - **Rollback:** n/a: read-only.
 - **Stop if:** the control prints `0`.
+- **Evidence:** The corrected control printed `1` and the zero check printed `0`.
+- **Drift:** Same control correction as T045: `rg -c -i 'obsidian' skill_advisor.py` prints nothing; the control is `webflow|obsidian`.
 
-### T068 — Re-run the leaf-manifest gate
+### [x] T068 — Re-run the leaf-manifest gate
 
 - **File:** none
 - **Anchor:** `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs`, line 81 `function findManifestDirs(skillsDir) {`.
@@ -1743,8 +1822,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-025
 - **Rollback:** n/a: read-only.
 - **Stop if:** the summary differs.
+- **Evidence:** `checked=14 fresh=14 failed=0`.
 
-### T069 — Record the red-first evidence
+### [x] T069 — Record the red-first evidence
 
 - **File:** `implementation-summary.md`
 - **Anchor:** line 92, the limitations anchor comment, immediately followed by line 93 `## Known Limitations`.
@@ -1774,8 +1854,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-003, AC-005, AC-010, AC-013
 - **Rollback:** delete the `### Red-first evidence` heading and its table.
 - **Stop if:** any row still carries the placeholder wording instead of the observed failure.
+- **Evidence:** The `### Red-first evidence` table has 11 `| T0` rows; 3 rows read `passes before and after`.
+- **Drift:** T023 was observed red, so the table holds eight red-first rows and three guards (T019, T022, T029), not seven and four.
 
-### T070 — Record the final counts
+### [x] T070 — Record the final counts
 
 - **File:** `implementation-summary.md`
 - **Anchor:** line 92, the limitations anchor comment, immediately followed by line 93 `## Known Limitations`.
@@ -1809,8 +1891,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-028
 - **Rollback:** delete the `### Final counts` heading and its table.
 - **Stop if:** the count is not `16`.
+- **Evidence:** The `### Final counts` table has 18 table lines counted to the next heading (header plus seventeen rows): the original fifteen plus projection freshness and daemon freshness, added by the review follow-up. It had 16 when first written.
+- **Drift:** The original proof counts to the end of the file; Final counts is the last table, so both agree.
 
-### T070a — Add the advisor fallback to the code agent's route step
+### [x] T070a — Add the advisor fallback to the code agent's route step
 
 - **File:** `.skilled/agents/code.md`
 - **Anchor:** line 66, the full line beginning ``3. **INVOKE sk-code**`` and carrying ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.``
@@ -1829,8 +1913,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-030
 - **Rollback:** replace line 66 with the anchor text; do not revert the other lines in the file.
 - **Stop if:** the new line names a packet, phase, ADR or task id, or the non-local branch no longer escalates `UNKNOWN_ROUTE`.
+- **Evidence:** `1`, `1`, `1`, `0` on `.skilled/agents/code.md` line 66.
 
-### T070b — Make the remaining code-agent statements agree
+### [x] T070b — Make the remaining code-agent statements agree
 
 - **File:** `.skilled/agents/code.md`
 - **Anchor:** line 550, `│  └─► Escalate UNKNOWN stack, scope conflict, or low confidence`; line 518, the `Skill-load-without-applying` row's final sentence ``If `stack==UNKNOWN`, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious``; line 437, ``If sk-code returned UNKNOWN, did I escalate `UNKNOWN_STACK` instead of implementing?``; line 396, ``- `sk-code` returns UNKNOWN or stack/task implication mismatch detected``; line 392, ``- Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK` ``; line 371, ``- Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN)``; line 359, ``- sk-code returns UNKNOWN → `UNKNOWN_STACK` ``; line 210, ``[ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated.``; line 118, ``6. If `sk-code` returns UNKNOWN, escalate `UNKNOWN_ROUTE`. NEVER guess.``; line 110, ``| **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |``; line 73, ``@code does NOT pre-detect the project route. The full code-routing logic lives in `.skilled/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").``
@@ -1883,8 +1968,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-031
 - **Rollback:** restore the eleven anchor lines; leave the line-66 fallback in place.
 - **Stop if:** any of the eleven lines still lacks the `local-` qualifier or the non-local escalation.
+- **Evidence:** `3`, `3`, `3`, `1`, `0`, `11`, `11`, `0` on the eleven lines.
+- **Drift:** Line 392 is a NEVER-list bullet, so the plan's "escalate `UNKNOWN_STACK` only when the advisor's top pick is not a `local-*` skill" would invert it. It now reads "Pick a default overlay when stack is uncertain and the advisor's top pick is not a `local-*` skill — escalate `UNKNOWN_STACK`", which keeps the prohibition and carries the `local-` qualifier.
 
-### T070c — Add the advisor fallback to the review agent's route selection
+### [x] T070c — Add the advisor fallback to the review agent's route selection
 
 - **File:** `.skilled/agents/review.md`
 - **Anchor:** line 90, `- If the route is UNKNOWN, note the uncertainty and review only against baseline security/correctness minimums.` The handoff cites line 91; the quoted sentence sits on line 90 in this tree.
@@ -1901,8 +1988,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-032
 - **Rollback:** replace line 90 with the anchor text.
 - **Stop if:** the non-local branch no longer reviews against the baseline minimums.
+- **Evidence:** `1`, `1` on `.skilled/agents/review.md` line 90.
 
-### T070d1 — Mirror the code-agent body edits into the Claude twin
+### [x] T070d1 — Mirror the code-agent body edits into the Claude twin
 
 - **File:** `.claude/agents/code.md`
 - **Anchor:** line 535, `│  └─► Escalate UNKNOWN stack, scope conflict, or low confidence`; line 503, the `Skill-load-without-applying` row's final sentence ``If `stack==UNKNOWN`, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious``; line 422, ``If sk-code returned UNKNOWN, did I escalate `UNKNOWN_STACK` instead of implementing?``; line 381, ``- `sk-code` returns UNKNOWN or stack/task implication mismatch detected``; line 377, ``- Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK` ``; line 356, ``- Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN)``; line 344, ``- sk-code returns UNKNOWN → `UNKNOWN_STACK` ``; line 195, ``[ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated.``; line 103, ``6. If `sk-code` returns UNKNOWN, escalate `UNKNOWN_ROUTE`. NEVER guess.``; line 95, ``| **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |``; line 58, ``UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator``; line 51, ``3. **INVOKE sk-code**`` with ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.`` The body otherwise matches `.skilled/agents/code.md` apart from runtime path names.
@@ -1966,8 +2054,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-033
 - **Rollback:** restore the twelve anchor lines in `.claude/agents/code.md`.
 - **Stop if:** the body comparison prints `DIFF` for the code agent, or a line outside the twelve matching positions changes.
+- **Evidence:** `1`, `1`, `4`, `0`, `0`, `12`, `12`, `0`, `code: identical`.
+- **Drift:** The twin lines were copied by script after asserting each `.claude` line matched `HEAD`'s `.skilled` line at the mapped position.
 
-### T070d2 — Mirror the review-agent body edit into the Claude twin
+### [x] T070d2 — Mirror the review-agent body edit into the Claude twin
 
 - **File:** `.claude/agents/review.md`
 - **Anchor:** line 75, `- If the route is UNKNOWN, note the uncertainty and review only against baseline security/correctness minimums.` The body otherwise matches `.skilled/agents/review.md` apart from runtime path names.
@@ -1993,8 +2083,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-033
 - **Rollback:** replace line 75 with the anchor text.
 - **Stop if:** the body comparison prints `DIFF` for the review agent.
+- **Evidence:** `1`, `1`, `1`, `review: identical`.
 
-### T070e1 — Regenerate the Codex mirrors
+### [x] T070e1 — Regenerate the Codex mirrors
 
 - **File:** `.codex/agents/code.toml` and `.codex/agents/review.toml`, written together by one generator.
 - **Anchor:** `.codex/agents/code.toml` line 55, the old ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.`` Both files are generated from `.skilled/agents/{code,review}.md` and must never be hand-edited.
@@ -2011,8 +2102,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-034
 - **Rollback:** `git checkout -- .codex/agents/code.toml .codex/agents/review.toml`, then regenerate only if the `.skilled` text should stay.
 - **Stop if:** the generator writes a path outside the two named mirrors, or the check exits non-zero.
+- **Evidence:** Write mode printed `Wrote 2 of 11 generated agents.`; `--check` printed `[codex-agent-sync] PASS: 11 agents are in sync.`; `advisor_recommend` counts `.codex/agents/code.toml:4`, `.codex/agents/review.toml:1`. The pre-run `--check` named only the two stale files.
 
-### T070e2 — Regenerate the Pi mirrors
+### [x] T070e2 — Regenerate the Pi mirrors
 
 - **File:** `.pi/agents/code.md` and `.pi/agents/review.md`, written together by one generator.
 - **Anchor:** `.pi/agents/code.md` line 59, the old ``**HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit.`` Both files are generated from `.skilled/agents/{code,review}.md` and must never be hand-edited.
@@ -2029,8 +2121,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-034
 - **Rollback:** `git checkout -- .pi/agents/code.md .pi/agents/review.md`, then regenerate only if the `.skilled` text should stay.
 - **Stop if:** the generator writes a path outside the two named mirrors, or the check exits non-zero.
+- **Evidence:** Write mode printed `Wrote 2 of 11 generated agents.`; `--check` printed `[pi-agent-sync] PASS: 11 agents are in sync.`; `advisor_recommend` counts `.pi/agents/code.md:4`, `.pi/agents/review.md:1`. The pre-run `--check` named only the two stale files.
 
-### T070e3 — Run the four agent-mirror drift checks
+### [x] T070e3 — Run the four agent-mirror drift checks
 
 - **File:** none
 - **Anchor:** `.skilled/bin/check-agent-mirror-sync.cjs`, line 1 `#!/usr/bin/env node`.
@@ -2056,8 +2149,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-034
 - **Rollback:** n/a: read-only.
 - **Stop if:** any check exits non-zero.
+- **Evidence:** `all four agent mirror checks exited 0`; the doctor check printed `STATUS=OK agent-roster-mirror: every runtime covers the canonical roster`.
+- **Drift:** `sync-skills-hermes.cjs --check` reported `DRIFT agent-code` and `DRIFT agent-review` (the Hermes `agent-<name>` skills mirror the agent bodies). Regenerated with `sync-skills-hermes.cjs` (`Wrote 2 of 66 Hermes skill copies`); `--check` now prints `PASS: 66 Hermes skill copies in sync`. The commit stages `.hermes/skills/agent-code/SKILL.md` and `.hermes/skills/agent-review/SKILL.md`.
 
-### T070f — Record the deferred private-skill routing probe
+### [x] T070f — Record the deferred private-skill routing probe
 
 - **File:** `implementation-summary.md`
 - **Anchor:** line 92, the limitations anchor comment, immediately followed by line 93 `## Known Limitations`.
@@ -2090,8 +2185,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-035 (routing probe deferred after phase 004; the insertion proof above is immediate)
 - **Rollback:** delete the `### Deferred after phase 004` heading, its paragraph, its command block and its `Expected` line.
 - **Stop if:** the insertion proof is not `1`, `1`, or after phase 004 lands the top `skillId` is not `local-webflow`.
+- **Evidence:** `### Deferred after phase 004` count `1`; `local-webflow` count in that block `1`. The routing probe stays deferred under ADR-008.
 
-### T071 — Run the authoritative validator
+### [x] T071 — Run the authoritative validator
 
 - **File:** none
 - **Anchor:** `spec.md`, line 13 `<!-- SPECKIT_LEVEL: 3 -->`.
@@ -2107,8 +2203,10 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-018
 - **Rollback:** n/a: read-only.
 - **Stop if:** the last line is not `RESULT: PASSED`.
+- **Evidence:** `RESULT: PASSED`, `Errors: 0  Warnings: 0`.
+- **Drift:** The first run failed on `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT` (`SOURCE_FINGERPRINT_MISMATCH`), because the derived `graph-metadata.json` predated the edited docs. `repair-derived.cjs --folder <folder> --apply` re-derived it (`repaired=1 failed=0`) and the rerun passed.
 
-### T072 — Independent review
+### [ ] T072 — Independent review
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2121,8 +2219,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-027
 - **Rollback:** n/a: the report is a file under `/tmp`.
 - **Stop if:** the reviewer reports an unresolved finding after two rounds.
+- **Evidence:** Round 1 returned FAILED with two P1 and ten P2 findings; Phase 10 resolves them. Round 2 is pending: it needs a separate fresh reviewer, and the orchestrator owns the `/tmp/phase3-review.txt` capture.
 
-### T073 — Re-run the authoritative validator from the final state
+### [x] T073 — Re-run the authoritative validator from the final state
 
 - **File:** none
 - **Anchor:** `spec.md`, line 13 `<!-- SPECKIT_LEVEL: 3 -->`.
@@ -2138,8 +2237,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-018
 - **Rollback:** n/a: read-only.
 - **Stop if:** the last line is not `RESULT: PASSED`.
+- **Evidence:** `RESULT: PASSED`, `Errors: 0  Warnings: 0`, from the final doc state after the last `repair-derived.cjs --apply`.
 
-### T074 — Commit the phase
+### [ ] T074 — Commit the phase
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2170,6 +2270,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
     .codex/agents/review.toml \
     .pi/agents/code.md \
     .pi/agents/review.md \
+    .hermes/skills/agent-code/SKILL.md \
+    .hermes/skills/agent-review/SKILL.md \
     .skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts \
     .skilled/skills/system-skill-advisor/runtime/tests/advisor-surface-hint.vitest.ts \
     .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts \
@@ -2196,8 +2298,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-026
 - **Rollback:** `git reset --soft HEAD~1` before the push; after the push, use the phase rollback in `plan.md` §7.
 - **Stop if:** `git status --porcelain` names a path outside the 31 changed files and this phase's documents.
+- **Evidence:** Pending. The orchestrator commits after the independent review.
 
-### T075 — Push the phase
+### [ ] T075 — Push the phase
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2214,8 +2317,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-026
 - **Rollback:** no automatic rollback; a pushed commit is reverted with `git revert` per `plan.md` §7.
 - **Stop if:** the push is rejected, because a non-fast-forward means someone else landed on `main`.
+- **Evidence:** Pending. The orchestrator pushes after the commit.
 
-### T076 — Confirm the final state
+### [ ] T076 — Confirm the final state
 
 - **File:** none
 - **Anchor:** `tasks.md`, this task.
@@ -2235,8 +2339,584 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 - **AC:** AC-026
 - **Rollback:** n/a: read-only.
 - **Stop if:** `git status --porcelain` prints anything, or the two hashes differ.
+- **Evidence:** Pending. Runs after the push.
 
 <!-- /ANCHOR:phase-9 -->
+
+---
+
+<!-- ANCHOR:phase-10 -->
+## Phase 10: Review follow-up
+
+Round 1 of the independent review failed the phase. Each task below resolves one finding. Frozen decisions D4 and D5 required extending scope to the files named in `spec.md` section 3; every extension is a dated 2026-10-24 amendment in `decision-record.md` under ADR-002. These were written code first, so each guard was checked by removing it and watching its test fail (see Evidence). T085 to T093 resolve the second independent review in the same way, recorded as the round 2 amendment.
+
+### [x] T077 — Python readers follow only a trusted link (P1-1)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
+- **Anchor:** `_load_source_graph_signal_map` and `_load_source_conflict_declarations`, each with `if not entry.is_dir(): continue`.
+- **Change:** add `_trusted_private_link` (a port of the TypeScript containment check) and `_is_scannable_skill_entry`; both loops call the latter, so a symlink is followed only when its name starts with `local-` and its realpath is a directory inside the skills root or a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. Add `test_private_skill_link_trust`.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'TRUST|Summary'
+  ```
+  Expected: four `T246-TRUST` `PASS` lines and a `Summary:` line ending `fail=0` (`pass=76` at this task, `pass=83` after T085 to T088)
+- **AC:** AC-036
+- **Rollback:** remove the two helpers and restore `if not entry.is_dir(): continue` in both loops.
+- **Stop if:** the untrusted `local-evil` link is still returned.
+- **Evidence:** four `T246-TRUST` lines `PASS`; `Summary: pass=76, fail=0`. With the guard replaced by `entry.is_dir()` the suite reported `pass=74, fail=2` (`T246-TRUST-001` and `T246-TRUST-003` failed, the untrusted `local-evil` link returned).
+
+### [x] T078 — Two generators skip a `local-*` entry (P1-2)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`, `.skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs`
+- **Anchor:** the `for (const skillId of skillIds)` loop in `metadataEntries`; the `.filter` in `listSkillRoots`.
+- **Change:** `if (skillId.startsWith('local-')) continue;` as the loop's first statement; add `!e.name.startsWith('local-')` to the root filter.
+- **Proof:**
+  ```bash
+  node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check | rg '"status"|"commandMetadata"'
+  ```
+  Expected: `"status": "fresh"` and `"commandMetadata": 19`
+- **AC:** AC-037
+- **Rollback:** delete the two added conditions.
+- **Stop if:** the check reports `stale`.
+- **Evidence:** `"status": "fresh"`, `"commandMetadata": 19` with a probe folder `.skilled/skills/local-zzprobe/command-metadata.json` present (removed afterwards). With the skip deleted the same probe gave `"status": "stale"` and `"commandMetadata": 20`. Neither script exported a seam for a unit test at that point, so the probe was the proof. T089 added the seam and the automated cases.
+
+### [x] T079 — Harden the containment helper (P2-5, P2-9)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts`, `lib/freshness.ts`, `lib/skill-graph/skill-graph-db.ts`
+- **Anchor:** `isInside` and `trustedRoots`.
+- **Change:** reject a link to the skills root itself; test the parent step as `..` or `..` plus a separator; add `createPrivateSkillLinkCheck`, which resolves the trusted roots once per scan and only when the first link is met; the graph scan and the source signature use it. Add three tests.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/private-skill-target.vitest.ts tests/skill-graph-db.vitest.ts tests/handlers/advisor-status.vitest.ts
+  ```
+  Expected: `Tests  41 passed (41)`
+- **AC:** AC-019
+- **Rollback:** restore the previous `isInside` and the per-call root resolution.
+- **Stop if:** an in-root link or a declared-root link is rejected.
+- **Evidence:** helper `Tests  8 passed (8)`, graph scan 11, advisor-status 22. Guard check: accepting the skills root itself failed the root-link case (`1 failed | 7 passed (8)`), and testing the parent step as `startsWith('..')` failed the `..dotted` case (`1 failed | 7 passed (8)`).
+
+### [x] T080 — Follow a trusted link in the watcher, the projection and the status scan (P2-6)
+
+- **File:** `lib/daemon/watcher.ts`, `lib/scorer/projection.ts`, `handlers/advisor-status.ts` under `.skilled/skills/system-skill-advisor/runtime/`, and their tests.
+- **Anchor:** `walkSkillDirectories`, `loadFilesystemProjection`, `scanSkillMetadataFiles`.
+- **Change:** each accepts a top-level `local-*` symlink through `createPrivateSkillLinkCheck`, so an edit to a private skill triggers a rebuild, the fallback projection sees it, and the status count agrees with the graph scan.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/daemon-freshness-foundation.vitest.ts tests/scorer/projection-freshness.vitest.ts tests/handlers/advisor-status.vitest.ts
+  ```
+  Expected: `Tests  47 passed (47)`
+- **AC:** AC-038
+- **Rollback:** restore the three `isDirectory()` filters.
+- **Stop if:** an outside-root link appears in the watch targets, the projection or the count.
+- **Evidence:** `Tests  47 passed (47)`; the two sibling watcher suites pass (5 and 7). Guard check: replacing the link test with `true` (accepts the outside link) and with `false` (ignores the inside link) each failed exactly one case in each of the three suites (`1 failed`).
+
+### [x] T081 — The review agent falls back on an ambiguous route too (P2-4)
+
+- **File:** `.skilled/agents/review.md`, `.claude/agents/review.md`, and the regenerated `.codex`, `.pi` and `.hermes` mirrors.
+- **Anchor:** line 90 of `.skilled/agents/review.md`, `- If the route is UNKNOWN, run ...`.
+- **Change:** read "If the route is UNKNOWN or ambiguous", matching `code.md` lines 66 and 73; copy to the Claude twin; regenerate the Codex, Pi and Hermes mirrors.
+- **Proof:**
+  ```bash
+  sed -n '90p' .skilled/agents/review.md | rg -c 'UNKNOWN or ambiguous.*advisor_recommend.*local-.*SKILL\.md.*baseline'
+  node .skilled/bin/check-agent-mirror-sync.cjs --all
+  ```
+  Expected: `1`, then `all mirrors in sync`
+- **AC:** AC-032, AC-034
+- **Rollback:** restore the shorter sentence and regenerate.
+- **Stop if:** a mirror check exits non-zero.
+- **Evidence:** `1`; the Codex, Pi and Hermes generators each wrote the single changed file; the four drift checks and `sync-skills-hermes.cjs --check` pass.
+
+### [x] T082 — Move the graph-scan link fixture out of `node_modules` (P2-8)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts`
+- **Anchor:** `indexes a private skill linked from inside the skills root`.
+- **Change:** the target sits under `.cache` instead of `node_modules`. The review suggested `.private/`, but the graph scan walks dot folders, so a skill under `.private/` would be indexed without the link and the test would prove nothing; `.cache` is skipped by name, so only the link reaches it.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/skill-graph-db.vitest.ts
+  ```
+  Expected: `Tests  11 passed (11)`
+- **AC:** AC-002
+- **Rollback:** restore the `node_modules` path.
+- **Stop if:** the test passes with the link removed.
+- **Evidence:** `Tests  11 passed (11)`.
+- **Drift:** `.cache` replaces the suggested `.private/`, for the reason above.
+
+### [x] T083 — Reconcile the packet documents (P2-1, P2-2, P2-3, P2-7, P2-10)
+
+- **File:** `acceptance-criteria.md`, `tasks.md`, `decision-record.md`, `plan.md`, `spec.md`, `implementation-summary.md`, `goal.md`, and the phase 002 `implementation-summary.md` reconciliation.
+- **Anchor:** AC-010, AC-012 and AC-032; the T035 drift note; plan ADR numbering; the summary metadata table.
+- **Change:** AC-010 counts six skip-scan and five follow-scan tests; AC-012 drops the historic commit block and keeps the semantic compare; the T035 sentence says the phase adds three `ok()` calls (69 to 72); plan.md ADR-006 and ADR-007 now match the decision record (the Python reader is covered under ADR-002); the summary gains a Status field; `decision-record.md` records the phase 002 summary reconciliation.
+- **Proof:**
+  ```bash
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup --strict | tail -1
+  ```
+  Expected: `RESULT: PASSED`
+- **AC:** AC-018
+- **Rollback:** restore the previous wording.
+- **Stop if:** the validator fails.
+- **Evidence:** `RESULT: PASSED` after the final `repair-derived.cjs --apply`.
+
+### [ ] T084 — Round 2 of the independent review
+
+- **File:** none
+- **Anchor:** `tasks.md`, this task.
+- **Change:** a fresh reviewer re-reads the follow-up diff and the two P1 repros (a `local-evil` link declaring `conflicts_with alpha`; a `local-*` folder with a `command-metadata.json`).
+- **Proof:**
+  ```bash
+  tail -1 /tmp/phase3-review.txt
+  ```
+  Expected: `VERDICT: CLEAN`, or findings all resolved or recorded
+- **AC:** AC-027
+- **Rollback:** n/a
+- **Stop if:** an unresolved finding remains after two rounds.
+- **Evidence:** Pending. Owned by the orchestrator.
+
+### [x] T085 — Python skill-record discovery follows only a trusted link (P1-A)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
+- **Anchor:** `_discover_skill_files`, which globbed `*/SKILL.md`; and `skill_advisor.py` `_trusted_private_link`, `_path_inside` and `_is_scannable_skill_entry`.
+- **Change:** move the containment check into the runtime module as `create_private_skill_link_check` and `is_scannable_skill_entry`, because `skill_advisor.py` loads that module and the reverse import would be circular. Discovery scans the skills root, skips hidden folders as the glob did, and keeps an entry only through `is_scannable_skill_entry`. `skill_advisor.py` calls the runtime check and loses its copy. Add `test_private_skill_discovery_trust`.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'DISCOVER|TRUST|Summary'
+  ```
+  Expected: six `T246-DISCOVER` and four `T246-TRUST` `PASS` lines, then `Summary: pass=83, fail=0`
+- **AC:** AC-039
+- **Rollback:** restore the glob in `_discover_skill_files` and the three helpers in `skill_advisor.py`, and delete the new test.
+- **Stop if:** an untrusted `local-*` link or a non-local link is returned as a record.
+- **Evidence:** six `T246-DISCOVER` lines `PASS` and `Summary: pass=83, fail=0`, exit 0. With the old glob swapped in, `T246-DISCOVER-001`, `-003` and `-005` failed and the other two passed (the untrusted `local-evil` and the non-local `plain-evil` and `linked-gamma` links were returned).
+
+### [x] T086 — Resolve the Python trusted roots once per scan (P2-1)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py`, `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
+- **Anchor:** the removed `_trusted_private_link`, which called `os.path.realpath(SKILLS_DIR)` and split `SPECKIT_PRIVATE_SKILL_ROOTS` on every call.
+- **Change:** `create_private_skill_link_check(skills_dir)` returns a closure that resolves the roots with `_trusted_private_roots` at most once, and only when the first link is met. Each of the three Python scans builds one closure per scan. Add `T246-DISCOVER-006`, which counts resolutions.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'DISCOVER-006'
+  ```
+  Expected: `PASS: T246-DISCOVER-006: a scan resolves its trusted roots once (1 resolution for 2 local-* links)`
+- **AC:** AC-039
+- **Rollback:** resolve the roots inside the check on every call.
+- **Stop if:** the count is not one.
+- **Evidence:** the `PASS` line above, exit 0.
+
+### [x] T087 — The router-signal generator skips a `local-*` hub (P2-2)
+
+- **File:** `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs`
+- **Anchor:** `hubs()`, the `.filter` chain before the `ROUTER.md` probe.
+- **Change:** add `.filter((name) => !name.startsWith('local-'))` ahead of the first `existsSync`, with a comment stating that a private skill belongs to one checkout and this writer rewrites hub metadata.
+- **Proof:**
+  ```bash
+  node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs
+  ```
+  Expected: `[sk-doc] skill-derived regenerator + freshness gate coverage passed`
+- **AC:** AC-041
+- **Rollback:** delete the filter line and the comment.
+- **Stop if:** the test passes with the filter removed.
+- **Evidence:** the expected line, exit 0. With the filter removed the test failed with `a local-* hub must never be checked or written`.
+
+### [x] T088 — The compiler and the bridge deriver refuse a non-private link (P2-3)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`, `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`, `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
+- **Anchor:** `discover_graph_metadata`, after the `local-*` skip; `metadataEntries`, the `readdirSync` of the skills root.
+- **Change:** the compiler skips an entry for which `os.path.islink` is true. The deriver reads the root with `withFileTypes` and drops a `local-*` name and a symbolic link. Before the change, record that no tracked top-level skill is a symlink. Add `T246-GC-015`.
+- **Proof:**
+  ```bash
+  git ls-files -s .skilled/skills | awk '$1==120000' | wc -l
+  git ls-files -s .skilled/skills | awk '$1==120000 {print $4}' | awk -F/ 'NF==3' | wc -l
+  cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'GC-015'
+  ```
+  Expected: `39`, `0`, then the `PASS: T246-GC-015` line
+- **AC:** AC-040
+- **Rollback:** delete the compiler `islink` condition and the deriver `isSymbolicLink` condition.
+- **Stop if:** the second command prints anything other than `0`.
+- **Evidence:** `39`, then `0`. The depth histogram of the 39 paths printed 12 at depth 5, 4 at depth 6, 5 at depth 7 and 18 at depth 8, so none is a top-level skill folder (depth 3). `T246-GC-015` `PASS`. The compiled graph still differs from `HEAD` only in `generated_at` (checked with the AC-012 compare).
+
+### [x] T089 — Automated cases for the bridge deriver and the regenerator skip (P2-5)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`, `.skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs`, `.skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts`, `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs`
+- **Anchor:** the bottom `main();` call and the missing `module.exports` in the deriver; `listSkillRoots()` in the regenerator.
+- **Change:** `metadataEntries` takes the skills root and is exported, and `main()` runs only when the file is the entry point. `listSkillRoots` takes the skills root. The vitest case builds a temporary skills root with a real folder, a `local-*` folder and a linked folder. The node case lists a temporary root holding `alpha` and `local-private`.
+- **Proof:**
+  ```bash
+  node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check | rg '"status"'
+  cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/command-bridges-drift-guard.vitest.ts
+  node ../../sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs
+  ```
+  Expected: `"status": "fresh"`, `Tests  5 passed (5)`, then the `passed` line
+- **AC:** AC-041
+- **Rollback:** restore the unconditional `main();`, remove the export and the two parameters, and delete the two cases.
+- **Stop if:** the deriver stops printing `fresh` when run as a script.
+- **Evidence:** all three outputs as expected. With the skip removed, the vitest case failed with `expected [ 'alpha', 'linked', 'local-private' ] to deeply equal [ 'alpha' ]`, and the node case failed with `a local-* skill must never be listed for regeneration`.
+
+### [x] T090 — Dispose of the cross-skill edge loader (P2-6)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/cross-skill-edges.vitest.ts`
+- **Anchor:** `discoverGraphMetadataFiles`, the loop over `readdirSync(currentDir, { withFileTypes: true })`.
+- **Change:** investigated first. The loader reads through `Dirent.isDirectory()`, so it never follows a symlink. `propagateInboundEnhances` in apply mode writes a candidate's `graph-metadata.json`, so a private skill read here could put its name into a tracked skill's metadata. The loader now skips a top-level entry named `local-*`. One case builds `skill-a`, `local-private` and a nested `local-nested` folder and expects `['local-nested', 'skill-a']`.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/cross-skill-edges.vitest.ts
+  ```
+  Expected: `Tests  15 passed (15)`
+- **AC:** AC-041
+- **Rollback:** delete the skip, the constant and the case.
+- **Stop if:** a nested folder that merely starts with `local-` is dropped.
+- **Evidence:** `Tests  15 passed (15)`. With the skip removed the case failed with `local-private` in the result.
+
+### [x] T091 — Record the accepted dispositions (P2-4, P2-11, P2-12)
+
+- **File:** `decision-record.md`, `goal.md`
+- **Anchor:** the round 2 amendment; the Decisions table in `goal.md`.
+- **Change:** record that `regenerate-skill-derived.cjs --root <path>` bypasses the skip by design, that the phase decision ids are local and which two restate parent D4 and D5, and that refusing a link to the skills root narrows parent D4 on purpose. No code changed.
+- **Proof:**
+  ```bash
+  rg -c 'P2-4, accepted|P2-11|P2-12' decision-record.md
+  ```
+  Expected: `3`
+- **AC:** AC-041
+- **Rollback:** delete the three bullets.
+- **Stop if:** the sentence about local ids would renumber a phase decision.
+- **Evidence:** `3`. The three bullets sit at `decision-record.md` lines 799 to 801.
+
+### [x] T092 — Reconcile the packet documents (P2-7, P2-8, P2-9, P2-10)
+
+- **File:** `spec.md`, `plan.md`, `decision-record.md`, `implementation-summary.md`, `acceptance-criteria.md`, `goal.md`
+- **Anchor:** every "seven scans, three include, four exclude" sentence; AC-012; the ADR-006 numbering note; the Files Changed row for `private-skill-target.vitest.ts`.
+- **Change:** the count is sixteen, eight including and eight excluding, with the list in the `spec.md` section 3 inventory and a proof command in AC-039. AC-012 keeps only the semantic compare. The ADR-006 note says `plan.md` uses the same number and that neither document has an ADR-007. The helper test row says eight cases.
+- **Proof:**
+  ```bash
+  rg -n -i 'seven scans|three include|four exclude|Three scans include' spec.md plan.md decision-record.md implementation-summary.md acceptance-criteria.md goal.md tasks.md | cut -c1-60
+  rg -c 'git log -1 --format=%H' acceptance-criteria.md || echo 0
+  grep -c '^  *it(' ../../../../.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts
+  ```
+  Expected: six lines, all historical (two `spec.md` Open Questions notes, the `decision-record.md` ADR-002 context and round 2 bullet, and two lines of this task), then `0`, then `8`
+- **AC:** AC-018
+- **Rollback:** restore the previous wording.
+- **Stop if:** the validator fails.
+- **Evidence:** the first command printed six lines (`spec.md` 358 and 360, `decision-record.md` 155 and 802, `tasks.md` 2587 and 2591), all historical. The second printed `0` and the third printed `8`. `rg -l` over the two script trees printed 16 files, matching AC-039.
+
+### [x] T093 — Re-verify from the final state
+
+- **File:** none
+- **Anchor:** the verification commands of the round 2 brief.
+- **Change:** rerun the Python suite, the targeted vitests, the create-skill node tests and the graph compare, then `repair-derived.cjs --apply` and `validate.sh --strict`.
+- **Proof:**
+  ```bash
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup --strict | tail -1
+  ```
+  Expected: `RESULT: PASSED`
+- **AC:** AC-018
+- **Rollback:** n/a
+- **Stop if:** any command fails.
+- **Evidence:** Python `Summary: pass=83, fail=0`. Eight targeted vitest files `Tests  105 passed (105)` (helper 8, graph scan 11, advisor-status 22, freshness panel 19, cross-skill edges 15, bridge drift guard 5, daemon freshness 22, projection freshness 3). Root-metadata contract and regenerator node tests print `passed`, and the create-skill `typo-flags` node test passes 17 of 17. The deriver prints `"status": "fresh"` with 19 metadata entries and the router-signal check prints `RESULT: PASSED` over 7 hubs. The compiled graph differs from `HEAD` only in `generated_at`. `repair-derived.cjs --apply` printed `inspected=1 repaired=1 failed=0` and `validate.sh --strict` printed `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
+
+<!-- /ANCHOR:phase-10 -->
+
+---
+
+<!-- ANCHOR:phase-11 -->
+## Phase 11: Pre-existing advisor suite failures
+
+The operator ruled that the seven failing runtime cases are fixed before this phase is committed. They fail identically on `origin/main` at `b2a1663ee9`. Each task resolves one cause, and the ruling is the 2026-10-24 amendment "Operator ruling: pre-existing advisor suite failures fixed before commit" in `decision-record.md`.
+
+### [x] T094 — Re-derive the hook counts from the committed settings file
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`
+- **Anchor:** `EXPECTED_HOOK_COUNTS`, and the header contract line that says `hooks[]` is a single-element array.
+- **Change:** set the counts to `UserPromptSubmit` 3, `PreCompact` 1, `SessionStart` 8 and `Stop` 3, and reword the header. The counts were re-measured at `b830fd0276^`, `b830fd0276`, `d001d69fee`, `8ebd4b76d6` and `d4351c23f3`. `.claude/settings.json` is not edited.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/hooks/settings-driven-invocation-parity.vitest.ts
+  ```
+  Expected: `Tests  41 passed (41)`
+- **AC:** AC-018
+- **Rollback:** restore the counts 2, 1, 7 and 2.
+- **Stop if:** a count has to be lowered to pass.
+- **Evidence:** `Tests  41 passed (41)`. At `b830fd0276^` the file held 2, 1, 7, 2. At `b830fd0276` it held 3, 1, 7, 3. At `8ebd4b76d6` it held 3, 1, 8, 3, and the working file still holds that.
+
+### [x] T095 — Pin the parity test to the instant its counts were derived
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts`
+- **Anchor:** the top-level `describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates'`.
+- **Change:** a `SCORING_INSTANT` of `2026-10-03T00:00:00Z`, installed in `beforeAll` with `vi.useFakeTimers({ toFake: ['Date'] })` and released in `afterAll`, because the derived lane's age haircut reads the clock. The pinned counts and the ledger are unchanged.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/parity/python-ts-parity.vitest.ts tests/parity/scorer-eval-baseline-ratchet.vitest.ts
+  ```
+  Expected: `Tests` all passed
+- **AC:** AC-018
+- **Rollback:** delete the constant and the two hooks.
+- **Stop if:** an expectation has to change to pass.
+- **Evidence:** before the change `advisor-parity-report` showed `tsAlsoCorrect":99` and `rr-iter3-151` in `regressionIds`. An archive of `f8afb2def6e` failed on the real clock and passed with the date fixed at 2026-10-03. An archive of `b2a1663ee9` passed at 2026-10-03, 2026-10-07 and 2026-10-11 and failed at 2026-10-24. After the change the file passes.
+
+### [x] T096 — Pin the ambiguity slice to the baseline's capture instant
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/scorer/ambiguity-slice.vitest.ts`
+- **Anchor:** the `beforeAll` that computes `SLICE_CORRECT`.
+- **Change:** fake only `Date` at midnight UTC of `BASELINE.capturedAt` before the slice is scored, release it in `afterAll`, and add `capturedAt` to the `Baseline` shape, as the baseline ratchet does. `scorer-eval-baseline.json` is not re-captured.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/scorer/ambiguity-slice.vitest.ts
+  ```
+  Expected: `Tests  3 passed (3)`, live count `19/24`
+- **AC:** AC-017
+- **Rollback:** delete the fake clock lines.
+- **Stop if:** the live count falls below the baseline of 19.
+- **Evidence:** `Tests  3 passed (3)`. A copy of the test with the final assertion forced to fail printed `live=19/24 baseline=19`. Unpinned it printed `live=17/24`.
+
+### [x] T097 — A disabled launcher is not a spawn authority
+
+- **File:** `.skilled/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts`, `.skilled/skills/system-spec-kit/runtime/tests/embedders/hf-local-client.vitest.ts`
+- **Anchor:** `hasLiveHfSpawnAuthority`.
+- **Change:** split the owner lease read into `hasLiveAdvisorOwnerLease` and count it only when `advisorLauncherSupervisesModelServer()` is true (`SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` empty or `1`, the launcher's own rule). The respawn lock and pid file checks are unchanged. One new case writes a fresh live lease with the flag set to `0` and expects a `not retrying` failure after the 5 second grace.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/embedders
+  ```
+  Expected: `Test Files  9 passed (9)`
+- **AC:** AC-018
+- **Rollback:** restore the single function and delete the case.
+- **Stop if:** a live respawn lock or pid file stops counting as authority.
+- **Evidence:** `Test Files  9 passed (9)`, `Tests  102 passed | 2 skipped (104)`. With the supervision check removed the new case failed. The scan CLI in the test scope went from killed at 180 seconds to 78 seconds with only this fix.
+
+### [x] T098 — Stop asking a dead embedding backend once the streak proves it
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-embedding-outage.vitest.ts`
+- **Anchor:** `refreshSkillEmbeddingsLegacy`, next to `EMBEDDING_BACKEND_OUTAGE_STREAK`.
+- **Change:** the legacy refresh path counts consecutive failures like the adapter path, stops after three, counts the remaining rows as failed with a cleared vector, and reports `EMBEDDING-BACKEND-OUTAGE`. The new file has a happy case (six embeds) and a dead-backend case (three calls, six failed).
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/skill-graph-embedding-outage.vitest.ts tests/skill-advisor-cli-job-semantics.vitest.ts
+  ```
+  Expected: all cases passed
+- **AC:** AC-018
+- **Rollback:** delete the streak lines and the new test file.
+- **Stop if:** the happy case embeds fewer than all six skills.
+- **Evidence:** `npm run build` finished and `npm run typecheck` printed no error. The three job-semantics cases passed in about 36 seconds in total, and the two cases that failed at 180 seconds pass.
+
+### [x] T099 — Reconcile the earlier "red by design" lines
+
+- **File:** `implementation-summary.md`
+- **Anchor:** Known Limitations items 1 and 5.
+- **Change:** item 1 now records that the slice is green at `19/24` once the clock is pinned, and item 5 records the reduced list of failures. The older amendment bullets in `decision-record.md` stay as history, with the ruling amendment as the current truth.
+- **Proof:**
+  ```bash
+  rg -c 'stays red|not green' implementation-summary.md || echo 0
+  ```
+  Expected: `0`
+- **AC:** AC-018
+- **Rollback:** restore the two items.
+- **Stop if:** the validator fails.
+- **Evidence:** see T100.
+
+### [x] T100 — Re-verify from the final state
+
+- **File:** none
+- **Anchor:** the full runtime run, the Python suite, `repair-derived.cjs --apply` and `validate.sh --strict`.
+- **Change:** none.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run
+  python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py | tail -1
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup --strict | tail -1
+  ```
+  Expected: no `FAIL` line, `pass=83, fail=0`, `RESULT: PASSED`
+- **AC:** AC-018
+- **Rollback:** n/a
+- **Stop if:** any command fails.
+- **Evidence:** full runtime run `Test Files  147 passed (147)` and `Tests  1215 passed | 8 skipped (1223)`, exit 0, no `FAIL` line (it was `4 failed | 142 passed` and `7 failed | 1204 passed` on `HEAD`). Python `Summary: pass=83, fail=0`. `repair-derived.cjs --apply` printed `inspected=1 repaired=1 failed=0` and `validate.sh --strict` printed `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
+
+<!-- /ANCHOR:phase-11 -->
+
+---
+
+<!-- ANCHOR:phase-12 -->
+## Phase 12: Review round 3
+
+A third independent review found one P1 and five P2 findings. The amendment "Review follow-up amendments, round 3" in `decision-record.md` holds the reasoning. Each task names its proof, and each new case was run red against the old code first.
+
+### [x] T101 — A current row keeps its vector after an embedding outage (P1)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-embedding-outage.vitest.ts`
+- **Anchor:** the `backendOutage !== null` branch in `refreshSkillEmbeddingsViaAdapter` and `refreshSkillEmbeddingsLegacy`.
+- **Change:** move the outage branch below the empty-description rule and the up-to-date check in both loops. During an outage a row that needed embedding is counted failed and gets what a failed ask writes in that loop (a null vector with the model id and hash on the legacy column, a deleted row on the adapter table). Two cases pre-embed six skills, make four stale, trip the outage and expect the two current rows to keep their vector.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/skill-graph-embedding-outage.vitest.ts tests/skill-graph/refresh-roundtrip.vitest.ts
+  ```
+  Expected: `Tests  9 passed (9)`
+- **AC:** AC-018
+- **Rollback:** restore the outage branch above the description read and delete the two cases.
+- **Stop if:** an empty-description row stops being counted as skipped.
+- **Evidence:** `Test Files  2 passed (2)`, `Tests  9 passed (9)`. Before the fix both new cases failed (`failed: 6, skipped: 0` where `failed: 4, skipped: 2` is expected).
+
+### [x] T102 — `--root` refuses a private skill (P2-1)
+
+- **File:** `.skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs`, `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs`
+- **Anchor:** `run`, the `args.root` branch.
+- **Change:** `isPrivateSkillPath` judges the resolved path and its real target, and `run` throws an input error before any read or write. One test case spawns the script on a `local-private` folder and on a neutrally named link to it. `decision-record.md` replaces the round 2 acceptance line with the outcome.
+- **Proof:**
+  ```bash
+  node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs
+  ```
+  Expected: `ℹ pass 1`, `ℹ fail 0`
+- **AC:** AC-037
+- **Rollback:** delete the guard and the case.
+- **Stop if:** `--all` or a tracked skill root is refused.
+- **Evidence:** `ℹ pass 1`, `ℹ fail 0`. With the guard disabled the case failed (`a private root must exit non-zero`, `0 !== 2`).
+
+### [x] T103 — The owner lease records whether its launcher supervises the model server (P2-2)
+
+- **File:** `.skilled/bin/system-skill-advisor-launcher.cjs`, `.skilled/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts`, `.skilled/skills/system-spec-kit/runtime/tests/embedders/hf-local-client.vitest.ts`, `.skilled/skills/system-skill-advisor/runtime/tests/launcher-model-server-default.vitest.ts`, `.skilled/skills/system-spec-kit/shared/tests/model-server-constants.test.ts`
+- **Anchor:** `buildOwnerLease` and `hasLiveAdvisorOwnerLease`.
+- **Change:** `buildOwnerLease` writes `supervisesModelServer` from `isModelServerEnabled()`. `hasLiveAdvisorOwnerLease` treats a recorded `false` as no authority and counts `true` or an absent field as before. The consumer no longer reads the flag. The launcher exports `buildOwnerLease`. Both packages declare the field name and the constants test compares them. Three client cases cover true, false and absent, and five launcher cases acquire a real lease for each flag value.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/embedders
+  cd ../../system-skill-advisor/runtime && npx vitest run tests/launcher-model-server-default.vitest.ts tests/launcher-reap-pid-reuse.vitest.ts
+  cd ../../system-spec-kit/runtime && npx tsx ../shared/tests/model-server-constants.test.ts
+  ```
+  Expected: `Test Files  9 passed (9)`, `Tests  18 passed (18)`, `model-server constants agree across packages`
+- **AC:** AC-018
+- **Rollback:** restore the flag read in `hf-local.ts` and drop the field.
+- **Stop if:** a lease without the field stops counting as authority.
+- **Evidence:** `Test Files  9 passed (9)`, `Tests  104 passed | 2 skipped (106)`, `Tests  18 passed (18)`, and the constants test printed its agreement line. With the false check removed the false case failed, and with the field not written the five launcher cases failed.
+
+### [x] T104 — Keep the calendar covered where the clocks are pinned (P2-3)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts`
+- **Anchor:** the case `trust lanes keep author intent non-decaying and cap derived contributions`.
+- **Change:** one new case applies the haircut to one block at 2026-02-01 and 2026-10-01 and expects the later date to score lower. The pins in `ambiguity-slice.vitest.ts` and `python-ts-parity.vitest.ts` stay.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/lifecycle-derived-metadata.vitest.ts
+  ```
+  Expected: `Tests  18 passed (18)`
+- **AC:** AC-018
+- **Rollback:** delete the case.
+- **Stop if:** a pin is removed.
+- **Evidence:** `Tests  18 passed (18)`.
+
+### [x] T105 — Two test gaps in the discovery and containment suites (P2-4)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`, `.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts`
+- **Anchor:** the `T246-DISCOVER` block, and the case `checks many links against one resolution of the trusted roots`.
+- **Change:** a `.hidden/SKILL.md` fixture and `T246-DISCOVER-007`. The vitest case wraps `realpathSync` in a pass-through spy and counts calls on the skills root: none before the first link, one after three, two after two per-link calls.
+- **Proof:**
+  ```bash
+  python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py | tail -1
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/private-skill-target.vitest.ts
+  ```
+  Expected: `Summary: pass=84, fail=0`, `Tests  8 passed (8)`
+- **AC:** AC-036, AC-039
+- **Rollback:** delete the fixture, the case and the spy.
+- **Stop if:** the helper's public behavior has to change.
+- **Evidence:** `Summary: pass=84, fail=0` and `Tests  8 passed (8)`. With the hidden-folder skip removed `T246-DISCOVER-007` failed (`records=['alpha', 'hidden-skill', 'local-beta']`, `pass=83, fail=1`). With the roots resolved on every link the vitest case failed (`expected 3 to be 1`).
+
+### [x] T106 — Reconcile the packet documents (P2-5)
+
+- **File:** `acceptance-criteria.md`, `decision-record.md`, `spec.md`, `implementation-summary.md`, `goal.md`, `tasks.md`
+- **Anchor:** AC-036, AC-037, AC-039 and their proofs, the round 2 `P2-4` line, the Files to Change and Files Changed tables.
+- **Change:** AC-037 cites the drift-guard test and the regenerator test instead of a probe folder. The Python counts become 84 and seven discovery cases. The round 3 amendment is added.
+- **Proof:**
+  ```bash
+  rg -c 'local-zzprobe' acceptance-criteria.md || echo 0
+  ```
+  Expected: `0`
+- **AC:** AC-037
+- **Rollback:** restore the three AC blocks.
+- **Stop if:** the validator fails.
+- **Evidence:** `rg -c 'local-zzprobe' acceptance-criteria.md` printed `0`.
+
+### [x] T107 — Re-verify from the final state
+
+- **File:** none
+- **Anchor:** the full advisor runtime run, the embedder run, the Python suite, `repair-derived.cjs --apply` and `validate.sh --strict`.
+- **Change:** none.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run
+  python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py | tail -1
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup --strict | tail -1
+  ```
+  Expected: no `FAIL` line, `pass=84, fail=0`, `RESULT: PASSED`
+- **AC:** AC-018
+- **Rollback:** n/a
+- **Stop if:** any command fails.
+- **Evidence:** full advisor run `Test Files  147 passed (147)` and `Tests  1223 passed | 8 skipped (1231)`, exit 0, no `FAIL` line (it was `1215 passed | 8 skipped (1223)` before round 3). Python `Summary: pass=84, fail=0`. `npm run build` and `npm run typecheck` printed no error. `repair-derived.cjs --apply` printed `inspected=1 repaired=1 failed=0` and `validate.sh --strict` printed `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
+
+### [x] T108 — The lease equals the launcher's start decision (P2-1)
+
+- **File:** `.skilled/bin/system-skill-advisor-launcher.cjs`, `.skilled/skills/system-skill-advisor/runtime/tests/launcher-model-server-default.vitest.ts`
+- **Anchor:** `buildOwnerLease` and the case block `owner lease records the launcher supervision decision`.
+- **Change:** the field is `isModelServerEnabled() && Boolean(hfControl)`. Two cases load a copy of the launcher with no `lib/` directory beside it and expect `false` for the flag unset and for the flag `1`.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/launcher-model-server-default.vitest.ts tests/skill-graph-embedding-outage.vitest.ts
+  ```
+  Expected: `Test Files  2 passed (2)`, `Tests  17 passed (17)`
+- **AC:** AC-018
+- **Rollback:** restore `isModelServerEnabled()` alone and drop the two cases.
+- **Stop if:** a launcher that did start the server writes `false`.
+- **Evidence:** `Test Files  2 passed (2)` and `Tests  17 passed (17)`. With the library check removed both new cases failed and eleven passed.
+
+### [x] T109 — Isolate the lease cases from the shell's database directory (P2-2)
+
+- **File:** `.skilled/skills/system-skill-advisor/runtime/tests/launcher-model-server-default.vitest.ts`
+- **Anchor:** the `beforeEach` and `afterEach` of the lease block.
+- **Change:** `SYSTEM_SKILL_ADVISOR_DB_DIR` is saved at the block start, deleted before each case and restored after it.
+- **Proof:** the T108 command, which now passes whether or not the variable is set in the shell.
+- **AC:** AC-018
+- **Rollback:** delete the hooks.
+- **Stop if:** another case in the file starts to depend on the variable.
+- **Evidence:** the T108 run, with the variable unset in the shell, printed `Tests  17 passed (17)`.
+
+### [x] T110 — The `--root` guard ignores case (P2-3)
+
+- **File:** `.skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs`, `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs`
+- **Anchor:** `isPrivateSkillPath` and `testExplicitRootRefusesPrivateSkill`.
+- **Change:** the typed and real basenames are lowercased before the `local-` prefix test. One case adds a `LOCAL-Shouted` folder and expects true from the helper, exit 2 from the script and an unchanged file.
+- **Proof:**
+  ```bash
+  node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs
+  ```
+  Expected: `ℹ pass 1`, `ℹ fail 0`
+- **AC:** AC-037
+- **Rollback:** restore the case-sensitive test and drop the case.
+- **Stop if:** a tracked skill root is refused.
+- **Evidence:** `ℹ pass 1`, `ℹ fail 0`. With the case-sensitive test the new assertion failed.
+
+### [x] T111 — Record round 4 and fix the review order (doc nit)
+
+- **File:** `decision-record.md`, `implementation-summary.md`, `goal.md`, `tasks.md`
+- **Anchor:** the round 4 amendment and the How It Was Delivered paragraph.
+- **Change:** the second review is listed before the third, and the round 4 outcome is recorded.
+- **Proof:** T112.
+- **AC:** AC-018
+- **Rollback:** restore the paragraph and drop the amendment.
+- **Stop if:** the validator fails.
+- **Evidence:** see T112.
+
+### [x] T112 — Re-verify from the final state
+
+- **File:** none
+- **Anchor:** the full advisor runtime run, `repair-derived.cjs --apply` and `validate.sh --strict`.
+- **Change:** none.
+- **Proof:**
+  ```bash
+  cd .skilled/skills/system-skill-advisor/runtime && npx vitest run
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup --strict | tail -1
+  ```
+  Expected: no `FAIL` line, `RESULT: PASSED`
+- **AC:** AC-018
+- **Rollback:** n/a
+- **Stop if:** any command fails.
+- **Evidence:** full advisor run `Test Files  147 passed (147)` and `Tests  1225 passed | 8 skipped (1233)`, exit 0, no `FAIL` line (it was `1223 passed` before round 4). Validator result recorded in the final report.
+
+<!-- /ANCHOR:phase-12 -->
 
 ---
 
@@ -2277,9 +2957,9 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001 to REQ-014)
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified and available (T002: 412 files under sk-code on `origin/main`, both surface folders absent)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -2300,8 +2980,8 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 
 - [ ] CHK-020 [P0] All acceptance criteria met, or waived against a decision record (AC-035 under ADR-008)
 - [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-022 [P1] Edge cases tested (outside-root, missing-target and file-target cases in the helper suite)
+- [x] CHK-023 [P1] Error scenarios validated (untrusted and missing links leave every scan green)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -2324,7 +3004,7 @@ When a `Stop if` condition fires, stop at that task, leave every later task unto
 ## Security
 
 - [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
+- [x] CHK-031 [P0] Input validation implemented (realpath containment against the skills root and `SPECKIT_PRIVATE_SKILL_ROOTS`)
 - [ ] CHK-032 [P1] Auth/authz working correctly
 <!-- /ANCHOR:security -->
 

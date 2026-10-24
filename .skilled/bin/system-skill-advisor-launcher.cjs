@@ -101,6 +101,10 @@ let dbDir = path.join(runtimeDir, 'database');
 let lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
 const PID_FILE_NAME = '.system-skill-advisor-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
+// Lease field telling the embedding client whether this launcher arms the shared
+// model server. MUST stay byte-identical to ADVISOR_LEASE_SUPERVISION_FIELD in
+// .skilled/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts.
+const OWNER_LEASE_SUPERVISION_FIELD = 'supervisesModelServer';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
 // Files the model server shares with its clients (pid, respawn lock, give-up marker)
 // live beside its socket in the short default directory the embedding client also
@@ -468,6 +472,10 @@ function buildOwnerLease(ownerPid = process.pid) {
     lastHeartbeatIso: new Date().toISOString(),
     ttlMs: 60000,
     canonicalDbDir: resolvedAdvisorDbDir(),
+    // The client cannot see this process's environment, so the lease carries the
+    // answer: a launcher that will not start a server is no reason to wait for one.
+    // That covers the flag being off and the supervision library being absent.
+    [OWNER_LEASE_SUPERVISION_FIELD]: isModelServerEnabled() && Boolean(hfControl),
   };
 }
 
@@ -1634,6 +1642,7 @@ module.exports = {
   artifactsReady,
   bridgeStdioThroughSessionProxy,
   buildIfNeeded,
+  buildOwnerLease,
   classifyOwnerLease,
   classifySkillAdvisorFrame,
   clearOwnerLeaseFile,

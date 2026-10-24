@@ -719,10 +719,10 @@ function resolveHubSkilledRoot() {
   return hubSkilledRoot;
 }
 
-// The sk-code surface a session works in, read from its workspace the way the hub's
-// stack-detection reference orders it: SKILLED > OBSIDIAN > WEBFLOW. Only cheap root
-// markers are read, since this runs before every uncached advisor call; a workspace
-// they do not name sends no hint and the compiled tie-break order applies.
+// The sk-code surface a session works in, read from its workspace. Only the hub's
+// own root is detected; any other workspace sends no hint, so the compiled
+// tie-break order applies. The check is cheap because it runs before every
+// uncached advisor call.
 const workspaceSurfaceCache = new Map();
 function detectWorkspaceSurface(projectDir) {
   if (typeof projectDir !== 'string' || projectDir.length === 0) return null;
@@ -730,12 +730,8 @@ function detectWorkspaceSurface(projectDir) {
   let surface = null;
   try {
     const real = realpathSync(projectDir);
-    const manifestPath = join(real, 'manifest.json');
     const hubRoot = resolveHubSkilledRoot();
     if (hubRoot && (real === hubRoot || real.startsWith(`${hubRoot}${sep}`))) surface = 'SKILLED';
-    else if ((existsSync(manifestPath) && /"minAppVersion"/.test(readFileSync(manifestPath, 'utf8')))
-      || existsSync(join(real, 'esbuild.config.mjs'))) surface = 'OBSIDIAN';
-    else if (existsSync(join(real, 'src', '2_javascript')) || existsSync(join(real, 'wrangler.toml'))) surface = 'WEBFLOW';
   } catch {
     surface = null;
   }

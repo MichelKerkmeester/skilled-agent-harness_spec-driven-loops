@@ -54,6 +54,9 @@ function listSkillFiles(directory) {
   const walk = (current) => {
     for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
       const absolute = path.join(current, entry.name);
+      // A private skill exists only in the operator's checkout; mirroring it would
+      // commit its content into the tracked Hermes copy.
+      if (current === directory && entry.name.startsWith('local-')) continue;
       if (entry.isDirectory()) {
         if (!EXCLUDED_DIRECTORIES.has(entry.name)) walk(absolute);
         continue;

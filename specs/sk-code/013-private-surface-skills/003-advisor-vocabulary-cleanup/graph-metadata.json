@@ -39,7 +39,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,8 +48,8 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
@@ -106,15 +106,15 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-surface-hint.test.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        "name": "private-skill-target.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "name": "private-skill-target.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 2 removes the Webflow and Obsidian surfaces from the sk-code hub, but the advisor still declares them: the lexical lane carries an `obsidian plugin` hint token for `sk-code`, the OpenCode plugin detects an OBSIDIAN or WEBFLOW workspace, and two tool schemas plus the advisor README advertise `WEBFLOW` as the example surface hint",
     "created_at": "2026-10-23T07:03:39Z",
-    "last_save_at": "2026-10-23T20:46:23.020Z",
+    "last_save_at": "2026-10-24T15:28:01.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fd6a465a1daf35a5937f0f2cbc99ff7ad7e2f6f745a6ea5d5c7fe2d2b26f359",
+    "source_fingerprint": "sha256:57b877819662c2ef25cb48045c6e0dea52acea717e29627900d3d99d4b75a167",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47cfbd29986b5c9db77f00f4901d23cc43678ca36469cb72d8256033b896b976",
-      "plan.md": "881cd1725313fcc978ba1420fcb5518db9b2639ae669d074d4dfb116ab2061de",
-      "tasks.md": "9c83a00dd6334d64550bbfb6aec7f9ef7cc3e06a1ff74a246306822441f886e3",
-      "decision-record.md": "28d5e9960d126a7f5ebab92bc91991aeae648f20f93f8e0de294e5a539093492",
-      "implementation-summary.md": "e0dfc53281146f7a0cb2ed525723d5f76bfe17ef35feaf6a0e72b7f1b0726b25"
+      "spec.md": "2af0988a83b1092a3a6e18aa1feb213d844e8fd965672b895b8a0cd327c6586e",
+      "plan.md": "16e2ad3a3e2265cee27dae7fa7e41e1c65570030ce4ec9c0d5b75d24a125163f",
+      "tasks.md": "9597926ab365c9afb60c375ddbace670d1663659a658bc50287302ec32794976",
+      "decision-record.md": "ab068ad05225167a07d2ed0f4133a069688ac08c03467853b05d14a770c06869",
+      "implementation-summary.md": "056f35574e95abbfc272bf28384b275c4a2d86ccaff82a44235806a9c84aa1de"
     },
     "last_active_at": null
   }

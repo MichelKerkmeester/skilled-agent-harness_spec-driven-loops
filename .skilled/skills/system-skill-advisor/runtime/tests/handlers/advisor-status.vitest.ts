@@ -2,7 +2,7 @@
 // MODULE: Advisor Status Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, mkdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
@@ -127,6 +127,50 @@ function writeDimMismatchHealthDb(root: string): void {
 }
 
 describe('advisor_status handler', () => {
+  it('includes a private skill linked from inside the skills root in the source signature', () => {
+    const root = workspace('linked');
+    const skills = join(root, '.skilled', 'skills');
+    mkdirSync(join(skills, '.private', 'private-beta'), { recursive: true });
+    writeFileSync(join(skills, '.private', 'private-beta', 'SKILL.md'), 'first\n');
+    writeFileSync(join(skills, '.private', 'private-beta', 'graph-metadata.json'), '{"skill_id":"local-beta"}\n');
+    symlinkSync(join(skills, '.private', 'private-beta'), join(skills, 'local-beta'));
+    const before = computeAdvisorSourceSignature(root);
+    writeFileSync(join(skills, '.private', 'private-beta', 'SKILL.md'), 'second\n');
+    expect(computeAdvisorSourceSignature(root)).not.toBe(before);
+  });
+
+  it('ignores a private skill linked from outside every trusted root', () => {
+    const root = workspace('outside');
+    const skills = join(root, '.skilled', 'skills');
+    const outside = join(root, 'outside-beta');
+    mkdirSync(outside, { recursive: true });
+    writeFileSync(join(outside, 'SKILL.md'), 'first\n');
+    writeFileSync(join(outside, 'graph-metadata.json'), '{"skill_id":"local-beta"}\n');
+    symlinkSync(outside, join(skills, 'local-beta'));
+    const before = computeAdvisorSourceSignature(root);
+    writeFileSync(join(outside, 'SKILL.md'), 'second\n');
+    expect(computeAdvisorSourceSignature(root)).toBe(before);
+  });
+
+  it('includes a private skill linked into a declared external root', () => {
+    const root = workspace('declared');
+    const skills = join(root, '.skilled', 'skills');
+    const external = join(root, 'private-repos');
+    const target = join(external, 'sk-code-webflow');
+    mkdirSync(target, { recursive: true });
+    writeFileSync(join(target, 'SKILL.md'), 'first\n');
+    writeFileSync(join(target, 'graph-metadata.json'), '{"skill_id":"local-webflow"}\n');
+    symlinkSync(target, join(skills, 'local-webflow'));
+    process.env.SPECKIT_PRIVATE_SKILL_ROOTS = external;
+    try {
+      const before = computeAdvisorSourceSignature(root);
+      writeFileSync(join(target, 'SKILL.md'), 'second\n');
+      expect(computeAdvisorSourceSignature(root)).not.toBe(before);
+    } finally {
+      delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
+    }
+  });
+
   // drift: verified against shipped behavior during Unit H
   it('reports live freshness', () => {
     const root = workspace('live');
@@ -381,6 +425,26 @@ describe('advisor_status handler', () => {
 
     const status = readAdvisorStatus({ workspaceRoot: root });
 
+    expect(status.skillCount).toBe(2);
+  });
+
+  it('counts a private skill linked from inside the skills root and not one linked from outside', () => {
+    const root = workspace('private-link-scan');
+    writeDb(root);
+    writeGeneration(root, 'live', 7);
+    const skills = join(root, '.skilled', 'skills');
+    const inside = join(skills, '.private', 'private-beta');
+    const outside = join(root, 'outside', 'private-evil');
+    for (const dir of [inside, outside]) {
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, 'graph-metadata.json'), '{"skill_id":"local-x"}\n', 'utf8');
+    }
+    symlinkSync(inside, join(skills, 'local-beta'));
+    symlinkSync(outside, join(skills, 'local-evil'));
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+
+    // The fixture's own skill plus the trusted link; the outside link is not counted.
     expect(status.skillCount).toBe(2);
   });
 

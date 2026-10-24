@@ -13,7 +13,7 @@ import { AdvisorRecommendInputSchema } from '../schemas/advisor-tool-schemas.js'
 
 const COMPILED_ROUTING_FLAG = 'SPECKIT_COMPILED_ROUTING';
 const MAX_SURFACE_HINT_CHARS = 64;
-const SURFACE_HINT = 'WEBFLOW';
+const SURFACE_HINT = 'SKILLED';
 // The scorer maps this prompt to sk-code, a compiled-routing hub, so the
 // front-door subprocess is reached and its argv is observable.
 const prompt = 'Implement a TypeScript feature with focused tests.';

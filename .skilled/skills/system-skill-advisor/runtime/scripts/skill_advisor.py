@@ -1212,9 +1212,10 @@ def _load_source_graph_signal_map() -> Dict[str, List[str]]:
     except OSError as exc:
         _record_source_metadata_issue("signal_map", SKILLS_DIR, f"scan_failed:{exc.__class__.__name__}")
         return signal_map
+    link_check = _runtime_module.create_private_skill_link_check(SKILLS_DIR)
 
     for entry in skill_entries:
-        if not entry.is_dir():
+        if not _runtime_module.is_scannable_skill_entry(entry, link_check):
             continue
 
         graph_metadata_path = os.path.join(entry.path, "graph-metadata.json")
@@ -1267,9 +1268,10 @@ def _load_source_conflict_declarations() -> Dict[str, Set[str]]:
     except OSError as exc:
         _record_source_metadata_issue("conflict_declarations", SKILLS_DIR, f"scan_failed:{exc.__class__.__name__}")
         return declarations
+    link_check = _runtime_module.create_private_skill_link_check(SKILLS_DIR)
 
     for entry in skill_entries:
-        if not entry.is_dir():
+        if not _runtime_module.is_scannable_skill_entry(entry, link_check):
             continue
 
         graph_metadata_path = os.path.join(entry.path, "graph-metadata.json")

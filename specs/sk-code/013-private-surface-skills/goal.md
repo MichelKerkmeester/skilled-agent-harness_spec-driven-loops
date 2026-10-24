@@ -108,8 +108,9 @@ and findings belong here.
 |------|-------|----------|
 | Parent planning documents finished | Done | `spec.md` map, handoff blocks and open questions rewritten, `goal.md` authored on 2026-10-23 |
 | Phase 001 | Done | Harness `pre-commit gates: 131 passed, 0 failed`, commit `7648ae8b56` on `origin/main` |
-| Phase 002 | In progress | T001 to T038 applied uncommitted in the main checkout; T039 partial (code-quality-standards.md lines 16, 24, 39, 49, 56 still to edit) |
-| Phases 003 to 005 | Pending | Each child's `tasks.md`, in order |
+| Phase 002 | Done | Commit `e3beac65f4` plus the compiled-graph follow-up `1218b94938` on `origin/main`, CI 15 of 15 green |
+| Phase 003 | Done | Four review rounds closed with no open P0 or P1; advisor suite 147 files green, Python `pass=84`; committed with the advisor refactor on 2026-10-24 |
+| Phases 004 and 005 | Pending | Each child's `tasks.md`, in order; phase 004 operator approvals recorded in `004-private-local-skills/scratch/operator-approvals.md` |
 
 ### Deviations and findings
 

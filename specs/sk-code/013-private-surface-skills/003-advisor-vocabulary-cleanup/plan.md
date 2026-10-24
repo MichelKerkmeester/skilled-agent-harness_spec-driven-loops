@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: advisor-vocabulary-cleanup"
-description: "Strip the removed surfaces from the advisor's scorer, plugin and schemas, then make seven directory scans treat a top-level local-* entry by design: three follow a trusted link or read it, four skip the name."
+description: "Strip the removed surfaces from the advisor's scorer, plugin and schemas, then make sixteen directory scans treat a top-level local-* entry by design: eight follow a trusted link or read it, eight skip the name."
 trigger_phrases:
   - "advisor vocabulary cleanup plan"
 importance_tier: "normal"
@@ -54,7 +54,7 @@ Two sweeps. The vocabulary sweep deletes the `WEBFLOW` / `OBSIDIAN` surface from
 ## 3. ARCHITECTURE
 
 ### Pattern
-Layered scan guards. One directory (`.skilled/skills/`) is read by seven consumers, and each consumer gets the rule its own artifact needs rather than a shared policy: a local advisor may see a private skill, a tracked artifact may not. The two TypeScript consumers that follow a link share one containment helper, the Python conflict reader includes the name, and the four consumers that write or gate a tracked artifact skip the name before any filesystem probe.
+Layered scan guards. One directory (`.skilled/skills/`) is read by sixteen consumers, and each consumer gets the rule its own artifact needs rather than a shared policy: a local advisor may see a private skill, a tracked artifact may not. The eight consumers that read for the local advisor follow a link only by the containment rule, with one TypeScript helper and one Python mirror of it. The eight consumers that write or gate a tracked artifact skip the name before any filesystem probe. Section 3 of `spec.md` lists all sixteen.
 
 ### Key Components
 - **Containment helper** (`runtime/lib/private-skill-target.ts`): `isTrustedPrivateSkillLink(entryPath, skillsRoot)` resolves the link with `realpathSync`, requires a directory, and checks containment against the resolved skills root plus every path in `SPECKIT_PRIVATE_SKILL_ROOTS` (path-delimiter separated).
@@ -63,6 +63,7 @@ Layered scan guards. One directory (`.skilled/skills/`) is read by seven consume
 - **Advisor graph scan** (`skill-graph-db.ts:719` `discoverGraphMetadataFiles`, `entry.isDirectory()` at line 733): recursive walk from the skills root.
 - **Advisor source signature** (`freshness.ts:138` `listSkillSlugs`, filter at line 143): depth-1 slug list.
 - **Python conflict-declaration reader** (`skill_advisor.py:1250` `_load_source_conflict_declarations`, `os.scandir` at line 1266): reads per-skill `conflicts_with` arrays for the runtime conflict penalty.
+- **Python containment check** (`skill_advisor_runtime.py` `create_private_skill_link_check` and `is_scannable_skill_entry`): the mirror of the TypeScript helper, which resolves the trusted roots once per scan. The signal-map reader, the conflict reader and the skill-record discovery all call it.
 - **Tracked-artifact writers**: `skill_graph_compiler.py:184` `discover_graph_metadata` (loop at line 200), `sync-skills-hermes.cjs:51` `listSkillFiles` (walk body at 55-60), `ci-skill-root-metadata.cjs:131` `findSkillRoots` (filter at line 144), `skill-graph-freshness.cjs:139` `fromDisk` (loop at 146, condition at 147).
 - **Screened non-consumer**: `ci-leaf-manifest-freshness.cjs:81` `findManifestDirs` (manifest check at line 103). Neither private source tree at `42b41dd286` carries a `leaf-manifest.json`, so the gate finds 14 fleet manifests and none under `local-*`.
 
@@ -128,8 +129,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `private-skill-target.ts` (new) | trusted-root resolver for a followed `local-*` link | create: realpath + directory + containment | AC-019 |
 | `skill-graph-db.ts` graph scan | producer of the local advisor index | update: follow a trusted top-level `local-*` symlink | AC-002, AC-020 |
 | `freshness.ts` source signature | producer of the advisor freshness hash | update: follow a trusted top-level `local-*` symlink | AC-004, AC-021 |
-| `skill_advisor.py` `_load_source_conflict_declarations` | reader of per-skill conflict declarations for the runtime penalty | keep: include `local-*`, matching the local graph | AC-024 |
-| `skill_advisor.py` `_load_source_graph_signal_map` | reader of per-skill intent signals for the local scorer | keep: include `local-*`; writes no tracked file | none: screened, no change |
+| `skill_advisor.py` `_load_source_conflict_declarations` | reader of per-skill conflict declarations for the runtime penalty | keep: include `local-*`, matching the local graph; follow only a trusted link (review follow-up) | AC-024, AC-036 |
+| `skill_advisor.py` `_load_source_graph_signal_map` | reader of per-skill intent signals for the local scorer | keep: include `local-*`; follow only a trusted link (review follow-up) | AC-036 |
+| `derive-command-bridges.cjs` loop, `regenerate-skill-derived.cjs` root listing | producers of tracked bridge files and of skill-root metadata | update: skip a `local-*` name first (review follow-up) | AC-037 |
+| `watcher.ts` skill walk, `projection.ts` filesystem projection, `advisor-status.ts` metadata scan | local-advisor readers that skipped a symlinked private skill | update: follow a trusted top-level `local-*` link (review follow-up) | AC-038 |
 | `skill_graph_compiler.py` discovery | producer of the tracked fallback graph | update: skip `local-*` before any probe | AC-006, AC-022 |
 | `sync-skills-hermes.cjs` walk | producer of the tracked `.hermes/skills/` mirror | update: skip a top-level `local-*` entry | AC-007, AC-023 |
 | `ci-skill-root-metadata.cjs` `findSkillRoots` | consumer that classifies every fleet root | update: skip `local-*` | AC-008 |
@@ -387,13 +390,13 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 - Repo root only: rejects a legitimate private checkout outside the repo.
 - `$HOME` as the trust boundary: too broad, and it trusts unrelated directories.
 
-### ADR-002: Three scans include `local-*`, four exclude it
+### ADR-002: Eight scans include `local-*`, eight exclude it
 
 **Status**: Accepted
 
-**Context**: One directory feeds both the local advisor and four tracked-artifact writers. A single policy cannot serve both: the advisor must see the private skill, and the tracked graph, Hermes mirror, CI gate and doctor report must not.
+**Context**: One directory feeds both the local advisor and eight tracked-artifact writers or gates. A single policy cannot serve both: the advisor must see the private skill, and the tracked graph, Hermes mirror, CI gate, doctor report, bridge files, regenerated metadata, hub signals and propagated edges must not.
 
-**Decision**: The graph scan, the source signature and the Python conflict-declaration reader include a `local-*` entry; the compiler, the Hermes sync, the CI root gate and the doctor panel skip it by name before any filesystem probe.
+**Decision**: The eight scans in the inventory in `spec.md` section 3 that read for the local advisor include a `local-*` entry and follow a symlink only inside a trusted root. The eight that write or gate a tracked artifact skip it by name before any filesystem probe.
 
 **Consequences**:
 - The local advisor routes the private skill and the tracked artifacts stay clean.
@@ -403,6 +406,8 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 - Exclude everywhere: the private skill would never route, defeating phase 4.
 - Include everywhere: a private skill would enter the tracked graph and the Hermes mirror.
 - One shared policy with a caller flag: hides the decision at each call site and makes an accidental include a one-character change.
+
+**Python conflict reader**: its inclusion of `local-*` is recorded in `decision-record.md` under ADR-002; the reader follows only a trusted link, by the same containment rule as ADR-001.
 
 ### ADR-003: Skip by name before any filesystem probe
 
@@ -453,23 +458,7 @@ skill-graph-freshness.cjs ──► on-disk diff ──► doctor report
 - Hand-edit the JSON: not reproducible, and the next compile restores the signals.
 - Skip regeneration: the tracked graph keeps the removed surfaces' trigger phrases.
 
-### ADR-006: The Python conflict reader keeps `local-*`
-
-**Status**: Accepted
-
-**Context**: `_load_source_conflict_declarations` replays per-skill `conflicts_with` arrays so the runtime can refuse to penalize a non-declaring skill. The graph scan indexes a trusted `local-*` skill, so excluding its declarations would make the graph and the penalty disagree.
-
-**Decision**: Keep the reader's inclusion, and add a characterization test that a `local-*` declaration is read. The reader writes no file.
-
-**Consequences**:
-- A private skill's declared conflicts apply to the operator's local routing, as intended.
-- The test pins the treatment so a future filter is a visible decision.
-
-**Alternatives Rejected**:
-- Filter `local-*`: the private node exists in the graph but its declarations vanish, producing a false asymmetry.
-- Leave it untested: the treatment would be an accident rather than a decision.
-
-### ADR-007: A phase-4 external link requires `SPECKIT_PRIVATE_SKILL_ROOTS`
+### ADR-006: A phase-4 external link requires `SPECKIT_PRIVATE_SKILL_ROOTS`
 
 **Status**: Accepted
 

@@ -14,6 +14,7 @@ import Database from 'better-sqlite3';
 import { getManifest } from '../embedders/registry.js';
 import type { BackendKind } from '../embedders/types.js';
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
+import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 import { sanitizeDerivedMetadata, sanitizeMetadataStringArray } from '../skill-graph/metadata-sanitizer.js';
 import { docTierWeight, isDocTriggerHarvestEnabled } from '../skill-graph/doc-frontmatter.js';
 import { providerModelId } from '../skill-graph/skill-graph-db.js';
@@ -1462,8 +1463,14 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       source: 'filesystem',
     };
   }
+  const isTrustedLink = createPrivateSkillLinkCheck(skillRoot);
   for (const entry of readdirSync(skillRoot, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
+    // A private skill is linked in on purpose; read it only when its target
+    // stays inside a directory the operator trusts.
+    const linkedPrivateSkill = entry.name.startsWith('local-')
+      && entry.isSymbolicLink()
+      && isTrustedLink(join(skillRoot, entry.name));
+    if (!entry.isDirectory() && !linkedPrivateSkill) continue;
     const skillDir = join(skillRoot, entry.name);
     const metadataPath = join(skillDir, 'graph-metadata.json');
     if (!existsSync(metadataPath)) continue;
