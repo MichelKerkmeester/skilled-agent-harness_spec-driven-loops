@@ -48,7 +48,14 @@ function runHook(input, envOverrides = {}) {
   try {
     const stdout = execFileSync('node', [HOOK_PATH], {
       input,
-      env: { ...process.env, OPENCODE_GOAL_STATE_DIR: stateDir, OPENCODE_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
+      env: {
+        ...process.env,
+        OPENCODE_GOAL_STATE_DIR: stateDir,
+        OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
+        SESSION_RELAUNCH_GOAL_PACKET: undefined,
+        SESSION_RELAUNCH_GOAL: undefined,
+        ...envOverrides,
+      },
       encoding: 'utf8',
     });
     return { stdout, status: 0 };
@@ -237,4 +244,67 @@ test('a bound packet injects the resend reminder until the slice is marked resen
   } finally {
     rmSync(workspace, { recursive: true, force: true });
   }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HAND-OVER BIND
+// ─────────────────────────────────────────────────────────────────────────────
+
+const HAND_OVER_PACKET = 'specs/t/001-fixture';
+
+function withHandOverWorkspace(run) {
+  const workspace = mkdtempSync(join(tmpdir(), 'goal-cursor-handover-'));
+  try {
+    const { mkdirSync, writeFileSync } = require('node:fs');
+    mkdirSync(join(workspace, '.git'));
+    const dir = join(workspace, HAND_OVER_PACKET);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'goal.md'), [
+      '---', 'title: "x"', 'session_id: "SECRET"', '---', '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
+      '<!-- ANCHOR:completion -->', '- [ ] done', '<!-- /ANCHOR:completion -->', '<!-- ANCHOR:log -->', '| a | b | c |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
+    ].join('\n'), 'utf8');
+    const options = (sessionId = 'test-session') => ({ stateDir, scope: { workspace, runtime: 'cursor', sessionId } });
+    const payload = (sessionId = 'test-session') => JSON.stringify({ session_id: sessionId, workspace_roots: [workspace] });
+    run({ options, payload });
+  } finally {
+    rmSync(workspace, { recursive: true, force: true });
+  }
+}
+
+test('a receiver with no goal is bound to the hand-over packet and injects from goal.md', () => {
+  withHandOverWorkspace(({ options, payload }) => {
+    const response = JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
+    assert.deepEqual(Object.keys(response).sort(), ['agent_message', 'permission']);
+    assert.ok(response.agent_message.includes(`objective: Execute ${HAND_OVER_PACKET}/goal.md.`));
+    assert.ok(!response.agent_message.includes('SECRET'));
+    const record = core.showGoal(options());
+    assert.equal(record.packetPath, HAND_OVER_PACKET);
+    assert.equal(record.boundBy, 'cursor');
+  });
+});
+
+test('a goal of the session own, active or already cleared, is never replaced by the hand-over', () => {
+  withHandOverWorkspace(({ options, payload }) => {
+    core.setGoal({ objective: 'The operator own goal', runtime: 'cursor' }, options('own'));
+    const own = JSON.parse(runHook(payload('own'), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
+    assert.ok(own.agent_message.includes('objective: The operator own goal'));
+    assert.equal(core.showGoal(options('own')).packetPath, undefined);
+
+    core.setGoal({ objective: 'Dropped goal', runtime: 'cursor' }, options('dropped'));
+    core.clearGoal(options('dropped'));
+    const dropped = JSON.parse(runHook(payload('dropped'), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
+    assert.deepEqual(dropped, { permission: 'allow' });
+    assert.equal(core.showGoal(options('dropped')), null);
+  });
+});
+
+test('the switch, an empty variable and a missing or escaping packet bind nothing', () => {
+  withHandOverWorkspace(({ options, payload }) => {
+    const none = { permission: 'allow' };
+    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET, SESSION_RELAUNCH_GOAL: 'off' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: '' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: 'specs/t/missing' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: '../../etc' }).stdout), none);
+    assert.equal(core.showGoal(options()), null);
+  });
 });

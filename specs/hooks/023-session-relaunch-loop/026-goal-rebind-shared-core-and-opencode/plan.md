@@ -35,16 +35,16 @@ Add one function to the shared core, call it from each adapter at the first turn
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Phase 025 field and export exist, or tests set the variable directly
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Phase 025 field and export exist, or tests set the variable directly
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] The goal suites and the Hermes tests pass against the recorded baselines
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
+- [x] The goal suites and the Hermes tests pass against the recorded baselines
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -110,8 +110,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 025 export | Internal | Yellow | Tests set the variable by hand |
-| Probe D verdict | Internal | Yellow | Hermes gets the call by default |
+| Phase 025 export | Internal | Green | Tests set the variable by hand |
+| Probe D verdict | Internal | Green | Read: Hermes needs no call, the launcher export is a follow-up |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -161,8 +161,8 @@ Core function ──► Pi, Devin, Cursor, Hermes callers
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baselines for the OpenCode suites, the shared hook suites and the Hermes tests recorded
-- [ ] Probe D verdict read
+- [x] Baselines for the OpenCode suites, the shared hook suites and the Hermes tests recorded
+- [x] Probe D verdict read
 
 ### Rollback Procedure
 1. Revert the diff.

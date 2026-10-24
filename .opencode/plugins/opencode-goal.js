@@ -26,8 +26,14 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 // two implementations cannot disagree on where the frontmatter ends.
 const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
 // The locked packet-log append lives in the runtime-neutral core so both
-// implementations serialize on the same lock; nothing else is imported.
-const { appendPacketLog: appendPacketLogShared } = require('../hooks/goal/lib/goal-core.cjs');
+// implementations serialize on the same lock. The hand-over switch and the packet
+// shape check live there too, so every runtime reads the same environment the same way.
+const {
+  appendPacketLog: appendPacketLogShared,
+  relaunchGoalEnabled,
+  relaunchPacketShapeOk,
+  RELAUNCH_GOAL_PACKET_ENV,
+} = require('../hooks/goal/lib/goal-core.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -2203,6 +2209,42 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
 }
 
 /**
+ * Bind the packet a relaunch hand-over named to a session that has no goal of its own.
+ *
+ * Nothing happens without `SESSION_RELAUNCH_GOAL_PACKET`, with the switch off, or when the
+ * session has a record of any status or an archived one (a cleared or completed goal leaves
+ * one, and the session must not be handed a second goal after it ended its first). A record
+ * that cannot be read counts as a goal. No text is sent: the system transform injects from
+ * the packet's goal.md like any bound session. Never throws.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {Object} [rawOptions] - State helper options; `directory` is the workspace
+ * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default
+ * @returns {Promise<{bound: boolean, reason: string}>} `bound` is true only when a record was written
+ */
+async function bindRelaunchGoal(sessionID, rawOptions = {}, env = process.env) {
+  const packetPath = typeof env[RELAUNCH_GOAL_PACKET_ENV] === 'string' ? env[RELAUNCH_GOAL_PACKET_ENV].trim() : '';
+  if (!packetPath) return { bound: false, reason: 'no-packet' };
+  if (!relaunchGoalEnabled(env)) return { bound: false, reason: 'switched-off' };
+  try {
+    const options = normalizeOptions(rawOptions);
+    if (!options.enabled) return { bound: false, reason: 'plugin-disabled' };
+    if (!relaunchPacketShapeOk(packetPath)) return { bound: false, reason: 'packet-invalid' };
+    if (await readGoal(sessionID, options)) return { bound: false, reason: 'has-goal' };
+    const archiveKey = `${sessionKeyForSession(sessionID)}.`;
+    const archived = await readDirectoryEntries(join(options.stateDir, '.archive'));
+    if (archived.some((entry) => entry.name.startsWith(archiveKey))) return { bound: false, reason: 'has-goal' };
+    const workspace = goalSlice.resolveWorkspaceRoot(options.directory || process.cwd());
+    if (!goalSlice.readPacketGoal(workspace, packetPath)) return { bound: false, reason: 'packet-invalid' };
+    await bindGoal(sessionID, packetPath, options);
+    return { bound: true, reason: 'bound' };
+  } catch (error) {
+    writeDebugStderr('bindRelaunchGoal', error);
+    return { bound: false, reason: 'error' };
+  }
+}
+
+/**
  * Record that the current durable slice was resent in chat, so the reminder stops.
  *
  * @param {string} sessionID - OpenCode session id
@@ -3484,6 +3526,7 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
     inFlightContinuations: new Set(),
     blockedByPromptSessions: new Set(),
     sessionStatuses: new Map(),
+    handOverGoalAttempted: false,
     lastSweepAtMs: 0,
   };
 
@@ -3511,6 +3554,12 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
     await logDebugEvent(eventType, sessionID, eventOptions);
 
     if (eventType === 'session.created') {
+      // The first top-level session of a relaunched process is the receiver. A child
+      // session the agent opens later, or a second session in the same process, is not.
+      if (sessionID && !eventPropertiesFrom(event).info?.parentID && !runtimeState.handOverGoalAttempted) {
+        runtimeState.handOverGoalAttempted = true;
+        await bindRelaunchGoal(sessionID, { ...eventOptions, directory: ctx?.directory });
+      }
       if (sessionID) await restoreActiveGoal(sessionID, eventOptions);
       try {
         await sweepOrphanedActiveStates(eventOptions, runtimeState);

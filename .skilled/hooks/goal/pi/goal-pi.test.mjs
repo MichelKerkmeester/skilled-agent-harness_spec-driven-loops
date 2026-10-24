@@ -8,7 +8,7 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -22,16 +22,29 @@ const PROMPT_PATH = join(__dirname, '..', '..', '..', '..', '.pi', 'prompts', 'g
 // one test can never leave state that contaminates the next.
 let stateDir;
 let previousStateDir;
+let previousHandOver;
 
+// The hand-over variables are cleared for every case, so a suite run inside a relaunched
+// session cannot bind a goal into a test that never asked for one.
 beforeEach(() => {
   stateDir = mkdtempSync(join(tmpdir(), 'goal-pi-test-'));
   previousStateDir = process.env.OPENCODE_GOAL_STATE_DIR;
   process.env.OPENCODE_GOAL_STATE_DIR = stateDir;
+  previousHandOver = {
+    SESSION_RELAUNCH_GOAL_PACKET: process.env.SESSION_RELAUNCH_GOAL_PACKET,
+    SESSION_RELAUNCH_GOAL: process.env.SESSION_RELAUNCH_GOAL,
+  };
+  delete process.env.SESSION_RELAUNCH_GOAL_PACKET;
+  delete process.env.SESSION_RELAUNCH_GOAL;
 });
 
 afterEach(() => {
   if (previousStateDir === undefined) delete process.env.OPENCODE_GOAL_STATE_DIR;
   else process.env.OPENCODE_GOAL_STATE_DIR = previousStateDir;
+  for (const [name, value] of Object.entries(previousHandOver)) {
+    if (value === undefined) delete process.env[name];
+    else process.env[name] = value;
+  }
   rmSync(stateDir, { recursive: true, force: true });
 });
 
@@ -477,4 +490,94 @@ test('the Pi prompt fallback never invokes the unbound manage CLI', () => {
   assert.match(prompt, /registers the authoritative `\/goal-pi` command/);
   assert.doesNotMatch(prompt, /OPENCODE_GOAL_RUNTIME_LABEL=/);
   assert.doesNotMatch(prompt, /node\s+\.skilled\/hooks\/goal\/bin\/goal\.cjs/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HAND-OVER BIND
+// ─────────────────────────────────────────────────────────────────────────────
+
+const HAND_OVER_PACKET = 'specs/t/001-fixture';
+
+function withHandOverWorkspace(run) {
+  const workspace = mkdtempSync(join(tmpdir(), 'goal-pi-handover-'));
+  return (async () => {
+    try {
+      mkdirSync(join(workspace, '.git'));
+      const dir = join(workspace, HAND_OVER_PACKET);
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, 'goal.md'), [
+        '---', 'title: "x"', 'session_id: "SECRET"', '---', '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
+        '<!-- ANCHOR:completion -->', '- [ ] done', '<!-- /ANCHOR:completion -->', '<!-- ANCHOR:log -->', '| a | b | c |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
+      ].join('\n'), 'utf8');
+      const core = (await import(pathToFileURL(CORE_PATH).href)).default;
+      const mod = await import(pathToFileURL(REAL_EXTENSION_PATH).href);
+      const pi = fakePi();
+      mod.default(pi);
+      const scoped = (sessionId) => ({ stateDir, scope: { workspace, runtime: 'pi', sessionId } });
+      await run({ core, pi, workspace, scoped });
+    } finally {
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  })();
+}
+
+test('a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md', async () => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+    await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-start', workspace));
+    const record = core.showGoal(scoped('handover-start'));
+    assert.equal(record.packetPath, HAND_OVER_PACKET);
+    assert.equal(record.boundBy, 'pi');
+    assert.equal(pi.sent.length, 1, 'the usual restore message, no extra chat text');
+    assert.ok(pi.sent[0].message.content.includes(`objective: Execute ${HAND_OVER_PACKET}/goal.md.`));
+    assert.ok(!pi.sent[0].message.content.includes('SECRET'));
+  });
+});
+
+test('the first input binds when session start did not, and a later input leaves the record alone', async () => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+    const event = { type: 'input', text: 'continue', source: 'interactive' };
+    const first = await pi.registered.input(event, fakeContext('handover-input', workspace));
+    assert.equal(first.action, 'transform');
+    assert.ok(first.text.includes(`objective: Execute ${HAND_OVER_PACKET}/goal.md.`));
+    const bound = core.showGoal(scoped('handover-input'));
+    await pi.registered.input(event, fakeContext('handover-input', workspace));
+    assert.equal(core.showGoal(scoped('handover-input')).boundAtMs, bound.boundAtMs);
+  });
+});
+
+test('a goal of the session own is never replaced, and a cleared one is not handed back', async () => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+    const event = { type: 'input', text: 'continue', source: 'interactive' };
+    core.setGoal({ objective: 'The operator own goal' }, scoped('handover-own'));
+    const own = await pi.registered.input(event, fakeContext('handover-own', workspace));
+    assert.ok(own.text.includes('objective: The operator own goal'));
+    assert.equal(core.showGoal(scoped('handover-own')).packetPath, undefined);
+
+    core.setGoal({ objective: 'Dropped goal' }, scoped('handover-cleared'));
+    core.clearGoal(scoped('handover-cleared'));
+    assert.deepEqual(await pi.registered.input(event, fakeContext('handover-cleared', workspace)), { action: 'continue' });
+    assert.equal(core.showGoal(scoped('handover-cleared')), null);
+  });
+});
+
+test('the switch, an empty variable and a missing packet bind nothing in Pi', async () => {
+  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+    const event = { type: 'input', text: 'continue', source: 'interactive' };
+    const attempts = [
+      ['handover-off', { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET, SESSION_RELAUNCH_GOAL: '0' }],
+      ['handover-empty', { SESSION_RELAUNCH_GOAL_PACKET: '' }],
+      ['handover-missing', { SESSION_RELAUNCH_GOAL_PACKET: 'specs/t/missing' }],
+      ['handover-escape', { SESSION_RELAUNCH_GOAL_PACKET: '../../etc' }],
+    ];
+    for (const [sessionId, env] of attempts) {
+      Object.assign(process.env, env);
+      assert.deepEqual(await pi.registered.input(event, fakeContext(sessionId, workspace)), { action: 'continue' }, sessionId);
+      assert.equal(core.showGoal(scoped(sessionId)), null, sessionId);
+      delete process.env.SESSION_RELAUNCH_GOAL_PACKET;
+      delete process.env.SESSION_RELAUNCH_GOAL;
+    }
+  });
 });

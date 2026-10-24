@@ -23,7 +23,7 @@ import { createRequire } from 'node:module';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
 const require = createRequire(import.meta.url);
-const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
+const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPluginDisabled, bindRelaunchGoal } = require('../lib/goal-core.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -32,6 +32,15 @@ const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPlu
 function emit(payload) {
   process.stdout.write(JSON.stringify(payload));
   process.exit(0);
+}
+
+// A quiet outcome says nothing; a bind that could not run says why on stderr, which the
+// session never reads, and the turn goes on.
+function bindHandOverGoal(options) {
+  const { bound, reason } = bindRelaunchGoal(options);
+  if (!bound && (reason === 'packet-invalid' || reason === 'error')) {
+    process.stderr.write(`[goal] hand-over packet not bound: ${reason}\n`);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -57,6 +66,9 @@ async function main() {
   const options = { cwd, scope: { workspace: cwd, runtime: 'devin', sessionId } };
 
   try {
+    // A hop receiver starts with no record of its own; the hand-over names the packet,
+    // and the bind is a no-op for any session that already has a goal or was handed none.
+    bindHandOverGoal(options);
     const goal = readGoalRecord(options);
     if (!goal || goal.status !== 'active') return emit({});
     const brief = renderGoalBrief({ goal, runtimeLabel: 'Devin', workspace: cwd });

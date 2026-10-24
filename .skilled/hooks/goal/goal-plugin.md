@@ -49,6 +49,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
 - The injected block keeps a short raw `objective:` preview for auditability and uses `goal_prompt:` for model-facing steering.
 - A bound packet's completion criteria render as their own `criteria:` field, one per line, in both the full and the compact block. A budget drops whole criteria rather than cutting one, and adds an `- (N more in the goal file)` line when it does.
+- On `session.created`, the first top-level session of the process is bound to the packet named by `SESSION_RELAUNCH_GOAL_PACKET` when it has no goal of its own: no live record, no archived one and no unreadable one. A relaunch hop sets that variable for its receiver, `SESSION_RELAUNCH_GOAL=0` turns the bind off, a child session never binds, and the bind never overwrites a goal or sends chat text. The injection then renders from the packet like any bound session.
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
 - `/goal-opencode show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
@@ -64,6 +65,8 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | `OPENCODE_GOAL_VERIFIER_TIMEOUT_MS` | `30000` | Ceiling on one verifier run, in milliseconds. |
 | `OPENCODE_GOAL_CONTINUATION_TIMEOUT_MS` | `30000` | Ceiling on one guarded continuation turn, in milliseconds. |
 | `OPENCODE_GOAL_JSONL_MAX_BYTES` | `5242880` | Size at which a goal event log rotates. |
+| `SESSION_RELAUNCH_GOAL_PACKET` | unset | Set by the relaunch launcher for a receiver. A repo-relative packet directory bound at session start when the session has no goal. |
+| `SESSION_RELAUNCH_GOAL` | on | `0`, `false`, `off` or `no` turns the hand-over bind off, in the environment or in `hook-flags.env`. |
 | `OPENCODE_GOAL_STATE_DIR` | unset | Relocates the record store for both engines. The packet lock deliberately stays under the workspace state directory, so two sessions with different stores still serialize. |
 | `OPENCODE_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
 | `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.state/goal`. |
@@ -129,6 +132,7 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
 node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs
 node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
+node .skilled/plugins/tests/opencode-goal-handover.test.cjs
 python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/plugins
 python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/plugins/opencode-goal.js
 ```

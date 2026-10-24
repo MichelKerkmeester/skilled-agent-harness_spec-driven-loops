@@ -30,7 +30,7 @@ const {
 const { dirname, isAbsolute, join, relative, resolve, sep } = require('node:path');
 const { createHash, randomUUID } = require('node:crypto');
 
-const { isHookEnabled } = require('../../shared/hook-flags.cjs');
+const { isHookEnabled, configPath: hookFlagsConfigPath, loadConfigFile: loadHookFlagsFile } = require('../../shared/hook-flags.cjs');
 const goalSlice = require('./goal-slice.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,6 +41,11 @@ const STATE_DIR_ENV = 'OPENCODE_GOAL_STATE_DIR';
 // The name an error prints is the name an operator will go and set, so it is
 // the concern's canonical variable rather than one of its accepted aliases.
 const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
+// The hand-over wrapper exports the packet under the first name, and the second one turns
+// the whole behavior off, in the environment or in the operator flags file.
+const RELAUNCH_GOAL_PACKET_ENV = 'SESSION_RELAUNCH_GOAL_PACKET';
+const RELAUNCH_GOAL_SWITCH_ENV = 'SESSION_RELAUNCH_GOAL';
+const RELAUNCH_GOAL_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 const STATE_SUBDIR = '.skilled/skills/.state/goal';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
@@ -1116,42 +1121,129 @@ function writeTextAtomic(targetPath, text) {
  * bookkeeping. Binding never guesses: the path must resolve inside the
  * workspace and the document must exist.
  */
-function bindGoal({ packetPath, tokenBudget = null, runtimeLabel = null } = {}, rawOptions = {}) {
+function bindGoal(input = {}, rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  return withScopeMutation(rawOptions, (goalScope) => {
-    const packet = goalSlice.readPacketGoal(goalScope.workspace, packetPath);
-    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
-    const current = readGoalRecordForScope(goalScope);
-    const nowMsValue = Date.now();
-    const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
-    const objective = sanitizeInlineText(packet.objectiveSlice, DEFAULT_MAX_OBJECTIVE_CHARS);
-    const goalPrompt = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel: promptRuntimeLabel });
-    const base = current && (current.status === 'active' || current.status === 'paused')
-      ? { ...current, status: 'active', revision: (current.revision || 0) + 1 }
-      : buildNewRecord(objective, goalPrompt, tokenBudget, goalScope.runtime, nowMsValue);
-    // A rebind to a different packet, or a bind over a terminal record, leaves
-    // the prior record behind in the archive so history keeps it.
-    if (current && (current.packetPath !== packet.packetPath || base !== current && current.status !== 'active' && current.status !== 'paused')) {
-      archiveGoalRecord(current, goalScope);
+  return withScopeMutation(rawOptions, (goalScope) => bindGoalInScope(goalScope, input));
+}
+
+// The bind itself, for a caller that already holds the scope lock. Taking the lock
+// twice would wait on itself, so the lock is the caller's and not this function's.
+function bindGoalInScope(goalScope, { packetPath, tokenBudget = null, runtimeLabel = null } = {}) {
+  const packet = goalSlice.readPacketGoal(goalScope.workspace, packetPath);
+  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
+  const current = readGoalRecordForScope(goalScope);
+  const nowMsValue = Date.now();
+  const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
+  const objective = sanitizeInlineText(packet.objectiveSlice, DEFAULT_MAX_OBJECTIVE_CHARS);
+  const goalPrompt = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel: promptRuntimeLabel });
+  const base = current && (current.status === 'active' || current.status === 'paused')
+    ? { ...current, status: 'active', revision: (current.revision || 0) + 1 }
+    : buildNewRecord(objective, goalPrompt, tokenBudget, goalScope.runtime, nowMsValue);
+  // A rebind to a different packet, or a bind over a terminal record, leaves
+  // the prior record behind in the archive so history keeps it.
+  if (current && (current.packetPath !== packet.packetPath || base !== current && current.status !== 'active' && current.status !== 'paused')) {
+    archiveGoalRecord(current, goalScope);
+  }
+  const record = {
+    ...base,
+    objective,
+    goalPrompt,
+    tokenBudget: tokenBudget ?? base.tokenBudget ?? null,
+    packetPath: packet.packetPath,
+    workspace: goalScope.workspace,
+    boundAtMs: nowMsValue,
+    boundBy: goalScope.runtime,
+    lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
+    updatedAt: isoFromMs(nowMsValue),
+    updatedAtMs: nowMsValue,
+    lastActivityAtMs: nowMsValue,
+    runtime: goalScope.runtime,
+  };
+  writeJsonAtomic(goalScope.statePath, record);
+  return { record, packet, mutation: current ? 'rebound' : 'bound' };
+}
+
+/**
+ * Read the hand-over switch. On unless the operator turned it off, in the environment or in
+ * the flags file, and the environment wins when it names the switch at all. A caller that
+ * passes its own environment keeps the flags file out of the answer, as the hook kill
+ * switches do, so a test never reads the operator's file.
+ *
+ * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default.
+ * @returns {boolean} False only when SESSION_RELAUNCH_GOAL is an off value.
+ */
+function relaunchGoalEnabled(env = process.env) {
+  let raw = env[RELAUNCH_GOAL_SWITCH_ENV];
+  if (raw === undefined && env === process.env) raw = loadHookFlagsFile(hookFlagsConfigPath())[RELAUNCH_GOAL_SWITCH_ENV];
+  return !RELAUNCH_GOAL_OFF_VALUES.includes(String(raw ?? '').trim().toLowerCase());
+}
+
+// A packet from the environment is a repo-relative directory. The slice reader would
+// also accept an absolute path inside the workspace, but a hand-over never carries one,
+// so anything else is refused before it reaches a bind.
+function relaunchPacketShapeOk(packetPath) {
+  if (typeof packetPath !== 'string' || !packetPath || packetPath !== packetPath.trim()) return false;
+  if (isAbsolute(packetPath) || /[\u0000-\u001f\\]/.test(packetPath)) return false;
+  return !packetPath.split('/').some((segment) => segment === '..' || segment === '');
+}
+
+// A scope that ever held a goal keeps an archive entry after a clear or a completion, and a
+// live record sits at the state path. Either means the session has a goal of its own, now
+// or before, and a hand-over must not hand it a second one. A path that cannot be read is
+// treated as occupied: skipping a bind costs one turn of goal text, overwriting costs a goal.
+function scopeHasGoalHistory(goalScope) {
+  for (const path of [goalScope.statePath, goalScope.legacyScopedStatePath].filter(Boolean)) {
+    if (existsSync(path)) return true;
+  }
+  for (const dir of [goalScope.archiveDir, goalScope.legacyScopedArchiveDir].filter(Boolean)) {
+    try {
+      if (readdirSync(dir).some((name) => name.endsWith('.json'))) return true;
+    } catch (error) {
+      if (error?.code !== 'ENOENT') return true;
     }
-    const record = {
-      ...base,
-      objective,
-      goalPrompt,
-      tokenBudget: tokenBudget ?? base.tokenBudget ?? null,
-      packetPath: packet.packetPath,
-      workspace: goalScope.workspace,
-      boundAtMs: nowMsValue,
-      boundBy: goalScope.runtime,
-      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
-      updatedAt: isoFromMs(nowMsValue),
-      updatedAtMs: nowMsValue,
-      lastActivityAtMs: nowMsValue,
-      runtime: goalScope.runtime,
-    };
-    writeJsonAtomic(goalScope.statePath, record);
-    return { record, packet, mutation: current ? 'rebound' : 'bound' };
-  });
+  }
+  return false;
+}
+
+/**
+ * Bind a packet to a session that has no goal of its own, and do nothing otherwise. A live
+ * record of any status, an archived one and a record that cannot be read all count as a goal,
+ * so this never overwrites, and a second call changes nothing. Never throws and sends no text:
+ * the runtime injects from the packet's goal.md as it does for any bound session.
+ *
+ * @param {{packetPath?: string, runtimeLabel?: string|null}} [input] - Repo-relative packet directory.
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {{bound: boolean, reason: string}} `bound` is true only when a record was written.
+ */
+function bindGoalIfUnbound({ packetPath = '', runtimeLabel = null } = {}, rawOptions = {}) {
+  try {
+    if (isPluginDisabled()) return { bound: false, reason: 'plugin-disabled' };
+    if (!relaunchPacketShapeOk(packetPath)) return { bound: false, reason: packetPath ? 'packet-invalid' : 'no-packet' };
+    return withScopeMutation(rawOptions, (goalScope) => {
+      if (scopeHasGoalHistory(goalScope)) return { bound: false, reason: 'has-goal' };
+      if (!goalSlice.readPacketGoal(goalScope.workspace, packetPath)) return { bound: false, reason: 'packet-invalid' };
+      bindGoalInScope(goalScope, { packetPath, runtimeLabel });
+      return { bound: true, reason: 'bound' };
+    });
+  } catch {
+    return { bound: false, reason: 'error' };
+  }
+}
+
+/**
+ * Bind the packet a relaunch hand-over named, read from `SESSION_RELAUNCH_GOAL_PACKET`, to a
+ * session that has no goal of its own. Reads nothing but the environment until a packet is
+ * named, so a session that was never handed one pays no file access.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default.
+ * @returns {{bound: boolean, reason: string}} The outcome, with `no-packet` or `switched-off` for the quiet cases.
+ */
+function bindRelaunchGoal(rawOptions = {}, env = process.env) {
+  const packetPath = typeof env[RELAUNCH_GOAL_PACKET_ENV] === 'string' ? env[RELAUNCH_GOAL_PACKET_ENV].trim() : '';
+  if (!packetPath) return { bound: false, reason: 'no-packet' };
+  if (!relaunchGoalEnabled(env)) return { bound: false, reason: 'switched-off' };
+  return bindGoalIfUnbound({ packetPath }, rawOptions);
 }
 
 /** Drop the packet pointer. The record and its objective slice stay as they are. */
@@ -1638,6 +1730,12 @@ module.exports = {
   verifyGoalHeuristic,
   setGoal,
   bindGoal,
+  bindGoalIfUnbound,
+  bindRelaunchGoal,
+  relaunchGoalEnabled,
+  relaunchPacketShapeOk,
+  RELAUNCH_GOAL_PACKET_ENV,
+  RELAUNCH_GOAL_SWITCH_ENV,
   unbindGoal,
   noteResent,
   resendPending,

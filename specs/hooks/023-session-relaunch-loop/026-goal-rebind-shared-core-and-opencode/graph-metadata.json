@@ -35,13 +35,26 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/hooks/goal/lib/goal-core.test.cjs",
+      ".skilled/hooks/goal/pi/goal-context.ts",
+      ".skilled/hooks/goal/pi/goal-pi.test.mjs",
+      ".skilled/hooks/goal/devin/goal-inject.mjs",
+      ".skilled/hooks/goal/devin/goal-devin.test.mjs",
+      ".skilled/hooks/goal/cursor/goal-inject.mjs",
+      ".skilled/hooks/goal/cursor/goal-cursor.test.mjs",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/plugins/tests/opencode-goal-handover.test.cjs",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/hooks/goal/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md"
     ],
     "entities": [
       {
@@ -72,6 +85,78 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/pi/goal-pi.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/devin/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-devin.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/devin/goal-devin.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/cursor/goal-cursor.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-handover.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-handover.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
         "source": "derived"
       },
       {
@@ -115,83 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A goal record is keyed by the session id, and a hop creates a new session, so the Pi, Devin, Cursor, Hermes and OpenCode receivers start with no record",
     "created_at": "2026-10-24T19:03:13Z",
-    "last_save_at": "2026-10-24T19:14:39.252Z",
+    "last_save_at": "2026-10-24T22:36:26.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb8e0e9cc08d79ac2eacf5958196110958be3249325b3aef7bacfa5c3e472fc0",
+    "source_fingerprint": "sha256:48b77bc2608c8908fc6fe1894578ce1baad2c5abe68b5439e0ce99e09b86d727",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "58138621a745d02598b22daabe39492ca860965257dc37432c98f28176ea766c",
-      "plan.md": "7bed03d8f6c8c17cc83d965eb6192c35f127379518b1f6712ac5d84fc9f5084e",
-      "tasks.md": "04f638a0294de896ba72d183119e16e748d72b64b1ece50f8f1160bb83df239a",
-      "implementation-summary.md": "627738a06aaedaeee99c9625f29ba36fb46bb1d5f0ec09eb195ef21d90faa86f"
+      "spec.md": "23e5603dcf4beaae7b7b9796b2937cf7d593526241b15733ea2e5a1bd479e1a1",
+      "plan.md": "ed6d630a7724367d0c6047d6e634976d2ab8f1d6216615c1eada3be8db2a5cda",
+      "tasks.md": "eaf3e90451fd3ff329a0ae7affcd0afe78d67ea03ded784cf2001fc5a2eac474",
+      "implementation-summary.md": "46e4e95a67f266ec393bddb7062c6ff10997a964bbed37821242e28fe17fcd5a"
     },
     "last_active_at": null
   }

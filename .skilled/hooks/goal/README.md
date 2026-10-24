@@ -83,6 +83,21 @@ The core is runtime-neutral; each adapter binds it to a native lifecycle event a
 
 A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor and Devin therefore carry injection without management, and `/goal-cursor` fails closed for anything but the packet read. Injection-without-management is not read-only: both adapters record a turn on the bound record, which is the one write they make. Pi and OpenCode bind injection and management to the same native identity; Pi also carries a heuristic verify surface.
 
+### Hand-over bind
+
+A relaunch hop starts a new session id, and a goal record is keyed by that id, so the receiver starts with no record. When the sender had a goal, the hand-over names its packet and the launcher exports it to the receiver as `SESSION_RELAUNCH_GOAL_PACKET`. Pi, Devin, Cursor and OpenCode then bind that packet on the first turn (OpenCode at session start) through `bindRelaunchGoal` in the core, and inject from its `goal.md` like any bound session. No goal text travels in chat.
+
+The bind happens only when all of these hold, and does nothing otherwise:
+
+- The variable names a repo-relative directory that holds a `goal.md`, inside the repository once links are followed. A missing, absolute, `..`, empty or linked-out value binds nothing.
+- `SESSION_RELAUNCH_GOAL` is not `0`, `false`, `off` or `no`, in the environment or in `hook-flags.env`. The receiver binds without asking, and this switch is the off setting.
+- The session has no goal of its own: no live record of any status, no archived one (a goal that was cleared or completed leaves an archive entry, and the session is not handed a second goal after it), and no record that cannot be read. The bind never overwrites, and a second turn changes nothing.
+- In OpenCode, the session is the first top-level session of the process. A child session or a later session in the same process is not the receiver.
+
+A failed bind never blocks a session: Devin and Cursor write one stderr line for an unusable packet or an unexpected error, OpenCode writes a debug line under `OPENCODE_GOAL_DEBUG`, and Pi stays silent.
+
+Hermes carries no new code here. Its plugin already binds the packet in `HERMES_SPEC_FOLDER` to a session that has no goal, so a Hermes receiver binds when the launcher exports that variable as the packet. Claude and Codex have no goal record to bind and are handled by their own commands.
+
 OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/opencode-goal.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/goal-context.ts` lives here, and `.pi/extensions/` holds the relative symlink Pi discovers.
 
 ---
@@ -111,10 +126,10 @@ goal/
 
 | File | Responsibility |
 |---|---|
-| `lib/goal-core.cjs` | Scope validation (`resolveGoalScope`), opaque SHA-256 path resolution, atomic state I/O (temp + fsync + rename, mode 0600/0700, cross-process locks), the goal lifecycle (`set`/`show`/`clear`/`complete`/`pause`/`resume`/`history`), packet binding (`bindGoal`/`unbindGoal`/`noteResent`/`resendPending`/`appendGoalLog`/`describePacketGoal`), `renderGoalBrief` (byte-compatible `[active_goal]` block, rendered from the packet when bound) and `renderResendReminder`, `buildGoalPrompt` (RICCE skeleton), `verifyGoalHeuristic`, diagnostics (`doctor`/`health`), and legacy quarantine (`legacy-inspect`/`legacy-migrate`/`legacy-archive`). Reads fail open; mutations raise stable `GoalError` codes. |
+| `lib/goal-core.cjs` | Scope validation (`resolveGoalScope`), opaque SHA-256 path resolution, atomic state I/O (temp + fsync + rename, mode 0600/0700, cross-process locks), the goal lifecycle (`set`/`show`/`clear`/`complete`/`pause`/`resume`/`history`), packet binding (`bindGoal`/`unbindGoal`/`bindGoalIfUnbound`/`bindRelaunchGoal`/`noteResent`/`resendPending`/`appendGoalLog`/`describePacketGoal`), `renderGoalBrief` (byte-compatible `[active_goal]` block, rendered from the packet when bound) and `renderResendReminder`, `buildGoalPrompt` (RICCE skeleton), `verifyGoalHeuristic`, diagnostics (`doctor`/`health`), and legacy quarantine (`legacy-inspect`/`legacy-migrate`/`legacy-archive`). Reads fail open; mutations raise stable `GoalError` codes. |
 | `lib/goal-slice.cjs` | The one definition of where a goal document's frontmatter ends and its durable slice begins. Produces the measured slice, the chat slice, the objective slice and the slice hash; reads a packet's goal inside the workspace and nowhere else. Imported by the core and by the OpenCode plugin. |
 | `bin/goal.cjs` | Stable `STATUS=`/`ACTION=` command envelope and explicit scope/legacy actions. Never writes goal state directly: every mutation goes through the shared core. |
-| `pi/goal-context.ts` | Pi native lifecycle binding. Registers `/goal-pi`, injects on `input`, restores on `session_start`, verifies on `turn_end`. Dynamic-imports the core (supports both canonical and discovery-symlink paths). |
+| `pi/goal-context.ts` | Pi native lifecycle binding. Registers `/goal-pi`, injects on `input`, restores on `session_start`, verifies on `turn_end`. Dynamic-imports the core (supports both canonical and discovery-symlink paths). Binds a hand-over packet at `session_start` or the first `input`. |
 | `cursor/goal-inject.mjs` | Cursor `sessionStart`-only injection. Reads the active goal, renders the brief and the resend reminder, returns them as `agent_message`. Fails open unconditionally. |
 | `devin/goal-inject.mjs` | Devin `SessionStart` and `UserPromptSubmit` injection. Same brief and reminder, returned as `additionalContext` in Devin's `hookSpecificOutput` envelope. Fails open to `{}`. |
 | `lib/goal-core.test.cjs`, `bin/goal.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, CLI binding, privacy, and legacy action coverage. |
@@ -133,6 +148,8 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `OPENCODE_GOAL_PLUGIN_DISABLED=1` | Legacy alias, honoured by the shared resolver. Both engines print the canonical `OPENCODE_GOAL_DISABLED` in their errors, because that is the name an operator has to set. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `OPENCODE_GOAL_STATE_DIR` | Override the state root (tests and isolated probes use this to avoid touching the real `.state/goal/` tree). |
+| `SESSION_RELAUNCH_GOAL_PACKET` | Set by the relaunch launcher for a receiver session. A repo-relative packet directory the receiver binds when it has no goal of its own. Not an operator setting. |
+| `SESSION_RELAUNCH_GOAL=0` | Turns the hand-over bind off, in the environment or in `hook-flags.env`. On by default. |
 
 Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Pi discovery can additionally be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`.
 
@@ -142,7 +159,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | The core imports Node builtins, `../../shared/hook-flags.cjs` and `./goal-slice.cjs`. Adapters import `../lib/goal-core.cjs` (Cursor and Devin via `createRequire`; Pi via dynamic `import`). The OpenCode plugin imports `goal-slice.cjs` and the core's `appendPacketLog` only. |
+| Imports | The core imports Node builtins, `../../shared/hook-flags.cjs` and `./goal-slice.cjs`. Adapters import `../lib/goal-core.cjs` (Cursor and Devin via `createRequire`; Pi via dynamic `import`). The OpenCode plugin imports `goal-slice.cjs` and, from the core, `appendPacketLog` and the hand-over switch and packet check only. |
 | Scope | Every read or mutation resolves a composite `workspace + runtime + native session id` scope. No default session, no process-global current-goal pointer. Missing identity → no goal on read, stable error on mutation. A packet is shared content; which packet a session is bound to is per-session state. |
 | Directive | The bound packet's `goal.md` is the source. Tooling writes only its log, below the durable slice, and only through the locked append. Decisions, binding rows and criteria are the operator's to change through `/create:goal` (`sk-create-goal`), and every change is resent in chat as the chat slice that section 4 of that mode's `references/budget-and-handoff.md` defines. |
 | State | Atomic writes (temp + fsync + rename), mode 0600 files / 0700 dirs, cross-process filesystem locks. Record locks live in the session's state dir; packet-log locks live under the workspace's default state root, keyed on the packet's real path and never redirected by `OPENCODE_GOAL_STATE_DIR`, so an alias and its target, and two sessions with different record stores, all contend on one lock. Raw identities never appear in filenames or aggregate diagnostics. |
