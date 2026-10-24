@@ -1,0 +1,17 @@
+I'll read all the review input files.The changes.diff was truncated at line 332 of 355. Let me read the rest — it likely contains the second changelog.All files read. I worked through the seven checks:
+
+**(1) Fill-line rule** — all six edited lines are single physical lines ending `. -->`, no semicolons, no `[YOUR_VALUE_HERE:`, and the new sentences match the `Write \`N/A\`… or delete…` style of the existing rollback/NFR rows. Escapes are truthful: the plan's new applicability rows confirm all six anchors are `optional`.
+
+**(2) Plan rows vs shipped** — all six rows verified word-for-word against the shipped lines (EQUAL: True confirmed manually); the five new applicability rows restate the escapes exactly, including the delete-only variants for architecture/documentation verification.
+
+**(3) Snapshot** — exactly 11 changed lines, all `<!-- FILL:` lines, matching the template text modulo `\`` escaping; consistent with `Snapshots 6 updated` and the changelog's "11 rendered fill lines".
+
+**(4) Example move** — verified pure: stat.txt shows 106 changed lines = 53+/53−, and the hunk headers (`-107,46 +107,6`, `-257,19 +217,6`, `-310,6 +257,59`) force removed=53=added — the blank after each removed `---` is part of the removal, corroborated by the sorted-lines-identical check. Heading order is now Key Decisions (235) → Verification Results (261) → Known Limitations (301), matching template anchor order; all anchor open/close pairs intact.
+
+**(5) Card** — exactly the two edits (Level 0 → `--level 1` sentence; `--with-goal` flag with no value), and plan-005.diff applies the identical two edits; card-vs-plan-block diff rc=0 confirms.
+
+**(6) Changelogs** — no task ids (the old `(T015)` was removed), no placeholders (old `<this folder>` removed), no em dashes, no semicolons; every claim traces to the diffs or checks.txt (172 lines, goal.md in probe scaffold, RESULT: PASSED).
+
+**(7) checks.txt** — all internally consistent: 24+18+22+6=70 core rows, scan rc=1s mean no hits, probe listing shows goal.md, card block diff rc=0.
+
+NO FINDINGS

@@ -104,6 +104,8 @@ One execution agent worked the three lanes one after another and dispatched no s
 | Crossing command | Printed nothing on every `.tmpl` |
 | Full suite | Start and end both `exit=0`. The second vitest run grew from 2067 to 2084 tests (17 added) and from 181 to 183 files. The first run is unchanged at 4162 tests |
 | Frontier review | 9 lines: 1 P1 and 1 P2 fixed, 7 P2 recorded in `goal.md` section 4 |
+
+**Amendment 2026-10-24.** On the operator's decision "Fix now, before 009", six optional sections gained a non-applicable escape in their fill line (Level 2 edge cases and complexity assessment, the fix addendum affected surfaces, and the Level 3+ architecture verification, documentation verification and sign-off). Plan rows B03, B05, B18, B39, B43 and B44 and five applicability rows carry the same text. The Level 3+ implementation summary example now lists Verification Results and Known Limitations after Key Decisions, a pure move. The golden snapshot was regenerated for 11 rendered fill lines. The fill test printed `Tests  16 passed (16)`, the drift guard `EXAMPLE_DRIFT_OK`, the full suite matched phase 006, and one read-only review returned `NO FINDINGS`. The cli-pi DeepSeek lane for the example move failed on a billing limit before it wrote anything, so the executor made the move. Status stays Complete and every acceptance row stays Met.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -114,6 +116,6 @@ One execution agent worked the three lanes one after another and dispatched no s
 1. **One fill line per section, not per hint.** A section with eight tokens has one governing instruction. The tokens stay field-level prompts.
 2. **The drift guard checks anchors and descriptions, not prose quality.** The frontier review read the prose at phase close.
 3. **The packet types are out of scope.** `templates/packet-types` serves research and review packets and keeps its current guidance.
-4. **Only five sections carry the delete option.** The contract marks 20 or more optional anchors. The review's six other P2 lines and the out of order sections in the Level 3+ implementation summary example are open for the operator.
+4. **Only some optional sections carry the delete or `N/A` option.** The contract marks 20 or more optional anchors. The five sections of the first pass and the six sections of the 2026-10-24 amendment have one. The other optional anchors, such as phase dependencies and effort estimation in the plan template, do not.
 5. **A leftover fill comment is not a placeholder.** The gate does not count it, so a filled document can still carry the line.
 <!-- /ANCHOR:limitations -->

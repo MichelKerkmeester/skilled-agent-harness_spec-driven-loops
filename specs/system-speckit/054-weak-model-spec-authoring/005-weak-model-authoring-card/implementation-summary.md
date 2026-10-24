@@ -114,6 +114,8 @@ One execution agent ran `tasks.md` T001 to T015 and dispatched no subagent. The 
 | Three Level 1 smoke runs | Three `RESULT: PASSED`, `baseline.json` holds 3 runs with 6 keys each, `scratch/card-bench/baseline.md` holds the ranges |
 | Full suite | Start baseline reused from phase 004 (`exit=0`, 276 passed of 279 files, 4162 tests). Fresh end suite `exit=0`: the first run is identical, the second run grew from 183 to 184 files and from 2084 to 2085 tests (the card-sync test) |
 | Review | `scratch/review/T014.txt` holds 3 P1 and 5 P2 lines. 0 applied, 8 recorded with a reason in `goal.md` section 4 |
+
+**Amendment 2026-10-24.** On the operator's decision "Amend before 009", the two review P1 defects in the card are fixed. Step 2 now says to use `--level 1` when `recommend-level.sh` prints Level 0, and the step 3 command now passes `--with-goal`, so the scaffold holds the `goal.md` that steps 8, 9 and 11 write to. The frozen card block in `plan.md` carries the same two edits and `diff` against the card printed nothing. The card is still 172 lines. A Level 1 scaffold made with the new command held `goal.md` and `validate.sh --strict` printed `RESULT: PASSED`. `CARD SYNC OK`, `card-sync.vitest.ts` 1 passed, `workflow-invariance.vitest.ts` with the card 2 passed, the full suite matched phase 006, and one read-only review returned `NO FINDINGS`. Status stays Complete and every acceptance row stays Met.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -121,7 +123,7 @@ One execution agent ran `tasks.md` T001 to T015 and dispatched no subagent. The 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The card has two open P1 defects from the review.** Step 2 dead-ends when `recommend-level.sh` prints Level 0, because `create.sh --level` does not accept 0. Steps 3, 8, 9 and 11 write to `goal.md`, which a default scaffold does not create. The card text is frozen, so both wait for a conductor amendment. The proposed fixes are in `goal.md` section 4.
+1. **The two review P1 defects in the card were fixed on 2026-10-24.** Step 2 now handles a Level 0 result, and the step 3 command passes `--with-goal` so `goal.md` exists for steps 8, 9 and 11. The details are in the amendment paragraph under Verification.
 2. **Three smoke runs detect only large effects.** The card either lets a weak model finish a Level 1 packet or it does not. Phase 009 reports the range and the delta, not a significance claim.
 3. **The card does not repair the guide.** The guide keeps its defects until phase 2 and phase 3 fix them, and this phase only changes which tier loads it.
 <!-- /ANCHOR:limitations -->

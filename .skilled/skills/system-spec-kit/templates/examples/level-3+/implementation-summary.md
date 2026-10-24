@@ -107,46 +107,6 @@ See `decision-record.md` for full ADR documentation.
 
 ---
 
-<!-- ANCHOR:verification -->
-## Verification Results
-
-### Test Coverage
-
-| Component | Unit | Integration | Overall |
-|-----------|------|-------------|---------|
-| Hash Service | 100% | N/A | 100% |
-| Token Service | 100% | N/A | 100% |
-| Validators | 100% | N/A | 100% |
-| Registration | 85% | 90% | 88% |
-| Login | 88% | 92% | 90% |
-| Middleware | 90% | 85% | 88% |
-| **Overall** | **93%** | **89%** | **88%** |
-
-### NFR Achievement
-
-| NFR ID | Target | Actual | Status |
-|--------|--------|--------|--------|
-| NFR-P01 | Login < 500ms | 320ms | Pass |
-| NFR-P02 | Register < 1000ms | 780ms | Pass |
-| NFR-P03 | Token verify < 10ms | 3ms | Pass |
-| NFR-S01 | bcrypt 10+ rounds | 10 | Pass |
-| NFR-S02 | No enumeration | Verified | Pass |
-| NFR-S03 | Input sanitized | Verified | Pass |
-| NFR-S04 | Secrets in env | Verified | Pass |
-| NFR-S05 | OWASP addressed | Verified | Pass |
-
-### Checklist Summary
-
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | 12 | 12/12 |
-| P1 Items | 32 | 32/32 |
-| P2 Items | 18 | 18/18 |
-
-
-<!-- /ANCHOR:verification -->
----
-
 ## Governance Compliance
 
 ### Approval Status
@@ -257,19 +217,6 @@ See `decision-record.md` for full ADR documentation.
 
 ---
 
-<!-- ANCHOR:limitations -->
-## Known Limitations
-
-1. **localStorage token storage** - XSS vulnerable; HttpOnly cookies planned for Phase 2
-2. **No password reset** - Requires email service; separate spec/014
-3. **No rate limiting** - Brute force possible; add before production traffic
-4. **No refresh tokens** - Users must re-login after 24h; Phase 2 improvement
-5. **No concurrent session limit** - Users can have unlimited sessions
-
-
-<!-- /ANCHOR:limitations -->
----
-
 ## Risks Realized vs Mitigated
 
 | Risk ID | Description | Occurred | Mitigation Applied |
@@ -308,6 +255,59 @@ See `decision-record.md` for full ADR documentation.
 
 
 <!-- /ANCHOR:decisions -->
+---
+
+<!-- ANCHOR:verification -->
+## Verification Results
+
+### Test Coverage
+
+| Component | Unit | Integration | Overall |
+|-----------|------|-------------|---------|
+| Hash Service | 100% | N/A | 100% |
+| Token Service | 100% | N/A | 100% |
+| Validators | 100% | N/A | 100% |
+| Registration | 85% | 90% | 88% |
+| Login | 88% | 92% | 90% |
+| Middleware | 90% | 85% | 88% |
+| **Overall** | **93%** | **89%** | **88%** |
+
+### NFR Achievement
+
+| NFR ID | Target | Actual | Status |
+|--------|--------|--------|--------|
+| NFR-P01 | Login < 500ms | 320ms | Pass |
+| NFR-P02 | Register < 1000ms | 780ms | Pass |
+| NFR-P03 | Token verify < 10ms | 3ms | Pass |
+| NFR-S01 | bcrypt 10+ rounds | 10 | Pass |
+| NFR-S02 | No enumeration | Verified | Pass |
+| NFR-S03 | Input sanitized | Verified | Pass |
+| NFR-S04 | Secrets in env | Verified | Pass |
+| NFR-S05 | OWASP addressed | Verified | Pass |
+
+### Checklist Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 12 | 12/12 |
+| P1 Items | 32 | 32/32 |
+| P2 Items | 18 | 18/18 |
+
+
+<!-- /ANCHOR:verification -->
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **localStorage token storage** - XSS vulnerable; HttpOnly cookies planned for Phase 2
+2. **No password reset** - Requires email service; separate spec/014
+3. **No rate limiting** - Brute force possible; add before production traffic
+4. **No refresh tokens** - Users must re-login after 24h; Phase 2 improvement
+5. **No concurrent session limit** - Users can have unlimited sessions
+
+
+<!-- /ANCHOR:limitations -->
 ---
 
 ## Deviations from Plan

@@ -1,0 +1,6 @@
+cli-pi DeepSeek lane (llmgateway/deepseek-v4.1-flash-1017, thinking max): FAILED before any work.
+B.err: 402 billing_error, "You've reached the daily pacing allowance on the pro plan ... resets in 19 hours".
+B.out empty, B.exit exit=1, the target file untouched (diff against HEAD empty before the manual move).
+Not retryable inside this session (19 hour reset). The move was made by the executor from a script that cut the two blocks and pasted them after the Key Decisions block.
+Check: sorted lines of HEAD and the new file are identical (pure move), drift guard prints EXAMPLE_DRIFT_OK, out_of_order_anchor count 0.
+note: example.orig.md and expected-example.md (full copies of the example) were deleted before the commit because the template-phrase-lint gate blocks them. The original is git show d0d9d596c5:<example path>, the new file is the example itself.

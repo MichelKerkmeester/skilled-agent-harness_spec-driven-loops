@@ -1,0 +1,6 @@
+rows total 131 core rows 70
+spec fill lines 24 covered 24
+plan fill lines 18 covered 18
+tasks fill lines 22 covered 22
+implementation-summary fill lines 6 covered 6
+PLAN_EQUALS_SHIPPED

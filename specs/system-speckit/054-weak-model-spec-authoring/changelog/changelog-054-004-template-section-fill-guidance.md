@@ -68,5 +68,6 @@ Every `## ` section in the four core templates now carries one `<!-- FILL: ... -
 - One fill line per section, not per hint. A section with eight tokens has one governing instruction. The tokens stay field-level prompts.
 - The drift guard checks anchors and descriptions, not prose quality. The frontier review read the prose at phase close.
 - The packet types are out of scope. templates/packet-types serves research and review packets and keeps its current guidance.
-- Only five sections carry the delete option. The contract marks 20 or more optional anchors. The review's six other P2 lines and the out of order sections in the Level 3+ implementation summary example are open for the operator.
+- Amended 2026-10-24: the six optional sections the review named now carry a non-applicable escape in their fill line (Level 2 edge cases, Level 2 complexity assessment, the fix addendum affected surfaces, and the Level 3+ architecture verification, documentation verification and sign-off). The Level 3+ implementation summary example now lists Verification and Known Limitations after Key Decisions, the same order as the template, and the golden snapshot was regenerated for the 11 rendered fill lines that changed.
+- Still open: the other optional anchors, such as phase dependencies, effort estimation, dependency graph, critical path and milestones in the plan template, keep a fill line with no escape.
 - A leftover fill comment is not a placeholder. The gate does not count it, so a filled document can still carry the line.

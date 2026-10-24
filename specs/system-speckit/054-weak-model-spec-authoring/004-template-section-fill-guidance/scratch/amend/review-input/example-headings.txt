@@ -1,0 +1,68 @@
+== example (level-3+/implementation-summary.md) headings and anchors, new file
+1:---
+11:---
+21:---
+23:<!-- ANCHOR:metadata -->
+24:## Metadata
+37:<!-- /ANCHOR:metadata -->
+38:---
+40:## Executive Summary
+52:---
+54:<!-- ANCHOR:what-built -->
+55:## What Was Built
+87:<!-- /ANCHOR:what-built -->
+88:---
+90:<!-- ANCHOR:how-delivered -->
+91:## How It Was Delivered
+94:<!-- /ANCHOR:how-delivered -->
+95:---
+97:## Architecture Decisions Summary
+108:---
+110:## Governance Compliance
+133:---
+135:## Workstream Performance
+176:---
+178:## AI Execution Analysis
+202:---
+204:## Milestone Achievement
+218:---
+220:## Risks Realized vs Mitigated
+232:---
+234:<!-- ANCHOR:decisions -->
+235:## Key Decisions
+257:<!-- /ANCHOR:decisions -->
+258:---
+260:<!-- ANCHOR:verification -->
+261:## Verification Results
+297:<!-- /ANCHOR:verification -->
+298:---
+300:<!-- ANCHOR:limitations -->
+301:## Known Limitations
+310:<!-- /ANCHOR:limitations -->
+311:---
+313:## Deviations from Plan
+323:---
+325:## Follow-Up Items
+340:---
+342:## Handoff Notes
+355:---
+
+== template (core/implementation-summary.md.tmpl) anchors
+84:<!-- ANCHOR:metadata -->
+85:## Metadata
+93:<!-- /ANCHOR:metadata -->
+97:<!-- ANCHOR:what-built -->
+98:## What Was Built
+113:<!-- /ANCHOR:what-built -->
+117:<!-- ANCHOR:how-delivered -->
+118:## How It Was Delivered
+122:<!-- /ANCHOR:how-delivered -->
+126:<!-- ANCHOR:decisions -->
+127:## Key Decisions
+133:<!-- /ANCHOR:decisions -->
+137:<!-- ANCHOR:verification -->
+138:## Verification
+144:<!-- /ANCHOR:verification -->
+148:<!-- ANCHOR:limitations -->
+149:## Known Limitations
+153:<!-- /ANCHOR:limitations -->

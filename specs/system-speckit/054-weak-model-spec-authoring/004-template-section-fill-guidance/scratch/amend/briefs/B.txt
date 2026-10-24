@@ -1,0 +1,40 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+TASK: one pure move of two sections inside ONE file. Change nothing else.
+
+File (the only file you may edit):
+.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+
+Do not read any other file to decide what to do. This brief is complete.
+
+The file has three blocks you care about. Each block starts at its opening anchor line and ends at the `---` line that follows its closing anchor line, plus the one blank line after that `---`.
+
+Block VERIFICATION: starts at the line `<!-- ANCHOR:verification -->` (heading `## Verification Results`) and ends at the `---` line after `<!-- /ANCHOR:verification -->`, plus the one blank line after that `---`. Currently lines 110 to 149.
+
+Block LIMITATIONS: starts at the line `<!-- ANCHOR:limitations -->` (heading `## Known Limitations`) and ends at the `---` line after `<!-- /ANCHOR:limitations -->`, plus the one blank line after that `---`. Currently lines 260 to 272.
+
+Block DECISIONS: starts at `<!-- ANCHOR:decisions -->` (heading `## Key Decisions`) and ends at the `---` line after `<!-- /ANCHOR:decisions -->`, plus the one blank line after that `---`. It is followed by the heading `## Deviations from Plan`.
+
+THE MOVE: cut the VERIFICATION block and the LIMITATIONS block out of where they are. Paste them, in this order, VERIFICATION first and then LIMITATIONS, immediately after the DECISIONS block, so that `## Deviations from Plan` follows the LIMITATIONS block. Every moved line stays exactly as it is, character for character, including the anchor comments, the `---` lines and the blank lines. Do not add, delete, reword or reformat any line. Do not touch any other section.
+
+CHECK, then report:
+1. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+   It must print EXAMPLE_DRIFT_OK.
+2. Run: node .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js compare 3+ implementation-summary.md .skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md anchors | grep -c out_of_order
+   It must print 0.
+3. Run: git -c core.fsmonitor=false diff --stat -- .skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+   It must show only that one file, with the same number of insertions and deletions.
+Print the three outputs as your final answer.

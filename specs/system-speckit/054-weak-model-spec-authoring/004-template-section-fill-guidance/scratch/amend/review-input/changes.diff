@@ -1,0 +1,355 @@
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md b/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+index 043b106a73..9723a65feb 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+@@ -35,7 +35,7 @@ Run the level helper first.
+ bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --loc <lines> --files <count>
+ ```
+ 
+-Use the level it prints. Do not raise the level yourself. The level decides which files the packet needs.
++Use the level it prints. If it prints Level 0, use `--level 1`. Do not raise the level yourself. The level decides which files the packet needs.
+ 
+ | Level | Files the packet needs |
+ |-------|------------------------|
+@@ -51,7 +51,7 @@ Verify: `rg -n 'SPECKIT_LEVEL' <packet folder>/spec.md` prints one line with tha
+ Create the packet with one command. Keep `--skip-branch` so no git state changes.
+ 
+ ```bash
+-bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level <level> --track <track> --short-name <two-to-four-words> "<one sentence>"
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --with-goal --level <level> --track <track> --short-name <two-to-four-words> "<one sentence>"
+ ```
+ 
+ The command prints the folder it made. Use that path for every later command.
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index cc25dd06ad..d284cacb49 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -1039,7 +1039,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. Write \`N/A\` or delete the whole addendum when no fix surface applies. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -1297,7 +1297,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:edge-cases -->
+ ## L2: EDGE CASES
+-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write \`N/A\` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+ <!-- /ANCHOR:edge-cases -->
+ 
+ ### Data Boundaries
+@@ -1318,7 +1318,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:complexity -->
+ ## L2: COMPLEXITY ASSESSMENT
+-<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
++<!-- FILL: Score each row with the number the change earns. The total must match the level. Write \`N/A\` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ 
+ | Dimension | Score | Notes |
+ |-----------|-------|-------|
+@@ -1729,7 +1729,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. Write \`N/A\` or delete the whole addendum when no fix surface applies. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -2356,7 +2356,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
+-<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -2405,7 +2405,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
+-<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -2417,7 +2417,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+@@ -2611,7 +2611,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. Write \`N/A\` or delete the whole addendum when no fix surface applies. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -3377,7 +3377,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
+-<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -3426,7 +3426,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
+-<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -3438,7 +3438,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+diff --git a/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+index 4ebd9e2b3c..794ad5ddc1 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+@@ -99,7 +99,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+index d58ef0f144..9cb35bd7cf 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+@@ -241,7 +241,7 @@ contextType: "general"
+ <!-- IF level:2 -->
+ <!-- ANCHOR:edge-cases -->
+ ## L2: EDGE CASES
+-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+ <!-- /ANCHOR:edge-cases -->
+ <!-- /IF -->
+ <!-- IF level:3,3+ -->
+@@ -274,7 +274,7 @@ contextType: "general"
+ <!-- IF level:2 -->
+ <!-- ANCHOR:complexity -->
+ ## L2: COMPLEXITY ASSESSMENT
+-<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
++<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ <!-- /IF -->
+ <!-- IF level:3,3+ -->
+ ## 9. COMPLEXITY ASSESSMENT
+diff --git a/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+index f9b191df00..84d4a17c6d 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+@@ -227,7 +227,7 @@ contextType: "general"
+ <!-- IF level:3,3+ -->
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
+-<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -276,7 +276,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
+-<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -288,7 +288,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+index 0e1889246d..d6e8ab348b 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+@@ -107,46 +107,6 @@ See `decision-record.md` for full ADR documentation.
+ 
+ ---
+ 
+-<!-- ANCHOR:verification -->
+-## Verification Results
+-
+-### Test Coverage
+-
+-| Component | Unit | Integration | Overall |
+-|-----------|------|-------------|---------|
+-| Hash Service | 100% | N/A | 100% |
+-| Token Service | 100% | N/A | 100% |
+-| Validators | 100% | N/A | 100% |
+-| Registration | 85% | 90% | 88% |
+-| Login | 88% | 92% | 90% |
+-| Middleware | 90% | 85% | 88% |
+-| **Overall** | **93%** | **89%** | **88%** |
+-
+-### NFR Achievement
+-
+-| NFR ID | Target | Actual | Status |
+-|--------|--------|--------|--------|
+-| NFR-P01 | Login < 500ms | 320ms | Pass |
+-| NFR-P02 | Register < 1000ms | 780ms | Pass |
+-| NFR-P03 | Token verify < 10ms | 3ms | Pass |
+-| NFR-S01 | bcrypt 10+ rounds | 10 | Pass |
+-| NFR-S02 | No enumeration | Verified | Pass |
+-| NFR-S03 | Input sanitized | Verified | Pass |
+-| NFR-S04 | Secrets in env | Verified | Pass |
+-| NFR-S05 | OWASP addressed | Verified | Pass |
+-
+-### Checklist Summary
+-
+-| Category | Total | Verified |
+-|----------|-------|----------|
+-| P0 Items | 12 | 12/12 |
+-| P1 Items | 32 | 32/32 |
+-| P2 Items | 18 | 18/18 |
+-
+-
+-<!-- /ANCHOR:verification -->
+----
+-
+ ## Governance Compliance
+ 
+ ### Approval Status
+@@ -257,19 +217,6 @@ See `decision-record.md` for full ADR documentation.
+ 
+ ---
+ 
+-<!-- ANCHOR:limitations -->
+-## Known Limitations
+-
+-1. **localStorage token storage** - XSS vulnerable; HttpOnly cookies planned for Phase 2
+-2. **No password reset** - Requires email service; separate spec/014
+-3. **No rate limiting** - Brute force possible; add before production traffic
+-4. **No refresh tokens** - Users must re-login after 24h; Phase 2 improvement
+-5. **No concurrent session limit** - Users can have unlimited sessions
+-
+-
+-<!-- /ANCHOR:limitations -->
+----
+-
+ ## Risks Realized vs Mitigated
+ 
+ | Risk ID | Description | Occurred | Mitigation Applied |
+@@ -310,6 +257,59 @@ See `decision-record.md` for full ADR documentation.
+ <!-- /ANCHOR:decisions -->
+ ---
+ 
++<!-- ANCHOR:verification -->
++## Verification Results
++
++### Test Coverage
++
++| Component | Unit | Integration | Overall |
++|-----------|------|-------------|---------|
++| Hash Service | 100% | N/A | 100% |
++| Token Service | 100% | N/A | 100% |
++| Validators | 100% | N/A | 100% |
++| Registration | 85% | 90% | 88% |
++| Login | 88% | 92% | 90% |
++| Middleware | 90% | 85% | 88% |
++| **Overall** | **93%** | **89%** | **88%** |
++
++### NFR Achievement
++
++| NFR ID | Target | Actual | Status |
++|--------|--------|--------|--------|
++| NFR-P01 | Login < 500ms | 320ms | Pass |
++| NFR-P02 | Register < 1000ms | 780ms | Pass |
++| NFR-P03 | Token verify < 10ms | 3ms | Pass |
++| NFR-S01 | bcrypt 10+ rounds | 10 | Pass |
++| NFR-S02 | No enumeration | Verified | Pass |
++| NFR-S03 | Input sanitized | Verified | Pass |
++| NFR-S04 | Secrets in env | Verified | Pass |
++| NFR-S05 | OWASP addressed | Verified | Pass |
++
++### Checklist Summary
++
++| Category | Total | Verified |
++|----------|-------|----------|
++| P0 Items | 12 | 12/12 |
++| P1 Items | 32 | 32/32 |
++| P2 Items | 18 | 18/18 |
++
++
++<!-- /ANCHOR:verification -->
++---
++
++<!-- ANCHOR:limitations -->
++## Known Limitations
++
++1. **localStorage token storage** - XSS vulnerable; HttpOnly cookies planned for Phase 2
++2. **No password reset** - Requires email service; separate spec/014
++3. **No rate limiting** - Brute force possible; add before production traffic
++4. **No refresh tokens** - Users must re-login after 24h; Phase 2 improvement
++5. **No concurrent session limit** - Users can have unlimited sessions
++
++
++<!-- /ANCHOR:limitations -->
++---
++
+ ## Deviations from Plan
+ 
+ | Planned | Actual | Reason | Impact |
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md
+index 9f95ced5ed..a5815068fa 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md
+@@ -68,5 +68,6 @@ Every `## ` section in the four core templates now carries one `<!-- FILL: ... -
+ - One fill line per section, not per hint. A section with eight tokens has one governing instruction. The tokens stay field-level prompts.
+ - The drift guard checks anchors and descriptions, not prose quality. The frontier review read the prose at phase close.
+ - The packet types are out of scope. templates/packet-types serves research and review packets and keeps its current guidance.
+-- Only five sections carry the delete option. The contract marks 20 or more optional anchors. The review's six other P2 lines and the out of order sections in the Level 3+ implementation summary example are open for the operator.
++- Amended 2026-10-24: the six optional sections the review named now carry a non-applicable escape in their fill line (Level 2 edge cases, Level 2 complexity assessment, the fix addendum affected surfaces, and the Level 3+ architecture verification, documentation verification and sign-off). The Level 3+ implementation summary example now lists Verification and Known Limitations after Key Decisions, the same order as the template, and the golden snapshot was regenerated for the 11 rendered fill lines that changed.
++- Still open: the other optional anchors, such as phase dependencies, effort estimation, dependency graph, critical path and milestones in the plan template, keep a fill line with no escape.
+ - A leftover fill comment is not a placeholder. The gate does not count it, so a filled document can still carry the line.
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-005-weak-model-authoring-card.md b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-005-weak-model-authoring-card.md
+index c6e7ff4d29..619cb72743 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-005-weak-model-authoring-card.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-005-weak-model-authoring-card.md
+@@ -40,7 +40,7 @@ The four authoring intents now load one 172-line card instead of the 1,200-line
+ 
+ ### Verification
+ 
+-- Strict validation of this phase folder - validate.sh <this folder> --strict printed RESULT: PASSED (T015)
++- Strict validation of this phase folder - RESULT: PASSED
+ - Card sync guard - Nine PASS lines, CARD SYNC OK, exit 0. On a copy without the card: exit=1, FAIL card-exists: missing references/workflows/spec-authoring-card.md, CARD SYNC FAILED
+ - Card length and scans - wc -l printed 172, and the vocabulary, em dash, semicolon and unfilled-hint scans printed nothing
+ - Router - 4 intent blocks name the card, 0 name the guide, the guide appears once in ON_DEMAND
+@@ -68,6 +68,6 @@ The four authoring intents now load one 172-line card instead of the 1,200-line
+ 
+ ### Follow-Ups
+ 
+-- The card has two open P1 defects from the review. Step 2 dead-ends when recommend-level.sh prints Level 0, because create.sh --level does not accept 0. Steps 3, 8, 9 and 11 write to goal.md, which a default scaffold does not create. The card text is frozen, so both wait for a conductor amendment. The proposed fixes are in goal.md section 4.
++- Amended 2026-10-24: the two review P1 defects are fixed. Step 2 now says to use `--level 1` when recommend-level.sh prints Level 0, because create.sh --level does not accept 0. The step 3 command now passes `--with-goal`, so the scaffold holds the goal.md that steps 8, 9 and 11 write to. The card is still 172 lines. A scaffold made with the new command at Level 1 holds goal.md and validates with RESULT: PASSED.
+ - Three smoke runs detect only large effects. The card either lets a weak model finish a Level 1 packet or it does not. Phase 009 reports the range and the delta, not a significance claim.
+ - The card does not repair the guide. The guide keeps its defects until phase 2 and phase 3 fix them, and this phase only changes which tier loads it.

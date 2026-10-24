@@ -1,0 +1,9 @@
+BLOCKED [gate:template-phrase-lint]: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/example.orig.md: "implementation summary" [template-default] "implementation summary" is one of a template's placeholder trigger phrases, which name no topic.
+BLOCKED [gate:template-phrase-lint]: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/example.orig.md: "what shipped" [template-default] "what shipped" is one of a template's placeholder trigger phrases, which name no topic.
+BLOCKED [gate:template-phrase-lint]: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/example.orig.md: "validation evidence" [template-default] "validation evidence" is one of a template's placeholder trigger phrases, which name no topic.
+BLOCKED [gate:template-phrase-lint]: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/expected-example.md: "implementation summary" [template-default] "implementation summary" is one of a template's placeholder trigger phrases, which name no topic.
+BLOCKED [gate:template-phrase-lint]: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/expected-example.md: "what shipped" [template-default] "what shipped" is one of a template's placeholder trigger phrases, which name no topic.
+BLOCKED [gate:template-phrase-lint]: specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/expected-example.md: "validation evidence" [template-default] "validation evidence" is one of a template's placeholder trigger phrases, which name no topic.
+
+BLOCKED [gate:template-phrase-lint]: staged trigger phrases contain a template or editor fallback.
+Fix the phrase, or bypass with SPECKIT_SKIP_PHRASE_LINT=1 git commit ...
