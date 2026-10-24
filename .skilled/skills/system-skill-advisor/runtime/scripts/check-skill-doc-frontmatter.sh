@@ -39,3 +39,4 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 
 exec node "$CHECKER" "$@"
+
