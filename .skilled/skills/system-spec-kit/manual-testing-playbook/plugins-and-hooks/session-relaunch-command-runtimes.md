@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.9.0
+version: 1.0.10.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -91,7 +91,7 @@ Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `c
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 16 tests pass under bash and zsh, including the case where only a wrapped `hermes` launch gets `HERMES_ENABLE_PROJECT_PLUGINS=1`. Plain `codex`, `codex resume --last`, `hermes`, `hermes chat -q <prompt>`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `hermes -z`, `hermes chat --oneshot`, `hermes setup`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
+Evidence: all 18 tests pass under bash and zsh (nine cases, each run under both shells), including the case where only a wrapped `hermes` launch gets `HERMES_ENABLE_PROJECT_PLUGINS=1`. Plain `codex`, `codex resume --last`, `hermes`, `hermes chat -q <prompt>`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `hermes -z`, `hermes chat --oneshot`, `hermes setup`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
 
 ### Live Checks
 
@@ -267,7 +267,8 @@ loop_id=$(wait_for_record armed)
 session_id=$(grep -oE '"sessionId":"[^"]*"' "$state/relaunch-$loop_id.json" | cut -d'"' -f4)
 printf '{"level":2}\n' > "$state/nudge-$session_id.json"
 say "Run the shell command 'echo staying'. Then quote, word for word, the first sentence of every [session-relaunch] message you received since my last message, and reply STAYING."
-sleep 30
+for _ in $(seq 1 100); do screen | grep -qE '^ *(• *)?STAYING\.? *$' && break; sleep 3; done
+sleep 5
 record_field "$loop_id" status; record_field "$loop_id" disarmReason
 cli should-relaunch --loop-id "$loop_id"; echo "exit $?"
 grep -E ' (withdrawn|killer-signal|relaunch) ' "$state/relaunch.log" | tail -5
@@ -285,6 +286,8 @@ Expected:
 - The nudge file ends as `{"level":2}`. Right after the withdraw it held a `rearm` field, and the nudge that was delivered removed it.
 - `history` ends with a `withdrawn` line that carries `by <first eight characters of the session id>`, then `open notes: 1 withdrawn note still with its session`.
 
+The reply takes 30 to 70 seconds, not a fixed 30, which is why the block polls the pane for the final `STAYING` line (up to 5 minutes) instead of sleeping. Two live runs on 2026-10-24 (Codex 0.164.0, `gpt-6-luna`, `--sandbox danger-full-access`) took 31 s and 64 s from the prompt to the reply, and both quoted the notice and the extra nudge word for word. In the 64 s run Codex also followed the nudge: it rewrote the note, ran `prepare` and then `cancel`, so the record read `cancelled` when the block checked it, the log held a second `cancel` line and `history` a second `withdrawn` line. That is the session's own reaction to the nudge, not a failure: judge the withdraw by the `withdrawn ... reason=user-message` log line and the two quoted sentences.
+
 Then end the session and read the wrapper:
 
 ~~~bash
@@ -296,7 +299,7 @@ tmux display -p -t "$session_name" '#{pane_dead_status}'
 
 Expected: one line `warning: the prepared hand-over was withdrawn in the session; <note path> stays open and out of date`, no line that carries `claim and continue handoff` (the manual claim command) and `0` for the pane status.
 
-Evidence: the command output, the pane text and `relaunch.log`. PASS when the record is disarmed with `user-message`, the prompt carried the notice, the tool call carried the extra nudge, the session kept running and the wrapper printed the single warning without a claim command. FAIL when the record stays armed, the log shows `killer-signal`, a second Codex starts with a seed, no extra nudge arrives or the nudge file still holds `rearm` after Codex quoted the nudge. Triage: if the pane shows the relaunch already, the prompt landed after the 3 s idle wait, so rerun. If `wait_for_record armed` never returns, read `relaunch.log` for `stop-arm-error`, `missing-transcript-path` or `prepare-declined`. If the quote lists only the notice, the tool call finished before the fill grew a step, so send one more prompt that runs a tool.
+Evidence: the command output, the pane text and `relaunch.log`. PASS when the record is disarmed with `user-message`, the prompt carried the notice, the tool call carried the extra nudge, the session kept running and the wrapper printed the single warning without a claim command. FAIL when the record stays armed, the log shows `killer-signal`, a second Codex starts with a seed, no extra nudge arrives or the nudge file still holds `rearm` after Codex quoted the nudge. Triage: if the pane shows the relaunch already, the prompt landed after the 3 s idle wait, so rerun. If the poll runs out without a `STAYING` line, read the pane for an approval prompt, since Codex asks before a shell command unless it started with the approval options you normally use. If `wait_for_record armed` never returns, read `relaunch.log` for `stop-arm-error`, `missing-transcript-path` or `prepare-declined`. If the quote lists only the notice, the tool call finished before the fill grew a step, so send one more prompt that runs a tool.
 
 #### CX-3 Cancel a prepared Codex hand-over (Live)
 

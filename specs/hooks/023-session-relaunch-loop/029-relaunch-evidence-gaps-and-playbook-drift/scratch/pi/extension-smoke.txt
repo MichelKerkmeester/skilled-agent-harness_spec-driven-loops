@@ -1,0 +1,3 @@
+2026-10-24T22:57:55Z
+402: {"message":"You've reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for the window to roll over — resets in 16 hours. Enable pay-as-you-go overflow in your DevPass dashboard to keep going past the daily pace.","type":"invalid_request_error","param":null,"code":"billing_error"}
+exit 1

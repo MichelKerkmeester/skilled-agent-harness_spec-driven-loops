@@ -131,7 +131,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 26 | 026-goal-rebind-shared-core-and-opencode/ | Pi, Devin, Cursor, Hermes and OpenCode bind the hand-over goal packet on the first turn when they have no goal of their own | Complete |
 | 27 | 027-goal-rebind-claude-and-codex/ | A Claude or Codex receiver sets the hand-over goal from `goal.md` on the path phase 24 proved, within the 4,000-character slice limit, or asks for the fenced slice | Pending |
 | 28 | 028-goal-rebind-live-proof-and-docs/ | Live hops prove the goal survives a hand-over on each runtime, with switch-off and no-goal controls, playbook scenarios and doc updates | Pending |
-| 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Pending |
+| 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Complete |
 
 ### Phase Transition Rules
 

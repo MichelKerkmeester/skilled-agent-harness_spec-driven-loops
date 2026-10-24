@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-24 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |
@@ -194,6 +194,7 @@ Every claim the relaunch playbooks and live records make is backed by a run that
 ## 10. OPEN QUESTIONS
 
 - If the retry has no producer in our code, is a measured rate enough to close it? The recommendation is yes, with the rate and the runtime version recorded.
+  - Answered: the retry has a measured rate (0 of 7 first-attempt deliveries with an instant tool, 3 of 3 with a 3 s tool, Claude Code 2.1.310) and a named mechanism, a transcript flush that trails the hook by about 0.2 s. The read is in our hook, so the follow-up on the nudge floor stays open for the code owner.
 <!-- /ANCHOR:questions -->
 
 ---

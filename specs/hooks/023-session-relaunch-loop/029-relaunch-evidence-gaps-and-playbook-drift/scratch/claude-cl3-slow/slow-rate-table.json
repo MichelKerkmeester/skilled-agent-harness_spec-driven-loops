@@ -1,0 +1,36 @@
+[
+ {
+  "trial": "trial-1",
+  "promptFill": 72885,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 73519,
+  "firstPostStale": false,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":728.9}}",
+  "firstNudgeDeliveredBy": "PostToolUse",
+  "firstNudgeSecondsAfterNotice": "6.1",
+  "firstAttemptDelivered": true
+ },
+ {
+  "trial": "trial-2",
+  "promptFill": 73098,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 73672,
+  "firstPostStale": false,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":731.03}}",
+  "firstNudgeDeliveredBy": "PostToolUse",
+  "firstNudgeSecondsAfterNotice": "6.1",
+  "firstAttemptDelivered": true
+ },
+ {
+  "trial": "trial-3",
+  "promptFill": 73030,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 73637,
+  "firstPostStale": false,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":730.35}}",
+  "firstNudgeDeliveredBy": "PostToolUse",
+  "firstNudgeSecondsAfterNotice": "5.0",
+  "firstAttemptDelivered": true
+ }
+]
+first-attempt deliveries: 3 of 3

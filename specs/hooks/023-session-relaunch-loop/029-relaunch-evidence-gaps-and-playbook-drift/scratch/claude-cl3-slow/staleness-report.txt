@@ -1,0 +1,8 @@
+trial-3	Bash	STALE	age=181ms
+trial-3	Write	STALE	age=114ms
+trial-3	Bash	fresh	age=243ms
+trial-3	Bash	STALE	age=106ms
+trial-3	Bash	fresh	age=3147ms
+PostToolUse hooks: 15, stale reads: 9
+stale entry age (hook ts minus newest entry ts): min=88 max=181
+fresh entry age: min=216 max=3147

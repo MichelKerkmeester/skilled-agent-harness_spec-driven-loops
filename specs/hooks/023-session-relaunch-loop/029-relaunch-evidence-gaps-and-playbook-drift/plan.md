@@ -35,16 +35,16 @@ Rerun each thin run with the evidence it lacked, trace the retry to its producer
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Credentials for Codex and Claude available, or the rerun recorded as SKIP
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Credentials for Codex and Claude available, or the rerun recorded as SKIP
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] Every gap closed or recorded as open with its reason
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
+- [x] Every gap closed or recorded as open with its reason
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -158,8 +158,8 @@ Pi baseline ──────────────► Playbook edits
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline relaunch gate recorded
-- [ ] Leftover hand-over records cleared
+- [x] Baseline relaunch gate recorded
+- [x] Leftover hand-over records cleared
 
 ### Rollback Procedure
 1. Revert any code fix.

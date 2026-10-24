@@ -35,13 +35,28 @@
       "object"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/claude-cl3/staleness-report.txt",
+      "scratch/claude-cl3-slow/staleness-report.txt",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+      "scratch/pi/extension-smoke.txt",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      "scratch/baseline-relaunch-gate.tap",
+      "scratch/final-relaunch-gate.tap",
+      "scratch/validate-strict.txt",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
+      "scratch/pi/vitest-baseline.txt",
+      "scratch/playbook-drift/import-smoke.txt",
+      "scratch/codex-cx2/run-1/pane-final.txt"
     ],
     "entities": [
       {
@@ -72,6 +87,84 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "staleness-report.txt",
+        "kind": "file",
+        "path": "scratch/claude-cl3/staleness-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "extension-smoke.txt",
+        "kind": "file",
+        "path": "scratch/pi/extension-smoke.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-pi-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-command-runtimes.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-relaunch-gate.tap",
+        "kind": "file",
+        "path": "scratch/baseline-relaunch-gate.tap",
+        "source": "derived"
+      },
+      {
+        "name": "final-relaunch-gate.tap",
+        "kind": "file",
+        "path": "scratch/final-relaunch-gate.tap",
+        "source": "derived"
+      },
+      {
+        "name": "validate-strict.txt",
+        "kind": "file",
+        "path": "scratch/validate-strict.txt",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-baseline.txt",
+        "kind": "file",
+        "path": "scratch/pi/vitest-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "import-smoke.txt",
+        "kind": "file",
+        "path": "scratch/playbook-drift/import-smoke.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pane-final.txt",
+        "kind": "file",
+        "path": "scratch/codex-cx2/run-1/pane-final.txt",
         "source": "derived"
       },
       {
@@ -109,89 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Rerun",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Observe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The phase 23 live runs showed that Codex withdraw output was never captured because the wait was 30 seconds, that Claude extra nudge arrived only after one retry, and that the Pi suites were not rerun because no Pi code changed",
     "created_at": "2026-10-24T19:03:15Z",
-    "last_save_at": "2026-10-24T19:14:39.255Z",
+    "last_save_at": "2026-10-24T23:03:06.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc8dfb4cfa617c25891dd92cc5a5b77c19f5a36329e4a208150426b8d2f6e524",
+    "source_fingerprint": "sha256:7ec73e8607045022c8f8b0f71684225acf2acc04b691048d708aa947772e0682",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f3e660e0fd222bc9842c25ccf6eda3a57ac43d6d24a7b128cda03e33dbbc1fb9",
-      "plan.md": "93c385ae3b317218d866d2f094741cd4501d5cc1bdbcaf9429ccdbd97ddd3eaa",
-      "tasks.md": "521f9e8a1b005678b70592cd9b750b03e647fae292728e7895970e72d63559cc",
-      "implementation-summary.md": "4da569d5d298267d3df9b1ef54c33d7db753a9374e1e005d436eaf533a0cd8db"
+      "spec.md": "9509de8ed6f71bd100ea87184a9cfa217048b6b75fae44f279f0dc757bc2efc5",
+      "plan.md": "ccda3a9fec90400415df3c765cad9ba233df98b65fdaca965090bccf7a20d2d3",
+      "tasks.md": "56ef02936db5561519ba6256096400a0e8ee6869773f85cf38813b71441ef2ee",
+      "implementation-summary.md": "9796daa445f3fa1997a027fe1b036ff93c17a664012d5e2283b50d99a5552663"
     },
     "last_active_at": null
   }

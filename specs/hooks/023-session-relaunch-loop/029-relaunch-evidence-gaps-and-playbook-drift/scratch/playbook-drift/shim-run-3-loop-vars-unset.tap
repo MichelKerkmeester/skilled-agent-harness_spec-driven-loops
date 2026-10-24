@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: bash: every interactive form finds the wrapper through a symlinked .skilled
+ok 1 - bash: every interactive form finds the wrapper through a symlinked .skilled
+  ---
+  duration_ms: 149.294125
+  type: 'test'
+  ...
+# Subtest: bash: subcommands, print modes, version and help pass through
+ok 2 - bash: subcommands, print modes, version and help pass through
+  ---
+  duration_ms: 129.328791
+  type: 'test'
+  ...
+# Subtest: bash: a directory with no .skilled above it resolves nothing
+ok 3 - bash: a directory with no .skilled above it resolves nothing
+  ---
+  duration_ms: 20.6195
+  type: 'test'
+  ...
+# Subtest: bash: a session already under the loop resolves nothing
+ok 4 - bash: a session already under the loop resolves nothing
+  ---
+  duration_ms: 20.250291
+  type: 'test'
+  ...
+# Subtest: bash: an unknown runtime resolves nothing
+ok 5 - bash: an unknown runtime resolves nothing
+  ---
+  duration_ms: 6.896875
+  type: 'test'
+  ...
+# Subtest: zsh: every interactive form finds the wrapper through a symlinked .skilled
+ok 6 - zsh: every interactive form finds the wrapper through a symlinked .skilled
+  ---
+  duration_ms: 196.024958
+  type: 'test'
+  ...
+# Subtest: zsh: subcommands, print modes, version and help pass through
+ok 7 - zsh: subcommands, print modes, version and help pass through
+  ---
+  duration_ms: 166.928708
+  type: 'test'
+  ...
+# Subtest: zsh: a directory with no .skilled above it resolves nothing
+ok 8 - zsh: a directory with no .skilled above it resolves nothing
+  ---
+  duration_ms: 27.459417
+  type: 'test'
+  ...
+# Subtest: zsh: a session already under the loop resolves nothing
+ok 9 - zsh: a session already under the loop resolves nothing
+  ---
+  duration_ms: 26.994042
+  type: 'test'
+  ...
+# Subtest: zsh: an unknown runtime resolves nothing
+ok 10 - zsh: an unknown runtime resolves nothing
+  ---
+  duration_ms: 8.411459
+  type: 'test'
+  ...
+# Subtest: bash: without a terminal the runtime function runs the binary directly
+ok 11 - bash: without a terminal the runtime function runs the binary directly
+  ---
+  duration_ms: 17.780209
+  type: 'test'
+  ...
+# Subtest: bash: on a terminal the runtime function hands the launch to the wrapper
+ok 12 - bash: on a terminal the runtime function hands the launch to the wrapper
+  ---
+  duration_ms: 60.160833
+  type: 'test'
+  ...
+# Subtest: bash: a wrapped hermes launch alone enables project plugins
+ok 13 - bash: a wrapped hermes launch alone enables project plugins
+  ---
+  duration_ms: 27.939625
+  type: 'test'
+  ...
+# Subtest: bash: runtime functions still work after a snapshot drops single-underscore functions
+ok 14 - bash: runtime functions still work after a snapshot drops single-underscore functions
+  ---
+  duration_ms: 35.114417
+  type: 'test'
+  ...
+# Subtest: zsh: without a terminal the runtime function runs the binary directly
+ok 15 - zsh: without a terminal the runtime function runs the binary directly
+  ---
+  duration_ms: 18.807625
+  type: 'test'
+  ...
+# Subtest: zsh: on a terminal the runtime function hands the launch to the wrapper
+ok 16 - zsh: on a terminal the runtime function hands the launch to the wrapper
+  ---
+  duration_ms: 82.103459
+  type: 'test'
+  ...
+# Subtest: zsh: a wrapped hermes launch alone enables project plugins
+ok 17 - zsh: a wrapped hermes launch alone enables project plugins
+  ---
+  duration_ms: 31.028708
+  type: 'test'
+  ...
+# Subtest: zsh: runtime functions still work after a snapshot drops single-underscore functions
+ok 18 - zsh: runtime functions still work after a snapshot drops single-underscore functions
+  ---
+  duration_ms: 40.756542
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1105.927375

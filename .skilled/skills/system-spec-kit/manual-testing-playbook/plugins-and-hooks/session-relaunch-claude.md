@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.10.0
+version: 1.0.11.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -410,7 +410,7 @@ Run the shell shim suite. It sources `.skilled/bin/skilled-loop-shell.sh` under 
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 16 tests pass. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
+Evidence: all 18 tests pass, nine cases each run under bash and zsh. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
 
 #### Symlinked repository through the shell shim (Live)
 
@@ -565,7 +565,7 @@ Expected before you type: `"status":"pending"`, a `deferredAt` stamp, `{"relaunc
 
 ~~~bash
 printf '{"level":2}\n' > "$state/nudge-$session_id.json"
-say "Run the shell command 'echo staying'. Then quote, word for word, the first sentence of every [session-relaunch] message you received since my last message, and reply STAYING."
+say "Run the shell command 'sleep 3; echo staying'. Then quote, word for word, the first sentence of every [session-relaunch] message you received since my last message, and reply STAYING."
 sleep 25
 record_field "$loop_id" disarmReason
 cat "$state/nudge-$session_id.json"
@@ -580,9 +580,11 @@ Expected:
 - The nudge file ends as `{"level":2}`. Right after the withdraw it held a `rearm` field, and the nudge that was delivered removed it.
 - `history` ends with the `withdrawn` line and the `open notes:` line.
 
+The tool call has to last about a second or more. Claude writes an assistant entry to its transcript roughly 0.2 s after the entry's own timestamp, and the nudge reads the context fill from that transcript. A `PostToolUse` hook that starts sooner reads the fill from before the prompt, sees no growth past the withdraw floor and stays quiet, so the extra nudge waits for the next hook. Seven runs of this check with `echo staying` (Claude Code 2.1.310, `claude-sonnet-5-5`, 2026-10-24) delivered the nudge on the first tool call 0 times, and the nudge arrived with the next prompt instead. Three runs with `sleep 3; echo staying` delivered it on the first tool call 3 times, 5 to 6 s after the notice. Of 57 `PostToolUse` hooks across the ten runs, 38 read a transcript that was missing an entry older than the hook, always by an entry younger than about 0.18 s.
+
 The extra nudge asks for a fresh note. Ignore it and end the check with `tmux kill-session`.
 
-Evidence: the record field, the nudge file, the pane text and the history lines. PASS when the record is disarmed with `user-message`, the prompt carried the withdraw notice and the later tool call carried the extra nudge. FAIL when the record stays pending, the notice is missing, no extra nudge arrives after the tool call or `nudge-<session id>.json` still holds `rearm` after Claude quoted the nudge. Triage: when the quote lists only the notice, the tool call may have finished before the fill grew a step, so send one more prompt that runs a tool.
+Evidence: the record field, the nudge file, the pane text and the history lines. PASS when the record is disarmed with `user-message`, the prompt carried the withdraw notice and the later tool call carried the extra nudge. FAIL when the record stays pending, the notice is missing, no extra nudge arrives after the tool call or `nudge-<session id>.json` still holds `rearm` after Claude quoted the nudge. Triage: when the quote lists only the notice, the tool call was too short for the transcript to catch up, so rerun with a longer tool call or send one more prompt that runs a tool.
 
 #### CL-4 A task-notification prompt leaves a deferred hand-over alone (Live)
 

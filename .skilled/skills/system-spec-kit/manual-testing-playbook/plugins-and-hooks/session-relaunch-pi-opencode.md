@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.10.0
+version: 1.0.11.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -35,7 +35,7 @@ Operators run five automatable checks and one live hop in each runtime. They ver
 - Real user request: Carry a short task through a context handoff in Pi or OpenCode, then finish it in the new session.
 - Prompt: `Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready.`
 - Expected execution process: Run the Pi extension smoke with -ne -e, the OpenCode import smoke, both adapter suites and the wrapper runtime suite. Start Pi with its provider, model and explicit extension selection. Start OpenCode with its model selection. Use separate tmux sessions with a low hop cap, follow each generated handoff and observe the wrapper relaunch.
-- Expected signals: Automatable commands exit 0. Pi loads the extension with `-ne -e`. OpenCode import prints `function`. Adapter suites pass. Wrapper tests record `SKILLED_LOOP_RUNTIME` and the Pi and OpenCode seed arguments. Each live handoff is prepared and armed for its matching runtime, then the wrapper starts a fresh runtime with the claim seed.
+- Expected signals: Automatable commands exit 0. Pi loads the extension with `-ne -e`. OpenCode import prints `object`. Adapter suites pass. Wrapper tests record `SKILLED_LOOP_RUNTIME` and the Pi and OpenCode seed arguments. Each live handoff is prepared and armed for its matching runtime, then the wrapper starts a fresh runtime with the claim seed.
 - Desired user-visible outcome: The receiving session claims the same handoff and continues the unfinished task.
 - Pass/fail: PASS if all five automatable checks pass, both live runs show the matching runtime restart and claim seed and checks PO-1 to PO-6 meet their signals. FAIL if a smoke or suite exits non-zero, the wrapper uses the wrong runtime arguments, either live run does not reach the expected handoff or a new turn leaves an armed record in place.
 
@@ -47,7 +47,7 @@ Operators run five automatable checks and one live hop in each runtime. They ver
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| session-relaunch-pi-opencode | Pi and OpenCode session relaunch adapters | Run five automatable checks and one live handoff in each runtime. | Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. | Pi extension smoke -> OpenCode import smoke -> Pi adapter suite -> OpenCode adapter suite -> wrapper runtime suite -> live Pi tmux hop -> live OpenCode tmux hop | Automatable commands exit 0. The Pi smoke loads its extension with `-ne -e`. OpenCode import prints `function`. The wrapper tests show Pi name ordering and OpenCode `--prompt` without a name flag. Each live run arms the matching record and starts a fresh runtime with the claim seed. `history` shows `handed-over (hop 1)`, `claimed ... by <id>` and `done` (PO-1). A new turn over an armed record disarms it with `user-message`, logs `arm-cancelled` and leaves a `withdrawn` history line (PO-2). | Capture command output and exit codes. For each live run capture the tmux transcript, runtime log entries and handoff status from open through claimed. | PASS when every automated check exits 0 and both live sessions claim their prepared handoff after the matching wrapper relaunch. FAIL when an automated check fails, a runtime is mismatched or a live claim seed is not delivered. | 1. Confirm the adapter path and host smoke command. 2. Check adapter event logs and the matching runtime field in the pending record. 3. Check the killer result, hop limit and runtime-specific seed arguments. |
+| session-relaunch-pi-opencode | Pi and OpenCode session relaunch adapters | Run five automatable checks and one live handoff in each runtime. | Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. | Pi extension smoke -> OpenCode import smoke -> Pi adapter suite -> OpenCode adapter suite -> wrapper runtime suite -> live Pi tmux hop -> live OpenCode tmux hop | Automatable commands exit 0. The Pi smoke loads its extension with `-ne -e`. OpenCode import prints `object`. The wrapper tests show Pi name ordering and OpenCode `--prompt` without a name flag. Each live run arms the matching record and starts a fresh runtime with the claim seed. `history` shows `handed-over (hop 1)`, `claimed ... by <id>` and `done` (PO-1). A new turn over an armed record disarms it with `user-message`, logs `arm-cancelled` and leaves a `withdrawn` history line (PO-2). | Capture command output and exit codes. For each live run capture the tmux transcript, runtime log entries and handoff status from open through claimed. | PASS when every automated check exits 0 and both live sessions claim their prepared handoff after the matching wrapper relaunch. FAIL when an automated check fails, a runtime is mismatched or a live claim seed is not delivered. | 1. Confirm the adapter path and host smoke command. 2. Check adapter event logs and the matching runtime field in the pending record. 3. Check the killer result, hop limit and runtime-specific seed arguments. |
 
 ### Automatable Checks
 
@@ -70,7 +70,7 @@ Evidence: exit code 0 confirms Pi loads the extension in this smoke mode. It doe
 node -e "import('./.opencode/plugins/session-relaunch.js').then(m=>console.log(typeof m.default))"
 ~~~
 
-Evidence: stdout is `function` and the command exits 0.
+Evidence: stdout is `object` and the command exits 0. The module's default export is the dual-plugin object that `dualPlugin` returns, with the keys `id`, `server` and `setup`, so `typeof m.default` is `object`. It printed `function` only while the export was still the bare plugin function.
 
 #### Pi adapter suite (Automatable)
 
@@ -102,7 +102,7 @@ Evidence: the wrapper suite records `SKILLED_LOOP_RUNTIME`, Pi `--name` before t
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 16 tests pass under bash and zsh. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop note-only nudge for both adapters is the `a nudge outside skilled-loop asks for keep and never prepare` case in `.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
+Evidence: all 18 tests pass under bash and zsh. The suite holds nine cases and runs each under both shells. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop note-only nudge for both adapters is the `a nudge outside skilled-loop asks for keep and never prepare` case in `.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
 
 ### Live Checks
 
