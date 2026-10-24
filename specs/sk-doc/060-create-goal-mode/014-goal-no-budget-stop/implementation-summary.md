@@ -118,7 +118,7 @@ The change removes code from one plugin file and updates its tests and docs. The
 ## Known Limitations
 
 1. **A goal can now run without any ceiling.** You stop it with `/goal-opencode pause` or `/goal-opencode clear`.
-2. **A record an older version already suppressed stays suppressed.** A record suppressed with a cap or budget reason has `continuationSuppressed` true. It stays that way until it is set again or the two-day active-state sweep archives it. `/goal-opencode resume` works only for `paused`, `usage_limited` and `budget_limited` records.
+2. **A record an older version already suppressed stays suppressed.** A record suppressed with a cap or budget reason has `continuationSuppressed` true, and nothing clears that flag on its own. Setting the goal again replaces it. The only cleanup that touches such a record is archiving, which removes it from active state without clearing the flag: `session.deleted` archives the session's record at once, and the orphan sweep (run on `session.created`, at most once an hour) archives an active-state file that nothing has updated for more than two days (`OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS`). As built here, `/goal-opencode resume` works only for `paused`, `usage_limited` and `budget_limited` records; a later phase makes it clear a retired cap or budget suppression.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-24 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |
@@ -194,7 +194,9 @@ An older suppressed goal can be resumed, the budget option tells the operator it
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Keep `--budget` with a notice, or remove it? The recommendation is the notice, because the docs and playbooks still pass the option and a removal would break those calls for a number that ends nothing anyway.
+- Resolved, operator-default decision: keep `--budget` with a notice. The docs and playbooks still pass the option and a removal would break those calls for a number that ends nothing anyway. The notice ships as the `notice=` line.
+- Open: the live autonomy run needs a model with quota. The default route returned a 402 quota error, so REQ-002 and AC-002 wait on a rerun or an operator waiver.
+- Note: `--budget 0` is rejected with `INVALID_TOKEN_BUDGET` (the existing contract and test), so it is not recorded and gets no notice, which differs from the edge case listed above.
 <!-- /ANCHOR:questions -->
 
 ---

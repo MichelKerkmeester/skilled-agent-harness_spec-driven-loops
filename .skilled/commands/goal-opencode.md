@@ -42,11 +42,11 @@ This command is state-free. It never reads or writes `.skilled/skills/.state/goa
 - `resent` routes to `opencode_goal` with `action: "resent"`, recording that the current durable slice was resent in chat so the reminder stops.
 - `log <item> | <state> | <evidence>` routes to `opencode_goal` with `action: "log"` and the three parts; the row lands below the packet's log anchor under the per-packet lock and never touches the durable slice.
 - `packet <packet-path>` routes to `opencode_goal` with `action: "packet"` and `packetPath`: a session-free read of the packet's durable slice, hash and size.
-- `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`. The budget is a recorded reading only and never stops a goal.
+- `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`. The budget is a recorded reading only and never stops a goal; the reply carries one `notice=` line that says so.
 - `set <objective>` routes to `opencode_goal` with `action: "set"` and `objective: REST`.
 - Bare text routes to `opencode_goal` with `action: "set"` and `objective: QUERY`.
 - `history`, `doctor`, and `health` route to read-only `opencode_goal` actions. `history` returns `archive_count` and `archive_N_*` fields. `doctor`/`health` return `active_state_file_count`, `archive_file_count`, log byte sizes, `last_sweep_at`, and `orphan_candidate_count`.
-- `clear`, `complete`, `resume`, and `pause [reason]` route to `opencode_goal`.
+- `clear`, `complete`, `resume`, and `pause [reason]` route to `opencode_goal`. `resume` also releases an active goal that an older version suppressed with a retired cap or budget reason.
 - Any other non-empty `QUERY` is treated as bare goal text and routes to `opencode_goal` with `action: "set"` and `objective: QUERY`.
 
 Status output reports the continuation field `provider_retry_after_ms`. No budget, turn count or elapsed time limits continuation.

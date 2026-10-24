@@ -35,16 +35,16 @@ Build a record the way the old plugin left it in a failing test first, make resu
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] The retired suppression reasons are named from the plugin code
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] The retired suppression reasons are named from the plugin code
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] The goal suites and the shared hook suites pass at their baselines
+- [ ] All acceptance criteria met (AC-002, the live run, is a SKIP)
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
+- [x] The goal suites and the shared hook suites pass at their baselines
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -158,8 +158,8 @@ Failing test ──► Resume change ──► Budget notice ──► Docs ─�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baselines for the OpenCode goal suites and the shared hook suites recorded
-- [ ] Retired suppression reasons named
+- [x] Baselines for the OpenCode goal suites and the shared hook suites recorded
+- [x] Retired suppression reasons named
 
 ### Rollback Procedure
 1. Revert the diff.

@@ -35,13 +35,25 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/commands/goal-opencode.md",
+      "specs/sk-doc/060-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md",
+      "scratch/live-run-skip.txt",
+      "scratch/plugin-harness-run.mjs",
+      "scratch/plugin-harness-output.txt",
+      "scratch/gate-summary.txt",
+      ".opencode/plugins/tests/goal-doc-contract.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md"
     ],
     "entities": [
       {
@@ -75,7 +87,79 @@
         "source": "derived"
       },
       {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-capabilities.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-run-skip.txt",
+        "kind": "file",
+        "path": "scratch/live-run-skip.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-harness-run.mjs",
+        "kind": "file",
+        "path": "scratch/plugin-harness-run.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-harness-output.txt",
+        "kind": "file",
+        "path": "scratch/plugin-harness-output.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-summary.txt",
+        "kind": "file",
+        "path": "scratch/gate-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-doc-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/goal-doc-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,12 +189,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,77 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Build",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 14 left three loose ends",
     "created_at": "2026-10-24T19:03:21Z",
-    "last_save_at": "2026-10-24T19:14:39.242Z",
+    "last_save_at": "2026-10-24T21:55:15.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:342ace6485ef64f2a218059c88aa191e901885c7964cd83da17f3b61dd19e825",
+    "source_fingerprint": "sha256:799090e24a7eb2eac4fc664caada6ab0c382ab70700599fba4f384bce0c22369",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfcc8ef67fb33986f434227c15e2eb550459736f77628aa6ba5b108a61438518",
-      "plan.md": "8be34b3b34f7cbf3d4642497855d99689a2bbc116b1fdc140bd2cab6c0b0d342",
-      "tasks.md": "2d315bd6cbfcff0374304ada5aefa05114aa33a2d03e3abc0d59d601cb75100c",
-      "implementation-summary.md": "1b384efe89fa56d1d5d09fe8ca553eae5d32fa9ec91076cec5f238164c71ceb5"
+      "spec.md": "95be02417297992518de12c508c6a4fef43bba40355cf7a7f6c9fd8e37b72e7c",
+      "plan.md": "dcb100f1ae9438e78a8387204d8739cf8cdf5723245a884e07aa1f2b7998cdaa",
+      "tasks.md": "0f74d7fb173c3978aec39a57e22a3e9dd2becdfb20f4304957b93a918abe83ee",
+      "implementation-summary.md": "bcc62a43c07bf9f354f170c601ff561df8deb6210ebfe55c7b094578c03da390"
     },
     "last_active_at": null
   }

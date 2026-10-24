@@ -193,6 +193,16 @@ const STATUS_TRANSITIONS = Object.freeze({
   budget_limited: new Set(['active', 'budget_limited', 'complete']),
   complete: new Set(['complete']),
 });
+// Reasons an older version recorded when a turn cap, a wall-clock cap or a token
+// budget stopped continuation. Nothing writes them now, but a record saved
+// before those stops were removed can still carry one, and resume has to be
+// able to release it. Any other reason on an active record is left alone.
+const RETIRED_SUPPRESSION_REASONS = new Set([
+  'auto_turn_cap_reached',
+  'wall_clock_cap_reached',
+  'budget_exhausted',
+  'token budget reached',
+]);
 const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
 const EMPTY_INJECTION_PREVIEW = '';
 const GOAL_ACTIONS = ['set', 'bind', 'unbind', 'resent', 'log', 'packet', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
@@ -2265,7 +2275,11 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
     : null;
   return mutateGoal(sessionID, (current) => {
     if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set for this session');
-    if (allowedFrom && !allowedFrom.has(current.status)) {
+    const legacySuppressed = rawOptions.allowRetiredSuppression === true
+      && current.status === 'active'
+      && current.continuationSuppressed === true
+      && RETIRED_SUPPRESSION_REASONS.has(current.continuationSuppressedReason);
+    if (allowedFrom && !allowedFrom.has(current.status) && !legacySuppressed) {
       throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
     }
     if (!STATUS_TRANSITIONS[current.status]?.has(status)) {
@@ -2297,6 +2311,7 @@ async function resumeGoal(sessionID, rawOptions = {}) {
   return markGoalStatus(sessionID, 'active', {
     ...rawOptions,
     allowedFrom: ['paused', 'usage_limited', 'budget_limited'],
+    allowRetiredSuppression: true,
   });
 }
 
@@ -3267,6 +3282,16 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
   return lines.join('\n');
 }
 
+// The budget figure is stored and shown but never ends, pauses or silences a
+// goal, so a caller that passes one is told so once, when it is recorded.
+function budgetNoticeLine(tokenBudget) {
+  if (tokenBudget === undefined || tokenBudget === null) return '';
+  const recorded = normalizeTokenBudget(tokenBudget);
+  const text = `token budget ${recorded} is recorded as a reading only and is never enforced; `
+    + 'no budget ends or pauses a goal';
+  return `\nnotice=${quoteValue(text)}`;
+}
+
 function historyLines(records) {
   const lines = [
     'STATUS=OK ACTION=history',
@@ -3343,7 +3368,9 @@ async function executeGoalAction(args, context, rawOptions = {}) {
       const budgetLine = packet && packet.budgetState === 'over'
         ? `\npacket_budget=${packet.budgetState}\nwarning=${quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budget.errorChars}-character limit`)}`
         : (packet ? `\npacket_budget=${packet.budgetState}` : '');
-      return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions) + budgetLine;
+      return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions)
+        + budgetLine
+        + budgetNoticeLine(args?.tokenBudget);
     }
     if (action === 'resent') {
       const goal = await noteResent(sessionID, { ...options, directory: options.directory || context?.directory });
@@ -3391,7 +3418,9 @@ async function executeGoalAction(args, context, rawOptions = {}) {
       const truncationLine = rawLength > options.maxObjectiveChars
         ? `\nwarning=${quoteValue(`objective was ${rawLength} characters and was truncated to ${options.maxObjectiveChars}; the tail is lost`)}`
         : '';
-      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions) + truncationLine;
+      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions)
+        + truncationLine
+        + budgetNoticeLine(args?.tokenBudget);
     }
     if (action === 'clear') {
       await clearGoal(sessionID, options);

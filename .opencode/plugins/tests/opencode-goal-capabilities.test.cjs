@@ -223,6 +223,38 @@ test('token budget appears in status and invalid set budgets fail closed', async
   assert.match(invalid, /code=INVALID_TOKEN_BUDGET/);
 }));
 
+test('recording a token budget prints one notice that it is a reading and never enforced', async () => withState(async ({ helpers, stateDir }) => {
+  const ctx = { sessionID: 'session-budget-notice' };
+  const set = await helpers.executeGoalAction(
+    { action: 'set', objective: 'Budget notice goal', tokenBudget: 5000 },
+    ctx,
+    { stateDir, nowMs: 1000, includeInjectionPreview: false },
+  );
+  assert.match(set, /STATUS=OK ACTION=set/);
+  assert.match(set, /token_budget=5000/);
+  const notices = set.split('\n').filter((line) => line.startsWith('notice='));
+  assert.equal(notices.length, 1);
+  assert.match(notices[0], /5000/);
+  assert.match(notices[0], /reading only/);
+  assert.match(notices[0], /never enforced/);
+
+  const plain = await helpers.executeGoalAction(
+    { action: 'set', objective: 'No budget notice goal' },
+    { sessionID: 'session-no-budget-notice' },
+    { stateDir, nowMs: 2000, includeInjectionPreview: false },
+  );
+  assert.match(plain, /STATUS=OK ACTION=set/);
+  assert.doesNotMatch(plain, /^notice=/m);
+
+  const refreshed = await helpers.executeGoalAction(
+    { action: 'set', objective: 'Budget notice goal' },
+    ctx,
+    { stateDir, nowMs: 3000, includeInjectionPreview: false },
+  );
+  assert.match(refreshed, /token_budget=5000/);
+  assert.doesNotMatch(refreshed, /^notice=/m);
+}));
+
 test('the retired cap env vars change nothing and status reports no cap fields', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_MAX_AUTO_TURNS = '3';
   process.env.OPENCODE_GOAL_MAX_WALL_MS = '4000';

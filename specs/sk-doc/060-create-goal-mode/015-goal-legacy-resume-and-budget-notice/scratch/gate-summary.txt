@@ -1,0 +1,6 @@
+Gate summaries (node --test --test-reporter=tap), recorded 2026-10-24
+baseline opencode-goal-*.test.cjs: # tests 151 # pass 151 # fail 0 # skipped 0  exit=0
+final opencode-goal-*.test.cjs: # tests 155 # pass 155 # fail 0 # skipped 0  exit=0
+baseline goal-core.test.cjs: # tests 87 # pass 87 # fail 0 # skipped 0  exit=0
+final goal-core.test.cjs: # tests 87 # pass 87 # fail 0 # skipped 0  exit=0
+drift guards: run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)
