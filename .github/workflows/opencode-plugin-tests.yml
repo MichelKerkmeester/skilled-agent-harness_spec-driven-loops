@@ -25,6 +25,7 @@ on:
       - 'manifest.json'
       - 'wrangler.toml'
       - 'src/**'
+      - '.github/actions/**'
       - '.github/workflows/opencode-plugin-tests.yml'
   push:
     branches: [main, 'skilled/**']
@@ -42,7 +43,15 @@ on:
       - 'manifest.json'
       - 'wrangler.toml'
       - 'src/**'
+      - '.github/actions/**'
       - '.github/workflows/opencode-plugin-tests.yml'
+  workflow_dispatch:
+    inputs:
+      cold:
+        description: Provision from scratch instead of restoring the cache
+        type: choice
+        options: ['false', 'true']
+        default: 'false'
 
 permissions:
   contents: read
@@ -68,13 +77,9 @@ jobs:
       # provisioning installs and builds every tree it lists, the sk-vision bundle
       # among them.
       - name: Provision the dependency trees the plugin tests import
-        run: |
-          set -euo pipefail
-          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
-          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
-          source .skilled/skills/sk-git/scripts/worktree-naming.sh
-          provision_worktree "$GITHUB_WORKSPACE"
+        uses: ./.github/actions/setup
+        with:
+          cache: ${{ inputs.cold != 'true' }}
 
       # Node 22 takes a glob here, not a directory.
       - name: Run the plugin suites
