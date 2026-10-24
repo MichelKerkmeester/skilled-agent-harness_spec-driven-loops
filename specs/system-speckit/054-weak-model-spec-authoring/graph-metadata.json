@@ -142,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "Replace Pending",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "The Level",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -164,18 +158,24 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A DeepSeek V4.1 Flash worker that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-24T17:34:59.934Z",
+    "last_save_at": "2026-10-24T23:24:12.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c517a7e68d933a4524b90e7b2297ebbc6cae2d93219e2d41f476848058f9226c",
+    "source_fingerprint": "sha256:1f0fc0e97b47b83f44b91e01ee9b10a57401075aa225ac9a6caae668755596f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0466ead7f0acc10c1ae8b39acc919546762016f466ec2064294e3ad36ff52bd9"
