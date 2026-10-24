@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The example docs a model imitates carry broken descriptions in 18 of 21 files, three of them still cite a `Checklist.md` that no longer exists",
     "created_at": "2026-10-23T11:27:20Z",
-    "last_save_at": "2026-10-24T10:41:02.855Z",
+    "last_save_at": "2026-10-24T10:43:49.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a027d9b75b5b1bff53596613bbad1a197bceb6499ce83a161b3c02488e2d1726",
+    "source_fingerprint": "sha256:a97bc9ee255c2dd1e39bdd20fdfc087840b47fcae37d6bcf68a93e5ca471da9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fedd7dc6f3e27505f634364333aaab9f073d6adecd9df58585cf9d70110dcd75",
