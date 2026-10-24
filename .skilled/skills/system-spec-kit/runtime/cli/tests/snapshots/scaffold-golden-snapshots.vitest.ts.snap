@@ -439,7 +439,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -459,7 +459,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
 ### [Feature Name]
 
@@ -470,7 +470,7 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -478,7 +478,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -488,7 +488,7 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -498,7 +498,7 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -506,7 +506,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---"
@@ -527,7 +527,7 @@ contextType: "general"
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
 
 ---
 
@@ -538,10 +538,10 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
+| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
+| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
+| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
@@ -569,14 +569,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
+- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
 
 ### Data Flow
-[Brief description of how data moves through the system]
+[YOUR_VALUE_HERE: Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 
@@ -618,7 +618,7 @@ N/A — record rollback steps beyond reverting the scoped change here.
 exports[`manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-spec.md 1`] = `
 "---
 title: "Feature Specification: [NAME] [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -630,7 +630,7 @@ contextType: "general"
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.3 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -639,7 +639,7 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
+| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
@@ -651,10 +651,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
 ---
@@ -663,19 +663,19 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- [YOUR_VALUE_HERE: Deliverable 1]
+- [YOUR_VALUE_HERE: Deliverable 2]
+- [YOUR_VALUE_HERE: Deliverable 3]
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -687,13 +687,13 @@ contextType: "general"
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -701,8 +701,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -712,8 +712,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -721,8 +721,8 @@ contextType: "general"
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 
 ---"
@@ -743,7 +743,7 @@ contextType: "general"
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
 
 ---
 
@@ -775,10 +775,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
+- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -826,7 +826,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "[PACKET-ID]"
+    packet_pointer: "[YOUR_VALUE_HERE: PACKET-ID]"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -844,7 +844,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -864,7 +864,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
 ### [Feature Name]
 
@@ -875,7 +875,7 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -883,7 +883,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -893,7 +893,7 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -903,7 +903,7 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -911,7 +911,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---"
@@ -932,7 +932,7 @@ contextType: "general"
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
 
 ---
 
@@ -943,10 +943,10 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
+| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
+| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
+| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
@@ -974,14 +974,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
+- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
 
 ### Data Flow
-[Brief description of how data moves through the system]
+[YOUR_VALUE_HERE: Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -993,8 +993,8 @@ Use this section when \`research_intent=fix_bug\`, when planning from a deep-rev
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
 
 Required inventories:
 - Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
@@ -1019,9 +1019,9 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
+| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
+| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1031,7 +1031,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -1039,8 +1039,8 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -1072,10 +1072,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| Core Implementation | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 4-8 hours] |
+| Verification | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| **Total** | | **[YOUR_VALUE_HERE: e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -1089,14 +1089,14 @@ Phase 1.5 (Config) ───┘
 - [ ] Monitoring alerts set
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. [YOUR_VALUE_HERE: Immediate action - e.g., disable feature flag]
+2. [YOUR_VALUE_HERE: Revert code - e.g., git revert or redeploy previous version]
+3. [YOUR_VALUE_HERE: Verify rollback - e.g., smoke test critical paths]
+4. [YOUR_VALUE_HERE: Notify stakeholders - if user-facing]
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** [YOUR_VALUE_HERE: Yes/No]
+- **Reversal procedure**: [YOUR_VALUE_HERE: Steps or "N/A"]
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---"
@@ -1105,7 +1105,7 @@ Phase 1.5 (Config) ───┘
 exports[`manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-spec.md 1`] = `
 "---
 title: "Feature Specification: [NAME] [template:level-2/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -1117,7 +1117,7 @@ contextType: "general"
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.3 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -1126,7 +1126,7 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | [1/2/3/3+] |
-| **Priority** | [P0/P1/P2] |
+| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
@@ -1138,10 +1138,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
 ---
@@ -1150,19 +1150,19 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- [YOUR_VALUE_HERE: Deliverable 1]
+- [YOUR_VALUE_HERE: Deliverable 2]
+- [YOUR_VALUE_HERE: Deliverable 3]
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -1174,13 +1174,13 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
 
 > Acceptance criteria for these requirements live in \`acceptance-criteria.md\`,
 > which is the document that decides whether this packet may close.
@@ -1191,8 +1191,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -1202,8 +1202,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -1215,16 +1215,16 @@ contextType: "general"
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
+- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
+- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
+- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -1233,18 +1233,18 @@ contextType: "general"
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Empty input: [YOUR_VALUE_HERE: How system handles]
+- Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
+- Invalid format: [YOUR_VALUE_HERE: Validation response]
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- External service failure: [YOUR_VALUE_HERE: Fallback behavior]
+- Network timeout: [YOUR_VALUE_HERE: Retry strategy]
+- Concurrent access: [YOUR_VALUE_HERE: Conflict resolution]
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
+- Session expiry: [YOUR_VALUE_HERE: User experience]
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -1254,10 +1254,10 @@ contextType: "general"
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
+| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
+| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -1265,8 +1265,8 @@ contextType: "general"
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 
 ---"
@@ -1287,7 +1287,7 @@ contextType: "general"
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
 
 ---
 
@@ -1319,10 +1319,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
+- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -1473,7 +1473,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "[PACKET-ID]"
+    packet_pointer: "[YOUR_VALUE_HERE: PACKET-ID]"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -1491,7 +1491,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -1511,7 +1511,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
 ### [Feature Name]
 
@@ -1522,7 +1522,7 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -1530,7 +1530,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -1540,7 +1540,7 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -1550,7 +1550,7 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -1558,7 +1558,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---"
@@ -1579,7 +1579,7 @@ contextType: "general"
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
 
 ---
 
@@ -1590,10 +1590,10 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
+| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
+| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
+| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
@@ -1621,14 +1621,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
+- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
 
 ### Data Flow
-[Brief description of how data moves through the system]
+[YOUR_VALUE_HERE: Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -1640,8 +1640,8 @@ Use this section when \`research_intent=fix_bug\`, when planning from a deep-rev
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
 
 Required inventories:
 - Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
@@ -1666,9 +1666,9 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
+| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
+| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1678,7 +1678,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -1686,8 +1686,8 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -1719,10 +1719,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| Core Implementation | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 4-8 hours] |
+| Verification | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| **Total** | | **[YOUR_VALUE_HERE: e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -1736,14 +1736,14 @@ Phase 1.5 (Config) ───┘
 - [ ] Monitoring alerts set
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. [YOUR_VALUE_HERE: Immediate action - e.g., disable feature flag]
+2. [YOUR_VALUE_HERE: Revert code - e.g., git revert or redeploy previous version]
+3. [YOUR_VALUE_HERE: Verify rollback - e.g., smoke test critical paths]
+4. [YOUR_VALUE_HERE: Notify stakeholders - if user-facing]
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** [YOUR_VALUE_HERE: Yes/No]
+- **Reversal procedure**: [YOUR_VALUE_HERE: Steps or "N/A"]
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -1770,10 +1770,10 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| [YOUR_VALUE_HERE: Component A] | None | [YOUR_VALUE_HERE: Output] | B, C |
+| [YOUR_VALUE_HERE: Component B] | A | [YOUR_VALUE_HERE: Output] | D |
+| [YOUR_VALUE_HERE: Component C] | A | [YOUR_VALUE_HERE: Output] | D |
+| [YOUR_VALUE_HERE: Component D] | B, C | [YOUR_VALUE_HERE: Final] | None |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -1781,15 +1781,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+3. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: [YOUR_VALUE_HERE: Sum of durations]
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- [YOUR_VALUE_HERE: Task A] and [YOUR_VALUE_HERE: Task B] can run simultaneously
+- [YOUR_VALUE_HERE: Task C] and [YOUR_VALUE_HERE: Task D] can run after Phase 1
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -1799,29 +1799,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | [YOUR_VALUE_HERE: Setup Complete] | [YOUR_VALUE_HERE: All dependencies ready] | [YOUR_VALUE_HERE: Date/Phase] |
+| M2 | [YOUR_VALUE_HERE: Core Done] | [YOUR_VALUE_HERE: Main features working] | [YOUR_VALUE_HERE: Date/Phase] |
+| M3 | [YOUR_VALUE_HERE: Release Ready] | [YOUR_VALUE_HERE: All tests pass] | [YOUR_VALUE_HERE: Date/Phase] |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: [YOUR_VALUE_HERE: Decision Title]
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: [YOUR_VALUE_HERE: Proposed/Accepted/Deprecated]
 
-**Context**: [What problem we're solving]
+**Context**: [YOUR_VALUE_HERE: What problem we're solving]
 
-**Decision**: [What we decided]
+**Decision**: [YOUR_VALUE_HERE: What we decided]
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- [YOUR_VALUE_HERE: Positive outcome 1]
+- [YOUR_VALUE_HERE: Negative outcome + mitigation]
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- [YOUR_VALUE_HERE: Option B]: [YOUR_VALUE_HERE: Why rejected]
 
 ---"
 `;
@@ -1829,7 +1829,7 @@ Phase 1.5 (Config) ───┘
 exports[`manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-spec.md 1`] = `
 "---
 title: "Feature Specification: [NAME] [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -1841,7 +1841,7 @@ contextType: "general"
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
 
 
 ---
@@ -1850,9 +1850,9 @@ contextType: "general"
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: [YOUR_VALUE_HERE: Major decision 1], [YOUR_VALUE_HERE: Major decision 2]
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: [YOUR_VALUE_HERE: Blocking dependency]
 
 ---
 <!-- ANCHOR:metadata -->
@@ -1861,7 +1861,7 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
+| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
@@ -1873,10 +1873,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
 ---
@@ -1885,19 +1885,19 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- [YOUR_VALUE_HERE: Deliverable 1]
+- [YOUR_VALUE_HERE: Deliverable 2]
+- [YOUR_VALUE_HERE: Deliverable 3]
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -1909,13 +1909,13 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
 
 > Acceptance criteria for these requirements live in \`acceptance-criteria.md\`,
 > which is the document that decides whether this packet may close.
@@ -1926,8 +1926,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -1937,8 +1937,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -1947,25 +1947,25 @@ contextType: "general"
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: [YOUR_VALUE_HERE: How system handles]
+- Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- External service failure: [YOUR_VALUE_HERE: Fallback behavior]
+- Network timeout: [YOUR_VALUE_HERE: Retry strategy]
 
 ---
 
@@ -1973,12 +1973,12 @@ contextType: "general"
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files: X, LOC: Y, Systems: Z] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth: Y/N, API: Y/N, Breaking: Y/N] |
+| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
+| Multi-Agent | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Workstreams: X] |
+| Coordination | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Dependencies: X] |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3** |
 
 ---
 
@@ -1986,23 +1986,23 @@ contextType: "general"
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | [YOUR_VALUE_HERE: Risk] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: Strategy] |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see \`acceptance-criteria.md\` (rows referencing this story).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: [YOUR_VALUE_HERE: Title] (Priority: P1)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see \`acceptance-criteria.md\` (rows referencing this story).
 
@@ -2011,8 +2011,8 @@ contextType: "general"
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 
 ---
@@ -2042,7 +2042,7 @@ contextType: "general"
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
 
 ---
 
@@ -2074,10 +2074,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
+- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -2275,9 +2275,9 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| [YOUR_VALUE_HERE: Name] | Technical Lead | [ ] Approved | |
+| [YOUR_VALUE_HERE: Name] | Product Owner | [ ] Approved | |
+| [YOUR_VALUE_HERE: Name] | QA Lead | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->"
 `;
 
@@ -2294,7 +2294,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "[PACKET-ID]"
+    packet_pointer: "[YOUR_VALUE_HERE: PACKET-ID]"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -2312,7 +2312,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.3 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -2332,7 +2332,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
 ### [Feature Name]
 
@@ -2343,7 +2343,7 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -2351,7 +2351,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -2361,7 +2361,7 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -2371,7 +2371,7 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -2379,7 +2379,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---"
@@ -2400,7 +2400,7 @@ contextType: "general"
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
 
 ---
 
@@ -2411,10 +2411,10 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
+| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
+| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
+| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
@@ -2442,14 +2442,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
+- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
 
 ### Data Flow
-[Brief description of how data moves through the system]
+[YOUR_VALUE_HERE: Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -2461,8 +2461,8 @@ Use this section when \`research_intent=fix_bug\`, when planning from a deep-rev
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
 
 Required inventories:
 - Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
@@ -2487,9 +2487,9 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
+| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
+| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -2499,7 +2499,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -2507,8 +2507,8 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -2540,10 +2540,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| Core Implementation | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 4-8 hours] |
+| Verification | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| **Total** | | **[YOUR_VALUE_HERE: e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -2557,14 +2557,14 @@ Phase 1.5 (Config) ───┘
 - [ ] Monitoring alerts set
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. [YOUR_VALUE_HERE: Immediate action - e.g., disable feature flag]
+2. [YOUR_VALUE_HERE: Revert code - e.g., git revert or redeploy previous version]
+3. [YOUR_VALUE_HERE: Verify rollback - e.g., smoke test critical paths]
+4. [YOUR_VALUE_HERE: Notify stakeholders - if user-facing]
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** [YOUR_VALUE_HERE: Yes/No]
+- **Reversal procedure**: [YOUR_VALUE_HERE: Steps or "N/A"]
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -2591,10 +2591,10 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| [YOUR_VALUE_HERE: Component A] | None | [YOUR_VALUE_HERE: Output] | B, C |
+| [YOUR_VALUE_HERE: Component B] | A | [YOUR_VALUE_HERE: Output] | D |
+| [YOUR_VALUE_HERE: Component C] | A | [YOUR_VALUE_HERE: Output] | D |
+| [YOUR_VALUE_HERE: Component D] | B, C | [YOUR_VALUE_HERE: Final] | None |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -2602,15 +2602,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+3. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: [YOUR_VALUE_HERE: Sum of durations]
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- [YOUR_VALUE_HERE: Task A] and [YOUR_VALUE_HERE: Task B] can run simultaneously
+- [YOUR_VALUE_HERE: Task C] and [YOUR_VALUE_HERE: Task D] can run after Phase 1
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -2620,29 +2620,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | [YOUR_VALUE_HERE: Setup Complete] | [YOUR_VALUE_HERE: All dependencies ready] | [YOUR_VALUE_HERE: Date/Phase] |
+| M2 | [YOUR_VALUE_HERE: Core Done] | [YOUR_VALUE_HERE: Main features working] | [YOUR_VALUE_HERE: Date/Phase] |
+| M3 | [YOUR_VALUE_HERE: Release Ready] | [YOUR_VALUE_HERE: All tests pass] | [YOUR_VALUE_HERE: Date/Phase] |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: [YOUR_VALUE_HERE: Decision Title]
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: [YOUR_VALUE_HERE: Proposed/Accepted/Deprecated]
 
-**Context**: [What problem we're solving]
+**Context**: [YOUR_VALUE_HERE: What problem we're solving]
 
-**Decision**: [What we decided]
+**Decision**: [YOUR_VALUE_HERE: What we decided]
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- [YOUR_VALUE_HERE: Positive outcome 1]
+- [YOUR_VALUE_HERE: Negative outcome + mitigation]
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- [YOUR_VALUE_HERE: Option B]: [YOUR_VALUE_HERE: Why rejected]
 
 ---
 
@@ -2703,9 +2703,9 @@ Phase 1.5 (Config) ───┘
 
 | ID | Name | Owner | Files | Status |
 |----|------|-------|-------|--------|
-| W-A | [Core Logic] | [Primary] | [file1.ts, file2.ts] | [Active] |
-| W-B | [UI Components] | [Secondary] | [comp1.tsx, comp2.tsx] | [Active] |
-| W-C | [Tests] | [Primary] | [test/*.ts] | [Blocked on W-A] |
+| W-A | [YOUR_VALUE_HERE: Core Logic] | [YOUR_VALUE_HERE: Primary] | [YOUR_VALUE_HERE: file1.ts, file2.ts] | [YOUR_VALUE_HERE: Active] |
+| W-B | [YOUR_VALUE_HERE: UI Components] | [YOUR_VALUE_HERE: Secondary] | [YOUR_VALUE_HERE: comp1.tsx, comp2.tsx] | [YOUR_VALUE_HERE: Active] |
+| W-C | [YOUR_VALUE_HERE: Tests] | [YOUR_VALUE_HERE: Primary] | [YOUR_VALUE_HERE: test/*.ts] | [YOUR_VALUE_HERE: Blocked on W-A] |
 
 ### Sync Points
 
@@ -2742,7 +2742,7 @@ Phase 1.5 (Config) ───┘
 exports[`manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-spec.md 1`] = `
 "---
 title: "Feature Specification: [NAME] [template:level_3+/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -2754,7 +2754,7 @@ contextType: "general"
 <!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: [NAME]
 
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.3 -->
 
 
 ---
@@ -2763,9 +2763,9 @@ contextType: "general"
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: [YOUR_VALUE_HERE: Major decision 1], [YOUR_VALUE_HERE: Major decision 2]
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: [YOUR_VALUE_HERE: Blocking dependency]
 
 ---
 
@@ -2775,7 +2775,7 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3+ |
-| **Priority** | [P0/P1/P2] |
+| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
@@ -2787,10 +2787,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
 ---
@@ -2799,19 +2799,19 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- [YOUR_VALUE_HERE: Deliverable 1]
+- [YOUR_VALUE_HERE: Deliverable 2]
+- [YOUR_VALUE_HERE: Deliverable 3]
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -2823,13 +2823,13 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
 
 > Acceptance criteria for these requirements live in \`acceptance-criteria.md\`,
 > which is the document that decides whether this packet may close.
@@ -2840,8 +2840,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -2851,8 +2851,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -2861,24 +2861,24 @@ contextType: "general"
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target]
 
 ### Security
-- **NFR-S01**: [Auth requirement]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement]
 
 ### Reliability
-- **NFR-R01**: [Uptime target]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target]
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: [YOUR_VALUE_HERE: How system handles]
+- Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
+- External service failure: [YOUR_VALUE_HERE: Fallback behavior]
 
 ---
 
@@ -2886,12 +2886,12 @@ contextType: "general"
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3+** |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files: X, LOC: Y, Systems: Z] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth: Y/N, API: Y/N, Breaking: Y/N] |
+| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
+| Multi-Agent | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Workstreams: X] |
+| Coordination | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Dependencies: X] |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3+** |
 
 ---
 
@@ -2899,15 +2899,15 @@ contextType: "general"
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | [YOUR_VALUE_HERE: Risk] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: Strategy] |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see \`acceptance-criteria.md\` (rows referencing this story).
 
@@ -2918,10 +2918,10 @@ contextType: "general"
 
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
-| Spec Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Design Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Implementation Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Launch Approval | [Role/Name] | [Pending/Approved] | [Date] |
+| Spec Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Design Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Implementation Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Launch Approval | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
 <!-- /ANCHOR:approval-workflow -->
 
 ---
@@ -2946,8 +2946,8 @@ contextType: "general"
 
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
-| [Name] | Product | High | [Weekly sync] |
-| [Name] | Engineering | High | [Daily standup] |
+| [YOUR_VALUE_HERE: Name] | Product | High | [YOUR_VALUE_HERE: Weekly sync] |
+| [YOUR_VALUE_HERE: Name] | Engineering | High | [YOUR_VALUE_HERE: Daily standup] |
 <!-- /ANCHOR:stakeholder-matrix -->
 
 ---
@@ -2955,7 +2955,7 @@ contextType: "general"
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
 
-### v1.0 ([Date])
+### v1.0 ([YOUR_VALUE_HERE: Date])
 **Initial specification**
 <!-- /ANCHOR:change-log -->
 
@@ -2964,7 +2964,7 @@ contextType: "general"
 <!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
 <!-- /ANCHOR:questions -->
 
 ---
@@ -2994,7 +2994,7 @@ contextType: "general"
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
 
 ---
 
@@ -3026,10 +3026,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
+- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -3227,9 +3227,9 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| [YOUR_VALUE_HERE: Name] | Technical Lead | [ ] Approved | |
+| [YOUR_VALUE_HERE: Name] | Product Owner | [ ] Approved | |
+| [YOUR_VALUE_HERE: Name] | QA Lead | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->"
 `;
 

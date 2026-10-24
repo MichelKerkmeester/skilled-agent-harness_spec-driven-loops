@@ -1,0 +1,34 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/placeholder-token-gate.vitest.ts (5 tests | 1 failed) 632ms
+     × warns on a v2.3 doc with an unfilled token while the packet is a Draft 123ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED token gate > warns on a v2.3 doc with an unfilled token while the packet is a Draft
+AssertionError: expected 'error' to be 'warn' // Object.is equality
+
+Expected: "warn"
+Received: "error"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:94:26
+     92|     const folder = buildPacket({ stamp: 'v2.3', status: 'Draft', line:…
+     93|     const { entry, passed } = runOrchestrator(folder);
+     94|     expect(entry.status).toBe('warn');
+       |                          ^
+     95|     expect(passed).toBe(true);
+     96|     expect(entry.details.some((detail) => detail.startsWith('spec.md:'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  13:51:41
+   Duration  716ms (transform 14ms, setup 12ms, import 8ms, tests 632ms, environment 0ms)
+
+exit=1

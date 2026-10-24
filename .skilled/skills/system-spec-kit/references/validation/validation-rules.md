@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.0.68
+version: 2.7.1.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -284,6 +284,17 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 - `tasks.md`
 - `acceptance-criteria.md` (if exists)
 - `decision-record.md` (if exists)
+
+### Lifecycle For Docs Stamped v2.3 Or Later
+
+A doc whose `SPECKIT_TEMPLATE_SOURCE` stamp names version v2.3 or later ships every authoring hint as a `[YOUR_VALUE_HERE: ...]` token. For such a doc the rule reads the Status row of `spec.md` and decides the severity of each unfilled token.
+
+| Status in `spec.md` | Unfilled `[YOUR_VALUE_HERE: ...]` token | `[NEEDS CLARIFICATION: ...]` |
+| ------------------- | --------------------------------------- | ---------------------------- |
+| Draft               | WARNING                                 | ERROR                        |
+| Any other value     | ERROR                                   | ERROR                        |
+
+A doc with an older stamp, or none, keeps the ERROR it always had, and Draft changes nothing for it. The orchestrator reads every authored doc that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. A warning never fails `--strict`. The status word must be exactly Draft, so Planned, In Progress and Complete all count as any other value.
 
 ### Excluded Paths
 

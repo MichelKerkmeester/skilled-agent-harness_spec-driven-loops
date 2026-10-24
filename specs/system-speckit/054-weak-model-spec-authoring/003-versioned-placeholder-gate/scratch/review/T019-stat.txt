@@ -1,0 +1,16 @@
+ .../references/templates/template-guide.md         |  10 +-
+ .../references/validation/validation-rules.md      |  11 +
+ .../runtime/cli/rules/check-placeholders.sh        |  94 ++-
+ .../cli/tests/level-contract-resolver.vitest.ts    |   2 +-
+ .../scaffold-golden-snapshots.vitest.ts.snap       | 654 ++++++++++-----------
+ .../runtime/cli/tests/upgrade-legacy.vitest.ts     |   2 +-
+ .../runtime/lib/validation/orchestrator.ts         |  74 ++-
+ .../templates/addons/acceptance-criteria.md.tmpl   |  16 +-
+ .../templates/core/implementation-summary.md.tmpl  |  20 +-
+ .../system-spec-kit/templates/core/plan.md.tmpl    | 100 ++--
+ .../system-spec-kit/templates/core/spec.md.tmpl    | 128 ++--
+ .../system-spec-kit/templates/core/tasks.md.tmpl   |  16 +-
+ .../system-spec-kit/templates/spec-kit-docs.json   |  10 +-
+ .../003-versioned-placeholder-gate/goal.md         |  37 +-
+ .../054-weak-model-spec-authoring/goal.md          |   2 +
+ 15 files changed, 667 insertions(+), 509 deletions(-)

@@ -38,16 +38,16 @@ A Python script rewrites each bare hint of five templates into `[YOUR_VALUE_HERE
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The launch preconditions in `../spec.md` section 3 are recorded as met in `../goal.md` section 4
-- [ ] Phase 2 is closed, shown by `tasks.md` T001
-- [ ] `tasks.md` T001 to T007 are done: closures checked, tools checked, start state recorded, tools saved, conversion tool tested, census before recorded, failing test red
+- [x] The launch preconditions in `../spec.md` section 3 are recorded as met in `../goal.md` section 4
+- [x] Phase 2 is closed, shown by `tasks.md` T001
+- [x] `tasks.md` T001 to T007 are done: closures checked, tools checked, start state recorded, tools saved, conversion tool tested, census before recorded, failing test red
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
-- [ ] `tasks.md` T015 printed `CENSUS_SAME` for both gates
-- [ ] `tasks.md` T017 printed `SUITE_MATCH_PLUS_NEW_TEST`
-- [ ] `tasks.md` T018 printed `0` changed paths outside the file list
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
+- [x] `tasks.md` T015 printed `CENSUS_SAME` for both gates
+- [x] `tasks.md` T017 printed `SUITE_MATCH_PLUS_NEW_TEST`
+- [x] `tasks.md` T018 printed `0` changed paths outside the file list
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -240,10 +240,10 @@ Setup (T001-T005) ──► Census before (T006) ──► Failing test (T007) �
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Phase start commit hash recorded in `goal.md` section 4 before the first edit
-- [ ] `git status --porcelain` saved to `scratch/status-start.txt`
-- [ ] The unconverted templates saved to `scratch/templates-before/` by `tasks.md` T011 before they change
-- [ ] No feature flag applies, the new lifecycle is selected by the template stamp
+- [x] Phase start commit hash recorded in `goal.md` section 4 before the first edit
+- [x] `git status --porcelain` saved to `scratch/status-start.txt`
+- [x] The unconverted templates saved to `scratch/templates-before/` by `tasks.md` T011 before they change
+- [x] No feature flag applies, the new lifecycle is selected by the template stamp
 
 ### Rollback Procedure
 1. List changed files with `git diff --name-only`.

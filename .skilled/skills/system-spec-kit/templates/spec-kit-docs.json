@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "manifestVersion": "1.0.0",
   "versions": {
-    "spec.md.tmpl": "v2.2",
-    "plan.md.tmpl": "v2.2",
-    "tasks.md.tmpl": "v2.2",
-    "implementation-summary.md.tmpl": "v2.2",
+    "spec.md.tmpl": "v2.3",
+    "plan.md.tmpl": "v2.3",
+    "tasks.md.tmpl": "v2.3",
+    "implementation-summary.md.tmpl": "v2.3",
     "decision-record.md.tmpl": "v2.2",
     "phase-parent.spec.md.tmpl": "v2.2",
     "review.spec.md.tmpl": "v2.2",
@@ -16,7 +16,7 @@
     "before-after.md.tmpl": "v2.2",
     "timeline.md.tmpl": "v2.2",
     "roadmap.md.tmpl": "v2.2",
-    "acceptance-criteria.md.tmpl": "v2.2",
+    "acceptance-criteria.md.tmpl": "v2.3",
     "goal.md.tmpl": "v2.2",
     "review-report.md.tmpl": "v1.0",
     "research.spec.md.tmpl": "v2.2"

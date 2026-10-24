@@ -12,7 +12,7 @@ title: "Feature Specification: [NAME] [template:level_3+/spec.md]"
 <!-- IF level:3 -->
 title: "Feature Specification: [NAME] [template:level-3/spec.md]"
 <!-- /IF -->
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -33,14 +33,14 @@ contextType: "general"
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- /IF -->
 <!-- IF level:1,2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.3 -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.3 -->
 <!-- /IF -->
 <!-- IF level:3 -->
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 <!-- IF level:3+ -->
@@ -59,9 +59,9 @@ contextType: "general"
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: [YOUR_VALUE_HERE: Major decision 1], [YOUR_VALUE_HERE: Major decision 2]
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: [YOUR_VALUE_HERE: Blocking dependency]
 
 <!-- /IF -->
 ---
@@ -85,7 +85,7 @@ contextType: "general"
 <!-- IF level:3 -->
 | **Level** | 3 |
 <!-- /IF -->
-| **Priority** | [P0/P1/P2] |
+| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `[###-feature-name]` |
@@ -97,10 +97,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
 ---
@@ -109,19 +109,19 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- [YOUR_VALUE_HERE: Deliverable 1]
+- [YOUR_VALUE_HERE: Deliverable 2]
+- [YOUR_VALUE_HERE: Deliverable 3]
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -134,12 +134,12 @@ contextType: "general"
 <!-- IF level:1 -->
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
 <!-- /IF -->
 <!-- IF level:2,3,3+ -->
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
 <!-- /IF -->
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -147,12 +147,12 @@ contextType: "general"
 <!-- IF level:1 -->
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
 <!-- /IF -->
 <!-- IF level:2,3,3+ -->
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -164,8 +164,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -175,8 +175,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -195,36 +195,36 @@ contextType: "general"
 
 ### Performance
 <!-- IF level:2,3 -->
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
 <!-- IF level:2 -->
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-- **NFR-P01**: [Response time target]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target]
 <!-- /IF -->
 
 ### Security
 <!-- IF level:2,3 -->
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
 <!-- IF level:2 -->
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-- **NFR-S01**: [Auth requirement]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement]
 <!-- /IF -->
 
 ### Reliability
 <!-- IF level:2,3 -->
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
 <!-- IF level:2 -->
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
 <!-- /ANCHOR:nfr -->
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-- **NFR-R01**: [Uptime target]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target]
 <!-- /IF -->
 
 ---
@@ -238,22 +238,22 @@ contextType: "general"
 <!-- /IF -->
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: [YOUR_VALUE_HERE: How system handles]
+- Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
 <!-- IF level:2 -->
-- Invalid format: [Validation response]
+- Invalid format: [YOUR_VALUE_HERE: Validation response]
 <!-- /IF -->
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
+- External service failure: [YOUR_VALUE_HERE: Fallback behavior]
 <!-- IF level:2,3 -->
-- Network timeout: [Retry strategy]
+- Network timeout: [YOUR_VALUE_HERE: Retry strategy]
 <!-- IF level:2 -->
-- Concurrent access: [Conflict resolution]
+- Concurrent access: [YOUR_VALUE_HERE: Conflict resolution]
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
+- Session expiry: [YOUR_VALUE_HERE: User experience]
 <!-- /ANCHOR:edge-cases -->
 <!-- /IF -->
 <!-- /IF -->
@@ -271,28 +271,28 @@ contextType: "general"
 <!-- IF level:2 -->
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files: X, LOC: Y, Systems: Z] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth: Y/N, API: Y/N, Breaking: Y/N] |
 <!-- /IF -->
-| Research | [/20] | [Investigation needs] |
+| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
 <!-- IF level:2 -->
-| **Total** | **[/70]** | **Level 2** |
+| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
+| Multi-Agent | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Workstreams: X] |
+| Coordination | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Dependencies: X] |
 <!-- IF level:3+ -->
-| **Total** | **[/100]** | **Level 3+** |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3+** |
 <!-- /IF -->
 <!-- IF level:3 -->
-| **Total** | **[/100]** | **Level 3** |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3** |
 <!-- /IF -->
 <!-- /IF -->
 
@@ -312,15 +312,15 @@ contextType: "general"
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | [YOUR_VALUE_HERE: Risk] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: Strategy] |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
@@ -331,20 +331,20 @@ contextType: "general"
 ## 12. APPROVAL WORKFLOW
 <!-- /IF -->
 <!-- IF level:3 -->
-### US-002: [Title] (Priority: P1)
+### US-002: [YOUR_VALUE_HERE: Title] (Priority: P1)
 <!-- /IF -->
 
 <!-- IF level:3+ -->
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
-| Spec Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Design Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Implementation Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Launch Approval | [Role/Name] | [Pending/Approved] | [Date] |
+| Spec Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Design Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Implementation Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Launch Approval | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
 <!-- /ANCHOR:approval-workflow -->
 <!-- /IF -->
 <!-- IF level:3 -->
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 <!-- /IF -->
@@ -372,8 +372,8 @@ contextType: "general"
 
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
-| [Name] | Product | High | [Weekly sync] |
-| [Name] | Engineering | High | [Daily standup] |
+| [YOUR_VALUE_HERE: Name] | Product | High | [YOUR_VALUE_HERE: Weekly sync] |
+| [YOUR_VALUE_HERE: Name] | Engineering | High | [YOUR_VALUE_HERE: Daily standup] |
 <!-- /ANCHOR:stakeholder-matrix -->
 
 ---
@@ -381,7 +381,7 @@ contextType: "general"
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
 
-### v1.0 ([Date])
+### v1.0 ([YOUR_VALUE_HERE: Date])
 **Initial specification**
 <!-- /ANCHOR:change-log -->
 
@@ -396,12 +396,12 @@ contextType: "general"
 <!-- /IF -->
 <!-- /IF -->
 
-- [Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
 <!-- IF level:3+ -->
 <!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- IF level:1,2,3 -->
-- [Question 2 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->

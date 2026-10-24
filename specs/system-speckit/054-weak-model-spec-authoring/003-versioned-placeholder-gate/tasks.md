@@ -51,7 +51,7 @@ Numbers printed in the Verify lines were observed in a scratch copy of the tree 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check that phases 1 and 2 closed and that the templates are still original (no file). Run the block below. Verify: the first command prints `1`, the second prints a line that starts with `exit=`, the third prints `LEDGER_OK`, and the fourth prints nothing. When the first command prints nothing, phase 2 is not closed: write `BLOCKED phase 2 open` in `goal.md` section 4 and stop the phase. When the fourth command prints a line, a template already holds a token: write `BLOCKED templates not original` and stop.
+- [x] T001 Check that phases 1 and 2 closed and that the templates are still original (no file). Run the block below. Verify: the first command prints `1`, the second prints a line that starts with `exit=`, the third prints `LEDGER_OK`, and the fourth prints nothing. When the first command prints nothing, phase 2 is not closed: write `BLOCKED phase 2 open` in `goal.md` section 4 and stop the phase. When the fourth command prints a line, a template already holds a token: write `BLOCKED templates not original` and stop.
 
 ```bash
 cd "$WORKTREE"
@@ -61,8 +61,8 @@ test -s "$P1/scratch/ledger/ledger.jsonl" && jq -c . "$P1/scratch/ledger/ledger.
 rg -l 'YOUR_VALUE_HERE' $TPL/core/spec.md.tmpl $TPL/core/plan.md.tmpl $TPL/core/tasks.md.tmpl $TPL/core/implementation-summary.md.tmpl $TPL/addons/acceptance-criteria.md.tmpl
 ```
 
-- [ ] T002 Check the tools (no file). Verify: `python3 --version && jq --version && rg --version | head -1 && node --version && perl -e 'print "perl $]\n"' && npm --version` prints six lines that start with `Python 3.`, `jq-`, `ripgrep `, `v`, `perl ` and a version number. A Python older than 3.8 or a Node older than v20 stops the phase.
-- [ ] T003 Record the start state and prove the build runs this checkout's own code (`goal.md`, `scratch/status-start.txt`). Run the block below. Write the hash that `git rev-parse` prints into the `Phase start commit` row of `goal.md` section 4 as `| Phase start commit | Done | <the 40 character hash> |`. Verify: `grep -cE 'Phase start commit \| Done \| [0-9a-f]{40}' "$PHASE/goal.md"` prints `1`, the node script prints no line that starts with `FOREIGN`, and `test -f "$ORCH" && echo ORCH_OK` prints `ORCH_OK`. A `MISSING` line for `runtime/node_modules` is fine. A line that starts with `FOREIGN` means `dist/` or a workspace link points at another checkout, and the test would then run that checkout's code. Follow the worktree provisioning in `.skilled/skills/sk-git/SKILL.md`, retry once, and when it still prints `FOREIGN` write `BLOCKED foreign build` in `goal.md` section 4 and stop the phase.
+- [x] T002 Check the tools (no file). Verify: `python3 --version && jq --version && rg --version | head -1 && node --version && perl -e 'print "perl $]\n"' && npm --version` prints six lines that start with `Python 3.`, `jq-`, `ripgrep `, `v`, `perl ` and a version number. A Python older than 3.8 or a Node older than v20 stops the phase.
+- [x] T003 Record the start state and prove the build runs this checkout's own code (`goal.md`, `scratch/status-start.txt`). Run the block below. Write the hash that `git rev-parse` prints into the `Phase start commit` row of `goal.md` section 4 as `| Phase start commit | Done | <the 40 character hash> |`. Verify: `grep -cE 'Phase start commit \| Done \| [0-9a-f]{40}' "$PHASE/goal.md"` prints `1`, the node script prints no line that starts with `FOREIGN`, and `test -f "$ORCH" && echo ORCH_OK` prints `ORCH_OK`. A `MISSING` line for `runtime/node_modules` is fine. A line that starts with `FOREIGN` means `dist/` or a workspace link points at another checkout, and the test would then run that checkout's code. Follow the worktree provisioning in `.skilled/skills/sk-git/SKILL.md`, retry once, and when it still prints `FOREIGN` write `BLOCKED foreign build` in `goal.md` section 4 and stop the phase.
 
 ```bash
 cd "$WORKTREE"
@@ -82,7 +82,7 @@ for (const t of ["runtime/dist", "node_modules", "node_modules/@spec-kit/runtime
 }' "$WORKTREE/$S" "$WORKTREE"
 ```
 
-- [ ] T004 Save the six tools (`scratch/tools/convert_hints.py`, `replace_block.py`, `mutate.py`, `apply_edits.py`, `suite_compare.py`, `strict-census.mjs`). Run the six blocks below, each exactly as written. Verify: the check block after them prints five `PY_OK` lines and then `NODE_OK`.
+- [x] T004 Save the six tools (`scratch/tools/convert_hints.py`, `replace_block.py`, `mutate.py`, `apply_edits.py`, `suite_compare.py`, `strict-census.mjs`). Run the six blocks below, each exactly as written. Verify: the check block after them prints five `PY_OK` lines and then `NODE_OK`.
 
 `convert_hints.py` turns each bare hint of a template into a value token. It skips fenced code, inline code, links, the five texts the scaffolder replaces and any `template:` text. A second run changes nothing.
 
@@ -274,7 +274,7 @@ done
 node --check "$SC/tools/strict-census.mjs" && echo NODE_OK
 ```
 
-- [ ] T005 Test the conversion tool on a copy and save the expected leftover list (`scratch/expected-leftovers.txt`). Run the first block, then the second. Verify: the second block prints five `converted` lines with `96`, `90`, `7`, `14` and `10`, then five `converted 0` lines, then five lines of the form `<file> total=<n> tokens=<m>` with `106 96`, `101 90`, `17 7`, `20 14` and `13 10`, then `LEFTOVERS_SAME`. The template files themselves are not touched by this task: `git status --porcelain $TPL` prints nothing.
+- [x] T005 Test the conversion tool on a copy and save the expected leftover list (`scratch/expected-leftovers.txt`). Run the first block, then the second. Verify: the second block prints five `converted` lines with `96`, `90`, `7`, `14` and `10`, then five `converted 0` lines, then five lines of the form `<file> total=<n> tokens=<m>` with `106 96`, `101 90`, `17 7`, `20 14` and `13 10`, then `LEFTOVERS_SAME`. The template files themselves are not touched by this task: `git status --porcelain $TPL` prints nothing.
 
 ```bash
 cd "$WORKTREE"
@@ -337,7 +337,7 @@ cd "$WORKTREE" && rm -rf "$SC/convtest"
 
   The totals `106`, `101`, `17`, `17` and `13` are the hint counts of the untouched templates, so they match the original counts. A token counts as a hint under the same pattern, so the total does not change when a hint becomes a token.
 
-- [ ] T006 Record the census before any change (`scratch/census/folders.txt`, `a-before.tsv`, `b-before-*.tsv`, `b-before.tsv`). Run the blocks below in order. Gate A checks the placeholder rule alone over every packet and takes about a minute. Gate B checks every rule and takes about 40 minutes on three shards. The folder list leaves out this packet, because its own docs change while the phase runs. Verify: the first block prints a count, the second prints one row `<count> PASS pass` when no packet holds a placeholder (a different line is data, keep it), the fourth prints `ROWS_OK` and then the PASS and FAIL totals. Save the Gate B totals in `goal.md` section 4 as the baseline. When the shell tool stops a command before the shards end, rerun the shard block with `nohup bash -c '...' &` around the same loop and wait until the fourth block prints `ROWS_OK`.
+- [x] T006 Record the census before any change (`scratch/census/folders.txt`, `a-before.tsv`, `b-before-*.tsv`, `b-before.tsv`). Run the blocks below in order. Gate A checks the placeholder rule alone over every packet and takes about a minute. Gate B checks every rule and takes about 40 minutes on three shards. The folder list leaves out this packet, because its own docs change while the phase runs. Verify: the first block prints a count, the second prints one row `<count> PASS pass` when no packet holds a placeholder (a different line is data, keep it), the fourth prints `ROWS_OK` and then the PASS and FAIL totals. Save the Gate B totals in `goal.md` section 4 as the baseline. When the shell tool stops a command before the shards end, rerun the shard block with `nohup bash -c '...' &` around the same loop and wait until the fourth block prints `ROWS_OK`.
 
 ```bash
 cd "$WORKTREE"
@@ -376,7 +376,7 @@ cut -f2 "$CEN/b-before.tsv" | sort | uniq -c | sed -E 's/^ +//'
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Write the failing test and run it before any code change (`.skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts`, `scratch/test-red.txt`). The test builds a throwaway packet from the clean fixture `053-template-compliant-level2`, changes the stamp, the status and one line, and runs the orchestrator through `validate.sh` and the shell rule through `bash -c`. It imports nothing from the checkout by name, so it always runs the code beside it. Its first case asserts that the built orchestrator resolves inside this checkout. Run the first block, then the second. Verify: the second block prints a line with `× warns on a v2.3 doc with an unfilled token while the packet is a Draft`, a line `Failed Tests 1`, then `Tests  1 failed | 4 passed (5)`, then `exit=1`, and the grep for the code frame prints `1`. The red test must be this one and no other.
+- [x] T007 Write the failing test and run it before any code change (`.skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts`, `scratch/test-red.txt`). The test builds a throwaway packet from the clean fixture `053-template-compliant-level2`, changes the stamp, the status and one line, and runs the orchestrator through `validate.sh` and the shell rule through `bash -c`. It imports nothing from the checkout by name, so it always runs the code beside it. Its first case asserts that the built orchestrator resolves inside this checkout. Run the first block, then the second. Verify: the second block prints a line with `× warns on a v2.3 doc with an unfilled token while the packet is a Draft`, a line `Failed Tests 1`, then `Tests  1 failed | 4 passed (5)`, then `exit=1`, and the grep for the code frame prints `1`. The red test must be this one and no other.
 
 ```bash
 cd "$WORKTREE"
@@ -513,7 +513,7 @@ grep -E '× warns on a v2.3|Tests +[0-9]|^exit=' "$SC/test-red.txt"
 grep -c "expect(entry.status).toBe('warn')" "$SC/test-red.txt"
 ```
 
-- [ ] T008 Replace the placeholder block of the orchestrator and rebuild (`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`, `scratch/new/placeholders-block.ts`, `scratch/test-red-2.txt`). The block runs from the comment line that starts `// Canonical spec-doc placeholder markers. Mirrors check-placeholders.sh` up to, but not including, the line that starts `function validateTemplateSource(`. It holds the constant `PLACEHOLDER_MARKER_RE` and the function `validatePlaceholders`. The new block adds `CLARIFICATION_MARKER_RE`, `TOKEN_GATE_MIN_MAJOR`, `TOKEN_GATE_MIN_MINOR`, `TEMPLATE_STAMP_RE`, `carriesTokenGateStamp`, `cleanStatusCell` and `specStatusIsDraft`. Run the three blocks. Verify: the replace script prints `REPLACED lines` with two numbers, `rg -c 'carriesTokenGateStamp' $S/runtime/lib/validation/orchestrator.ts` prints `2`, `rg -c 'carriesTokenGateStamp' $S/runtime/dist/lib/validation/orchestrator.js` prints `2`, and the test still fails once, now at the shell line: the grep prints `1`. The shell rule is not changed yet, so the orchestrator is right and the mirror is wrong, which is the failure this step must show. When `validate.sh` instead prints `compiled validation orchestrator is stale`, the build did not run: run it again.
+- [x] T008 Replace the placeholder block of the orchestrator and rebuild (`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`, `scratch/new/placeholders-block.ts`, `scratch/test-red-2.txt`). The block runs from the comment line that starts `// Canonical spec-doc placeholder markers. Mirrors check-placeholders.sh` up to, but not including, the line that starts `function validateTemplateSource(`. It holds the constant `PLACEHOLDER_MARKER_RE` and the function `validatePlaceholders`. The new block adds `CLARIFICATION_MARKER_RE`, `TOKEN_GATE_MIN_MAJOR`, `TOKEN_GATE_MIN_MINOR`, `TEMPLATE_STAMP_RE`, `carriesTokenGateStamp`, `cleanStatusCell` and `specStatusIsDraft`. Run the three blocks. Verify: the replace script prints `REPLACED lines` with two numbers, `rg -c 'carriesTokenGateStamp' $S/runtime/lib/validation/orchestrator.ts` prints `2`, `rg -c 'carriesTokenGateStamp' $S/runtime/dist/lib/validation/orchestrator.js` prints `2`, and the test still fails once, now at the shell line: the grep prints `1`. The shell rule is not changed yet, so the orchestrator is right and the mirror is wrong, which is the failure this step must show. When `validate.sh` instead prints `compiled validation orchestrator is stale`, the build did not run: run it again.
 
 ```bash
 cd "$WORKTREE"
@@ -639,7 +639,7 @@ grep -E 'Tests +[0-9]|^exit=' "$SC/test-red-2.txt"
 grep -c "expect(runShellRule(folder)).toBe('warn')" "$SC/test-red-2.txt"
 ```
 
-- [ ] T009 Replace the shell rule with the mirrored lifecycle (`.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh`, `scratch/new/check-placeholders.good.sh`). This writes the whole file. The new file sources `runtime/cli/lib/status-classifier.sh`, adds the helpers `carries_token_gate_stamp` and `spec_status_is_draft`, reads `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the gate stamp, and ends with the status `warn` when only deferred tokens remain. Run the first block, then the second. Verify: `bash -n` prints `SYNTAX_OK`, the test prints `Tests  5 passed (5)` and `exit=0`, and the harness run prints `Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh): 8/8 passed`, `Edge Cases: Placeholder Contexts: 3/3 passed`, `Failed:  0` and `RESULT: PASSED`.
+- [x] T009 Replace the shell rule with the mirrored lifecycle (`.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh`, `scratch/new/check-placeholders.good.sh`). This writes the whole file. The new file sources `runtime/cli/lib/status-classifier.sh`, adds the helpers `carries_token_gate_stamp` and `spec_status_is_draft`, reads `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the gate stamp, and ends with the status `warn` when only deferred tokens remain. Run the first block, then the second. Verify: `bash -n` prints `SYNTAX_OK`, the test prints `Tests  5 passed (5)` and `exit=0`, and the harness run prints `Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh): 8/8 passed`, `Edge Cases: Placeholder Contexts: 3/3 passed`, `Failed:  0` and `RESULT: PASSED`.
 
 ```bash
 cd "$WORKTREE"
@@ -866,7 +866,7 @@ cp "$S/runtime/lib/validation/orchestrator.ts" "$SC/new/orchestrator.good.ts"
 bash "$S/runtime/cli/tests/test-validation-extended.sh" -c PLACEHOLDER 2>&1 | grep -E 'PLACEHOLDER_FILLED|Placeholder Contexts|Failed:|^RESULT'
 ```
 
-- [ ] T010 Prove the test notices each break (`scratch/mutation.txt`). Run the block below. It breaks the code three ways, one at a time, rebuilds, runs the test, and restores the good copy saved by T009. Verify: it prints `M1_RED`, `M2_RED`, `M3_RED` and then `GREEN_AGAIN`. M1 removes the stamp check from the orchestrator. M2 removes the Draft check from the orchestrator. M3 removes the stamp check from the shell rule. A line `M?_STILL_GREEN` means the test would not catch that break: write it in `goal.md` section 4 and block this task. After the block, `diff "$SC/new/orchestrator.good.ts" "$S/runtime/lib/validation/orchestrator.ts" && diff "$SC/new/check-placeholders.good.sh" "$S/runtime/cli/rules/check-placeholders.sh" && echo RESTORED` must print `RESTORED`.
+- [x] T010 Prove the test notices each break (`scratch/mutation.txt`). Run the block below. It breaks the code three ways, one at a time, rebuilds, runs the test, and restores the good copy saved by T009. Verify: it prints `M1_RED`, `M2_RED`, `M3_RED` and then `GREEN_AGAIN`. M1 removes the stamp check from the orchestrator. M2 removes the Draft check from the orchestrator. M3 removes the stamp check from the shell rule. A line `M?_STILL_GREEN` means the test would not catch that break: write it in `goal.md` section 4 and block this task. After the block, `diff "$SC/new/orchestrator.good.ts" "$S/runtime/lib/validation/orchestrator.ts" && diff "$SC/new/check-placeholders.good.sh" "$S/runtime/cli/rules/check-placeholders.sh" && echo RESTORED` must print `RESTORED`.
 
 ```bash
 cd "$WORKTREE"
@@ -897,7 +897,7 @@ out=$(gate_test)
 if printf '%s' "$out" | grep -qE 'Tests +5 passed \(5\)'; then echo GREEN_AGAIN; else echo NOT_GREEN; fi
 ```
 
-- [ ] T011 Convert the five templates, stamp them and update the manifest (`.skilled/skills/system-spec-kit/templates/core/*.tmpl` for spec, plan, tasks and implementation-summary, `templates/addons/acceptance-criteria.md.tmpl`, `templates/spec-kit-docs.json`, `scratch/templates-before/`). Run the first block, then the second. Verify: the first block prints five `converted` lines with `96`, `90`, `7`, `14` and `10`. In the second block the stamp count prints five lines with 7 stamps in all, the manifest count prints `5`, the leftover check prints `LEFTOVERS_SAME`, the token total prints `217`, and the check for old stamps prints nothing. A different converted number means the template differs from the one this plan was written against: restore from `scratch/templates-before/`, write the difference in `goal.md` section 4 and block the task.
+- [x] T011 Convert the five templates, stamp them and update the manifest (`.skilled/skills/system-spec-kit/templates/core/*.tmpl` for spec, plan, tasks and implementation-summary, `templates/addons/acceptance-criteria.md.tmpl`, `templates/spec-kit-docs.json`, `scratch/templates-before/`). Run the first block, then the second. Verify: the first block prints five `converted` lines with `96`, `90`, `7`, `14` and `10`. In the second block the stamp count prints five lines with 7 stamps in all, the manifest count prints `5`, the leftover check prints `LEFTOVERS_SAME`, the token total prints `217`, and the check for old stamps prints nothing. A different converted number means the template differs from the one this plan was written against: restore from `scratch/templates-before/`, write the difference in `goal.md` section 4 and block the task.
 
 ```bash
 cd "$WORKTREE"
@@ -925,7 +925,7 @@ rg -n 'SPECKIT_TEMPLATE_SOURCE:[^|]*\| v2\.2' core/spec.md.tmpl core/plan.md.tmp
 
   The stamp count lists five files: `addons/acceptance-criteria.md.tmpl` with `1`, `core/implementation-summary.md.tmpl` with `1`, `core/plan.md.tmpl` with `1`, `core/spec.md.tmpl` with `3` and `core/tasks.md.tmpl` with `1`. The bare texts left are `[NAME]`, `[YYYY-MM-DD]`, `[Feature Name]`, the `[template:...]` titles that `create.sh` strips, and the two texts `[TASK-ID]` and `[DONE | IN PROGRESS | BLOCKED]` that sit in one inline code span of `plan.md.tmpl`.
 
-- [ ] T012 Fix the reference docs (`.skilled/skills/system-spec-kit/references/templates/template-guide.md`, `references/validation/validation-rules.md`). Write the two edit files, then apply each. `apply_edits.py` writes nothing unless every old text occurs once. Run the three blocks. Verify: the two apply commands print `APPLIED 5 edits` and `APPLIED 1 edits`, `rg -c 'PLACEHOLDER\]' $S/references/templates/template-guide.md` prints nothing, and `rg -c 'Lifecycle For Docs Stamped v2.3 Or Later' $S/references/validation/validation-rules.md` prints `1`. A refusal that says `old text found 0 times` means the doc changed since this plan was written: read the doc, write the difference in `goal.md` section 4 and block the task.
+- [x] T012 Fix the reference docs (`.skilled/skills/system-spec-kit/references/templates/template-guide.md`, `references/validation/validation-rules.md`). Write the two edit files, then apply each. `apply_edits.py` writes nothing unless every old text occurs once. Run the three blocks. Verify: the two apply commands print `APPLIED 5 edits` and `APPLIED 1 edits`, `rg -c 'PLACEHOLDER\]' $S/references/templates/template-guide.md` prints nothing, and `rg -c 'Lifecycle For Docs Stamped v2.3 Or Later' $S/references/validation/validation-rules.md` prints `1`. A refusal that says `old text found 0 times` means the doc changed since this plan was written: read the doc, write the difference in `goal.md` section 4 and block the task.
 
 ```bash
 cd "$WORKTREE"
@@ -984,7 +984,7 @@ rg -c 'PLACEHOLDER\]' "$S/references/templates/template-guide.md"
 rg -c 'Lifecycle For Docs Stamped v2.3 Or Later' "$S/references/validation/validation-rules.md"
 ```
 
-- [ ] T013 Regenerate the golden snapshot and run the template tests (`.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap`, `scratch/snap-before.snap`). The snapshot test renders the converted templates, so without `-u` it fails on four tests. Run the first block, then the second. Verify: the first block prints `Snapshots  16 updated` (a different number is fine when the diff check below passes) and `Tests  12 passed (12)`. In the second block the first two numbers are equal (324 when this plan was written), and the last two print `0`. The last two prove every added line holds a token or a v2.3 stamp and every removed line held a hint or a v2.2 stamp. The third block prints `Test Files  5 passed (5)` and `Tests  32 passed (32)`. Two existing tests hard-code the old stamp and fail after the conversion: `tests/level-contract-resolver.vitest.ts` expects the manifest version of `spec.md.tmpl` to be v2.2, and `tests/upgrade-legacy.vitest.ts` removes a plan stamp line spelled with v2.2. The fourth block writes one edit file for each and applies them, and the fifth block runs both. Verify: the fourth block prints `APPLIED 1 edits` twice and the fifth block prints `Test Files  2 passed (2)` and `Tests  74 passed (74)`. A refusal that says `old text found 0 times` means the test changed since this plan was written: read it, write the difference in `goal.md` section 4 and block the task. The line for `before-after.md.tmpl` stays v2.2, because that template is not converted.
+- [x] T013 Regenerate the golden snapshot and run the template tests (`.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap`, `scratch/snap-before.snap`). The snapshot test renders the converted templates, so without `-u` it fails on four tests. Run the first block, then the second. Verify: the first block prints `Snapshots  16 updated` (a different number is fine when the diff check below passes) and `Tests  12 passed (12)`. In the second block the first two numbers are equal (324 when this plan was written), and the last two print `0`. The last two prove every added line holds a token or a v2.3 stamp and every removed line held a hint or a v2.2 stamp. The third block prints `Test Files  5 passed (5)` and `Tests  32 passed (32)`. Two existing tests hard-code the old stamp and fail after the conversion: `tests/level-contract-resolver.vitest.ts` expects the manifest version of `spec.md.tmpl` to be v2.2, and `tests/upgrade-legacy.vitest.ts` removes a plan stamp line spelled with v2.2. The fourth block writes one edit file for each and applies them, and the fifth block runs both. Verify: the fourth block prints `APPLIED 1 edits` twice and the fifth block prints `Test Files  2 passed (2)` and `Tests  74 passed (74)`. A refusal that says `old text found 0 times` means the test changed since this plan was written: read it, write the difference in `goal.md` section 4 and block the task. The line for `before-after.md.tmpl` stays v2.2, because that template is not converted.
 
 ```bash
 cd "$WORKTREE"
@@ -1034,7 +1034,7 @@ npx vitest run --config ../../vitest.config.ts --project cli tests/level-contrac
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Smoke-test a real scaffold in the throwaway track (`specs/zz-bench-gate/`, deleted at the end). Run the blocks in order. Verify: the first block prints `1` from the `--track` source check, because `create.sh --help` omits that flag. The Level 1 Draft block prints `! PLACEHOLDER_FILLED:` with `unfilled value token(s) in a Draft packet`, `Summary: Errors: 0` and `RESULT: PASSED`. The Complete block prints `error` with `placeholder(s) found`. The old-stamp block prints `error` with `placeholder(s) found`. The Level 2 block prints `112 112 101 101 0` over the five docs a Level 2 scaffold creates: 112 hints, 112 tokens, 101 distinct hints, 101 distinct tokens and no bare hint. The last block prints `TRACK_GONE`. The token counts printed in the Level 1 messages vary with the template text, so only the status words matter there. When a block prints `PASSED` where `error` is expected, the lifecycle is not active: stop and read T008 and T009 again.
+- [x] T014 Smoke-test a real scaffold in the throwaway track (`specs/zz-bench-gate/`, deleted at the end). Run the blocks in order. Verify: the first block prints `1` from the `--track` source check, because `create.sh --help` omits that flag. The Level 1 Draft block prints `! PLACEHOLDER_FILLED:` with `unfilled value token(s) in a Draft packet`, `Summary: Errors: 0` and `RESULT: PASSED`. The Complete block prints `error` with `placeholder(s) found`. The old-stamp block prints `error` with `placeholder(s) found`. The Level 2 block prints `112 112 101 101 0` over the five docs a Level 2 scaffold creates: 112 hints, 112 tokens, 101 distinct hints, 101 distinct tokens and no bare hint. The last block prints `TRACK_GONE`. The token counts printed in the Level 1 messages vary with the template text, so only the status words matter there. When a block prints `PASSED` where `error` is expected, the lifecycle is not active: stop and read T008 and T009 again.
 
 ```bash
 cd "$WORKTREE"
@@ -1071,7 +1071,7 @@ test ! -e specs/zz-bench-gate && echo TRACK_GONE
 
   The Level 2 line prints five numbers: all hints, tokens, distinct hints, distinct tokens and bare hints. It counts the five docs a Level 2 scaffold creates: `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` and `acceptance-criteria.md`. `inline-gate-renderer.sh --level 2` prints 117 bracketed hints over the four docs without `implementation-summary.md` and 131 over all five, and `finalize_scaffold_templates` replaces the scaffolder texts, so a converted Level 2 scaffold prints `112 112 101 101 0`. Phase 1 counted 97 because its regex needs a letter after the bracket.
 
-- [ ] T015 Record the census after the change and compare (`scratch/census/a-after.tsv`, `b-after-*.tsv`, `b-after.tsv`). Run the blocks in order, using the same folder list as T006. Verify: the compare block prints `CENSUS_SAME gate A` and `CENSUS_SAME gate B`. A `CENSUS_DIFF` line lists up to 40 differing rows. Gate A must be identical. For Gate B, a folder whose verdict changed but whose placeholder column did not change is first rerun twice with the current build: write both results in `goal.md` section 4. A verdict that flips between two runs of the same build is noise from a time-based rule and does not block. A verdict that is stable and different, or any change in the placeholder column, blocks the phase.
+- [x] T015 Record the census after the change and compare (`scratch/census/a-after.tsv`, `b-after-*.tsv`, `b-after.tsv`). Run the blocks in order, using the same folder list as T006. Verify: the compare block prints `CENSUS_SAME gate A` and `CENSUS_SAME gate B`. A `CENSUS_DIFF` line lists up to 40 differing rows. Gate A must be identical. For Gate B, a folder whose verdict changed but whose placeholder column did not change is first rerun twice with the current build: write both results in `goal.md` section 4. A verdict that flips between two runs of the same build is noise from a time-based rule and does not block. A verdict that is stable and different, or any change in the placeholder column, blocks the phase.
 
 ```bash
 cd "$WORKTREE"
@@ -1095,7 +1095,7 @@ cut -f2 "$CEN/b-after.tsv" | sort | uniq -c | sed -E 's/^ +//'
 
   Gate A was run on the real corpus of 4766 folders in a scratch copy with the new build and printed identical files. Gate B compares the path, the verdict and the placeholder column and leaves the warning counts out, because a count can move with a time-based rule.
 
-- [ ] T016 Check the phase 1 ledger rows owned by this phase and record the follow-ups (`goal.md`). Run the block. Verify: it prints one line per owner `003` row, each starting with `HANDLED`, `OPEN` or `OUTSIDE`. Copy the lines into `goal.md` section 4. A row marked `OPEN` whose file is inside the file list of `spec.md` section 3 is a defect this phase missed: fix it by the same tool and rerun the affected checks. A row marked `OUTSIDE` names a file this phase does not own: leave it and record it. Then confirm the five operator items OP-1 to OP-5 are rows in `goal.md` section 4, and fill the probe output for OP-1 to OP-3 with the probes below.
+- [x] T016 Check the phase 1 ledger rows owned by this phase and record the follow-ups (`goal.md`). Run the block. Verify: it prints one line per owner `003` row, each starting with `HANDLED`, `OPEN` or `OUTSIDE`. Copy the lines into `goal.md` section 4. A row marked `OPEN` whose file is inside the file list of `spec.md` section 3 is a defect this phase missed: fix it by the same tool and rerun the affected checks. A row marked `OUTSIDE` names a file this phase does not own: leave it and record it. Then confirm the five operator items OP-1 to OP-5 are rows in `goal.md` section 4, and fill the probe output for OP-1 to OP-3 with the probes below.
 
 ```bash
 cd "$WORKTREE"
@@ -1129,7 +1129,7 @@ rm -rf "$PR"
 
   For ADR-005 run `node $S/runtime/cli/spec/repo-era.mjs . | jq -c '.signals.templateMarkers'` once with this tree and once with the build of the start commit. The counts in this repository went from `{"new":16871,"legacy":2374,"none":510}` to `{"new":1421,"legacy":17824,"none":510}`. For ADR-006 the probe is the `upgrade-level` tests inside T017.
 
-- [ ] T017 Run the whole spec-kit suite and compare it with the phase 1 start (`scratch/suite-end.txt`). Run the first block. It takes a long time: its duration is UNKNOWN until it runs, so give it up to the 10 minute bound per invocation that `runtime/scripts/run-tests.mjs` sets and read its output. Then run the second block. Verify: the second block prints `SUITE_MATCH_PLUS_NEW_TEST`. The compare tool accepts only a `Test Files` line that rose by 1 passed, a `Tests` line that rose by 5 passed, and an identical `exit=` line. Everything else must be identical. When it prints `SUITE_DIFF`, read the reason, read the lines of `suite-end.txt` that start with `FAIL` or hold `×`, and rerun the first block once before you decide, because a flaky test can differ between runs. A second `SUITE_DIFF` blocks the phase. Then run the third block and write its output in `goal.md` section 4: it shows whether the two `upgrade-level` suites changed, which is the ADR-006 probe.
+- [x] T017 Run the whole spec-kit suite and compare it with the phase 1 start (`scratch/suite-end.txt`). Run the first block. It takes a long time: its duration is UNKNOWN until it runs, so give it up to the 10 minute bound per invocation that `runtime/scripts/run-tests.mjs` sets and read its output. Then run the second block. Verify: the second block prints `SUITE_MATCH_PLUS_NEW_TEST`. The compare tool accepts only a `Test Files` line that rose by 1 passed, a `Tests` line that rose by 5 passed, and an identical `exit=` line. Everything else must be identical. When it prints `SUITE_DIFF`, read the reason, read the lines of `suite-end.txt` that start with `FAIL` or hold `×`, and rerun the first block once before you decide, because a flaky test can differ between runs. A second `SUITE_DIFF` blocks the phase. Then run the third block and write its output in `goal.md` section 4: it shows whether the two `upgrade-level` suites changed, which is the ADR-006 probe.
 
 ```bash
 cd "$WORKTREE"
@@ -1147,7 +1147,7 @@ grep -nE 'upgrade-level-sections|test-upgrade-level|repo-era|doctor-update-compa
 grep -c '^ *FAIL ' "$SC/suite-end.txt"
 ```
 
-- [ ] T018 Check that only the file list changed (`scratch/allowed-files.txt`, `scratch/changed-files.txt`). Run the block. Verify: the last command prints `0`. A path it lists is a change no part of this phase explains. Restore it with `git restore --source="$P3START" -- <path>`, rebuild when it was source, and record it in `goal.md` section 4. The untracked new test file is not in `git diff`, so the block also checks it with `git status --porcelain`.
+- [x] T018 Check that only the file list changed (`scratch/allowed-files.txt`, `scratch/changed-files.txt`). Run the block. Verify: the last command prints `0`. A path it lists is a change no part of this phase explains. Restore it with `git restore --source="$P3START" -- <path>`, rebuild when it was source, and record it in `goal.md` section 4. The untracked new test file is not in `git diff`, so the block also checks it with `git status --porcelain`.
 
 ```bash
 cd "$WORKTREE"
@@ -1167,7 +1167,7 @@ cd "$WORKTREE"
 comm -13 "$SC/allowed-files.txt" "$SC/changed-files.txt" | wc -l | tr -d ' '
 ```
 
-- [ ] T019 Frontier review of the diff (`scratch/review/T019.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first and use its read-only invocation with the `gpt-6-luna` model. Write the brief with the first block and send it with the second block. Verify: `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$SC/review/T019.txt"` prints `0`, which means every line is a finding or the file holds the single line `NO FINDINGS`.
+- [x] T019 Frontier review of the diff (`scratch/review/T019.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first and use its read-only invocation with the `gpt-6-luna` model. Write the brief with the first block and send it with the second block. Verify: `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$SC/review/T019.txt"` prints `0`, which means every line is a finding or the file holds the single line `NO FINDINGS`.
 
 ```bash
 cd "$WORKTREE"
@@ -1200,7 +1200,7 @@ AI_SESSION_CHILD=1 codex exec --model gpt-6-luna -c model_reasoning_effort="high
 PID=$!; wait "$PID"; kill -9 "$PID" 2>/dev/null; pkill -9 -P "$PID" 2>/dev/null
 ```
 
-- [ ] T020 Apply the review findings (`goal.md`, the files the findings name). For each `P0` or `P1` line, split the third column at the first ` => ` into the exact old text and the exact new text, write them as one block with the old text above a `---` line and the new text below it in an edits file and apply it with `python3 -I "$SC/tools/apply_edits.py" <file> <edits-file>`. `apply_edits.py` writes nothing unless the old text occurs once. Then rerun T009's test, T013's third block, T015 and T018. For each `P2` line, fix it the same way or write the reason it was not fixed in `goal.md` section 4. A finding that asks for a change outside the file list is not applied: write it in `goal.md` section 4 and raise it to the operator. Record each finding as a row of the form `| FINDING <P0/P1/P2> <file>:<line> | APPLIED or RECORDED |` in the findings table of `goal.md` section 4. Run the block below. Verify: it prints `FINDINGS_TALLIED` with two equal numbers, or `NO_FINDINGS_OK` when T019 holds the single line `NO FINDINGS`.
+- [x] T020 Apply the review findings (`goal.md`, the files the findings name). For each `P0` or `P1` line, split the third column at the first ` => ` into the exact old text and the exact new text, write them as one block with the old text above a `---` line and the new text below it in an edits file and apply it with `python3 -I "$SC/tools/apply_edits.py" <file> <edits-file>`. `apply_edits.py` writes nothing unless the old text occurs once. Then rerun T009's test, T013's third block, T015 and T018. For each `P2` line, fix it the same way or write the reason it was not fixed in `goal.md` section 4. A finding that asks for a change outside the file list is not applied: write it in `goal.md` section 4 and raise it to the operator. Record each finding as a row of the form `| FINDING <P0/P1/P2> <file>:<line> | APPLIED or RECORDED |` in the findings table of `goal.md` section 4. Run the block below. Verify: it prints `FINDINGS_TALLIED` with two equal numbers, or `NO_FINDINGS_OK` when T019 holds the single line `NO FINDINGS`.
 
 ```bash
 cd "$WORKTREE"
@@ -1216,7 +1216,7 @@ else
 fi
 ```
 
-- [ ] T021 Close the phase (this folder, no commit). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`. Fill `implementation-summary.md` with what changed and the results of T005, T009, T010, T011, T013, T014, T015, T017 and T018, and keep the operator items in it. Mark each row of `acceptance-criteria.md` `Met` with its evidence and set the closure statement. Confirm that `git log -1 --format=%H` still prints `$P3START`, because this phase makes no commit and the operator commits. Verify: the validate command prints `RESULT: PASSED`, `git log -1 --format=%H` prints the hash from T003, and `rg -c '^\| AC-[0-9]+ .*\| Unmet \|' "$PHASE/acceptance-criteria.md"` prints nothing.
+- [x] T021 Close the phase (this folder, no commit). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`. Fill `implementation-summary.md` with what changed and the results of T005, T009, T010, T011, T013, T014, T015, T017 and T018, and keep the operator items in it. Mark each row of `acceptance-criteria.md` `Met` with its evidence and set the closure statement. Confirm that `git log -1 --format=%H` still prints `$P3START`, because this phase makes no commit and the operator commits. Verify: the validate command prints `RESULT: PASSED`, `git log -1 --format=%H` prints the hash from T003, and `rg -c '^\| AC-[0-9]+ .*\| Unmet \|' "$PHASE/acceptance-criteria.md"` prints nothing.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -1224,9 +1224,9 @@ fi
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every acceptance criterion marked `Met` with its evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every acceptance criterion marked `Met` with its evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -1258,10 +1258,10 @@ fi
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 2 closed and the templates still original, shown by T001
-- [ ] CHK-002 [P0] T001 to T006 done with their verify output recorded in `goal.md` section 4
-- [ ] CHK-003 [P0] T003 printed no `FOREIGN` line and recorded the start commit
-- [ ] CHK-004 [P1] The census before ran on the unchanged tree and its totals are in `goal.md` section 4
+- [x] CHK-001 [P0] Phase 2 closed and the templates still original, shown by T001
+- [x] CHK-002 [P0] T001 to T006 done with their verify output recorded in `goal.md` section 4
+- [x] CHK-003 [P0] T003 printed no `FOREIGN` line and recorded the start commit
+- [x] CHK-004 [P1] The census before ran on the unchanged tree and its totals are in `goal.md` section 4
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1269,10 +1269,10 @@ fi
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] T007 showed exactly one red test, and it was the Draft-warns case
-- [ ] CHK-011 [P0] T010 printed `M1_RED`, `M2_RED`, `M3_RED` and `GREEN_AGAIN`
-- [ ] CHK-012 [P1] No code comment in the orchestrator block, the shell rule or the test names a spec, phase, task, ADR or finding id
-- [ ] CHK-013 [P1] The shell rule changed only through the whole-file write of T009 and the orchestrator only through `replace_block.py`
+- [x] CHK-010 [P0] T007 showed exactly one red test, and it was the Draft-warns case
+- [x] CHK-011 [P0] T010 printed `M1_RED`, `M2_RED`, `M3_RED` and `GREEN_AGAIN`
+- [x] CHK-012 [P1] No code comment in the orchestrator block, the shell rule or the test names a spec, phase, task, ADR or finding id
+- [x] CHK-013 [P1] The shell rule changed only through the whole-file write of T009 and the orchestrator only through `replace_block.py`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -1280,11 +1280,11 @@ fi
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] T015 printed `CENSUS_SAME gate A` and `CENSUS_SAME gate B`
-- [ ] CHK-022 [P0] T017 printed `SUITE_MATCH_PLUS_NEW_TEST`
-- [ ] CHK-023 [P1] T013 diff check printed equal counts and two zeros
-- [ ] CHK-024 [P1] A step that failed is recorded with its error and not silently replaced
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] T015 printed `CENSUS_SAME gate A` and `CENSUS_SAME gate B`
+- [x] CHK-022 [P0] T017 printed `SUITE_MATCH_PLUS_NEW_TEST`
+- [x] CHK-023 [P1] T013 diff check printed equal counts and two zeros
+- [x] CHK-024 [P1] A step that failed is recorded with its error and not silently replaced
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1292,13 +1292,13 @@ fi
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every hint of the five templates is a token or is on the kept list: `LEFTOVERS_SAME` in T011 and `217` tokens.
-- [ ] CHK-FIX-002 [P0] The 7 stamp lines and the 5 manifest entries read v2.3, and no old stamp is left in the five templates.
-- [ ] CHK-FIX-003 [P0] The orchestrator and the shell rule agree on the four pinned cells, shown by the shell assertions in the test.
-- [ ] CHK-FIX-004 [P1] The four cells the test does not pin keep their old behavior, shown by the 8 isolated and 3 edge cases of the harness.
-- [ ] CHK-FIX-005 [P1] The five `[PLACEHOLDER]` lines of the template guide are corrected and the rules reference describes the lifecycle.
-- [ ] CHK-FIX-006 [P1] The five operator items are rows in `goal.md` section 4, with probe output for OP-1 to OP-3.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the start commit recorded in T003.
+- [x] CHK-FIX-001 [P0] Every hint of the five templates is a token or is on the kept list: `LEFTOVERS_SAME` in T011 and `217` tokens.
+- [x] CHK-FIX-002 [P0] The 7 stamp lines and the 5 manifest entries read v2.3, and no old stamp is left in the five templates.
+- [x] CHK-FIX-003 [P0] The orchestrator and the shell rule agree on the four pinned cells, shown by the shell assertions in the test.
+- [x] CHK-FIX-004 [P1] The four cells the test does not pin keep their old behavior, shown by the 8 isolated and 3 edge cases of the harness.
+- [x] CHK-FIX-005 [P1] The five `[PLACEHOLDER]` lines of the template guide are corrected and the rules reference describes the lifecycle.
+- [x] CHK-FIX-006 [P1] The five operator items are rows in `goal.md` section 4, with probe output for OP-1 to OP-3.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the start commit recorded in T003.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1306,9 +1306,9 @@ fi
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No brief, tool or test contains a credential, token or key
-- [ ] CHK-031 [P0] No command ran against a path outside `$WORKTREE` except reads of `$P1`
-- [ ] CHK-032 [P1] The review ran read-only with `AI_SESSION_CHILD=1`
+- [x] CHK-030 [P0] No brief, tool or test contains a credential, token or key
+- [x] CHK-031 [P0] No command ran against a path outside `$WORKTREE` except reads of `$P1`
+- [x] CHK-032 [P1] The review ran read-only with `AI_SESSION_CHILD=1`
 <!-- /ANCHOR:security -->
 
 ---
@@ -1316,9 +1316,9 @@ fi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks agree on the lifecycle table, the 217 conversions and the 7 stamp lines
-- [ ] CHK-041 [P1] `goal.md` section 4 records the start commit, each census total, each blocker and each operator item
-- [ ] CHK-042 [P2] `implementation-summary.md` names the exact commands that produced each number
+- [x] CHK-040 [P1] Spec, plan and tasks agree on the lifecycle table, the 217 conversions and the 7 stamp lines
+- [x] CHK-041 [P1] `goal.md` section 4 records the start commit, each census total, each blocker and each operator item
+- [x] CHK-042 [P2] `implementation-summary.md` names the exact commands that produced each number
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1326,8 +1326,8 @@ fi
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Working files are under this phase's `scratch/` only, and the one created source file is the new test
-- [ ] CHK-051 [P1] `specs/zz-bench-gate/` does not exist at phase close
+- [x] CHK-050 [P1] Working files are under this phase's `scratch/` only, and the one created source file is the new test
+- [x] CHK-051 [P1] `specs/zz-bench-gate/` does not exist at phase close
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1349,10 +1349,10 @@ fi
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001 to ADR-007 in `plan.md` are followed by T004 to T012
-- [ ] CHK-101 [P1] Every ADR has status Accepted
-- [ ] CHK-102 [P1] Each ADR names the alternative it rejected and why
-- [ ] CHK-103 [P2] No data migration applies to this phase
+- [x] CHK-100 [P0] ADR-001 to ADR-007 in `plan.md` are followed by T004 to T012
+- [x] CHK-101 [P1] Every ADR has status Accepted
+- [x] CHK-102 [P1] Each ADR names the alternative it rejected and why
+- [x] CHK-103 [P2] No data migration applies to this phase
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -1360,10 +1360,10 @@ fi
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Each census shard finished within 90 minutes or was rerun once (NFR-P01)
-- [ ] CHK-111 [P1] The suite duration is recorded in `goal.md` section 4, replacing the UNKNOWN in `plan.md`
-- [ ] CHK-112 [P2] No load test applies to this phase
-- [ ] CHK-113 [P2] Gate A time and Gate B time recorded in `goal.md` section 4
+- [x] CHK-110 [P1] Each census shard finished within 90 minutes or was rerun once (NFR-P01)
+- [x] CHK-111 [P1] The suite duration is recorded in `goal.md` section 4, replacing the UNKNOWN in `plan.md`
+- [x] CHK-112 [P2] No load test applies to this phase
+- [x] CHK-113 [P2] Gate A time and Gate B time recorded in `goal.md` section 4
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -1371,11 +1371,11 @@ fi
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback in `plan.md` section 7 was not needed, or was run and recorded
-- [ ] CHK-121 [P0] Nothing outside the file list changed, shown by T018
-- [ ] CHK-122 [P1] Phase 4 can start: the five templates hold only tokens and the kept list, and the stamp is v2.3
-- [ ] CHK-123 [P1] `goal.md` section 4 names the next phase as ready and states what it may assume
-- [ ] CHK-124 [P2] No deployment applies to this phase, the operator commits
+- [x] CHK-120 [P0] Rollback in `plan.md` section 7 was not needed, or was run and recorded
+- [x] CHK-121 [P0] Nothing outside the file list changed, shown by T018
+- [x] CHK-122 [P1] Phase 4 can start: the five templates hold only tokens and the kept list, and the stamp is v2.3
+- [x] CHK-123 [P1] `goal.md` section 4 names the next phase as ready and states what it may assume
+- [x] CHK-124 [P2] No deployment applies to this phase, the operator commits
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -1383,10 +1383,10 @@ fi
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Frontier review ran read-only and its reply is saved
-- [ ] CHK-131 [P1] No new dependency was installed
-- [ ] CHK-132 [P2] No user data is handled by this phase
-- [ ] CHK-133 [P2] No OWASP surface is touched by this phase
+- [x] CHK-130 [P1] Frontier review ran read-only and its reply is saved
+- [x] CHK-131 [P1] No new dependency was installed
+- [x] CHK-132 [P2] No user data is handled by this phase
+- [x] CHK-133 [P2] No OWASP surface is touched by this phase
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -1394,10 +1394,10 @@ fi
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
-- [ ] CHK-141 [P1] `implementation-summary.md` cites the census files, the suite compare output and the review file
-- [ ] CHK-142 [P2] `validation-rules.md` and `template-guide.md` agree with the code
-- [ ] CHK-143 [P2] Per-file conversion counts recorded for phase 4
+- [x] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
+- [x] CHK-141 [P1] `implementation-summary.md` cites the census files, the suite compare output and the review file
+- [x] CHK-142 [P2] `validation-rules.md` and `template-guide.md` agree with the code
+- [x] CHK-143 [P2] Per-file conversion counts recorded for phase 4
 <!-- /ANCHOR:docs-verify -->
 
 ---

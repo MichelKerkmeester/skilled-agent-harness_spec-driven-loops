@@ -1,0 +1,32 @@
+== core/spec.md.tmpl
+5 [NAME]
+1 [YYYY-MM-DD]
+1 [template:level-1/spec.md]
+1 [template:level-2/spec.md]
+1 [template:level-3/spec.md]
+1 [template:level_3+/spec.md]
+== core/plan.md.tmpl
+1 [DONE | IN PROGRESS | BLOCKED]
+5 [NAME]
+1 [TASK-ID]
+1 [template:level-1/plan.md]
+1 [template:level-2/plan.md]
+1 [template:level-3/plan.md]
+1 [template:level_3+/plan.md]
+== core/tasks.md.tmpl
+5 [NAME]
+1 [YYYY-MM-DD]
+1 [template:level-1/tasks.md]
+1 [template:level-2/tasks.md]
+1 [template:level-3/tasks.md]
+1 [template:level_3+/tasks.md]
+== core/implementation-summary.md.tmpl
+1 [Feature Name]
+1 [YYYY-MM-DD]
+1 [template:level-1/implementation-summary.md]
+1 [template:level-2/implementation-summary.md]
+1 [template:level-3/implementation-summary.md]
+1 [template:level_3+/implementation-summary.md]
+== addons/acceptance-criteria.md.tmpl
+2 [NAME]
+1 [YYYY-MM-DD]

@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -36,7 +36,7 @@ Level 3+ (Extended):    Level 3 + governance/AI protocol content
 1. **Never create from scratch** - Always scaffold through `create.sh` or render from `.skilled/skills/system-spec-kit/templates/`
 2. **Always adapt to feature** - Templates are starting points, not final documents
 3. **Preserve structure** - Preserve section structure and numbering; emojis are optional
-4. **Remove placeholders** - Replace ALL `[PLACEHOLDER]` text with actual content
+4. **Remove placeholders** - Replace every `[YOUR_VALUE_HERE: ...]` token with actual content. A new packet may keep tokens while its status is Draft, and validation fails them at any other status
 5. **Delete samples** - Remove `<!-- SAMPLE CONTENT -->` blocks before delivery
 
 ### Why Templates Matter
@@ -303,7 +303,7 @@ estimated_loc: 350
 
 **Placeholder types:**
 
-- `[PLACEHOLDER]` - **MUST** be replaced with actual content
+- `[YOUR_VALUE_HERE: ...]` - **MUST** be replaced with actual content. In a doc stamped v2.3 or later it is a warning while the spec status is Draft and an error at any other status. In an older doc it is always an error
 - `[NEEDS CLARIFICATION: ...]` - Unknown requirement (flag for user)
 - `<!-- SAMPLE CONTENT -->` - Remove before delivery
 
@@ -362,7 +362,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level <N> --pa
 - Add other metadata as needed
 
 **Step 3: Replace ALL Placeholders**
-- Search for `[PLACEHOLDER]`
+- Search for `YOUR_VALUE_HERE:`
 - Replace with actual content
 - Verify no placeholders remain
 
@@ -733,7 +733,7 @@ Task tool -> @debug for specs/007-feature/
 
 1. **Always scaffold or render from `.skilled/skills/system-spec-kit/templates/`** - Never freehand
 2. **Preserve numbering and emojis** - Maintain visual scanning pattern
-3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
+3. **Fill every placeholder** - Replace every `[YOUR_VALUE_HERE: ...]` token with actual content
 4. **Remove instructional comments** - Delete `<!-- SAMPLE -->` blocks
 5. **Use the canonical required filename** - `decision-record.md` (topic-specific ADR files are supplemental)
 6. **Keep sections relevant** - State "N/A" instead of deleting sections
@@ -748,7 +748,7 @@ Task tool -> @debug for specs/007-feature/
 Before presenting documentation to user, verify:
 
 - [ ] All templates copied from `.skilled/skills/system-spec-kit/templates/` (not created from scratch)
-- [ ] All placeholders replaced (`[PLACEHOLDER]`, `[NEEDS CLARIFICATION: ...]`)
+- [ ] All placeholders replaced (`[YOUR_VALUE_HERE: ...]`, `[NEEDS CLARIFICATION: ...]`)
 - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
 - [ ] Template footer deleted
 - [ ] Metadata block filled correctly

@@ -1,0 +1,33 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a code and text diff. A script checks your output line by line.
+
+READ THESE FILES:
+1. specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch/review/T019-stat.txt - every changed file since the phase start commit.
+2. specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch/review/T019.diff - the diff of runtime, references and the manifest .skilled/skills/system-spec-kit/templates/spec-kit-docs.json since the start commit.
+3. specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch/review/T019-templates-stat.txt - the changed files under .skilled/skills/system-spec-kit/templates.
+4. specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch/review/T019-templates.diff - the zero-context diff of the five changed templates.
+5. .skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts - the new test (a new file, so it is not in the diff).
+6. specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md section 4 - the requirements.
+7. If you need the current text of a changed file, read it directly: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts, .skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh, .skilled/skills/system-spec-kit/references/templates/template-guide.md, .skilled/skills/system-spec-kit/references/validation/validation-rules.md.
+
+CHECK THESE SIX THINGS:
+(1) The orchestrator and the shell rule give the same result for the four cells the test pins, and neither can warn for a doc without the v2.3 stamp.
+(2) A warning is possible only for a [YOUR_VALUE_HERE: token, never for [NEEDS CLARIFICATION:, and only while spec.md has the Status Draft.
+(3) The shell rule reads acceptance-criteria.md, implementation-summary.md and goal.md only when they carry the stamp, so its behavior for older docs is unchanged.
+(4) Only the five named templates and spec-kit-docs.json changed under templates (see the templates stat). In each template every changed line either turns a bracketed hint into a [YOUR_VALUE_HERE: token with the same text or changes a stamp from v2.2 to v2.3.
+(5) No code comment names a spec, phase, task, ADR or finding id.
+(6) template-guide.md and validation-rules.md describe what the code does.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<line> | <what is wrong> | <the exact old text> => <the exact new text>
+Return the single line NO FINDINGS when there are none.

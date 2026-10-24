@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate",
   "spec_folder": "system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate",
   "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "validateplaceholders"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +48,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "rules/check-placeholders.sh",
-      "references/templates/template-guide.md",
-      "references/validation/validation-rules.md",
-      "runtime/cli/spec/check-placeholders.sh",
-      "assets/template-mapping.md",
       "templates/core/spec.md.tmpl",
-      "templates/core/plan.md.tmpl",
-      "templates/core/tasks.md.tmpl",
-      "templates/core/implementation-summary.md.tmpl",
       "templates/addons/acceptance-criteria.md.tmpl",
       "templates/spec-kit-docs.json",
       "runtime/lib/validation/orchestrator.ts",
       "runtime/cli/rules/check-placeholders.sh",
-      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap"
+      "runtime/cli/tests/placeholder-token-gate.vitest.ts",
+      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      "references/templates/template-guide.md",
+      "references/validation/validation-rules.md",
+      "scratch/census/a-before.tsv",
+      "scratch/suite-end.txt",
+      "scratch/review/T019.txt",
+      "assets/template-mapping.md",
+      "rules/check-placeholders.sh"
     ],
     "entities": [
       {
@@ -100,51 +101,9 @@
         "source": "derived"
       },
       {
-        "name": "check-placeholders.sh",
-        "kind": "script",
-        "path": "rules/check-placeholders.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-guide.md",
-        "kind": "doc",
-        "path": "references/templates/template-guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "validation-rules.md",
-        "kind": "doc",
-        "path": "references/validation/validation-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "template-mapping.md",
-        "kind": "doc",
-        "path": "assets/template-mapping.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md.tmpl",
         "kind": "file",
         "path": "templates/core/spec.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md.tmpl",
-        "kind": "file",
-        "path": "templates/core/plan.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md.tmpl",
-        "kind": "file",
-        "path": "templates/core/tasks.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md.tmpl",
-        "kind": "file",
-        "path": "templates/core/implementation-summary.md.tmpl",
         "source": "derived"
       },
       {
@@ -166,9 +125,57 @@
         "source": "derived"
       },
       {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "placeholder-token-gate.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/placeholder-token-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "scaffold-golden-snapshots.vitest.ts.snap",
         "kind": "file",
         "path": "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": "references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "a-before.tsv",
+        "kind": "file",
+        "path": "scratch/census/a-before.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "suite-end.txt",
+        "kind": "file",
+        "path": "scratch/suite-end.txt",
+        "source": "derived"
+      },
+      {
+        "name": "T019.txt",
+        "kind": "file",
+        "path": "scratch/review/T019.txt",
+        "source": "derived"
+      },
+      {
+        "name": "template-mapping.md",
+        "kind": "doc",
+        "path": "assets/template-mapping.md",
         "source": "derived"
       },
       {
@@ -200,17 +207,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 measured a fresh Level 2 scaffold at 87 distinct hint strings and 97 occurrences, and strict validation passes it",
     "created_at": "2026-10-23T11:27:21Z",
-    "last_save_at": "2026-10-24T08:31:29.363Z",
+    "last_save_at": "2026-10-24T15:41:56.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +222,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dedcc5edcfac8897dc293e09a0687ba444a9b3d6254e0cd6093da05429be13ef",
+    "source_fingerprint": "sha256:4d36b5690d45c2c2b56922fd5cd239dff2f574509c2ae3fd75b03678c9d01b37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13f73164acd3c7a68e1b6d061fc43fbc821494b2a0a362e0ff607ca8795e78b4",
-      "plan.md": "ed45b101c5b74283d4572ad2665bb8e4dab076dccee71e6fb6d52dcd2618cf85",
-      "tasks.md": "84dafe6b30fe7a98cbc870082512c8531168d6b09c6ceb693cdc016e3e952b52",
-      "implementation-summary.md": "f128ecd901103cd9b9fc4dc4f5d47033bfc7319e9caeb8e35940d5700f0db929"
+      "spec.md": "6715e0b13a1152106e341589bc447a1a47f3f7c8ab093e468af51be8f5c91386",
+      "plan.md": "2cc6b3033d5a72f2911341158d98ca8e15f7ba5abff07cc0c06a2f1698b0ee0c",
+      "tasks.md": "8325440ac9f0602a5598e0835af6e67bd518fac847a882ba887789a3f2bb5562",
+      "implementation-summary.md": "5ec05c125a38c479953f5005d124afc9e7d8d04897d486e6d9e3473a75768de3"
     },
     "last_active_at": null
   }
