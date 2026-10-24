@@ -1320,41 +1320,42 @@ Stop and escalate if: the message validator exits non-zero, or the ephemeral-id 
 
 ---
 
-### T034 [ ] Measure the CLI step on the first post-change run (AC-003)
+### T034 [ ] Measure the CLI step on the post-change runs and judge its median (AC-003)
 
-Partial, Stop-if fired and ruled: the first run of the count-based shard, 40090109005 (push on main at `b2a1663`, `success`), read `{"conclusion":"success","seconds":643}` against `791` in run `39909844384`, and a second run, 40094302049, read 482 s; both are over 400 s, and the reference itself moved between 776 s and 950 s across planning samples, so these two samples establish no gain. The operator ruled on 2026-10-24 to keep two shards and hand-balance them. The rebalanced split is in `spec-kit-check.yml` and was checked locally (313.90 s and 356.56 s, exits 0), but it is not committed, so no CI run has used it: AC-003 stays Unmet, awaiting CI measurement after the commit. The `| after |` row is not written; the two old samples are recorded as superseded in `scratch/r20-ci-step.md`.
+Partial, awaiting runs 2 of 5. The operator ruled on 2026-10-24 (decision-record ADR-003 amendment) that AC-003 is judged on the median of the five green `Spec-Kit Check` runs on main that T035 collects, and not on the first run alone. The count-based split read 643 s (run 40090109005) and 482 s (run 40094302049), both over 400 s and superseded. Two runs have used the rebalanced split and both are green: 40102448836 at 75b27df21c read 459 s and 40107239895 at e00fef3e76 read 299 s, against 791 s in run 39909844384. Both heads contain 04d9b0c84f. Their running median is 379 s, which decides nothing with fewer than five runs. The two `| after |` rows are written in `scratch/r20-ci-step.md`.
 
-File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `| reference | 39909844384 | 791 |` row.
+File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `post-change-runs:` line.
 
-Change: read the first `Spec-Kit Check` run at or after the R20 commit and append one row `| after | <run id> | <seconds> |`.
+Change: for each `Spec-Kit Check` push run on main since 75b27df21c, oldest first, whose head contains 04d9b0c84f and which is green, append one row `| after | <run id> | <head sha> | <conclusion> | <seconds> |`. Stop at five rows.
 
 ```bash
 PHASE="$PWD/specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests"
-RUN=$(gh run list --workflow spec-kit-check.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+gh run list --workflow spec-kit-check.yml --branch main --event push --limit 30 --json databaseId,headSha,conclusion,createdAt --jq 'sort_by(.createdAt) | .[] | "\(.databaseId) \(.headSha)"'
+RUN=<run id>
 gh run view "$RUN" --json jobs --jq '.jobs[] | select(.name | startswith("Typecheck")) | .steps[] | select(.name == "CLI vitest project") | {conclusion, seconds: (((.completedAt|fromdateiso8601) - (.startedAt|fromdateiso8601)))}'
-printf '| after | %s | %s |\n' "$RUN" "$(gh run view "$RUN" --json jobs --jq '.jobs[] | select(.name | startswith("Typecheck")) | .steps[] | select(.name == "CLI vitest project") | (((.completedAt|fromdateiso8601) - (.startedAt|fromdateiso8601)))')" >> "$PHASE/scratch/r20-ci-step.md"
+git merge-base --is-ancestor 04d9b0c84f <head sha> && echo COUNTS
 ```
 
-Expected: `"conclusion":"success"` and a `seconds` value under `400`, against `791` in run `39909844384`.
+Expected: `"conclusion":"success"` and `COUNTS` for each row appended, and five rows in all.
 
 Check:
 
 ```bash
 grep -c '^| after |' specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
-awk -F'|' '/^\| after \|/ {gsub(/ /,"",$4); exit ($4 < 400 ? 0 : 1)}' specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md && echo UNDER_400
+awk -F'[|]' '/^\| after \|/ {gsub(/ /,"",$6); v[++n]=$6+0} END {for(i=2;i<=n;i++){x=v[i];j=i-1;while(j>0&&v[j]>x){v[j+1]=v[j];j--};v[j+1]=x} if(n==5&&v[3]<400){print "MEDIAN_UNDER_400";exit 0} print "NOT_MET";exit 1}' specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
 ```
 
-Expected: `1` and `UNDER_400`.
+Expected: `5` and `MEDIAN_UNDER_400`.
 
-Rollback: delete the `| after |` row.
+Rollback: delete the `| after |` rows.
 
-Stop and escalate if: the step reads `400` s or more, because the shard in T013 and T014 is then the required path rather than a fallback.
+Stop and escalate if: the median of five reads `400` s or more, because the shard in T013 and T014 is then re-measured and the ceiling is not relaxed.
 
 ---
 
 ### T035 [ ] Confirm 5 consecutive green Spec-Kit Check runs (AC-003)
 
-Pending, waits on CI: no `Spec-Kit Check` run has used the rebalanced split yet (`post-change-runs: 0 of 5 needed` in `scratch/r20-ci-step.md`). A run that predates the rebalance commit cannot count, so the `## Green streak` section and `all_green: true` are not written. Run the task's command once five natural runs have finished after the commit.
+Pending, waits on CI: two of the five runs exist (`post-change-runs: 2 of 5 needed` in `scratch/r20-ci-step.md`, runs 40102448836 and 40107239895, both green). A run whose head lacks 04d9b0c84f cannot count, so the `## Green streak` section and `all_green: true` are not written. Run the task's command once five natural runs have finished.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `| after |` row.
 

@@ -106,7 +106,7 @@ Through `tasks.md` in order. T001 to T032 are done, with the probe outcome (T010
 |-------|--------|
 | Probe rows and `outcome` token in `scratch/r19-probe.md` | `1`, `3`, `4`, `1`; probe config gone (AC-001 Met) |
 | `grep -c -- '--exclude' .github/workflows/spec-kit-check.yml`, the two waits, YAML | `1`, `1`, `1`, `YAML_OK`; local halves 313.90 s and 356.56 s (AC-002 Met) |
-| The `CLI vitest project` step on CI | Count-based split 643 s and 482 s; rebalanced split awaiting CI measurement after commit (AC-003 Unmet) |
+| The `CLI vitest project` step on CI | Count-based split 643 s and 482 s; rebalanced split 459 s and 299 s, judged on the median of five green runs by the 2026-10-24 ruling, awaiting runs 2 of 5 (AC-003 Unmet) |
 | Root-cause rows with a seven-character SHA | `4` (AC-004 Met) |
 | Stale-failure rows and `closed` verdicts | `5` and `5` (AC-005 Met) |
 | The three workflows' streaks | diagram-corpus `all_green=true count=10`; deep-loop-runtime filed; skill-advisor-stress needs three natural runs (AC-006 Unmet) |
@@ -122,8 +122,8 @@ Through `tasks.md` in order. T001 to T032 are done, with the probe outcome (T010
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The CI step time is not measured yet.** The count-based split read 643 s and 482 s; the rebalanced split is checked locally (313.90 s and 356.56 s) but no CI run has used it, so the 5-run green streak is at 0 of 5. The hand-kept split can drift: a new slow file, or a rename of the heavy one, changes the balance.
-2. **The 400 s ceiling is absolute, not a ratio.** The step's planning samples span 776 to 950 s, so the acceptance reads the first post-change run rather than a percentage of 791.
+1. **The CI step time is judged on five runs, and two exist.** The count-based split read 643 s and 482 s; the rebalanced split is checked locally (313.90 s and 356.56 s) and read 459 s and 299 s on CI, so the 5-run green streak is at 2 of 5 and the median rule (operator ruling of 2026-10-24) cannot decide yet. The hand-kept split can drift: a new slow file, or a rename of the heavy one, changes the balance.
+2. **The 400 s ceiling is absolute, not a ratio.** The step's planning samples span 776 to 950 s, so the acceptance reads the median of five post-change runs rather than a percentage of 791.
 3. **Concurrent halves on CI versus sequential halves locally.** If flakes appear, consider per-shard logs or a higher `testTimeout`.
 4. **Two workflows cannot be dispatched.** deep-loop-runtime and skill-advisor-stress have no `workflow_dispatch`, so their 10-run streaks wait on repository traffic. deep-loop-runtime is filed; skill-advisor-stress needs three more natural runs.
 5. **The five stale failures are recorded, not fixed.** A later green run proves each one stale, and no file outside this phase changes for them.

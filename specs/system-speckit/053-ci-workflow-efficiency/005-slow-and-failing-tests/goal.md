@@ -94,9 +94,9 @@ and findings belong here.
 | Config flip or shard | Done, rebalanced | The probe selected the shard. `spec-kit-check.yml` now runs two concurrent processes in the existing step: the `upgrade-legacy` file alone and every other file through `--exclude`, both statuses propagated. Locally 313.90 s and 356.56 s, both exit 0 |
 | Re-check | Done | `scratch/r21-recheck.md` holds the three 40-run tables, four root-cause rows, the drift verdict, five stale-failure rows closed (routing-registry-drift on the operator's ruling), and the no-retry proof scoped to `.github/workflows` |
 | Implementation | Done | The rebalanced split and the fast-fail drift step are on disk and uncommitted; the drift step was proven against a stale contract (exit 2, then exit 0) |
-| CLI step measurement | Awaiting CI | The count-based split read 643 s and 482 s, both over 400 s; no run has used the rebalanced split yet, so AC-003 stays Unmet, awaiting CI measurement after commit |
-| Streaks | In progress | diagram-corpus `all_green=true count=10` after seven dispatched reruns; deep-loop-runtime is red on an open Dependabot pull request and carries a `filed` row; skill-advisor-stress is not red but needs three more natural runs; Spec-Kit Check has 0 of 5 post-rebalance runs |
-| Acceptance | 8 of 11 Met | AC-003 (CI measurement), AC-006 (skill-advisor-stress and deep-loop-runtime windows) and AC-010 (commits) are Unmet |
+| CLI step measurement | Awaiting runs 2 of 5 | The count-based split read 643 s and 482 s, both over 400 s; the rebalanced split read 459 s (40102448836) and 299 s (40107239895). Per the operator ruling of 2026-10-24, AC-003 is judged on the median of five green runs, so it stays Unmet until three more exist |
+| Streaks | In progress | diagram-corpus `all_green=true count=10` after seven dispatched reruns; deep-loop-runtime is red on an open Dependabot pull request and carries a `filed` row; skill-advisor-stress is not red but needs three more natural runs; Spec-Kit Check has 2 of 5 post-rebalance runs |
+| Acceptance | 8 of 11 Met | AC-003 (runs 2 of 5), AC-006 (skill-advisor-stress and deep-loop-runtime windows) and AC-010 (commits) are Unmet |
 
 ### Deviations and findings
 

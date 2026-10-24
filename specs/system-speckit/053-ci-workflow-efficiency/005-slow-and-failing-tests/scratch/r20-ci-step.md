@@ -6,9 +6,9 @@
 
 baseline-source: 001-dataset
 
-after: awaiting CI measurement after commit
+after: the median of the five green post-change runs below (operator ruling of 2026-10-24, decision-record ADR-003 amendment), awaiting runs 2 of 5
 
-ceiling: 400 s. No `| after |` row exists yet, because the rebalanced split below is not committed and no Spec-Kit Check run has used it.
+ceiling: 400 s, judged on that median. The `| after |` rows below are the runs on main since 75b27df21c, oldest first, and only runs whose head contains 04d9b0c84f count.
 
 ## Count-based shard samples (superseded)
 
@@ -55,8 +55,15 @@ Together they cover 183 files and 2062 passed, 20 skipped tests, equal to the se
 
 ## Post-change runs
 
-No `Spec-Kit Check` run has used the rebalanced split yet.
+Every `Spec-Kit Check` run on main since 75b27df21c (inclusive), oldest first. Both heads contain 04d9b0c84f (`git merge-base --is-ancestor 04d9b0c84f <sha>` exits 0 for each). Step seconds are `completedAt` minus `startedAt` of the `CLI vitest project` step in the `Typecheck` job, read with `gh run view <id> --json jobs`. Pull-request runs on other branches are not on main and are not listed.
 
-post-change-runs: 0 of 5 needed
+| when | run id | head sha | conclusion | step seconds |
+|---|---|---|---|---|
+| after | 40102448836 | 75b27df21c | success | 459 |
+| after | 40107239895 | e00fef3e76 | success | 299 |
 
-When the orchestrator has committed the split and five natural runs have finished, append the `| after |` row from the first one, then the `## Green streak` section from the 5 newest runs and the `all_green: true` line.
+post-change-runs: 2 of 5 needed
+
+Running values, measured 2026-10-24: the median of the two is 379 s (459 and 299). With fewer than five runs it is a running figure and decides nothing, so AC-003 stays Unmet, awaiting runs 2 of 5. The reference step read 791 s in run 39909844384. Origin main also holds a393488d82 and b0b52243f0, which have no `Spec-Kit Check` run yet.
+
+When three more natural runs on main have finished with head shas that contain 04d9b0c84f, append one `| after |` row per run (stop at five rows), then the `## Green streak` section from those five runs and the `all_green: true` line, and judge AC-003 on the median of the five `step seconds` values.
