@@ -1,19 +1,18 @@
 ---
 title: Stack & Surface Detection
-description: Surface detection (WEBFLOW/SKILLED/OBSIDIAN/UNKNOWN) and SKILLED language sub-detection. Primary routing key for sk-code.
+description: Surface detection (SKILLED/UNKNOWN) and SKILLED language sub-detection. Primary routing key for sk-code.
 trigger_phrases:
   - "sk-code surface detection"
-  - "webflow opencode detection"
   - "stack detection routing key"
   - "language sub detection"
 importance_tier: important
 contextType: general
-version: 2.2.1.0
+version: 2.2.2.0
 ---
 
 # Router Reference - Code Surface Detection
 
-`sk-code` detects the code surface before intent classification. Surface detection uses CWD plus changed or target files because the same repository can contain Webflow frontend code and OpenCode system code.
+`sk-code` detects the code surface before intent classification. Surface detection uses CWD plus changed or target files because the same repository can hold this framework's own system code beside another stack.
 
 ---
 
@@ -25,46 +24,28 @@ Detect **where the work is happening** before deciding which standards apply.
 
 | Surface | Owns | Does Not Own |
 | --- | --- | --- |
-| WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.skilled/` system code |
-| SKILLED | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
-| OBSIDIAN | The Note Database Obsidian plugin (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, the single `styles.css` carrying `.db-*` classes) and its worktrees | `.opencode/` hub code reached through the repo's symlinks; Webflow browser artifacts |
+| SKILLED | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | browser-behavior work for another stack |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
-Motion.dev (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) is a peer resource category rather than a surface. Surface detection still chooses SKILLED, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+Motion.dev is a peer resource category rather than a surface. Surface detection chooses SKILLED or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 
 ---
 
 ## 2. DETECTION ORDER
 
-**Precedence**: SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN. An SKILLED target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. WEBFLOW then wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
+**Precedence**: SKILLED > UNKNOWN. An SKILLED target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. Everything else stays UNKNOWN until the user clarifies the surface. Use early-return logic — later branches must not overwrite earlier matches.
 
 ```bash
 # 1. SKILLED (highest precedence — disambiguates mixed-marker workspaces)
 # CWD under .skilled/ OR any changed/target file under .skilled/
 
-# 2. OBSIDIAN (the Note Database plugin repository and its worktrees)
-# Repo-root markers, checked before the generic-Node fallback can claim the tree:
-[ -f "manifest.json" ] && grep -q '"minAppVersion"' manifest.json
-[ -f "esbuild.config.mjs" ]
-grep -rlq 'from "obsidian"' src 2>/dev/null
-grep -q '\.db-' styles.css 2>/dev/null
-
-
-# 3. WEBFLOW
-[ -d "src/2_javascript" ]
-ls *.webflow.js 2>/dev/null | head -1
-grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null
-grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond" \
-  src/**/*.{js,mjs,ts,html} *.{js,mjs,ts,html} 2>/dev/null
-[ -f "wrangler.toml" ]
-
-# 4. UNKNOWN
+# 2. UNKNOWN
 # Ask which surface and verification commands apply.
 ```
 
-**Why SKILLED wins precedence**: `.skilled/` system tools (e.g. preview servers, mock fixtures, animation demos under `.skilled/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
+**Why SKILLED wins precedence**: `.skilled/` system tools (e.g. preview servers, mock fixtures, animation demos under `.skilled/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without belonging to another stack's shipping artifacts. A first-match on another surface would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
 
-**Symlink guard — required for SKILLED detection.** The Obsidian plugin repository symlinks
+**Symlink guard — required for SKILLED detection.** A downstream plugin repository symlinks
 `.opencode`, `.claude`, `.codex`, `.cursor`, and `.devin` at its root back to this hub, so hub skills
 and agents are visible to tooling that expects those folders at a repo root. A literal "is there a
 `.opencode/` segment at or above CWD" test therefore reports SKILLED for **every** task in that
@@ -73,36 +54,6 @@ holds only when the **resolved** real path of the CWD or of a changed/target fil
 hub's actual `.skilled/` directory. A plugin source file reached through the repo root's symlink
 does not; a genuine hub file reached through it does, so SKILLED still wins for real hub work. The
 guard changes how the test is performed, not which surface wins.
-
-**Why OBSIDIAN sits above WEBFLOW**: the plugin ships no Webflow markers, and its repo-root markers
-must be evaluated before the generic-Node guard drops the tree to UNKNOWN. When OBSIDIAN is the
-surface, the hub bundles the read-only `sk-code-obsidian` evidence packet behind the chosen workflow
-mode.
-
-
-**Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.skilled/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
-
-### Explicit Non-Webflow Guards
-
-Prompt-level negative Webflow language wins before WEBFLOW fallback logic. If the user explicitly says any of the following, the surface MUST be UNKNOWN for implementation requests, or N/A for documentation-style cross-stack guidance:
-
-- `NOT Webflow`
-- `no Webflow Designer`
-- `without Webflow`
-- `non-Webflow`
-- `vanilla HTML/CSS/JS only`
-- `stack-agnostic`
-- equivalent wording that excludes Webflow as the implementation surface
-
-This guard applies even when the prompt mentions Motion.dev, GSAP, Lenis, Swiper, or vanilla animation work. Those terms can trigger the MOTION_DEV resource intent, but they must not promote an explicitly non-Webflow request to WEBFLOW.
-
-Expected CS-002 behavior:
-
-| Prompt | Expected Surface | Expected Resource Scope |
-| --- | --- | --- |
-| `I'm building a vanilla HTML/CSS/JS landing page (NOT Webflow no Webflow Designer involved) and want to add motion.dev animations.` | UNKNOWN or N/A | exact files under `.skilled/skills/sk-code/sk-code-webflow/references/animation/` only; nothing else under `.skilled/skills/sk-code/sk-code-webflow/` |
-| `Show stack-agnostic Motion.dev guidance for animate-on-scroll.` | N/A | `.skilled/skills/sk-code/sk-code-webflow/references/animation/quick-start.md`, `.skilled/skills/sk-code/sk-code-webflow/references/animation/scroll-and-gestures.md`, exact snippet assets |
-| `Update Webflow page code that uses window.Motion.` | WEBFLOW | Webflow implementation refs plus Motion.dev peer refs |
 
 ---
 
@@ -130,20 +81,11 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 
 | Context | Expected Surface | Reason |
 | --- | --- | --- |
-| `src/2_javascript/`, `package.json` | WEBFLOW | Webflow marker wins (no `.skilled/` target present) |
-| HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
 | CWD `.skilled/skills/sk-code` | SKILLED | Skill/system code context |
 | Changed `.skilled/agents/code.md` | SKILLED | Target file under `.skilled/` |
 
-| CWD or target under the Obsidian plugin repo (`manifest.json` + `esbuild.config.mjs` present) | OBSIDIAN | Plugin repo-root markers resolve; the read-only `sk-code-obsidian` evidence packet is bundled |
-| CWD `Obsidian Plugin/.worktrees/001-*/src/views`, target `DatabaseView.ts` | OBSIDIAN | No **resolved** target path lands in the hub tree, despite the `.opencode` symlink at the repo root |
-| Target `Obsidian Plugin/.opencode/skills/sk-code/...`, resolving inside the hub | SKILLED | The symlink genuinely targets hub content; SKILLED wins once the path is resolved |
 | Literal path string contains `.opencode/` but resolves outside the hub | not SKILLED | The realpath gate refuses SKILLED on a string match alone |
-| Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
 | Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **SKILLED** | `.opencode/` target wins when a task also touches a path outside the hub |
-| Obsidian plugin repo-root markers (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`) AND a Webflow library marker (`new Lenis`, `window.gsap`) in the same tree, no `.skilled/` target | **OBSIDIAN** | Precedence SKILLED > OBSIDIAN > WEBFLOW: the OBSIDIAN branch returns early, so the Webflow marker never overwrites it |
-| WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` | **SKILLED** | Mixed-marker repo: SKILLED target/CWD takes precedence over WEBFLOW library marker |
-| Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |
 | `go.mod` or `next.config.js` only | UNKNOWN | Go/NextJS placeholder routes were removed |
 

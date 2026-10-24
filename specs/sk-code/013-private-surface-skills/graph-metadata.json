@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-24T08:05:32.816Z",
+    "last_save_at": "2026-10-24T09:24:08.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,6 +227,7 @@
       "spec.md": "2850932c055509001149def12f2814678b841d4a8244c52352b69ff97e2b2c87",
       "research/research.md": "92706e4a1ecee8313e345748936333709451094207f0c81b18846fbd8f7aefce"
     },
-    "last_active_at": null
+    "last_active_at": "2026-10-24T09:24:08.689Z",
+    "last_active_child_id": "sk-code/013-private-surface-skills/002-hub-surface-removal"
   }
 }

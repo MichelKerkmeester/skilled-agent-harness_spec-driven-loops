@@ -8,12 +8,12 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Router Reference - Phase Lifecycle
 
-All three surfaces in the hub `SKILL.md` surface list (WEBFLOW, SKILLED and OBSIDIAN) follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
+All surfaces in the hub `SKILL.md` surface list (SKILLED) follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
 
 ---
 
@@ -25,7 +25,7 @@ Define the shared execution lifecycle for supported code surfaces so research, i
 
 ### When to Use
 
-- When planning work on the WEBFLOW, SKILLED or OBSIDIAN surface.
+- When planning work on the SKILLED surface.
 - When deciding which phase-specific references and checklists to load.
 - When a failed quality or verification gate requires a controlled transition back to debugging or implementation.
 - When checking whether completion evidence is sufficient.
@@ -54,19 +54,7 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 
 ---
 
-## 3. WEBFLOW PHASES
-
-| Phase | Resources / Evidence |
-| --- | --- |
-| Research | Webflow constraints, performance, browser/runtime context |
-| Implementation | `.skilled/skills/sk-code/sk-code-webflow/references/implementation/`, Webflow patterns/assets; add `.skilled/skills/sk-code/sk-code-webflow/references/animation/` when Motion API or decision context is needed |
-| Code Quality | Webflow code quality checklist and standards |
-| Debugging | Webflow debugging resources plus browser console evidence |
-| Verification | Minification scripts and browser checks at relevant desktop/mobile viewports |
-
----
-
-## 4. SKILLED PHASES
+## 3. SKILLED PHASES
 
 | Phase | Resources / Evidence |
 | --- | --- |
@@ -78,27 +66,9 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 
 SKILLED previously had standards-only behavior. In the merged `sk-code`, it receives the full lifecycle.
 
-### Cross-Stack Motion.dev Resources
-
-The Motion.dev overlay (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) can be loaded during research, implementation, code quality, debugging, or verification when Motion-specific API, performance, snippet, or decision guidance is relevant. It does not change the selected surface; it gives the active surface a shared Motion reference package.
-
 ---
 
-## 5. OBSIDIAN PHASES
-
-| Phase | Resources / Evidence |
-| --- | --- |
-| Research | The read-only `sk-code-obsidian` evidence packet: plugin API, data layer and view-renderer references |
-| Implementation | `.skilled/skills/sk-code/sk-code-obsidian/references/standards/code-standards.md` plus the class-naming and stylesheet-ownership references |
-| Code Quality | `.skilled/skills/sk-code/sk-code-obsidian/references/standards/code-standards.md` and the recorded lint baseline |
-| Debugging | Failing vitest or build output, screenshot diffs and root-cause analysis |
-| Verification | The gate command set in `.skilled/skills/sk-code/sk-code-obsidian/references/verification.md`, run in the plugin repository |
-
-The Obsidian surface is read-only evidence. The bundled workflow mode runs these phases, and the gate commands run in the plugin repository, not in this hub.
-
----
-
-## 6. IRON LAWS
+## 4. IRON LAWS
 
 1. No completion claim without Phase 3 verification evidence.
 2. No Phase 1 completion claim without Phase 1.5 quality gate.
@@ -106,7 +76,7 @@ The Obsidian surface is read-only evidence. The bundled workflow mode runs these
 
 ---
 
-## 7. TRANSITIONS
+## 5. TRANSITIONS
 
 - 0 -> 1: enough context and plan exists, and — for implementation intent — the laziest viable rung of the Design Restraint Ladder (see universal code quality standards) has been selected.
 - 1 -> 1.5: code written or modified.
@@ -118,7 +88,7 @@ The Obsidian surface is read-only evidence. The bundled workflow mode runs these
 
 ---
 
-## 8. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - [stack-detection.md](./stack-detection.md) — surface detection and SKILLED language sub-detection
 - [ROUTER.md](../../ROUTER.md) — intent classification, resource maps, and load tiers

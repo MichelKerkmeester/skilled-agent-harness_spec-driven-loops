@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-skilled", "sk-code-obsidian", "sk-code-webflow"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-skilled"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -28,21 +28,10 @@
       "classes": ["code-review-aliases", "code-review-findings", "code-review-security", "code-review-pr"],
       "resources": ["sk-code-review/SKILL.md"]
     },
-    "sk-code-webflow": {
-      "weight": 4,
-      "classes": ["code-webflow-aliases", "code-webflow-runtime"],
-      "resources": ["sk-code-webflow/SKILL.md"]
-    },
     "sk-code-skilled": {
       "weight": 4,
       "classes": ["code-skilled-aliases", "code-skilled-runtime", "code-skilled-authoring"],
       "resources": ["sk-code-skilled/SKILL.md"]
-    },
-
-    "sk-code-obsidian": {
-      "weight": 4,
-      "classes": ["code-obsidian-aliases", "code-obsidian-runtime"],
-      "resources": ["sk-code-obsidian/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -70,12 +59,6 @@
     "code-review-pr": {
       "keywords": ["pr review", "pull request review", "pr-state gates", "review-result cache", "review output cache"]
     },
-    "code-webflow-aliases": {
-      "keywords": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow", "webflow", "frontend", "webflow.js", "src/2_javascript", "motion.dev", "motion-dev", "motion_dev", "motion api", "motion snippets", "motion decision matrix", "cross-stack animation", "motion animation"]
-    },
-    "code-webflow-runtime": {
-      "keywords": ["html", "css", "javascript", "cdn", "gsap", "lenis", "swiper", "hls.js", "filepond", "intersectionobserver", "browser"]
-    },
     "code-skilled-aliases": {
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
@@ -84,13 +67,6 @@
     },
     "code-skilled-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
-    },
-
-    "code-obsidian-aliases": {
-      "keywords": ["obsidian plugin implementation", "obsidian plugin code", "note database plugin", "obsidian plugin surface", "db-* class grammar", "obsidian", "obsidian plugin", "note-database"]
-    },
-    "code-obsidian-runtime": {
-      "keywords": ["obsidian api", "itemview", "workspaceleaf", "manifest.json", "esbuild.config.mjs", "styles.css", ".db-", "vault", "metadatacache", "tfile", "screenshots:verify", "note database"]
     }
   }
 }

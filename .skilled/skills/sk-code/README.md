@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.16.0
+version: 2.2.17.0
 ---
 
 # sk-code
@@ -20,7 +20,7 @@ version: 2.2.16.0
 |---|---|
 | **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
 | **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
-| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native SKILLED surface and the optional example WEBFLOW and OBSIDIAN surfaces, plus the Motion.dev animation overlay |
+| **Works on** | The shared surface-detection router for the one surface the hub `SKILL.md` lists: the native SKILLED surface |
 | **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface |
 
 ---
@@ -52,9 +52,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 
 | Surface | Carries |
 |---|---|
-| `sk-code-webflow` | Optional example. Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug and verify, plus the Motion.dev animation overlay |
 | `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
-| `sk-code-obsidian` | Optional example. Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |
 
 ---
 
@@ -66,7 +64,7 @@ A code request resolves through the hub to a primary workflow mode and one or mo
 
 | Request | Resolves to |
 |---|---|
-| "review my webflow animation for jank" | `[sk-code-review, sk-code-webflow]` |
+| "review my typescript module for jank" | `[sk-code-review, sk-code-skilled]` |
 | "run my implementation through the author-side quality gates" | `[sk-code-quality]` |
 
 ### The Implement To Verify Doctrine
@@ -87,7 +85,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 
 ### When To Use This Skill
 
-Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. The shared router keeps surface identity consistent across every mode and surface for the native SKILLED surface and the optional example WEBFLOW and OBSIDIAN surfaces, plus the Motion.dev animation overlay. Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
+Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. The shared router keeps surface identity consistent across every mode and surface for the native SKILLED surface. Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
 
 ### Related Skills
 
@@ -103,7 +101,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 ## 5. ADAPTING TO YOUR STACK
 
-sk-code ships one native surface and two optional examples. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it. Webflow, at `.skilled/skills/sk-code/sk-code-webflow/`, and Obsidian, at `.skilled/skills/sk-code/sk-code-obsidian/`, are optional examples you can remove or keep as models.
+sk-code ships one native surface. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
 
@@ -116,14 +114,14 @@ A surface you add for your own stack ranks ahead of the Skilled surface. Run eve
 
 ### Remove An Example Surface
 
-Repeat these steps for each surface you drop. `<mode>` is `sk-code-webflow` or `sk-code-obsidian`.
+Repeat these steps for each surface you drop. `<mode>` is the folder name of the surface packet.
 
 1. Delete the folder `.skilled/skills/sk-code/<mode>/`.
 2. In `.skilled/skills/sk-code/mode-registry.json`, delete the mode's `modes` entry and its name in `extensions.surface-axis.surfaces`. In `.skilled/skills/sk-code/hub-router.json`, delete it from `routerPolicy.tieBreak`, delete its `routerSignals` entry and delete the two `vocabularyClasses` that entry names.
 3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
 4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
 5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md` and the surface lines in the root `README.md`.
-6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which present the examples as live surfaces, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
+6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the surface checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which present the examples as live surfaces, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
 7. Run `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including those in this README. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which still names the examples.
 8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`, and the Hermes skill copies with `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`, which drops the removed packet's copy.
 9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
@@ -188,6 +186,4 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
-| [`sk-code-webflow/SKILL.md`](./sk-code-webflow/SKILL.md) | Webflow surface packet |
 | [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | Skilled surface packet |
-| [`sk-code-obsidian/SKILL.md`](./sk-code-obsidian/SKILL.md) | Obsidian surface packet |

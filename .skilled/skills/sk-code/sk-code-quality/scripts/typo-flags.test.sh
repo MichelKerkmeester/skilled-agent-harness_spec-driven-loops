@@ -9,7 +9,6 @@ SKILL="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 DIST_STALENESS="$SKILL/sk-code-quality/scripts/check-dist-staleness.sh"
 COMMENT_HYGIENE="$SKILL/sk-code-quality/scripts/check-comment-hygiene.sh"
-MINIFY_WEBFLOW="$SKILL/sk-code-webflow/assets/scripts/minify-webflow.mjs"
 REVIEW_FINAL_LINE="$SKILL/sk-code-review/scripts/check-review-final-line.js"
 REVIEW_FINDINGS="$SKILL/sk-code-review/scripts/check-review-findings.js"
 RULE_COPIES="$SKILL/sk-code-review/scripts/check-rule-copies.js"
@@ -81,13 +80,6 @@ case_dir="$(fresh_case_dir)"
 printf 'x = 1\n' > "$case_dir/clean.py"
 run_case "check-comment-hygiene.sh exits 3 when any one input cannot be read" 3 "" \
   python3 "$COMMENT_HYGIENE" "$case_dir/clean.py" "$case_dir/missing.py"
-rm -rf "$case_dir"
-
-case_dir="$(fresh_case_dir)"
-mkdir -p "$case_dir/src/2_javascript"
-printf 'var a = 1;\n' > "$case_dir/src/2_javascript/x.js"
-run_case "minify-webflow.mjs rejects a misspelled --forse flag" 2 "--forse" \
-  run_in_dir "$case_dir" node "$MINIFY_WEBFLOW" --forse
 rm -rf "$case_dir"
 
 run_case "check-review-final-line.js rejects a misspelled --bogus-xyz flag" 2 "--bogus-xyz" \

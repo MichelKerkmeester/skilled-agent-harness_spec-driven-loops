@@ -57,126 +57,6 @@
   },
   "cases": [
     {
-      "id": "surface-bundle-reference",
-      "prompt": "review my webflow animation for jank",
-      "riskSlice": "actor:mutating:composite",
-      "certificateFixture": "valid-composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "surfaceBundle",
-      "expectedModes": [
-        "sk-code-review",
-        "sk-code-webflow"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-code-review",
-          "sk-code-webflow"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-bundle-obsidian",
-      "prompt": "code review my obsidian plugin",
-      "riskSlice": "actor:mutating:composite",
-      "certificateFixture": "valid-composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "surfaceBundle",
-      "expectedModes": ["sk-code-review", "sk-code-obsidian"],
-      "gold": {
-        "expectedIntents": ["sk-code-review", "sk-code-obsidian"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-collision-obsidian-over-webflow",
-      "prompt": "code review my obsidian plugin that embeds a webflow site",
-      "riskSlice": "actor:mutating:composite",
-      "certificateFixture": "valid-composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "surfaceBundle",
-      "expectedModes": ["sk-code-review", "sk-code-obsidian"],
-      "gold": {
-        "expectedIntents": ["sk-code-review", "sk-code-obsidian"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-collision-obsidian-over-webflow-implementation",
-      "prompt": "obsidian plugin webflow implementation",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-obsidian", "sk-code-webflow"],
-      "gold": {
-        "expectedIntents": ["sk-code-obsidian", "sk-code-webflow"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-hint-absent-webflow-testing",
-      "prompt": "Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks.",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-skilled", "sk-code-webflow"],
-      "gold": {
-        "expectedIntents": ["sk-code-skilled", "sk-code-webflow"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-hint-webflow-testing",
-      "prompt": "Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks.",
-      "surfaceHint": "WEBFLOW",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-webflow", "sk-code-skilled"],
-      "gold": {
-        "expectedIntents": ["sk-code-webflow", "sk-code-skilled"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-hint-absent-webflow-language",
-      "prompt": "Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-skilled", "sk-code-webflow"],
-      "gold": {
-        "expectedIntents": ["sk-code-skilled", "sk-code-webflow"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-hint-webflow-language",
-      "prompt": "Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.",
-      "surfaceHint": "WEBFLOW",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-webflow", "sk-code-skilled"],
-      "gold": {
-        "expectedIntents": ["sk-code-webflow", "sk-code-skilled"],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "surface-hint-webflow-over-obsidian",
-      "prompt": "obsidian plugin webflow implementation",
-      "surfaceHint": "WEBFLOW",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "route",
-      "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-webflow", "sk-code-obsidian"],
-      "gold": {
-        "expectedIntents": ["sk-code-webflow", "sk-code-obsidian"],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "single-quality",
       "prompt": "run the quality gate before done",
       "riskSlice": "actor:mutating:single",
@@ -225,22 +105,6 @@
       }
     },
     {
-      "id": "single-webflow",
-      "prompt": "webflow implementation",
-      "riskSlice": "evidence:nonmutating:single",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-code-webflow"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-code-webflow"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "single-opencode",
       "prompt": "opencode system code workflow",
       "riskSlice": "evidence:nonmutating:single",
@@ -252,22 +116,6 @@
       "gold": {
         "expectedIntents": [
           "sk-code-skilled"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
-      "id": "single-obsidian",
-      "prompt": "obsidian plugin implementation",
-      "riskSlice": "evidence:nonmutating:single",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-code-obsidian"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-code-obsidian"
         ],
         "expectedResources": []
       }

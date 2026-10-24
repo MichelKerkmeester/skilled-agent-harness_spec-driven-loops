@@ -52,7 +52,7 @@ This block is the deterministic projection of sk-code-skilled's own reference/as
 ```python
 # sk-code-skilled owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with sk-code-skilled/) and the sibling sk-code-webflow map plus the
+# (re-prefixed with sk-code-skilled/) plus the
 # parent-owned universal/shared tier. The router-sync guard
 # (assets/scripts/verify-router-sync.cjs, leg 2) checks that equality.
 # verify_alignment_drift.py --check-router checks dead routes only, so it is not

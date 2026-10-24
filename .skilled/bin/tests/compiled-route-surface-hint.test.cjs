@@ -19,10 +19,9 @@ const ENGINE_DIR = path.join(__dirname, '..', 'lib', 'compiled-routing', '014-ru
 const FRONT_DOOR = path.join(__dirname, '..', 'compiled-route.cjs');
 const { compiledRoute } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
 
-const WEBFLOW_TESTING = 'Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks.';
-const WEBFLOW_LANGUAGE = 'Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.';
-const OBSIDIAN_WEBFLOW = 'obsidian plugin webflow implementation';
-const REVIEW_TWO_SURFACES = 'pr review webflow implementation opencode typescript';
+const SKILLED_TESTING = 'Add an integration test and unit test coverage plan for a TypeScript advisor module, including vitest checks.';
+const SKILLED_LANGUAGE = 'Check a TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish.';
+const REVIEW_SKILLED = 'pr review opencode typescript';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURES
@@ -32,7 +31,7 @@ const REVIEW_TWO_SURFACES = 'pr review webflow implementation opencode typescrip
 // engine compiles right now. The cases test hint ordering, so they must not
 // depend on whether the committed manifest has been re-minted yet.
 const ACTIVATION_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'surface-hint-activation-'));
-const selected = compiledRoute('sk-code', WEBFLOW_TESTING);
+const selected = compiledRoute('sk-code', SKILLED_TESTING);
 fs.mkdirSync(path.join(ACTIVATION_ROOT, 'sk-code'));
 fs.writeFileSync(path.join(ACTIVATION_ROOT, 'sk-code', 'manifest.json'), JSON.stringify({
   servingAuthority: 'compiled',
@@ -58,41 +57,38 @@ function runFrontDoor(args) {
 // 3. RESOLVER
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('without a hint the tie-break order decides the lead surface', () => {
-  const route = resolveRoute('sk-code', WEBFLOW_TESTING);
+test('without a hint the only shipped surface is selected', () => {
+  const route = resolveRoute('sk-code', SKILLED_TESTING);
   assert.equal(route.action, 'route');
-  assert.equal(route.selectionKind, 'orderedBundle');
-  assert.deepEqual(modes(route), ['sk-code-skilled', 'sk-code-webflow']);
+  assert.equal(route.selectionKind, 'single');
+  assert.deepEqual(modes(route), ['sk-code-skilled']);
 });
 
-test('a hinted surface the prompt matched leads the bundle', () => {
-  for (const prompt of [WEBFLOW_TESTING, WEBFLOW_LANGUAGE]) {
-    const route = resolveRoute('sk-code', prompt, { surfaceHint: 'WEBFLOW' });
-    assert.equal(route.selectionKind, 'orderedBundle');
-    assert.deepEqual(modes(route), ['sk-code-webflow', 'sk-code-skilled']);
+test('a matching surface hint preserves the single-surface route', () => {
+  for (const prompt of [SKILLED_TESTING, SKILLED_LANGUAGE]) {
+    const route = resolveRoute('sk-code', prompt, { surfaceHint: 'SKILLED' });
+    assert.equal(route.selectionKind, 'single');
+    assert.deepEqual(modes(route), ['sk-code-skilled']);
   }
-  const collision = resolveRoute('sk-code', OBSIDIAN_WEBFLOW, { surfaceHint: 'sk-code-webflow' });
-  assert.equal(collision.selectionKind, 'orderedBundle');
-  assert.deepEqual(modes(collision), ['sk-code-webflow', 'sk-code-obsidian']);
 });
 
 test('a hint the prompt did not match, UNKNOWN or an unknown name changes nothing', () => {
-  const plain = resolveRoute('sk-code', WEBFLOW_TESTING);
-  for (const surfaceHint of ['OBSIDIAN', 'UNKNOWN', 'not-a-surface', '']) {
-    assert.deepEqual(resolveRoute('sk-code', WEBFLOW_TESTING, { surfaceHint }), plain);
+  const plain = resolveRoute('sk-code', SKILLED_TESTING);
+  for (const surfaceHint of ['UNKNOWN', 'not-a-surface', '']) {
+    assert.deepEqual(resolveRoute('sk-code', SKILLED_TESTING, { surfaceHint }), plain);
   }
 });
 
-test('a workflow mode keeps first place and only the surfaces reorder', () => {
-  const route = resolveRoute('sk-code', REVIEW_TWO_SURFACES, { surfaceHint: 'WEBFLOW' });
+test('a workflow mode stays first with the shipped surface', () => {
+  const route = resolveRoute('sk-code', REVIEW_SKILLED, { surfaceHint: 'SKILLED' });
   assert.equal(route.selectionKind, 'surfaceBundle');
-  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-webflow', 'sk-code-skilled']);
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-skilled']);
 });
 
 test('a hub without surface packets ignores the hint', () => {
   for (const hubId of ['sk-doc', 'mcp-tooling']) {
     for (const prompt of ['create a new skill and validate the docs', 'use the figma mcp transport']) {
-      assert.deepEqual(compiledRoute(hubId, prompt, { surfaceHint: 'WEBFLOW' }), compiledRoute(hubId, prompt));
+      assert.deepEqual(compiledRoute(hubId, prompt, { surfaceHint: 'SKILLED' }), compiledRoute(hubId, prompt));
     }
   }
 });
@@ -102,13 +98,13 @@ test('a hub without surface packets ignores the hint', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('the front door passes --surface-hint through and keeps stdout to one route line', () => {
-  const plain = runFrontDoor(['--hub', 'sk-code', '--prompt', WEBFLOW_TESTING]);
-  const hinted = runFrontDoor(['--hub', 'sk-code', '--prompt', WEBFLOW_TESTING, '--surface-hint', 'WEBFLOW']);
-  const invalid = runFrontDoor(['--hub', 'sk-code', '--prompt', WEBFLOW_TESTING, '--surface-hint', 'not-a-surface']);
+  const plain = runFrontDoor(['--hub', 'sk-code', '--prompt', SKILLED_TESTING]);
+  const hinted = runFrontDoor(['--hub', 'sk-code', '--prompt', SKILLED_TESTING, '--surface-hint', 'SKILLED']);
+  const invalid = runFrontDoor(['--hub', 'sk-code', '--prompt', SKILLED_TESTING, '--surface-hint', 'not-a-surface']);
   for (const run of [plain, hinted, invalid]) {
     assert.equal(run.status, 0);
     assert.equal(run.stderr, '');
   }
-  assert.deepEqual(modes(JSON.parse(hinted.stdout)), ['sk-code-webflow', 'sk-code-skilled']);
+  assert.deepEqual(modes(JSON.parse(hinted.stdout)), ['sk-code-skilled']);
   assert.equal(invalid.stdout, plain.stdout);
 });

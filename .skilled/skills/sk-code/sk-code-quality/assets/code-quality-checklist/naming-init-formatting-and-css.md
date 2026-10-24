@@ -8,7 +8,7 @@ trigger_phrases:
   - "css style checks"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.17
+version: 1.5.1.0
 ---
 
 # Naming, Initialization, Formatting & CSS Style Checks
@@ -31,7 +31,6 @@ Apply each relevant check to the target JavaScript or CSS file before reporting 
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 2](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Variable Naming
 
@@ -91,7 +90,6 @@ function data(form) { }    // Should be: get_form_data
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-quality-standards.md Section 2](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md)
 
 ### CDN-Safe Initialization
 
@@ -101,7 +99,6 @@ function data(form) { }    // Should be: get_form_data
 - [ ] **[P1] CHK-INI-04**: `INIT_DELAY_MS` constant defined (default 50)
 - [ ] **[P1] CHK-INI-05**: Uses setTimeout with INIT_DELAY_MS for DOM readiness
 - [ ] **[P1] CHK-INI-06**: DOMContentLoaded listener uses `{ once: true }`
-- [ ] **[P1] CHK-INI-07**: Webflow.push integration with fallback
 
 **Compliant Pattern:**
 ```javascript
@@ -128,11 +125,7 @@ const start = () => {
   );
 };
 
-if (window.Webflow?.push) {
-  window.Webflow.push(start);
-} else {
-  start();
-}
+start();
 ```
 
 ---
@@ -141,7 +134,6 @@ if (window.Webflow?.push) {
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 4](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Basic Formatting
 
@@ -158,7 +150,6 @@ if (window.Webflow?.push) {
 
 **Applies to:** CSS (`.css`)
 
-**Reference:** [css/style-guide.md](../../../sk-code-webflow/references/css/style-guide.md) — full CSS conventions (BEM naming, custom property prefixes, attribute selectors, animation CSS, file organization)
 
 ### Custom Property Naming
 

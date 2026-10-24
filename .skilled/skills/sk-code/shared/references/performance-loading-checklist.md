@@ -8,7 +8,7 @@ trigger_phrases:
   - "startup wins measurement"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # Performance Loading Checklist - Deferred Loading Verification
@@ -94,7 +94,3 @@ If any box cannot be checked, stop and remove the deferral.
 ---
 
 ## 8. RELATED RESOURCES
-
-- [interaction-gated-loading.md](../../sk-code-webflow/references/performance/interaction-gated-loading.md) - Gate selection and exclusions
-- [cwv-remediation.md](../../sk-code-webflow/references/performance/cwv-remediation.md) - TBT and Lighthouse remediation patterns
-- [interaction-gate-patterns.js](../../sk-code-webflow/assets/patterns/interaction-gate-patterns.js) - Reusable trigger helpers

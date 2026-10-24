@@ -69,8 +69,6 @@ const ALLOWLIST = new Set([
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
-  // illustrative client-domain example path
-  '.skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
   // runtime-generated, gitignored advisory log — written only when the sentinel emits one,
   // so it is never a committed file; the referring row itself says "when the log exists"
   '.skilled/skills/.state/completion-sentinel/README.md::../../logs/completion-sentinel-advisories.log',
