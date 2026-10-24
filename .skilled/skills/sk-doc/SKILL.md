@@ -185,3 +185,5 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - Packets: `sk-create-skill/`, `sk-create-readme/`, `sk-create-agent/`, `sk-create-command/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/`, `sk-create-benchmark/`, `sk-create-changelog/`, `sk-create-diff/`, `sk-create-repo-rule/`, `sk-create-frontmatter/`, `sk-create-goal/`, `sk-create-with-human-voice/`, `sk-create-quality-control/`.
 - Shared backbone: `shared/scripts/`, `shared/references/`, `shared/assets/`.
 - Parent-skill pattern: `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+
+The default model is BAAI/bge-base-en-v1.5.
