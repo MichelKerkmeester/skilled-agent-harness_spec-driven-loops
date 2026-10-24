@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Add User Authentication"
-description: "including effort estimates and explicit verification tasks for each feature. -->"
+description: "Level 2 task list for the user authentication example, with effort estimates and explicit verification tasks."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -108,7 +108,7 @@ including effort estimates and explicit verification tasks for each feature. -->
 - [x] All unit tests passing
 - [x] All integration tests passing
 - [x] Manual verification passed
-- [x] Checklist.md fully verified
+- [x] Verification checklist in tasks.md fully verified
 
 
 <!-- /ANCHOR:completion -->

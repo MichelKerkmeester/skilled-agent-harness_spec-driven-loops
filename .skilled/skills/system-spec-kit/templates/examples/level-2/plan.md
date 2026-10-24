@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Add User Authentication"
-description: "planning. Note the addition of Phase Dependencies, Effort Estimation, and Enhanced"
+description: "Level 2 plan for the user authentication example, adding phase dependencies, effort estimation and an enhanced rollback."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"

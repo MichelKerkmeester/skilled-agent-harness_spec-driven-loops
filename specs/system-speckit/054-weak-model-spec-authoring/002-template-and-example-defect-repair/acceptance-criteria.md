@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair
 **Level:** 3
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-23
 <!-- /ANCHOR:metadata -->
 
@@ -51,13 +51,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given `known-rows.jsonl` holds 25 rows, When `tasks.md` T006 has run, Then `apply_row.py` printed `APPLIED` for each row and each row's old text is gone and its new text is present once | `grep -c '^APPLIED K-' scratch/applied.txt` prints `25` and `grep -c '^KCHECK K-.* locator=0 expected=1$' scratch/applied.txt` prints `25` | Unmet | - |
-| AC-002 | REQ-002 | Given the phase 1 ledger, When `tasks.md` T012 has run, Then no known locator remains, no owner `002` row still reproduces and no owned dead file is still there | `grep -c '^K-LEFT .* [1-9][0-9]*$' scratch/recheck.txt`, `grep -c '^YES ' scratch/recheck.txt` and `grep -c '^STILL-THERE ' scratch/recheck.txt` each print `0` | Unmet | - |
-| AC-003 | REQ-003 | Given the 18 example docs, When `tasks.md` T007 has run, Then each `description:` line equals its new sentence on one whole line and the leaked-text search prints nothing | T007 prints nothing, then `18 1`, then `0`. The output is saved in `goal.md` section 4 | Unmet | - |
-| AC-004 | REQ-004 | Given the reader guards of `tasks.md` T008, When both exit with code 1, Then `templates/.hashes` is deleted | the guards printed `rc=1` twice and `test ! -e .skilled/skills/system-spec-kit/templates/.hashes && echo DELETED` prints `DELETED` | Unmet | - |
-| AC-005 | REQ-005 | Given the phase 1 `suite-start.txt`, When `tasks.md` T014 compares the end of this phase, Then the `Test Files` lines, the `Tests` lines and the `exit=` line are identical | T014 second block prints `SUITE_MATCH` | Unmet | - |
-| AC-006 | REQ-006 | Given the finished diff, When `tasks.md` T013 runs, Then no path changed that a row does not name and nothing under the three protected template folders changed | T013 last command prints `0` and the protected-folder `grep -c` prints `0` | Unmet | - |
-| AC-007 | REQ-007 | Given the diff, When the frontier review in `tasks.md` T015 returns, Then each P0 and P1 finding is fixed and each P2 finding is fixed or recorded with a reason | the verify command of T015 prints `0`, and the T016 verify prints `COUNTS_MATCH` | Unmet | - |
+| AC-001 | REQ-001 | Given `known-rows.jsonl` holds 25 rows, When `tasks.md` T006 has run, Then `apply_row.py` printed `APPLIED` for each row and each row's old text is gone and its new text is present once | `grep -c '^APPLIED K-' scratch/applied.txt` prints `25` and `grep -c '^KCHECK K-.* locator=0 expected=1$' scratch/applied.txt` prints `25`. Observed: `grep -c '^APPLIED K-'` printed `25` and the `KCHECK` count printed `25` in `scratch/applied.txt` | Met | - |
+| AC-002 | REQ-002 | Given the phase 1 ledger, When `tasks.md` T012 has run, Then no known locator remains, no owner `002` row still reproduces and no owned dead file is still there | `grep -c '^K-LEFT .* [1-9][0-9]*$' scratch/recheck.txt`, `grep -c '^YES ' scratch/recheck.txt` and `grep -c '^STILL-THERE ' scratch/recheck.txt` each print `0`. Observed: T012 printed `0`, `0` and `0` in `scratch/recheck.txt` after the five evidence commands were rewritten to test the doc (goal section 4) | Met | - |
+| AC-003 | REQ-003 | Given the 18 example docs, When `tasks.md` T007 has run, Then each `description:` line equals its new sentence on one whole line and the leaked-text search prints nothing | T007 prints nothing, then `18 1`, then `0`. The output is saved in `goal.md` section 4. Observed: T007 printed nothing, then `18 1`, then `0` | Met | - |
+| AC-004 | REQ-004 | Given the reader guards of `tasks.md` T008, When both exit with code 1, Then `templates/.hashes` is deleted | the guards printed `rc=1` twice and `test ! -e .skilled/skills/system-spec-kit/templates/.hashes && echo DELETED` prints `DELETED`. Observed: both guards printed `rc=1`, then `DELETED` | Met | - |
+| AC-005 | REQ-005 | Given the phase 1 `suite-start.txt`, When `tasks.md` T014 compares the end of this phase, Then the `Test Files` lines, the `Tests` lines and the `exit=` line are identical | T014 second block prints `SUITE_MATCH`. Observed: T014 printed `SUITE_MATCH` on run 4, `exit=0` (goal section 4 records runs 1 to 3) | Met | - |
+| AC-006 | REQ-006 | Given the finished diff, When `tasks.md` T013 runs, Then no path changed that a row does not name and nothing under the three protected template folders changed | T013 last command prints `0` and the protected-folder `grep -c` prints `0`. Observed: T013 printed `0` over 40 changed files, and the protected-folder count printed `0` outside the two files the amended D2 allows | Met | - |
+| AC-007 | REQ-007 | Given the diff, When the frontier review in `tasks.md` T015 returns, Then each P0 and P1 finding is fixed and each P2 finding is fixed or recorded with a reason | the verify command of T015 prints `0`, and the T016 verify prints `COUNTS_MATCH`. Observed: T015 format check printed `0` over four findings, all four `APPLIED`, and T016 printed `COUNTS_MATCH` | Met | - |
 
 ### Status values
 
@@ -82,7 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase has not started. This statement is rewritten when the phase closes.
+The phase closed with all seven rows Met on evidence observed on the final tree, including the suite match on run 4.
 <!-- /ANCHOR:closure -->

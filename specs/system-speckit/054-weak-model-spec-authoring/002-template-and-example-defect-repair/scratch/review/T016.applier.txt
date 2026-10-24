@@ -1,0 +1,8 @@
+APPLIED R-1 .skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+CHECK R-1 extra_paths=0
+APPLIED R-2 .skilled/skills/system-spec-kit/templates/examples/README.md
+CHECK R-2 extra_paths=0
+APPLIED R-3 .skilled/skills/system-spec-kit/templates/examples/README.md
+CHECK R-3 extra_paths=0
+APPLIED R-4 .skilled/skills/system-spec-kit/templates/examples/README.md
+CHECK R-4 extra_paths=0

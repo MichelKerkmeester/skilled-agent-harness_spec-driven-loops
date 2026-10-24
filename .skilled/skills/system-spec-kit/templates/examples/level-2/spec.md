@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Add User Authentication"
-description: "documentation. Note the addition of NFRs and Edge Cases sections compared to Level 1."
+description: "Level 2 spec for the user authentication example, adding non-functional requirements and edge cases to the Level 1 sections."
 trigger_phrases:
   - "feature specification"
   - "problem statement"

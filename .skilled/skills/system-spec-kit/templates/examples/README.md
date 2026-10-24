@@ -47,10 +47,10 @@ examples/
 +-- level-1/      # Minimal scope and lightweight planning example
 +-- level-2/      # Verification-focused example
 +-- level-3/      # Architecture and decision-record example
-`-- level_3+/     # Governance and coordination example
+`-- level-3+/     # Governance and coordination example
 ```
 
-Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/*.md.tmpl`, and the manifest maps public levels to those templates.
+Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/core/` and `templates/addons/`, and the manifest maps public levels to those templates.
 
 ---
 
@@ -68,7 +68,7 @@ examples/
 |   `-- level docs
 +-- level-3/
 |   `-- level docs with decision-record.md
-`-- level_3+/
+`-- level-3+/
     `-- level docs with governance depth
 ```
 
@@ -81,7 +81,7 @@ examples/
 | `level-1/` | Shows the smallest complete spec packet shape. |
 | `level-2/` | Shows checklist-backed validation depth. |
 | `level-3/` | Shows decision records and architecture-level planning. |
-| `level_3+/` | Shows expanded coordination and governance depth. |
+| `level-3+/` | Shows expanded coordination and governance depth. |
 
 ---
 
@@ -112,5 +112,4 @@ For spec packet validation, run the system-spec-kit validator against the target
 ## 8. RELATED
 
 - `../README.md`
-- `../manifest/README.md`
-- `../manifest/spec-kit-docs.json`
+- `../spec-kit-docs.json`

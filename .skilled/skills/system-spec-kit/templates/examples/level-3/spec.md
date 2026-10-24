@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Add User Authentication"
-description: "documentation. Note the addition of Executive Summary, Risk Matrix, User Stories"
+description: "Level 3 spec example adding an executive summary, risk matrix and user stories."
 trigger_phrases:
   - "feature specification"
   - "problem statement"

@@ -8,7 +8,7 @@ trigger_phrases:
   - "rename surface taxonomy"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.7
+version: 1.6.1.0
 ---
 
 # Rename Pattern — mechanical refactor template
@@ -46,7 +46,7 @@ Every rename touches some subset of these categories. Map each before starting.
 | **Live auto-memory** | `~/.claude/projects/.../memory/MEMORY.md` index + current-state memory files | Literal substitution; preserve filename slugs to avoid breaking inbound `[[wikilinks]]` |
 | **Live compiled indexes** | `skill-graph.json`, SQLite caches | REGENERATE (never hand-edit) |
 | **Historical narrative** | Memory feedback entries describing past incidents under the old name | Tag inline: `(renamed <new> YYYY-MM-DD)` — keep dates intact |
-| **Historical spec docs** | Originating packet's `spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`implementation-summary.md` | PRESERVE — do not edit |
+| **Historical spec docs** | Originating packet's `spec.md`/`plan.md`/`tasks.md`/`acceptance-criteria.md`/`implementation-summary.md` | PRESERVE — do not edit |
 | **Historical research/review iterations** | Deep-research / deep-review `iterations/*.md`, `deltas/*.jsonl` | PRESERVE — do not edit |
 | **Historical version notes** | Renamed skill's prior `changelog/v*.md` | PRESERVE — add a NEW `vN+1.0.0.md` as forward-link |
 | **Frozen bench fixtures** | `benchmarks/.../per-probe.jsonl` recording prior-name state | PRESERVE |

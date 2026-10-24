@@ -8,7 +8,7 @@ trigger_phrases:
   - "placeholder syntax types"
 importance_tier: normal
 contextType: general
-version: 1.6.0.17
+version: 1.6.1.0
 ---
 
 # Template Style Guide - Formatting Standards
@@ -74,7 +74,7 @@ Core spec templates use a markdown table for the METADATA section, as rendered b
 |----------|--------|--------|
 | `debug-delegation.md` | Inline format | Auto-generated content structure |
 
-### Why Bulleted Lists
+### Why a Table
 
 - **Consistency** - Same format across all templates
 - **Readability** - Clear visual hierarchy
@@ -255,7 +255,7 @@ The `validate.sh` script enforces these rules:
 
 | Rule | Description |
 |------|-------------|
-| Metadata format | Bulleted list format used |
+| Metadata format | Table with Field and Value columns |
 | Date format | ISO 8601 (YYYY-MM-DD) |
 | Section numbering | Sequential, UPPERCASE |
 | File naming | kebab-case |

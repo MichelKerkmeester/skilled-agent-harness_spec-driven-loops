@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.0.40
+version: 1.6.1.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -733,7 +733,7 @@ Some templates are not level-specific but can be used at any documentation level
 - `templates/addons/handover.md.tmpl`
 - `templates/addons/debug-delegation.md.tmpl`
 
-### Summary Templates (REQUIRED for ALL Levels)
+### Summary Templates (implementation-summary.md required at all levels)
 
 | Template | Purpose | When to Use | Created By |
 |----------|---------|-------------|------------|

@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.0.49
+version: 1.6.1.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -268,7 +268,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --pat
 
 **Rules:**
 - Keep numbering sequential (1, 2, 3, ...)
-- Never remove emojis (they provide visual scanning cues)
+- Emojis are optional; when a template uses them, keep them consistent
 - Use ALL CAPS for section titles
 - Maintain consistent spacing
 
@@ -1039,7 +1039,7 @@ specs/122-skill-standardization/
     spec.md             # Feature specification (Level 2)
     plan.md             # Implementation plan
     validation-rules.md # Detailed validation logic
-    testing_checklist.md # Test procedures
+    testing-plan.md # Test procedures
 ```
 
 **Benefits of this organization:**

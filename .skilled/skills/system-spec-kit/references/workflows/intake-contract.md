@@ -10,7 +10,7 @@ trigger_phrases:
   - "intake lock"
 importance_tier: important
 contextType: planning
-version: 1.6.0.17
+version: 1.6.1.0
 ---
 
 # Intake Contract Reference
@@ -221,7 +221,7 @@ Memory save runs AFTER Emit success, only when:
 
 Invocation:
 ```bash
-node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/
 ```
 
 Report save result independently from trio success — a failed save never invalidates a successful trio.

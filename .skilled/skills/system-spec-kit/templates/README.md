@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Templates
@@ -66,8 +66,7 @@ templates/
 ├── spec-kit-docs.json     │ The level contract
 ├── CONTRACT.md            │ Maintainer guide for the contract
 ├── examples/              │ Pre-rendered reference packets
-├── changelog/             │ Template change records
-├── stress-test/           │ Deep-review grading materials
+├── changelog/             │ Packet-local changelog templates
 └── scratch/               │ Local debug space, gitignored
 ```
 

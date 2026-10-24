@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "verification documentation and test coverage details. -->"
+description: "Level 2 implementation summary for the user authentication example, with verification and test coverage details."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "the completed authentication feature. Created AFTER implementation completes. -->"
+description: "Level 1 implementation summary for the user authentication example, written after the feature shipped."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Add User Authentication"
-description: "features including 3-Tier Task Format, AI Execution Protocol, and Workstream"
+description: "Level 3+ task list example with the three-tier task format, AI execution protocol and workstream tracking."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -46,7 +46,7 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 | M3 API | T013-T022 | Day 3 EOD | Complete |
 | M4 UI | T023-T028 | Day 4 noon | Complete |
 | M5 Security | T029-T030 | Day 4 EOD | Complete |
-| M6 Release | T031-T048 | Day 5 EOD | Complete |
+| M6 Release | T031-T050 | Day 5 EOD | Complete |
 
 
 <!-- /ANCHOR:milestones -->
@@ -237,7 +237,7 @@ Before starting any task, verify:
 - [x] All integration tests passing
 - [x] Manual verification in 2+ browsers
 - [x] Security review approved
-- [x] Checklist.md fully verified
+- [x] Verification checklist in tasks.md fully verified
 - [x] All ADRs have status: Accepted
 - [x] All approvals obtained (spec.md section 12)
 

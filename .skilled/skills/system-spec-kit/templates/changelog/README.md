@@ -88,7 +88,7 @@ Generation flow:
 Run from the repository root after template edits:
 
 ```bash
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
 ```
 
 Generated changelogs should reference available packet docs and avoid claiming task completion beyond those docs.

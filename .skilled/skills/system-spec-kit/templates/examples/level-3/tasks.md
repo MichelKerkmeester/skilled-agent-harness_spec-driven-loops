@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Add User Authentication"
-description: "including dependencies, milestone mapping, and detailed verification tasks. -->"
+description: "Level 3 task list example with dependencies, milestone mapping and detailed verification tasks."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -176,7 +176,7 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 - [x] All unit tests passing (100% for services)
 - [x] All integration tests passing
 - [x] Manual verification in 2+ browsers
-- [x] Checklist.md fully verified
+- [x] Verification checklist in tasks.md fully verified
 - [x] All ADRs have status: Accepted
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "decision summary, comprehensive metrics, and lessons learned sections. -->"
+description: "Level 3 implementation summary example with a decision summary, metrics and lessons learned."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"

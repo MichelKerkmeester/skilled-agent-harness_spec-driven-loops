@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Add User Authentication"
-description: "Level 3, demonstrating that governance-level features are primarily in spec.md"
+description: "Level 3+ decision record example, showing that governance features live mainly in spec.md rather than here."
 trigger_phrases:
   - "decision"
   - "record"

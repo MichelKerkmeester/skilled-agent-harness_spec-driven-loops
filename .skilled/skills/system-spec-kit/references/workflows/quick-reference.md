@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.0.52
+version: 1.6.1.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -182,7 +182,7 @@ Before making ANY file changes, verify:
 - [ ] Rendered template output names are correct
 - [ ] Filled ALL template sections with actual content
 - [ ] Removed placeholder text and sample sections
-- [ ] Copied optional templates if needed (Level 3 only)
+- [ ] Copied optional templates if needed (resource-map.md at any level; research and decision records at Level 3)
 - [ ] Presented approach to user (including templates used)
 - [ ] Got explicit approval ("yes"/"go ahead"/"proceed")
 
@@ -445,7 +445,7 @@ Before presenting documentation to user:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + acceptance-criteria.md
   - [ ] Level 3: Level 2 + decision-record.md
-- [ ] Optional templates copied if needed (Level 3 only)
+- [ ] Optional templates copied if needed (resource-map.md at any level; research and decision records at Level 3)
 - [ ] All placeholders replaced (`<PLACEHOLDER>`, `<NEEDS_CLARIFICATION: ...>`)
 - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
 - [ ] Template footer deleted

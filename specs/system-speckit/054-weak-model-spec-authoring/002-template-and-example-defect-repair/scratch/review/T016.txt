@@ -1,0 +1,4 @@
+APPLIED .skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+APPLIED .skilled/skills/system-spec-kit/templates/examples/README.md
+APPLIED .skilled/skills/system-spec-kit/templates/examples/README.md
+APPLIED .skilled/skills/system-spec-kit/templates/examples/README.md

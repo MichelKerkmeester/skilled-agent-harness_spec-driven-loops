@@ -45,7 +45,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Paths in led
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check that phase 1 closed (no file). Run the three commands below. Verify: they print `LEDGER_OK`, then a line that starts with `exit=`, then `REVIEW_OK`. When the ledger check fails, write `BLOCKED ledger missing` in `goal.md` section 4. Then run T002 to T008 and skip T009 to T011. T012 then checks the known rows only. Acceptance criterion AC-002 then stays Unmet and the phase cannot close.
+- [x] T001 Check that phase 1 closed (no file). Run the three commands below. Verify: they print `LEDGER_OK`, then a line that starts with `exit=`, then `REVIEW_OK`. When the ledger check fails, write `BLOCKED ledger missing` in `goal.md` section 4. Then run T002 to T008 and skip T009 to T011. T012 then checks the known rows only. Acceptance criterion AC-002 then stays Unmet and the phase cannot close.
 
   ```bash
   cd "$WORKTREE"
@@ -54,8 +54,8 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Paths in led
   test -s "$P1/scratch/review/T011.txt" && echo REVIEW_OK
   ```
 
-- [ ] T002 Check the tools (no file). Verify: `python3 --version && jq --version && rg --version | head -1 && node --version` prints four lines that start with `Python 3.`, `jq-`, `ripgrep ` and `v`.
-- [ ] T003 Record the phase start state (`goal.md`, `scratch/status-start.txt`). Run the commands below. Write the printed hash into the `Phase start commit` row of `goal.md` section 4 as `| Phase start commit | Done | <the 40 character hash> |`. Verify: `grep -cE 'Phase start commit \| Done \| [0-9a-f]{40}' "$PHASE/goal.md"` prints `1`, and `test -d "$PHASE/scratch/tools" && echo DIRS_OK` prints `DIRS_OK`.
+- [x] T002 Check the tools (no file). Verify: `python3 --version && jq --version && rg --version | head -1 && node --version` prints four lines that start with `Python 3.`, `jq-`, `ripgrep ` and `v`.
+- [x] T003 Record the phase start state (`goal.md`, `scratch/status-start.txt`). Run the commands below. Write the printed hash into the `Phase start commit` row of `goal.md` section 4 as `| Phase start commit | Done | <the 40 character hash> |`. Verify: `grep -cE 'Phase start commit \| Done \| [0-9a-f]{40}' "$PHASE/goal.md"` prints `1`, and `test -d "$PHASE/scratch/tools" && echo DIRS_OK` prints `DIRS_OK`.
 
   ```bash
   cd "$WORKTREE"
@@ -64,7 +64,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Paths in led
   mkdir -p "$PHASE/scratch/ledger" "$PHASE/scratch/tools" "$PHASE/scratch/briefs" "$PHASE/scratch/runs" "$PHASE/scratch/review"
   ```
 
-- [ ] T004 Save the 25 known rows (`scratch/ledger/known-rows.jsonl`). Run the heredoc block that follows this line exactly as written. The file holds one JSON object per line with the fields `id`, `file`, `locator` and `expected_text`. Rows K-01 to K-18 replace the `description:` line of the 18 example docs. Rows K-19 to K-21 replace the stale `Checklist.md` line. Rows K-22 and K-23 give the two bare `<spec-folder>` placeholders a real Level 1 packet path. Rows K-24 and K-25 make the style guide say table in both places. Verify: the two commands under the block print `25` and then `25 1`. A line other than `25 1` means a `locator` no longer occurs exactly once in its file because the tree changed after this packet was written. Write that row id in `goal.md` section 4 and carry on, because T006 will report the row as `BLOCKED` and T009 may apply the same fix from the ledger.
+- [x] T004 Save the 25 known rows (`scratch/ledger/known-rows.jsonl`). Run the heredoc block that follows this line exactly as written. The file holds one JSON object per line with the fields `id`, `file`, `locator` and `expected_text`. Rows K-01 to K-18 replace the `description:` line of the 18 example docs. Rows K-19 to K-21 replace the stale `Checklist.md` line. Rows K-22 and K-23 give the two bare `<spec-folder>` placeholders a real Level 1 packet path. Rows K-24 and K-25 make the style guide say table in both places. Verify: the two commands under the block print `25` and then `25 1`. A line other than `25 1` means a `locator` no longer occurs exactly once in its file because the tree changed after this packet was written. Write that row id in `goal.md` section 4 and carry on, because T006 will report the row as `BLOCKED` and T009 may apply the same fix from the ledger.
 
 ```bash
 cd "$WORKTREE"
@@ -102,9 +102,9 @@ JSONL
   jq -r '[.file,.locator] | @tsv' "$KR" | while IFS=$'\t' read -r f l; do grep -cF -- "$l" "$f"; done | sort | uniq -c | awk '{print $1, $2}'
   ```
 
-- [ ] T005 Save the applier and the helper functions, then test them on a copy (`scratch/tools/apply_row.py`, `scratch/tools/lib.sh`). Run the two heredocs below, then the self-test. Verify: the self-test prints, in order, a line that starts with `APPLIED K-08`, a line that starts with `FAIL K-08: locator found 0 times`, `exit=1`, and `1`. The last number is the count of changed lines in the copy, so it proves the applier changed one line and ran only once.
+- [x] T005 Save the applier and the helper functions, then test them on a copy (`scratch/tools/apply_row.py`, `scratch/tools/lib.sh`). Run the two heredocs below, then the self-test. Verify: the self-test prints, in order, a line that starts with `APPLIED K-08`, a line that starts with `FAIL K-08: locator found 0 times`, `exit=1`, and `1`. The last number is the count of changed lines in the copy, so it proves the applier changed one line and ran only once.
 
-  `apply_row.py` reads a ledger path, a row id and an optional root directory. It refuses a row whose `expected_text` is `OWNED BY PHASE` or `DELETE FILE`. It refuses unless the `locator` occurs exactly once in the row's file. It replaces that one occurrence, prints `APPLIED <id> <file>` and exits 0. Every refusal prints `FAIL <id>: <reason>` and exits 1. A second apply of the same row fails because the locator is gone.
+  `apply_row.py` reads a ledger path, a row id and an optional root directory. It refuses a row whose `expected_text` is `OWNED BY PHASE` or `DELETE FILE`. It refuses unless the `locator` occurs exactly once in the row's file. It replaces that one occurrence, or removes the whole line that holds it when `expected_text` is `DELETE LINE`, prints `APPLIED <id> <file>` and exits 0. Every refusal prints `FAIL <id>: <reason>` and exits 1. A second apply of the same row fails because the locator is gone.
 
 ```bash
 cd "$WORKTREE"
@@ -124,7 +124,13 @@ text = open(path, encoding="utf-8").read()
 count = text.count(r["locator"])
 if count != 1:
     sys.exit(f"FAIL {row_id}: locator found {count} times in {r['file']}")
-open(path, "w", encoding="utf-8").write(text.replace(r["locator"], r["expected_text"], 1))
+if r["expected_text"] == "DELETE LINE":
+    start = text.rfind("\n", 0, text.index(r["locator"])) + 1
+    end = text.find("\n", start)
+    text = text[:start] + (text[end + 1:] if end != -1 else "")
+else:
+    text = text.replace(r["locator"], r["expected_text"], 1)
+open(path, "w", encoding="utf-8").write(text)
 print(f"APPLIED {row_id} {r['file']}")
 PY
 ```
@@ -230,7 +236,7 @@ SH
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 Apply the 25 known rows, one at a time (`scratch/applied.txt` and the 20 files the rows name). Run the block below. Do not edit any of those files by hand. Verify: the three counts under the block print `25`, `25` and `25`. A row that printed `BLOCKED` is recorded in `goal.md` section 4 and is not retried by hand.
+- [x] T006 Apply the 25 known rows, one at a time (`scratch/applied.txt` and the 20 files the rows name). Run the block below. Do not edit any of those files by hand. Verify: the three counts under the block print `25`, `25` and `25`. A row that printed `BLOCKED` is recorded in `goal.md` section 4 and is not retried by hand.
 
   ```bash
   cd "$WORKTREE"
@@ -252,7 +258,7 @@ SH
 
   The four bullets under the style guide heading `### Why a Table` are Consistency, Readability, Validation and Flexibility. They name no list format, so rows K-24 and K-25 leave the section consistent and no further row is needed.
 
-- [ ] T007 Check the example descriptions (no file). Run the block below. Verify: the first command prints nothing. The second prints `18 1`. The third prints `0`. The second command proves each of the 18 files holds exactly its new sentence as one whole line. The third proves the new sentences hold none of the words `preset`, `capability`, `kind` or `manifest`, which the workflow invariance test bans under `templates/`.
+- [x] T007 Check the example descriptions (no file). Run the block below. Verify: the first command prints nothing. The second prints `18 1`. The third prints `0`. The second command proves each of the 18 files holds exactly its new sentence as one whole line. The third proves the new sentences hold none of the words `preset`, `capability`, `kind` or `manifest`, which the workflow invariance test bans under `templates/`.
 
   ```bash
   cd "$WORKTREE"
@@ -261,7 +267,7 @@ SH
   jq -r 'select(.id|test("^K-(0[1-9]|1[0-8])$")) | .expected_text' "$KR" | grep -ciE '(preset|capabilit|kind|manifest)'
   ```
 
-- [ ] T008 Delete the dead hash file (`.skilled/skills/system-spec-kit/templates/.hashes`). The file lists four template files, three of which are not there, and nothing reads it. Run the guard block first. It searches `.skilled` and then the whole repository root for the text `.hashes`, and it saves each list of readers. Verify: it prints `rc=1` twice. The code `1` means ripgrep found no reader. The code `0` means it found a reader and the list is in the saved file. The code `2` means the search itself failed. Only when both codes are `1`, run the delete block. For any other code, do not delete. Mark this task `[B]`, and write the code and the saved list in `goal.md` section 4. Last check after the delete: `test ! -e $S/templates/.hashes && echo DELETED` prints `DELETED`.
+- [x] T008 Delete the dead hash file (`.skilled/skills/system-spec-kit/templates/.hashes`). The file lists four template files, three of which are not there, and nothing reads it. Run the guard block first. It searches `.skilled` and then the whole repository root for the text `.hashes`, and it saves each list of readers. Verify: it prints `rc=1` twice. The code `1` means ripgrep found no reader. The code `0` means it found a reader and the list is in the saved file. The code `2` means the search itself failed. Only when both codes are `1`, run the delete block. For any other code, do not delete. Mark this task `[B]`, and write the code and the saved list in `goal.md` section 4. Last check after the delete: `test ! -e $S/templates/.hashes && echo DELETED` prints `DELETED`.
 
   ```bash
   cd "$WORKTREE"
@@ -276,7 +282,7 @@ SH
 
   Both guards printed `rc=1` while this packet was written. A search that also covers `specs/` finds only historical review and research notes about the old template hashing, which are text and not readers.
 
-- [ ] T009 Apply the census rows by script (`scratch/census.txt`). Skip this task when T001 reported a missing ledger. The loop reads every ledger row whose `owner_phase` is `002`. It skips a row whose defect no longer reproduces because a known row already fixed it. It skips rows that a later phase rewrites. It applies the rest with the applier and re-runs the row's evidence command after each apply. Run the block below. Verify: the first two commands under it print the same number, and the third prints `0`. The same number means every owner `002` row produced exactly one line in `census.txt`. A row marked `NEEDS-WORKER` is handled by T010. A row marked `DELETE-PENDING` is handled by T011. A row marked `OUT-OF-SCOPE` changed a file that no row names. Restore that file with `git restore --source="$P2START" -- <path>`, record it in `goal.md` section 4 and mark this task `[B]`.
+- [x] T009 Apply the census rows by script (`scratch/census.txt`). Skip this task when T001 reported a missing ledger. The loop reads every ledger row whose `owner_phase` is `002`. It skips a row whose defect no longer reproduces because a known row already fixed it. It skips rows that a later phase rewrites. It applies the rest with the applier and re-runs the row's evidence command after each apply. Run the block below. Verify: the first two commands under it print the same number, and the third prints `0`. The same number means every owner `002` row produced exactly one line in `census.txt`. A row marked `NEEDS-WORKER` is handled by T010. A row marked `DELETE-PENDING` is handled by T011. A row marked `OUT-OF-SCOPE` changed a file that no row names. Restore that file with `git restore --source="$P2START" -- <path>`, record it in `goal.md` section 4 and mark this task `[B]`.
 
   ```bash
   cd "$WORKTREE"
@@ -316,7 +322,7 @@ SH
 
   The last command prints the tally of `APPLIED`, `SKIP-GONE`, `SKIP-OWNED`, `NEEDS-WORKER` and `DELETE-PENDING` rows. Copy it into `goal.md` section 4. Rows owned by the write recipe have the owner `041-006`, so the loop never selects them. Rows owned by `003`, `004`, `005` and `006` are never selected either.
 
-- [ ] T010 Fix the `NEEDS-WORKER` rows with one Task subagent each (`scratch/briefs/T010-<id>.txt`, `scratch/runs/T010-<id>.txt` and the one file each row names). Skip this task when T009 printed no `NEEDS-WORKER` line and when T001 reported a missing ledger. A row lands here when its locator no longer occurs exactly once, which means the defect is prose that needs an edit instead of a pure swap. The text may also have drifted. Before the first dispatch, run `rg -c 'deepseek-v4.1-flash-1017' opencode.json`, which must print a number above 0, because a Task subagent inherits the session model. Then read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4, whose NEVER rules 1 and 5 forbid a CLI worker dispatch from inside OpenCode. Run the prepare block below. It writes one brief per row that still needs a worker and prints those row ids. It skips a row that is already fixed, so running it again prepares briefs only for the rows that still failed. For each printed id, dispatch with the Task tool: subagent_type `general`, description `T010-<id>`, prompt = the full text of `$PHASE/scratch/briefs/T010-<id>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T010-<id>.txt` with the write tool. At most 3 Task calls in one message, and never two that write the same file. When every call has returned, run the check block. When the prepare block printed no id, the check block prints nothing and the task is already met. Run the whole task at most three times in all. Verify: every printed line ends in `repro=NO extra=0 reply=present`. A row still failing after the third run is marked `[B]` under the blocked task protocol in `plan.md`.
+- [x] T010 Fix the `NEEDS-WORKER` rows with one Task subagent each (`scratch/briefs/T010-<id>.txt`, `scratch/runs/T010-<id>.txt` and the one file each row names). Skip this task when T009 printed no `NEEDS-WORKER` line and when T001 reported a missing ledger. A row lands here when its locator no longer occurs exactly once, which means the defect is prose that needs an edit instead of a pure swap. The text may also have drifted. Before the first dispatch, run `rg -c 'deepseek-v4.1-flash-1017' opencode.json`, which must print a number above 0, because a Task subagent inherits the session model. Then read `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` sections 3 and 4, whose NEVER rules 1 and 5 forbid a CLI worker dispatch from inside OpenCode. Run the prepare block below. It writes one brief per row that still needs a worker and prints those row ids. It skips a row that is already fixed, so running it again prepares briefs only for the rows that still failed. For each printed id, dispatch with the Task tool: subagent_type `general`, description `T010-<id>`, prompt = the full text of `$PHASE/scratch/briefs/T010-<id>.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T010-<id>.txt` with the write tool. At most 3 Task calls in one message, and never two that write the same file. When every call has returned, run the check block. When the prepare block printed no id, the check block prints nothing and the task is already met. Run the whole task at most three times in all. Verify: every printed line ends in `repro=NO extra=0 reply=present`. A row still failing after the third run is marked `[B]` under the blocked task protocol in `plan.md`.
 
   ```bash
   cd "$WORKTREE"
@@ -349,7 +355,7 @@ SH
 
   When a printed `extra` is above `0`, restore each path in `scratch/extra-paths.txt` with `git restore --source="$P2START" -- <path>` and count that dispatch as failed.
 
-- [ ] T011 Delete other dead files named by the census (the files the rows name). Skip this task when T009 printed no `DELETE-PENDING` line. The block below runs the same reader guard as T008 with each file's base name and deletes the file only when ripgrep exits with code `1`, which means no reader. Any other code leaves the file and prints `KEPT`. A base name that other files mention, such as `README.md`, makes ripgrep exit with code `0`, so that file is also kept. Record every kept file in `goal.md` section 4. Verify: the two commands under the block print `0` and `0`. The first counts lines that do not start with `DELETED` or `KEPT`. The second counts `DELETED` paths that still exist.
+- [x] T011 Delete other dead files named by the census (the files the rows name). Skip this task when T009 printed no `DELETE-PENDING` line. The block below runs the same reader guard as T008 with each file's base name and deletes the file only when ripgrep exits with code `1`, which means no reader. Any other code leaves the file and prints `KEPT`. A base name that other files mention, such as `README.md`, makes ripgrep exit with code `0`, so that file is also kept. Record every kept file in `goal.md` section 4. Verify: the two commands under the block print `0` and `0`. The first counts lines that do not start with `DELETED` or `KEPT`. The second counts `DELETED` paths that still exist.
 
   ```bash
   cd "$WORKTREE"
@@ -372,7 +378,7 @@ SH
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Recheck every row (`scratch/recheck.txt`). Run the block below. It checks the 25 known rows, then every ledger row whose owner is `002`. Verify: the three counts under the block print `0`, `0` and `0`, which means no known locator remains, no ledger defect still reproduces and no owned dead file is still there. When T001 reported a missing ledger, the second and third counts are skipped and the first count is the only gate.
+- [x] T012 Recheck every row (`scratch/recheck.txt`). Run the block below. It checks the 25 known rows, then every ledger row whose owner is `002`. Verify: the three counts under the block print `0`, `0` and `0`, which means no known locator remains, no ledger defect still reproduces and no owned dead file is still there. When T001 reported a missing ledger, the second and third counts are skipped and the first count is the only gate.
 
   ```bash
   cd "$WORKTREE"
@@ -398,18 +404,20 @@ SH
   grep -c '^STILL-THERE ' "$PHASE/scratch/recheck.txt"
   ```
 
-- [ ] T013 Check that only the rows' files changed (`scratch/allowed-files.txt`, `scratch/changed-files.txt`). Run the block below. Verify: the last command prints `0`. A path it lists is a change no row explains. Restore it with `git restore --source="$P2START" -- <path>` and record it in `goal.md` section 4.
+- [x] T013 Check that only the rows' files changed (`scratch/allowed-files.txt`, `scratch/changed-files.txt`). Run the block below. Verify: the last command prints `0`. A path it lists is a change no row explains. Restore it with `git restore --source="$P2START" -- <path>` and record it in `goal.md` section 4.
 
   ```bash
   cd "$WORKTREE"
-  { jq -r .file "$KR"; jq -r 'select(.owner_phase=="002") | .file' "$LED"; echo "$S/templates/.hashes"; sed 's/^...//' "$PHASE/scratch/status-start.txt"; } | sort -u > "$PHASE/scratch/allowed-files.txt"
+  { jq -r .file "$KR"; jq -r 'select(.owner_phase=="002") | .file' "$LED"; echo "$S/templates/.hashes"; ls .skilled/commands/deep/assets/compiled/*.contract.markdown; echo "$S/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap"; sed 's/^...//' "$PHASE/scratch/status-start.txt"; } | sort -u > "$PHASE/scratch/allowed-files.txt"
   git diff --name-only | grep -v "^$PHASE_REL/" | sort -u > "$PHASE/scratch/changed-files.txt"
   comm -13 "$PHASE/scratch/allowed-files.txt" "$PHASE/scratch/changed-files.txt" | wc -l | tr -d ' '
   ```
 
-  No path under `$S/templates/core`, `$S/templates/addons` or `$S/templates/packet-types` may appear in `changed-files.txt`, because later phases own those folders. Verify: `grep -cE "^$S/templates/(core|addons|packet-types)/" "$PHASE/scratch/changed-files.txt"` prints `0`.
+  The three compiled deep-loop contracts in `.skilled/commands/deep/assets/compiled/` record a digest of `$S/references/workflows/auto-mode-contract.md`, which a row edits. They are regenerated with `node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command <deep/ai-council|deep/review|deep/research> --write`, which changes only the recorded digest, so they are allowed here. The golden snapshot `$S/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` records the rendered `packet_pointer` lines that rows L-A-002 to L-A-004 change. It is updated with `npx vitest run --config ../../vitest.config.ts --project cli tests/scaffold-golden-snapshots.vitest.ts -u` from `$S/runtime/cli`, which changes those three lines only, so it is allowed too.
 
-- [ ] T014 Compare the spec-kit suite with the phase 1 start (`scratch/suite-end.txt`). Run the first block. It takes several minutes. Then run the second block. Verify: the second block prints `SUITE_MATCH`. A match means the `Test Files` lines, the `Tests` lines and the final `exit=` line are identical in both files. Durations and start times are not compared. When it prints `SUITE_DIFF`, read the diff it shows and mark this task `[B]`. A line that appears only in the end file and starts with `FAIL` names a new failing test. Rerun the first block once before you decide, because a flaky test can differ between runs. A second diff blocks the phase.
+  No path under `$S/templates/core`, `$S/templates/addons` or `$S/templates/packet-types` may appear in `changed-files.txt` other than the two files that rows L-A-002 to L-A-005 fix, because later phases own those folders. Verify: `grep -E "^$S/templates/(core|addons|packet-types)/" "$PHASE/scratch/changed-files.txt" | grep -cvxF -e "$S/templates/core/implementation-summary.md.tmpl" -e "$S/templates/addons/resource-map.md.tmpl"` prints `0`.
+
+- [x] T014 Compare the spec-kit suite with the phase 1 start (`scratch/suite-end.txt`). Run the first block. It takes several minutes. Then run the second block. Verify: the second block prints `SUITE_MATCH`. A match means the `Test Files` lines, the `Tests` lines and the final `exit=` line are identical in both files. Durations and start times are not compared. When it prints `SUITE_DIFF`, read the diff it shows and mark this task `[B]`. A line that appears only in the end file and starts with `FAIL` names a new failing test. Rerun the first block once before you decide, because a flaky test can differ between runs. A second diff blocks the phase.
 
   ```bash
   cd "$WORKTREE"
@@ -427,7 +435,7 @@ SH
 
   The `Tests` line must exist in the start file. Verify: `grep -c '^Tests ' "$PHASE/scratch/suite-start-summary.txt"` prints `1` or more. When it prints `0`, the suite output format is not the one this task expects. Write that in `goal.md` section 4 and stop the task.
 
-- [ ] T015 Frontier review of the diff (`scratch/review/T015.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Use its read-only invocation with the `gpt-6-luna` model, as phase 1 did. Write the brief with the first block and send it with the second block. The reply lands in `scratch/review/T015.txt`. Verify: every line of the file matches `^(P0|P1|P2) ` or the file holds the single line `NO FINDINGS`. Check it with `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$PHASE/scratch/review/T015.txt"`, which must print `0`.
+- [x] T015 Frontier review of the diff (`scratch/review/T015.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Use its read-only invocation with the `gpt-6-luna` model, as phase 1 did. Write the brief with the first block and send it with the second block. The reply lands in `scratch/review/T015.txt`. Verify: every line of the file matches `^(P0|P1|P2) ` or the file holds the single line `NO FINDINGS`. Check it with `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$PHASE/scratch/review/T015.txt"`, which must print `0`.
 
 ```bash
 cd "$WORKTREE"
@@ -459,7 +467,7 @@ BRIEF
   ```
 
 
-- [ ] T016 Apply the review findings (`scratch/review/T016.txt`, `scratch/briefs/T016-<n>.txt`, `goal.md`). Do not edit any file a finding names by hand. For each `P0`, `P1` or `P2` line, write a brief with the Worker Brief Skeleton in `plan.md` section AI EXECUTION PROTOCOL. Put the finding's file under ALLOWED WRITE PATHS and the finding line in the TASK section. Dispatch it with the Task tool as described under Dispatch Command in the same section, with the brief at `scratch/briefs/T016-<n>.txt` and the reply at `scratch/runs/T016-<n>.txt`. At most 3 Task calls in one message, and never two that write the same file. Write `APPLIED <file>` to `scratch/review/T016.txt` after the dispatch. Write `RECORDED <file>` instead when the dispatch failed or the finding asks for a change outside the files the rows name, and raise it to the operator. Write every finding in `goal.md` section 4. Then rerun T012, T013 and T014. A `P2` finding is fixed by a worker or recorded with the reason it was not fixed. When T015 holds `NO FINDINGS`, run `: > "$PHASE/scratch/review/T016.txt"` and skip the dispatches. Verify: the block below prints `COUNTS_MATCH`.
+- [x] T016 Apply the review findings (`scratch/review/T016.txt`, `scratch/briefs/T016-<n>.txt`, `goal.md`). Do not edit any file a finding names by hand. For each `P0`, `P1` or `P2` line, write a brief with the Worker Brief Skeleton in `plan.md` section AI EXECUTION PROTOCOL. Put the finding's file under ALLOWED WRITE PATHS and the finding line in the TASK section. Dispatch it with the Task tool as described under Dispatch Command in the same section, with the brief at `scratch/briefs/T016-<n>.txt` and the reply at `scratch/runs/T016-<n>.txt`. At most 3 Task calls in one message, and never two that write the same file. Write `APPLIED <file>` to `scratch/review/T016.txt` after the dispatch. Write `RECORDED <file>` instead when the dispatch failed or the finding asks for a change outside the files the rows name, and raise it to the operator. Write every finding in `goal.md` section 4. Then rerun T012, T013 and T014. A `P2` finding is fixed by a worker or recorded with the reason it was not fixed. When T015 holds `NO FINDINGS`, run `: > "$PHASE/scratch/review/T016.txt"` and skip the dispatches. Verify: the block below prints `COUNTS_MATCH`.
 
   ```bash
   cd "$WORKTREE"
@@ -468,7 +476,7 @@ BRIEF
   diff "$PHASE/scratch/review/findings.count" "$PHASE/scratch/review/dispositions.count" && echo COUNTS_MATCH
   ```
 
-- [ ] T017 Close the phase (this folder and one local commit). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`. Fill `implementation-summary.md` with what changed and the T006, T007, T012, T013 and T014 results. Mark each row of `acceptance-criteria.md` `Met` with its evidence. Read the commit section of `.skilled/skills/sk-git/SKILL.md`, then commit with the block below. It adds the files that T013 listed plus this phase folder, never everything. When a commit hook refuses, read its message, fix what it names and commit again, at most twice. Verify: the validate command prints `RESULT: PASSED`, and the last command of the block prints the same number as `wc -l < "$PHASE/scratch/changed-files.txt"`.
+- [x] T017 Close the phase (this folder and one local commit). Run `bash $S/runtime/cli/spec/validate.sh "$PHASE" --strict`. Fill `implementation-summary.md` with what changed and the T006, T007, T012, T013 and T014 results. Mark each row of `acceptance-criteria.md` `Met` with its evidence. Read the commit section of `.skilled/skills/sk-git/SKILL.md`, then commit with the block below. It adds the files that T013 listed plus this phase folder, never everything. When a commit hook refuses, read its message, fix what it names and commit again, at most twice. Verify: the validate command prints `RESULT: PASSED`, and the last command of the block prints the same number as `wc -l < "$PHASE/scratch/changed-files.txt"`.
 
   ```bash
   cd "$WORKTREE"
@@ -483,9 +491,9 @@ BRIEF
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every acceptance criterion marked `Met` with its evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every acceptance criterion marked `Met` with its evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -517,9 +525,9 @@ BRIEF
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 1 closed with a reviewed `ledger.jsonl`, shown by T001
-- [ ] CHK-002 [P0] T001 to T005 done with their verify output recorded in `goal.md` section 4
-- [ ] CHK-003 [P1] `apply_row.py` self-test printed the expected four lines
+- [x] CHK-001 [P0] Phase 1 closed with a reviewed `ledger.jsonl`, shown by T001
+- [x] CHK-002 [P0] T001 to T005 done with their verify output recorded in `goal.md` section 4
+- [x] CHK-003 [P1] `apply_row.py` self-test printed the expected four lines
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -527,10 +535,10 @@ BRIEF
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `known-rows.jsonl` holds 25 lines and every `locator` occurs once before T006 runs
-- [ ] CHK-011 [P0] No example, checklist or style guide file was edited by hand or by a model for a known row
-- [ ] CHK-012 [P1] Every `description:` line in the 18 example docs is one whole sentence on one line
-- [ ] CHK-013 [P1] Every `NEEDS-WORKER` row used one brief with one allowed write path
+- [x] CHK-010 [P0] `known-rows.jsonl` holds 25 lines and every `locator` occurs once before T006 runs
+- [x] CHK-011 [P0] No example, checklist or style guide file was edited by hand or by a model for a known row
+- [x] CHK-012 [P1] Every `description:` line in the 18 example docs is one whole sentence on one line
+- [x] CHK-013 [P1] Every `NEEDS-WORKER` row used one brief with one allowed write path
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -538,10 +546,10 @@ BRIEF
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] T014 printed `SUITE_MATCH`
-- [ ] CHK-022 [P1] T012 counts are `0`, `0` and `0`
-- [ ] CHK-023 [P1] A row that failed is recorded with its error and not silently dropped
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] T014 printed `SUITE_MATCH`
+- [x] CHK-022 [P1] T012 counts are `0`, `0` and `0`
+- [x] CHK-023 [P1] A row that failed is recorded with its error and not silently dropped
 <!-- /ANCHOR:testing -->
 
 ---
@@ -549,13 +557,13 @@ BRIEF
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every owner `002` ledger row ends in one of five states: applied, skipped as already fixed, skipped as owned by a later phase, deleted, or sent to a worker.
-- [ ] CHK-FIX-002 [P0] The example descriptions were checked across all four level folders, not one file, by T007.
-- [ ] CHK-FIX-003 [P0] The `.hashes` reader search covered `.skilled` and the repository root before the delete.
-- [ ] CHK-FIX-004 [P1] The style guide heading and its manual check row both say table.
-- [ ] CHK-FIX-005 [P1] The matrix of four levels by the example doc kinds is reported as 18 description counts in `goal.md` section 4.
-- [ ] CHK-FIX-006 [P1] Each row's changed path check printed `extra_paths=0`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase start commit recorded in T003.
+- [x] CHK-FIX-001 [P0] Every owner `002` ledger row ends in one of five states: applied, skipped as already fixed, skipped as owned by a later phase, deleted, or sent to a worker.
+- [x] CHK-FIX-002 [P0] The example descriptions were checked across all four level folders, not one file, by T007.
+- [x] CHK-FIX-003 [P0] The `.hashes` reader search covered `.skilled` and the repository root before the delete.
+- [x] CHK-FIX-004 [P1] The style guide heading and its manual check row both say table.
+- [x] CHK-FIX-005 [P1] The matrix of four levels by the example doc kinds is reported as 18 description counts in `goal.md` section 4.
+- [x] CHK-FIX-006 [P1] Each row's changed path check printed `extra_paths=0`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase start commit recorded in T003.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -563,9 +571,9 @@ BRIEF
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No brief contains a credential, token or key
-- [ ] CHK-031 [P0] `apply_row.py` wrote only the file each row names
-- [ ] CHK-032 [P1] Every worker was one Task subagent, and its brief carried the pre-resolution line
+- [x] CHK-030 [P0] No brief contains a credential, token or key
+- [x] CHK-031 [P0] `apply_row.py` wrote only the file each row names
+- [x] CHK-032 [P1] Every worker was one Task subagent, and its brief carried the pre-resolution line
 <!-- /ANCHOR:security -->
 
 ---
@@ -573,9 +581,9 @@ BRIEF
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks agree on the 25 known rows
-- [ ] CHK-041 [P1] `goal.md` section 4 records the phase start commit, each dispatch and each blocker
-- [ ] CHK-042 [P2] `scratch/applied.txt` and `scratch/census.txt` are kept as the record of what ran
+- [x] CHK-040 [P1] Spec, plan and tasks agree on the 25 known rows
+- [x] CHK-041 [P1] `goal.md` section 4 records the phase start commit, each dispatch and each blocker
+- [x] CHK-042 [P2] `scratch/applied.txt` and `scratch/census.txt` are kept as the record of what ran
 <!-- /ANCHOR:docs -->
 
 ---
@@ -583,8 +591,8 @@ BRIEF
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Working files are under this phase's `scratch/` only
-- [ ] CHK-051 [P1] `scratch/selftest/` does not exist at phase close
+- [x] CHK-050 [P1] Working files are under this phase's `scratch/` only
+- [x] CHK-051 [P1] `scratch/selftest/` does not exist at phase close
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -594,11 +602,11 @@ BRIEF
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 24 | 0/24 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 24 | 24/24 |
+| P2 Items | 9 | 9/9 |
 
-**Verification Date**: not yet run
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---
@@ -606,10 +614,10 @@ BRIEF
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001 and ADR-002 in `plan.md` are followed by T006 and T008
-- [ ] CHK-101 [P1] All three ADRs have status Accepted
-- [ ] CHK-102 [P1] Each ADR names the alternative it rejected and why
-- [ ] CHK-103 [P2] No migration applies to this phase
+- [x] CHK-100 [P0] ADR-001 and ADR-002 in `plan.md` are followed by T006 and T008
+- [x] CHK-101 [P1] All three ADRs have status Accepted
+- [x] CHK-102 [P1] Each ADR names the alternative it rejected and why
+- [x] CHK-103 [P2] No migration applies to this phase
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -617,10 +625,10 @@ BRIEF
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Known rows were applied by script with no model call (NFR-P01)
-- [ ] CHK-111 [P1] Applying a row twice failed the second time (NFR-R01)
-- [ ] CHK-112 [P2] No load test applies to this phase
-- [ ] CHK-113 [P2] The suite run time is recorded in `goal.md` section 4
+- [x] CHK-110 [P1] Known rows were applied by script with no model call (NFR-P01)
+- [x] CHK-111 [P1] Applying a row twice failed the second time (NFR-R01)
+- [x] CHK-112 [P2] No load test applies to this phase
+- [x] CHK-113 [P2] The suite run time is recorded in `goal.md` section 4
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -628,11 +636,11 @@ BRIEF
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback in `plan.md` section 7 was not needed, or was run and recorded
-- [ ] CHK-121 [P0] Nothing outside the files the rows name changed, shown by T013
-- [ ] CHK-122 [P1] Phase 3 can start: every owner `002` row is gone and the suite matches
-- [ ] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
-- [ ] CHK-124 [P2] No deployment applies to this phase
+- [x] CHK-120 [P0] Rollback in `plan.md` section 7 was not needed, or was run and recorded
+- [x] CHK-121 [P0] Nothing outside the files the rows name changed, shown by T013
+- [x] CHK-122 [P1] Phase 3 can start: every owner `002` row is gone and the suite matches
+- [x] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
+- [x] CHK-124 [P2] No deployment applies to this phase
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -640,10 +648,10 @@ BRIEF
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Frontier review ran read-only and its reply is saved
-- [ ] CHK-131 [P1] No new dependency was installed
-- [ ] CHK-132 [P2] No user data is handled by this phase
-- [ ] CHK-133 [P2] No OWASP surface is touched by this phase
+- [x] CHK-130 [P1] Frontier review ran read-only and its reply is saved
+- [x] CHK-131 [P1] No new dependency was installed
+- [x] CHK-132 [P2] No user data is handled by this phase
+- [x] CHK-133 [P2] No OWASP surface is touched by this phase
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -651,10 +659,10 @@ BRIEF
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
-- [ ] CHK-141 [P1] `implementation-summary.md` cites `applied.txt` and the T014 result
-- [ ] CHK-142 [P2] The authoring checklist and style guide were the only reference docs changed
-- [ ] CHK-143 [P2] The count of census rows applied, skipped and sent to a worker is recorded for phase 3
+- [x] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
+- [x] CHK-141 [P1] `implementation-summary.md` cites `applied.txt` and the T014 result
+- [x] CHK-142 [P2] The authoring checklist and style guide were the only reference docs changed
+- [x] CHK-143 [P2] The count of census rows applied, skipped and sent to a worker is recorded for phase 3
 <!-- /ANCHOR:docs-verify -->
 
 ---

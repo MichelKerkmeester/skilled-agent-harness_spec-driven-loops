@@ -1,0 +1,44 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a text diff against the rows that were supposed to produce it. A script checks
+your output line by line.
+
+READ THESE FILES:
+1. specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/review/T015-stat.txt - the changed-file list under .skilled since the phase start commit.
+2. specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/review/T015.diff - the full diff under .skilled since the phase start commit.
+3. specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/ledger/known-rows.jsonl - 25 known rows: file, locator (old text), expected_text (new text).
+4. specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/review/T015-rows.jsonl - 47 phase 1 ledger rows owned by this phase. expected_text OWNED BY PHASE means
+   another phase owns the fix, DELETE FILE means delete the file, DELETE LINE means remove the whole
+   line that holds the locator. Some rows were already fixed by a known row.
+5. specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/review/T015-evidence.txt - outputs of five shell checks the conductor ran on the final tree.
+You may open any file the diff names to read its context.
+
+CONSTRAINTS THAT HOLD FOR THIS PHASE:
+- Only files named by those rows, plus the deleted templates/.hashes, may change.
+- Under templates/core, templates/addons and templates/packet-types, only
+  templates/core/implementation-summary.md.tmpl and templates/addons/resource-map.md.tmpl may change.
+
+CHECK THESE SIX THINGS:
+(1) Every changed line in the diff equals the expected_text of one row, or is a line removal a
+    DELETE LINE or DELETE FILE row asks for, and no other line changed.
+(2) The 18 example description lines under templates/examples are full sentences on one line,
+    start with a capital letter and hold no end of an HTML comment.
+(3) templates/.hashes is deleted and the evidence file shows no reader of it remains.
+(4) In references/templates/template-style-guide.md the heading reads "### Why a Table" and the
+    lines under it name no bulleted list format.
+(5) The two spec-folder-authoring-checklist.md lines now name a packet path that exists (see the evidence file).
+(6) No changed line introduces a broken path, a sentence fragment, or a statement that contradicts
+    the file around it.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<line> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

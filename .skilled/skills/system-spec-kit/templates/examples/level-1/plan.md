@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Add User Authentication"
-description: "planning required for a simple authentication feature. Note the straightforward"
+description: "Level 1 plan for the user authentication example, with the minimum planning a small feature needs."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"

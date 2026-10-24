@@ -33,7 +33,7 @@ This phase applies every ledger row whose `owner_phase` is `002`. Twenty-five ro
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -50,7 +50,7 @@ This phase applies every ledger row whose `owner_phase` is `002`. Twenty-five ro
 
 This is **Phase 2** of the Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm specification.
 
-**Scope Boundary**: the files named by ledger rows with `owner_phase` `002`, all under `.skilled/skills/system-spec-kit/`. No template under `templates/core/`, `templates/addons/` or `templates/packet-types/` changes in this phase, because phases 3 and 4 own them.
+**Scope Boundary**: the files named by ledger rows with `owner_phase` `002`, all under `.skilled/skills/system-spec-kit/`. No template under `templates/core/`, `templates/addons/` or `templates/packet-types/` changes in this phase, because phases 3 and 4 own them. The one exception is the four owner `002` rows L-A-002 to L-A-005, which fix `core/implementation-summary.md.tmpl` and `addons/resource-map.md.tmpl`.
 
 **Dependencies**:
 - `../001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl`, reviewed.
@@ -122,7 +122,7 @@ Every defect the census assigned to this phase is gone, proved by its own eviden
 | REQ-003 | Each of the 18 example `description:` lines equals the sentence written for it in `tasks.md` T004, and the leaked-text search in `tasks.md` T007 prints nothing. That search alone is not enough, because it matched only 15 of the 18 leaked lines before the repair. |
 | REQ-004 | `templates/.hashes` is deleted, and a whole-repository search found no reader of it first. |
 | REQ-005 | The spec-kit suite result at phase close matches `suite-start.txt` from phase 1: the `Test Files` lines, the `Tests` lines and the final `exit=` line are identical. |
-| REQ-006 | No file changed except the files named by the 25 known rows, the files named by owner `002` ledger rows and `templates/.hashes`. Nothing under `templates/core`, `templates/addons` or `templates/packet-types` changed. |
+| REQ-006 | No file changed except the files named by the 25 known rows, the files named by owner `002` ledger rows and `templates/.hashes`. Nothing under `templates/core`, `templates/addons` or `templates/packet-types` changed except `templates/core/implementation-summary.md.tmpl` and `templates/addons/resource-map.md.tmpl`. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

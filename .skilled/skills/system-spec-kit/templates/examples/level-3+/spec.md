@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Add User Authentication"
-description: "Note the Complexity Assessment, Approval Workflow, Compliance Checkpoints, Stakeholder"
+description: "Level 3+ spec example with a complexity assessment, approval workflow, compliance checkpoints and stakeholder matrix."
 trigger_phrases:
   - "feature specification"
   - "problem statement"

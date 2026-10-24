@@ -1,0 +1,75 @@
+APPLIED K-01 .skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
+CHECK K-01 extra_paths=0
+APPLIED K-02 .skilled/skills/system-spec-kit/templates/examples/level-1/plan.md
+CHECK K-02 extra_paths=0
+APPLIED K-03 .skilled/skills/system-spec-kit/templates/examples/level-1/spec.md
+CHECK K-03 extra_paths=0
+APPLIED K-04 .skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
+CHECK K-04 extra_paths=0
+APPLIED K-05 .skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
+CHECK K-05 extra_paths=0
+APPLIED K-06 .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+CHECK K-06 extra_paths=0
+APPLIED K-07 .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+CHECK K-07 extra_paths=0
+APPLIED K-08 .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+CHECK K-08 extra_paths=0
+APPLIED K-09 .skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md
+CHECK K-09 extra_paths=0
+APPLIED K-10 .skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
+CHECK K-10 extra_paths=0
+APPLIED K-11 .skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
+CHECK K-11 extra_paths=0
+APPLIED K-12 .skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
+CHECK K-12 extra_paths=0
+APPLIED K-13 .skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+CHECK K-13 extra_paths=0
+APPLIED K-14 .skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
+CHECK K-14 extra_paths=0
+APPLIED K-15 .skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+CHECK K-15 extra_paths=0
+APPLIED K-16 .skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
+CHECK K-16 extra_paths=0
+APPLIED K-17 .skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+CHECK K-17 extra_paths=0
+APPLIED K-18 .skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+CHECK K-18 extra_paths=0
+APPLIED K-19 .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+CHECK K-19 extra_paths=0
+APPLIED K-20 .skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+CHECK K-20 extra_paths=0
+APPLIED K-21 .skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+CHECK K-21 extra_paths=0
+APPLIED K-22 .skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+CHECK K-22 extra_paths=0
+APPLIED K-23 .skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+CHECK K-23 extra_paths=0
+APPLIED K-24 .skilled/skills/system-spec-kit/references/templates/template-style-guide.md
+CHECK K-24 extra_paths=0
+APPLIED K-25 .skilled/skills/system-spec-kit/references/templates/template-style-guide.md
+CHECK K-25 extra_paths=0
+KCHECK K-01 locator=0 expected=1
+KCHECK K-02 locator=0 expected=1
+KCHECK K-03 locator=0 expected=1
+KCHECK K-04 locator=0 expected=1
+KCHECK K-05 locator=0 expected=1
+KCHECK K-06 locator=0 expected=1
+KCHECK K-07 locator=0 expected=1
+KCHECK K-08 locator=0 expected=1
+KCHECK K-09 locator=0 expected=1
+KCHECK K-10 locator=0 expected=1
+KCHECK K-11 locator=0 expected=1
+KCHECK K-12 locator=0 expected=1
+KCHECK K-13 locator=0 expected=1
+KCHECK K-14 locator=0 expected=1
+KCHECK K-15 locator=0 expected=1
+KCHECK K-16 locator=0 expected=1
+KCHECK K-17 locator=0 expected=1
+KCHECK K-18 locator=0 expected=1
+KCHECK K-19 locator=0 expected=1
+KCHECK K-20 locator=0 expected=1
+KCHECK K-21 locator=0 expected=1
+KCHECK K-22 locator=0 expected=1
+KCHECK K-23 locator=0 expected=1
+KCHECK K-24 locator=0 expected=1
+KCHECK K-25 locator=0 expected=1

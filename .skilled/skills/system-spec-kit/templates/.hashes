@@ -1,9 +1,0 @@
-# Template Version Tracking
-# Generated: 2025-12-25
-# SHA256 hashes for template integrity verification
-# Regenerate with: for f in *.md; do echo "$(shasum -a 256 "$f" | cut -d' ' -f1)  $f"; done
-
-f5066de4f2c218fe9272109e2369c68f3c46b80fe8d3ba82373397a6346d1544  README.md
-31b45e5375cbd7ea47fab4dc544133086ec74eaca2006ac2e352af2597b55a66  debug-delegation.md
-8e6cdc58ac7165edd44bd518f64075e3479a4f56457c61173a81429c373138c9  handover.md
-62fb4a47afa0decfff714beea3a2c99f72ce5a6ce344ae7f0f9ff13dab4a33ff  research.md

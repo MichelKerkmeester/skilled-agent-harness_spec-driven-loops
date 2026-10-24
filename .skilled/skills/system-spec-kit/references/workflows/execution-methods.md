@@ -8,7 +8,7 @@ trigger_phrases:
   - "context saving commands"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.25
+version: 1.6.1.0
 ---
 
 # Execution Methods Reference
@@ -216,7 +216,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
 
 ## 8. MEMORY WORKFLOW (10 STEPS)
 
-The `generate-context.js` script orchestrates a 12-step workflow via `workflow.ts`:
+The `generate-context.js` script orchestrates 10 numbered steps with two substeps via `workflow.ts`:
 
 ### Workflow Steps
 

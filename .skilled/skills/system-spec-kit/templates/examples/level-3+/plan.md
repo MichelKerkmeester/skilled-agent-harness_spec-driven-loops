@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Add User Authentication"
-description: "Note the AI Execution Framework, Workstream Coordination, and Communication Plan"
+description: "Level 3+ plan example with the AI execution framework, workstream coordination and a communication plan."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
