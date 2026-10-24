@@ -60,6 +60,13 @@ Implemented a complete email/password authentication system including user regis
 <!-- /ANCHOR:what-built -->
 ---
 
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Merged after the unit and integration runs in Verification and one manual pass over the happy path.
+<!-- /ANCHOR:how-delivered -->
+---
+
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
@@ -98,7 +105,6 @@ Implemented a complete email/password authentication system including user regis
 <!-- /ANCHOR:verification -->
 ---
 
-<!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
 | NFR ID | Target | Actual | Status |
@@ -110,7 +116,6 @@ Implemented a complete email/password authentication system including user regis
 | NFR-S03 | Input sanitized | express-validator | Pass |
 
 
-<!-- /ANCHOR:nfr-verify -->
 ---
 
 <!-- ANCHOR:limitations -->
@@ -125,7 +130,6 @@ Implemented a complete email/password authentication system including user regis
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
 | Planned | Actual | Reason |
@@ -133,7 +137,6 @@ Implemented a complete email/password authentication system including user regis
 | 4-6 hours core impl | 5.5 hours | Added extra input validation |
 | No auth.css | Created auth.css | Needed for error message styling |
 
-<!-- /ANCHOR:deviations -->
 
 ---
 

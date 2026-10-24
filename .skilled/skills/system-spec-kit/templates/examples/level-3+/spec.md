@@ -289,7 +289,7 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 <!-- /ANCHOR:approval-workflow -->
 ---
 
-<!-- ANCHOR:compliance -->
+<!-- ANCHOR:compliance-checkpoints -->
 ## 13. COMPLIANCE CHECKPOINTS
 
 ### Security Compliance
@@ -309,10 +309,10 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - [x] Documentation complete
 
 
-<!-- /ANCHOR:compliance -->
+<!-- /ANCHOR:compliance-checkpoints -->
 ---
 
-<!-- ANCHOR:stakeholders -->
+<!-- ANCHOR:stakeholder-matrix -->
 ## 14. STAKEHOLDER MATRIX
 
 | Stakeholder | Role | Interest | Communication |
@@ -325,10 +325,10 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 | QA Team | Quality Assurance | Medium | Test plan review, defect triage |
 
 
-<!-- /ANCHOR:stakeholders -->
+<!-- /ANCHOR:stakeholder-matrix -->
 ---
 
-<!-- ANCHOR:changelog -->
+<!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
 
 ### v1.0 (2025-01-15)
@@ -356,7 +356,7 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - Status updated to Complete
 
 
-<!-- /ANCHOR:changelog -->
+<!-- /ANCHOR:change-log -->
 ---
 
 <!-- ANCHOR:questions -->
@@ -370,7 +370,6 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 <!-- /ANCHOR:questions -->
 ---
 
-<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
@@ -378,7 +377,6 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 - **Verification Checklist**: See `tasks.md`
 - **Decision Records**: See `decision-record.md`
 
-<!-- /ANCHOR:related-docs -->
 
 ---
 

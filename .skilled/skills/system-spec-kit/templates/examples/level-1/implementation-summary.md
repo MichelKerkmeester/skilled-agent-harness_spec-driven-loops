@@ -54,6 +54,13 @@ Implemented a complete email/password authentication system including user regis
 <!-- /ANCHOR:what-built -->
 ---
 
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Merged after the two manual runs in tasks T008 and T009.
+<!-- /ANCHOR:how-delivered -->
+---
+
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 

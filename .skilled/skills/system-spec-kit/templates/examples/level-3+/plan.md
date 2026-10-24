@@ -198,7 +198,7 @@ MVC - Following existing Express.js application structure
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -217,10 +217,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | Verify | All | None |
 
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -234,10 +234,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | **Total** | | **22 hours (~3 days)** |
 
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -258,10 +258,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 - **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
 
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 ---
 
-<!-- ANCHOR:l3-dep-graph -->
+<!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -300,10 +300,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 ```
 
 
-<!-- /ANCHOR:l3-dep-graph -->
+<!-- /ANCHOR:dependency-graph -->
 ---
 
-<!-- ANCHOR:l3-critical-path -->
+<!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
 1. **Setup** - 2 hours - CRITICAL
@@ -316,10 +316,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 **Total Critical Path**: 23 hours + external review time
 
 
-<!-- /ANCHOR:l3-critical-path -->
+<!-- /ANCHOR:critical-path -->
 ---
 
-<!-- ANCHOR:l3-milestones -->
+<!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -332,10 +332,9 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | M6 | Release Ready | All tests pass, all approvals | Day 5 EOD |
 
 
-<!-- /ANCHOR:l3-milestones -->
+<!-- /ANCHOR:milestones -->
 ---
 
-<!-- ANCHOR:l3-adr-summary -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
 See `decision-record.md` for full ADRs:
@@ -347,10 +346,9 @@ See `decision-record.md` for full ADRs:
 | ADR-003 | localStorage for tokens (MVP) | Accepted |
 
 
-<!-- /ANCHOR:l3-adr-summary -->
 ---
 
-<!-- ANCHOR:l3plus-ai-exec -->
+<!-- ANCHOR:ai-execution -->
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Foundation (Primary Agent)
@@ -397,7 +395,7 @@ See `decision-record.md` for full ADRs:
 ### Status Reporting Format
 ```
 
-<!-- /ANCHOR:l3plus-ai-exec -->
+<!-- /ANCHOR:ai-execution -->
 <!-- ANCHOR:status-update-timestamp -->
 ## Status Update - [TIMESTAMP]
 - **Task**: T### - [Description]
@@ -412,7 +410,7 @@ See `decision-record.md` for full ADRs:
 <!-- /ANCHOR:status-update-timestamp -->
 ---
 
-<!-- ANCHOR:l3plus-workstreams -->
+<!-- ANCHOR:workstreams -->
 ## L3+: WORKSTREAM COORDINATION
 
 ### Workstream Definition
@@ -449,10 +447,10 @@ W-C (Testing) ◄─────────────────────
 ```
 
 
-<!-- /ANCHOR:l3plus-workstreams -->
+<!-- /ANCHOR:workstreams -->
 ---
 
-<!-- ANCHOR:l3plus-communication -->
+<!-- ANCHOR:communication -->
 ## L3+: COMMUNICATION PLAN
 
 ### Checkpoints
@@ -476,7 +474,7 @@ W-C (Testing) ◄─────────────────────
 | Security concern | Security Lead | Security channel |
 | Launch ready | All stakeholders | Email + Slack |
 
-<!-- /ANCHOR:l3plus-communication -->
+<!-- /ANCHOR:communication -->
 
 ---
 

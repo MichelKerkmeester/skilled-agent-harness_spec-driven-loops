@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/cli/spec/check-example-drift.sh",
+      "runtime/cli/tests/example-drift.vitest.ts",
+      "runtime/cli/tests/template-fill-guidance.vitest.ts",
+      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
       ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
       ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
       ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
@@ -56,11 +60,7 @@
       ".skilled/skills/system-spec-kit/templates/examples/level-2/plan.md",
       ".skilled/skills/system-spec-kit/templates/examples/level-2/spec.md",
       ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/plan.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/spec.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md"
+      ".skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md"
     ],
     "entities": [
       {
@@ -97,6 +97,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "example-drift.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/example-drift.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-fill-guidance.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/template-fill-guidance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
         "source": "derived"
       },
       {
@@ -182,35 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "The Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Recommended Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fresh Level 2 scaffold holds 97 bracketed hints and validates clean",
     "created_at": "2026-10-23T11:27:22Z",
-    "last_save_at": "2026-10-24T16:02:41.708Z",
+    "last_save_at": "2026-10-24T17:33:24.465Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d44ffb5b1b4752b07785bbc88dd4579ee84eeecf02053ff971cafb50b83c8567",
+    "source_fingerprint": "sha256:e034e3b05b959d4a57a4ab64152ae9b4f4e5917e70ddc7bdf612d9e17f2f4a8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfe823c6dcc93442534d5a9d721f5e9fcd6b61d25cb50b955167cee4cb375a0d",
-      "plan.md": "807356c69f03659b345d92a31f50b1f6157bf55516a631c974149d4495aecc78",
-      "tasks.md": "50db94c91d1ee9ceb8d2864970179c48c6a46d28aeccf3821f7bd684340016fd",
-      "implementation-summary.md": "fc3dd0950ae16bf4538ad788580fdec52eeccca2debb09d7b29268cc6cf21509"
+      "spec.md": "39c34c08b9d861e4c7b163012205ba20c35c8704705c1bdeba58891c0fefb75a",
+      "plan.md": "3f2cf3a47ebb834f8ea74e05b21e5cb4a51b12a79a98aa03b528db3d0e760661",
+      "tasks.md": "1cba7f6670313a86956cdea92083fa8345719dca61dbd7af88613a6dfeecb5c1",
+      "implementation-summary.md": "a217def1a838afb455c8f44fbc66ec3d781e1733315c922b3d2aa50dbe1c6ad9"
     },
     "last_active_at": null
   }

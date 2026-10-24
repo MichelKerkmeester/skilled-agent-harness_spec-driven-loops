@@ -148,7 +148,7 @@ MVC - Following existing Express.js application structure
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -165,10 +165,10 @@ Phase 1.5 (Schema) ───┘
 | Verify | Core | None |
 
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -180,10 +180,10 @@ Phase 1.5 (Schema) ───┘
 | **Total** | | **7.5-10.5 hours** |
 
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -202,7 +202,7 @@ Phase 1.5 (Schema) ───┘
 - **Has data migrations?** Yes (users table)
 - **Reversal procedure**: DROP TABLE users; (no data to preserve for new feature)
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 

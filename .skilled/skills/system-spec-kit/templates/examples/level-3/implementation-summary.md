@@ -34,13 +34,11 @@ decision summary, comprehensive metrics, and lessons learned sections. -->
 <!-- /ANCHOR:metadata -->
 ---
 
-<!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
 Successfully implemented a complete email/password authentication system with registration, login, logout, and protected routes. The system uses JWT tokens for stateless session management and bcrypt for secure password hashing. All milestones were achieved, and the implementation is production-ready with comprehensive test coverage and monitoring in place.
 
 
-<!-- /ANCHOR:exec-summary -->
 ---
 
 <!-- ANCHOR:what-built -->
@@ -78,7 +76,13 @@ Implemented a production-ready authentication system including:
 <!-- /ANCHOR:what-built -->
 ---
 
-<!-- ANCHOR:arch-decisions -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Merged after the unit, integration and manual runs in Verification Results, with the checklist at 100 percent.
+<!-- /ANCHOR:how-delivered -->
+---
+
 ## Architecture Decisions Summary
 
 | ADR | Decision | Status | Impact |
@@ -90,10 +94,9 @@ Implemented a production-ready authentication system including:
 See `decision-record.md` for full ADR documentation.
 
 
-<!-- /ANCHOR:arch-decisions -->
 ---
 
-<!-- ANCHOR:impl-decisions -->
+<!-- ANCHOR:decisions -->
 ## Key Decisions (Implementation)
 
 | Decision | Rationale |
@@ -104,7 +107,7 @@ See `decision-record.md` for full ADR documentation.
 | No refresh tokens | Simplified MVP, planned for Phase 2 |
 
 
-<!-- /ANCHOR:impl-decisions -->
+<!-- /ANCHOR:decisions -->
 ---
 
 <!-- ANCHOR:verification -->
@@ -132,7 +135,6 @@ See `decision-record.md` for full ADR documentation.
 <!-- /ANCHOR:verification -->
 ---
 
-<!-- ANCHOR:milestones -->
 ## Milestone Achievement
 
 | Milestone | Target | Actual | Status |
@@ -144,7 +146,6 @@ See `decision-record.md` for full ADR documentation.
 | M5 Release | Day 5 EOD | Day 5 + 2h | Slight delay |
 
 
-<!-- /ANCHOR:milestones -->
 ---
 
 <!-- ANCHOR:limitations -->
@@ -160,7 +161,6 @@ See `decision-record.md` for full ADR documentation.
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:risks-realized -->
 ## Risks Realized
 
 | Risk ID | Occurred | Impact | Resolution |
@@ -171,7 +171,6 @@ See `decision-record.md` for full ADR documentation.
 | R-004 | Accepted | Med | Rate limiting spec created for Phase 2 |
 
 
-<!-- /ANCHOR:risks-realized -->
 ---
 
 ## Key Decisions
@@ -194,7 +193,6 @@ See `decision-record.md` for full ADR documentation.
 
 ---
 
-<!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
 | Planned | Actual | Reason |
@@ -204,10 +202,8 @@ See `decision-record.md` for full ADR documentation.
 | 4 test files | 5 test files | Split unit tests for clarity |
 
 
-<!-- /ANCHOR:deviations -->
 ---
 
-<!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
 - [ ] spec/013-oauth-integration - Google/GitHub OAuth
@@ -215,7 +211,6 @@ See `decision-record.md` for full ADR documentation.
 - [ ] spec/015-rate-limiting - Protect login endpoint
 - [ ] Phase 2: Migrate to HttpOnly cookies
 
-<!-- /ANCHOR:follow-up -->
 
 ---
 

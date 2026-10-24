@@ -56,6 +56,7 @@ contextType: "general"
 ---
 
 ## EXECUTIVE SUMMARY
+<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
 
@@ -70,6 +71,7 @@ contextType: "general"
 <!-- /IF -->
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
+<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/recommend-level-quiet`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
@@ -95,6 +97,7 @@ contextType: "general"
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
 
 ### Problem Statement
 [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
@@ -107,6 +110,7 @@ contextType: "general"
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
+<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--quiet` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
 
 ### In Scope
 - [YOUR_VALUE_HERE: Deliverable 1]
@@ -128,6 +132,7 @@ contextType: "general"
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
+<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With `--quiet`, stdout holds exactly one line that starts with `Recommended Level:`. WEAK: The flag should work well. -->
 
 ### P0 - Blockers (MUST complete)
 
@@ -163,6 +168,7 @@ contextType: "general"
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
+<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: `recommend-level.sh --quiet --loc 500 --files 15` prints one line and exits 0. WEAK: The feature is successful. -->
 
 - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
 - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
@@ -172,6 +178,7 @@ contextType: "general"
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
+<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -188,9 +195,12 @@ contextType: "general"
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+<!-- /ANCHOR:nfr -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
 <!-- /IF -->
 
 ### Performance
@@ -220,7 +230,6 @@ contextType: "general"
 - **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
 <!-- IF level:2 -->
 - **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
-<!-- /ANCHOR:nfr -->
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
@@ -232,9 +241,12 @@ contextType: "general"
 <!-- IF level:2 -->
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+<!-- /ANCHOR:edge-cases -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 8. EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
 <!-- /IF -->
 
 ### Data Boundaries
@@ -248,24 +260,25 @@ contextType: "general"
 - External service failure: [YOUR_VALUE_HERE: Fallback behavior]
 <!-- IF level:2,3 -->
 - Network timeout: [YOUR_VALUE_HERE: Retry strategy]
+<!-- /IF -->
 <!-- IF level:2 -->
 - Concurrent access: [YOUR_VALUE_HERE: Conflict resolution]
+<!-- /IF -->
 
 ### State Transitions
 - Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
 - Session expiry: [YOUR_VALUE_HERE: User experience]
-<!-- /ANCHOR:edge-cases -->
-<!-- /IF -->
-<!-- /IF -->
 
 ---
 
 <!-- IF level:2 -->
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 9. COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
 <!-- /IF -->
 
 <!-- IF level:2 -->
@@ -301,14 +314,25 @@ contextType: "general"
 <!-- IF level:2 -->
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:1 -->
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 10. RISK MATRIX
+<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
@@ -317,6 +341,7 @@ contextType: "general"
 ---
 
 ## 11. USER STORIES
+<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
 
 ### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
 
@@ -329,6 +354,7 @@ contextType: "general"
 <!-- IF level:3+ -->
 <!-- ANCHOR:approval-workflow -->
 ## 12. APPROVAL WORKFLOW
+<!-- FILL: Name the real approver for each checkpoint and the date it passed. GOOD: Spec review: operator, 2026-10-24. WEAK: Approvals pending. -->
 <!-- /IF -->
 <!-- IF level:3 -->
 ### US-002: [YOUR_VALUE_HERE: Title] (Priority: P1)
@@ -354,6 +380,7 @@ contextType: "general"
 <!-- IF level:3+ -->
 <!-- ANCHOR:compliance-checkpoints -->
 ## 13. COMPLIANCE CHECKPOINTS
+<!-- FILL: Mark each box or write `N/A` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the script reads no user data and opens no socket. WEAK: Compliance checked. -->
 
 ### Security Compliance
 - [ ] Security review completed
@@ -369,6 +396,7 @@ contextType: "general"
 
 <!-- ANCHOR:stakeholder-matrix -->
 ## 14. STAKEHOLDER MATRIX
+<!-- FILL: Name each stakeholder, their interest and how you update them. GOOD: Build team, high interest, weekly note. WEAK: Stakeholders informed. -->
 
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
@@ -380,6 +408,7 @@ contextType: "general"
 
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
+<!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added `--quiet`. WEAK: Initial version. -->
 
 ### v1.0 ([YOUR_VALUE_HERE: Date])
 **Initial specification**
@@ -387,28 +416,32 @@ contextType: "general"
 
 ---
 
+<!-- IF level:3+ -->
 <!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
+<!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3 -->
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
-<!-- /IF -->
-<!-- /IF -->
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 
 - [YOUR_VALUE_HERE: Question 1 requiring clarification]
-<!-- IF level:3+ -->
-<!-- /ANCHOR:questions -->
-<!-- /IF -->
-<!-- IF level:1,2,3 -->
 - [YOUR_VALUE_HERE: Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
+<!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 
 ---
 
 ## RELATED DOCUMENTS
+<!-- FILL: Leave the four links in place. -->
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

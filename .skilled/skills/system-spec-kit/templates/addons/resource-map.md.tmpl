@@ -36,6 +36,7 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## Summary
+<!-- FILL: Write two sentences: what this map covers and how to use it. GOOD: Every path a new session needs. Start at section 1. WEAK: This is a map. -->
 
 - **Total references**: [YOUR_VALUE_HERE: count]
 - **By category**: READMEs=[YOUR_VALUE_HERE: n], Documents=[YOUR_VALUE_HERE: n], Commands=[YOUR_VALUE_HERE: n], Agents=[YOUR_VALUE_HERE: n], Skills=[YOUR_VALUE_HERE: n], Specs=[YOUR_VALUE_HERE: n], Scripts=[YOUR_VALUE_HERE: n], Tests=[YOUR_VALUE_HERE: n], Config=[YOUR_VALUE_HERE: n], Meta=[YOUR_VALUE_HERE: n]
@@ -52,6 +53,7 @@ contextType: "general"
 
 <!-- ANCHOR:readmes -->
 ## 1. READMEs
+<!-- FILL: List each README and why it matters. GOOD: `SKILL.md`, the router entry. WEAK: Read the READMEs. -->
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
@@ -62,6 +64,7 @@ contextType: "general"
 
 <!-- ANCHOR:documents -->
 ## 2. Documents
+<!-- FILL: List each doc and its role. GOOD: `template-guide.md`, the authoring rules. WEAK: Docs are listed. -->
 
 > Long-form markdown artifacts that are not READMEs: guides, specs, references, install docs, catalogs, playbooks.
 
@@ -74,6 +77,7 @@ contextType: "general"
 
 <!-- ANCHOR:commands -->
 ## 3. Commands
+<!-- FILL: List each command and when to run it. GOOD: `/speckit:plan`, before authoring. WEAK: Commands are listed. -->
 
 > `.skilled/commands/**` and any runtime-specific command surfaces.
 
@@ -86,6 +90,7 @@ contextType: "general"
 
 <!-- ANCHOR:agents -->
 ## 4. Agents
+<!-- FILL: List each agent and its scope. GOOD: `markdown`, writes spec docs. WEAK: Agents are listed. -->
 
 > `.skilled/agents/**`, `.claude/agents/**`, `.skilled/agents/**`.
 
@@ -98,6 +103,7 @@ contextType: "general"
 
 <!-- ANCHOR:skills -->
 ## 5. Skills
+<!-- FILL: List each skill and its trigger. GOOD: `system-spec-kit`, spec folders. WEAK: Skills are listed. -->
 
 > `.skilled/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `runtime/cli/`, `shared/`, `runtime/`.
 
@@ -110,6 +116,7 @@ contextType: "general"
 
 <!-- ANCHOR:specs -->
 ## 6. Specs
+<!-- FILL: List each spec folder and its state. GOOD: `054-weak-model-spec-authoring`, planning. WEAK: Specs are listed. -->
 
 > `specs/**` — spec folders, phase children, packet docs, research, review, scratch. **Takes precedence over `Config`** for spec-folder JSON metadata (`description.json`, `graph-metadata.json`).
 
@@ -122,6 +129,7 @@ contextType: "general"
 
 <!-- ANCHOR:scripts -->
 ## 7. Scripts
+<!-- FILL: List each script and its one job. GOOD: `validate.sh`, strict validation. WEAK: Scripts are listed. -->
 
 > Executable or build/test scripts: `.sh`, `.js`, `.ts`, `.mjs`, `.cjs`, `.py`.
 
@@ -134,6 +142,7 @@ contextType: "general"
 
 <!-- ANCHOR:tests -->
 ## 8. Tests
+<!-- FILL: List each test and what it guards. GOOD: `example-drift.vitest.ts`, anchor drift. WEAK: Tests are listed. -->
 
 > Test files, fixtures, snapshots. Group unit, integration, and vitest/pytest paths here.
 
@@ -146,6 +155,7 @@ contextType: "general"
 
 <!-- ANCHOR:config -->
 ## 9. Config
+<!-- FILL: List each config file and its effect. GOOD: `spec-kit-docs.json`, template versions. WEAK: Config is listed. -->
 
 > Machine-readable configuration: `.json`, `.jsonc`, `.yaml`, `.yml`, `.toml`, `.env.example`. Spec-folder metadata (`description.json`, `graph-metadata.json`) belongs under §Specs, not here (see precedence rule below).
 
@@ -158,6 +168,7 @@ contextType: "general"
 
 <!-- ANCHOR:meta -->
 ## 10. Meta
+<!-- FILL: Record how the map itself is maintained. GOOD: Regenerate after a phase close. WEAK: Meta notes. -->
 
 > Repository-wide governance artifacts: `AGENTS.md`, `CLAUDE.md`, license, changelog. **Takes precedence over `READMEs`** for the root-level `README.md`.
 

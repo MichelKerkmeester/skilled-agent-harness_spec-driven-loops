@@ -1,0 +1,138 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/template-fill-guidance.vitest.ts (16 tests | 16 failed) 8ms
+     × gives every Level 1 spec section one fill line 3ms
+     × gives every Level 1 plan section one fill line 1ms
+     × gives every Level 1 tasks section one fill line 0ms
+     × gives every Level 1 implementation-summary section one fill line 0ms
+     × gives every Level 2 spec section one fill line 0ms
+     × gives every Level 2 plan section one fill line 0ms
+     × gives every Level 2 tasks section one fill line 0ms
+     × gives every Level 2 implementation-summary section one fill line 0ms
+     × gives every Level 3 spec section one fill line 0ms
+     × gives every Level 3 plan section one fill line 0ms
+     × gives every Level 3 tasks section one fill line 0ms
+     × gives every Level 3 implementation-summary section one fill line 0ms
+     × gives every Level 3+ spec section one fill line 0ms
+     × gives every Level 3+ plan section one fill line 0ms
+     × gives every Level 3+ tasks section one fill line 0ms
+     × gives every Level 3+ implementation-summary section one fill line 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 1 spec section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 2 spec section one fill line
+AssertionError: ## 1. METADATA needs one FILL line: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/template-fill-guidance.vitest.ts:61:63
+     59|         for (const part of parts) {
+     60|           const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
+     61|           expect(fill, `${part.heading} needs one FILL line`).toHaveLe…
+       |                                                               ^
+     62|           const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.le…
+     63|           expect(inner).not.toContain('[YOUR_VALUE_HERE:');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 1 plan section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 2 plan section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3 plan section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3+ plan section one fill line
+AssertionError: ## 1. SUMMARY needs one FILL line: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/template-fill-guidance.vitest.ts:61:63
+     59|         for (const part of parts) {
+     60|           const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
+     61|           expect(fill, `${part.heading} needs one FILL line`).toHaveLe…
+       |                                                               ^
+     62|           const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.le…
+     63|           expect(inner).not.toContain('[YOUR_VALUE_HERE:');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 1 tasks section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 2 tasks section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3 tasks section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3+ tasks section one fill line
+AssertionError: ## Task Notation needs one FILL line: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/template-fill-guidance.vitest.ts:61:63
+     59|         for (const part of parts) {
+     60|           const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
+     61|           expect(fill, `${part.heading} needs one FILL line`).toHaveLe…
+       |                                                               ^
+     62|           const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.le…
+     63|           expect(inner).not.toContain('[YOUR_VALUE_HERE:');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 1 implementation-summary section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 2 implementation-summary section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3 implementation-summary section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3+ implementation-summary section one fill line
+AssertionError: ## Metadata needs one FILL line: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/template-fill-guidance.vitest.ts:61:63
+     59|         for (const part of parts) {
+     60|           const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
+     61|           expect(fill, `${part.heading} needs one FILL line`).toHaveLe…
+       |                                                               ^
+     62|           const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.le…
+     63|           expect(inner).not.toContain('[YOUR_VALUE_HERE:');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3 spec section one fill line
+ FAIL  |cli| tests/template-fill-guidance.vitest.ts > template section fill guidance > gives every Level 3+ spec section one fill line
+AssertionError: ## EXECUTIVE SUMMARY needs one FILL line: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/template-fill-guidance.vitest.ts:61:63
+     59|         for (const part of parts) {
+     60|           const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
+     61|           expect(fill, `${part.heading} needs one FILL line`).toHaveLe…
+       |                                                               ^
+     62|           const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.le…
+     63|           expect(inner).not.toContain('[YOUR_VALUE_HERE:');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed (16)
+   Start at  18:46:26
+   Duration  102ms (transform 17ms, setup 11ms, import 12ms, tests 8ms, environment 0ms)
+

@@ -37,7 +37,6 @@ learned. Use this for enterprise-scale changes requiring multi-agent coordinatio
 <!-- /ANCHOR:metadata -->
 ---
 
-<!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
 Successfully implemented a production-ready, enterprise-grade user authentication system with full governance compliance. The system supports email/password registration, login, logout, and protected routes using JWT tokens and bcrypt password hashing. All 5 approval gates were passed, security review completed, and the implementation follows AI execution protocols for multi-agent coordination.
@@ -50,7 +49,6 @@ Successfully implemented a production-ready, enterprise-grade user authenticatio
 - 3 ADRs documented and accepted
 
 
-<!-- /ANCHOR:exec-summary -->
 ---
 
 <!-- ANCHOR:what-built -->
@@ -89,7 +87,13 @@ Implemented a complete authentication system including:
 <!-- /ANCHOR:what-built -->
 ---
 
-<!-- ANCHOR:arch-decisions -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Merged after the unit, integration, manual and workstream sync runs in Verification Results, with the governance checkpoints signed.
+<!-- /ANCHOR:how-delivered -->
+---
+
 ## Architecture Decisions Summary
 
 | ADR | Decision | Status | Impact |
@@ -101,7 +105,6 @@ Implemented a complete authentication system including:
 See `decision-record.md` for full ADR documentation.
 
 
-<!-- /ANCHOR:arch-decisions -->
 ---
 
 <!-- ANCHOR:verification -->
@@ -144,7 +147,6 @@ See `decision-record.md` for full ADR documentation.
 <!-- /ANCHOR:verification -->
 ---
 
-<!-- ANCHOR:governance -->
 ## Governance Compliance
 
 ### Approval Status
@@ -168,10 +170,8 @@ See `decision-record.md` for full ADR documentation.
 | Data Protection | Pass | Passwords hashed, no PII in logs |
 
 
-<!-- /ANCHOR:governance -->
 ---
 
-<!-- ANCHOR:workstream-perf -->
 ## Workstream Performance
 
 ### W-A: Core Services (Primary Agent)
@@ -213,10 +213,8 @@ See `decision-record.md` for full ADR documentation.
 | SYNC-003 | All complete | 60 min | Final verification, launch ready |
 
 
-<!-- /ANCHOR:workstream-perf -->
 ---
 
-<!-- ANCHOR:ai-analysis -->
 ## AI Execution Analysis
 
 ### Protocol Adherence
@@ -241,10 +239,8 @@ See `decision-record.md` for full ADR documentation.
 | **Overall** | **16** | **14** | **87.5%** |
 
 
-<!-- /ANCHOR:ai-analysis -->
 ---
 
-<!-- ANCHOR:milestones -->
 ## Milestone Achievement
 
 | Milestone | Target | Actual | Variance | Status |
@@ -259,7 +255,6 @@ See `decision-record.md` for full ADR documentation.
 **Total Variance**: +2 hours (+9% over estimate)
 
 
-<!-- /ANCHOR:milestones -->
 ---
 
 <!-- ANCHOR:limitations -->
@@ -275,7 +270,6 @@ See `decision-record.md` for full ADR documentation.
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:risks-realized -->
 ## Risks Realized vs Mitigated
 
 | Risk ID | Description | Occurred | Mitigation Applied |
@@ -288,9 +282,9 @@ See `decision-record.md` for full ADR documentation.
 | R-006 | Security review delay | No | Scheduled early, parallel work |
 
 
-<!-- /ANCHOR:risks-realized -->
 ---
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 ### What Went Well
@@ -313,9 +307,9 @@ See `decision-record.md` for full ADR documentation.
 4. **Consider authentication library** (Passport.js) for OAuth integration
 
 
+<!-- /ANCHOR:decisions -->
 ---
 
-<!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
 | Planned | Actual | Reason | Impact |
@@ -326,10 +320,8 @@ See `decision-record.md` for full ADR documentation.
 | 2 sync points | 3 sync points | Added SYNC-003 for final verification | Improved quality |
 
 
-<!-- /ANCHOR:deviations -->
 ---
 
-<!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
 ### Phase 2 (Planned)
@@ -345,10 +337,8 @@ See `decision-record.md` for full ADR documentation.
 - [ ] Implement concurrent session management
 
 
-<!-- /ANCHOR:follow-up -->
 ---
 
-<!-- ANCHOR:handoff -->
 ## Handoff Notes
 
 **For On-Call Team**:
@@ -361,7 +351,6 @@ See `decision-record.md` for full ADR documentation.
 - Password reset will need email service integration
 - Rate limiting should use Redis for distributed state
 
-<!-- /ANCHOR:handoff -->
 
 ---
 

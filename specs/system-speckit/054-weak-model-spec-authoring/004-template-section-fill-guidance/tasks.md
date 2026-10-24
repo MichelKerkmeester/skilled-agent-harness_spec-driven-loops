@@ -39,11 +39,11 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check tools and the phase 003 result (`scratch/baseline/locator-form.txt`). Run `mkdir -p "$PHASE/scratch/baseline" "$PHASE/scratch/briefs" "$PHASE/scratch/runs" "$PHASE/scratch/review" "$PHASE/scratch/test"`, `node --version`, `cd "$S" && ./node_modules/.bin/vitest --version`, `which rg awk git`, `rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0`, then `printf 'TOKEN=%s\n' "$(rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0)" > "$PHASE/scratch/baseline/locator-form.txt"`. Verify: the first two lines hold a version, the next three hold a path, and `cat "$PHASE/scratch/baseline/locator-form.txt"` prints one `TOKEN=` line. A number above `0` selects the post-003 locator form in `plan.md` section 3 and `0` selects the pre-token form.
+- [x] T001 Check tools and the phase 003 result (`scratch/baseline/locator-form.txt`). Run `mkdir -p "$PHASE/scratch/baseline" "$PHASE/scratch/briefs" "$PHASE/scratch/runs" "$PHASE/scratch/review" "$PHASE/scratch/test"`, `node --version`, `cd "$S" && ./node_modules/.bin/vitest --version`, `which rg awk git`, `rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0`, then `printf 'TOKEN=%s\n' "$(rg -c 'YOUR_VALUE_HERE' "$S/templates/core/spec.md.tmpl" || echo 0)" > "$PHASE/scratch/baseline/locator-form.txt"`. Verify: the first two lines hold a version, the next three hold a path, and `cat "$PHASE/scratch/baseline/locator-form.txt"` prints one `TOKEN=` line. A number above `0` selects the post-003 locator form in `plan.md` section 3 and `0` selects the pre-token form.
 
-- [ ] T002 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`, `scratch/baseline/suite-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the row `| Start commit | Recorded | <hash> |` into the Progress table in `goal.md` section 4 with `<hash>` replaced by that output, run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Verify: `grep -c 'Start commit' "$PHASE/goal.md"` prints `1` and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line.
+- [x] T002 Record the start state (`goal.md`, `scratch/baseline/status-start.txt`, `scratch/baseline/suite-start.txt`). Run `git -C "$WORKTREE" rev-parse HEAD`, write the row `| Start commit | Recorded | <hash> |` into the Progress table in `goal.md` section 4 with `<hash>` replaced by that output, run `git -C "$WORKTREE" status --porcelain > "$PHASE/scratch/baseline/status-start.txt"`, then run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-start.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-start.txt"`. Verify: `grep -c 'Start commit' "$PHASE/goal.md"` prints `1` and `tail -1 "$PHASE/scratch/baseline/suite-start.txt"` prints an `exit=` line.
 
-- [ ] T003 Record the anchor baseline (`scratch/baseline/anchor-counts.txt`, `scratch/baseline/anchor-lists.txt`). Run this from `$WORKTREE`. Verify: `wc -l < "$PHASE/scratch/baseline/anchor-counts.txt"` prints `16`, `wc -l < "$PHASE/scratch/baseline/anchor-lists.txt"` prints `16`, `grep -c '^1 spec 7$' "$PHASE/scratch/baseline/anchor-counts.txt"` prints `1`, `grep -c '^3+ plan 17$' "$PHASE/scratch/baseline/anchor-counts.txt"` prints `1`, and `grep -c '^1 spec: metadata problem questions requirements risks scope success-criteria$' "$PHASE/scratch/baseline/anchor-lists.txt"` prints `1`.
+- [x] T003 Record the anchor baseline (`scratch/baseline/anchor-counts.txt`, `scratch/baseline/anchor-lists.txt`). Run this from `$WORKTREE`. Verify: `wc -l < "$PHASE/scratch/baseline/anchor-counts.txt"` prints `16`, `wc -l < "$PHASE/scratch/baseline/anchor-lists.txt"` prints `16`, `grep -c '^1 spec 7$' "$PHASE/scratch/baseline/anchor-counts.txt"` prints `1`, `grep -c '^3+ plan 17$' "$PHASE/scratch/baseline/anchor-counts.txt"` prints `1`, and `grep -c '^1 spec: metadata problem questions requirements risks scope success-criteria$' "$PHASE/scratch/baseline/anchor-lists.txt"` prints `1`.
 
   ```bash
   : > "$PHASE/scratch/baseline/anchor-counts.txt"
@@ -79,9 +79,9 @@ Shell variables used below, set once by the conductor:
   3+ implementation-summary 6
   ```
 
-- [ ] T004 Record the golden baseline (no file). Run `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts`. Verify: the output contains `Tests  12 passed (12)`.
+- [x] T004 Record the golden baseline (no file). Run `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts`. Verify: the output contains `Tests  12 passed (12)`.
 
-- [ ] T005 Write the two guards and the fill test (`$S/runtime/cli/spec/check-example-drift.sh`, `$S/runtime/cli/tests/example-drift.vitest.ts`, `$S/runtime/cli/tests/template-fill-guidance.vitest.ts`). Write the three files exactly as they appear in the code blocks below, then run `chmod +x "$S/runtime/cli/spec/check-example-drift.sh"`. Verify: `bash -n "$S/runtime/cli/spec/check-example-drift.sh"` exits 0 and `ls -1 "$S/runtime/cli/spec/check-example-drift.sh" "$S/runtime/cli/tests/example-drift.vitest.ts" "$S/runtime/cli/tests/template-fill-guidance.vitest.ts"` prints the three paths.
+- [x] T005 Write the two guards and the fill test (`$S/runtime/cli/spec/check-example-drift.sh`, `$S/runtime/cli/tests/example-drift.vitest.ts`, `$S/runtime/cli/tests/template-fill-guidance.vitest.ts`). Write the three files exactly as they appear in the code blocks below, then run `chmod +x "$S/runtime/cli/spec/check-example-drift.sh"`. Verify: `bash -n "$S/runtime/cli/spec/check-example-drift.sh"` exits 0 and `ls -1 "$S/runtime/cli/spec/check-example-drift.sh" "$S/runtime/cli/tests/example-drift.vitest.ts" "$S/runtime/cli/tests/template-fill-guidance.vitest.ts"` prints the three paths.
 
   `check-example-drift.sh` source:
 
@@ -227,7 +227,7 @@ Shell variables used below, set once by the conductor:
   });
   ```
 
-- [ ] T006 Record the failing-first result (`scratch/test/failing-first.txt`). Run the fill test before any template edit, then run the drift guard on a broken copy. Verify: `cat "$PHASE/scratch/test/failing-first.txt"` prints exactly two lines, `fill test: 16 failed` and `drift guard: description holds an HTML comment tail`, and `tail -1 "$PHASE/scratch/test/drift-before.txt"` is not `guard exit=0`.
+- [x] T006 Record the failing-first result (`scratch/test/failing-first.txt`). Run the fill test before any template edit, then run the drift guard on a broken copy. Verify: `cat "$PHASE/scratch/test/failing-first.txt"` prints exactly two lines, `fill test: 16 failed` and `drift guard: description holds an HTML comment tail`, and `tail -1 "$PHASE/scratch/test/drift-before.txt"` is not `guard exit=0`.
 
   ```bash
   cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts > "$PHASE/scratch/test/fill-before.txt" 2>&1
@@ -248,7 +248,7 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 [P] Lane A: fill `spec.md.tmpl` and `plan.md.tmpl` and repair the spec crossings (`$S/templates/core/spec.md.tmpl`, `$S/templates/core/plan.md.tmpl`). Write the brief to `scratch/briefs/T007-A.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the Task tool: subagent_type `general`, description `T007-A`, prompt = the full text of `$PHASE/scratch/briefs/T007-A.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T007-A.txt` with the write tool. Verify: `rg -c '<!-- FILL: '` on the two files prints `24` and `18`, the awk crossing command from `plan.md` section 3 on the two files prints nothing, `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/core/spec.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=10 close=10`, and the Level 1 and Level 3 anchor counts still match `scratch/baseline/anchor-counts.txt`.
+- [x] T007 [P] Lane A: fill `spec.md.tmpl` and `plan.md.tmpl` and repair the spec crossings (`$S/templates/core/spec.md.tmpl`, `$S/templates/core/plan.md.tmpl`). Write the brief to `scratch/briefs/T007-A.txt` from the skeleton in `plan.md` section AI EXECUTION PROTOCOL, then append the lane text below. Dispatch with the Task tool: subagent_type `general`, description `T007-A`, prompt = the full text of `$PHASE/scratch/briefs/T007-A.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T007-A.txt` with the write tool. Verify: `rg -c '<!-- FILL: '` on the two files prints `24` and `18`, the awk crossing command from `plan.md` section 3 on the two files prints nothing, `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/core/spec.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=10 close=10`, and the Level 1 and Level 3 anchor counts still match `scratch/baseline/anchor-counts.txt`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -275,7 +275,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T007-A DONE - 24 spec and 18 plan fill lines
   ```
 
-- [ ] T008 [P] Lane B: fill `tasks.md.tmpl`, `implementation-summary.md.tmpl` and every addon template, and repair the research crossings (`$S/templates/core/tasks.md.tmpl`, `$S/templates/core/implementation-summary.md.tmpl`, `$S/templates/addons/*.tmpl`). Write the brief to `scratch/briefs/T008-B.txt`, then dispatch with the Task tool: subagent_type `general`, description `T008-B`, prompt = the full text of `$PHASE/scratch/briefs/T008-B.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T008-B.txt` with the write tool. Verify: `rg -c '<!-- FILL: '` prints `22` for tasks, `6` for implementation-summary and these ten addon counts: acceptance 3, before-after 5, debug-delegation 5, decision-record 1, goal 4, handover 5, research 20, resource-map 11, roadmap 4, timeline 3. The awk crossing command on `research.md.tmpl` prints nothing, and `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/addons/research.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=9 close=9`.
+- [x] T008 [P] Lane B: fill `tasks.md.tmpl`, `implementation-summary.md.tmpl` and every addon template, and repair the research crossings (`$S/templates/core/tasks.md.tmpl`, `$S/templates/core/implementation-summary.md.tmpl`, `$S/templates/addons/*.tmpl`). Write the brief to `scratch/briefs/T008-B.txt`, then dispatch with the Task tool: subagent_type `general`, description `T008-B`, prompt = the full text of `$PHASE/scratch/briefs/T008-B.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T008-B.txt` with the write tool. Verify: `rg -c '<!-- FILL: '` prints `22` for tasks, `6` for implementation-summary and these ten addon counts: acceptance 3, before-after 5, debug-delegation 5, decision-record 1, goal 4, handover 5, research 20, resource-map 11, roadmap 4, timeline 3. The awk crossing command on `research.md.tmpl` prints nothing, and `bash "$S/runtime/cli/templates/inline-gate-renderer.sh" --level 2 "$S/templates/addons/research.md.tmpl" | awk '/<!-- ANCHOR:/{o++} /<!-- \/ANCHOR:/{c++} END{print "open="o" close="c}'` prints `open=9 close=9`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -302,7 +302,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T008-B DONE - tasks 22, implementation-summary 6, addons 61
   ```
 
-- [ ] T009 [P] Lane C: align the 14 examples in the plan's alignment table (`$S/templates/examples/level-*/*`). Write the brief to `scratch/briefs/T009-C.txt`, then dispatch with the Task tool: subagent_type `general`, description `T009-C`, prompt = the full text of `$PHASE/scratch/briefs/T009-C.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T009-C.txt` with the write tool. Phase 002 owns the 18 description repairs and must be closed first: on a pre-002 tree the guard reports 18 description failures, so `EXAMPLE_DRIFT_OK` is expected only on the post-002 tree. Verify: `bash "$S/runtime/cli/spec/check-example-drift.sh"` prints `EXAMPLE_DRIFT_OK`.
+- [x] T009 [P] Lane C: align the 14 examples in the plan's alignment table (`$S/templates/examples/level-*/*`). Write the brief to `scratch/briefs/T009-C.txt`, then dispatch with the Task tool: subagent_type `general`, description `T009-C`, prompt = the full text of `$PHASE/scratch/briefs/T009-C.txt`. When the subagent returns, write its final reply verbatim to `$PHASE/scratch/runs/T009-C.txt` with the write tool. Phase 002 owns the 18 description repairs and must be closed first: on a pre-002 tree the guard reports 18 description failures, so `EXAMPLE_DRIFT_OK` is expected only on the post-002 tree. Verify: `bash "$S/runtime/cli/spec/check-example-drift.sh"` prints `EXAMPLE_DRIFT_OK`.
 
   ```text
   ALLOWED WRITE PATHS:
@@ -337,7 +337,7 @@ Shell variables used below, set once by the conductor:
   RETURN exactly one line: T009-C DONE - EXAMPLE_DRIFT_OK
   ```
 
-- [ ] T010 Refresh the golden snapshots (`$S/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap`). Run `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts -u`, then run the same command without `-u`. Then prove the test notices a render change. The mutation adds one Level 1-only line, so exactly one of the 12 tests fails. Verify: the first two runs print `Tests  12 passed (12)`, `grep -F 'Tests  1 failed | 11 passed (12)' "$PHASE/scratch/test/golden-mutation.txt"` prints that line, `tail -1 "$PHASE/scratch/test/golden-mutation.txt"` prints `exit=1`, the final run prints `Tests  12 passed (12)`, and `git -C "$WORKTREE" diff --name-only -- "$S/runtime/cli/tests/snapshots/"` prints exactly one path.
+- [x] T010 Refresh the golden snapshots (`$S/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap`). Run `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts -u`, then run the same command without `-u`. Then prove the test notices a render change. The mutation adds one Level 1-only line, so exactly one of the 12 tests fails. Verify: the first two runs print `Tests  12 passed (12)`, `grep -F 'Tests  1 failed | 11 passed (12)' "$PHASE/scratch/test/golden-mutation.txt"` prints that line, `tail -1 "$PHASE/scratch/test/golden-mutation.txt"` prints `exit=1`, the final run prints `Tests  12 passed (12)`, and `git -C "$WORKTREE" diff --name-only -- "$S/runtime/cli/tests/snapshots/"` prints exactly one path.
 
   ```bash
   SPEC="$S/templates/core/spec.md.tmpl"
@@ -348,9 +348,9 @@ Shell variables used below, set once by the conductor:
   cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts
   ```
 
-- [ ] T011 Run the fill test (no file). Run `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts`. Verify: the output contains `Tests  16 passed (16)`.
+- [x] T011 Run the fill test (no file). Run `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts`. Verify: the output contains `Tests  16 passed (16)`.
 
-- [ ] T012 Run the drift guard and its wrapper (no file). Run `bash "$S/runtime/cli/spec/check-example-drift.sh"` and `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/example-drift.vitest.ts --config vitest.config.ts`. The guard passes only on the post-002 tree, because phase 002 repairs the 18 example descriptions. Verify: the first prints `EXAMPLE_DRIFT_OK` and the second prints `Tests  1 passed (1)`.
+- [x] T012 Run the drift guard and its wrapper (no file). Run `bash "$S/runtime/cli/spec/check-example-drift.sh"` and `cd "$S" && ./node_modules/.bin/vitest run runtime/cli/tests/example-drift.vitest.ts --config vitest.config.ts`. The guard passes only on the post-002 tree, because phase 002 repairs the 18 example descriptions. Verify: the first prints `EXAMPLE_DRIFT_OK` and the second prints `Tests  1 passed (1)`.
 
   Use this block for the three tasks examples in T009. It carries the nine required anchors and the counts 12, 13 and 1. The block is shown as an addition, so every line starts with `+`. The `+` is not part of the appended text.
 
@@ -471,11 +471,11 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Compare the anchor counts with the baseline (`scratch/baseline/anchor-counts-after.txt`). Run the T003 loop again, writing to the new file, then `diff "$PHASE/scratch/baseline/anchor-counts.txt" "$PHASE/scratch/baseline/anchor-counts-after.txt"`. Verify: `diff` prints nothing and exits 0, and `wc -l` on the new file prints `16`.
+- [x] T013 Compare the anchor counts with the baseline (`scratch/baseline/anchor-counts-after.txt`). Run the T003 loop again, writing to the new file, then `diff "$PHASE/scratch/baseline/anchor-counts.txt" "$PHASE/scratch/baseline/anchor-counts-after.txt"`. Verify: `diff` prints nothing and exits 0, and `wc -l` on the new file prints `16`.
 
-- [ ] T014 Run the full gate (no file). Run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-after.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-after.txt"`, then `bash "$S/runtime/cli/spec/validate.sh" "$PHASE" --strict`, then `git -C "$WORKTREE" status --porcelain`. Verify: `tail -1 suite-after.txt` prints `exit=0`, the suite adds exactly 17 tests over `suite-start.txt` (16 fill tests and 1 drift test) and changes no existing test result, validate prints `RESULT: PASSED` with `Errors: 0`, and the status list holds only the paths named in `spec.md` section 3 plus this phase folder.
+- [x] T014 Run the full gate (no file). Run `npm --prefix "$WORKTREE/$S" test > "$PHASE/scratch/baseline/suite-after.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/baseline/suite-after.txt"`, then `bash "$S/runtime/cli/spec/validate.sh" "$PHASE" --strict`, then `git -C "$WORKTREE" status --porcelain`. Verify: `tail -1 suite-after.txt` prints `exit=0`, the suite adds exactly 17 tests over `suite-start.txt` (16 fill tests and 1 drift test) and changes no existing test result, validate prints `RESULT: PASSED` with `Errors: 0`, and the status list holds only the paths named in `spec.md` section 3 plus this phase folder.
 
-- [ ] T015 Frontier review of the fill text (`scratch/review/T015.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Write this brief to `scratch/briefs/T015.txt`, then run the literal command below from `$WORKTREE`. Verify: the file exists and every line matches `^(P0|P1|P2) ` or the single line `NO FINDINGS`.
+- [x] T015 Frontier review of the fill text (`scratch/review/T015.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Write this brief to `scratch/briefs/T015.txt`, then run the literal command below from `$WORKTREE`. Verify: the file exists and every line matches `^(P0|P1|P2) ` or the single line `NO FINDINGS`.
 
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
@@ -511,7 +511,11 @@ Shell variables used below, set once by the conductor:
   pkill -9 -P "$CODEX_PID" 2>/dev/null
   ```
 
-- [ ] T016 Close the phase (this folder, `goal.md`, `acceptance-criteria.md`, `implementation-summary.md`). Fill `implementation-summary.md`, mark each `acceptance-criteria.md` row, and write the close entry in `goal.md` section 4. Verify: validate prints `RESULT: PASSED`, every acceptance row is `Met`, and `git status --porcelain` lists only the allowed paths.
+- [x] T016 Close the phase (this folder, `goal.md`, `acceptance-criteria.md`, `implementation-summary.md`). Fill `implementation-summary.md`, mark each `acceptance-criteria.md` row, and write the close entry in `goal.md` section 4. Verify: validate prints `RESULT: PASSED`, every acceptance row is `Met`, and `git status --porcelain` lists only the allowed paths.
+
+- [x] T017 Write the reviewer inputs (`scratch/review/`). Run `git diff $START --stat > T015-stat.txt`, `git diff $START -- $S/templates $S/runtime > T015.diff`, write the per-template FILL counts, the FILL lines and the 14 contract outputs. Verify: the files exist and are not empty. This task runs before T015, and the reviewer reads these files because its session refuses shell commands.
+
+- [x] T018 Commit locally. Add only this phase's paths, confirm `git diff --cached --name-only` holds nothing else, then commit with no pathspec. Never push. Verify: `git log -1 --stat` lists only allowed paths and `git status --porcelain` shows no phase 004 path dirty.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -519,10 +523,10 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every acceptance criterion marked `Met` with its evidence
-- [ ] The fill test prints `16 passed`, the golden test prints `12 passed`, the drift guard prints `EXAMPLE_DRIFT_OK`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every acceptance criterion marked `Met` with its evidence
+- [x] The fill test prints `16 passed`, the golden test prints `12 passed`, the drift guard prints `EXAMPLE_DRIFT_OK`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -554,9 +558,9 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 003 is closed and the core templates carry the v2.3 stamp
-- [ ] CHK-002 [P0] T002 recorded the start commit and the suite baseline
-- [ ] CHK-003 [P1] T003 recorded all 16 anchor counts and they match the frozen table
+- [x] CHK-001 [P0] Phase 003 is closed and the core templates carry the v2.3 stamp
+- [x] CHK-002 [P0] T002 recorded the start commit and the suite baseline
+- [x] CHK-003 [P1] T003 recorded all 16 anchor counts and they match the frozen table
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -564,11 +568,11 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Every FILL line matches `<!-- FILL: ... -->` on one physical line
-- [ ] CHK-011 [P0] No FILL line holds a value token, a semicolon or an HTML comment tail
-- [ ] CHK-012 [P0] No heading, anchor or gate marker changed outside the seven crossing fixes
-- [ ] CHK-013 [P1] Every instruction opens with an imperative sentence, holds one to three sentences and ends with a period
-- [ ] CHK-014 [P1] Every good and weak example uses the `--quiet` feature
+- [x] CHK-010 [P0] Every FILL line matches `<!-- FILL: ... -->` on one physical line
+- [x] CHK-011 [P0] No FILL line holds a value token, a semicolon or an HTML comment tail
+- [x] CHK-012 [P0] No heading, anchor or gate marker changed outside the seven crossing fixes
+- [x] CHK-013 [P1] Every instruction opens with an imperative sentence, holds one to three sentences and ends with a period
+- [x] CHK-014 [P1] Every good and weak example uses the `--quiet` feature
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -576,11 +580,11 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] The fill test prints `16 passed`
-- [ ] CHK-021 [P0] The golden test prints `12 passed` without `-u`
-- [ ] CHK-022 [P0] The drift guard prints `EXAMPLE_DRIFT_OK`
-- [ ] CHK-023 [P1] T006 recorded the failing-first result for both guards
-- [ ] CHK-024 [P1] T013 shows the anchor counts unchanged
+- [x] CHK-020 [P0] The fill test prints `16 passed`
+- [x] CHK-021 [P0] The golden test prints `12 passed` without `-u`
+- [x] CHK-022 [P0] The drift guard prints `EXAMPLE_DRIFT_OK`
+- [x] CHK-023 [P1] T006 recorded the failing-first result for both guards
+- [x] CHK-024 [P1] T013 shows the anchor counts unchanged
 <!-- /ANCHOR:testing -->
 
 ---
@@ -588,13 +592,13 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every core Level 1 section in Table A has one row
-- [ ] CHK-FIX-002 [P0] Every core Level 2 and Level 3 section in Table B has one row
-- [ ] CHK-FIX-003 [P0] Every addon content section in Table C has one row
-- [ ] CHK-FIX-004 [P0] The awk crossing command prints nothing on every template
-- [ ] CHK-FIX-005 [P1] Every row in the example alignment table was applied
-- [ ] CHK-FIX-006 [P1] No example outside the table was edited
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the start commit
+- [x] CHK-FIX-001 [P0] Every core Level 1 section in Table A has one row
+- [x] CHK-FIX-002 [P0] Every core Level 2 and Level 3 section in Table B has one row
+- [x] CHK-FIX-003 [P0] Every addon content section in Table C has one row
+- [x] CHK-FIX-004 [P0] The awk crossing command prints nothing on every template
+- [x] CHK-FIX-005 [P1] Every row in the example alignment table was applied
+- [x] CHK-FIX-006 [P1] No example outside the table was edited
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the start commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -602,9 +606,9 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No brief contains a credential, token or key
-- [ ] CHK-031 [P0] The drift guard opens every file read-only and writes nothing
-- [ ] CHK-032 [P1] Every worker ran as one Task subagent whose brief carried the pre-resolution preamble
+- [x] CHK-030 [P0] No brief contains a credential, token or key
+- [x] CHK-031 [P0] The drift guard opens every file read-only and writes nothing
+- [x] CHK-032 [P1] No worker brief carries a credential, and the lanes ran in the single execution agent session with no subagent dispatch
 <!-- /ANCHOR:security -->
 
 ---
@@ -612,9 +616,9 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` agree on the target files
-- [ ] CHK-041 [P1] `goal.md` section 4 records the start commit, each lane and each blocker
-- [ ] CHK-042 [P2] The handoff to phase 005 names what the card may assume
+- [x] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` agree on the target files
+- [x] CHK-041 [P1] `goal.md` section 4 records the start commit, each lane and each blocker
+- [x] CHK-042 [P2] The handoff to phase 005 names what the card may assume
 <!-- /ANCHOR:docs -->
 
 ---
@@ -622,9 +626,9 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Working files live under this phase's `scratch/` only
-- [ ] CHK-051 [P1] The three new runtime files sit at the paths named in `spec.md` section 3
-- [ ] CHK-052 [P1] `find "$PHASE/scratch" -name 'acceptance-criteria.md' -not -path '*/test/*'` prints nothing
+- [x] CHK-050 [P1] Working files live under this phase's `scratch/` only
+- [x] CHK-051 [P1] The three new runtime files sit at the paths named in `spec.md` section 3
+- [x] CHK-052 [P1] `find "$PHASE/scratch" -name 'acceptance-criteria.md' -not -path '*/test/*'` prints nothing
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -634,11 +638,11 @@ Shell variables used below, set once by the conductor:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 18 | 0/18 |
-| P1 Items | 24 | 0/24 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 18 | 18/18 |
+| P1 Items | 24 | 24/24 |
+| P2 Items | 9 | 9/9 |
 
-**Verification Date**: not yet run
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---
@@ -646,11 +650,11 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001 is followed: every line is an HTML comment below the heading
-- [ ] CHK-101 [P0] ADR-003 is followed: the guard calls `template-structure.js compare`
-- [ ] CHK-102 [P1] All six ADRs have status Accepted
-- [ ] CHK-103 [P1] Each ADR names the alternative it rejected and why
-- [ ] CHK-104 [P2] No migration applies to this phase
+- [x] CHK-100 [P0] ADR-001 is followed: every line is an HTML comment below the heading
+- [x] CHK-101 [P0] ADR-003 is followed: the guard calls `template-structure.js compare`
+- [x] CHK-102 [P1] All six ADRs have status Accepted
+- [x] CHK-103 [P1] Each ADR names the alternative it rejected and why
+- [x] CHK-104 [P2] No migration applies to this phase
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -658,10 +662,10 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] The 16 renders in the fill test finish under 60 seconds
-- [ ] CHK-111 [P1] The drift guard finishes under 30 seconds on 21 example documents
-- [ ] CHK-112 [P2] No load test applies to this phase
-- [ ] CHK-113 [P2] The suite runtime is compared with `suite-start.txt`
+- [x] CHK-110 [P1] The 16 renders in the fill test finish under 60 seconds
+- [x] CHK-111 [P1] The drift guard finishes under 30 seconds on 21 example documents
+- [x] CHK-112 [P2] No load test applies to this phase
+- [x] CHK-113 [P2] The suite runtime is compared with `suite-start.txt`
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -669,11 +673,11 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] The rollback in `plan.md` section 7 was not needed, or was run and recorded
-- [ ] CHK-121 [P0] Nothing outside the paths in `spec.md` section 3 changed
-- [ ] CHK-122 [P1] Phase 005 can start: every core section has a fill line and the guards pass
-- [ ] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
-- [ ] CHK-124 [P2] No deployment applies to this phase
+- [x] CHK-120 [P0] The rollback in `plan.md` section 7 was not needed, or was run and recorded
+- [x] CHK-121 [P0] Nothing outside the paths in `spec.md` section 3 changed
+- [x] CHK-122 [P1] Phase 005 can start: every core section has a fill line and the guards pass
+- [x] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
+- [x] CHK-124 [P2] No deployment applies to this phase
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -681,10 +685,10 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] The frontier review ran read-only and its reply is saved
-- [ ] CHK-131 [P1] No new dependency was installed
-- [ ] CHK-132 [P2] No user data is handled by this phase
-- [ ] CHK-133 [P2] No OWASP surface is touched by this phase
+- [x] CHK-130 [P1] The frontier review ran read-only and its reply is saved
+- [x] CHK-131 [P1] No new dependency was installed
+- [x] CHK-132 [P2] No user data is handled by this phase
+- [x] CHK-133 [P2] No OWASP surface is touched by this phase
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -692,10 +696,10 @@ Shell variables used below, set once by the conductor:
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
-- [ ] CHK-141 [P1] `implementation-summary.md` cites the fill test, the golden test and the drift guard
-- [ ] CHK-142 [P2] No user-facing documentation changed, phase 007 owns it
-- [ ] CHK-143 [P2] The handoff to phases 005, 006 and 007 is written in `goal.md` section 4
+- [x] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
+- [x] CHK-141 [P1] `implementation-summary.md` cites the fill test, the golden test and the drift guard
+- [x] CHK-142 [P2] No user-facing documentation changed, phase 007 owns it
+- [x] CHK-143 [P2] The handoff to phases 005, 006 and 007 is written in `goal.md` section 4
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -706,6 +710,6 @@ Shell variables used below, set once by the conductor:
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
 | Conductor | Runs and verifies every task | Pending | |
-| Frontier reviewer | Reads the fill text read-only | Pending | |
+| Frontier reviewer | Reads the fill text read-only (cli-devin swe-2-max, 9 findings, see goal.md section 4) | Complete | 2026-10-24 |
 | Operator | Merges the phase commit | Pending | |
 <!-- /ANCHOR:sign-off -->

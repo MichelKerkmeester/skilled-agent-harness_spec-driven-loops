@@ -202,7 +202,7 @@ User Request → Validator → Controller → Service → Model → Database
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -221,10 +221,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | Verify | All | None |
 
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -238,10 +238,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | **Total** | | **22 hours (~3 days)** |
 
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 ---
 
-<!-- ANCHOR:l2-rollback -->
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -261,10 +261,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 - **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
 
 
-<!-- /ANCHOR:l2-rollback -->
+<!-- /ANCHOR:enhanced-rollback -->
 ---
 
-<!-- ANCHOR:l3-dep-graph -->
+<!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -316,10 +316,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | UI | API | Forms, feedback | Verify |
 
 
-<!-- /ANCHOR:l3-dep-graph -->
+<!-- /ANCHOR:dependency-graph -->
 ---
 
-<!-- ANCHOR:l3-critical-path -->
+<!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
 1. **Setup** - 2 hours - CRITICAL
@@ -336,10 +336,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 - Unit tests can be written alongside service implementation
 
 
-<!-- /ANCHOR:l3-critical-path -->
+<!-- /ANCHOR:critical-path -->
 ---
 
-<!-- ANCHOR:l3-milestones -->
+<!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -351,10 +351,9 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API) 
 | M5 | Release Ready | All tests pass, docs complete | Day 5 EOD |
 
 
-<!-- /ANCHOR:l3-milestones -->
+<!-- /ANCHOR:milestones -->
 ---
 
-<!-- ANCHOR:l3-adr-summary -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
 See `decision-record.md` for full ADRs:
@@ -365,7 +364,6 @@ See `decision-record.md` for full ADRs:
 | ADR-002 | bcrypt with 10 rounds | Industry standard, good security/perf balance |
 | ADR-003 | localStorage for tokens | Simple MVP, HttpOnly cookies in Phase 2 |
 
-<!-- /ANCHOR:l3-adr-summary -->
 
 ---
 

@@ -20,7 +20,6 @@ and cross-references to decision records. Use this for complex features (500+ LO
 
 ---
 
-<!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
 This specification covers the implementation of a comprehensive user authentication system for the application. The system will support email/password registration and login, secure password storage with bcrypt, and JWT-based session management. This is a foundational feature that enables all future user-specific functionality including personalization, user preferences, and access control.
@@ -30,7 +29,6 @@ This specification covers the implementation of a comprehensive user authenticat
 **Critical Dependencies**: PostgreSQL database, bcrypt library
 
 
-<!-- /ANCHOR:executive-summary -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -156,7 +154,6 @@ Implement a production-ready email/password authentication system that provides 
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -176,10 +173,8 @@ Implement a production-ready email/password authentication system that provides 
 - **NFR-R03**: No data loss on service restart (stateless auth)
 
 
-<!-- /ANCHOR:nfr -->
 ---
 
-<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### Data Boundaries
@@ -199,10 +194,8 @@ Implement a production-ready email/password authentication system that provides 
 - **Simultaneous registration**: Database unique constraint prevents duplicates
 
 
-<!-- /ANCHOR:edge-cases -->
 ---
 
-<!-- ANCHOR:risk-matrix -->
 ## 9. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
@@ -214,10 +207,8 @@ Implement a production-ready email/password authentication system that provides 
 | R-005 | Database breach exposes hashes | M | L | bcrypt makes cracking expensive |
 
 
-<!-- /ANCHOR:risk-matrix -->
 ---
 
-<!-- ANCHOR:user-stories -->
 ## 10. USER STORIES
 
 ### US-001: New User Registration (Priority: P0)
@@ -246,10 +237,9 @@ Implement a production-ready email/password authentication system that provides 
 1. Given I am logged in, When I click logout, Then my session is terminated and I am redirected to the login page
 
 
-<!-- /ANCHOR:user-stories -->
 ---
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 11. OPEN QUESTIONS
 
 - Should we implement "Remember Me" functionality in this phase? **RESOLVED: Deferred to Phase 2**
@@ -257,10 +247,9 @@ Implement a production-ready email/password authentication system that provides 
 - Should we support concurrent sessions? **RESOLVED: Yes, no limit initially**
 
 
-<!-- /ANCHOR:open-questions -->
+<!-- /ANCHOR:questions -->
 ---
 
-<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
@@ -268,7 +257,6 @@ Implement a production-ready email/password authentication system that provides 
 - **Verification Checklist**: See `tasks.md`
 - **Decision Records**: See `decision-record.md`
 
-<!-- /ANCHOR:related-docs -->
 
 ---
 
