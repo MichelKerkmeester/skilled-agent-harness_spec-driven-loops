@@ -34,7 +34,7 @@ The 33 GitHub Actions workflows follow a set of rules that exist mostly in prose
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In progress |
 | **Created** | 2026-10-23 |
 | **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |

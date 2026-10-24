@@ -1659,6 +1659,7 @@ Rollback: delete the `## Drift guards` section and `scratch/drift-guards-after.t
 Stop and escalate if: a guard prints `FAIL`, or the exit status is not `0`.
 
 Done 2026-10-24: `scratch/drift-guards-after.txt` holds `exit=0`, the four `PASS:` lines and `run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)`.
+Amended 2026-10-24 at closure: these four guards are not the whole local gate. The phase commit `028bd0f5cd` failed the CI job Routing Registry Drift Guard with `SIGNAL DRIFT compiled vs disk: sk-code`, because the advisor signals gained CI phrases and the compiled fallback graph went stale. Run `node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs --strict` beside the drift guards, and expect `SIGNAL DRIFT compiled vs disk: none` with exit `0`. Commit `c903c0d103` regenerated the graph with `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --export-json`, and the check printed `none` with exit `0` on the closure tree.
 
 ---
 
@@ -1733,10 +1734,11 @@ Rollback: delete `scratch/registration-after.json` and the appended block.
 Stop and escalate if: a before entry is missing from the after snapshot, because a registration task replaced an array instead of inserting into it.
 
 Done 2026-10-24: `scratch/registration-after.json` written. The comparison printed `true true true true true true true`.
+Re-run 2026-10-24 at closure on `c903c0d103`: the snapshot command exited `0` and left no diff against the committed copy, and the comparison printed `true true true true true true true` again.
 
 ---
 
-### T065 Close the acceptance rows and validate the packet (AC-007)
+### T065 [x] Close the acceptance rows and validate the packet (AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/acceptance-criteria.md:96`, anchor: the `## 3. CLOSURE STATEMENT` heading.
 
@@ -1758,7 +1760,8 @@ Stop and escalate if: a row cannot name observed evidence, or the validator prin
 
 Partly done 2026-10-24 (left open because the phase commit and the closure commit do not exist yet): `acceptance-criteria.md` rows carry observed output, and all twelve rows are `Met` now that the gold corpus pin is raised. `repair-derived.cjs --apply` and `validate.sh --strict` ran, and their output is in the report.
 Drift: the phase closes only after T066 to T068, which need a commit. The one pre-existing compiled-route failure was repaired by the operator-approved pin raise.
-Amended 2026-10-24: the pre-existing compiled-route failure is resolved by the operator-approved pin raise, and the serial run prints `pass 90` and `fail 0`. AC-007 is `Met` and the closure statement reads closeable. T065 to T068 stay open and unticked: the acceptance rows are written, but the commit tasks T066 to T068 need a commit and none exists yet.
+Amended 2026-10-24: the pre-existing compiled-route failure is resolved by the operator-approved pin raise, and the serial run prints `pass 90` and `fail 0`. AC-007 is `Met` and the closure statement reads closeable.
+Closed 2026-10-24 at closure: the cheap checks behind each of the twelve rows were run again on a clean tree at `c903c0d103` and their output sits in each Verification cell. All twelve rows are `Met` and none is `Unmet`. AC-009 and AC-010 now name commit-range forms of their commands, because the working-tree forms are empty once the phase is committed. AC-005 lost a stray column separator that had split its Verification cell into two. The closure statement reads the observed state, including the CI fix commit and the CI runs still in progress.
 
 ---
 
@@ -1769,7 +1772,7 @@ Amended 2026-10-24: the pre-existing compiled-route failure is resolved by the o
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Verification (continued)
 
-### T066 Commit the phase (AC-007)
+### T066 [x] Commit the phase (AC-007)
 
 File: the git index and `/tmp/commit-msg-ci-surface.txt`. Anchor: none.
 
@@ -1803,9 +1806,12 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-ci-surface.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the ephemeral-id count is not `0`, or the staged path count is below `30`.
 
+Done 2026-10-24: the phase is committed as `028bd0f5cd` (`feat(sk-code): add the read-only CI surface to the sk-code hub`) and is on `origin/main`. Read from the commit: 60 changed paths (at least `30`), and the ephemeral-id count over the message is `0`.
+Drift: the orchestrator made the commit with its own message, not the text above. The subject differs and the body carries a `Commit-Id` trailer and no `Spec:` line, so the `Spec:` grep prints `0` and not `1`. Three commits followed it on `origin/main`: `e8fdd9746b` (the admission pin raised to 85), `81739ae290` (a trigger index rebuild) and `c903c0d103` (the compiled skill graph regenerated after the CI job Routing Registry Drift Guard failed on the phase commit).
+
 ---
 
-### T067 Record the phase result and the follow-up (AC-009)
+### T067 [x] Record the phase result and the follow-up (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Registration after` section T064 wrote.
 
@@ -1823,6 +1829,8 @@ Expected: at least `6` and `1`. The follow-up line reads `follow-up: the hub-sur
 Rollback: delete the `## Phase result` section.
 
 Stop and escalate if: `ordering-state: pre-013/002` no longer holds and no follow-up line was written.
+
+Done 2026-10-24: `scratch/phase-result.md` holds the `## Phase result` section with the commit `028bd0f5cd`, the three commits after it, the seven gate outcomes and the follow-up line, plus the `## Finding the phase gates missed` and `## CI state` sections. The follow-up line reads as above and the ordering state is `post-013/002`, so no escalation applies.
 
 ---
 
@@ -1856,6 +1864,8 @@ Expected: `validate-message.mjs` exits `0`; at least `2` staged paths; `0` from 
 Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-ci-surface-closure.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, fewer than `2` paths are staged, or `git status --porcelain` prints a path after the commit.
+
+Not done: the closure commit follows this record and this box stays unticked until it lands. The closure commit message is written to `scratch/commit-message-closure.txt` in this folder. It names the graph regeneration follow-up and ends with the staging and commit steps above, which the orchestrator runs.
 
 ---
 
