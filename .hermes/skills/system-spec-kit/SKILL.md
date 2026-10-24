@@ -590,3 +590,5 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 Scripts: `runtime/cli/spec/validate.sh`, `runtime/cli/spec/create.sh`, `runtime/cli/dist/continuity/generate-context.js`, `runtime/cli/spec/check-completion.sh`.
 
 Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, and `system-deep-loop` for iterative research and audit (its `research` and `review` modes).
+
+<!-- probe -->
