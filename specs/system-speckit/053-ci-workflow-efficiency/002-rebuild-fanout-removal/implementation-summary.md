@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "In progress and built but unclosed: this phase appended a [skip ci] token to the trigger-index rebuild commit so the pushed rebuild starts no workflow run, guarded it with a vitest case, and observed three qualifying zero-run rebuilds plus a fourth; the post-change 24 h baseline remains."
+description: "In progress, built and measured but not closeable: this phase appended a [skip ci] token to the trigger-index rebuild commit so the pushed rebuild starts no workflow run, guarded it with a vitest case that fails without the token, and observed three qualifying zero-run rebuilds; the 24 h baseline recorded 2,191 runner-min, outside its 1,700-1,850 band, so one acceptance row stays Unmet."
 trigger_phrases:
   - "rebuild fanout removal implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Reconciled T015 with three qualifying zero-run rebuild SHAs and a fourth additional SHA"
-    next_safe_action: "Remaining 002 work: T019's 24 h baseline, then T020/T021 closure"
+    recent_action: "24 h baseline measured at 2,191 runner-min, outside its 1,700-1,850 band"
+    next_safe_action: "Operator decides AC-006: amend the band or re-collect a quieter window"
     key_files:
       - "tasks.md"
       - "acceptance-criteria.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-002-rebuild-fanout-removal"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Built but not closed. Commit `8e62a3d096` landed the token, the two comment lines, the `SKIP_TOKEN` case, both filter entries and both README rows as one commit, and workflow-only PR #71 proved the new trigger. The three qualifying post-change rebuild SHAs (`08bd79a68a`, `27490113c2`, `c9d4deed31`) each have a captured `[]` result; a fourth SHA (`c7c5bfb51b`) also returned `[]`. T015 is complete; the 24 h snapshot remains outstanding, so the phase stays in progress.
+Built but not closed. Commit `8e62a3d096` landed the token, the two comment lines, the `SKIP_TOKEN` case, both filter entries and both README rows as one commit, and workflow-only PR #71 proved the new trigger. The three qualifying post-change rebuild SHAs (`08bd79a68a`, `27490113c2`, `c9d4deed31`) each have a captured `[]` result; a fourth SHA (`c7c5bfb51b`) also returned `[]`. T015 is complete. The 24 h snapshot was collected 2026-10-24: 2,191 runner-min for `.github/workflows/` runs against an expected 1,700-1,850 and 3,812 before the change, with 0 runs started by any of the 19 rebuild commits in the window. The number is outside the band, so AC-006 stays `Unmet` and the phase stays in progress.
 
 ### Phase 2: rebuild-fanout-removal
 
@@ -63,7 +63,7 @@ The plan removes the 14-run fan-out that follows every trigger-index rebuild com
 | `.github/workflows/spec-kit-check.yml` | Modified in `8e62a3d096` | Both path lists name `.github/workflows/trigger-index-rebuild.yml` (`:12` and `:43`) |
 | `scratch/pre-change/` | Created | Three `gh run list` JSONs, 14 runs per rebuild SHA, the before number |
 | `scratch/post-change/` | Created | `[]` results for `08bd79a68a`, `27490113c2` and `c9d4deed31`; `c7c5bfb51b` is a fourth |
-| `scratch/baseline-24h/summary.md` | Pending | The post-change 24 h baseline for phases 003 to 009; waits on the window |
+| `scratch/baseline-24h/` | Created | `runs-last-1000.json`, `window.json`, `run-ids.txt`, `rebuild-shas.txt`, 191 `jobs/<id>.json` samples and `summary.md`: the post-change 24 h baseline for phases 003 to 009 (2,191 runner-min) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +71,7 @@ The plan removes the 14-run fan-out that follows every trigger-index rebuild com
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered through T018 except for the T012 negative arm. D1 answered (`scratch/d1-answer.md` holds `D1=A`), the pre-change capture recorded 14 runs per rebuild SHA, the suite was green before and after the change, `8e62a3d096` carried the whole change set, and PR #71 exercised the `pull_request:` path list. T015 is done on three qualifying rebuild SHAs, with a fourth additional zero-run result; remaining work is T012's stripped-variant run, T019's 24 h baseline, then T020/T021 closure. `acceptance-criteria.md` shows AC-001, AC-002, AC-003 (with its caveat), AC-004, AC-005 and AC-007 `Met`; AC-006 stays `Unmet`.
+Delivered through T018, with T012's negative arm and T019's snapshot run on 2026-10-24 and 2026-10-25. D1 answered (`scratch/d1-answer.md` holds `D1=A`), the pre-change capture recorded 14 runs per rebuild SHA, the suite was green before and after the change, `8e62a3d096` carried the whole change set, and PR #71 exercised the `pull_request:` path list. T015 is done on three qualifying rebuild SHAs, with a fourth additional zero-run result; T012 now shows the stripped-variant suite exiting 1 and the real suite exiting 0, and T019 collected the snapshot. Remaining work is the operator's decision on AC-006 and then the T021 commit. `acceptance-criteria.md` shows AC-001, AC-002, AC-003, AC-004, AC-005 and AC-007 `Met`; AC-006 stays `Unmet` because the measured total is outside its band.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -94,12 +94,12 @@ Delivered through T018 except for the T012 negative arm. D1 answered (`scratch/d
 
 | Check | Result |
 |-------|--------|
-| `npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts` | Exit 0; `Tests 60 passed | 1 skipped (61)`, including the `marks the rebuild commit` case |
-| The same suite through `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH` on a token-stripped copy | Not re-run under the read-only pass; the override exists at `:34`, non-zero exit still to confirm |
-| `bash .github/scripts/check-gate-inputs.sh` | `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, `RESULT: PASSED` |
+| `npx vitest run --config ../../vitest.config.ts --project cli tests/trigger-index-rebuild-workflow.vitest.ts` | Exit 0; 60 passed and 1 skipped of 61, including the `marks the rebuild commit` case |
+| The same suite through `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH` on a token-stripped copy | Exit 1 on 2026-10-25; 1 failed, 59 passed, 1 skipped of 61; the failing case is `marks the rebuild commit so the pushed commit starts no workflow run` |
+| `bash .github/scripts/check-gate-inputs.sh` | Exit 0 on 2026-10-25: `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0`, `RESULT: PASSED`; the earlier reading at the change was `inputs_resolved=235 dynamic_inputs=9 twin_pairs=340` |
 | Three qualifying rebuild SHAs by `gh run list --commit` | `[]` for `08bd79a68a`, `27490113c2` and `c9d4deed31`; `c7c5bfb51b` is a fourth and also returned `[]` |
 | spec-kit-check on `8e62a3d096` and PR #71 head `6c51acecb2f8` | Run 40018919244 `success`; run 40021934338 `success` |
-| `scratch/baseline-24h/summary.md` | Not yet; expected a total in 1,700-1,850 runner-min/day after the 24 h window |
+| `scratch/baseline-24h/summary.md` | Exists. Window 2026-10-23T21:59:34Z to 2026-10-24T21:59:34Z, 795 runs (728 from `.github/workflows/`, 67 `dynamic`). Total 2,191 runner-min, outside 1,700-1,850; 0 runs started by 19 rebuild commits; `dynamic` runs about 584 min on a separate line |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,7 +109,7 @@ Delivered through T018 except for the T012 negative arm. D1 answered (`scratch/d
 
 1. **The result covers four observed rebuilds.** The three qualifying SHAs `08bd79a68a`, `27490113c2` and `c9d4deed31` each returned `[]`, and the additional SHA `c7c5bfb51b` did too. Future rebuilds remain unobserved; the 24 h baseline is still pending.
 2. **`main`'s tip carries no statuses after a rebuild.** Phase 009's `/doctor:ci report` must resolve the newest non-rebuild SHA. No current consumer was found.
-3. **The baseline waits for traffic.** A quiet 24 h window records a small sample instead of scaling a shorter one, so a later phase can see the sample size.
+3. **The baseline total missed its band.** The 24 h window held 391 push and 321 pull_request runs plus 15 manual dispatches. The total of 2,191 includes 90 min from the rebuild workflow's own runs, which the pre-change estimate counted as 0, and 114 min of manual dispatches; removing both still leaves 1,987, above 1,850. Later phases measure their deltas against 2,191, as reported, until the operator decides what to do with AC-006.
 4. **GitHub CodeQL default-setup runs sit outside this packet's workflow count.** Since 2026-10-24, the repository has GitHub's CodeQL default-setup code scanning enabled. This packet did not enable it. Each push to `main` starts one `Push on main` run with event `dynamic`, including a `[skip ci]` rebuild commit, because `[skip ci]` does not suppress code scanning. Rebuild `a191ba6f70` shows one such run and no run from `.github/workflows/`. The three-zero-run criterion counts runs from `.github/workflows/` only. It was met by `08bd79a68a`, `27490113c2` and `c9d4deed31`. Baselines and deltas in 002 T019, 003 T036 and phase 008 count `.github/workflows/` runs and report the CodeQL dynamic run on a separate line. This keeps totals comparable with the pre-change baseline.
 <!-- /ANCHOR:limitations -->
 

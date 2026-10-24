@@ -36,14 +36,14 @@ Add `[skip ci]` to the rebuild commit's body line so the pushed rebuild starts n
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified (D1 answered, `gh` authenticated, checkout with spec-kit dependencies installed)
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified (D1 answered, `gh` authenticated, checkout with spec-kit dependencies installed)
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Tests passing (new vitest case green, token-stripped variant red, gate-inputs `RESULT: PASSED`)
-- [ ] Docs updated (`.github/workflows/README.md` rows, spec/plan/tasks)
+- [x] Tests passing (new vitest case green, token-stripped variant red, gate-inputs `RESULT: PASSED`)
+- [x] Docs updated (`.github/workflows/README.md` rows, spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

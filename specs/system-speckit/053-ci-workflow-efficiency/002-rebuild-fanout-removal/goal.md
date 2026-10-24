@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal"
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "T015 now has three qualifying zero-run rebuild SHAs and a fourth additional SHA"
-    next_safe_action: "Remaining 002 work: T019's 24 h baseline, then T020/T021 closure"
+    recent_action: "24 h baseline measured at 2,191 runner-min, outside its 1,700-1,850 band"
+    next_safe_action: "Operator decides AC-006: amend the band or re-collect a quieter window"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-002-rebuild-fanout-removal"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `grep -c 'rebuilt it\. \[skip ci\]"' .github/workflows/trigger-index-rebuild.yml` returns `1`
 - [x] `grep -c 'trigger-index-rebuild\.yml' .github/workflows/spec-kit-check.yml` returns `2`
 - [x] The workflow suite run from `.skilled/skills/system-spec-kit/runtime/cli` exits `0`
-- [ ] The same suite with `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH=/tmp/trigger-index-rebuild.no-token.yml` exits non-zero
+- [x] The same suite with `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH=/tmp/trigger-index-rebuild.no-token.yml` exits non-zero
 - [x] `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`
 - [x] `gh run list --commit <sha>` returns `[]` for each of three post-change rebuild SHAs
 - [ ] `scratch/baseline-24h/summary.md` exists and records a total in 1,700-1,850 runner-min/day
@@ -83,8 +83,8 @@ and findings belong here.
 | Decision D1 | Done | `scratch/d1-answer.md` records `D1=A` |
 | Implementation | Done except closure work | `8e62a3d096` landed token, comment, case, both filter entries and both README rows; spec-kit-check run 40018919244 `success`; PR #71 run 40021934338 `success` |
 | Post-change rebuilds | 3 of 3 (plus a fourth) | `08bd79a68a`, `27490113c2` and `c9d4deed31` each `[]`; `c7c5bfb51b` is a fourth and also `[]` (`scratch/post-change/`) |
-| Negative proof | Pending | T012's token-stripped suite run not re-executed under the read-only pass |
-| 24 h baseline | Pending | `scratch/baseline-24h/summary.md` waits on the post-merge window (T019) |
+| Negative proof | Done | 2026-10-25: token-stripped copy (path in a session scratch directory), suite exit 1, 1 failed of 61 and the failing case is the new one; real file exit 0 |
+| 24 h baseline | Collected, outside the band | `scratch/baseline-24h/summary.md` records 2,191 runner-min against 1,700-1,850; 0 runs from 19 rebuild commits; AC-006 stays `Unmet` and the last completion criterion stays open |
 
 ### Deviations and findings
 

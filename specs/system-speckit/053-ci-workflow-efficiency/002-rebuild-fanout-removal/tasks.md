@@ -372,11 +372,11 @@ Stop and escalate if: the anchor is not inside the `pull_request:` block, or the
 
 ---
 
-### T012 Prove the case fails without the token (AC-003)
+### T012 [x] Prove the case fails without the token (AC-003)
 
 File: `/tmp/trigger-index-rebuild.no-token.yml` (a copy; no tracked file changes). Anchor: the body line T004 wrote.
 
-Partial: the stripped-variant run was not re-executed under the read-only reconciliation pass because it writes `/tmp/trigger-index-rebuild.no-token.yml`; the `TRIGGER_INDEX_REBUILD_WORKFLOW_PATH` override exists (test file `:34`) and the positive arm is green, so only the non-zero stripped run remains to confirm.
+Done: rerun 2026-10-25 with the stripped copy in a session scratch directory instead of `/tmp` (the variable takes any path). `grep -c '\[skip ci\]'` on the stripped copy printed `0`. The stripped run exited `1` with `Tests  1 failed | 59 passed | 1 skipped (61)` and named `marks the rebuild commit so the pushed commit starts no workflow run` as the failing case. The real run exited `0` with `Tests  60 passed | 1 skipped (61)`.
 
 Change: none in the repository. This task produces the negative proof for AC-003.
 
@@ -604,6 +604,8 @@ Stop and escalate if: no run is listed for the probe head SHA, or the pull reque
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/` (new directory). Anchor: none.
 
+Partial: collected 2026-10-24T21:58Z and every command exited 0. `runs-last-1000.json` holds 1000 runs reaching back to 2026-10-23T15:24:36Z, `window.json` holds 795 runs from 2026-10-23T21:59:34Z, `run-ids.txt` holds 191 ids with 191 `jobs/<id>.json` files, and `summary.md` records the window, the per-workflow rows and the total. The measured total for `.github/workflows/` runs is 2,191 runner-min in the 24 h window, outside the 1,700-1,850 band; the 67 `dynamic` runs (about 584 min, 420 of them `Push on main`) are on a separate line. Runs started by the 19 rebuild commits in the window: 0 (push, pull_request and schedule events). The stop condition below fired, so the number is reported as measured and the task stays open.
+
 Change: create the run list, the per-workflow run-id selection, the job samples and `summary.md`.
 
 Counting note: Count only workflow runs from `.github/workflows/` in this baseline and in the deltas for 003 T036 and phase 008. Report any CodeQL default-setup `dynamic` run on a separate line so totals remain comparable with the pre-change baseline.
@@ -662,6 +664,8 @@ Stop and escalate if: fewer than 24 hours have passed, or the total falls outsid
 
 File: `acceptance-criteria.md`, the Status cell of each row. Anchor: `| Unmet | - |` at the end of each criterion row.
 
+Partial: AC-001 to AC-005 and AC-007 read `Met`. AC-006 reads `Unmet` because the measured total (2,191) is outside its band; `grep -c '| Unmet |'` prints `1`, not `0`.
+
 Change: set each row's Status to `Met` and copy the observed number into its Verification cell.
 
 Check:
@@ -681,6 +685,8 @@ Stop and escalate if: any check from T012 to T019 has not passed.
 ### T021 Commit the closure (AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal` (the packet folder). Anchor: `| AC-007 | Gates | REQ-007 |` at `acceptance-criteria.md:65`.
+
+Pending: the closure commit is the operator's to make and waits on the AC-006 decision; the packet edits are uncommitted in the working tree.
 
 Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, write its message, validate it, and commit, so the closure edits T019 and T020 made are not left uncommitted.
 
@@ -757,9 +763,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-007, each naming R1, R2 or the baseline
-- [ ] CHK-002 [P0] Technical approach defined in plan.md - the token on the body line, the trailer last, the suite as the guard
-- [ ] CHK-003 [P1] Dependencies identified and available - D1 answered (T001), `gh` with `repo` and `actions`, a checkout with the spec-kit dependencies installed (T003)
+- [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-007, each naming R1, R2 or the baseline [EVIDENCE: spec.md lists REQ-001 to REQ-007 (grep `REQ-00[1-7] |` found all seven rows at `:122-133`), each naming R1, R2 or the baseline]
+- [x] CHK-002 [P0] Technical approach defined in plan.md - the token on the body line, the trailer last, the suite as the guard [EVIDENCE: plan.md section 3 (Pattern, Key Components, Data Flow) and the Fix Addendum describe the token on the body line, the trailer last and the suite as the guard, read 2026-10-25]
+- [x] CHK-003 [P1] Dependencies identified and available - D1 answered (T001), `gh` with `repo` and `actions`, a checkout with the spec-kit dependencies installed (T003) [EVIDENCE: `cat scratch/d1-answer.md` prints `D1=A`; `gh repo view` printed the repository name with exit 0 and `gh run list` and `gh run view` exited 0; `.skilled/skills/system-spec-kit/node_modules` exists and the suite ran]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -767,10 +773,10 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks - the vitest suite and `bash .github/scripts/check-gate-inputs.sh` are the only linters this change touches; both must pass (T003, T013)
-- [ ] CHK-011 [P0] No console errors or warnings - the suite exits 0 with no unhandled rejection, and the gate prints `failures=0` (T003, T013)
-- [ ] CHK-012 [P1] Error handling implemented - not applicable: the change adds a fixed string to an existing `-m` argument and one assertion
-- [ ] CHK-013 [P1] Code follows project patterns - the new comment explains why, as the surrounding commit-step comments do, and carries no packet id (T005, T014)
+- [x] CHK-010 [P0] Code passes lint/format checks - the vitest suite and `bash .github/scripts/check-gate-inputs.sh` are the only linters this change touches; both must pass (T003, T013) [EVIDENCE: reran 2026-10-25: the workflow suite exits 0 (`Tests  60 passed | 1 skipped (61)`); `bash .github/scripts/check-gate-inputs.sh` exits 0 with `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` and `RESULT: PASSED`; `check-gate-inputs.test.sh` exits 0 with `57 passed, 0 failed`]
+- [x] CHK-011 [P0] No console errors or warnings - the suite exits 0 with no unhandled rejection, and the gate prints `failures=0` (T003, T013) [EVIDENCE: the saved suite output has no match for `unhandled` or `error` (grep count 0, exit 0 on the suite itself) and the gate prints `failures=0`]
+- [x] CHK-012 [P1] Error handling implemented - not applicable: the change adds a fixed string to an existing `-m` argument and one assertion [EVIDENCE: n/a because the change adds a fixed string to an existing `-m` argument and one assertion, and no error path is added]
+- [x] CHK-013 [P1] Code follows project patterns - the new comment explains why, as the surrounding commit-step comments do, and carries no packet id (T005, T014) [EVIDENCE: read `.github/workflows/trigger-index-rebuild.yml:147-149` 2026-10-25: the two new comment lines say why the token exists, sit beside the existing trailer comment, and name no packet id or spec path]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -778,10 +784,10 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-007 (T020, T021)
-- [ ] CHK-021 [P0] Manual testing complete - three rebuild SHAs, the loop-guard suffix, and the workflow-only pull request (T015 to T018)
-- [ ] CHK-022 [P1] Edge cases tested - the token-stripped variant (T012) and the empty-change path, where no commit is made
-- [ ] CHK-023 [P1] Error scenarios validated - a race-rejected push exits 0 with a notice, and `message-contract` still passes the new message text (T014)
+- [ ] CHK-020 [P0] All acceptance criteria met - `acceptance-criteria.md` rows AC-001 to AC-007 (T020, T021) [OPEN: AC-006 reads `Unmet`; the measured 24 h total of 2,191 runner-min is outside its 1,700-1,850 band, so 6 of 7 rows are `Met`]
+- [x] CHK-021 [P0] Manual testing complete - three rebuild SHAs, the loop-guard suffix, and the workflow-only pull request (T015 to T018) [EVIDENCE: reran 2026-10-25: `gh run list --commit` for `08bd79a68a`, `27490113c2` and `c9d4deed31` returns 0 push, pull_request or schedule runs each (exit 0); `git log -1 --format=%B c9d4deed31` ends `[skip ci]` then `Trigger-Index-Rebuild: ci`; T017 and T018 are `[x]` with run 40018919244 and run 40021934338 both `success`]
+- [x] CHK-022 [P1] Edge cases tested - the token-stripped variant (T012) and the empty-change path, where no commit is made [EVIDENCE: token-stripped variant: T012 rerun 2026-10-25, stripped copy exits 1 naming the new case and the real workflow exits 0. Empty-change path: `.github/workflows/trigger-index-rebuild.yml:138-139` prints `Trigger index is current; nothing to commit.` before any commit is made, so no token is involved]
+- [x] CHK-023 [P1] Error scenarios validated - a race-rejected push exits 0 with a notice, and `message-contract` still passes the new message text (T014) [EVIDENCE: race path: the suite cases under `when origin moves before the push` (`exits 0 with a notice and pushes nothing`) pass in the 60-pass run; message contract: `node .skilled/skills/sk-git/scripts/validate-message.mjs --commit` on the body of rebuild `c9d4deed31` exits 0]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -789,13 +795,13 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class - class-of-bug: one producer writes a message that starts a second run of the whole gate
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed - `rg -n 'Trigger-Index-Rebuild: ci|\[skip ci\]' .github .skilled` finds the trailer at four sites and the token at none before the change (plan.md, Affected Surfaces)
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed - the loop guard, the vitest suite, `spec-kit-check.yml`, the README rows, `message-contract` and `check-gate-inputs.sh`, each with its verification in plan.md
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - not applicable: no path, parser or redaction code changes; the message-suffix matrix is in plan.md
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (3) x commit kind (4) with 5 required rows, in plan.md
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the token-stripped workflow copy is the hostile variant (T012)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - the three rebuild SHAs and the 24 h window bounds are recorded in `scratch/`
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - class-of-bug: one producer writes a message that starts a second run of the whole gate [EVIDENCE: class-of-bug: one producer writes a message that starts a second run of the whole gate; the producer is the rebuild commit step at `trigger-index-rebuild.yml:150-152`]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed - `rg -n 'Trigger-Index-Rebuild: ci|\[skip ci\]' .github .skilled` finds the trailer at four sites and the token at none before the change (plan.md, Affected Surfaces) [EVIDENCE: reran `rg -c` for the trailer and the token over `.github` and `.skilled` 2026-10-25: the trailer and the token now appear together in the workflow, its README row, the suite and the sk-code CI reference. The token appears at no other producer, and the producer inventory in plan.md lists the four trailer sites]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - the loop guard, the vitest suite, `spec-kit-check.yml`, the README rows, `message-contract` and `check-gate-inputs.sh`, each with its verification in plan.md [EVIDENCE: plan.md affected-surfaces table names the loop guard, the vitest suite, `spec-kit-check.yml`, the README rows, `message-contract` and `check-gate-inputs.sh`; each was exercised: suite 60 pass, filter entries at `spec-kit-check.yml:12` and `:43`, README greps return 1 each, message validator exit 0, gate exit 0]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests - not applicable: no path, parser or redaction code changes; the message-suffix matrix is in plan.md [EVIDENCE: n/a because no path, parser or redaction code changes; the commit-message suffix matrix is in plan.md line 88]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - event (3) x commit kind (4) with 5 required rows, in plan.md [EVIDENCE: plan.md line 88 lists event (push, pull_request, workflow_dispatch) times commit kind (human, rebuild with token, rebuild without token, race-rejected) and five required rows]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state - the token-stripped workflow copy is the hostile variant (T012) [EVIDENCE: the token-stripped workflow copy is the hostile variant: T012 rerun 2026-10-25 exits 1 against it and 0 against the real file]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range - the three rebuild SHAs and the 24 h window bounds are recorded in `scratch/` [EVIDENCE: evidence is pinned: change commit `8e62a3d096`, rebuild SHAs `08bd79a68a`, `27490113c2`, `c9d4deed31` (`scratch/post-change/`), and the 24 h window 2026-10-23T21:59:34Z to 2026-10-24T21:59:34Z (`scratch/baseline-24h/summary.md`, `rebuild-shas.txt`)]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -803,9 +809,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets - the change adds a fixed literal; no token, key or PAT value appears in any edited file
-- [ ] CHK-031 [P0] Input validation implemented - not applicable: the token is not interpolated from any input
-- [ ] CHK-032 [P1] Auth/authz working correctly - the push keeps `secrets.TRIGGER_INDEX_PUSH_TOKEN` and the ruleset bypass; this phase adds no scope
+- [x] CHK-030 [P0] No hardcoded secrets - the change adds a fixed literal; no token, key or PAT value appears in any edited file [EVIDENCE: scanned the four changed files and the packet scratch for key-shaped strings 2026-10-25: the only secret reference is `secrets.TRIGGER_INDEX_PUSH_TOKEN` by name at `trigger-index-rebuild.yml:276`; no value appears]
+- [x] CHK-031 [P0] Input validation implemented - not applicable: the token is not interpolated from any input [EVIDENCE: n/a because the token is a fixed literal and nothing is interpolated from any input]
+- [x] CHK-032 [P1] Auth/authz working correctly - the push keeps `secrets.TRIGGER_INDEX_PUSH_TOKEN` and the ruleset bypass; this phase adds no scope [EVIDENCE: `trigger-index-rebuild.yml:276` still reads `PUSH_TOKEN: ${{ secrets.TRIGGER_INDEX_PUSH_TOKEN || github.token }}`; the change adds no permission or scope]
 <!-- /ANCHOR:security -->
 
 ---
@@ -813,9 +819,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-007, tasks.md T001 to T021, acceptance-criteria.md AC-001 to AC-007
-- [ ] CHK-041 [P1] Code comments adequate - the token's comment says why the token exists and why the trailer stays last, with no packet id (T005)
-- [ ] CHK-042 [P2] README updated - `.github/workflows/README.md:58` and `:75` (T006, T007)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - spec.md REQ-001 to REQ-007, tasks.md T001 to T021, acceptance-criteria.md AC-001 to AC-007 [EVIDENCE: spec.md REQ-001 to REQ-007, tasks.md T001 to T021 and acceptance-criteria.md AC-001 to AC-007 agree after the 2026-10-25 edits; all three read Status `In progress` and AC-006 `Unmet`]
+- [x] CHK-041 [P1] Code comments adequate - the token's comment says why the token exists and why the trailer stays last, with no packet id (T005) [EVIDENCE: the T005 comment lines say why the token exists and the adjacent line says why the trailer stays; neither names a packet id or spec path (read `trigger-index-rebuild.yml:147-149`)]
+- [x] CHK-042 [P2] README updated - `.github/workflows/README.md:58` and `:75` (T006, T007) [EVIDENCE: `grep -c` on `.github/workflows/README.md` for `starts no workflow run; the loop guard stays as the fallback` prints `1` (row at `:57`) and for `no other workflow runs on it` prints `1` (row at `:74`)]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -823,8 +829,8 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only - the pre-change run lists go to `scratch/pre-change/`, the baseline to `scratch/baseline-24h/`, and the token-stripped copy to `/tmp`
-- [ ] CHK-051 [P1] scratch/ cleaned before completion - both scratch folders are kept on purpose: later phases measure against `scratch/baseline-24h/summary.md`, and `scratch/pre-change/` is the before number
+- [x] CHK-050 [P1] Temp files in scratch/ only - the pre-change run lists go to `scratch/pre-change/`, the baseline to `scratch/baseline-24h/`, and the token-stripped copy to `/tmp` [EVIDENCE: the pre-change lists are in `scratch/pre-change/`, the baseline in `scratch/baseline-24h/`, and the token-stripped copy lives in a session scratch directory outside the repository]
+- [x] CHK-051 [P1] scratch/ cleaned before completion - both scratch folders are kept on purpose: later phases measure against `scratch/baseline-24h/summary.md`, and `scratch/pre-change/` is the before number [EVIDENCE: both scratch folders are kept on purpose: later phases measure against `scratch/baseline-24h/summary.md`, and `scratch/pre-change/` is the before number]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -834,11 +840,11 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 11/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---
@@ -847,9 +853,9 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 ### Pre-Task Checklist
 
-- [ ] Read the task's file and confirm the quoted anchor text is on the stated line
-- [ ] Know the check's expected result before editing
-- [ ] Run the check after the edit and read both its output and its exit status
+- [x] Read the task's file and confirm the quoted anchor text is on the stated line [EVIDENCE: reran the T004 to T011 anchor greps 2026-10-25 against `trigger-index-rebuild.yml:147-152`, `README.md:57` and `:74`, the suite at `:85` and `:895`, and `spec-kit-check.yml:12` and `:43`; every count matched]
+- [x] Know the check's expected result before editing [EVIDENCE: no edit to a tracked file was made in this pass; each task's Expected line was read before its check ran]
+- [x] Run the check after the edit and read both its output and its exit status [EVIDENCE: the T012, T013 and T019 checks were run in this pass and their output and exit codes read: stripped suite exit 1, real suite exit 0, gate exit 0, every `gh` call exit 0]
 
 ### Execution Rules
 
