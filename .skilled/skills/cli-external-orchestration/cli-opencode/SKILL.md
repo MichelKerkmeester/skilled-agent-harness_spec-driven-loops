@@ -131,14 +131,14 @@ The `route_opencode_resources(task)` body lives in [`shared-smart-router.md`](..
 
 ### Prerequisites
 
-**Verified versions.** Verified against OpenCode 2.0.32 and OpenCode 1.19.3 on 2026-10-19. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
+**Verified versions.** Verified against OpenCode 2.1.4 on 2026-10-24 and OpenCode 1.19.3 on 2026-10-19. Flag and provider observations that name 2.0.32 were read on that release and have not been re-read on 2.1.4. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 The resolver takes the first `opencode2` anywhere on `PATH` and falls back to the first `opencode` only when no `opencode2` exists. `OPENCODE_BIN` still overrides both.
 
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then OC=$(command -v opencode2 2>/dev/null); [ -z "$OC" ] && OC=$(command -v opencode 2>/dev/null); fi
-"$OC" --version   # `opencode v2.0.32` = OpenCode 2 (expected), `1.19.3` = OpenCode 1 (fallback); either major passes
+"$OC" --version   # `opencode v2.1.4` = OpenCode 2 (expected), `1.19.3` = OpenCode 1 (fallback); either major passes
 
 # Self-invocation guard
 env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
@@ -213,7 +213,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 ### ✅ ALWAYS
 
-1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.0.32, the expected version) or OpenCode 1 (1.19.3, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
+1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.1.4, the expected version) or OpenCode 1 (1.19.3, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive. Refuse unless the prompt has explicit parallel-session keywords.
 3. Pin model + variant + format + dir explicitly. Default on OpenCode 2: `-m llmgateway/deepseek-v4.1-flash-1017#max --format json` with a start-in-directory `cd`. Default on OpenCode 1 (fallback): `--model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>` (see [`references/cli-reference.md`](./references/cli-reference.md) §4). **No `--agent`** (see the Default Invocation note: a top-level `--agent general` is rejected, so put any agent-profile request in the prompt body). Honor user overrides verbatim, checking the id against the roster in [references/providers-and-models.md](references/providers-and-models.md) rather than against memory: each provider allows a specific set and a specific id shape.
 4. Pass `--format json` unless the calling AI explicitly wants formatted output. The JSON event stream is what external runtimes parse incrementally.
@@ -247,7 +247,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 1. OpenCode CLI is not installed and user has not acknowledged (provide `brew install opencode` or `curl -fsSL https://opencode.ai/install | bash`).
 2. Operator asks for a share URL. OpenCode 2 `run` has no share flag, and OpenCode 1.19.3 discontinued session sharing, so say there is no URL to publish.
-3. Binary version differs from the OpenCode 2 (2.0.32, expected) or OpenCode 1 (1.19.3, fallback) baseline. Run `opencode2 --version` / `opencode --version` and `run --help`, then surface drift and fall back or require approval.
+3. Binary version differs from the OpenCode 2 (2.1.4, expected) or OpenCode 1 (1.19.3, fallback) baseline. Run `opencode2 --version` / `opencode --version` and `run --help`, then surface drift and fall back or require approval.
 4. Smart router cannot map the prompt to one of the three use cases. Surface the disambiguation checklist from UNKNOWN_FALLBACK.
 5. Self-invocation guard trips AND the prompt is ambiguous. Surface the refusal with three remediation options (sibling cli-* / fresh shell / parallel-session keywords).
 

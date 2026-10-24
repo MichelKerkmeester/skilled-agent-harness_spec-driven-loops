@@ -176,6 +176,8 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 63 | 063-v4-0-0-13-final-changelog/ | Bring the v4.0.0.13 changelog to its final pre-release state with `llmgateway/deepseek-v4.1-flash-1017` as the default on both OpenCode versions, Pi, Hermes and the deep-loop fan-out runtime, dispatch that takes the first `opencode2` anywhere on PATH, two new upgrade notes and suite counts from reruns on this tree | Complete |
 | 64 | 064-append-log-concurrency-flake/ | Hold one lock across appendLog's last-byte peek and its write, so a concurrent append no longer leaves an empty line in the relaunch log | Complete |
 | 65 | 065-drop-old-deepseek-from-pi/ | Delete the undated 2026-09-10 DeepSeek V4.1 Flash from Pi's `.pi/models.json` and both cli-pi rosters, so only the dated 2026-10-17 id is registered and a lineage pinned to the old id is rejected up front | Complete |
+| 66 | 066-opencode-v2-default-name/ | Give the `opencode` and `opencode2` names to OpenCode 2 on the default `opencode.db` and move OpenCode 1 to an `opencode1` launcher on its own `opencode-v1.db`, on this machine and in the setup helper and install reference | Complete |
+| 67 | 067-opencode-v2-pin-2-1-4/ | Move the OpenCode 2 pin from 2.0.32 to 2.1.4 in the setup helper, the dual-version CI workflow and the baseline statements, and correct the v1 channel statement | Complete |
 
 ### Phase Transition Rules
 
@@ -248,4 +250,6 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 062-opencode-2-primary-v1-fallback | 063-v4-0-0-13-final-changelog | Phase 062's `opencode2` preference is on main as commit `4505c338b1`, and the changelog states the behavior that commit set | CI is green on main for `4505c338b1` |
 | 063-v4-0-0-13-final-changelog | 064-append-log-concurrency-flake | 063's changelog is on main | `064/implementation-summary.md`; CI green on the pushed commit |
 | 064-append-log-concurrency-flake | 065-drop-old-deepseek-from-pi | 064's flake fix is on main | `065/implementation-summary.md`; CI green on the pushed commit |
+| 065-drop-old-deepseek-from-pi | 066-opencode-v2-default-name | 065's Pi roster change is on main | `066/implementation-summary.md`; `opencode-setup.sh check` reports v2, v2, v1 |
+| 066-opencode-v2-default-name | 067-opencode-v2-pin-2-1-4 | 066's name swap is in the same commit | `067/implementation-summary.md`; CI green on the pushed commit |
 <!-- /ANCHOR:phase-map -->

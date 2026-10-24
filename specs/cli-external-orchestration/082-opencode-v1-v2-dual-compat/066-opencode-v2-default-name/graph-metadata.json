@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode v2 default name",
+      "phase 66 opencode v2 default name",
+      "opencode1 launcher",
+      "opencode v2 default name plan",
+      "opencode v2 default name tasks",
+      "opencode v2 default name implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "default",
+      "name",
+      "phase",
+      "opencode1",
+      "launcher",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "repository",
+      "expects"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-both.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup-both.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-both.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Swap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its WAL",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository expects OpenCode 2, but the side-by-side layout gave the bare `opencode` name to OpenCode 1 and reached OpenCode 2 only through an `opencode2` launcher pinned to `opencode-v2.db`",
+    "created_at": "2026-10-24T07:32:35Z",
+    "last_save_at": "2026-10-24T07:39:33.456Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1c285f5b552d4aced97d1cf330e09d2ac3d5e70fbbe1c9cffa3d05f1ff67e878",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aedcf2036baba5f1b0a850bd0d44d03e187e3f68def56b2daf2d5e71ed6e6d4a",
+      "plan.md": "803740e9ba028073c695524ca1e2183c327ba8bc0e023f2d9e831074ca41cc83",
+      "tasks.md": "60f042c85e184946607205e3c648c0dfd64c26c86466b389f67757bce78b16a7",
+      "implementation-summary.md": "8218d2073b5231366a6e9f31c9b2efefd74d48b889fbd09206ca66972ac8a7fb"
+    },
+    "last_active_at": null
+  }
+}

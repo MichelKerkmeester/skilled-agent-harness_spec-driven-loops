@@ -28,14 +28,16 @@ fi
 readonly SCRIPT_NAME="${0##*/}"
 
 readonly V1_PKG="opencode-ai@1.19.3"
-readonly V2_PKG="@opencode/cli@2.0.32"
+readonly V2_PKG="@opencode/cli@2.1.4"
 
 # Every path derives from HOME, so a throwaway HOME isolates the whole run
 readonly V1_PREFIX="$HOME/.local"
 readonly V2_PREFIX="$HOME/.local/opencode-v2"
 readonly BIN="$HOME/.local/bin"
 readonly DB_DIR="$HOME/.local/share/opencode"
-readonly LAUNCHER="$BIN/opencode2"
+readonly LAUNCHER="$BIN/opencode1"
+# Relative to BIN, the same shape npm writes, so the side-by-side names point into the v2 prefix
+readonly V2_LINK_TARGET="../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe"
 
 # Cleared at startup so an inherited value never replaces the helper's own probe folder
 PROBE_DATA_DIR=""
@@ -158,23 +160,6 @@ resolve_realpath() {
     fi
 }
 
-# Match PATH segments exactly; a substring test would false-positive on similarly named directories
-is_on_path() {
-    local needle="$1" remaining="${PATH:-}" entry
-    while [[ -n "$remaining" ]]; do
-        entry="${remaining%%:*}"
-        if [[ "$entry" == "$needle" ]]; then
-            return 0
-        fi
-        if [[ "$remaining" == *:* ]]; then
-            remaining="${remaining#*:}"
-        else
-            remaining=""
-        fi
-    done
-    return 1
-}
-
 # Refuse before any write when npm cannot run the installs
 require_npm() {
     if ! command -v npm >/dev/null 2>&1; then
@@ -208,12 +193,36 @@ pinned_installed() {
 launcher_content() {
     cat <<'LAUNCHER_EOF'
 #!/bin/sh
-# v2 would otherwise open the same opencode.db as v1 and migrate it in place.
-# A relative OPENCODE_DB resolves under the shared data directory.
-: "${OPENCODE_DB:=opencode-v2.db}"
+# OpenCode 1 fallback. OpenCode 2 owns opencode.db and migrates it in place,
+# so v1 keeps its own copy. A relative OPENCODE_DB resolves under the shared data directory.
+: "${OPENCODE_DB:=opencode-v1.db}"
 export OPENCODE_DB
-exec "$HOME/.local/opencode-v2/bin/opencode2" "$@"
+exec "$HOME/.local/lib/node_modules/opencode-ai/bin/opencode.exe" "$@"
 LAUNCHER_EOF
+}
+
+# Point one name in BIN at the v2 binary; a file the earlier layout left there is moved aside, never deleted
+link_v2_name() {
+    local name="$1" path="$BIN/$1" aside="$BIN/$1.pre-v2-default"
+    if [[ -L "$path" ]] && [[ "$(readlink "$path")" == "$V2_LINK_TARGET" ]]; then
+        log_info "$name: left unchanged ($path)"
+        return 0
+    fi
+    if [[ -L "$path" ]]; then
+        print_step "relink \"$path\" to v2" "ln -sfn \"$(readlink "$path")\" \"$path\""
+    elif [[ -e "$path" ]]; then
+        if [[ -e "$aside" ]] || [[ -L "$aside" ]]; then
+            log_error "$aside already exists; moving $path aside would overwrite it"
+            log_error "Nothing was moved; remove or rename $aside and rerun this mode"
+            exit 1
+        fi
+        print_step "move \"$path\" aside to \"$aside\" and link the name to v2" "rm \"$path\" && mv \"$aside\" \"$path\""
+        mv "$path" "$aside"
+    else
+        print_step "link \"$path\" to v2" "rm \"$path\""
+    fi
+    ln -sfn "$V2_LINK_TARGET" "$path"
+    log_info "$name: now runs v2 ($path)"
 }
 
 # Write the launcher only when absent or byte-different, so reruns stay idempotent
@@ -255,18 +264,18 @@ verify_one() {
     fi
 }
 
-# Verify both names after the launcher lands; both lines print before any failure exit
+# Verify all three names after the launcher lands; every line prints before any failure exit
 verify_pair() {
-    local v1_failed=0 v2_failed=0
-    probe_shape "$BIN/opencode" v1 || v1_failed=1
-    probe_shape "$BIN/opencode2" v2 || v2_failed=1
-    if [[ "$v1_failed" -ne 0 ]]; then
-        log_error "$BIN/opencode did not report a v1 version"
-    fi
-    if [[ "$v2_failed" -ne 0 ]]; then
-        log_error "$BIN/opencode2 did not report a v2 version"
-    fi
-    if [[ "$v1_failed" -ne 0 ]] || [[ "$v2_failed" -ne 0 ]]; then
+    local failed=0 name want
+    for name in opencode:v2 opencode2:v2 opencode1:v1; do
+        want="${name#*:}"
+        name="${name%%:*}"
+        if ! probe_shape "$BIN/$name" "$want"; then
+            log_error "$BIN/$name did not report a $want version"
+            failed=1
+        fi
+    done
+    if [[ "$failed" -ne 0 ]]; then
         exit 1
     fi
 }
@@ -277,13 +286,13 @@ verify_pair() {
 
 # Report what each name resolves to and which data files exist; this mode never writes
 mode_check() {
-    local name on_path direct candidate shape resolved found db v2_on_path
+    local name on_path direct candidate shape resolved found db
     local opencode_on_path="" opencode_shape=""
 
     ensure_probe_dir
     print_paths
 
-    for name in opencode opencode2; do
+    for name in opencode opencode2 opencode1; do
         on_path="$(command -v "$name" 2>/dev/null || true)"
         direct="$BIN/$name"
         candidate=""
@@ -340,28 +349,13 @@ mode_check() {
         printf '  none exists\n'
     fi
 
-    v2_on_path="no"
-    if is_on_path "$V2_PREFIX/bin"; then
-        v2_on_path="yes"
-    fi
-    printf '\n"%s" on PATH: %s\n' "$V2_PREFIX/bin" "$v2_on_path"
-    if [[ "$v2_on_path" == "yes" ]]; then
-        log_warn "that path must stay off PATH for the side-by-side layout"
-    fi
-
     log_pass "check complete; nothing under HOME was changed"
 }
 
-# Build the side-by-side layout: v1 in the default prefix, v2 in its own prefix, launcher last
+# Build the side-by-side layout: both packages installed, opencode and opencode2 linked to v2, the opencode1 launcher last
 mode_both() {
     print_paths
     require_npm
-
-    if is_on_path "$V2_PREFIX/bin"; then
-        log_error "\"$V2_PREFIX/bin\" is on PATH; that recreates the name collision the side-by-side layout exists to avoid"
-        log_error "Remove it from PATH and rerun this mode"
-        exit 1
-    fi
 
     if pinned_installed "$V1_PREFIX/lib/node_modules/opencode-ai/package.json" \
         "$V1_PKG" "$V1_PREFIX/bin/opencode"; then
@@ -389,10 +383,20 @@ mode_both() {
         fi
     fi
 
+    # The v1 install takes the name opencode, so the v2 links are written after it
+    link_v2_name opencode
+    link_v2_name opencode2
     write_launcher
+
+    if [[ -e "$DB_DIR/opencode.db" ]] && [[ ! -e "$DB_DIR/opencode-v1.db" ]]; then
+        log_warn "v2 now runs as opencode and migrates $DB_DIR/opencode.db in place on its first run"
+        log_warn "to keep v1's history, copy it first: sqlite3 \"$DB_DIR/opencode.db\" \".backup '$DB_DIR/opencode-v1.db'\""
+        log_warn "this script changes no data file"
+    fi
+
     ensure_probe_dir
     verify_pair
-    log_pass "v1 and v2 are installed side by side"
+    log_pass "v2 answers to opencode and opencode2; v1 answers to opencode1"
 }
 
 # Install v1 only; refuse when a v2 already answers to the name opencode
@@ -478,7 +482,7 @@ Usage: $SCRIPT_NAME <v2|both|v1|check>
 
 Modes:
   v2     Install v2 only into the default prefix (recommended)
-  both   Install v1 and v2 side by side in the home directory and write the opencode2 launcher (recommended)
+  both   Install v1 and v2 side by side: opencode and opencode2 run v2, the opencode1 launcher runs v1 (recommended)
   v1     Install v1 only into the default prefix (fallback for users who have not updated)
   check  Report what each name resolves to; change nothing
 
