@@ -97,7 +97,7 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
 - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
-**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent, so each reference and asset is reachable through the router as well as by browsing; the manifest stays the inventory, and a leaf added to the corpus without an intent is a routing gap to close, not a browse-only tier. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent, so each reference and asset is reachable through the router as well as by browsing. The one exception is `references/templates/template-guide.md`, which the `ON_DEMAND` level loads on request. The manifest stays the inventory, and a leaf added to the corpus without an intent is a routing gap to close, not a browse-only tier. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
 
 ### Template and Script Sources of Truth
 
@@ -177,7 +177,7 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "PLAN": [
-        "references/templates/template-guide.md",
+        "references/workflows/spec-authoring-card.md",
         "references/workflows/intake-contract.md",
         "references/validation/template-compliance-contract.md",
         "assets/level-decision-matrix.md",
@@ -196,7 +196,7 @@ RESOURCE_MAP = {
     "IMPLEMENT": [
         "references/validation/validation-rules.md",
         "references/validation/template-compliance-contract.md",
-        "references/templates/template-guide.md",
+        "references/workflows/spec-authoring-card.md",
         "assets/template-mapping.md",
         "references/workflows/execution-methods.md",
         "references/validation/path-scoped-rules.md",
@@ -236,7 +236,7 @@ RESOURCE_MAP = {
     ],
     "INTAKE": [
         "references/workflows/intake-contract.md",
-        "references/templates/template-guide.md",
+        "references/workflows/spec-authoring-card.md",
         "references/validation/template-compliance-contract.md",
     ],
     "HOOKS": [
@@ -274,7 +274,7 @@ RESOURCE_MAP = {
     ],
     "TEMPLATE_AUTHORING": [
         "references/templates/template-style-guide.md",
-        "references/templates/template-guide.md",
+        "references/workflows/spec-authoring-card.md",
     ],
     "GOVERNANCE": [
         "references/config/environment-variables.md",

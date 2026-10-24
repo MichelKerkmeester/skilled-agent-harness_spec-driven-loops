@@ -1,0 +1,40 @@
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index 92779e0ec7..cc25dd06ad 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -794,7 +794,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+@@ -1371,7 +1371,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+@@ -2181,7 +2181,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+@@ -3202,7 +3202,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---

@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validation checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Spec Folder Authoring Checklist
@@ -33,7 +33,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 ## 2. PRE-CHECKS
 
 - [ ] Read the Level 1 contract files in an existing packet such as `specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag`.
-- [ ] Read templates from `.skilled/skills/system-spec-kit/templates/` and the manifest entries under `.skilled/skills/system-spec-kit/templates/`.
+- [ ] Read one rendered example under `.skilled/skills/system-spec-kit/templates/examples/` or a fresh `create.sh` scaffold. Do not copy from a `.tmpl` source: it carries unfilled tokens.
 - [ ] Verify the required Level 1 docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
 - [ ] Confirm required anchor counts for the selected level before writing.
 - [ ] Confirm `_memory.continuity.packet_pointer` is slash-separated and relative to the specs track.

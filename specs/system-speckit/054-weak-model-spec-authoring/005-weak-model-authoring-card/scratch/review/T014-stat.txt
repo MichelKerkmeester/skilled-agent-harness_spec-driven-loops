@@ -1,0 +1,13 @@
+ .skilled/skills/system-spec-kit/SKILL.md                       | 10 +++++-----
+ .skilled/skills/system-spec-kit/leaf-aliases.json              |  5 +++++
+ .skilled/skills/system-spec-kit/leaf-manifest.json             |  1 +
+ .../references/workflows/spec-folder-authoring-checklist.md    |  2 +-
+ .skilled/skills/system-spec-kit/runtime/cli/spec/README.md     |  1 +
+ .../tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap   |  8 ++++----
+ .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl   |  2 +-
+ 7 files changed, 18 insertions(+), 11 deletions(-)
+
+New files (untracked, shown in T014.diff as additions):
+  .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md (172 lines)
+  .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh (120 lines)
+  .skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts (16 lines)

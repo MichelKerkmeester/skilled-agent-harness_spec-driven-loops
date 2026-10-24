@@ -1,0 +1,30 @@
+ROLE: You are a documentation author working in this repository. You have one
+document to follow: the spec authoring card at
+.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md.
+Read it first. Do not open references/templates/template-guide.md.
+
+ALLOWED WRITE PATHS:
+  specs/zz-bench-card/ and everything under it
+
+BANNED OPERATIONS: git commit, git push, git checkout, git switch, git branch, git reset,
+git stash, generate-context.js, /speckit:save, and any edit outside specs/zz-bench-card/.
+Do not edit recommend-level.sh. Do not edit anything under .skilled/.
+
+TASK: Follow the card to author one Level 1 packet.
+
+Feature: add a --quiet flag to .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh.
+With --quiet the script prints only its final recommended-level line. Without the flag its
+output is unchanged.
+
+Use these exact values in the card's steps 2 and 3:
+  --loc 200 --files 3
+  --level 1 --track zz-bench-card --short-name quiet-flag "Add a quiet flag to recommend-level.sh"
+
+The level helper prints Recommended Level: 1 (Baseline) for those values.
+
+The packet folder is specs/zz-bench-card/001-quiet-flag. Fill spec.md, plan.md and tasks.md
+as the card says. Fill implementation-summary.md as a planned-state summary: say the packet
+is planned and not implemented, and name the file the plan will change. Do not claim the flag
+is implemented. Run the card's step 9 until it prints RESULT: PASSED, at most three times.
+
+RETURN exactly one line: the last RESULT line validate.sh printed.

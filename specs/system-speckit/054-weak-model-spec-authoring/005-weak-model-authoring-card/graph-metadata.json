@@ -39,7 +39,7 @@
       "intent"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,18 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "references/workflows/spec-folder-authoring-checklist.md",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
       "templates/core/tasks.md.tmpl",
+      "runtime/cli/spec/check-card-sync.sh",
+      "runtime/cli/tests/card-sync.vitest.ts",
+      "references/workflows/spec-authoring-card.md",
+      "references/workflows/spec-folder-authoring-checklist.md",
+      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      "runtime/cli/spec/README.md",
+      "scratch/card-bench/baseline.md",
+      "scratch/review/T014.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh",
       "references/templates/template-guide.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
-      ".skilled/skills/system-spec-kit/leaf-manifest.json",
-      ".skilled/skills/system-spec-kit/leaf-aliases.json",
-      ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
-      ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
-      "runtime/cli/spec/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"
+      ".skilled/skills/system-spec-kit/leaf-manifest.json"
     ],
     "entities": [
       {
@@ -98,15 +100,57 @@
         "source": "derived"
       },
       {
-        "name": "spec-folder-authoring-checklist.md",
+        "name": "spec-authoring-card.md",
         "kind": "doc",
-        "path": "references/workflows/spec-folder-authoring-checklist.md",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
         "source": "derived"
       },
       {
         "name": "tasks.md.tmpl",
         "kind": "file",
         "path": "templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "card-sync.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/card-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-authoring-checklist.md",
+        "kind": "doc",
+        "path": "references/workflows/spec-folder-authoring-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/card-bench/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "T014.txt",
+        "kind": "file",
+        "path": "scratch/review/T014.txt",
         "source": "derived"
       },
       {
@@ -125,18 +169,6 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-aliases.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/leaf-aliases.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
         "source": "derived"
       },
       {
@@ -174,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The router sends four authoring intents to `references/templates/template-guide.md`, a 1,200-line guide",
     "created_at": "2026-10-23T11:27:23Z",
-    "last_save_at": "2026-10-24T08:18:34.049Z",
+    "last_save_at": "2026-10-24T18:30:07.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f07bbbeb21887d04d0951435565e95e7f44ed445bc1f8695eb307fac14e5b283",
+    "source_fingerprint": "sha256:5971ba5d1fd064a924c19ea450e2221a2ab3b11ce249ff0ead776d572c22bc4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c1f8a56f994cca761d4d77099c77b4da167aadc25f76362ed05adc4727c2a0e",
+      "spec.md": "811c0c897e2cc4028c4ca8ffcdb5e6d3426b5d005e4085b1418a54766a40fa2b",
       "plan.md": "1d73251300906e04fa3721d1d3480cb55b36bbcd199c107ce3442c51639821a9",
-      "tasks.md": "dbca9acce1ee4f72956cf9b283965aa11d2ad437f3f731ea2fac415903f48e3b",
-      "implementation-summary.md": "bbede5913171039149d009bd6dea78807728a4c72e3415c345dd1cca8d7555e2"
+      "tasks.md": "17311e83c40035b74799a1498e4c90a37fd87b50dddf4b8cc00371b8ce0dfef8",
+      "implementation-summary.md": "886b4707817a862e0dc95afa4b64a2b5b9a9b399129ea83b1d5ab8728478394c"
     },
     "last_active_at": null
   }

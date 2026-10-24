@@ -67,6 +67,7 @@ runtime/cli/spec/
 +-- recommend-level.sh           # Recommend documentation level from task signals
 +-- archive.sh                   # Move completed or stale spec folders
 +-- check-template-staleness.sh  # Compare generated docs with templates
++-- check-card-sync.sh           # Assert the authoring card, router, inventory and checklist agree
 +-- quality-audit.sh             # Batch quality audit helper
 +-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
 +-- is-phase-parent.ts           # Phase-parent detection and manifest health check

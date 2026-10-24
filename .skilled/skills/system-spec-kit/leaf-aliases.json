@@ -211,6 +211,11 @@
   },
   {
     "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/spec-authoring-card.md",
+    "diskPath": "references/workflows/spec-authoring-card.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/workflows/spec-folder-authoring-checklist.md",
     "diskPath": "references/workflows/spec-folder-authoring-checklist.md"
   },

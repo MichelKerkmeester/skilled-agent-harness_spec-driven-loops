@@ -1,0 +1,11 @@
+PASS card-exists (172 lines)
+PASS intent-PLAN
+PASS intent-IMPLEMENT
+PASS intent-INTAKE
+PASS intent-TEMPLATE_AUTHORING
+PASS guide-on-demand-only
+PASS leaf-manifest
+PASS leaf-aliases
+PASS checklist
+CARD SYNC OK
+exit=0

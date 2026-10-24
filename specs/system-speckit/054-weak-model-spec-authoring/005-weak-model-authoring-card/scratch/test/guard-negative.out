@@ -1,0 +1,4 @@
+CARD SYNC OK
+exit=1
+FAIL card-exists: missing references/workflows/spec-authoring-card.md
+CARD SYNC FAILED

@@ -1,0 +1,10 @@
+FAIL card-exists: missing references/workflows/spec-authoring-card.md
+PASS intent-PLAN
+PASS intent-IMPLEMENT
+PASS intent-INTAKE
+PASS intent-TEMPLATE_AUTHORING
+PASS guide-on-demand-only
+PASS leaf-manifest
+PASS leaf-aliases
+PASS checklist
+CARD SYNC FAILED

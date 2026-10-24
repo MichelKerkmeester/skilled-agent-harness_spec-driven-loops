@@ -9,7 +9,7 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card"
     last_updated_at: "2026-10-23T14:30:00Z"
-    last_updated_by: "author"
+    last_updated_by: "conductor"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,13 +56,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `wc -l < .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` prints a number at or below 260
-- [ ] `awk` over the four intent blocks prints `4` lines that name `spec-authoring-card.md` and `0` lines that name `template-guide.md`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` prints `CARD SYNC OK` and exits 0 on the changed tree, and prints `FAIL card-exists` and exits 1 on a copy without the card
-- [ ] `jq` finds `references/workflows/spec-authoring-card.md` in both `leaf-manifest.json` and `leaf-aliases.json`
-- [ ] `WORKFLOW_INVARIANCE_EXTRA_PATHS=<card path> vitest run runtime/cli/tests/workflow-invariance.vitest.ts` prints `Tests  2 passed (2)`
-- [ ] `scratch/card-bench/baseline.json` holds three runs, each with `strict_passed`, `leftover_tokens`, `missing_anchors`, `out_of_scope_writes` and `seconds`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
+- [x] `wc -l < .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` prints a number at or below 260
+- [x] `awk` over the four intent blocks prints `4` lines that name `spec-authoring-card.md` and `0` lines that name `template-guide.md`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` prints `CARD SYNC OK` and exits 0 on the changed tree, and prints `FAIL card-exists` and exits 1 on a copy without the card
+- [x] `jq` finds `references/workflows/spec-authoring-card.md` in both `leaf-manifest.json` and `leaf-aliases.json`
+- [x] `WORKFLOW_INVARIANCE_EXTRA_PATHS=<card path> vitest run runtime/cli/tests/workflow-invariance.vitest.ts` prints `Tests  2 passed (2)`
+- [x] `scratch/card-bench/baseline.json` holds three runs, each with `strict_passed`, `leftover_tokens`, `missing_anchors`, `out_of_scope_writes` and `seconds`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,13 +78,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
-| Start commit recorded | Pending | |
-| Card written | Pending | |
-| Router changed | Pending | |
-| Inventory regenerated | Pending | |
-| Guard green | Pending | |
-| Smoke runs done | Pending | |
+| Phase opened | Done | Executed 2026-10-24 by one execution agent from start commit 707ee4472a. |
+| Start commit recorded | Done | Start commit: 707ee4472a72fee2c020b45ea556a21a7949d0d7. `git status --porcelain` saved to `scratch/status-start.txt` (28 lines, all under `001-template-drift-census-and-baseline/scratch/`). |
+| Card written | Done | `wc -l` printed 172, four scans printed nothing. |
+| Router changed | Done | Intent blocks naming the card: 4. Blocks naming the guide: 0. Guide in ON_DEMAND: 1. |
+| Inventory regenerated | Done | `leaf-manifest.json OK`, both `jq` counts 1, 46 entries in each file. |
+| Guard green | Done | Nine PASS lines and `CARD SYNC OK`. Negative copy: `exit=1`, `FAIL card-exists`. |
+| Smoke runs done | Done | Three strict passes, 0 leftover tokens, 0 missing anchors, 0 out-of-scope writes, 266 s, 143 s and 203 s. |
 
 ### Deviations and findings
 
@@ -99,4 +99,20 @@ and findings belong here.
 | Derived metadata refresh for the amendment | The six-doc amendment changed the hashed source docs, so the validator's own `repair-derived.cjs --apply` re-derived `graph-metadata.json`. No other generated file changed. |
 | Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
 | Smoke subject | The three smoke runs run on cli-devin `swe-2-max` and read beside the Level 3 `swe-2-max` baseline in phase 001 `scratch/baseline-swe-l3/baseline.json`. The smoke runs are Level 1, so that is a sanity read, not a criterion. The Level 2 runs in `scratch/baseline-swe/` are invalid |
+| Executors on 2026-10-24 | Conductor decision: the execution agent works every edit task and dispatches no subagent. The OpenCode, DeepSeek, Task-tool and cli-codex wording in this phase's docs (goal.md amendment rows, spec.md REQ-008 and the workflow summary, plan.md dependencies and AI EXECUTION PROTOCOL, tasks.md T012 and T014, implementation-summary.md) is history and is superseded by parent D7, D4 and D8. The only external dispatches are the three T012 smoke runs and the T014 review, both on cli-devin swe-2-max. |
+| Superseded NFR wording (L16, L17) | spec.md NFR-S01 (workers inherit the session provider login) and the Network timeout edge case (conductor stops waiting for the Task subagent after 30 minutes) are superseded. The smoke subject logs in through Devin OAuth, and the dispatch carries a 45 minute kill watchdog. The text is left as history. |
+| Card section 10 says the five commands | The frozen card text says to run the five commands in this card in order, and the card holds more than five commands. Recorded as a finding. The card is unchanged. |
+| Snapshot is a tenth declared path | Conductor decision: after the frozen T007 edit, `scaffold-golden-snapshots.vitest.ts` failed four snapshots (1, 2, 3 and 3+ tasks.md) on the Task Format line alone. The snapshot is a stored copy of the template's rendered output, so the regeneration is as necessary as the T008 inventory regeneration, and phase 003 regenerated it the same way. `runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` is added as a tenth declared path for this phase. spec.md section 3 is not edited. The regeneration diff (4 insertions, 4 deletions, only the Task Format line in the four entries) is in `scratch/test/snapshot-regen.diff`. Rerun without `-u`: Test Files 1 passed (1), Tests 12 passed (12). |
+| execFileSync args fix in the frozen test | The test file in plan.md section 3.6 calls `execFileSync('bash', GUARD, ...)`, which throws `TypeError: The args argument must be of type object`. A one-token amendment to the frozen plan text wraps the path: `execFileSync('bash', [GUARD], ...)`. The as-planned copy is kept at `scratch/test/card-sync.vitest.ts.as-planned`. plan.md is not edited. |
+| Level 1 scaffold has no goal.md | Finding only: `create.sh --level 1` without `--with-goal` makes no goal.md, while card section 8 sends an unanswerable token to an open question in goal.md section 4. The card is unchanged. The smoke runs show whether a worker copes. |
+| Card text against phases 003 and 004 | The card's token section (warning while spec.md says Status: Draft, error at any other status, tokens only in v2.3 stamped scaffolds) matches what phase 003 shipped. The fill-note step matches the core templates: a fresh Level 1 scaffold carries 7, 7, 6 and 6 FILL lines, and two appear in the first 40 lines of spec.md. No frozen sentence states behavior the tree lacks. |
+| Level 1 anchor counts | Expected by tasks.md: spec 7, plan 7, tasks 6, implementation-summary 6. Measured on a fresh `create.sh --level 1` scaffold after phase 004: spec 7, plan 7, tasks 6, implementation-summary 6. Both sets are equal, and `scratch/card-bench/anchors-level1.txt` holds the measured set. |
+| Smoke runs on cli-devin swe-2-max (T012, T013) | Three serial runs with `scratch/card-bench/smoke.sh`, command `devin -p --model swe-2-max --permission-mode dangerous`, 45 minute watchdog, pre-resolution preamble on every brief (CHK-032), no rate-limit message and no rerun. Run 1: strict_passed 1, leftover_tokens 0, missing_anchors 0, out_of_scope_writes 0, 266 s. Run 2: 1, 0, 0, 0, 143 s. Run 3: 1, 0, 0, 0, 203 s. Each packet was copied to the scratchpad `bench-packets/card-l1/packet-N` and `specs/zz-bench-card` was deleted before the next run. A hash of the `.skilled` diff plus untracked `.skilled` files was identical before and after each run, so a write into an already-dirty file would have shown. The Level 1 runs read beside the Level 3 baseline (strict 1, 1, 1, leftover_hints 1, 0, 1, seconds 326, 317, 384) as a sanity check only, since the metric and the level differ. |
+| Matrix: four intents by two tiers (CHK-FIX-005) | Eight cells, measured by `check-card-sync.sh`. Default load tier: PLAN loads the card, IMPLEMENT loads the card, INTAKE loads the card, TEMPLATE_AUTHORING loads the card. Guide tier: PLAN does not list the guide, IMPLEMENT does not, INTAKE does not, TEMPLATE_AUTHORING does not, and the guide is listed once in ON_DEMAND. |
+| Same-class inventory (CHK-FIX-004) | `rg -l 'template-guide\.md'` over system-spec-kit (no node_modules, no changelog) lists 22 files, against 21 at the start commit. The one new file is the card, which names the guide as the long on-demand read. The four RESOURCE_MAP rows were the only intent loads and changed. Every other hit is a browse link or a description, including SKILL.md lines 100, 295 (ON_DEMAND) and 583. Lists are in `scratch/test/guide-refs-start.txt` and `guide-refs-now.txt`. |
+| Review T014 attempt 1 (no answer) | First swe-2-max read-only dispatch on `--permission-mode auto` tried a tool call that needs confirmation, was refused, and ended with narration and no result lines. That is not a review. Files kept as `T014.attempt1.*`. The brief gained one line (a refused call is not retried, end with result lines) and was rerun. |
+| Review T014 attempt 2 (3 P1 and 5 P2 lines) | Eight finding lines in `scratch/review/T014.txt`, working tree status unchanged by the reviewer. Each was confirmed by reading the file. P1 card step 2: `recommend-level.sh` prints `Recommended Level: 0 (Quick)` for small input and `create.sh --level` accepts 1, 2, 3, 3+, phase-parent, review or research, so the card dead-ends on Level 0. True, and not applied because the card text is frozen: the proposed fix is one added sentence in step 2 (`If the helper prints Level 0, use --level 1.`). P1 card step 3: a default scaffold has no goal.md while steps 8, 9 and 11 write to it. True, not applied, the same frozen text (add `--with-goal` to the step 3 command). P1 SKILL.md:583: the section 7 `Start with` list still names the guide. True, and a recorded decision: plan.md names the rest of the 20 guide references as browse links and REQ-002 covers intent lists, which are clean. P2 guard line 79 does not see a guide load outside RESOURCE_MAP and ON_DEMAND: true, frozen T009 source, recorded. P2 guard checklist check is negative only: true, frozen, recorded. P2 four examples keep the old Task Format line and no Verify clause: true, phase 004 owns the examples and plan.md section 3.4 keeps them, recorded. P2 `tasks.md.tmpl` frontmatter description still says the old Task Format: true (line 15), outside the frozen one-line T007 edit, recorded. P2 card section 10 does not name the five commands: true, already logged. Outcome: 0 fixed, 8 recorded with a reason. The card amendments (the first two P1 lines) wait for a conductor decision. |
+| Card section count for phase 006 (CHK-143) | The card holds 11 numbered sections, the longest 18 lines, 172 lines in all. |
+| Next phase (CHK-123) | Phase 006 (006-speckit-command-and-agent-alignment) can start. The card exists, the guard prints CARD SYNC OK, and the card path and name are frozen for phases 006 to 009. |
+| Full suite gate | Baseline reused from phase 004: `004-template-section-fill-guidance/scratch/baseline/suite-after.txt`, last line `exit=0`, first run `Test Files  276 passed \| 3 skipped (279)` and `Tests  4162 passed \| 21 skipped (4183)`, second run 183 passed files and 2084 tests. The only commit since then (`707ee4472a`) changed the parent goal.md and graph-metadata.json, which no test reads. The end suite ran fresh in the background with `SPECKIT_TEST_RUN_TIMEOUT_MS=1800000`, about 37 minutes, and `scratch/test/suite-end.txt` ends in `exit=0`. The first run is identical (276 passed, 3 skipped, 4162 tests). The second run is `Test Files  184 passed \| 3 skipped (187)` and `Tests  2085 passed \| 20 skipped (2105)`: one file and one test over the baseline, which is `card-sync.vitest.ts`. The FAIL line count is 4 in both files and those are validator harness section names. The snapshot regeneration ran before the suite, so no existing result changed. |
 <!-- /ANCHOR:log -->

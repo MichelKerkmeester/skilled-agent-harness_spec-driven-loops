@@ -1,0 +1,481 @@
+diff --git a/.skilled/skills/system-spec-kit/SKILL.md b/.skilled/skills/system-spec-kit/SKILL.md
+index f5d3c17fb33..29f04942bb4 100644
+--- a/.skilled/skills/system-spec-kit/SKILL.md
++++ b/.skilled/skills/system-spec-kit/SKILL.md
+@@ -92,7 +92,7 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
+ - `references/config/` for runtime environment configuration and launcher/lease contracts.
+ - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
+ 
+-**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent, so each reference and asset is reachable through the router as well as by browsing; the manifest stays the inventory, and a leaf added to the corpus without an intent is a routing gap to close, not a browse-only tier. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
++**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent, so each reference and asset is reachable through the router as well as by browsing. The one exception is `references/templates/template-guide.md`, which the `ON_DEMAND` level loads on request. The manifest stays the inventory, and a leaf added to the corpus without an intent is a routing gap to close, not a browse-only tier. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
+ 
+ ### Template and Script Sources of Truth
+ 
+@@ -172,7 +172,7 @@ INTENT_SIGNALS = {
+ 
+ RESOURCE_MAP = {
+     "PLAN": [
+-        "references/templates/template-guide.md",
++        "references/workflows/spec-authoring-card.md",
+         "references/workflows/intake-contract.md",
+         "references/validation/template-compliance-contract.md",
+         "assets/level-decision-matrix.md",
+@@ -191,7 +191,7 @@ RESOURCE_MAP = {
+     "IMPLEMENT": [
+         "references/validation/validation-rules.md",
+         "references/validation/template-compliance-contract.md",
+-        "references/templates/template-guide.md",
++        "references/workflows/spec-authoring-card.md",
+         "assets/template-mapping.md",
+         "references/workflows/execution-methods.md",
+         "references/validation/path-scoped-rules.md",
+@@ -231,7 +231,7 @@ RESOURCE_MAP = {
+     ],
+     "INTAKE": [
+         "references/workflows/intake-contract.md",
+-        "references/templates/template-guide.md",
++        "references/workflows/spec-authoring-card.md",
+         "references/validation/template-compliance-contract.md",
+     ],
+     "HOOKS": [
+@@ -269,7 +269,7 @@ RESOURCE_MAP = {
+     ],
+     "TEMPLATE_AUTHORING": [
+         "references/templates/template-style-guide.md",
+-        "references/templates/template-guide.md",
++        "references/workflows/spec-authoring-card.md",
+     ],
+     "GOVERNANCE": [
+         "references/config/environment-variables.md",
+diff --git a/.skilled/skills/system-spec-kit/leaf-aliases.json b/.skilled/skills/system-spec-kit/leaf-aliases.json
+index ac1ae1ac6ee..42b434be499 100644
+--- a/.skilled/skills/system-spec-kit/leaf-aliases.json
++++ b/.skilled/skills/system-spec-kit/leaf-aliases.json
+@@ -209,6 +209,11 @@
+     "leafResourceId": "references/workflows/rename-pattern.md",
+     "diskPath": "references/workflows/rename-pattern.md"
+   },
++  {
++    "workflowMode": "system-spec-kit",
++    "leafResourceId": "references/workflows/spec-authoring-card.md",
++    "diskPath": "references/workflows/spec-authoring-card.md"
++  },
+   {
+     "workflowMode": "system-spec-kit",
+     "leafResourceId": "references/workflows/spec-folder-authoring-checklist.md",
+diff --git a/.skilled/skills/system-spec-kit/leaf-manifest.json b/.skilled/skills/system-spec-kit/leaf-manifest.json
+index b435ee9e773..2725281a7b8 100644
+--- a/.skilled/skills/system-spec-kit/leaf-manifest.json
++++ b/.skilled/skills/system-spec-kit/leaf-manifest.json
+@@ -44,6 +44,7 @@
+         "references/workflows/nested-changelog.md",
+         "references/workflows/quick-reference.md",
+         "references/workflows/rename-pattern.md",
++        "references/workflows/spec-authoring-card.md",
+         "references/workflows/spec-folder-authoring-checklist.md",
+         "references/workflows/spec-folder-write-recipe.md",
+         "references/workflows/worked-examples.md"
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md b/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+index 284795dcd29..e3579b426b2 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+@@ -33,7 +33,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
+ ## 2. PRE-CHECKS
+ 
+ - [ ] Read the Level 1 contract files in an existing packet such as `specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag`.
+-- [ ] Read templates from `.skilled/skills/system-spec-kit/templates/` and the manifest entries under `.skilled/skills/system-spec-kit/templates/`.
++- [ ] Read one rendered example under `.skilled/skills/system-spec-kit/templates/examples/` or a fresh `create.sh` scaffold. Do not copy from a `.tmpl` source: it carries unfilled tokens.
+ - [ ] Verify the required Level 1 docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
+ - [ ] Confirm required anchor counts for the selected level before writing.
+ - [ ] Confirm `_memory.continuity.packet_pointer` is slash-separated and relative to the specs track.
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/spec/README.md b/.skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+index e57f99e396b..e1e9f77efef 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/spec/README.md
++++ b/.skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+@@ -67,6 +67,7 @@ runtime/cli/spec/
+ +-- recommend-level.sh           # Recommend documentation level from task signals
+ +-- archive.sh                   # Move completed or stale spec folders
+ +-- check-template-staleness.sh  # Compare generated docs with templates
+++-- check-card-sync.sh           # Assert the authoring card, router, inventory and checklist agree
+ +-- quality-audit.sh             # Batch quality audit helper
+ +-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
+ +-- is-phase-parent.ts           # Phase-parent detection and manifest health check
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index 92779e0ec7e..cc25dd06ad0 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -794,7 +794,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+@@ -1371,7 +1371,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+@@ -2181,7 +2181,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+@@ -3202,7 +3202,7 @@ contextType: "general"
+ | \`[P]\` | Parallelizable |
+ | \`[B]\` | Blocked |
+ 
+-**Task Format**: \`T### [P?] Description (file path)\`
++**Task Format**: \`T### [P?] Description (file path). Verify: <command> prints <expected output>\`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+diff --git a/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+index a6562ca8b17..f9b191df002 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+@@ -50,7 +50,7 @@ contextType: "general"
+ | `[P]` | Parallelizable |
+ | `[B]` | Blocked |
+ 
+-**Task Format**: `T### [P?] Description (file path)`
++**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+ <!-- /ANCHOR:notation -->
+ 
+ ---
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md b/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+new file mode 100644
+index 0000000000..043b106a73
+--- /dev/null
++++ b/.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+@@ -0,0 +1,172 @@
++---
++title: Spec Authoring Card
++description: The short path a model follows to write one spec packet that passes strict validation with no unfilled tokens.
++trigger_phrases:
++  - "spec authoring card"
++  - "write a spec packet"
++  - "spec folder authoring steps"
++  - "fill a spec scaffold"
++importance_tier: important
++contextType: implementation
++version: 1.0.0.0
++---
++
++# Spec Authoring Card
++
++This card is the short path. Follow the steps in order. Each step has one action, one acceptance line and one command. When the command prints what the acceptance line says, go to the next step.
++
++`references/templates/template-guide.md` is the long guide. Read it only when this card sends you there.
++
++## 1. BOUNDS
++
++You write one packet, in one folder. The folder is the one `create.sh` prints.
++
++Allowed writes: the packet folder and its `scratch/` folder.
++Forbidden: `git commit`, `git push`, `git checkout`, `git switch`, `git branch`, `git reset`, `git stash`, `generate-context.js`, `/speckit:save`. Do not edit `.skilled/`, another packet or a source file. Do not run `create.sh` twice.
++
++Acceptance: you can name the packet folder and the one command you will run to check it.
++Verify: `pwd` prints the repository root, and `ls <packet folder>` lists `spec.md`.
++
++## 2. PICK THE LEVEL
++
++Run the level helper first.
++
++```bash
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --loc <lines> --files <count>
++```
++
++Use the level it prints. Do not raise the level yourself. The level decides which files the packet needs.
++
++| Level | Files the packet needs |
++|-------|------------------------|
++| 1 | `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` once implementation starts |
++| 2 | the Level 1 files plus `acceptance-criteria.md` |
++| 3 | the Level 2 files plus the architecture sections and a decision record when one is written |
++
++Acceptance: the level in the scaffold header matches the level the helper printed.
++Verify: `rg -n 'SPECKIT_LEVEL' <packet folder>/spec.md` prints one line with that level.
++
++## 3. SCAFFOLD
++
++Create the packet with one command. Keep `--skip-branch` so no git state changes.
++
++```bash
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level <level> --track <track> --short-name <two-to-four-words> "<one sentence>"
++```
++
++The command prints the folder it made. Use that path for every later command.
++
++Acceptance: the folder holds `spec.md`, `plan.md`, `tasks.md` and `scratch/`.
++Verify: `ls <packet folder>` lists those names.
++
++## 4. READ BEFORE YOU WRITE
++
++Open one rendered example at the same level under `.skilled/skills/system-spec-kit/templates/examples/level-<level>/`. Read `spec.md` and `tasks.md`.
++
++Do not copy from a `.tmpl` file. A `.tmpl` file carries tokens and gate markers. The examples are filled and safe to imitate for shape.
++
++Each section of your scaffold carries a fill note. The note says what that section needs. Read the note before you write the section. The note is the contract for that section.
++
++Acceptance: you can say, in one sentence, what the first section of `spec.md` must contain.
++Verify: `sed -n '1,40p' <packet folder>/spec.md` shows the fill notes.
++
++## 5. ONE ACTION PER SECTION
++
++Each section does one job. Write one idea per paragraph. Do not repeat the same fact in two sections.
++
++- `spec.md` states the problem, the scope, the requirements and the success criteria.
++- `plan.md` states the approach, the files to change, the test plan and the dependencies.
++- `tasks.md` states the ordered actions.
++- `implementation-summary.md` states what changed and how it was checked. Write it last.
++
++Do not put a task list in `spec.md`. Do not put requirements in `plan.md`.
++
++Acceptance: every heading in the packet has content under it, and no heading holds content that belongs to another heading.
++Verify: `rg -n '^## ' <packet folder>/spec.md <packet folder>/plan.md` lists the headings you filled.
++
++## 6. THE PLAN SHAPE
++
++A plan has 3 or 4 steps. More than 4 steps means the feature is too large for one packet. Split it or raise the level.
++
++Each step carries three lines:
++1. What the step does.
++2. The acceptance line: what is true when the step is done.
++3. The verify command: the command a reader runs, and the text it prints.
++
++```markdown
++### Step 1: Add the flag parser
++
++Acceptance: `--quiet` is accepted and the default output is unchanged.
++Verify: `bash script.sh --quiet` prints one line.
++```
++
++Acceptance: `plan.md` holds 3 or 4 steps, and each step has an acceptance line and a verify command.
++Verify: `rg -c '^### Step ' <packet folder>/plan.md` prints 3 or 4.
++
++## 7. TASK LINES
++
++Every task line has one action, one file and one verify clause.
++
++```markdown
++- [ ] T001 Add the quiet flag to the option parser (`runtime/cli/spec/script.sh`). Verify: `bash runtime/cli/spec/script.sh --quiet` prints one line.
++```
++
++Rules:
++- One action per task.
++- Name the file in parentheses.
++- End with `Verify:` and the command plus its expected output.
++- Put the tasks in the order you will run them.
++- Mark a task `[x]` only after its verify command printed the expected output.
++
++Acceptance: every task line ends with a `Verify:` clause.
++Verify: `rg -c 'Verify: ' <packet folder>/tasks.md` and `rg -c '^- \[ \] T[0-9]' <packet folder>/tasks.md` print the same number.
++
++## 8. FILL EVERY TOKEN
++
++A scaffold stamped `v2.3` or later carries tokens. A token starts with `[YOUR_VALUE_HERE:` and ends at the next closing bracket. Replace the whole token, brackets included, with real content. Do not leave a token in a finished packet.
++
++If you cannot answer a question the token asks, write `UNKNOWN` in its place and write an open question in `goal.md` section 4.
++
++A token in a packet whose `spec.md` says `Status: Draft` is a warning, so strict validation can pass with tokens still in the file. A token in any other status is an error. Do not use the warning as permission. Count the tokens.
++
++Acceptance: the count is 0.
++Verify: `rg -o '\[YOUR_VALUE_HERE: ' <packet folder>/spec.md <packet folder>/plan.md <packet folder>/tasks.md | wc -l` prints 0.
++
++## 9. VALIDATE
++
++Run the validator before you claim the packet is done.
++
++```bash
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict
++```
++
++The last line must be `RESULT: PASSED`. Read the summary line above it. `Errors: 0` is the pass condition. Warnings do not block the pass, but read them.
++
++When it fails, read the first failing rule. Fix that rule only. Run the command again. Stop after three fixes on the same rule and write the rule and the error in the packet's `goal.md`.
++
++Acceptance: the command prints `RESULT: PASSED` and `Errors: 0`.
++Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet folder> --strict | tail -1` prints `RESULT: PASSED`.
++
++## 10. CLOSE
++
++A packet is closeable when:
++- every required file exists for its level
++- every token is filled, or replaced with `UNKNOWN` and an open question in `goal.md`
++- `tasks.md` has no `[B]` line
++- `implementation-summary.md` names the files that changed
++- `validate.sh --strict` prints `RESULT: PASSED`
++
++Acceptance: all five are true.
++Verify: run the five commands in this card in order, then run the validator once more. The last line prints `RESULT: PASSED`.
++
++## 11. WHEN TO STOP AND ASK
++
++Stop and write the question in `goal.md` when:
++- two documents in the packet state opposite rules
++- a command in the plan would write outside the packet folder
++- the validator fails on the same rule after three fixes
++- the feature needs more than 4 plan steps
++
++Acceptance: the question is written in `goal.md` as `Open question:` under the rule or command that raised it.
++Verify: `rg -n 'Open question:' <packet folder>/goal.md` prints at least one line.
++Do not guess. A written question is a finished step. A guess is a defect.
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh b/.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+new file mode 100755
+index 0000000000..eb06090b46
+--- /dev/null
++++ b/.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+@@ -0,0 +1,120 @@
++#!/usr/bin/env bash
++# ───────────────────────────────────────────────────────────────
++# COMPONENT: CHECK CARD SYNC
++# ───────────────────────────────────────────────────────────────
++# The authoring card is only useful when four surfaces agree: the card file,
++# the router that loads it, the leaf inventory that lists it, and the checklist
++# that sends a reader to a filled example. Each surface can be edited alone,
++# and a reader then follows a path the others do not describe. This guard
++# reads all four and fails on the first disagreement.
++#
++# Read-only. It writes no file and prints one PASS or FAIL line per check.
++#
++# Usage: check-card-sync.sh [--skill-root <path>]
++# Exit codes: 0 every check passed, 1 one check failed, 2 bad invocation.
++# ───────────────────────────────────────────────────────────────
++
++set -euo pipefail
++
++SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
++SKILL_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
++
++while [ "$#" -gt 0 ]; do
++    case "$1" in
++        --skill-root)
++            [ "$#" -ge 2 ] || { echo "check-card-sync.sh: --skill-root needs a path" >&2; exit 2; }
++            SKILL_ROOT="$2"
++            shift 2
++            ;;
++        --help|-h)
++            sed -n '2,14p' "${BASH_SOURCE[0]}"
++            exit 0
++            ;;
++        *)
++            echo "check-card-sync.sh: unknown option: $1" >&2
++            exit 2
++            ;;
++    esac
++done
++
++CARD_REL="references/workflows/spec-authoring-card.md"
++CARD="$SKILL_ROOT/$CARD_REL"
++ROUTER="$SKILL_ROOT/SKILL.md"
++LEAVES="$SKILL_ROOT/leaf-manifest.json"
++ALIASES="$SKILL_ROOT/leaf-aliases.json"
++CHECKLIST="$SKILL_ROOT/references/workflows/spec-folder-authoring-checklist.md"
++MAX_LINES=260
++STATUS=0
++
++pass() { printf 'PASS %s\n' "$1"; }
++fail_check() { printf 'FAIL %s: %s\n' "$1" "$2"; STATUS=1; }
++
++# 1. The card exists and stays short enough to read in one pass.
++if [ ! -f "$CARD" ]; then
++    fail_check card-exists "missing $CARD_REL"
++else
++    LINES=$(wc -l < "$CARD" | tr -d ' ')
++    if [ "$LINES" -le "$MAX_LINES" ]; then
++        pass "card-exists ($LINES lines)"
++    else
++        fail_check card-length "$LINES lines, limit $MAX_LINES"
++    fi
++fi
++
++# 2. Every authoring intent loads the card.
++for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING; do
++    if awk -v intent="$INTENT" '
++        $0 == "    \"" intent "\": [" { inside = 1; next }
++        inside && $0 == "    ]," { inside = 0 }
++        inside && /spec-authoring-card\.md/ { found = 1 }
++        END { exit(found ? 0 : 1) }
++    ' "$ROUTER"; then
++        pass "intent-$INTENT"
++    else
++        fail_check "intent-$INTENT" "does not load $CARD_REL"
++    fi
++done
++
++# 3. The long guide is listed only in the on-demand level, not in an intent list.
++GUIDE_IN_MAP=$(awk '
++    /^RESOURCE_MAP = \{/ { map = 1; next }
++    map && /^\}$/ { map = 0 }
++    map && /"references\/templates\/template-guide\.md"/ { n++ }
++    END { print n + 0 }
++' "$ROUTER")
++GUIDE_ON_DEMAND=$(awk '
++    /"ON_DEMAND": \[/ { od = 1; next }
++    od && /^    \],$/ { od = 0 }
++    od && /"references\/templates\/template-guide\.md"/ { n++ }
++    END { print n + 0 }
++' "$ROUTER")
++if [ "$GUIDE_IN_MAP" -eq 0 ] && [ "$GUIDE_ON_DEMAND" -eq 1 ]; then
++    pass guide-on-demand-only
++else
++    fail_check guide-on-demand-only "in intent lists: $GUIDE_IN_MAP, in ON_DEMAND: $GUIDE_ON_DEMAND"
++fi
++
++# 4. The inventory lists the card and the identity projection agrees.
++if jq -e --arg p "$CARD_REL" '.modes[].leaves | index($p) != null' "$LEAVES" > /dev/null; then
++    pass leaf-manifest
++else
++    fail_check leaf-manifest "does not list $CARD_REL"
++fi
++if jq -e --arg p "$CARD_REL" '[.[] | select(.diskPath == $p)] | length > 0' "$ALIASES" > /dev/null; then
++    pass leaf-aliases
++else
++    fail_check leaf-aliases "does not list $CARD_REL"
++fi
++
++# 5. The checklist sends a reader to a filled example, not the gated source root.
++if rg -q 'Read templates from `\.skilled/skills/system-spec-kit/templates/`' "$CHECKLIST"; then
++    fail_check checklist "still sends a reader to the templates root"
++else
++    pass checklist
++fi
++
++if [ "$STATUS" -ne 0 ]; then
++    echo "CARD SYNC FAILED"
++    exit 1
++fi
++echo "CARD SYNC OK"
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts b/.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts
+new file mode 100644
+index 0000000000..2a44bdae49
+--- /dev/null
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts
+@@ -0,0 +1,16 @@
++import { execFileSync } from 'node:child_process';
++import path from 'node:path';
++import { fileURLToPath } from 'node:url';
++
++import { describe, expect, it } from 'vitest';
++
++const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
++const SKILL_ROOT = path.resolve(TEST_DIR, '..', '..', '..');
++const GUARD = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'check-card-sync.sh');
++
++describe('authoring card sync', () => {
++  it('keeps the card, the router, the inventory and the checklist in agreement', () => {
++    const output = execFileSync('bash', [GUARD], { cwd: SKILL_ROOT, encoding: 'utf8' });
++    expect(output).toContain('CARD SYNC OK');
++  });
++});
