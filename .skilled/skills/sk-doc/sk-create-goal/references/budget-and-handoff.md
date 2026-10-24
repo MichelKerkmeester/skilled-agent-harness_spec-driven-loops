@@ -8,7 +8,7 @@ trigger_phrases:
   - "objective slice"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 # Goal Budget and Handoff
 
@@ -67,6 +67,8 @@ The 4,000-character limit is measured on the durable slice, with comments and an
 
 A goal filled from an older template can still carry a blockquote under its title, an `Operator copy` section or a criteria introduction. `AGENTS.md` overrides any resend wording in them. Remove them the next time the parent is amended or cut, as section 3 step 3 says.
 
+On Claude Code, send the `chat_slice` inside one fenced code block that holds the slice and nothing else. The operator sets the goal by typing the native `/goal` command, and the block gives them a copy button and byte-exact text that markdown rendering cannot alter. Open it with a plain `text` fence and put no prose inside it. Make the fence longer than the longest run of backticks in the slice, so a slice that holds three backticks opens with four or more backticks or with `~~~`. The fence is presentation around the slice and adds no content, so every rule above still holds for what sits inside it.
+
 The `objective_slice` is a different projection, assembled for a runtime bind, and it is never pasted in chat. It starts with a packet pointer and adds standard binding and precedence text when the goal has a binding anchor. It then copies checked completion criteria. It does not contain the authored objective or decision table. ([objective projection, lines 112 to 124](../../../../hooks/goal/lib/goal-slice.cjs))
 
 After a parent goal changes, print the current packet report. This mode prints `chat_slice` and stops. The runtime that owns session state handles any later handoff. The mode does not change session state.
@@ -79,8 +81,8 @@ The table records each runtime's role and what the repository evidence can estab
 
 | Runtime | Surface role | Evidence limit |
 |---|---|---|
-| Claude Code | Uses the native host goal command. The spec-kit workflow hands the stripped durable slice to the operator. | Repository documentation records operator confirmation. Recheck host behavior in a live Claude Code session. ([goal hooks README, lines 81 to 84](../../../../hooks/goal/README.md) and [goal plugin, lines 159 to 160](../../../../hooks/goal/goal-plugin.md)) |
-| Codex | Uses the native host goal command and the same operator handoff as Claude Code. | Repository documentation records operator confirmation. Recheck host behavior in a live Codex session. ([goal hooks README, lines 81 to 84](../../../../hooks/goal/README.md) and [goal plugin, lines 159 to 160](../../../../hooks/goal/goal-plugin.md)) |
+| Claude Code | Uses the native host goal command. The spec-kit workflow hands the stripped durable slice to the operator as one fenced code block that holds the slice and nothing else. | Repository documentation records operator confirmation. Recheck host behavior in a live Claude Code session. ([goal hooks README, lines 81 to 84](../../../../hooks/goal/README.md) and [goal plugin, lines 159 to 160](../../../../hooks/goal/goal-plugin.md)) |
+| Codex | Uses the native host goal command and the same operator handoff as Claude Code, without the fenced block, which is a Claude Code rule. | Repository documentation records operator confirmation. Recheck host behavior in a live Codex session. ([goal hooks README, lines 81 to 84](../../../../hooks/goal/README.md) and [goal plugin, lines 159 to 160](../../../../hooks/goal/goal-plugin.md)) |
 | OpenCode | A native plugin owns per-session goal files and provides `/goal-opencode` tools. | The repository documents the plugin and command. A live OpenCode session confirms host loading. ([goal hooks README, lines 75 and 80](../../../../hooks/goal/README.md) and [goal plugin, lines 155 and 166](../../../../hooks/goal/goal-plugin.md)) |
 | Pi | A native session-bound extension registers `/goal-pi` and supplies the runtime session identity. | The repository documents extension registration. A live Pi session confirms host loading. ([goal hooks README, lines 75 and 77](../../../../hooks/goal/README.md) and [goal plugin, lines 156 and 168](../../../../hooks/goal/goal-plugin.md)) |
 | Cursor | The prompt command reads a packet with `/goal-cursor packet <path>`. `packet-log` is a separate append action. | The read command needs no session identity. The hook's model visibility is recorded evidence, not an end-to-end guarantee. ([goal hooks README, lines 75 and 78](../../../../hooks/goal/README.md) and [Cursor command, lines 10 and 14 to 19](../../../../../.cursor/commands/goal-cursor.md)) |

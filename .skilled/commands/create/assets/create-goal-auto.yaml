@@ -236,7 +236,7 @@ workflow:
       asked for it, report the finding, print no chat_slice and end with STATUS=FAIL.
     steps:
       step_print_slice:
-        action: "Print the packet report's chat_slice for the operator to set or resend. It is not a session bind, and this workflow changes no session state."
+        action: "Print the packet report's chat_slice for the operator to set or resend. On Claude Code, print it as one fenced code block that holds the slice and nothing else. It is not a session bind, and this workflow changes no session state."
       step_stop:
         action: "Stop after the chat slice is printed."
 

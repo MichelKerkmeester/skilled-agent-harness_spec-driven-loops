@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/013-claude-goal-copy-block",
+  "spec_folder": "sk-doc/060-create-goal-mode/013-claude-goal-copy-block",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude goal copy block",
+      "phase 13 claude goal copy block",
+      "goal chat slice fenced block",
+      "copyable goal slice",
+      "claude goal copy block plan",
+      "claude goal copy block tasks",
+      "claude goal copy block implementation summary"
+    ],
+    "key_topics": [
+      "claude",
+      "goal",
+      "copy",
+      "block",
+      "phase",
+      "chat",
+      "slice",
+      "fenced",
+      "copyable",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
+      ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/commands/create/assets/create-goal-auto.yaml",
+      ".skilled/commands/create/assets/create-goal-presentation.txt",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+      ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/top-level-goal.md",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "budget-and-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-goal-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "top-level-goal.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/top-level-goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Put",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Claude Code sets a goal when the operator types the native `/goal` command",
+    "created_at": "2026-10-24T16:17:08Z",
+    "last_save_at": "2026-10-24T16:25:40.591Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6de945e7c34d5e4b455d5b789d015ffb56cb8dba5c449b9346889c9c6654690",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "419d3c2caacdf2f7d6b1e3381308db49bdb666e3bb7288ecd37a31bba84db70c",
+      "plan.md": "19d848746a851450b72ce71ed4eb9c9548963a24a3c7f55161a8273acdf993e7",
+      "tasks.md": "1a3195904dc7e060ebc8525c6dea32735449dcfc1aa9938adc6a2d6d5677e48e",
+      "implementation-summary.md": "8962a8fe0339f815659e8d07119acbcc5283db88c145ae967c9b972b1c3e8e5e"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "Claude Code CLI Orchestrator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-claude-code cross-AI delegation skill."
-version: 1.5.0.33
+version: 1.5.1.0
 ---
 
 # Claude Code CLI Orchestrator: Manual Testing Playbook
@@ -655,7 +655,7 @@ Confirm the filtered Claude command tree excludes the OpenCode `opencode-goal` r
 
 Prompt: Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.
 
-Expected signals: No `goal/claude` adapter or Claude goal registration exists. `.claude/commands` is a filtered real directory, `goal-opencode.md` is absent, a shared command is linked, and the mirror check passes.
+Expected signals: No `goal/claude` adapter or Claude goal registration exists. `.claude/commands` is a filtered real directory, `goal-opencode.md` is absent, a shared command is linked, and the mirror check passes. The AGENTS.md, speckit-plan.yaml and budget-and-handoff.md files all state that on Claude Code the chat slice is sent as one fenced code block with nothing else inside it.
 
 #### Test Execution
 

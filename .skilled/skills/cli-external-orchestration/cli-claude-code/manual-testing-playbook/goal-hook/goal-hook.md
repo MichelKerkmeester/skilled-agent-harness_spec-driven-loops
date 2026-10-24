@@ -1,7 +1,7 @@
 ---
 title: "CC-029 -- Claude Code repository goal discovery boundary"
 description: "Validates that Claude Code cannot discover the OpenCode-only goal command through this repository."
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # CC-029 -- Claude Code repository goal discovery boundary
@@ -18,11 +18,11 @@ The runtime-neutral goal core does not register a Claude Code adapter or command
 - Real user request: `Set a goal for this Claude Code session.`
 - Prompt: `Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.`
 - Expected execution process: inspect the goal adapter tree -> verify `.claude/commands` is a real filtered directory -> verify the OpenCode goal command is absent while a shared command is symlinked -> run the mirror check -> read the runtime matrix and routing rule.
-- Exact command sequence: run `test ! -e .skilled/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; then run `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` and scan `.claude/settings.json` for goal registrations.
-- Expected signals: no `goal/claude` adapter or Claude goal registration; the Claude command root is not a whole-directory symlink; `goal-opencode.md` is absent; a shared command is linked; the mirror check passes.
-- Evidence requirements: capture every path-check and mirror-check exit status, the registration scan, and the exact README and workflow-asset routing lines.
+- Exact command sequence: run `test ! -e .skilled/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; then run `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` and scan `.claude/settings.json` for goal registrations. Then run `rg -n "one fenced code block that holds the slice and nothing else" AGENTS.md .skilled/commands/speckit/assets/speckit-plan.yaml .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md`.
+- Expected signals: no `goal/claude` adapter or Claude goal registration; the Claude command root is not a whole-directory symlink; `goal-opencode.md` is absent; a shared command is linked, and the mirror check passes. The `rg` check finds, in all three files, the rule that on Claude Code the chat slice is sent as one fenced code block with nothing else inside it.
+- Evidence requirements: capture every path-check and mirror-check exit status, the registration scan, the `rg` output for the fence rule, and the exact README and workflow-asset routing lines.
 - Desired user-visible outcome: Repository-discovery PASS plus an explicit statement that live product-native behavior remains unverified.
-- Pass/fail: PASS when the filter, generator, source, config, and docs agree. FAIL if the OpenCode command enters Claude discovery, a Claude adapter/registration appears, or docs claim unverified live support.
+- Pass/fail: PASS when the filter, generator, source, config, and docs agree and all three files state the Claude Code fence rule. FAIL if the OpenCode command enters Claude discovery, a Claude adapter/registration appears, docs claim unverified live support, or any of the three files lacks the fence rule.
 - Failure triage: treat a new adapter or registration as a goal-contract change; treat prose-only disagreement as documentation drift and update it only after source and registration checks.
 
 ---
@@ -35,9 +35,9 @@ Run the exact path and mirror checks from the scenario contract, scan `.claude/s
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
-|| CC-029 | Claude Code repository goal discovery boundary | Repository support-truth audit | `Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.` | `test ! -e .skilled/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; run `sync-runtime-mirrors.cjs --check`; scan `.claude/settings.json` | No adapter/registration; filtered real root; OpenCode goal absent; shared link present; mirror check green | Path and mirror exit statuses plus exact matrix/policy lines | PASS when filter, generator, source, config, and docs agree | Treat a leaked command or new adapter as a contract change requiring native identity, management, and tests before updating prose |
+|| CC-029 | Claude Code repository goal discovery boundary | Repository support-truth audit | `Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.` | `test ! -e .skilled/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; run `sync-runtime-mirrors.cjs --check`; scan `.claude/settings.json`; run `rg -n "one fenced code block that holds the slice and nothing else" AGENTS.md .skilled/commands/speckit/assets/speckit-plan.yaml .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md` | No adapter/registration; filtered real root; OpenCode goal absent; shared link present, mirror check green, and the fence rule found in all three files | Path and mirror exit statuses, the `rg` output, plus exact matrix/policy lines | PASS when filter, generator, source, config, and docs agree and all three files state the Claude Code fence rule | Treat a leaked command or new adapter as a contract change requiring native identity, management, and tests before updating prose |
 
-This scenario proves repository discovery only: it says nothing about where a host's goal state lives or whether a headless invocation can reach it. That both hosts ship the feature is settled separately. **Confirmed by the operator on 2026-09-12: Claude Code and Codex each expose a native goal command.** It is host behaviour rather than a repository contract, so a later host version can change it and nothing here would notice; re-confirm when either CLI is upgraded. Claude Code keeps its native host goal command by design; the packet goal reaches it through the speckit workflows, which render the parent `goal.md` durable slice with the frontmatter stripped for the operator to set, and through the `GOAL POSTURE RULE` block in `AGENTS.md`.
+This scenario proves repository discovery only: it says nothing about where a host's goal state lives or whether a headless invocation can reach it. That both hosts ship the feature is settled separately. **Confirmed by the operator on 2026-09-12: Claude Code and Codex each expose a native goal command.** It is host behaviour rather than a repository contract, so a later host version can change it and nothing here would notice; re-confirm when either CLI is upgraded. Claude Code keeps its native host goal command by design; the packet goal reaches it through the speckit workflows, which render the parent `goal.md` durable slice with the frontmatter stripped for the operator to set, and through the `GOAL POSTURE RULE` block in `AGENTS.md`. On Claude Code the slice arrives as one fenced code block with nothing else inside it, so the operator can copy it into `/goal` whole. A live session shows it: ask Claude Code to resend the goal and confirm one block holds the slice and no prose sits inside the fence.
 
 ---
 
@@ -46,6 +46,7 @@ This scenario proves repository discovery only: it says nothing about where a ho
 || File | Role |
 ||---|---|
 || `../../../../../commands/speckit/assets/speckit-plan.yaml` | Runtime routing authority (`goal_prompting.set_mutation.dispatch_by_runtime` and `packet_goal.bind_by_runtime`). |
+|| `../../../../sk-doc/sk-create-goal/references/budget-and-handoff.md` | Full rule for what a sent parent goal contains, including the Claude Code fence (section 4). |
 || `../../../../../hooks/goal/README.md` | Current support matrix and sibling-core boundary. |
 || `../../../../../hooks/goal/lib/goal-core.cjs` | Scoped core that has no Claude caller. |
 || `../../../../../commands/goal-opencode.md` | OpenCode-only command, not a Claude Code fallback. |
