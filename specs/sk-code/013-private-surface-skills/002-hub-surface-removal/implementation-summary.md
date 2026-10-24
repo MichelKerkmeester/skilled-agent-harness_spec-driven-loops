@@ -146,7 +146,9 @@ Worker reports record T039-T104 and T107 proofs, with T103 partial. T096-T102 su
 
 | Deviation | Why it stands |
 |-----------|---------------|
-| T103 is partial | The advisor returns sk-code first, but the compiled route is still the legacy sentinel pending the T108 manifest refresh |
+| T103 closed at commit time | After the advisor rebuild and the sk-code manifest refresh, the proof prints `sk-code sk-code-skilled` |
 | T081 and T094 expected counts | D6 keeps five mcp-obsidian records; corrected scans find zero removed sk-code paths |
 | T104 archive count | One diff belongs to another packet's activation manifest; the phase-scoped result is 20, 0 and 0 |
+| Compiled skill graph left out of the phase commit | CI's Routing Registry Drift Guard failed on `e3beac65f4`: the tracked `skill-graph.json` still carried sk-code's six surface signals. Follow-up `1218b94938` regenerated it with `skill_graph_compiler.py --export-json`; only the sk-code signal list (78 to 72) and the timestamp changed, and `skill-graph-freshness.cjs --strict` exits 0 |
+| Push gates authorized | The pre-commit mirror-parity gate and the pre-push compiled-routing gate failed only on another session's uncommitted cli-opencode edits, outside this commit, so their one-time skips were used; the mass-deletion guard was authorized because the 245 deletions are the phase's purpose under D1 |
 <!-- /ANCHOR:deviations -->
