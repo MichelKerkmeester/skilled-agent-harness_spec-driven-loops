@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.10.0
+version: 2.7.11.0
 ---
 
 # System Spec Kit
@@ -61,6 +61,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Packet-local changelogs** | `changelog/` history written beside packet roots and direct child phases at closeout |
 | **Goal documents** | an optional `goal.md` addon binding a session to a durable objective, gated by a character budget |
 | **Validation** | the 41-rule registry with three strict-only rules gated behind `--strict` |
+| **Authoring** | one short card as the default load for the four writing intents, a placeholder gate that warns while a packet is Draft, and two read-only guards for examples and card sync |
 
 ### Continuity and Retrieval
 
@@ -534,7 +535,7 @@ There is no paraphrase matching to fall back to. Retrieval is lexical.
 | Spec folder fails validation | run `validate.sh --verbose` and read each failing rule |
 | Retrieval seems wrong | rerun the lookup and read the exit status: `0` hit, `1` clean miss, `2` broken |
 | Session context lost after crash | use `/speckit:resume` to select the fresher folder-local source |
-| Placeholder check fails | run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values |
+| Placeholder check fails | run `check-placeholders.sh` and replace every `[YOUR_VALUE_HERE: ...]` token. A Draft packet may warn and still pass strict |
 | Stale results after save | rerun `runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Too many near-duplicate results | check that the interference penalty is active in feature flags |
 | Trigger index absent in a fresh clone | it is committed at `runtime/data/trigger-index.json`; a missing file means a bad checkout, not a build step |
@@ -592,7 +593,7 @@ A: SKILL.md contains instructions for AI agents: when to activate, routing rules
 
 **Q: How do I upgrade a Level 1 folder to Level 2 after the fact?**
 
-A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new placeholder values that need filling.
+A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new value tokens that need filling.
 
 ```bash
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
@@ -620,7 +621,9 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[pr
 | `recommend-level.sh` | analyze scope and risk to recommend the right level |
 | `calculate-completeness.sh` | calculate spec folder completeness as a percentage |
 | `check-completion.sh` | verify all completion criteria are met |
-| `check-placeholders.sh` | find remaining `[PLACEHOLDER]` values after a level upgrade |
+| `check-placeholders.sh` | find remaining `[YOUR_VALUE_HERE: ...]` tokens after a level upgrade |
+| `check-example-drift.sh` | report an example whose anchors or description drifted from its template |
+| `check-card-sync.sh` | report a disagreement between the authoring card, the router, the leaf inventory and the checklist |
 | `check-template-staleness.sh` | detect templates that need regeneration |
 | `progressive-validate.sh` | progressive validation for in-progress work |
 | `quality-audit.sh` | run a quality audit on spec folder content |
@@ -665,6 +668,7 @@ The manual testing playbook runs every scenario behind these checks.
 | [`references/workflows/spec-folder-write-recipe.md`](./references/workflows/spec-folder-write-recipe.md) | step-by-step recipe for a spec folder that passes strict validation on the first try |
 | [`references/workflows/spec-folder-authoring-checklist.md`](./references/workflows/spec-folder-authoring-checklist.md) | companion checklist for the Level contract, continuity frontmatter and metadata files |
 | [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 41-rule registry is authoritative |
+| [`references/workflows/spec-authoring-card.md`](./references/workflows/spec-authoring-card.md) | the short authoring path the four writing intents load first |
 | [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |
 | [`references/config/environment-variables.md`](./references/config/environment-variables.md) | full environment variable reference |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |

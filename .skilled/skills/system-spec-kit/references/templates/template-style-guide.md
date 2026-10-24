@@ -8,7 +8,7 @@ trigger_phrases:
   - "placeholder syntax types"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Template Style Guide - Formatting Standards
@@ -93,6 +93,8 @@ Core spec templates use a markdown table for the METADATA section, as rendered b
 | `[FORMAT: options]` | Constrained format | `[FORMAT: YYYY-MM-DD]` |
 | `[NEEDS CLARIFICATION: question]` | Multi-choice questions | `[NEEDS CLARIFICATION: (a) option (b) option]` |
 | `[OPTIONAL: description]` | Optional fields | `[OPTIONAL: link to spec.md]` |
+
+A scaffold stamped v2.3 or later ships each hint as a `[YOUR_VALUE_HERE: ...]` token. Replace the whole token, brackets included, with real content. While `spec.md` has the status Draft an unfilled token is a warning and strict validation can still pass. At every other status it is an error. A doc with an older stamp keeps the error it always had.
 
 ### Usage Guidelines
 
@@ -249,7 +251,8 @@ The `validate.sh` script enforces these rules:
 | Required files | Level-appropriate files exist | ERROR |
 | Frontmatter syntax | Valid YAML | ERROR |
 | implementation-summary.md | Exists for completed specs | ERROR (Level 1+) |
-| Placeholder completion | No unfilled `[YOUR_VALUE_HERE:]` | ERROR |
+| Placeholder completion while Draft | No unfilled `[YOUR_VALUE_HERE:]` token in a v2.3 doc | WARNING |
+| Placeholder completion after Draft | No unfilled `[YOUR_VALUE_HERE:]` token | ERROR |
 
 ### Manual Checks
 

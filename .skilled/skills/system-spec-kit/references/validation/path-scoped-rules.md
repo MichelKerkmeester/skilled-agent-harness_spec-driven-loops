@@ -8,7 +8,7 @@ trigger_phrases:
   - "location-based validation"
 importance_tier: important
 contextType: implementation
-version: 2.1.0.39
+version: 2.1.1.0
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation
@@ -77,7 +77,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | Rule ID              | Severity | Description                                         |
 | -------------------- | -------- | --------------------------------------------------- |
 | `FILE_EXISTS`        | ERROR    | Required files present for documentation level      |
-| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders       |
+| `PLACEHOLDER_FILLED` | ERROR or WARNING | No unfilled `[YOUR_VALUE_HERE:]` tokens. A v2.3 doc warns while Draft |
 | `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
 | `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs and nesting in spec docs (spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
 
@@ -85,7 +85,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### Placeholder Patterns Detected
 
-- `[YOUR_VALUE_HERE: ...]` - Template placeholder, must be filled
+- `[YOUR_VALUE_HERE: ...]` - Template token, must be filled. In a doc stamped v2.3 or later it is a warning while `spec.md` has the status Draft, and an error at any other status
 - `[NEEDS_CLARIFICATION: ...]` / `[NEEDS CLARIFICATION: ...]` - Ambiguity marker, must be resolved
 - `[OPTIONAL: ...]` - NOT flagged (intentionally optional content)
 

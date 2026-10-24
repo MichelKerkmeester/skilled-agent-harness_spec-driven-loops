@@ -1,0 +1,16 @@
+     1	import { execFileSync } from 'node:child_process';
+     2	import path from 'node:path';
+     3	import { fileURLToPath } from 'node:url';
+     4	
+     5	import { describe, expect, it } from 'vitest';
+     6	
+     7	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+     8	const SKILL_ROOT = path.resolve(TEST_DIR, '..', '..', '..');
+     9	const GUARD = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'check-card-sync.sh');
+    10	
+    11	describe('authoring card sync', () => {
+    12	  it('keeps the card, the router, the inventory and the checklist in agreement', () => {
+    13	    const output = execFileSync('bash', [GUARD], { cwd: SKILL_ROOT, encoding: 'utf8' });
+    14	    expect(output).toContain('CARD SYNC OK');
+    15	  });
+    16	});

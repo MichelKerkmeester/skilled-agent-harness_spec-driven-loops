@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 7 is planned and not started: it will add eight manual playbook scenarios, four feature catalog entries and the doc edits for the placeholder gate, the fill guidance, the drift guard and the authoring card."
+description: "Phase 7 added eight manual playbook scenarios, four feature catalog leaves with root entries and 14 exact edits to six docs, then closed with both package validators at zero violations and the suite unchanged."
 trigger_phrases:
   - "playbook catalog readme alignment implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment"
-    last_updated_at: "2026-10-23T15:55:00Z"
-    last_updated_by: "author"
-    recent_action: "Wrote playbook catalog readme alignment docs"
-    next_safe_action: "Continue with phase 008 plan and tasks"
+    last_updated_at: "2026-10-24T23:30:00Z"
+    last_updated_by: "conductor"
+    recent_action: "Closed phase 007"
+    next_safe_action: "Start phase 008"
     blockers: []
     key_files:
       - "specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/tasks.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,8 +37,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-playbook-catalog-readme-alignment |
-| **Status** | Draft |
-| **Completed** | Not started |
+| **Status** | Complete |
+| **Completed** | 2026-10-24 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,17 +47,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This summary is rewritten when the phase closes.
+The phase copied eight scenario texts, four catalog leaves and 14 doc edits from `plan.md` by script, added the two index layers, and closed with both package validators green and the suite unchanged.
 
 ### Phase 7: playbook-catalog-readme-alignment
 
-When it runs, this phase adds eight manual playbook scenarios in a new `template-authoring/` category, four feature catalog leaves with matching root entries, and the edits that align two READMEs and four reference files with the behavior phases 2 to 5 create. The planning session read the finished docs of phases 2 to 6 and froze every scenario text, every catalog text and every old and new doc string in `plan.md`, so an executor copies text and does not judge it.
+Eight scenarios (IDs 476 to 483) sit in the new `manual-testing-playbook/template-authoring/` category, each with the five required sections and one Provenance line. Four leaves under `feature-catalog/tooling-and-scripts/` (versioned placeholder gate, template section fill guidance, example drift guard, spec authoring card) each have one root entry. Two READMEs and four reference files now describe the value token, the Draft warning, the fill lines, the authoring card and the two guards, and `template-guide.md` was verified and not edited.
+
+Scenario 483 changed before it was copied. The frozen text named a DeepSeek worker through an OpenCode Task subagent, and the cli-pi DeepSeek route had hit its daily billing limit. The worker is now cli-devin swe-2-max with the pre-resolution block phase 5 used, step 3 asks the worker to describe the `--quiet` flag and not build it, and a free-tier rate-limit reply counts as a retry. The 18 changed fragments are in `goal.md` section 4.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Created | Phase plan, written before execution |
+| `manual-testing-playbook/template-authoring/*.md` (8 files) | Created | Scenarios 476 to 483 |
+| `manual-testing-playbook/manual-testing-playbook.md` | Modified | Category bullet and section 7.9 with eight rows |
+| `feature-catalog/tooling-and-scripts/*.md` (4 files) | Created | One leaf per surface |
+| `feature-catalog/feature-catalog.md` | Modified | Four root entries |
+| `README.md`, `templates/README.md` | Modified | Seven places aligned with the token rule, the card and the guards |
+| `references/validation/validation-rules.md`, `references/validation/path-scoped-rules.md`, `references/templates/template-style-guide.md`, `references/workflows/quick-reference.md` | Modified | Qualify the placeholder severity, add the Draft rule, name the card |
+| `changelog/changelog-054-007-playbook-catalog-readme-alignment.md` | Created | Packet changelog for this phase |
+| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`, `scratch/` | Modified or created | Phase record and evidence. `plan.md` holds the scenario 483 amendment |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +74,7 @@ When it runs, this phase adds eight manual playbook scenarios in a new `template
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The phase runs as a DeepSeek V4.1 Flash swarm under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. Three lanes write disjoint files, the conductor adds the two index layers, and phase 8 runs the scenarios.
+One execution agent ran the phase. It copied every frozen block by script and applied each old and new pair as an exact single-occurrence replacement, so no text was retyped. The only external dispatch was the T015 review on cli-devin swe-2-max, which needed four attempts: the first three ended with no result line after an auto-mode tool refusal, and the fourth used a brief that lists the files to read and returned 28 P2 lines. All 28 are recorded in `goal.md` section 4 and none changed a file.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,6 +87,8 @@ Not delivered yet. The phase runs as a DeepSeek V4.1 Flash swarm under the proto
 | Eight scenarios in one new category | The subject stays together, and the index gains one section instead of eight rows in a 60-row table |
 | Four catalog leaves, not one | Each surface gets one title a reader can search for, and one leaf owns the scenario links |
 | Verify the phase 3 edits instead of repeating them | Two phases writing one text makes the second write miss, and the phase 3 text is already the current rule |
+| Amend scenario 483 to cli-devin swe-2-max before copying it | The DeepSeek route was out of allowance, and phase 5 had already run this Level 1 task on swe-2-max three times |
+| Accept the catalog validator's verdict line and exit 0 | `PASS: 0 violations` cannot print while two baseline notes exist in files this phase does not own |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,10 +98,13 @@ Not delivered yet. The phase runs as a DeepSeek V4.1 Flash swarm under the proto
 
 | Check | Result |
 |-------|--------|
-| Playbook package validator | Run at phase close by `tasks.md` T009 |
-| Catalog package validator | Run at phase close by `tasks.md` T010 |
-| Document validators | Run at phase close by `tasks.md` T011 |
-| Strict validation of this phase folder | Run at phase close by `tasks.md` T017 |
+| Playbook package validator | `PASS package=system-spec-kit ... scenarios=110 categories=11 operator=96 violations=0 warnings=1`, exit 0. At the start it read 102, 10 and 88 |
+| Catalog package validator | `PACKAGE system-spec-kit: PASS tier=fail violations=0`, exit 0, with the same two baseline notes as the start tree |
+| Document validators | 12 `VALID:` lines and no `INVALID` |
+| Provenance and vocabulary tests | `Tests  3 passed (3)` and `Tests  2 passed (2)` |
+| Hygiene scan | `ids=8`, `category_links=9`, `provenance_files=8`, `bad_words=0`, `em_dash=0` |
+| Suite comparison with the phase start | `SUITE_SAME` and `PHASE1_EXIT_SAME`, with 276 test files passed (279 counted), 4162 tests passed (4183 counted) and `exit=0` in both runs |
+| Strict validation of this phase folder | `validate.sh --strict` printed `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,9 +112,11 @@ Not delivered yet. The phase runs as a DeepSeek V4.1 Flash swarm under the proto
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Phase 8 proves the scenarios run.** This phase proves each file is well formed and every command names a path that exists. A command that only fails on a live run is found in phase 8, not here.
+1. **Phase 8 proves the scenarios run.** This phase proves each file is well formed and that 84 path and link references in the new files resolve. A command that only fails on a live run is found in phase 8, not here.
 2. **The catalog carries no execution detail.** The scenario steps stay in the playbook, and the catalog leaf links to them.
+3. **Four P2 review findings are open for phase 8 and the operator.** `README.md` line 538 says a Draft packet may warn and pass strict without the v2.3 condition. Scenarios 479 and 482 list their tools without `awk` and `rg`. Scenario 483 keeps its pointer file in this phase's `scratch/verify/` and never removes it. The other 24 findings are serial commas in frozen prose.
+4. **`README.md` still says `references/ (41 files)`.** Phase 5 added the card, so the count is 42. No frozen edit covers the line, so it stays for the operator.
+5. **The catalog validator prints two baseline notes.** They sit in `session-relaunch-loop.md` and `spec-validation-rule-engine.md`, files this phase does not own.
 <!-- /ANCHOR:limitations -->
 
 ---
-

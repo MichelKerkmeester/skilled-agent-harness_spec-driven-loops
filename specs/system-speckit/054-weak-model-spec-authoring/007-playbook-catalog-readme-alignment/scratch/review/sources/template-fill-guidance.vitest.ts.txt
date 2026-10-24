@@ -1,0 +1,71 @@
+     1	import fs from 'node:fs';
+     2	import path from 'node:path';
+     3	import { describe, expect, it } from 'vitest';
+     4	import { renderInlineGates, type RenderLevel } from '../templates/inline-gate-renderer';
+     5	
+     6	const SKILL_ROOT = path.resolve(__dirname, '../../..');
+     7	const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates');
+     8	const LEVELS: RenderLevel[] = ['1', '2', '3', '3+'];
+     9	const DOCS = ['spec', 'plan', 'tasks', 'implementation-summary'] as const;
+    10	
+    11	const ANCHOR_COUNTS: Record<string, number> = {
+    12	  '1/spec': 7,
+    13	  '1/plan': 7,
+    14	  '1/tasks': 6,
+    15	  '1/implementation-summary': 6,
+    16	  '2/spec': 10,
+    17	  '2/plan': 11,
+    18	  '2/tasks': 15,
+    19	  '2/implementation-summary': 6,
+    20	  '3/spec': 7,
+    21	  '3/plan': 14,
+    22	  '3/tasks': 21,
+    23	  '3/implementation-summary': 6,
+    24	  '3+/spec': 11,
+    25	  '3+/plan': 17,
+    26	  '3+/tasks': 21,
+    27	  '3+/implementation-summary': 6,
+    28	};
+    29	
+    30	function sections(markdown: string): Array<{ heading: string; body: string }> {
+    31	  const out: Array<{ heading: string; body: string[] }> = [];
+    32	  let inFence = false;
+    33	  for (const line of markdown.split(/\r?\n/u)) {
+    34	    if (/^\s*(`{3}|~~~)/u.test(line)) {
+    35	      inFence = !inFence;
+    36	    }
+    37	    if (!inFence && /^## /u.test(line)) {
+    38	      out.push({ heading: line, body: [] });
+    39	      continue;
+    40	    }
+    41	    const last = out.at(-1);
+    42	    if (last) {
+    43	      last.body.push(line);
+    44	    }
+    45	  }
+    46	  return out.map((section) => ({ heading: section.heading, body: section.body.join('\n') }));
+    47	}
+    48	
+    49	describe('template section fill guidance', () => {
+    50	  for (const level of LEVELS) {
+    51	    for (const doc of DOCS) {
+    52	      it(`gives every Level ${level} ${doc} section one fill line`, () => {
+    53	        const source = fs.readFileSync(path.join(TEMPLATE_ROOT, 'core', `${doc}.md.tmpl`), 'utf8');
+    54	        const rendered = renderInlineGates(source, level);
+    55	        const anchors = (rendered.match(/<!-- ANCHOR:/gu) ?? []).length;
+    56	        expect(anchors, 'anchor count changed').toBe(ANCHOR_COUNTS[`${level}/${doc}`]);
+    57	        const parts = sections(rendered);
+    58	        expect(parts.length).toBeGreaterThan(0);
+    59	        for (const part of parts) {
+    60	          const fill = part.body.match(/<!-- FILL: .* -->/gu) ?? [];
+    61	          expect(fill, `${part.heading} needs one FILL line`).toHaveLength(1);
+    62	          const inner = fill[0].slice('<!-- FILL: '.length, -' -->'.length);
+    63	          expect(inner).not.toContain('[YOUR_VALUE_HERE:');
+    64	          expect(inner).not.toContain('[NEEDS');
+    65	          expect(inner).not.toContain('-->');
+    66	          expect(inner.trim().endsWith('.')).toBe(true);
+    67	        }
+    68	      });
+    69	    }
+    70	  }
+    71	});

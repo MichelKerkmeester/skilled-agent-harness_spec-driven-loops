@@ -1,0 +1,290 @@
+     1	// ───────────────────────────────────────────────────────────────────
+     2	// MODULE: Scaffold Golden Snapshots
+     3	// ───────────────────────────────────────────────────────────────────
+     4	
+     5	import fs from 'node:fs';
+     6	import path from 'node:path';
+     7	import { execFileSync, spawnSync } from 'node:child_process';
+     8	import { tmpdir } from 'node:os';
+     9	import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+    10	import { resolveLevelContract } from '../../lib/templates/level-contract-resolver';
+    11	import { renderInlineGates, type RenderLevel } from '../templates/inline-gate-renderer';
+    12	
+    13	const SKILL_ROOT = path.resolve(__dirname, '../../..');
+    14	const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates');
+    15	const CREATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'create.sh');
+    16	
+    17	function normalizeSnapshot(content: string): string {
+    18	  return content
+    19	    .replace(/\r\n/gu, '\n')
+    20	    .replaceAll('[capability]', '[needed behavior]')
+    21	    .replaceAll('"capability"', '"needed behavior"')
+    22	    .replaceAll('I want [capability]', 'I want [needed behavior]')
+    23	    .replaceAll(
+    24	      'Sub-phase manifest: which child phase folders exist and what each one does',
+    25	      'Sub-phase list: which child phase folders exist and what each one does',
+    26	    )
+    27	    .replace(/[ \t]+$/gmu, '')
+    28	    .trim();
+    29	}
+    30	
+    31	function renderTemplate(templateName: string, level: RenderLevel): string {
+    32	  // Templates live in role-based folders (core/addons/packet-types); resolve by search.
+    33	  let templatePath = path.join(TEMPLATE_ROOT, templateName);
+    34	  for (const sub of ['core', 'addons', 'packet-types']) {
+    35	    const candidate = path.join(TEMPLATE_ROOT, sub, templateName);
+    36	    if (fs.existsSync(candidate)) {
+    37	      templatePath = candidate;
+    38	      break;
+    39	    }
+    40	  }
+    41	  return renderInlineGates(fs.readFileSync(templatePath, 'utf8'), level);
+    42	}
+    43	
+    44	const ANCHOR_OPEN = /^\s*<!--\s*ANCHOR:([A-Za-z0-9_-]+)\s*-->\s*$/u;
+    45	const ANCHOR_CLOSE = /^\s*<!--\s*\/ANCHOR:([A-Za-z0-9_-]+)\s*-->\s*$/u;
+    46	
+    47	// Retrieval chunks a document by its anchor pairs, so a rendered spec must keep
+    48	// them flat and balanced or one section's content would merge into its neighbor.
+    49	function expectAnchorsWellOrdered(content: string, label: string): void {
+    50	  const openAnchors: string[] = [];
+    51	  let isInFence = false;
+    52	  for (const line of content.split(/\r?\n/u)) {
+    53	    if (/^\s*(`{3}|~~~)/u.test(line)) {
+    54	      isInFence = !isInFence;
+    55	      continue;
+    56	    }
+    57	    if (isInFence) {
+    58	      continue;
+    59	    }
+    60	    const opener = ANCHOR_OPEN.exec(line);
+    61	    if (opener) {
+    62	      const current = openAnchors.length > 0 ? openAnchors[openAnchors.length - 1] : 'none';
+    63	      expect(openAnchors, `${label}: anchor "${opener[1]}" is nested inside "${current}"`).toHaveLength(0);
+    64	      openAnchors.push(opener[1]);
+    65	      continue;
+    66	    }
+    67	    const closer = ANCHOR_CLOSE.exec(line);
+    68	    if (closer) {
+    69	      expect(openAnchors.pop(), `${label}: closer "${closer[1]}" has no matching opener`).toBe(closer[1]);
+    70	    }
+    71	  }
+    72	  expect(openAnchors, `${label}: unclosed anchors`).toEqual([]);
+    73	}
+    74	
+    75	describe('manifest template golden snapshots', () => {
+    76	  for (const level of ['1', '2', '3', '3+'] as RenderLevel[]) {
+    77	    it(`renders required docs for Level ${level} from manifest templates`, () => {
+    78	      const contract = resolveLevelContract(level);
+    79	      const lifecycleDocs = Object.values(contract.lifecycleRequiredDocs).flat();
+    80	      for (const docName of new Set([
+    81	        ...contract.requiredCoreDocs,
+    82	        ...contract.requiredAddonDocs,
+    83	        ...lifecycleDocs,
+    84	      ])) {
+    85	        const rendered = renderTemplate(`${docName}.tmpl`, level);
+    86	        const normalized = normalizeSnapshot(rendered);
+    87	        expect(rendered, docName).toMatch(/^---\n/u);
+    88	        expect(normalized, docName).toContain('SPECKIT_TEMPLATE_SOURCE');
+    89	        expect(normalized, docName).not.toMatch(/<!--\s*IF\s+/u);
+    90	        expect(normalized, docName).not.toMatch(/<!--\s*\/IF\s*-->/u);
+    91	        if (docName === 'spec.md') {
+    92	          expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+    93	        }
+    94	        expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+    95	      }
+    96	    });
+    97	  }
+    98	
+    99	  it('renders the phase-parent spec from the manifest template', () => {
+   100	    const rendered = renderTemplate('phase-parent.spec.md.tmpl', 'phase');
+   101	    const normalized = normalizeSnapshot(rendered);
+   102	    expect(rendered).toMatch(/^---\n/u);
+   103	    expect(normalized).toContain('SPECKIT_TEMPLATE_SOURCE');
+   104	    expect(normalized).toContain('PHASE DOCUMENTATION MAP');
+   105	    expect(normalized).not.toMatch(/<!--\s*IF\s+/u);
+   106	    expect(normalized).not.toMatch(/<!--\s*\/IF\s*-->/u);
+   107	    expectAnchorsWellOrdered(normalized, 'phase-parent-spec.md');
+   108	    expect(normalized).toMatchSnapshot('phase-parent-spec.md');
+   109	  });
+   110	
+   111	  it('renders each lazy add-on template with its stable anchor structure', () => {
+   112	    const expectedAnchors: Record<string, string[]> = {
+   113	      'before-after.md': ['metadata', 'summary', 'comparison', 'net-effect', 'notes-caveats'],
+   114	      'timeline.md': ['metadata', 'timeline', 'milestones'],
+   115	      'roadmap.md': ['metadata', 'now-next-later', 'milestones-targets', 'dependencies'],
+   116	      'decision-record.md': ['adr-001'],
+   117	      'goal.md': ['directive', 'completion', 'log'],
+   118	    };
+   119	
+   120	    for (const [docName, anchors] of Object.entries(expectedAnchors)) {
+   121	      const rendered = renderTemplate(`${docName}.tmpl`, '1');
+   122	      const normalized = normalizeSnapshot(rendered);
+   123	      expect(rendered, docName).toMatch(/^---\n/u);
+   124	      expect(normalized, docName).toContain('SPECKIT_TEMPLATE_SOURCE');
+   125	      expect(normalized, docName).not.toMatch(/<!--\s*IF\s+/u);
+   126	      expect(normalized, docName).not.toMatch(/<!--\s*\/IF\s*-->/u);
+   127	      for (const anchor of anchors) {
+   128	        expect(normalized, `${docName}:${anchor}`).toContain(`<!-- ANCHOR:${anchor} -->`);
+   129	      }
+   130	      expect(normalized, docName).toMatchSnapshot(`lazy-${docName}`);
+   131	    }
+   132	  });
+   133	
+   134	  it('scaffolds lazy add-ons only with explicit opt-in', () => {
+   135	    const root = fs.mkdtempSync(path.join(tmpdir(), 'spec-kit-lazy-addons-'));
+   136	    const defaultPath = path.join(root, '001-default');
+   137	    const optInPath = path.join(root, '002-opt-in');
+   138	    const runCreate = (target: string, withLazyAddons = false) => spawnSync(
+   139	      'bash',
+   140	      [CREATE_SCRIPT, '--path', target, '--level', '3', '--skip-branch', ...(withLazyAddons ? ['--with-lazy-addons'] : []), 'lazy add-on test'],
+   141	      { cwd: SKILL_ROOT, encoding: 'utf8' },
+   142	    );
+   143	    const lazyDocs = ['before-after.md', 'timeline.md', 'roadmap.md', 'decision-record.md'];
+   144	
+   145	    try {
+   146	      const defaultResult = runCreate(defaultPath);
+   147	      expect(defaultResult.status, defaultResult.stderr).toBe(0);
+   148	      for (const docName of lazyDocs) {
+   149	        expect(fs.existsSync(path.join(defaultPath, docName)), docName).toBe(false);
+   150	      }
+   151	
+   152	      const optInResult = runCreate(optInPath, true);
+   153	      expect(optInResult.status, optInResult.stderr).toBe(0);
+   154	      for (const docName of lazyDocs) {
+   155	        expect(fs.existsSync(path.join(optInPath, docName)), docName).toBe(true);
+   156	      }
+   157	      // The goal document has its own flag and is not part of the lazy four.
+   158	      expect(fs.existsSync(path.join(optInPath, 'goal.md'))).toBe(false);
+   159	      const goalPath = path.join(root, '003-with-goal');
+   160	      const goalResult = spawnSync(
+   161	        'bash',
+   162	        [CREATE_SCRIPT, '--path', goalPath, '--level', '1', '--skip-branch', '--with-goal', 'goal flag test'],
+   163	        { cwd: SKILL_ROOT, encoding: 'utf8' },
+   164	      );
+   165	      expect(goalResult.status, goalResult.stderr).toBe(0);
+   166	      // create.sh, not the renderer, strips the template's provenance token from
+   167	      // titles and substitutes every hard placeholder it knows the value of.
+   168	      for (const scaffolded of ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'goal.md']) {
+   169	        const body = fs.readFileSync(path.join(goalPath, scaffolded), 'utf8');
+   170	        expect(body, scaffolded).not.toMatch(/\[template:/u);
+   171	        expect(body, scaffolded).not.toMatch(/\[Feature Name\]/u);
+   172	      }
+   173	      const goal = fs.readFileSync(path.join(goalPath, 'goal.md'), 'utf8');
+   174	      expect(goal).toContain('SPECKIT_TEMPLATE_SOURCE');
+   175	      expect(goal).toContain('<!-- ANCHOR:directive -->');
+   176	      expect(goal).toContain('last_updated_by: "scaffold"');
+   177	    } finally {
+   178	      fs.rmSync(root, { recursive: true, force: true });
+   179	    }
+   180	  });
+   181	
+   182	  it('keeps Level 1 as the minimum viable authored packet', () => {
+   183	    const contract = resolveLevelContract('1');
+   184	    expect([...contract.requiredCoreDocs, ...contract.requiredAddonDocs]).toEqual([
+   185	      'spec.md',
+   186	      'plan.md',
+   187	      'tasks.md',
+   188	    ]);
+   189	    expect(contract.lifecycleRequiredDocs.afterImplementationStarts).toEqual(['implementation-summary.md']);
+   190	  });
+   191	
+   192	  it('carries verification in the merged tasks document and nowhere else', () => {
+   193	    const contract = resolveLevelContract('2');
+   194	    // The standalone verification document is retired: it must appear in no
+   195	    // bucket at all, or a scaffold would start producing it again.
+   196	    for (const bucket of [
+   197	      contract.requiredCoreDocs,
+   198	      contract.requiredAddonDocs,
+   199	      contract.optionalAddonDocs,
+   200	      contract.lazyAddonDocs,
+   201	    ]) {
+   202	      expect(bucket).not.toContain('checklist.md');
+   203	    }
+   204	    expect(contract.optionalAddonDocs).toEqual(['acceptance-criteria.md']);
+   205	
+   206	    const renderedTasks = renderTemplate('tasks.md.tmpl', '2');
+   207	    expect(renderedTasks).toContain('## Verification Checklist');
+   208	    expect(renderedTasks).toContain('## Testing Checklist');
+   209	    expect(renderedTasks).toContain('<!-- ANCHOR:protocol -->');
+   210	    expect(renderedTasks).toContain('<!-- ANCHOR:summary -->');
+   211	    expect(renderedTasks).not.toContain('<!-- IF level:');
+   212	  });
+   213	});
+   214	
+   215	describe('review and research packet scaffolds', () => {
+   216	  // Metadata derivation only runs under a specs root anchored on a real .opencode
+   217	  // directory, so each run works in a throwaway git repository that links the
+   218	  // checked-in tool tree and owns the specs/ folder the scaffolds land in.
+   219	  const skilledRoot = path.resolve(SKILL_ROOT, '..', '..');
+   220	  const validateScript = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');
+   221	  let sandbox = '';
+   222	  let root = '';
+   223	  beforeAll(() => {
+   224	    sandbox = fs.realpathSync(fs.mkdtempSync(path.join(tmpdir(), 'scaffold-golden-')));
+   225	    execFileSync('git', ['init', '--quiet'], { cwd: sandbox });
+   226	    fs.symlinkSync(skilledRoot, path.join(sandbox, '.skilled'), 'dir');
+   227	    fs.mkdirSync(path.join(sandbox, '.opencode'));
+   228	    root = path.join(sandbox, 'specs');
+   229	    fs.mkdirSync(root, { recursive: true });
+   230	  });
+   231	  afterAll(() => {
+   232	    if (!sandbox) return;
+   233	    // Remove the tool-tree link before the recursive remove so it never walks into the real tree. Without recursive, rmSync removes the link itself, and force tolerates setup that failed before the link existed.
+   234	    fs.rmSync(path.join(sandbox, '.skilled'), { force: true });
+   235	    fs.rmSync(sandbox, { recursive: true, force: true });
+   236	  });
+   237	
+   238	  const cases = [
+   239	    { level: 'review', number: '999', nestedDoc: 'review/review-report.md' },
+   240	    { level: 'research', number: '998', nestedDoc: 'research/research.md' },
+   241	  ] as const;
+   242	
+   243	  for (const { level, number, nestedDoc } of cases) {
+   244	    it(`scaffolds a ${level} packet with its nested document at the manifest path, validating strict untouched`, () => {
+   245	      const target = path.join(root, `${number}-${level}-fixture`);
+   246	      const created = spawnSync(
+   247	        'bash',
+   248	        [CREATE_SCRIPT, '--json', '--skip-branch', '--level', level, '--path', target, '--number', number, `${level} fixture`],
+   249	        { cwd: sandbox, encoding: 'utf8' },
+   250	      );
+   251	      expect(created.status, created.stderr).toBe(0);
+   252	      expect(fs.existsSync(path.join(target, nestedDoc)), nestedDoc).toBe(true);
+   253	      expect(fs.existsSync(path.join(target, path.basename(nestedDoc))), `${nestedDoc} must not land flat`).toBe(false);
+   254	      const nested = fs.readFileSync(path.join(target, nestedDoc), 'utf8');
+   255	      expect(nested).not.toMatch(/\[template:/u);
+   256	      expect(nested).not.toMatch(/\[NAME\]/u);
+   257	      expect(fs.readFileSync(path.join(target, 'spec.md'), 'utf8')).toContain(`<!-- SPECKIT_LEVEL: ${level} -->`);
+   258	
+   259	      const validated = spawnSync('bash', [validateScript, target, '--strict', '--no-recursive'], { cwd: sandbox, encoding: 'utf8' });
+   260	      expect(validated.stdout).toContain(`Level:  ${level}`);
+   261	      expect(validated.stdout, validated.stdout).toContain('RESULT: PASSED');
+   262	      expect(validated.status).toBe(0);
+   263	    });
+   264	  }
+   265	
+   266	  it('renders the review report and research spec templates from the manifest', () => {
+   267	    const templates = [
+   268	      { templateName: 'review-report.md.tmpl', level: 'review', snapshot: 'review-review-report.md', anchorFree: true },
+   269	      { templateName: 'review.spec.md.tmpl', level: 'review', snapshot: 'review-spec.md', anchorFree: false },
+   270	      { templateName: 'research.spec.md.tmpl', level: 'research', snapshot: 'research-spec.md', anchorFree: false },
+   271	    ] as const;
+   272	    for (const { templateName, level, snapshot, anchorFree } of templates) {
+   273	      const rendered = renderTemplate(templateName, level);
+   274	      const normalized = normalizeSnapshot(rendered);
+   275	      expect(rendered, templateName).toMatch(/^---\n/u);
+   276	      expect(normalized, templateName).toContain('SPECKIT_TEMPLATE_SOURCE');
+   277	      expect(normalized, templateName).not.toMatch(/<!--\s*IF\s+/u);
+   278	      if (!anchorFree) {
+   279	        for (const anchor of ['metadata', 'problem', 'scope', 'questions']) {
+   280	          expect(normalized, `${templateName}:${anchor}`).toContain(`<!-- ANCHOR:${anchor} -->`);
+   281	        }
+   282	        expect(normalized, templateName).toContain(`<!-- SPECKIT_LEVEL: ${level} -->`);
+   283	      }
+   284	      if (templateName.endsWith('.spec.md.tmpl')) {
+   285	        expectAnchorsWellOrdered(normalized, snapshot);
+   286	      }
+   287	      expect(normalized, templateName).toMatchSnapshot(snapshot);
+   288	    }
+   289	  });
+   290	});

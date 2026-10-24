@@ -1,0 +1,122 @@
+     1	// ───────────────────────────────────────────────────────────────────
+     2	// MODULE: Placeholder Token Gate
+     3	// ───────────────────────────────────────────────────────────────────
+     4	
+     5	import { spawnSync } from 'node:child_process';
+     6	import fs from 'node:fs';
+     7	import os from 'node:os';
+     8	import path from 'node:path';
+     9	import { fileURLToPath } from 'node:url';
+    10	
+    11	import { afterEach, describe, expect, it } from 'vitest';
+    12	
+    13	// Every path below is derived from this file's own location, so the test always
+    14	// exercises the checkout it sits in and never a linked copy of another one.
+    15	const here = path.dirname(fileURLToPath(import.meta.url));
+    16	const cliRoot = path.resolve(here, '..');
+    17	const runtimeRoot = path.resolve(cliRoot, '..');
+    18	const validateScript = path.join(cliRoot, 'spec', 'validate.sh');
+    19	const shellRule = path.join(cliRoot, 'rules', 'check-placeholders.sh');
+    20	const fixturesRoot = path.join(cliRoot, 'test-fixtures');
+    21	const createdRoots = new Set<string>();
+    22	
+    23	type RuleStatus = 'pass' | 'warn' | 'error';
+    24	
+    25	interface RuleEntry {
+    26	  rule: string;
+    27	  status: RuleStatus;
+    28	  message: string;
+    29	  details: string[];
+    30	}
+    31	
+    32	interface PacketShape {
+    33	  stamp: 'v2.2' | 'v2.3';
+    34	  status: 'Draft' | 'Complete';
+    35	  line: string;
+    36	}
+    37	
+    38	const TOKEN_LINE = '[YOUR_VALUE_HERE: one-paragraph problem statement]';
+    39	const QUESTION_LINE = '[NEEDS CLARIFICATION: which owner?]';
+    40	
+    41	// Builds a throwaway packet from the clean Level 2 fixture. Only spec.md is
+    42	// changed: the stamp, the Status cell and one extra line in the problem section.
+    43	function buildPacket(shape: PacketShape): string {
+    44	  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'placeholder-token-gate-'));
+    45	  createdRoots.add(root);
+    46	  const folder = path.join(root, 'packet');
+    47	  fs.cpSync(path.join(fixturesRoot, '053-template-compliant-level2'), folder, { recursive: true });
+    48	  const spec = path.join(folder, 'spec.md');
+    49	  const text = fs
+    50	    .readFileSync(spec, 'utf8')
+    51	    .replace('| v2.2 -->', `| ${shape.stamp} -->`)
+    52	    .replace('| **Status** | Complete |', `| **Status** | ${shape.status} |`)
+    53	    .replace('### Purpose', `${shape.line}\n\n### Purpose`);
+    54	  fs.writeFileSync(spec, text, 'utf8');
+    55	  return folder;
+    56	}
+    57	
+    58	function runOrchestrator(folder: string): { entry: RuleEntry; passed: boolean } {
+    59	  const result = spawnSync('bash', [validateScript, folder, '--no-recursive', '--strict', '--json'], {
+    60	    encoding: 'utf8',
+    61	    env: { ...process.env, SPECKIT_RULES: 'PLACEHOLDER_FILLED' },
+    62	  });
+    63	  const report = JSON.parse(result.stdout) as { entries: RuleEntry[]; passed: boolean };
+    64	  const matches = report.entries.filter((item) => item.rule === 'PLACEHOLDER_FILLED');
+    65	  if (matches.length !== 1) throw new Error(`expected one PLACEHOLDER_FILLED entry, found ${matches.length}`);
+    66	  return { entry: matches[0], passed: report.passed };
+    67	}
+    68	
+    69	// The shell rule is the mirror the isolated rule tests drive. It reports fail
+    70	// where the orchestrator reports error, so the two are compared after that mapping.
+    71	function runShellRule(folder: string): RuleStatus {
+    72	  const script = `source "${path.join(cliRoot, 'lib', 'shell-common.sh')}"; source "${shellRule}"; run_check "${folder}" 2; echo "$RULE_STATUS"`;
+    73	  const result = spawnSync('bash', ['-c', script], { encoding: 'utf8' });
+    74	  const status = result.stdout.trim().split('\n').pop();
+    75	  return status === 'fail' ? 'error' : (status as RuleStatus);
+    76	}
+    77	
+    78	afterEach(() => {
+    79	  for (const root of createdRoots) fs.rmSync(root, { recursive: true, force: true });
+    80	  createdRoots.clear();
+    81	});
+    82	
+    83	describe('PLACEHOLDER_FILLED token gate', () => {
+    84	  it('runs the orchestrator built from this checkout', () => {
+    85	    const built = path.join(runtimeRoot, 'dist', 'lib', 'validation', 'orchestrator.js');
+    86	    const resolved = fs.realpathSync(built);
+    87	    const home = fs.realpathSync(runtimeRoot) + path.sep;
+    88	    expect(resolved.startsWith(home), `${built} resolves to ${resolved}, outside ${home}`).toBe(true);
+    89	  });
+    90	
+    91	  it('warns on a v2.3 doc with an unfilled token while the packet is a Draft', { timeout: 30_000 }, () => {
+    92	    const folder = buildPacket({ stamp: 'v2.3', status: 'Draft', line: TOKEN_LINE });
+    93	    const { entry, passed } = runOrchestrator(folder);
+    94	    expect(entry.status).toBe('warn');
+    95	    expect(passed).toBe(true);
+    96	    expect(entry.details.some((detail) => detail.startsWith('spec.md:'))).toBe(true);
+    97	    expect(runShellRule(folder)).toBe('warn');
+    98	  });
+    99	
+   100	  it('fails a v2.3 doc with an unfilled token once the status is not Draft', { timeout: 30_000 }, () => {
+   101	    const folder = buildPacket({ stamp: 'v2.3', status: 'Complete', line: TOKEN_LINE });
+   102	    const { entry, passed } = runOrchestrator(folder);
+   103	    expect(entry.status).toBe('error');
+   104	    expect(passed).toBe(false);
+   105	    expect(runShellRule(folder)).toBe('error');
+   106	  });
+   107	
+   108	  it('keeps the strict verdict for a v2.2 doc even while the packet is a Draft', { timeout: 30_000 }, () => {
+   109	    const folder = buildPacket({ stamp: 'v2.2', status: 'Draft', line: TOKEN_LINE });
+   110	    const { entry, passed } = runOrchestrator(folder);
+   111	    expect(entry.status).toBe('error');
+   112	    expect(passed).toBe(false);
+   113	    expect(runShellRule(folder)).toBe('error');
+   114	  });
+   115	
+   116	  it('never defers an open question, even in a v2.3 Draft', { timeout: 30_000 }, () => {
+   117	    const folder = buildPacket({ stamp: 'v2.3', status: 'Draft', line: QUESTION_LINE });
+   118	    const { entry } = runOrchestrator(folder);
+   119	    expect(entry.status).toBe('error');
+   120	    expect(runShellRule(folder)).toBe('error');
+   121	  });
+   122	});

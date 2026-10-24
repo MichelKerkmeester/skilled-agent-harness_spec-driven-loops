@@ -1,0 +1,7 @@
+HEAD=538b8b19cb docs(system-speckit): reconcile phase 006 records with what it committed
+drift-guard-present
+card-guard-present
+card-present
+devin
+Logged in (via Devin).
+

@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-04"
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -31,6 +31,7 @@ Canonical package artifacts:
 - `memory-quality-and-indexing/` — spec-doc quality, generated metadata and the post-save review
 - `plugins-and-hooks/`
 - `retrieval/`
+- `template-authoring/` - placeholder gate, fill guidance, example drift guard and the authoring card
 - `tooling-and-scripts/`
 - `ux-hooks/`
 
@@ -330,6 +331,21 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | 453 | Speckit autopilot lifecycle | [453](lifecycle/speckit-autopilot-lifecycle.md) | [speckit-autopilot-lifecycle](../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) |
 | 190 | Session recovery via /speckit:resume | [190](retrieval/session-recovery-spec-kit-resume.md) | [session-recovery-spec-kit-resume](../feature-catalog/retrieval/session-recovery-spec-kit-resume.md) |
 | 270 | Resource map template | [270](context-preservation/resource-map-template.md) | [resource-map-template](../feature-catalog/context-preservation/resource-map-template.md) |
+
+---
+
+### 7.9 Template Authoring
+
+| Playbook ID | Scenario | Scenario File | Catalog Entry |
+|---|---|---|---|
+| 476 | Placeholder token warning while Draft | [476](template-authoring/placeholder-token-warning-while-draft.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
+| 477 | Placeholder token error after Draft | [477](template-authoring/placeholder-token-error-after-draft.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
+| 478 | Placeholder gate unchanged for a v2.2 doc | [478](template-authoring/placeholder-gate-legacy-stamp-unchanged.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
+| 479 | Example drift guard catches a leaked description | [479](template-authoring/example-drift-guard-catches-leak.md) | [example-drift-guard](../feature-catalog/tooling-and-scripts/example-drift-guard.md) |
+| 480 | Golden render of every level | [480](template-authoring/golden-render-all-levels.md) | [template-section-fill-guidance](../feature-catalog/tooling-and-scripts/template-section-fill-guidance.md) |
+| 481 | Authoring card loaded by four intents | [481](template-authoring/authoring-card-router-intents.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
+| 482 | Authoring card sync guard | [482](template-authoring/authoring-card-sync-guard.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
+| 483 | Level 1 packet authored from the card | [483](template-authoring/level-1-packet-authored-from-card.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 
 ---
 

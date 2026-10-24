@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Templates
@@ -21,6 +21,8 @@ Current state:
 
 - `spec-kit-docs.json` maps public Levels to required docs, add-on docs, lazy docs and section gates.
 - `core/`, `addons/` and `packet-types/` `*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.
+- Every content section carries one `<!-- FILL: ... -->` instruction below its heading, with a good and a weak answer where the section needs one.
+- The four core templates and `addons/acceptance-criteria.md.tmpl` are stamped v2.3 and ship `[YOUR_VALUE_HERE: ...]` tokens in place of bare hints.
 - `examples/` stores rendered reference packets for each supported Level.
 
 ---
@@ -210,7 +212,16 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example 
 
 Expected result for a real spec folder: the validator reads the manifest contract and reports no missing required docs or gated sections.
 
-For template changes, also run the template and resolver test suite used by the repository.
+For template changes, also run the golden render, the fill guidance test and the example drift guard:
+
+```bash
+cd .skilled/skills/system-spec-kit
+./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts
+./node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts
+bash runtime/cli/spec/check-example-drift.sh
+```
+
+Expected: `Tests  12 passed (12)`, `Tests  16 passed (16)` and `EXAMPLE_DRIFT_OK`.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-18"
-version: 2.1.5.0
+version: 2.1.6.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -212,6 +212,22 @@ Shared source-vs-dist staleness detection for local TypeScript build outputs.
 #### Source Files
 
 See [`tooling-and-scripts/dist-freshness-enforcement.md`](tooling-and-scripts/dist-freshness-enforcement.md) for full implementation and test file listings.
+
+---
+
+### Example drift guard
+
+#### Description
+
+Compares every hand-written example with its template and fails when an anchor or a description drifts.
+
+#### Current Reality
+
+`runtime/cli/spec/check-example-drift.sh` prints `EXAMPLE_DRIFT_OK` on the tree and one failure line per drifted example.
+
+#### Source Files
+
+See [`tooling-and-scripts/example-drift-guard.md`](tooling-and-scripts/example-drift-guard.md) for full implementation and test file listings.
 
 ---
 
@@ -535,6 +551,22 @@ See [`tooling-and-scripts/source-tag-resolution.md`](tooling-and-scripts/source-
 
 ---
 
+### Spec authoring card
+
+#### Description
+
+One short card that the four authoring intents load instead of the long template guide, held in sync with the router and the checklist.
+
+#### Current Reality
+
+`references/workflows/spec-authoring-card.md` is the default load for the `PLAN`, `IMPLEMENT`, `INTAKE` and `TEMPLATE_AUTHORING` intents, and `runtime/cli/spec/check-card-sync.sh` holds its four surfaces together.
+
+#### Source Files
+
+See [`tooling-and-scripts/spec-authoring-card.md`](tooling-and-scripts/spec-authoring-card.md) for full implementation and test file listings.
+
+---
+
 ### Spec-folder detection and description metadata
 
 #### Description
@@ -679,6 +711,22 @@ See [`tooling-and-scripts/template-phrase-lint-commit-gate.md`](tooling-and-scri
 
 ---
 
+### Template section fill guidance
+
+#### Description
+
+Places one imperative fill instruction below every template section heading, with a good and a weak example, and holds the rendered result with a golden test.
+
+#### Current Reality
+
+Every content section of the four core templates and the ten addon templates carries one `<!-- FILL: ... -->` line, and the fill guidance test prints `16 passed`.
+
+#### Source Files
+
+See [`tooling-and-scripts/template-section-fill-guidance.md`](tooling-and-scripts/template-section-fill-guidance.md) for full implementation and test file listings.
+
+---
+
 ### Track-root children lists
 
 #### Description
@@ -740,6 +788,22 @@ The dry run predicts the Downgrades in a preview copy that is removed afterward,
 #### Source Files
 
 See [`tooling-and-scripts/upgrade-legacy-downgrades-report.md`](tooling-and-scripts/upgrade-legacy-downgrades-report.md) for full implementation and test file listings.
+
+---
+
+### Versioned placeholder gate
+
+#### Description
+
+Gates unfilled value tokens by the template stamp, warning while a v2.3 packet is Draft and failing it at any other status.
+
+#### Current Reality
+
+`PLACEHOLDER_FILLED` warns in a v2.3 packet while its status is Draft and errors at any other status, and a packet with an older stamp keeps its old verdict.
+
+#### Source Files
+
+See [`tooling-and-scripts/versioned-placeholder-gate.md`](tooling-and-scripts/versioned-placeholder-gate.md) for full implementation and test file listings.
 
 ---
 

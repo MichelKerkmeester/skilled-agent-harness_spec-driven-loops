@@ -1,0 +1,10 @@
+  ● Negative Tests (should FAIL): 11/11 passed (8.614s)
+  ● Negative Tests (should FAIL): 11/11 passed (8.694s)
+  ● Sections Present Tests (should FAIL on missing): 1/1 passed ()
+  ● Sections Present Tests (should FAIL on missing): 1/1 passed ()
+  [FAIL]  Failed:  0
+  [FAIL]  Failed:  0
+Negative Tests (should FAIL):
+Negative Tests (should FAIL):
+Sections Present Tests (should FAIL on missing):
+Sections Present Tests (should FAIL on missing):

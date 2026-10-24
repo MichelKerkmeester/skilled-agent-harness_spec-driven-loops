@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -686,7 +686,8 @@ When in doubt:
 ## 20. RELATED RESOURCES
 
 ### Reference Files
-- [template-guide.md](../templates/template-guide.md) - Template selection, adaptation, and quality standards
+- [spec-authoring-card.md](spec-authoring-card.md) - The short authoring path the four writing intents load first
+- [template-guide.md](../templates/template-guide.md) - Long-form template selection, adaptation, and quality standards
 - level specifications reference - Complete Level 1-3 requirements and migration
 - [path-scoped-rules.md](../validation/path-scoped-rules.md) - Path-scoped validation rules reference
 

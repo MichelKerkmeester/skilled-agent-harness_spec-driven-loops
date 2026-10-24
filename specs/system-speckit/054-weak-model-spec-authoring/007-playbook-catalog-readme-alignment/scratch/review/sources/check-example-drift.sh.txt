@@ -1,0 +1,44 @@
+     1	#!/usr/bin/env bash
+     2	# Guard: every hand-written example keeps the template's required anchors, adds no
+     3	# anchor the template does not allow, and carries a description a reader can use.
+     4	# Read-only. Prints one line per failure and exits 1.
+     5	set -uo pipefail
+     6	
+     7	ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+     8	TEMPLATES="$ROOT/templates"
+     9	UTIL="$ROOT/runtime/cli/utils/template-structure.js"
+    10	EXAMPLES="${1:-$TEMPLATES/examples}"
+    11	status=0
+    12	
+    13	fail() {
+    14	  printf 'FAIL %s: %s\n' "$1" "$2"
+    15	  status=1
+    16	}
+    17	
+    18	for dir in "$EXAMPLES"/level-*; do
+    19	  level="${dir##*/level-}"
+    20	  for example in "$dir"/*.md; do
+    21	    name="$(basename "$example")"
+    22	    desc="$(awk '/^description:/{sub(/^description:[[:space:]]*/,""); print; exit}' "$example")"
+    23	    bare="${desc%\"}"
+    24	    bare="${bare#\"}"
+    25	    [[ "$bare" == *"-->"* ]] && fail "$example" "description holds an HTML comment tail"
+    26	    [[ "$bare" == [[:lower:]]* ]] && fail "$example" "description starts lowercase"
+    27	    [[ "$bare" == *. ]] || fail "$example" "description does not end with a period"
+    28	
+    29	    report="$(node "$UTIL" compare "$level" "$name" "$example" anchors 2>&1)"
+    30	    rc=$?
+    31	    if [[ $rc -ne 0 ]]; then
+    32	      fail "$example" "template-structure compare exited $rc"
+    33	      continue
+    34	    fi
+    35	    printf '%s\n' "$report" | rg '^(missing_anchor|extra_anchor)' \
+    36	      | while read -r kind anchor; do
+    37	          printf 'FAIL %s: %s %s\n' "$example" "$kind" "$anchor"
+    38	        done
+    39	    printf '%s\n' "$report" | rg -q '^(missing_anchor|extra_anchor)' && status=1
+    40	  done
+    41	done
+    42	
+    43	[[ $status -eq 0 ]] && echo "EXAMPLE_DRIFT_OK"
+    44	exit $status

@@ -1,0 +1,5 @@
+ids=8
+category_links=9
+provenance_files=8
+bad_words=0
+em_dash=0

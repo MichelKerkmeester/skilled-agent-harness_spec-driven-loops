@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/system-spec-kit/README.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "feature-catalog/feature-catalog.md",
       "templates/README.md",
       "references/validation/validation-rules.md",
       "references/validation/path-scoped-rules.md",
       "references/templates/template-style-guide.md",
       "references/workflows/quick-reference.md",
-      "references/templates/template-guide.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-spec-kit/templates/README.md",
-      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
-      ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
-      ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
-      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
+      "references/workflows/spec-authoring-card.md",
+      "runtime/cli/spec/check-card-sync.sh",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/validation/docs.txt",
+      "scratch/validation/hygiene.txt",
+      "scratch/validation/playbook.txt"
     ],
     "entities": [
       {
@@ -102,13 +102,19 @@
       {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/README.md",
+        "path": "templates/README.md",
         "source": "derived"
       },
       {
@@ -136,15 +142,39 @@
         "source": "derived"
       },
       {
-        "name": "template-guide.md",
-        "kind": "doc",
-        "path": "references/templates/template-guide.md",
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh",
         "source": "derived"
       },
       {
-        "name": "feature-catalog.md",
+        "name": "spec-authoring-card.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "path": "references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "docs.txt",
+        "kind": "file",
+        "path": "scratch/validation/docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hygiene.txt",
+        "kind": "file",
+        "path": "scratch/validation/hygiene.txt",
+        "source": "derived"
+      },
+      {
+        "name": "playbook.txt",
+        "kind": "file",
+        "path": "scratch/validation/playbook.txt",
         "source": "derived"
       },
       {
@@ -176,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Phases",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fresh v2.3 scaffold carries value tokens and a Draft warning",
     "created_at": "2026-10-23T11:27:24Z",
-    "last_save_at": "2026-10-23T16:26:44.767Z",
+    "last_save_at": "2026-10-24T21:24:43.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4a86eabac513f3f82da945431704bd70abb7f3a694937cb1966557c09760895",
+    "source_fingerprint": "sha256:ff9e9c0f08b037bfc56a57d9193759999e9586291539cb16ef0c8fe9e91338ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a106fd897a1b6f235004508ffe1fdbfcc5bee0d50f53f436780ae21e36628e04",
-      "plan.md": "f57a87481c99c89766135248ed42811705c0ef20ae60ac8f6dab6482a551ae08",
-      "tasks.md": "43ca093a4be48831d8ad28184010ae6a573559c240db9b53ec950fff877d8bba",
-      "implementation-summary.md": "a3fb43dbed5d4b124d64d901511b90fdf20c5de781b28c387771d5bf2c4dd56c"
+      "spec.md": "a355458532f97b3ea5cabf177c7424f0f303a6f0daaa495b4f20ac9296d5572e",
+      "plan.md": "f04b13818ac36cc8a444074b790c37a5b07f7b85902572f0aa8307d3038bb3d2",
+      "tasks.md": "7628e85cf720dfb5d92e18af225dab9d5ca11142fc803322f975d9253d11067a",
+      "implementation-summary.md": "3acb457de1eb581b1c03c1bd3a57689b475d328b21ceabde57e3311a93945e1d"
     },
     "last_active_at": null
   }

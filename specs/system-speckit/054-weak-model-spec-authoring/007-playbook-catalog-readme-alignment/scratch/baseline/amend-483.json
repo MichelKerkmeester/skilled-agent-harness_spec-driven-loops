@@ -1,0 +1,74 @@
+[
+ {
+  "old": "This scenario validates that a DeepSeek worker can scaffold",
+  "new": "This scenario validates that a cli-devin swe-2-max worker can scaffold"
+ },
+ {
+  "old": "It dispatches one DeepSeek worker with the card",
+  "new": "It dispatches one cli-devin swe-2-max worker with the card"
+ },
+ {
+  "old": "Prove that a DeepSeek worker writes a Level 1 packet",
+  "new": "Prove that a cli-devin swe-2-max worker writes a Level 1 packet"
+ },
+ {
+  "old": "an interactive OpenCode v2 session whose `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017`, and phase 5 closed so the card exists. The scenario needs network access and one Task subagent run.",
+  "new": "the `devin` CLI on PATH with `devin auth status` printing `Logged in`, the operator's approval for `--permission-mode dangerous` on this run, and phase 5 closed so the card exists. The scenario needs network access and one cli-devin swe-2-max run."
+ },
+ {
+  "old": "dispatch the subagent with the Task tool, validate",
+  "new": "dispatch the worker with cli-devin, validate"
+ },
+ {
+  "old": "- Expected signals: The subagent returns a final reply. The packet",
+  "new": "- Expected signals: The worker returns a final reply and `devin` exits `0`. The packet"
+ },
+ {
+  "old": "- Pass/fail: PASS if the subagent returns a reply,",
+  "new": "- Pass/fail: PASS if the worker returns a reply,"
+ },
+ {
+  "old": "Run steps 1, 3 and 4 from the checkout root in one shell session. Step 1 writes the scratch path to a fixed file, so step 3 recovers it after the Task call. Step 2 uses the Task tool in this session. This scenario spends one model run.",
+  "new": "Run steps 1 to 4 from the checkout root. Step 1 writes the scratch path to a fixed file, so each later step recovers it. Step 2 runs the `devin` CLI. This scenario spends one cli-devin swe-2-max run."
+ },
+ {
+  "old": "You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.\n",
+  "new": "You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and\nSYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md\ndefines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved\nand MUST NOT be asked. No answer can reach you, because nobody is at a prompt.\n"
+ },
+ {
+  "old": "and any edit outside specs/zz-pb-card/.\n",
+  "new": "and any edit outside specs/zz-pb-card/. Do not edit recommend-level.sh. Do not edit anything under .skilled/.\n"
+ },
+ {
+  "old": "3. Fill spec.md, plan.md, tasks.md and implementation-summary.md for this feature: add a --quiet flag to .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh that prints only the final recommended-level line.",
+  "new": "3. Fill spec.md, plan.md, tasks.md and implementation-summary.md. Describe this feature in the packet and do not build it: a --quiet flag for .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh that prints only the final recommended-level line. Say in implementation-summary.md that the packet is planned and not implemented."
+ },
+ {
+  "old": "2. Dispatch one worker with the Task tool.\n\n```text\nDispatch with the Task tool: subagent_type `general`, description `483`, prompt = the full text of the brief written in step 1. When the subagent returns, read the OUT path from `specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt` and write the final reply verbatim to `<that path>/reply.txt` with the write tool.\n```\n",
+  "new": "2. Dispatch one worker with cli-devin.\n\n```bash\nOUT=\"$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)\"\nAI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 devin -p --model swe-2-max --permission-mode dangerous -- \"$(cat \"$OUT/brief.txt\")\" </dev/null > \"$OUT/reply.txt\" 2> \"$OUT/reply.err\"\necho \"devin_exit=$?\"\ntail -n 1 \"$OUT/reply.txt\"\n```\n"
+ },
+ {
+  "old": "Step 2 leaves the reply file in the scratch path holding the worker's last `RESULT` line.",
+  "new": "Step 2 prints `devin_exit=0`, then the worker's last `RESULT` line, and leaves the reply file in the scratch path."
+ },
+ {
+  "old": "- **Pass**: The subagent returns a reply,",
+  "new": "- **Pass**: The worker returns a reply,"
+ },
+ {
+  "old": "- **Fail**: The subagent returns no reply,",
+  "new": "- **Fail**: The worker returns no reply,"
+ },
+ {
+  "old": "so read `$OUT/reply.txt` and check that the session model is `llmgateway/deepseek-v4.1-flash-1017` before retrying.",
+  "new": "so read `$OUT/reply.txt` and `$OUT/reply.err` and check that `devin auth status` prints `Logged in` before retrying. A free-tier rate-limit reply is a retry and not a FAIL, so wait for the reset the message names and run step 2 again."
+ },
+ {
+  "old": "Provenance: manual only - Task tool subagent on llmgateway/deepseek-v4.1-flash-1017#max",
+  "new": "Provenance: manual only - cli-devin swe-2-max, permission mode dangerous"
+ },
+ {
+  "old": "| A DeepSeek worker writes a Level 1 packet from the card alone |",
+  "new": "| A cli-devin swe-2-max worker writes a Level 1 packet from the card alone |"
+ }
+]

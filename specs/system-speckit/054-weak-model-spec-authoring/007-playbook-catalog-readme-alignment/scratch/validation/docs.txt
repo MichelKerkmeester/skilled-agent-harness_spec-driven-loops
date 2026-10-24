@@ -1,0 +1,48 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+Document type: reference
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Document type: readme
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/README.md
+Document type: readme
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/templates/README.md
+Document type: readme
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+Document type: feature_catalog
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md
+Document type: feature_catalog
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md
+Document type: feature_catalog
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+Document type: feature_catalog
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/references/validation/validation-rules.md
+Document type: reference
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md
+Document type: reference
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/references/templates/template-style-guide.md
+Document type: reference
+Total issues: 0
+
+✅ VALID: .skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+Document type: reference
+Total issues: 0
