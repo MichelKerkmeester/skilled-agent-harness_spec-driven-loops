@@ -380,26 +380,19 @@ function usableGoalPacket(frontmatter) {
   return core.goalPacketProblem(packet, goalRoots(noteCwd)) === null ? packet : '';
 }
 
-// A packet the sender wrote is held to the rules a spec folder is, and an empty field is
-// filled from the goal the sending session was working under. A session that never had a goal
-// leaves the field empty, and a failed write leaves it so too, since a hand-over never fails
-// for want of a goal.
-function recordGoalPacket({ handoffPath, written, noteCwd, specFolder, runtime, sessionId }) {
+// The field belongs to this command and not to whoever wrote the note. Every prepare and keep
+// resolves the sending session's goal again and writes the result, removing the field when no
+// goal can be proven, so a note prepared after its goal ended does not hand the dead goal on. A
+// failed write leaves the note as it was, since a hand-over never fails for want of a goal.
+function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId }) {
   if (!core.goalSwitchOn(resolvedSwitches())) return;
-  const roots = goalRoots(noteCwd);
-  if (written !== '') {
-    const problem = core.goalPacketProblem(written, roots);
-    if (problem !== null) throw new Error(problem);
-    return;
-  }
   const resolved = core.resolveGoalPacket({
     runtime,
     sessionId,
     specFolder: specFolder === 'none' ? '' : specFolder,
-    roots,
+    roots: goalRoots(noteCwd),
     env: process.env,
   });
-  if (resolved === '') return;
   try {
     core.recordGoalPacket(handoffPath, resolved);
   } catch {
@@ -418,16 +411,12 @@ function validatedNote(options, runtime) {
   // An answer the note cannot carry forward would drop silently downstream.
   let specFolder = '';
   let noteCwd = '';
-  let writtenGoalPacket = '';
   try {
     const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
     specFolder = typeof note.frontmatter.spec_folder === 'string'
       ? note.frontmatter.spec_folder
       : '';
     noteCwd = typeof note.frontmatter.cwd === 'string' ? note.frontmatter.cwd : '';
-    writtenGoalPacket = typeof note.frontmatter.goal_packet === 'string'
-      ? note.frontmatter.goal_packet
-      : '';
   } catch {}
   if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
     throw new Error(
@@ -453,9 +442,7 @@ function validatedNote(options, runtime) {
       throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
     }
   }
-  recordGoalPacket({
-    handoffPath, written: writtenGoalPacket, noteCwd, specFolder, runtime, sessionId,
-  });
+  recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId });
   return { handoffPath, sessionId, specFolder };
 }
 

@@ -184,6 +184,11 @@ function updateFrontmatter(text, updates) {
     // Keys come from this module's own callers and are plain identifiers.
     const keyPattern = new RegExp(`^\\s*${key}\\s*:`);
     const fieldIndex = fields.findIndex((line) => keyPattern.test(line));
+    // A null value removes the field, which is different from writing it empty.
+    if (value === null) {
+      if (fieldIndex !== -1) fields.splice(fieldIndex, 1);
+      continue;
+    }
     const replacement = `${key}: ${value}`;
     if (fieldIndex === -1) fields.push(replacement);
     else fields[fieldIndex] = replacement;
@@ -517,13 +522,14 @@ function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
   } catch {
     // An unreadable projects folder reads like a missing log.
   }
-  // No log to read means nothing contradicts the packet the note names, so it stands.
-  if (logPath === null) return firstUsablePacket(lineage, roots);
+  // The log is the only record of a Claude goal, so a log that is missing or cannot be read
+  // leaves the goal unproven.
+  if (logPath === null) return '';
   let latest;
   try {
     latest = latestGoalLogEntry(logPath);
   } catch {
-    return firstUsablePacket(lineage, roots);
+    return '';
   }
   if (latest === null || !latest.active) return '';
   const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
@@ -561,14 +567,18 @@ function recordedGoalPacket({ runtime, sessionId, roots }) {
 }
 
 /**
- * Find the packet the sending session's goal is bound to, or '' when it had none. Every
- * reader fails closed: a log or record that cannot be read leaves the answer empty, so a
- * hand-over never fails for want of a goal.
+ * Find the packet the sending session's goal is bound to, or '' when it had none or none can
+ * be proven. Every reader fails closed: a log or record that cannot be read leaves the answer
+ * empty, so a hand-over never fails for want of a goal and never claims one it cannot show.
+ * Codex always answers empty. Its goal store is keyed by thread and holds the objective text
+ * and a status, with no packet, and no populated record has been read from it, so nothing
+ * proves that a Codex sender had a goal or which packet it named.
  *
  * @param {Object} options - The session to resolve.
  * @param {string} options.runtime - Runtime that owns the session.
  * @param {string} options.sessionId - The session's identifier.
- * @param {string} [options.specFolder] - The note's spec folder, the only signal Codex gives.
+ * @param {string} [options.specFolder] - The note's spec folder, where a Claude goal's
+ *   candidate packets start.
  * @param {string[]} options.roots - Absolute checkouts the packet may live in.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
  * @returns {string} A repo-relative packet directory holding goal.md, or ''.
@@ -582,7 +592,6 @@ function resolveGoalPacket({
       return recordedGoalPacket({ runtime, sessionId, roots });
     }
     if (runtime === 'claude') return claudeGoalPacket({ sessionId, specFolder, roots, env });
-    if (runtime === 'codex') return firstUsablePacket(packetLineage(specFolder), roots);
   } catch {
     // Resolution is a convenience for the receiver, never a reason to refuse a hand-over.
   }
@@ -590,17 +599,24 @@ function resolveGoalPacket({
 }
 
 /**
- * Write the sender's goal packet into an open note, replacing nothing it already carries.
+ * Make an open note's goal_packet field say what the sender's goal is now: write the packet,
+ * replace a different one, or remove the field when the sender has none. A note that already
+ * says so is left untouched.
  *
  * @param {string} filePath - Handoff note path.
- * @param {string} goalPacket - A packet goalPacketProblem accepted.
- * @returns {boolean} True when the field was written, false when the note already held one.
+ * @param {string} goalPacket - A packet resolveGoalPacket returned, or '' to remove the field.
+ * @returns {boolean} True when the note changed, false when it already said so.
  */
 function recordGoalPacket(filePath, goalPacket) {
   return withAppendLock(filePath, () => {
     const text = readHandoffText(filePath);
-    if (nonEmptyString(parseHandoff(text).frontmatter.goal_packet)) return false;
-    writeHandoffUpdate(filePath, updateFrontmatter(text, { goal_packet: goalPacket }));
+    const { frontmatter } = parseHandoff(text);
+    const held = Object.hasOwn(frontmatter, 'goal_packet');
+    if (goalPacket === '' ? !held : frontmatter.goal_packet === goalPacket) return false;
+    writeHandoffUpdate(
+      filePath,
+      updateFrontmatter(text, { goal_packet: goalPacket === '' ? null : goalPacket }),
+    );
     return true;
   });
 }

@@ -205,6 +205,10 @@ if (noteDoneInvocation === String(invocation)) {
   const note = fs.readFileSync(notePath, "utf8");
   fs.writeFileSync(notePath, note.replace(/^status: open$/m, "status: done"));
 }
+const noteRewriteInvocation = process.env.NOTE_REWRITE_ON_INVOCATION;
+if (noteRewriteInvocation === String(invocation)) {
+  fs.writeFileSync(process.env.HANDOFF_PATH, fs.readFileSync(process.env.NOTE_REWRITE_SOURCE, "utf8"));
+}
 const exitCodes = (process.env.STUB_EXIT_CODES || "0").split(",").map(Number);
 process.exitCode = exitCodes[Math.min(invocation - 1, exitCodes.length - 1)];
 `;
@@ -2364,4 +2368,27 @@ test('wrapper drops a goal packet inherited from an outer session on every launc
   assert.equal(records.length, 2);
   assert.equal(records[0].env.hasGoalPacket, false);
   assert.equal(records[1].env.hasGoalPacket, false);
+});
+
+test('wrapper drops the previous hop goal packet when the next note carries none', (t) => {
+  const sandbox = createSandbox(t);
+  const nextNote = path.join(sandbox.root, 'next-note.md');
+  writeSpecFolderNote(nextNote, GOAL_PACKET);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    // The second launch writes a fresh note without a packet, as a sender whose goal ended does.
+    NOTE_REWRITE_ON_INVOCATION: '2',
+    NOTE_REWRITE_SOURCE: nextNote,
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.equal(records[2].env.hasGoalPacket, false);
 });

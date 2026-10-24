@@ -147,17 +147,17 @@ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <note-pat
 
 ### Goal Packet
 
-A note can carry an optional `goal_packet` frontmatter field: the repo-relative directory of the packet whose `goal.md` holds the sending session's goal. `prepare` and `keep` fill an empty field from the sender's goal and leave it empty when the session had none. A value the sender already wrote is kept. Where the goal is found depends on the sender's runtime:
+A note can carry an optional `goal_packet` frontmatter field: the repo-relative directory of the packet whose `goal.md` holds the sending session's goal. `prepare` and `keep` own the field. Each call resolves the sender's goal again and writes the result: the packet when the sender has a goal that can be proven, and no field at all when it has none. A value already in the note is replaced or removed, so a note prepared again after its goal ended stops handing the goal on, and a value written by hand does not survive. Where the goal is found depends on the sender's runtime:
 
 | Sender | Where the goal is read |
 |---|---|
 | OpenCode, Pi, Devin, Cursor, Hermes | The session's active goal record under `.skilled/skills/.state/goal/`, which names the bound packet. A paused, completed or cleared goal counts as none. |
-| Claude | The newest goal entry in the session log. A goal that is met, failed or cleared counts as none. The packet is the spec folder, one of its parent packets or a packet the goal text names, and its `goal.md` must carry the goal's opening line. With no readable log, the nearest packet from the spec folder upward that holds a `goal.md`. |
-| Codex | The nearest packet from the spec folder upward that holds a `goal.md`. Codex keeps no goal record, so this shows a goal packet and not a goal the sender set. |
+| Claude | The newest goal entry in the session log. A goal that is met, failed or cleared counts as none. The packet is the spec folder, one of its parent packets or a packet the goal text names, and its `goal.md` must carry the goal's opening line. With no readable log the goal cannot be proven, so no field is written. |
+| Codex | Nowhere, so no field is written. Codex keeps a goal per thread in `goals_1.sqlite` under its home, with the objective text and a status and no packet, and no populated record has been read from it. A spec folder that holds a `goal.md` does not show that the sender had a goal, so a Codex hand-over carries no goal packet. |
 
-The value is checked the way `spec_folder` is. It must be a repo-relative packet path whose directory and `goal.md` stay inside the repository once links are followed, in this checkout or in the working directory the note names. Otherwise `prepare` and `keep` exit 2 and name the reason. A resolver that finds nothing or cannot read its source leaves the field empty and never fails the hand-over. The note carries the path and never the goal text, because a copy would go stale while `goal.md` changes. A note written before this field claims and hands over unchanged.
+A written value is checked the way `spec_folder` is: a repo-relative packet path whose directory and `goal.md` stay inside the repository once links are followed, in this checkout or in the working directory the note names. A resolver that finds nothing, cannot prove the goal or cannot read its source leaves the field out and never fails the hand-over. The note carries the path and never the goal text, because a copy would go stale while `goal.md` changes. A note written before this field claims and hands over unchanged.
 
-`claim` ends its output with a `Goal packet: <path>` line when the packet still holds a `goal.md`. `consume` reports the packet as `goal_packet`, and `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session only. The wrapper removes the variable from the first launch and from any hop whose note carries no packet. Binding the goal in the receiving runtime is the receiving adapter's work: this layer records the packet and passes it on. `SESSION_RELAUNCH_GOAL=0` turns all of it off. `prepare` and `keep` then neither write nor check the field, and `claim` and the wrapper pass nothing on.
+`claim` ends its output with a `Goal packet: <path>` line when the packet still holds a `goal.md`. `consume` reports the packet as `goal_packet`, and `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session only. The wrapper removes the variable from the first launch and from any hop whose note carries no packet. Binding the goal in the receiving runtime is the receiving adapter's work: this layer records the packet and passes it on. `SESSION_RELAUNCH_GOAL=0` turns all of it off. `prepare` and `keep` then neither write, replace nor remove the field, and `claim` and the wrapper pass nothing on.
 
 ### Outside The Loop
 
@@ -252,7 +252,7 @@ A prepare exit code of 2 means the note or loop cannot be prepared. Common reaso
 - The handoffs directory is reached through a symlink below the repository root.
 - The note has invalid flat frontmatter, a non-open status, a different supplied session id, a missing required field or an empty required section.
 - The note's `spec_folder` is a packet path that does not exist as a directory in the repository. `keep` refuses it the same way.
-- The note's `goal_packet` is not a repo-relative packet path, resolves outside the repository or names a packet with no `goal.md`. `keep` refuses it the same way, and `SESSION_RELAUNCH_GOAL=0` skips the check.
+- The receiving session shows no `Goal packet:` line, or the note has no `goal_packet`. `prepare` and `keep` write it only when the sender's goal can be proven, so a Codex sender, a Claude session whose log cannot be read and a session whose goal has ended all leave it out. A `goal_packet` the note carried is removed on the next call in the same cases.
 - No session id reached `prepare` or `claim`. Only Claude can fall back to `CLAUDE_CODE_SESSION_ID`. Other runtimes must pass `--session`.
 - `SYSTEM_SESSION_RELAUNCH_DISABLED` or the master hook switch disables the concern.
 - Inside `skilled-loop`, the runtime still has a live child shell from the list in section 3. The prepare command does not run this check outside the loop.

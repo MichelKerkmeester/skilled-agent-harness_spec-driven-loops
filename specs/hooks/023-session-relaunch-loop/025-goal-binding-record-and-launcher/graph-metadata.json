@@ -18,6 +18,8 @@
       "goal binding record launcher plan",
       "goal binding record launcher tasks",
       "goal binding record launcher acceptance criteria",
+      "goal packet field ownership",
+      "goal_packet decision record",
       "goal binding record launcher implementation summary"
     ],
     "key_topics": [
@@ -41,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
@@ -79,6 +82,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -194,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The hand-over note already carries `specfolder`, but the receiver cannot tell whether the sending session had a goal, and whether that goal came from a packet other than the spec folder",
     "created_at": "2026-10-24T19:03:12Z",
-    "last_save_at": "2026-10-24T22:10:36.860Z",
+    "last_save_at": "2026-10-24T23:30:21.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fafa658d5b0997abd20e1075a77c646f18e95a2fee407f75f80fafbc50be0e13",
+    "source_fingerprint": "sha256:a279157b035648535f48aab50dfb508765da79b77b7283a1c378a1f4a59cfff6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "872e95c1f2c9e04ac9ff4c41a16bc1b6aa6f486a5af6104acddf98112e4d1148",
+      "spec.md": "a45c35f15f421eb3c6a5b383d50994b47f540aed1dfaeed31b679bca29f2fe10",
       "plan.md": "69b078999089e559ad9149f34da4641e068d0a005a6a77b456c79ad7b1039bb9",
-      "tasks.md": "2eb8502ca46d432bda29500ce33e94722617082815880266b605044d33ea93ef",
-      "implementation-summary.md": "cdbf9c58b6dfc265ebc63ffce03e55246e42b0a73b2f84f3b800bcaa6f1120e1"
+      "tasks.md": "0c288d54c5a772af91d65ad98f9bc91351a989361ab6aafe5888dfee3d77e83a",
+      "decision-record.md": "c27c3b804f6aaf506cf12fbef11e3d6a905da91236fa8474d283c7203ce588a4",
+      "implementation-summary.md": "c17a90a33e3245bc36801781362050c974090af168673fd6c06d27f7601c1131"
     },
     "last_active_at": null
   }

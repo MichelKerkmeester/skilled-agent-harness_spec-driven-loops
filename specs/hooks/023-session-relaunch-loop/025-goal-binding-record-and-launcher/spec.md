@@ -74,14 +74,14 @@ The receiver is told which packet goal the sender was working under, or that the
 ### In Scope
 - Read first whether `spec_folder` plus the presence of `goal.md` is enough. The operator default settled this: it is not, so the phase adds the note field.
 - An optional `goal_packet` frontmatter field, validated as a repo-relative directory that holds `goal.md`, the way `spec_folder` is validated.
-- Per-runtime resolution at prepare and keep: the goal record under `.skilled/skills/.state/goal/` for OpenCode, Pi, Devin, Cursor and Hermes, the session log goal entries for Claude, and `spec_folder` with a `goal.md` for Codex.
+- Per-runtime resolution at prepare and keep: the goal record under `.skilled/skills/.state/goal/` for OpenCode, Pi, Devin, Cursor and Hermes, the session log goal entries for Claude, and nothing for Codex, whose goal store holds no packet and no readable record.
 - Claim prints the packet, and `skilled-loop` exports it to the receiver as `SESSION_RELAUNCH_GOAL_PACKET`.
 - `SESSION_RELAUNCH_GOAL=0` drops the field from claim output and the launch environment.
 
 ### Out of Scope
 - Binding the goal in any runtime - phases 26 and 27 do that
 - Copying the goal text into the note - the text is read fresh from `goal.md`, so a copy goes stale
-- Changing the note for sessions that never had a goal - the field stays empty and the receiver does nothing
+- Changing the note for sessions that never had a goal - the field stays out and the receiver does nothing
 
 ### Files to Change
 
@@ -104,8 +104,8 @@ The receiver is told which packet goal the sender was working under, or that the
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | Prepare and keep write `goal_packet` when the sender goal packet can be resolved, and leave it empty when it cannot |
-| REQ-002 | A `goal_packet` that is not a repo-relative directory holding `goal.md` is refused at prepare and keep, the way `spec_folder` is |
+| REQ-001 | Prepare and keep write `goal_packet` only when the sender's goal can be proven, and leave the field out when it cannot, including on every Codex hop |
+| REQ-002 | Prepare and keep rewrite `goal_packet` on every call from the sender's goal as it is now, replacing or removing a value the note held, and only a repo-relative directory holding `goal.md` is ever written or handed on |
 | REQ-003 | Claim prints the packet and the launcher exports it to the receiver, and `SESSION_RELAUNCH_GOAL=0` removes both |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -166,12 +166,13 @@ The receiver is told which packet goal the sender was working under, or that the
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- A sender with no goal: the field is empty and the receiver does nothing.
+- A sender with no goal, or one whose goal cannot be proven: the field is left out and the receiver does nothing.
+- A note prepared again after its goal ended: the field is removed.
 - A packet whose `goal.md` was deleted after prepare: claim prints nothing for it.
 
 ### Error Scenarios
-- An unreadable goal record: the field stays empty and prepare succeeds.
-- A `goal_packet` that escapes the repository: prepare exits non-zero with the reason.
+- An unreadable goal record or Claude log: the field is left out and prepare succeeds.
+- A `goal_packet` the note holds that escapes the repository or has no `goal.md`: prepare and keep replace or remove it, and claim and consume would not hand it on.
 
 ### State Transitions
 - A note from before this phase: no field, no change in behavior.
@@ -196,8 +197,9 @@ The receiver is told which packet goal the sender was working under, or that the
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- **Decided (operator default): keep the separate `goal_packet` field.** `spec_folder` with a `goal.md` is not enough on its own, because it cannot tell whether the sender actually had a goal, and that is the only consent signal the receiver has. A receiver that bound a goal from `spec_folder` alone would set one the sender never had. Codex is the one runtime that still resolves from `spec_folder` and a `goal.md`, since it keeps no goal record.
-- **Decided: keep the switch.** The receiver sets a goal without a keystroke, so `SESSION_RELAUNCH_GOAL=0` stays as the off ramp. With it off, `prepare` and `keep` neither write nor check the field, and `claim` and the wrapper pass nothing on.
+- **Decided (operator default): keep the separate `goal_packet` field.** `spec_folder` with a `goal.md` is not enough on its own, because it cannot tell whether the sender actually had a goal, and that is the only consent signal the receiver has. A receiver that bound a goal from `spec_folder` alone would set one the sender never had. The first build still resolved Codex, and Claude without a log, from `spec_folder` and a `goal.md`, which wrote a goal the sender never had. Both now write no field.
+- **Decided: keep the switch.** The receiver sets a goal without a keystroke, so `SESSION_RELAUNCH_GOAL=0` stays as the off ramp. With it off, `prepare` and `keep` neither write, replace nor remove the field, and `claim` and the wrapper pass nothing on.
+- **Decided: the CLI owns the field.** `prepare` and `keep` re-resolve and write on every call, so a value written by hand or left from an earlier call does not survive. The earlier rule that a hand-written value is validated and kept let a note outlive its goal.
 <!-- /ANCHOR:questions -->
 
 ---

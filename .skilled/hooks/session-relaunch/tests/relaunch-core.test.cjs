@@ -2042,20 +2042,17 @@ test('resolveGoalPacket keys a record by the session, so another session finds n
   }), '', 'a Pi record is not an OpenCode goal');
 });
 
-test('resolveGoalPacket takes the Codex packet from the spec folder and its parents', (t) => {
+test('resolveGoalPacket gives a Codex sender no packet, whatever the spec folder holds', (t) => {
   const sandbox = createSandbox(t);
   const roots = [sandbox.repoRoot];
-  const codex = (specFolder) => resolveGoalPacket({
-    runtime: 'codex', sessionId: GOAL_SESSION_ID, specFolder, roots, env: sandbox.env,
-  });
-
-  assert.equal(codex(GOAL_PACKET), '', 'no goal.md anywhere');
   writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);
-  assert.equal(codex(GOAL_PACKET), GOAL_PARENT, 'the parent holds the goal');
   writeGoalPacket(sandbox.repoRoot);
-  assert.equal(codex(GOAL_PACKET), GOAL_PACKET, 'the nearest packet wins');
-  assert.equal(codex(''), '');
-  assert.equal(codex('none'), '');
+
+  for (const specFolder of [GOAL_PACKET, GOAL_PARENT, '', 'none']) {
+    assert.equal(resolveGoalPacket({
+      runtime: 'codex', sessionId: GOAL_SESSION_ID, specFolder, roots, env: sandbox.env,
+    }), '', JSON.stringify(specFolder));
+  }
 });
 
 test('resolveGoalPacket follows the Claude session log goal entries', (t) => {
@@ -2090,17 +2087,28 @@ test('resolveGoalPacket follows the Claude session log goal entries', (t) => {
   })], 'none'), GOAL_PARENT, 'a packet the text names');
 });
 
-test('resolveGoalPacket falls back to the spec folder when no Claude log can be read', (t) => {
+test('resolveGoalPacket answers empty when no Claude log can be read', (t) => {
   const sandbox = createSandbox(t);
   writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);
-  const env = { ...sandbox.env, CLAUDE_CONFIG_DIR: path.join(sandbox.root, 'no-such-config') };
+  writeGoalPacket(sandbox.repoRoot);
+  const roots = [sandbox.repoRoot];
+  const claude = (env, sessionId = GOAL_SESSION_ID) => resolveGoalPacket({
+    runtime: 'claude', sessionId, specFolder: GOAL_PACKET, roots, env,
+  });
+  const missingConfig = { ...sandbox.env, CLAUDE_CONFIG_DIR: path.join(sandbox.root, 'no-such-config') };
 
-  assert.equal(resolveGoalPacket({
-    runtime: 'claude', sessionId: GOAL_SESSION_ID, specFolder: GOAL_PACKET, roots: [sandbox.repoRoot], env,
-  }), GOAL_PARENT);
-  assert.equal(resolveGoalPacket({
-    runtime: 'claude', sessionId: '../escape', specFolder: GOAL_PACKET, roots: [sandbox.repoRoot], env,
-  }), GOAL_PARENT, 'a session id that is not a file name reads no log');
+  assert.equal(claude(missingConfig), '', 'no projects folder');
+  assert.equal(claude(missingConfig, '../escape'), '', 'a session id that is not a file name');
+
+  const configDirectory = path.join(sandbox.root, 'claude-config');
+  fs.mkdirSync(path.join(configDirectory, 'projects', '-some-project', `${GOAL_SESSION_ID}.jsonl`), {
+    recursive: true,
+  });
+  assert.equal(claude({ ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory }), '', 'an unreadable log');
+  fs.rmSync(path.join(configDirectory, 'projects', '-some-project', `${GOAL_SESSION_ID}.jsonl`), {
+    recursive: true,
+  });
+  assert.equal(claude({ ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory }), '', 'a project folder with no log');
 });
 
 test('resolveGoalPacket widens the Claude log tail past one large entry', (t) => {
@@ -2130,16 +2138,31 @@ test('resolveGoalPacket answers empty for an unknown runtime or a missing sessio
   assert.equal(resolveGoalPacket({}), '');
 });
 
-test('recordGoalPacket writes the field once and keeps what the note already holds', (t) => {
+test('recordGoalPacket writes, replaces and removes the field and skips an unchanged note', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
   const taken = trackLocks(t);
+  const field = () => parseHandoff(readNote(handoffPath)).frontmatter.goal_packet;
 
+  assert.equal(recordGoalPacket(handoffPath, ''), false, 'nothing to remove');
   assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), true);
-  assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.goal_packet, GOAL_PACKET);
-  assert.equal(recordGoalPacket(handoffPath, GOAL_PARENT), false);
-  assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.goal_packet, GOAL_PACKET);
+  assert.equal(field(), GOAL_PACKET);
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), false, 'the same value');
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PARENT), true);
+  assert.equal(field(), GOAL_PARENT, 'a held value is replaced');
+  assert.equal(recordGoalPacket(handoffPath, ''), true);
+  assert.equal(field(), undefined);
+  assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
   assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.status, 'open');
-  assert.deepEqual(taken, Array(2).fill(`${handoffPath}.lock`));
+  assert.deepEqual(taken, Array(5).fill(`${handoffPath}.lock`));
   assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+});
+
+test('recordGoalPacket removes an empty field the note holds', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  fs.writeFileSync(handoffPath, readNote(handoffPath).replace(/^(status: .*)$/m, '$1\ngoal_packet: '));
+
+  assert.equal(recordGoalPacket(handoffPath, ''), true);
+  assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
 });

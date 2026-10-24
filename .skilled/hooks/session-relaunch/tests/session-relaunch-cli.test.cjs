@@ -826,6 +826,7 @@ test('prepare and keep accept a spec folder that only the note cwd checkout hold
   assert.ok(prepared.stdout.includes(SPEC_FOLDER_SUFFIX), prepared.stdout);
 
   const kept = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(kept.status, 0, kept.stderr);
   assert.doesNotMatch(kept.stderr, /does not exist in this repository/);
 });
 
@@ -1997,17 +1998,22 @@ function writeGoalFile(root, packet = GOAL_PACKET) {
   fs.writeFileSync(path.join(root, packet, 'goal.md'), `${GOAL_HEADLINE}\n`);
 }
 
-function writeGoalRecord(sandbox, runtime, record = { status: 'active', packetPath: GOAL_PACKET }) {
+function writeGoalRecord(
+  sandbox,
+  runtime,
+  record = { status: 'active', packetPath: GOAL_PACKET },
+  root = sandbox.repoRoot,
+) {
   const goalCore = require('../../goal/lib/goal-core.cjs');
   // The state directory marks the checkout as the workspace the record reader resolves.
-  fs.mkdirSync(path.join(sandbox.repoRoot, '.skilled', 'skills'), { recursive: true });
+  fs.mkdirSync(path.join(root, '.skilled', 'skills'), { recursive: true });
   const filePath = runtime === 'opencode'
     ? path.join(
-      goalCore.resolveStateDir({ workspace: sandbox.repoRoot }),
+      goalCore.resolveStateDir({ workspace: root }),
       `${createHash('sha256').update(SESSION_ID, 'utf8').digest('hex')}.json`,
     )
     : goalCore.statePath({
-      scope: { workspace: sandbox.repoRoot, runtime, sessionId: SESSION_ID },
+      scope: { workspace: root, runtime, sessionId: SESSION_ID },
     });
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(record));
@@ -2036,7 +2042,6 @@ const GOAL_SENDER_CASES = [
     runtime,
     arrange: (sandbox) => writeGoalRecord(sandbox, runtime),
   })),
-  { runtime: 'codex', arrange: () => {} },
   {
     runtime: 'claude',
     arrange: (sandbox) => writeClaudeGoalLog(sandbox, [{
@@ -2129,13 +2134,41 @@ for (const command of ['prepare', 'keep']) {
     assert.equal(noteGoalPacket(handoffPath), undefined);
   });
 
-  test(`${command} keeps a goal_packet the sender wrote instead of resolving another`, (t) => {
+  test(`${command} writes no goal_packet for a Codex sender, whatever the spec folder holds`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = writeHandoff(sandbox);
     writeGoalFile(sandbox.repoRoot);
-    const written = `${CHILD_SPEC_FOLDER}`;
-    writeGoalFile(sandbox.repoRoot, written);
-    setNoteField(handoffPath, `goal_packet: ${written}`);
+    const before = fs.readFileSync(handoffPath, 'utf8');
+
+    const result = runCli(sandbox, [
+      command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', 'codex',
+    ]);
+
+    assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
+    assert.equal(noteGoalPacket(handoffPath), undefined);
+    assert.equal(fs.readFileSync(handoffPath, 'utf8'), before);
+  });
+
+  test(`${command} writes no goal_packet for a Claude sender whose log is missing`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    writeGoalFile(sandbox.repoRoot);
+    sandbox.env.CLAUDE_CONFIG_DIR = path.join(sandbox.root, 'no-such-config');
+
+    const result = runCli(sandbox, [
+      command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', 'claude',
+    ]);
+
+    assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
+    assert.equal(noteGoalPacket(handoffPath), undefined);
+  });
+
+  test(`${command} replaces a goal_packet the note holds with the one the sender has`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    writeGoalFile(sandbox.repoRoot);
+    writeGoalFile(sandbox.repoRoot, CHILD_SPEC_FOLDER);
+    setNoteField(handoffPath, `goal_packet: ${CHILD_SPEC_FOLDER}`);
     writeGoalRecord(sandbox, 'opencode');
 
     const result = runCli(sandbox, [
@@ -2143,18 +2176,13 @@ for (const command of ['prepare', 'keep']) {
     ]);
 
     assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
-    assert.equal(noteGoalPacket(handoffPath), written);
+    assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
   });
 
-  test(`${command} accepts a goal packet that only the note cwd checkout holds`, (t) => {
+  test(`${command} drops a goal_packet the note holds when the sender has no goal`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = writeHandoff(sandbox);
-    const worktree = path.join(path.dirname(sandbox.repoRoot), 'worktree');
-    writeGoalFile(worktree);
-    fs.writeFileSync(
-      handoffPath,
-      fs.readFileSync(handoffPath, 'utf8').replace(/^cwd: .*$/m, `cwd: ${worktree}`),
-    );
+    writeGoalFile(sandbox.repoRoot);
     setNoteField(handoffPath, `goal_packet: ${GOAL_PACKET}`);
 
     const result = runCli(sandbox, [
@@ -2162,9 +2190,49 @@ for (const command of ['prepare', 'keep']) {
     ]);
 
     assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
+    assert.equal(noteGoalPacket(handoffPath), undefined);
+    assert.match(fs.readFileSync(handoffPath, 'utf8'), /^status: open$/m);
   });
 
-  test(`${command} refuses a goal_packet that is not a repo packet holding goal.md`, (t) => {
+  test(`${command} drops the goal_packet once the goal that set it has ended`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    writeGoalFile(sandbox.repoRoot);
+    writeGoalRecord(sandbox, 'pi');
+    const args = [command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', 'pi'];
+    const status = command === 'prepare' ? 3 : 0;
+
+    assert.equal(runCli(sandbox, args).status, status);
+    assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
+
+    writeGoalRecord(sandbox, 'pi', { status: 'complete', packetPath: GOAL_PACKET });
+    const again = runCli(sandbox, args);
+
+    assert.equal(again.status, status, again.stderr);
+    assert.equal(noteGoalPacket(handoffPath), undefined);
+    assert.match(fs.readFileSync(handoffPath, 'utf8'), /^status: open$/m);
+  });
+
+  test(`${command} takes a goal packet that only the note cwd checkout holds`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    const worktree = path.join(path.dirname(sandbox.repoRoot), 'worktree');
+    writeGoalFile(worktree);
+    writeGoalRecord(sandbox, 'pi', undefined, worktree);
+    fs.writeFileSync(
+      handoffPath,
+      fs.readFileSync(handoffPath, 'utf8').replace(/^cwd: .*$/m, `cwd: ${worktree}`),
+    );
+
+    const result = runCli(sandbox, [
+      command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', 'pi',
+    ]);
+
+    assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
+    assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
+  });
+
+  test(`${command} replaces a goal_packet that is no repo packet holding goal.md`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = writeHandoff(sandbox);
     const outside = path.join(sandbox.root, 'outside');
@@ -2173,22 +2241,14 @@ for (const command of ['prepare', 'keep']) {
     const linked = 'specs/hooks/030-linked-packet';
     fs.mkdirSync(path.join(sandbox.repoRoot, 'specs/hooks'), { recursive: true });
     fs.symlinkSync(outside, path.join(sandbox.repoRoot, linked));
-    const cases = [
-      { value: '../outside', reason: /goal_packet must be the repo-relative packet path/ },
-      { value: outside, reason: /goal_packet must be the repo-relative packet path/ },
-      { value: `${GOAL_PACKET} ${CHILD_SPEC_FOLDER}`, reason: /goal_packet must be the repo-relative/ },
-      { value: 'specs/hooks/../024-other', reason: /goal_packet must be the repo-relative/ },
-      { value: linked, reason: /goal_packet .* resolves outside the repository/ },
-      { value: GOAL_PACKET, reason: /goal_packet .* holds no goal\.md in this repository/ },
-    ];
 
-    for (const { value, reason } of cases) {
+    for (const value of ['../outside', outside, 'specs/hooks/../024-other', linked, GOAL_PACKET]) {
       setNoteField(handoffPath, `goal_packet: ${value}`);
       const result = runCli(sandbox, [
         command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', 'pi',
       ]);
-      assert.equal(result.status, 2, `${value}: ${result.stdout}${result.stderr}`);
-      assert.match(result.stderr, reason, value);
+      assert.equal(result.status, command === 'prepare' ? 3 : 0, `${value}: ${result.stderr}`);
+      assert.equal(noteGoalPacket(handoffPath), undefined, value);
       fs.writeFileSync(handoffPath, handoffText());
     }
   });
