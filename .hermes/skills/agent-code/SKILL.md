@@ -550,3 +550,4 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 │  └─► No completion claim without stack-appropriate verification          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
+
