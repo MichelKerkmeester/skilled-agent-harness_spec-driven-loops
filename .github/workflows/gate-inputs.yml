@@ -27,15 +27,8 @@ jobs:
         with:
           node-version: '22'
 
-      # The doc-version gate the hook tests drive imports @spec-kit/shared, a local
-      # package whose dist/ is not committed, so system-spec-kit is installed and its
-      # shared package built, and sk-doc, which maps that import, is installed.
-      - name: Install the packages the hook tests load
-        run: |
-          set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/sk-doc ci
+      - name: Provision the dependency trees the hook tests load
+        uses: ./.github/actions/setup
       # The check reads the gates as text, so a shape it cannot parse could still hide a
       # one-root filter. The hook test scripts run the real hooks against staged changes
       # under both roots, which covers the gates' behavior whatever their spelling. The

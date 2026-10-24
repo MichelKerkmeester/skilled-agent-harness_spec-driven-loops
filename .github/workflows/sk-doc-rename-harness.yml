@@ -11,6 +11,7 @@ on:
       - '.skilled/skills/sk-doc/scripts/**'
       - '.opencode/skills/sk-doc/shared/scripts/**'
       - '.skilled/skills/sk-doc/shared/scripts/**'
+      - '.github/actions/**'
       - '.github/workflows/sk-doc-rename-harness.yml'
   push:
     branches: [main, 'skilled/**']
@@ -19,6 +20,7 @@ on:
       - '.skilled/skills/sk-doc/scripts/**'
       - '.opencode/skills/sk-doc/shared/scripts/**'
       - '.skilled/skills/sk-doc/shared/scripts/**'
+      - '.github/actions/**'
       - '.github/workflows/sk-doc-rename-harness.yml'
 
 permissions:
@@ -40,6 +42,8 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.x'
+          cache: pip
+          cache-dependency-path: .github/workflows/sk-doc-rename-harness.yml
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -49,13 +53,8 @@ jobs:
       - name: Install test dependencies
         run: python3 -m pip install pytest==8.4.2 pyyaml==6.0.3
 
-      - name: Install the packages the scripts load
-        run: |
-          set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/sk-doc ci
-          npm --prefix .opencode/skills/system-deep-loop ci
+      - name: Provision the dependency trees the scripts load
+        uses: ./.github/actions/setup
 
       - name: Run the rename tooling fixture harness
         env:

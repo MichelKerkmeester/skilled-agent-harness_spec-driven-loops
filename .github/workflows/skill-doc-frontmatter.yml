@@ -15,6 +15,7 @@ on:
       - '.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
       - '.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
       - '.github/workflows/skill-doc-frontmatter.yml'
+      - '.github/actions/**'
   push:
     branches: [main, 'skilled/**']
     paths:
@@ -27,6 +28,7 @@ on:
       - '.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
       - '.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh'
       - '.github/workflows/skill-doc-frontmatter.yml'
+      - '.github/actions/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -72,13 +74,8 @@ jobs:
         with:
           node-version: '22'
 
-      # The engine reads frontmatter through @spec-kit/shared, so that package is built.
-      - name: Install the packages the engine loads
-        run: |
-          set -euo pipefail
-          npm --prefix .skilled/skills/system-spec-kit ci
-          ( cd .skilled/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .skilled/skills/sk-doc ci
+      - name: Provision the dependency trees the engine loads
+        uses: ./.github/actions/setup
 
       # Fails on a changed doc whose body changed while its version did not go up, and
       # prints the one command that raises them against the same base.

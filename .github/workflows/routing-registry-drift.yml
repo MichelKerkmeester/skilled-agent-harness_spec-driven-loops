@@ -22,6 +22,7 @@ on:
     # and both live skill-metadata regressions to date arrived exactly that way.
     branches: [main, 'skilled/v*']
     paths:
+      - '.github/actions/**'
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
       - '.skilled/skills/*/mode-registry.json'
@@ -68,6 +69,7 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - '.github/actions/**'
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
       - '.skilled/skills/*/mode-registry.json'
@@ -133,17 +135,8 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '20'
-      - name: Install the spec-kit workspace and build its shared package
-        # The checkers require @spec-kit/shared, a workspace package that only
-        # resolves after an install links it, and its .js subpaths point at the
-        # compiled dist, so a bare checkout cannot find the module.
-        run: |
-          set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          # sk-doc's checkers import the same package through their own file: dependency,
-          # which only exists once sk-doc is installed as well.
-          npm --prefix .opencode/skills/sk-doc ci
+      - name: Provision the dependency trees the checkers load
+        uses: ./.github/actions/setup
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.x'
@@ -247,14 +240,8 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '20'
-      - name: Install advisor scorer + build the shared projection dependency
-        # tsc for the shared build comes from the spec-kit install; the scorer
-        # runs in a force-local regime at test time so no skill-graph DB is built.
-        run: |
-          set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+      - name: Provision the dependency trees the golden-prompt gate loads
+        uses: ./.github/actions/setup
       - name: Golden-prompt acceptance suite
         working-directory: .opencode/skills/system-skill-advisor/runtime
         run: |
