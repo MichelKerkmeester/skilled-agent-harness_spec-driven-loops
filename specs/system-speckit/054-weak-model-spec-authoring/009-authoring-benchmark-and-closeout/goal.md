@@ -41,7 +41,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The run task text is copied byte for byte from phase 1 T009. No word changes on the final side. |
+| D1 | The run brief is `../001-template-drift-census-and-baseline/scratch/baseline-swe-l3/brief-1.txt` byte for byte, the phase 1 T009 task at Level 3. No word changes on the final side. |
 | D2 | M2 counts bare v2.2 hint occurrences plus v2.3 value token occurrences. The two patterns are disjoint and each unfilled instruction counts once. |
 | D3 | Three final runs, serial, on cli-devin `swe-2-max`, compared with the 3 `swe-2-max` baseline runs. No run is dropped when it is bad. |
 | D4 | The report folder is `.skilled/skills/system-spec-kit/benchmark/reports/$DATE--model-eval--authoring-baseline/`, dated by execution. |
@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `jq '.runs | length' scratch/baseline/baseline.json` prints `3` and each run holds the five metrics `strict_passed`, `leftover_hints`, `missing_anchors`, `out_of_scope_writes` and `seconds`
-- [ ] `jq '.metrics | length' scratch/baseline/delta.json` prints `5`, every metric carries a minimum and a maximum for both sides, and the final lowest `leftover_hints` is below the baseline lowest
+- [ ] `jq '.metrics | length' scratch/baseline/delta.json` prints `5`, every metric carries a minimum and a maximum for both sides, every final run passes strict validation, and the final maximum of `leftover_hints`, `missing_anchors` and `out_of_scope_writes` is at most the baseline maximum
 - [ ] The benchmark report folder holds `README.md` with ten numbered sections, `results.csv` with six runs, `source.md` that names this packet, and one new row in the reports index
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
 - [ ] `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the parent goal completion anchor holds seven `[x]` rows
@@ -102,5 +102,7 @@ and findings belong here.
 | Three runs cannot support a significance claim | The report prints a range and says so. A reader who needs an effect size needs more runs. |
 | Bracket scan false positives | The bracket-hint scan matches the status format token in `plan.md` and the folder-name regex in `tasks.md`. Both sit inside fenced code blocks and are intentional literals, not unfilled hints. |
 | Takeover on 2026-10-24 | The parent moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, and every review to swe-2-max (parent D4, D7, D8). A task that names the Task tool runs as that CLI dispatch with the same brief and reply file. |
+| Level 3 retarget | The parent moved the benchmark to a Level 3 task on cli-devin swe-2-max with a no-regression criterion 5. T002 and T004 to T008 and the C5 proof now read the baseline, the brief, `hints-l3.txt` and `anchors-l3.txt` from phase 1 `scratch/baseline-swe-l3/`. Where `spec.md` or `plan.md` still name the Level 2 task, `hints-v2.2.txt`, `anchors-v2.3.txt` as the M3 list, the count of 97 or DeepSeek, `tasks.md` wins |
+| D7 and the parent commit rule | D7 says nothing is committed. The parent's last criterion and the operator's takeover decisions allow local commits on the build worktree, so this phase ends with one local commit and never pushes. The parent wins by precedence |
 | T014 precondition rows | The OpenCode run already set parent preconditions 2 and 4 to Done, and the takeover added two rows beside them. T014 checks those rows as they stand instead of rewriting them from Pending. |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,16 @@
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-A.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-B.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-C.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T011.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/
+?? specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/ledger/
+?? specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/status-start.txt

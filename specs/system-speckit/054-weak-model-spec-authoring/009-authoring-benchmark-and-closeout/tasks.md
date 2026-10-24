@@ -34,10 +34,11 @@ Shell variables used below, set once by the conductor:
 - `SC`: `$PHASE/scratch`
 - `S`: `.skilled/skills/system-spec-kit`
 - `P1`: `$PKT/001-template-drift-census-and-baseline`
+- `BL`: `$P1/scratch/baseline-swe-l3`, the Level 3 cli-devin swe-2-max baseline.
 - `P3`: `$PKT/003-versioned-placeholder-gate`
 - `START`: the commit hash in `$SC/baseline/start-commit.txt`, recorded by T003.
 
-Every command runs from `$WORKTREE` unless the task says otherwise. Numbers printed in a Verify line that depend on the run are written as a rule, not as a fixed value. The one fixed number, the phase 1 baseline count of 97 leftover hints, is quoted from `../001-template-drift-census-and-baseline/implementation-summary.md`.
+Every command runs from `$WORKTREE` unless the task says otherwise. Numbers printed in a Verify line that depend on the run are written as a rule, not as a fixed value. The baseline side is read from `$BL`: `baseline.json` for the three runs, `brief-1.txt` for the frozen brief, `hints-l3.txt` for the bare hint list and `anchors-l3.txt` for the required anchors.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -45,7 +46,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check the tools and the configured model (no file). Verify: `rg -c 'deepseek-v4.1-flash-1017' opencode.json` prints a number above 0, and `for t in jq rg awk node python3 git perl; do command -v "$t" || echo "MISSING $t"; done` prints seven paths and no `MISSING` line.
+- [ ] T001 Check the tools and the configured model (no file). Verify: `devin auth status` prints `Logged in`, and `for t in jq rg awk node python3 git perl sqlite3 devin; do command -v "$t" || echo "MISSING $t"; done` prints nine paths and no `MISSING` line.
 
 - [ ] T002 Check that every prior phase and the write-recipe child are closed (no file). Run the block below. Verify: the first line reads `8 RESULT: PASSED`, the second reads `RESULT: PASSED`, then `BASELINE_OK`, `CENSUS_OK`, `DRIFT_GUARD_OK`, `CARD_GUARD_OK`, `NESTED_OK` and a final `RESULT: PASSED`. When one line is missing or a child fails, write the missing path or the failing child in `goal.md` section 4 and stop the phase. This phase does not edit another phase folder.
 
@@ -53,7 +54,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   cd "$WORKTREE"
   for d in $PKT/00[1-8]-*/; do bash $S/runtime/cli/spec/validate.sh "$d" --strict 2>&1 | grep 'RESULT:' | tail -1; done | sort | uniq -c | sed 's/^ *//'
   bash $S/runtime/cli/spec/validate.sh specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination --strict 2>&1 | grep 'RESULT:' | tail -1
-  test -s "$P1/scratch/baseline/baseline.json" && jq -e '.runs | length == 3' "$P1/scratch/baseline/baseline.json" > /dev/null && test -s "$P1/scratch/baseline/hints-v2.2.txt" && echo BASELINE_OK
+  test -s "$BL/baseline.json" && jq -e '.runs | length == 3' "$BL/baseline.json" > /dev/null && test -s "$BL/brief-1.txt" && test -s "$BL/hints-l3.txt" && test -s "$BL/anchors-l3.txt" && echo BASELINE_OK
   test -s "$P3/scratch/census/folders.txt" && test -s "$P3/scratch/census/b-before.tsv" && test -s "$P3/scratch/census/shard-0.txt" && echo CENSUS_OK
   test -f "$S/runtime/cli/spec/check-example-drift.sh" && echo DRIFT_GUARD_OK
   test -f "$S/runtime/cli/spec/check-card-sync.sh" && echo CARD_GUARD_OK
@@ -77,11 +78,11 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build the final vocabulary and anchor list (`scratch/baseline/hints-v2.3.txt`, `scratch/baseline/anchors-v2.3.txt`). Run the block below. It scaffolds one Level 2 packet, extracts the distinct value tokens and the anchor count of each of the four documents, then deletes the throwaway track. Verify: `wc -l < "$SC/baseline/hints-v2.3.txt"` prints a number above 50, `cat "$SC/baseline/anchors-v2.3.txt"` prints four lines, and `test ! -e specs/zz-bench-hints && echo TRACK_GONE` prints `TRACK_GONE`. Record both counts in `goal.md` section 4.
+- [ ] T004 Build the final vocabulary and anchor list (`scratch/baseline/hints-v2.3.txt`, `scratch/baseline/anchors-v2.3.txt`). Run the block below. It scaffolds one Level 3 packet, the level the runs use, extracts the distinct value tokens and the anchor count of each of the four documents, then deletes the throwaway track. Both files record the final templates. M3 in T006 still measures against `$BL/anchors-l3.txt`, so both sides share one anchor definition. Verify: `wc -l < "$SC/baseline/hints-v2.3.txt"` prints a number above 50, `cat "$SC/baseline/anchors-v2.3.txt"` prints four lines, and `test ! -e specs/zz-bench-hints && echo TRACK_GONE` prints `TRACK_GONE`. Record both counts in `goal.md` section 4.
 
   ```bash
   cd "$WORKTREE"
-  bash $S/runtime/cli/spec/create.sh --skip-branch --level 2 --track zz-bench-hints --short-name recommend-level-quiet-flag "Add a quiet flag to recommend-level.sh"
+  bash $S/runtime/cli/spec/create.sh --skip-branch --level 3 --track zz-bench-hints --short-name recommend-level-quiet-flag "Add a quiet flag to recommend-level.sh"
   P=specs/zz-bench-hints/001-recommend-level-quiet-flag
   rg -o --no-filename '\[YOUR_VALUE_HERE: [^]]*\]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md | sort -u > "$SC/baseline/hints-v2.3.txt"
   for f in spec plan tasks acceptance-criteria; do echo "$f $(rg -c '<!-- ANCHOR:' $P/$f.md)"; done > "$SC/baseline/anchors-v2.3.txt"
@@ -90,38 +91,38 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 
 - [ ] T005 Run the final baseline three times, serially (`scratch/runs/T005-1.txt` to `T005-3.txt`, `scratch/baseline/runs.jsonl`). For each run `N` in 1, 2, 3, in order:
   1. Save `git status --porcelain` to `$SC/baseline/status-before-$N.txt`.
-  2. Save `date +%s` to `$SC/runs/T005-$N.t0` before the Task call.
-  3. Build the brief as the skeleton in `plan.md` section AI EXECUTION PROTOCOL followed by the frozen task block below, save it as `$SC/briefs/T005-$N.txt`, set `TASK=T005-$N`, and dispatch it with the Task tool as the plan's Dispatch Command says. When the subagent returns, write its final reply verbatim to `$SC/runs/T005-$N.txt` with the write tool, then run `date +%s > "$SC/runs/T005-$N.t1"`.
-  4. Run T006 for that run before starting the next one.
+  2. Save `date +%s` to `$SC/runs/T005-$N.t0` before the dispatch.
+  3. Run the dispatch block below. It copies the frozen brief and runs it on cli-devin swe-2-max, the benchmark subject. Run nothing else in the worktree while the run is live, because any write there counts as the subject's out-of-scope write.
+  4. Run the audit block below. Each of its three lines must end in `0`. A higher count means the subject read baseline evidence, an earlier run or a conductor file: record the run as contaminated in `goal.md` section 4, keep it in `runs.jsonl`, and stop the phase for the operator.
+  5. Run T006 for that run before starting the next one.
 
   Verify: `for n in 1 2 3; do test -s "$SC/runs/T005-$n.txt" && test -s "$SC/runs/T005-$n.t0" && test -s "$SC/runs/T005-$n.t1" && test -s "$SC/baseline/status-before-$n.txt" && echo "run-$n recorded"; done` prints `run-1 recorded`, `run-2 recorded` and `run-3 recorded`, and the frozen-text check prints `TASK_FROZEN`.
 
-  Frozen task block, copied from `../001-template-drift-census-and-baseline/tasks.md` T009 with no word changed:
+  Dispatch block for run `N`. The brief is the Level 3 baseline brief with no word changed:
 
-  ```text
-  TASK: Write the planning documents for one small feature.
+  ```bash
+  cd "$WORKTREE"
+  cp "$BL/brief-1.txt" "$SC/briefs/T005-$N.txt"
+  AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 devin -p --model swe-2-max --permission-mode dangerous -- "$(cat "$SC/briefs/T005-$N.txt")" </dev/null > "$SC/runs/T005-$N.txt" 2> "$SC/runs/T005-$N.err"
+  date +%s > "$SC/runs/T005-$N.t1"
+  ```
 
-  Feature: add a --quiet flag to .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh.
-  With --quiet the script prints only its final recommended-level line. Without the flag its
-  output is unchanged.
+  Audit block for run `N`. It finds the run's Devin session by working directory and start time and counts tool calls that name a forbidden path:
 
-  Steps:
-  1. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 2 --track zz-bench-authoring --short-name recommend-level-quiet-flag "Add a quiet flag to recommend-level.sh"
-  2. In the folder it created, fill spec.md, plan.md, tasks.md and acceptance-criteria.md
-     for this feature. Leave implementation-summary.md as it was created.
-  3. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-bench-authoring/001-recommend-level-quiet-flag --strict
-  4. Fix what it reports and run it again, at most three times in all.
-
-  RETURN exactly one line: the folder path, then the last RESULT line validate.sh printed.
+  ```bash
+  cd "$WORKTREE"
+  DB=~/.local/share/devin/cli/sessions.db
+  SID=$(sqlite3 -readonly "$DB" "select id from sessions where working_directory='$WORKTREE' and created_at >= $(cat "$SC/runs/T005-$N.t0") order by created_at limit 1;")
+  echo "$SID" > "$SC/runs/T005-$N.session"
+  sqlite3 -readonly "$DB" "select tool_call_json from tool_call_state where session_id='$SID';" > "$SC/runs/T005-$N.calls"
+  for p in baseline-swe 009-authoring-benchmark-and-closeout/scratch /private/tmp; do echo "$p $(grep -o "$p" "$SC/runs/T005-$N.calls" | wc -l | tr -d ' ')"; done
   ```
 
   Frozen-text check, run after the three briefs exist:
 
   ```bash
   cd "$WORKTREE"
-  awk '/TASK: Write the planning documents/,/RETURN exactly one line/' "$P1/tasks.md" | sed -E 's/^[[:space:]]+//' > "$SC/baseline/task-phase1.txt"
-  awk '/TASK: Write the planning documents/,/RETURN exactly one line/' "$SC/briefs/T005-1.txt" | sed -E 's/^[[:space:]]+//' > "$SC/baseline/task-final.txt"
-  cmp "$SC/baseline/task-phase1.txt" "$SC/baseline/task-final.txt" && echo TASK_FROZEN
+  CHANGED=0; for n in 1 2 3; do cmp -s "$BL/brief-1.txt" "$SC/briefs/T005-$n.txt" || { echo "BRIEF_CHANGED $n"; CHANGED=1; }; done; [ "$CHANGED" = 0 ] && echo TASK_FROZEN
   ```
 
 - [ ] T006 Measure each final run, then delete its track (part of `scratch/baseline/baseline.json`). Run the block below after run `N` stops, with `N` set to the run number, before the next dispatch. Verify: after the third run, `jq '.runs | length' "$SC/baseline/baseline.json"` prints `3`, `jq '.runs[] | keys | length' "$SC/baseline/baseline.json"` prints `6` three times, and `test ! -e specs/zz-bench-authoring && echo TRACK_GONE` prints `TRACK_GONE`.
@@ -129,12 +130,12 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   ```bash
   cd "$WORKTREE"
   P=specs/zz-bench-authoring/001-recommend-level-quiet-flag
-  H22="$P1/scratch/baseline/hints-v2.2.txt"
-  A23="$SC/baseline/anchors-v2.3.txt"
+  HL3="$BL/hints-l3.txt"
+  AL3="$BL/anchors-l3.txt"
   T0=$(cat "$SC/runs/T005-$N.t0")
   M1=$(bash $S/runtime/cli/spec/validate.sh $P --strict 2>&1 | grep -c 'RESULT: PASSED')
-  M2=$( { grep -F -o -f "$H22" $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md 2>/dev/null; rg -o --no-filename '\[YOUR_VALUE_HERE: [^]]*\]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md 2>/dev/null; } | wc -l | tr -d ' ')
-  M3=0; while read f n; do have=$(rg -c '<!-- ANCHOR:' $P/$f.md 2>/dev/null || echo 0); [ "$have" -lt "$n" ] && M3=$((M3 + n - have)); done < "$A23"
+  M2=$( { grep -F -o -f "$HL3" $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md 2>/dev/null; rg -o --no-filename '\[YOUR_VALUE_HERE: [^]]*\]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md 2>/dev/null; } | wc -l | tr -d ' ')
+  M3=0; while read f n; do have=$(rg -c '<!-- ANCHOR:' $P/$f.md 2>/dev/null || echo 0); [ "$have" -lt "$n" ] && M3=$((M3 + n - have)); done < "$AL3"
   git status --porcelain > "$SC/baseline/status-after-$N.txt"
   M4=$(diff "$SC/baseline/status-before-$N.txt" "$SC/baseline/status-after-$N.txt" | grep '^>' | grep -v 'zz-bench-authoring' | grep -v '054-weak-model-spec-authoring/009-' | wc -l | tr -d ' ')
   M5=$(( $(date +%s) - T0 ))
@@ -145,11 +146,11 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 
   When `M4` is above 0, restore each listed path with `git restore --source="$START" -- <path>` before the next run and record the paths in `goal.md` section 4. When a run did not create the packet folder, record the run output in `goal.md` section 4, re-dispatch once, and keep the failed run id in the log.
 
-- [ ] T007 Write the delta for the five metrics (`scratch/baseline/delta.json`, `scratch/baseline/delta.md`). Run the block below. Verify: `jq '.metrics | length' "$SC/baseline/delta.json"` prints `5`, `grep -cE '^\| (strict_passed|leftover_hints|missing_anchors|out_of_scope_writes|seconds) \|' "$SC/baseline/delta.md"` prints `5`, and the last command prints `true`. When it prints `false`, write `C5 FAILED: final lowest leftover_hints is not below the baseline lowest` in `goal.md` section 4, run T008 only, then write `STOP` in `goal.md` section 4 and stop the closeout. Do not tick the parent criterion and do not publish a changelog.
+- [ ] T007 Write the delta for the five metrics (`scratch/baseline/delta.json`, `scratch/baseline/delta.md`). Run the block below. Verify: `jq '.metrics | length' "$SC/baseline/delta.json"` prints `5`, `grep -cE '^\| (strict_passed|leftover_hints|missing_anchors|out_of_scope_writes|seconds) \|' "$SC/baseline/delta.md"` prints `5`, and the last command prints `true`. When it prints `false`, write `C5 FAILED: a final run failed strict validation or is worse than the baseline's worst on leftover_hints, missing_anchors or out_of_scope_writes` in `goal.md` section 4, run T008 only, then write `STOP` in `goal.md` section 4 and stop the closeout. Do not tick the parent criterion and do not publish a changelog.
 
   ```bash
   cd "$WORKTREE"
-  B="$P1/scratch/baseline/baseline.json"
+  B="$BL/baseline.json"
   F="$SC/baseline/baseline.json"
   jq -n --slurpfile b "$B" --slurpfile f "$F" '
     def stat($runs; $k):
@@ -163,7 +164,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   jq -r '
     def one: (.*10 | round) / 10;
     "# Authoring delta\n",
-    "- Baseline: three runs of the frozen task, recorded in `../001-template-drift-census-and-baseline/scratch/baseline/baseline.json`.",
+    "- Baseline: three Level 3 runs of the frozen brief on cli-devin swe-2-max, recorded in `../001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json`.",
     "- Final: three runs of the same task, recorded in `scratch/baseline/baseline.json`.",
     "- Each cell is the minimum, the maximum and the mean over three runs.",
     "- Three runs cannot support a significance claim. The table reports a range, not an effect size.\n",
@@ -171,7 +172,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
     "|--------|--------------|--------------|---------------|-----------|-----------|------------|----------------|",
     (.metrics[] | "| \(.metric) | \(.baseline.min) | \(.baseline.max) | \(.baseline.mean | one) | \(.final.min) | \(.final.max) | \(.final.mean | one) | \(.delta_mean | one) |")
   ' "$SC/baseline/delta.json" > "$SC/baseline/delta.md"
-  jq -e '([.metrics[] | select(.metric=="leftover_hints")][0]) | .final.min < .baseline.min' "$SC/baseline/delta.json"
+  jq -e 'def m($k): [.metrics[] | select(.metric==$k)][0]; . as $d | ($d | m("strict_passed").final.min == 1) and (["leftover_hints","missing_anchors","out_of_scope_writes"] | all(. as $k | $d | m($k) | .final.max <= .baseline.max))' "$SC/baseline/delta.json"
   ```
 
 - [ ] T008 Write the benchmark report and its index row (`$S/benchmark/reports/$DATE--model-eval--authoring-baseline/`, `$S/benchmark/reports/README.md`). Read `../008-playbook-run-in-worktree/spec.md`, `../008-playbook-run-in-worktree/plan.md` and `../008-playbook-run-in-worktree/implementation-summary.md` for the report shape phase 8 accepted, and read `.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md` sections 3 and 5 for the required package shape and the report contract, before composing the report. Run the block below, which writes `results.csv`, `README.md` and `source.md` from `delta.json` and inserts one index row. Verify: `awk 'NR>1' "$REPORT/results.csv" | wc -l` prints `6`, `grep -c '^## [0-9]' "$REPORT/README.md"` prints `10`, `grep -c 'model-eval--authoring-baseline' "$S/benchmark/reports/README.md"` prints `1`, and the script prints `NAME_OK`.
@@ -182,7 +183,7 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   NAME="$DATE--model-eval--authoring-baseline"
   REPORT="$S/benchmark/reports/$NAME"
   DELTA="$SC/baseline/delta.json"
-  B="$P1/scratch/baseline/baseline.json"
+  B="$BL/baseline.json"
   F="$SC/baseline/baseline.json"
   echo "$NAME" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}--[a-z0-9]+(-[a-z0-9]+)*--[a-z0-9]+(-[a-z0-9]+)*$' && echo NAME_OK
   mkdir -p "$REPORT"
@@ -194,20 +195,20 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
   val() { jq -r --arg m "$1" --arg s "$2" --arg k "$3" '.metrics[] | select(.metric==$m) | .[$s][$k]' "$DELTA"; }
   L_B_MIN=$(val leftover_hints baseline min); L_B_MAX=$(val leftover_hints baseline max)
   L_F_MIN=$(val leftover_hints final min);   L_F_MAX=$(val leftover_hints final max)
-  VERDICT=$(jq -r 'if ([.metrics[] | select(.metric=="leftover_hints")][0].final.min < [.metrics[] | select(.metric=="leftover_hints")][0].baseline.min) then "PASS" else "FAIL" end' "$DELTA")
+  VERDICT=$(jq -r 'def m($k): [.metrics[] | select(.metric==$k)][0]; . as $d | ($d | m("strict_passed").final.min == 1) and (["leftover_hints","missing_anchors","out_of_scope_writes"] | all(. as $k | $d | m($k) | .final.max <= .baseline.max)) | if . then "PASS" else "FAIL" end' "$DELTA")
   {
     printf '# %s\n\n' "$NAME"
-    printf '> system-spec-kit · model-eval · authoring-baseline · DeepSeek V4.1 Flash max\n\n---\n\n'
+    printf '> system-spec-kit · model-eval · authoring-baseline · cli-devin swe-2-max\n\n---\n\n'
     printf '## 1. HEADLINE / OVERVIEW\n\n'
     printf '**Verdict: %s**\n\n' "$VERDICT"
-    printf 'Three baseline runs and three final runs of one frozen authoring task. Leftover hints: minimum %s to %s on the baseline side, minimum %s to %s on the final side. The final lowest count is %s the baseline lowest.\n\n' "$L_B_MIN" "$L_B_MAX" "$L_F_MIN" "$L_F_MAX" "$( [ "$VERDICT" = PASS ] && echo below || echo not below )"
+    printf 'Three baseline runs and three final runs of one frozen Level 3 authoring brief. Leftover hints run from %s to %s on the baseline side and from %s to %s on the final side. The verdict is PASS when every final run passes strict validation and none is worse than the worst baseline run on leftover hints, missing anchors or out-of-scope writes.\n\n' "$L_B_MIN" "$L_B_MAX" "$L_F_MIN" "$L_F_MAX"
     printf '## 2. AGGREGATE RESULTS\n\n'
     echo '| Metric | Baseline min | Baseline max | Baseline mean | Final min | Final max | Final mean | Delta of means |'
     echo '|--------|--------------|--------------|---------------|-----------|-----------|------------|----------------|'
     jq -r 'def one: (.*10 | round) / 10; .metrics[] | "| \(.metric) | \(.baseline.min) | \(.baseline.max) | \(.baseline.mean | one) | \(.final.min) | \(.final.max) | \(.final.mean | one) | \(.delta_mean | one) |"' "$DELTA"
     printf '\n## 3. METHODOLOGY\n\n'
     cat <<'MD' | sed 's/^  //'
-  Fixture: one Level 2 packet for a `--quiet` flag on `recommend-level.sh`. The task text is frozen and copied from the phase 1 baseline with no word changed. Each side is three serial runs by `llmgateway/deepseek-v4.1-flash-1017#max`. The measured documents are `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md`. The throwaway track is deleted after each measurement.
+  Fixture: one Level 3 packet for a `--quiet` flag on `recommend-level.sh`. The brief is frozen and copied from the phase 1 baseline with no word changed. Each side is three serial runs by cli-devin `swe-2-max`, and each run's Devin session is audited for reads of baseline evidence. The measured documents are `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md`. The throwaway track is deleted after each measurement.
 
   ## 4. PER-CANDIDATE PROFILES
 
@@ -218,11 +219,11 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 
   ## 5. PROCESS NOTES
 
-  The baseline side is the phase 1 measurement and was not rerun. The final side ran after every phase closed, so the worker saw the tree the packet ships. A run that left its track behind was restored before the next dispatch.
+  The baseline side ran in phase 1 on templates identical to the start commit and was not rerun. The final side ran after every phase closed, so the worker saw the tree the packet ships. A run that left its track behind was restored before the next dispatch.
 
   ## 6. FINDINGS
 
-  The load-bearing number is the lowest leftover hint count on each side. A lower final minimum means at least one worker filled more of the packet with no hint left. The range matters as much as the minimum: a wide final range means the templates help some runs and not others.
+  The load-bearing numbers are the worst final run on leftover hints, missing anchors and out-of-scope writes, read against the worst baseline run. The baseline already reached 0 hints in one run, so the packet claims no regression rather than a lower minimum. A wide final range means the templates help some runs and not others.
 
   ## 7. CAVEATS
 
@@ -238,13 +239,13 @@ Every command runs from `$WORKTREE` unless the task says otherwise. Numbers prin
 
 MD
     printf '%s\n' '```bash' \
-      'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 2 --track zz-bench-hints --short-name recommend-level-quiet-flag "Add a quiet flag to recommend-level.sh"' \
+      'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 3 --track zz-bench-hints --short-name recommend-level-quiet-flag "Add a quiet flag to recommend-level.sh"' \
       'rg -o --no-filename "\[YOUR_VALUE_HERE: [^]]*\]" specs/zz-bench-hints/001-recommend-level-quiet-flag/*.md | sort -u > hints.txt' \
       '```'
-    printf '\nThe three final runs take 1 to 2 hours. The metric commands are in `tasks.md` T006. The raw run logs stay in the source packet named in `source.md`.\n\n'
+    printf '\nThe three final runs take about 20 minutes, against 17 minutes on the baseline side. The metric commands are in `tasks.md` T006. The raw run logs stay in the source packet named in `source.md`.\n\n'
     printf '## 10. CROSS-LINKS\n\n'
     printf -- '- Source packet: `specs/system-speckit/054-weak-model-spec-authoring`\n'
-    printf -- '- Baseline measurement: `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/baseline.json`\n'
+    printf -- '- Baseline measurement: `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json`\n'
     printf -- '- Delta: `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json`\n'
   } > "$REPORT/README.md"
   {
@@ -255,17 +256,17 @@ MD
     printf '| Resource | Purpose |\n|---|---|\n'
     printf '| Target skill | `.skilled/skills/system-spec-kit` |\n'
     printf '| Source packet | `specs/system-speckit/054-weak-model-spec-authoring` |\n'
-    printf '| Baseline runs | `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/baseline.json` |\n'
+    printf '| Baseline runs | `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json` |\n'
     printf '| Final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/baseline.json` |\n'
     printf '| Metric commands | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md` T006 |\n'
     printf '| Delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json` |\n'
     printf '| Run briefs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/briefs/T005-*.txt` |\n'
-    printf '| Model | `llmgateway/deepseek-v4.1-flash-1017#max` |\n\n'
+    printf '| Model | cli-devin `swe-2-max` |\n\n'
     printf '## 2. BOUNDARY\n\n'
     printf 'The corpus is an input and is never rewritten by a run. This folder holds outputs only, and a run whose result changes gets a new folder rather than overwriting this one.\n\n'
     printf 'Last updated %s.\n' "$DATE"
   } > "$REPORT/source.md"
-  ROW="| $DATE | [\`$NAME/\`](./$NAME/) | DeepSeek V4.1 Flash max, frozen authoring task | 3 baseline and 3 final runs, 5 metrics | **$VERDICT** | \`054-weak-model-spec-authoring\` |"
+  ROW="| $DATE | [\`$NAME/\`](./$NAME/) | cli-devin swe-2-max, frozen Level 3 authoring brief | 3 baseline and 3 final runs, 5 metrics | **$VERDICT** | \`054-weak-model-spec-authoring\` |"
   ROW="$ROW" perl -pi -e 'if (/^## 2\. RUN INDEX/) { $in = 1 } if ($in && /^\|---\|/ && !$done) { $_ .= "$ENV{ROW}\n"; $done = 1 }' "$S/benchmark/reports/README.md"
   echo INDEX_ROW_ADDED
   python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py "$REPORT/README.md" | tail -2
@@ -395,7 +396,7 @@ MD
   <!-- ANCHOR:how-delivered -->
   ## How It Was Delivered
 
-  The conductor dispatched three serial Task subagents that inherited the DeepSeek V4.1 Flash max session model, measured each run with the five commands in `tasks.md` T006, wrote every number from `delta.json`, and proved each parent criterion before ticking its box. One read-only frontier review read the closeout diff and each finding was applied or recorded in `goal.md` section 4.
+  The conductor ran three serial cli-devin swe-2-max dispatches of the frozen Level 3 brief, audited each run's Devin session, measured each run with the five commands in `tasks.md` T006, wrote every number from `delta.json`, and proved each parent criterion before ticking its box. One read-only frontier review read the closeout diff and each finding was applied or recorded in `goal.md` section 4.
 
   ### Operator handoff
 
@@ -577,13 +578,13 @@ MD
   B=$(printf '%s\n' "$BOUT" | tail -1)
   if [ "$A" = "EXAMPLE_DRIFT_OK" ] && [ "$B" = "CARD SYNC OK" ] && [ "$AR" = "0" ] && [ "$BR" = "0" ]; then echo "C4 PASS $A $B" >> "$C"; else echo "C4 FAIL $A rc=$AR $B rc=$BR" >> "$C"; fi
 
-  # C5: the report covers five metrics on two sides of three runs, and the lowest hint count fell.
+  # C5: the report covers five metrics on two sides of three runs, and no final run regressed against the worst baseline run.
   N=$(jq '.metrics | length' "$SC/baseline/delta.json")
-  BRUNS=$(jq '.runs | length' "$P1/scratch/baseline/baseline.json")
+  BRUNS=$(jq '.runs | length' "$BL/baseline.json")
   FRUNS=$(jq '.runs | length' "$SC/baseline/baseline.json")
-  LOW=$(jq -r '([.metrics[] | select(.metric=="leftover_hints")][0]) | "\(.baseline.min) -> \(.final.min)"' "$SC/baseline/delta.json")
-  OK=$(jq -r 'if ([.metrics[] | select(.metric=="leftover_hints")][0].final.min < [.metrics[] | select(.metric=="leftover_hints")][0].baseline.min) then "yes" else "no" end' "$SC/baseline/delta.json")
-  if [ "$N" = "5" ] && [ "$BRUNS" = "3" ] && [ "$FRUNS" = "3" ] && [ "$OK" = "yes" ]; then echo "C5 PASS metrics=$N runs=$BRUNS+$FRUNS leftover_min=$LOW" >> "$C"; else echo "C5 FAIL metrics=$N runs=$BRUNS+$FRUNS leftover_min=$LOW" >> "$C"; fi
+  LOW=$(jq -r '([.metrics[] | select(.metric=="leftover_hints")][0]) | "\(.baseline.max) -> \(.final.max)"' "$SC/baseline/delta.json")
+  OK=$(jq -r 'def m($k): [.metrics[] | select(.metric==$k)][0]; . as $d | ($d | m("strict_passed").final.min == 1) and (["leftover_hints","missing_anchors","out_of_scope_writes"] | all(. as $k | $d | m($k) | .final.max <= .baseline.max)) | if . then "yes" else "no" end' "$SC/baseline/delta.json")
+  if [ "$N" = "5" ] && [ "$BRUNS" = "3" ] && [ "$FRUNS" = "3" ] && [ "$OK" = "yes" ]; then echo "C5 PASS metrics=$N runs=$BRUNS+$FRUNS leftover_max=$LOW" >> "$C"; else echo "C5 FAIL metrics=$N runs=$BRUNS+$FRUNS leftover_max=$LOW" >> "$C"; fi
 
   # C6: every playbook scenario this packet added has a PASS or an escalated FAIL.
   REPORTS="$S/benchmark/reports"
@@ -725,7 +726,7 @@ MD
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Phases 1 to 8 and the write-recipe child are closed, shown by T002
-- [ ] CHK-002 [P0] `opencode.json` names `llmgateway/deepseek-v4.1-flash-1017`, shown by T001
+- [ ] CHK-002 [P0] `devin auth status` prints `Logged in`, shown by T001
 - [ ] CHK-003 [P1] Every brief is saved under `scratch/briefs/` before dispatch
 <!-- /ANCHOR:pre-impl -->
 
@@ -736,7 +737,7 @@ MD
 
 - [ ] CHK-010 [P0] The five metric commands are copied from `tasks.md` T006 with no edit
 - [ ] CHK-011 [P0] Every number in the report is written from `delta.json`, never by hand
-- [ ] CHK-012 [P1] The frozen task block matches phase 1, shown by `TASK_FROZEN`
+- [ ] CHK-012 [P1] Every run brief matches the Level 3 baseline brief, shown by `TASK_FROZEN` with no `BRIEF_CHANGED` line
 - [ ] CHK-013 [P1] No script embeds a packet path, phase number or task id in a code comment
 <!-- /ANCHOR:code-quality -->
 

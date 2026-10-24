@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Nine phases, 001 to 009, plus one write-recipe child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
-| D2 | The placeholder gate applies to new docs only, through the v2.3 template marker. An existing or external packet never gets a new failure. |
-| D3 | At most 3 parallel worker lanes, never two on one file. |
+| D1 | Phases 001 to 009, plus one write-recipe child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
+| D2 | The placeholder gate applies to new docs only, through the v2.3 template marker. No existing or external packet gets a new failure. |
+| D3 | At most 3 parallel lanes, never two on one file. |
 | D4 | Every phase closes on scripted gates plus one read-only review (cli-devin, swe-2-max). |
 | D5 | Phase 008 runs the playbooks in a disposable sk-git worktree. |
 | D6 | Every phase is Level 3 with its own goal, bound below. |
-| D7 | The conductor is a Claude Code session. Writers are cli-codex gpt-6-luna max fast, with cli-devin swe-2-max as fallback. A child's Task dispatch runs as this CLI dispatch, same brief and reply file. |
+| D7 | The conductor is a Claude Code session. Writers are cli-codex gpt-6-luna max fast, fallback cli-devin swe-2-max. Child Task dispatches run as this CLI dispatch, same brief and reply file. |
 | D8 | The benchmark subject is cli-devin swe-2-max. Its 3 baseline runs rerun at the start commit, and phases 005 and 009 compare against them. |
 
 <!-- /ANCHOR:directive -->
@@ -91,8 +91,8 @@ string, not these files.
 - [ ] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
 - [ ] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
 - [ ] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
-- [ ] The phase 009 report lists min and max for five metrics over 3 SWE 2 Max baseline and 3 final runs, and the final runs' lowest `leftover_hints` is below the baseline's lowest
-- [ ] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL named in the log with its escalation
+- [ ] The 3 final Level 3 runs all pass strict validation, and none is worse than the SWE 2 Max baseline's worst on leftover_hints, missing_anchors or out_of_scope_writes. The phase 009 report lists min and max for five metrics
+- [ ] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
 - [ ] The swarm commits only on the build worktree and never pushes
 <!-- /ANCHOR:completion -->
 
@@ -119,7 +119,7 @@ and findings belong here.
 | Start commit | `ac2be31ec60c3a15db527b3d8400ae68b373984a` | Phase 001 T003 `git rev-parse HEAD` on the worktree before the first phase write. |
 | Phase 001 progress | Done | T001-T014 done. Ledger 72 rows, baseline 3 runs, review 47 findings with 47 T012 lines. `validate.sh --strict` printed `RESULT: PASSED` and the T014 status diff printed 0. |
 | Phase 002 progress | Partial | The OpenCode run stopped after T001 to T003: start commit `9615cf324c` recorded, `scratch/status-start.txt` and `scratch/ledger/known-rows.jsonl` written. No template or example file changed. |
-| SWE 2 Max rebaseline | Pending | 3 runs at start commit `ac2be31ec6`, stored in `001-template-drift-census-and-baseline/scratch/baseline-swe/` |
+| SWE 2 Max rebaseline | Done | Level 3 version of the phase 001 T009 task, 3 serial cli-devin swe-2-max runs on templates identical to start commit `ac2be31ec6` (`git diff ac2be31ec6 HEAD -- .skilled` printed nothing). Runs 1 to 3: `leftover_hints` 1, 0, 1, `seconds` 326, 317, 384, all `strict_passed` 1, `missing_anchors` 0, `out_of_scope_writes` 0. Stored in `001-template-drift-census-and-baseline/scratch/baseline-swe-l3/` with `hints-l3.txt` (121 patterns) and `anchors-l3.txt` (spec 7, plan 14, tasks 21, acceptance-criteria 3). Devin sessions `marked-platypus`, `shrub-syringa` and `cautious-utensil` show 0 tool calls naming `baseline-swe`, `bench-packets` or `/private/tmp` |
 | BASE_REF | Pending | The git ref phase 008 builds its disposable worktree from. It must contain the phase 002 to 007 changes. Replace Pending with the ref |
 
 ### Deviations and findings
@@ -127,5 +127,8 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Cli-opencode rule 15 L4 | The operator chose DeepSeek Task subagents over a Copilot gpt-6-sol executor. See D8 |
+| cli-devin dangerous mode | The operator approved `--permission-mode dangerous` for every cli-devin writer and benchmark dispatch in this packet, which satisfies cli-devin NEVER rule 1. Reviews stay read-only on `--permission-mode auto` |
+| Level 2 SWE baseline invalid | The Level 2 runs in `001-template-drift-census-and-baseline/scratch/baseline-swe/` (hints 0, 0, 1) are not a baseline. Devin session `glimmer-tent`, run 2, read run 1's finished packet inside the worktree. The operator chose a Level 3 task instead, and later bench packets are kept outside the worktree |
+| Criterion 5 reworded | The operator replaced "the final lowest leftover_hints is below the baseline's lowest" with a no-regression rule, because the Level 3 baseline already reaches 0 hints in one run. To keep the slice under 4000 characters, D1, D2, D3, D7 and criterion 6 lost words without a change in meaning |
 | Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
 <!-- /ANCHOR:log -->

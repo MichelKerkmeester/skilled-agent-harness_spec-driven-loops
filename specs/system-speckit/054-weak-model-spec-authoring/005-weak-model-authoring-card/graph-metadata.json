@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The router sends four authoring intents to `references/templates/template-guide.md`, a 1,200-line guide",
     "created_at": "2026-10-23T11:27:23Z",
-    "last_save_at": "2026-10-24T07:19:44.032Z",
+    "last_save_at": "2026-10-24T08:18:34.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff00153a9029ce19504ad7f7f89531b581350b08d253fe084597b5cbd9d70246",
+    "source_fingerprint": "sha256:f07bbbeb21887d04d0951435565e95e7f44ed445bc1f8695eb307fac14e5b283",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c1f8a56f994cca761d4d77099c77b4da167aadc25f76362ed05adc4727c2a0e",

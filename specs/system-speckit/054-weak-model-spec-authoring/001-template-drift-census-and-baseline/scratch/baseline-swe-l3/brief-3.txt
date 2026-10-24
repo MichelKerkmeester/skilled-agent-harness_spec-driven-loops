@@ -1,0 +1,40 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+Your write authority is already bound. The spec folder is:
+  specs/zz-bench-authoring/001-recommend-level-quiet-flag
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a documentation author working in this repository. Follow the
+system-spec-kit skill for how spec documents are written.
+
+ALLOWED WRITE PATHS:
+  specs/zz-bench-authoring/ and everything under it
+
+BANNED OPERATIONS: git commit, git push, git checkout, git switch, git branch, git reset,
+git stash, generate-context.js, /speckit:save, and any edit outside specs/zz-bench-authoring/.
+Do not edit recommend-level.sh.
+
+TASK: Write the planning documents for one small feature.
+
+Feature: add a --quiet flag to .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh.
+With --quiet the script prints only its final recommended-level line. Without the flag its
+output is unchanged.
+
+Steps:
+1. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 3 --track zz-bench-authoring --short-name recommend-level-quiet-flag "Add a quiet flag to recommend-level.sh"
+2. In the folder it created, fill spec.md, plan.md, tasks.md and acceptance-criteria.md
+   for this feature. Leave implementation-summary.md as it was created.
+3. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-bench-authoring/001-recommend-level-quiet-flag --strict
+4. Fix what it reports and run it again, at most three times in all.
+
+RETURN exactly one line: the folder path, then the last RESULT line validate.sh printed.
+
+NESTING CONSTRAINT: You are a LEAF agent at depth 1. Nested dispatch is illegal. You MUST NOT dispatch sub-agents or use the Task tool to create sub-tasks. Execute your work directly using your available tools. If you cannot complete the task alone, return what you have and escalate to the orchestrator.
