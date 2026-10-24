@@ -13,6 +13,12 @@ const core = require('../lib/relaunch-core.cjs');
 const { specFolderFromSeed } = require('../lib/nudge.cjs');
 const { runNested } = require('./fixtures/nested-run.cjs');
 
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and every sandbox copies this environment into the CLI it spawns.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
+
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop';
 const CHILD_SPEC_FOLDER = `${SPEC_FOLDER}/001-claude-relaunch-loop`;
@@ -133,10 +139,15 @@ function writeHandoff(sandbox, {
   fileName = 'handoff.md',
   specFolder = SPEC_FOLDER,
   claimedBy,
+  createSpecFolder = true,
 } = {}) {
   const handoffPath = path.join(handoffDirectory(sandbox), fileName);
   fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
   fs.writeFileSync(handoffPath, handoffText(status, specFolder, claimedBy));
+  // prepare and keep refuse a packet the repository does not hold, so a note names a real one.
+  if (createSpecFolder && core.validSpecFolder(specFolder)) {
+    fs.mkdirSync(path.join(sandbox.repoRoot, specFolder), { recursive: true });
+  }
   return handoffPath;
 }
 
@@ -780,6 +791,39 @@ test('prepare exits three outside the loop and prints the manual claim command',
   assert.ok(result.stdout.includes(manualCommand), result.stdout);
 });
 
+test('prepare and keep refuse a spec folder the repository does not hold', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { createSpecFolder: false });
+  const message = `spec_folder ${SPEC_FOLDER} does not exist in this repository`;
+
+  for (const args of [
+    ['prepare', '--handoff', handoffPath, '--session', SESSION_ID],
+    ['keep', '--handoff', handoffPath, '--session', SESSION_ID],
+  ]) {
+    const result = runCli(sandbox, args);
+    assert.equal(result.status, 2, `${args[0]}: ${result.stdout}`);
+    assert.ok(result.stderr.includes(message), result.stderr);
+  }
+  assert.equal(fs.existsSync(path.join(handoffDirectory(sandbox), '..', 'hop-history.log')), false);
+});
+
+test('prepare refuses a spec folder that is a file, and accepts the real folder', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { createSpecFolder: false });
+  fs.mkdirSync(path.dirname(path.join(sandbox.repoRoot, SPEC_FOLDER)), { recursive: true });
+  fs.writeFileSync(path.join(sandbox.repoRoot, SPEC_FOLDER), 'not a folder');
+
+  const refused = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(refused.status, 2, refused.stdout);
+  assert.match(refused.stderr, /does not exist in this repository/);
+
+  fs.rmSync(path.join(sandbox.repoRoot, SPEC_FOLDER));
+  fs.mkdirSync(path.join(sandbox.repoRoot, SPEC_FOLDER));
+  const accepted = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(accepted.status, 3, accepted.stderr);
+  assert.ok(accepted.stdout.includes(SPEC_FOLDER_SUFFIX), accepted.stdout);
+});
+
 test('prepare from a nested run prints the manual command and exits 3', async (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -1327,7 +1371,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) => 
   assert.equal(result.status, 2);
   assert.match(
     result.stderr,
-    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, history\n/,
+    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history\n/,
   );
   assert.match(result.stderr, /claim <handoff-path>/);
   assert.equal(result.stdout, '');
@@ -1430,6 +1474,123 @@ test('should-relaunch accepts zero max age and defaults invalid values', (t) => 
     assert.equal(result.status, 0, result.stderr);
     assert.equal(JSON.parse(result.stdout).relaunch, true);
   }
+});
+
+test('cancel disarms the loop prepared hand-over named by the loop environment', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'pending',
+    handoff: path.join(sandbox.repoRoot, 'handoff.md'),
+  });
+
+  const result = runCli(sandbox, ['cancel'], { ...sandbox.env, SKILLED_LOOP_ID: LOOP_ID });
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /cancelled the prepared hand-over for handoff\.md/);
+  const stored = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'cancelled');
+  // A disarmed record is one no arm path takes again.
+  assert.equal(
+    core.armableRecord(stored, { loopId: LOOP_ID, sessionId: stored.sessionId }).armable,
+    false,
+  );
+});
+
+test('cancel exits one when the loop has no prepared hand-over', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'disarmed' });
+
+  const result = runCli(sandbox, ['cancel', '--loop-id', LOOP_ID]);
+  assert.equal(result.status, 1, result.stderr);
+  assert.match(result.stdout, /no prepared hand-over to cancel/);
+});
+
+function historyEvents(sandbox) {
+  const historyPath = path.join(handoffDirectory(sandbox), '..', 'hop-history.log');
+  if (!fs.existsSync(historyPath)) return [];
+  return fs.readFileSync(historyPath, 'utf8').split('\n').filter(Boolean)
+    .map((line) => line.split('\t')[1]);
+}
+
+test('cancel from a nested run without a loop id refuses and leaves the outer hand-over armed', async (t) => {
+  const sandbox = createSandbox(t);
+  const outerLoopId = String(process.pid);
+  const handoffPath = writeHandoff(sandbox);
+  const filePath = writeRelaunchRecord(sandbox, {
+    loopId: outerLoopId,
+    status: 'pending',
+    handoff: handoffPath,
+    sessionId: SESSION_ID,
+  });
+
+  const result = await runNested({
+    argv: [CLI_PATH, 'cancel'],
+    env: nestedRunEnv(sandbox),
+    cwd: sandbox.repoRoot,
+  });
+
+  assert.equal(result.code, 2, result.stderr);
+  assert.match(result.stderr, /--loop-id is required outside a loop/);
+  assert.equal(JSON.parse(fs.readFileSync(filePath, 'utf8')).status, 'pending');
+  assert.deepEqual(historyEvents(sandbox), []);
+});
+
+test('cancel from a nested run honors an explicit loop id', async (t) => {
+  const sandbox = createSandbox(t);
+  const outerLoopId = String(process.pid);
+  const filePath = writeRelaunchRecord(sandbox, {
+    loopId: outerLoopId,
+    status: 'pending',
+    handoff: writeHandoff(sandbox),
+    sessionId: SESSION_ID,
+  });
+
+  const result = await runNested({
+    argv: [CLI_PATH, 'cancel', '--loop-id', outerLoopId],
+    env: nestedRunEnv(sandbox),
+    cwd: sandbox.repoRoot,
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(filePath, 'utf8')).disarmReason, 'cancelled');
+});
+
+test('cancel records a withdrawn hop and grants the session one more nudge', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    sessionId: SESSION_ID,
+  });
+
+  const result = runCli(sandbox, ['cancel'], { ...sandbox.env, SKILLED_LOOP_ID: LOOP_ID });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(historyEvents(sandbox), ['withdrawn']);
+  const history = fs.readFileSync(path.join(handoffDirectory(sandbox), '..', 'hop-history.log'), 'utf8');
+  assert.equal(history.trim().split('\t')[7], SESSION_ID.slice(0, 8));
+  const nudgeState = JSON.parse(fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`),
+    'utf8',
+  ));
+  assert.deepEqual(nudgeState.rearm, { pending: true });
+});
+
+test('a cancel that finds nothing to cancel records no withdrawn hop', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'disarmed', sessionId: SESSION_ID });
+
+  const result = runCli(sandbox, ['cancel', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 1, result.stderr);
+  assert.deepEqual(historyEvents(sandbox), []);
+  assert.equal(
+    fs.existsSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`)),
+    false,
+  );
 });
 
 test('consume exits zero and removes the relaunch file', (t) => {

@@ -556,11 +556,133 @@ test('stop-arm defers pending state when background tasks exist and logs the rea
   const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
-  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  // The record stays pending for the next Stop and gains only the deferral mark.
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
   assert.match(
     fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'),
     /deferred-background-tasks/,
   );
+});
+
+function deferredPromptCase(t, { prompt, deferred = true }) {
+  const sandbox = createSandbox(t);
+  const loopId = 'claude-loop-deferred-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  if (deferred) {
+    record.deferredAt = new Date().toISOString();
+    fs.writeFileSync(recordPath, JSON.stringify(record));
+  }
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 500),
+    cwd: sandbox.repoRoot,
+    prompt,
+  };
+  return { sandbox, recordPath, record, run: () => runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload) };
+}
+
+test('context-nudge withdraws a deferred handoff when the operator sends a prompt', async (t) => {
+  const { recordPath, run } = deferredPromptCase(t, { prompt: 'Continue here.' });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+  assert.match(context, /one more context nudge will come/);
+  assert.match(context, /update the note and hand over again/);
+  assert.doesNotMatch(context, /no further context nudge/);
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'user-message');
+});
+
+test('context-nudge records the withdrawal in the hop history', async (t) => {
+  const { sandbox, run } = deferredPromptCase(t, { prompt: 'Continue here.' });
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+  );
+
+  assert.equal((await run()).code, 0);
+
+  const fields = fs.readFileSync(historyPath, 'utf8').trim().split('\n').map((line) => line.split('\t'));
+  assert.equal(fields.length, 1);
+  assert.equal(fields[0][1], 'withdrawn');
+  assert.equal(fields[0][6], 'handoff.md');
+  assert.equal(fields[0][7], SESSION_ID.slice(0, 8));
+});
+
+test('context-nudge records no withdrawal for a prompt that withdrew nothing', async (t) => {
+  const { sandbox, run } = deferredPromptCase(t, { prompt: 'Continue here.', deferred: false });
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+  );
+
+  assert.equal((await run()).code, 0);
+
+  assert.equal(fs.existsSync(historyPath), false);
+});
+
+test('the withdraw prompt carries only the notice, then one nudge comes a step above its fill', async (t) => {
+  const { sandbox } = deferredPromptCase(t, { prompt: 'Continue here.' });
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const promptPayload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    prompt: 'Continue here.',
+  };
+  const toolPayload = { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot };
+  const fillAt = (tokens) => writeTranscript(sandbox, tokens);
+
+  // At the threshold a fresh level would nudge, but the withdraw prompt answers with the notice alone.
+  const withdraw = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, promptPayload);
+  assert.equal(withdraw.code, 0, withdraw.stderr);
+  const context = JSON.parse(withdraw.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+  assert.doesNotMatch(context, /prepare --handoff|Write the handoff note/);
+
+  const same = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(same.stdout, '');
+  fillAt(840);
+  const justAbove = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(justAbove.stdout, '');
+  fillAt(850);
+  const floor = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.match(JSON.parse(floor.stdout.trim()).hookSpecificOutput.additionalContext, /prepare --handoff/);
+  const spent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(spent.stdout, '');
+  fillAt(990);
+  const after = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(after.stdout, '');
+});
+
+test('context-nudge keeps a deferred handoff when a background task reports back', async (t) => {
+  // The completion a deferred hand-over waits for arrives as a prompt of its own.
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: '<task-notification>\n<task-id>task-1</task-id>\n</task-notification>',
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('context-nudge keeps a handoff that was prepared and never deferred', async (t) => {
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: 'Continue here.',
+    deferred: false,
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
 });
 
 test('stop-arm logs missing-transcript-path and leaves the record pending', async (t) => {
@@ -1158,4 +1280,58 @@ test('compact-pointer skips and logs when the payload has no transcript path', a
   );
   assert.match(log, /compact-pointer-skipped/);
   assert.match(log, /reason=no-transcript/);
+});
+
+function writeRecord(sandbox, loopId, handoffPath, fields) {
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  fs.writeFileSync(recordPath, JSON.stringify({ ...record, ...fields }));
+}
+
+test('compact-pointer tells a session whose hand-over was withdrawn not to claim the stale note', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  writeRecord(sandbox, '7002', notePath, { status: 'disarmed', disarmReason: 'cancelled' });
+  sandbox.env.SKILLED_LOOP_ID = '7002';
+  const { parentPath } = writeSessionTranscripts(sandbox);
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes(notePath), context);
+  assert.match(context, /predates the work/);
+  assert.doesNotMatch(context, /claim '/);
+  assert.match(
+    fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8'),
+    /compact-pointer-stale-note/,
+  );
+});
+
+test('compact-pointer keeps the claim seed for a disarmed record that is not a withdrawal of this note', async (t) => {
+  for (const [label, fields, handoff] of [
+    ['another reason', { status: 'disarmed', disarmReason: 'launch-failed' }, null],
+    ['another note', { status: 'disarmed', disarmReason: 'cancelled' }, 'other-note.md'],
+  ]) {
+    const sandbox = createSandbox(t);
+    const notePath = writeOpenNote(sandbox);
+    writeRecord(sandbox, '7003', handoff ? path.join(sandbox.repoRoot, handoff) : notePath, fields);
+    sandbox.env.SKILLED_LOOP_ID = '7003';
+    const { parentPath } = writeSessionTranscripts(sandbox);
+
+    const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+    assert.equal(result.code, 0, `${label}: ${result.stderr}`);
+    const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+    assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), `${label}: ${context}`);
+  }
+});
+
+test('compact-pointer clears a pending re-arm along with the nudge level', async (t) => {
+  const sandbox = createSandbox(t);
+  const { parentPath } = writeSessionTranscripts(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2,"rearm":{"floor":0.9}}\n');
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
 });

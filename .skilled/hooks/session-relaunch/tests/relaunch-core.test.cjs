@@ -19,6 +19,8 @@ const {
   preparePending,
   arm,
   unarm,
+  markDeferred,
+  withdrawDeferred,
   readRelaunchFile,
   shouldRelaunch,
   claimHandoff,
@@ -36,6 +38,12 @@ const {
   lockIsExpired,
   readLockState,
 } = relaunchCore;
+
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and a case that reads the default environment would then describe the outer loop.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
 
 const SESSION_ID = 'session-test-00000001';
 const LOOP_ID = 'loop-test-00000001';
@@ -445,6 +453,57 @@ test('supersedeClaimed leaves unrelated and malformed notes untouched', (t) => {
   untouchedPaths.forEach((filePath, index) => {
     assert.equal(fs.readFileSync(filePath, 'utf8'), originals[index]);
   });
+});
+
+// A claim lands under the note's lock, so a supersede that read the note outside it could
+// write back a stale copy over the claim. The lock has to cover the read and the write.
+test('supersedeClaimed reads and rewrites each candidate note under its lock', (t) => {
+  const sandbox = createSandbox(t);
+  const directory = path.join(sandbox.repoRoot, 'handoffs');
+  fs.mkdirSync(directory, { recursive: true });
+  const oldPath = path.join(directory, 'old.md');
+  const orphanPath = path.join(directory, 'orphan.md');
+  const newPath = path.join(directory, 'new.md');
+  fs.writeFileSync(oldPath, handoffText({ status: 'claimed', claimedBy: SESSION_ID }));
+  fs.writeFileSync(orphanPath, handoffText());
+  fs.writeFileSync(newPath, handoffText());
+
+  const realReadFileSync = fs.readFileSync;
+  const realRenameSync = fs.renameSync;
+  const lockHeldAt = [];
+  fs.readFileSync = (target, ...rest) => {
+    const resolved = path.resolve(String(target));
+    if (resolved === oldPath || resolved === orphanPath) {
+      lockHeldAt.push(['read', resolved, fs.existsSync(`${resolved}.lock`)]);
+    }
+    return realReadFileSync(target, ...rest);
+  };
+  fs.renameSync = (from, to) => {
+    const resolved = path.resolve(String(to));
+    if (resolved === oldPath || resolved === orphanPath) {
+      lockHeldAt.push(['write', resolved, fs.existsSync(`${resolved}.lock`)]);
+    }
+    return realRenameSync(from, to);
+  };
+  t.after(() => {
+    fs.readFileSync = realReadFileSync;
+    fs.renameSync = realRenameSync;
+  });
+
+  assert.equal(supersedeClaimed(newPath, { sessionId: SESSION_ID, now: NOW }).length, 2);
+
+  assert.deepEqual(
+    lockHeldAt.sort((a, b) => `${a[1]}${a[0]}`.localeCompare(`${b[1]}${b[0]}`)),
+    [
+      ['read', oldPath, true],
+      ['write', oldPath, true],
+      ['read', orphanPath, true],
+      ['write', orphanPath, true],
+    ].sort((a, b) => `${a[1]}${a[0]}`.localeCompare(`${b[1]}${b[0]}`)),
+  );
+  assert.equal(fs.existsSync(`${oldPath}.lock`), false);
+  assert.equal(fs.existsSync(`${orphanPath}.lock`), false);
+  assert.equal(fs.existsSync(`${newPath}.lock`), false);
 });
 
 test('preparePending writes the exact pending record shape', (t) => {
@@ -1132,18 +1191,21 @@ test('nestedUnderLoop is false for an unrelated or invalid loop id', () => {
   }
 });
 
-test('dropNestedLoop removes the loop variables for a nested run', () => {
+test('dropNestedLoop removes the loop variables for a nested run', (t) => {
+  // A dropped loop writes a log line, so the runtime directory must be the sandbox's.
+  const { xdgRuntimeDir } = createSandbox(t);
   const env = {
     SKILLED_LOOP_ID: '100',
     SKILLED_LOOP_RUNTIME: 'pi',
     SKILLED_LOOP_HOPS: '2',
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
     OTHER: 'x',
   };
   assert.equal(
     dropNestedLoop(env, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
     true,
   );
-  assert.deepEqual(env, { OTHER: 'x' });
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir, OTHER: 'x' });
 });
 
 test('dropNestedLoop keeps the loop variables for the loop own runtime', () => {
@@ -1181,7 +1243,8 @@ test('dropNestedLoop does nothing outside the loop', () => {
   assert.deepEqual(unset, { SKILLED_LOOP_ID: '', OTHER: 'x' });
 });
 
-test('dropNestedLoop resolves the host from pid when hostPid is omitted', () => {
+test('dropNestedLoop resolves the host from pid when hostPid is omitted', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
   const table = [
     '310 300 node',
     '300 250 pi',
@@ -1194,10 +1257,11 @@ test('dropNestedLoop resolves the host from pid when hostPid is omitted', () => 
     SKILLED_LOOP_ID: '100',
     SKILLED_LOOP_RUNTIME: 'pi',
     SKILLED_LOOP_HOPS: '1',
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
   };
   // The hook's parent is the nested runtime, so the walk from pid meets it before any shell.
   assert.equal(dropNestedLoop(env, { pid: 310, processTable: table }), true);
-  assert.deepEqual(env, {});
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir });
 });
 
 test('readProcessTable returns null instead of blocking on a stuck ps', (t) => {
@@ -1659,4 +1723,126 @@ test('shouldRelaunch reads a Date clock the way it reads epoch milliseconds', (t
     ),
     { relaunch: true },
   );
+});
+
+test('shouldRelaunch reports a hand-over the session called off as withdrawn', (t) => {
+  createSandbox(t);
+  const options = { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 };
+  for (const disarmReason of ['cancelled', 'user-message']) {
+    assert.deepEqual(
+      shouldRelaunch({ status: 'disarmed', disarmReason, hops: 0 }, options),
+      { relaunch: false, reason: 'withdrawn' },
+      disarmReason,
+    );
+  }
+  // A disarm the session did not choose still reads as an unarmed record.
+  assert.deepEqual(
+    shouldRelaunch({ status: 'disarmed', disarmReason: 'killer-timeout', hops: 0 }, options),
+    { relaunch: false, reason: 'not-armed' },
+  );
+});
+
+test('dropNestedLoop removes every loop variable, manual template included', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
+  const env = {
+    SKILLED_LOOP_ID: '100',
+    SKILLED_LOOP_RUNTIME: 'pi',
+    SKILLED_LOOP_HOPS: '2',
+    SKILLED_LOOP_MANUAL_TEMPLATE: 'outer --seed "{{handoff}}"',
+    SKILLED_LOOP_MODEL: 'outer-model',
+    SKILLED_LOOP_NAME: 'outer',
+    SKILLED_LOOP_PROVIDER: 'outer-provider',
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
+    OTHER: 'x',
+  };
+  assert.equal(
+    dropNestedLoop(env, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+    true,
+  );
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir, OTHER: 'x' });
+});
+
+// The lock helper is a mkdir lock, so a lock taken shows up as a mkdir of `<path>.lock`.
+function trackLocks(t) {
+  const realMkdirSync = fs.mkdirSync;
+  const taken = [];
+  fs.mkdirSync = (target, ...rest) => {
+    const result = realMkdirSync(target, ...rest);
+    if (String(target).endsWith('.lock')) taken.push(String(target));
+    return result;
+  };
+  t.after(() => {
+    fs.mkdirSync = realMkdirSync;
+  });
+  return taken;
+}
+
+test('arm, unarm and markDeferred each take the record lock once and release it', (t) => {
+  const sandbox = createSandbox(t);
+  const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const taken = trackLocks(t);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'pending',
+    handoff: '/repo/note.md',
+    sessionId: SESSION_ID,
+  });
+
+  assert.equal(markDeferred({ loopId: LOOP_ID, env: sandbox.env, now: NOW }).status, 'pending');
+  assert.equal(arm({ loopId: LOOP_ID, env: sandbox.env, now: NOW }).status, 'armed');
+  assert.equal(
+    unarm({ loopId: LOOP_ID, env: sandbox.env, reason: 'cancelled', now: NOW }).status,
+    'disarmed',
+  );
+
+  assert.deepEqual(taken, Array(3).fill(`${recordPath}.lock`));
+  assert.equal(fs.existsSync(`${recordPath}.lock`), false);
+});
+
+test('withdrawDeferred takes the record lock once and disarms only a deferred record', (t) => {
+  const sandbox = createSandbox(t);
+  const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const taken = trackLocks(t);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'pending',
+    handoff: '/repo/note.md',
+    sessionId: SESSION_ID,
+    deferredAt: NOW.toISOString(),
+  });
+
+  const withdrawn = withdrawDeferred({
+    loopId: LOOP_ID,
+    sessionId: SESSION_ID,
+    env: sandbox.env,
+    now: NOW,
+  });
+  assert.equal(withdrawn.status, 'disarmed');
+  assert.equal(withdrawn.disarmReason, 'user-message');
+  // The inner disarm must not take the lock the withdraw already holds.
+  assert.deepEqual(taken, [`${recordPath}.lock`]);
+
+  assert.equal(
+    withdrawDeferred({ loopId: LOOP_ID, sessionId: SESSION_ID, env: sandbox.env, now: NOW }),
+    null,
+  );
+  assert.equal(fs.existsSync(`${recordPath}.lock`), false);
+});
+
+test('claimHandoff and completeHandoff each take the note lock and release it', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const taken = trackLocks(t);
+
+  claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW });
+  assert.throws(
+    () => claimHandoff(handoffPath, { sessionId: 'session-test-00000002', now: NOW }),
+    /cannot claim handoff with status claimed/,
+  );
+  completeHandoff(handoffPath, { now: NOW });
+
+  assert.deepEqual(taken, Array(3).fill(`${handoffPath}.lock`));
+  assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+  assert.match(readNote(handoffPath), /^status: done$/m);
+  assert.match(readNote(handoffPath), new RegExp(`^claimed_by: ${SESSION_ID}$`, 'm'));
 });

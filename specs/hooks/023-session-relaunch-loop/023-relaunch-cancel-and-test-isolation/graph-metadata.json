@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+  "spec_folder": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relaunch cancel and test isolation",
+      "phase 23 relaunch cancel and test isolation",
+      "session relaunch cancel command",
+      "withdraw deferred hand-over",
+      "relaunch cancel and test isolation plan",
+      "relaunch cancel and test isolation tasks",
+      "relaunch cancel and test isolation acceptance criteria",
+      "relaunch cancel and test isolation implementation summary"
+    ],
+    "key_topics": [
+      "relaunch",
+      "cancel",
+      "test",
+      "isolation",
+      "phase",
+      "session",
+      "command",
+      "withdraw",
+      "deferred",
+      "hand-over",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/bin/README.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      ".devin/SYNC.md",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hop-history.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
+    "created_at": "2026-10-24T09:00:16Z",
+    "last_save_at": "2026-10-24T13:24:07.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0eb5fb49b1dde36355f6c888fcca469719930be273e24e78a49358ea4c486df1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ba0dfc24cae7f53cfb615b5df0ac7bc99eef57ca33df004301876f4d91a904db",
+      "plan.md": "126e827808f922ecbd5e6113f1dd265dba4e388ba2511197b807df3d6cc93b6b",
+      "tasks.md": "3fa4417b0d1cfa61833616d4de04be2e8da9150cdb97754e929301c22e644157",
+      "implementation-summary.md": "b13ad5449717eb5fcf2bde9a57bd979467173d476f8818ca03cbde58aae3ed6a"
+    },
+    "last_active_at": null
+  }
+}

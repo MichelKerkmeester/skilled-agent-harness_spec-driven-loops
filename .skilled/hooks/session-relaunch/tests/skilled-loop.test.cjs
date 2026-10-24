@@ -11,6 +11,12 @@ const os = require('node:os');
 const path = require('node:path');
 const { RUNTIMES, manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
 
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and a manual template that carries options would change every printed claim command.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
+
 const WRAPPER_PATH = path.resolve(__dirname, '../../../bin/skilled-loop');
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SEED = '[session-relaunch] claim and continue handoff';
@@ -169,12 +175,14 @@ if (markerPath && fs.existsSync(markerPath)) {
     fs.mkdirSync(stateDir, { recursive: true });
     const loopId = process.env.SKILLED_LOOP_ID;
     const status = process.env.PENDING_ON_INVOCATION === String(invocation) ? "pending" : "armed";
+    const disarmed = process.env.DISARMED_ON_INVOCATION === String(invocation);
     const armedAt = process.env.STALE_ON_INVOCATION === String(invocation)
       ? new Date(Date.now() - 11 * 60 * 1000).toISOString()
       : new Date().toISOString();
     const relaunch = {
       version: 1,
-      status,
+      status: disarmed ? "disarmed" : status,
+      ...(disarmed ? { disarmReason: process.env.DISARM_REASON || "cancelled" } : {}),
       loopId,
       handoff: process.env.HANDOFF_PATH,
       sessionId: "session-wrapper-0001",
@@ -232,10 +240,18 @@ function createSandbox(t) {
   return { root, repoRoot, xdgRuntimeDir, home, binDir, recordedCwd, env };
 }
 
+function handoffsDirectory(sandbox) {
+  return path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+  );
+}
+
 function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrides } = {}) {
   const recordPath = path.join(sandbox.root, 'runtime-record.jsonl');
   const markerPath = path.join(sandbox.root, 'arm.marker');
-  const handoffPath = path.join(sandbox.root, 'handoff.md');
+  // The hand-over call takes only a note inside the repository's handoffs directory.
+  const handoffPath = path.join(handoffsDirectory(sandbox), 'handoff.md');
+  fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
   fs.writeFileSync(markerPath, markers);
   fs.writeFileSync(handoffPath, OPEN_NOTE);
   const shellProgram = `#!/usr/bin/env bash
@@ -276,6 +292,15 @@ function runWrapperScript(sandbox, wrapperPath, args) {
 
 function runWrapper(sandbox, args) {
   return runWrapperScript(sandbox, WRAPPER_PATH, args);
+}
+
+function handOverLines(sandbox) {
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+  );
+  if (!fs.existsSync(historyPath)) return [];
+  return fs.readFileSync(historyPath, 'utf8').split('\n')
+    .filter((line) => line.split('\t')[1] === 'handed-over');
 }
 
 function installSkilledLoopCommand(sandbox) {
@@ -460,6 +485,21 @@ function installMalformedConsumeStub(sandbox) {
   sandbox.env.REAL_NODE = process.execPath;
 }
 
+function installFailingHandOverStub(sandbox) {
+  const nodePath = path.join(sandbox.binDir, 'node');
+  const source = [
+    '#!/usr/bin/env bash',
+    'set -euo pipefail',
+    'if [[ "$2" == "hand-over" ]]; then',
+    '  exit 9',
+    'fi',
+    'exec "$REAL_NODE" "$@"',
+    '',
+  ].join('\n');
+  fs.writeFileSync(nodePath, source, { mode: 0o755 });
+  sandbox.env.REAL_NODE = process.execPath;
+}
+
 function readRecords(recordPath) {
   if (!fs.existsSync(recordPath)) return [];
   return fs.readFileSync(recordPath, 'utf8')
@@ -476,7 +516,7 @@ function readLog(sandbox) {
 
 test('second invocation uses only the seed and name, recorded cwd, and the same loop id', (t) => {
   const sandbox = createSandbox(t);
-  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
   const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
   assert.equal(result.status, 0, result.stderr);
   const records = readRecords(recordPath);
@@ -484,7 +524,7 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   assert.deepEqual(records[0].args, ['-n', 'X', 'initial prompt']);
   assert.equal(records[0].env.SKILLED_LOOP_NAME, 'X');
   assert.deepEqual(records[1].args, [
-    SEED + ` ${path.join(sandbox.root, 'handoff.md')}`,
+    SEED + ` ${handoffPath}`,
     '--name',
     'X',
   ]);
@@ -495,6 +535,8 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   assert.equal(records.some((record) => (
     record.args.some((arg) => ['--resume', '-r', '--continue', '-c'].includes(arg))
   )), false);
+  assert.equal(handOverLines(sandbox).length, 1);
+  assert.equal(handOverLines(sandbox)[0].split('\t')[3], 'hop 1');
 });
 
 test('devin runtime dispatch does not fall through to claude', (t) => {
@@ -625,6 +667,8 @@ test('wrapper stops the hop and prints the manual command when consumed JSON can
   assert.equal(readRecords(recordPath).length, 1);
   assert.match(result.stderr, /warning: could not read the consumed relaunch record; not relaunching/);
   assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+  // The wrapper declined this hop, so no hand-over line may exist for it.
+  assert.deepEqual(handOverLines(sandbox), []);
 });
 
 test('name scanning stops at -- and relaunch omits the name option', (t) => {
@@ -2103,8 +2147,80 @@ for (const [label, writeNote, state] of [
     assert.equal(readRecords(recordPath).length, 1);
     assert.match(result.stderr, new RegExp(`warning: the handoff note is ${state}; not relaunching`));
     assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+    // The decision approved this hop, but the wrapper declined it, so no hand-over happened.
+    assert.deepEqual(handOverLines(sandbox), []);
   });
 }
+
+for (const reason of ['cancelled', 'user-message']) {
+  test(`wrapper reports a ${reason} hand-over as withdrawn and prints no claim command`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      exitCodes: '7',
+      DISARMED_ON_INVOCATION: '1',
+      DISARM_REASON: reason,
+    });
+    writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+
+    const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+
+    assert.equal(result.status, 7, result.stderr);
+    assert.equal(readRecords(recordPath).length, 1);
+    const lines = result.stderr.split('\n').filter((line) => line.includes('withdrawn'));
+    assert.deepEqual(lines, [
+      'warning: the prepared hand-over was withdrawn in the session; '
+        + `${handoffPath} stays open and out of date`,
+    ]);
+    assert.equal(
+      (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+      false,
+    );
+    assert.doesNotMatch(result.stderr, /not claimed/);
+    assert.deepEqual(handOverLines(sandbox), []);
+    const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
+    assert.equal(fs.existsSync(path.join(
+      sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`,
+    )), false);
+    assert.match(readLog(sandbox), /decline loopId=\d+ reason=withdrawn/);
+  });
+}
+
+// A relaunched session that cancels its own follow-up hand-over leaves the note it was
+// started from open, but the withdrawal already says what happened, so the unclaimed-note
+// warning and its claim command would contradict it.
+test('wrapper prints only the withdrawn line when a relaunched session calls off its next hand-over', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1,2',
+    DISARMED_ON_INVOCATION: '2',
+    DISARM_REASON: 'cancelled',
+  });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.match(result.stderr, /the prepared hand-over was withdrawn in the session/);
+  assert.doesNotMatch(result.stderr, /not claimed/);
+  assert.equal(
+    (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+    false,
+  );
+});
+
+test('wrapper keeps a clean runtime exit when the hand-over call itself fails', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  installFailingHandOverStub(sandbox);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.deepEqual(handOverLines(sandbox), []);
+});
 
 test('wrapper declines a record without a cwd and keeps the runtime exit code', (t) => {
   const sandbox = createSandbox(t);

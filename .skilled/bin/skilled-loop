@@ -77,6 +77,17 @@ consume_record() {
   return 0
 }
 
+# Records the hand-over once the wrapper is about to relaunch, in a call of its own, so a
+# consume whose output could not be read never leaves a line for a hop the wrapper declined.
+# The history is a record for the operator: its status never holds the relaunch back.
+record_hand_over() {
+  local handoff_path="$1"
+  local hop="$2"
+
+  node "$relaunch_cli" hand-over --handoff "$handoff_path" --hop "$hop" --runtime "$runtime" \
+    >/dev/null || true
+}
+
 # Prints the consumed note state, or nothing when consume failed or printed no JSON.
 consumed_note_state() {
   local note_state=''
@@ -528,6 +539,7 @@ while true; do
       fi
       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
       export SKILLED_LOOP_HOPS
+      record_hand_over "$handoff_path" "$SKILLED_LOOP_HOPS"
 
       spec_folder=$(consumed_spec_folder)
       relaunched_handoff="$handoff_path"
@@ -564,6 +576,15 @@ while true; do
           'warning: the handoff path contains a line break; no manual command printed' >&2
       elif [[ -n "$handoff_path" ]]; then
         case "$decision_reason" in
+          withdrawn)
+            # The session called the hand-over off and kept working, so no claim command
+            # applies: its note describes work that came before.
+            printf 'warning: the prepared hand-over was withdrawn in the session; %s stays open and out of date\n' \
+              "$handoff_path" >&2
+            # The one line above already says what happened to the note, so the
+            # unclaimed-note warning below would contradict it.
+            manual_command_printed=1
+            ;;
           not-armed|stale|hop-cap|incomplete-record)
             spec_folder=$(consumed_spec_folder)
             # A clean exit must not read as success when the printed command is not the

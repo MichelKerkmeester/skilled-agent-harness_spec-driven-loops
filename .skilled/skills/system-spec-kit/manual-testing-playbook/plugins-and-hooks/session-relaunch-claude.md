@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.7.0
+version: 1.0.8.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -340,14 +340,17 @@ node --test .skilled/hooks/session-relaunch/tests/hop-history.test.cjs
 
 Evidence: each test below passes.
 
-- `a relaunch decision records a hand-over line with the note goal and hop number`
+- `hand-over records a hand-over line with the note goal and hop number`
+- `hand-over records nothing when the note is no longer open`
 - `a declined relaunch records nothing`
 - `claim and complete record the receiving session picking the note up and finishing it`
 - `history prints the latest lines and says when no hop is recorded yet`
 - `the hand-over notice stays off by default`
 - `the hand-over notice fires once the switch is set in the hook-flags file`
+- `history renders a withdrawn line with the session that withdrew the hand-over`
+- `open notes report a withdrawn note apart from one nobody has claimed`
 
-PASS when all six pass. FAIL when a hop writes no `handed-over`, `claimed` or `done` line, when a declined relaunch writes one, or when the notice runs with `SESSION_RELAUNCH_NOTIFY_HOPS` unset.
+PASS when all nine pass. FAIL when a hop writes no `handed-over`, `claimed` or `done` line, when a declined relaunch or a note that is no longer open writes a `handed-over` line, when a withdrawn note counts as unclaimed work, or when the notice runs with `SESSION_RELAUNCH_NOTIFY_HOPS` unset.
 
 #### Gate 3 Skip seed spelling (Automatable)
 
@@ -367,7 +370,7 @@ Run the wrapper suite:
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 ~~~
 
-Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
+Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, a withdrawn decline printing one warning and no manual command, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
 
 #### Note-only nudge outside skilled-loop (Automatable)
 
@@ -391,13 +394,13 @@ Evidence: `keep outside the loop records a note-kept line and prints the claim c
 
 #### Compaction points at the open note (Automatable)
 
-Run the compact-pointer cases. A `SessionStart` payload whose `source` is `compact` must reset the session's nudge level to 0 and add claim instructions for its open note. A fresh start, a session with no open note and a session whose hop is prepared must add nothing.
+Run the compact-pointer cases. A `SessionStart` payload whose `source` is `compact` must reset the session's nudge level to 0 and add claim instructions for its open note. A fresh start, a session with no open note and a session whose hop is prepared must add nothing. A session whose hand-over was withdrawn or cancelled, and that has not updated the note since, must get a line telling it to read the note for background only and not to claim it.
 
 ~~~bash
 node --test --test-name-pattern="compact-pointer" .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 ~~~
 
-Evidence: the three tests whose names start with `compact-pointer` pass. PASS when all three pass. FAIL when the pointer claims a note a prepared hop owns, fires on a fresh start, or leaves the nudge level spent.
+Evidence: every test whose name starts with `compact-pointer` passes, including the one that tells a withdrawn session not to claim the stale note. PASS when all of them pass. FAIL when the pointer claims a note a prepared hop owns, fires on a fresh start, leaves the nudge level spent or tells a withdrawn session to claim its stale note.
 
 #### Shell shim resolution (Automatable)
 

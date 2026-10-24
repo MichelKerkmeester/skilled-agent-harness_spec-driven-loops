@@ -18,6 +18,12 @@ const armAdapter = path.join(__dirname, '..', 'hermes', 'session-end-arm.mjs');
 const usage = require('../lib/context-usage.cjs');
 const core = require('../lib/relaunch-core.cjs');
 
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and every sandbox copies this environment into the hooks it spawns.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
+
 function sandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-relaunch-'));
   const env = {

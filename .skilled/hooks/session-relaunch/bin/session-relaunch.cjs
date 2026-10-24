@@ -50,6 +50,16 @@ const SUBCOMMANDS = {
     syntax: 'consume --loop-id <loop-id>',
     summary: 'Print the handoff path and its spec folder, then remove the relaunch record.',
   },
+  cancel: {
+    syntax: 'cancel [--loop-id <loop-id>]',
+    summary: 'Call off this loop\'s prepared hand-over so the session keeps running; the note'
+      + ' stays open. The loop id defaults to SKILLED_LOOP_ID.',
+  },
+  'hand-over': {
+    syntax: 'hand-over --handoff <handoff-path> [--hop <hop>] [--runtime <runtime>]',
+    summary: 'When the note is open, record the hand-over and its notice; the wrapper calls it'
+      + ' once it is about to relaunch, and it prints nothing and consumes nothing.',
+  },
   history: {
     syntax: 'history [--last <count>]',
     summary: `Print the latest hops from the hop history, ${hopHistory.DEFAULT_HISTORY_LINES}`
@@ -371,6 +381,18 @@ function validatedNote(options, runtime) {
       'spec_folder must be the repo-relative packet path, none, or empty',
     );
   }
+  // A shaped path can still name a packet this repository never had, and the fresh session
+  // would then answer Gate 3 with a folder that is not there.
+  if (specFolder !== '' && specFolder !== 'none') {
+    const packet = path.join(nudge.resolveRepoRoot(process.env), specFolder);
+    let isDirectory = false;
+    try {
+      isDirectory = fs.statSync(packet).isDirectory();
+    } catch {}
+    if (!isDirectory) {
+      throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
+    }
+  }
   return { handoffPath, sessionId, specFolder };
 }
 
@@ -542,14 +564,6 @@ function shouldRelaunch(args) {
       reason: decision.reason ?? 'ready',
     });
   } catch {}
-  if (decision.relaunch && typeof record?.handoff === 'string') {
-    const hops = Number(record.hops);
-    hopHistory.recordHop('handed-over', record.handoff, {
-      hop: Number.isInteger(hops) && hops >= 0 ? hops + 1 : null,
-      runtime: record.runtime,
-    });
-    hopHistory.notifyHandOver(record.handoff, { switches, runtime: record.runtime });
-  }
   return decision.relaunch ? 0 : 1;
 }
 
@@ -566,7 +580,7 @@ function claim(args) {
     throw new Error(`session id is required through ${sessionSource}`);
   }
   core.claimHandoff(handoffPath, { sessionId });
-  hopHistory.recordHop('claimed', handoffPath);
+  hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
   return 0;
 }
@@ -653,6 +667,77 @@ function consume(args) {
   return 0;
 }
 
+// The wrapper still declines after an approved decision when the note is not open or its
+// consumed record cannot be read, so the hand-over is recorded here, in a call of its own
+// made once the wrapper is about to relaunch. Nothing the wrapper needs comes back through
+// it, so a hop is never held up by this call.
+function handOver(args) {
+  const { options } = parseArgs(args, { flags: ['--handoff', '--hop', '--runtime'] });
+  if (!options['--handoff']) throw invocationError('--handoff is required');
+  const handoffPath = handoffPathWithinRepo(options['--handoff']);
+  const runtime = options['--runtime'];
+  if (runtime !== undefined && !LOOP_RUNTIMES.includes(runtime)) {
+    throw invocationError(`--runtime must be one of ${LOOP_RUNTIMES.join(', ')}`);
+  }
+  let hop = null;
+  if (options['--hop'] !== undefined) {
+    hop = Number(options['--hop']);
+    if (!Number.isInteger(hop) || hop < 1) {
+      throw invocationError('--hop must be a positive whole number');
+    }
+  }
+  if (core.noteState(handoffPath) !== 'open') return 0;
+  try {
+    hopHistory.recordHop('handed-over', handoffPath, { hop, runtime });
+    hopHistory.notifyHandOver(handoffPath, { switches: resolvedSwitches(), runtime });
+  } catch {}
+  return 0;
+}
+
+// A disarmed record is one no arm path takes and the killer refuses to act on, so the
+// session keeps running. The note stays open, and the session gets one more nudge, since
+// it may already have spent its last.
+function cancel(args) {
+  // A runtime started from this loop session's shell inherits the loop variables, and the
+  // outer loop's id would then cancel the outer hand-over. An explicit --loop-id still
+  // names the loop to cancel.
+  core.dropNestedLoop(process.env);
+
+  const { options } = parseArgs(args, { flags: ['--loop-id'] });
+  const loopId = options['--loop-id'] || process.env.SKILLED_LOOP_ID;
+  if (!loopId) throw new Error('--loop-id is required outside a loop');
+  const record = core.readRelaunchFile(loopId);
+  if (record?.status !== 'pending' && record?.status !== 'armed') {
+    process.stdout.write('no prepared hand-over to cancel\n');
+    return 1;
+  }
+  const cancelled = core.unarm({
+    loopId,
+    reason: 'cancelled',
+    expectedStatus: record.status,
+    expectedHandoff: record.handoff,
+  });
+  if (cancelled === null) {
+    process.stdout.write('the prepared hand-over changed while cancelling; run cancel again\n');
+    return 1;
+  }
+  try {
+    core.appendLog('cancel', { loopId, status: record.status });
+  } catch {}
+  // Each follow-up is best-effort: the cancel has happened, and neither may fail it.
+  try {
+    nudge.rearmAfterWithdraw({ sessionId: record.sessionId });
+  } catch {}
+  try {
+    hopHistory.recordHop('withdrawn', record.handoff, { session: record.sessionId });
+  } catch {}
+  process.stdout.write(
+    `cancelled the prepared hand-over for ${path.basename(String(record.handoff ?? ''))};`
+      + ' the note stays open\n',
+  );
+  return 0;
+}
+
 function history(args) {
   const { options } = parseArgs(args, { flags: ['--last'] });
   let last = hopHistory.DEFAULT_HISTORY_LINES;
@@ -694,6 +779,8 @@ function main(args = process.argv.slice(2)) {
       case 'claim': return claim(commandArgs);
       case 'complete': return complete(commandArgs);
       case 'consume': return consume(commandArgs);
+      case 'hand-over': return handOver(commandArgs);
+      case 'cancel': return cancel(commandArgs);
       case 'history': return history(commandArgs);
       default: throw invocationError(
         `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,

@@ -607,8 +607,13 @@ function recordTimeout(options, environment, record) {
   const currentHandoff = typeof current?.handoff === 'string' ? current.handoff : '';
   const watchedArmId = recordArmId(record);
   const currentArmId = recordArmId(current);
+  // A record disarmed (a cancelled hand-over) while this killer watched an armed one has
+  // nothing left to time out, even though it still names the same handoff. A re-prepared
+  // pending record is not covered: the note it names still needs the manual-claim notice.
+  const calledOff = record?.status === 'armed' && current?.status === 'disarmed';
   if (
     currentHandoff !== handoffPath
+    || calledOff
     || (current?.status === 'armed' && current.armedAt !== record?.armedAt)
     || (current?.status === 'armed' && watchedArmId !== undefined && currentArmId !== watchedArmId)
   ) {
@@ -622,7 +627,7 @@ function recordTimeout(options, environment, record) {
     ? record.runtime
     : 'claude';
   if (record?.status === 'armed' && handoffPath) {
-    core.unarm({
+    const disarmed = core.unarm({
       loopId: options.loopId,
       reason: 'killer-timeout',
       expectedStatus: 'armed',
@@ -631,6 +636,19 @@ function recordTimeout(options, environment, record) {
       expectedArmId: watchedArmId,
       env: environment,
     });
+    // The guarded disarm returns null when the record changed after the read above. A
+    // re-prepared pending record still names a note that needs the manual-claim notice,
+    // but a cancel or a re-arm in that window owns the note now.
+    if (!disarmed) {
+      const after = core.readRelaunchFile(options.loopId, environment);
+      if (after?.status !== 'pending' || after.handoff !== handoffPath) {
+        log('killer-timeout-superseded', environment, {
+          watched: handoffPath,
+          current: typeof after?.handoff === 'string' ? after.handoff : '',
+        });
+        return;
+      }
+    }
   }
   log('killer-timeout', environment, { targetPid: options.targetPid });
   if (handoffPath) hopHistory.recordHop('timed-out', handoffPath, { env: environment, runtime });
@@ -747,6 +765,25 @@ async function supervise(options, environment, signalTracker) {
     // and reused between this snapshot and the signal cannot be ruled out.
     if (!isLoopAncestor(options.targetPid, Number(options.loopId))) {
       log('killer-refused-target', environment, { targetPid: options.targetPid });
+      return;
+    }
+
+    // A cancel can land after the checks above, and the signal cannot be taken back, so
+    // the record is read once more as the last step before it. The read of one small file
+    // goes after the ancestry snapshot rather than before it: a read ahead of the snapshot
+    // would leave the whole process-table walk as a window for a cancel, while behind it
+    // the pid-reuse window grows by only that read.
+    const lastLook = core.readRelaunchFile(options.loopId, environment);
+    if (
+      lastLook?.status !== 'armed'
+      || lastLook.handoff !== record.handoff
+      || recordArmId(lastLook) !== recordArmId(record)
+      || (recordArmId(record) === undefined && lastLook.armedAt !== record.armedAt)
+    ) {
+      log('killer-called-off', environment, {
+        targetPid: options.targetPid,
+        status: lastLook?.status ?? 'missing',
+      });
       return;
     }
 

@@ -123,6 +123,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 20 | 020-fork-session-guards/ | [Phase 20 scope] | Pending |
 | 21 | 021-fork-nudge-and-precompact-guards/ | [Phase 21 scope] | Pending |
 | 22 | 022-runtime-certainty-claude-pi-opencode/ | Live certification of S1 to S13 on Claude, Pi and OpenCode, with the defects it found fixed test-first | Complete |
+| 23 | 023-relaunch-cancel-and-test-isolation/ | Test isolation from the loop environment, withdraw or cancel of a prepared hand-over, and a hop line written only when the wrapper relaunches | Complete |
 
 ### Phase Transition Rules
 
@@ -156,6 +157,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 019-fork-compact-pointer-research | 020-fork-session-guards | [Criteria TBD] | [Verification TBD] |
 | 020-fork-session-guards | 021-fork-nudge-and-precompact-guards | [Criteria TBD] | [Verification TBD] |
 | 021-fork-nudge-and-precompact-guards | 022-runtime-certainty-claude-pi-opencode | [Criteria TBD] | [Verification TBD] |
+| 022-runtime-certainty-claude-pi-opencode | 023-relaunch-cancel-and-test-isolation | Phase 22 live matrix closed | 022 acceptance-criteria.md all rows Met, Waived or Superseded |
 <!-- /ANCHOR:phase-map -->
 
 ---

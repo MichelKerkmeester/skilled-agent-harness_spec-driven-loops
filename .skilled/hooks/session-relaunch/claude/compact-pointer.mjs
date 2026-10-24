@@ -153,6 +153,13 @@ async function main() {
   const notePath = nudge.openNotePathFor({ repoRoot: nudge.resolveRepoRoot(), sessionId });
   if (notePath === null) return done();
 
+  // The operator withdrew the hand-over after this note was written, so the work since is not in
+  // it; pointing the session at a claim would resume work that is already done.
+  if (nudge.handoffWithdrawn({ sessionId, notePath })) {
+    logEvent('compact-pointer-stale-note', { sessionId, note: notePath });
+    return emit(payloadEventName(payload, { runtime: 'claude' }), nudge.staleNoteText({ notePath }));
+  }
+
   logEvent('compact-pointer', { sessionId, note: notePath });
   return emit(payloadEventName(payload, { runtime: 'claude' }), nudge.seedText({
     notePath,

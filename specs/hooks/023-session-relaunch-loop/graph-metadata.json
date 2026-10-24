@@ -25,7 +25,8 @@
     "hooks/023-session-relaunch-loop/019-fork-compact-pointer-research",
     "hooks/023-session-relaunch-loop/020-fork-session-guards",
     "hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards",
-    "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode"
+    "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+    "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation"
   ],
   "manual": {
     "depends_on": [],
@@ -207,7 +208,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-22T12:50:40.551Z",
+    "last_save_at": "2026-10-24T09:53:17.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +216,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a3be4df0152642d7812a19f4152c59eb2ab70bd468b199821c1060b1de127173",
+    "source_fingerprint": "sha256:6b26bc89bce2cebf0c59828109e23a7db53224e597fcc07304a1c3100b7306e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2bed9badfef2dddafa1caf72a6fc13c6ef54c1206d5da1e2c787afcfb7d76d80",
+      "spec.md": "df78afb7160ccbb4cf915766bbfe0e2d058f1918417e9f401b0cda7f531a8e67",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",

@@ -13,15 +13,25 @@ import {
   dropNestedLoop,
   isEntrypoint,
   payloadEventName,
+  withdrawDeferred,
 } from '../lib/relaunch-core.cjs';
 import { readClaudeFill, resolveWindow, fillRatio } from '../lib/context-usage.cjs';
 import nudge from '../lib/nudge.cjs';
+import hopHistory from '../lib/hop-history.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CONCERN = 'session-relaunch';
+// Claude delivers a background task's completion as a prompt, and that completion is what a
+// deferred hand-over waits for, so it must never count as the operator carrying on.
+const TASK_NOTIFICATION_PATTERN = /^\s*<task-notification>/;
+const WITHDRAWN_NOTICE = '[session-relaunch] The prepared hand-over was withdrawn because'
+  + ' a new prompt arrived while it waited for background tasks. Keep working here. The open'
+  + ' note no longer matches the work, and one more context nudge will come once the context'
+  + ' fills further. That nudge is when to update the note and hand over again. Do not run'
+  + ' consume or claim by hand.';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -42,6 +52,36 @@ function logEvent(event, fields) {
   try {
     appendLog(event, fields, process.env);
   } catch {}
+}
+
+// Only a prompt the operator typed means the session carries on past its deferred hand-over.
+function withdrawOnOperatorPrompt(eventName, prompt, sessionId) {
+  const loopId = process.env.SKILLED_LOOP_ID;
+  if (eventName !== 'UserPromptSubmit' || !loopId) return false;
+  if (typeof prompt !== 'string' || TASK_NOTIFICATION_PATTERN.test(prompt)) return false;
+  let withdrawnRecord;
+  try {
+    withdrawnRecord = withdrawDeferred({ loopId, sessionId, env: process.env });
+    if (withdrawnRecord === null) return false;
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'withdraw', message: error.message });
+    return false;
+  }
+  // The withdrawn session may already have spent its last nudge, so it is granted one more.
+  // The grant is fixed to a fill ratio by the nudge decision that follows on this prompt.
+  try {
+    nudge.rearmAfterWithdraw({ sessionId, env: process.env });
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'rearm', message: error.message });
+  }
+  // The history marks the note as still with its session, so it is not reported as unclaimed.
+  try {
+    hopHistory.recordHop('withdrawn', withdrawnRecord.handoff, { session: sessionId });
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'history', message: error.message });
+  }
+  logEvent('withdrawn', { loopId, sessionId, reason: 'user-message' });
+  return true;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -78,12 +118,16 @@ async function main() {
     return seed === null ? done() : emit(eventName, seed);
   }
 
-  if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) return done();
+  const withdrawn = withdrawOnOperatorPrompt(eventName, payload.prompt, sessionId);
+  // Every quiet exit below still tells the session its hand-over was withdrawn.
+  const quiet = () => (withdrawn ? emit(eventName, WITHDRAWN_NOTICE) : done());
+
+  if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) return quiet();
 
   let ratio;
   try {
     const fill = readClaudeFill(payload.transcript_path);
-    if (fill === null) return done();
+    if (fill === null) return quiet();
     const windowTokens = resolveWindow({
       env: process.env,
       cwd: payload.cwd || process.cwd(),
@@ -92,7 +136,7 @@ async function main() {
     ratio = fillRatio(fill.fillTokens, windowTokens);
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'usage', message: error.message });
-    return done();
+    return quiet();
   }
 
   const decision = nudge.nudgeDecision({
@@ -100,7 +144,8 @@ async function main() {
     threshold: nudge.relaunchThreshold(config),
     sessionId,
   });
-  if (!decision.nudge) return done();
+  // The withdraw prompt answers with the notice alone; its decision only fixes the re-arm floor.
+  if (!decision.nudge || withdrawn) return quiet();
 
   const notePath = nudge.plannedNotePath({ cwd: payload.cwd, sessionId });
   try {

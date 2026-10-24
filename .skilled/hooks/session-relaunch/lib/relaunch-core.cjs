@@ -399,6 +399,10 @@ function preparePending({
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
  */
 function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
+  return withAppendLock(relaunchFilePath(loopId, env), () => armLocked({ loopId, cwd, env, now }));
+}
+
+function armLocked({ loopId, cwd, env, now }) {
   let record;
   try {
     record = readRelaunchFile(loopId, env);
@@ -470,7 +474,12 @@ function armableRecord(record, { loopId, sessionId, runtime, env = process.env }
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The disarmed record, or null when absent or conditions do not match.
  */
-function unarm({
+function unarm(options) {
+  const { loopId, env = process.env } = options;
+  return withAppendLock(relaunchFilePath(loopId, env), () => unarmLocked(options));
+}
+
+function unarmLocked({
   loopId,
   env = process.env,
   reason,
@@ -494,6 +503,63 @@ function unarm({
   };
   atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(disarmed)}\n`);
   return disarmed;
+}
+
+/**
+ * Mark a pending record whose Stop was deferred, so a prompt the operator sends while it
+ * waits can tell it apart from a hand-over the session prepared moments ago.
+ *
+ * @param {Object} options - Loop state transition inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {Date|number|string} [options.now] - Clock value for deterministic records.
+ * @returns {Object|null} The marked record, or null when no pending record exists.
+ */
+function markDeferred({ loopId, env = process.env, now }) {
+  return withAppendLock(relaunchFilePath(loopId, env), () => {
+    const record = readRelaunchFile(loopId, env);
+    if (record?.status !== 'pending') return null;
+    const deferred = { ...record, deferredAt: toIsoTimestamp(now) };
+    atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(deferred)}\n`);
+    return deferred;
+  });
+}
+
+/**
+ * Withdraw this session's deferred hand-over. A deferred record waits for the next clean
+ * Stop, and the nudge stays silent while it waits, so once the operator carries on in the
+ * session the record would later end it onto a note that no longer describes the work.
+ * Withdrawing it keeps the session running. The nudge level is not reset here; the
+ * caller grants the session one more nudge, since it may already have spent its last.
+ *
+ * @param {Object} options - Loop state transition inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.sessionId - Session the prompt arrived in.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {Date|number|string} [options.now] - Clock value for deterministic records.
+ * @returns {Object|null} The disarmed record, or null when nothing deferred was withdrawn.
+ */
+function withdrawDeferred({ loopId, sessionId, env = process.env, now }) {
+  // One lock spans the read and the disarm, so a Stop cannot arm the record between them.
+  // The disarm runs through the unlocked helper because the mkdir lock is not reentrant.
+  return withAppendLock(relaunchFilePath(loopId, env), () => {
+    const record = readRelaunchFile(loopId, env);
+    if (
+      record?.status !== 'pending'
+      || record.sessionId !== sessionId
+      || !nonEmptyString(record.deferredAt)
+    ) {
+      return null;
+    }
+    return unarmLocked({
+      loopId,
+      env,
+      reason: 'user-message',
+      expectedStatus: 'pending',
+      expectedHandoff: record.handoff,
+      now,
+    });
+  });
 }
 
 /**
@@ -534,14 +600,22 @@ function readRelaunchFile(loopId, env = process.env) {
  * @param {Date|number|string} [options.now=Date.now()] - Current time.
  * @param {number} [options.maxHops=10] - Highest allowed completed-hop count.
  * @param {number} [options.maxAgeMin=10] - Maximum record age in minutes.
- * @returns {{relaunch: true}|{relaunch: false, reason: string}} Decision.
+ * @returns {{relaunch: true}|{relaunch: false, reason: string}} Decision. A refusal reports
+ *   `no-file`, `not-armed`, `withdrawn` (the session called the hand-over off), `stale`,
+ *   `hop-cap` or `incomplete-record`.
  */
 function shouldRelaunch(
   record,
   { now = Date.now(), maxHops = DEFAULT_MAX_HOPS, maxAgeMin = DEFAULT_MAX_AGE_MIN } = {},
 ) {
   if (!record || typeof record !== 'object') return { relaunch: false, reason: 'no-file' };
-  if (record.status !== 'armed') return { relaunch: false, reason: 'not-armed' };
+  if (record.status !== 'armed') {
+    // A hand-over the session itself called off leaves nothing to claim, so the wrapper
+    // must not offer the note as a manual claim the way it does for other unarmed records.
+    const calledOff = record.status === 'disarmed'
+      && (record.disarmReason === 'cancelled' || record.disarmReason === 'user-message');
+    return { relaunch: false, reason: calledOff ? 'withdrawn' : 'not-armed' };
+  }
 
   const nowMs = parseTimestamp(now);
   const armedAtMs = parseTimestamp(record.armedAt);
@@ -581,21 +655,25 @@ function shouldRelaunch(
  */
 function claimHandoff(filePath, { sessionId, now } = {}) {
   assertValidSessionId(sessionId);
-  const text = readHandoffText(filePath);
-  const parsed = parseHandoff(text);
-  if (parsed.frontmatter.status !== 'open') {
-    throw new Error(
-      `cannot claim handoff with status ${parsed.frontmatter.status || 'missing'}`,
-    );
-  }
+  // The status check and the write share one lock, so two sessions claiming one note
+  // cannot both read it open; the second sees `claimed` and throws.
+  return withAppendLock(filePath, () => {
+    const text = readHandoffText(filePath);
+    const parsed = parseHandoff(text);
+    if (parsed.frontmatter.status !== 'open') {
+      throw new Error(
+        `cannot claim handoff with status ${parsed.frontmatter.status || 'missing'}`,
+      );
+    }
 
-  const updated = updateFrontmatter(text, {
-    status: 'claimed',
-    claimed_at: toIsoTimestamp(now),
-    claimed_by: sessionId,
+    const updated = updateFrontmatter(text, {
+      status: 'claimed',
+      claimed_at: toIsoTimestamp(now),
+      claimed_by: sessionId,
+    });
+    writeHandoffUpdate(filePath, updated);
+    return parseHandoff(updated);
   });
-  writeHandoffUpdate(filePath, updated);
-  return parseHandoff(updated);
 }
 
 /**
@@ -607,20 +685,22 @@ function claimHandoff(filePath, { sessionId, now } = {}) {
  * @throws {Error} When the note has not already been claimed.
  */
 function completeHandoff(filePath, { now } = {}) {
-  const text = readHandoffText(filePath);
-  const parsed = parseHandoff(text);
-  if (parsed.frontmatter.status !== 'claimed') {
-    throw new Error(
-      `cannot complete handoff with status ${parsed.frontmatter.status || 'missing'}`,
-    );
-  }
+  return withAppendLock(filePath, () => {
+    const text = readHandoffText(filePath);
+    const parsed = parseHandoff(text);
+    if (parsed.frontmatter.status !== 'claimed') {
+      throw new Error(
+        `cannot complete handoff with status ${parsed.frontmatter.status || 'missing'}`,
+      );
+    }
 
-  const updated = updateFrontmatter(text, {
-    status: 'done',
-    completed_at: toIsoTimestamp(now),
+    const updated = updateFrontmatter(text, {
+      status: 'done',
+      completed_at: toIsoTimestamp(now),
+    });
+    writeHandoffUpdate(filePath, updated);
+    return parseHandoff(updated);
   });
-  writeHandoffUpdate(filePath, updated);
-  return parseHandoff(updated);
 }
 
 /**
@@ -645,31 +725,37 @@ function supersedeClaimed(handoffPath, { sessionId, now } = {}) {
     const candidatePath = path.join(directory, fileName);
     if (path.resolve(candidatePath) === currentPath) continue;
 
-    let text;
-    let parsed;
-    try {
-      text = readHandoffText(candidatePath);
-      parsed = parseHandoff(text);
-    } catch {
-      continue;
-    }
-    const claimedHere = parsed.frontmatter.status === 'claimed'
-      && parsed.frontmatter.claimed_by === sessionId;
-    const writtenHere = parsed.frontmatter.status === 'open'
-      && parsed.frontmatter.session_id === sessionId;
-    if (!claimedHere && !writtenHere) continue;
+    // A claim runs under the note's lock, so the read and the rewrite share it: a note read
+    // open here and claimed before the write would otherwise be overwritten as done. One
+    // candidate at a time keeps the locks from nesting.
+    const superseded = withAppendLock(candidatePath, () => {
+      let text;
+      let parsed;
+      try {
+        text = readHandoffText(candidatePath);
+        parsed = parseHandoff(text);
+      } catch {
+        return false;
+      }
+      const claimedHere = parsed.frontmatter.status === 'claimed'
+        && parsed.frontmatter.claimed_by === sessionId;
+      const writtenHere = parsed.frontmatter.status === 'open'
+        && parsed.frontmatter.session_id === sessionId;
+      if (!claimedHere && !writtenHere) return false;
 
-    try {
-      const updated = updateFrontmatter(text, {
-        status: 'done',
-        completed_at: completedAt,
-        superseded_by: path.basename(handoffPath),
-      });
-      writeHandoffUpdate(candidatePath, updated);
-      supersededPaths.push(candidatePath);
-    } catch {
-      continue;
-    }
+      try {
+        const updated = updateFrontmatter(text, {
+          status: 'done',
+          completed_at: completedAt,
+          superseded_by: path.basename(handoffPath),
+        });
+        writeHandoffUpdate(candidatePath, updated);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+    if (superseded) supersededPaths.push(candidatePath);
   }
 
   return supersededPaths;
@@ -774,13 +860,15 @@ function isEntrypoint(moduleUrl, scriptPath = process.argv[1]) {
 }
 
 /**
- * Run `fn` while holding the log's append lock.
+ * Run `fn` while holding the mkdir lock beside a file: the log's append lock, and the
+ * lock that serializes a read-then-write on a relaunch record or a handoff note. The
+ * lock is not reentrant, so `fn` must not take the same file's lock again.
  *
  * Every lock failure falls through to running `fn` without the lock: history logging
- * must never block or fail a hook.
+ * and state writes must never block or fail a hook.
  *
  * @template T
- * @param {string} logPath - Path of the log whose lock is taken.
+ * @param {string} logPath - Path of the file whose lock is taken.
  * @param {() => T} fn - Work to run under the lock.
  * @returns {T} Whatever `fn` returns.
  */
@@ -1212,7 +1300,9 @@ function nestedUnderLoop(loopId, { hostPid, processTable } = {}) {
  * real loop child into an unguarded session. Only a loop id that is a pid can
  * name an ancestor, so any other value skips the read.
  *
- * @param {NodeJS.ProcessEnv} env - Environment to strip; mutated in place.
+ * @param {NodeJS.ProcessEnv} env - Environment to strip; mutated in place. Every
+ *   `SKILLED_LOOP_` key goes, because the outer loop's manual template, model, name and
+ *   provider would otherwise make the nested runtime print the outer loop's command.
  * @param {Object} [options] - Host pid and dependency seams for tests.
  * @param {number} [options.hostPid] - Runtime pid to compare against; resolved from pid when omitted.
  * @param {number} [options.pid=process.pid] - Descendant pid to resolve the host from.
@@ -1243,9 +1333,9 @@ function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) 
       // A log that cannot be written must not keep the inherited loop alive.
     }
 
-    delete env.SKILLED_LOOP_ID;
-    delete env.SKILLED_LOOP_RUNTIME;
-    delete env.SKILLED_LOOP_HOPS;
+    for (const key of Object.keys(env)) {
+      if (key.startsWith('SKILLED_LOOP_')) delete env[key];
+    }
     return true;
   } catch {
     return false;
@@ -1278,6 +1368,8 @@ module.exports = {
   arm,
   armableRecord,
   unarm,
+  markDeferred,
+  withdrawDeferred,
   readRelaunchFile,
   shouldRelaunch,
   claimHandoff,

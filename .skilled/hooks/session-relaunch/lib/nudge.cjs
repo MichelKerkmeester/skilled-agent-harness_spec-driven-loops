@@ -31,6 +31,9 @@ const CONTINUITY_WRITER_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/
   + 'dist/continuity/generate-context.js';
 const NUDGE_STEP = 0.05;
 const LAST_NUDGE_LEVEL = 1;
+// A record disarmed for either reason means the operator kept the session going after its
+// hand-over was prepared, so the note it names stopped matching the work.
+const WITHDRAWN_DISARM_REASONS = new Set(['cancelled', 'user-message']);
 const DEFAULT_THRESHOLD = 0.8;
 // The wrapper's own ceiling on completed hops, used when no cap is configured.
 const DEFAULT_MAX_HOPS = core.DEFAULT_MAX_HOPS;
@@ -183,6 +186,14 @@ function handoffText({
         + 'claim the note with the command keep prints before you continue.',
     );
   }
+  // Without a named way back, a session told to stay after prepare improvises with the
+  // wrapper's own commands.
+  if (inLoop) {
+    lines.push(
+      `If the operator asks this session to stay after prepare, run: ${command} cancel,`
+        + ' then keep working.',
+    );
+  }
   lines.push(
     'Exception: skip these steps only when the operator has told this session not to hand off;'
       + ' then keep working, and auto-compaction stays the fallback.',
@@ -222,6 +233,20 @@ function seedText({ notePath, specFolder, sessionId, cliPath, afterCompaction = 
       + `\`${completeCommand}\` to close the note.`,
   );
   return lines.join('\n');
+}
+
+/**
+ * Build the compaction text for a session whose hand-over was withdrawn. Its open note was
+ * written before the operator carried on, so claiming it would resume work already done.
+ */
+function staleNoteText({ notePath } = {}) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  return [
+    '[session-relaunch] This session was compacted after its hand-over was withdrawn.',
+    `The handoff note at ${shellQuote(pathValue)} predates the work done since then.`,
+    'Read it for background only and do not claim it.',
+    'Update it at the next context nudge, which is when to hand over again.',
+  ].join(' ');
 }
 
 /** Check whether text starts with the relaunch seed marker. */
@@ -437,6 +462,43 @@ function handoffPending({ sessionId, env = process.env } = {}) {
   }
 }
 
+// After a compaction the session's open note is normally claimed. A note whose hand-over
+// the operator withdrew is the exception: it was written before the work that followed,
+// unless the session has updated it since the withdraw.
+/**
+ * Report whether this session's record was disarmed by a cancel or a prompt over this note
+ * and the note has not been written to since.
+ */
+function handoffWithdrawn({ sessionId, notePath, env = process.env } = {}) {
+  const loopId = env?.SKILLED_LOOP_ID;
+  if (typeof loopId !== 'string' || !loopId.trim()) return false;
+  if (typeof notePath !== 'string' || !notePath) return false;
+  try {
+    const record = core.readRelaunchFile(loopId, env);
+    if (!record || typeof record !== 'object') return false;
+    if (record.loopId !== loopId || record.sessionId !== sessionId) return false;
+    if (record.status !== 'disarmed' || !WITHDRAWN_DISARM_REASONS.has(record.disarmReason)) {
+      return false;
+    }
+    if (
+      typeof record.handoff !== 'string'
+      || path.resolve(record.handoff) !== path.resolve(notePath)
+    ) {
+      return false;
+    }
+    // A note that cannot be read or timed counts as stale: the withdraw is all that is known.
+    const disarmedMs = Date.parse(record.disarmedAt);
+    if (Number.isFinite(disarmedMs)) {
+      try {
+        if (fs.statSync(notePath).mtimeMs > disarmedMs) return false;
+      } catch {}
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // Only the skilled-loop wrapper can end a session and relaunch it with a claim seed.
 // Outside it, prepare can only print a manual claim command and exit 3, so a nudge
 // there that asked for prepare would turn a working session into one that stops and
@@ -472,7 +534,9 @@ function nextLevel({ ratio, threshold, state } = {}) {
  * the threshold, then inside the wrapper a handoff this session already prepared and
  * the hop cap, or outside it a note this session already has open, then the level.
  * Outside the wrapper the nudge asks for a note only, and its reason says so.
- * The state file is read only once the ratio reaches the threshold.
+ * The state file is read only once the ratio reaches the threshold. A pending re-arm from a
+ * withdrawn hand-over is turned into its floor here, which is the one write this decision
+ * makes; see rearmAfterWithdraw.
  *
  * @param {Object} options - Fill ratio and session state.
  * @param {number} options.ratio - Measured fill ratio.
@@ -503,7 +567,25 @@ function nudgeDecision({
     return quiet('note-open');
   }
 
-  const current = knownLevel ?? readState(sessionId, env);
+  const stored = readStateFile(sessionId, env);
+  const current = knownLevel ?? stored.level;
+
+  // A withdrawn or cancelled hand-over grants one more nudge, whatever the level, but only
+  // once the fill has grown a step past where the grant took effect. The first run after the withdraw fixes
+  // that floor and stays quiet, so the nudge never lands on the prompt that withdrew it.
+  const { rearm } = stored;
+  if (rearm !== null) {
+    if (rearm.pending) {
+      persistRearmFloor(sessionId, stored.level, ratio, env);
+      return { nudge: false, level: current, reason: 'rearm-floor' };
+    }
+    if (!(Number(ratio) >= rearm.floor)) {
+      return { nudge: false, level: current, reason: 'rearm-floor' };
+    }
+    // The grant is one nudge whatever the level, so delivering it spends the level.
+    return { nudge: true, level: Math.max(current, LAST_NUDGE_LEVEL + 1), reason: 'rearm' };
+  }
+
   if (resume && current >= 1) return { nudge: true, level: current, reason: 'resume' };
   const next = nextLevel({ ratio, threshold, state: current });
   return next.nudge
@@ -521,35 +603,91 @@ function stateFilePath(sessionId, env) {
   return path.join(core.stateDir(env), `nudge-${sessionId}.json`);
 }
 
-/** Read the recorded nudge level, treating absent or corrupt state as level zero. */
-function readState(sessionId, env = process.env) {
+// A grant from a withdrawn hand-over is either pending, when the fill it must clear is not
+// yet known, or a floor. Anything else in the field is ignored, so an old level-only file
+// and a damaged field both read as no grant.
+function parseRearm(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  if (raw.pending === true) return { pending: true };
+  const floor = Number(raw.floor);
+  return raw.floor !== null && Number.isFinite(floor) && floor > 0 ? { floor } : null;
+}
+
+function readStateFile(sessionId, env) {
+  const empty = { level: 0, rearm: null };
   const filePath = stateFilePath(sessionId, env);
-  if (filePath === null) return 0;
+  if (filePath === null) return empty;
 
   try {
-    const level = Number(JSON.parse(fs.readFileSync(filePath, 'utf8'))?.level);
-    return Number.isInteger(level) && level >= 0 ? level : 0;
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const level = Number(parsed?.level);
+    return {
+      level: Number.isInteger(level) && level >= 0 ? level : 0,
+      rearm: parseRearm(parsed?.rearm),
+    };
   } catch {
-    return 0;
+    return empty;
   }
 }
 
-/** Persist the nudge level with private file and directory permissions. */
-function writeState(sessionId, level, env = process.env) {
+function persistState(sessionId, level, rearm, env) {
   const filePath = stateFilePath(sessionId, env);
   const numericLevel = Number(level);
   if (
     filePath === null
     || !Number.isInteger(numericLevel)
     || numericLevel < 0
-  ) return;
+  ) return false;
 
   core.ensureStateDir(env);
-  fs.writeFileSync(
-    filePath,
-    `${JSON.stringify({ level: numericLevel })}\n`,
-    { mode: 0o600 },
-  );
+  const contents = rearm ? { level: numericLevel, rearm } : { level: numericLevel };
+  fs.writeFileSync(filePath, `${JSON.stringify(contents)}\n`, { mode: 0o600 });
+  return true;
+}
+
+// Best effort: a floor that cannot be written leaves the grant pending, and the next run
+// fixes it from its own fill.
+function persistRearmFloor(sessionId, level, ratio, env) {
+  const floor = Number((Number(ratio) + NUDGE_STEP).toFixed(6));
+  try {
+    persistState(sessionId, level, { floor }, env);
+  } catch {}
+}
+
+/** Read the recorded nudge level, treating absent or corrupt state as level zero. */
+function readState(sessionId, env = process.env) {
+  return readStateFile(sessionId, env).level;
+}
+
+/**
+ * Persist the nudge level with private file and directory permissions. Writing the level
+ * alone also drops any withdraw grant, which is how a delivered nudge and a compaction
+ * spend it.
+ */
+function writeState(sessionId, level, env = process.env) {
+  persistState(sessionId, level, null, env);
+}
+
+/**
+ * Record that this session's hand-over was withdrawn or cancelled, so one more nudge may
+ * come after the fill has grown a step. The caller does not know the fill: the grant is
+ * stored pending beside the level, and the next nudge decision turns it into a floor of
+ * its own ratio plus one step without nudging on that run. The grant is held through
+ * runs below the threshold, so a session cancelled early waits that step past the
+ * threshold for its first nudge instead of being nagged the moment it crosses it.
+ *
+ * @param {Object} options - The session to re-arm.
+ * @param {string} options.sessionId - Session whose hand-over was withdrawn.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {boolean} True when a pending re-arm was written; false for an unusable session
+ *   id or a state file that could not be written.
+ */
+function rearmAfterWithdraw({ sessionId, env = process.env } = {}) {
+  try {
+    return persistState(sessionId, readState(sessionId, env), { pending: true }, env);
+  } catch {
+    return false;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -564,6 +702,7 @@ module.exports = {
   nudgeDecision,
   handoffText,
   seedText,
+  staleNoteText,
   completeCommandFor,
   claimCommandFor,
   isSeedPrompt,
@@ -574,6 +713,7 @@ module.exports = {
   plannedNotePath,
   openNotePathFor,
   handoffPending,
+  handoffWithdrawn,
   armedRecordStillCurrent,
   hopLimitReached,
   relaunchThreshold,
@@ -581,4 +721,5 @@ module.exports = {
   validSessionId,
   readState,
   writeState,
+  rearmAfterWithdraw,
 };
