@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cd11d4efc56550a7abc4f359013c4d55ab23c4746909e247b929453e8779e976",
+  "manifestHash": "621c996bdfc90c2b4d2eda4bc7d90dfea0df9ff5203115e9c4b2756ea2c3a432",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18099,6 +18099,24 @@
     "claim corrections tasks": [
       "claim corrections tasks"
     ],
+    "claim error per state": [
+      "claim error per state"
+    ],
+    "claim error per state acceptance criteria": [
+      "claim error per state acceptance criteria"
+    ],
+    "claim error per state goal": [
+      "claim error per state goal"
+    ],
+    "claim error per state implementation summary": [
+      "claim error per state implementation summary"
+    ],
+    "claim error per state plan": [
+      "claim error per state plan"
+    ],
+    "claim error per state tasks": [
+      "claim error per state tasks"
+    ],
     "claim guard anchors": [
       "claim guard anchors"
     ],
@@ -25151,6 +25169,24 @@
     "compaction fixtures canary": [
       "compaction fixtures canary"
     ],
+    "compaction pointer staleness": [
+      "compaction pointer staleness"
+    ],
+    "compaction pointer staleness acceptance criteria": [
+      "compaction pointer staleness acceptance criteria"
+    ],
+    "compaction pointer staleness goal": [
+      "compaction pointer staleness goal"
+    ],
+    "compaction pointer staleness implementation summary": [
+      "compaction pointer staleness implementation summary"
+    ],
+    "compaction pointer staleness plan": [
+      "compaction pointer staleness plan"
+    ],
+    "compaction pointer staleness tasks": [
+      "compaction pointer staleness tasks"
+    ],
     "compaction recall census": [
       "compaction recall census"
     ],
@@ -26302,6 +26338,24 @@
     ],
     "consultant scenario matrix": [
       "consultant scenario matrix"
+    ],
+    "consume locked withdraw": [
+      "consume locked withdraw"
+    ],
+    "consume locked withdraw acceptance criteria": [
+      "consume locked withdraw acceptance criteria"
+    ],
+    "consume locked withdraw goal": [
+      "consume locked withdraw goal"
+    ],
+    "consume locked withdraw implementation summary": [
+      "consume locked withdraw implementation summary"
+    ],
+    "consume locked withdraw plan": [
+      "consume locked withdraw plan"
+    ],
+    "consume locked withdraw tasks": [
+      "consume locked withdraw tasks"
     ],
     "consumer access role normalization": [
       "consumer access role normalization"
@@ -59114,6 +59168,42 @@
     "manual call templates array": [
       "manual call templates array"
     ],
+    "manual claim goal binding": [
+      "manual claim goal binding"
+    ],
+    "manual claim goal binding acceptance criteria": [
+      "manual claim goal binding acceptance criteria"
+    ],
+    "manual claim goal binding goal": [
+      "manual claim goal binding goal"
+    ],
+    "manual claim goal binding implementation summary": [
+      "manual claim goal binding implementation summary"
+    ],
+    "manual claim goal binding plan": [
+      "manual claim goal binding plan"
+    ],
+    "manual claim goal binding tasks": [
+      "manual claim goal binding tasks"
+    ],
+    "manual claim live settings": [
+      "manual claim live settings"
+    ],
+    "manual claim live settings acceptance criteria": [
+      "manual claim live settings acceptance criteria"
+    ],
+    "manual claim live settings goal": [
+      "manual claim live settings goal"
+    ],
+    "manual claim live settings implementation summary": [
+      "manual claim live settings implementation summary"
+    ],
+    "manual claim live settings plan": [
+      "manual claim live settings plan"
+    ],
+    "manual claim live settings tasks": [
+      "manual claim live settings tasks"
+    ],
     "manual debug opt out": [
       "manual debug opt-out"
     ],
@@ -65137,6 +65227,24 @@
     ],
     "model dispatch matrix": [
       "model dispatch matrix"
+    ],
+    "model effort atomic replay": [
+      "model effort atomic replay"
+    ],
+    "model effort atomic replay acceptance criteria": [
+      "model effort atomic replay acceptance criteria"
+    ],
+    "model effort atomic replay goal": [
+      "model effort atomic replay goal"
+    ],
+    "model effort atomic replay implementation summary": [
+      "model effort atomic replay implementation summary"
+    ],
+    "model effort atomic replay plan": [
+      "model effort atomic replay plan"
+    ],
+    "model effort atomic replay tasks": [
+      "model effort atomic replay tasks"
     ],
     "model guidance": [
       "model guidance"
@@ -71524,6 +71632,24 @@
     "persist workspace id": [
       "persist workspace id"
     ],
+    "persisted hops validation": [
+      "persisted hops validation"
+    ],
+    "persisted hops validation acceptance criteria": [
+      "persisted hops validation acceptance criteria"
+    ],
+    "persisted hops validation goal": [
+      "persisted hops validation goal"
+    ],
+    "persisted hops validation implementation summary": [
+      "persisted hops validation implementation summary"
+    ],
+    "persisted hops validation plan": [
+      "persisted hops validation plan"
+    ],
+    "persisted hops validation tasks": [
+      "persisted hops validation tasks"
+    ],
     "persisted wait crash resume": [
       "persisted-wait crash resume"
     ],
@@ -72037,6 +72163,9 @@
     "phase 1 model benchmark inventory": [
       "phase 1 model benchmark inventory"
     ],
+    "phase 1 model effort atomic replay": [
+      "phase 1 model effort atomic replay"
+    ],
     "phase 1 package strict": [
       "phase 1 package strict"
     ],
@@ -72367,6 +72496,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 consume locked withdraw": [
+      "phase 2 consume locked withdraw"
+    ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
     ],
@@ -72640,6 +72772,9 @@
     "phase 3 improvement research": [
       "phase 3 improvement research"
     ],
+    "phase 3 manual claim live settings": [
+      "phase 3 manual claim live settings"
+    ],
     "phase 3 markdown reference sweep": [
       "phase 3 markdown reference sweep"
     ],
@@ -72766,6 +72901,9 @@
     "phase 4 leftover template comments": [
       "phase 4 leftover template comments"
     ],
+    "phase 4 manual claim goal binding": [
+      "phase 4 manual claim goal binding"
+    ],
     "phase 4 pi ambiguous denial": [
       "phase 4 pi ambiguous denial"
     ],
@@ -72876,6 +73014,9 @@
     ],
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
+    ],
+    "phase 5 persisted hops validation": [
+      "phase 5 persisted hops validation"
     ],
     "phase 5 readme node floor": [
       "phase 5 readme node floor"
@@ -73006,6 +73147,9 @@
     "phase 6 plan": [
       "phase 6 plan"
     ],
+    "phase 6 relaunch coverage gaps": [
+      "phase 6 relaunch coverage gaps"
+    ],
     "phase 6 release conformance review": [
       "phase 6 release conformance review"
     ],
@@ -73078,6 +73222,9 @@
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
     ],
+    "phase 7 compaction pointer staleness": [
+      "phase 7 compaction pointer staleness"
+    ],
     "phase 7 dispatch wrapper scan": [
       "phase 7 dispatch wrapper scan"
     ],
@@ -73140,6 +73287,9 @@
     ],
     "phase 8 ci red check repairs": [
       "phase 8 ci red check repairs"
+    ],
+    "phase 8 claim error per state": [
+      "phase 8 claim error per state"
     ],
     "phase 8 consolidation decision": [
       "phase 8 consolidation decision"
@@ -73218,6 +73368,9 @@
     ],
     "phase 9 open items ledger": [
       "phase 9 open items ledger"
+    ],
+    "phase 9 pi arm on agent settled": [
+      "phase 9 pi arm on agent settled"
     ],
     "phase 9 pi guard classification": [
       "phase 9 pi guard classification"
@@ -73832,6 +73985,24 @@
     ],
     "pi api key": [
       "pi api key"
+    ],
+    "pi arm on agent settled": [
+      "pi arm on agent settled"
+    ],
+    "pi arm on agent settled acceptance criteria": [
+      "pi arm on agent settled acceptance criteria"
+    ],
+    "pi arm on agent settled goal": [
+      "pi arm on agent settled goal"
+    ],
+    "pi arm on agent settled implementation summary": [
+      "pi arm on agent settled implementation summary"
+    ],
+    "pi arm on agent settled plan": [
+      "pi arm on agent settled plan"
+    ],
+    "pi arm on agent settled tasks": [
+      "pi arm on agent settled tasks"
     ],
     "pi blackhole auto compacts": [
       "pi-blackhole auto-compacts"
@@ -80699,6 +80870,24 @@
     "relaunch cancel and test isolation tasks": [
       "relaunch cancel and test isolation tasks"
     ],
+    "relaunch coverage gaps": [
+      "relaunch coverage gaps"
+    ],
+    "relaunch coverage gaps acceptance criteria": [
+      "relaunch coverage gaps acceptance criteria"
+    ],
+    "relaunch coverage gaps goal": [
+      "relaunch coverage gaps goal"
+    ],
+    "relaunch coverage gaps implementation summary": [
+      "relaunch coverage gaps implementation summary"
+    ],
+    "relaunch coverage gaps plan": [
+      "relaunch coverage gaps plan"
+    ],
+    "relaunch coverage gaps tasks": [
+      "relaunch coverage gaps tasks"
+    ],
     "relaunch effort flag": [
       "relaunch effort flag"
     ],
@@ -80740,6 +80929,9 @@
     ],
     "relaunch model and effort tasks": [
       "relaunch model and effort tasks"
+    ],
+    "relaunch research remediation": [
+      "relaunch research remediation"
     ],
     "relaunch takeover lock identity": [
       "relaunch takeover lock identity"
@@ -83634,6 +83826,12 @@
     ],
     "research registry fingerprint": [
       "research registry fingerprint"
+    ],
+    "research remediation goal": [
+      "research remediation goal"
+    ],
+    "research remediation phase parent spec": [
+      "research remediation phase parent spec"
     ],
     "research remediation plan": [
       "research remediation plan"

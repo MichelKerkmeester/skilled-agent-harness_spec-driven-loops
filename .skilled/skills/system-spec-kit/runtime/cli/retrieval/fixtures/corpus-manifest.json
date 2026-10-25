@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2f78363331774edb83d209f47f4933328215d4aa35fd58c24c4a63aff1348adc",
+  "corpusHash": "894b84038b42e280f154b93f2d58f2c790adcd8679a9a9d5473d8c65fbdbbae9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25881,
+  "includedPathCount": 25937,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10404,6 +10404,62 @@
     "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/plan.md",
     "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md",
     "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/plan.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/spec.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/033-research-remediation/spec.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25912,7 +25968,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cd11d4efc56550a7abc4f359013c4d55ab23c4746909e247b929453e8779e976",
+  "manifestHash": "621c996bdfc90c2b4d2eda4bc7d90dfea0df9ff5203115e9c4b2756ea2c3a432",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27984,6 +28040,46 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/scratch",
       "reason": "excluded directory"
     },
     {
