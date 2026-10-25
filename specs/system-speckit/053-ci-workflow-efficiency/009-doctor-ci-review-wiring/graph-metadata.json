@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring",
   "spec_folder": "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring",
   "parent_id": "system-speckit/053-ci-workflow-efficiency",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +49,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".github/workflows/README.md",
+      ".skilled/commands/doctor/ci.md",
+      ".skilled/commands/doctor/scripts/ci-report.cjs",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
-      ".skilled/skills/sk-code/shared/references/stack-detection.md",
-      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
-      ".skilled/skills/sk-code/SKILL.md"
+      "scratch/phase-result.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/README.md",
+      ".skilled/commands/doctor/assets/doctor-ci-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-ci-report.yaml",
+      ".skilled/commands/doctor/assets/doctor-ci-scaffold.yaml",
+      ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+      ".skilled/commands/doctor/scripts/tests/ci-report.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
     ],
     "entities": [
       {
@@ -106,9 +107,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "ci.md",
         "kind": "doc",
-        "path": ".github/workflows/README.md",
+        "path": ".skilled/commands/doctor/ci.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/ci-report.cjs",
         "source": "derived"
       },
       {
@@ -118,57 +125,63 @@
         "source": "derived"
       },
       {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-report.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-report.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-scaffold.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-scaffold.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-toggle.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-ci-toggle.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-report.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/ci-report.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-ci-contract.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "doctor-setup-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "scoring-compatibility.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
-        "source": "derived"
-      },
-      {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-        "source": "derived"
-      },
-      {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "stack-detection.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
         "source": "derived"
       },
       {
@@ -194,23 +207,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The on/off control lands six repository variables, but a clone cannot see which jobs a tree has switched off without reading every `if:` line, and there is no command that creates a new workflow with the timeout, permissions, concurrency and switch shape the standard requires",
     "created_at": "2026-10-23T08:48:01Z",
-    "last_save_at": "2026-10-23T16:28:25.785Z",
+    "last_save_at": "2026-10-25T10:26:17.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2018221a358a5f2756b4df96d17e67cac256fcf2b5d209b96a8d613adef1247",
+    "source_fingerprint": "sha256:76392bbf14afd9021b4f817ccf93acea51dd95f7b4431805df678b89f67e8cca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0b1a891399bed695318b9988f4310cebda7a7f481392ef16efa652a53d30234",
-      "plan.md": "a2c0825921279d1dd5e2f1c9ca8f502f4498e00c75b764767b86dd4068ee8336",
-      "tasks.md": "29cc7e4c2702c7eedb6ff2a384251f24b880d6cf7b0b38d0ae3cb8b1e3c5753e",
-      "decision-record.md": "89812d602a095fb1dc72707b7dfd74da2a4629d1af3918878f09d3b781968a16",
-      "implementation-summary.md": "48eaa7b1f19c631843f0edad3f5ebcf2620596990c4ab79739ae938749831790"
+      "spec.md": "551098143c830b260d9fc7ad88ce93167b9f38601eb30dd05cabb175280931f9",
+      "plan.md": "fff56afd7681898edfce8f7e7477299484efd0dcea6f365f35090f64a28e5e3f",
+      "tasks.md": "6545d03bfcad3985b5b3c4c24775a774a4cbd8254c35dbdb571cea93aee38110",
+      "decision-record.md": "3e7e6e2bd483f7bc1c3ebd29bf051ebab3c4a5248c9a92614c475065b6904111",
+      "implementation-summary.md": "b4e7784267ee27274ee5a45e6d965f4dfdc6b19a2ba21f108191bae154d091e8"
     },
     "last_active_at": null
   }

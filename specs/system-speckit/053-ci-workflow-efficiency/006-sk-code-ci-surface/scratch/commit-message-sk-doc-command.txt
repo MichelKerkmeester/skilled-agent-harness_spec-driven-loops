@@ -1,0 +1,12 @@
+docs(doctor): bring the ci command to the command contract
+
+The ci command description fits the 110 character budget, its flags move into an
+argument table under the execution targets, and the YAML setup names match the
+route manifest. The presentation file now owns the bad-name refusal and the
+no-change result.
+
+The Pi prompt mirror for the command was missing, so its sync script wrote it.
+The command contract lists ci in the doctor family, so the router drift check
+covers it, and the command index carries the new description.
+
+Spec: system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface

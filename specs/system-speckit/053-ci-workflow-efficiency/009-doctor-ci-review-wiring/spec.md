@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 9: doctor-ci-review-wiring"
-description: "A clone can switch workflows off with the vars.SKILLED_CI* variables, but nothing shows which jobs a given tree has switched off, and nothing scaffolds a new workflow to the CI standard. A .github/workflows diff also reviews as UNKNOWN, because sk-code has no CI surface value. This phase probes whether the owner's token can write repository variables, then builds /doctor:ci (report, scaffold, toggle), registers its advisor bridges, and adds the CI surface value to the shared detection contract with regression tests for the three existing surfaces."
+description: "A clone can switch workflows off with the vars.SKILLED_CI* variables, but nothing shows which jobs a given tree has switched off, and nothing scaffolds a new workflow to the CI standard. A .github/workflows diff also reviews as UNKNOWN, because sk-code has no CI surface value. This phase probes whether the owner's token can write repository variables, then builds /doctor:ci (report, scaffold, toggle), registers its advisor bridges, and adds the CI surface value to the shared detection contract with regression tests for the three existing surfaces. Amended 2026-10-25: the CI surface value (R30) is superseded by ADR-013 and the phase changes no sk-code file."
 trigger_phrases:
   - "doctor ci review wiring"
   - "phase 9 doctor ci review wiring"
@@ -24,6 +24,8 @@ The repository can switch its workflows off through six repository variables, bu
 
 **Critical Dependencies**: `006-sk-code-ci-surface` supplies the two scaffold templates, the protected set and the rule index; `007-workflow-hygiene-on-off-control` supplies the six variable names and the job `if:` shape the report reads; the operator's explicit yes gates the R28 probe.
 
+**Amendment (2026-10-25)**: The operator ruled "Drop R30, keep the hub." R30, the `CI` value in surface detection and the precedence `SKILLED > CI > OBSIDIAN > WEBFLOW > UNKNOWN`, is superseded by ADR-013. The hub has since removed the Webflow and Obsidian surfaces and now bundles `sk-code-ci` from request vocabulary, and its own contract says stack detection does not select CI. The phase ships `/doctor:ci` (R28 and R29) and changes no sk-code file. A workflow review still gets the CI evidence, because the compiled route returns `sk-code-review` then `sk-code-ci` for a workflow prompt. Known limitation: the review router's own surface label reads `UNKNOWN` for a workflow diff. The text of every superseded item below stays in place.
+
 ---
 
 ## 1. METADATA
@@ -32,14 +34,14 @@ The repository can switch its workflows off through six repository variables, bu
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | main (work in any checkout level with origin/main; push with git push origin HEAD:main) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 9 of 9 |
 | **Predecessor** | 006-sk-code-ci-surface (with 007-workflow-hygiene-on-off-control) |
 | **Successor** | None |
-| **Handoff Criteria** | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `17 routes validated`; `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`; `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` prints `STATUS=OK` with `bridges=21`; `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` exits 0; `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED` |
+| **Handoff Criteria** | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `17 routes validated`; `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`; `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` prints `STATUS=OK` with `bridges=21`; `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` exits 0 (superseded by ADR-013, the test is not written); `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,6 +50,8 @@ The repository can switch its workflows off through six repository variables, bu
 ## Phase Context
 
 This is **Phase 9** of the CI hygiene, consolidation and doctor specification. It carries R28, R29 and R30 of `001-research/research/synthesis-reviews/final-review.md` (`:504-532`) and the phase-009 gate in that review's phase plan (`:600-607`). Its internal order is R28, then R29, then R30: the probe decides the toggle shape before the command is written, and the command's report reads the switch names before the review surface is wired to them.
+
+**Superseded by ADR-013 (2026-10-25)**: R30 and everything that serves only R30 are superseded and are not built. That covers REQ-006, REQ-007, SC-005, SC-007, NFR-R03, T018 to T025, the sk-code and compiled-manifest rows of the Files to Change table, the CI surface deliverable below, the R30 rows of the edge cases, risks, rollback and risk matrix, the symlink edge case, the R30 state transition and the detection half of US-003. The scope boundary below is kept as written for the record, but the sk-code shared detection contract and review selection are out of scope now.
 
 **Scope Boundary**: The doctor command family, the advisor bridge data and its generated outputs, the sk-code shared detection contract and review selection, and this phase's `scratch/`. No `.github/workflows` file change during the phase build, no workflow run, no repository variable except the probe's own `SKILLED_CI_PROBE`, and no change to a skill runtime's behaviour outside the review surface value.
 
@@ -61,7 +65,7 @@ This is **Phase 9** of the CI hygiene, consolidation and doctor specification. I
 - `.skilled/commands/doctor/ci.md` and its three workflow assets, with `report` read-only, `scaffold` confirmed and `toggle` shaped by D9.
 - `.skilled/commands/doctor/scripts/ci-report.cjs`, which lists every workflow with its switch state, trigger, filters, purpose and drift flags, and resolves the newest non-rebuild SHA.
 - Three `_routes.yaml` routes, three advisor bridge activations in both scorers, the regenerated bridge projection and a `/doctor:setup` row.
-- The CI surface value in `stack-detection.md` and `sk-code-review`'s `detect_surface_evidence`, with a regression test that keeps the three existing surfaces unchanged.
+- Superseded by ADR-013: the CI surface value in `stack-detection.md` and `sk-code-review`'s `detect_surface_evidence`, with a regression test that keeps the three existing surfaces unchanged.
 - `scratch/`: the R28 probe record, the pre-phase inventory, the command contract results, the live report and the phase result.
 
 **Changelog**:
@@ -130,6 +134,8 @@ Give the operator one read-only report of every workflow's switch state and one 
 | `.skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md` | Modify | The precedence restatement names CI |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` | Create | The five-value fixture test, including the three existing surfaces |
 | `specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/` | Create | Probe, inventory, contract, report and phase-result records |
+
+> Superseded by ADR-013: the two compiled-manifest rows, the six `.skilled/skills/sk-code/` doc rows and the `surface-detection.test.cjs` row. None of them is created or modified, because the phase changes no sk-code file.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -143,7 +149,7 @@ Give the operator one read-only report of every workflow's switch state and one 
 |------|-------------------------------|--------------|-------|
 | R28 | One throwaway repository variable proves whether the owner's token may write repository settings, the four exit codes and both read-backs are recorded, the variable is deleted in the same task, and the answer selects the toggle's shape | REQ-001 | T001, T004, T030 |
 | R29 | `/doctor:ci` lists every workflow with its switch state and resolves the newest non-rebuild SHA, scaffolds a new workflow from the `sk-code-ci` templates after an explicit yes, toggles one of six named switches in the shape D9 selects, registers three routes and three advisor bridges, and appears in the `/doctor:setup` list | REQ-002, REQ-003, REQ-004, REQ-005 | T005 to T017, T027, T028, T029 |
-| R30 | `CI` is the fifth `detect_surface_evidence` value, sits second in the precedence, is restated by every hub document that carries the order, and a regression test pins the three existing surfaces and the mixed and near-miss paths | REQ-006, REQ-007 | T018 to T026 |
+| R30 | Superseded by ADR-013. `CI` is the fifth `detect_surface_evidence` value, sits second in the precedence, is restated by every hub document that carries the order, and a regression test pins the three existing surfaces and the mixed and near-miss paths | REQ-006, REQ-007 | T018 to T025 superseded, T026 done |
 | Cross-cutting | The report writes nothing, no ephemeral id enters code or a command asset, the packet passes the strict validator, and the phase result records every gate | REQ-008, REQ-009, REQ-010, REQ-011 | T029 to T033 |
 
 ### P0 - Blockers (MUST complete)
@@ -155,8 +161,8 @@ Give the operator one read-only report of every workflow's switch state and one 
 | REQ-003 | **R29.** `.skilled/commands/doctor/ci.md` owns a `scaffold` route that is `mutating: mutates`, prints the proposed file content under `.github/workflows/` before writing, reads `.skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml` and `job-block-template.yml`, refuses an existing target or a protected workflow name, and writes only after an explicit yes |
 | REQ-004 | **R29.** `.skilled/commands/doctor/ci.md` owns a `toggle` route shaped by D9. It accepts only the six documented names (`SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS`, `SKILLED_CI_MESSAGES`), prints the exact `gh variable set NAME --body off` or `gh variable delete NAME` command, refuses `SKILLED_CI_MESSAGES=off` while the workflows README carries the prohibition, and reads the state back. Under D9's write answer it runs the command after a yes and is `mutating: mutates`; under the print answer it writes nothing and is `mutating: read-only` |
 | REQ-005 | **R29.** `_routes.yaml` registers the three routes; `scoring-compatibility.json` activates `command-doctor-ci-report`, `command-doctor-ci-scaffold` and `command-doctor-ci-toggle` in both the TypeScript and Python lists; the bridge deriver regenerates `command-bridges.generated.json`, `projection.ts`, `skill_advisor.py` and `render.ts`; and `doctor-setup-presentation.txt` lists `/doctor:ci report` |
-| REQ-006 | **R30.** `stack-detection.md` gains a `CI` surface row and the precedence `SKILLED > CI > OBSIDIAN > WEBFLOW > UNKNOWN`, a `.github/workflows/` and `.github/actions/` detection step, and CI rows in its test cases. `sk-code-review/SKILL.md` restates the same precedence and its `detect_surface_evidence` returns `CI` for a workflow path. The hub's restatements are updated: `.skilled/skills/sk-code/SKILL.md:139`, `ROUTER.md:112`, `code-quality-standards.md:56` and `design-restraint-ladder.md:13` name CI, and `.skilled/skills/sk-code/SKILL.md:74` separates the bundle order from the single-surface precedence. Every changed skill doc raises its frontmatter version through `frontmatter-version.mjs bump`, and each bumped packet gains a changelog entry at the new version. The compiled route for `sk-code` is refreshed after the `SKILL.md` change, because the hub policy hash covers that file |
-| REQ-007 | **R30.** `surface-detection.test.cjs` exercises the inline `detect_surface_evidence` block from `sk-code-review/SKILL.md` against five fixtures: SKILLED, OBSIDIAN and WEBFLOW keep their current expected values, CI is new, and UNKNOWN stays the fallback. It also asserts the shared contract and the inline copy carry the same precedence |
+| REQ-006 | **Superseded by ADR-013.** **R30.** `stack-detection.md` gains a `CI` surface row and the precedence `SKILLED > CI > OBSIDIAN > WEBFLOW > UNKNOWN`, a `.github/workflows/` and `.github/actions/` detection step, and CI rows in its test cases. `sk-code-review/SKILL.md` restates the same precedence and its `detect_surface_evidence` returns `CI` for a workflow path. The hub's restatements are updated: `.skilled/skills/sk-code/SKILL.md:139`, `ROUTER.md:112`, `code-quality-standards.md:56` and `design-restraint-ladder.md:13` name CI, and `.skilled/skills/sk-code/SKILL.md:74` separates the bundle order from the single-surface precedence. Every changed skill doc raises its frontmatter version through `frontmatter-version.mjs bump`, and each bumped packet gains a changelog entry at the new version. The compiled route for `sk-code` is refreshed after the `SKILL.md` change, because the hub policy hash covers that file |
+| REQ-007 | **Superseded by ADR-013.** **R30.** `surface-detection.test.cjs` exercises the inline `detect_surface_evidence` block from `sk-code-review/SKILL.md` against five fixtures: SKILLED, OBSIDIAN and WEBFLOW keep their current expected values, CI is new, and UNKNOWN stays the fallback. It also asserts the shared contract and the inline copy carry the same precedence |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -168,6 +174,8 @@ Give the operator one read-only report of every workflow's switch state and one 
 | REQ-011 | `scratch/phase-result.md` records every gate command, its exit status and its last line, the R28 probe, the live report's workflow count and newest non-rebuild SHA, and the D9 answer |
 
 ### Edge cases by R-id
+
+> The four R30 rows are superseded by ADR-013. They describe a detection value that is not built.
 
 | R-id | Edge case | Handling |
 |------|-----------|----------|
@@ -189,6 +197,8 @@ Give the operator one read-only report of every workflow's switch state and one 
 
 ### Risks by R-id
 
+> The three R30 rows are superseded by ADR-013.
+
 | R-id | Risk | Mitigation |
 |------|------|------------|
 | R28 | The probe leaves a variable behind | Delete it in the same task, record the post-delete read-back, and treat a surviving variable as a blocker |
@@ -203,6 +213,8 @@ Give the operator one read-only report of every workflow's switch state and one 
 | R30 | A version bump is hand-edited and the gate cannot tell | Run `frontmatter-version.mjs bump`; never edit a version by hand |
 
 ### Rollback by R-id
+
+> The R30 row is superseded by ADR-013. No sk-code commit exists to revert.
 
 | R-id | Rollback |
 |------|----------|
@@ -223,9 +235,9 @@ Give the operator one read-only report of every workflow's switch state and one 
 - **SC-002**: `node .skilled/commands/doctor/scripts/ci-report.cjs --json` lists every workflow file in the tree - 33 today, 32 after phase 004's D5 removes `hooks-node-tests.yml`, 25 after a phase 008 D8 merge on the D5-approved tree and 26 on the D5-rejected tree - and every row carries a switch state of `on`, `off`, `partial`, `missing` or `unknown`, and `dependabot-auto-merge.yml` reports `on` because it has no switch by design.
 - **SC-003**: The report names the newest non-rebuild SHA, and that SHA's commit message does not end with `Trigger-Index-Rebuild: ci`.
 - **SC-004**: `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `17 routes validated`; the bridge deriver is fresh; `doctor-phrase-reach.cjs` exits 0 with `bridges=21`; and the `/doctor:setup` list names `/doctor:ci report`.
-- **SC-005**: A `.github/workflows` diff reviews as `CI`, the compiled route for a workflow prompt bundles `sk-code-ci`, and the three existing surface cases return exactly what they returned before.
+- **SC-005**: Superseded by ADR-013. A `.github/workflows` diff reviews as `CI`, the compiled route for a workflow prompt bundles `sk-code-ci`, and the three existing surface cases return exactly what they returned before. What stands: the compiled route for a workflow prompt bundles `sk-code-ci` after `sk-code-review`, observed on 2026-10-25 and recorded in `scratch/compiled-route.md` (AC-022). What is dropped: the `CI` review label and the three-surface regression cases, because two of those surfaces no longer exist.
 - **SC-006**: The full doctor script suite, the sk-code script-test glob, the drift-guard runner and the packet validator all pass.
-- **SC-007**: Every changed sk-code doc carries a higher frontmatter version than its base, each bumped packet carries a changelog entry at the new version, and the compiled `sk-code` manifest is fresh.
+- **SC-007**: Superseded by ADR-013. Every changed sk-code doc carries a higher frontmatter version than its base, each bumped packet carries a changelog entry at the new version, and the compiled `sk-code` manifest is fresh. No sk-code doc changes in this phase, so there is nothing to bump or refresh.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -269,7 +281,7 @@ Give the operator one read-only report of every workflow's switch state and one 
 ### Reliability
 - **NFR-R01**: A missing `gh`, an unauthenticated `gh` or an empty variable list never fails the report; the affected column reads `unknown` and the workflow inventory still prints.
 - **NFR-R02**: An unparseable workflow is reported by file and parse error, and the report exits 1 rather than silently omitting the file.
-- **NFR-R03**: `detect_surface_evidence` returns exactly one of `SKILLED`, `CI`, `OBSIDIAN`, `WEBFLOW` or `UNKNOWN`; no branch overwrites an earlier match.
+- **NFR-R03**: Superseded by ADR-013. `detect_surface_evidence` returns exactly one of `SKILLED`, `CI`, `OBSIDIAN`, `WEBFLOW` or `UNKNOWN`; no branch overwrites an earlier match.
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -325,11 +337,11 @@ Give the operator one read-only report of every workflow's switch state and one 
 | R-003 | A new CI trigger phrase displaces an existing doctor phrase in the advisor's top pick | M | M | Three-or-more-word CI-specific phrases; replace the new phrase, never the existing one |
 | R-004 | The scaffold writes over an existing workflow or a protected guard | H | L | Refuse an existing path and a protected name before the plan is printed; assert both refusals in the contract test |
 | R-005 | The toggle sets `SKILLED_CI_MESSAGES=off` and the only required context stops blocking | H | L | Refuse it while the README carries the prohibition; assert the refusal string |
-| R-006 | The `CI` value changes a SKILLED, OBSIDIAN or WEBFLOW detection result | H | M | Precedence puts SKILLED first and CI second; the test pins the three existing fixtures |
-| R-007 | The precedence string drifts between `stack-detection.md` and `sk-code-review/SKILL.md` | M | M | The test asserts both carry the same string; every restatement is grepped |
+| R-006 | Superseded by ADR-013. The `CI` value changes a SKILLED, OBSIDIAN or WEBFLOW detection result | H | M | Precedence puts SKILLED first and CI second; the test pins the three existing fixtures |
+| R-007 | Superseded by ADR-013. The precedence string drifts between `stack-detection.md` and `sk-code-review/SKILL.md` | M | M | The test asserts both carry the same string; every restatement is grepped |
 | R-008 | A generated bridge file or the compiled manifest is hand-edited and the next check reports drift | M | L | Only the deriver and the manifest refresh write them; both `--check` forms run before the phase closes |
 | R-009 | `006` or `007` has not landed, so the templates or the switch names are absent | H | M | The dependency task marks the affected tasks blocked and records the blocker; no template or name is substituted |
-| R-010 | A changed skill doc keeps its version and the pull-request gate fails | M | L | Run `frontmatter-version.mjs bump`; never edit a version by hand |
+| R-010 | Superseded by ADR-013. A changed skill doc keeps its version and the pull-request gate fails | M | L | Run `frontmatter-version.mjs bump`; never edit a version by hand |
 
 ## 11. USER STORIES
 
@@ -355,6 +367,8 @@ Give the operator one read-only report of every workflow's switch state and one 
 
 **Acceptance criteria:** see `acceptance-criteria.md` AC-012, AC-013, AC-014, AC-016, AC-018, AC-022.
 
+> Amended by ADR-013. The detection half of this story (a `CI` surface value) is superseded, so AC-012, AC-013, AC-014 and AC-018 are `Superseded`. The evidence half stands and is met by request vocabulary bundling: AC-022 records that the compiled route returns `sk-code-review` then `sk-code-ci` for a workflow prompt.
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
@@ -370,6 +384,6 @@ Give the operator one read-only report of every workflow's switch state and one 
 - Do the new trigger phrases reach their bridges without displacing an existing doctor phrase? `doctor-phrase-reach.cjs` answers it, and a failed new phrase is replaced rather than an existing one.
 - Which sk-code-ci rules can the report check syntactically, and which stay prose? The report implements the eight checkable flags (timeout, permissions, concurrency, switch, SHA pin, README row, `pull_request_target`, and `github.event` in `run:`) and names the prose rules, path parity among them, as `notChecked`.
 - Should `toggle` be a third route or a printed command inside `scaffold`? D9 and the route validator answer it: a read-only route cannot declare a write, so a writing toggle needs its own route, and a printing toggle can be a third read-only route.
-- Does the compiled route bundle `sk-code-ci` for a workflow prompt? Phase 006's registration supplies the prompt terms and the surface mode; this phase records the observation and does not edit that registration.
+- Does the compiled route bundle `sk-code-ci` for a workflow prompt? Phase 006's registration supplies the prompt terms and the surface mode; this phase records the observation and does not edit that registration. Answered 2026-10-25: yes. The compiled route returns `sk-code-review` then `sk-code-ci` for a workflow prompt, with and without `--surface-hint CI`, and the bundle comes from request vocabulary and not from surface detection (`scratch/compiled-route.md`).
 <!-- /ANCHOR:questions -->
 

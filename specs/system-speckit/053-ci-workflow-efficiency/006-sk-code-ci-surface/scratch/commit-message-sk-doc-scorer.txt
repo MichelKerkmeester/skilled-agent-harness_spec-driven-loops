@@ -1,0 +1,11 @@
+fix(system-skill-advisor): drop sk-code web boosts and narrow the review loop
+
+The sk-code hub no longer serves frontend, browser or motion work, so the
+explicit and lexical lanes stop boosting sk-code on those words. Tokens that
+still back sk-code gold cases stay.
+
+The review loop pattern counted a loop verb anywhere in a prompt that said
+review. It now needs the verb to govern review, which returns one corpus case to
+sk-code without losing a deep-loop case.
+
+Spec: system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface

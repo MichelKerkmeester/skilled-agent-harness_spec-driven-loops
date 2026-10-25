@@ -1,0 +1,8 @@
+feat(doctor): report every workflow switch state
+
+The new ci report lists every workflow with its switch state, its
+trigger, its path filters and the drift flags the workflow standards
+name, and it resolves the newest non-rebuild commit on main. The report
+only reads, and it writes nothing to the repository or to GitHub.
+
+Spec: system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring

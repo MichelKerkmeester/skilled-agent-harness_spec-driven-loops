@@ -1,0 +1,613 @@
+{
+  "repoRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build",
+  "workflowCount": 32,
+  "variables": {
+    "SKILLED_CI": "unset",
+    "SKILLED_CI_TESTS": "unset",
+    "SKILLED_CI_REPORTS": "unset",
+    "SKILLED_CI_REVIEW": "unset",
+    "SKILLED_CI_FRESHNESS": "unset",
+    "SKILLED_CI_MESSAGES": "unset"
+  },
+  "newestNonRebuildSha": "4e0b8560cb51c3809ab37d2f2de757da78948e42",
+  "newestNonRebuildReason": "no rebuild commit above it",
+  "notChecked": [
+    "path-parity",
+    "shell-strict-mode",
+    "matrix-guidance"
+  ],
+  "errors": [],
+  "workflows": [
+    {
+      "file": "advisory-checks.yml",
+      "purpose": "Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`).",
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "agent-mirror-sync.yml",
+      "purpose": "Keeps the `.skilled` and `.claude` agent mirrors aligned.",
+      "events": [
+        "pull_request"
+      ],
+      "pathFilterCount": 11,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_REVIEW"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": [
+        "event-in-run"
+      ]
+    },
+    {
+      "file": "changed-packet-validation.yml",
+      "purpose": "Validates the spec packets a commit or pull request changed.",
+      "events": [
+        "push",
+        "pull_request"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": [
+        "event-in-run"
+      ]
+    },
+    {
+      "file": "chart-corpus.yml",
+      "purpose": "Checks the chart corpus contract and runs its mutation suite.",
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 6,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "command-tree-parity.yml",
+      "purpose": "Keeps the OpenCode and Claude command trees identical, and the Hermes skill and prompt copies equal to their sources.",
+      "events": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 46,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "comment-hygiene.yml",
+      "purpose": "Rejects forbidden ephemeral-artifact pointers in code comments.",
+      "events": [
+        "pull_request"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_REVIEW"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": [
+        "event-in-run"
+      ]
+    },
+    {
+      "file": "deep-loop-runtime.yml",
+      "purpose": "Runs the deep-loop runtime suites, including the command-contract drift check.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 14,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "dependabot-auto-merge.yml",
+      "purpose": "Turns on auto-merge for an npm security pull request from Dependabot whose every bump is a patch release.",
+      "events": [
+        "pull_request"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": false,
+      "flags": [
+        "concurrency-missing"
+      ]
+    },
+    {
+      "file": "diagram-corpus.yml",
+      "purpose": "Checks the diagram corpus contract, its mutation suite and both applicator gates.",
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 6,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "dispatch-enforcement-guard.yml",
+      "purpose": "Checks that every declared dispatch rule is reachable and discriminates.",
+      "events": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "gate-inputs.yml",
+      "purpose": "Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`.",
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "markdown-link-integrity.yml",
+      "purpose": "Checks repository Markdown link integrity.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 20,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "message-contract.yml",
+      "purpose": "Holds each pushed commit message, each new branch name and each pull request description to the sk-git templates, so neither a missing hook nor a skipped hook turns the check off.",
+      "events": [
+        "push",
+        "pull_request"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_MESSAGES"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "naming-standard-guard.yml",
+      "purpose": "Enforces the repository filesystem naming standard.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "opencode-dual-version.yml",
+      "purpose": "Installs OpenCode 1.19.4 and 2.1.4 into separate prefixes and runs the version battery on each and on both together.",
+      "events": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 52,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "opencode-plugin-tests.yml",
+      "purpose": "Provisions every listed tree once and runs the OpenCode plugin suites under `.opencode/plugins/tests`, the inventory and registration guards among them, the hook suites written for `node --test` that the vitest config skips, and the hook installer test.",
+      "events": [
+        "pull_request",
+        "push",
+        "workflow_dispatch",
+        "schedule"
+      ],
+      "pathFilterCount": 32,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "pi-extension-tests.yml",
+      "purpose": "Finds each folder under `.pi/extensions/` that holds a `package.json` at run time, so a new extension needs no edit here.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 4,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "playbook-operator-contract.yml",
+      "purpose": "Checks the manual-testing-playbook operator-scenario contract.",
+      "events": [
+        "pull_request",
+        "push",
+        "schedule",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "prompt-card-sync.yml",
+      "purpose": "Checks prompt and knowledge-card synchronization.",
+      "events": [
+        "pull_request"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_REVIEW"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "repo-rules-corpus.yml",
+      "purpose": "Keeps the `.skilled/repo-rules/` corpus loadable.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 12,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "routing-registry-drift.yml",
+      "purpose": "Detects drift between routing registries and skill surfaces.",
+      "events": [
+        "push",
+        "pull_request"
+      ],
+      "pathFilterCount": 88,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "rule-canary-sync.yml",
+      "purpose": "Checks rule canaries against their source rules.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "runtime-no-spec-import.yml",
+      "purpose": "Prevents runtime code from importing the mutable spec tree.",
+      "events": [
+        "push",
+        "pull_request"
+      ],
+      "pathFilterCount": 6,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "sk-code-script-tests.yml",
+      "purpose": "Runs the sk-code script tests, among them the drift-guard runner test.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 6,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "sk-doc-rename-harness.yml",
+      "purpose": "Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 10,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "sk-doc-script-tests.yml",
+      "purpose": "Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 3,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_FRESHNESS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "sk-git-script-tests.yml",
+      "purpose": "Runs the sk-git worktree naming, allocation and provisioning suite.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 12,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "skill-advisor-stress.yml",
+      "purpose": "Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 22,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "skill-doc-frontmatter.yml",
+      "purpose": "Validates skill reference and asset frontmatter.",
+      "events": [
+        "pull_request",
+        "push"
+      ],
+      "pathFilterCount": 16,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "spec-kit-check.yml",
+      "purpose": "Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources.",
+      "events": [
+        "push",
+        "pull_request"
+      ],
+      "pathFilterCount": 42,
+      "jobs": 3,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_TESTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    },
+    {
+      "file": "strict-pass-freshness-report.yml",
+      "purpose": "Weekly whole-corpus validation report.",
+      "events": [
+        "workflow_dispatch",
+        "schedule"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 1,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_REPORTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": false,
+      "flags": [
+        "concurrency-missing"
+      ]
+    },
+    {
+      "file": "trigger-index-rebuild.yml",
+      "purpose": "Rebuilds the committed trigger index after a push to `main` or `skilled/**`, staging `trigger-index.json` plus its three fixture sidecars `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json`.",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pathFilterCount": 0,
+      "jobs": 2,
+      "switch": "on",
+      "groups": [
+        "SKILLED_CI_REPORTS"
+      ],
+      "timeout": true,
+      "permissions": true,
+      "concurrency": true,
+      "flags": []
+    }
+  ]
+}

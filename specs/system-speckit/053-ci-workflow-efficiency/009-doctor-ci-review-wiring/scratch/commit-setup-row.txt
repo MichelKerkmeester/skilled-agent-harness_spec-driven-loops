@@ -1,0 +1,6 @@
+docs(doctor): list the ci command in setup
+
+The setup target list gains one row for the ci report so the command
+is discoverable from the place that lists every doctor target.
+
+Spec: system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring
