@@ -1,0 +1,5 @@
+$ rg -n 'Superseded 2026-10-25' $K/spec.md; rg -n 'benchmark subject is' $K/spec.md | cut -c1-140; rg -n 'swe-2-max\.$|swe-2-max`\.$' $K/spec.md | cut -c1-80
+66:A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.
+117:4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cl
+117:4. **Conductor placement.** The conductor is a Claude Code session. Executio
+exit=0

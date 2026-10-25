@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
-    last_updated_at: "2026-10-25T09:10:15Z"
-    last_updated_by: "worker"
-    recent_action: "Authored the phase parent spec"
-    next_safe_action: "Meet the launch preconditions, then run phase 001"
+    last_updated_at: "2026-10-25T21:45:00Z"
+    last_updated_by: "conductor"
+    recent_action: "Closed phases 010 to 012: review fixes, speed research and the safe speed changes"
+    next_safe_action: "Run the speed loop with the refined tree on 2026-10-26"
     blockers: []
     key_files: []
     session_dedup:
@@ -49,8 +49,8 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-10-23 |
-| **Branch** | `main` |
-| **Parent Spec** | `../spec.md` |
+| **Branch** | `worktrees/217-weak-model-spec-authoring`, where every phase ran. The branch reached `main` on 2026-10-25 |
+| **Parent Spec** | None. The track folder `specs/system-speckit/` holds no `spec.md` |
 | **Parent Packet** | system-speckit/054-weak-model-spec-authoring |
 | **Predecessor** | None |
 | **Successor** | None |
@@ -91,6 +91,7 @@ Make the templates, the examples, the validator and the authoring docs good enou
 - Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
 - Measuring models other than cli-devin deepseek-v4-1-flash-1017-max for the deciding benchmark. The first final set ran on swe-2-max and is history.
 - Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
+  - Correction 2026-10-25: after phase 009 the operator directed a push, and the worktree branch reached `main` at `10e8df7d25`. This line records that operator-directed push. Later commits stay local until the operator asks for the next push.
 
 ### Files to Change
 
@@ -101,7 +102,8 @@ Make the templates, the examples, the validator and the authoring docs good enou
 | `.skilled/skills/system-spec-kit/templates/core/*.tmpl` | Modify | 003, 004, 005 | Token form, v2.3 marker, fill guidance, task `Verify:` slot |
 | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` and its TypeScript mirror | Modify | 003 | Versioned placeholder gate |
 | `.skilled/skills/system-spec-kit/SKILL.md`, `leaf-manifest.json`, `leaf-aliases.json` | Modify | 005 | Router loads the card |
-| `.skilled/commands/speckit/`, `.skilled/commands/doctor/` speckit entries, `.skilled/agents/markdown.md` and other doc-authoring agents | Modify | 006 | Commands and agents match the new templates, gate and card |
+| `.skilled/commands/speckit/`, `.skilled/agents/markdown.md` and other doc-authoring agents | Modify | 006 | Commands and agents match the new templates, gate and card |
+| `.skilled/commands/doctor/` speckit entries | Audited, unchanged | 006 | The re-audit found 0 authoring findings in 91 doctor files, so phase 006 changed none (`goal.md` log row "Doctor commands in phase 006") |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/` guard scripts | Create | 004, 005 | Example drift guard and card sync guard |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/`, `feature-catalog/`, READMEs | Modify | 007 | Scenarios and docs for the new behavior |
 | `.skilled/skills/system-spec-kit/benchmark/reports/` | Create | 008, 009 | Playbook run report and benchmark report |
@@ -114,7 +116,7 @@ The operator meets all four before the first phase runs. The conductor records e
 1. **Workspace.** The operator chooses A) a git worktree or B) the current branch, following `sk-git`. The conductor never chooses. The chosen path becomes `WORKTREE` in `goal.md` section 4.
 2. **Provider login.** `devin auth status` reports a Devin login. A rate limit or refusal on cli-devin stops the run.
 3. **Lane authorization.** At most 3 parallel lanes and never two on one file. The operator has already given this.
-4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`, except the phase 009 closeout review, which the operator moved to cli-codex `gpt-6-luna` at max effort on the fast tier (approved 2026-10-25, recorded in the phase 009 `goal.md` section 4). The benchmark subject is cli-devin `swe-2-max`.
+4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`, except the phase 009 closeout review, which the operator moved to cli-codex `gpt-6-luna` at max effort on the fast tier (approved 2026-10-25, recorded in the phase 009 `goal.md` section 4). The benchmark subject is cli-devin `swe-2-max`. Superseded 2026-10-25: D7 and D8 in `goal.md` replace this precondition. Subagents run on Opus 5.5, the operator ruled out the swe-2 models, and the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -135,12 +137,15 @@ The operator meets all four before the first phase runs. The conductor records e
 | 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Complete |
 | 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Complete |
 | 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | Complete |
+| 10 | 010-deep-review-finding-fixes/ | Fix the nine P1 findings and every reproducing P2 from the 2026-10-25 deep review, plus the three tooling gaps it hit | Complete |
+| 11 | 011-authoring-speed-research/ | Research where spec authoring and upkeep spend model time, then rank changes that make them faster without losing the quality this packet added | Complete |
+| 12 | 012-authoring-speed-fixes-and-alignment/ | Build the speed changes phase 011 ranks as safe, then align the skill, README, catalog and playbook docs with phases 010 and 012 | Complete |
 
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
 ### Phase Handoff Criteria
@@ -155,6 +160,9 @@ The operator meets all four before the first phase runs. The conductor records e
 | 006-speckit-command-and-agent-alignment | 007-playbook-catalog-readme-alignment | Every speckit and doctor command and every doc-authoring agent names the card, the v2.3 token and the guard scripts where it describes authoring | The phase 006 audit table has no open row |
 | 007-playbook-catalog-readme-alignment | 008-playbook-run-in-worktree | Every new scenario file exists and the playbook index lists it | The playbook index lists each scenario id |
 | 008-playbook-run-in-worktree | 009-authoring-benchmark-and-closeout | Every scenario has a recorded PASS or an escalated FAIL | The report folder holds a row for each scenario |
+| 009-authoring-benchmark-and-closeout | 010-deep-review-finding-fixes | The deep review of the closed packet is committed with its P1 and P2 registry | `review/review-report.md` lists the nine P1 findings this phase fixes |
+| 010-deep-review-finding-fixes | 011-authoring-speed-research | The operator asked on 2026-10-25 that authoring stay fast as well as correct; the research runs beside phase 010 | `011-authoring-speed-research/research/research.md` ranks each recommendation with its evidence |
+| 011-authoring-speed-research | 012-authoring-speed-fixes-and-alignment | Every ranked change is assigned to a lane or deferred with a reason | `rg -c '\*\*(build now|defer)\*\*' 011-authoring-speed-research/research/research.md` prints 12 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -163,7 +171,7 @@ The operator meets all four before the first phase runs. The conductor records e
 ## 4. OPEN QUESTIONS
 
 - Resolved 2026-10-24: LLM Gateway ran out of usage after phase 001, and the operator moved every remaining run to cli-codex `gpt-6-luna` and cli-devin `swe-2-max`. The benchmark subject was then `swe-2-max`, rebaselined at the start commit. Superseded on 2026-10-25: the operator ruled out the swe-2 models and the subject is `deepseek-v4-1-flash-1017-max` (parent goal D8). Cli-opencode rule 15 no longer applies, because no OpenCode executor runs.
-- Whether phase 003 also fixes the post-edit scanner `spec/check-placeholders.sh`, which flags regex classes inside fenced code blocks, is decided in the phase 003 decision record.
+- Whether phase 003 also fixes the post-edit scanner `spec/check-placeholders.sh`, which flags regex classes inside fenced code blocks, is decided in ADR-003 of the phase 003 `plan.md`.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -171,5 +179,5 @@ The operator meets all four before the first phase runs. The conductor records e
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
-- **Parent Spec**: See `../spec.md`
+- **Parent Spec**: None, because the track folder holds no `spec.md`
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

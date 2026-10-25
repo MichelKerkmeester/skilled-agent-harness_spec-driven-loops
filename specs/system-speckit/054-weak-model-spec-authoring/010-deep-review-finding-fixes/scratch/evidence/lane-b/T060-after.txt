@@ -1,0 +1,10 @@
+$ cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/example-drift.vitest.ts --config vitest.config.ts --reporter=verbose 2>&1 | sed 's/\x1b\[[0-9;]*m//g' | rg '^ +(✓|×) |Test Files|Tests '
+ ✓ |cli| tests/example-drift.vitest.ts > example drift guard > passes on the shipped examples 969ms
+ ✓ |cli| tests/example-drift.vitest.ts > example drift guard > fails when an example loses a required anchor 943ms
+ ✓ |cli| tests/example-drift.vitest.ts > example drift guard > fails when an example moves a section out of template order 927ms
+ ✓ |cli| tests/example-drift.vitest.ts > example drift guard > fails when a level has no example 726ms
+ ✓ |cli| tests/example-drift.vitest.ts > example drift guard > fails when a level folder is empty 673ms
+ ✓ |cli| tests/example-drift.vitest.ts > example drift guard > refuses to report success when rg is missing 18ms
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+exit=0

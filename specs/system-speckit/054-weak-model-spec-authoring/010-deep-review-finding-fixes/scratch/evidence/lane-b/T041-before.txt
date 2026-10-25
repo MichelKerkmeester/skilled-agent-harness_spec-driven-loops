@@ -1,0 +1,5 @@
+$ F=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/done-pkt/tasks.md; cat $F; echo "card check: verify=$(rg -c 'Verify: ' $F) open=$(rg -c '^- \[ \] T[0-9]' $F)"
+- [x] T001 Add the flag (`a.sh`). Verify: `bash a.sh -q` prints one line.
+- [x] T002 Add the test (`a.test.sh`). Verify: `bash a.test.sh` exits 0.
+card check: verify=2 open=
+exit=0

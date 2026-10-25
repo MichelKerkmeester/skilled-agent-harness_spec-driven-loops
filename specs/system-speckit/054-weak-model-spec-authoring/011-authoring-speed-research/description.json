@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research",
+  "description": "Packet 054 grew the four core templates from 4,681 to 7,255 words and added a 1,246-word card, so a model reads more before it writes",
+  "keywords": [
+    "packet",
+    "grew",
+    "four",
+    "core",
+    "templates",
+    "words",
+    "246-word",
+    "card",
+    "model",
+    "reads",
+    "writes"
+  ],
+  "lastUpdated": "2026-10-25T21:59:24.758Z",
+  "specId": "011",
+  "folderSlug": "authoring-speed-research",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

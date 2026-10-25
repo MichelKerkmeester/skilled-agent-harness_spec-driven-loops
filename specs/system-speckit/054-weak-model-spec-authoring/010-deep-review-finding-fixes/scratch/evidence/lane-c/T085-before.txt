@@ -1,0 +1,4 @@
+$ rg -n 'operator-directed push' $K/spec.md; rg -n 'Pushing' $K/spec.md; GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git merge-base --is-ancestor 10e8df7d25 origin/main && echo 10e8df7d25_on_origin_main
+93:- Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
+10e8df7d25_on_origin_main
+exit=0

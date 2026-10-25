@@ -1,0 +1,5 @@
+$ rg -n 'spec-authoring-card|YOUR_VALUE_HERE' .skilled/commands/speckit/assets/speckit-implement.yaml; echo "rg exit=$?"; echo '--- every speckit file naming the card:'; rg -l spec-authoring-card .skilled/commands/speckit/
+rg exit=1
+--- every speckit file naming the card:
+.skilled/commands/speckit/assets/speckit-complete.yaml
+exit=0

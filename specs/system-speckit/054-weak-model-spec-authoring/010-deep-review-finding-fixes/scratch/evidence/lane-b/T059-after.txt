@@ -1,0 +1,45 @@
+$ G=.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh; bash -n $G && echo 'bash -n ok'; echo '== tree'; bash $G | tail -1; echo rc=${PIPESTATUS[0]}; echo '== old sentence, PATH without rg'; env PATH=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/norg-bin:/usr/bin:/bin bash $G --skill-root /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/root-old-sentence; echo rc=$?; for r in root-old-sentence root-empty-checklist root-no-checklist root-no-examples-dir root-two-modes root-card-silent; do echo "== $r"; bash $G --skill-root /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/$r 2>&1 | rg -v '^PASS (card-exists|intent|guide|leaf-aliases)'; echo rc=${PIPESTATUS[0]}; done
+bash -n ok
+== tree
+CARD SYNC OK
+rc=0
+== old sentence, PATH without rg
+check-card-sync.sh: rg (ripgrep) is required and was not found on PATH
+rc=2
+== root-old-sentence
+PASS leaf-manifest
+FAIL checklist: still sends a reader to the templates root
+PASS card-names-checklist
+CARD SYNC FAILED
+rc=1
+== root-empty-checklist
+PASS leaf-manifest
+FAIL checklist: does not send a reader to templates/examples/
+PASS card-names-checklist
+CARD SYNC FAILED
+rc=1
+== root-no-checklist
+PASS leaf-manifest
+FAIL checklist: missing references/workflows/spec-folder-authoring-checklist.md
+PASS card-names-checklist
+CARD SYNC FAILED
+rc=1
+== root-no-examples-dir
+PASS leaf-manifest
+FAIL checklist: routes to templates/examples/, which does not exist
+PASS card-names-checklist
+CARD SYNC FAILED
+rc=1
+== root-two-modes
+PASS leaf-manifest
+PASS checklist
+PASS card-names-checklist
+CARD SYNC OK
+rc=0
+== root-card-silent
+PASS leaf-manifest
+PASS checklist
+FAIL card-names-checklist: the card does not name references/workflows/spec-folder-authoring-checklist.md
+CARD SYNC FAILED
+rc=1
+exit=0

@@ -1,0 +1,6 @@
+$ rg -n 'awk' $S/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md; rg -n 'Preconditions' $S/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md; rg -n -w 'awk|rg' $S/runtime/cli/spec/check-example-drift.sh | head -5
+28:- Preconditions: A checkout with Node, bash and perl on PATH, and phase 4 closed so `runtime/cli/spec/check-example-drift.sh` exists. The scenario needs no network.
+22:    desc="$(awk '/^description:/{sub(/^description:[[:space:]]*/,""); print; exit}' "$example")"
+35:    printf '%s\n' "$report" | rg '^(missing_anchor|extra_anchor)' \
+39:    printf '%s\n' "$report" | rg -q '^(missing_anchor|extra_anchor)' && status=1
+exit=0

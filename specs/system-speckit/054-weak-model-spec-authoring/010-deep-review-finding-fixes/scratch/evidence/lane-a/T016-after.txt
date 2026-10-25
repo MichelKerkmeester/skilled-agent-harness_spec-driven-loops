@@ -1,0 +1,23 @@
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh <scratch>/ac003 --json  (folder holds only: Owner: [YOUR_VALUE_HERE: owner name])
+{"status":"FAIL","placeholders":1,"folder":"/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-a/ac003"}
+exit=1
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/054-weak-model-spec-authoring --json
+{"status":"FAIL","placeholders":12,"folder":"specs/system-speckit/054-weak-model-spec-authoring"}
+exit=1
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/054-weak-model-spec-authoring --verbose   (where the remaining count comes from)
+FAIL — 12 placeholder pattern(s) found in specs/system-speckit/054-weak-model-spec-authoring
+
+  specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md:55
+  specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md:66
+  specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md:75
+  specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md:86
+  specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md:97
+  specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md:106
+  specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md:50
+  specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md:61
+  specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md:70
+  specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md:81
+  specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md:92
+  specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md:101
+
+exit=0

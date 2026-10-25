@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
-    last_updated_at: "2026-10-25T09:10:15Z"
-    last_updated_by: "worker"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-25T20:50:00Z"
+    last_updated_by: "conductor"
+    recent_action: "Amended the directive to bind phase 010"
+    next_safe_action: "Execute phase 010 against its completion criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** A weak-model swarm authors valid, filled spec packets from the system-spec-kit templates, proved by a before and after measured on DeepSeek V4.1 Flash, with no change to the verdict of any existing packet.
+**Objective:** A weak-model swarm authors valid, filled spec packets from the system-spec-kit templates quickly and without needless ceremony, with no change to the verdict of any existing packet.
 
 ### Decisions
 
@@ -44,14 +44,14 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phases 001 to 009 plus one child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
-| D2 | The placeholder gate applies to new docs only, via the v2.3 template marker. No existing or external packet gets a new failure. |
+| D1 | Phases 001 to 012 and one child under `041-write-recipe-fixes`. Authoring logic lives in system-spec-kit, never sk-prompt. |
+| D2 | Every gate this packet adds applies only to new docs, via the v2.3 marker. No existing or external packet gets a new failure. |
 | D3 | At most 3 parallel lanes, never two on a file. |
-| D4 | Every phase closes on scripted gates plus one read-only review (cli-devin, then cli-codex luna). |
-| D5 | Phase 008 runs the playbooks in a disposable sk-git worktree. |
-| D6 | Every phase is Level 3 with its own goal, bound below. |
-| D7 | A Claude Code session conducts. Sonnet 5.5 high subagents execute and verify, plus cli-codex luna and DeepSeek V4.1 Flash max as needed. |
-| D8 | The benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`. Phase 009 compares 3 final-tree runs with 3 start-commit runs. |
+| D4 | Phases close on scripted gates plus read-only reviews by cli-devin and cli-codex luna. One review pass may cover several phases. |
+| D6 | Phases 001 to 010 are Level 3 with their own goal. Later phases take the lightest level that fits. |
+| D7 | Opus 5.5 high subagents fix and synthesize, Opus 5.5 medium subagents build new phases, and cli-pi DeepSeek V4.1 Flash max researches. |
+| D8 | The benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`. |
+| D9 | Speed weighs as much as quality. Text a model reads grows only as far as a finding needs, and ceremony small work does not need is cut. A compact loop times pre-054, 054 and refined trees. |
 
 <!-- /ANCHOR:directive -->
 
@@ -63,17 +63,20 @@ Frozen choices. Changing one is an amendment.
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
 
-| Phase | Goal document |
-|-------|---------------|
-| 001-template-drift-census-and-baseline | `001-template-drift-census-and-baseline/goal.md` |
-| 002-template-and-example-defect-repair | `002-template-and-example-defect-repair/goal.md` |
-| 003-versioned-placeholder-gate | `003-versioned-placeholder-gate/goal.md` |
-| 004-template-section-fill-guidance | `004-template-section-fill-guidance/goal.md` |
-| 005-weak-model-authoring-card | `005-weak-model-authoring-card/goal.md` |
-| 006-speckit-command-and-agent-alignment | `006-speckit-command-and-agent-alignment/goal.md` |
-| 007-playbook-catalog-readme-alignment | `007-playbook-catalog-readme-alignment/goal.md` |
-| 008-playbook-run-in-worktree | `008-playbook-run-in-worktree/goal.md` |
-| 009-authoring-benchmark-and-closeout | `009-authoring-benchmark-and-closeout/goal.md` |
+| Phase | Goal |
+|-------|------|
+| 1 | `001-template-drift-census-and-baseline/goal.md` |
+| 2 | `002-template-and-example-defect-repair/goal.md` |
+| 3 | `003-versioned-placeholder-gate/goal.md` |
+| 4 | `004-template-section-fill-guidance/goal.md` |
+| 5 | `005-weak-model-authoring-card/goal.md` |
+| 6 | `006-speckit-command-and-agent-alignment/goal.md` |
+| 7 | `007-playbook-catalog-readme-alignment/goal.md` |
+| 8 | `008-playbook-run-in-worktree/goal.md` |
+| 9 | `009-authoring-benchmark-and-closeout/goal.md` |
+| 10 | `010-deep-review-finding-fixes/goal.md` |
+| 11 | `011-authoring-speed-research/goal.md` |
+| 12 | `012-authoring-speed-fixes-and-alignment/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -87,13 +90,13 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
-- [x] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
+- [x] Recursive strict validation of this packet prints `RESULT: PASSED`, and `check-example-drift.sh` and `check-card-sync.sh` exit 0 on the final tree
+- [x] A new v2.3 core doc with an unfilled value token passes strict validation while Draft and fails at any other status, and a v2.2 doc validates as before
 - [x] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
-- [x] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
-- [x] The 3 final Level 3 runs all pass strict validation, and none is worse than the DeepSeek baseline's worst on leftover_hints, missing_anchors (optional sections deleted as their fill notes allow do not count) or out_of_scope_writes. The phase 009 report lists min and max for five metrics
-- [x] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
-- [x] The swarm commits only on the build worktree and never pushes
+- [x] The 2026-10-25 deep review's nine P1 findings each have a fix and a check that failed first, `specs/` keeps its recursive strict pass and fail counts across phase 010, and its closing reviews report no P0 or P1
+- [x] The 3 final Level 3 runs pass strict validation and none is worse than the DeepSeek baseline's worst on the phase 009 metrics, and each scenario this packet added has a phase 008 PASS or an escalated FAIL
+- [x] Each speed change phase 011's research ranks is built or recorded as deferred, and the skill, playbook, catalog and README docs match the final behavior
+- [x] Work commits only on the worktree branch and pushes only on the operator's instruction
 <!-- /ANCHOR:completion -->
 
 ---
@@ -141,6 +144,17 @@ and findings belong here.
 | Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. Update on 2026-10-25: C5 passed on the second fresh set, criteria.txt holds seven PASS lines and every box is ticked. |
 | Trigger index | Done | check exit=0 after the last doc edit of phase 009 |
 | Changelogs | Done | .skilled/skills/system-spec-kit/changelog/v2.9.0.0.md and the nested files under specs/system-speckit/054-weak-model-spec-authoring/changelog/ for phases 001 to 009 and the root |
+| Phase 010 bound | In Progress | create.sh scaffolded 010-deep-review-finding-fixes; D1, D2 and D7 amended, D5 cut as a restatement of the 008 goal, D8 trimmed; criteria 1, 4 and 7 reopened; check-goal 5/5 PASS; recursive strict 11/11 PASSED; durable 3985 chars, slice hash sha256:36f803db |
+| Operator-directed push | Done | On 2026-10-25 the operator directed the push of the packet to main. Criterion 7's no-push rule held for every push before that instruction, and this operator-directed push is the recorded exception |
+| Directive amended for speed | Done | 2026-10-25: objective adds speed, D1 binds phase 011 and the phases its research adds, D6 lets later phases take the lightest level, D7 names the subagent and cli-pi roles, D9 adds the speed rule, criteria 5 and 6 merged and a speed criterion added; check-goal 5/5 |
+| D4 amended | Done | 2026-10-25: one read-only review pass by cli-devin and cli-codex luna may cover several phases, so the phases phase 011 adds close on one shared review |
+| D7 and D9 amended | Done | 2026-10-25: D9 now has a compact speed loop time the pre-054, 054 and refined trees side by side tonight, at the operator's request; D7 drops its conductor sentence to stay in budget |
+| Phase 011 closed | Done | 12 ranks, 4 to build and 8 deferred; strict validate PASSED, 82 citations resolve |
+| Phase 012 opened | In Progress | lane 3 done (8 lines in level-specifications.md); lane 1 running; lane 2 waits for phase 010 lane A |
+| Phase 012 closed | Done | SOURCE_TAGS on the parent 1.60 to 2.00 s (was minutes when fsmonitor hung); card and template guards exit 0; 23 doc surfaces aligned; strict PASSED |
+| Speed loop | Built, smoke-run | 011/scratch/speed-loop: one round pre-054 vs 054, author 236 s vs 144 s, upkeep 103 s vs 40 s, n=1 INCONCLUSIVE; refined tree and more rounds on 2026-10-26 |
+| Correction | Done | The phase 012 alignment table holds 24 surfaces, not 23 as the Phase 012 closed row says |
+| Phase 010 closed | Done | 12/12 AC Met; census and six-rule census identical to baseline; suites match baseline; reviews leave no P0 or P1; commits d5ce52ffac 7a721f4388 b7268e491b bfcd44634a b0070fd179 on the worktree branch, not pushed |
 
 ### Deviations and findings
 

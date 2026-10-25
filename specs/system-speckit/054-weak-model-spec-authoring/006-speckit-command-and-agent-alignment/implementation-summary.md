@@ -73,6 +73,8 @@ The rows were applied to the real tree. The applier self-test ran on a throw-awa
 | `.hermes/skills/agent-code/SKILL.md`, `agent-context`, `agent-markdown`, `agent-orchestrate` (4 files) | Regenerated | Generated mirrors of the four agents, written by `sync-skills-hermes.cjs` ("Wrote 4 of 68") |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Regenerated | Derived output required by the source digest check |
 | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`, `scratch/` | Modified or created | Phase record and evidence |
+
+Correction 2026-10-25: only `markdown.md` gained the card and the filled example. In `orchestrate.md`, `code.md` and `context.md` this phase only dropped the retired checklist doc, as `git diff d0d9d596c5~1 538b8b19cb -- .skilled/agents/` shows.
 <!-- /ANCHOR:what-built -->
 
 ---

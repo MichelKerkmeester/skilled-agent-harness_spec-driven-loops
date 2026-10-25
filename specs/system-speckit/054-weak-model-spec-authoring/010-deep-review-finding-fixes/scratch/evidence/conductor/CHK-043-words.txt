@@ -1,0 +1,1 @@
+CHK-043 2026-10-25: card +46 (cap 80); spec.md.tmpl +9, plan.md.tmpl 0, tasks.md.tmpl +59, implementation-summary.md.tmpl 0 (cap 60 each). See words-after.txt.

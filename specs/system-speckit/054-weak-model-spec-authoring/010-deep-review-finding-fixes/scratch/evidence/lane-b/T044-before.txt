@@ -1,0 +1,3 @@
+$ rg -n 'template-guide' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+18:`references/templates/template-guide.md` is the long guide. Read it only when this card sends you there.
+exit=0

@@ -1,0 +1,6 @@
+$ rg -n 'Branch.*worktrees/217-weak-model-spec-authoring' $K/spec.md; GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git log --merges --date=short --format='%h %ad %s' -2 f00bdc378c; GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git merge-base --is-ancestor f00bdc378c origin/main && echo merge_commit_f00bdc378c_on_origin_main
+52:| **Branch** | `worktrees/217-weak-model-spec-authoring`, where every phase ran. The branch reached `main` on 2026-10-25 |
+f00bdc378c 2026-10-25 merge(system-spec-kit): bring the latest main commits into the authoring branch
+0abb2cc0ac 2026-10-25 merge(system-spec-kit): bring main into the weak-model authoring branch
+merge_commit_f00bdc378c_on_origin_main
+exit=0

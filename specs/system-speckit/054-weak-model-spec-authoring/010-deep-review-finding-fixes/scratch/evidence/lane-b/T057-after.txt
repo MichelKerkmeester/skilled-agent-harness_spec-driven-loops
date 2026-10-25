@@ -1,0 +1,15 @@
+$ rg -n 'REQUIRED at Level 3|Hard block if' .skilled/skills/system-spec-kit/assets/template-mapping.md; echo '--- decision-record lines now:'; rg -n 'decision-record' .skilled/skills/system-spec-kit/assets/template-mapping.md
+--- decision-record lines now:
+55:Level 3 (Full):         Level 2 + optional decision-record.md + optional research/research.md
+64:| **3: Full**         | Level 2 files with Level 3 sections | ADRs in `plan.md`, or in `decision-record.md` on request, + optional research | See Level 3 commands below |
+70:- **Prohibited at parent (live in children only):** `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
+119:- `decision-record.md` is created on request at Level 3 and above. Without it, the ADRs live in `plan.md`
+120:- Topic-specific ADR files are supplemental. A packet that keeps a separate decision file names it `decision-record.md`
+174:├── decision-record.md           (OPTIONAL - on request, else ADRs live in plan.md)
+180:- **decision-record.md**, when created: Context, options considered, decision made, rationale, consequences
+182:**Enforcement:** `FILE_EXISTS` fails strict validation when a required file is missing. An absent `decision-record.md` is skipped
+195:├── decision-record.md           (OPTIONAL - on request, +decision authority, +review requirements)
+283:5. **Use canonical filenames** - a separate decision file is named `decision-record.md`. Topic-specific ADR files are supplemental artifacts, not replacements
+397:- [decision-record.md](../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
+405:- [decision-record.md](../templates/addons/decision-record.md.tmpl) - Decision records with authority and review requirements
+exit=0

@@ -1,0 +1,9 @@
+variant	rev	sandbox_head	prepared_at_utc	seconds	notes
+pre054	ac2be31ec6	ac2be31ec60c3a15db527b3d8400ae68b373984a	2026-10-25T21:47:16Z	35
+now054	84887f37f7	84887f37f79a508fc144a8d951947bee3aeaad12	2026-10-25T21:47:41Z	25
+pre054	ac2be31ec6	7433813f5430122a3857c52cfcade1391318176e	2026-10-25T22:08:47Z	68	advisor_dist=built vision_dist=built quiet_flag_refs=0 base=ac2be31ec6
+main-no054	9a80256f05	582d0f901803683135c7d57c0dff6f968d571a57	2026-10-25T22:18:23Z	56	advisor_dist=built vision_dist=built quiet_flag_refs=0 base=9a80256f05
+now054	84887f37f7	c8ad4c9879c19dbea6f41de3aac45d587308b7ac	2026-10-25T22:19:26Z	61	advisor_dist=built vision_dist=built quiet_flag_refs=0 base=84887f37f7
+refined	WORKTREE	796c31e8089166aee2c4d739be3039ecfb180736	2026-10-25T22:21:23Z	115	advisor_dist=built vision_dist=built quiet_flag_refs=0 base=84887f37f79a508fc144a8d951947bee3aeaad12
+pre054	ac2be31ec6	7433813f5430122a3857c52cfcade1391318176e	2026-10-25T22:27:52Z	61	advisor_dist=built vision_dist=built quiet_flag_refs=0 base=ac2be31ec6
+now054	84887f37f7	c8ad4c9879c19dbea6f41de3aac45d587308b7ac	2026-10-25T22:28:58Z	64	advisor_dist=built vision_dist=built quiet_flag_refs=0 base=84887f37f7

@@ -1,0 +1,5 @@
+$ F=.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl; rg -c '<!-- FILL:' $F; rg -c '<!-- FILL:.*GOOD:.*WEAK:' $F; rg -n '<!-- FILL:' $F | rg -v 'GOOD:.*WEAK:'
+24
+23
+444:<!-- FILL: Leave the four links in place. -->
+exit=0

@@ -1,0 +1,2 @@
+rg -n 'v2.3' .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json
+exit=1

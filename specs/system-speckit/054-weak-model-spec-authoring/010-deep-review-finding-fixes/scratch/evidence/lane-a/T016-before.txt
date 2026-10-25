@@ -1,0 +1,6 @@
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh <scratch>/ac003 --json  (folder holds only: Owner: [YOUR_VALUE_HERE: owner name])
+{"status":"PASS","placeholders":0,"folder":"/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-a/ac003"}
+exit=0
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/054-weak-model-spec-authoring --json
+{"status":"FAIL","placeholders":55,"folder":"specs/system-speckit/054-weak-model-spec-authoring"}
+exit=1

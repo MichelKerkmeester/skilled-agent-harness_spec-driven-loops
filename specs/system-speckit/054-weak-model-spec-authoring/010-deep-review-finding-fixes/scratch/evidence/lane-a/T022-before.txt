@@ -1,0 +1,4 @@
+SPECKIT_RULES=PLACEHOLDER_FILLED bash validate.sh <v2.3 fixture: Draft row then Complete row, one token> --strict --no-recursive
+! PLACEHOLDER_FILLED: 1 unfilled value token(s) in a Draft packet. Fill each one before the status leaves Draft
+RESULT: PASSED
+exit=0

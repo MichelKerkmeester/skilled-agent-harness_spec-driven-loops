@@ -1,0 +1,3 @@
+$ rg -n 'safe to imitate' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+66:Do not copy from a `.tmpl` file. A `.tmpl` file carries tokens and gate markers. The examples are filled and safe to imitate for section shape, not for content.
+exit=0

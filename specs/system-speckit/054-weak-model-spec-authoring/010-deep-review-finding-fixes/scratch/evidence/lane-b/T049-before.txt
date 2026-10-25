@@ -1,0 +1,6 @@
+$ F=.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md; echo verify=$(rg -c '^- \[[ xB]\] T[0-9].*Verify: ' $F); echo all=$(rg -c '^- \[[ xB]\] T[0-9]' $F); rg -n 'Task Format' $F
+verify=
+all=50
+18:features including 3-Tier Task Format, AI Execution Protocol, and Workstream
+33:**3-Tier Task Format**: `T### [W-X] [P?] Description (file path) [effort] {deps: T###}`
+exit=0

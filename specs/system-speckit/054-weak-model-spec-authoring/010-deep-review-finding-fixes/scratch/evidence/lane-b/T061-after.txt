@@ -1,0 +1,14 @@
+$ cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/card-sync.vitest.ts --config vitest.config.ts --reporter=verbose 2>&1 | sed 's/\x1b\[[0-9;]*m//g' | rg '^ +(✓|×) |Test Files|Tests '
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > keeps the card, the router, the inventory and the checklist in agreement 53ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > passes on an unchanged copy of the skill root 51ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > runs every check after the first failure 43ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > fails when the checklist still sends a reader to the templates root 46ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > fails when the checklist names no example route 52ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > fails when the checklist is missing 38ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > fails when the example route points at a folder that does not exist 48ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > fails when the card no longer names the checklist 43ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > reads every mode of the leaf inventory, not only the last one 99ms
+ ✓ |cli| tests/card-sync.vitest.ts > authoring card sync > refuses to report success when rg is missing 31ms
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+exit=0

@@ -1,0 +1,162 @@
+
+> @spec-kit/runtime@1.8.0 test
+> node scripts/run-tests.mjs
+
+
+> @spec-kit/runtime@1.8.0 test:core
+> vitest run
+
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ runtime/tests/resource-map-extractor.vitest.ts (4 tests | 2 failed) 18ms
+     ✓ renders a review-shaped resource map with all ten categories and severity counts 10ms
+     × renders a research-shaped resource map with per-iteration citation counts 2ms
+     × strips `:line` and `:line-range` suffixes from review evidence before classification and status checks 2ms
+     ✓ resolves citations against the repository that holds the packet, not the runtime repository 3ms
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts (170 tests) 177672ms
+     ✓ tolerates a non-zero pi exit when artifacts are present, but still fails a pi run that produced none  2355ms
+     ✓ completes a hermetic live cli-codex leaf with top-level search argv  1124ms
+     ✓ rejects an unsupported policy before the pool or executor spawn is touched  423ms
+     ✓ feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool  6761ms
+     ✓ exits 0 and emits ok JSON for native fanout through opencode command dispatch  1070ms
+     ✓ passes the absolute lineage path to native dispatch when the base path is relative  1145ms
+     ✓ logs and falls back to flat_pool when wave assignment is requested  973ms
+     ✓ replays a native fanout cassette with a stable normalized run envelope  1698ms
+     ✓ exits 3 (INPUT_VALIDATION) when fanout-config-json is not valid JSON  348ms
+     ✓ exits 3 (INPUT_VALIDATION) when the fan-out schema is invalid  412ms
+     ✓ creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages  1480ms
+     ✓ dispatches a cli-opencode lineage with no explicit sandboxMode without throwing, and records danger-full-access as effective  954ms
+     ✓ sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions  1633ms
+     ✓ expands a single count>1 executor into replicas each receiving a distinct SPECKIT_OPENCODE_STATE_DIR  1704ms
+     ✓ records exit 3 (all failed) when the only lineage exits non-zero  1056ms
+     ✓ retries a salvage-miss lineage once and exits ok when the retry succeeds  2565ms
+     ✓ treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)  1646ms
+     ✓ classifies an exit-0 question as needs_input without retry  1093ms
+     ✓ classifies a current-attempt projection refusal as fatal without retrying  1116ms
+     ✓ carries a pre-append provenance refusal through with its own code, without retrying  1103ms
+     ✓ fails a CLI lineage whose state log has rows but whose ledger has none, without retrying  1046ms
+     ✓ records exit 2 (some failed) when one of two lineages exits non-zero  1611ms
+     ✓ resolves a lineage with complete artifacts and a containment violation, carrying an advisory status  8139ms
+     ✓ completes the lineage with a containment advisory for the stray file, which survives byte-for-byte  7928ms
+     ✓ lets the --containment-mode flag override the fan-out config value, and rejects an unknown value  16354ms
+     ✓ reports an out-of-scope write from a lane that exits non-zero and keeps it failed  7958ms
+     ✓ reports an out-of-scope write from a lane that produced no artifacts and keeps it failed  7936ms
+     ✓ a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore  12316ms
+     ✓ churn at or below the threshold leaves the requested restore mode alone  14065ms
+     ✓ a neighbour dirtying one path per heartbeat trips the cumulative arm without any burst  13998ms
+     ✓ overlaps the lineage sleeps: concurrency 2 saves ~one sleep versus a serial run of the same lineages  12569ms
+     ✓ writes a stopped partial orchestration summary when SIGTERM interrupts an in-flight run  923ms
+     ✓ persists a pre-dispatch checkpoint and delays lineage launch until it expires  1471ms
+     ✓ resumes a future checkpoint before dispatching lineages  1488ms
+     ✓ migrates legacy checkpoints without wait fields to the null state  1143ms
+     ✓ emits a stall_detected alert when a lineage event stream goes quiet  1373ms
+     ✓ detects a silent child even while host progress heartbeats continue  1299ms
+     ✓ emits progress events for a long lineage when cadence is configured  2121ms
+     ✓ does not emit progress events when cadence is left disabled  2056ms
+     ✓ halts an over-budget lineage before spawning the executor  473ms
+     ✓ halts the whole run before spawning any executor when the aggregate budget is exceeded  463ms
+     ✓ records skippedCount 0 and slotDurationMs for a fast completed lineage  1039ms
+     ✓ records missed fixed-rate slots without launching catch-up lineages  5535ms
+     ✓ omits --variant from opencode argv when reasoningEffort is unset  1467ms
+     ✓ includes --variant in opencode argv when reasoningEffort is set  956ms
+     ✓ adds config.maxIterations to the prompt when lineage.iterations is set (A3)  972ms
+     ✓ omits config.maxIterations from the prompt when iterations is null (A3)  965ms
+     ✓ passes an absolute lineage directory to the prompt when the base artifact dir is relative  942ms
+     ✓ reuses the stored session id of a resumed lineage  952ms
+     ✓ stamps the dispatched CLI seat env with its kind when the parent stack is empty  1094ms
+     ✓ appends the kind onto an existing parent dispatch stack (cross-kind chain)  982ms
+     ✓ preserves per-replica state-dir + lineage-id env after the dispatch-env allowlist filter  971ms
+     ✓ demonstrates the guard end-to-end: the stamped kind is detected as same-kind recursion  1114ms
+     ✓ injects expanded CLAUDE_CONFIG_DIR for a cli-claude-code lineage with configDir  1279ms
+     ✓ leaves CLAUDE_CONFIG_DIR absent when configDir is unset  1453ms
+     ✓ completes the run and records a containment_git_contention warning naming the status call  6015ms
+     ✓ warns on the ledger with the lane label and the delta finding count  1086ms
+     ✓ stays silent for a review lane whose registry carries open findings  1084ms
+     ✓ stays silent for a research lane whose registry carries key findings  1105ms
+ ✓ runtime/tests/progressive-validation.vitest.ts (50 tests) 214130ms
+       ✓ Level 1 detect runs and produces output  4198ms
+       ✓ Level 1 detect identifies missing files  2504ms
+       ✓ Level 1 detect with --json produces JSON output  2628ms
+       ✓ Level 1 does not modify files  2759ms
+       ✓ YYYY-MM-DD placeholder replaced with an ISO date  3067ms
+       ✓ [DATE] placeholder replaced with an ISO date  2805ms
+       ✓ date: TBD replaced with an ISO date  3095ms
+       ✓ headings starting at H2 are shifted to start at H1  3201ms
+       ✓ sub-heading levels are preserved relatively after normalization  2760ms
+       ✓ files already starting at H1 are not modified by heading fix  2755ms
+       ✓ trailing whitespace is trimmed from lines  3721ms
+       ✓ CRLF line endings are normalized to LF  3274ms
+       ✓ file ends with a newline after normalization  3009ms
+       ✓ JSON output includes autoFixes section with diffs  8040ms
+       ✓ each auto-fix item has type and description  9183ms
+       ✓ human-readable output mentions auto-fix activity  2816ms
+       ✓ Level 3 runs suggest phase for issues  9241ms
+       ✓ Level 4 with --json includes suggestions array  8850ms
+       ✓ suggestions include remediation guidance  8168ms
+       ✓ Level 4 JSON report has expected top-level keys  8793ms
+       ✓ Level 4 human report includes summary section  20946ms
+       ✓ Level 4 quiet mode produces single-line result  10744ms
+       ✓ report correctly reflects dry-run state  8404ms
+       ✓ exit code 2 for missing required files (errors)  3215ms
+       ✓ exit code in {0, 1, 2} for valid folder  2931ms
+       ✓ exit codes are consistent between levels  9460ms
+       ✓ exit code 2 with --strict mode when warnings exist  2544ms
+       ✓ --dry-run does not modify files  2881ms
+       ✓ --dry-run still shows what would be changed  3413ms
+       ✓ --dry-run JSON report shows count of proposed fixes  7900ms
+       ✓ files are unmodified after dry-run with whitespace issues  2759ms
+       ✓ validate.sh still works independently  2370ms
+       ✓ validate.sh --json produces valid JSON  2475ms
+       ✓ validate.sh error exit codes are unchanged  2380ms
+       ✓ level 1 only runs detect (no auto-fix)  2376ms
+       ✓ multiple auto-fix types can apply to the same file  7783ms
+       ✓ empty spec folder (no .md files) handled gracefully  2306ms
+       ✓ level 2 runs both detect and auto-fix  3426ms
+       ✓ level 2 propagates detect errors when required files are missing  2546ms
+       ✓ level 3 runs detect, auto-fix, and suggest  8146ms
+       ✓ level 4 is the default when no --level specified  10186ms
+ ✓ ../system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts (38 tests) 79787ms
+     ✓ exposes an exact merit-only payload with assignment-local labels  988ms
+     ✓ normalizes presentation-only style and records source/presentation digests  973ms
+     ✓ rejects producer-equivalent self-scoring before a raw event is appended  306ms
+     ✓ rejects producer-equivalent and eligibility-changing submission profiles  980ms
+     ✓ exposes no proof-free append path for adjudication evidence  494ms
+     ✓ records mirrored raw evidence, reaches a stable verdict, and replays exactly  8459ms
+     ✓ rejects forged complete-verdict evidence, graph, and authority fields  8503ms
+     ✓ classifies an order-sensitive counterfactual as unstable without a winner  3889ms
+     ✓ fails closed when a required probe or mirrored judgment is missing  1911ms
+     ✓ requires the complete council probe policy at admission and reduction  3367ms
+     ✓ preserves ties and hard vetoes instead of forcing a preference  3460ms
+     ✓ rejects forged assignments and appends no accepted raw score  958ms
+     ✓ rejects forged opaque labels and identity-derived weighting fields  947ms
+     ✓ keeps both request adapters typed and preserves verdict status without re-reduction  8311ms
+     ✓ returns the exact legacy result after recording a non-authoritative shadow comparison  8516ms
+     ✓ denies premature deblinding and records the denied audit without identities  604ms
+     ✓ requires external authorization and releases only the audited post-verdict scope  17975ms
+     ✓ appends invalidation without deleting the original verdict or raw evidence  8987ms
+ ✓ ../system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts (18 tests) 74435ms
+     ✓ returns the phase-007 claim ID on retry and concurrent exact mint requests  2148ms
+     ✓ accepts only the earliest equivalent mint decision and explicitly conflicts the other  2143ms
+     ✓ rejects wrong-kind and coordinate-like substitutes for the durable key  1082ms
+     ✓ reuses an exact fingerprint without minting a second claim identity  3167ms
+     ✓ reuses a paraphrase deterministically and mints an explicitly distinct neighbor  6506ms
+     ✓ blocks remint and attachment for multiple, weak, cross-namespace, and disputed matches  8639ms
+     ✓ retains duplicate-source provenance while only independent support changes status  3841ms
+     ✓ enforces the proposed-active-retracted transition table with exact retries  3756ms
+     ✓ keeps lifecycle and epistemic status orthogonal through contradiction, refutation, and retraction  7333ms
+     ✓ uses compensating correction events and retains the voided evidence record  3935ms
+     ✓ rejects a second correction before append and keeps the ledger healthy  6665ms
+     ✓ gives a materially different successor a new identity without rewriting its predecessor  5657ms
+     ✓ recovers claim registration after identity mint succeeds and claim append crashes  2145ms
+     ✓ produces identical incremental and full replay state and projection hashes  6327ms
+     ✓ round-trips resume and handover and rejects a stale claim cursor  4237ms
+     ✓ rejects wrong-kind, missing, and ambiguous active references before new work  3908ms
+     ✓ reports divergence while returning the exact authoritative legacy result  2581ms
+     ✓ denies claim events without the isolated dark write capability  364ms
+[test-bound] invocation exceeded 600000ms; terminating process group
+exit=124

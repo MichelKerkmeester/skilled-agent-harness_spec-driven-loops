@@ -1,0 +1,3 @@
+$ rg -n '12522be61c' $K/005-weak-model-authoring-card/acceptance-criteria.md
+93:Correction 2026-10-25: both findings were applied on 2026-10-24 in commit `12522be61c`. Card step 2 now maps Level 0 to `--level 1`, and the step 3 command carries `--with-goal`.
+exit=0

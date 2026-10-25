@@ -1,0 +1,22 @@
+$ GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git diff -U0 -- .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/ | rg '^[-+]' | rg -v '^(\+\+\+|---)'; (cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts 2>&1 | rg 'Test Files|Tests ')
+-<!-- FILL: Fill each checklist section below. -->
++<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
+-<!-- FILL: Leave the four links in place. -->
++<!-- FILL: Leave the four links in place. GOOD: Plan: See \`plan.md\`. WEAK: See the other docs. -->
+-<!-- FILL: Fill each checklist section below. -->
++<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
+-<!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
++<!-- FILL: L3+ means Level 3 and above, but plans carry this section only at Level 3+. Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
+-<!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
++<!-- FILL: L3+ means Level 3 and above, but plans carry this section only at Level 3+. Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
+-<!-- FILL: Name the update cadence and the escalation path. GOOD: A note in \`goal.md\` section 4 after each task. WEAK: Communicate regularly. -->
++<!-- FILL: L3+ means Level 3 and above, but plans carry this section only at Level 3+. Name the update cadence and the escalation path. GOOD: A note in \`goal.md\` section 4 after each task. WEAK: Communicate regularly. -->
+-<!-- FILL: Leave the four links in place. -->
++<!-- FILL: Leave the four links in place. GOOD: Plan: See \`plan.md\`. WEAK: See the other docs. -->
+-<!-- FILL: Fill each checklist section below. -->
++<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
+-- Use \`/spec_kit:resume [parent-folder]/[NNN-phase]/\` to resume a specific phase
++- Use \`/speckit:resume [parent-folder]/[NNN-phase]/\` to resume a specific phase
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+exit=0

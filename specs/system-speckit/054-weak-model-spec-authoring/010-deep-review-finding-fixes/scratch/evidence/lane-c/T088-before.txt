@@ -1,0 +1,17 @@
+$ rg -n 'Correction 2026-10-25' $K/008-playbook-run-in-worktree/acceptance-criteria.md; rg -n 'prepended from the console' $K/008-playbook-run-in-worktree/acceptance-criteria.md | cut -c1-60; rg -n 'status_entries|To undo|FORCE_NEEDED' $K/008-playbook-run-in-worktree/tasks.md; cat -n $K/008-playbook-run-in-worktree/scratch/worktree/removal.txt
+62:| AC-009 | REQ-009 | Given a fix changed a file inside th
+     1	SCRATCH_CLEAN
+     2	PATCH_SAVED
+     3	STATUS_SAVED
+     4	RUNS_RECORDED 8
+     5	PATCHED specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+     6	PATCH_GATE_COVERED
+     7	status_entries=1 patched=1
+     8	REMOVAL_OK
+     9	To undo: git worktree add -b <new branch> <dir> 95abd302c8fbe320f9fd76b36951e33fff5f7d10, then git apply scratch/fixes/fix.patch
+    10	fatal: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/221-playbook-run' contains modified or untracked files, use --force to delete it
+    11	FORCE_NEEDED: the sole blocker is the 1 untracked file(s) already captured in fix.patch
+    12	WORKTREE_GONE
+    13	Deleted branch worktrees/221-playbook-run (was 95abd302c8).
+    14	BRANCH_GONE
+exit=0

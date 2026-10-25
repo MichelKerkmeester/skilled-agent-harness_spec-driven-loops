@@ -1,0 +1,5 @@
+$ P=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/l2tok; rg -n 'YOUR_VALUE_HERE' $P; echo card-count:; rg -o '\[YOUR_VALUE_HERE: ' $P/spec.md $P/plan.md $P/tasks.md | wc -l
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/l2tok/acceptance-criteria.md:77:Owner: [YOUR_VALUE_HERE: owner name]
+card-count:
+       0
+exit=0

@@ -1,0 +1,4 @@
+$ rg -n 'PHASE. is' $K/005-weak-model-authoring-card/acceptance-criteria.md; grep -o '\$[A-Z_][A-Z_0-9]*' $K/005-weak-model-authoring-card/acceptance-criteria.md | sort | uniq -c
+   1 $PHASE
+   4 $S
+exit=0

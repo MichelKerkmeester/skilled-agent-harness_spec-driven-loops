@@ -1,0 +1,9 @@
+cd <sandbox>/repo && bash create.sh --skip-branch --track ../../escaped --short-name probe "Probe", then the same with --track demo
+Error: --track '../../escaped' must name a folder under specs/, such as 'demo' or 'demo/sub'. An absolute path, '.', '..' and an empty segment are refused.
+escaped-exit=1
+sandbox root listing:
+repo
+specs exists after refusal: no
+demo-exit=0
+001-probe
+exit=0

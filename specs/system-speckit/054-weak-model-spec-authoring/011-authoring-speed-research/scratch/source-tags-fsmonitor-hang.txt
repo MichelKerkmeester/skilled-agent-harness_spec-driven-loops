@@ -1,0 +1,7 @@
+# Hung citation helper, observed 2026-10-25 by the conductor
+2026-10-25T21:54:42Z
+  PID  PPID ELAPSED STAT COMMAND
+89204 89194   28:06 S    bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research --strict --no-recursive
+89233 89204   28:06 S    node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/cli/spec/../../dist/lib/validation/orchestrator.js --folder specs/system-speckit/054-weak-model-spec-authoring/011-authorin
+89572 89571   28:06 S    node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-wea
+89618 89572   28:06 S    /Applications/Xcode.app/Contents/Developer/usr/bin/git -C /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring ls-files -z

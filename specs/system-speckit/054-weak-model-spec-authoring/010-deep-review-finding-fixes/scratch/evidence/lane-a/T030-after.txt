@@ -1,0 +1,2 @@
+diff specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/rules-before.tsv specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/rules-after.tsv
+exit=0

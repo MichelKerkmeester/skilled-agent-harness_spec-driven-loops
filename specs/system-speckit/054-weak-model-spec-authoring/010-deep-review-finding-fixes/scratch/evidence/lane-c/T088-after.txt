@@ -1,0 +1,3 @@
+$ rg -n 'Correction 2026-10-25' $K/008-playbook-run-in-worktree/acceptance-criteria.md
+64:Correction 2026-10-25: `scratch/worktree/removal.txt` was assembled, not written by one run of the T016 block. Lines 1 to 3 were added by hand from the console. Lines 7, 9, 10 and 11 (`status_entries=`, `To undo:`, the non-force `fatal:` refusal and `FORCE_NEEDED`) come from a removal script that `tasks.md` T016 does not document, because no line of that block prints them.
+exit=0

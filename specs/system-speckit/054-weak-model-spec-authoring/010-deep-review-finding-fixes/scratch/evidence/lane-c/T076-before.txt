@@ -1,0 +1,4 @@
+$ rg -n 'spec_kit:' $S/references/workflows/auto-mode-contract.md
+121:- Replace `<command>` with the canonical command name (e.g. `spec_kit:deep-review`).
+191:- Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
+exit=0

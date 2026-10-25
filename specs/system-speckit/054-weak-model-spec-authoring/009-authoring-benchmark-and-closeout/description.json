@@ -1,18 +1,25 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
-  "description": "Phase 8: authoring-benchmark-and-closeout",
+  "description": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
   "keywords": [
-    "phase",
-    "authoring-benchmark-and-closeout"
+    "phases",
+    "change",
+    "templates",
+    "validator",
+    "examples",
+    "authoring",
+    "card",
+    "commands",
+    "playbooks"
   ],
-  "lastUpdated": "2026-10-23T11:27:28.135Z",
-  "specId": "008",
+  "lastUpdated": "2026-10-25T21:34:47.656Z",
+  "specId": "009",
   "folderSlug": "authoring-benchmark-and-closeout",
   "parentChain": [
     "system-speckit",
     "054-weak-model-spec-authoring"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

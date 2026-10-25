@@ -1,0 +1,7 @@
+$ rg -n '\.\./spec\.md|phase 003 decision record' $K/spec.md; ls specs/system-speckit/spec.md; ls $K/003-versioned-placeholder-gate/decision-record.md
+53:| **Parent Spec** | `../spec.md` |
+170:- Whether phase 003 also fixes the post-edit scanner `spec/check-placeholders.sh`, which flags regex classes inside fenced code blocks, is decided in the phase 003 decision record.
+178:- **Parent Spec**: See `../spec.md`
+ls: specs/system-speckit/spec.md: No such file or directory
+ls: specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/decision-record.md: No such file or directory
+exit=1

@@ -1,0 +1,7 @@
+$ rg -n 'doctor' $K/spec.md | cut -c1-200
+84:- Check and update the speckit and doctor commands and the doc-authoring agents such as markdown.
+91:- Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
+106:| `.skilled/commands/doctor/` speckit entries | Audited, unchanged | 006 | The re-audit found 0 authoring findings in 91 doctor files, so phase 006 changed none (`goal.md` log row "Doctor commands
+136:| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
+159:| 006-speckit-command-and-agent-alignment | 007-playbook-catalog-readme-alignment | Every speckit and doctor command and every doc-authoring agent names the card, the v2.3 token and the guard scri
+exit=0

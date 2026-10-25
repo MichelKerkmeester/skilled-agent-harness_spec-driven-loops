@@ -1,0 +1,6 @@
+$ node .skilled/hooks/goal/bin/goal.cjs packet-log specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout 'Correction 2026-10-25: anchor scoring and the run-set files named baseline.json | Recorded | justified-anchors.sh compares anchor counts in spec, plan and acceptance-criteria, not anchor names. The three second fresh set runs carry the same 7 spec and 14 plan anchor ids, so the result stands. Every baseline.json holds final runs except amend3/baseline-deepseek: scratch/baseline is the swe-2-max first set, amend3 the second set, amend3/fresh the fresh set, amend3/fresh2 the deciding set.'
+STATUS=OK ACTION=packet-log
+mutation=logged
+packet_path="specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+row="| Correction 2026-10-25: anchor scoring and the run-set files named baseline.json | Recorded | justified-anchors.sh compares anchor counts in spec, plan and acceptance-criteria, not anchor names. The three second fresh set runs carry the same 7 spec and 14 plan anchor ids, so the result stands. Every baseline.json holds final runs except amend3/baseline-deepseek: scratch/baseline is the swe-2-max first set, amend3 the second set, amend3/fresh the fresh set, amend3/fresh2 the deciding set. |"
+exit=0

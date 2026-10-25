@@ -1,0 +1,7 @@
+$ rg -n 'Correction 2026-10-25' $K/006-speckit-command-and-agent-alignment/implementation-summary.md; rg -n 'Card and filled example' $K/006-speckit-command-and-agent-alignment/implementation-summary.md; for a in markdown orchestrate code context; do printf '%s card=%s example=%s\n' $a "$(rg -c spec-authoring-card .skilled/agents/$a.md || echo 0)" "$(rg -c templates/examples .skilled/agents/$a.md || echo 0)"; done
+68:| `.skilled/agents/markdown.md`, `orchestrate.md`, `code.md`, `context.md` | Modified | Card and filled example, retired checklist doc dropped |
+markdown card=1 example=1
+orchestrate card=0 example=0
+code card=0 example=0
+context card=0 example=0
+exit=0

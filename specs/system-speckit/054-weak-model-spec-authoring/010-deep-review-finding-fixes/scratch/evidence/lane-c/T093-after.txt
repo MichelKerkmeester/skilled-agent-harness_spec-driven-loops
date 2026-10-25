@@ -1,0 +1,3 @@
+$ rg -n 'justified-anchors.sh' $K/009-authoring-benchmark-and-closeout/plan.md
+79:Correction 2026-10-25: the deciding sets did not score M3 with the shortfall above. The fresh set and the second fresh set were scored by `scratch/tools/justified-anchors.sh`, the anchor rule in the parent `goal.md` log row "Anchor rule set before fresh runs on 2026-10-25", committed in `e13115c7da` before either set ran. It counts a missing frozen anchor unless it is an optional `tasks.md` anchor whose condition holds.
+exit=0

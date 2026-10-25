@@ -1,0 +1,16 @@
+# wc -w after lane B edits, against scratch/baseline/words-before.txt (budget: card +80 net, each core template +60)
+.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md before=1246 after=1291 delta=45
+.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl before=2442 after=2451 delta=9
+.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl before=2300 after=2345 delta=45
+.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl before=1856 after=1871 delta=15
+.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl before=657 after=657 delta=0
+.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md before=367 after=504 delta=137
+.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md before=948 after=1164 delta=216
+.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md before=1347 after=1710 delta=363
+.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md before=1850 after=2233 delta=383
+.skilled/skills/system-spec-kit/assets/template-mapping.md before=2079 after=2136 delta=57
+.skilled/commands/speckit/assets/speckit-plan.yaml before=6034 after=6047 delta=13
+.skilled/commands/speckit/assets/speckit-implement.yaml before=5605 after=5618 delta=13
+.skilled/commands/speckit/plan.md before=801 after=820 delta=19
+.skilled/commands/speckit/implement.md before=596 after=615 delta=19
+.skilled/agents/markdown.md before=2406 after=2429 delta=23

@@ -1,0 +1,18 @@
+$ for f in .claude/agents/markdown.md .codex/agents/markdown.toml .pi/agents/markdown.md .hermes/agents/markdown.md .hermes/skills/agent-markdown/SKILL.md .cursor/agents/markdown.md; do echo "$f: $(rg -c 'YOUR_VALUE_HERE' $f || echo 0)"; done; node .skilled/bin/check-agent-mirror-sync.cjs --all 2>&1 | tail -1; echo "mirror exit=${PIPESTATUS[0]}"; node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check 2>&1 | tail -1; echo "codex exit=${PIPESTATUS[0]}"; node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check 2>&1 | tail -1; echo "pi exit=${PIPESTATUS[0]}"; node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check 2>&1 | tail -1; echo "hermes exit=${PIPESTATUS[0]}"; node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs 2>&1 | tail -1; echo "roster exit=${PIPESTATUS[0]}"
+.claude/agents/markdown.md: 1
+.codex/agents/markdown.toml: 1
+.pi/agents/markdown.md: 1
+.hermes/agents/markdown.md: 1
+.hermes/skills/agent-markdown/SKILL.md: 1
+.cursor/agents/markdown.md: 1
+agent-mirror-sync: 11 agent(s) checked — all mirrors in sync — OK
+mirror exit=0
+[codex-agent-sync] PASS: 11 agents are in sync.
+codex exit=0
+[pi-agent-sync] PASS: 11 agents are in sync.
+pi exit=0
+PASS: 67 Hermes skill copies in sync
+hermes exit=0
+
+roster exit=0
+exit=0

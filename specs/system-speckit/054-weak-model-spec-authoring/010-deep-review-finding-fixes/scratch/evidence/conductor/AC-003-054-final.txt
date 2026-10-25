@@ -1,0 +1,1 @@
+{"status":"PASS","placeholders":0,"folder":"specs/system-speckit/054-weak-model-spec-authoring"}

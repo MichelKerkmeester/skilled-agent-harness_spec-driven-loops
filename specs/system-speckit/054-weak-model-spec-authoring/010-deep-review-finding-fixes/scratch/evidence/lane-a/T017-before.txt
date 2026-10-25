@@ -1,0 +1,48 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/required-template-anchors.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/required-template-anchors.vitest.ts (4 tests | 2 failed) 364ms
+     × matches the template-structure required set for every level and document 3ms
+     × fails a v2.3 spec.md that lost its requirements section, naming the heading to restore 122ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/required-template-anchors.vitest.ts > required template anchors > matches the template-structure required set for every level and document
+TypeError: __testables.requiredTemplateAnchors is not a function
+ ❯ tests/required-template-anchors.vitest.ts:74:28
+     72|         const expected = loadTemplateContract(level, docName);
+     73|         if (!expected.supported) continue;
+     74|         expect(__testables.requiredTemplateAnchors(level, docName), `$…
+       |                            ^
+     75|         compared += 1;
+     76|       }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/required-template-anchors.vitest.ts > required template anchors > fails a v2.3 spec.md that lost its requirements section, naming the heading to restore
+AssertionError: expected 'pass' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "pass"
+
+ ❯ tests/required-template-anchors.vitest.ts:83:26
+     81|   it('fails a v2.3 spec.md that lost its requirements section, naming …
+     82|     const entry = anchorsEntry(copyFixture('v2.3', true));
+     83|     expect(entry.status).toBe('error');
+       |                          ^
+     84|     expect(entry.details).toEqual([
+     85|       "spec.md: required anchor 'requirements' is missing. Restore the…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  22:34:38
+   Duration  558ms (transform 92ms, setup 11ms, import 126ms, tests 364ms, environment 0ms)
+
+exit=1

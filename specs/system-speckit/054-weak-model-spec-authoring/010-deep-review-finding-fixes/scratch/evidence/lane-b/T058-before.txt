@@ -1,0 +1,21 @@
+$ G=.skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh; echo '== tree'; bash $G; echo rc=$?; echo '== missing anchor, PATH without rg'; env PATH=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/norg-bin:/usr/bin:/bin bash $G /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-drift 2>&1 | sort | uniq -c; echo rc=${PIPESTATUS[0]}; echo '== reordered anchor'; bash $G /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder; echo rc=$?; echo '== missing level-2'; bash $G /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-missing-level; echo rc=$?; echo '== empty level-3+'; bash $G /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-empty-level; echo rc=$?
+== tree
+EXAMPLE_DRIFT_OK
+rc=0
+== missing anchor, PATH without rg
+  21 .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh: line 35: rg: command not found
+  21 .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh: line 39: rg: command not found
+   1 EXAMPLE_DRIFT_OK
+rc=0
+== reordered anchor
+EXAMPLE_DRIFT_OK
+rc=0
+== missing level-2
+EXAMPLE_DRIFT_OK
+rc=0
+== empty level-3+
+awk: can't open file /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-empty-level/level-3+/*.md
+ source line number 1
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-empty-level/level-3+/*.md: description does not end with a period
+rc=1
+exit=0

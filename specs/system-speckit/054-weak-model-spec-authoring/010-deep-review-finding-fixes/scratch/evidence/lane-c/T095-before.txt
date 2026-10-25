@@ -1,0 +1,17 @@
+$ cd $S && npx vitest run --config runtime/vitest.config.ts ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts 2>&1 | grep -E '✓|×|FAIL|AssertionError|Expected|Received|Test Files|Tests ' | head -30
+     × skips step_emit_resource_map exactly when the fan-out merge runs in deep-review-auto.yaml 7ms
+     × points a fan-out report at the lineage resource maps in deep-review-auto.yaml 2ms
+     × skips step_emit_resource_map exactly when the fan-out merge runs in deep-review-confirm.yaml 2ms
+     × points a fan-out report at the lineage resource maps in deep-review-confirm.yaml 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts > deep-review skips the root resource-map reducer at a fan-out root > skips step_emit_resource_map exactly when the fan-out merge runs in deep-review-auto.yaml
+ FAIL  ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts > deep-review skips the root resource-map reducer at a fan-out root > skips step_emit_resource_map exactly when the fan-out merge runs in deep-review-confirm.yaml
+AssertionError: expected undefined to be 'config.fanout is present' // Object.is equality
+- Expected:
++ Received:
+ FAIL  ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts > deep-review skips the root resource-map reducer at a fan-out root > points a fan-out report at the lineage resource maps in deep-review-auto.yaml
+ FAIL  ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts > deep-review skips the root resource-map reducer at a fan-out root > points a fan-out report at the lineage resource maps in deep-review-confirm.yaml
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+exit=0

@@ -1,0 +1,5 @@
+$ rg -c 'Correction 2026-10-25' $K/008-playbook-run-in-worktree/plan.md; rg -n 'Correction 2026-10-25' $K/008-playbook-run-in-worktree/plan.md | cut -c1-120
+2
+401:Correction 2026-10-25: steps 2 and 3, and the same pair in section 7, delete the branch with no tip guard. Run `git 
+571:Correction 2026-10-25: step 2 lacks `--with-goal`. The card's scaffold command carries that flag from commit `12522b
+exit=0

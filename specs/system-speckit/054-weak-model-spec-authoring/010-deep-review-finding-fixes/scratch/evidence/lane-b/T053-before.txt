@@ -1,0 +1,3 @@
+$ rg -n 'spec_kit:' .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl
+108:- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+exit=0

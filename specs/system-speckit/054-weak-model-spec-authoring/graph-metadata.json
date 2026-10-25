@@ -12,7 +12,10 @@
     "system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
     "system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree",
     "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
-    "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment"
+    "system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment",
+    "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
+    "system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research",
+    "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -51,6 +54,8 @@
       ".skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/agents/markdown.md",
+      "review/review-report.md",
+      "011-authoring-speed-research/research/research.md",
       "spec/check-placeholders.sh",
       "001-template-drift-census-and-baseline/goal.md",
       "002-template-and-example-defect-repair/goal.md",
@@ -60,7 +65,10 @@
       "006-speckit-command-and-agent-alignment/goal.md",
       "007-playbook-catalog-readme-alignment/goal.md",
       "008-playbook-run-in-worktree/goal.md",
-      "009-authoring-benchmark-and-closeout/goal.md"
+      "009-authoring-benchmark-and-closeout/goal.md",
+      "010-deep-review-finding-fixes/goal.md",
+      "011-authoring-speed-research/goal.md",
+      "012-authoring-speed-fixes-and-alignment/goal.md"
     ],
     "entities": [
       {
@@ -91,6 +99,12 @@
         "name": "markdown.md",
         "kind": "doc",
         "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -142,13 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "The Level",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "The Level",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -168,19 +182,19 @@
     ],
     "causal_summary": "A weak-model worker (the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`",
     "created_at": "2026-10-23T11:27:18Z",
-    "last_save_at": "2026-10-25T14:16:48.214Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-25T23:02:28.872Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7ec1b9319cb03586250051229a3f35ad2efd39d810fc888b083b432623486271",
+    "source_fingerprint": "sha256:78f3c259bc1ec2b65e18fb5eb6256739fb3a99de7ee54d3365835f1b38e4d7fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9189be41641e80cd72b630254081cf36a09e76ba1e72a5977f1f5ce70e9fca76"
+      "spec.md": "718768ddf0778d4d74beaab8980cff256e7b980bbeb44684c0714f93f8c83819"
     },
-    "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance",
-    "last_active_at": "2026-10-24T16:02:41.734Z"
+    "last_active_child_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
+    "last_active_at": "2026-10-25T21:42:09.493Z"
   }
 }

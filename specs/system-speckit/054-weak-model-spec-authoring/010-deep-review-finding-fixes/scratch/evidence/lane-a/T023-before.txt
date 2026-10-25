@@ -1,0 +1,70 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/validation-gate-hardening.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/validation-gate-hardening.vitest.ts (10 tests | 3 failed) 4895ms
+     × reads the spec.md title of a v2.3 packet for a template token, and leaves an older packet as it was 193ms
+     × classifies a v2.3 spec with a Draft row and then a Complete row as complete 19ms
+     × does not defer a token as Draft work when a v2.3 spec also claims Complete 129ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/validation-gate-hardening.vitest.ts > validation gate hardening > reads the spec.md title of a v2.3 packet for a template token, and leaves an older packet as it was
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ tests/validation-gate-hardening.vitest.ts:240:26
+    238|
+    239|     const failing = runValidate(current, 'SCAFFOLD_NEVER_TOUCHED');
+    240|     expect(failing.code).toBe(2);
+       |                          ^
+    241|     expect(failing.stdout).toContain('spec.md:2: title contains [templ…
+    242|     expect(runValidate(older, 'SCAFFOLD_NEVER_TOUCHED').code).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |cli| tests/validation-gate-hardening.vitest.ts > validation gate hardening > classifies a v2.3 spec with a Draft row and then a Complete row as complete
+AssertionError: expected 'planned' to be 'complete' // Object.is equality
+
+Expected: "complete"
+Received: "planned"
+
+ ❯ tests/validation-gate-hardening.vitest.ts:256:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |cli| tests/validation-gate-hardening.vitest.ts > validation gate hardening > does not defer a token as Draft work when a v2.3 spec also claims Complete
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ tests/validation-gate-hardening.vitest.ts:268:25
+    266|     });
+    267|     const result = runValidate(folder, 'PLACEHOLDER_FILLED');
+    268|     expect(result.code).toBe(2);
+       |                         ^
+    269|     expect(result.stdout).toContain('placeholder(s) found');
+    270|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 7 passed (10)
+   Start at  22:36:01
+   Duration  4.98s (transform 16ms, setup 13ms, import 11ms, tests 4.89s, environment 0ms)
+
+exit=1

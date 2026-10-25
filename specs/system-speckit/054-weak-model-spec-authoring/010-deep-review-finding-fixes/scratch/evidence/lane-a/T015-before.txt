@@ -1,0 +1,150 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/post-edit-placeholder-scan.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/post-edit-placeholder-scan.vitest.ts (7 tests | 6 failed) 3022ms
+     × counts the v2.3 value token with its colon 21ms
+     × counts the other markers strict validation reads 21ms
+     × ignores bracketed prose that strict validation never flags 36ms
+     × passes a template-compliant Level 3 packet 2898ms
+     × reads a v2.3 doc with the code-span, fence and all-markers rules 27ms
+     × reads an older doc the way strict validation always has 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/post-edit-placeholder-scan.vitest.ts > post-edit placeholder scan > counts the v2.3 value token with its colon
+AssertionError: expected { count: +0, status: 'PASS', exit: +0 } to deeply equal { count: 1, status: 'FAIL', exit: 1 }
+
+- Expected
++ Received
+
+  {
+-   "count": 1,
+-   "exit": 1,
+-   "status": "FAIL",
++   "count": 0,
++   "exit": 0,
++   "status": "PASS",
+  }
+
+ ❯ tests/post-edit-placeholder-scan.vitest.ts:47:20
+     45|   it('counts the v2.3 value token with its colon', () => {
+     46|     const result = scan(folderWith(['# Spec', '', 'Owner: [YOUR_VALUE_…
+     47|     expect(result).toEqual({ count: 1, status: 'FAIL', exit: 1 });
+       |                    ^
+     48|   });
+     49|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  |cli| tests/post-edit-placeholder-scan.vitest.ts > post-edit placeholder scan > counts the other markers strict validation reads
+AssertionError: expected +0 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ tests/post-edit-placeholder-scan.vitest.ts:57:26
+     55|       'Target: [NEEDS_CLARIFICATION: which release?]',
+     56|     ]));
+     57|     expect(result.count).toBe(3);
+       |                          ^
+     58|   });
+     59|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  |cli| tests/post-edit-placeholder-scan.vitest.ts > post-edit placeholder scan > ignores bracketed prose that strict validation never flags
+AssertionError: expected { count: 2, status: 'FAIL', exit: 1 } to deeply equal { count: +0, status: 'PASS', exit: +0 }
+
+- Expected
++ Received
+
+  {
+-   "count": 0,
+-   "exit": 0,
+-   "status": "PASS",
++   "count": 2,
++   "exit": 1,
++   "status": "FAIL",
+  }
+
+ ❯ tests/post-edit-placeholder-scan.vitest.ts:62:20
+     60|   it('ignores bracketed prose that strict validation never flags', () …
+     61|     const result = scan(folderWith(['# Spec', '', 'Owner: [Owner name]…
+     62|     expect(result).toEqual({ count: 0, status: 'PASS', exit: 0 });
+       |                    ^
+     63|   });
+     64|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  |cli| tests/post-edit-placeholder-scan.vitest.ts > post-edit placeholder scan > passes a template-compliant Level 3 packet
+AssertionError: expected 3 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 3
+
+ ❯ tests/post-edit-placeholder-scan.vitest.ts:66:82
+     64|
+     65|   it('passes a template-compliant Level 3 packet', () => {
+     66|     expect(scan(path.join(fixturesRoot, '063-template-compliant-level3…
+       |                                                                                  ^
+     67|   });
+     68|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  |cli| tests/post-edit-placeholder-scan.vitest.ts > post-edit placeholder scan > reads a v2.3 doc with the code-span, fence and all-markers rules
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/post-edit-placeholder-scan.vitest.ts:81:26
+     79|       '   ```',
+     80|     ]));
+     81|     expect(result.count).toBe(1);
+       |                          ^
+     82|   });
+     83|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  |cli| tests/post-edit-placeholder-scan.vitest.ts > post-edit placeholder scan > reads an older doc the way strict validation always has
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/post-edit-placeholder-scan.vitest.ts:92:26
+     90|       '~~~',
+     91|     ]));
+     92|     expect(result.count).toBe(1);
+       |                          ^
+     93|   });
+     94|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 1 passed (7)
+   Start at  22:32:30
+   Duration  3.11s (transform 15ms, setup 14ms, import 8ms, tests 3.02s, environment 0ms)
+
+exit=1

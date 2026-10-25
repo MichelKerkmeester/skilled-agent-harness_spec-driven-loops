@@ -1,0 +1,13 @@
+$ echo 'New test file run against the HEAD copy of its guard (git show HEAD:.../check-card-sync.sh) in a scratch tree:'; cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/oldguards && /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/node_modules/.bin/vitest run runtime/cli/tests/card-sync.test.ts 2>&1 | sed 's/\x1b\[[0-9;]*m//g' | rg '^ +(✓|×) |Test Files|Tests '
+New test file run against the HEAD copy of its guard (git show HEAD:.../check-card-sync.sh) in a scratch tree:
+     × runs every check after the first failure 43ms
+     × fails when the checklist names no example route 43ms
+     × fails when the checklist is missing 41ms
+     × fails when the example route points at a folder that does not exist 43ms
+     × fails when the card no longer names the checklist 43ms
+     × reads every mode of the leaf inventory, not only the last one 42ms
+     × refuses to report success when rg is missing 59ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  7 failed | 3 passed (10)
+exit=0

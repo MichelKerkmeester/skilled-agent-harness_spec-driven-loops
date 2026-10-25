@@ -1,0 +1,38 @@
+Not landed: the clause cut below moves 39 GENERATED_METADATA_DRIFT verdicts in the census (T025-before.txt).
+
+--- a/.skilled/skills/system-spec-kit/runtime/lib/description/packet-synopsis.ts
++++ b/.skilled/skills/system-spec-kit/runtime/lib/description/packet-synopsis.ts
+@@ export function truncateSynopsisAtWordBoundary(synopsis: string, limit: number): string {
+   const sentenceBoundary = sentenceBoundaryWithinLimit(synopsis, limit);
+   if (sentenceBoundary > 0) {
+     return synopsis.slice(0, sentenceBoundary).trim();
+   }
+ 
++  // A clause boundary in the first half would leave a stub, so it is not used.
++  let clauseBoundary = -1;
++  for (const match of synopsis.matchAll(/[,;:](?=\s)/g)) {
++    if (match.index >= limit) break;
++    clauseBoundary = match.index;
++  }
++  if (clauseBoundary >= limit / 2) {
++    return synopsis.slice(0, clauseBoundary).trim();
++  }
++
+   const truncated = synopsis.slice(0, limit);
+
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/generated-metadata-drift.vitest.ts
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/generated-metadata-drift.vitest.ts
+@@ describe('shared synopsis extractor (REQ-004, SC-003)', () => {
++  it('ends a long first sentence at its last clause boundary within the limit', () => {
++    const sentence = 'The fan-out runner regenerates the packet description from spec.md after every run, '
++      + 'so a long problem statement loses its ending, and the old cut stopped after a word such as that';
++    expect(derivePacketSynopsis(specWithOverview(sentence), 'description')).toBe(
++      'The fan-out runner regenerates the packet description from spec.md after every run, so a long problem statement loses its ending',
++    );
++  });
++
++  it('falls back to a word boundary when the only clause boundary would leave a stub', () => {
++    const prefix = `Note, ${'word '.repeat(28)}`;
++    const content = specWithOverview(`${prefix}resilience`);
++    expect(derivePacketSynopsis(content, 'description')).toBe(prefix.trim());
++  });

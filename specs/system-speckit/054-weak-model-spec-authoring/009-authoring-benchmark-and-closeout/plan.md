@@ -76,6 +76,8 @@ Both sides use the same five metrics. A final run is measured on the tree after 
 | M4 | `out_of_scope_writes` | New paths in `git status --porcelain` after the run that are outside the bench track and this phase folder | the diff and filter in `tasks.md` T006 |
 | M5 | `seconds` | Wall clock from the saved start second to the measurement second | `$(( $(date +%s) - T0 ))` |
 
+Correction 2026-10-25: the deciding sets did not score M3 with the shortfall above. The fresh set and the second fresh set were scored by `scratch/tools/justified-anchors.sh`, the anchor rule in the parent `goal.md` log row "Anchor rule set before fresh runs on 2026-10-25", committed in `e13115c7da` before either set ran. It counts a missing frozen anchor unless it is an optional `tasks.md` anchor whose condition holds.
+
 ### M2 comparability rule
 
 A v2.2 hint is a bracketed authoring string that names what the section still needs. A v2.3 token is the same instruction with a `YOUR_VALUE_HERE` prefix inside the opening bracket. The old opening bracket is consumed by the token prefix, so the old pattern cannot match inside a token and the token pattern cannot match a bare hint. M2 is the sum of the two occurrence counts. Each unfilled instruction counts once. The baseline side had no tokens, so the same sum reduces to the phase 1 count of 97 occurrences.

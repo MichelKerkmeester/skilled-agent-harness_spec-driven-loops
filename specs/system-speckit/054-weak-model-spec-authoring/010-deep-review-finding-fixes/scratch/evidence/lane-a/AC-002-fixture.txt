@@ -1,0 +1,9 @@
+SPECKIT_RULES=PLACEHOLDER_FILLED bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <scratch>/ac002/unfilled --strict --no-recursive   (fixture 053 copy, spec.md v2.3, Status In Progress, line: Example `[YOUR_VALUE_HERE: example]` then Owner: [YOUR_VALUE_HERE: owner name])
+x PLACEHOLDER_FILLED: 1 placeholder(s) found
+    - spec.md:45: Example `[YOUR_VALUE_HERE: example]` then Owner: [YOUR_VALUE_HERE: owner name]
+RESULT: FAILED
+exit=2
+SPECKIT_RULES=PLACEHOLDER_FILLED bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <scratch>/ac002/filled --strict --no-recursive   (fixture 053 copy, spec.md v2.3, Status In Progress, line: Example `[YOUR_VALUE_HERE: example]` then Owner: the platform team)
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
+RESULT: PASSED
+exit=0

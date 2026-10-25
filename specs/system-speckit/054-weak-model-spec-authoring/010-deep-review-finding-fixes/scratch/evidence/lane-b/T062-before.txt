@@ -1,0 +1,6 @@
+$ echo 'catalog leaf and guard header, from HEAD (the guard header was changed under T059):'; GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git show HEAD:.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh | rg -n 'first disagreement'; rg -n 'first disagreement' .skilled/skills/system-spec-kit/feature-catalog
+catalog leaf and guard header, from HEAD (the guard header was changed under T059):
+9:# reads all four and fails on the first disagreement.
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:30:`runtime/cli/spec/check-card-sync.sh` reads the card, the router, the generated leaf inventory files and the authoring checklist. It prints one `PASS` line per check and fails on the first disagreement. The checks cover the card length, the four intent rows, the guide level, the two inventory files and the checklist wording.
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:50:| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Script | Compares the four surfaces and fails on the first disagreement |
+exit=0

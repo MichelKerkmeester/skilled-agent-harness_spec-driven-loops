@@ -1,0 +1,10 @@
+$ echo 'New test file run against the HEAD copy of its guard (git show HEAD:.../check-example-drift.sh) in a scratch tree:'; cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/oldguards && /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/node_modules/.bin/vitest run runtime/cli/tests/example-drift.test.ts 2>&1 | sed 's/\x1b\[[0-9;]*m//g' | rg '^ +(✓|×) |Test Files|Tests '
+New test file run against the HEAD copy of its guard (git show HEAD:.../check-example-drift.sh) in a scratch tree:
+     × fails when an example moves a section out of template order 991ms
+     × fails when a level has no example 717ms
+     × fails when a level folder is empty 708ms
+     × refuses to report success when rg is missing 838ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  1 failed (1)
+      Tests  4 failed | 2 passed (6)
+exit=0

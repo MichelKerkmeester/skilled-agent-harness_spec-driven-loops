@@ -1,0 +1,3 @@
+$ rg -n 'operator-directed push' $K/spec.md
+94:  - Correction 2026-10-25: after phase 009 the operator directed a push, and the worktree branch reached `main` at `10e8df7d25`. This line records that operator-directed push. Later commits stay local until the operator asks for the next push.
+exit=0

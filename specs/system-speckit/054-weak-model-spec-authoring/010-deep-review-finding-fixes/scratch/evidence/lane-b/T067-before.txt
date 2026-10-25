@@ -1,0 +1,4 @@
+$ rg -n 'YOUR_VALUE_HERE|check-example-drift|check-card-sync' .skilled/agents/markdown.md; echo "rg exit=$?"; rg -n '^\| .spec-doc.' .skilled/agents/markdown.md
+rg exit=1
+208:| `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` first, then the matching filled example under `.skilled/skills/system-spec-kit/templates/examples/`; the `.tmpl` file is the section contract, not a model to copy |
+exit=0

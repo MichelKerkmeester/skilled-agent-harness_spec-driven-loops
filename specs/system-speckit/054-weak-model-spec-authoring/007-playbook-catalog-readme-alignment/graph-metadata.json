@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A fresh v2.3 scaffold carries value tokens and a Draft warning",
     "created_at": "2026-10-23T11:27:24Z",
-    "last_save_at": "2026-10-24T23:20:18.749Z",
+    "last_save_at": "2026-10-25T22:32:39.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32f9c51058a2340154f12c71844b6aee33235ca6fbefb9fad63b4c9f29d02497",
+    "source_fingerprint": "sha256:4cca1ce96a9933cdfba6c31f63e0130930dfd8dc39a64f9490fa373babd50774",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a355458532f97b3ea5cabf177c7424f0f303a6f0daaa495b4f20ac9296d5572e",

@@ -1,0 +1,5 @@
+Lineage complete: 5/5 iterations, 45 findings, 6/6 questions resolved, reducer refreshed after every iteration, synthesis record recorded with `stopReason: maxIterationsReached`, lock released.
+
+Two things a reader must not miss: (1) one workflow step wrote outside this lineage — `step_emit_resource_map` in fan-out mode resolved the packet's own `research/` root and created `specs/.../011-authoring-speed-research/research/resource-map.md`; it is disclosed in `research.md` §Containment note, not reverted. (2) The working tree also shows concurrent modifications under `.skilled/` (templates, card, `create.sh`, examples, snapshots) timestamped inside this run window; none of those paths is mine — I wrote only inside the lineage directory plus that one resource map.
+
+FANOUT_LINEAGE_COMPLETE:pi-deepseek

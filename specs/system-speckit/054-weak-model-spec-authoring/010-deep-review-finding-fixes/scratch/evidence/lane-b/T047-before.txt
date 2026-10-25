@@ -1,0 +1,5 @@
+$ F=.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md; echo verify=$(rg -c '^- \[[ xB]\] T[0-9].*Verify: ' $F); echo all=$(rg -c '^- \[[ xB]\] T[0-9]' $F); rg -n 'Task Format' $F
+verify=
+all=27
+32:**Task Format**: `T### [P?] Description (file path) [effort]`
+exit=0

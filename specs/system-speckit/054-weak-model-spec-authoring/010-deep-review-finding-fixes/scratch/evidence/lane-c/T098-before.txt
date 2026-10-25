@@ -1,0 +1,7 @@
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs 2>&1 | cut -c1-200
+[CONTRACT DRIFT] command=deep/ai-council class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md recordedSha256=e12330948
+[CONTRACT DRIFT] command=deep/review class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md recordedSha256=e1233094815c4
+[CONTRACT DRIFT] command=deep/review class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/commands/deep/assets/deep-review-auto.yaml recordedSha256=757ee6b13820441cc09220c0eb9c22e4efda
+[CONTRACT DRIFT] command=deep/review class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/commands/deep/assets/deep-review-confirm.yaml recordedSha256=7772bc7ec97e39b954395bd24930c14a1
+[CONTRACT DRIFT] command=deep/research class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md recordedSha256=e1233094815
+exit=0

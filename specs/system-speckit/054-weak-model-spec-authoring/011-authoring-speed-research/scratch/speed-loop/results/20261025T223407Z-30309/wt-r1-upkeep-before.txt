@@ -1,0 +1,722 @@
+ M .claude/agents/markdown.md
+ M .codex/agents/markdown.toml
+ M .hermes/skills/agent-markdown/SKILL.md
+ M .hermes/skills/system-deep-loop/SKILL.md
+ M .hermes/skills/system-spec-kit/SKILL.md
+ M .pi/agents/markdown.md
+ M .skilled/agents/markdown.md
+ M .skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown
+ M .skilled/commands/deep/assets/compiled/deep-research.contract.markdown
+ M .skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+ M .skilled/commands/deep/assets/deep-review-auto.yaml
+ M .skilled/commands/deep/assets/deep-review-confirm.yaml
+ M .skilled/commands/speckit/assets/speckit-implement.yaml
+ M .skilled/commands/speckit/assets/speckit-plan.yaml
+ M .skilled/commands/speckit/implement.md
+ M .skilled/commands/speckit/plan.md
+ M .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs
+ M .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs
+ M .skilled/skills/system-deep-loop/SKILL.md
+ M .skilled/skills/system-deep-loop/description.json
+ M .skilled/skills/system-deep-loop/hub-router.json
+ M .skilled/skills/system-deep-loop/mode-registry.json
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/assets/template-mapping.md
+ M .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md
+ M .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md
+ M .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/anchor-integrity-and-nesting-check.md
+ M .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md
+ M .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+ M .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md
+ M .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+ M .skilled/skills/system-spec-kit/references/structure/folder-structure.md
+ M .skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md
+ M .skilled/skills/system-spec-kit/references/templates/level-selection-guide.md
+ M .skilled/skills/system-spec-kit/references/templates/level-specifications.md
+ M .skilled/skills/system-spec-kit/references/templates/template-guide.md
+ M .skilled/skills/system-spec-kit/references/validation/validation-rules.md
+ M .skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md
+ M .skilled/skills/system-spec-kit/references/workflows/intake-contract.md
+ M .skilled/skills/system-spec-kit/references/workflows/nested-changelog.md
+ M .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+ M .skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+ M .skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs
+ M .skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/rules/check-scaffold-never-touched.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/generated-metadata-drift.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/lib/description/packet-synopsis.ts
+ M .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+ M .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+ M .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+ M .skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
+ M .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+ M .skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+ M .skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+ M .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl
+ M specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/goal.md
+ M specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/goal.md
+ M specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/implementation-summary.md
+ M specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/goal.md
+ M specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/description.json
+ M specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/plan.md
+ M specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/spec.md
+ M specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/tasks.md
+ M specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
+ M specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/description.json
+ M specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
+ M specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md
+ M specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
+ M specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md
+ M specs/system-speckit/054-weak-model-spec-authoring/description.json
+ M specs/system-speckit/054-weak-model-spec-authoring/goal.md
+ M specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json
+ M specs/system-speckit/054-weak-model-spec-authoring/spec.md
+?? .skilled/skills/system-deep-loop/changelog/v1.6.7.0.md
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts
+?? .skilled/skills/system-spec-kit/changelog/v2.9.2.0.md
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-containment.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/post-edit-placeholder-scan.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/required-template-anchors.vitest.ts
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/anchors-v2.2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/baseline.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/baseline.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/hints-v2.2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/runs.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-after-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-after-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-after-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-before-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-before-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-before-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-start.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/suite-start.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-A.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-B.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-C.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T011.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/candidates.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/coverage.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/dropped.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read-annotated.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/unsafe.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011-run1-timeout.err
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011-run1-timeout.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.err
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.stdout
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T004-A.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T004-B.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T004-C.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-1.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-1.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-2.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-2.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-3.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-3.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/run-t011.sh
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/goal.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/a-before.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/a-before.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-0.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-0.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-1.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-1.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-2.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-2.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-cat.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before-0.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before-0.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before-1.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before-1.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before-2.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before-2.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-before.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/census-after-finished.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/census-after-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/census-finished.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/census-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/folders.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/rules-after.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/rules-before-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/rules-before.err
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/rules-before.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/shard-0.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/shard-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/shard-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/specs-counts-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/start-commit.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-cli-after-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-cli-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-cli-before-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-cli-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-after-attempt1-timeout.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-after-attempt2-timeout.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-after-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-before-started.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/timing-054-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/timing-054-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/words-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/words-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/briefs/common.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/briefs/lane-a.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/briefs/lane-b.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/briefs/lane-c.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/conductor/AC-003-054-final.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/conductor/CHK-043-words.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/conductor/CHK-FIX-classes.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/conductor/T052-not-reproduced.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/AC-001-sandbox.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/AC-002-fixture.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/LANE-A-STEP2-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T010-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T011-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T012-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T013-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T014-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T015-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T015-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T016-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T016-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T017-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T018-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T018-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T018-sandbox-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T019-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T019-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T020-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T020-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T021-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T021-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T022-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T022-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T023-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T023-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T024-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T024-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T025-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T025-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T025-descriptions.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T025-proposed.patch
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T026-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T027-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T028-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T028-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T029-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-a/T030-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T040-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T040-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T041-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T041-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T042-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T042-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T043-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T043-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T044-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T044-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T045-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T045-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T046-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T046-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T047-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T047-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T048-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T048-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T049-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T049-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T050-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T050-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T051-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T051-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T052-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T052-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T053-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T053-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T054-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T054-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T055-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T055-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T056-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T056-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T057-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T057-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T058-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T058-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T059-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T059-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T060-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T060-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T061-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T061-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T062-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T062-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T063-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T063-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T064-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T064-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T065-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T065-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T066-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T066-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T067-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T067-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T068-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/T068-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-b/words-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T070-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T070-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T070-containment-sandbox.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T071-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T071-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T072-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T072-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T073-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T073-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T074-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T074-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T075-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T075-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T076-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T076-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T077-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T077-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T078-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T078-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T079-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T079-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T080-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T080-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T081-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T081-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T082-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T082-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T083-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T083-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T084-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T084-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T085-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T085-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T086-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T086-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T087-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T087-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T088-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T088-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T089-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T089-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T090-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T090-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T091-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T091-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T092-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T092-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T093-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T093-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T094-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T094-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T094-packet-log.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T095-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T096-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T096-reducer-at-fanout-root.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T097-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T098-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T098-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T099-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T099-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T100-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/evidence/lane-c/T100-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/p2-ledger.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/p2-verify/p2-ledger-A.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/p2-verify/p2-ledger-B.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/p2-verify/p2-ledger-C.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/p2-verify/p2-ledger-D.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/changes.diff
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna-recheck.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna-recheck.raw.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna-recheck.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna-recheck.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna-verdicts.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna.raw.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-codex-luna.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin-p1-verdict.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin-p2-outcomes.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin.attempt-1.raw.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin.raw.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/cli-devin.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/prompt-codex.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/prompt-inline.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/prompt-recheck.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/prompt.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/task.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/tools/rule-census.mjs
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/tools/strict-census.mjs
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/goal.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/.fanout.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/.topic.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/deep-research-config.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/deep-research-findings-registry.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/fanout-attribution.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/findings-registry.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000001.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000002.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000003.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000004.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000005.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000006.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000007.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000008.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-audit-ledger/frames/0000000000000009.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-config.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-dashboard.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-effect-ledger/frames/0000000000000001.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-effect-ledger/frames/0000000000000002.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000001.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000002.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000003.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000004.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000005.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000006.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-ledger/frames/0000000000000007.frame
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-state.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deep-research-strategy.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deltas/iter-001.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deltas/iter-002.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deltas/iter-003.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deltas/iter-004.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/deltas/iter-005.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/findings-registry.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/01-run-initialized.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/02-iter-001.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/03-iter-002.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/04-iter-003.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/05-iter-004.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/06-iter-005.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/gateway-events/synthesis/synthesis_complete.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/invocation-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/iterations/iteration-001.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/iterations/iteration-002.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/iterations/iteration-003.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/iterations/iteration-004.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/iterations/iteration-005.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/locks-and-fencing-v1/3068150e6d888ae96b4387058ce2a375a706fb9aa66f593dd212a4db0fd55ca6/coordinator-state.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/locks-and-fencing-v1/3068150e6d888ae96b4387058ce2a375a706fb9aa66f593dd212a4db0fd55ca6/grant-journal.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/logs/fanout-lineage.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/logs/fanout-lineage.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/research.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/observability-events.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/orchestration-summary.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/phase-012-proposal.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/research.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/resource-map.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/source-tags-fsmonitor-hang.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/audit.py
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/lib.sh
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/loop.sh
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/prep/prep-times.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/prep/sandbox-map.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/prepare.sh
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/go-r1-author
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/go-r1-upkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.anchors
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.audit
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.pgid
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.procs
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.sbx-after
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.sbx-before
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.side-writes
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/author.validate
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/upkeep.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/upkeep.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/now054/r1/upkeep.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.anchors
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.audit
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.pgid
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.procs
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.sbx-after
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.sbx-before
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.side-writes
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/author.validate
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/upkeep.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/upkeep.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/pre054/r1/upkeep.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/results.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/round.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author-diff-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author-diff-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author-new.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author-nm.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep-diff-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep-diff-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep-new.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep-nm.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223132Z-17518/wt-r1-upkeep.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/go-r1-author
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/go-r1-upkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.anchors
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.audit
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.pgid
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.procs
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.sbx-after
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.sbx-before
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.side-writes
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/author.validate
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/upkeep.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/upkeep.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/now054/r1/upkeep.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.anchors
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.audit
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.pgid
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.procs
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.sbx-after
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.sbx-before
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.side-writes
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/author.validate
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/upkeep.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/upkeep.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/pre054/r1/upkeep.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/results.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/round.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author-diff-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author-diff-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author-new.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author-nm.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep-diff-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep-diff-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep-new.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep-nm.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223222Z-17844/wt-r1-upkeep.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/go-r1-author
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author-packet/001-recommend-level-quiet-flag/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.anchors
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.audit
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.calls
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.hits
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.pgid
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.procs
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.sbx-after
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.sbx-before
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.side-writes
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.updates
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/now054/r1/author.validate
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author-packet/001-recommend-level-quiet-flag/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.anchors
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.audit
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.brief
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.calls
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.err
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.hits
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.kv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.out
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.pgid
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.procs
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.ready
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.sbx-after
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.sbx-before
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.side-writes
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.updates
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/pre054/r1/author.validate
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/results.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/round.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author-diff-after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author-diff-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author-new.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author-nm.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-author.mark
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/results/20261025T223407Z-30309/wt-r1-upkeep-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/step.sh
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/summarize.py
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/upkeep-brief.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/goal.md
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/alignment.md
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/lane-1/after-timing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/lane-1/after.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/lane-1/before-timing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/lane-1/before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/lane-1/source-tags-054-parent.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch/lane-1/validate-t107.time
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-010-deep-review-finding-fixes.md
+?? specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-011-authoring-speed-research.md
+?? specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-012-authoring-speed-fixes-and-alignment.md

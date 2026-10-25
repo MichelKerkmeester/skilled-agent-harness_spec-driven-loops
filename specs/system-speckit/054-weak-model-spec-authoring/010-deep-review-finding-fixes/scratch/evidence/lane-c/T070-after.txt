@@ -1,0 +1,8 @@
+$ rg -n 'git status --porcelain|^4\. Remove|rm -rf specs/zz-pb-card' $S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md | cut -c1-140; wc -w < $S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+57:rm -rf specs/zz-pb-card
+86:GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git status --porcelain --untracked-files=all > "$OUT/status-b
+109:GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git status --porcelain --untracked-files=all > "$OUT/status-
+116:4. Remove the throwaway track, the scratch path and the pointer. Copy any evidence you keep out of the scratch path first, because this 
+121:rm -rf specs/zz-pb-card "$OUT" "$POINTER"
+    1410
+exit=0

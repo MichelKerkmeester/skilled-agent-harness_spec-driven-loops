@@ -1,0 +1,6 @@
+$ rg -n 'spec_kit:' $S/references/workflows/auto-mode-contract.md; echo rg_exit=$?; rg -n 'deep:review`\)|speckit:plan:auto' $S/references/workflows/auto-mode-contract.md | cut -c1-120; wc -w < $S/references/workflows/auto-mode-contract.md
+rg_exit=1
+121:- Replace `<command>` with the canonical command name (e.g. `deep:review`).
+191:- Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate co
+    1778
+exit=0

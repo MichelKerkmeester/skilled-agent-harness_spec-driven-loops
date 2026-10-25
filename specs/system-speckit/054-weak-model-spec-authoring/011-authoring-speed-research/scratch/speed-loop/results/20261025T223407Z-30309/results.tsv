@@ -1,0 +1,5 @@
+round	variant	step	order	rc	timed_out	seconds	sessions	tool_calls	tool_calls_null	validate_calls	tok_in	tok_cache_read	tok_out	refs_054	refs_054_updates	contam_hits	contam_hits_updates	contam_weak	refs_outside	contaminated	strict_passed	leftover_hints	missing_anchors	out_of_scope_writes	sbx_side_writes	leftover_procs	pre_strict	pre_hints	upkeep_applied	t0	t1	wt_new_lines	wt_diff_changed	wt_nm_writes
+1	pre054	author	1	0	0	236	1	88	0	4	188609	7079936	53179	0	0	0	0	0	0	0	1	1	3	0	4	0	NA	NA	NA	1792967653	1792967889	4	0	1
+1	now054	author	2	0	0	144	1	46	0	4	125005	3368832	30436	0	0	0	0	0	0	0	1	0	0	0	4	0	NA	NA	NA	1792967653	1792967797	4	0	1
+1	pre054	upkeep	1	0	0	103	1	59	0	4	68504	2748032	14381	0	0	0	0	6	0	0	1	1	3	0	0	0	1	1	1	1792967898	1792968001	9	0	0
+1	now054	upkeep	2	0	0	40	1	18	0	2	34632	468224	6455	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	1792967898	1792967938	9	0	0

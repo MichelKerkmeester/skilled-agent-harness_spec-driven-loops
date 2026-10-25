@@ -1,0 +1,14 @@
+node <scratch>/census-after.mjs .skilled/skills/system-spec-kit/runtime/dist specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/folders.txt <scratch>   (old = pre-change dist snapshot, new = rebuilt dist with the v2.3-gated clause cut)
+folders in list: 4719
+folders with spec.md: 4719
+folders whose description or causal_summary derive differs (old cut vs rebuilt dist): 0
+  of those, without matching stored source_doc_hashes: 0
+  of those, whose GENERATED_METADATA_DRIFT finding/no-finding verdict moves: 0
+exit=0
+node <scratch>/census-after.mjs .skilled/skills/system-spec-kit/runtime/dist <packet 054 folders, 17> <scratch>
+folders in list: 17
+folders with spec.md: 17
+folders whose description or causal_summary derive differs (old cut vs rebuilt dist): 1
+  of those, without matching stored source_doc_hashes: 1
+  of those, whose GENERATED_METADATA_DRIFT finding/no-finding verdict moves: 0
+exit=0

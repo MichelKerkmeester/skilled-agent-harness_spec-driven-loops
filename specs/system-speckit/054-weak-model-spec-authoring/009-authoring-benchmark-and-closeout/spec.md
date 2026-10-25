@@ -41,6 +41,8 @@ Phase 1 first measured a DeepSeek V4.1 Flash worker on a Level 2 packet, and the
 | **Predecessor** | 008-playbook-run-in-worktree |
 | **Successor** | None |
 | **Handoff Criteria** | `scratch/baseline/baseline.json` holds three final runs, the report folder holds the delta for all five metrics, `validate.sh --recursive --strict` on `../` prints `RESULT: PASSED`, and all seven parent criteria carry a PASS evidence line |
+
+Correction 2026-10-25: `scratch/baseline/baseline.json` in the Handoff Criteria holds the failed first set. The set that decided the handoff is the second fresh set, in `scratch/amend3/fresh2/baseline.json` and `scratch/amend3/fresh2/delta.json`.
 <!-- /ANCHOR:metadata -->
 
 ---

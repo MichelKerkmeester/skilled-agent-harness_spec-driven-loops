@@ -31,6 +31,9 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 | `007-playbook-catalog-readme-alignment` | Complete | Eight scenarios, four catalog leaves and the doc edits |
 | `008-playbook-run-in-worktree` | Complete | All eight scenarios passed on a disposable worktree |
 | `009-authoring-benchmark-and-closeout` | Complete | Benchmark runs, report and close-out records, with criterion 5 passing on the fourth final set |
+| `010-deep-review-finding-fixes` | Complete | The nine P1 findings and the reproducing P2 findings from the deep review fixed for v2.3 docs, including the required-anchor check |
+| `011-authoring-speed-research` | Complete | Twelve speed changes ranked by time saved against quality risk, three of them safe to build now |
+| `012-authoring-speed-fixes-and-alignment` | Complete | The source-tag scanner skips git's file-system monitor, the card gives one answer for long plans and the docs match the shipped behavior |
 
 ### Added
 
@@ -73,4 +76,5 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 ### Follow-Ups
 
 - Strict validation does not enforce required anchors. That is an open follow-up and is not fixed here. Parent criterion 5 passed on the second fresh set after three failed final sets, so the packet reads Complete.
+- Update 2026-10-25: phase 010 adds the required-anchor check for v2.3 docs, and with phases 010 to 012 closed the packet is Complete. The phase 010 to 012 entries are `changelog-054-010-deep-review-finding-fixes.md`, `changelog-054-011-authoring-speed-research.md` and `changelog-054-012-authoring-speed-fixes-and-alignment.md`.
 - Three runs per side cannot support a significance claim.

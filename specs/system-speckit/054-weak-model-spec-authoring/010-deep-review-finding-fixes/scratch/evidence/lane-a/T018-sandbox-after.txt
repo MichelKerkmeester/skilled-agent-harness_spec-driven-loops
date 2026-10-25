@@ -1,0 +1,16 @@
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <scratch>/ac004/control/010-repo-rule-system-integration --strict --no-recursive   (copy of specs/agents/010-repo-rule-system-integration; control; same copies as T018-before)
+ANCHORS_VALID pass Anchors well formed in 5 file(s) []
+passed=true {"errors":0,"warnings":0,"info":3}
+exit=0
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <scratch>/ac004/v22-dropped/010-repo-rule-system-integration --strict --no-recursive   (copy of specs/agents/010-repo-rule-system-integration; v22-dropped; same copies as T018-before)
+ANCHORS_VALID pass Anchors well formed in 5 file(s) []
+GENERATED_METADATA_INTEGRITY error Generated metadata integrity found 1 violation(s) (enforced) ["graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale"]
+GENERATED_METADATA_DRIFT error Generated metadata drift found 1 drifted field(s) (enforced) ["description: stored 'Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup' drifted from fresh 'The rule set grew to eleven files in a
+passed=false {"errors":2,"warnings":0,"info":3}
+exit=2
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <scratch>/ac004/v23-dropped/010-repo-rule-system-integration --strict --no-recursive   (copy of specs/agents/010-repo-rule-system-integration; v23-dropped; same copies as T018-before)
+ANCHORS_VALID error 1 anchor integrity issue(s) found ["spec.md: required anchor 'requirements' is missing. Restore the '## 4. REQUIREMENTS' section from the template"]
+GENERATED_METADATA_INTEGRITY error Generated metadata integrity found 1 violation(s) (enforced) ["graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale"]
+GENERATED_METADATA_DRIFT error Generated metadata drift found 1 drifted field(s) (enforced) ["description: stored 'Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup' drifted from fresh 'The rule set grew to eleven files in a
+passed=false {"errors":3,"warnings":0,"info":3}
+exit=2

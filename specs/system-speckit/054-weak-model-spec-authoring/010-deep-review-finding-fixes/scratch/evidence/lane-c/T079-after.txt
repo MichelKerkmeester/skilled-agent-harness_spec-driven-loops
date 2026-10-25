@@ -1,0 +1,5 @@
+$ rg -n 'spec_kit:' $S/references/workflows/intake-contract.md; echo rg_exit=$?; rg -c '/speckit:' $S/references/workflows/intake-contract.md; wc -w < $S/references/workflows/intake-contract.md
+rg_exit=1
+15
+    2096
+exit=0

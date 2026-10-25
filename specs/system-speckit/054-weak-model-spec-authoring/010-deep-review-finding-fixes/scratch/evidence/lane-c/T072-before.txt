@@ -1,0 +1,3 @@
+$ rg -n 'create.sh.*--with-goal' $S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md; rg -n 'create.sh' $S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+78:2. Run exactly: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 1 --track zz-pb-card --short-name card-authoring --number 1 "Author a Level 1 packet from the card"
+exit=0

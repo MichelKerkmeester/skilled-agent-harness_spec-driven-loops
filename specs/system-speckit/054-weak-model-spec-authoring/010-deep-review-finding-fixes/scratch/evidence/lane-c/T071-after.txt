@@ -1,0 +1,3 @@
+$ rg -n 'rm -rf.*OUT' $S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+121:rm -rf specs/zz-pb-card "$OUT" "$POINTER"
+exit=0

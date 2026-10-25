@@ -1,0 +1,4 @@
+$ rg -n 'baseline.json' $K/009-authoring-benchmark-and-closeout/goal.md | cut -c1-160; rg -n -i 'by count|anchor id' $K/009-authoring-benchmark-and-closeout/goal.md | cut -c1-120
+60:- [x] `jq '.runs | length' scratch/baseline/baseline.json` prints `3` and each run holds the five metrics `strict_passed`, `leftover_hints`, `missing_anchors
+116:| Run protocol on 2026-10-25 | The runs mirror the script that produced the SWE 2 Max baseline. Each dispatch uses the baseline brief-1.txt copied byte for 
+exit=0

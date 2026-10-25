@@ -1,0 +1,39 @@
+$ G=.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh; echo '== tree'; bash $G | tail -1; echo rc=${PIPESTATUS[0]}; echo '== old sentence, PATH without rg'; env PATH=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/norg-bin:/usr/bin:/bin bash $G --skill-root /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/root-old-sentence 2>&1 | rg -v '^PASS (card|intent|guide|leaf)'; echo rc=${PIPESTATUS[0]}; for r in root-empty-checklist root-no-checklist root-no-examples-dir root-two-modes root-card-silent; do echo "== $r"; bash $G --skill-root /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/$r 2>&1 | rg -v '^PASS (card-exists|intent|guide|leaf-aliases)'; echo rc=${PIPESTATUS[0]}; done; echo '== header comment'; rg -n 'first disagreement|one check failed' $G
+== tree
+CARD SYNC OK
+rc=0
+== old sentence, PATH without rg
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh: line 110: rg: command not found
+PASS checklist
+CARD SYNC OK
+rc=0
+== root-empty-checklist
+PASS leaf-manifest
+PASS checklist
+CARD SYNC OK
+rc=0
+== root-no-checklist
+PASS leaf-manifest
+rg: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/root-no-checklist/references/workflows/spec-folder-authoring-checklist.md: IO error for operation on /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/root-no-checklist/references/workflows/spec-folder-authoring-checklist.md: No such file or directory (os error 2)
+PASS checklist
+CARD SYNC OK
+rc=0
+== root-no-examples-dir
+PASS leaf-manifest
+PASS checklist
+CARD SYNC OK
+rc=0
+== root-two-modes
+FAIL leaf-manifest: does not list references/workflows/spec-authoring-card.md
+PASS checklist
+CARD SYNC FAILED
+rc=1
+== root-card-silent
+PASS leaf-manifest
+PASS checklist
+CARD SYNC OK
+rc=0
+== header comment
+9:# reads all four and fails on the first disagreement.
+14:# Exit codes: 0 every check passed, 1 one check failed, 2 bad invocation.
+exit=0

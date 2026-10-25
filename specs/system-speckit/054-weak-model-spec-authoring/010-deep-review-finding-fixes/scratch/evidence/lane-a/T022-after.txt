@@ -1,0 +1,4 @@
+SPECKIT_RULES=PLACEHOLDER_FILLED bash validate.sh <v2.3 fixture: Draft row then Complete row, one token> --strict --no-recursive
+x PLACEHOLDER_FILLED: 1 placeholder(s) found
+RESULT: FAILED
+exit=2

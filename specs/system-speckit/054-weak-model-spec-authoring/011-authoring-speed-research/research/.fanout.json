@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-pi","model":"deepseek-v4.1-flash-1017","reasoningEffort":"max","timeoutSeconds":1200,"label":"pi-deepseek","iterations":5}],"concurrency":1}

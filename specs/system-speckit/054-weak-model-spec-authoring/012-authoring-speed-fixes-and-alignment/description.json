@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment",
+  "description": "The citation scanner behind `SOURCETAGS` spends 6.9 to 9.9 seconds on a git listing that takes 0.9 seconds without the file-system monitor",
+  "keywords": [
+    "citation",
+    "scanner",
+    "behind",
+    "sourcetags",
+    "spends",
+    "seconds",
+    "git",
+    "listing",
+    "takes",
+    "without",
+    "file-system",
+    "monitor"
+  ],
+  "lastUpdated": "2026-10-25T22:10:24.187Z",
+  "specId": "012",
+  "folderSlug": "authoring-speed-fixes-and-alignment",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

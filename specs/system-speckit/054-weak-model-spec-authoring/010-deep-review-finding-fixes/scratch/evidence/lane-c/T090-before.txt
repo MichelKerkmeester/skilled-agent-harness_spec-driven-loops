@@ -1,0 +1,5 @@
+$ rg -c 'Correction 2026-10-25' $K/008-playbook-run-in-worktree/plan.md; rg -n 'branch -D|create.sh --skip-branch' $K/008-playbook-run-in-worktree/plan.md | cut -c1-120
+328:- **Procedure**: keep the worktree until the named paths are read. Write `scratch/worktree/status-before-remove.txt`
+395:3. Delete its branch with `git -C "$RUNROOT" branch -D "$WT_BRANCH"`.
+561:2. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 1 --track zz-pb-card -
+exit=0

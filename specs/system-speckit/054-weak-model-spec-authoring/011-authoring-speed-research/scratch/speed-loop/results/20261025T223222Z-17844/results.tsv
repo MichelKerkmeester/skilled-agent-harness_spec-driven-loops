@@ -1,0 +1,5 @@
+round	variant	step	order	rc	timed_out	seconds	sessions	tool_calls	tool_calls_null	validate_calls	tok_in	tok_cache_read	tok_out	refs_054	refs_054_updates	contam_hits	contam_hits_updates	contam_weak	refs_outside	contaminated	strict_passed	leftover_hints	missing_anchors	out_of_scope_writes	sbx_side_writes	leftover_procs	pre_strict	pre_hints	upkeep_applied	t0	t1	wt_new_lines	wt_diff_changed	wt_nm_writes
+1	now054	author	1	2	0	0	0	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	0	NA	NA	0	0	0	NA	NA	NA	1792967549	1792967549	3	1	0
+1	pre054	author	2	2	0	0	0	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	0	NA	NA	0	0	0	NA	NA	NA	1792967549	1792967549	3	1	0
+1	now054	upkeep	1	SKIP	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	1	0	0
+1	pre054	upkeep	2	SKIP	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	1	0	0

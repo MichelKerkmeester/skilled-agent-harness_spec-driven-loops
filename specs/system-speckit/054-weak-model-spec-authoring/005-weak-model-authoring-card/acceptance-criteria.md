@@ -61,6 +61,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-008 | REQ-008 | Given three Level 1 smoke runs, When T013 has run after the third, Then `baseline.json` holds three runs with five metrics each and one run records a strict pass with zero tokens | `jq '.runs \| length' $PHASE/scratch/card-bench/baseline.json` prints `3`, `jq '.runs[] \| keys \| length'` prints `6` three times, and `jq '[.runs[] \| select(.strict_passed == 1 and .leftover_tokens == 0)] \| length'` prints at least `1` Observed: `baseline.json` holds 3 runs, each with 6 keys, and 3 runs record `strict_passed` 1 with `leftover_tokens` 0. | Met | - |
 | AC-009 | REQ-009 | Given the phase diff, When the frontier review in T014 returns, Then each finding is applied or recorded with a reason | `scratch/review/T014.txt` exists and the applied-or-recorded count is written in `goal.md` section 4 Observed: `scratch/review/T014.txt` holds 8 finding lines (3 P1, 5 P2), all recorded with a reason in `goal.md` section 4. | Met | - |
 
+Correction 2026-10-25: in the AC-008 command, `$PHASE` is the phase folder `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card` under the build worktree, as `tasks.md` defines it.
+
 ### Status values
 
 | Value | Meaning |
@@ -87,4 +89,6 @@ waiver is treated as an unmet criterion rather than as a pass.
 **Closeable:** Yes
 
 All nine criteria are Met with observed evidence. The phase closed on 2026-10-24 with the card, the router rows, the inventory, the guard and three Level 1 smoke runs in place. Two review findings on the frozen card text stay open for a conductor amendment and are recorded in `goal.md` section 4.
+
+Correction 2026-10-25: both findings were applied on 2026-10-24 in commit `12522be61c`. Card step 2 now maps Level 0 to `--level 1`, and the step 3 command carries `--with-goal`.
 <!-- /ANCHOR:closure -->

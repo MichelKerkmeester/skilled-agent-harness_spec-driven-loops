@@ -1,0 +1,6 @@
+$ sed -n 3p $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md; rg -n 'four final sets' $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md | cut -c1-160; wc -w < $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md
+> system-spec-kit · model-eval · authoring-baseline · cli-devin deepseek-v4-1-flash-1017-max (first set: swe-2-max)
+13:**Correction 2026-10-25:** the report holds four final sets, not three. The second fresh set, described below, is the fourth set and the deciding one, run on
+198:Second fresh set. Counted and raw `missing_anchors` are 0, 0 and 0. The deletion of the `fix-completeness` section that failed the first fresh set did not r
+    5816
+exit=0

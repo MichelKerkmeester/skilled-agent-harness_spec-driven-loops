@@ -1,0 +1,4 @@
+$ rg -n 'justified-anchors.sh' $K/009-authoring-benchmark-and-closeout/plan.md; rg -n -i 'justified|anchor rule|excus' $K/009-authoring-benchmark-and-closeout/plan.md $K/009-authoring-benchmark-and-closeout/spec.md $K/009-authoring-benchmark-and-closeout/tasks.md; rg -n '^\| M3' $K/009-authoring-benchmark-and-closeout/plan.md
+75:| M3 | `missing_anchors` | Sum over the four docs of the shortfall against `anchors-v2.3.txt` | the loop in `tasks.md` T006 |
+310:| M3 | Delta published | The report folder, the index row and both changelogs exist | Mid phase |
+exit=0

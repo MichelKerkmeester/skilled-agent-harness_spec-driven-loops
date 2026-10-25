@@ -871,6 +871,8 @@ PATCHED_N=$(grep -c '^PATCHED ' "$PHASE/scratch/fixes/gate.txt" || true)
   git -C "$RUNROOT" branch --list "$WT_BRANCH" | grep -q . || echo BRANCH_GONE
 } 2>&1 | tee "$PHASE/scratch/worktree/removal.txt"
 ```
+
+Correction 2026-10-25: this block forces the removal and runs `branch -D` without checking that the branch holds no commit beyond BASE_REF, which the operator's removal approval in `../goal.md` section 4 required. The missing guard goes before `REMOVAL_OK`: refuse unless `git -C "$RUNROOT" rev-list --count "$BASE_REF..$WT_BRANCH"` prints `0`. The recorded run met the condition anyway, because `scratch/worktree/removal.txt` line 13 shows the deleted branch at `95abd302c8`, which is BASE_REF.
 <!-- /ANCHOR:phase-2 -->
 
 ---

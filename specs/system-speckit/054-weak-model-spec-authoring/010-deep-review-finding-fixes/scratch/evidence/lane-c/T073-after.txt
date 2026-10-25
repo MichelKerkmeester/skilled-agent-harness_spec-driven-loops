@@ -1,0 +1,4 @@
+$ rg -n 'awk' $S/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md | cut -c1-120; wc -w < $S/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md
+28:- Preconditions: A checkout with Node, bash, perl, `rg` and `awk` on PATH, and phase 4 closed so `runtime/cli/spec/ch
+     771
+exit=0

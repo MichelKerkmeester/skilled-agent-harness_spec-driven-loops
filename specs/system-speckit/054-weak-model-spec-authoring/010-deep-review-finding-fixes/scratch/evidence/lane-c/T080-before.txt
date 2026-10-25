@@ -1,0 +1,7 @@
+$ sed -n 3p $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md; rg -n 'three final sets|four final sets' $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md | cut -c1-160; rg -n 'four final sets' $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md | cut -c1-120
+> system-spec-kit · model-eval · authoring-baseline · cli-devin swe-2-max
+11:**Update on 2026-10-25, third amendment: the final set was rerun.** This report now holds three final sets, and they are different experiments. The first set
+194:Across all three final sets the omission moves: swe-2-max run 3 dropped six sections, DeepSeek second-set run 1 dropped three, and DeepSeek fresh run 1 drop
+196:Second fresh set. Counted and raw `missing_anchors` are 0, 0 and 0. The deletion of the `fix-completeness` section that failed the first fresh set did not r
+196:Second fresh set. Counted and raw `missing_anchors` are 0, 0 and 0. The deletion of the `fix-completeness` section t
+exit=0

@@ -67,6 +67,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-014 | REQ-014 | Given the closed summary, When T010 has run, Then the operator handoff block names the push as the operator's step and states that the phase made local commits only and pushed nothing | `grep -c 'Operator handoff' implementation-summary.md` prints `1` and `grep -c 'Nothing was pushed' implementation-summary.md` prints `1` | Met | - |
 | AC-015 | REQ-015 | Given the closed packet, When T010 and T017 have run, Then spec, acceptance rows, continuity, goal and summary claim one state | `rg -c '\| Met \| - \|' acceptance-criteria.md` prints `15`, every completed document reads `Complete`, and `completion_pct` reads `100` | Met | - |
 
+Correction 2026-10-25: AC-002 and AC-004 verify `scratch/baseline/baseline.json` and `scratch/baseline/delta.json`, which hold the first set, the swe-2-max runs that failed. The deciding evidence is the second fresh set: `scratch/amend3/fresh2/baseline.json` holds its three runs and `scratch/amend3/fresh2/delta.json` its five metrics. The same checks pass on those files.
+
 ### Status values
 
 | Value | Meaning |

@@ -1,0 +1,4 @@
+$ rg -n 'graph-metadata' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+57:The command prints the folder it made. Use that path for every later command. When `specs/<track>/graph-metadata.json` exists, `create.sh` also adds the packet to its `children_ids`. That write is the script's, not yours.
+162:The continuity block and the `description.json` and `graph-metadata.json` refresh belong to `references/workflows/spec-folder-authoring-checklist.md`, not to this card.
+exit=0

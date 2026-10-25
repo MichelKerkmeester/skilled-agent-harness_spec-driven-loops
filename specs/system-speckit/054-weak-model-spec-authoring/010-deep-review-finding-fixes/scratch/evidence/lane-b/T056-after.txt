@@ -1,0 +1,8 @@
+$ rg -n '\[PLACEHOLDER\]' .skilled/skills/system-spec-kit/assets/template-mapping.md; echo '--- token form now taught:'; rg -n 'YOUR_VALUE_HERE' .skilled/skills/system-spec-kit/assets/template-mapping.md; echo '--- AC-008 sweep, teaching docs only (fixtures and the completeness-scanner description excluded):'; rg -n '\[PLACEHOLDER\]' .skilled/skills/system-spec-kit --glob '*.md' --glob '!**/test-fixtures/**'
+--- token form now taught:
+233:- `[YOUR_VALUE_HERE: ...]` - A v2.3 token. Replace the whole token, brackets included, before the status leaves Draft
+281:3. **Fill every token** - Replace every `[YOUR_VALUE_HERE: ...]` token with actual content
+344:- Replace every `[YOUR_VALUE_HERE: ...]` token
+--- AC-008 sweep, teaching docs only (fixtures and the completeness-scanner description excluded):
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md:37:Completion measurement and completion gating are separated on purpose. `calculate-completeness.sh` scans the root spec files for placeholder markers such as `[PLACEHOLDER]`, `[TODO: ...]`, and `[NEEDS CLARIFICATION: ...]`, computes per-file and overall completion percentages with `bc`, and can add quality checks for minimum word counts and required sections. `check-completion.sh` then evaluates the verification checklist in `tasks.md`, and the acceptance-criteria table when the document exists, as a release gate: it inherits priority from headings when needed, treats untagged items as blocking, requires evidence markers on completed P0 and P1 tasks, supports `--strict` to make P2 mandatory, and returns one of a fixed set of statuses such as `P0_INCOMPLETE`, `EVIDENCE_MISSING`, `AC_UNMET`, or `COMPLETE`.
+exit=0

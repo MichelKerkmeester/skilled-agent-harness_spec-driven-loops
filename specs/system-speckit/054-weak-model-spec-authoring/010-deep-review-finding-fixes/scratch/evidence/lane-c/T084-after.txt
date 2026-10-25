@@ -1,0 +1,6 @@
+$ rg -n '\.\./spec\.md|phase 003 decision record' $K/spec.md; echo rg_exit=$?; rg -n 'Parent Spec|ADR-003 of the phase 003' $K/spec.md | cut -c1-160
+rg_exit=1
+53:| **Parent Spec** | None. The track folder `specs/system-speckit/` holds no `spec.md` |
+172:- Whether phase 003 also fixes the post-edit scanner `spec/check-placeholders.sh`, which flags regex classes inside fenced code blocks, is decided in ADR-00
+180:- **Parent Spec**: None, because the track folder holds no `spec.md`
+exit=0

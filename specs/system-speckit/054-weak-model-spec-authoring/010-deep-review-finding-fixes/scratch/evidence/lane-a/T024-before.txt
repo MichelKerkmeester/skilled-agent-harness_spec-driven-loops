@@ -1,0 +1,35 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/generated-metadata-drift.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/generated-metadata-drift.vitest.ts (20 tests | 1 failed) 34ms
+     × ends a long first sentence at its last clause boundary within the limit 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/generated-metadata-drift.vitest.ts > shared synopsis extractor (REQ-004, SC-003) > ends a long first sentence at its last clause boundary within the limit
+AssertionError: expected 'The fan-out runner regenerates the pa…' to be 'The fan-out runner regenerates the pa…' // Object.is equality
+
+Expected: "The fan-out runner regenerates the packet description from spec.md after every run, so a long problem statement loses its ending"
+Received: "The fan-out runner regenerates the packet description from spec.md after every run, so a long problem statement loses its ending, and the old cut"
+
+ ❯ tests/generated-metadata-drift.vitest.ts:166:77
+    164|     const sentence = 'The fan-out runner regenerates the packet descri…
+    165|       + 'so a long problem statement loses its ending, and the old cut…
+    166|     expect(derivePacketSynopsis(specWithOverview(sentence), 'descripti…
+       |                                                                             ^
+    167|       'The fan-out runner regenerates the packet description from spec…
+    168|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 19 passed (20)
+   Start at  22:37:10
+   Duration  279ms (transform 126ms, setup 13ms, import 168ms, tests 34ms, environment 0ms)
+
+exit=1

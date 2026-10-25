@@ -1,0 +1,2 @@
+Error: Refusing to run in an untrusted workspace: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/speed-loop/w4fbf614733/tree
+Start `devin` interactively in this directory to trust it, or set `respect_workspace_trust: false` in your config to restore the previous behavior.

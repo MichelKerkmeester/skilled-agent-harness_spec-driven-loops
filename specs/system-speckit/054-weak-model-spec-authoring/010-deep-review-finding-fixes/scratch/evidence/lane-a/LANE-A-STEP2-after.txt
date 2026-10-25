@@ -1,0 +1,14 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/create-track-containment.vitest.ts runtime/cli/tests/placeholder-token-gate.vitest.ts runtime/cli/tests/post-edit-placeholder-scan.vitest.ts runtime/cli/tests/required-template-anchors.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+
+ Test Files  4 passed (4)
+      Tests  63 passed (63)
+   Start at  22:48:42
+   Duration  13.84s (transform 114ms, setup 20ms, import 162ms, tests 13.41s, environment 0ms)
+
+exit=0

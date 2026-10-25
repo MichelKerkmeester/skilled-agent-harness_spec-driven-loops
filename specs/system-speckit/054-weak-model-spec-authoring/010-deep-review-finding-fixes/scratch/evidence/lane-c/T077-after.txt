@@ -1,0 +1,5 @@
+$ rg -n 'spec_kit:' $S/references/workflows/nested-changelog.md; echo rg_exit=$?; rg -n 'speckit:' $S/references/workflows/nested-changelog.md; wc -w < $S/references/workflows/nested-changelog.md
+rg_exit=1
+30:- `/speckit:complete` or `/speckit:implement` finishes work on a root packet or phase child
+     422
+exit=0

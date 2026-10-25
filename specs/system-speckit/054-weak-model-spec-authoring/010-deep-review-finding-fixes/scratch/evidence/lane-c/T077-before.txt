@@ -1,0 +1,3 @@
+$ rg -n 'spec_kit:' $S/references/workflows/nested-changelog.md
+30:- `/spec_kit:complete` or `/spec_kit:implement` finishes work on a root packet or phase child
+exit=0

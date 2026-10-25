@@ -1,0 +1,22 @@
+$ rg -n 'REQUIRED at Level 3|Hard block if' .skilled/skills/system-spec-kit/assets/template-mapping.md; echo '--- every decision-record claim:'; rg -n 'decision-record' .skilled/skills/system-spec-kit/assets/template-mapping.md; echo '--- the level contract:'; jq -c '.levels["3"].lazyAddonDocs, .levels["3+"].lazyAddonDocs' .skilled/skills/system-spec-kit/templates/spec-kit-docs.json
+119:- `decision-record.md` is REQUIRED at Level 3, not optional
+142:**Enforcement:** Hard block if any required file missing
+182:**Enforcement:** Hard block if `decision-record.md` missing
+204:**Enforcement:** Hard block if any required file missing. All Level 3+ templates include `SPECKIT_LEVEL: 3+` frontmatter.
+--- every decision-record claim:
+55:Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
+64:| **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
+70:- **Prohibited at parent (live in children only):** `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
+119:- `decision-record.md` is REQUIRED at Level 3, not optional
+120:- Topic-specific ADR files can be added as supplemental artifacts, but the required canonical file is always `decision-record.md`
+174:├── decision-record.md           (REQUIRED - architecture decisions)
+180:- **decision-record.md**: Context, options considered, decision made, rationale, consequences
+182:**Enforcement:** Hard block if `decision-record.md` missing
+195:├── decision-record.md           (REQUIRED - from Level 3, +decision authority, +review requirements)
+283:5. **Use canonical required filenames** - `decision-record.md` is required; topic-specific ADR files are supplemental artifacts, not replacements
+397:- [decision-record.md](../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
+405:- [decision-record.md](../templates/addons/decision-record.md.tmpl) - Decision records with authority and review requirements
+--- the level contract:
+["handover.md","debug-delegation.md","research/research.md","before-after.md","timeline.md","roadmap.md","decision-record.md","goal.md","resource-map.md"]
+["handover.md","debug-delegation.md","research/research.md","before-after.md","timeline.md","roadmap.md","decision-record.md","goal.md","resource-map.md"]
+exit=0

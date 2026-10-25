@@ -1,0 +1,4 @@
+$ rg -n 'git status --porcelain|rm -rf specs/zz-pb-card' $S/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+57:rm -rf specs/zz-pb-card
+112:rm -rf specs/zz-pb-card
+exit=0

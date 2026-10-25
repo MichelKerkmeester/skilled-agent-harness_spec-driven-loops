@@ -1,0 +1,10 @@
+$ (cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts 2>&1 | rg 'Test Files|Tests '); echo '--- scratch copy: test file copied as .test.ts, templates copied, timeline.md.tmpl first note stripped of its WEAK example'; (cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/fillproof && /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.test.ts 2>&1 | rg 'FAIL|lacks|Test Files|Tests ')
+ Test Files  1 passed (1)
+      Tests  27 passed (27)
+--- scratch copy: test file copied as .test.ts, templates copied, timeline.md.tmpl first note stripped of its WEAK example
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  runtime/cli/tests/template-fill-guidance.test.ts > template section fill guidance > keeps every fill note in the timeline.md.tmpl add-on well formed
++   "lacks a GOOD and then a WEAK example",
+ Test Files  1 failed (1)
+      Tests  1 failed | 26 passed (27)
+exit=0

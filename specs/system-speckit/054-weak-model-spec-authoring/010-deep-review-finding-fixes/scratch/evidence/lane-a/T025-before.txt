@@ -1,0 +1,46 @@
+node <scratch>/synopsis/census.mjs .skilled/skills/system-spec-kit/runtime/dist specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/folders.txt <scratch>/synopsis   (old build in dist; the new cut applied to a scratch copy)
+folders in list: 4719
+folders with spec.md: 4719
+folders whose description or causal_summary derive differs under the clause cut: 1734
+  of those, without matching stored source_doc_hashes (the drift check re-derives): 39
+  of those, whose GENERATED_METADATA_DRIFT finding/no-finding verdict would move: 39
+  moves: specs/cli-external-orchestration/z_archive/008-cli-opencode-creation
+  moves: specs/cli-external-orchestration/z_archive/030-cli-cursor-creation
+  moves: specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/010-hook-code-style-cross-runtime
+  moves: specs/cli-external-orchestration/z_archive/031-cli-pi-creation/012-pi-runtime-compatibility
+  moves: specs/sk-code/z_archive/001-sk-code-review-creation
+  moves: specs/sk-code/z_archive/003-cli-skill-removal-sk-code-merger-deprecated
+  moves: specs/sk-code/z_archive/004-sk-code-merger
+  moves: specs/sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls
+  moves: specs/sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities
+  moves: specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children
+  moves: specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation
+  moves: specs/sk-doc/z_archive/016-create-diff-mode/008-fidelity-safety-a11y-hardening
+  moves: specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification
+  moves: specs/sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk
+  moves: specs/sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/003-sk-code-rename
+  moves: specs/sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation
+  moves: specs/sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure
+  moves: specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code
+  moves: specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality
+  moves: specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review
+  moves: specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow
+  moves: specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook
+  moves: specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit
+  moves: specs/sk-doc/z_archive/037-playbook-family-remediation/001-sk-code-family
+  moves: specs/sk-git/033-git-setup-customization/006-release-conformance-review
+  moves: specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep
+  moves: specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync
+  moves: specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting
+  moves: specs/system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context
+  moves: specs/system-deep-loop/z_archive/032-deep-alignment-mode/007-adapter-sk-code
+  moves: specs/system-skill-advisor/z_archive/004-skill-graph/001-skill-graph-metadata-routing-boosts
+  moves: specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/001-documentation-code-alignment
+  moves: specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs
+  moves: specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation
+  moves: specs/system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment
+  moves: specs/system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/002-skill-speckit-alignment
+  moves: specs/system-speckit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/002-versioned-memory-state
+  moves: specs/system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/002-outsourced-agent-handback
+  moves: specs/system-speckit/z_archive/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit
+exit=0

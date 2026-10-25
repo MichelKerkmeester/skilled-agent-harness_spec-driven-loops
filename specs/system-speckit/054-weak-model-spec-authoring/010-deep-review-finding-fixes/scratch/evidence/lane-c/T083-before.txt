@@ -1,0 +1,7 @@
+$ rg -n 'doctor' $K/spec.md | cut -c1-220
+84:- Check and update the speckit and doctor commands and the doc-authoring agents such as markdown.
+91:- Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
+104:| `.skilled/commands/speckit/`, `.skilled/commands/doctor/` speckit entries, `.skilled/agents/markdown.md` and other doc-authoring agents | Modify | 006 | Commands and agents match the new templates, gate and card |
+134:| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
+157:| 006-speckit-command-and-agent-alignment | 007-playbook-catalog-readme-alignment | Every speckit and doctor command and every doc-authoring agent names the card, the v2.3 token and the guard scripts where it describ
+exit=0

@@ -1,0 +1,8 @@
+SPECKIT_RULES=SCAFFOLD_NEVER_TOUCHED bash validate.sh <v2.3 fixture, spec.md title holds [template:, Status Complete> --strict --no-recursive
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
+RESULT: PASSED
+exit=0
+SPECKIT_RULES=SCAFFOLD_NEVER_TOUCHED bash validate.sh <v2.2 fixture, spec.md title holds [template:, Status Complete> --strict --no-recursive
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
+RESULT: PASSED
+exit=0

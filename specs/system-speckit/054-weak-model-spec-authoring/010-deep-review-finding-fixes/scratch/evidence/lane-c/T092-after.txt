@@ -1,0 +1,3 @@
+$ rg -n 'fresh2' $K/009-authoring-benchmark-and-closeout/spec.md
+45:Correction 2026-10-25: `scratch/baseline/baseline.json` in the Handoff Criteria holds the failed first set. The set that decided the handoff is the second fresh set, in `scratch/amend3/fresh2/baseline.json` and `scratch/amend3/fresh2/delta.json`.
+exit=0

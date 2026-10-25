@@ -1,0 +1,164 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/placeholder-token-gate.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/placeholder-token-gate.vitest.ts (42 tests | 13 failed) 12648ms
+     × fails an in-progress v2.3 line that quotes a token and then leaves one unfilled 173ms
+     × v2.3 Draft: a backticked token then a bare one gives warn in both 303ms
+     × v2.3 Complete: a backticked token then a bare one gives error in both 189ms
+     × v2.3 Draft: a token inside a longer code span gives pass in both 137ms
+     × v2.3 Complete: a token inside a longer code span gives pass in both 145ms
+     × v2.3 Draft: a tilde fence gives pass in both 135ms
+     × v2.3 Complete: a tilde fence gives pass in both 131ms
+     × v2.3 Draft: an indented fence gives pass in both 246ms
+     × v2.3 Complete: an indented fence gives pass in both 255ms
+     × v2.3 Draft: the angle-bracket form gives error in both 246ms
+     × v2.3 Complete: the angle-bracket form gives error in both 235ms
+     × v2.3 Draft: a [template: title gives error in both 145ms
+     × v2.3 Complete: a [template: title gives error in both 138ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED token gate > fails an in-progress v2.3 line that quotes a token and then leaves one unfilled
+AssertionError: expected 'pass' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "pass"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:130:35
+    128|     const mixed = 'Example `[YOUR_VALUE_HERE: example]` then Owner: [Y…
+    129|     const unfilled = runOrchestrator(buildPacket({ stamp: 'v2.3', stat…
+    130|     expect(unfilled.entry.status).toBe('error');
+       |                                   ^
+    131|     expect(unfilled.passed).toBe(false);
+    132|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Draft: a backticked token then a bare one gives warn in both
+AssertionError: expected 'pass' to be 'warn' // Object.is equality
+
+Expected: "warn"
+Received: "pass"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:187:54
+    185|       it(`v2.3 ${status}: ${shape.name} gives ${shape.v23[status]} in …
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+       |                                                      ^
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+    189|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Complete: a backticked token then a bare one gives error in both
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Draft: a [template: title gives error in both
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Complete: a [template: title gives error in both
+AssertionError: expected 'pass' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "pass"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:187:54
+    185|       it(`v2.3 ${status}: ${shape.name} gives ${shape.v23[status]} in …
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+       |                                                      ^
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+    189|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Draft: a token inside a longer code span gives pass in both
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Draft: a tilde fence gives pass in both
+AssertionError: expected 'warn' to be 'pass' // Object.is equality
+
+Expected: "pass"
+Received: "warn"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:187:54
+    185|       it(`v2.3 ${status}: ${shape.name} gives ${shape.v23[status]} in …
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+       |                                                      ^
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+    189|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Complete: a token inside a longer code span gives pass in both
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Complete: a tilde fence gives pass in both
+AssertionError: expected 'error' to be 'pass' // Object.is equality
+
+Expected: "pass"
+Received: "error"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:187:54
+    185|       it(`v2.3 ${status}: ${shape.name} gives ${shape.v23[status]} in …
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+       |                                                      ^
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+    189|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Draft: an indented fence gives pass in both
+AssertionError: expected 'warn' to be 'pass' // Object.is equality
+
+Expected: "pass"
+Received: "warn"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:188:38
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+       |                                      ^
+    189|       });
+    190|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Complete: an indented fence gives pass in both
+AssertionError: expected 'error' to be 'pass' // Object.is equality
+
+Expected: "pass"
+Received: "error"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:188:38
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+       |                                      ^
+    189|       });
+    190|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Draft: the angle-bracket form gives error in both
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED parity matrix > v2.3 Complete: the angle-bracket form gives error in both
+AssertionError: expected 'pass' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "pass"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:188:38
+    186|         const folder = buildPacket({ stamp: 'v2.3', status, line: shap…
+    187|         expect(runOrchestrator(folder).entry.status).toBe(shape.v23[st…
+    188|         expect(runShellRule(folder)).toBe(shape.v23[status]);
+       |                                      ^
+    189|       });
+    190|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed | 29 passed (42)
+   Start at  22:29:34
+   Duration  12.79s (transform 22ms, setup 20ms, import 14ms, tests 12.65s, environment 0ms)
+
+exit=1

@@ -1,0 +1,34 @@
+$ cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts 2>&1 | rg -v '^\s*$' | rg -n 'FAIL|Snapshot|mismatched|Test Files|Tests |^\S*[-+] ' | head -60
+10:⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+11: FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 2 from manifest templates
+12:Error: Snapshot `manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-tasks.md 1` mismatched
+13:- Expected
+14:+ Received
+19:- <!-- FILL: Fill each checklist section below. -->
+20:+ <!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
+27:     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+32: FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3 from manifest templates
+33:Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-spec.md 1` mismatched
+34:- Expected
+35:+ Received
+40:- <!-- FILL: Leave the four links in place. -->
+41:+ <!-- FILL: Leave the four links in place. GOOD: Plan: See `plan.md`. WEAK: See the other docs. -->
+49:     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+54: FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3+ from manifest templates
+55:Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-spec.md 1` mismatched
+56:- Expected
+57:+ Received
+62:- <!-- FILL: Leave the four links in place. -->
+63:+ <!-- FILL: Leave the four links in place. GOOD: Plan: See `plan.md`. WEAK: See the other docs. -->
+71:     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+76: FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders the phase-parent spec from the manifest template
+77:Error: Snapshot `manifest template golden snapshots > renders the phase-parent spec from the manifest template > phase-parent-spec.md 1` mismatched
+78:- Expected
+79:+ Received
+84:- - Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+85:+ - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+92:    108|     expect(normalized).toMatchSnapshot('phase-parent-spec.md');
+97:  Snapshots  4 failed
+107: Test Files  1 failed (1)
+108:      Tests  4 failed | 8 passed (12)
+exit=0

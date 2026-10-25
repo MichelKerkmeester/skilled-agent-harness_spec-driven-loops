@@ -1,0 +1,4 @@
+> ?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/b-after-cat.tsv
+> ?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/census-after-finished.txt
+> ?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/suite-runtime-after-attempt2-timeout.txt
+> ?? specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/baseline/timing-054-after.txt

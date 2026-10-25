@@ -1,0 +1,31 @@
+{
+  "researchTopic": "Where AI models spend time writing and maintaining spec-kit docs, and which concrete changes would make spec authoring and upkeep faster than before packet 054 while keeping the quality, adherence and clarity 054 added. Cover: template and fill-note length per level, the authoring card, task Verify clauses, required sections and level selection, validation gates and their fix loops, derived metadata refresh after every doc edit (description.json, graph-metadata.json fingerprints), continuity saves, checklists and acceptance criteria. Rank each change by time saved against quality risk, name the file each change touches, and flag planning ceremony that small work does not need.",
+  "specFolder": "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-pi",
+          "model": "deepseek-v4.1-flash-1017",
+          "reasoningEffort": "max",
+          "timeoutSeconds": 1200,
+          "label": "pi-deepseek",
+          "iterations": 5
+        }
+      ],
+      "concurrency": 1
+    }
+  },
+  "status": "initialized"
+}

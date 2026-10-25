@@ -1,0 +1,5 @@
+rg -n 'parity' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md; wc -w .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+36:The orchestrator reads every authored document that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. One parity test drives both across nine marker shapes, and for a v2.3 doc they give the same verdict on each. For an older doc each keeps its earlier verdict, so the two still differ there on a tilde or indented fence, the `<YOUR_VALUE_HERE:` form and a `[template:` title.
+rg-exit=0
+     609 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+exit=0

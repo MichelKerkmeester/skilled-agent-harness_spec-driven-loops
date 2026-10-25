@@ -398,6 +398,8 @@ Phase 007 close ──► Setup (T001-T003) ──► Scenario map (T004)
 6. Run `git -C "$RUNROOT" status --porcelain` and compare it with `scratch/status-start.txt`.
 7. Record the rollback in `goal.md` section 4.
 
+Correction 2026-10-25: steps 2 and 3, and the same pair in section 7, delete the branch with no tip guard. Run `git -C "$RUNROOT" rev-list --count "$BASE_REF..$WT_BRANCH"` first and stop unless it prints `0`, the condition the operator's removal approval set. The recorded run deleted a branch whose tip was BASE_REF `95abd302c8`.
+
 ### Data Reversal
 - **Has data migrations?** No
 - **Reversal procedure**: N/A, nothing is written to a database or a remote
@@ -565,6 +567,8 @@ Steps:
 
 RETURN exactly one line: the folder path, then the last RESULT line validate.sh printed.
 ```
+
+Correction 2026-10-25: step 2 lacks `--with-goal`. The card's scaffold command carries that flag from commit `12522be61c` on, which BASE_REF includes, so this brief overrode the card. Scenario 483 now carries the flag.
 
 ### Status Reporting Format
 

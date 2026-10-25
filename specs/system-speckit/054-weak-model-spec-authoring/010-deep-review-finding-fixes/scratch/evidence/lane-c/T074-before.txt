@@ -1,0 +1,7 @@
+$ rg -n 'awk' $S/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md; rg -n 'Preconditions' $S/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md; rg -n -w 'awk|rg' $S/runtime/cli/spec/check-card-sync.sh | head -5
+28:- Preconditions: A checkout with bash, rsync and `jq` on PATH, and phase 5 closed so `runtime/cli/spec/check-card-sync.sh` and the card exist. The scenario needs no network.
+66:    if awk -v intent="$INTENT" '
+79:GUIDE_IN_MAP=$(awk '
+85:GUIDE_ON_DEMAND=$(awk '
+110:if rg -q 'Read templates from `\.skilled/skills/system-spec-kit/templates/`' "$CHECKLIST"; then
+exit=0

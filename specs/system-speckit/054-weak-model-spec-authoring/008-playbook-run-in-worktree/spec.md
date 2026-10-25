@@ -78,7 +78,7 @@ This is **Phase 8** of the Make system-spec-kit templates and authoring docs fol
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 007 adds scenarios that claim the placeholder gate warns in Draft, fails at Complete, the drift guard catches a leaked description, the golden render holds, the router loads the card, the sync guard fails on drift and a DeepSeek worker can author a Level 1 packet from the card. A scenario file is a claim until someone runs its commands on a tree that contains phases 002 to 007. Without that run, phase 009 would measure templates while the playbook that describes them is untested.
+Phase 007 adds playbook scenarios that claim new gate, guard and card behavior. They claim the placeholder gate warns in Draft, fails at Complete, the drift guard catches a leaked description, the golden render holds, the router loads the card, the sync guard fails on drift and a DeepSeek worker can author a Level 1 packet from the card. A scenario file is a claim until someone runs its commands on a tree that contains phases 002 to 007. Without that run, phase 009 would measure templates while the playbook that describes them is untested.
 
 ### Purpose
 Every scenario this packet adds has a real execution record and a verdict that another person can check from the captured output.

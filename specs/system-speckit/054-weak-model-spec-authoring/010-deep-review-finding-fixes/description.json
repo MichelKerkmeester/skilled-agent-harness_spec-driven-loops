@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
+  "description": "Phase 10: deep-review-finding-fixes",
+  "keywords": [
+    "phase",
+    "deep-review-finding-fixes"
+  ],
+  "lastUpdated": "2026-10-25T20:51:53.995Z",
+  "specId": "010",
+  "folderSlug": "deep-review-finding-fixes",
+  "parentChain": [
+    "system-speckit",
+    "054-weak-model-spec-authoring"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-10-26_21-51__goal-i-can-set-for-this-send-as-copyable-block.md"
+  ]
+}

@@ -1,0 +1,9 @@
+$ rg -n 'spec-authoring-card' .skilled/commands/speckit/assets/speckit-plan.yaml | cut -c1-400; echo '--- every speckit file naming the card:'; rg -l spec-authoring-card .skilled/commands/speckit/
+313:    rule: "When a workflow step writes spec docs, embed the matching inline scaffold below in the authoring prompt and preserve the required ANCHOR/H2 order from the canonical template. Follow .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md and fill every [YOUR_VALUE_HERE: ...] token before the status leaves Draft."
+--- every speckit file naming the card:
+.skilled/commands/speckit/assets/speckit-plan.yaml
+.skilled/commands/speckit/assets/speckit-complete.yaml
+.skilled/commands/speckit/implement.md
+.skilled/commands/speckit/plan.md
+.skilled/commands/speckit/assets/speckit-implement.yaml
+exit=0

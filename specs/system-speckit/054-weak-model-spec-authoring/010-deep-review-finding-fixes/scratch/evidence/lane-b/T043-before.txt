@@ -1,0 +1,2 @@
+$ rg -n 'graph-metadata' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+exit=1

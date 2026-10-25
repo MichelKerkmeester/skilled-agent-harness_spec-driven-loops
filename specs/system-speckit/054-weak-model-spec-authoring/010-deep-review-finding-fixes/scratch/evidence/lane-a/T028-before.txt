@@ -1,0 +1,5 @@
+rg -n 'parity|same verdict|first Status row' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md; wc -w .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+30:When the gate is open, the rule reads the first Status row of the packet's `spec.md`. The exact word Draft, ignoring case, bold marks, backticks, quotes and trailing punctuation, makes an unfilled token a warning. Every other value, and a missing Status row, makes it an error. An open question marker is an error in both cases.
+36:The orchestrator reads every authored document that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. Both implementations answer with the same verdict, and one test file compares them.
+     533 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+exit=0

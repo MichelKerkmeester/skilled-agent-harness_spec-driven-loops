@@ -1,0 +1,5 @@
+$ F=.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl; rg -c '<!-- FILL:' $F; rg -c '<!-- FILL:.*GOOD:.*WEAK:' $F; rg -n '<!-- FILL:' $F | rg -v 'GOOD:.*WEAK:'
+22
+21
+115:<!-- FILL: Fill each checklist section below. -->
+exit=0

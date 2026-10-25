@@ -1,0 +1,9 @@
+$ rg -n 'spec_kit:' $S/references/workflows/worked-examples.md; echo rg_exit=$?; rg -n 'User: /speckit:' $S/references/workflows/worked-examples.md; wc -w < $S/references/workflows/worked-examples.md
+rg_exit=1
+59:User: /speckit:complete
+113:User: /speckit:plan
+125:User: /speckit:implement specs/009-notification-system/
+167:User: /speckit:plan
+253:User: /speckit:resume specs/009-notification-system/
+    1346
+exit=0

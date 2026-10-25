@@ -1,0 +1,8 @@
+$ F=.skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts; echo 'GOOD/WEAK/addons references in the test:'; rg -n 'GOOD|WEAK|addons' $F; echo 'add-on fill notes the test never reads:'; rg -c '<!-- FILL:' .skilled/skills/system-spec-kit/templates/addons/ | awk -F: '{s+=$2} END {print s}'
+GOOD/WEAK/addons references in the test:
+add-on fill notes the test never reads:
+61
+exit=0
+$ node -e "const n='<!-- FILL: Name the owner. GOOD: Ana owns it. -->'; const i=n.slice(11,-4); console.log('unchanged per-note rules on a note without WEAK:', !i.includes('[YOUR_VALUE_HERE:') && !i.includes('[NEEDS') && !i.includes('-->') && i.trim().endsWith('.') ? 'accepted' : 'rejected')"
+unchanged per-note rules on a note without WEAK: accepted
+exit=0

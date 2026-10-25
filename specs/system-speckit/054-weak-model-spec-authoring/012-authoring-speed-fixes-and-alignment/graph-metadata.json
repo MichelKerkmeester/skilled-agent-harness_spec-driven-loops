@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "authoring speed fixes and alignment",
+      "phase 12 authoring speed fixes and alignment",
+      "authoring speed fixes and alignment plan",
+      "authoring speed fixes and alignment tasks",
+      "authoring speed fixes and alignment goal",
+      "authoring speed fixes and alignment implementation summary"
+    ],
+    "key_topics": [
+      "authoring",
+      "speed",
+      "alignment",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "citation",
+      "scanner",
+      "behind"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/alignment.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+      ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+      "scratch/lane-1/source-tags-054-parent.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment.md",
+        "kind": "doc",
+        "path": "scratch/alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags-helper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "level-specifications.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-tags-054-parent.txt",
+        "kind": "file",
+        "path": "scratch/lane-1/source-tags-054-parent.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern File",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The citation scanner behind `SOURCETAGS` spends 6.9 to 9.9 seconds on a git listing that takes 0.9 seconds without the file-system monitor, and once hung for 28 minutes",
+    "created_at": "2026-10-25T21:55:27Z",
+    "last_save_at": "2026-10-25T22:58:46.844Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94eae59ffe1f0adeae46ba5adcbdebca4751eeb25c7e3f6e71be7112b96743d8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a6df66013c65a305ddb4ade3f06888f701dbf49d1860a52b21c4e13e17aa5790",
+      "plan.md": "4e52108faef6cb1d6a6032359153ca724145839f089314145bf3d77dd780621f",
+      "tasks.md": "e85c171c3a255f437b1eee1a194d8479d11d8c06cd67b54c8657e4b7fde47d3b",
+      "implementation-summary.md": "3312ae376e28dcd68584b68266d69e75f0eda93afd67b69935abc1542cae93e4"
+    },
+    "last_active_at": null
+  }
+}

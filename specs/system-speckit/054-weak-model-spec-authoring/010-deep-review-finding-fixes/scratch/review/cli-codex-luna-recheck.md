@@ -1,0 +1,5 @@
+RECHECK:
+- 1: REFUTED - REQ-005 tracks recursive strict-validation results, ADR-003 describes this as a separate post-edit scan, and `validate.sh` dispatches validation to the orchestrator, so fewer scan warnings cannot create a strict-validation failure (specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/spec.md:146; specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/plan.md:324-326; .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:375-376; .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:39).
+- 2: FIXED - Section 8’s Verify pattern ends at `[YOUR_VALUE_HERE:`, so it matches tokens whether or not a space follows the colon (.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:133).
+- 3: FIXED - The count pattern `NEEDS[ _]CLARIFICATION:` covers both underscore and space marker forms (.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md:108).
+NEW: none

@@ -1,0 +1,6 @@
+FINDINGS:
+- [P0] .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh:120 - The legacy scan now uses the canonical-marker-only helper, changing this existing v2.2 packet from FAIL (23 matches) to PASS (0). Evidence: .skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh:88, specs/sk-git/033-git-setup-customization/006-release-conformance-review/spec.md:10,30, and the prior broad matcher at specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch/review/changes.diff:1751.
+- [P1] .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:133 - The token-count command requires a space after the colon, so `[YOUR_VALUE_HERE:owner]` counts as zero although the v2.3 validator recognizes it and errors after Draft. Evidence: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:126 and .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:792,820.
+- [P2] .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md:108 - The marker count omits `[NEEDS_CLARIFICATION: ...]`, so it can report zero while strict validation rejects the packet. Evidence: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:792,820,827.
+
+SUMMARY: P0=1 P1=1 P2=1

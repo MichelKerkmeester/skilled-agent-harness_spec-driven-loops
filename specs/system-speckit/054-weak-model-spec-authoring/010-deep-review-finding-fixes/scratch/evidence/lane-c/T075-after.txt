@@ -1,0 +1,5 @@
+$ rg -n 'spec_kit:' $S/references/structure/sub-folder-versioning.md; echo rg_exit=$?; rg -n 'speckit:complete' $S/references/structure/sub-folder-versioning.md; wc -w < $S/references/structure/sub-folder-versioning.md
+rg_exit=1
+151:1. User runs `/speckit:complete` or similar
+    1167
+exit=0

@@ -1,0 +1,9 @@
+$ rg -n 'spec-authoring-card' .skilled/commands/speckit/implement.md | cut -c1-400; echo '--- every speckit file naming the card:'; rg -l spec-authoring-card .skilled/commands/speckit/
+91:The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies acceptance-criteria rows and the tasks checklist, writes completion artifacts, refreshes context, and closes the implementation pass. When it writes spec docs, it follows `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` and fills every `[YOUR_VALUE_HERE: ...]` token before t
+--- every speckit file naming the card:
+.skilled/commands/speckit/assets/speckit-plan.yaml
+.skilled/commands/speckit/assets/speckit-implement.yaml
+.skilled/commands/speckit/implement.md
+.skilled/commands/speckit/plan.md
+.skilled/commands/speckit/assets/speckit-complete.yaml
+exit=0

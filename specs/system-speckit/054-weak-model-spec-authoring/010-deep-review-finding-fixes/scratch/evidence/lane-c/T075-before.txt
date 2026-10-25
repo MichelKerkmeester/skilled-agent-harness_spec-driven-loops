@@ -1,0 +1,3 @@
+$ rg -n 'spec_kit:' $S/references/structure/sub-folder-versioning.md
+151:1. User runs `/spec_kit:complete` or similar
+exit=0

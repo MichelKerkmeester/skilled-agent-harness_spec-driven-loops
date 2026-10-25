@@ -1,0 +1,5 @@
+$ cd $S && npx vitest run --config runtime/vitest.config.ts ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts 2>&1 | grep -E '✓|×|FAIL|Test Files|Tests '; exit ${PIPESTATUS[0]}
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-root-resource-map.vitest.ts (4 tests) 14ms
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+exit=0

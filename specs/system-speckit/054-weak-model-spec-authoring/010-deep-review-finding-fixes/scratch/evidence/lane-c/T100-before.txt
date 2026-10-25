@@ -1,0 +1,3 @@
+$ rg -n 'Branch.*worktrees/217-weak-model-spec-authoring' $K/spec.md; rg -n '\*\*Branch\*\*' $K/spec.md
+52:| **Branch** | `main` |
+exit=0

@@ -1,0 +1,26 @@
+$ G=.skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh; bash -n $G && echo 'bash -n ok'; echo '== tree'; bash $G; echo rc=$?; echo '== missing anchor, PATH without rg'; env PATH=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/norg-bin:/usr/bin:/bin bash $G /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-drift; echo rc=$?; for c in ex-drift ex-reorder ex-missing-level ex-empty-level; do echo "== $c"; bash $G /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/$c; echo rc=$?; done
+bash -n ok
+== tree
+EXAMPLE_DRIFT_OK
+rc=0
+== missing anchor, PATH without rg
+check-example-drift.sh: rg (ripgrep) is required and was not found on PATH
+rc=2
+== ex-drift
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-drift/level-1/plan.md: missing_anchor summary
+rc=1
+== ex-reorder
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder/level-1/plan.md: out_of_order_anchor quality-gates
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder/level-1/plan.md: out_of_order_anchor architecture
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder/level-1/plan.md: out_of_order_anchor phases
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder/level-1/plan.md: out_of_order_anchor testing
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder/level-1/plan.md: out_of_order_anchor dependencies
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-reorder/level-1/plan.md: out_of_order_anchor rollback
+rc=1
+== ex-missing-level
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-missing-level/level-2: no example docs for Level 2
+rc=1
+== ex-empty-level
+FAIL /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/ex-empty-level/level-3+: no example docs for Level 3+
+rc=1
+exit=0

@@ -1,0 +1,4 @@
+SOURCE_TAGS on the 054 parent, --strict --no-recursive, no GIT_CONFIG override, 2026-10-25:
+run1 real 2.00 RESULT: PASSED 98 citations resolve
+run2 real 1.63
+run3 real 1.60

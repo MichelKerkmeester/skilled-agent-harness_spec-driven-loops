@@ -1,0 +1,102 @@
+(cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/create-track-containment.vitest.ts --config vitest.config.ts)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/create-track-containment.vitest.ts (10 tests | 6 failed) 5670ms
+     × refuses .. before any folder is made 659ms
+     × refuses ../x before any folder is made 541ms
+     × refuses ../../escaped before any folder is made 539ms
+     × refuses a/../../x before any folder is made 536ms
+     × refuses an absolute path before any folder is made 547ms
+     × refuses . before any folder is made 533ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/create-track-containment.vitest.ts > create.sh refuses a --track that leaves specs/ > refuses .. before any folder is made
+AssertionError: {"BRANCH_NAME":"001-probe","SPEC_FILE":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-GC9OKS/repo/specs/../001-probe/spec.md","FEATURE_NUM":"001","DOC_LEVEL":"1","COMPLEXITY":{"detected":false},"EXPANDED":false,"HAS_DESCRIPTION":false,"CREATED_FILES":["spec.md","plan.md","tasks.md","implementation-summary.md"]}
+: expected +0 not to be +0 // Object.is equality
+ ❯ tests/create-track-containment.vitest.ts:92:48
+     90|       const before = listing();
+     91|       const result = create(value());
+     92|       expect(result.status, result.stdout).not.toBe(0);
+       |                                                ^
+     93|       expect(result.stderr).toContain('--track');
+     94|       expect(listing()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  |cli| tests/create-track-containment.vitest.ts > create.sh refuses a --track that leaves specs/ > refuses ../x before any folder is made
+AssertionError: {"BRANCH_NAME":"001-probe","SPEC_FILE":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-R28WXl/repo/specs/../x/001-probe/spec.md","FEATURE_NUM":"001","DOC_LEVEL":"1","COMPLEXITY":{"detected":false},"EXPANDED":false,"HAS_DESCRIPTION":false,"CREATED_FILES":["spec.md","plan.md","tasks.md","implementation-summary.md"]}
+: expected +0 not to be +0 // Object.is equality
+ ❯ tests/create-track-containment.vitest.ts:92:48
+     90|       const before = listing();
+     91|       const result = create(value());
+     92|       expect(result.status, result.stdout).not.toBe(0);
+       |                                                ^
+     93|       expect(result.stderr).toContain('--track');
+     94|       expect(listing()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  |cli| tests/create-track-containment.vitest.ts > create.sh refuses a --track that leaves specs/ > refuses ../../escaped before any folder is made
+AssertionError: {"BRANCH_NAME":"001-probe","SPEC_FILE":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-57HmK6/repo/specs/../../escaped/001-probe/spec.md","FEATURE_NUM":"001","DOC_LEVEL":"1","COMPLEXITY":{"detected":false},"EXPANDED":false,"HAS_DESCRIPTION":false,"CREATED_FILES":["spec.md","plan.md","tasks.md","implementation-summary.md"]}
+: expected +0 not to be +0 // Object.is equality
+ ❯ tests/create-track-containment.vitest.ts:92:48
+     90|       const before = listing();
+     91|       const result = create(value());
+     92|       expect(result.status, result.stdout).not.toBe(0);
+       |                                                ^
+     93|       expect(result.stderr).toContain('--track');
+     94|       expect(listing()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  |cli| tests/create-track-containment.vitest.ts > create.sh refuses a --track that leaves specs/ > refuses a/../../x before any folder is made
+AssertionError: {"BRANCH_NAME":"001-probe","SPEC_FILE":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-puX5tx/repo/specs/a/../../x/001-probe/spec.md","FEATURE_NUM":"001","DOC_LEVEL":"1","COMPLEXITY":{"detected":false},"EXPANDED":false,"HAS_DESCRIPTION":false,"CREATED_FILES":["spec.md","plan.md","tasks.md","implementation-summary.md"]}
+: expected +0 not to be +0 // Object.is equality
+ ❯ tests/create-track-containment.vitest.ts:92:48
+     90|       const before = listing();
+     91|       const result = create(value());
+     92|       expect(result.status, result.stdout).not.toBe(0);
+       |                                                ^
+     93|       expect(result.stderr).toContain('--track');
+     94|       expect(listing()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  |cli| tests/create-track-containment.vitest.ts > create.sh refuses a --track that leaves specs/ > refuses an absolute path before any folder is made
+AssertionError: {"BRANCH_NAME":"001-probe","SPEC_FILE":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-AGTGHS/repo/specs//private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-AGTGHS/absolute-track/001-probe/spec.md","FEATURE_NUM":"001","DOC_LEVEL":"1","COMPLEXITY":{"detected":false},"EXPANDED":false,"HAS_DESCRIPTION":false,"CREATED_FILES":["spec.md","plan.md","tasks.md","implementation-summary.md"]}
+: expected +0 not to be +0 // Object.is equality
+ ❯ tests/create-track-containment.vitest.ts:92:48
+     90|       const before = listing();
+     91|       const result = create(value());
+     92|       expect(result.status, result.stdout).not.toBe(0);
+       |                                                ^
+     93|       expect(result.stderr).toContain('--track');
+     94|       expect(listing()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  |cli| tests/create-track-containment.vitest.ts > create.sh refuses a --track that leaves specs/ > refuses . before any folder is made
+AssertionError: {"BRANCH_NAME":"001-probe","SPEC_FILE":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/create-track-containment-N5tLRE/repo/specs/./001-probe/spec.md","FEATURE_NUM":"001","DOC_LEVEL":"1","COMPLEXITY":{"detected":false},"EXPANDED":false,"HAS_DESCRIPTION":false,"CREATED_FILES":["spec.md","plan.md","tasks.md","implementation-summary.md"]}
+: expected +0 not to be +0 // Object.is equality
+ ❯ tests/create-track-containment.vitest.ts:92:48
+     90|       const before = listing();
+     91|       const result = create(value());
+     92|       expect(result.status, result.stdout).not.toBe(0);
+       |                                                ^
+     93|       expect(result.stderr).toContain('--track');
+     94|       expect(listing()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 4 passed (10)
+   Start at  22:25:32
+   Duration  5.75s (transform 16ms, setup 13ms, import 10ms, tests 5.67s, environment 0ms)
+
+exit=1

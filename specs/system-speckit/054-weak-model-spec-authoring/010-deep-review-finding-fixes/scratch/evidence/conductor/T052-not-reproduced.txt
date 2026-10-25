@@ -1,0 +1,7 @@
+# T052 decision: plan.md L3+ sections render only at Level 3+
+$ rg -n "IF level:3\+" plan.md.tmpl (the ai-execution, workstreams and communication sections sit inside it at :325)
+<!-- IF level:3+ -->
+
+$ rg -c "L3\+ means Level 3" plan.md.tmpl
+0
+words:     2300

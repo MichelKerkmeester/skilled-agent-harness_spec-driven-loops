@@ -1,0 +1,4 @@
+$ rg -n 'Superseded 2026-10-25' $K/spec.md | cut -c1-60; rg -o 'Superseded 2026-10-25: .*' $K/spec.md
+119:4. **Conductor placement.** The conductor is a Claude Co
+Superseded 2026-10-25: D7 and D8 in `goal.md` replace this precondition. Subagents run on Opus 5.5, the operator ruled out the swe-2 models, and the benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`.
+exit=0

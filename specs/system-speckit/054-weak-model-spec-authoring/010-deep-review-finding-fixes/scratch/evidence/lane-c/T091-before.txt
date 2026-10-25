@@ -1,0 +1,5 @@
+$ rg -n 'fresh2' $K/009-authoring-benchmark-and-closeout/acceptance-criteria.md; rg -n 'scratch/baseline/(baseline|delta).json' $K/009-authoring-benchmark-and-closeout/acceptance-criteria.md | cut -c1-40; jq -c '[.runs[].missing_anchors]' $K/009-authoring-benchmark-and-closeout/scratch/baseline/baseline.json
+55:| AC-002 | REQ-002 | Given three fina
+57:| AC-004 | REQ-004 | Given both `base
+[0,0,6]
+exit=0

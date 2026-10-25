@@ -1,0 +1,1 @@
+>  M specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/graph-metadata.json

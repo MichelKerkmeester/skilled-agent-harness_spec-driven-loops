@@ -1,0 +1,3 @@
+$ rg -n 'Correction 2026-10-25' $K/006-speckit-command-and-agent-alignment/implementation-summary.md
+77:Correction 2026-10-25: only `markdown.md` gained the card and the filled example. In `orchestrate.md`, `code.md` and `context.md` this phase only dropped the retired checklist doc, as `git diff d0d9d596c5~1 538b8b19cb -- .skilled/agents/` shows.
+exit=0

@@ -1,0 +1,3 @@
+$ rg -n 'fresh2' $K/009-authoring-benchmark-and-closeout/spec.md; rg -n 'Handoff Criteria' $K/009-authoring-benchmark-and-closeout/spec.md | cut -c1-140
+43:| **Handoff Criteria** | `scratch/baseline/baseline.json` holds three final runs, the report folder holds the delta for all five metrics,
+exit=0

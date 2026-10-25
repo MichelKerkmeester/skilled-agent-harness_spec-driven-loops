@@ -1,0 +1,10 @@
+$ rg -c 'L3\+ means Level 3 and above' .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl; rg -n -A1 '^## L3\+:' .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+330:## L3+: AI EXECUTION FRAMEWORK
+331-<!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
+--
+378:## L3+: WORKSTREAM COORDINATION
+379-<!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
+--
+405:## L3+: COMMUNICATION PLAN
+406-<!-- FILL: Name the update cadence and the escalation path. GOOD: A note in `goal.md` section 4 after each task. WEAK: Communicate regularly. -->
+exit=0

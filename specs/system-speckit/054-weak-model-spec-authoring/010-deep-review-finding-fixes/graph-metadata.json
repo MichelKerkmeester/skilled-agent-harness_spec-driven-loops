@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
+  "spec_folder": "system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes",
+  "parent_id": "system-speckit/054-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review finding fixes",
+      "phase 10 deep review finding fixes",
+      "054 review remediation",
+      "create.sh track traversal fix",
+      "placeholder scanner parity fix",
+      "deep review finding fixes plan",
+      "054 review remediation plan",
+      "required template anchors v2.3",
+      "deep review finding fixes tasks",
+      "054 review remediation tasks",
+      "deep review finding fixes acceptance criteria",
+      "deep review finding fixes goal"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "finding",
+      "phase",
+      "remediation",
+      "track",
+      "traversal",
+      "placeholder",
+      "scanner",
+      "parity",
+      "plan",
+      "required"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/spec/create.sh",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/rules/check-placeholders.sh",
+      "runtime/cli/spec/check-placeholders.sh",
+      "runtime/cli/lib/validator-registry.json",
+      "runtime/cli/lib/status-classifier.sh",
+      "runtime/cli/rules/check-scaffold-never-touched.sh",
+      "runtime/lib/description/packet-synopsis.ts",
+      "runtime/cli/retrieval/lib/corpus.mjs",
+      "references/workflows/spec-authoring-card.md",
+      "runtime/cli/spec/check-card-sync.sh",
+      "runtime/cli/spec/check-example-drift.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "status-classifier.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/status-classifier.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "packet-synopsis.ts",
+        "kind": "code",
+        "path": "runtime/lib/description/packet-synopsis.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
+        "kind": "doc",
+        "path": "references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review of packet 054 ran 40 iterations across four model lineages and confirmed nine required defects",
+    "created_at": "2026-10-25T20:14:56Z",
+    "last_save_at": "2026-10-25T23:02:43.443Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f7a15fb4f0c0d75d8d6d50e179c4e87911cb37ac59b81914bcee41c2882a402b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a21c746948e5f2b5fe6ae3fab8798f0aaf35fe17041029d236e046eee2f0eb22",
+      "plan.md": "a97b910be74012214cda6b5bcd57dbc6eeb2480d2d62f649cac1c997816c0663",
+      "tasks.md": "81a514373e33dbf0a7ccc8042f53cd3540463e48bd0d05d4bdc88ef395e3c222",
+      "implementation-summary.md": "fc58e413e90846ded1f2a139d1bc7907a3a64842559c4ec82f0fa950afcac45d"
+    },
+    "last_active_at": null
+  }
+}

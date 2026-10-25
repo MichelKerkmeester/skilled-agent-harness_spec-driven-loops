@@ -1,0 +1,3 @@
+$ rg -n 'rev-list --count' $K/008-playbook-run-in-worktree/tasks.md; rg -n 'branch -D' $K/008-playbook-run-in-worktree/tasks.md
+869:  git -C "$RUNROOT" branch -D "$WT_BRANCH"
+exit=0

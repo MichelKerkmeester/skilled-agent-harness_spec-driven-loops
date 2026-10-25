@@ -1,0 +1,6 @@
+source status-classifier.sh; classify_status "$(extract_status_table_value <v2.3 fixture: Draft row then Complete row>/spec.md)"
+planned
+exit=0
+source status-classifier.sh; classify_status "$(extract_status_table_value <v2.2 fixture: Draft row then Complete row>/spec.md)"
+planned
+exit=0

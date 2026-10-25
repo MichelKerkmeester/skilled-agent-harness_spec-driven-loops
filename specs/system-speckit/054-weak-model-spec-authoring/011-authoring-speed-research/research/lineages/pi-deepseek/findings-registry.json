@@ -1,0 +1,1120 @@
+{
+  "sessionId": "fanout-pi-deepseek-1792963302333-6jm2od",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 6,
+    "totalQuestions": 6,
+    "timestamp": "2026-10-25T21:29:24.274Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-much-text-does-each-level-s-template-and-fill-guidance-add-to-a-finished-pac",
+      "inboxId": null,
+      "text": "How much text does each level's template and fill guidance add to a finished packet, measured as template bytes and required sections against completed-document bytes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-validation-gates-and-their-fix-loops-consume-the-most-per-edit-iteration-t",
+      "inboxId": null,
+      "text": "Which validation gates and their fix loops consume the most per-edit iteration time, and what does each gate buy in quality?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-the-level-selection-and-required-section-path-cost-on-small-work-and-w",
+      "inboxId": null,
+      "text": "What does the level-selection and required-section path cost on small work, and which sections are ceremony rather than protection?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-do-task-verify-clauses-acceptance-criteria-checklists-and-the-authoring-car",
+      "inboxId": null,
+      "text": "What do task Verify clauses, acceptance criteria checklists and the authoring card cost to author, and where do they prevent rework?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-derived-metadata-refreshes-after-a-doc-edit-description-json-graph-metadat",
+      "inboxId": null,
+      "text": "Which derived-metadata refreshes after a doc edit (description.json, graph-metadata.json fingerprints, continuity saves) are mandatory, and which are pure overhead per edit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-6-which-ranked-changes-save-the-most-time-per-unit-of-quality-risk-and-which-file-",
+      "inboxId": null,
+      "text": "Which ranked changes save the most time per unit of quality risk, and which file does each touch?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-much-text-does-each-level-s-template-and-fill-guidance-add-to-a-finished-pac",
+      "inboxId": null,
+      "text": "How much text does each level's template and fill guidance add to a finished packet, measured as template bytes and required sections against completed-document bytes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-validation-gates-and-their-fix-loops-consume-the-most-per-edit-iteration-t",
+      "inboxId": null,
+      "text": "Which validation gates and their fix loops consume the most per-edit iteration time, and what does each gate buy in quality?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-does-the-level-selection-and-required-section-path-cost-on-small-work-and-w",
+      "inboxId": null,
+      "text": "What does the level-selection and required-section path cost on small work, and which sections are ceremony rather than protection?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-do-task-verify-clauses-acceptance-criteria-checklists-and-the-authoring-car",
+      "inboxId": null,
+      "text": "What do task Verify clauses, acceptance criteria checklists and the authoring card cost to author, and where do they prevent rework?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-which-derived-metadata-refreshes-after-a-doc-edit-description-json-graph-metadat",
+      "inboxId": null,
+      "text": "Which derived-metadata refreshes after a doc edit (description.json, graph-metadata.json fingerprints, continuity saves) are mandatory, and which are pure overhead per edit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-6-which-ranked-changes-save-the-most-time-per-unit-of-quality-risk-and-which-file-",
+      "inboxId": null,
+      "text": "Which ranked changes save the most time per unit of quality risk, and which file does each touch?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "The final ranked change list.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What Verify clauses, acceptance criteria and the authoring card cost to author.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which derived-metadata refreshes are mandatory per edit.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What the level-selection and required-section path costs on small work.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which validation gates and their fix loops consume the most per-edit time.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None outstanding for the ranked list. The residual is evidence class: only the fill-note wall-clock effect is measured directly, and the rest are inferred from volume and round counts.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-level-1-author-faces-about-26-kb-of-guidance-reading-before-writing-14-6-kb-of",
+      "text": "A Level-1 author faces about 26 KB of guidance reading before writing 14.6 KB of output: the authoring card is 174 lines / 7,846 bytes with 11 numbered sections, the section fill guidance doc is 70 lines / 3,831 bytes, and the level selection guide is 220 lines / 7,841 bytes, none of which is level-filtered for small work. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:14] [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md:1] [SOURCE: .skilled/skills/system-spec-kit/references/templates/level-selection-guide.md:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-a-level-1-packet-s-template-volume-roughly-equals-the-finished-packet-composed-t",
+      "text": "A Level-1 packet's template volume roughly equals the finished packet: composed templates total 14,673 bytes (spec 4,449, plan 3,653, tasks 2,875, implementation-summary 3,696) against 14,621 bytes of completed level-1 example docs, so template prose is the author's read cost, not a rounding error. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:1] [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-1/spec.md:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-fill-guidance-is-duplicated-in-level-gated-twins-so-a-raw-grep-c-fill-over-a-tem",
+      "text": "FILL guidance is duplicated in level-gated twins, so a raw `grep -c 'FILL:'` over a template over-counts exactly double and any trimming edit must change both twins: spec.md.tmpl lines 198 and 203 carry byte-identical text, as do lines 244 and 249. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:198] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:203]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-fill-notes-occupy-about-a-third-of-the-template-text-an-author-actually-reads-at",
+      "text": "FILL notes occupy about a third of the template text an author actually reads at every level: 33.2% of composed spec at L1, 35.5% of composed plan at L1, 41.3% of composed tasks at L1, and 12.7% of the Level-2 acceptance-criteria template, which makes fill-guidance trimming the single largest available cut in read volume. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:59] [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:71]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-level-gating-already-prunes-lower-levels-hard-so-the-remaining-cost-sits-inside-",
+      "text": "Level gating already prunes lower levels hard, so the remaining cost sits inside the retained sections rather than in missing per-level pruning: composed spec is 4,449 bytes at L1, 6,751 at L2 and 8,306 at L3 (204 lines total), and gate markers are the `<!-- IF level:N -->` / `<!-- /IF -->` pairs that carry it. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:25]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-authoring-card-asks-a-small-change-to-walk-ten-numbered-sections-before-its-",
+      "text": "The authoring card asks a small change to walk ten numbered sections before its first write (BOUNDS, PICK THE LEVEL, SCAFFOLD, READ BEFORE YOU WRITE, ONE ACTION PER SECTION, THE PLAN SHAPE, TASK LINES, FILL EVERY TOKEN, VALIDATE, CLOSE), which is planning ceremony a single-file fix does not need but which is not separated by level. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:20] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:150]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-published-loc-targets-are-internally-inconsistent-and-are-simultaneously-pre",
+      "text": "The published LOC targets are internally inconsistent and are simultaneously presented as guidance and as value scale: Level 3 is stated at ~1090 LOC while Level 3+ is stated at ~1075 LOC, so the one number an author might self-check against decreases when the level goes up. [SOURCE: .skilled/skills/system-spec-kit/references/templates/level-specifications.md:55] [SOURCE: .skilled/skills/system-spec-kit/references/templates/level-specifications.md:61]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-scaffold-to-fill-gap-is-visible-in-this-very-packet-the-phase-11-spec-md-was",
+      "text": "The scaffold-to-fill gap is visible in this very packet: the phase-11 spec.md was scaffolded with `[YOUR_VALUE_HERE:` placeholders still present in its description and body while the placeholder gate is what forces them to be found later, which is the fix loop this research is meant to shorten. [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/spec.md:3] [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/spec.md:24]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md"
+      ]
+    },
+    {
+      "id": "finding-2-8-all-three-strict-only-rules-are-exactly-the-post-edit-upkeep-rules-continuity-fr",
+      "text": "All three strict-only rules are exactly the post-edit upkeep rules (`CONTINUITY_FRESHNESS`, `GENERATED_METADATA_INTEGRITY`, `GENERATED_METADATA_DRIFT`), so the class of check that only fires when a document is edited after the fact is also the class most easily skipped, which sets up the metadata question for a later iteration. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-6-that-gap-has-a-measured-price-every-measured-run-across-four-final-sets-passed-s",
+      "text": "That gap has a measured price: every measured run across four final sets passed strict validation, yet three of the four sets failed the missing-anchor criterion, and each round re-ran the whole brief three times before the cause was found. [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:26]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-author-facing-rule-set-is-41-rules-22-authored-template-13-operational-runti",
+      "text": "The author-facing rule set is 41 rules: 22 `authored_template`, 13 `operational_runtime`, 6 metadata `structural`; 32 are error severity, 7 warning, 2 info, and only 3 are strict-only, so almost every rule fires on a plain validation run. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-9-the-card-s-validation-loop-encodes-ceremony-for-small-work-a-change-that-needs-a",
+      "text": "The card's validation loop encodes ceremony for small work: a change that needs a fifth plan step is supposed to stop and write an open question, so a small multi-file fix is pushed out of the fast path instead of being allowed to run lean. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:168]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-documented-fix-loop-has-no-cheap-termination-the-authoring-card-says-to-fix-",
+      "text": "The documented fix loop has no cheap termination: the authoring card says to fix one rule, re-run, and stop only after three fixes on the same rule, which bounds a single-rule failure at three validator cycles and leaves no guidance for a run that fails on six rules. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:145]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-gate-also-does-not-check-the-failure-that-actually-recurs-strict-validation-",
+      "text": "The gate also does not check the failure that actually recurs: strict validation does not verify that required anchors are present, while the benchmark scores packets against a fixed anchor contract of 7 in `spec.md`, 14 in `plan.md`, 21 in `tasks.md` and 3 in `acceptance-criteria.md`, so 45 required anchor positions are enforced by review rather than by the validator. [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md:64] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:132]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-gate-passes-documents-that-still-hold-every-unfilled-hint-phase-003-measured",
+      "text": "The gate passes documents that still hold every unfilled hint: phase 003 measured that a fresh Level 2 scaffold holds 97 bracketed hint occurrences and `validate.sh --strict` still prints `RESULT: PASSED`, because the placeholder rule is a warning while status is Draft. [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md:22]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-largest-measured-authoring-speed-win-on-record-came-from-two-fill-note-sente",
+      "text": "The largest measured authoring-speed win on record came from two fill-note sentences, not from removing a step: with an identical brief and identical measures, mean wall clock fell from 252.3 s to 193.7 s (a 58.7 s, 23% cut) after the `L3+` label fix and the `fix-completeness` note rewrite. [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:116] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:16]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-validator-runtime-is-not-where-the-time-goes-the-strict-path-was-measured-at-abo",
+      "text": "Validator runtime is not where the time goes: the strict path was measured at about 108 ms for a fresh Level 3 packet, so the cost is the number of round trips through it, not the check itself. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:821]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/spec.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md"
+      ]
+    },
+    {
+      "id": "finding-3-7-small-is-defined-by-documentation-burden-rather-than-risk-the-quick-reference-de",
+      "text": "\"Small\" is defined by documentation burden rather than risk: the quick reference defines small as exempt work or work that stays Level 1 after every factor, and explicitly says a Level 2 or Level 3 task that fails phase qualification is not automatically small, so nothing between \"exempt\" and \"four documents\" exists. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/quick-reference.md:258]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-4-acceptance-criteria-author-the-same-proof-a-second-time-one-row-per-criterion-wi",
+      "text": "Acceptance criteria author the same proof a second time: one row per criterion with `AC-ID`, `REQ`, Given/When/Then, `Verification`, `Status` and `Waiver` (13 rows in both the Level-2 and Level-3 examples), where the `Verification` cell cites the same test path a task's `Verify:` command would run. [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:39]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-5-level-selection-is-not-where-the-ceremony-lives-the-recommender-is-one-command-w",
+      "text": "Level selection is not where the ceremony lives: the recommender is one command with fixed weights (35 LOC, 20 file count, 25 risk flags, 20 complexity) and fixed thresholds (25, 45, 70), so choosing costs one call and is deterministic, while everything the chosen level then requires is authored by hand. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh:37]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-10-level-volume-scales-the-task-list-but-not-the-fixed-checks-and-the-card-does-not",
+      "text": "Level volume scales the task list but not the fixed checks, and the card does not distinguish them: Level 1 carries 16 tasks and 5 table rows against Level 3's 42 tasks and 19 rows, while the required anchor counts stay fixed per document at 7, 14, 21 and 3. [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md:1] [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md:42]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-no-shipped-example-demonstrates-the-verify-clause-the-template-demands-the-level",
+      "text": "No shipped example demonstrates the Verify clause the template demands: the level-1, level-2 and level-3 example `tasks.md` files hold 16, 27 and 42 tasks and zero `Verify:` occurrences between them, so a model that copies the example writes the one element the template calls mandatory zero times. [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md:54] [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-authoring-card-forbids-the-author-to-save-continuity-its-bounds-section-list",
+      "text": "The authoring card forbids the author to save continuity: its BOUNDS section lists `generate-context.js` and `/speckit:save` as forbidden, and its CLOSE checklist never mentions a continuity save, so the one step that survives across sessions is off-card and left to whoever runs after the author. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:25] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:150]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-card-models-the-ceremony-it-imposes-11-numbered-sections-each-carrying-its-o",
+      "text": "The card models the ceremony it imposes: 11 numbered sections, each carrying its own acceptance condition and its own `Verify:` line, which is 22 more authoring slots to read before the packet's first write. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:162]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-floor-for-any-non-exempt-work-is-four-documents-the-recommender-can-print-le",
+      "text": "The floor for any non-exempt work is four documents: the recommender can print Level 0 below 25 points, `create.sh` accepts only levels 1, 2, 3, 3+, phase-parent, review or research, and the authoring card closes the gap by telling the author to use `--level 1`, so quick work still means `spec.md`, `plan.md`, `tasks.md` and later `implementation-summary.md`. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh:44] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:95] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:38]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-task-format-contract-contradicts-itself-inside-one-template-the-body-require",
+      "text": "The task-format contract contradicts itself inside one template: the body requires `T### [P?] Description (file path). Verify: <command> prints <expected output>`, while the same file's frontmatter description states the format without any `Verify:` clause at all. [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53] [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:15]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-verify-clause-is-the-most-expensive-per-task-element-and-the-only-one-that-c",
+      "text": "The Verify clause is the most expensive per-task element and the only one that cannot be authored from the packet alone: at Level 3 it is 42 command-plus-expected-output pairs, each of which must name a command that actually runs, against a fill note that asks for exactly that and gives one worked example per section. [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:71]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ]
+    },
+    {
+      "id": "finding-4-2-derived-file-and-continuity-rules-are-the-largest-single-rule-family-16-of-the-4",
+      "text": "Derived-file and continuity rules are the largest single rule family: 16 of the 41 validator rules judge a description, a graph, a fingerprint or a continuity block rather than authored content. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-each-packet-carries-two-derived-documents-that-are-recomputed-from-its-prose-gra",
+      "text": "Each packet carries two derived documents that are recomputed from its prose: `graph-metadata.json` holds 17 derived fields including `trigger_phrases`, `key_topics`, `source_fingerprint`, `source_doc_hashes`, `causal_summary` and `save_lineage`, and `description.json` holds derived keywords, level and a `lastUpdated` stamp, so any wording edit invalidates them by design. [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json:1] [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-3-strict-mode-turns-that-upkeep-into-a-hard-failure-generated-metadata-drift-is-st",
+      "text": "Strict mode turns that upkeep into a hard failure: `GENERATED_METADATA_DRIFT` is strict-only at error severity and re-derives the folder before comparing, so a wording edit can fail a strict check on metadata alone even when every sentence in the packet is correct. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-authoring-card-pushes-that-refresh-outside-the-author-s-window-its-forbidden",
+      "text": "The authoring card pushes that refresh outside the author's window: its forbidden list names `generate-context.js` and `/speckit:save`, so the derived refresh and the continuity write happen after the authoring worker stops, at the exact moment nobody is reading the diff the refresh produces. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:25]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-continuity-fingerprint-is-self-invalidating-by-construction-continuity-fresh",
+      "text": "The continuity fingerprint is self-invalidating by construction: `CONTINUITY_FRESHNESS` recomputes a SHA-256 over `implementation-summary.md`'s own text with the fingerprint line zeroed and also requires packet paths clean, so every later edit to that document makes the stored value stale, and the rule is inert unless `SPECKIT_COMPLETION_FRESHNESS=true`. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:150]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-refresh-already-belongs-to-the-save-not-to-each-edit-every-planner-mode-of-g",
+      "text": "The refresh already belongs to the save, not to each edit: every planner mode of `generate-context.js` refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers, and only `--full-auto` writes the continuity fields, so a per-edit metadata refresh duplicates work the save performs anyway. [SOURCE: .skilled/skills/system-spec-kit/references/memory/save-workflow.md:257]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-9-the-shared-track-index-makes-every-new-packet-an-edit-to-a-shared-file-specs-sys",
+      "text": "The shared track index makes every new packet an edit to a shared file: `specs/system-speckit/graph-metadata.json` carries 20 `children_ids` in 2,890 bytes and `create.sh` appends the new packet to it, so parallel packet work converges on one small file again and again. [SOURCE: specs/system-speckit/graph-metadata.json:1] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:49]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-structural-repair-loop-has-no-changed-only-mode-repair-derived-cjs-is-dry-by",
+      "text": "The structural repair loop has no changed-only mode: `repair-derived.cjs` is dry by default and prints an apply command, but the documented flow names one `--folder` per changed packet and then a separate track-root refresh, so repair cost scales with every packet a move touches rather than with the packets whose prose changed. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:16] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:96]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-wall-clock-stamps-guarantee-a-diff-on-every-save-lastupdated-in-description-",
+      "text": "The wall-clock stamps guarantee a diff on every save: `lastUpdated` in `description.json` and `last_save_at` plus `last_accessed_at` and `last_active_at` in the graph's derived block change on each save even when no prose changed, which costs reviewers a noisy diff and parallel workers a merge point for zero content information. [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json:8]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json",
+        "specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json",
+        "specs/system-speckit/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-rank-1-add-a-required-anchor-check-to-the-strict-gate-the-highest-time-saved-per",
+      "text": "Rank 1, add a required-anchor check to the strict gate: the highest time saved per unit of risk, because three of four benchmark rounds failed on anchors that strict validation never checks, so each occurrence costs a full re-run round of three authoring runs plus audit, while the check itself exists as a template contract already. Time saved: one re-run round per occurrence, measured at 3 of 4 rounds. Risk: low, it surfaces a defect that review already finds. File: `.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` plus the rule script it names. [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:26] [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md:64]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-rank-2-make-the-examples-demonstrate-the-verify-clause-the-template-makes-verify",
+      "text": "Rank 2, make the examples demonstrate the Verify clause: the template makes `Verify: <command> prints <expected output>` mandatory while the template frontmatter and all three shipped examples omit it, so the single most expensive per-task element has no worked model. Time saved: 16 to 42 command-plus-output pairs become copyable at exactly the level where they are demanded, measured as a 0-of-3 example gap. Risk: low, the change is additive and the example drift guard enforces it. Files: `.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl` line 15, and `templates/examples/level-1|level-2|level-3/tasks.md`. [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:15] [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md:54]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-rank-3-cut-fill-notes-to-one-imperative-sentence-plus-a-single-good-example-fill",
+      "text": "Rank 3, cut FILL notes to one imperative sentence plus a single good example: FILL text is 33.2% of the composed Level-1 spec, 35.5% of the plan and 41.3% of the tasks template, and the only measured authoring-speed win on record came from rewriting two such notes, at 252.3 s to 193.7 s mean. Time saved: the read volume share is measured, the wall-clock transfer is inferred from the note-rewrite precedent. Risk: medium, because the good-versus-weak contrast is the design that cut leftover hints, so keep one example and drop the contrast deliberately rather than by accident. Files: `.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl`, `plan.md.tmpl`, `tasks.md.tmpl`, `implementation-summary.md.tmpl`. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:59] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md:116]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-rank-4-add-a-single-document-quick-packet-for-sub-25-point-work-the-biggest-raw-",
+      "text": "Rank 4, add a single-document quick packet for sub-25-point work: the biggest raw saving on the list, four documents to one, and the lowest rank among the big items because it is the only proposal that removes a protection surface. Time saved: at Level 1 the four documents are 26 sections across 14.6 KB, so the saving is roughly three quarters of the write volume for the smallest changes; measured volume, inferred time transfer. Risk: high, it is a level downgrade and the small-task definition exists precisely to prevent it. Files: `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` (a new `--level` value), `references/structure/folder-structure.md` level table, `references/templates/level-specifications.md`. [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-1/spec.md:24] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/quick-reference.md:258]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-rank-5-give-the-authoring-card-a-short-path-for-level-1-and-retire-its-step-coun",
+      "text": "Rank 5, give the authoring card a short path for Level 1 and retire its step-count tripwire: the card asks for 11 sections and 22 acceptance-or-verify slots before the first write, and it tells the author to stop and write an open question when a change needs a fifth plan step. Time saved: six sections and one stop-and-ask loop for small work, inferred from section counts. Risk: low to medium, because the same card is the surface that made the weak-model runs pass. Files: `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`, with its sync guard in `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh`. [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:162] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:168]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-rank-6-stop-writing-a-wall-clock-stamp-into-derived-files-on-every-save-lastupda",
+      "text": "Rank 6, stop writing a wall-clock stamp into derived files on every save: `lastUpdated`, `last_save_at`, `last_accessed_at` and `last_active_at` guarantee a diff per save and a shared merge point, while carrying no content information. Time saved: reviewer and merge time only, inferred, not authoring wall clock. Risk: low, but any consumer that reads those stamps must be found first. Files: the description writer `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts` and the graph-metadata writer it feeds. [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/description.json:8] [SOURCE: specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/graph-metadata.json:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-7-rank-7-delete-the-published-loc-targets-they-are-unenforced-contradicted-by-the-",
+      "text": "Rank 7, delete the published LOC targets: they are unenforced, contradicted by the Level-3-plus figure being lower than the Level-3 figure, and they invite a self-check loop that no script performs. Time saved: small but real, one invented conformance task per packet removed. Risk: low, no validator reads them. File: `.skilled/skills/system-spec-kit/references/templates/level-specifications.md` lines 55 to 61. [SOURCE: .skilled/skills/system-spec-kit/references/templates/level-specifications.md:55]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-8-rank-8-resolve-the-inert-continuity-rule-one-way-or-the-other-continuity-freshne",
+      "text": "Rank 8, resolve the inert continuity rule one way or the other: `CONTINUITY_FRESHNESS` is strict-only and does nothing unless `SPECKIT_COMPLETION_FRESHNESS=true`, yet its fingerprint invalidates on every later edit to `implementation-summary.md`, so today it costs documentation and buys no protection. Time saved: small, but it removes a false assurance that a completion claim is checked. Risk: low. Files: `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` around line 150, and the registry entry. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:150]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    },
+    {
+      "id": "finding-5-9-the-ceremony-small-work-does-not-need-is-nameable-and-mostly-level-inherited-the",
+      "text": "The ceremony small work does not need is nameable and mostly level-inherited: the Level-1 example still carries architecture, quality-gates and rollback sections, a 13-row acceptance table for a handful of requirements, four documents with four overlapping verification sections, and a 45-anchor contract, which together are the inherited plan for a sub-100-LOC change. [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-1/plan.md:43] [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:39]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+        ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+        ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
+        "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-db428f941a98",
+      "text": "Counting guidance volume from raw template bytes without applying level gates: the gates remove a third of the spec at L1, so raw counts would overstate Level-1 cost by roughly 46% on spec alone.",
+      "contentHash": "db428f941a98",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1e533b9feddf",
+      "text": "Searching for a per-level authoring-time measurement inside the packet: no wall-clock authoring session exists in the repository, so time must be inferred from volume and fix-loop counts and has to be labelled as inference.",
+      "contentHash": "1e533b9feddf",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c4db2304e7ed",
+      "text": "Using the LOC targets as a time proxy: they are soft guidance, internally inconsistent at L3/L3+, and not enforced by any validator, so a time estimate built on them would be a guess wearing a number.",
+      "contentHash": "c4db2304e7ed",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-018961ee0d97",
+      "text": "Looking for a per-rule remediation table: no mapping from rule id to fix instruction exists in the authoring card, which is why a failure sends the author into the 42,755-byte validation reference.",
+      "contentHash": "018961ee0d97",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-858ae79b7d8c",
+      "text": "Measuring the fix loop by running the validator here: the packet's own validator is out of this lineage's write authority, so the loop is priced from the documented contract and the benchmark's round counts instead.",
+      "contentHash": "858ae79b7d8c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2da484bf7c6b",
+      "text": "Treating `validate.sh --strict` passing as evidence of packet quality: two independent measured gaps (placeholder warnings at Draft, anchors not checked) put the recurring failure mode outside the gate.",
+      "contentHash": "2da484bf7c6b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e215646e473c",
+      "text": "Claiming the recommender's Level 0 is a dead end without reading the card first: the card author documents the bridge to `--level 1`, so Level 0 is a naming gap rather than a broken path.",
+      "contentHash": "e215646e473c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-854854549fff",
+      "text": "Counting guidance volume as a proxy for authoring cost at Level 3: the level-3 example already demonstrates 42 tasks with no Verify lines, so the cost there is a behaviour gap, not a text-volume gap.",
+      "contentHash": "854854549fff",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4d2085d3f5a1",
+      "text": "Looking for a Verify-clause example anywhere in the addon templates: the acceptance-criteria template carries a verification column but no task-level example, so the model has no worked `Verify:` line to copy.",
+      "contentHash": "4d2085d3f5a1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0f537f0a4020",
+      "text": "Reading the refresh as free: it is cheap per run but it is a second write to two files per packet, so it is counted as churn and merge risk, not as compute.",
+      "contentHash": "0f537f0a4020",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4d37930996cb",
+      "text": "Recommending that authors run `repair-derived.cjs` after each document edit: the save already refreshes the same files, and the repair CLI's dry-run contract exists for structural moves, not for prose edits.",
+      "contentHash": "4d37930996cb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8168531416a6",
+      "text": "Searching for a documented \"refresh only packets whose prose changed\" mode in the repair tooling: the CLI takes explicit folders and roots, and no timestamp or hash filter exists, so the loop stays explicit.",
+      "contentHash": "8168531416a6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c48950ec95f7",
+      "text": "Treating the continuity fingerprint as a live cost: it is opt-in and inert today, so pricing it as current overhead would overstate the time saved.",
+      "contentHash": "c48950ec95f7",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b679e560e216",
+      "text": "Looking for a per-change time measurement beyond the one benchmark brief series: no other authoring session in the repository was timed, so every saving outside the fill-note result is inferred from volume, round count or section count.",
+      "contentHash": "b679e560e216",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a94e163ea5d5",
+      "text": "Proposing a rewrite of the validator rule set: 16 of 41 rules police derived files, but each has a writer, and the cost is the round trips, not the rule count.",
+      "contentHash": "a94e163ea5d5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-24a96bfcb989",
+      "text": "Ranking the single-document quick packet first on raw saving: it removes a protection surface, so it loses to changes that save less and risk less.",
+      "contentHash": "24a96bfcb989",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-55c814752fcc",
+      "text": "Recommending that authors run the metadata repair CLI after each edit: the save already refreshes those files.",
+      "contentHash": "55c814752fcc",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 45,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.55,
+    "coverageBySources": {
+      "other": 34
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research/research/lineages/pi-deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

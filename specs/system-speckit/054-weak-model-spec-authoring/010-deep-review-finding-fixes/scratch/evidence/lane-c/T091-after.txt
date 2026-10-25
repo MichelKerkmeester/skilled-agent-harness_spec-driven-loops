@@ -1,0 +1,6 @@
+$ rg -n 'fresh2' $K/009-authoring-benchmark-and-closeout/acceptance-criteria.md | cut -c1-140; cd $K/009-authoring-benchmark-and-closeout && jq '.runs | length' scratch/amend3/fresh2/baseline.json && jq '.metrics | length' scratch/amend3/fresh2/delta.json && grep -c 'cannot support a significance claim' scratch/amend3/fresh2/delta.md
+70:Correction 2026-10-25: AC-002 and AC-004 verify `scratch/baseline/baseline.json` and `scratch/baseline/delta.json`, which hold the first 
+3
+5
+1
+exit=0

@@ -1,0 +1,16 @@
+# Word counts before any phase 010 edit, wc -w, taken 2026-10-25T21:16:25Z
+1246	.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+2442	.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+2300	.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+1856	.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+657	.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+367	.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
+948	.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+1347	.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+1850	.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+2079	.skilled/skills/system-spec-kit/assets/template-mapping.md
+6034	.skilled/commands/speckit/assets/speckit-plan.yaml
+5605	.skilled/commands/speckit/assets/speckit-implement.yaml
+801	.skilled/commands/speckit/plan.md
+596	.skilled/commands/speckit/implement.md
+2406	.skilled/agents/markdown.md

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A fresh Level 2 scaffold holds 97 bracketed hints and validates clean",
     "created_at": "2026-10-23T11:27:22Z",
-    "last_save_at": "2026-10-25T13:09:13.001Z",
+    "last_save_at": "2026-10-25T22:32:32.703Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:243597eb5a5a90aa4ed43fad2c9d9f064ab618d8ba3117ea0e917ee274254353",
+    "source_fingerprint": "sha256:a5e6a327da1dd269fc176ce2338e799d23dbf70cb7f68c5be09786066cd53236",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39c34c08b9d861e4c7b163012205ba20c35c8704705c1bdeba58891c0fefb75a",

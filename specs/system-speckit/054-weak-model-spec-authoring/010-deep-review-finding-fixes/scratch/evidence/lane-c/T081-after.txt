@@ -1,0 +1,5 @@
+$ rg -n 'fresh2/delta.json' $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md | cut -c1-120; rg -n 'Models' $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md; wc -w < $S/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md
+27:| Second fresh set delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/s
+29:| Models | cli-devin `swe-2-max` (first set) and cli-devin `deepseek-v4-1-flash-1017-max` (second set, fresh set and second fresh set) |
+     311
+exit=0

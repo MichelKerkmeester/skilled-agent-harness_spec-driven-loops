@@ -1,0 +1,3 @@
+>  M specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair/graph-metadata.json
+>  M specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate/graph-metadata.json
+>  M specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/graph-metadata.json

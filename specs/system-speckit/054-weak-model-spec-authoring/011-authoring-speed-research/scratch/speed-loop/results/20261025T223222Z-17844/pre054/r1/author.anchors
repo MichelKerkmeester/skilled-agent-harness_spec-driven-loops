@@ -1,0 +1,1 @@
+counted=40 excused=[arch-verify perf-verify deploy-ready compliance-verify sign-off] counted_list=[spec(-7) plan(-14) acceptance-criteria(-3) notation phase-1 phase-2 phase-3 completion cross-refs protocol pre-impl code-quality testing fix-completeness security docs file-org summary docs-verify]

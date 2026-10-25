@@ -1,0 +1,9 @@
+$ F=.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md; rg -c '^- \[[ xB]\] T[0-9].*Verify: ' $F; rg -c '^- \[[ xB]\] T[0-9]' $F; F=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/lane-b/done-pkt/tasks.md; echo completed-scratch:; rg -c '^- \[[ xB]\] T[0-9].*Verify: ' $F; rg -c '^- \[[ xB]\] T[0-9]' $F; rg -n 'rg -c' .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+27
+27
+completed-scratch:
+2
+2
+104:Verify: `rg -c '^### Step ' <packet folder>/plan.md` prints 3 or 4.
+122:Verify: `rg -c '^- \[[ xB]\] T[0-9].*Verify: ' <packet folder>/tasks.md` and `rg -c '^- \[[ xB]\] T[0-9]' <packet folder>/tasks.md` print the same number.
+exit=0

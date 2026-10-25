@@ -1,0 +1,5 @@
+$ rg -n 'spec_kit:' $S/references/workflows/worked-examples.md
+113:User: /spec_kit:plan
+125:User: /spec_kit:implement specs/009-notification-system/
+167:User: /spec_kit:plan
+exit=0

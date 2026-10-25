@@ -1,0 +1,4 @@
+$ F=.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl; rg -c '<!-- FILL:' $F; rg -c '<!-- FILL:.*GOOD:.*WEAK:' $F
+22
+22
+exit=0
