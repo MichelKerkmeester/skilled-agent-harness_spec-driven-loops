@@ -139,6 +139,37 @@ function parseOptionalNumber(args, key) {
   return value;
 }
 
+const REVIEW_FOCUS_MAX_LENGTH = 1000;
+// C0 and C1 controls, DEL, and the Unicode line and paragraph separators. Each would
+// split a one-line setup binding or the native command's argument into a second line.
+const REVIEW_FOCUS_CONTROL_PATTERN = /[\u0000-\u001F\u007F-\u009F\u2028\u2029]/g;
+
+/**
+ * Normalize the operator's optional review focus into one bounded line.
+ *
+ * The focus travels as a single `review_focus:` setup binding in every lineage prompt, so a
+ * control character would end that binding early and let the rest read as new instructions.
+ *
+ * @param {unknown} raw - The `--review-focus` value as parsed from argv.
+ * @returns {string|null} The single-line focus text, or null when no focus was given.
+ */
+function normalizeReviewFocus(raw) {
+  if (raw === undefined || raw === null || raw === false || raw === '') {
+    return null;
+  }
+  if (typeof raw !== 'string') {
+    throw inputError('reviewFocus must be a text value');
+  }
+  const focus = raw.replace(REVIEW_FOCUS_CONTROL_PATTERN, ' ').replace(/\s+/g, ' ').trim();
+  if (focus === '') {
+    return null;
+  }
+  if (focus.length > REVIEW_FOCUS_MAX_LENGTH) {
+    throw inputError(`reviewFocus must be at most ${REVIEW_FOCUS_MAX_LENGTH} characters, got ${focus.length}`);
+  }
+  return focus;
+}
+
 function readRawConfigNumber(rawConfig, names, fieldName) {
   if (!isRecord(rawConfig)) return null;
   for (const name of names) {
@@ -1614,6 +1645,16 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           ``,
         ]
     : [];
+  // A CLI leaf runs every iteration from this one prompt, so the operator's focus has to be
+  // restated where the leaf reads its per-iteration contract, not only in the setup bindings.
+  const reviewFocus = loopType === 'review' && options.reviewFocus ? options.reviewFocus : null;
+  if (reviewFocus && leafContract.length > 0) {
+    leafContract.splice(
+      leafContract.length - 1,
+      0,
+      `- Every iteration covers its dimension AND the operator review focus bound as review_focus, and the narrative says how that iteration addressed the focus.`,
+    );
+  }
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopPolicy = options.stopPolicy || 'convergence';
   const stopClause = hasIterationCap && stopPolicy === 'max-iterations'
@@ -1656,6 +1697,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           `review_target: ${specFolder}`,
           `review_target_type: spec-folder`,
           `review_dimensions: all`,
+          ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
           `spec_folder: ${specFolder}`,
           `execution_mode: AUTONOMOUS`,
           `lineage_mode: auto`,
@@ -1732,6 +1774,10 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
   if (loopType === 'research' && options.researchTopic) {
     args.push(`--research-topic=${JSON.stringify(options.researchTopic)}`);
   }
+  const reviewFocus = loopType === 'review' && options.reviewFocus ? options.reviewFocus : null;
+  if (reviewFocus) {
+    args.push(`--review-focus=${JSON.stringify(reviewFocus)}`);
+  }
 
   return [
     args.join(' '),
@@ -1740,6 +1786,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     `review_target: ${specFolder}`,
     'review_target_type: spec-folder',
     'review_dimensions: all',
+    ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
     `spec_folder: ${specFolder}`,
     ...(sessionId ? [`session_id: ${sessionId}`] : []),
     'execution_mode: AUTONOMOUS',
@@ -3267,6 +3314,11 @@ async function main() {
   const researchTopic = typeof args.researchTopic === 'string' && args.researchTopic.trim()
     ? args.researchTopic.trim()
     : null;
+  // Optional operator review focus, carried into every review lineage beside its dimensions.
+  const reviewFocus = normalizeReviewFocus(args.reviewFocus);
+  if (reviewFocus && loopType !== 'review') {
+    throw inputError('reviewFocus applies only to the review loop type');
+  }
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
@@ -3534,6 +3586,7 @@ async function main() {
         convergenceThreshold,
         convergenceMode,
         stopPolicy,
+        reviewFocus,
       });
 
       // Sandbox resolution stays write-capable by default even for review lineages:
@@ -3581,6 +3634,7 @@ async function main() {
           convergenceMode,
           stopPolicy,
           researchTopic,
+          reviewFocus,
         },
       );
 
@@ -4208,6 +4262,9 @@ module.exports = {
   isPiBinaryAvailable,
   isHermesBinaryAvailable,
   buildLoopPrompt,
+  buildNativeCommandInput,
+  normalizeReviewFocus,
+  REVIEW_FOCUS_MAX_LENGTH,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,
   computeLineageTimeoutMs,

@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.0.4
+version: 1.11.1.0
 ---
 
 # Fan-out loop dispatch
@@ -54,6 +54,15 @@ single-executor regression. Command surface: `--executor` (repeatable), `--execu
 `--concurrency N`. Review fan-out verdict note: strongest-restriction means any lineage
 active P0 → merged FAIL.
 
+An optional `--review-focus "TEXT"` (or a pre-bound `review_focus` answer) carries the
+operator's focus to every lineage. `step_fanout_spawn_cli` passes it to `fanout-run.cjs`,
+which collapses control characters to spaces, bounds it at 1000 characters and adds a
+`review_focus:` line to each lineage's setup bindings. A native lineage also receives it
+as a `--review-focus` flag and a pre-bound answer. Each lineage then stores it as
+`reviewFocus` in its config, and the render step adds it under the dimensions of every
+iteration prompt. Without a focus, the lineage prompts are byte-identical to the earlier
+ones, and the iteration prompt differs only by one empty line under the dimensions.
+
 ---
 
 ## 3. SOURCE FILES
@@ -74,6 +83,7 @@ active P0 → merged FAIL.
 |---|---|
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Pool dispatch + lineage dir isolation |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Review strongest-restriction (5 tests) + attribution |
+| `.skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts` | Review focus in each lineage's setup bindings, native command input and rendered iteration prompt, plus the unchanged no-focus prompt |
 
 ---
 

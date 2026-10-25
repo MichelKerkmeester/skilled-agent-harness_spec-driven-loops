@@ -29,6 +29,7 @@ user_inputs:
   review_target: "[REVIEW_TARGET] - What to review. REQUIRED."
   review_target_type: "[spec-folder|skill|agent|track|files] - Target type for scope derivation. REQUIRED."
   review_dimensions: "[all|correctness,security,traceability,maintainability] - Dimensions to check. Default: all."
+  review_focus: "[optional free text] - Operator review focus that every iteration covers in addition to its dimension. Default: empty, which leaves the prompt unchanged."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
   session_id: "[SESSION_ID] - Optional caller-supplied session id for fan-out lineages. Default: timestamp."
   lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop-protocol.md §Lifecycle Branches."
@@ -204,6 +205,10 @@ workflow:
     instructions: |
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      This step runs before phase_init, so pass the raw review_focus. fanout-run.cjs
+      normalizes it and hands every lineage the same single-line text. Escape any double
+      quote, backslash, dollar sign or backtick in it for the shell, and pass an empty
+      string when no focus was given.
       A cli-opencode lineage inside this fan-out is an explicit parallel-detached OpenCode
       session with a separate lineage directory and session id; it is not the single-executor
       self-invocation path. fanout-run.cjs owns the stack-only recursion guard for that
@@ -223,6 +228,7 @@ workflow:
           node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type review \
+            --review-focus "{review_focus}" \
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
@@ -477,6 +483,14 @@ workflow:
             - ["correctness"] → ["correctness"]
           Every element MUST be one of the four canonical dimension names.
 
+      step_normalize_review_focus:
+        action: "Normalize the optional operator review focus once during init"
+        outputs:
+          - review_focus_normalized: "Single-line focus text, or empty string when no focus was given"
+        normalize: |
+          Collapse every control character (C0, C1, DEL, U+2028, U+2029) and whitespace run to one space, trim, treat an empty result as absent, and fail setup when more than 1000 characters remain.
+          fanout-run.cjs applies the same rule in code, so a fan-out lineage receives the same text.
+
       step_resolve_session_id:
         action: "Resolve init session id from caller when supplied, else preserve timestamp fallback"
         branch_on: "session_id"
@@ -502,6 +516,8 @@ workflow:
           reviewTargetType: "{review_target_type}"
           # Reuse the single normalized init-time value from step_normalize_review_dimensions.
           reviewDimensions: "{review_dimensions_normalized}"
+          # Null when review_focus_normalized is empty. The review report reads it back to show the focus.
+          reviewFocus: "{review_focus_normalized}"
           resource_map_present: "{resource_map_present}"
           reviewScopeFiles: "{review_scope_files}"
           severityThreshold: "P2"
@@ -694,6 +710,7 @@ workflow:
           - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
+          - review_focus_block: "When deep-review-config.json reviewFocus is a non-empty string, return 'Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): <reviewFocus>'. Else return an empty string."
 
       step_check_pause_sentinel:
         action: "Check for pause sentinel file"
@@ -1198,6 +1215,7 @@ workflow:
               p2_count: "{p2_count}"
               pivot_lineage: "{pivot_lineage}"
               saturated_directions: "{saturated_directions}"
+              review_focus_block: "{review_focus_block}"
               state_paths_config: "{state_paths.config}"
               state_paths_state_log: "{state_paths.state_log}"
               state_paths_findings_registry: "{state_paths.findings_registry}"
@@ -2353,6 +2371,7 @@ workflow:
              - hasAdvisories: true when PASS carries active P2 items
              - P0/P1/P2 counts (active only)
              - Review scope summary
+             - Operator review focus: config.reviewFocus verbatim, or omit this line when it is null
 
           2. **Planning Trigger**
              - State whether `/speckit:plan` is required
