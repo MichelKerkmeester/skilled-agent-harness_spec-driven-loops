@@ -1,0 +1,42 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "runId": "fanout-luna-1792927892367-86umpv",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
+  "lineageId": "fanout-luna-1792927892367-86umpv",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.38,
+  "status": "complete",
+  "focus": "OpenCode 2 and Devin runtime limits, including server option coverage",
+  "findingsCount": 1,
+  "keyQuestions": [
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
+  ],
+  "answeredQuestions": [
+    "Which OpenCode 2 and Devin setting limits are intentional, and does the OpenCode 2 server warning cover both accepted flag forms?"
+  ],
+  "noveltyJustification": "OpenCode 2 model omission and Devin live-setting limits are documented and tested, but the accepted --server=value branch is not covered by the test suite although the phase spec explicitly includes it.",
+  "ruledOut": [
+    "OpenCode 2 first launch and every automatic relaunch add --standalone unless the launch uses --server.",
+    "OpenCode 2 drops root-level model replay, and Devin has no live model/effort source; both are documented runtime limits with tests."
+  ],
+  "edgeCase": "The code has separate parser branches for --server and --server=value; the tests cover only the space-separated form.",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    ".skilled/bin/skilled-loop:352-363,573-578,617-635",
+    ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1029-1064",
+    ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2421-2428",
+    "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md:106-114,166-168",
+    ".skilled/hooks/session-relaunch/README.md:42-47"
+  ],
+  "timestamp": "2026-10-25T11:50:24Z"
+}

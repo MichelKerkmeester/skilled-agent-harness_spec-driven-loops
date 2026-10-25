@@ -1,0 +1,34 @@
+{
+  "researchTopic": "Session relaunch loop as shipped on main through phases 024-032 (.skilled/bin/skilled-loop, .skilled/bin/skilled-loop-shell.sh, .skilled/hooks/session-relaunch/ lib, bin, claude, codex, hermes and pi adapters, .opencode/plugins session-relaunch, .hermes/plugins/repo-guards, .skilled/commands/speckit/handoff.md, their tests, README, feature catalog and playbooks). Find remaining defects and missing test coverage in four areas: (1) goal persistence across a hop on all seven runtimes (goal_packet in note and record, SESSION_RELAUNCH_GOAL_PACKET and HERMES_SPEC_FOLDER export and restore, SESSION_RELAUNCH_GOAL=0, receiver rebind); (2) model, provider and effort persistence (launch-flag capture and replay per runtime, live values from Claude log, Codex rollout, Cursor cli-config.json, Pi arm and Hermes post_api_request, precedence, validation and drop warnings, carry to later hops, OpenCode 2 and Devin limits); (3) OpenCode 2 --standalone first launch and relaunch, --server handling; (4) operator UX and edge cases: warnings and messages, manual claim command, nested runs, hop cap, cancel and withdraw, stale or racing records, odd paths and quoting, missing binaries, concurrent sessions. Every finding must cite file:line and say whether a test covers it.",
+  "specFolder": "specs/hooks/023-session-relaunch-loop",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-codex",
+          "model": "gpt-6-luna",
+          "reasoningEffort": "max",
+          "serviceTier": "fast",
+          "sandboxMode": "workspace-write",
+          "timeoutSeconds": 1200,
+          "label": "luna",
+          "iterations": 10
+        }
+      ],
+      "concurrency": 1
+    }
+  },
+  "createdAt": "2026-10-25T11:31:24.368Z",
+  "status": "complete"
+}

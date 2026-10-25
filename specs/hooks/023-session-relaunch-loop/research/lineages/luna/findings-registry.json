@@ -1,5 +1,5 @@
 {
-  "sessionId": "fanout-luna-1792429886029-no7lpl",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
   "parentSessionId": null,
   "lineageMode": "new",
   "generation": 1,
@@ -7,9 +7,9 @@
   "terminalStop": null,
   "keyQuestions": [
     {
-      "id": "question-1-does-the-core-preserve-session-ownership-file-privacy-time-boundary-and-lock-inv",
+      "id": "question-1-how-does-each-of-the-seven-runtime-adapters-capture-persist-export-and-rebind-go",
       "inboxId": null,
-      "text": "Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?",
+      "text": "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -19,9 +19,9 @@
       "resolved": false
     },
     {
-      "id": "question-2-do-runtime-adapters-translate-usage-session-identity-and-relaunch-decisions-cons",
+      "id": "question-2-how-does-each-runtime-capture-and-replay-model-provider-and-effort-and-where-do-",
       "inboxId": null,
-      "text": "Do runtime adapters translate usage, session identity and relaunch decisions consistently?",
+      "text": "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -31,9 +31,9 @@
       "resolved": false
     },
     {
-      "id": "question-3-does-skilled-loop-preserve-handoff-claim-save-resume-and-relaunch-behavior-under",
+      "id": "question-3-does-opencode-2-start-and-relaunch-with-standalone-and-how-are-server-and-unsupp",
       "inboxId": null,
-      "text": "Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?",
+      "text": "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -43,21 +43,9 @@
       "resolved": false
     },
     {
-      "id": "question-4-do-tests-cover-the-public-behavior-and-edge-cases-claimed-by-docs-and-specs",
+      "id": "question-4-which-operator-facing-and-concurrency-edge-cases-remain-untested-or-defective-ac",
       "inboxId": null,
-      "text": "Do tests cover the public behavior and edge cases claimed by docs and specs?",
-      "origin": "legacy-import",
-      "source": "key-questions",
-      "injectedAtIteration": 0,
-      "promotedQuestionId": null,
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null,
-      "resolved": false
-    },
-    {
-      "id": "question-5-which-document-spec-record-or-standards-gaps-need-correction",
-      "inboxId": null,
-      "text": "Which document, spec-record or standards gaps need correction?",
+      "text": "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -69,9 +57,9 @@
   ],
   "openQuestions": [
     {
-      "id": "question-1-does-the-core-preserve-session-ownership-file-privacy-time-boundary-and-lock-inv",
+      "id": "question-1-how-does-each-of-the-seven-runtime-adapters-capture-persist-export-and-rebind-go",
       "inboxId": null,
-      "text": "Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?",
+      "text": "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -80,9 +68,9 @@
       "resolvedAtIteration": null
     },
     {
-      "id": "question-2-do-runtime-adapters-translate-usage-session-identity-and-relaunch-decisions-cons",
+      "id": "question-2-how-does-each-runtime-capture-and-replay-model-provider-and-effort-and-where-do-",
       "inboxId": null,
-      "text": "Do runtime adapters translate usage, session identity and relaunch decisions consistently?",
+      "text": "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -91,9 +79,9 @@
       "resolvedAtIteration": null
     },
     {
-      "id": "question-3-does-skilled-loop-preserve-handoff-claim-save-resume-and-relaunch-behavior-under",
+      "id": "question-3-does-opencode-2-start-and-relaunch-with-standalone-and-how-are-server-and-unsupp",
       "inboxId": null,
-      "text": "Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?",
+      "text": "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -102,20 +90,9 @@
       "resolvedAtIteration": null
     },
     {
-      "id": "question-4-do-tests-cover-the-public-behavior-and-edge-cases-claimed-by-docs-and-specs",
+      "id": "question-4-which-operator-facing-and-concurrency-edge-cases-remain-untested-or-defective-ac",
       "inboxId": null,
-      "text": "Do tests cover the public behavior and edge cases claimed by docs and specs?",
-      "origin": "legacy-import",
-      "source": "key-questions",
-      "injectedAtIteration": 0,
-      "promotedQuestionId": null,
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-5-which-document-spec-record-or-standards-gaps-need-correction",
-      "inboxId": null,
-      "text": "Which document, spec-record or standards gaps need correction?",
+      "text": "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -127,99 +104,130 @@
   "resolvedQuestions": [],
   "carriedForwardOpenQuestions": [
     {
-      "text": "Are the phase 008 acceptance claims consistent with the current code and recorded evidence?",
-      "addedAtIteration": 4,
+      "text": "Are SESSION_RELAUNCH_GOAL_PACKET and HERMES_SPEC_FOLDER cleared or restored correctly across later hops?",
+      "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
     {
-      "text": "Runtime verification of the symlink and chmod-failure cases remains open because this lineage does not run tests.",
-      "addedAtIteration": 5,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "The document quality-control extractor was not run, so no structural checklist result or DQI score is claimed.",
-      "addedAtIteration": 5,
+      "text": "Do all receiver adapters bind the consumed packet, and what happens on runtimes whose printed manual command starts a new process?",
+      "addedAtIteration": 1,
       "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
-    "Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?",
-    "Do runtime adapters translate usage, session identity and relaunch decisions consistently?",
-    "Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?",
-    "Do tests cover the public behavior and edge cases claimed by docs and specs?",
-    "Which document, spec-record or standards gaps need correction?"
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
   ],
   "keyFindings": [
     {
-      "id": "finding-1-1-luna-r1-001-the-handoff-directory-is-not-validated-as-a-private-path-boundary-in",
-      "text": "**LUNA-R1-001 — The handoff directory is not validated as a private path boundary (INFERRED).** Evidence: .skilled/hooks/session-relaunch/lib/nudge.cjs:219-225, 267-273; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190; .skilled/hooks/session-relaunch/tests/nudge.test.cjs:495-506. The nudge follows a pre-existing handoffs symlink, attempts chmod through it, suppresses any error and still returns a note path. The CLI then treats the resolved handoffs directory itself as the trusted root without checking that it remains inside the repository. A symlink can therefore redirect handoff writes and chmod outside the repository; a failed chmod can also leave a writable but non-private directory in use. Fix by canonicalizing the repository root, rejecting symlinks in the managed path, requiring the resolved handoffs directory to remain beneath the repository, verifying current ownership and mode 0700, and returning no path when those checks fail. Add cases for an outside symlink and a chmod failure.",
+      "id": "finding-1-2-known-capability-gap-intentional-and-test-covered-codex-cannot-put-a-goal-packet",
+      "text": "**Known capability gap, intentional and test-covered — Codex cannot put a goal packet in a handoff.** The resolver supports Claude logs and goal records for OpenCode, Pi, Devin, Cursor, and Hermes, while Codex returns an empty packet [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:662-691]. The phase 027 decision explicitly deferred Codex until its goal store can map a thread goal to a packet, and the test pins the empty result [SOURCE: specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/implementation-summary.md:57; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2090-2100]. This is a documented runtime limitation, not a regression or a missing test.",
       "addedAtIteration": 1,
       "sources": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:35-57, 404-428, 492-532",
-        ".skilled/hooks/session-relaunch/lib/nudge.cjs:209-273",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:204-321, 436-449",
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190",
-        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:445-506",
-        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1624-1665",
-        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:54-60",
-        "specs/hooks/023-session-relaunch-loop/goal.md:45-53, 120-132",
-        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:40-47"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:374-399",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:662-713",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:143-157",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2112-2125",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2477-2516",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2090-2100",
+        "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/implementation-summary.md:57",
+        ".skilled/commands/speckit/handoff.md:97"
       ]
     },
     {
-      "id": "finding-1-2-luna-r1-002-the-parent-goal-still-names-the-superseded-worktree-confirmed-eviden",
-      "text": "**LUNA-R1-002 — The parent goal still names the superseded worktree (CONFIRMED).** Evidence: specs/hooks/023-session-relaunch-loop/goal.md:52 says work stays on worktrees/142-session-relaunch-loop; the same file at :131 records the D6 amendment to worktrees/148-session-relaunch-deep-review; phase 008 goal at :46 binds worktree 148. The durable decision and its later log entry conflict, and the child decision confirms the active value. Fix D6 to name worktree 148 or explicitly mark the earlier value superseded in the durable decision.",
+      "id": "finding-1-1-p2-turning-session-relaunch-goal-off-during-prepare-or-keep-can-leave-an-old-goa",
+      "text": "**P2 — Turning SESSION_RELAUNCH_GOAL off during prepare or keep can leave an old goal_packet in the note.** The CLI returns before it calls the note writer when the switch is off, so a previously populated note is not cleared [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:383-399]; the lower-level writer would remove the field if it received an empty packet [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:703-713]. The current switch-off tests start from a fresh note with no goal_packet and prove only that no new field is added [SOURCE: .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2112-2125; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:143-157]. Claim and consume suppress a packet while the switch remains off [SOURCE: .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2477-2512], but there is no test for re-preparing a populated note with a per-invocation switch-off and then claiming it when the switch is on again.",
       "addedAtIteration": 1,
       "sources": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:35-57, 404-428, 492-532",
-        ".skilled/hooks/session-relaunch/lib/nudge.cjs:209-273",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:204-321, 436-449",
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190",
-        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:445-506",
-        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1624-1665",
-        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:54-60",
-        "specs/hooks/023-session-relaunch-loop/goal.md:45-53, 120-132",
-        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:40-47"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:374-399",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:662-713",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:143-157",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2112-2125",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2477-2516",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2090-2100",
+        "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/implementation-summary.md:57",
+        ".skilled/commands/speckit/handoff.md:97"
       ]
     },
     {
-      "id": "finding-2-1-luna-r2-001-the-parent-spec-still-records-the-superseded-worktree-confirmed-evid",
-      "text": "**LUNA-R2-001 — The parent spec still records the superseded worktree (CONFIRMED).** Evidence: the parent spec's Branch field still says `worktrees/142-session-relaunch-loop`, while the parent goal log records the amendment to `worktrees/148-session-relaunch-deep-review` and phase 008's durable decision binds worktree 148. Fix the Branch field in the parent spec to worktree 148 and reconcile any remaining active packet metadata with that amendment. [SOURCE: specs/hooks/023-session-relaunch-loop/spec.md:34] [SOURCE: specs/hooks/023-session-relaunch-loop/goal.md:131] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:46]",
+      "id": "finding-2-1-p2-manual-cursor-and-devin-claims-do-not-bind-the-handoff-goal-packet-the-wrappe",
+      "text": "**P2 — Manual Cursor and Devin claims do not bind the handoff goal packet.** The wrapper removes inherited goal and claim variables when a runtime starts, and exports SESSION_RELAUNCH_GOAL_PACKET only after it consumes an armed record for an automatic hop. The manual command builder receives a handoff path and an optional spec-folder answer, then puts those into the seed; it has no goal_packet input. The handoff guide confirms that Cursor and Devin manual commands start a first launch without exporting the packet, so the new receiver cannot bind the sender's goal. **Test coverage:** automatic packet export/clear behavior is covered; command-only manual tests assert the printed seed and replayed argv, but do not use a note carrying goal_packet or assert receiver binding. This is a documented runtime gap, not a hidden mismatch in the automatic path. [SOURCE: .skilled/bin/skilled-loop:471-474,755-762; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1186-1202; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2414-2434; .skilled/commands/speckit/handoff.md:97]",
       "addedAtIteration": 2,
       "sources": []
     },
     {
-      "id": "finding-2-2-luna-r2-002-the-runtime-adapters-repeat-the-nudge-policy-orchestration-inferred-",
-      "text": "**LUNA-R2-002 — The runtime adapters repeat the nudge policy orchestration (INFERRED refinement).** The inspected adapters independently apply the fill threshold, pending-handoff and hop-cap suppression, nudge-level decision, note planning, persisted-state update and handoff-text construction; Pi and OpenCode then add different deferred-delivery state. This is not evidence of a current policy mismatch, but it makes future policy changes easy to apply unevenly. Extract a shared policy preparation function that accepts normalized usage, session, cwd and runtime inputs and returns a decision plus handoff text; keep host event parsing and delivery timing in each adapter, and add a table-driven parity contract for the common decision. [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:97-128] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:100-130] [SOURCE: .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:80-124] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:306-350] [SOURCE: .opencode/plugins/session-relaunch.js:124-168]",
-      "addedAtIteration": 2,
-      "sources": []
-    },
-    {
-      "id": "finding-3-1-luna-r3-001-a-consume-failure-loses-the-carried-gate-3-answer-confirmed-control-",
-      "text": "**LUNA-R3-001 — A consume failure loses the carried Gate 3 answer (CONFIRMED control-flow edge).** The wrapper obtains `spec_folder` only from `consume_record`; when that command fails, `consumed_record_json` is empty. The ordinary relaunch path still builds a seed without its `Spec folder:` suffix, and the signal/manual fallback also prints without the suffix. `should-relaunch` returns no `spec_folder`, so the wrapper has no fallback source. The existing consume-failure test uses a note without a packet or Skip answer, while the README promises that the answer carries across the hop. Preserve a validated `spec_folder` before consuming, return it from a read path such as `should-relaunch`, and use it when consume fails; add failing-consume cases for both a packet path and `none`. [SOURCE: .skilled/bin/skilled-loop:68-87] [SOURCE: .skilled/bin/skilled-loop:450-465] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:461-470] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1353-1373] [SOURCE: .skilled/hooks/session-relaunch/README.md:112]",
+      "id": "finding-3-1-p2-a-live-model-can-be-replayed-under-the-provider-from-the-first-launch-when-th",
+      "text": "**P2 — A live model can be replayed under the provider from the first launch when the live provider is absent.** The launcher captures the initial provider into SKILLED_LOOP_PROVIDER. Prepare records model and effort, while arm merges only non-empty live settings into the pending record. Pi and Hermes adapters populate model and provider independently, so a host payload can supply the model without the provider. On consume, the wrapper accepts a valid live model, but it updates the provider only when the record also contains a non-empty valid provider; otherwise the initial launch provider remains active. That can pair a newer model with a stale provider, despite the code comment that they move together. **Test coverage:** the Pi and Hermes precedence tests replace both values together. The broad flag replay matrix checks launch arguments, and there is no model-only or invalid-provider case with a valid live model. [SOURCE: .skilled/bin/skilled-loop:515-568,801-812; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:524-535; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:734-760,807-820; .skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417; .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:102-113; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349]",
       "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-3-2-luna-r3-002-consume-deletes-the-relaunch-record-even-when-the-handoff-cannot-be-",
-      "text": "**LUNA-R3-002 — `consume` deletes the relaunch record even when the handoff cannot be read or parsed (CONFIRMED control-flow edge).** The CLI catches note read/parse errors, may leave `specFolder` empty, then unlinks the state file and returns success. `skilled-loop` treats that success as permission to launch a new runtime with a claim seed pointing at the unreadable or invalid note. Reject consumption before unlinking when the handoff is missing or invalid, and make the wrapper retain a recoverable record or print a manual recovery command instead of starting a guaranteed-failing claim. Add missing-file and malformed-note cases. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/bin/skilled-loop:456-467] [SOURCE: .skilled/hooks/session-relaunch/README.md:105-116]",
-      "addedAtIteration": 3,
-      "sources": []
-    },
-    {
-      "id": "finding-4-1-luna-r4-001-the-test-inventory-omits-a-link-to-the-opencode-plugin-suite-confirm",
-      "text": "**LUNA-R4-001 — The test inventory omits a link to the OpenCode plugin suite (CONFIRMED documentation gap).** The session-relaunch test README lists the hook-directory adapter files and its validation command runs only `.skilled/hooks/session-relaunch/tests/*.test.cjs`; the actual OpenCode plugin suite lives at `.opencode/plugins/tests/session-relaunch.test.cjs` and is documented separately in the Pi/OpenCode playbook. Add a distinct OpenCode suite entry and command to the test README, or explicitly label that page as covering only the hook-directory suite and link to the plugin test. This makes the documented regression surface discoverable without changing test ownership. [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:18-38] [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:85-115] [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:1-4] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:83-89]",
+      "id": "finding-4-1-p2-cursor-live-model-attribution-is-ambiguous-under-concurrent-sessions-the-wrap",
+      "text": "**P2 — Cursor live-model attribution is ambiguous under concurrent sessions.** The wrapper reads Cursor's one cli-config.json for every session and accepts the model when that file's modification time is later than this wrapper's launch timestamp. If another Cursor session updates the shared file after both wrappers launch, this session can attribute and replay the other session's model. This is an inference from the shared-file design and timestamp-only ownership check; a two-session interleaving would confirm the observed runtime outcome. **Test coverage:** tests cover a same-session config update and a config older than this wrapper's launch, but no test runs two sessions against the shared config. [SOURCE: .skilled/bin/skilled-loop:655-658; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:580-600; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2368-2419]",
       "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-5-1-luna-r5-001-phase-008-overstates-the-handoff-directory-s-privacy-guarantee-confi",
-      "text": "**LUNA-R5-001 — Phase 008 overstates the handoff directory's privacy guarantee (CONFIRMED code/documentation gap; corroborates LUNA-R1-001).** The summary says the nudge creates an owner-only directory and that a failed create makes the model's write fail visibly; however, `ensureHandoffDir` suppresses mkdir/chmod errors and returns the path anyway. The CLI checks that a note is under the resolved handoffs directory, but never verifies that this resolved directory is beneath the canonical repository root. A pre-existing symlink can therefore redirect the note and chmod outside the repository, and a writable non-private target can still accept the note. The focused test checks only that a fresh directory has mode 0700. Reject symlinked path components and repo escapes, verify ownership and mode before returning a note path, add outside-symlink and chmod-failure cases, and revise the phase summary/README to describe the verified guarantee. [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:219-225] [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:267-273] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190] [SOURCE: .skilled/hooks/session-relaunch/tests/nudge.test.cjs:495-506] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:56] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md:52] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md:91] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md:101-108]",
+      "id": "finding-5-1-p3-opencode-2-does-not-test-the-equals-form-shared-server-flag-the-wrapper-recog",
+      "text": "**P3 — OpenCode 2 does not test the equals-form shared-server flag.** The wrapper recognizes both --server and --server=value and suppresses standalone mode for either; its warning says the loop cannot arm on a shared server. The phase requirements explicitly name both forms. The test suite exercises --server followed by a separate URL, but no test passes --server=http://localhost:4096 and checks the launch, warning, and no relaunch. The current implementation branch appears to handle the equals form; this is a coverage gap, not a confirmed runtime defect. [SOURCE: .skilled/bin/skilled-loop:573-578,625-635; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1056-1064; specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md:106-114,166-168]",
       "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-p3-missing-runtime-executables-have-no-focused-wrapper-test-the-wrapper-invokes-",
+      "text": "**P3 — Missing runtime executables have no focused wrapper test.** The wrapper invokes the selected runtime, saves its exit status, then checks whether a relaunch record exists. With no runtime binary in PATH, the shell normally returns 127 and prints a command-not-found diagnostic; the wrapper appears to preserve that status through its non-relaunch branch. The repository tests malformed records, consume failures, and a missing working directory, but no test removes the runtime command from PATH and asserts status 127 and the user-visible message. This is a test gap, not a confirmed behavior defect. [SOURCE: .skilled/bin/skilled-loop:661-673,834-891; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1820-1882,1969-1998]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-p2-a-cancellation-can-race-with-the-wrapper-and-still-allow-a-relaunch-the-wrapp",
+      "text": "**P2 — A cancellation can race with the wrapper and still allow a relaunch.** The wrapper asks should-relaunch whether the record is armed, then later calls consume in a separate process. Withdrawal disarms the record under the shared record lock. But consume reads the record before taking that lock, does not check its status, and unlinks the current file while holding the lock. If withdrawal lands after the approval but before consume completes, consume can delete the disarmed record and return its handoff, so the wrapper continues with the relaunch it already approved. **Test coverage:** withdrawal and consume-lock behavior have separate tests; the consumer test verifies that unlink holds the lock, but no test interleaves withdrawal after should-relaunch and before consume, or between consume's read and unlink. This is a source-level race inference; a deterministic two-process interleaving test would confirm the observed user outcome. [SOURCE: .skilled/bin/skilled-loop:667-729; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:581-608,689-724; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:965-971,1021-1026; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1642-1670; .skilled/hooks/session-relaunch/tests/withdraw.test.cjs:88-140]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-p3-a-malformed-persisted-hop-count-can-pass-the-wrapper-s-cap-check-shouldrelaun",
+      "text": "**P3 — A malformed persisted hop count can pass the wrapper’s cap check.** `shouldRelaunch` converts `record.hops` to a number and rejects it only when it is non-finite or at/above the cap; a fresh armed record with `hops: -1` or `hops: 9.5` therefore passes a cap of 10. Normal producer input is checked as a non-negative integer before a record is prepared, which bounds this to malformed or manually altered state, but the disk-record check is less strict. **Test coverage:** tests cover hop 9 passing and hop 10 failing, but do not cover negative or fractional persisted counts. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1044-1047; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:496-500; .skilled/bin/skilled-loop:643-647; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:841-860]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-p3-concurrent-claims-to-one-note-lack-a-direct-regression-test-claimhandoff-hold",
+      "text": "**P3 — Concurrent claims to one note lack a direct regression test.** `claimHandoff` holds the note lock across reading the open status and writing claimed metadata, so the implementation is structured to let only one claimant win. The tests cover a successful claim and a sequential attempt against an already-claimed note, but no test starts two claimers together and asserts one success, one rejection, and the winner’s metadata. This is a coverage gap; source inspection does not show a defect. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1065-1085; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:278-304]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-p3-switch-off-tests-do-not-cover-a-note-that-already-has-a-goal-packet-the-cli-r",
+      "text": "**P3 — Switch-off tests do not cover a note that already has a goal packet.** The CLI returns before recomputing the field when `SESSION_RELAUNCH_GOAL` is off, and the README explicitly says `prepare` and `keep` then leave the existing field unchanged; that preservation is specified behavior, not a confirmed defect. The current switch-off CLI test starts with a blank note, while the receiver test consumes a populated note with the switch still off. Neither checks reuse of an already-populated note or a switch re-enabled before a later consume. Since each CLI call resolves current environment/config values, an old packet can become usable again if the switch changes between prepare and consume; this timing case is an inference and needs an interleaving test to confirm. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-129,374-399; .skilled/hooks/session-relaunch/README.md:164-174; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2112-2125,2477-2516]",
+      "addedAtIteration": 10,
       "sources": []
     }
   ],
-  "ruledOutDirections": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-007fdb0d494f",
+      "text": "None.",
+      "contentHash": "007fdb0d494f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-42da1a09cde9",
+      "text": "The automatic consume and claim paths do not expose a packet while SESSION_RELAUNCH_GOAL remains off; existing tests cover this receiver-side suppression.",
+      "contentHash": "42da1a09cde9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0a49c8c9f80a",
+      "text": "The pending loop record stores the handoff path and settings, while consume reads and validates goal_packet from the note into its output. The consumer tests cover that output shape [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:747-760; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:693-738; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2495-2516].",
+      "contentHash": "0a49c8c9f80a",
+      "addedAtIteration": 1
+    }
+  ],
   "rejectedPatterns": [],
   "rejectedPatternIndex": {
     "maxEntries": 100,
@@ -248,26 +256,26 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 1,
-    "openQuestions": 5,
+    "iterationsCompleted": 10,
+    "openQuestions": 4,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 3,
-    "keyFindings": 8,
+    "carriedForwardOpenQuestions": 2,
+    "keyFindings": 11,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 1,
+    "convergenceScore": 0.12,
     "coverageBySources": {
-      "code": 9
+      "code": 63
     },
     "completedPivots": 0,
     "failedPivots": 0,
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review/specs/hooks/023-session-relaunch-loop/research/lineages/luna/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/023-session-relaunch-loop/research/lineages/luna/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
   "advisoryEvents": [],

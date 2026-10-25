@@ -1,0 +1,42 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "runId": "fanout-luna-1792927892367-86umpv",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
+  "lineageId": "fanout-luna-1792927892367-86umpv",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.65,
+  "status": "complete",
+  "focus": "Receiver binding and manual claims for command-only runtimes",
+  "findingsCount": 1,
+  "keyQuestions": [
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
+  ],
+  "answeredQuestions": [
+    "Do all receiver adapters bind the consumed packet, and what happens on runtimes whose printed manual command starts a new process?"
+  ],
+  "noveltyJustification": "The automatic hop export is covered, but tracing the separate printed manual-command path confirms a remaining goal-binding gap for the two command-only runtimes; their manual tests assert argv rather than goal binding.",
+  "ruledOut": [
+    "The automatic consume path exports SESSION_RELAUNCH_GOAL_PACKET for a packet-bearing hop and clears it for a hop without a packet.",
+    "The Hermes receiver binds HERMES_SPEC_FOLDER through shared goal-core logic, and its loop tests cover export and restoration."
+  ],
+  "edgeCase": "Manual Cursor and Devin launches intentionally start outside the automatic consume path; the remaining gap is explicitly documented.",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    ".skilled/bin/skilled-loop:471",
+    ".skilled/bin/skilled-loop:755",
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1186",
+    ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2414",
+    ".skilled/commands/speckit/handoff.md:97"
+  ],
+  "timestamp": "2026-10-25T11:45:54Z"
+}

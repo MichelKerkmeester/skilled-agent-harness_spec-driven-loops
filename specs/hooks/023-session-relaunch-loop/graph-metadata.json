@@ -49,9 +49,7 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding",
-      "session relaunch research",
-      "session relaunch architecture"
+      "goal binding"
     ],
     "key_topics": [
       "session",
@@ -85,7 +83,8 @@
       "008-review-3-remediation/goal.md",
       "009-research-fixes-and-core-consolidation/goal.md",
       "010-post-fix-research/goal.md",
-      "011-post-fix-remediation/goal.md"
+      "011-post-fix-remediation/goal.md",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts"
     ],
     "entities": [
       {
@@ -110,6 +109,12 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review-archive/20261018T184826Z/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
         "source": "derived"
       },
       {
@@ -157,7 +162,7 @@
       {
         "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -185,31 +190,37 @@
         "source": "derived"
       },
       {
-        "name": "Session Relaunch Loop After Phase",
+        "name": "Executive Summary This",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Verified Findings The",
+        "name": "Method The",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "The Claude",
+        "name": "Goal Packet Persistence The",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Architecture Both",
+        "name": "Receiver Binding",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Outside This Packet The",
+        "name": "Environment Restoration The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Effort Persistence Launch",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -217,19 +228,19 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-25T10:23:10.103Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-25T12:14:21.913Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b04ba59fa0d43cc92a1056e693c00925649ef70fad857928c36addcf15dea215",
+    "source_fingerprint": "sha256:96677f05301bbb4ed039845c2d3e1325340271abd78a94e35abdae6192a8878c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1fafcd406ae40c5736ff075a23b045210d76caddb7b3753aeb81732f3bc51e33",
-      "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
+      "spec.md": "21dae692b414269445de2e1b630ad2de7196cc7011598818b1774c37a6a7f9c6",
+      "research/research.md": "8eb18f6a66145c1da425a8aae617813d251336c98db11d519b4acc680188ae9b"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
     "last_active_at": "2026-10-25T09:18:16.700Z"

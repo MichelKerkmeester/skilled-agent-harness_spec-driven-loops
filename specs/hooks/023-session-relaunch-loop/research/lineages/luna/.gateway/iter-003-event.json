@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "runId": "fanout-luna-1792927892367-86umpv",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
+  "lineageId": "fanout-luna-1792927892367-86umpv",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.55,
+  "status": "complete",
+  "focus": "Live model/provider precedence and carry-forward",
+  "findingsCount": 1,
+  "keyQuestions": [
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
+  ],
+  "answeredQuestions": [
+    "How does the wrapper resolve a missing live provider when a sender supplies a valid live model?"
+  ],
+  "noveltyJustification": "The launch flag matrix already has broad replay coverage, but a live model-only record exposes a precedence path where the old provider survives; current tests cover the paired update only.",
+  "ruledOut": [
+    "The launch-flag capture and runtime-specific argv replay matrix is exercised for all seven runtimes.",
+    "Effort is emitted only for Claude, Codex, Pi, and Hermes, and invalid launch/live effort values have fallback or drop coverage."
+  ],
+  "edgeCase": "Pi and Hermes adapters collect model and provider independently, so a missing provider can leave the wrapper's launch provider active.",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    ".skilled/bin/skilled-loop:515-568",
+    ".skilled/bin/skilled-loop:801-812",
+    ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:524-535",
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:734-760,807-820",
+    ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417",
+    ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1331"
+  ],
+  "timestamp": "2026-10-25T11:47:53Z"
+}

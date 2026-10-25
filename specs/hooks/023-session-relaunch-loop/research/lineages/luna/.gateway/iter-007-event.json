@@ -1,0 +1,42 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "runId": "fanout-luna-1792927892367-86umpv",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
+  "lineageId": "fanout-luna-1792927892367-86umpv",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.45,
+  "status": "complete",
+  "focus": "Cancellation and withdrawal racing with wrapper consume",
+  "findingsCount": 1,
+  "keyQuestions": [
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
+  ],
+  "answeredQuestions": [
+    "Can cancellation/withdrawal still disarm a record after should-relaunch approves it but before consume removes it?"
+  ],
+  "noveltyJustification": "The consumer and withdrawal use the same lock for writes, but the wrapper's decision and the consumer's record read are separate, and consume never validates the current record under that lock.",
+  "ruledOut": [
+    "Nested runtime checks remove inherited SKILLED_LOOP_ variables when process ancestry proves the nested relationship.",
+    "Hop-limit, cancellation, and ordinary withdrawal outcomes have direct behavior tests."
+  ],
+  "edgeCase": "A withdrawal can land between the wrapper's pure status check and the later consume call; the current lock protects the unlink operation but not the decision to relaunch.",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    ".skilled/bin/skilled-loop:667-729",
+    ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:581-608,689-724",
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:965-971,1021-1026",
+    ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1642-1670",
+    ".skilled/hooks/session-relaunch/tests/withdraw.test.cjs:88-140"
+  ],
+  "timestamp": "2026-10-25T11:53:26Z"
+}

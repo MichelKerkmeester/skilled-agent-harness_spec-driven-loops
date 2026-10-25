@@ -1,138 +1,178 @@
----
-title: "Research: session relaunch loop after phase 008"
-description: "Five-iteration review of session relaunch code, adapters, handoff transitions, records, tests and documentation."
-trigger_phrases:
-  - "session relaunch loop"
-  - "session handoff privacy"
-  - "skilled-loop consume failure"
-importance_tier: normal
-contextType: research
----
-# Research: session relaunch loop after phase 008
-
-This five-iteration review found five confirmed code or record gaps and one architectural refinement. The strongest issue is that handoff directory creation does not establish the private repository boundary claimed by phase 008. Two separate consume-path failures can also lose the saved Gate 3 answer or discard a recovery record before a handoff is usable. The review was static; no tests or document extractors were run.
+# Research: Session relaunch loop through phases 024–032
 
 ## 1. Executive Summary
 
-The shared core, runtime adapters, wrapper, handoff CLI, tests and packet records were compared across five iterations. The review produced eight iteration-level findings, consolidated into six session-relaunch conclusions: five confirmed code/documentation/record gaps and one inferred architecture improvement. The repeated handoff-privacy finding from Iterations 1 and 5 is one issue; the parent worktree mismatch from Iterations 1 and 2 is also one issue.
+This ten-iteration review found one concrete settings-precedence defect: a valid live Pi or Hermes model can be replayed with the provider from the first launch when the live provider is absent. Two source-level concurrency risks need deterministic reproduction: withdrawal can race with the wrapper’s check-then-consume sequence, and Cursor’s shared model file can attribute one session’s choice to another. Both remain inferences rather than reproduced outcomes.
 
-The current handoff path can follow a pre-existing symlink, suppress mkdir/chmod errors and still return a note path. The CLI trusts the resolved handoffs directory as its containment root without checking it remains under the canonical repository. Separately, `skilled-loop` can omit the previously answered Gate 3 folder when `consume` fails, while `consume` can report success and delete its state even when its note could not be read or parsed.
+The review also found a documented goal-binding gap for manual Cursor and Devin claims, plus test gaps for reused notes when goal transfer is disabled, OpenCode 2’s equals-form --server flag, missing runtime executables, malformed persisted hop counts, and simultaneous note claims. Codex goal capture is intentionally unsupported and test-covered. OpenCode 2 and Devin replay limits match the shipped documentation.
 
-## 2. Research Question and Scope
+The first iteration initially treated preservation of an existing goal_packet while SESSION_RELAUNCH_GOAL is off as a defect. The README explicitly requires the field to remain unchanged in that state, so the final classification is a narrower coverage gap around reused notes and a switch transition.
 
-The research question was whether the session relaunch loop still has code/documentation/spec drift, latent failure edges, architecture refinements or standards gaps after phase 008. The review covered `.skilled/hooks/session-relaunch`, `.skilled/bin/skilled-loop`, `/speckit:handoff` references, the OpenCode plugin, runtime adapters, their tests and docs, phase 008 records, and the sk-code-skilled and sk-doc guidance.
+## 2. Scope and Method
 
-All five strategy questions received an evidence-based discussion in iteration narratives. Persistent strategy metadata still shows five unchecked questions because the state projection did not accept Iterations 2–5; the convergence report distinguishes narrative coverage from persisted answer counts.
+The review covered the session-relaunch wrapper, hook adapters, goal core, OpenCode and Hermes plugins, handoff guidance, tests, README, and phase records through 032. It followed ten focused iterations and inspected existing test cases without running tests or changing implementation code.
 
-## 3. Method and Evidence
+The iteration artifacts are stored in this lineage. Each finding below gives file and line evidence and states what existing tests cover. Source-level inferences are labeled and include the reproduction needed to confirm the runtime outcome.
 
-Five sequential source-review passes covered core/filesystem boundaries, adapter policy, wrapper failure transitions, test/document traceability and phase 008 closure evidence. Findings cite the relevant file and line. Confidence labels distinguish confirmed source/control-flow gaps from an inferred maintainability refinement. No tests, strict validators, resource-map generation or sk-doc quality-control extraction were run.
+The dispatch bound writes to this lineage only. Parent-spec updates and strict validation were skipped, as was the continuity-save phase. The parent spec had already failed the workflow’s required Research Context anchor check; the synthesis writeback and validator also target paths outside the authorized lineage.
 
-## 4. Architecture Observed
+## 3. Goal Packet Persistence
 
-The shared session-relaunch code provides common helpers, while Claude, Codex, Hermes, Pi and OpenCode adapters each interpret host inputs and coordinate nudge policy. Pi and OpenCode also defer handoff delivery through host lifecycle state. The CLI plans and consumes handoff notes; `skilled-loop` handles relaunch, seed construction and manual recovery. The source comparison found shared policy concepts across adapters, but no confirmed current policy mismatch.
+The handoff note is the canonical carrier of goal_packet. The pending loop record stores the handoff path and runtime settings, while consume rereads and validates the packet from the note; it does not duplicate goal_packet into the loop record. Tests cover this consume output shape. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:747-765; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:693-738; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2495-2516]
 
-## 5. Finding: Handoff Directory Privacy Is Not Established
+Sender discovery is runtime-specific. Claude reads the latest usable goal entry in its session log. OpenCode, Pi, Devin, Cursor, and Hermes resolve the active goal record. Codex returns no packet because its goal store does not map a thread goal to a packet; that limitation is documented and pinned by a test. [SOURCE: .skilled/hooks/session-relaunch/README.md:164-172; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58,625-691; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2090-2100]
 
-**Confirmed static code/documentation gap.** `ensureHandoffDir` attempts directory creation and mode change, suppresses errors and still returns a path. The CLI checks note containment relative to the resolved handoffs directory but does not establish that this directory remains under the canonical repository root. A pre-existing symlink can therefore direct note writes and chmod outside the repository; a writable target can also remain in use after a failed permission change. The existing focused test checks only a newly created directory's mode. Phase 008 says the directory is owner-only and that a failed create will fail visibly, which is stronger than this code path proves. [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:219-225,267-273] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190] [SOURCE: .skilled/hooks/session-relaunch/tests/nudge.test.cjs:495-506] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:56] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md:52,91]
+The disabled switch deliberately makes prepare and keep leave the note field unchanged. Claim and consume suppress transfer while the switch remains off. The current prepare test starts from an empty note, so it does not pin preservation of an existing field or the behavior if the switch changes before a later consume. [SOURCE: .skilled/hooks/session-relaunch/README.md:164-174; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-129,383-399; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2112-2125,2477-2516]
 
-**Fix:** Resolve and validate the canonical repository root and every managed path component; reject symlinks and any resolved handoffs path outside that root; verify ownership and mode 0700 before returning a note path; fail closed on any check error. Add outside-symlink and chmod-failure tests, then align the phase summary and README with the guarantee those tests establish. This also closes the checklist gap for canonical paths and symlink escapes. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md:101-108]
+## 4. Receiver Binding and Environment Restoration
 
-## 6. Finding: A Failed Consume Can Lose the Gate 3 Answer
+The wrapper removes inherited SESSION_RELAUNCH_GOAL_PACKET and claim-seed values from the first launch. On a relaunch it exports a validated packet from the consumed note, and clears the variable on a later hop without a packet. Focused tests cover both transitions. Claude starts on a freshly rendered /goal slice and carries the claim instructions through a start hook. Hermes receives the packet through HERMES_SPEC_FOLDER and restores the operator’s original value, or unsets it when no original value existed. [SOURCE: .skilled/bin/skilled-loop:471-484,755-784; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2634-2720,2734-2766,2833-2887]
 
-**Confirmed control-flow edge.** `skilled-loop` extracts `spec_folder` from successful consume output. If consume fails, it still builds the relaunch seed or manual command without the folder suffix; `should-relaunch` does not return the folder as a fallback. The existing consume-failure test does not include a packet path or a Skip answer, while the README says the answer carries across the relaunch hop. [SOURCE: .skilled/bin/skilled-loop:68-87,450-465] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:461-470,504-550] [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1353-1373] [SOURCE: .skilled/hooks/session-relaunch/README.md:112]
+Pi, Cursor, and Devin use the shared hook goal core to bind a packet when the new session has no live or archived goal. OpenCode’s plugin owns an equivalent session-start binder. These receiver paths guard against switch-off, dispatched children, invalid packets, and replacing an existing goal; the OpenCode binder has direct tests for those states. [SOURCE: .skilled/hooks/goal/lib/goal-core.cjs:1248-1290; .skilled/hooks/goal/lib/goal-core.test.cjs:1251-1320; .opencode/plugins/opencode-goal.js:2224-2269; .opencode/plugins/tests/opencode-goal-handover.test.cjs:68-145]
 
-**Fix:** Read and validate the saved `spec_folder` before consuming the record, or return it from a read-only `should-relaunch` path. Use that validated value when consume fails. Add failed-consume tests for both a packet path and `none`, covering relaunch and manual fallback output.
+Cursor and Devin ship command-trigger relaunch adapters rather than automatic arm hooks. Their printed manual claim commands replay the seed but do not export the note’s goal packet, so those receivers cannot bind the sender’s goal through the manual path. The command shape is tested, but no manual-command test uses a packet-bearing note and asserts receiver binding. [SOURCE: .skilled/bin/skilled-loop:471-474,755-762; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1186-1202; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2414-2434; .skilled/commands/speckit/handoff.md:97]
 
-## 7. Finding: Invalid Handoff Consumption Can Delete Recovery State
+## 5. Model, Provider, and Effort Persistence
 
-**Confirmed control-flow edge.** `consume` catches note read or parse failures, may leave the note's spec folder unavailable, then unlinks the relaunch state and returns success. `skilled-loop` treats that result as permission to start a runtime with a claim seed pointing at an unreadable or invalid note. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/bin/skilled-loop:456-467] [SOURCE: .skilled/hooks/session-relaunch/README.md:105-116]
+Launch arguments are captured per runtime and replayed by the wrapper. Current live settings take precedence when they are present and valid. Claude reads its latest main-chain session entry, Codex reads its thread rollout, Cursor reads cli-config.json, Pi supplies values when arming, and Hermes supplies model/provider from post_api_request. Devin has launch-model replay but no live model or effort source; OpenCode 2 does not replay a model flag at its root command. These limits are documented and covered by the runtime argument matrix. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:553-600,611-660,734-760,807-820; .skilled/bin/skilled-loop:515-568; .skilled/hooks/session-relaunch/README.md:42-47; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349]
 
-**Fix:** Reject consumption before unlinking when the handoff is missing or invalid. Keep a recoverable record and make the wrapper show a manual recovery path rather than launching a claim that cannot succeed. Add missing-file and malformed-note cases.
+A live model can be accepted without a live provider. In that case the wrapper leaves the provider captured from the original launch in place, even though the launcher’s comment says the model and provider move together. Pi and Hermes collect these values independently, so a valid new model can be paired with a stale provider. Tests cover changing both together but not a valid model with a missing or invalid provider. [SOURCE: .skilled/bin/skilled-loop:515-568,801-812; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:524-535; .skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417; .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:102-113; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349]
 
-## 8. Finding: Parent Worktree Metadata Still Names the Old Worktree
+Cursor’s live model reader uses the shared ~/.cursor/cli-config.json and accepts its value when the file changed after this wrapper started. A second Cursor session can update that file after both wrappers launch, so this session may attribute and replay the other session’s choice. This is an inference from shared-file ownership and mtime-only checking. Tests cover a same-session update and an older config, but no two-session interleaving; such an interleaving would confirm the user-visible outcome. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:580-600; .skilled/bin/skilled-loop:655-658; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2368-2419]
 
-**Confirmed record inconsistency.** The parent spec Branch field and durable goal decision D6 still identify worktree 142. The later goal log records the amendment to worktree 148, and phase 008 binds worktree 148. [SOURCE: specs/hooks/023-session-relaunch-loop/spec.md:34] [SOURCE: specs/hooks/023-session-relaunch-loop/goal.md:52,131] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:46]
+## 6. OpenCode 2 and Devin Limits
 
-**Fix:** Update the parent Branch field and D6 decision to worktree 148, or mark the earlier value as superseded in the durable decision so the active value is unambiguous.
+When OpenCode help advertises --standalone, the wrapper adds it on the first launch and each automatic relaunch. A shared-server launch with --server avoids standalone and emits a warning because the wrapper cannot manage that service. OpenCode 2 also drops root-level model replay because that command does not accept -m. Tests cover first launch, repeated relaunch, standalone duplication, model dropping, and the separated --server URL form. The equals form --server=http://localhost:4096 is recognized in the code but lacks a test for launch arguments, warning, and no-arm behavior. [SOURCE: .skilled/bin/skilled-loop:352-363,573-578,617-635; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1029-1064; specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md:106-114,166-168]
 
-## 9. Finding: Test README Omits the OpenCode Plugin Suite
+Devin preserves a model given on its launch line but has no live model or effort reader and does not participate in the automatic arm path. These are documented capabilities, not defects found in this review. [SOURCE: .skilled/hooks/session-relaunch/README.md:42-47; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2421-2428]
 
-**Confirmed documentation gap.** The session-relaunch test README lists the hook-directory suites and a command scoped to `.skilled/hooks/session-relaunch/tests/*.test.cjs`. The separate OpenCode plugin test is at `.opencode/plugins/tests/session-relaunch.test.cjs` and is listed in the Pi/OpenCode playbook, but the test README does not link to it. [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:18-38,85-115] [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:1-4] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:83-89]
+## 7. Operator UX and Manual Recovery
 
-**Fix:** Add an OpenCode suite row and command, or label the README as covering only the hook-directory suites and link to the plugin test and its run command.
+The wrapper prints runtime-specific manual commands and fills a configured template only when it contains exactly one handoff placeholder. Invalid templates warn before fallback. Shell-sensitive path tests cover quotes, backticks, dollar signs, backslashes, and interactive Bash history expansion for bang characters. Line-broken paths are rejected or receive a warning instead of a manual command. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1186-1223; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:892-1005; .skilled/bin/skilled-loop:845-857]
 
-## 10. Architecture Refinement: Share Policy Preparation Across Adapters
+Hop-cap, stale-record, decline, cancellation, ordinary withdrawal, and nested-run behavior have focused tests. A missing runtime executable is different: the shell likely reports command-not-found and returns 127 through the non-relaunch path, but no wrapper test removes the selected binary from PATH and asserts the exit status and user-facing output. This is a test gap, not a reproduced behavior defect. [SOURCE: .skilled/bin/skilled-loop:661-673,834-891; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1820-1882,1969-1998]
 
-**Inferred refinement, not a confirmed behavior mismatch.** The inspected Claude, Codex, Hermes, Pi and OpenCode paths repeat the threshold, pending-handoff and hop-cap checks, nudge-level selection, note planning, state updates and handoff-text construction. Pi and OpenCode add host-specific deferred delivery. [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:92-113] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:100-130] [SOURCE: .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:73-99] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:306-350] [SOURCE: .opencode/plugins/session-relaunch.js:124-168]
+## 8. Withdrawal, Stale Records, and Concurrency
 
-**Recommendation:** Extract a shared policy-preparation function that accepts normalized usage, session, cwd and runtime inputs and returns a decision plus handoff text. Keep host event parsing and delivery timing in adapters, and add table-driven parity coverage for common policy decisions. A future mismatch between the shared function and any adapter test would change this recommendation's confidence.
+The wrapper checks should-relaunch and later invokes consume as a separate operation. Withdrawal disarms the record under its lock, but consume reads the record before taking that lock, does not recheck status under the lock, then unlinks the current record. A withdrawal between approval and consume may therefore lose the race and still allow the already-approved relaunch. This is a source-level inference; current tests cover withdrawal and locked unlink separately, not the interleaving. A deterministic two-process test is needed to confirm the outcome. [SOURCE: .skilled/bin/skilled-loop:667-729; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:581-608,689-724; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:965-971,1021-1026; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1642-1670; .skilled/hooks/session-relaunch/tests/withdraw.test.cjs:88-140]
+
+The freshness check rejects future-dated and over-age armed records. Its hop check converts hops to a number and only rejects non-finite counts or counts at/above the limit, so syntactically valid malformed state with a negative or fractional count can pass. The record producer validates non-negative integer input, limiting the path to malformed or manually altered persisted state. Tests cover hop 9 and hop 10, but not negative or fractional record values. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1016-1054; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:496-511; .skilled/bin/skilled-loop:643-647; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:807-860]
+
+claimHandoff holds the note lock across the open-status check and write. Source inspection shows no race inside that transition, but tests only cover sequential claims. There is no concurrent two-process test asserting one winner, one rejection, and the winner’s claim metadata. Generic concurrent log tests do not cover this handoff path. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1065-1085; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:278-304,1071-1101]
+
+## 9. Findings and Test Coverage
+
+1. **P2 — Model/provider precedence can mix a new model with the first-launch provider.** Pi or Hermes can supply a valid live model without a live provider; the wrapper updates the model and leaves the initial provider in place. Tests update both values together but do not cover missing or invalid provider beside a valid model. [SOURCE: .skilled/bin/skilled-loop:515-568,801-812; .skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417; .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:102-113; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349]
+
+2. **P2 — Withdrawal may race with consume after wrapper approval.** The wrapper checks and consumes separately; consume does not revalidate the record under its lock. Withdrawal and consume-lock tests are separate, with no interleaved cancellation test. This is an inference, not a reproduced outcome. [SOURCE: .skilled/bin/skilled-loop:667-729; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:581-608,689-724; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:965-971,1021-1026; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1642-1670; .skilled/hooks/session-relaunch/tests/withdraw.test.cjs:88-140]
+
+3. **P2 — Cursor may replay another session’s live model.** The reader uses a shared config file and a post-launch mtime check without session identity. Tests cover same-session change and stale pre-launch config, not concurrent sessions. This is an inference requiring two-session confirmation. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:580-600; .skilled/bin/skilled-loop:655-658; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2368-2419]
+
+4. **P2 — Manual Cursor and Devin claims do not transfer the goal packet.** Their printed commands carry the handoff seed and spec-folder answer, but not SESSION_RELAUNCH_GOAL_PACKET. Command replay is tested; packet-bearing manual receiver binding is not. The handoff guide documents this boundary. [SOURCE: .skilled/bin/skilled-loop:471-474,755-762; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1186-1202; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2414-2434; .skilled/commands/speckit/handoff.md:97]
+
+5. **P3 — A negative or fractional persisted hop count can pass the cap.** The reader checks finiteness and the upper bound, not non-negativity or integer shape. Tests cover 9 and 10 only; producer-side input validation does not validate a tampered record. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1044-1047; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:841-860]
+
+6. **P3 — Goal-switch tests omit an already-populated note.** The documented contract intentionally preserves the existing field when the switch is off. Tests start with an empty note and do not cover reuse or the inferred off-at-prepare/on-at-consume transition. This is a test gap, not a confirmed defect. [SOURCE: .skilled/hooks/session-relaunch/README.md:164-174; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-129,383-399; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2112-2125,2477-2516]
+
+7. **P3 — OpenCode 2 lacks a test for the equals-form --server argument.** The parser branch appears to recognize it; tests cover only --server followed by a separate URL. This is a coverage gap, not a confirmed runtime defect. [SOURCE: .skilled/bin/skilled-loop:573-578,625-635; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1056-1064; specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/spec.md:106-114,166-168]
+
+8. **P3 — Missing runtime binaries have no focused wrapper test.** The expected 127 status and command-not-found output are inferred from the shell path; tests cover other startup and consume failures but not a missing executable. [SOURCE: .skilled/bin/skilled-loop:661-673,834-891; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1820-1882,1969-1998]
+
+9. **P3 — Simultaneous claims to one note lack a direct test.** The code locks the transition, but the tests only verify sequential behavior. Source inspection does not show a defect. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1065-1085; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:278-304]
+
+## 10. Runtime Limits and Expected Behavior
+
+Codex cannot currently map its per-thread goal record to a packet; its empty result is intentional and tested. OpenCode 2 does not accept a root-level model flag, and Devin has no live model/effort reader. These are documented limits rather than unexplained defects. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58,662-691; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2090-2100; .skilled/hooks/session-relaunch/README.md:42-47]
+
+Goal transfer is path-based: the note does not copy goal text. Receivers read the current goal.md, which avoids embedding stale goal text in the handoff. The disabled switch’s note-preservation behavior is explicit in the README and is not treated as a defect here. [SOURCE: .skilled/hooks/session-relaunch/README.md:164-184]
 
 ## 11. Recommendations
 
-| Order | Change | Evidence gate |
-|---|---|---|
-| 1 | Enforce canonical-root containment, reject symlinked managed paths, verify owner/mode, and correct privacy claims | Outside-symlink and chmod-failure tests pass; docs state the tested guarantee |
-| 2 | Preserve Gate 3 data through consume failure and reject invalid handoffs before deleting state | Packet-path, Skip, missing-note and malformed-note cases cover both relaunch and recovery output |
-| 3 | Reconcile the parent spec Branch field and D6 with worktree 148 | Parent records show one active worktree value |
-| 4 | Add the OpenCode suite to the test inventory | README links to the distinct plugin suite and gives its command |
-| 5 | Consider common adapter policy preparation | Table-driven adapter parity tests prove identical decisions while preserving host delivery behavior |
+1. Make model and provider replacement atomic: if either live value is missing or invalid, retain the launch pair or drop both according to one explicit policy. Add model-only and invalid-provider cases for Pi and Hermes.
+2. Move withdrawal validation and record consumption into one locked transition, comparing status and arm identity under that lock. Add a deterministic cancellation interleaving test.
+3. Attribute Cursor settings to the sending session or explicitly decline to replay an ambiguous shared-file value. Add a two-session fixture.
+4. Decide whether manual Cursor and Devin claim flows should carry a goal packet. If yes, bind it through a validated first-launch environment path and test packet-bearing notes.
+5. Validate persisted hops as a non-negative integer in shouldRelaunch, and add malformed-record cases.
+6. Add focused coverage for --server=value, missing runtime executable behavior, simultaneous claims, and a reused note while the goal switch is off.
 
 ## Eliminated Alternatives
 
 | Approach | Reason Eliminated | Evidence | Iteration(s) |
 |---|---|---|---|
-| None recorded | Iteration files contain no `ruledOut` entries or `Dead Ends` sections; no rejected approach was reported | Iterations 1–5 | 1–5 |
-
-## Divergence Map
-
-No divergent pivots, pivot failures or overrides were recorded. The remaining review frontier is runtime verification of the filesystem and consume-path cases, followed by confirming the record fixes and adapter parity behavior.
+| Treat the disabled switch as deleting a note’s existing goal field | The README explicitly says prepare and keep leave it unchanged while disabled; transfer is suppressed while the switch remains off. | [SOURCE: .skilled/hooks/session-relaunch/README.md:164-174; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2477-2516] | 1, 10 |
+| Require goal_packet to be duplicated in the loop record | The handoff note is the documented carrier; consume validates and returns its packet, while the record stores the handoff path and settings. Tests cover that output. | [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:747-765; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:693-738; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2495-2516] | 1 |
+| Treat missing Codex packet capture as a regression | The phase decision deferred the mapping and the resolver test pins an empty result. | [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58,662-691; .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2090-2100; specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/implementation-summary.md:57] | 1, 10 |
+| Treat automatic packet export and clear behavior as untested | Wrapper tests cover packet export, switch-off suppression, inherited packet clearing, and later-hop clearing. | [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2634-2720] | 2 |
+| Treat Hermes environment restoration as untested | Tests cover goal export, no-packet behavior, and restoration of the operator’s original HERMES_SPEC_FOLDER. | [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:2833-2887] | 2, 10 |
+| Treat the runtime argument replay matrix as absent | Tests exercise launch argument capture/replay across seven runtimes, with effort limited to runtimes that accept it. | [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349; .skilled/hooks/session-relaunch/README.md:42-47] | 3 |
+| Treat pre-launch Cursor config as live state | The reader ignores a config older than wrapper launch; same-session later changes are covered. Only cross-session attribution remains unverified. | [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:580-600; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2368-2419] | 4 |
+| Treat OpenCode 2 or Devin constraints as implementation defects | Standalone, shared-server handling, root model dropping, and Devin’s launch-only model support match docs and tests. | [SOURCE: .skilled/bin/skilled-loop:352-363,573-578,617-635; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1029-1064; .skilled/hooks/session-relaunch/README.md:42-47] | 5 |
+| Treat shell quoting and ordinary operator messages as unreviewed | Covered tests handle special characters, Bash history expansion, template fallback, hop cap, and withdrawal messages. | [SOURCE: .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:892-1005; .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:786-900] | 6, 9 |
+| Treat ordinary hop caps, freshness checks, nested-run suppression, or concurrent log append as broken | These have focused tests; remaining gaps concern malformed persisted counts, withdrawal interleaving, and concurrent note claims. | [SOURCE: .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:807-860,1069-1101; .skilled/hooks/session-relaunch/tests/withdraw.test.cjs:88-140; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1820-1882] | 7, 8, 9 |
 
 ## 12. Open Questions
 
-- Do outside-symlink and chmod-failure cases reproduce the private-path gap under supported filesystems and platforms?
-- Which failure modes can make a handoff disappear or become unreadable between `should-relaunch` and `consume`?
-- Should the shared policy function own persisted-state mutation, or should it remain a pure decision function with the core owning persistence?
-- After the parent records are reconciled, are there other active references to worktree 142?
-- Does the sk-doc quality-control extractor identify any additional structure or citation issues in the session-relaunch documentation?
+The generated strategy and findings registry still report all four configured questions as open (0 of 4 resolved), even though the iteration narratives cover each scope. The machine-owned question records were left as the reducer produced them; the lead should reconcile those records during lineage merge.
 
-## 13. Standards Alignment
+Runtime interleaving remains unconfirmed for the withdrawal race and Cursor model attribution. The switch-toggle scenario is also inferred; preserving the existing field while off is documented, while its behavior after re-enabling before consume lacks a test.
 
-The confirmed filesystem issue conflicts with the sk-code-skilled universal checklist requirement to establish canonical paths and reject symlink escapes. The missing OpenCode test link is a discoverability and traceability gap. Static review did not establish another sk-doc structural violation. The sk-doc quality-control extractor was not run, so no DQI score or validation result is claimed. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md:101-108] [SOURCE: .skilled/skills/sk-doc/SKILL.md:153-154]
+The manual Cursor and Devin packet boundary is documented. A product decision is still needed on whether their command-only first-launch path should transport a goal packet or remain a no-packet manual recovery path.
 
-## 14. Workflow and State Integrity
+## 13. Confidence and Limitations
 
-The append gateway accepted ledger events for Iterations 2–5 but refused to project them because projection would drop keys from the existing config row. Those iteration events produced six refusals: three attempts for Iteration 2 and one each for Iterations 3–5. The terminal synthesis event was accepted at ledger sequences 7–9; all three projections were refused by the same guard, and retries stopped after the third failure. The canonical state JSONL therefore contains its config row and Iteration 1 only; it does not contain the terminal event. The iteration deltas remain the complete per-iteration finding record, and this synthesis document carries `stopReason: maxIterationsReached`. [SOURCE: specs/hooks/023-session-relaunch-loop/research/lineages/luna/gateway-refusals.jsonl:1-9] [SOURCE: specs/hooks/023-session-relaunch-loop/research/lineages/luna/deep-research-state.jsonl:1-2] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts:204-233]
+The model/provider mismatch and persisted-hop validation gap follow directly from the current control flow. The manual Cursor/Devin goal limitation is supported by wrapper behavior and handoff guidance. The equals-form server, missing-runtime, switch-transition, and simultaneous-claim items are coverage gaps rather than reproduced failures.
 
-There is a second contract mismatch: the dispatcher requires `findingsCount` on each canonical state row, while the deep-research delta projection contract and legacy upcaster omit that field. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts:78-83] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:386-396]
+The cancellation and Cursor shared-config findings are source-level race inferences. A deterministic multi-process interleaving would confirm or disprove each user-visible outcome. No tests or live runtime sessions were run during this research pass; existing tests and recorded README probes were inspected as evidence.
 
-**Fix for the workflow owner:** Make projection preserve the existing config-row key set and reconcile `findingsCount` across the dispatcher, delta and projection contracts. Keep state writes on the append gateway; a direct state-log edit would bypass its append-only contract. This lineage records the conflict rather than changing files outside its authorized directory.
+## 14. Runtime Coverage Matrix
 
-## 15. Confidence and Evidence Classification
+| Runtime | Sender goal source | Receiver binding / persistence | Model, provider, effort |
+|---|---|---|---|
+| Claude | Latest usable session-log goal | Starts on /goal slice; claim seed arrives through the startup hook | Live model/effort from session log; launch flags replay |
+| Codex | No packet source; intentional unsupported mapping | No receiver packet by design | Live settings from rollout; launch flags replay |
+| Cursor | Active goal record | Shared goal core can bind a packet, but automatic relaunch is unavailable; manual command omits packet | Shared cli-config.json model; concurrent attribution risk |
+| Pi | Active goal record | Shared goal core binds on first turn | Adapter supplies model/provider/effort at arm; model-only provider fallback gap |
+| OpenCode 2 | Active goal record | Session-start binder uses SESSION_RELAUNCH_GOAL_PACKET | Adds --standalone when supported; no root model flag; --server skips loop |
+| Devin | Active goal record | Shared goal core can bind, but automatic relaunch is unavailable; manual command omits packet | Launch model only; no live model or effort reader |
+| Hermes | Active goal record | HERMES_SPEC_FOLDER binds packet; original value is restored when next hop has no packet | post_api_request supplies model/provider/effort; partial-pair gap |
 
-The repository record mismatch, test inventory omission and source-level consume edges are confirmed by the cited records and control flow. The handoff privacy gap is confirmed as a code/documentation mismatch; its outside-symlink and chmod-failure runtime behavior still needs tests. Adapter policy duplication is an architectural inference, not evidence of a current output mismatch. No claim here is based on executed runtime behavior.
+Sources: [SOURCE: .skilled/hooks/session-relaunch/README.md:42-47,164-193; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:51-58,553-660; .skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417; .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:102-113; .hermes/plugins/repo-guards/__init__.py:632-668]
 
-## 16. Limitations
+## 15. Suggested Test Cases
 
-This was a static review. No tests, strict validators, resource-map emitters, spec writeback or document-quality extractors ran. Spec writeback, validation and resource-map workflow commands target paths outside this lineage; they were excluded by the dispatcher's write boundary. The reducer ran with the explicit lineage artifact directory and reported one completed state iteration, zero corruption, and no resource map. The canonical state projection conflict prevented it from reflecting the later deltas in the state log and strategy.
+- Prepare a note that already contains goal_packet with the switch off; verify the documented preservation, then consume with the switch still off. Add a second case for the switch changing between prepare and consume.
+- Supply a valid live model with a missing or invalid live provider for both Pi and Hermes; assert the chosen fallback policy.
+- Start two Cursor wrapper fixtures against one cli-config.json and interleave model updates.
+- Interleave should-relaunch approval, withdrawal, and consume with a barrier; assert cancellation wins or document the approved-hop rule.
+- Feed shouldRelaunch negative, fractional, missing, and non-finite persisted hops.
+- Run two claimHandoff processes against one open note; assert one claim wins and the other sees claimed.
+- Pass --server=http://localhost:4096 to OpenCode 2 and assert warning, launch args, and no arm.
+- Remove the selected runtime from PATH and assert the wrapper’s status and user-facing diagnostic.
+- For Cursor and Devin, decide and test whether a manual claim binds a packet-bearing note.
 
-## 17. Synthesis Record
+## 16. Convergence and Workflow Notes
 
-- Lineage: `luna`; session: `fanout-luna-1792429886029-no7lpl`.
-- Iteration artifacts: 5 narratives and 5 delta files; finding counts by iteration: 2, 2, 2, 1, 1 (8 total; 6 consolidated session-relaunch conclusions).
-- `stopReason`: `maxIterationsReached`.
-- Strategy status at synthesis: 0 of 5 questions persisted as answered; the five iteration narratives discuss all five questions.
-- Canonical state projection: only Iteration 1 is present; Iterations 2–5 and all three terminal event attempts have ledger receipts but were refused during projection.
-- Runtime tests and document extractors: not run.
+The run completed all ten iterations under stopPolicy max-iterations. Ratios fell from 0.75 to 0.12; the configured 0.05 threshold was not reached, and convergence remained telemetry only. The last three passes were persisted-hop validation (0.24), unusual paths and concurrent claims (0.22), and goal-switch semantics (0.12).
+
+The reducer completed after each iteration with zero corruption. The lineage registry contains eleven key-finding entries because it retains both the iteration-1 switch-off framing and the iteration-10 reclassification; this report supersedes the earlier “defect” framing. The registry’s four questions remain open pending lead reconciliation.
+
+The phase workflow’s parent-spec findings writeback and strict validation target outside this lineage and were skipped. The continuity-save phase was not run because it writes a temporary file outside the permitted surface and updates canonical parent continuity. The synthesis-deferred status will be recorded through the append gateway. No git staging was performed.
+
+## 17. Proposed Implementation Order
+
+1. Resolve or reproduce the two concurrency risks: cancellation versus consume, and Cursor settings attribution across sessions.
+2. Correct model/provider pairing so a partial live update cannot mix providers.
+3. Decide the Cursor/Devin manual packet contract and preserve goal binding if that path is meant to resume goals.
+4. Add malformed persisted-hop validation and the smaller missing tests for server equals syntax, missing executables, reused goal notes, and concurrent claims.
+5. Reconcile the four machine-owned questions and the iteration-1 reclassification when the lead merges this lineage.
 
 ## Convergence Report
 
-- Stop reason: `maxIterationsReached`
-- Total iterations: 5 narrative/delta pairs; 1 iteration row in the canonical state projection
-- Questions answered: 0 / 5 persisted in strategy; all five questions received narrative-level answers
-- Remaining questions: 5 in strategy metadata; runtime filesystem and consume-path behavior, other active worktree references, adapter ownership boundary and document-quality extraction remain open
-- Last 3 iteration summaries: Iteration 3 wrapper transitions (0.65); Iteration 4 test traceability and standards (0.54); Iteration 5 privacy and phase 008 evidence (0.38)
-- Convergence threshold: 0.1; convergence before the configured cap was telemetry only
-- Divergence summary: no pivots recorded
-
-The terminal synthesis event is present in the ledger at sequences 7–9, and the synthesis document reports `maxIterationsReached` as required. The state projection and canonical answered-question count remain inconsistent with the five on-disk iteration artifacts because the append gateway rejected their projection.
+- Stop reason: maxIterationsReached
+- Total iterations: 10
+- Questions answered in machine state: 0 / 4
+- Remaining questions in machine state: 4
+- Last 3 iteration summaries: iteration 8: persisted hop-count validation and stale/concurrent record coverage (0.24); iteration 9: handoff path quoting and concurrent claims by receiver sessions (0.22); iteration 10: goal switch-off semantics and receiver rebinding reconciliation (0.12)
+- Convergence threshold: 0.05
+- Divergence summary: no divergent pivots recorded
+- Segment transitions, wave scores, and checkpoint metrics omitted by the workflow

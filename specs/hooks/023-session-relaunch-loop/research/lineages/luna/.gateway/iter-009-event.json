@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "runId": "fanout-luna-1792927892367-86umpv",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
+  "lineageId": "fanout-luna-1792927892367-86umpv",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.22,
+  "status": "complete",
+  "focus": "Handoff path quoting and concurrent claims by receiver sessions",
+  "findingsCount": 1,
+  "keyQuestions": [
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
+  ],
+  "answeredQuestions": [
+    "Are handoff path quoting and simultaneous claims by independent receiver sessions covered?"
+  ],
+  "noveltyJustification": "Shell escaping is tested for the risky special characters, while the lock-protected claim transition has only sequential tests and no two-process assertion.",
+  "ruledOut": [
+    "Manual claim formatting covers quotes, backticks, dollar signs, backslashes, and interactive Bash history expansion for bang characters.",
+    "The status check and claim write share the note lock; no source-level race was identified inside claimHandoff."
+  ],
+  "edgeCase": "Two fresh sessions receive the same open handoff before either has claimed it.",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1065-1085",
+    ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:278-304",
+    ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1071-1101",
+    ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:966-1005",
+    ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:151-180",
+    ".skilled/bin/skilled-loop:845-857"
+  ],
+  "timestamp": "2026-10-25T11:59:37Z"
+}

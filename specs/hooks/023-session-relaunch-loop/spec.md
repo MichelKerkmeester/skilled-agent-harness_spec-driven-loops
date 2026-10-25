@@ -188,6 +188,15 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 - Do pre-commit and CI run sync checks with --check?
 - Do the Pi and OpenCode spikes verify their usage events, nudge APIs, arm events and interactive seed and name flags well enough for an AUTO verdict?
 - What interactive seed syntax, Stop or sessionEnd events and command mirror forms do the Codex, Cursor, Devin and Hermes spikes verify, and which verdict does each runtime receive?
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Deep research after phase 032 (10 iterations, `research/research.md`) left these open:
+
+- A live Pi or Hermes model with no live provider keeps the launch provider (`.skilled/bin/skilled-loop:803-805`).
+- `consume` reads the relaunch record outside its lock and does not recheck its status, so a late withdraw can lose to an approved hop (`.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:693-723`).
+- Whether a Cursor session can replay another Cursor session's model from the shared `cli-config.json`, and whether manual Cursor and Devin claims should carry the goal packet.
+- Coverage gaps: negative or fractional persisted hops, `--server=` on OpenCode 2, a missing runtime binary, two simultaneous claims, and a reused note while the goal switch is off.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

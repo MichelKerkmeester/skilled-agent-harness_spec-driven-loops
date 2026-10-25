@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "runId": "fanout-luna-1792927892367-86umpv",
+  "sessionId": "fanout-luna-1792927892367-86umpv",
+  "lineageId": "fanout-luna-1792927892367-86umpv",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.32,
+  "status": "complete",
+  "focus": "Operator messages, manual commands, and missing runtime executable path",
+  "findingsCount": 1,
+  "keyQuestions": [
+    "How does each of the seven runtime adapters capture, persist, export, and rebind goal_packet across a relaunch, including SESSION_RELAUNCH_GOAL=0?",
+    "How does each runtime capture and replay model, provider, and effort, and where do precedence, validation, drop warnings, or later-hop carry-forward differ?",
+    "Does OpenCode 2 start and relaunch with --standalone, and how are --server and unsupported replay flags handled?",
+    "Which operator-facing and concurrency edge cases remain untested or defective across warnings, manual claim, nested runs, hop caps, cancel/withdraw, stale records, quoting, missing binaries, and concurrent sessions?"
+  ],
+  "answeredQuestions": [
+    "Are manual claim formatting, warning fallback, shell-character escaping, hop-cap messaging, and exit-code behavior covered?",
+    "Does the missing runtime executable path have an explicit test?"
+  ],
+  "noveltyJustification": "Manual-command and warning behavior has broad coverage, but the runtime executable failure path captures exit status 127 without a focused regression test.",
+  "ruledOut": [
+    "Manual commands escape shell metacharacters and interactive Bash history expansion in covered paths.",
+    "Invalid manual templates warn before falling back, and hop-cap and withdrawal paths have focused assertions."
+  ],
+  "edgeCase": "The runtime command itself can be absent from PATH; the wrapper then proceeds to query relaunch state and relies on the captured runtime exit code.",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    ".skilled/bin/skilled-loop:661-673,834-891",
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1186-1223",
+    ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1820-1882,1969-1998",
+    ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:786-900",
+    ".skilled/commands/speckit/handoff.md:107-123"
+  ],
+  "timestamp": "2026-10-25T11:51:47Z"
+}
