@@ -51,6 +51,7 @@ contextType: "general"
 - [x] T014 Align the 003 AC-005 and AC-006 criterion text with the verified proof, with a dated amendment marker and a decision-record amendment
 - [x] T015 Trace the part of the 002 baseline band left unexplained: 891 min of pull_request runs the push-only pre-change window never held, 564 from the 003 probe branches and 327 from Dependabot (`002/scratch/baseline-24h/pr-runs-by-branch.json`)
 - [x] T016 Report the old 1.12 GB provision cache entry without deleting it. It is gone from `gh cache list`, and the current key could not hit it (`004/scratch/cache-adoption-runs.md`)
+- [x] T017 Exclude the ClickUp placeholder tree from worktree provisioning so the green final `main` commit the closure needs holds. Commit `1722864b46` tracked `mcp-click-up/mcp-servers/clickup-mcp/package.json`, which declares no dependencies, and the completeness test in `worktree-naming.test.sh` failed on it as unlisted. The second failing test copies the real list, so the same entry fixes it. The `excluded:` entry follows the obsidian-mcp one (`.skilled/skills/sk-git/scripts/worktree-provision-paths.txt`). Evidence: the suite printed `PASS=160 FAIL=2` before and `PASS=162 FAIL=0` after
 <!-- /ANCHOR:phase-2 -->
 
 ---

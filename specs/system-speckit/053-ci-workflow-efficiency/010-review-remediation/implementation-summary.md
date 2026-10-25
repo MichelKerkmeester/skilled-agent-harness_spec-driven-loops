@@ -75,6 +75,7 @@ The routing fix took `concurrency group` out of the CI vocabulary in `.skilled/s
 | `003-trigger-and-job-hygiene/acceptance-criteria.md`, `decision-record.md` | Modified | AC-005 and AC-006 criterion text matches the verified proof, dated 2026-10-25 |
 | `002-rebuild-fanout-removal/implementation-summary.md`, `acceptance-criteria.md`, `decision-record.md`, `scratch/baseline-24h/pr-runs-by-branch.json` | Modified, Created | The band remainder traced to pull_request traffic |
 | `004-setup-caching-provisioning/scratch/cache-adoption-runs.md` | Modified | The old 1.12 GB entry is no longer listed and could not be hit |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | An `excluded:` entry for the ClickUp placeholder tree, which declares no dependencies and runs through npx mcp-remote, like the obsidian-mcp entry |
 
 Already fixed when checked: the `33 of 33` workflow counts in `sk-code-ci` read `32 of 32` since `0781e81da2`, and `.github/workflows/` holds 32 `.yml` files.
 <!-- /ANCHOR:what-built -->
@@ -126,6 +127,7 @@ Source edits first, then one regeneration pass at the end, then the checks the r
 | `actionlint .github/workflows/routing-registry-drift.yml` after the comment rewrite | exit `0`, no output |
 | `gh run list --event pull_request` over the 002 baseline window, read-only | exit `0`, 321 runs: 223 from probe branches, 98 from Dependabot |
 | `gh cache list --limit 50` and `--limit 1000 --sort size_in_bytes` | exit `0`, 57 entries, none over 1 GB, no `a003991f` key |
+| `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh`, the sk-git Script Tests step | Before: `PASS=160 FAIL=2`, both on the unlisted ClickUp tree. After: `PASS=162 FAIL=0` |
 <!-- /ANCHOR:verification -->
 
 ---
