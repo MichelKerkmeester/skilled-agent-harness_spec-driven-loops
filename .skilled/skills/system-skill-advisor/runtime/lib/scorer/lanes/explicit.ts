@@ -27,7 +27,6 @@ interface ExplicitScoreEntry {
 const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   audit: [['sk-code', 0.75]],
   branch: [['sk-git', 0.45]],
-  browser: [['sk-code', 0.55]],
   checklist: [['system-spec-kit', 0.55]],
   chrome: [['mcp-tooling', 0.95]],
   commit: [['sk-git', 0.65]],
@@ -35,7 +34,6 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   context: [['system-spec-kit', 0.65]],
   corpus: [['system-spec-kit', 0.45]],
   council: [['system-deep-loop', 0.9]],
-  css: [['sk-code', 0.55]],
   dashboard: [['sk-code', 0.35]],
   deliberation: [['system-deep-loop', 0.8]],
   debug: [['sk-code', 0.25]],
@@ -47,14 +45,11 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   github: [['sk-git', 0.95]],
   gitkraken: [['sk-git', 0.9]],
   har: [['mcp-tooling', 0.75]],
-  html: [['sk-code', 0.55]],
   javascript: [['sk-code', 0.65]],
   json: [['sk-code', 0.4]],
   jsonl: [['sk-code', 0.45], ['system-spec-kit', 0.35]],
-  layout: [['sk-code', 0.45]],
   mcp: [['sk-code', 0.65], ['mcp-code-mode', 0.45]],
   memory: [['system-spec-kit', 0.95]],
-  mobile: [['sk-code', 0.45]],
   opencode: [['sk-code', 1]],
   packet: [['system-spec-kit', 0.55]],
   playbook: [['sk-doc', 0.75]],
@@ -78,27 +73,11 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   tests: [['sk-code', 0.35]],
   typescript: [['sk-code', 0.75]],
   vitest: [['sk-code', 0.85]],
-  viewport: [['sk-code', 0.45]],
   vscode: [['sk-code', 0.75]],
-  web: [['sk-code', 0.5]],
   worktree: [['sk-git', 1]],
   delete: [['system-spec-kit', 0.45]],
   scratch: [['system-spec-kit', 0.45]],
-  // sk-code surface keywords: frontend and system-code surfaces.
-  animation: [['sk-code', 0.75]],
-  flicker: [['sk-code', 0.4]],
-  minify: [['sk-code', 0.65]],
-  cdn: [['sk-code', 0.55]],
-  lighthouse: [['sk-code', 0.65]],
-  pagespeed: [['sk-code', 0.65]],
-  tbt: [['sk-code', 0.65]],
-  inp: [['sk-code', 0.65]],
-  lcp: [['sk-code', 0.55]],
-  fcp: [['sk-code', 0.55]],
-  cls: [['sk-code', 0.55]],
-  motion: [['sk-code', 0.6]],
-  observer: [['sk-code', 0.4]],
-  intersection: [['sk-code', 0.4]],
+  // sk-code surface keywords: system-code surfaces.
   classifier: [['sk-code', 0.45]],
   fixture: [['sk-code', 0.55]],
   'gate-3-classifier': [['sk-code', 0.95]],
@@ -187,9 +166,6 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'routing dashboard': [['sk-code', 0.35]],
   'routing study config': [['system-spec-kit', 0.85]],
   'css layout': [['sk-code', 0.85]],
-  'viewport height': [['sk-code', 0.55]],
-  'mobile browser': [['sk-code', 0.6]],
-  'browser verification': [['sk-code', 0.7]],
   'create a new agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   'create a test playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   'create a testing playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
@@ -203,8 +179,7 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'prompt variant': [['sk-prompt', 1]],
   'user prompt': [['sk-prompt', 0.9]],
   'cleaner user prompt': [['sk-prompt', 1]],
-  // sk-code phrases: frontend and system-code surfaces.
-  'motion v12': [['sk-code', 0.6]],
+  // sk-code phrases: system-code surfaces.
   'opencode skill': [['sk-code', 0.95]],
   'opencode agent': [['sk-code', 0.85]],
   'opencode command': [['sk-code', 0.85]],
@@ -214,7 +189,6 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'typescript helper': [['sk-code', 0.75]],
   'python script': [['sk-code', 0.75]],
   'shell script': [['sk-code', 0.7]],
-  'frontend hero animation timing': [['sk-code', 0.95]],
   'parallel routes': [['sk-code', 0.85]],
   'route handler': [['sk-code', 0.7]],
   'metadata api': [['sk-code', 0.65]],
@@ -344,7 +318,9 @@ export function scoreExplicitLane(
   if (/\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
     push(scores, 'system-deep-loop', 0.85, 'research-loop');
   }
-  if (/\b(continue|resume|launch|start|convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
+  // A loop verb counts only when it governs the review ("resume the active
+  // deep-review"); a resume or start elsewhere in a review prompt is a topic.
+  if (/\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
     push(scores, 'system-deep-loop', 0.85, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
       push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');
