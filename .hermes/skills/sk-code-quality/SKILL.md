@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.4.0.0
+version: 1.4.1.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -217,7 +217,7 @@ CODE_QUALITY_RESULT v1
 schema_version: code-quality/v1
 status: advisory
 modified_files: <repo-relative paths, or none>
-resolved_surface: <skilled | unknown>
+resolved_surface: <declared surface label(s) in detection order | unknown>
 checklists_loaded: <checklist paths loaded, or none>
 checker_outputs: <comment-hygiene and dist-staleness results, or N/A>
 p0_p1_p2_decisions: <per-severity dispositions>
@@ -327,4 +327,4 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### Universal Standards
 
 - [`../shared/references/universal/code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md) - Shared code quality standards.
-- [`references/code-style-guide.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md) - Shared code style and comment hygiene guidance.
+- [`references/code-style-guide.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md) - This mode's code style and comment hygiene guide.

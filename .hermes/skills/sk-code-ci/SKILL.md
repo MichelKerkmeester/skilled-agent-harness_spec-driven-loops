@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -92,7 +92,7 @@ The rules below hold for every workflow change, whoever applies it.
 
 ### ⛔ NEVER
 
-- **NEVER** write, edit or scaffold a workflow from this packet. The tool surface is `Read`, `Bash`, `Grep` and `Glob`, and the acting mode or a doctor command applies any change.
+- **NEVER** write, edit or scaffold a workflow from this packet. The tool surface is `Read`, `Bash`, `Grep` and `Glob`, and the acting mode, `/doctor:ci scaffold` or `/doctor:ci toggle` applies any change.
 - **NEVER** switch off or weaken a protected workflow without a second named confirmation that restates its role.
 - **NEVER** switch off `message-contract.yml` while its ruleset context is required.
 - **NEVER** treat the message-contract every-branch push trigger as drift. It is a recorded exception.

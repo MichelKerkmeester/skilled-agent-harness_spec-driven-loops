@@ -210,7 +210,7 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/` and `/doctor:skill-advisor` rebuilds or tunes skill routing. The [Doctor](#doctor) commands section describes each one.
+The doctor commands check and repair one area each. `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section describes each one.
 
 &nbsp;
 
@@ -767,7 +767,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- One native surface. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills
+- Two surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
 - Reviews before you ship (`code-review` mode): security, correctness and design checklists always run first, then the surface evidence above, and findings come ranked P0, P1 or P2
 
@@ -1236,7 +1236,7 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Ten commands check and repair the setup, one per area.
+Eleven commands check and repair the setup, one per area.
 
 **`/doctor:setup`** - read-only onboarding and health check
 
@@ -1264,6 +1264,12 @@ Ten commands check and repair the setup, one per area.
 **`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
 
 **`/doctor:sk-code [setup] [--prompt=<text>]`** - read-only sk-code setup battery: runs the provisioning, doctor, root-metadata, route guard, sync, drift-guard, derived-freshness and route-probe checks and names the repair command for each failing leg
+
+**`/doctor:ci [report|scaffold|toggle]`** - GitHub Actions workflows and their on/off switches
+
+- `report` (the default, read-only) lists every workflow with its switch state, triggers, path filters and drift flags
+- `scaffold` writes one new workflow under `.github/workflows/` from the CI surface's templates, after your yes. It refuses an existing file and a protected workflow name
+- `toggle` switches one of the six `SKILLED_CI*` repository variables off (it sets the variable to `off`) or back on (it deletes the variable), after your yes. It refuses to switch `SKILLED_CI` or `SKILLED_CI_MESSAGES` off while the [workflows README](.github/workflows/README.md#onoff-switches) says they must stay unset for the message-contract check
 
 **`/doctor:git <hooks|standards|setup>`** - your own settings for the shipped git hooks and sk-git rules, and a check of which ones are live
 
@@ -1450,10 +1456,11 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-`sk-code` ships one native surface. The Skilled surface holds the standards for this framework's own code, so keep it. Add a surface of your own when you want the hub to carry another stack.
+`sk-code` ships two surfaces. The Skilled surface holds the standards for this framework's own code, so keep it. The CI surface holds the GitHub Actions workflow standards. Add a surface of your own when you want the hub to carry another stack.
 
-- **Remove an example surface** by deleting its folder and its entries in the hub's registry, router and generated files
+- **Remove a surface you do not use** by following [Remove A Surface](.skilled/skills/sk-code/README.md#remove-a-surface) in the sk-code README
 - **Add your own surface** with `/create:skill-parent update --surfaces <name>`, which scaffolds and registers it ahead of the Skilled surface
+- **Keep a surface private** in a `local-<name>` skill beside the hub. The skill names `"family": "sk-code"` and declares a `surface_detection` block with `"role": "specific"` in its own `graph-metadata.json`. Git ignores `local-*` skills, so the surface stays out of the repository. Stack detection tries the hub's own specific surfaces first, then the surfaces that skills outside the hub declare, sorted by skill id, then SKILLED last as the fallback. See [Declaring an External Surface](.skilled/skills/sk-code/shared/references/stack-detection.md#declaring-an-external-surface)
 - **Check the result** with `/doctor:sk-code setup`, which runs every check read-only and names one repair command for each failure
 
 The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces at review time.
@@ -1501,7 +1508,7 @@ Git ignores all four, so your values stay on your machine. `/doctor:env list` sh
 &nbsp;
 ### Off Switches
 
-The AI hooks, the validators and the git hooks all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
+The AI hooks, the validators, the git hooks and the CI workflows all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
 
 ```bash
 cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
@@ -1510,6 +1517,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 
 - **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-relaunch hooks are the one exception to on-by-default: they stay off until you turn them on globally or per runtime, see [In-Session Handover](#in-session-handover)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
+- **CI workflows.** These switches are repository variables, not environment variables, so set them under Settings, Secrets and variables, Actions, Variables. Every workflow except `dependabot-auto-merge.yml` reads the master switch `SKILLED_CI` and one group variable (`SKILLED_CI_FRESHNESS`, `SKILLED_CI_TESTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_REPORTS` or `SKILLED_CI_MESSAGES`). Only `off`, in any letter case, skips a job. An unset variable runs it. An empty value, `0`, `false`, `no` or a typo runs it too. Leave `SKILLED_CI` and `SKILLED_CI_MESSAGES` unset while the ruleset requires the message-contract check. A switched-off job reports success, so a required check that is switched off stops blocking a merge. `/doctor:ci report` shows each state. The [workflows README](.github/workflows/README.md#onoff-switches) maps each variable to its workflows
 - **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
 - **Git hooks, for good.** `/doctor:git hooks` lists the optional gates and switches one off in git config as `speckit.hooks.<key>`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once
 - **Commit, PR and branch rules.** These have no bypass. `/doctor:git standards` changes a rule in the repository's own `.sk-git/` copy of the templates, and every gate follows the change

@@ -33,7 +33,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `dependabot-auto-merge.yml` | Turns on auto-merge for an npm security pull request from Dependabot whose every bump is a patch release. Every other Dependabot pull request waits for a person. |
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
 | `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
-| `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
+| `gate-inputs.yml` | Checks that every hook, workflow and composite-action input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `message-contract.yml` | Holds each pushed commit message, each new branch name and each pull request description to the sk-git templates, so neither a missing hook nor a skipped hook turns the check off. A fork's branch names and a Dependabot pull request's description are not checked. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
@@ -73,6 +73,8 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate. It downloads the previous successful run's report as its baseline and records one when a first run finds none |
 | `trigger-index-rebuild.yml` | yes, `main` and `skilled/**` | no | Rebuilds the committed index after a push, and its commit carries `[skip ci]` so no other workflow runs on it. Also runs by hand |
 
+`playbook-operator-contract.yml` also runs on a daily schedule at 06:17 UTC, besides its push and pull request runs.
+
 ### On/off switches
 
 Every job except the two in `dependabot-auto-merge.yml` carries a job-level condition that reads two repository variables: the master switch `SKILLED_CI` and one group variable. Set either to `off` under Settings, Secrets and variables, Actions, Variables, and the job is skipped before a runner starts. A job runs only when both of its variables differ from `off`.
@@ -94,6 +96,14 @@ To turn the weekly report off, set `SKILLED_CI_REPORTS` to `off`. The same varia
 
 A job skipped by its condition reports Success, so a switched-off job that a ruleset requires stops blocking merges instead of failing. `message-contract.yml` holds the only context the ruleset requires. SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context, and so must `SKILLED_CI`, which switches the same job off.
 
+Run `/doctor:ci report` to see each switch state. Run `/doctor:ci toggle` to change one after your yes.
+
+### Composite setup action
+
+`.github/actions/setup/action.yml` provisions the dependency trees and build outputs that the OpenCode, plugin and routing jobs need. It restores them from the Actions cache, then runs the repository's provisioning walk. The walk checks only that each tree's first dependency directory exists and that the five build outputs named in `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` carry a stamp matching their tracked sources. The other cached outputs get no check. A cache hit therefore shortens install and build work without verifying installed versions or every build input. The `cache` input defaults to `true`. Setting it to `false` forces a cold provision, which the scheduled run of `opencode-plugin-tests.yml` uses.
+
+`opencode-dual-version.yml`, `opencode-plugin-tests.yml` and `routing-registry-drift.yml` use the action.
+
 ---
 
 ## 3. GUARD ENTRYPOINTS
@@ -107,3 +117,4 @@ The gate-input workflow runs `.github/scripts/tests/check-gate-inputs.test.sh` a
 ## 4. RELATED
 
 - [`GitHub Actions documentation`](https://docs.github.com/en/actions)
+- [`/doctor:ci`](../../.skilled/commands/doctor/ci.md) reports each workflow's switch state, scaffolds a new workflow and toggles one switch after a yes
