@@ -682,11 +682,11 @@ Stop and escalate if: any check from T012 to T019 has not passed.
 
 ---
 
-### T021 [ ] Commit the closure (AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007)
+### T021 [x] Commit the closure (AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal` (the packet folder). Anchor: `| AC-007 | Gates | REQ-007 |` at `acceptance-criteria.md:65`.
 
-Pending: the AC-006 decision is now made (ADR-006). The orchestrator makes the closure commit; no closure commit exists yet and the packet edits are uncommitted in the working tree, so this task stays `[ ]` until that commit lands.
+Evidence: the closure edits landed as commit `03baa89ac6`, `docs(spec): close the rebuild fan-out phase on the measured band`, and `git merge-base --is-ancestor 03baa89ac6 origin/main` printed `on-main` (observed 2026-10-25). `git status --short` over the packet folder printed nothing before this tick. The subject differs from the one drafted below because the commit states the measured band the operator amended to.
 
 Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, write its message, validate it, and commit, so the closure edits T019 and T020 made are not left uncommitted.
 
@@ -721,7 +721,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` [OPEN: T021, the closure commit, is the orchestrator's and is not made yet; T001 to T020 are `[x]`]
+- [x] All tasks marked `[x]` [EVIDENCE: T001 to T021 are `[x]`; the closure commit is `03baa89ac6`, an ancestor of `origin/main`]
 - [x] No `[B]` blocked tasks remaining [EVIDENCE: `grep -c '\[B\]'` over the task headings finds none; no task is blocked]
 - [x] Manual verification passed [EVIDENCE: the T012, T013, T015 and T019 checks were run and their output and exit status read; the 24 h total was recomputed to 2,191 on 2026-10-25]
 <!-- /ANCHOR:completion -->

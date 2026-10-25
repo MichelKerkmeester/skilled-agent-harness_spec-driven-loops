@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-25T12:00:00Z"
     last_updated_by: "markdown"
     recent_action: "AC-006 band amended to measured 2,191; all ACs Met"
-    next_safe_action: "Commit T021 closure; start 003 against 2,191"
+    next_safe_action: "Phase closed on commit 03baa89ac6; no further work in this phase"
     key_files:
       - "tasks.md"
       - "acceptance-criteria.md"
