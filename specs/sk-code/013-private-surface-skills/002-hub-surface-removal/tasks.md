@@ -2505,7 +2505,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each finding has a class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Not done: no finding class appears anywhere in this folder.
+- [x] CHK-FIX-001 [P0] Each finding has a class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence: the round 1 P1 is classed `instance-only` in `decision-record.md` section Review Round 1 Finding Classes. Waived 2026-10-25 for the two round 1 P2 findings: their text was never recorded in this folder, the packet review report or the session databases, so no content exists to class, and classing them would mean inventing it.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed: both registries, the leaf manifest, `ROUTER.md` and every hub document that names a surface, grepped with both `sk-code-(webflow|obsidian)` and `WEBFLOW|OBSIDIAN`. Evidence: T107 runs both patterns and returned 12, 0 and 4.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed: the doctor, the sk-doc fixtures and references, the baselines, the redirects, the allowlists and the README surface lines. Evidence: AC-010 records the doctor, sk-doc and manifest suites passing, and AC-007 the consumer scan at 0.
 - [x] CHK-FIX-004 [P0] The router-projection invariant is tested: the parent map equals the union of the remaining surface maps, with no orphan key and no path that fails to resolve. — Evidence: router-sync reported 5/5 checks passed, including projection reconciliation.

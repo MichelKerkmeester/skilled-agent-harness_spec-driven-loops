@@ -177,6 +177,18 @@ test('a new namespace listed in the command table but missing from the group tab
   assert.match(out, /'foo' has 1 command\(s\) but no group-table row/);
 });
 
+test('a linked local-* skill holding command metadata is skipped, not read', () => {
+  const root = buildRoot();
+  // Malformed on purpose: reading it would report drift, so exit 0 proves the skip.
+  const privateSkill = path.join(root, 'private-checkout', 'local-private');
+  writeFile(path.join(privateSkill, 'command-metadata.json'), JSON.stringify([null]));
+  fs.symlinkSync(privateSkill, path.join(root, '.skilled', 'skills', 'local-private'));
+  const { status, out } = run(root);
+  assert.equal(status, 0, out);
+  assert.match(out, /STATUS=OK command-catalog-mirror/);
+  assert.doesNotMatch(out, /local-private/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. MALFORMED INPUT AND CRASHES
 // ─────────────────────────────────────────────────────────────────────────────

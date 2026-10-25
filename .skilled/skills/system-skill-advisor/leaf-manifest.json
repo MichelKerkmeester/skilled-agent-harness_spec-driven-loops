@@ -50,6 +50,7 @@
         "manual-testing-playbook/auto-indexing/corpus-df-idf.md",
         "manual-testing-playbook/auto-indexing/derived-extraction.md",
         "manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
+        "manual-testing-playbook/auto-indexing/private-skill-roots.md",
         "manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md",
         "manual-testing-playbook/auto-indexing/sanitizer-boundaries.md",
         "manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md",

@@ -66,10 +66,26 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Second Round
+
+- [x] T018 Class each T105 round 1 finding and tick phase 002 CHK-FIX-001 (`../002-hub-surface-removal/`). Evidence: the P1 is classed `instance-only`. The two P2s were never recorded anywhere, so their part of the row is waived with that reason.
+- [x] T019 Re-run the lint and syntax checks for phase 003 CHK-010 (`../003-advisor-vocabulary-cleanup/tasks.md`). Evidence: `tsc` exit 0, `node --check` 12 of 12, `ast.parse` 4 of 4, `eslint` exit 0 on the 2 files a config covers.
+- [x] T020 Re-run the five vitest files and the Python suite for phase 003 CHK-011. Evidence: `Tests  66 passed (66)` and `Summary: pass=84, fail=0`.
+- [x] T021 Add a `Class:` to each round 1 to 4 finding for phase 003 CHK-FIX-001 (`../003-advisor-vocabulary-cleanup/decision-record.md`). Evidence: 34 labels.
+- [x] T022 Add playbook scenario AI-007 for phase 003 CHK-FIX-003 (`system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md`). Evidence: the validator reports `scenarios=62` and `violations=0`.
+- [x] T023 Add the delimiter, sibling-prefix and empty-variable cases for phase 003 CHK-FIX-004 (`runtime/tests/private-skill-target.vitest.ts`). Evidence: `Tests  11 passed (11)`, and each new case fails against a mutated helper.
+- [x] T024 Regenerate the advisor `leaf-manifest.json` and `leaf-aliases.json` for the new scenario. Evidence: the root-metadata gate prints `checked=14 passed=14 failed=0`.
+- [x] T025 Skip `local-*` in `command-catalog-mirror-check.cjs`, test it and move it to the inventory's ruled set (`.skilled/commands/doctor/scripts/`). Evidence: 11 of 11 pass, and the new case fails without the skip.
+- [x] T026 Retire the two Webflow benchmark scenarios (`.skilled/skills/sk-code/benchmark/`). Evidence: no runner or test reads the fixtures, and the sk-code drift guards pass 4 of 4.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [x] All tasks marked `[x]`. T018 closed with the unrecorded P2 findings waived.
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed. Evidence: scenario 484 was run in a throwaway repository, and goal criterion 3 in the operator checkout.
 <!-- /ANCHOR:completion -->

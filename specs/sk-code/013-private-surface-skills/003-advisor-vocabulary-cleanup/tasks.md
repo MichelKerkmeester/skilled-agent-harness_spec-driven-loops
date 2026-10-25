@@ -2977,8 +2977,8 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks. Not recorded: the phase logged suite runs, not a lint run.
-- [ ] CHK-011 [P0] No console errors or warnings. Not recorded: the phase logged pass counts, not console output.
+- [x] CHK-010 [P0] Code passes lint/format checks. Evidence 2026-10-25: `tsc --noEmit -p tsconfig.build.json` in the advisor runtime exited 0. `node --check` passed on all 12 JavaScript files of `e00fef3e76` and `ast.parse` on all 4 Python files, exit 0. The one ESLint config in the repository, `system-spec-kit/runtime/eslint.config.mjs`, covers 2 of the commit's files, `sync-skills-hermes.cjs` and `hf-local-client.vitest.ts`, and `eslint` on them exited 0. No ESLint config covers the other files.
+- [x] CHK-011 [P0] No console errors or warnings. Evidence 2026-10-25: the helper, `skill-graph-db`, `advisor-status`, projection freshness and daemon freshness vitest files printed `Tests  66 passed (66)`, exit 0, with no warning or error line. `test_skill_advisor.py` printed `Summary: pass=84, fail=0`, exit 0. Its one `WARNING` line names the `invalid-skill` fixture, which a parser test writes on purpose.
 - [x] CHK-012 [P1] Error handling implemented. Evidence: the containment helper returns false when `realpathSync` or `statSync` throws, and the helper suite covers a missing target and a file target.
 - [x] CHK-013 [P1] Code follows project patterns. Evidence: four review rounds closed with no open P0 or P1.
 <!-- /ANCHOR:code-quality -->
@@ -2999,10 +2999,10 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Not done: only one round 3 finding carries a class.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence 2026-10-25: all 34 round 1 to 4 findings in `decision-record.md` carry a `Class:` label.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: the scanner inventory in `spec.md` section 3, now enforced by `skill-root-reader-inventory.test.cjs`.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Not done: the deep review found the private-root variable undocumented in the advisor README, catalog and playbook.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Partly done: the helper suite covers outside-root, missing, file, self-root and leading-dot targets, but no delimiter or joined-input case.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence 2026-10-25: the advisor README and catalog leaf document the private-root variable, and playbook scenario AI-007 (`manual-testing-playbook/auto-indexing/private-skill-roots.md`) exercises it. `validate-playbook-package.cjs` printed `scenarios=62 ... violations=0`, exit 0.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence 2026-10-25: `private-skill-target.vitest.ts` adds two roots joined by `path.delimiter` with an empty segment, a sibling-prefix root (`private` against `private-x`) and an empty variable, and prints `Tests  11 passed (11)`, exit 0. No case exposed a bug. With the empty-segment skip removed, the joined and empty cases failed. With a string-prefix containment test, the sibling case failed.
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Not done: the inventory lists scans, not a matrix.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: round 4 P2-2 made the lease cases unset `SYSTEM_SKILL_ADVISOR_DB_DIR`, and the helper suite sets and restores `SPECKIT_PRIVATE_SKILL_ROOTS`.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: AC-026 pins `e00fef3e76`.
@@ -3044,7 +3044,7 @@ A third independent review found one P1 and five P2 findings. The amendment "Rev
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 7/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 10/13 |
 | P2 Items | 1 | 1/1 |
 

@@ -657,3 +657,10 @@ For work inside D6, the Proof's end state wins over the Change's line list. D6 a
 - T097: This Node version prints ℹ pass 9 and ℹ fail 0, not # pass 7 and # fail 0. The router-sync suite has nine tests after T074. The Proof's end state wins over the Change's line list within D6.
 - T055: Kept probe P15 because its row is labeled SKILLED, then updated the surviving probe count and accuracy threshold. The Proof's end state wins over the Change's line list within D6.
 - T053: The anchor inventory missed five stale lines in the playbook index: three deleted family bullets, the critical-path set naming SD-001 and the CS family, and the 34 / 34 total. Review found them; the index now matches its own section 16 with 17 scenarios. `cite-drift-labels.jsonl:32` still names `webflow-detection.md`; it is a recorded citation sample keyed to a commit and content hashes, so D6 keeps it.
+
+## Review Round 1 Finding Classes (2026-10-25)
+
+The T105 review's first round returned one P1 and two P2 findings. Each class below uses the checklist vocabulary.
+
+- P1, stale playbook index lines (Class: `instance-only`). The five stale lines sat in one file, the sk-code playbook index, and the T053 amendment above records the fix. The index now matches its own section 16 with 17 scenarios, and the T107 closure greps returned 12, 0 and 4 over the hub, so no other hub file carried the same residue.
+- The two P2 findings (Class: not recorded). T105 says they were recorded in this file, but no entry here names a P2, and their text was found nowhere in this folder or in the packet review report. They cannot be classed without inventing their content. The round 2 review reported 0 P2 open, so neither is outstanding.

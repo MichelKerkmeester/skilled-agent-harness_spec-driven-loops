@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/006-review-remediation"
-    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_at: "2026-10-25T19:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Applied the confirmed deep-review findings and verified them"
-    next_safe_action: "Commit the remediation"
+    recent_action: "Applied the second-round fixes and verified them"
+    next_safe_action: "Commit the second round"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,9 +22,9 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "Keep or retire the two sk-code frontend benchmark scenarios?"
-      - "Should command-catalog-mirror-check.cjs skip local-* skills?"
-    answered_questions: []
+    answered_questions:
+      - "The two sk-code frontend benchmark scenarios are retired"
+      - "command-catalog-mirror-check.cjs skips local-* skills"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -72,6 +72,24 @@ The commit guard now reads `--diff-filter=ACMRT`, so a tracked `local-*` file th
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` | Modified | Index row for scenario 484 |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/private-skill-commit-guard.md` | Created | Scenario 484 |
 | `.skilled/commands/speckit/assets/speckit-complete.yaml` | Modified | `not_for` line |
+
+### Second Round
+
+The phase 003 checklist now has every P0 row ticked with evidence rerun on 2026-10-25. Each round 1 to 4 finding in its decision record carries a class, the helper suite gained the delimiter, sibling-prefix and empty-variable cases, and advisor scenario AI-007 exercises `SPECKIT_PRIVATE_SKILL_ROOTS` against a throwaway skills root. The doctor catalog mirror check skips `local-*` before it reads metadata, and the two Webflow benchmark scenarios are gone. Phase 002 CHK-FIX-001 is half done: its P1 has a class, but the two P2s were never written down.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `../002-hub-surface-removal/decision-record.md`, `tasks.md`, `implementation-summary.md` | Modified | Round 1 classes and the open row's reason |
+| `../003-advisor-vocabulary-cleanup/decision-record.md`, `tasks.md` | Modified | 34 class labels and five P0 rows ticked |
+| `.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts` | Modified | Three adversarial cases |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md` | Created | Scenario AI-007 |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md` | Modified | AI-007 row and the count of 62 |
+| `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` | Modified | Expects 62 scenarios |
+| `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Modified | Regenerated for AI-007 |
+| `.skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` and its test | Modified | The `local-*` skip and its case |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` | Modified | The mirror check is ruled `exclude` |
+| `.skilled/skills/sk-code/benchmark/fixtures/sk-code/` (four JSON files) | Deleted | The retired scenarios |
+| `.skilled/skills/sk-code/benchmark/README.md` | Modified | Fixture rows and the `legacy` status removed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -91,7 +109,7 @@ Each code fix got one test, and each test was run against the old script from `H
 |----------|-----|
 | The derived-freshness gate reuses `listSkillRoots` | The regenerator already owns the rule, so one predicate serves both |
 | The D1 amendment sits in the goal's log, not its decision table | The goal's durable slice must stay under 4,000 characters, and the parent spec carries the amendment beside D1 |
-| `command-catalog-mirror-check.cjs` is recorded as open, not fixed | No finding named it, and the brief scoped the doctor fix to the description audit |
+| `command-catalog-mirror-check.cjs` was first recorded as open, then fixed in the second round | The second-round brief put it in scope |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -111,6 +129,18 @@ Each code fix got one test, and each test was run against the old script from `H
 | `validate-playbook-package.cjs --package system-spec-kit` | PASS: 103 scenarios, 0 violations |
 | `validate_catalog_package.py --package system-skill-advisor --strict` | PASS: 0 violations |
 | `validate.sh specs/sk-code/013-private-surface-skills --recursive --strict` | PASS: `RESULT: PASSED` |
+| Second round: `tsc --noEmit -p tsconfig.build.json` (advisor runtime) | PASS, exit 0 |
+| Second round: `node --check` and `ast.parse` on the code files of `e00fef3e76` | PASS: 12 of 12 and 4 of 4 |
+| Second round: `eslint` on the 2 commit files the spec-kit config covers | PASS, exit 0. No ESLint config covers the other files |
+| Second round: five phase 003 vitest files | PASS: `Tests  66 passed (66)` before the new cases |
+| Second round: `test_skill_advisor.py` | PASS: `Summary: pass=84, fail=0`, one intentional `invalid-skill` fixture warning |
+| Second round: `private-skill-target.vitest.ts` | PASS: `Tests  11 passed (11)`. The new cases fail against a mutated helper |
+| Second round: `manual-testing-playbook.vitest.ts` | PASS: 1 of 1 |
+| Second round: `validate-playbook-package.cjs` on the advisor playbook | PASS: `scenarios=62`, `violations=0`, exit 0 |
+| Second round: `command-catalog-mirror-check.test.cjs` | PASS: 11 of 11. The new case fails without the skip |
+| Second round: `skill-root-reader-inventory.test.cjs` | PASS, exit 0 |
+| Second round: `ci-skill-root-metadata.cjs` and `ci-leaf-manifest-freshness.cjs` | PASS: `checked=14 passed=14 failed=0` and `checked=14 fresh=14 failed=0` |
+| Second round: sk-code `run-all-drift-guards.sh` | PASS: 4 of 4 guards, 10 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,10 +148,10 @@ Each code fix got one test, and each test was run against the old script from `H
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two benchmark scenarios still name deleted Webflow paths.** `sk-code-loadspeed-001` and `sk-code-motion-002` wait on an operator decision to retire or rewrite them.
+1. **Phase 002 CHK-FIX-001 closed with a waiver.** The T105 round 1 P2 findings were never recorded, so they cannot be classed, and that part of the row is waived. Round 2 of that review reported none open.
 2. **One playbook line still names a Webflow-only standard.** It sits in `sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`, which another worker owns this round.
 3. **The reader inventory test detects readers by variable name.** A reader that names its skills root something unusual is caught only once it is added to the inventory.
-4. **`command-catalog-mirror-check.cjs` has no `local-*` rule.** It lists names with no type check, so a private link holding `command-metadata.json` would reach a doctor finding.
+4. **Generated retrieval data still names the deleted fixture folder.** `corpus-manifest.json` and `generation-diagnostics.json` are retrieval fixtures produced by the index build, so they were not edited by hand.
 <!-- /ANCHOR:limitations -->
 
 ---

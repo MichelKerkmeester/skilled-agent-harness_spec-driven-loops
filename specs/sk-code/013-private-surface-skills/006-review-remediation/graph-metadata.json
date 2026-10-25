@@ -49,11 +49,11 @@
       ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/private-skill-commit-guard.md",
       ".skilled/commands/speckit/assets/speckit-complete.yaml",
-      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
-      ".skilled/scripts/git-hooks/README.md",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs",
-      ".skilled/commands/doctor/scripts/tests/test_audit_descriptions.py",
-      ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md"
+      ".skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
+      ".skilled/skills/system-skill-advisor/leaf-manifest.json"
     ],
     "entities": [
       {
@@ -141,21 +141,27 @@
         "source": "derived"
       },
       {
-        "name": "pre-commit.test.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "name": "private-skill-target.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "skill-derived-regenerator.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs",
+        "name": "private-skill-roots.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md",
         "source": "derived"
       },
       {
-        "name": "test_audit_descriptions.py",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/test_audit_descriptions.py",
+        "name": "manual-testing-playbook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -193,17 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet shipped, but its own records said phases 002 and 003 were open and the parent was 27 percent done",
     "created_at": "2026-10-25T17:33:57Z",
-    "last_save_at": "2026-10-25T18:00:17.609Z",
+    "last_save_at": "2026-10-25T18:40:09.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f71b94da2e662ddba1dfbb5ea6ca4fc40d7bff3840652033c4f95539a01fede7",
+    "source_fingerprint": "sha256:25424b52aa408373c48960c94d8937d82050fb9861107f5e3a02c505b98d3a2e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "096a64dab512b7aff46a9c03df9805a0258b44c1f190b01692cacb1bb44cba26",
+      "spec.md": "ae13b6656f6ac90a123d6eddc624a9a78c99fbed028eddd828c60bde3c83b5c8",
       "plan.md": "a8108132db3d23615b9201a2a2206d6d2b5ebc466bbffebde20648b9ad6f4a19",
-      "tasks.md": "56795495986998543700663aa34f871b3be322adcf1872720dbb79b8b4df48bc",
-      "implementation-summary.md": "c835c6865d42a7c59c45a6e18b4258f6b7f26cf2569d722dc2dc20b2fae04f9b"
+      "tasks.md": "9cdb162324046a8d291dad367c57d8c4abeaf803b321fe84a8f43a066017ce11",
+      "implementation-summary.md": "68138b3717784c293bae81bea9edf9bc7fdf2efde0f1badb097b4c5d1194fd67"
     },
     "last_active_at": null
   }

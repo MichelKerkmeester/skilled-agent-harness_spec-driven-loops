@@ -21,7 +21,7 @@ _memory:
       session_id: "scaffold-002-hub-surface-removal"
       parent_session_id: null
     completion_pct: 100
-    open_questions: []
+    open_questions:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -118,6 +118,7 @@ The acceptance-criteria.md progress notes record the T039-T107 proofs. T096-T102
 
 1. The original T081 and T094 counts include five D6-kept mcp-obsidian records. The corrected scans find no removed sk-code paths, README parity passes and the manifest is reproducible.
 2. The unfiltered T104 archive diff counts one cli-external-orchestration manifest from another packet. Excluding that file gives this phase's result of 20, 0 and 0.
+3. Checklist row CHK-FIX-001 closed with a waiver. The T105 round 1 P1 is classed `instance-only`. The two round 1 P2 findings were never written down, so they carry no class and that part of the row is waived. Round 2 reported none open.
 <!-- /ANCHOR:limitations -->
 
 ---

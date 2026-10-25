@@ -139,7 +139,7 @@ Summary of the areas each phase touches; per-phase file detail lives in each chi
 | 3 | 003-advisor-vocabulary-cleanup/ | Remove the surface vocabulary from the advisor scorer, plugin, schemas and tests, and give seven skill-tree scans an explicit `local-*` rule with realpath containment; regenerate the tracked fallback graph | Done (e00fef3e76) |
 | 4 | 004-private-local-skills/ | Link `.skilled/skills/local-*` to `local-skills/` folders in two external repositories and restore both surfaces there from `42b41dd286`, each standalone with one skill-root `graph-metadata.json` | Done (e8256b8044, ff993936c7) |
 | 5 | 005-leak-and-routing-verification/ | Prove from a fresh clone that no private path, byte or routing signal is tracked, and that six routing probes in two consumer checkouts still return both private skills | Done |
-| 6 | 006-review-remediation/ | Apply the confirmed deep-review findings: close the phase 002 and 003 records, widen the private-skill guard to type changes, give two more skills-root readers the `local-*` skip with an inventory test, and document the gate and the private-root variable | Done |
+| 6 | 006-review-remediation/ | Apply the confirmed deep-review findings: close the phase 002 and 003 records, widen the private-skill guard to type changes, give two more skills-root readers the `local-*` skip with an inventory test, and document the gate and the private-root variable. A second round closed the phase 003 P0 checklist rows, retired the two Webflow benchmark scenarios and gave the catalog mirror check the `local-*` skip. Phase 002 CHK-FIX-001 stays open, because two of its review findings were never recorded | Done |
 
 ### Phase Transition Rules
 

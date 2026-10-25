@@ -70,11 +70,11 @@ Every record states what the commits prove, every skills-root reader states its 
 - The four P1 record fixes and the record-side P2 fixes in the parent, the goal and phases 002, 003 and 004
 - The guard filter, the derived-freshness gate, the doctor description audit and their tests
 - The scanner-inventory test, the hooks README, the advisor README, one advisor catalog leaf, one system-spec-kit playbook scenario, the TSDoc on the containment helper and one speckit asset line
+- Second round, 2026-10-25: the open P0 checklist rows of phases 002 and 003, an advisor playbook scenario for `SPECKIT_PRIVATE_SKILL_ROOTS`, three adversarial helper cases, the `local-*` skip in `command-catalog-mirror-check.cjs` and the retirement of the two Webflow benchmark scenarios
 
 ### Out of Scope
-- The two sk-code benchmark scenarios that still name deleted Webflow paths. They wait on an operator decision.
 - The "Webflow-only standard" line in `sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`. Another worker owns that folder this round.
-- `command-catalog-mirror-check.cjs`, which the new inventory test found and records as open. No finding named it.
+- Dated benchmark reports and spec records that name the retired benchmark scenarios. They are kept records.
 
 ### Files to Change
 
@@ -96,6 +96,18 @@ Every record states what the commits prove, every skills-root reader states its 
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index row for scenario 484 |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/private-skill-commit-guard.md` | Create | Scenario 484, the private-skill gate on the commit path |
 | `.skilled/commands/speckit/assets/speckit-complete.yaml` | Modify | `not_for` no longer names the removed Webflow and motion_dev routes |
+| `../002-hub-surface-removal/decision-record.md`, `tasks.md`, `implementation-summary.md` | Modify | The T105 round 1 P1 is classed, and CHK-FIX-001 closes with the unrecorded P2s waived |
+| `../003-advisor-vocabulary-cleanup/decision-record.md`, `tasks.md` | Modify | A `Class:` on all 34 round 1 to 4 findings, and CHK-010, CHK-011 and CHK-FIX-001, -003 and -004 ticked with evidence |
+| `.skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts` | Modify | Joined roots with an empty segment, a sibling-prefix root and an empty variable |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/private-skill-roots.md` | Create | Scenario AI-007 for `SPECKIT_PRIVATE_SKILL_ROOTS` |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index row for AI-007 and the count of 62 |
+| `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` | Modify | The inventory test expects 62 scenarios |
+| `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Modify | Regenerated for the new scenario |
+| `.skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | Modify | `findMetadataFiles` skips `local-*` first |
+| `.skilled/commands/doctor/scripts/tests/command-catalog-mirror-check.test.cjs` | Modify | A linked `local-private` skill with metadata exits 0 |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs` | Modify | The mirror check moves from screened to an `exclude` rule |
+| `.skilled/skills/sk-code/benchmark/fixtures/sk-code/` (four files) | Delete | The two retired Webflow scenarios, public and private halves |
+| `.skilled/skills/sk-code/benchmark/README.md` | Modify | No fixture rows, no `legacy` status and no claim of run inputs |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,6 +130,7 @@ Every record states what the commits prove, every skills-root reader states its 
 | REQ-004 | The derived-freshness gate and the doctor description audit skip `local-*` | Their new tests pass, and each fails against the old script |
 | REQ-005 | A skills-root reader with no rule fails a test | `skill-root-reader-inventory.test.cjs` passes, and fails when a reader loses its entry |
 | REQ-006 | The gate and the private-root variable are documented | The README, catalog and playbook validators pass |
+| REQ-007 | The second-round fixes land | Every touched test passes, the advisor playbook validator reports 62 scenarios and 0 violations, and the sk-code drift guards pass |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -145,8 +158,8 @@ Every record states what the commits prove, every skills-root reader states its 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the public hub benchmark keep its two frontend-site scenarios now that the frontend surface is private?
-- Should `command-catalog-mirror-check.cjs` skip `local-*`, as the other doctor readers now do?
+- Answered 2026-10-25: the two frontend-site benchmark scenarios are retired, and `command-catalog-mirror-check.cjs` skips `local-*`.
+- Closed with a waiver: phase 002 CHK-FIX-001, because the two T105 round 1 P2 findings were never recorded and so cannot be classed.
 <!-- /ANCHOR:questions -->
 
 ---

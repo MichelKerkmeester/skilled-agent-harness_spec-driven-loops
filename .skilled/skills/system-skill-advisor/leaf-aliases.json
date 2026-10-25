@@ -241,6 +241,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/auto-indexing/private-skill-roots.md",
+    "diskPath": "manual-testing-playbook/auto-indexing/private-skill-roots.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md",
     "diskPath": "manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md"
   },

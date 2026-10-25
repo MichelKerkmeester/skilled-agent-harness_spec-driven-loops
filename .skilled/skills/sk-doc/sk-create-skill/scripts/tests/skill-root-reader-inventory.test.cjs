@@ -44,6 +44,7 @@ const RULED = {
   '.skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts': 'exclude',
   '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs': 'exclude',
   '.skilled/commands/doctor/scripts/audit_descriptions.py': 'exclude',
+  '.skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs': 'exclude',
 };
 
 // Readers reviewed and left without a name rule, each with the reason that makes it safe.
@@ -58,8 +59,6 @@ const SCREENED = {
     'reads through Dirent.isDirectory() and only hubs that hold mode-registry.json and ROUTER.md',
   '.opencode/plugins/system-skill-advisor.js':
     'reads through Dirent.isDirectory() into a local cache signature that is never tracked',
-  '.skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs':
-    'open: lists names without a type check, so a local-* link holding command-metadata.json would reach a doctor finding',
 };
 
 const SOURCE_EXT = /\.(?:c|m)?[jt]s$|\.py$/;
