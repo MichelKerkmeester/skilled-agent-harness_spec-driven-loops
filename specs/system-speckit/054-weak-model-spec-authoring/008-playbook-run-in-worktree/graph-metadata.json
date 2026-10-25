@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 007 adds scenarios that claim the placeholder gate warns in Draft, fails at Complete, the drift guard catches a leaked description, the golden render holds, the router loads the card, the sync guard fails on drift and a DeepSeek worker can author a Level 1 packet from the card",
     "created_at": "2026-10-23T11:27:26Z",
-    "last_save_at": "2026-10-25T00:01:23.217Z",
+    "last_save_at": "2026-10-25T00:05:14.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cd03c5c2a0d8bcd2303afdaa27ea579d13168c67781b805c5708cc9790a56b7",
+    "source_fingerprint": "sha256:061a6850c1e7e590179eb2e73841c0277c421c1f1ea510475d05951069523ba1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5c566a56050cb612442360bbe474c9fe2e350d9a07e7fbb3254fc3e778a841ba",
