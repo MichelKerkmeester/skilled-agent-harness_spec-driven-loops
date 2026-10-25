@@ -63,7 +63,6 @@ on:
         default: 'false'
   schedule:
     - cron: '17 4 * * 1'
-    - cron: '37,51 21 25 10 *'
 
 permissions:
   contents: read
