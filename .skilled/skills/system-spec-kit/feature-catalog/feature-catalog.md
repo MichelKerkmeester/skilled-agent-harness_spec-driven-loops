@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-25"
-version: 2.1.9.0
+version: 2.1.10.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -881,7 +881,7 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The seven doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git` and `/doctor:setup`) and dispatch to their subsystem routes.
+The eight doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git`, `/doctor:ci` and `/doctor:setup`) and dispatch to their subsystem routes.
 
 #### Current Reality
 
@@ -899,7 +899,7 @@ See [`doctor-commands/category-overview.md`](doctor-commands/category-overview.m
 
 #### Description
 
-Seven doctor routers dispatch 14 route-specific YAML workflows through the canonical `_routes.yaml` manifest. Each route names its owning command.
+Eight doctor routers dispatch 17 route-specific YAML workflows through the canonical `_routes.yaml` manifest. Each route names its owning command.
 
 #### Current Reality
 

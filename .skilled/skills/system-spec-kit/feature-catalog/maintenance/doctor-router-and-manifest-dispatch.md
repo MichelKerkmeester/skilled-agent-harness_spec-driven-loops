@@ -1,20 +1,20 @@
 ---
 title: "Doctor router and manifest-driven dispatch"
-description: "Seven doctor routers dispatch 14 route-specific YAML workflows through the canonical `_routes.yaml` manifest. Each route names its owning command."
+description: "Eight doctor routers dispatch 17 route-specific YAML workflows through the canonical `_routes.yaml` manifest. Each route names its owning command."
 trigger_phrases:
   - "doctor router and manifest-driven dispatch"
   - "_routes.yaml"
   - "dispatch doctor manifest"
   - "argv-positional subsystem route"
   - "how do I add a new doctor route"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Doctor router and manifest-driven dispatch
 
 ## 1. OVERVIEW
 
-Seven doctor routers dispatch spec-kit diagnostics through 14 YAML workflows. The canonical route manifest `.skilled/commands/doctor/_routes.yaml` names the command that owns each route:
+Eight doctor routers dispatch their routes through 17 route-specific YAML workflows. The canonical route manifest `.skilled/commands/doctor/_routes.yaml` names the command that owns each route:
 
 - `/doctor:speckit` takes no target and runs the spec-kit retrieval diagnostic. Its old `speckit-retrieval` target still works as an optional positional.
 - `/doctor:skill-advisor <target>` owns six targets: `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill`.
@@ -22,6 +22,7 @@ Seven doctor routers dispatch spec-kit diagnostics through 14 YAML workflows. Th
 - `/doctor:runtime-mirrors` takes no arguments.
 - `/doctor:sk-code` owns one target: `setup`.
 - `/doctor:git <target>` owns three targets: `hooks`, `standards` and `setup`.
+- `/doctor:ci <target>` owns three targets: `report` (default, read-only), `scaffold` and `toggle` (both mutate after a yes).
 - `/doctor:setup` takes no target.
 
 Three standalone companions round out the surface: `/doctor:update` for release updates and release migration, `/doctor:mcp install|debug` for MCP infrastructure repair and `/doctor:env` for environment diagnostics.
@@ -50,7 +51,7 @@ Manual. The router is operator-driven; no automation triggers it. `/doctor:updat
 
 ### Mutation Boundaries
 
-The routers themselves never mutate anything. The manifest assigns one of three mutation classes to each route. Read-only routes are `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `runtime-mirrors`, `/doctor:sk-code setup`, `/doctor:git setup` and `/doctor:setup`. Add-only routes are `speckit-retrieval` and `deep-loop`. Routes marked `mutates` are `tune`, `rebuild`, `/doctor:git hooks` and `/doctor:git standards`. Each route's `gate3_location` names its mutation location.
+The routers themselves never mutate anything. The manifest assigns one of three mutation classes to each route. Read-only routes are `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `runtime-mirrors`, `/doctor:sk-code setup`, `/doctor:git setup`, `/doctor:ci report` and `/doctor:setup`. Add-only routes are `speckit-retrieval` and `deep-loop`. Routes marked `mutates` are `tune`, `rebuild`, `/doctor:git hooks`, `/doctor:git standards`, `/doctor:ci scaffold` and `/doctor:ci toggle`. Each route's `gate3_location` names its mutation location.
 
 ---
 
@@ -65,7 +66,7 @@ The routers themselves never mutate anything. The manifest assigns one of three 
 | `.skilled/commands/doctor/deep-loop.md` | Router for the deep-loop diagnostic, `--scope` only |
 | `.skilled/commands/doctor/runtime-mirrors.md` | Router for the mirror-parity diagnostic, no arguments |
 | `.skilled/commands/doctor/mcp.md` | MCP infrastructure command: `install` / `debug` sub-action dispatch |
-| `.skilled/commands/doctor/_routes.yaml` | Canonical route manifest (14 routes + 2 MCP sub-routes) |
+| `.skilled/commands/doctor/_routes.yaml` | Canonical route manifest (17 routes + 2 MCP sub-routes) |
 | `.skilled/commands/doctor/scripts/route-validate.sh` | CI assertion bash wrapper |
 | `.skilled/commands/doctor/scripts/route-validate.py` | Python core asserting manifest consistency |
 | `.skilled/commands/doctor/assets/doctor-*.yaml` | Per-target and per-subsystem YAML workflows, one per route |

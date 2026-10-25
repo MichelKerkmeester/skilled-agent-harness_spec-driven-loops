@@ -18,7 +18,7 @@ description: "Generators that keep .hermes/prompts and .hermes/skills in sync wi
 | File | Purpose |
 |------|---------|
 | `sync-prompts-hermes.cjs` | Generates flat `.hermes/prompts/*.md` files from `.skilled/commands/**/*.md`, walking every command markdown file except `assets/`, `scripts/` and `fixtures/` subfolders, `README.md` and `*.contract.md` files. Each generated prompt is a stub that names the canonical command path instead of copying it. `--check` reports `MISSING`, `STALE` and `EXTRA` drift without writing. |
-| `sync-skills-hermes.cjs` | Generates `.hermes/skills/<name>/SKILL.md` from `.skilled/skills/**/SKILL.md`, skipping `node_modules`, `dist`, `.state`, `scratch`, `benchmark`, `fixtures` and `z_archive` directories. It also mirrors every `.skilled/agents/*.md` persona as a `agent-<name>` skill. Relative links in each body are rewritten so they resolve from the generated folder, and stale output directories are pruned. `--check` reports `DRIFT` and `STALE` names without writing. |
+| `sync-skills-hermes.cjs` | Generates `.hermes/skills/<name>/SKILL.md` from `.skilled/skills/**/SKILL.md`, skipping `node_modules`, `dist`, `.state`, `scratch`, `benchmark`, `fixtures` and `z_archive` directories. A top-level operator-private skill, folder or symlink, is never mirrored, because it exists only in the operator's checkout. It also mirrors every `.skilled/agents/*.md` persona as a `agent-<name>` skill. Relative links in each body are rewritten so they resolve from the generated folder, and stale output directories are pruned. `--check` reports `DRIFT` and `STALE` names without writing. |
 
 ---
 
