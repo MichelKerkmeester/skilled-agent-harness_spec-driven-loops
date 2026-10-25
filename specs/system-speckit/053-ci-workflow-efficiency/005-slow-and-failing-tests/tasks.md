@@ -1511,7 +1511,9 @@ Stop and escalate if: the validator prints `RESULT: FAILED` for any reason other
 
 ---
 
-### T040 [ ] Commit the closure (AC-010)
+### T040 [x] Commit the closure (AC-010)
+
+Evidence: the closure edits landed as `c7deb0efc6`, `docs(spec): close the slow and failing test criteria`, and `git merge-base --is-ancestor c7deb0efc6 origin/main` exits 0 after the push (observed 2026-10-25).
 
 Not done, by instruction: the orchestrator stages and commits after an independent review. The message is written in `scratch/commit-message-closure.txt` and validates with exit `0`. The phase is closeable (see `acceptance-criteria.md` section 3), so the subject may say the criteria are closed.
 
@@ -1541,7 +1543,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]` [EVIDENCE: T001 to T040 are `[x]`; the closure commit is `c7deb0efc6`, on `origin/main`]
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

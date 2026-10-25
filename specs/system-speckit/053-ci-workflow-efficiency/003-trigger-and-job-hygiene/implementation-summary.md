@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-trigger-and-job-hygiene |
-| **Completed** | 2026-10-25, on the operator's AC-009 ruling (the T038 closure commit follows) |
+| **Completed** | 2026-10-25, on the operator's AC-009 ruling (closure commit `055ba93b35`) |
 | **Level** | 3 |
 | **Status** | Complete |
 <!-- /ANCHOR:metadata -->

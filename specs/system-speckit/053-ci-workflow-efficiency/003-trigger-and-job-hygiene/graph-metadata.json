@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for",
     "created_at": "2026-10-23T08:47:51Z",
-    "last_save_at": "2026-10-25T07:08:38.447Z",
+    "last_save_at": "2026-10-25T08:11:05.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b111e92e59db05e4d33059fe1e1eda4cf17dd73ba8d403b7ba7660ecdcb21f26",
+    "source_fingerprint": "sha256:6cd57db934317966f8ccadc02e2adf283ca3855a45e875ecb2da3a2f218d4139",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7996fa764bb4c639001e9f85434754e7b1d8a5d963b16b0988ef7385802c2780",
       "plan.md": "b0c51ce0f8c4f149439176104907322af73f333fbb7996462235e785237a40b4",
-      "tasks.md": "1fa5b39db86b5570ebf635aff14ccda58e0391643ab8d2edf4e8ed73853da25d",
+      "tasks.md": "d82d7cbb12f9ee3bd6c2ec507c5c91187b57c3f6478806837920516584327073",
       "decision-record.md": "7d755b51609ed4f8fc0dfd7fe6456716e2193c1a1b52328ebc9b24bc41f37a1c",
-      "implementation-summary.md": "fd9964b5712f3dd1093c9eb7ff198d807b8ada41f530909823621f1bac65bfe0"
+      "implementation-summary.md": "ee9ec263f1bf6a58507a8a6f34022c260390b375808c32ebdaeab2e161c4e881"
     },
     "last_active_at": null
   }

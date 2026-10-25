@@ -1614,7 +1614,9 @@ Stop and escalate if: any row has no observed evidence, or the validator does no
 
 ---
 
-### T038 [ ] Commit the closure evidence (AC-017)
+### T038 [x] Commit the closure evidence (AC-017)
+
+Evidence: the closure edits landed as `055ba93b35`, `docs(spec): close the trigger and job hygiene criteria`, and `git merge-base --is-ancestor 055ba93b35 origin/main` exits 0 after the push (observed 2026-10-25).
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene/acceptance-criteria.md`. Anchor: `| AC-017 | R3-R11 | REQ-013 |` at `:80`, the row whose Verification cell names the id-hygiene check.
 
@@ -1652,7 +1654,7 @@ Stop and escalate if: validation fails twice, the message is rejected, or `git s
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]` (T038, the closure commit, follows this edit and is the only task left open)
+- [x] All tasks marked `[x]` (T001 to T038 are `[x]`; the closure commit is `055ba93b35`, on `origin/main`)
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed (the trigger and job-shape probes T027 to T035 ran on 2026-10-24 and are recorded in `scratch/probe-results.md`)
 <!-- /ANCHOR:completion -->
