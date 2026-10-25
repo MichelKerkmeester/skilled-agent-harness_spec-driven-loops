@@ -39,7 +39,7 @@
       "sequence"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/baseline/runs.jsonl",
+      "scratch/baseline/delta.json",
+      "scratch/closeout/criteria.txt",
       ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+      ".skilled/changelog/system-spec-kit/v2.9.0.0.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
-      "specs/system-speckit/graph-metadata.json",
+      "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
       "specs/system-speckit/041-write-recipe-fixes/spec.md",
-      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
-      ".skilled/skills/system-spec-kit/templates/changelog/root.md",
-      ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
-      "runtime/cli/retrieval/generate-trigger-index.mjs",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md"
+      "scratch/tools/run-final.sh",
+      "scratch/baseline/baseline.json",
+      "scratch/baseline/hints-v2.3.txt",
+      "scratch/baseline/anchors-v2.3.txt",
+      "scratch/baseline/delta.md"
     ],
     "entities": [
       {
@@ -100,9 +100,33 @@
         "source": "derived"
       },
       {
+        "name": "runs.jsonl",
+        "kind": "file",
+        "path": "scratch/baseline/runs.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "delta.json",
+        "kind": "config",
+        "path": "scratch/baseline/delta.json",
+        "source": "derived"
+      },
+      {
+        "name": "criteria.txt",
+        "kind": "file",
+        "path": "scratch/closeout/criteria.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/system-spec-kit/v2.9.0.0.md",
         "source": "derived"
       },
       {
@@ -118,51 +142,33 @@
         "source": "derived"
       },
       {
-        "name": "corpus-manifest.json",
+        "name": "run-final.sh",
+        "kind": "script",
+        "path": "scratch/tools/run-final.sh",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.json",
         "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "path": "scratch/baseline/baseline.json",
         "source": "derived"
       },
       {
-        "name": "generation-diagnostics.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-        "source": "derived"
-      },
-      {
-        "name": "phrase-variants.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": "specs/system-speckit/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "root.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/templates/changelog/root.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-trigger-index.mjs",
+        "name": "hints-v2.3.txt",
         "kind": "file",
-        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
+        "path": "scratch/baseline/hints-v2.3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "anchors-v2.3.txt",
+        "kind": "file",
+        "path": "scratch/baseline/anchors-v2.3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "delta.md",
+        "kind": "doc",
+        "path": "scratch/baseline/delta.md",
         "source": "derived"
       },
       {
@@ -184,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-24T08:18:35.357Z",
+    "last_save_at": "2026-10-25T09:19:03.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be53d497bf1e1012c33fdfdf2da24ad72e062f3aa47af818c4afb2260cc85818",
+    "source_fingerprint": "sha256:f55ed5d0d13618799ce592888c23d687074de76c0ba2842fe0d136b21fa48ccf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa3b5214ef8910eaa26aa8b07e3a2dd83a05bea929e4060de04df07f08383358",
-      "plan.md": "76b2feeddff6a92d5ca891eb2f1f9fc55c0d00ef5dccf8671f69c9e899655a26",
-      "tasks.md": "3e32c5a90a2aaa6fd9b9bd2b3f14960e170dd8118a0ae0dddb4ebd36cea705f6",
-      "implementation-summary.md": "9d504dabfd3d52510352d1f8fe238b65aa5a3b1a7b819a778e02dfb2c778f4b0"
+      "spec.md": "462523b55c6fe98ff7e924742630f3dbf6f581e9520d996958a82f8a6891fc9b",
+      "plan.md": "1169d7ec60672e7bf8070beed6ffad3a0c01b777ea44b1c75666f6a1c1d9fbb5",
+      "tasks.md": "9ce8ee8bb69d4184e538995b3e16f7172211f947c013c4c95a4b9f1dd7d9a07f",
+      "implementation-summary.md": "1925409415d0eb34558fe8516a51a701081f059415a58aaa7e18db33fe41194d"
     },
     "last_active_at": null
   }

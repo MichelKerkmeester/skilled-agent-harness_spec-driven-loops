@@ -10,8 +10,8 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
-    last_updated_at: "2026-10-23T12:00:00Z"
-    last_updated_by: "planning-session"
+    last_updated_at: "2026-10-25T09:10:15Z"
+    last_updated_by: "worker"
     recent_action: "Authored the phase parent spec"
     next_safe_action: "Meet the launch preconditions, then run phase 001"
     blockers: []
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -89,8 +89,8 @@ Make the templates, the examples, the validator and the authoring docs good enou
 ### Out of Scope
 - Any change to `sk-prompt`. All logic lives in system-spec-kit.
 - Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
-- Measuring models other than DeepSeek V4.1 Flash max for the benchmark.
-- Committing or pushing. Both stay with the operator.
+- Measuring models other than cli-devin swe-2-max for the benchmark.
+- Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
 
 ### Files to Change
 
@@ -112,9 +112,9 @@ Make the templates, the examples, the validator and the authoring docs good enou
 The operator meets all four before the first phase runs. The conductor records each as met in `goal.md` section 4 and stops when one is not.
 
 1. **Workspace.** The operator chooses A) a git worktree or B) the current branch, following `sk-git`. The conductor never chooses. The chosen path becomes `WORKTREE` in `goal.md` section 4.
-2. **Provider login.** `codex login status` reports a ChatGPT login and `devin auth status` reports a Devin login. A rate limit or refusal on both stops the run.
-3. **Lane authorization.** At most 3 parallel DeepSeek lanes and never two on one file. The operator has already given this.
-4. **Conductor placement.** The conductor is a Claude Code session. Writers run on cli-codex `gpt-6-luna` max fast, with cli-devin `swe-2-max` as fallback, and every review runs on cli-devin `swe-2-max`. A child task that names the Task tool runs as this CLI dispatch with the same brief and reply file.
+2. **Provider login.** `devin auth status` reports a Devin login. A rate limit or refusal on cli-devin stops the run.
+3. **Lane authorization.** At most 3 parallel lanes and never two on one file. The operator has already given this.
+4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`. The benchmark subject is cli-devin `swe-2-max`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -126,15 +126,15 @@ The operator meets all four before the first phase runs. The conductor records e
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-template-drift-census-and-baseline/ | Census every template, example and reference defect into a verified ledger and measure the authoring baseline | Pending |
-| 2 | 002-template-and-example-defect-repair/ | Apply the ledger rows owned by this phase with a tested exact-match applier | Pending |
-| 3 | 003-versioned-placeholder-gate/ | Make unfilled `[YOUR_VALUE_HERE: ...]` tokens a Draft warning and a later error, for v2.3 docs only | Pending |
-| 4 | 004-template-section-fill-guidance/ | Add a fill instruction and a good and weak example to each core section, and guard example drift | Pending |
-| 5 | 005-weak-model-authoring-card/ | Write the authoring card, route the skill to it and guard the sync | Pending |
-| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Pending |
-| 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Pending |
-| 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Pending |
-| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | Pending |
+| 1 | 001-template-drift-census-and-baseline/ | Census every template, example and reference defect into a verified ledger and measure the authoring baseline | Complete |
+| 2 | 002-template-and-example-defect-repair/ | Apply the ledger rows owned by this phase with a tested exact-match applier | Complete |
+| 3 | 003-versioned-placeholder-gate/ | Make unfilled `[YOUR_VALUE_HERE: ...]` tokens a Draft warning and a later error, for v2.3 docs only | Complete |
+| 4 | 004-template-section-fill-guidance/ | Add a fill instruction and a good and weak example to each core section, and guard example drift | Complete |
+| 5 | 005-weak-model-authoring-card/ | Write the authoring card, route the skill to it and guard the sync | Complete |
+| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
+| 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Complete |
+| 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Complete |
+| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | In Progress |
 
 ### Phase Transition Rules
 

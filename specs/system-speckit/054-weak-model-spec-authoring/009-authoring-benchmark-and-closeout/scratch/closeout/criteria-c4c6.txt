@@ -1,0 +1,2 @@
+C4 PASS EXAMPLE_DRIFT_OK rc=0, CARD SYNC OK rc=0
+C6 PASS report=2026-10-25--manual-testing-playbook--weak-model-authoring scenarios: 481=PASS 482=PASS 479=PASS 480=PASS 483=PASS 478=PASS 477=PASS 476=PASS

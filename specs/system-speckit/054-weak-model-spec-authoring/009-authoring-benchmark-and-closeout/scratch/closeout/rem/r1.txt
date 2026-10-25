@@ -1,0 +1,16 @@
+specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/002-agent-improvement-inventory
+specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/001-unique-value-differentiation
+specs/system-deep-loop/z_archive/017-deep-review-three-tier-setup
+specs/system-deep-loop/z_archive/024-deep-loop-improved/004-system-spec-kit
+specs/system-deep-loop/z_archive/026-goal-opencode-plugin/006-active-continuation
+specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/010-live-anti-overfit-lane
+specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission
+specs/system-skill-advisor/z_archive/004-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun
+specs/system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/008-routing-confidence-calibration
+specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync
+specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-topology-build-boundary
+specs/system-speckit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador
+specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend

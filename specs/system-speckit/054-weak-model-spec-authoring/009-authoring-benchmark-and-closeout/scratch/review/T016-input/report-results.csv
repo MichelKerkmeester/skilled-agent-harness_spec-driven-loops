@@ -1,0 +1,7 @@
+side,run,strict_passed,leftover_hints,missing_anchors,out_of_scope_writes,seconds
+baseline,1,1,1,0,0,326
+baseline,2,1,0,0,0,317
+baseline,3,1,1,0,0,384
+final,1,1,0,0,0,437
+final,2,1,0,0,0,429
+final,3,1,0,6,0,1822

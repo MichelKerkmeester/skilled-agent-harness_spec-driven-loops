@@ -19,7 +19,7 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-Phase 1 measured how a DeepSeek V4.1 Flash worker authored a Level 2 packet before any template changed. This phase measures the same task the same way on the final tree and reports the difference for five metrics, each as a minimum and a maximum over three runs. It then publishes the benchmark report, writes the changelogs, regenerates the trigger index, refreshes the track roots and closes the packet against the seven criteria in `../goal.md` section 3.
+Phase 1 first measured a DeepSeek V4.1 Flash worker on a Level 2 packet, and the parent later replaced that with a Level 3 baseline on cli-devin swe-2-max, taken before any template changed. This phase measures the same Level 3 task the same way on the final tree and reports the difference for five metrics, each as a minimum and a maximum over three runs. It then publishes the benchmark report, writes the changelogs, regenerates the trigger index, refreshes the track roots and closes the packet against the seven criteria in `../goal.md` section 3.
 
 **Key Decisions**: the frozen task text is copied byte for byte from phase 1, and leftover hints are counted as bare v2.2 hints plus v2.3 value tokens so the two sides share one definition.
 
@@ -33,7 +33,7 @@ Phase 1 measured how a DeepSeek V4.1 Flash worker authored a Level 2 packet befo
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -58,7 +58,7 @@ This is **Phase 9** of the Make system-spec-kit templates and authoring docs fol
 - The write-recipe child `specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/` is closed and passes strict validation.
 
 **Deliverables**:
-- `scratch/baseline/hints-v2.3.txt` and `scratch/baseline/anchors-v2.3.txt`: the final token vocabulary and anchor counts from a fresh Level 2 scaffold.
+- `scratch/baseline/hints-v2.3.txt` and `scratch/baseline/anchors-v2.3.txt`: the final token vocabulary and anchor counts from a fresh Level 3 scaffold.
 - `scratch/baseline/runs.jsonl` and `scratch/baseline/baseline.json`: three final runs, each with five metrics.
 - `scratch/baseline/delta.json` and `scratch/baseline/delta.md`: the minimum, the maximum and the mean of each metric per side, with the delta.
 - `.skilled/skills/system-spec-kit/benchmark/reports/$DATE--model-eval--authoring-baseline/`: `README.md`, `results.csv` and `source.md`, plus one new index row in the reports `README.md`.
@@ -103,7 +103,7 @@ The closing report states the before and after per metric as a range, and the pa
 - Any template, validator, rule, command, agent or playbook edit. Phases 2 to 8 own those.
 - Any change to the frozen task text, the four measured documents or the metric definitions. A change makes the delta meaningless.
 - A significance claim. Three runs per side cannot support one.
-- A commit or a push. Both stay with the operator.
+- A push. This phase ends in one local commit on the worktree branch and nothing is pushed.
 - Fixing another phase folder. A child that fails strict validation is named and the closeout stops, because another phase owns its docs.
 
 ### Files to Change
@@ -142,7 +142,7 @@ The closing report states the before and after per metric as a range, and the pa
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `scratch/baseline/hints-v2.3.txt` and `anchors-v2.3.txt` are built from a fresh Level 2 scaffold on the final tree with the extractors in `tasks.md` T004, and the throwaway track is deleted afterwards. |
+| REQ-001 | `scratch/baseline/hints-v2.3.txt` and `anchors-v2.3.txt` are built from a fresh Level 3 scaffold on the final tree with the extractors in `tasks.md` T004, and the throwaway track is deleted afterwards. |
 | REQ-002 | Three final runs of the frozen task are recorded in `scratch/baseline/baseline.json`, each with its run number and all five metrics. |
 | REQ-003 | M2 counts bare v2.2 hint occurrences plus v2.3 value token occurrences, the comparability rule is recorded as an ADR, and the final side uses the exact command in `tasks.md` T006. |
 | REQ-004 | `scratch/baseline/delta.md` holds the minimum, the maximum and the mean of each of the five metrics for both sides, the delta per metric, and one sentence stating that three runs cannot support a significance claim. |
@@ -160,7 +160,7 @@ The closing report states the before and after per metric as a range, and the pa
 | ID | Requirement |
 |----|-------------|
 | REQ-013 | A read-only frontier review of the closeout diff ran, and each finding is either applied or recorded in `goal.md` section 4 with the reason it was not. |
-| REQ-014 | `implementation-summary.md` ends with the operator handoff list: nothing is committed and nothing is pushed, and both stay with the operator. |
+| REQ-014 | `implementation-summary.md` ends with the operator handoff list: the phase made one local commit on the worktree branch and nothing is pushed. |
 | REQ-015 | Completion metadata is reconciled across `spec.md`, `acceptance-criteria.md`, the continuity fields, `goal.md` and `implementation-summary.md`, so no document claims a different state. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
@@ -173,7 +173,7 @@ The closing report states the before and after per metric as a range, and the pa
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The report answers "did the work help" with a minimum and a maximum per metric on both sides, and a reader can recompute every number from one command.
-- **SC-002**: The operator can commit and push the whole packet without editing a generated artifact, a status row or a map first.
+- **SC-002**: The operator can review the local commit and push the whole packet without editing a generated artifact, a status row or a map first.
 - **SC-003**: A later packet can rerun the same report by copying `tasks.md` T004 to T008 with a new date.
 <!-- /ANCHOR:success-criteria -->
 

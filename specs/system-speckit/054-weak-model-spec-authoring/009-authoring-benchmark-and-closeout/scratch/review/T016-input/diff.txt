@@ -1,0 +1,491 @@
+diff --git a/.skilled/skills/system-spec-kit/SKILL.md b/.skilled/skills/system-spec-kit/SKILL.md
+index 29f04942bb..818fb0c7d4 100644
+--- a/.skilled/skills/system-spec-kit/SKILL.md
++++ b/.skilled/skills/system-spec-kit/SKILL.md
+@@ -2,7 +2,7 @@
+ name: system-spec-kit
+ description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
+ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
+-version: 2.8.5.0
++version: 2.9.0.0
+ ---
+ 
+ <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
+diff --git a/.skilled/skills/system-spec-kit/benchmark/reports/README.md b/.skilled/skills/system-spec-kit/benchmark/reports/README.md
+index 846877027f..b9aa3971ea 100644
+--- a/.skilled/skills/system-spec-kit/benchmark/reports/README.md
++++ b/.skilled/skills/system-spec-kit/benchmark/reports/README.md
+@@ -24,6 +24,7 @@ Each row below is one immutable run folder. Rows are written by the benchmark ru
+ 
+ | Executed | Folder | Runtime | Result | Verdict | Source |
+ |---|---|---|---|---|---|
++| 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max, frozen Level 3 authoring brief | 3 baseline and 3 final runs, 5 metrics | **FAIL** | `054-weak-model-spec-authoring` |
+ | 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |
+ | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
+ | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |
+diff --git a/specs/system-speckit/041-write-recipe-fixes/spec.md b/specs/system-speckit/041-write-recipe-fixes/spec.md
+index 04549d67a2..19e1fa9f3f 100644
+--- a/specs/system-speckit/041-write-recipe-fixes/spec.md
++++ b/specs/system-speckit/041-write-recipe-fixes/spec.md
+@@ -115,7 +115,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
+ | 3 | `003-fix-write-recipe-workspace-bullet/` | Point the workspace bullet at sk-git | Complete |
+ | 4 | `004-fix-write-recipe-post-checks/` | Reword the status and push post-check rows | Complete |
+ | 5 | `005-fix-write-recipe-verification-gate/` | Check the staged set in the Step 7 gate | Complete |
+-| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Draft |
++| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Complete |
+ 
+ ### Phase Transition Rules
+ 
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
+index 71f5c78b06..65a644bb1f 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/acceptance-criteria.md
+@@ -8,8 +8,8 @@ contextType: "implementation"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+-    last_updated_at: "2026-10-23T11:27:28Z"
+-    last_updated_by: "scaffold"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
+     recent_action: "Authored the acceptance criteria for this packet"
+     next_safe_action: "Meet, waive or supersede the open criteria"
+     blockers: []
+@@ -64,7 +64,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
+ | AC-011 | REQ-011 | Given the seven parent criteria, When T015 has run, Then `criteria.txt` holds seven PASS lines and T017 ticked seven boxes | `grep -c '^C[1-7] PASS ' scratch/closeout/criteria.txt` prints `7` and the completion anchor holds seven `[x]` rows | Unmet | - |
+ | AC-012 | REQ-012 | Given the phase start status, When T017 compares it with the final status, Then only this phase folder and the paths in `spec.md` section 3 differ | The status delta names no path outside the declared list | Unmet | - |
+ | AC-013 | REQ-013 | Given the closeout diff, When T016 returns, Then each finding is applied or recorded with a reason | `scratch/review/T016.txt` exists and `T016_COUNTS_MATCH` prints | Unmet | - |
+-| AC-014 | REQ-014 | Given the closed summary, When T010 has run, Then the operator handoff block names the commit and the push as the operator's steps and states that nothing was committed or pushed | `grep -c 'Operator handoff' implementation-summary.md` prints `1` and `grep -c 'Nothing in this packet was committed' implementation-summary.md` prints `1` | Unmet | - |
++| AC-014 | REQ-014 | Given the closed summary, When T010 has run, Then the operator handoff block names the push as the operator's step and states that the phase made one local commit and pushed nothing | `grep -c 'Operator handoff' implementation-summary.md` prints `1` and `grep -c 'one local commit' implementation-summary.md` prints `1` | Unmet | - |
+ | AC-015 | REQ-015 | Given the closed packet, When T010 and T017 have run, Then spec, acceptance rows, continuity, goal and summary claim one state | `rg -c '\| Met \| - \|' acceptance-criteria.md` prints `15`, every completed document reads `Complete`, and `completion_pct` reads `100` | Unmet | - |
+ 
+ ### Status values
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
+index 39d367378f..a1c5cded61 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
+@@ -8,8 +8,8 @@ contextType: "planning"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+-    last_updated_at: "2026-10-23T11:27:28Z"
+-    last_updated_by: "scaffold"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
+     recent_action: "Authored the durable directive"
+     next_safe_action: "Execute against the completion criteria"
+     blockers: []
+@@ -78,13 +78,13 @@ and findings belong here.
+ 
+ | Item | State | Evidence |
+ |------|-------|----------|
+-| Phase opened | Pending | |
+-| Phase start commit | Pending | |
+-| Final vocabulary built | Pending | |
+-| Three final runs recorded | Pending | |
+-| Delta written | Pending | |
+-| Benchmark report published | Pending | |
+-| Changelogs written | Pending | |
++| Phase opened | Done | X0 precheck passed on 2026-10-25: scratch/baseline/x0.txt holds eight RESULT: PASSED lines for phases 001 to 008, RESULT: PASSED for 041-006, BASELINE_OK, CENSUS_OK, DRIFT_GUARD_OK, CARD_GUARD_OK, NESTED_OK and a recursive strict RESULT: PASSED for the packet. devin auth status printed Logged in and the nine tools resolved. |
++| Phase start commit | Done | a15bc0636efaa04655ce809ebbf4aabfdfc338f6 |
++| Final vocabulary built | Done | T004: hints-v2.3.txt holds 127 distinct value tokens and anchors-v2.3.txt reads spec 7, plan 14, tasks 21, acceptance-criteria 3, equal to the baseline anchors-l3.txt. specs/zz-bench-hints was created at Level 3 and removed (TRACK_GONE). |
++| Three final runs recorded | Done | T005 and T006: runs 1 to 3 on cli-devin swe-2-max, exit status 0 each, seconds 437, 429 and 1822. strict_passed 1, 1, 1. leftover_hints 0, 0, 0. missing_anchors 0, 0, 6. out_of_scope_writes 0, 0, 0 (status diff, untracked-all diff and the .skilled diff hash all unchanged). TASK_FROZEN printed. Audits found exactly one Devin session each (holistic-visor, mammoth-moonflower, medieval-grain) with 0 tool calls naming baseline-swe, the phase scratch folder or /private/tmp in either column. Packets kept outside the worktree under the conductor scratchpad swe-2-max-final-l3/packet-N. |
++| Delta written | Done | T007: delta.json holds 5 metrics and delta.md holds 5 metric rows, but the no-regression check printed false because missing_anchors has a final maximum of 6 against a baseline maximum of 0. |
++| Benchmark report published | Done | T008: .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ holds README.md (10 sections), results.csv (6 rows) and source.md, with one index row. Verdict FAIL. Numbers are generated from delta.json and the run files. validate_document.py printed Total issues: 0 on README.md. |
++| Changelogs written | Pending | T009 done: .skilled/changelog/system-spec-kit/v2.9.0.0.md written and SKILL.md bumped from 2.8.5.0 to 2.9.0.0. Nested changelogs still to write. |
+ | Trigger index regenerated | Pending | |
+ | Track roots refreshed | Pending | |
+ | Parent maps reconciled | Pending | |
+@@ -105,4 +105,21 @@ and findings belong here.
+ | Level 3 retarget | The parent moved the benchmark to a Level 3 task on cli-devin swe-2-max with a no-regression criterion 5. T002 and T004 to T008 and the C5 proof now read the baseline, the brief, `hints-l3.txt` and `anchors-l3.txt` from phase 1 `scratch/baseline-swe-l3/`. Where `spec.md` or `plan.md` still name the Level 2 task, `hints-v2.2.txt`, `anchors-v2.3.txt` as the M3 list, the count of 97 or DeepSeek, `tasks.md` wins |
+ | D7 and the parent commit rule | D7 says nothing is committed. The parent's last criterion and the operator's takeover decisions allow local commits on the build worktree, so this phase ends with one local commit and never pushes. The parent wins by precedence |
+ | T014 precondition rows | The OpenCode run already set parent preconditions 2 and 4 to Done, and the takeover added two rows beside them. T014 checks those rows as they stand instead of rewriting them from Pending. |
++| Conductor decisions on 2026-10-25 | The conductor dispatched one worker for this phase and set these rules, each recorded in its own row below: the X0 precheck, the executors, Level 3, the suite reuse, the run protocol, the start commit for criteria 6 and 7, report generation, the version bump, the extra criterion 2 case, the criterion 3 population, acceptance row timing, the T014 adaptation, the changelog backfill, the index check and the parent goal edits. |
++| X0 precheck | HEAD was a15bc0636e, directly on top of efe24ebb03. The status listed nothing outside the phase 001 scratch folder. Phases 001 to 008 and 041-006 each printed RESULT: PASSED under validate.sh --strict, the baseline, census, drift guard, card guard and nested generator checks all printed their OK lines, the recursive strict run on the packet printed RESULT: PASSED, and the phase 008 report folder 2026-10-25--manual-testing-playbook--weak-model-authoring names this packet in source.md. The raw output is scratch/baseline/x0.txt. |
++| Executors superseded on 2026-10-25 | One Claude Code worker ran this phase and spawned no subagent. The benchmark subject is cli-devin swe-2-max on --permission-mode dangerous, and the T016 review is cli-devin swe-2-max on --permission-mode auto. The OpenCode, DeepSeek, Task tool and cli-codex wording in the phase documents is history, superseded by parent D3, D4, D7 and D8. Only the statements the close-out must make true were rewritten: the commit statements in spec.md, AC-014 and the tasks.md sign-off, and the executor and commit lines in the parent spec.md. |
++| Level 3 for the final runs | The final runs use a Level 3 scaffold to match the SWE 2 Max baseline. REQ-001, AC-001 and the plan.md summary were amended from Level 2 to Level 3. |
++| Suite reuse for T003 | No file under the runtime or templates folders of system-spec-kit changed between the second amendment commit 95abd302c8 and HEAD (git diff --name-only printed nothing for those two paths), and phase 008 added only a report and documents. T003 therefore reuses the second amendment's end-of-phase suite, saved as scratch/baseline/suite-start.txt, whose last line is exit=0. It was copied from specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend2/suite-end.txt. |
++| Run protocol on 2026-10-25 | The runs mirror the script that produced the SWE 2 Max baseline. Each dispatch uses the baseline brief-1.txt copied byte for byte (cmp), runs under a 2700 second watchdog on cli-devin swe-2-max with --permission-mode dangerous, and records its exit status. M5 is the dispatch end second minus the dispatch start second, as in the baseline, not the measurement time. M2 is the bare hint count (hints-l3.txt) plus the value token count. M4 is the status diff, and a change in the hash of git diff -- .skilled before and after a run also counts as an out-of-scope write. Each run's packet is copied to the scratchpad outside the worktree before it is removed. The session audit selects Devin sessions in the worktree between the start second and the end second plus 60, requires exactly one, and searches both tool_call_json and tool_call_update_json. A rate-limit or billing reply is not a run and is redone for the same run number. Extra per-run fields (exit status, bare and token split, audit) are in scratch/baseline/runs-meta.jsonl so baseline.json keeps the six keys per run. |
++| C5 FAILED on 2026-10-25 | C5 FAILED: a final run is worse than the baseline's worst on missing_anchors. Run 3 left 15 anchors in tasks.md where the baseline expects 21. Against run 1 the missing anchors are arch-verify, perf-verify, deploy-ready, compliance-verify, docs-verify and sign-off, the Level 3 verification sections. Run 3 still passed strict validation and took 1822 seconds, against 437 and 429 for the other two final runs and 317 to 384 for the baseline. The result is recorded as it is. No parent box is ticked, no global changelog is published and the version carrier is not bumped. |
++| STOP at T007 on 2026-10-25 | STOP: halt H9 fired, so only T008 ran after T007. The report verdict is FAIL. Tasks T009 to T018 did not run and the packet is not closeable. The operator or conductor decides whether to accept the missing_anchors result, rerun the final side or change the template. |
++| Mismatch between the T008 template and the data | The T008 script fixes its timing sentence at 20 minutes against 17 minutes and its recommendation as Apply now. Both were wrong for these data (the baseline runs took 317 to 384 seconds and the verdict is FAIL), so the report was generated from delta.json and the run files instead, with the recommendation chosen by the verdict. The report file is README.md, not benchmark-report.md, as recorded above. |
++| Operator decision on C5 on 2026-10-25 | Operator quote: "Option 3 + diagnostic". C5 FAIL on the frozen metric. Run 3 deleted the six optional Level 3 verification sections in tasks.md (arch-verify, perf-verify, deploy-ready, compliance-verify, docs-verify, sign-off). Diagnostic, chosen after the result and not a verdict: against the contract-required anchors (template-structure.js contract 3 tasks.md reports 15 required and these 6 optional), all six runs score 0 missing. Checked by running that tool on the three baseline packets and the three final packets (scratch/closeout/diagnostic.txt). Three deletions contradicted their fill notes, because the packet records ADR-001 (plan.md line 239), states NFR-P01 (spec.md line 133) and holds paired documents. The reply in scratch/runs/T005-3.txt says 'L3+ optional sections dropped (this is Level 3, not 3+)', so the run read the L3+ heading prefix as Level 3+ only. leftover_hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429 and the cause is unknown. Follow-up: make the L3+ heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase. This resumes the phase at T009. It supersedes the STOP row above. |
++| Operator overrides for the resumed phase | C5 keeps its FAIL line and its parent box stays unticked. The parent boxes whose own C line prints PASS may be ticked. Neither the parent spec.md nor this phase is set to Complete. This phase gets the honest status the validator accepts, and the acceptance rows and the implementation summary say which row is Unmet and why. The global changelog and the version bump still happen and state the benchmark result as it is. The commit subject does not claim success. |
++| Criterion 3 census population and method | The census reran the frozen phase 003 folder list (4688 folders, ADR-005), which excludes this packet. The first workers stalled for minutes on folders whose source-tag check ran git ls-files with the file system monitor on, so the remaining 962 folders were rerun with core.fsmonitor=false and stdin closed. Every folder was validated once by the same strict-census.mjs and the merged result (scratch/closeout/b-final.tsv) has 4688 unique rows. Columns 1, 2 and 5 equal b-before.tsv (0 differing rows), with 4496 PASS and 192 FAIL on both sides. |
++| Start commit for criteria 6 and 7 | C6 and C7 read the parent start commit ac2be31ec6, not the phase 009 start, so scenarios and commits from earlier phases count. The parent Start commit row is unchanged and a separate Phase 009 start commit row was added. |
++| Extra criterion 2 case | Besides the plan's probe, the criterion 2 proof validates a v2.2-stamped doc set with every token replaced by plain text at status Complete. The placeholder rule found 0 placeholders and printed RESULT: PASSED. The probe packet under specs/zz-bench-closeout was deleted. |
++| Track root children compare | children_ids in specs/system-speckit/graph-metadata.json carry the system-speckit/ prefix, so the compare strips it. Both refresh-track-roots runs printed system-speckit: up to date and the 20 children match the 20 numbered folders on disk. |
++| Changelog work | The generator copies raw task text, so the nested changelogs for phases 001 to 003, the packet root and this phase were rewritten by hand from each phase's implementation summary. Phases 004 to 008 already had theirs. The global changelog v2.9.0.0 states the benchmark result with the C5 FAIL and the cause, and SKILL.md moved from 2.8.5.0 to 2.9.0.0 (2.9.0.0 is above the current version, so the planned number holds). |
++| Status values the validator accepts | validate.sh treats a Complete status with an unmet acceptance row as a failed closure, and the status words complete, done, closed and finished all classify as complete. This phase and the parent therefore read In Progress, and acceptance rows AC-010, AC-011 and AC-015 are Unmet because they need nine Complete map rows, seven PASS lines and a Complete status. |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md
+index 9096ce3c23..bf23221c49 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/implementation-summary.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Summary"
+-description: "Phase 9 is planned and not started: it will rerun the frozen authoring task, report the before and after for five metrics, and close the 054 packet against its seven parent criteria."
++description: "Phase 9 ran the benchmark and closed the packet's records with one failed criterion: three final runs of the frozen Level 3 authoring task left fewer hints but one run deleted six optional verification sections."
+ trigger_phrases:
+   - "authoring benchmark and closeout implementation summary"
+ importance_tier: "normal"
+@@ -8,18 +8,18 @@ contextType: "general"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+-    last_updated_at: "2026-10-23T11:45:12Z"
+-    last_updated_by: "generate-context"
+-    recent_action: "Wrote authoring benchmark and closeout docs"
+-    next_safe_action: "Run phase 9 after phase 8 closes"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
++    recent_action: "Ran the benchmark, recorded criterion 5 as FAIL"
++    next_safe_action: "Operator reviews the local commit and decides the follow-up phase"
+     blockers: []
+     key_files:
+-      - "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md"
++      - "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json"
+     session_dedup:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+-      session_id: "054-weak-model-spec-authoring-planning"
++      session_id: "054-weak-model-spec-authoring-closeout"
+       parent_session_id: null
+-    completion_pct: 20
++    completion_pct: 90
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -37,8 +37,8 @@ _memory:
+ | Field | Value |
+ |-------|-------|
+ | **Spec Folder** | 009-authoring-benchmark-and-closeout |
+-| **Status** | Draft |
+-| **Completed** | Not started |
++| **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
++| **Completed** | Not complete: parent criterion 5 is FAIL |
+ | **Level** | 3 |
+ <!-- /ANCHOR:metadata -->
+ 
+@@ -47,17 +47,26 @@ _memory:
+ <!-- ANCHOR:what-built -->
+ ## What Was Built
+ 
+-Nothing is built yet. This summary is rewritten when the phase closes.
++The packet now ends with a measured before and after, and the measurement found one failure. Three final runs of the frozen Level 3 authoring task are recorded beside the SWE 2 Max baseline. Every final run passed strict validation, the final maximum of `leftover_hints` is 0 against a baseline maximum of 1, and no run wrote outside its track. Parent criterion 5 is FAIL on the frozen metric, because run 3 left 15 anchors in `tasks.md` where the baseline expects 21, so `missing_anchors` has a final maximum of 6 against 0.
++
++The six anchors run 3 deleted are the optional Level 3 verification sections: `arch-verify`, `perf-verify`, `deploy-ready`, `compliance-verify`, `docs-verify` and `sign-off`. A diagnostic, chosen after the result and not a verdict, scores all six runs against the anchors the contract requires (`template-structure.js contract 3 tasks.md` lists 15 required and these 6 optional), and every run misses none. Three of the deletions went against the template's own fill notes, because the packet records ADR-001, states NFR-P01 and holds paired documents. The run's reply says "L3+ optional sections dropped (this is Level 3, not 3+)", so it read the `## L3+:` heading prefix as Level 3+ only. Run 3 also took 1822 seconds against 437 and 429, and the cause is unknown. The run log is `scratch/baseline/runs.jsonl`, the extras are in `runs-meta.jsonl` and the delta is `scratch/baseline/delta.json`.
+ 
+ ### Phase 9: authoring-benchmark-and-closeout
+ 
+-When it runs, this phase writes `scratch/baseline/baseline.json`, the three final runs that answer the phase 1 baseline, and `scratch/baseline/delta.json`, the five-metric comparison the report is built from. It also publishes `.skilled/skills/system-spec-kit/benchmark/reports/$DATE--model-eval--authoring-baseline/` and writes one PASS line per parent criterion in `scratch/closeout/criteria.txt`. The planning session confirmed the nested generator's output paths with `--json`, so `tasks.md` T011 names `changelog-054-root.md` and `changelog-054-009-authoring-benchmark-and-closeout.md` exactly.
++The closeout also published the benchmark report with verdict FAIL, wrote the global changelog `v2.9.0.0` and bumped the version carrier, wrote the nested changelogs for phases 001 to 003 and this phase, regenerated the trigger index, confirmed the track roots and reconciled the parent phase map and goal log. `scratch/closeout/criteria.txt` holds one line for each parent criterion: six PASS lines and one FAIL line, `C5 FAIL`.
+ 
+ ### Files Changed
+ 
+ | File | Action | Purpose |
+ |------|--------|---------|
+-| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` | Created | Phase plan, written before execution |
++| `.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/` | Created | Report, results and source map |
++| `.skilled/skills/system-spec-kit/benchmark/reports/README.md` | Modified | One run index row |
++| `.skilled/changelog/system-spec-kit/v2.9.0.0.md` | Created | Global changelog entry |
++| `.skilled/skills/system-spec-kit/SKILL.md` | Modified | Version carrier moved from 2.8.5.0 to 2.9.0.0 |
++| `specs/system-speckit/054-weak-model-spec-authoring/changelog/` | Created | Nested changelogs for phases 001 to 003 and this phase |
++| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and three sidecars | Modified | Regenerated index |
++| `specs/system-speckit/054-weak-model-spec-authoring/spec.md` and `goal.md` | Modified | Executor and commit lines, status, map and log |
++| `specs/system-speckit/041-write-recipe-fixes/spec.md` | Modified | One map row |
+ <!-- /ANCHOR:what-built -->
+ 
+ ---
+@@ -65,7 +74,14 @@ When it runs, this phase writes `scratch/baseline/baseline.json`, the three fina
+ <!-- ANCHOR:how-delivered -->
+ ## How It Was Delivered
+ 
+-Not delivered yet. The phase runs inside the operator's interactive OpenCode v2 session on DeepSeek V4.1 Flash max, with three serial Task subagent runs under the protocol in `plan.md`, section AI EXECUTION PROTOCOL. The conductor publishes every number from `delta.json` and ticks a parent box only after its PASS line exists.
++One Claude Code worker ran the phase and spawned no subagent. It ran three serial cli-devin swe-2-max dispatches of the frozen Level 3 brief and audited each run's Devin session. It measured each run with the five commands recorded in `scratch/tools/run-final.sh`, wrote every number in the report from `delta.json` and the run files, and proved each parent criterion before ticking any box. The census for criterion 3 was rerun over the frozen folder list, which excludes this packet. One read-only frontier review on cli-codex gpt-6-luna read the closeout diff, and each finding is recorded in `goal.md` section 4. The operator moved the review from the cli-devin swe-2-max that parent D4 names.
++
++### Operator handoff
++
++- This phase made one local commit on the worktree branch. Nothing was pushed.
++- The follow-up is open: make the `## L3+:` heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase.
++- The parent `spec.md` and this phase are In Progress, not Complete, until that rerun passes criterion 5.
++- No generated artifact needs a hand edit before review.
+ <!-- /ANCHOR:how-delivered -->
+ 
+ ---
+@@ -75,9 +91,11 @@ Not delivered yet. The phase runs inside the operator's interactive OpenCode v2
+ 
+ | Decision | Why |
+ |----------|-----|
++| Keep the frozen metric and the FAIL, and add a labelled diagnostic | The operator chose "Option 3 + diagnostic". Changing the metric after the result would hide the finding |
+ | Count bare hints plus value tokens for M2 | The two patterns are disjoint, so each unfilled instruction counts once on both sides |
+-| Copy the phase 1 task text byte for byte | A delta is only meaningful when both sides answer the same question |
+-| Prove parent criterion 3 on the frozen phase 3 folder list | A live walk would compare different populations of packets |
++| Use Level 3 for the final runs | The SWE 2 Max baseline is Level 3 |
++| Prove parent criterion 3 on the frozen folder list | A live walk would compare different populations |
++| Do not mark the phase or the parent Complete | The validator reads a Complete status with an unmet acceptance row as a failed closure |
+ <!-- /ANCHOR:decisions -->
+ 
+ ---
+@@ -87,9 +105,12 @@ Not delivered yet. The phase runs inside the operator's interactive OpenCode v2
+ 
+ | Check | Result |
+ |-------|--------|
+-| Strict validation of this phase folder | Run at phase close by `tasks.md` T017 through `validate.sh` |
+-| Recursive strict validation of the packet | Run at phase close by `tasks.md` T017 and by criterion proof C1 |
+-| Five-metric delta | Written by `tasks.md` T007 and checked by criterion proof C5 |
++| Recursive strict validation on the packet | `RESULT: PASSED` |
++| Strict validation on this phase folder | `RESULT: PASSED` |
++| Parent criteria | C1, C2, C3, C4, C6 and C7 PASS, C5 FAIL |
++| Census over 4688 folders | 4496 PASS and 192 FAIL before and after, 0 differing rows |
++| Report rows | 6 |
++| Benchmark report markdown | `Total issues: 0` |
+ <!-- /ANCHOR:verification -->
+ 
+ ---
+@@ -97,9 +118,11 @@ Not delivered yet. The phase runs inside the operator's interactive OpenCode v2
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
+ 
+-1. **Three runs per side cannot support a significance claim.** The report prints the minimum and the maximum and says so.
+-2. **The frozen task covers one small feature and four documents.** A different feature shape is not measured.
+-3. **The template gate and the authoring card landed together.** The report cannot separate their effects.
++1. **Parent criterion 5 is FAIL.** `missing_anchors` has a final maximum of 6 against a baseline maximum of 0, and the phase and the parent stay In Progress.
++2. **Open follow-up.** Make the `## L3+:` heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase.
++3. **Three runs per side cannot support a significance claim.** One run produced the whole failure, so the sample cannot separate the template change from run-to-run variation.
++4. **The fixture is one small feature and four documents.** A different feature shape or a Level 1 packet is not measured.
++5. **Acceptance rows AC-010, AC-011 and AC-015 are Unmet.** They need nine Complete map rows, seven PASS lines and a Complete status, which criterion 5 prevents.
+ <!-- /ANCHOR:limitations -->
+ 
+ ---
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md
+index 527d912d0a..aaa20b9b43 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/plan.md
+@@ -29,7 +29,7 @@ contextType: "general"
+ | **Testing** | Five metrics, each computed by a literal command on both sides |
+ 
+ ### Overview
+-Three serial DeepSeek workers author the same frozen Level 2 packet in a throwaway track on the final tree. The conductor measures each run with the five commands phase 1 used, adds the v2.3 token count to M2 and writes one delta table. The remaining work publishes that result, regenerates the derived artifacts and proves each parent criterion before any completion box is ticked.
++Three serial cli-devin swe-2-max runs author the same frozen Level 3 packet in a throwaway track on the final tree. The conductor measures each run with the five commands phase 1 used, adds the v2.3 token count to M2 and writes one delta table. The remaining work publishes that result, regenerates the derived artifacts and proves each parent criterion before any completion box is ticked.
+ <!-- /ANCHOR:summary -->
+ 
+ ---
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
+index 13ba7425ba..b92e0e941c 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/spec.md
+@@ -19,7 +19,7 @@ contextType: "general"
+ 
+ ## EXECUTIVE SUMMARY
+ 
+-Phase 1 measured how a DeepSeek V4.1 Flash worker authored a Level 2 packet before any template changed. This phase measures the same task the same way on the final tree and reports the difference for five metrics, each as a minimum and a maximum over three runs. It then publishes the benchmark report, writes the changelogs, regenerates the trigger index, refreshes the track roots and closes the packet against the seven criteria in `../goal.md` section 3.
++Phase 1 first measured a DeepSeek V4.1 Flash worker on a Level 2 packet, and the parent later replaced that with a Level 3 baseline on cli-devin swe-2-max, taken before any template changed. This phase measures the same Level 3 task the same way on the final tree and reports the difference for five metrics, each as a minimum and a maximum over three runs. It then publishes the benchmark report, writes the changelogs, regenerates the trigger index, refreshes the track roots and closes the packet against the seven criteria in `../goal.md` section 3.
+ 
+ **Key Decisions**: the frozen task text is copied byte for byte from phase 1, and leftover hints are counted as bare v2.2 hints plus v2.3 value tokens so the two sides share one definition.
+ 
+@@ -33,7 +33,7 @@ Phase 1 measured how a DeepSeek V4.1 Flash worker authored a Level 2 packet befo
+ |-------|-------|
+ | **Level** | 3 |
+ | **Priority** | P0 |
+-| **Status** | Draft |
++| **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
+ | **Created** | 2026-10-23 |
+ | **Branch** | `main` |
+ | **Parent Spec** | ../spec.md |
+@@ -58,7 +58,7 @@ This is **Phase 9** of the Make system-spec-kit templates and authoring docs fol
+ - The write-recipe child `specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/` is closed and passes strict validation.
+ 
+ **Deliverables**:
+-- `scratch/baseline/hints-v2.3.txt` and `scratch/baseline/anchors-v2.3.txt`: the final token vocabulary and anchor counts from a fresh Level 2 scaffold.
++- `scratch/baseline/hints-v2.3.txt` and `scratch/baseline/anchors-v2.3.txt`: the final token vocabulary and anchor counts from a fresh Level 3 scaffold.
+ - `scratch/baseline/runs.jsonl` and `scratch/baseline/baseline.json`: three final runs, each with five metrics.
+ - `scratch/baseline/delta.json` and `scratch/baseline/delta.md`: the minimum, the maximum and the mean of each metric per side, with the delta.
+ - `.skilled/skills/system-spec-kit/benchmark/reports/$DATE--model-eval--authoring-baseline/`: `README.md`, `results.csv` and `source.md`, plus one new index row in the reports `README.md`.
+@@ -103,7 +103,7 @@ The closing report states the before and after per metric as a range, and the pa
+ - Any template, validator, rule, command, agent or playbook edit. Phases 2 to 8 own those.
+ - Any change to the frozen task text, the four measured documents or the metric definitions. A change makes the delta meaningless.
+ - A significance claim. Three runs per side cannot support one.
+-- A commit or a push. Both stay with the operator.
++- A push. This phase ends in one local commit on the worktree branch and nothing is pushed.
+ - Fixing another phase folder. A child that fails strict validation is named and the closeout stops, because another phase owns its docs.
+ 
+ ### Files to Change
+@@ -142,7 +142,7 @@ The closing report states the before and after per metric as a range, and the pa
+ 
+ | ID | Requirement |
+ |----|-------------|
+-| REQ-001 | `scratch/baseline/hints-v2.3.txt` and `anchors-v2.3.txt` are built from a fresh Level 2 scaffold on the final tree with the extractors in `tasks.md` T004, and the throwaway track is deleted afterwards. |
++| REQ-001 | `scratch/baseline/hints-v2.3.txt` and `anchors-v2.3.txt` are built from a fresh Level 3 scaffold on the final tree with the extractors in `tasks.md` T004, and the throwaway track is deleted afterwards. |
+ | REQ-002 | Three final runs of the frozen task are recorded in `scratch/baseline/baseline.json`, each with its run number and all five metrics. |
+ | REQ-003 | M2 counts bare v2.2 hint occurrences plus v2.3 value token occurrences, the comparability rule is recorded as an ADR, and the final side uses the exact command in `tasks.md` T006. |
+ | REQ-004 | `scratch/baseline/delta.md` holds the minimum, the maximum and the mean of each of the five metrics for both sides, the delta per metric, and one sentence stating that three runs cannot support a significance claim. |
+@@ -160,7 +160,7 @@ The closing report states the before and after per metric as a range, and the pa
+ | ID | Requirement |
+ |----|-------------|
+ | REQ-013 | A read-only frontier review of the closeout diff ran, and each finding is either applied or recorded in `goal.md` section 4 with the reason it was not. |
+-| REQ-014 | `implementation-summary.md` ends with the operator handoff list: nothing is committed and nothing is pushed, and both stay with the operator. |
++| REQ-014 | `implementation-summary.md` ends with the operator handoff list: the phase made one local commit on the worktree branch and nothing is pushed. |
+ | REQ-015 | Completion metadata is reconciled across `spec.md`, `acceptance-criteria.md`, the continuity fields, `goal.md` and `implementation-summary.md`, so no document claims a different state. |
+ 
+ > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+@@ -173,7 +173,7 @@ The closing report states the before and after per metric as a range, and the pa
+ ## 5. SUCCESS CRITERIA
+ 
+ - **SC-001**: The report answers "did the work help" with a minimum and a maximum per metric on both sides, and a reader can recompute every number from one command.
+-- **SC-002**: The operator can commit and push the whole packet without editing a generated artifact, a status row or a map first.
++- **SC-002**: The operator can review the local commit and push the whole packet without editing a generated artifact, a status row or a map first.
+ - **SC-003**: A later packet can rerun the same report by copying `tasks.md` T004 to T008 with a new date.
+ <!-- /ANCHOR:success-criteria -->
+ 
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md
+index 27b0ed489c..d1c7c690d8 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md
+@@ -335,7 +335,7 @@ MD
+       last_updated_at: "__DATE__T00:00:00Z"
+       last_updated_by: "conductor"
+       recent_action: "Closed the phase and wrote the operator handoff"
+-      next_safe_action: "Operator commits and pushes the packet"
++      next_safe_action: "Operator reviews the local commit and decides the follow-up phase"
+       blockers: []
+       key_files:
+         - "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json"
+@@ -400,9 +400,9 @@ MD
+ 
+   ### Operator handoff
+ 
+-  - Nothing in this packet was committed. Nothing was pushed.
++  - This phase made one local commit on the worktree branch. Nothing was pushed.
+   - `git status --porcelain` holds every change in the working tree.
+-  - The commit and the push are the operator's steps. The swarm ran no `git commit` and no `git push`.
++  - The push is the operator's step. The worker ran no `git push`.
+   - No generated artifact needs a hand edit before the commit.
+   <!-- /ANCHOR:how-delivered -->
+ 
+@@ -872,7 +872,7 @@ MD
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+-| Conductor | Runs and verifies every task | Pending | |
+-| Frontier reviewer | Reads the closeout diff read-only | Pending | |
+-| Operator | Commits and pushes the packet | Pending | |
++| Worker | Runs and verifies every task | Done, parent criterion 5 failed | 2026-10-25 |
++| Frontier reviewer | Reads the closeout diff read-only | See goal.md section 4 | 2026-10-25 |
++| Operator | Reviews the local commit and decides the follow-up phase | Pending | |
+ <!-- /ANCHOR:sign-off -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/goal.md b/specs/system-speckit/054-weak-model-spec-authoring/goal.md
+index 58dc9a0a25..569547a322 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/goal.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/goal.md
+@@ -11,8 +11,8 @@ contextType: "planning"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
+-    last_updated_at: "2026-10-23T12:00:00Z"
+-    last_updated_by: "scaffold"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
+     recent_action: "Authored the durable directive"
+     next_safe_action: "Execute against the completion criteria"
+     blockers: []
+@@ -122,6 +122,18 @@ and findings belong here.
+ | SWE 2 Max rebaseline | Done | Level 3 version of the phase 001 T009 task, 3 serial cli-devin swe-2-max runs on templates identical to start commit `ac2be31ec6` (`git diff ac2be31ec6 HEAD -- .skilled` printed nothing). Runs 1 to 3: `leftover_hints` 1, 0, 1, `seconds` 326, 317, 384, all `strict_passed` 1, `missing_anchors` 0, `out_of_scope_writes` 0. Stored in `001-template-drift-census-and-baseline/scratch/baseline-swe-l3/` with `hints-l3.txt` (121 patterns) and `anchors-l3.txt` (spec 7, plan 14, tasks 21, acceptance-criteria 3). Devin sessions `marked-platypus`, `shrub-syringa` and `cautious-utensil` show 0 tool calls naming `baseline-swe`, `bench-packets` or `/private/tmp` |
+ | BASE_REF | 95abd302c8fbe320f9fd76b36951e33fff5f7d10 | The git ref phase 008 builds its disposable worktree from. It is the second amendment commit, which sits on top of phases 002 to 007 and both amendments. Recorded by the conductor on 2026-10-25 after strict validation of phases 004 and 007 printed `RESULT: PASSED` |
+ | Conductor session 24ab0085 | Done | 041-006 72001d694f, phase 003 8b60bfc041 verified, era fix 2ed9c2e0b9, decisions e75e7b4f95; phase 004 next |
++| Preconditions checked at phase 009 | Done | T014-CHECKED: launch preconditions 1 to 3, both takeover rows and the WORKTREE path read Done with evidence, and the Start commit row still holds ac2be31ec6. Precondition 2 and 4 evidence stay as the OpenCode run left them, with the takeover rows beside them. |
++| Phase 003 progress | Done | Commit 8b60bfc041, plus the era report fix 2ed9c2e0b9. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 004 progress | Done | Commit 0b935b120c, then the amendments 12522be61c and 95abd302c8. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 005 progress | Done | Commit 0046fc7ae2. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 006 progress | Done | Commits d0d9d596c5 and 538b8b19cb. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 007 progress | Done | Commits 0266893597 and 9a0b4a935e. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 008 progress | Done | Commit efe24ebb03 and the disclosure commit a15bc0636e. The report .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/ holds 8 PASS rows. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 009 start commit | Done | a15bc0636efaa04655ce809ebbf4aabfdfc338f6 |
++| Final baseline | Done | 3 runs on cli-devin swe-2-max, baseline.json holds 5 metrics per run. C5 FAIL on the frozen metric: missing_anchors 0, 0, 6 against a baseline maximum of 0. See the C5 row below. |
++| Benchmark report | Done | .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ with verdict FAIL |
++| Track roots | Done | system-speckit: up to date (apply and dry run both exit 0), children match the numbered folders on disk |
++| Open follow-up: L3+ heading label | Open | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
+ 
+ ### Deviations and findings
+ 
+@@ -146,4 +158,7 @@ and findings belong here.
+ | cli-pi DeepSeek outage on 2026-10-24 | The LLM Gateway route returned a 402 daily pacing limit during the first amendment. That single-change lane was done by script and checked as a pure move. No later lane uses cli-pi until the allowance resets |
+ | Phase 008 worktree removal on 2026-10-24 | The operator pre-approved removing the disposable playbook worktree and its branch only when `RUNS_RECORDED 8` and `PATCH_GATE_COVERED` print, the branch holds no commit beyond BASE_REF, and `fix.patch` and `status.txt` are saved. Otherwise the worktree stays and `REMOVAL_REFUSED` is recorded |
+ | Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
++| C5 FAIL on the frozen metric (phase 009) | Operator quote: "Option 3 + diagnostic". C5 stays FAIL and its box stays unticked. Run 3 deleted the six optional Level 3 verification sections in tasks.md (arch-verify, perf-verify, deploy-ready, compliance-verify, docs-verify, sign-off). Diagnostic, chosen after the result and not a verdict: against the anchors the contract requires (template-structure.js contract 3 tasks.md reports 15 required and these 6 optional), all six runs score 0 missing. Three deletions contradicted their fill notes, because the packet records ADR-001, states NFR-P01 and holds paired documents. The run's reply said 'L3+ optional sections dropped (this is Level 3, not 3+)'. leftover_hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429, and the cause is unknown. Follow-up: make the L3+ heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase. |
++| Parent status after phase 009 | The operator directed that neither the parent spec.md nor phase 009 be set to Complete while C5 is FAIL. The parent spec.md Status reads In Progress, phases 1 to 8 read Complete in the phase map, and phase 009 reads In Progress. Criteria 1 to 4, 6 and 7 are ticked once each C line printed PASS. |
++| Review executor for phase 009 on 2026-10-25 | Parent D4 names cli-devin swe-2-max for the phase review. The operator changed the phase 009 review to cli-codex gpt-6-luna at max effort on the fast tier. Operator quote: "Use luna 6 max fast cli codex or deepseek v41 flash 1017 cli pi llmgateway instead". The cli-devin review result, if one ran, stays on record and the cli-codex review ran as well. |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/spec.md b/specs/system-speckit/054-weak-model-spec-authoring/spec.md
+index b0535b1802..56b80f0a41 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/spec.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/spec.md
+@@ -10,8 +10,8 @@ contextType: "implementation"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
+-    last_updated_at: "2026-10-23T12:00:00Z"
+-    last_updated_by: "planning-session"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
+     recent_action: "Authored the phase parent spec"
+     next_safe_action: "Meet the launch preconditions, then run phase 001"
+     blockers: []
+@@ -47,7 +47,7 @@ _memory:
+ |-------|-------|
+ | **Level** | 2 |
+ | **Priority** | P1 |
+-| **Status** | Draft |
++| **Status** | In Progress |
+ | **Created** | 2026-10-23 |
+ | **Branch** | `main` |
+ | **Parent Spec** | `../spec.md` |
+@@ -89,8 +89,8 @@ Make the templates, the examples, the validator and the authoring docs good enou
+ ### Out of Scope
+ - Any change to `sk-prompt`. All logic lives in system-spec-kit.
+ - Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
+-- Measuring models other than DeepSeek V4.1 Flash max for the benchmark.
+-- Committing or pushing. Both stay with the operator.
++- Measuring models other than cli-devin swe-2-max for the benchmark.
++- Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
+ 
+ ### Files to Change
+ 
+@@ -112,9 +112,9 @@ Make the templates, the examples, the validator and the authoring docs good enou
+ The operator meets all four before the first phase runs. The conductor records each as met in `goal.md` section 4 and stops when one is not.
+ 
+ 1. **Workspace.** The operator chooses A) a git worktree or B) the current branch, following `sk-git`. The conductor never chooses. The chosen path becomes `WORKTREE` in `goal.md` section 4.
+-2. **Provider login.** `codex login status` reports a ChatGPT login and `devin auth status` reports a Devin login. A rate limit or refusal on both stops the run.
+-3. **Lane authorization.** At most 3 parallel DeepSeek lanes and never two on one file. The operator has already given this.
+-4. **Conductor placement.** The conductor is a Claude Code session. Writers run on cli-codex `gpt-6-luna` max fast, with cli-devin `swe-2-max` as fallback, and every review runs on cli-devin `swe-2-max`. A child task that names the Task tool runs as this CLI dispatch with the same brief and reply file.
++2. **Provider login.** `devin auth status` reports a Devin login. A rate limit or refusal on cli-devin stops the run.
++3. **Lane authorization.** At most 3 parallel lanes and never two on one file. The operator has already given this.
++4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`. The benchmark subject is cli-devin `swe-2-max`.
+ <!-- /ANCHOR:scope -->
+ 
+ ---
+@@ -126,15 +126,15 @@ The operator meets all four before the first phase runs. The conductor records e
+ 
+ | Phase | Folder | Focus | Status |
+ |-------|--------|-------|--------|
+-| 1 | 001-template-drift-census-and-baseline/ | Census every template, example and reference defect into a verified ledger and measure the authoring baseline | Pending |
+-| 2 | 002-template-and-example-defect-repair/ | Apply the ledger rows owned by this phase with a tested exact-match applier | Pending |
+-| 3 | 003-versioned-placeholder-gate/ | Make unfilled `[YOUR_VALUE_HERE: ...]` tokens a Draft warning and a later error, for v2.3 docs only | Pending |
+-| 4 | 004-template-section-fill-guidance/ | Add a fill instruction and a good and weak example to each core section, and guard example drift | Pending |
+-| 5 | 005-weak-model-authoring-card/ | Write the authoring card, route the skill to it and guard the sync | Pending |
+-| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Pending |
+-| 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Pending |
+-| 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Pending |
+-| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | Pending |
++| 1 | 001-template-drift-census-and-baseline/ | Census every template, example and reference defect into a verified ledger and measure the authoring baseline | Complete |
++| 2 | 002-template-and-example-defect-repair/ | Apply the ledger rows owned by this phase with a tested exact-match applier | Complete |
++| 3 | 003-versioned-placeholder-gate/ | Make unfilled `[YOUR_VALUE_HERE: ...]` tokens a Draft warning and a later error, for v2.3 docs only | Complete |
++| 4 | 004-template-section-fill-guidance/ | Add a fill instruction and a good and weak example to each core section, and guard example drift | Complete |
++| 5 | 005-weak-model-authoring-card/ | Write the authoring card, route the skill to it and guard the sync | Complete |
++| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
++| 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Complete |
++| 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Complete |
++| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | In Progress |
+ 
+ ### Phase Transition Rules
+ 

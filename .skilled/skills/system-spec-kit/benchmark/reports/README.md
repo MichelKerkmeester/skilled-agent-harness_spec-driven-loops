@@ -24,6 +24,7 @@ Each row below is one immutable run folder. Rows are written by the benchmark ru
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max, frozen Level 3 authoring brief | 3 baseline and 3 final runs, 5 metrics | **FAIL** | `054-weak-model-spec-authoring` |
 | 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |

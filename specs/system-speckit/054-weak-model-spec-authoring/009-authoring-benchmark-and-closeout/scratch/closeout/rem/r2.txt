@@ -1,0 +1,16 @@
+specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage
+specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs
+specs/system-deep-loop/z_archive/022-sk-deep-research-evolution/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement
+specs/system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/007-fan-out-hardening
+specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review
+specs/system-deep-loop/z_archive/032-deep-alignment-mode/011-skdoc-doc-conformance
+specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing
+specs/system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover
+specs/system-skill-advisor/z_archive/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence
+specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/002-jina-swap-and-reindex
+specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/014-resource-map-memory-finalization
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit
+specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation
+specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple

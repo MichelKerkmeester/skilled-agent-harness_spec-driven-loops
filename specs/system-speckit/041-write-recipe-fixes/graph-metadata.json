@@ -39,7 +39,7 @@
       "command"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -89,16 +89,16 @@
     ],
     "causal_summary": "The spec folder write recipe is the checklist an author follows to write and commit a spec folder",
     "created_at": "2026-09-29T00:00:00Z",
-    "last_save_at": "2026-10-23T14:15:09.407Z",
+    "last_save_at": "2026-10-25T09:10:20.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d466d2925095e4d47e681d3ac26e555088ac4e5e15f590a08f5da61a80e74e2a",
+    "source_fingerprint": "sha256:14e015c7bab78b8eda228fc060aaded2446d9c739f3c1ecccb70a03af10444d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cee7416569e4ceb5fc24ad43f5d3dd0271cd526f698ef7ee7e540804fd4f6c57"
+      "spec.md": "3dc364ccb45f0a4ddf32a873685fb291bf685f10463dceaf22523ef8bc63a2e4"
     },
     "last_active_child_id": "system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate",
     "last_active_at": "2026-10-06T19:00:00Z"

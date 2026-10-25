@@ -1,0 +1,128 @@
+diff --git a/specs/system-speckit/041-write-recipe-fixes/spec.md b/specs/system-speckit/041-write-recipe-fixes/spec.md
+index 04549d67a2..19e1fa9f3f 100644
+--- a/specs/system-speckit/041-write-recipe-fixes/spec.md
++++ b/specs/system-speckit/041-write-recipe-fixes/spec.md
+@@ -115,7 +115,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
+ | 3 | `003-fix-write-recipe-workspace-bullet/` | Point the workspace bullet at sk-git | Complete |
+ | 4 | `004-fix-write-recipe-post-checks/` | Reword the status and push post-check rows | Complete |
+ | 5 | `005-fix-write-recipe-verification-gate/` | Check the staged set in the Step 7 gate | Complete |
+-| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Draft |
++| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Complete |
+ 
+ ### Phase Transition Rules
+ 
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/goal.md b/specs/system-speckit/054-weak-model-spec-authoring/goal.md
+index 58dc9a0a25..569547a322 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/goal.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/goal.md
+@@ -11,8 +11,8 @@ contextType: "planning"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
+-    last_updated_at: "2026-10-23T12:00:00Z"
+-    last_updated_by: "scaffold"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
+     recent_action: "Authored the durable directive"
+     next_safe_action: "Execute against the completion criteria"
+     blockers: []
+@@ -122,6 +122,18 @@ and findings belong here.
+ | SWE 2 Max rebaseline | Done | Level 3 version of the phase 001 T009 task, 3 serial cli-devin swe-2-max runs on templates identical to start commit `ac2be31ec6` (`git diff ac2be31ec6 HEAD -- .skilled` printed nothing). Runs 1 to 3: `leftover_hints` 1, 0, 1, `seconds` 326, 317, 384, all `strict_passed` 1, `missing_anchors` 0, `out_of_scope_writes` 0. Stored in `001-template-drift-census-and-baseline/scratch/baseline-swe-l3/` with `hints-l3.txt` (121 patterns) and `anchors-l3.txt` (spec 7, plan 14, tasks 21, acceptance-criteria 3). Devin sessions `marked-platypus`, `shrub-syringa` and `cautious-utensil` show 0 tool calls naming `baseline-swe`, `bench-packets` or `/private/tmp` |
+ | BASE_REF | 95abd302c8fbe320f9fd76b36951e33fff5f7d10 | The git ref phase 008 builds its disposable worktree from. It is the second amendment commit, which sits on top of phases 002 to 007 and both amendments. Recorded by the conductor on 2026-10-25 after strict validation of phases 004 and 007 printed `RESULT: PASSED` |
+ | Conductor session 24ab0085 | Done | 041-006 72001d694f, phase 003 8b60bfc041 verified, era fix 2ed9c2e0b9, decisions e75e7b4f95; phase 004 next |
++| Preconditions checked at phase 009 | Done | T014-CHECKED: launch preconditions 1 to 3, both takeover rows and the WORKTREE path read Done with evidence, and the Start commit row still holds ac2be31ec6. Precondition 2 and 4 evidence stay as the OpenCode run left them, with the takeover rows beside them. |
++| Phase 003 progress | Done | Commit 8b60bfc041, plus the era report fix 2ed9c2e0b9. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 004 progress | Done | Commit 0b935b120c, then the amendments 12522be61c and 95abd302c8. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 005 progress | Done | Commit 0046fc7ae2. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 006 progress | Done | Commits d0d9d596c5 and 538b8b19cb. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 007 progress | Done | Commits 0266893597 and 9a0b4a935e. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 008 progress | Done | Commit efe24ebb03 and the disclosure commit a15bc0636e. The report .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/ holds 8 PASS rows. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
++| Phase 009 start commit | Done | a15bc0636efaa04655ce809ebbf4aabfdfc338f6 |
++| Final baseline | Done | 3 runs on cli-devin swe-2-max, baseline.json holds 5 metrics per run. C5 FAIL on the frozen metric: missing_anchors 0, 0, 6 against a baseline maximum of 0. See the C5 row below. |
++| Benchmark report | Done | .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ with verdict FAIL |
++| Track roots | Done | system-speckit: up to date (apply and dry run both exit 0), children match the numbered folders on disk |
++| Open follow-up: L3+ heading label | Open | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
+ 
+ ### Deviations and findings
+ 
+@@ -146,4 +158,7 @@ and findings belong here.
+ | cli-pi DeepSeek outage on 2026-10-24 | The LLM Gateway route returned a 402 daily pacing limit during the first amendment. That single-change lane was done by script and checked as a pure move. No later lane uses cli-pi until the allowance resets |
+ | Phase 008 worktree removal on 2026-10-24 | The operator pre-approved removing the disposable playbook worktree and its branch only when `RUNS_RECORDED 8` and `PATCH_GATE_COVERED` print, the branch holds no commit beyond BASE_REF, and `fix.patch` and `status.txt` are saved. Otherwise the worktree stays and `REMOVAL_REFUSED` is recorded |
+ | Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
++| C5 FAIL on the frozen metric (phase 009) | Operator quote: "Option 3 + diagnostic". C5 stays FAIL and its box stays unticked. Run 3 deleted the six optional Level 3 verification sections in tasks.md (arch-verify, perf-verify, deploy-ready, compliance-verify, docs-verify, sign-off). Diagnostic, chosen after the result and not a verdict: against the anchors the contract requires (template-structure.js contract 3 tasks.md reports 15 required and these 6 optional), all six runs score 0 missing. Three deletions contradicted their fill notes, because the packet records ADR-001, states NFR-P01 and holds paired documents. The run's reply said 'L3+ optional sections dropped (this is Level 3, not 3+)'. leftover_hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429, and the cause is unknown. Follow-up: make the L3+ heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase. |
++| Parent status after phase 009 | The operator directed that neither the parent spec.md nor phase 009 be set to Complete while C5 is FAIL. The parent spec.md Status reads In Progress, phases 1 to 8 read Complete in the phase map, and phase 009 reads In Progress. Criteria 1 to 4, 6 and 7 are ticked once each C line printed PASS. |
++| Review executor for phase 009 on 2026-10-25 | Parent D4 names cli-devin swe-2-max for the phase review. The operator changed the phase 009 review to cli-codex gpt-6-luna at max effort on the fast tier. Operator quote: "Use luna 6 max fast cli codex or deepseek v41 flash 1017 cli pi llmgateway instead". The cli-devin review result, if one ran, stays on record and the cli-codex review ran as well. |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/spec.md b/specs/system-speckit/054-weak-model-spec-authoring/spec.md
+index b0535b1802..56b80f0a41 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/spec.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/spec.md
+@@ -10,8 +10,8 @@ contextType: "implementation"
+ _memory:
+   continuity:
+     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
+-    last_updated_at: "2026-10-23T12:00:00Z"
+-    last_updated_by: "planning-session"
++    last_updated_at: "2026-10-25T09:10:15Z"
++    last_updated_by: "worker"
+     recent_action: "Authored the phase parent spec"
+     next_safe_action: "Meet the launch preconditions, then run phase 001"
+     blockers: []
+@@ -47,7 +47,7 @@ _memory:
+ |-------|-------|
+ | **Level** | 2 |
+ | **Priority** | P1 |
+-| **Status** | Draft |
++| **Status** | In Progress |
+ | **Created** | 2026-10-23 |
+ | **Branch** | `main` |
+ | **Parent Spec** | `../spec.md` |
+@@ -89,8 +89,8 @@ Make the templates, the examples, the validator and the authoring docs good enou
+ ### Out of Scope
+ - Any change to `sk-prompt`. All logic lives in system-spec-kit.
+ - Any change that alters the verdict for an existing packet, because external-repo users would break on `/doctor:update`.
+-- Measuring models other than DeepSeek V4.1 Flash max for the benchmark.
+-- Committing or pushing. Both stay with the operator.
++- Measuring models other than cli-devin swe-2-max for the benchmark.
++- Pushing. Each phase ends in one local commit on the worktree branch and nothing is pushed.
+ 
+ ### Files to Change
+ 
+@@ -112,9 +112,9 @@ Make the templates, the examples, the validator and the authoring docs good enou
+ The operator meets all four before the first phase runs. The conductor records each as met in `goal.md` section 4 and stops when one is not.
+ 
+ 1. **Workspace.** The operator chooses A) a git worktree or B) the current branch, following `sk-git`. The conductor never chooses. The chosen path becomes `WORKTREE` in `goal.md` section 4.
+-2. **Provider login.** `codex login status` reports a ChatGPT login and `devin auth status` reports a Devin login. A rate limit or refusal on both stops the run.
+-3. **Lane authorization.** At most 3 parallel DeepSeek lanes and never two on one file. The operator has already given this.
+-4. **Conductor placement.** The conductor is a Claude Code session. Writers run on cli-codex `gpt-6-luna` max fast, with cli-devin `swe-2-max` as fallback, and every review runs on cli-devin `swe-2-max`. A child task that names the Task tool runs as this CLI dispatch with the same brief and reply file.
++2. **Provider login.** `devin auth status` reports a Devin login. A rate limit or refusal on cli-devin stops the run.
++3. **Lane authorization.** At most 3 parallel lanes and never two on one file. The operator has already given this.
++4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`. The benchmark subject is cli-devin `swe-2-max`.
+ <!-- /ANCHOR:scope -->
+ 
+ ---
+@@ -126,15 +126,15 @@ The operator meets all four before the first phase runs. The conductor records e
+ 
+ | Phase | Folder | Focus | Status |
+ |-------|--------|-------|--------|
+-| 1 | 001-template-drift-census-and-baseline/ | Census every template, example and reference defect into a verified ledger and measure the authoring baseline | Pending |
+-| 2 | 002-template-and-example-defect-repair/ | Apply the ledger rows owned by this phase with a tested exact-match applier | Pending |
+-| 3 | 003-versioned-placeholder-gate/ | Make unfilled `[YOUR_VALUE_HERE: ...]` tokens a Draft warning and a later error, for v2.3 docs only | Pending |
+-| 4 | 004-template-section-fill-guidance/ | Add a fill instruction and a good and weak example to each core section, and guard example drift | Pending |
+-| 5 | 005-weak-model-authoring-card/ | Write the authoring card, route the skill to it and guard the sync | Pending |
+-| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Pending |
+-| 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Pending |
+-| 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Pending |
+-| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | Pending |
++| 1 | 001-template-drift-census-and-baseline/ | Census every template, example and reference defect into a verified ledger and measure the authoring baseline | Complete |
++| 2 | 002-template-and-example-defect-repair/ | Apply the ledger rows owned by this phase with a tested exact-match applier | Complete |
++| 3 | 003-versioned-placeholder-gate/ | Make unfilled `[YOUR_VALUE_HERE: ...]` tokens a Draft warning and a later error, for v2.3 docs only | Complete |
++| 4 | 004-template-section-fill-guidance/ | Add a fill instruction and a good and weak example to each core section, and guard example drift | Complete |
++| 5 | 005-weak-model-authoring-card/ | Write the authoring card, route the skill to it and guard the sync | Complete |
++| 6 | 006-speckit-command-and-agent-alignment/ | Check and update the speckit and doctor commands and the doc-authoring agents such as markdown for the new templates, gate and card | Complete |
++| 7 | 007-playbook-catalog-readme-alignment/ | Update the playbook, catalog and READMEs for the new behavior | Complete |
++| 8 | 008-playbook-run-in-worktree/ | Run every new or changed playbook scenario in a disposable worktree and report PASS or FAIL | Complete |
++| 9 | 009-authoring-benchmark-and-closeout/ | Rerun the baseline, report the delta per metric and close the packet | In Progress |
+ 
+ ### Phase Transition Rules
+ 

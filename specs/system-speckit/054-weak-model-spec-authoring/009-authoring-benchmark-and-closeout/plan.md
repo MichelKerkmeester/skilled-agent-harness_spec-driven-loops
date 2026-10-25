@@ -29,7 +29,7 @@ contextType: "general"
 | **Testing** | Five metrics, each computed by a literal command on both sides |
 
 ### Overview
-Three serial DeepSeek workers author the same frozen Level 2 packet in a throwaway track on the final tree. The conductor measures each run with the five commands phase 1 used, adds the v2.3 token count to M2 and writes one delta table. The remaining work publishes that result, regenerates the derived artifacts and proves each parent criterion before any completion box is ticked.
+Three serial cli-devin swe-2-max runs author the same frozen Level 3 packet in a throwaway track on the final tree. The conductor measures each run with the five commands phase 1 used, adds the v2.3 token count to M2 and writes one delta table. The remaining work publishes that result, regenerates the derived artifacts and proves each parent criterion before any completion box is ticked.
 <!-- /ANCHOR:summary -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ea30bfda6fd83050d9ca945f538fc6e19436a259f26a4b459c7739dd28d0584e",
+  "manifestHash": "23d3f687945a21c2e6c9589839cd14d4190f07d6b2b94a1b22ad52d63c3b085f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12453,6 +12453,9 @@
     "authoring boundary": [
       "authoring boundary"
     ],
+    "authoring card": [
+      "authoring card"
+    ],
     "authoring card documentation": [
       "authoring card documentation"
     ],
@@ -17137,6 +17140,9 @@
     ],
     "check evidence strict semantic marker": [
       "check-evidence strict semantic marker"
+    ],
+    "check example drift": [
+      "check-example-drift"
     ],
     "check generated metadata drift": [
       "check generated metadata drift"
@@ -39330,6 +39336,9 @@
     "draft compare tasks": [
       "draft compare tasks"
     ],
+    "draft placeholder rule": [
+      "Draft placeholder rule"
+    ],
     "draw io import": [
       "draw.io import"
     ],
@@ -42125,6 +42134,12 @@
     "exacttriggersearch parity": [
       "exactTriggerSearch parity"
     ],
+    "example anchor drift": [
+      "example anchor drift"
+    ],
+    "example description check": [
+      "example description check"
+    ],
     "example drift guard": [
       "example drift guard"
     ],
@@ -44832,6 +44847,9 @@
     ],
     "fill a new rule": [
       "fill a new rule"
+    ],
+    "fill a spec scaffold": [
+      "fill a spec scaffold"
     ],
     "fill guidance test source": [
       "fill guidance test source"
@@ -49778,6 +49796,9 @@
     ],
     "golden snapshot verification task": [
       "golden snapshot verification task"
+    ],
+    "good and weak example": [
+      "good and weak example"
     ],
     "google embeddinggemma cocoindex": [
       "google embeddinggemma cocoindex"
@@ -75421,6 +75442,9 @@
     "placeholder syntax types": [
       "placeholder syntax types"
     ],
+    "placeholder token warning": [
+      "placeholder token warning"
+    ],
     "placeholder warning plan": [
       "placeholder warning plan"
     ],
@@ -100122,6 +100146,9 @@
     "spec folder authoring docs relocation": [
       "spec-folder authoring docs relocation"
     ],
+    "spec folder authoring steps": [
+      "spec folder authoring steps"
+    ],
     "spec folder completion check": [
       "spec folder completion check"
     ],
@@ -105468,6 +105495,9 @@
     "system spec kit 2 8 5 0": [
       "system-spec-kit 2.8.5.0"
     ],
+    "system spec kit 2 9 0 0": [
+      "system-spec-kit 2.9.0.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -105902,6 +105932,9 @@
     ],
     "system spec kit v2 8 5 0": [
       "system-spec-kit v2.8.5.0"
+    ],
+    "system spec kit v2 9 0 0": [
+      "system-spec-kit v2.9.0.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -106465,6 +106498,9 @@
     ],
     "template examples": [
       "template examples"
+    ],
+    "template fill line": [
+      "template fill line"
     ],
     "template first palette data contract": [
       "template-first palette data contract"
@@ -110371,6 +110407,9 @@
     "v2 2 1 0 release notes": [
       "v2.2.1.0 release notes"
     ],
+    "v2 3 template stamp": [
+      "v2.3 template stamp"
+    ],
     "v2 4 0 0 release notes": [
       "v2.4.0.0 release notes"
     ],
@@ -111301,6 +111340,9 @@
     ],
     "value of computation allocation tasks": [
       "value of computation allocation tasks"
+    ],
+    "value token gate": [
+      "value token gate"
     ],
     "value token lifecycle": [
       "value token lifecycle"
@@ -112591,8 +112633,38 @@
     "weak model loop adherence tasks": [
       "weak model loop adherence tasks"
     ],
+    "weak model spec authoring benchmark and closeout changelog": [
+      "weak model spec authoring benchmark and closeout changelog"
+    ],
+    "weak model spec authoring changelog": [
+      "weak model spec authoring changelog"
+    ],
     "weak model spec authoring phase parent spec": [
       "weak model spec authoring phase parent spec"
+    ],
+    "weak model spec authoring playbook catalog readme alignment changelog": [
+      "weak model spec authoring playbook catalog readme alignment changelog"
+    ],
+    "weak model spec authoring playbook run in worktree changelog": [
+      "weak model spec authoring playbook run in worktree changelog"
+    ],
+    "weak model spec authoring speckit command and agent alignment changelog": [
+      "weak model spec authoring speckit command and agent alignment changelog"
+    ],
+    "weak model spec authoring template and example defect repair changelog": [
+      "weak model spec authoring template and example defect repair changelog"
+    ],
+    "weak model spec authoring template drift census and baseline changelog": [
+      "weak model spec authoring template drift census and baseline changelog"
+    ],
+    "weak model spec authoring template section fill guidance changelog": [
+      "weak model spec authoring template section fill guidance changelog"
+    ],
+    "weak model spec authoring versioned placeholder gate changelog": [
+      "weak model spec authoring versioned placeholder gate changelog"
+    ],
+    "weak model spec authoring weak model authoring card changelog": [
+      "weak model spec authoring weak model authoring card changelog"
     ],
     "weak model write boundary": [
       "weak model write boundary"
@@ -113895,6 +113967,9 @@
     ],
     "write a screenshot scenario fixture": [
       "write a screenshot scenario fixture"
+    ],
+    "write a spec packet": [
+      "write a spec packet"
     ],
     "write a test about deep review": [
       "write a test about deep review"

@@ -1,0 +1,4 @@
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+ M .skilled/skills/system-spec-kit/runtime/data/trigger-index.json

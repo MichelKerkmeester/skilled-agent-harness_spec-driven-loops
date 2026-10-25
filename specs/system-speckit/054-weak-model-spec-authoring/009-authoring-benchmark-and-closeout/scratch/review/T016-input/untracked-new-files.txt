@@ -1,0 +1,9 @@
+.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md
+.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/results.csv
+.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md
+.skilled/skills/system-spec-kit/changelog/v2.9.0.0.md
+specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-001-template-drift-census-and-baseline.md
+specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-002-template-and-example-defect-repair.md
+specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-003-versioned-placeholder-gate.md
+specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md
+specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md

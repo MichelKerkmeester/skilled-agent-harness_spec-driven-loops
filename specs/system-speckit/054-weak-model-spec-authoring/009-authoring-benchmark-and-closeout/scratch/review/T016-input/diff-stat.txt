@@ -1,0 +1,12 @@
+ .skilled/skills/system-spec-kit/SKILL.md           |  2 +-
+ .../system-spec-kit/benchmark/reports/README.md    |  1 +
+ .../system-speckit/041-write-recipe-fixes/spec.md  |  2 +-
+ .../acceptance-criteria.md                         |  6 +-
+ .../009-authoring-benchmark-and-closeout/goal.md   | 35 ++++++++---
+ .../implementation-summary.md                      | 67 +++++++++++++++-------
+ .../009-authoring-benchmark-and-closeout/plan.md   |  2 +-
+ .../009-authoring-benchmark-and-closeout/spec.md   | 14 ++---
+ .../009-authoring-benchmark-and-closeout/tasks.md  | 12 ++--
+ .../054-weak-model-spec-authoring/goal.md          | 19 +++++-
+ .../054-weak-model-spec-authoring/spec.md          | 34 +++++------
+ 11 files changed, 125 insertions(+), 69 deletions(-)

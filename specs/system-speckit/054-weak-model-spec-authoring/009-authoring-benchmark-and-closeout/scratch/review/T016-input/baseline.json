@@ -1,0 +1,28 @@
+{
+  "runs": [
+    {
+      "run": 1,
+      "strict_passed": 1,
+      "leftover_hints": 0,
+      "missing_anchors": 0,
+      "out_of_scope_writes": 0,
+      "seconds": 437
+    },
+    {
+      "run": 2,
+      "strict_passed": 1,
+      "leftover_hints": 0,
+      "missing_anchors": 0,
+      "out_of_scope_writes": 0,
+      "seconds": 429
+    },
+    {
+      "run": 3,
+      "strict_passed": 1,
+      "leftover_hints": 0,
+      "missing_anchors": 6,
+      "out_of_scope_writes": 0,
+      "seconds": 1822
+    }
+  ]
+}

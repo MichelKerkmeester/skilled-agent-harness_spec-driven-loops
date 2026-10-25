@@ -11,8 +11,8 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring"
-    last_updated_at: "2026-10-23T12:00:00Z"
-    last_updated_by: "scaffold"
+    last_updated_at: "2026-10-25T09:10:15Z"
+    last_updated_by: "worker"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 86
     open_questions: []
     answered_questions: []
 ---
@@ -87,13 +87,13 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
-- [ ] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
-- [ ] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
-- [ ] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/054-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
+- [x] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
+- [x] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
+- [x] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
 - [ ] The 3 final Level 3 runs all pass strict validation, and none is worse than the SWE 2 Max baseline's worst on leftover_hints, missing_anchors or out_of_scope_writes. The phase 009 report lists min and max for five metrics
-- [ ] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
-- [ ] The swarm commits only on the build worktree and never pushes
+- [x] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
+- [x] The swarm commits only on the build worktree and never pushes
 <!-- /ANCHOR:completion -->
 
 ---
@@ -122,6 +122,21 @@ and findings belong here.
 | SWE 2 Max rebaseline | Done | Level 3 version of the phase 001 T009 task, 3 serial cli-devin swe-2-max runs on templates identical to start commit `ac2be31ec6` (`git diff ac2be31ec6 HEAD -- .skilled` printed nothing). Runs 1 to 3: `leftover_hints` 1, 0, 1, `seconds` 326, 317, 384, all `strict_passed` 1, `missing_anchors` 0, `out_of_scope_writes` 0. Stored in `001-template-drift-census-and-baseline/scratch/baseline-swe-l3/` with `hints-l3.txt` (121 patterns) and `anchors-l3.txt` (spec 7, plan 14, tasks 21, acceptance-criteria 3). Devin sessions `marked-platypus`, `shrub-syringa` and `cautious-utensil` show 0 tool calls naming `baseline-swe`, `bench-packets` or `/private/tmp` |
 | BASE_REF | 95abd302c8fbe320f9fd76b36951e33fff5f7d10 | The git ref phase 008 builds its disposable worktree from. It is the second amendment commit, which sits on top of phases 002 to 007 and both amendments. Recorded by the conductor on 2026-10-25 after strict validation of phases 004 and 007 printed `RESULT: PASSED` |
 | Conductor session 24ab0085 | Done | 041-006 72001d694f, phase 003 8b60bfc041 verified, era fix 2ed9c2e0b9, decisions e75e7b4f95; phase 004 next |
+| Preconditions checked at phase 009 | Done | T014-CHECKED: launch preconditions 1 to 3, both takeover rows and the WORKTREE path read Done with evidence, and the Start commit row still holds ac2be31ec6. Precondition 2 and 4 evidence stay as the OpenCode run left them, with the takeover rows beside them. |
+| Phase 003 progress | Done | Commit 8b60bfc041, plus the era report fix 2ed9c2e0b9. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
+| Phase 004 progress | Done | Commit 0b935b120c, then the amendments 12522be61c and 95abd302c8. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
+| Phase 005 progress | Done | Commit 0046fc7ae2. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
+| Phase 006 progress | Done | Commits d0d9d596c5 and 538b8b19cb. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
+| Phase 007 progress | Done | Commits 0266893597 and 9a0b4a935e. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
+| Phase 008 progress | Done | Commit efe24ebb03 and the disclosure commit a15bc0636e. The report .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/ holds 8 PASS rows. validate.sh --strict printed RESULT: PASSED at the phase 009 precheck. |
+| Phase 009 start commit | Done | a15bc0636efaa04655ce809ebbf4aabfdfc338f6 |
+| Final baseline | Done | 3 runs on cli-devin swe-2-max, baseline.json holds 5 metrics per run. C5 FAIL on the frozen metric: missing_anchors 0, 0, 6 against a baseline maximum of 0. See the C5 row below. |
+| Benchmark report | Done | .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ with verdict FAIL |
+| Track roots | Done | system-speckit: up to date (apply and dry run both exit 0), children match the numbered folders on disk |
+| Open follow-up: L3+ heading label | Open | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
+| Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. |
+| Trigger index | Done | check exit=0 after the last doc edit of phase 009 |
+| Changelogs | Done | .skilled/skills/system-spec-kit/changelog/v2.9.0.0.md and the nested files under specs/system-speckit/054-weak-model-spec-authoring/changelog/ for phases 001 to 009 and the root |
 
 ### Deviations and findings
 
@@ -146,4 +161,7 @@ and findings belong here.
 | cli-pi DeepSeek outage on 2026-10-24 | The LLM Gateway route returned a 402 daily pacing limit during the first amendment. That single-change lane was done by script and checked as a pure move. No later lane uses cli-pi until the allowance resets |
 | Phase 008 worktree removal on 2026-10-24 | The operator pre-approved removing the disposable playbook worktree and its branch only when `RUNS_RECORDED 8` and `PATCH_GATE_COVERED` print, the branch holds no commit beyond BASE_REF, and `fix.patch` and `status.txt` are saved. Otherwise the worktree stays and `REMOVAL_REFUSED` is recorded |
 | Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
+| C5 FAIL on the frozen metric (phase 009) | Operator quote: "Option 3 + diagnostic". C5 stays FAIL and its box stays unticked. Run 3 deleted the six optional Level 3 verification sections in tasks.md (arch-verify, perf-verify, deploy-ready, compliance-verify, docs-verify, sign-off). Diagnostic, chosen after the result and not a verdict: against the anchors the contract requires (template-structure.js contract 3 tasks.md reports 15 required and these 6 optional), all six runs score 0 missing. Three deletions contradicted their fill notes, because the packet records ADR-001, states NFR-P01 and holds paired documents. The run's reply said 'L3+ optional sections dropped (this is Level 3, not 3+)'. leftover_hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429, and the cause is unknown. Follow-up: make the L3+ heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase. |
+| Parent status after phase 009 | The operator directed that neither the parent spec.md nor phase 009 be set to Complete while C5 is FAIL. The parent spec.md Status reads In Progress, phases 1 to 8 read Complete in the phase map, and phase 009 reads In Progress. Criteria 1 to 4, 6 and 7 are ticked once each C line printed PASS. |
+| Review executor for phase 009 on 2026-10-25 | Parent D4 names cli-devin swe-2-max for the phase review. The operator changed the phase 009 review to cli-codex gpt-6-luna at max effort on the fast tier. Operator quote: "Use luna 6 max fast cli codex or deepseek v41 flash 1017 cli pi llmgateway instead". The cli-devin review result, if one ran, stays on record and the cli-codex review ran as well. |
 <!-- /ANCHOR:log -->
