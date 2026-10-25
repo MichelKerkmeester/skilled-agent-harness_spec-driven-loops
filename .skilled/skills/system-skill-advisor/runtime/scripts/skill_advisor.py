@@ -2695,6 +2695,7 @@ GENERATED_COMMAND_BRIDGES = {
     "command-doctor-ci-report": {
         "description": "",
         "slash_markers": ["/doctor:ci report"],
+        "lead_phrases": ["which ci workflow switches are off", "ci workflow switch state", "ci switch report"],
         "inventory_id": "command-doctor-ci-report",
         "command": "/doctor:ci",
         "skill_id": "sk-code",

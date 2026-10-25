@@ -518,7 +518,7 @@ function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], s
   ));
 }
 
-function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
+export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
   const skillId = skill.id;
   if (/\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/.test(promptLower)) {
     return false;
@@ -529,6 +529,13 @@ function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): bool
   // this, an explicit request is answered with an abstention while the same
   // sentence phrased with a write verb routes fine.
   if (promptMentionsSkill(promptLower, skill)) {
+    return true;
+  }
+  // A command whose route only reads (a report, a status check) is the answer
+  // to a list or show question, so its own trigger phrase lifts it off the
+  // floor. A mutating command never carries the flag and stays gated.
+  if (skill.kind === 'command' && 'readOnly' in skill && skill.readOnly === true
+    && skill.keywords.some((phrase) => matchesPhraseBoundary(promptLower, phrase.toLowerCase()))) {
     return true;
   }
   if (skillId === 'sk-code' && /\b(compare|audit|review)\b/.test(promptLower)

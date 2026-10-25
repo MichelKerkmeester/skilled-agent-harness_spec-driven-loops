@@ -332,6 +332,12 @@ routes:
       - "which ci workflow switches are off"
       - "github actions drift report"
       - "ci workflow inventory"
+      - "ci workflow switch state"
+      - "ci switch report"
+    lead_phrases:
+      - "which ci workflow switches are off"
+      - "ci workflow switch state"
+      - "ci switch report"
 
   - command: /doctor:ci
     target: scaffold
@@ -345,6 +351,7 @@ routes:
       - "scaffold a github actions workflow"
       - "create a workflow from the ci template"
       - "new workflow with timeout and switch"
+      - "scaffold a new ci workflow"
 
   - command: /doctor:ci
     target: toggle
@@ -358,6 +365,7 @@ routes:
       - "turn off a ci workflow"
       - "set a ci switch variable"
       - "disable a workflow group"
+      - "turn the ci switch"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

@@ -427,11 +427,19 @@
             "ci workflow status report",
             "which ci workflow switches are off",
             "github actions drift report",
-            "ci workflow inventory"
+            "ci workflow inventory",
+            "ci workflow switch state",
+            "ci switch report"
           ],
           "intentSignals": [
             "/doctor:ci report"
           ],
+          "leadPhrases": [
+            "which ci workflow switches are off",
+            "ci workflow switch state",
+            "ci switch report"
+          ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -445,6 +453,11 @@
           "description": "",
           "slashMarkers": [
             "/doctor:ci report"
+          ],
+          "leadPhrases": [
+            "which ci workflow switches are off",
+            "ci workflow switch state",
+            "ci switch report"
           ]
         }
       }
@@ -466,7 +479,8 @@
           "keywords": [
             "scaffold a github actions workflow",
             "create a workflow from the ci template",
-            "new workflow with timeout and switch"
+            "new workflow with timeout and switch",
+            "scaffold a new ci workflow"
           ],
           "intentSignals": [
             "/doctor:ci scaffold"
@@ -505,7 +519,8 @@
           "keywords": [
             "turn off a ci workflow",
             "set a ci switch variable",
-            "disable a workflow group"
+            "disable a workflow group",
+            "turn the ci switch"
           ],
           "intentSignals": [
             "/doctor:ci toggle"
@@ -676,6 +691,7 @@
           "intentSignals": [
             "/doctor:git setup"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -836,6 +852,7 @@
           "intentSignals": [
             "/doctor:runtime-mirrors"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -877,6 +894,7 @@
           "intentSignals": [
             "/doctor:setup"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -917,6 +935,7 @@
           "intentSignals": [
             "/doctor:sk-code"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -959,6 +978,7 @@
           "intentSignals": [
             "/doctor:skill-advisor parent-skill"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -1040,6 +1060,7 @@
           "intentSignals": [
             "/doctor:skill-advisor router-reach"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -1080,6 +1101,7 @@
           "intentSignals": [
             "/doctor:skill-advisor skill-budget"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"
@@ -1120,6 +1142,7 @@
           "intentSignals": [
             "/doctor:skill-advisor skill-graph-freshness"
           ],
+          "readOnly": true,
           "domains": [
             "doctor",
             "command"

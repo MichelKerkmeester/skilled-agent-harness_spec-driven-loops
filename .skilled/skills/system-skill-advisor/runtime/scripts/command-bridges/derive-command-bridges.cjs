@@ -204,6 +204,7 @@ function doctorRouteEntries() {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
       phrases,
       leadPhrases,
+      readOnly: isReadOnlyRoute(route),
     });
     entries.push({
       id,
@@ -231,7 +232,12 @@ function doctorRouteEntries() {
     const runnable = typeof item.runnable === 'string' && item.runnable
       ? item.runnable
       : item.command;
-    DOCTOR_DETAILS.set(`command-doctor-${name}`, { runnable, phrases, leadPhrases });
+    DOCTOR_DETAILS.set(`command-doctor-${name}`, {
+      runnable,
+      phrases,
+      leadPhrases,
+      readOnly: isReadOnlyRoute(item),
+    });
     entries.push({
       id: `command-doctor-${name}`,
       command: item.command,
@@ -260,6 +266,7 @@ function doctorRouteEntries() {
       runnable,
       phrases,
       leadPhrases,
+      readOnly: isReadOnlyRoute(item),
     });
     entries.push({
       id,
@@ -291,6 +298,12 @@ function stringArray(value, label) {
     throw new Error(`[command-bridges] ${label} must be an array of non-empty strings`);
   }
   return value;
+}
+
+// Only a route the manifest classes as read-only may answer a list or show
+// question; add-only and mutating routes keep the read-only confidence floor.
+function isReadOnlyRoute(item) {
+  return item.mutating === 'read-only';
 }
 
 function doctorLeadPhrases(item, label, triggerPhrases) {
@@ -415,7 +428,7 @@ function tsArray(values) {
 }
 
 function doctorRuntime(entryId, platform, compat) {
-  const { runnable, phrases, leadPhrases } = DOCTOR_DETAILS.get(entryId);
+  const { runnable, phrases, leadPhrases, readOnly } = DOCTOR_DETAILS.get(entryId);
   if (platform === 'typescript') {
     return {
       ...compat,
@@ -423,6 +436,7 @@ function doctorRuntime(entryId, platform, compat) {
       keywords: [...phrases],
       intentSignals: [runnable],
       ...(leadPhrases.length > 0 ? { leadPhrases: [...leadPhrases] } : {}),
+      ...(readOnly ? { readOnly: true } : {}),
       domains: ['doctor', 'command'],
     };
   }
@@ -472,6 +486,9 @@ function renderTypescriptBridge(entry) {
   ];
   if (active && runtime.leadPhrases?.length) {
     lines.push(`    leadPhrases: ${tsArray(runtime.leadPhrases)},`);
+  }
+  if (active && runtime.readOnly === true) {
+    lines.push('    readOnly: true,');
   }
   lines.push(
     '    derivedTriggers: [],',
