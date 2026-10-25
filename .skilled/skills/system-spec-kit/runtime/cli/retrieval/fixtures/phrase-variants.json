@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0057be58ba3b29b94bb81ad095fc7fd0ff597a830b3998e9e33833c1b6008d02",
+  "manifestHash": "fa84918bb10814a6481197ebbe0918b437514e2542eb5d482f5a324df15aba2a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -29149,6 +29149,9 @@
     ],
     "cupt example scripts": [
       "cupt example scripts"
+    ],
+    "cupt exits 0 on error": [
+      "cupt exits 0 on error"
     ],
     "cupt install": [
       "cupt install"
@@ -59705,6 +59708,9 @@
     "mcp chrome devtools 1 0 14 0": [
       "mcp-chrome-devtools 1.0.14.0"
     ],
+    "mcp chrome devtools 1 0 15 0": [
+      "mcp-chrome-devtools 1.0.15.0"
+    ],
     "mcp chrome devtools 1 0 2 0": [
       "mcp-chrome-devtools 1.0.2.0"
     ],
@@ -59749,6 +59755,9 @@
     ],
     "mcp chrome devtools v1 0 14 0": [
       "mcp-chrome-devtools v1.0.14.0"
+    ],
+    "mcp chrome devtools v1 0 15 0": [
+      "mcp-chrome-devtools v1.0.15.0"
     ],
     "mcp chrome devtools v1 0 2 0": [
       "mcp-chrome-devtools v1.0.2.0"
@@ -59807,6 +59816,9 @@
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
     ],
+    "mcp click up 1 2 4 0": [
+      "mcp-click-up 1.2.4.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -59821,6 +59833,9 @@
     ],
     "mcp click up reference frontmatter": [
       "mcp-click-up reference frontmatter"
+    ],
+    "mcp click up standards alignment": [
+      "mcp-click-up standards alignment"
     ],
     "mcp click up v1 0 0 0": [
       "mcp-click-up v1.0.0.0"
@@ -59842,6 +59857,9 @@
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
+    ],
+    "mcp click up v1 2 4 0": [
+      "mcp-click-up v1.2.4.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -59905,6 +59923,9 @@
     ],
     "mcp code mode 1 0 11 0": [
       "mcp-code-mode 1.0.11.0"
+    ],
+    "mcp code mode 1 0 12 0": [
+      "mcp-code-mode 1.0.12.0"
     ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
@@ -59977,6 +59998,9 @@
     ],
     "mcp code mode v1 0 11 0": [
       "mcp-code-mode v1.0.11.0"
+    ],
+    "mcp code mode v1 0 12 0": [
+      "mcp-code-mode v1.0.12.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -60247,6 +60271,12 @@
     "mcp figma 1 1 4 0": [
       "mcp-figma 1.1.4.0"
     ],
+    "mcp figma 1 1 5 0": [
+      "mcp-figma 1.1.5.0"
+    ],
+    "mcp figma standards alignment": [
+      "mcp-figma standards alignment"
+    ],
     "mcp figma v1 0 0 0": [
       "mcp-figma v1.0.0.0"
     ],
@@ -60267,6 +60297,9 @@
     ],
     "mcp figma v1 1 4 0": [
       "mcp-figma v1.1.4.0"
+    ],
+    "mcp figma v1 1 5 0": [
+      "mcp-figma v1.1.5.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -63745,6 +63778,9 @@
     ],
     "mermaid extract": [
       "mermaid_extract"
+    ],
+    "mermaid extract constants": [
+      "mermaid extract constants"
     ],
     "mermaid extract intermediate representation": [
       "mermaid extract intermediate representation"
@@ -88285,6 +88321,9 @@
     "safe concurrent writers and resume": [
       "safe concurrent writers and resume"
     ],
+    "safe json helper values": [
+      "safe JSON helper values"
+    ],
     "safe model switch dim drift warn": [
       "safe model switch dim drift warn"
     ],
@@ -94767,6 +94806,9 @@
     "sk design diagram 1 2 2 0": [
       "sk-design-diagram 1.2.2.0"
     ],
+    "sk design diagram 1 2 3 0": [
+      "sk-design-diagram 1.2.3.0"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -94787,6 +94829,9 @@
     ],
     "sk design diagram v1 2 2 0": [
       "sk-design-diagram v1.2.2.0"
+    ],
+    "sk design diagram v1 2 3 0": [
+      "sk-design-diagram v1.2.3.0"
     ],
     "sk design doc and routing check acceptance criteria": [
       "sk design doc and routing check acceptance criteria"
@@ -102391,6 +102436,9 @@
     ],
     "standard component definitions": [
       "standard component definitions"
+    ],
+    "standards alignment": [
+      "standards alignment"
     ],
     "standards alignment audit": [
       "standards alignment audit"
