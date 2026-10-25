@@ -525,7 +525,7 @@ test('Claude command discovery excludes the OpenCode-only goal router', () => {
   assert.equal(lstatSync(claudeCommands).isSymbolicLink(), false);
   assert.equal(lstatSync(claudeCommands).isDirectory(), true);
   assert.equal(existsSync(join(claudeCommands, 'goal-opencode.md')), false);
-  assert.equal(lstatSync(join(claudeCommands, 'agent-router.md')).isSymbolicLink(), true);
+  assert.equal(lstatSync(join(claudeCommands, 'speckit', 'complete.md')).isSymbolicLink(), true);
 });
 
 test('writeJsonAtomic never leaves a .tmp file behind on success', () => {

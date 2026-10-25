@@ -9,7 +9,7 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.7
+version: 1.6.1.0
 ---
 
 # Auto Mode Contract Reference
@@ -185,7 +185,7 @@ Commands that have adopted this contract:
 
 ## §8. Out of Scope
 
-- Commands without paired YAML workflows (`/prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
+- Commands without paired YAML workflows (`/prompt`, `/vision`, etc.) — they have no setup-phase surface where the contract applies.
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
 - Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
