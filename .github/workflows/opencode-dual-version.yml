@@ -1,6 +1,6 @@
 name: OpenCode Dual-Version Battery
 
-# OpenCode 1.19.3 and 2.1.4 are separate npm packages that both claim the name
+# OpenCode 1.19.4 and 2.1.4 are separate npm packages that both claim the name
 # `opencode`, and the repo's plugins register differently on each major. Neither
 # family ran anywhere, so a plugin that loads on one major and not the other
 # reached a commit unseen. Each pinned package is installed into its own prefix,
@@ -34,6 +34,7 @@ on:
       - '.skilled/skills/cli-external-orchestration/**/*.md'
       - '.opencode/skills/cli-external-orchestration/**/*.md'
       - '.hermes/skills/cli-opencode/**'
+      - '.github/actions/**'
       - '.github/workflows/opencode-dual-version.yml'
   push:
     branches: [main, 'skilled/**']
@@ -62,7 +63,15 @@ on:
       - '.skilled/skills/cli-external-orchestration/**/*.md'
       - '.opencode/skills/cli-external-orchestration/**/*.md'
       - '.hermes/skills/cli-opencode/**'
+      - '.github/actions/**'
       - '.github/workflows/opencode-dual-version.yml'
+  workflow_dispatch:
+    inputs:
+      cold:
+        description: Provision from scratch instead of restoring the cache
+        type: choice
+        options: ['false', 'true']
+        default: 'false'
 
 permissions:
   contents: read
@@ -74,8 +83,9 @@ concurrency:
 jobs:
   battery:
     name: Battery on OpenCode ${{ matrix.family }}
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     # One family per prefix, and each entry reports on its own; a failure in one
     # must not cancel the other.
     strategy:
@@ -83,7 +93,7 @@ jobs:
       matrix:
         include:
           - family: v1
-            package: opencode-ai@1.19.3
+            package: opencode-ai@1.19.4
             name: opencode
           - family: v2
             package: '@opencode/cli@2.1.4'
@@ -100,13 +110,9 @@ jobs:
       # compiled runtimes that are not committed, so the repository's own
       # worktree provisioning installs and builds every tree it lists.
       - name: Provision the dependency trees the plugins import
-        run: |
-          set -euo pipefail
-          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
-          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
-          source .skilled/skills/sk-git/scripts/worktree-naming.sh
-          provision_worktree "$GITHUB_WORKSPACE"
+        uses: ./.github/actions/setup
+        with:
+          cache: ${{ inputs.cold != 'true' }}
 
       # Some of the trigger paths are unit tests, and a trigger path no step runs
       # starts the workflow without checking the change that started it. They read
@@ -129,7 +135,6 @@ jobs:
         working-directory: .skilled/skills/sk-vision/vision-runtime
         run: |
           set -euo pipefail
-          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
           bun test tests
           bunx tsc --noEmit
 
@@ -172,8 +177,9 @@ jobs:
 
   both:
     name: Both versions installed at once
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -183,18 +189,14 @@ jobs:
           node-version: '22'
 
       - name: Provision the dependency trees the plugins import
-        run: |
-          set -euo pipefail
-          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
-          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
-          source .skilled/skills/sk-git/scripts/worktree-naming.sh
-          provision_worktree "$GITHUB_WORKSPACE"
+        uses: ./.github/actions/setup
+        with:
+          cache: ${{ inputs.cold != 'true' }}
 
       - name: Install both versions into their own prefixes
         run: |
           set -euo pipefail
-          npm install -g --prefix "$RUNNER_TEMP/opencode-v1" opencode-ai@1.19.3
+          npm install -g --prefix "$RUNNER_TEMP/opencode-v1" opencode-ai@1.19.4
           npm install -g --prefix "$RUNNER_TEMP/opencode-v2" @opencode/cli@2.1.4
 
       # v2 opens the same database as v1 by default and migrates it in place, so
@@ -237,8 +239,8 @@ jobs:
           v2_out="$(opencode2 --version | tr -d '\r')"
           printf 'opencode --version -> %s\n' "$v1_out"
           printf 'opencode2 --version -> %s\n' "$v2_out"
-          if [ "$v1_out" != "1.19.3" ]; then
-            echo "::error::opencode reports '$v1_out', expected 1.19.3"
+          if [ "$v1_out" != "1.19.4" ]; then
+            echo "::error::opencode reports '$v1_out', expected 1.19.4"
             exit 1
           fi
           if [ "$v2_out" != "opencode v2.1.4" ]; then

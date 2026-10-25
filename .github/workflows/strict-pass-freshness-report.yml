@@ -21,7 +21,9 @@ permissions:
 
 jobs:
   strict-pass-freshness:
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REPORTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 143
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 

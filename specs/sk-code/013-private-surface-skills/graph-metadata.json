@@ -42,7 +42,7 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -55,6 +55,7 @@
       "004-private-local-skills/goal.md",
       "005-leak-and-routing-verification/goal.md",
       ".skilled/skills/sk-code/mode-registry.json",
+      "004-private-local-skills/scratch/operator-approvals.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       "runtime/data/trigger-index.json",
       "002-hub-surface-removal/acceptance-criteria.md",
@@ -62,8 +63,7 @@
       "002-hub-surface-removal/tasks.md",
       "003-advisor-vocabulary-cleanup/plan.md",
       "003-advisor-vocabulary-cleanup/tasks.md",
-      "004-private-local-skills/tasks.md",
-      "005-leak-and-routing-verification/tasks.md"
+      "004-private-local-skills/tasks.md"
     ],
     "entities": [
       {
@@ -94,6 +94,12 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "operator-approvals.md",
+        "kind": "doc",
+        "path": "004-private-local-skills/scratch/operator-approvals.md",
         "source": "derived"
       },
       {
@@ -151,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Obsidian Plugin",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "Frozen Decisions",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -169,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "Run Provenance",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -182,12 +188,6 @@
       },
       {
         "name": "Executive Summary",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Obsidian Plugin",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:37Z",
-    "last_save_at": "2026-10-24T08:05:32.816Z",
+    "last_save_at": "2026-10-24T21:56:40.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a087e4980635e886ed5f6f91377df8a79458462355f4a805584661f567bbaca3",
+    "source_fingerprint": "sha256:736bd5fc3ff19e9e2a4f42a61c8d49e61524b4fd4df3749e98e13b5fe27f28b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2850932c055509001149def12f2814678b841d4a8244c52352b69ff97e2b2c87",
+      "spec.md": "656a58d280139b1caff75e89762b9cf864e3862a6817f7b17725e927ebfcf79b",
       "research/research.md": "92706e4a1ecee8313e345748936333709451094207f0c81b18846fbd8f7aefce"
     },
-    "last_active_at": null
+    "last_active_child_id": "sk-code/013-private-surface-skills/002-hub-surface-removal",
+    "last_active_at": "2026-10-24T09:24:08.689Z"
   }
 }

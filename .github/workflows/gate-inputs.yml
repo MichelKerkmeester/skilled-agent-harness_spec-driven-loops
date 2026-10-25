@@ -15,7 +15,9 @@ concurrency:
 jobs:
   gate-inputs:
     name: Every gate input resolves under both source roots
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Test the gate-input check against its fixtures

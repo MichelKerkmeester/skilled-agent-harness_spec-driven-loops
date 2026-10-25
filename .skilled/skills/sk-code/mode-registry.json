@@ -1,8 +1,8 @@
 {
   "skill": "sk-code",
-  "version": "2.3.0.0",
+  "version": "2.4.0.0",
   "resourceContractVersion": 1,
-  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-webflow/sk-code-skilled/sk-code-obsidian) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md, symlinked into each surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
+  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-ci/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md, symlinked into the surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for process modes that act, 'surface' for read-only domain-evidence packets bundled alongside a workflow mode.",
@@ -16,7 +16,7 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They bundle stack knowledge plus the workflow doctrine as read-only evidence; the acting agent applies it — the surface never executes the process itself.",
-      "surfaces": ["sk-code-webflow", "sk-code-skilled", "sk-code-obsidian"]
+      "surfaces": ["sk-code-ci", "sk-code-skilled"]
     }
   },
   "modes": [
@@ -58,24 +58,6 @@
       }
     },
     {
-      "workflowMode": "sk-code-webflow",
-      "packetKind": "surface",
-      "backendKind": "evidence-base",
-      "toolSurface": {
-        "allowed": ["Read", "Bash", "Grep", "Glob"],
-        "forbidden": ["Write", "Edit", "Task"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "sk-code-webflow",
-      "packetSkillName": "sk-code-webflow",
-      "grandfatheredFolderMismatch": false,
-      "aliases": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow"],
-      "advisorRouting": {
-        "routingClass": "metadata"
-      }
-    },
-    {
       "workflowMode": "sk-code-skilled",
       "packetKind": "surface",
       "backendKind": "evidence-base",
@@ -93,9 +75,8 @@
         "routingClass": "metadata"
       }
     },
-
     {
-      "workflowMode": "sk-code-obsidian",
+      "workflowMode": "sk-code-ci",
       "packetKind": "surface",
       "backendKind": "evidence-base",
       "toolSurface": {
@@ -104,10 +85,10 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "sk-code-obsidian",
-      "packetSkillName": "sk-code-obsidian",
+      "packet": "sk-code-ci",
+      "packetSkillName": "sk-code-ci",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["obsidian plugin implementation", "obsidian plugin code", "note database plugin", "obsidian plugin surface", "db-* class grammar"],
+      "aliases": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"],
       "advisorRouting": {
         "routingClass": "metadata"
       }

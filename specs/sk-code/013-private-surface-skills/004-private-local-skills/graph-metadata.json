@@ -3,6 +3,7 @@
   "packet_id": "sk-code/013-private-surface-skills/004-private-local-skills",
   "spec_folder": "sk-code/013-private-surface-skills/004-private-local-skills",
   "parent_id": "sk-code/013-private-surface-skills",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,14 +49,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/orchestrator-steps.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+      "scratch/review-round-1.md",
+      "scratch/link-audit-logical.sh",
+      ".skilled/skills/local-webflow/graph-metadata.json",
+      ".skilled/skills/local-obsidian/graph-metadata.json",
       ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
-      ".skilled/skills/sk-code/sk-code-webflow/README.md",
-      ".skilled/skills/sk-git/graph-metadata.json",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
-      "specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json"
+      ".skilled/skills/local-webflow/references/workflow-implement.md",
+      ".skilled/skills/local-webflow/references/workflow-verify.md",
+      ".skilled/skills/local-obsidian/references/workflow-implement.md",
+      ".skilled/skills/local-obsidian/references/workflow-verify.md"
     ],
     "entities": [
       {
@@ -79,7 +85,7 @@
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -91,13 +97,49 @@
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator-steps.md",
+        "kind": "doc",
+        "path": "scratch/orchestrator-steps.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-private-skill-roots.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-round-1.md",
+        "kind": "doc",
+        "path": "scratch/review-round-1.md",
+        "source": "derived"
+      },
+      {
+        "name": "link-audit-logical.sh",
+        "kind": "script",
+        "path": "scratch/link-audit-logical.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/local-webflow/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -113,21 +155,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "workflow-implement.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-webflow/README.md",
+        "path": ".skilled/skills/local-webflow/references/workflow-implement.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-git/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": "specs/sk-code/013-private-surface-skills/004-private-local-skills/description.json",
+        "name": "workflow-verify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/local-webflow/references/workflow-verify.md",
         "source": "derived"
       },
       {
@@ -171,41 +207,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Obsidian Plugin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and `.skilled/skills/sk-code/sk-code-obsidian/` (504K), 226 tracked files together",
     "created_at": "2026-10-23T07:03:40Z",
-    "last_save_at": "2026-10-23T16:28:03.909Z",
+    "last_save_at": "2026-10-24T16:18:30.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a2babe74d399936f671ce052da6a25b1d6a1e2895786426f988de0217d3edbb",
+    "source_fingerprint": "sha256:0a58985af19b9f5c1863f7643bf13789bea3720c10764f991b5e3fba19eaf3c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aae102947a382ecf3104b32845f45ac98d457c113a5c6156648b6fc71ea74eb9",
-      "plan.md": "f746464562328492eda23b621dfa6c6c3d1921c79adce073bf7a0d1830809646",
-      "tasks.md": "8b9f126bace9bc17db8968b77fe8a94e2609a5911ebf1e63a6f3901356207469",
-      "decision-record.md": "95dc3233007ea02b76488e246144e454af4fbe562f5cd5088ee8de1ca8fd7af4",
-      "implementation-summary.md": "e060208025bc6dd32925d57634730bbe602fde2dea8a001ddc044578ee6bb0db"
+      "spec.md": "5ff284a5e5b2ce33fcb112c029de62a7df3c243ab9ad00e85b7ff41a01b6bfad",
+      "plan.md": "5899e1ef598d5371fb7c150981eb55ed48cc14cfa9cd8f1b33650ec8add570e3",
+      "tasks.md": "92542c92aaeb20ca427e36096b19db480c777330c0e758b92ca016d2c006f144",
+      "decision-record.md": "f3628cc55bf64826a9bc025c4935ae04972343284a47e860bd4173682abecaba",
+      "implementation-summary.md": "a3ad5cadec62c0019c3f600e800c6287e884e86757e715a7d8fc6bcbefd97c7d"
     },
     "last_active_at": null
   }

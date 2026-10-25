@@ -1212,9 +1212,10 @@ def _load_source_graph_signal_map() -> Dict[str, List[str]]:
     except OSError as exc:
         _record_source_metadata_issue("signal_map", SKILLS_DIR, f"scan_failed:{exc.__class__.__name__}")
         return signal_map
+    link_check = _runtime_module.create_private_skill_link_check(SKILLS_DIR)
 
     for entry in skill_entries:
-        if not entry.is_dir():
+        if not _runtime_module.is_scannable_skill_entry(entry, link_check):
             continue
 
         graph_metadata_path = os.path.join(entry.path, "graph-metadata.json")
@@ -1267,9 +1268,10 @@ def _load_source_conflict_declarations() -> Dict[str, Set[str]]:
     except OSError as exc:
         _record_source_metadata_issue("conflict_declarations", SKILLS_DIR, f"scan_failed:{exc.__class__.__name__}")
         return declarations
+    link_check = _runtime_module.create_private_skill_link_check(SKILLS_DIR)
 
     for entry in skill_entries:
-        if not entry.is_dir():
+        if not _runtime_module.is_scannable_skill_entry(entry, link_check):
             continue
 
         graph_metadata_path = os.path.join(entry.path, "graph-metadata.json")
@@ -2688,6 +2690,33 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/doctor:mcp",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-doctor-ci-report": {
+        "description": "",
+        "slash_markers": ["/doctor:ci report"],
+        "inventory_id": "command-doctor-ci-report",
+        "command": "/doctor:ci",
+        "skill_id": "sk-code",
+        "owner_mode": "sk-code",
+        "routing_enabled": True,
+    },
+    "command-doctor-ci-scaffold": {
+        "description": "",
+        "slash_markers": ["/doctor:ci scaffold"],
+        "inventory_id": "command-doctor-ci-scaffold",
+        "command": "/doctor:ci",
+        "skill_id": "sk-code",
+        "owner_mode": "sk-code",
+        "routing_enabled": True,
+    },
+    "command-doctor-ci-toggle": {
+        "description": "",
+        "slash_markers": ["/doctor:ci toggle"],
+        "inventory_id": "command-doctor-ci-toggle",
+        "command": "/doctor:ci",
+        "skill_id": "sk-code",
+        "owner_mode": "sk-code",
         "routing_enabled": True,
     },
     "command-create-benchmark": {

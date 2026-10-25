@@ -8,6 +8,13 @@ name: OpenCode Plugin Tests
 # tree and runs on any change under the three source roots, the runtime and spec
 # files the goal checks read, or the root files that tell a project checkout from
 # this repository.
+#
+# The hook suites written for `node --test`, and the hook installer test, ran in no
+# workflow either: vitest skips those files because they run on their own, and the
+# dispatch guard runs only its rule-check suite. They import the hook libraries and
+# spawn the hook scripts, and the installer test provisions throwaway repositories,
+# so this job provisions once and runs them beside the plugin suites. It also runs
+# on any change under .hermes, whose skill and prompt copies the hooks read.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -19,12 +26,14 @@ on:
       - '.codex/**'
       - '.cursor/**'
       - '.devin/**'
+      - '.hermes/**'
       - '.env.example'
       - 'specs/system-deep-loop/z_archive/026-goal-opencode-plugin/**'
       - 'esbuild.config.mjs'
       - 'manifest.json'
       - 'wrangler.toml'
       - 'src/**'
+      - '.github/actions/**'
       - '.github/workflows/opencode-plugin-tests.yml'
   push:
     branches: [main, 'skilled/**']
@@ -36,13 +45,24 @@ on:
       - '.codex/**'
       - '.cursor/**'
       - '.devin/**'
+      - '.hermes/**'
       - '.env.example'
       - 'specs/system-deep-loop/z_archive/026-goal-opencode-plugin/**'
       - 'esbuild.config.mjs'
       - 'manifest.json'
       - 'wrangler.toml'
       - 'src/**'
+      - '.github/actions/**'
       - '.github/workflows/opencode-plugin-tests.yml'
+  workflow_dispatch:
+    inputs:
+      cold:
+        description: Provision from scratch instead of restoring the cache
+        type: choice
+        options: ['false', 'true']
+        default: 'false'
+  schedule:
+    - cron: '17 4 * * 1'
 
 permissions:
   contents: read
@@ -52,10 +72,11 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  plugin-tests:
-    name: OpenCode plugin tests
+  plugin-and-hook-tests:
+    name: OpenCode plugin and hook node:test suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -68,13 +89,41 @@ jobs:
       # provisioning installs and builds every tree it lists, the sk-vision bundle
       # among them.
       - name: Provision the dependency trees the plugin tests import
+        uses: ./.github/actions/setup
+        with:
+          cache: ${{ github.event_name != 'schedule' && inputs.cold != 'true' }}
+
+      # The installer test makes commits in temporary repositories, which need an author.
+      - name: Set a git identity for the tests
+        run: |
+          git config --global user.name "hook-tests-ci"
+          git config --global user.email "hook-tests-ci@example.invalid"
+
+      # Every JavaScript test file under the hooks tree that does not import vitest,
+      # outside node_modules. An empty selection fails the step instead of reporting a
+      # run that tested nothing.
+      - name: Run the hook node:test suites
         run: |
           set -euo pipefail
-          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
-          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
-          source .skilled/skills/sk-git/scripts/worktree-naming.sh
-          provision_worktree "$GITHUB_WORKSPACE"
+          files=()
+          while IFS= read -r file; do
+            files+=("$file")
+          done < <(find .skilled/hooks -type f \
+            \( -name '*.test.mjs' -o -name '*.test.cjs' -o -name '*.test.js' \) \
+            -not -path '*/node_modules/*' -print \
+            | sort \
+            | while IFS= read -r file; do
+                grep -qE "(from[[:space:]]+|require\()['\"]vitest['\"]" "$file" || printf '%s\n' "$file"
+              done)
+          if [[ "${#files[@]}" -eq 0 ]]; then
+            echo "::error::no node:test hook files were found; the collection rule matched nothing"
+            exit 1
+          fi
+          echo "Collected ${#files[@]} node:test hook files"
+          node --test "${files[@]}"
+
+      - name: Run the hook installer test
+        run: bash .skilled/hooks/git/install-hooks.test.sh
 
       # Node 22 takes a glob here, not a directory.
       - name: Run the plugin suites

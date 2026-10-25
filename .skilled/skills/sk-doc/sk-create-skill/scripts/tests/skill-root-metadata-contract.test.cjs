@@ -245,6 +245,14 @@ function testLegalFilesForClass() {
 // 5. FLEET CONFORMANCE
 // ─────────────────────────────────────────────────────────────────────────────
 
+function testFindSkillRootsSkipsPrivateSkills() {
+  const skillsDir = makeTmpSkillsDir();
+  makeRoot(skillsDir, 'alpha', { 'graph-metadata.json': { skill_id: 'alpha' } });
+  makeRoot(skillsDir, 'local-webflow', { 'graph-metadata.json': { skill_id: 'local-webflow' } });
+  const roots = gate.findSkillRoots(skillsDir).map((dir) => path.basename(dir));
+  assert.deepEqual(roots, ['alpha']);
+}
+
 function testFleetDiscoveryUsesTheAuthoredMarker() {
   const roots = gate.findSkillRoots(SKILLS_DIR).map((d) => path.basename(d));
   assert.deepEqual(roots, Object.keys(EXPECTED_CLASSES).sort());
@@ -608,6 +616,7 @@ try {
   testCommandSchemaRejectsCoreViolations();
   testCommandSchemaUsesInjectedProbes();
   testCommandSchemaRejectsWithinEntryDuplicateSignal();
+  testFindSkillRootsSkipsPrivateSkills();
   testGateRejectsNonDirectorySkillsDir();
 } finally {
   if (tmpRoot) fs.rmSync(tmpRoot, { recursive: true, force: true });

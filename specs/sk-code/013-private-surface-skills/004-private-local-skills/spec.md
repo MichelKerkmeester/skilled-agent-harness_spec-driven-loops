@@ -40,7 +40,7 @@ and commit `42b41dd286` in the local object database.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | The checked-out branch, pushed with `git push origin HEAD:main` |
 | **Parent Spec** | ../spec.md |
@@ -193,7 +193,7 @@ Restore both surfaces from git history into two external repositories and expose
 | Risk | The restore is run in a worktree instead of the operator's main checkout | High - the ignored links never reach the checkout the operator's advisor scans, so the evidence is lost when the worktree is removed | Run every content step from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`; only the documents work runs in `WORKTREE` |
 | Risk | `cp` writes through a `references/workflow-*.md` symlink into the tracked hub file | High - a tracked file changes and the phase leaks | Remove each symlink with `rm` first, then copy; verify with `find -type l` returning zero and `git status --porcelain` staying empty |
 | Risk | A rewrite points at the hub's `sk-code/shared/` with the wrong depth after the move | Medium - links break silently in a private folder nothing validates | Recompute every escaping link from the new location and prove it with the link audit before and after |
-| Risk | A hand-written `graph-metadata.json` fails the advisor's parse (family allowlist, `skill_id` versus folder name, edge weight bands) | Medium - the skill is indexed by nothing and phase 5's routing probe fails | Follow the field table in `plan.md`; run the generator with `--write` and then a second run without it, which must report `unchanged`, because a bare dry run only reports `would-change` and repairs nothing |
+| Risk | A hand-written `graph-metadata.json` fails the advisor's parse (family allowlist, `skill_id` versus folder name, edge weight bands) | Medium - the skill is indexed by nothing and phase 5's routing probe fails | Follow the field table in `plan.md`, run the `node -e` field check and the dead-path check that resolves every `key_files`, `entities[].path` and `source_docs` path on disk. The generator cannot help, because it refuses a `local-*` root with exit 2 (decision-record.md Amendment 4) |
 | Risk | `git add -f` or `git commit --no-verify` stages a private path | High - private content reaches the public repository | Run `git diff --cached --name-only` before the commit; the phase 1 guard blocks the ordinary path and phase 5 proves the fresh clone |
 | Risk | A symlink points into a repository that later moves | Low - the skill disappears without a trace in the repo | Record both absolute targets in `implementation-summary.md`; recreate each link with T006a |
 | Risk | A target repository commit stages an unrelated uncommitted file | High - unrelated work is published from that repository | T095a and T095b stage only `local-skills/<name>` by path and stop if anything else is staged |
@@ -267,7 +267,7 @@ Restore both surfaces from git history into two external repositories and expose
 | R-002 | The restore runs in a worktree instead of the operator's main checkout, so the links never reach the advisor | H | M | Every content task names the operator's checkout, and T109 confirms the two ignored links there |
 | R-003 | A `cp` writes through a `references/workflow-*.md` symlink into the tracked hub file | H | L | T007 to T012 run `rm` before writing from `git show`, and AC-004 fails if a link survives |
 | R-004 | A rewritten link points at the hub tier with the wrong depth after the move | M | M | The audit's intermediate reading counts 16 and 2 broken links, and its final reading must match the baseline |
-| R-005 | A hand-written `graph-metadata.json` fails the advisor's parse | M | L | T086 and T087 validate the shape, run the generator with `--write`, then confirm `unchanged` |
+| R-005 | A hand-written `graph-metadata.json` fails the advisor's parse | M | L | T086 and T087 validate the shape with the `node -e` field check, resolve every `derived` path on disk and assert that the generator refuses the `local-*` root with exit 2 (decision-record.md Amendment 4) |
 | R-006 | `git add -f` or `--no-verify` stages a private path | H | L | T106 checks the staged list for `local-` and T107 reads the commit's file list |
 | R-007 | A target sits under a repository's `.skilled`, `.opencode` or `.claude` symlink and loops | H | L | T002a proves both targets are free and each repository's `.skilled` is a symlink before the restore |
 

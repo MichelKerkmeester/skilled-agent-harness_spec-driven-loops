@@ -636,4 +636,30 @@ describe('cross-skill-edges detection', () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it('skips a top-level local-* skill so a private name cannot reach an applied edge', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'cross-skill-edges-'));
+    const skillRoot = join(root, 'skills');
+
+    try {
+      writeGraphMetadata(skillRoot, 'skill-a', 'system');
+      writeGraphMetadata(skillRoot, 'local-private', 'system', {}, {
+        skill_has_files: ['test.md'],
+        weight: 0.5,
+        context_template: 'private context',
+      });
+      writeSkillFile(skillRoot, 'local-private', 'test.md', '# Test');
+      writeSkillFile(skillRoot, 'skill-a', 'test.md', '# Test');
+      // A nested folder that merely starts with the prefix is not a private skill.
+      writeGraphMetadata(join(skillRoot, 'skill-a', 'nested'), 'local-nested', 'system');
+
+      const { loadAllSkillMetadata } = await import('../lib/cross-skill-edges/metadata-loader.js');
+      const skills = await loadAllSkillMetadata(skillRoot);
+      const ids = skills.map((skill) => skill.skillId).sort();
+
+      expect(ids).toEqual(['local-nested', 'skill-a']);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

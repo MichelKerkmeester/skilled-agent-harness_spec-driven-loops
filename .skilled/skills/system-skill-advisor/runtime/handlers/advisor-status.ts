@@ -13,6 +13,7 @@ import Database from 'better-sqlite3';
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { checkSqliteIntegrity } from '../lib/freshness/sqlite-integrity.js';
+import { createPrivateSkillLinkCheck } from '../lib/private-skill-target.js';
 import {
   computeSkillMetadataContentHash,
   isGenuineCorruptionReason,
@@ -314,8 +315,12 @@ function scanSkillMetadataFiles(
   maxFiles = DEFAULT_MAX_METADATA_FILES,
 ): { count: number; maxMtimeMs: number; truncated: boolean } {
   if (!existsSync(skillRoot)) return { count: 0, maxMtimeMs: 0, truncated: false };
+  const isTrustedLink = createPrivateSkillLinkCheck(skillRoot);
   const skillRoots = readdirSync(skillRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
+    .filter((entry) => !entry.name.startsWith('.') && (entry.isDirectory()
+      || (entry.name.startsWith('local-')
+        && entry.isSymbolicLink()
+        && isTrustedLink(join(skillRoot, entry.name)))))
     .sort((left, right) => left.name.localeCompare(right.name));
   let count = 0;
   let newest = 0;

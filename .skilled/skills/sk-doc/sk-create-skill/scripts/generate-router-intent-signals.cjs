@@ -33,6 +33,8 @@ function hubs() {
   return fs.readdirSync(SKILLS, { withFileTypes: true })
     .filter((e) => e.isDirectory())
     .map((e) => e.name)
+    // A private skill belongs to one checkout, so this writer must never open or rewrite it.
+    .filter((name) => !name.startsWith('local-'))
     .filter((name) => fs.existsSync(path.join(SKILLS, name, 'ROUTER.md'))
       && fs.existsSync(path.join(SKILLS, name, 'hub-router.json'))
       && fs.existsSync(path.join(SKILLS, name, 'graph-metadata.json')))

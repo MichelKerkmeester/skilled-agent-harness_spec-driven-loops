@@ -1,7 +1,7 @@
 ---
 title: "SD-002: SKILLED Surface Detection"
 description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the SKILLED surface and loads the opencode/* reference and asset trees with correct sub-language detection."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # SD-002: SKILLED Surface Detection
@@ -44,7 +44,6 @@ Prompt: `Handle empty prompts in .skilled/skills/system-skill-advisor/runtime/li
 - `sk-code-skilled/assets/checklists/typescript-checklist.md`
 - `sk-code-skilled/assets/checklists/universal-checklist.md`
 
-**Expected NOT loaded**: any `sk-code-webflow/references/*`, `sk-code-skilled/references/python/*`, `sk-code-skilled/references/shell/*`, `sk-code-skilled/references/config/*`.
 
 **Expected agent dispatch**: `@code` (LEAF) for the edit, via `@orchestrate` (Depth: 1 marker), per the orchestrator-only convention in §0 of `.skilled/agents/code.md`.
 
@@ -80,12 +79,10 @@ Prompt: `Handle empty prompts in .skilled/skills/system-skill-advisor/runtime/li
 | 1 | Advisor: top_skill == sk-code, score ≥ 0.80. |
 | 3 | sk-code router emits `SURFACE: SKILLED`. |
 | 4 | sk-code language sub-detection emits `LANGUAGE: TYPESCRIPT`. |
-| 5 | Loaded refs include `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md`, `quality-standards.md`, `quick-reference.md`, `sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md`, `sk-code-skilled/assets/checklists/typescript-checklist.md`, `sk-code-skilled/assets/checklists/universal-checklist.md`. NO `sk-code-webflow/references/*`, NO `sk-code-skilled/references/python/*`. |
 
 ### Pass/Fail Criteria
 
 - **PASS** iff: advisor wins sk-code AND surface == SKILLED AND sub-language == TYPESCRIPT AND all 3 typescript/* refs + 2 shared/* refs loaded AND no other-surface or other-language refs loaded.
-- **FAIL** iff: surface != SKILLED OR sub-language != TYPESCRIPT OR any webflow/* OR python/* OR shell/* ref is loaded OR any of the 3 typescript/* refs (including quick-reference.md) or 2 shared/* refs is missing.
 
 Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-refs transcript).
 
@@ -94,7 +91,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
 2. If surface != SKILLED: verify target path detection in `shared/references/stack-detection.md:39-40`. The path `.skilled/...` should match.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
-4. If `sk-code-webflow/references/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
+4. Confirm that a generic library marker (motion.dev, GSAP, etc.) MUST NOT match this prompt; verify that marker grep patterns are anchored correctly.
 
 ---
 

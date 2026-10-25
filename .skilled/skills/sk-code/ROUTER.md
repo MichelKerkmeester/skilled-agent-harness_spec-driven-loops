@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.13.0
+version: 2.2.15.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,26 +23,22 @@ Authoritative routing reference for sk-code. Consolidates intent classification 
 
 ### Purpose
 
-The smart router maps a detected surface (SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
+The smart router maps a detected surface (SKILLED / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
 
 ### When to Use
 
-- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN
+- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines SKILLED / UNKNOWN
 - When classifying task wording into the dominant work intent
 - When mapping intent to concrete reference paths
 - When picking verification commands for the surface
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (OpenCode vs Obsidian vs Webflow vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
-
-### Bundled Evidence Surfaces
-
-Beyond the Webflow and OpenCode prose maps in §4 and §6, the hub can bundle a read-only **evidence surface**, such as `sk-code-obsidian`, alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (SKILLED vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
 
 ### Key Sources
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/OBSIDIAN/WEBFLOW/UNKNOWN) and OpenCode language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/UNKNOWN) and OpenCode language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and phase-specific resource expectations
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 
@@ -91,13 +87,12 @@ Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc
 
 Do not apply this anti-signal when the same request asks to modify executable code, parser logic, tests, shell behavior, TypeScript/Python entrypoints, JSON schema behavior, or routing algorithms. In that case, keep SKILLED surface detection and load `sk-code`.
 
-Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load SKILLED plus LANGUAGE_STANDARDS and CODE_QUALITY.
+Multi-symptom prompts like `fix animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load SKILLED plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
-Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `sk-code-webflow/references/animation/` for cross-stack API/decision context; if the target is `.skilled/`, keep the surface as SKILLED and load Motion only as reference material.
+Motion.dev API or decision prompts should load MOTION_DEV as a resource intent alongside the detected surface. When the target is `.skilled/`, keep the surface as SKILLED and load Motion only as reference material.
 
 ### Surface-specific intent notes
 
-- **WEBFLOW** intent scoring favors browser/runtime terms, animation, forms, video, performance, deployment, and verification.
 - **MOTION_DEV** intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision_matrix terms; it supplements the detected surface rather than replacing it.
 - **SKILLED** intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
 - Unsupported surfaces stay UNKNOWN even if intent scoring is strong.
@@ -109,91 +104,10 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 | Tier | When | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |
-| SURFACE | After WEBFLOW, SKILLED or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-skilled/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |
+| SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
-| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md` for advanced CSS patterns) |
-
----
-
-## 4. WEBFLOW MAP
-
-WEBFLOW loads from `sk-code-webflow/references/` and `sk-code-webflow/assets/`. The per-language sub-tree (`sk-code-webflow/references/{javascript,css,html,shared}/`) and topical workflow dirs (`sk-code-webflow/references/{implementation,debugging,verification,performance,deployment}/`) coexist; the router selects across both.
-
-| Intent | Resources |
-| --- | --- |
-| IMPLEMENTATION | MUST load the implementation trio: `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`, `sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md`, `sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`; then add per-language style guides (`sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md`, `sk-code-webflow/references/css/style-guide.md`) and focused guides such as forms/vendor refs as needed |
-| CODE_QUALITY | `sk-code-review/assets/code-quality-checklist.md`, `sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`, `sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md`, `sk-code-webflow/references/shared/enforcement.md` |
-| DEBUGGING | `sk-code-webflow/references/debugging/*`, `sk-code-webflow/references/shared/dev-workflow/overview-nav-and-logging.md`, universal debugging checklist |
-| VERIFICATION | `sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`, `sk-code-webflow/references/shared/enforcement.md`, verification checklist |
-| PERFORMANCE | `sk-code-webflow/references/performance/cwv-remediation.md`, `sk-code-webflow/references/performance/resource-loading.md`, `sk-code-webflow/references/performance/interaction-gated-loading.md`, `sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md` (will-change, GPU props), `sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md` (RAF, debounce) |
-| DEPLOYMENT | `sk-code-webflow/references/deployment/cdn-deployment.md`, `sk-code-webflow/references/deployment/minification-guide/overview-terser-and-patterns.md`, `sk-code-webflow/references/deployment/webflow-staging-production.md` |
-
-### Implementation trio contract
-
-Any WEBFLOW surface detection MUST load the implementation trio before intent-specific expansion:
-
-- `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- `sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md`
-- `sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`
-
-This is a contract, not a guideline. It prevents SD-001-style partial coverage where the surface is correct but implementation guidance falls below the expected threshold.
-
-### Language-standards overlay
-
-For the LANGUAGE_STANDARDS intent, load the language overlay matching the changed/target file extensions:
-
-| Target language | Overlay resources |
-| --- | --- |
-| JavaScript (`.js`) | `sk-code-webflow/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-webflow/references/shared/cross-language-rules.md` |
-| CSS (`.css`) | `sk-code-webflow/references/css/{style_guide,quality_standards,quick_reference,patterns}.md`, `sk-code-webflow/references/shared/cross-language-rules.md` |
-| HTML (`.html`) | `sk-code-webflow/references/html/{style-guide.md,quality-standards.md}`, `sk-code-webflow/references/shared/cross-language-rules.md` |
-| Mixed (CSS + JS in same task) | Both per-language sets above |
-
----
-
-## 5. MOTION_DEV MAP
-
-MOTION_DEV loads from `sk-code-webflow/references/animation/` and `sk-code-webflow/assets/animation/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, SKILLED, or future surfaces when the request needs Motion API, integration, or decision guidance.
-
-Webflow implementation and verification resources remain owned by their corresponding WEBFLOW intents; MOTION_DEV owns only the animation peer resources below.
-
-| Intent | Resources |
-| --- | --- |
-| ANIMATION / MOTION_DEV | `sk-code-webflow/references/animation/quick-start.md`, `sk-code-webflow/references/animation/animation-principles.md`, `sk-code-webflow/references/animation/animate-and-timelines.md`, `sk-code-webflow/references/animation/scroll-and-gestures.md`, `sk-code-webflow/assets/animation/snippets/principled-reveal.js` |
-| PERFORMANCE | `sk-code-webflow/references/animation/performance-and-pitfalls.md` including frame-level visual verification for subtle timing/easing defects |
-| IMPLEMENTATION / API | `sk-code-webflow/references/animation/integration-patterns.md`, exact snippet assets such as `sk-code-webflow/assets/animation/snippets/animate-on-scroll.js` and `sk-code-webflow/assets/animation/snippets/in-view-reveal.js` |
-| CODE_QUALITY / DECISION | `sk-code-webflow/references/animation/decision-matrix.md`, `sk-code-webflow/assets/animation/install-card.md` |
-| TESTING / PLAYBOOK | `sk-code-webflow/assets/animation/playbook-entries.md` plus manual testing playbook Motion scenarios |
-
-When WEBFLOW and MOTION_DEV both match, load Webflow guidance for CDN, `window.Motion`, Designer, and browser verification constraints, then load the animation overlay (`sk-code-webflow/references/animation/`) for cross-stack Motion details.
-
-When explicit non-Webflow language and MOTION_DEV both match, do not load `sk-code-webflow/references/*` or `sk-code-webflow/assets/*`. Load Motion.dev peer resources by exact path while keeping the surface UNKNOWN or N/A:
-
-- `sk-code-webflow/references/animation/quick-start.md`
-- `sk-code-webflow/references/animation/animation-principles.md`
-- `sk-code-webflow/references/animation/integration-patterns.md`
-- `sk-code-webflow/references/animation/decision-matrix.md`
-- `sk-code-webflow/references/animation/performance-and-pitfalls.md`
-- `sk-code-webflow/references/animation/animate-and-timelines.md`
-- `sk-code-webflow/references/animation/scroll-and-gestures.md`
-- exact snippet assets under `sk-code-webflow/assets/animation/snippets/` when the prompt asks for examples
-
-Do not emit directory placeholders such as `sk-code-webflow/references/animation/`, `sk-code-webflow/assets/animation/snippets/`, or `sk-code-webflow/references/` in playbook result YAML. Name the exact canonical files.
-
-### Performance and decision contracts
-
-PERFORMANCE intent with Motion.dev or Webflow animation MUST name these canonical files when relevant:
-
-- `sk-code-webflow/references/animation/performance-and-pitfalls.md`
-- `sk-code-webflow/references/performance/cwv-remediation.md`
-- `sk-code-webflow/references/performance/resource-loading.md`
-
-DECISION intent MUST name:
-
-- `sk-code-webflow/references/animation/decision-matrix.md`
-- `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md` when comparing Motion.dev against Webflow-owned animation patterns
-- `sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md` when the decision depends on performance constraints
+| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md` for boundary templates) |
 
 ---
 
@@ -241,13 +155,25 @@ When SKILLED intent is `authoring-new-X`, additionally load the matching authori
 | New MCP server | `sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | Spec folder write | Now in system-spec-kit: `system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` + `system-spec-kit/references/workflows/spec-folder-write-recipe.md` |
 
+### CI Workflow Map
+
+When the request names a GitHub Actions workflow, the hub bundles `sk-code-ci` from the request vocabulary and the `CI_WORKFLOW` intent loads its four rule references:
+
+| Resource | Carries |
+| --- | --- |
+| `sk-code-ci/references/ci-workflow-standards.md` | The rule index: path parity, SHA pins, README row, `set -euo pipefail`, fork and secret safety, matrix and `fail-fast` |
+| `sk-code-ci/references/trigger-and-filter-rules.md` | The twin rule, the rebuild-commit skip rule, push-only scope and the intentional exceptions table |
+| `sk-code-ci/references/job-shape-rules.md` | Timeouts, permissions, the concurrency template, the composite setup action and the switch `if:` shape |
+| `sk-code-ci/references/protected-set.md` | The workflows protected by function and the rules that follow |
+
+The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so the two stay equal.
+
 ---
 
 ## 7. VERIFICATION COMMANDS
 
 | Surface | Required verification evidence |
 | --- | --- |
-| WEBFLOW | `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs`; `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs`; `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
 | SKILLED | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
@@ -257,18 +183,18 @@ When SKILLED intent is `authoring-new-X`, additionally load the matching authori
 
 If no supported surface matches, ask:
 
-1. Is this Webflow/frontend code, `.skilled/` system code, or Obsidian plugin code?
+1. Is this `.skilled/` system code, or an unsupported stack?
 2. Which files or directories are changing?
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
 
-Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code only owns the WEBFLOW, SKILLED and OBSIDIAN surfaces plus the MOTION_DEV resource category.
+Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code owns the SKILLED surface plus the MOTION_DEV resource category.
 
 ### UNKNOWN fallback checklist
 
 Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the user explicitly asks for stack-agnostic guidance:
 
-- Confirm the active runtime surface (SKILLED, OBSIDIAN or WEBFLOW)
+- Confirm the active runtime surface (SKILLED or UNKNOWN)
 - Confirm the task intent (implementation / debugging / verification / etc.)
 - Provide one concrete input, error, or expected output
 - Confirm the verification command set before completion
@@ -280,24 +206,22 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 ### DO
 
 - Load only references needed for current intent + surface
-- Honor the WEBFLOW implementation trio contract on every WEBFLOW invocation
 - Use exact canonical file paths in playbook result YAML (never directory placeholders)
 - Load Motion.dev peer resources after the surface decision, not as a substitute
 - Cite surface + top-1 intent + loaded resource paths + verification command in your final answer
 
 ### DON'T
 
-- Load all of `sk-code-webflow/` or all of `sk-code-skilled/` indiscriminately ("just in case")
+- Load all of `sk-code-skilled/` indiscriminately ("just in case")
 - Treat MOTION_DEV as a surface (it's a peer resource category)
 - Load Go/NextJS/React Native resources (those live in the Barter fork)
-- Skip the implementation trio for WEBFLOW
 - Drop directory placeholders in playbook result YAML
 
 ---
 
 ## 10. RELATED RESOURCES
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/OBSIDIAN/WEBFLOW/UNKNOWN) + SKILLED language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
@@ -306,7 +230,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 11. MACHINE-READABLE ROUTER (replay / benchmark source)
 
-This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface maps (§4 Webflow, §5 Motion.dev, §6 OpenCode). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
+This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface map (§6 SKILLED). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
 
 This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
 
@@ -328,48 +252,20 @@ INTENT_SIGNALS = {
     "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
-    "TESTING":            {"weight": 1, "keywords": ["unit test", "integration test", "coverage", "vitest", "pytest", "shellcheck"]},
-    "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
     "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "web vitals", "largest contentful", "lcp", "interaction to next paint", "inp", "cumulative layout shift", "cls", "pagespeed", "jank", "frame budget"]},
-    "ANIMATION":          {"weight": 1, "keywords": ["animation", "transition", "easing", "stagger", "motion principles", "motion language", "gsap", "lenis", "carousel", "parallax"]},
-    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "motion api", "motion demo", "animate()", "inview", "in-view", "motion cdn", "scroll()", "stagger()", "animation principles", "cross-stack animation"]},
-    "ACCESSIBILITY":      {"weight": 1, "keywords": ["reduced motion", "reduced-motion", "prefers-reduced-motion", "a11y", "accessibility"]},
-    "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
-    "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
     "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
-    "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["typescript", ".ts", ".tsx", "python", ".py", "shell script", "bash", ".sh", "commonjs", ".cjs", ".mjs", "docstring"]},
     "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", "vanilla js", ".js", "commonjs", ".cjs", ".mjs"]},
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
-    "OBSIDIAN_PLUGIN": {"weight": 4, "keywords": ["obsidian plugin", "note database plugin", "plugin data layer", "db class naming", "obsidian plugin conventions"]},
-
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"]},
 }
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
         "shared/references/universal/multi-agent-research.md",
-        "sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md",
-        "sk-code-webflow/references/implementation/implementation-workflows/validation-minification-and-cdn.md",
-        "sk-code-webflow/references/implementation/async-patterns/raf-ric-microtask-and-posttask.md",
-        "sk-code-webflow/references/implementation/async-patterns/timing-compat-and-webflow.md",
-        "sk-code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md",
-        "sk-code-webflow/references/implementation/observer-patterns/resize-best-practices-and-shared.md",
-        "sk-code-webflow/references/implementation/security-patterns/overview-and-checklist.md",
-        "sk-code-webflow/references/implementation/security-patterns/owasp-prototype-and-safe-access.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/botpoison-and-finsweet.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/filepond.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md",
-        "sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md",
-        "sk-code-webflow/references/implementation/webflow-patterns/development-and-production.md",
-        "sk-code-webflow/references/implementation/webflow-patterns/finsweet-custom-select-bridge.md",
-        "sk-code-webflow/references/shared/dev-workflow/overview-nav-and-logging.md",
-        "sk-code-webflow/references/shared/dev-workflow/automation-errors-and-compat.md",
-        "sk-code-webflow/references/shared/dev-workflow/common-commands.md",
-        "sk-code-webflow/references/shared/dev-workflow/checklists-and-decision-matrix.md",
         "sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
         "sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
         "sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md",
@@ -379,16 +275,11 @@ RESOURCE_MAP = {
         "sk-code-skilled/assets/checklists/command-authoring.md",
         "sk-code-skilled/assets/checklists/skill-authoring.md",
         "sk-code-skilled/assets/checklists/mcp-server-authoring.md",
-        "sk-code-webflow/assets/integrations/README.md",
-        "sk-code-webflow/assets/patterns/README.md",
-        "sk-code-webflow/assets/templates/README.md",
 
     ],
     "CODE_QUALITY": [
         "shared/references/universal/code-quality-standards.md",
         "shared/references/universal/code-style-guide.md",
-        "sk-code-webflow/references/shared/cross-language-rules.md",
-        "sk-code-webflow/references/shared/enforcement.md",
         "sk-code-skilled/assets/checklists/universal-checklist.md",
         "sk-code-skilled/assets/checklists/javascript-checklist.md",
         "sk-code-skilled/assets/checklists/typescript-checklist.md",
@@ -403,92 +294,17 @@ RESOURCE_MAP = {
     ],
     "DEBUGGING": [
         "shared/references/universal/error-recovery.md",
-        "sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md",
-        "sk-code-webflow/references/debugging/debugging-workflows/rules-and-root-cause.md",
-        "sk-code-webflow/references/debugging/debugging-workflows/performance-debugging.md",
-        "sk-code-webflow/references/debugging/debugging-workflows/quick-reference-and-lenis.md",
-        "sk-code-webflow/references/debugging/debugging-workflows/sub-agent-verification.md",
-        "sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md",
-        "sk-code-webflow/references/debugging/error-recovery.md",
         "shared/references/universal-debugging-checklist.md",
-        "sk-code-webflow/assets/webflow-debugging-checklist.md",
 
     ],
     "VERIFICATION": [
-        "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
-        "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md",
         "sk-code-skilled/references/shared/alignment-verification-automation.md",
         "shared/references/universal-verification-checklist.md",
-        "sk-code-webflow/assets/webflow-verification-checklist.md",
         "sk-code-skilled/assets/scripts/README.md",
 
     ],
-    "TESTING": [
-        "sk-code-webflow/assets/animation/playbook-entries.md",
-    ],
-    "DEPLOYMENT": [
-        "sk-code-webflow/references/deployment/cdn-deployment.md",
-        "sk-code-webflow/references/deployment/minification-guide/overview-terser-and-patterns.md",
-        "sk-code-webflow/references/deployment/minification-guide/workflow-verification-and-debugging.md",
-        "sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md",
-        "sk-code-webflow/references/deployment/webflow-staging-production.md",
-        "sk-code-webflow/assets/scripts/README.md",
-    ],
     "PERFORMANCE": [
-        "sk-code-webflow/references/performance/cwv-remediation.md",
-        "sk-code-webflow/references/performance/interaction-gated-loading.md",
-        "sk-code-webflow/references/performance/resource-loading.md",
-        "sk-code-webflow/references/performance/third-party.md",
-        "sk-code-webflow/references/performance/webflow-constraints.md",
-        "sk-code-webflow/references/verification/performance-checklist.md",
-        "sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md",
-        "sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md",
-        "sk-code-webflow/references/animation/performance-and-pitfalls.md",
         "shared/references/performance-loading-checklist.md",
-    ],
-    "ANIMATION": [
-        "sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md",
-        "sk-code-webflow/references/implementation/animation-workflows/motion-dev-and-performance.md",
-        "sk-code-webflow/references/implementation/animation-workflows/testing-and-common-issues.md",
-        "sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
-        "sk-code-webflow/references/implementation/swiper-patterns/overview-timeline-and-marquee.md",
-        "sk-code-webflow/references/implementation/swiper-patterns/autoplay-accessibility-and-naming.md",
-        "sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md",
-    ],
-    "MOTION_DEV": [
-        "sk-code-webflow/references/animation/quick-start.md",
-        "sk-code-webflow/references/animation/animation-principles.md",
-        "sk-code-webflow/references/animation/animate-and-timelines.md",
-        "sk-code-webflow/references/animation/scroll-and-gestures.md",
-        "sk-code-webflow/references/animation/integration-patterns.md",
-        "sk-code-webflow/references/animation/decision-matrix.md",
-        "sk-code-webflow/references/animation/performance-and-pitfalls.md",
-        "sk-code-webflow/assets/animation/install-card.md",
-        "sk-code-webflow/assets/animation/snippets/principled-reveal.js",
-        "sk-code-webflow/assets/animation/snippets/README.md",
-    ],
-    "ACCESSIBILITY": [
-        "sk-code-webflow/references/animation/performance-and-pitfalls.md",
-        "sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md",
-        "sk-code-webflow/references/implementation/animation-workflows/motion-dev-and-performance.md",
-        "sk-code-webflow/references/implementation/animation-workflows/testing-and-common-issues.md",
-        "sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
-        "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
-        "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md",
-
-    ],
-    "FORMS": [
-        "sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md",
-        "sk-code-webflow/references/implementation/form-upload-workflows/state-machine-worker-and-forms.md",
-        "sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md",
-        "sk-code-webflow/references/implementation/focus-management/selector-and-focus-trap.md",
-        "sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md",
-    ],
-    "VIDEO": [
-        "sk-code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/botpoison-and-finsweet.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/filepond.md",
-        "sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md",
     ],
     "HOOKS": [
         "sk-code-skilled/references/shared/hooks.md",
@@ -498,30 +314,6 @@ RESOURCE_MAP = {
         "sk-code-skilled/references/config/quality-standards.md",
         "sk-code-skilled/references/config/quick-reference.md",
         "sk-code-skilled/assets/checklists/config-checklist.md",
-    ],
-    "LANGUAGE_STANDARDS": [
-        "sk-code-webflow/references/css/style-guide.md",
-        "sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md",
-        "sk-code-webflow/references/css/quality-standards/typography-autofill-and-color.md",
-        "sk-code-webflow/references/css/quality-standards/focus-has-print-and-quick-reference.md",
-        "sk-code-webflow/references/css/quick-reference.md",
-        "sk-code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md",
-        "sk-code-webflow/references/css/patterns/data-attributes-and-forms.md",
-        "sk-code-webflow/references/css/patterns/focus-accessibility-and-mobile.md",
-        "sk-code-webflow/references/css/patterns/designer-component-and-performance.md",
-        "sk-code-webflow/references/css/patterns/quick-reference-and-related.md",
-        "sk-code-webflow/references/html/style-guide.md",
-        "sk-code-webflow/references/html/quality-standards.md",
-        "sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md",
-        "sk-code-webflow/references/javascript/style-guide/formatting.md",
-        "sk-code-webflow/references/javascript/style-guide/commenting-and-related.md",
-        "sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md",
-        "sk-code-webflow/references/javascript/quality-standards/observer-validation-and-performance.md",
-        "sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md",
-        "sk-code-webflow/references/javascript/quality-standards/shared-listener-and-weakmap.md",
-        "sk-code-webflow/references/javascript/quality-standards/enforcement-and-quick-reference.md",
-        "sk-code-webflow/references/javascript/quick-reference.md",
-
     ],
     "JAVASCRIPT": [
         "sk-code-skilled/references/javascript/style-guide.md",
@@ -551,13 +343,6 @@ RESOURCE_MAP = {
         "sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md",
         "sk-code-skilled/references/shell/quick-reference/functions-strings-and-checklist.md",
     ],
-    "OBSIDIAN_PLUGIN": [
-        "sk-code-obsidian/references/obsidian-plugin-api.md",
-        "sk-code-obsidian/references/data-layer.md",
-        "sk-code-obsidian/references/db-class-naming.md",
-        "sk-code-obsidian/references/comment-grammar.md"
-    ],
-
     "RUST": [
         "sk-code-skilled/references/rust/style-guide/overview-and-file-header.md",
         "sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md",
@@ -576,6 +361,12 @@ RESOURCE_MAP = {
         "sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md",
         "sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
         "sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md",
+    ],
+    "CI_WORKFLOW": [
+        "sk-code-ci/references/ci-workflow-standards.md",
+        "sk-code-ci/references/trigger-and-filter-rules.md",
+        "sk-code-ci/references/job-shape-rules.md",
+        "sk-code-ci/references/protected-set.md",
     ],
 }
 
@@ -603,10 +394,9 @@ The router does NOT load the whole matched-intent union. After surface detection
 
 - the always-loaded `DEFAULT_RESOURCE` preamble (stack/phase detection and the universal quality baseline), plus
 - the `shared/` entries the matched intents map (for example `code-style-guide.md` under CODE_QUALITY, `error-recovery.md` under DEBUGGING and `multi-agent-research.md` under IMPLEMENTATION), never the whole `shared/references/universal/` folder, plus
-- only the **detected surface's** slice (`<surface>/references/*`) for the matched intents, plus
-- the Motion.dev overlay (`sk-code-webflow/references/animation/*`) when a `MOTION_DEV` intent fires.
+- only the **detected surface's** slice (`<surface>/references/*`) for the matched intents.
 
-It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A mixed-marker task (`.skilled/` and Webflow markers together) keeps the slice of each surface it touches; an `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+It does not load another surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders. An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
 
 ---
 
@@ -614,5 +404,5 @@ It does not load the other surface's resources, and it defers `assets/*` (checkl
 
 - Every code task first loads the always-on preamble (stack + phase detection and the universal quality baseline); routing then narrows to the detected surface's slice for the matched intents.
 - One dominant intent on one surface loads that surface's slice; two near-tied intents (within the router's ambiguity delta) load both intent sets, deduped by canonical pair.
-- A mixed-marker task keeps the slice of each surface it touches; a single-surface task never pulls another surface's resources.
-- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the shared-tier entries its matched intents map and the Motion overlay only — confirm the surface and intent before loading more. See §8 (UNKNOWN FALLBACK) and §9 (LOADING DISCIPLINE) for the full rules.
+- A single-surface task never pulls another surface's resources.
+- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the shared-tier entries its matched intents map — confirm the surface and intent before loading more. See §8 (UNKNOWN FALLBACK) and §9 (LOADING DISCIPLINE) for the full rules.

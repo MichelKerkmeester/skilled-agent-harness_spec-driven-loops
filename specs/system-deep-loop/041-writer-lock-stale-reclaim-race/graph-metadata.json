@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/041-writer-lock-stale-reclaim-race",
+  "spec_folder": "system-deep-loop/041-writer-lock-stale-reclaim-race",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "writer lock stale reclaim race",
+      "fix the stale lock reclaim race",
+      "expected 9 records got 8",
+      "jsonl repair intermittent failure",
+      "isWriterLockStale ENOENT",
+      "two writers hold the lock",
+      "writer lock stale reclaim race plan",
+      "reproduce the writer lock race",
+      "reclaim removes only the file it judged stale",
+      "writer lock stale reclaim race tasks",
+      "writer lock reproduction tasks",
+      "writer lock stale reclaim race acceptance criteria"
+    ],
+    "key_topics": [
+      "writer",
+      "lock",
+      "stale",
+      "reclaim",
+      "race",
+      "expected",
+      "records",
+      "got",
+      "jsonl",
+      "repair",
+      "intermittent",
+      "failure"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "specs/system-deep-loop/graph-metadata.json",
+      "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+      ".github/workflows/deep-loop-runtime.yml",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts",
+      "assets/level-decision-matrix.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-deep-loop/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "r21-recheck.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/deep-loop-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards-writer-lock.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "level-decision-matrix.md",
+        "kind": "doc",
+        "path": "assets/level-decision-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Runtime Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Trail Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern File",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Deep-Loop Runtime Tests workflow failed once on main",
+    "created_at": "2026-10-25T07:12:28Z",
+    "last_save_at": "2026-10-25T07:24:03.207Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4677e0127b9464a7fbb1ea1fac86628a0f80b326ceb0b6bc6222b42be91cfdc7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8850f14b81dbbd65c2a754d95727bb407e0264e5b3464d589ab84f4bf0944679",
+      "plan.md": "edeb01bcaa957cd0190385ef73163f07758de39fbf80ddc1e87550499bdbb169",
+      "tasks.md": "83fddbf3d20e38f9766791991b3eff49555ea1ef407ce0de15c0a3ebc7ac0927",
+      "implementation-summary.md": "88f63a63d05e4f360dbd806725a074edfd3ba5879fc8ff04470900f9d19355f0"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/014-code-modes-research/002-review-mode-research",
+  "description": "Phase 2: review-mode-research",
+  "keywords": [
+    "phase",
+    "review-mode-research"
+  ],
+  "lastUpdated": "2026-10-25T08:24:48.858Z",
+  "specId": "002",
+  "folderSlug": "review-mode-research",
+  "parentChain": [
+    "sk-code",
+    "014-code-modes-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

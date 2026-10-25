@@ -18,6 +18,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 # The corpus check is the chart packet's contract: forty-two families over every shipped form.
 # Until this existed it ran only when somebody chose to run it, and two reviews found twenty-one
 # assertions inside it that passed for a reason other than the one their message gave. This blocks,
@@ -29,7 +32,9 @@ concurrency:
 jobs:
   corpus:
     name: Corpus contract and its mutation suite
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0

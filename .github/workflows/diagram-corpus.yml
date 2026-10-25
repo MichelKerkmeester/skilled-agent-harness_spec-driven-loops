@@ -18,6 +18,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 # The corpus check is the diagram packet's contract: one family per module over every shipped
 # template and example. It blocks because the corpus was made green before the checker existed,
 # so there is no backlog behind the gate and nobody has to triage it. The literal marker is what
@@ -29,7 +32,9 @@ concurrency:
 jobs:
   corpus:
     name: Corpus contract, its mutation suite and both applicator gates
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0

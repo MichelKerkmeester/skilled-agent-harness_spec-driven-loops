@@ -14,7 +14,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import type { AdvisorScoringOptions, AdvisorScoringResult } from '../../lib/scorer/types.js';
 
 // A frozen slice that collapses to a handful of rows is not a meaningful gate.
@@ -31,6 +31,7 @@ interface AmbiguityRow {
 }
 
 interface Baseline {
+  readonly capturedAt: string;
   readonly metrics: { readonly ambiguity_top1: { readonly correct: number; readonly total: number; readonly tau: number } };
 }
 
@@ -84,10 +85,20 @@ describe('ambiguity slice gate', () => {
     SLICE = readJsonl<AmbiguityRow>(AMBIGUITY_PATH);
     BASELINE = JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as Baseline;
 
+    // The derived lane discounts each skill by its age at scoring time, so the
+    // count moves with the calendar. Score at the instant the baseline was
+    // captured, midnight UTC of its capture day, as the baseline ratchet does.
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(`${BASELINE.capturedAt}T00:00:00Z`));
+
     SLICE_CORRECT = SLICE.filter((row) => (
       isTop1Correct(scoreAdvisorPrompt(row.prompt, { workspaceRoot }).topSkill, row.skill_top_1)
     )).length;
   }, 120_000);
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
 
   it('is a non-empty, meaningful minority carrying its existing gold labels', () => {
     expect(SLICE.length).toBeGreaterThanOrEqual(MIN_SLICE_ROWS);

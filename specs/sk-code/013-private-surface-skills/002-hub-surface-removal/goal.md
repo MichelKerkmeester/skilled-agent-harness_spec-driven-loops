@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "specs/sk-code/013-private-surface-skills/002-hub-surface-removal"
-    last_updated_at: "2026-10-23T12:40:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Applied T001 to T038 uncommitted in the main checkout; T039 partial"
-    next_safe_action: "Finish T039 (code-quality-standards.md lines 16, 24, 39, 49, 56), then continue at T040"
+    last_updated_at: "2026-10-24T11:01:04.139Z"
+    last_updated_by: "codex"
+    recent_action: "Updated phase progress and current acceptance evidence."
+    next_safe_action: "SWE-2 review (T105), validate (T106), commit and push (T108)."
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deepseek-v4.1-flash-1017-002-planning"
       parent_session_id: null
-    completion_pct: 35
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -81,16 +81,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Done | `tasks.md` holds 108 tasks in execution order |
-| Setup, baselines and deletions | Done | T001 to T004: hook trusted, phase 001 on `origin/main`, baselines 158/164/1338 recorded, 226 staged deletions |
-| Registries and leaf manifest | Done | T005 to T014: three modes and one surface declared, `vocabularyClasses` at 11 keys, `leaf-manifest.json OK` from the generator check |
-| `ROUTER.md` and hub documents | In progress | T015 to T038 applied uncommitted; T039 partial with five `code-quality-standards.md` lines still to edit |
-| Consumers, tests and closure | Pending | T040 to T108 |
-
+| Phase opened | Done | tasks.md holds 108 tasks in execution order |
+| Setup, baselines and deletions | Done | T001-T004 evidence records hook trust, baselines and 226 deleted paths |
+| Registries and leaf manifest | Done | T005-T014 evidence records three modes, one surface and a clean leaf manifest |
+| Router and hub documents | Done | T015-T043 applied, including T039 |
+| Consumers, tests and generated artifacts | Done | T044-T095 evidence is recorded; T081 and T094 use D6-scoped corrected scans |
+| Verification and handoff | In progress (~90%) | T039-T104 and T107 applied; T103 partial; T105, T106 and T108 open
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| T039 partial | `code-quality-standards.md` still holds 5 `webflow\|obsidian` lines at :16, :24, :39, :49 and :56; the ~82, ~118 and ~177 edits are applied |
-| Work uncommitted | All phase-002 work is in the worktree only: 226 staged deletions plus 15 modified files; nothing is committed or pushed |
+| T103 partial | The advisor returns sk-code first, but the compiled route remains the legacy sentinel pending the T108 manifest refresh |
+| D6 proof drift | T081 and T094 retain five mcp-obsidian records; corrected scans find no removed sk-code paths |
+| T104 scope | One z_archive diff is an unrelated cli-external-orchestration manifest; the phase-scoped result is 20, 0 and 0 |
+| Work uncommitted | T108 has not run; the phase has not been committed or pushed |
 <!-- /ANCHOR:log -->

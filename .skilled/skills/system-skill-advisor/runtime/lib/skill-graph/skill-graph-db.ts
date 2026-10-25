@@ -7,6 +7,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
+import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 
 import Database from 'better-sqlite3';
 // NOTE: lib/shared/embeddings is a symlink to system-spec-kit/shared/embeddings.
@@ -723,6 +724,7 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
 
   const discovered: string[] = [];
   const stack: string[] = [skillDir];
+  const isTrustedLink = createPrivateSkillLinkCheck(skillDir);
 
   while (stack.length > 0) {
     // The loop guard guarantees a directory is available to pop.
@@ -730,7 +732,13 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
     const entries = readdirSync(currentDir, { withFileTypes: true });
     for (const entry of entries) {
       const entryPath = join(currentDir, entry.name);
-      if (entry.isDirectory()) {
+      // A private skill is linked into the tree on purpose; follow the link only
+      // when its resolved target stays inside a directory the operator trusts.
+      const linkedPrivateSkill = currentDir === skillDir
+        && entry.name.startsWith('local-')
+        && entry.isSymbolicLink()
+        && isTrustedLink(entryPath);
+      if (entry.isDirectory() || linkedPrivateSkill) {
         if (!IGNORED_SCAN_DIRS.has(entry.name)) {
           stack.push(entryPath);
         }
@@ -1294,12 +1302,6 @@ async function refreshSkillEmbeddingsViaAdapter(
       continue;
     }
 
-    if (backendOutage !== null) {
-      failed++;
-      deleteEmbedding.run(row.id);
-      continue;
-    }
-
     const description = skillDescriptionForEmbedding(row.source_path).trim();
     if (!description) {
       deleteEmbedding.run(row.id);
@@ -1314,6 +1316,14 @@ async function refreshSkillEmbeddingsViaAdapter(
       && row.vec_content_hash === contentHash
     ) {
       skipped++;
+      continue;
+    }
+
+    // A current row never needed the backend, so an outage leaves it alone. A row
+    // that did need it is written exactly as a failed ask would write it.
+    if (backendOutage !== null) {
+      failed++;
+      deleteEmbedding.run(row.id);
       continue;
     }
 
@@ -1358,6 +1368,10 @@ async function refreshSkillEmbeddingsLegacy(
   let embedded = 0;
   let skipped = 0;
   let failed = 0;
+  // The same outage short-circuit as the adapter path: a dead backend fails every
+  // row for the same reason, so stop asking once the streak proves it.
+  let consecutiveFailures = 0;
+  let backendOutage: string | null = null;
 
   const rows = database.prepare(`
     SELECT id, source_path, embedding, embedding_model_id, embedding_content_hash
@@ -1399,6 +1413,14 @@ async function refreshSkillEmbeddingsLegacy(
       continue;
     }
 
+    // Same rule as the adapter path: only a row that needed the backend is
+    // counted failed during an outage, and it gets what a failed ask writes.
+    if (backendOutage !== null) {
+      failed++;
+      updateEmbedding.run(null, modelId, contentHash, row.id);
+      continue;
+    }
+
     try {
       const vector = await provider.embedDocument(description);
       if (!vector) {
@@ -1406,13 +1428,23 @@ async function refreshSkillEmbeddingsLegacy(
       }
       updateEmbedding.run(encodeEmbedding(vector), modelId, contentHash, row.id);
       embedded++;
+      consecutiveFailures = 0;
     } catch (error: unknown) {
       failed++;
+      consecutiveFailures++;
       updateEmbedding.run(null, modelId, contentHash, row.id);
       const message = error instanceof Error ? error.message : String(error);
       const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
       warnings.push(warning);
       console.warn(`[skill-graph] ${warning}`);
+      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
+        backendOutage = message;
+        const outageWarning = `EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
+          + ` consecutive failures (${message}); the remaining skills are counted as`
+          + ' failed and retried on the next refresh';
+        warnings.push(outageWarning);
+        console.warn(`[skill-graph] ${outageWarning}`);
+      }
     }
   }
 

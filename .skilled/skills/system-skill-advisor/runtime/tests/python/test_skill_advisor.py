@@ -2130,6 +2130,226 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("R-007-P2-8: shared adversarial fixture suite (PY)", str(exc))
 
+    # A private skill is local-only, so graph discovery must never return it.
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            for skill_id in ("alpha", "local-private"):
+                directory = os.path.join(tmpdir, skill_id)
+                os.makedirs(directory)
+                with open(os.path.join(directory, "graph-metadata.json"), "w", encoding="utf-8") as handle:
+                    json.dump({"skill_id": skill_id}, handle)
+            discovered = [name for name, _path, _data in compiler.discover_graph_metadata(tmpdir)]
+            if discovered == ["alpha"]:
+                ok("T246-GC-013: graph discovery skips a private skill", "local-private absent")
+            else:
+                fail_test("T246-GC-013: graph discovery skips a private skill", f"discovered={discovered}")
+    except Exception as exc:
+        fail_test("T246-GC-013: graph discovery skips a private skill", str(exc))
+
+    # A private skill linked from outside the scanned tree is skipped by name
+    # before the compiler follows the link.
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir, tempfile.TemporaryDirectory() as outside:
+            target = os.path.join(outside, "private-target")
+            os.makedirs(target)
+            with open(os.path.join(target, "graph-metadata.json"), "w", encoding="utf-8") as handle:
+                json.dump({"skill_id": "local-linked"}, handle)
+            os.symlink(target, os.path.join(tmpdir, "local-linked"))
+            discovered = [name for name, _path, _data in compiler.discover_graph_metadata(tmpdir)]
+            if discovered == []:
+                ok("T246-GC-014: graph discovery never follows a private link", "local-linked absent")
+            else:
+                fail_test("T246-GC-014: graph discovery never follows a private link", f"discovered={discovered}")
+    except Exception as exc:
+        fail_test("T246-GC-014: graph discovery never follows a private link", str(exc))
+
+    # Only a private skill may be a link, so a linked folder under any other
+    # name is not a skill source either.
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir, tempfile.TemporaryDirectory() as outside:
+            target = os.path.join(outside, "linked-target")
+            os.makedirs(target)
+            with open(os.path.join(target, "graph-metadata.json"), "w", encoding="utf-8") as handle:
+                json.dump({"skill_id": "plain-linked"}, handle)
+            os.symlink(target, os.path.join(tmpdir, "plain-linked"))
+            discovered = [name for name, _path, _data in compiler.discover_graph_metadata(tmpdir)]
+            if discovered == []:
+                ok("T246-GC-015: graph discovery never follows a non-private link", "plain-linked absent")
+            else:
+                fail_test("T246-GC-015: graph discovery never follows a non-private link", f"discovered={discovered}")
+    except Exception as exc:
+        fail_test("T246-GC-015: graph discovery never follows a non-private link", str(exc))
+
+
+def test_private_skill_conflict_declarations():
+    """A local-* skill's conflict declaration is read like any other skill's."""
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+    except Exception as exc:
+        fail_test("T246-CONFLICT-001: a local-* conflict declaration is read", f"load_failed:{exc}")
+        return
+    original_skills_dir = advisor.SKILLS_DIR
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            for skill_id, targets in (("alpha", []), ("local-beta", ["alpha"])):
+                directory = os.path.join(tmpdir, skill_id)
+                os.makedirs(directory)
+                payload = {
+                    "skill_id": skill_id,
+                    "edges": {"conflicts_with": [{"target": target} for target in targets]},
+                }
+                with open(os.path.join(directory, "graph-metadata.json"), "w", encoding="utf-8") as handle:
+                    json.dump(payload, handle)
+            advisor.SKILLS_DIR = tmpdir
+            declarations = advisor._load_source_conflict_declarations()
+            if declarations.get("local-beta") == {"alpha"}:
+                ok("T246-CONFLICT-001: a local-* conflict declaration is read")
+            else:
+                fail_test("T246-CONFLICT-001: a local-* conflict declaration is read", f"declarations={declarations}")
+    except Exception as exc:
+        fail_test("T246-CONFLICT-001: a local-* conflict declaration is read", str(exc))
+    finally:
+        advisor.SKILLS_DIR = original_skills_dir
+
+
+def test_private_skill_link_trust():
+    """Source readers follow a local-* link only when its target stays inside a trusted root."""
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+    except Exception as exc:
+        fail_test("T246-TRUST-001: source readers load", f"load_failed:{exc}")
+        return
+    original_skills_dir = advisor.SKILLS_DIR
+    original_roots = os.environ.pop("SPECKIT_PRIVATE_SKILL_ROOTS", None)
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            skills = os.path.join(tmpdir, "skills")
+            outside = os.path.join(tmpdir, "outside")
+            for directory, skill_id in (
+                (os.path.join(skills, "alpha"), "alpha"),
+                (os.path.join(skills, ".private", "private-beta"), "local-beta"),
+                (os.path.join(outside, "private-evil"), "local-evil"),
+            ):
+                os.makedirs(directory)
+                payload = {
+                    "skill_id": skill_id,
+                    "intent_signals": [f"{skill_id} signal"],
+                    "edges": {"conflicts_with": [{"target": "alpha"}] if skill_id != "alpha" else []},
+                }
+                with open(os.path.join(directory, "graph-metadata.json"), "w", encoding="utf-8") as handle:
+                    json.dump(payload, handle)
+            os.symlink(os.path.join(skills, ".private", "private-beta"), os.path.join(skills, "local-beta"))
+            os.symlink(os.path.join(outside, "private-evil"), os.path.join(skills, "local-evil"))
+            advisor.SKILLS_DIR = skills
+
+            declarations = advisor._load_source_conflict_declarations()
+            if "local-evil" not in declarations:
+                ok("T246-TRUST-001: conflict reader skips an untrusted local-* link", "local-evil absent")
+            else:
+                fail_test("T246-TRUST-001: conflict reader skips an untrusted local-* link", f"declarations={declarations}")
+            if declarations.get("local-beta") == {"alpha"}:
+                ok("T246-TRUST-002: conflict reader follows a trusted in-root local-* link", "local-beta present")
+            else:
+                fail_test("T246-TRUST-002: conflict reader follows a trusted in-root local-* link", f"declarations={declarations}")
+
+            signals = advisor._load_source_graph_signal_map()
+            if "local-evil" not in signals and "local-beta" in signals:
+                ok("T246-TRUST-003: signal map follows only the trusted local-* link", "local-beta only")
+            else:
+                fail_test("T246-TRUST-003: signal map follows only the trusted local-* link", f"signals={sorted(signals)}")
+
+            os.environ["SPECKIT_PRIVATE_SKILL_ROOTS"] = outside
+            declarations = advisor._load_source_conflict_declarations()
+            if "local-evil" in declarations:
+                ok("T246-TRUST-004: a link into a declared external root is followed", "local-evil present")
+            else:
+                fail_test("T246-TRUST-004: a link into a declared external root is followed", f"declarations={declarations}")
+    except Exception as exc:
+        fail_test("T246-TRUST-001: source readers follow only trusted links", str(exc))
+    finally:
+        advisor.SKILLS_DIR = original_skills_dir
+        os.environ.pop("SPECKIT_PRIVATE_SKILL_ROOTS", None)
+        if original_roots is not None:
+            os.environ["SPECKIT_PRIVATE_SKILL_ROOTS"] = original_roots
+
+
+def test_private_skill_discovery_trust():
+    """The cached record discovery follows only a trusted local-* link."""
+    try:
+        runtime = load_module("skill_advisor_runtime", "skill_advisor_runtime.py")
+    except Exception as exc:
+        fail_test("T246-DISCOVER-001: runtime module loads", f"load_failed:{exc}")
+        return
+    original_roots = os.environ.pop("SPECKIT_PRIVATE_SKILL_ROOTS", None)
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            skills = os.path.join(tmpdir, "skills")
+            outside = os.path.join(tmpdir, "outside")
+            for directory, skill_name in (
+                (os.path.join(skills, "alpha"), "alpha"),
+                (os.path.join(skills, ".private", "private-beta"), "local-beta"),
+                (os.path.join(skills, ".private", "private-gamma"), "linked-gamma"),
+                (os.path.join(outside, "private-evil"), "local-evil"),
+                (os.path.join(outside, "plain-evil"), "plain-evil"),
+                (os.path.join(skills, ".hidden"), "hidden-skill"),
+            ):
+                os.makedirs(directory)
+                with open(os.path.join(directory, "SKILL.md"), "w", encoding="utf-8") as handle:
+                    handle.write(f"---\nname: {skill_name}\ndescription: {skill_name} fixture\n---\n")
+            os.symlink(os.path.join(skills, ".private", "private-beta"), os.path.join(skills, "local-beta"))
+            os.symlink(os.path.join(outside, "private-evil"), os.path.join(skills, "local-evil"))
+            os.symlink(os.path.join(skills, ".private", "private-gamma"), os.path.join(skills, "linked-gamma"))
+            os.symlink(os.path.join(outside, "plain-evil"), os.path.join(skills, "plain-evil"))
+
+            records = runtime.get_cached_skill_records(skills, set(), force_refresh=True)
+            if "local-evil" not in records:
+                ok("T246-DISCOVER-001: discovery skips an untrusted local-* link", "local-evil absent")
+            else:
+                fail_test("T246-DISCOVER-001: discovery skips an untrusted local-* link", f"records={sorted(records)}")
+            if "local-beta" in records:
+                ok("T246-DISCOVER-002: discovery follows a trusted in-root local-* link", "local-beta present")
+            else:
+                fail_test("T246-DISCOVER-002: discovery follows a trusted in-root local-* link", f"records={sorted(records)}")
+            if "plain-evil" not in records and "linked-gamma" not in records:
+                ok("T246-DISCOVER-003: discovery never follows a non-local link", "plain-evil and linked-gamma absent")
+            else:
+                fail_test("T246-DISCOVER-003: discovery never follows a non-local link", f"records={sorted(records)}")
+            if "alpha" in records:
+                ok("T246-DISCOVER-004: a real skill folder is still discovered", "alpha present")
+            else:
+                fail_test("T246-DISCOVER-004: a real skill folder is still discovered", f"records={sorted(records)}")
+
+            if "hidden-skill" not in records:
+                ok("T246-DISCOVER-007: a hidden top-level folder is not a skill", "hidden-skill absent")
+            else:
+                fail_test("T246-DISCOVER-007: a hidden top-level folder is not a skill", f"records={sorted(records)}")
+
+            os.environ["SPECKIT_PRIVATE_SKILL_ROOTS"] = outside
+            records = runtime.get_cached_skill_records(skills, set(), force_refresh=True)
+            if "local-evil" in records and "plain-evil" not in records:
+                ok("T246-DISCOVER-005: a link into a declared root is followed, a non-local one still is not", "local-evil only")
+            else:
+                fail_test("T246-DISCOVER-005: a link into a declared root is followed, a non-local one still is not", f"records={sorted(records)}")
+
+            # One scan resolves its trusted roots once, however many links it meets.
+            resolutions = []
+            original_resolve = runtime._trusted_private_roots
+            runtime._trusted_private_roots = lambda directory: resolutions.append(directory) or original_resolve(directory)
+            try:
+                runtime.get_cached_skill_records(skills, set(), force_refresh=True)
+            finally:
+                runtime._trusted_private_roots = original_resolve
+            if len(resolutions) == 1:
+                ok("T246-DISCOVER-006: a scan resolves its trusted roots once", "1 resolution for 2 local-* links")
+            else:
+                fail_test("T246-DISCOVER-006: a scan resolves its trusted roots once", f"resolutions={len(resolutions)}")
+    except Exception as exc:
+        fail_test("T246-DISCOVER-001: discovery follows only trusted links", str(exc))
+    finally:
+        os.environ.pop("SPECKIT_PRIVATE_SKILL_ROOTS", None)
+        if original_roots is not None:
+            os.environ["SPECKIT_PRIVATE_SKILL_ROOTS"] = original_roots
+
 
 # ───────────────────────────────────────────────────────────────
 # 6. MAIN
@@ -2144,6 +2364,9 @@ def main():
     test_bench_harness()
     test_regression_harness()
     test_graph_compiler()
+    test_private_skill_conflict_declarations()
+    test_private_skill_link_trust()
+    test_private_skill_discovery_trust()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

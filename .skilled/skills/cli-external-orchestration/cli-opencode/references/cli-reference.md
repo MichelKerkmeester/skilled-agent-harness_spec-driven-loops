@@ -1,6 +1,6 @@
 ---
 title: "OpenCode CLI - Complete Command Reference"
-description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Covers OpenCode 2.0.32 (recommended) and OpenCode 1.19.3 (fallback)."
+description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Covers OpenCode 2.1.4 (recommended) and OpenCode 1.19.4 (fallback)."
 trigger_phrases:
   - "opencode cli reference"
   - "opencode run flags"
@@ -10,12 +10,12 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.23.0
+version: 1.4.24.0
 ---
 
 # OpenCode CLI - Complete Command Reference
 
-Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-opencode skill dispatches against, the flag set it relies on, the agent surface it can target and the failure modes that need explicit handling. Version baselines: OpenCode 2 at 2.0.32, the recommended target, and OpenCode 1 at 1.19.3, the backwards-compatible fallback for users who have not updated.
+Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-opencode skill dispatches against, the flag set it relies on, the agent surface it can target and the failure modes that need explicit handling. Version baselines: OpenCode 2 at 2.1.4, the recommended target, and OpenCode 1 at 1.19.4, the backwards-compatible fallback for users who have not updated.
 
 ---
 
@@ -44,10 +44,10 @@ Provide a single-source reference for the OpenCode CLI surface: every subcommand
 | **Binary** | `opencode` for OpenCode 2, the recommended target; side by side, the OpenCode 1 fallback is `opencode1`, and a v1-only machine names it `opencode`. With no `OPENCODE_BIN`, resolution takes the first `opencode2` anywhere on `PATH` and only falls back to the first `opencode` in `PATH` order when none exists |
 | **Repository** | https://github.com/sst/opencode |
 | **Version baseline** | OpenCode 2 (recommended): 2.1.4 |
-| **Version baseline** | OpenCode 1 (fallback): 1.19.3 |
+| **Version baseline** | OpenCode 1 (fallback): 1.19.4 |
 | **Runtime** | Node.js 18+ for the npm install path or the standalone binary on macOS |
 
-**Verified versions.** Verified against OpenCode 2.1.4 on 2026-10-24 and OpenCode 1.19.3 on 2026-10-19. Flag and provider observations that name 2.0.32 were read on that release and have not been re-read on 2.1.4. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
+**Verified versions.** Verified against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.1.4 or 1.19.4. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 
@@ -61,7 +61,7 @@ Provide a single-source reference for the OpenCode CLI surface: every subcommand
 | **Upgrade** | `opencode upgrade [target]` | Pin a specific version with the `target` argument |
 | **Uninstall** | `opencode uninstall` | Removes the binary and related state |
 
-After installation, run `opencode --version` to confirm. The cli-opencode skill is pinned to two baselines: OpenCode 2 at 2.1.4, the recommended target, and OpenCode 1 at 1.19.3, the fallback for users who have not updated. Newer binaries may add or rename flags, so consult Section 9 (Version Drift) before relying on a non-pinned flag.
+After installation, run `opencode --version` to confirm. The cli-opencode skill is pinned to two baselines: OpenCode 2 at 2.1.4, the recommended target, and OpenCode 1 at 1.19.4, the fallback for users who have not updated. Newer binaries may add or rename flags, so consult Section 9 (Version Drift) before relying on a non-pinned flag.
 
 ---
 
@@ -380,7 +380,7 @@ On OpenCode 2 `run` there is no `--share` flag at all. On the OpenCode 1 fallbac
 
 ## 9. VERSION DRIFT
 
-This reference is pinned to OpenCode 2 at 2.1.4, the recommended target, and OpenCode 1 at 1.19.3, the fallback for users who have not updated. If the live binary reports a different version, do the following:
+This reference is pinned to OpenCode 2 at 2.1.4, the recommended target, and OpenCode 1 at 1.19.4, the fallback for users who have not updated. If the live binary reports a different version, do the following:
 
 1. Run `opencode run --help` and diff the flag list against Section 4.
 2. Run `opencode --help` and diff the subcommand list against Section 3.

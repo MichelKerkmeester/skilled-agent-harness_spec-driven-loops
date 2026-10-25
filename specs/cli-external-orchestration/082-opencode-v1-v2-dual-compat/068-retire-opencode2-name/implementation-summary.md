@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-24T09:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Retired opencode2 and turned off OpenCode 1 auto-update"
-    next_safe_action: "Watch CI on the pushed commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-068-retire-opencode2-name"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -94,7 +94,7 @@ The machine came first, then the helper and its test, then a rewrite that matche
 | config-shape, battery and cli-opencode node suites | PASS: 88 of 88 |
 | dispatch-audit vitest suite | PASS: 124 of 124 |
 | shellcheck on the helper; launcher compared with the machine's | PASS; byte-identical |
-| CI on the pushed commit | Pending |
+| CI on `0bf53bfadc` | PASS: OpenCode Dual-Version Battery and all 19 runs green |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -102,7 +102,7 @@ The machine came first, then the helper and its test, then a rewrite that matche
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **v1 is at 1.19.4, not the 1.19.3 pin.** Its auto-update ran before it was turned off. Reinstalling 1.19.3 is left to the operator.
+1. **v1 is at 1.19.4, not the 1.19.3 pin.** Its auto-update ran before it was turned off. The next phase moved the pin to 1.19.4 instead of reinstalling 1.19.3.
 <!-- /ANCHOR:limitations -->
 
 ---

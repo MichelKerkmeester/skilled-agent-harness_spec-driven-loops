@@ -9,6 +9,7 @@
 import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 import { indexSkillMetadata } from '../skill-graph/skill-graph-db.js';
 import { isDocTriggerHarvestEnabled, listSkillDocFiles } from '../skill-graph/doc-frontmatter.js';
 import { runDaemonStateMutation } from './state-mutation.js';
@@ -193,8 +194,14 @@ function isWithin(parent: string, child: string): boolean {
 
 function walkSkillDirectories(skillsRoot: string): string[] {
   if (!existsSync(skillsRoot)) return [];
+  // A private skill is linked in on purpose; watch it only when its target
+  // stays inside a directory the operator trusts.
+  const isTrustedLink = createPrivateSkillLinkCheck(skillsRoot);
   return readdirSync(skillsRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
+    .filter((entry) => !entry.name.startsWith('.') && (entry.isDirectory()
+      || (entry.name.startsWith('local-')
+        && entry.isSymbolicLink()
+        && isTrustedLink(join(skillsRoot, entry.name)))))
     .map((entry) => join(skillsRoot, entry.name))
     .sort((left, right) => left.localeCompare(right));
 }

@@ -30,13 +30,15 @@ The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian,
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In progress |
+| **Status** | In progress (~90%) |
+| **Progress** | T039-T104 and T107 are applied; T103 is partial; T105, T106 and T108 remain open |
 | **Created** | 2026-10-23 |
 | **Executor** | OpenCode 2 orchestrator; reviews via the `subagent` tool, agent `review` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 5 |
 | **Predecessor** | 001-ignore-and-commit-guard |
 | **Successor** | 003-advisor-vocabulary-cleanup |
+| **Next Step** | SWE-2 review (T105), validate (T106), commit and push (T108). |
 | **Handoff Criteria** | `verify-doc-claims.cjs` lists nothing, the hub's own test suites pass, and `validate.sh --strict` prints `RESULT: PASSED`; no tracked path outside the D6 kept records names `sk-code-webflow` or `sk-code-obsidian`, and no bare `WEBFLOW` / `OBSIDIAN` surface token survives outside the four kept tag-vocabulary lines in three files. The handoff grep excludes the CI-generated retrieval data, `runtime/data/trigger-index.json` and `runtime/cli/retrieval/fixtures/*`: CI rebuilds both after the push, so the phase handoff does not wait on them and phase 5 proves their zero count. |
 <!-- /ANCHOR:metadata -->
 

@@ -210,8 +210,8 @@
     ],
     "causal_summary": "The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian, that exist only for the operator's own work: 1.5M and 504K of stack knowledge, 226 tracked files together",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-24T08:12:37.286Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-24T12:54:17.095Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d016620a664ec0b86b1a9893a83097d3491088c8c8dfbe6fd1f9a5a1dd6d84a",
+    "source_fingerprint": "sha256:bf68a583df8e2d3595b2ddcbe69321ff3908ae84c5dc2dc65fc80f487645553d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd3eeabc1d7d65393d51fed895032698df750c515b2f03057d143ee0f5d61eac",
+      "spec.md": "9ff5b115c7e9ccc3047df0e34f68016a6803bfa012eeb5512aa3a2d60706a4eb",
       "plan.md": "19be0a6a268c6dceecbf8f8876985df21376207c6474c18c86d42765e923afe2",
-      "tasks.md": "f10c2865d9f32648644183ba9fcb1d6874705bd831edb0c193ee9fb2783143f2",
-      "decision-record.md": "c6be4a5a04549c00c68897342b2fd97591611aa7f9e2c498fc3f791f9597529d",
-      "implementation-summary.md": "df5e8b790aaf3ae648a783521cd648a2e951156c5c61df536136eb543b32a505"
+      "tasks.md": "6d61aaa9fe642b1d4170961cd7af58088ad8bc711f0c4daa8be217429978530c",
+      "decision-record.md": "00bbfc41cbccac0bb7fe4521c464450d68fb50a5953249edf9979ff2003b13d4",
+      "implementation-summary.md": "c89582966f0f81e685db4db110d336bea0ea1c32354b659f4b6dfc4c840b8b77"
     },
     "last_active_at": null
   }

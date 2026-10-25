@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup
 **Level:** 3
-**Status:** Draft
+**Status:** In progress; AC-026 and AC-027 wait on review, commit and push
 **Date:** 2026-10-23
 <!-- /ANCHOR:metadata -->
 
@@ -51,41 +51,47 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Status | Waiver |
 |-------|-----|---------------------|--------|--------|
-| AC-001 | REQ-001 | Given the in-scope advisor, plugin, Hermes, CI and doctor files, When the surface sweep runs, Then it returns exactly three `webflow cms` lines: `fusion.ts:600`, `fusion.ts:602` and `explicit.ts:131` | Unmet | - |
-| AC-002 | REQ-002 | Given a temp skills root holding `alpha` and a `local-beta` symlink whose target is inside that root, When `indexSkillMetadata` runs, Then `local-beta` is a row in `skill_nodes` | Unmet | - |
-| AC-003 | REQ-002 | Given the graph linked-inside test, When it ran before the code change, Then it failed on the missing `local-beta` row and the observation is recorded | Unmet | - |
-| AC-004 | REQ-003 | Given a workspace whose `.skilled/skills/local-beta` links to a directory inside the skills root, When the linked `SKILL.md` changes, Then `computeAdvisorSourceSignature` returns a different hash | Unmet | - |
-| AC-005 | REQ-003 | Given the signature linked-inside test, When it ran before the code change, Then the signature stayed the same and the observation is recorded | Unmet | - |
-| AC-006 | REQ-004 | Given a skills dir holding `alpha` and a `local-private` folder, When `discover_graph_metadata` runs, Then the returned names are `['alpha']` | Unmet | - |
-| AC-007 | REQ-004 | Given a Hermes fixture source holding `local-webflow/SKILL.md` as a real folder, When the sync writes, Then it reports `Wrote 4 of 4` and no `local-webflow` folder exists under the output | Unmet | - |
-| AC-008 | REQ-004 | Given a synthetic skills dir holding a healthy root and a `local-webflow` root, When `findSkillRoots` runs, Then only the healthy root is returned | Unmet | - |
-| AC-009 | REQ-004 | Given a repo-shaped temp root whose `.skilled/skills/local-webflow/graph-metadata.json` exists and whose tracked graph does not carry it, When the panel reads disk, Then no `local-webflow` row appears | Unmet | - |
-| AC-010 | REQ-006 | Given the four skip-scan tests and the two follow-scan tests, When they ran before their code task, Then every red-first observation is recorded | Unmet | - |
-| AC-011 | REQ-005 | Given phase 2 is merged, When the compiler exports the fallback graph, Then no `sk-code` signal matches `webflow` or `obsidian` | Unmet | - |
-| AC-012 | REQ-005 | Given the regenerated graph, When the diff is read, Then only sk-code surface signals and the `generated_at` and `skill_count` fields changed | Unmet | - |
-| AC-013 | REQ-006 | Given every behavior change, When the red-first table is read, Then seven rows show a failing-before test and four rows are labelled as guards that pass before and after | Unmet | - |
-| AC-014 | REQ-007 | Given the surface-hint test, When it runs, Then the hint it forwards is `SKILLED` and the argv assertion passes | Unmet | - |
-| AC-015 | REQ-008 | Given the two tool schemas and the advisor README, When they are read, Then the `surfaceHint` example names `SKILLED` and no file names `WEBFLOW` | Unmet | - |
-| AC-016 | REQ-009 | Given the no-change decisions, When `implementation-summary.md` is read, Then it records the native-scorer assertion, the zero-hit surface-id re-check and the leaf-manifest screen with their commands | Unmet | - |
-| AC-017 | REQ-005 | Given the ambiguity slice was already red at baseline, When the phase ends, Then the live top-1 count is no lower than `17/24` | Unmet | - |
-| AC-018 | REQ-001 | Given the final tree, When the packet validator runs, Then it prints `RESULT: PASSED` | Unmet | - |
-| AC-019 | REQ-010 | Given a `local-*` link, When its realpath is inside the skills root it is accepted, and when it is outside every trusted root, missing or a regular file it is rejected | Unmet | - |
-| AC-020 | REQ-010 | Given a `local-beta` symlink whose target is outside the skills root, When the graph scan runs, Then no `local-` row is written | Unmet | - |
-| AC-021 | REQ-010 | Given a signature workspace with a trusted link, an untrusted link and a link into `SPECKIT_PRIVATE_SKILL_ROOTS`, When each target changes, Then only the trusted and declared links move the signature | Unmet | - |
-| AC-022 | REQ-010 | Given a `local-*` symlink to a directory outside the scanned tree, When the compiler discovers skills, Then the link is absent | Unmet | - |
-| AC-023 | REQ-010 | Given a `local-*` symlink to a directory outside the source tree, When the Hermes sync writes, Then no folder from the link is written | Unmet | - |
-| AC-024 | REQ-011 | Given a `local-beta` skill declaring `conflicts_with: alpha`, When the conflict reader runs, Then `declarations['local-beta']` contains `alpha` | Unmet | - |
-| AC-025 | REQ-012 | Given the two private source trees at `42b41dd286`, When the leaf-manifest screen runs, Then the fleet control returns 14, the private trees return 0, and the gate reports `checked=14 fresh=14 failed=0` | Unmet | - |
+| AC-001 | REQ-001 | Given the in-scope advisor, plugin, Hermes, CI and doctor files, When the surface sweep runs, Then it returns exactly three `webflow cms` lines: `fusion.ts:600`, `fusion.ts:602` and `explicit.ts:131` | Met | - |
+| AC-002 | REQ-002 | Given a temp skills root holding `alpha` and a `local-beta` symlink whose target is inside that root, When `indexSkillMetadata` runs, Then `local-beta` is a row in `skill_nodes` | Met | - |
+| AC-003 | REQ-002 | Given the graph linked-inside test, When it ran before the code change, Then it failed on the missing `local-beta` row and the observation is recorded | Met | - |
+| AC-004 | REQ-003 | Given a workspace whose `.skilled/skills/local-beta` links to a directory inside the skills root, When the linked `SKILL.md` changes, Then `computeAdvisorSourceSignature` returns a different hash | Met | - |
+| AC-005 | REQ-003 | Given the signature linked-inside test, When it ran before the code change, Then the signature stayed the same and the observation is recorded | Met | - |
+| AC-006 | REQ-004 | Given a skills dir holding `alpha` and a `local-private` folder, When `discover_graph_metadata` runs, Then the returned names are `['alpha']` | Met | - |
+| AC-007 | REQ-004 | Given a Hermes fixture source holding `local-webflow/SKILL.md` as a real folder, When the sync writes, Then it reports `Wrote 4 of 4` and no `local-webflow` folder exists under the output | Met | - |
+| AC-008 | REQ-004 | Given a synthetic skills dir holding a healthy root and a `local-webflow` root, When `findSkillRoots` runs, Then only the healthy root is returned | Met | - |
+| AC-009 | REQ-004 | Given a repo-shaped temp root whose `.skilled/skills/local-webflow/graph-metadata.json` exists and whose tracked graph does not carry it, When the panel reads disk, Then no `local-webflow` row appears | Met | - |
+| AC-010 | REQ-006 | Given the six skip-scan tests (T025, T026, T028, T029, T031, T033) and the five follow-scan tests (T018, T019, T021, T022, T023), When they ran before their code task, Then every red-first observation is recorded | Met | - |
+| AC-011 | REQ-005 | Given phase 2 is merged, When the compiler exports the fallback graph, Then no `sk-code` signal matches `webflow` or `obsidian` | Met | - |
+| AC-012 | REQ-005 | Given the regenerated graph, When it is compared with `HEAD` semantically, Then only `generated_at` differs and the sk-code surface signals are absent | Met | - |
+| AC-013 | REQ-006 | Given every behavior change, When the red-first table is read, Then eight rows show a failing-before test and three rows are labelled as guards that pass before and after (T023 observed red, see the 2026-10-24 amendment in `decision-record.md`) | Met | - |
+| AC-014 | REQ-007 | Given the surface-hint test, When it runs, Then the hint it forwards is `SKILLED` and the argv assertion passes | Met | - |
+| AC-015 | REQ-008 | Given the two tool schemas and the advisor README, When they are read, Then the `surfaceHint` example names `SKILLED` and no file names `WEBFLOW` | Met | - |
+| AC-016 | REQ-009 | Given the no-change decisions, When `implementation-summary.md` is read, Then it records the native-scorer assertion, the zero-hit surface-id re-check and the leaf-manifest screen with their commands | Met | - |
+| AC-017 | REQ-005 | Given the ambiguity slice was already red at baseline, When the phase ends, Then the live top-1 count is no lower than `17/24` | Met | - |
+| AC-018 | REQ-001 | Given the final tree, When the packet validator runs, Then it prints `RESULT: PASSED` | Met | - |
+| AC-019 | REQ-010 | Given a `local-*` link, When its realpath is inside the skills root it is accepted, and when it is outside every trusted root, missing, a regular file or the skills root itself it is rejected, and a target named with a leading `..` inside the root is accepted | Met | - |
+| AC-020 | REQ-010 | Given a `local-beta` symlink whose target is outside the skills root, When the graph scan runs, Then no `local-` row is written | Met | - |
+| AC-021 | REQ-010 | Given a signature workspace with a trusted link, an untrusted link and a link into `SPECKIT_PRIVATE_SKILL_ROOTS`, When each target changes, Then only the trusted and declared links move the signature | Met | - |
+| AC-022 | REQ-010 | Given a `local-*` symlink to a directory outside the scanned tree, When the compiler discovers skills, Then the link is absent | Met | - |
+| AC-023 | REQ-010 | Given a `local-*` symlink to a directory outside the source tree, When the Hermes sync writes, Then no folder from the link is written | Met | - |
+| AC-024 | REQ-011 | Given a `local-beta` skill declaring `conflicts_with: alpha`, When the conflict reader runs, Then `declarations['local-beta']` contains `alpha` | Met | - |
+| AC-025 | REQ-012 | Given the two private source trees at `42b41dd286`, When the leaf-manifest screen runs, Then the fleet control returns 14, the private trees return 0, and the gate reports `checked=14 fresh=14 failed=0` | Met | - |
 | AC-026 | REQ-013 | Given the final commit, When delivery completes, Then `git status --porcelain` is empty and HEAD equals `origin/main` | Unmet | - |
 | AC-027 | REQ-013 | Given the independent review, When it closes, Then its report ends with `VERDICT: CLEAN` or every finding is resolved or recorded | Unmet | - |
-| AC-028 | REQ-009 | Given the phase start and the phase end, When `implementation-summary.md` is read, Then the baseline table, the red-first table and the final-counts table are present and agree with the suite runs | Unmet | - |
-| AC-029 | REQ-001 | Given the working tree, When the predecessor check runs, Then both surface folders are absent | Unmet | - |
-| AC-030 | REQ-014 | Given `.skilled/agents/code.md` step 3, When `sk-code` returns UNKNOWN or ambiguous routing, Then the agent runs the advisor CLI, uses a top `local-*` `skillId` as the standards overlay and cites it, and escalates `UNKNOWN_ROUTE` only when the top pick is not `local-*` | Unmet | - |
-| AC-031 | REQ-014 | Given the eleven `UNKNOWN`/`UNKNOWN_STACK` escalation statements in `code.md` that T070b rewrites (lines 73, 110, 118, 210, 359, 371, 392, 396, 437, 518 and 550), When they are read, Then each carries the advisor fallback or its non-local qualifier, the routing table's fallback row no longer reads `none`, and no unqualified escalation statement remains. The six lines that only enumerate, map or conditionally report the escalation (274, 300, 311, 354, 417, 514) stay unchanged because they do not escalate an UNKNOWN route | Unmet | - |
-| AC-032 | REQ-014 | Given `review.md` route selection, When `sk-code` returns UNKNOWN, Then a top `local-*` pick is reviewed against that skill's `SKILL.md` plus the baseline minimums, and otherwise the existing baseline-only sentence applies | Unmet | - |
-| AC-033 | REQ-014 | Given the `.claude` twins, When their twelve code-agent and one review-agent fallback lines are compared to `.skilled` and the bodies are normalized for runtime paths, Then the bodies are identical, the old hard-stop and `none` wording is gone, and no unqualified escalation statement remains | Unmet | - |
-| AC-034 | REQ-014 | Given the regenerated `.codex` and `.pi` mirrors, When the four drift checks run, Then each exits 0 and the doctor check prints `STATUS=OK` | Unmet | - |
+| AC-028 | REQ-009 | Given the phase start and the phase end, When `implementation-summary.md` is read, Then the baseline table, the red-first table and the final-counts table are present and agree with the suite runs | Met | - |
+| AC-029 | REQ-001 | Given the working tree, When the predecessor check runs, Then both surface folders are absent | Met | - |
+| AC-030 | REQ-014 | Given `.skilled/agents/code.md` step 3, When `sk-code` returns UNKNOWN or ambiguous routing, Then the agent runs the advisor CLI, uses a top `local-*` `skillId` as the standards overlay and cites it, and escalates `UNKNOWN_ROUTE` only when the top pick is not `local-*` | Met | - |
+| AC-031 | REQ-014 | Given the eleven `UNKNOWN`/`UNKNOWN_STACK` escalation statements in `code.md` that T070b rewrites (lines 73, 110, 118, 210, 359, 371, 392, 396, 437, 518 and 550), When they are read, Then each carries the advisor fallback or its non-local qualifier, the routing table's fallback row no longer reads `none`, and no unqualified escalation statement remains. The six lines that only enumerate, map or conditionally report the escalation (274, 300, 311, 354, 417, 514) stay unchanged because they do not escalate an UNKNOWN route | Met | - |
+| AC-032 | REQ-014 | Given `review.md` route selection, When `sk-code` returns UNKNOWN or ambiguous routing, Then a top `local-*` pick is reviewed against that skill's `SKILL.md` plus the baseline minimums, and otherwise the existing baseline-only sentence applies | Met | - |
+| AC-033 | REQ-014 | Given the `.claude` twins, When their twelve code-agent and one review-agent fallback lines are compared to `.skilled` and the bodies are normalized for runtime paths, Then the bodies are identical, the old hard-stop and `none` wording is gone, and no unqualified escalation statement remains | Met | - |
+| AC-034 | REQ-014 | Given the regenerated `.codex` and `.pi` mirrors, When the four drift checks run, Then each exits 0 and the doctor check prints `STATUS=OK` | Met | - |
 | AC-035 | REQ-014 | Deferred after phase 004: Given the anobel.com checkout with both private roots declared, When the advisor CLI runs on "implement a responsive webflow animation module", Then the top `skillId` is `local-webflow` | Waived | ADR-008 |
+| AC-036 | REQ-015 | Given a skills dir holding an untrusted `local-evil` link to an out-of-root directory and a trusted `local-beta` link to an in-root directory, When the Python signal-map and conflict readers run, Then `local-evil` is absent from both and `local-beta` is present in both, and a link into a root named in `SPECKIT_PRIVATE_SKILL_ROOTS` is followed | Met | - |
+| AC-037 | REQ-016 | Given a temporary skills root holding a real skill folder, a `local-*` folder carrying a `command-metadata.json` and a linked folder, When the bridge deriver lists its metadata entries (the drift-guard test) and the regenerator lists roots or is run with `--root` on a `local-*` path (the regenerator test), Then the deriver returns only the real folder, `listSkillRoots` returns no `local-*` root, and `--root` exits 2 and writes nothing | Met | - |
+| AC-038 | REQ-017 | Given a trusted `local-beta` link and an untrusted `local-evil` link, When the watcher discovers targets, the filesystem projection loads and the status scan counts, Then `local-beta` is included and `local-evil` is not | Met | - |
+| AC-039 | REQ-018 | Given a skills dir holding a real skill, a trusted and an untrusted `local-*` link and a non-local link, When `get_cached_skill_records` runs, Then only the real skill and the trusted link are returned, a declared external root is followed, a scan resolves its trusted roots once, and the files holding the sixteen scans are the ones the inventory names | Met | - |
+| AC-040 | REQ-019 | Given a skills dir holding a non-local top-level symlink to a folder with `graph-metadata.json`, When `discover_graph_metadata` runs, Then the link is absent, and no tracked top-level skill folder is a symlink | Met | - |
+| AC-041 | REQ-016, REQ-019 | Given a `local-*` folder in a temporary skills root, When `metadataEntries`, `listSkillRoots`, the router-signal generator and the cross-skill edge loader run, Then none returns or opens it, and the bridge deriver also skips a linked folder | Met | - |
 
 ### Status values
 
@@ -204,13 +210,14 @@ Expected: `3`, then `[]`.
 
 ### AC-012
 
+The graph is one JSON line, so a line grep matches whenever anything on it changes. The proof is a semantic compare of the regenerated file against `HEAD`:
+
 ```bash
-git show --stat --format= "$(git log -1 --format=%H -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json)" -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json
-git show "$(git log -1 --format=%H -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json)" -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json | rg -c '^[-+].*sk-code'
-git show "$(git log -1 --format=%H -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json)" -- .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json | rg '^[-+].*mcp-tooling' || echo 0
+git show HEAD:.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json > "$TMPDIR/graph-head.json"
+node -e "const a=require(process.env.TMPDIR+'/graph-head.json'),b=require('./.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json');console.log(JSON.stringify([...new Set([...Object.keys(a),...Object.keys(b)])].filter(k=>JSON.stringify(a[k])!==JSON.stringify(b[k]))))"
 ```
 
-Expected: one file changed, a `sk-code` line count of at least `1`, then `0`.
+Expected: `["generated_at"]`. The compiled graph already lost the sk-code surface signals in a phase-2 follow-up, so this phase refreshes the timestamp only.
 
 ### AC-013
 
@@ -219,7 +226,7 @@ grep -c '^| T0' implementation-summary.md
 grep -c 'passes before and after' implementation-summary.md
 ```
 
-Expected: `11`, then `4`.
+Expected: `11`, then `3`.
 
 ### AC-014
 
@@ -241,13 +248,13 @@ Expected: `1`, then `0`.
 ### AC-016
 
 ```bash
-rg -c -i 'obsidian' .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+rg -c -i 'webflow|obsidian' .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
 rg -n -i 'webflow|obsidian' .skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts .skilled/skills/system-skill-advisor/leaf-aliases.json .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration-baseline.json || echo 0
 rg -c 'native-scorer' implementation-summary.md
 rg -c 'leaf-manifest' implementation-summary.md
 ```
 
-Expected: `1`, then `0`, then `1`, then `1`.
+Expected: `1`, then `0`, then a count of at least `1` for each of the last two. The control is `webflow|obsidian` because `skill_advisor.py` holds no `obsidian`; see the 2026-10-24 amendment.
 
 ### AC-017
 
@@ -271,7 +278,7 @@ Expected: `RESULT: PASSED`.
 cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/private-skill-target.vitest.ts
 ```
 
-Expected: `Tests  5 passed (5)`.
+Expected: `Tests  8 passed (8)`.
 
 ### AC-020
 
@@ -351,7 +358,7 @@ rg -n '### Final counts' implementation-summary.md
 sed -n '/^ *### Final counts/,/^ *## Known Limitations/p' implementation-summary.md | grep -c '^ *| '
 ```
 
-Expected: one match for each heading, then `16` table lines.
+Expected: one match for each heading, then `18` table lines (`16` before the review follow-up added two suites).
 
 ### AC-029
 
@@ -442,6 +449,60 @@ SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Websites/
 ```
 
 Expected: `local-webflow`, the top `skillId`, after phase 004 lands. Deferred; not a gate for closing this phase.
+
+### AC-036
+
+```bash
+cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'TRUST|Summary'
+```
+
+Expected: four `T246-TRUST` lines reading `PASS`, then `Summary: pass=84, fail=0`.
+
+### AC-037
+
+```bash
+cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/command-bridges-drift-guard.vitest.ts
+node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs
+```
+
+Expected: `Tests  5 passed (5)`, then the last line of the second command reads `[sk-doc] skill-derived regenerator + freshness gate coverage passed`. The drift-guard case builds a temporary skills root with a real folder, a `local-*` folder and a linked folder and expects `metadataEntries` to return only the real one. The regenerator test lists a temporary root holding a `local-*` folder and runs the script with `--root` on that folder and on a link to it, expecting exit 2 and an unchanged `graph-metadata.json`. Each case fails with its skip removed. AC-041 names the same cases for the other skips.
+
+### AC-038
+
+```bash
+cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/daemon-freshness-foundation.vitest.ts tests/scorer/projection-freshness.vitest.ts tests/handlers/advisor-status.vitest.ts
+```
+
+Expected: `Tests  47 passed (47)`.
+
+### AC-039
+
+```bash
+rg -l "startsWith\('local-'\)|startswith\(\"local-\"\)|createPrivateSkillLinkCheck|create_private_skill_link_check|PRIVATE_SKILL_PREFIX" .skilled/skills .skilled/commands/doctor/scripts --glob '!**/tests/**' --glob '!**/node_modules/**' --glob '!**/dist/**' | sort | wc -l
+cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'DISCOVER|Summary'
+```
+
+Expected: `16`, then seven `T246-DISCOVER` lines reading `PASS`, then `Summary: pass=84, fail=0`. The sixteen files are the fifteen files that hold the sixteen scans in the `spec.md` section 3 inventory (`skill_advisor.py` holds two) plus the helper `private-skill-target.ts`. With the old `glob.glob("*/SKILL.md")` swapped into `_discover_skill_files`, `T246-DISCOVER-001`, `-003` and `-005` fail. With the hidden-folder skip removed, `T246-DISCOVER-007` fails.
+
+### AC-040
+
+```bash
+cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'GC-015'
+git ls-files -s .skilled/skills | awk '$1==120000 {print $4}' | awk -F/ 'NF==5' | wc -l
+git ls-files -s .skilled/skills | awk '$1==120000 {print $4}' | awk -F/ 'NF==3' | wc -l
+```
+
+Expected: `PASS: T246-GC-015: graph discovery never follows a non-private link (plain-linked absent)`, then `12` (the control: tracked symlinks at depth 5), then `0` (tracked symlinks at the top level of a skill folder).
+
+### AC-041
+
+```bash
+node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs
+cd .skilled/skills/system-skill-advisor/runtime && ../../system-spec-kit/node_modules/.bin/vitest run tests/command-bridges-drift-guard.vitest.ts tests/cross-skill-edges.vitest.ts
+```
+
+Expected: the last line of the first command reads `[sk-doc] skill-derived regenerator + freshness gate coverage passed`, then `Tests  20 passed (20)`. The first command covers the regenerator listing and the router-signal generator, the vitest run covers the bridge deriver and the cross-skill edge loader. Each case fails with its skip removed.
+
 <!-- /ANCHOR:proofs -->
 
 ---
@@ -451,5 +512,5 @@ Expected: `local-webflow`, the top `skillId`, after phase 004 lands. Deferred; n
 
 **Closeable:** No
 
-The criteria close the packet when the seven scan decisions are proven, the tracked graph carries no sk-code surface signal, the agent fallback criteria AC-030 to AC-034 are met, and delivery ends with HEAD equal to `origin.main`. Nothing is waived except AC-035, which is deferred to phase 004 under ADR-008 and does not gate this phase.
+The criteria close the packet when the sixteen scan decisions in the `spec.md` section 3 inventory are proven, the tracked graph carries no sk-code surface signal, the agent fallback criteria AC-030 to AC-034 are met, and delivery ends with HEAD equal to `origin.main`. Nothing is waived except AC-035, which is deferred to phase 004 under ADR-008 and does not gate this phase.
 <!-- /ANCHOR:closure -->

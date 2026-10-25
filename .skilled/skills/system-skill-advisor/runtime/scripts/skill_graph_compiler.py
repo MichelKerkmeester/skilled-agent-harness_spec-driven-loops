@@ -198,6 +198,14 @@ def discover_graph_metadata(skills_dir: str) -> List[Tuple[str, str, dict]]:
         return results
 
     for entry in sorted(os.listdir(skills_dir)):
+        # A private skill lives only in the operator's checkout, so compiling it
+        # would write its signals into the tracked fallback graph.
+        if entry.startswith("local-"):
+            continue
+        # Only a private skill may be a link, so any other linked folder would
+        # pull an outside tree into the tracked fallback graph.
+        if os.path.islink(os.path.join(skills_dir, entry)):
+            continue
         meta_path = os.path.join(skills_dir, entry, "graph-metadata.json")
         if not os.path.isfile(meta_path):
             continue

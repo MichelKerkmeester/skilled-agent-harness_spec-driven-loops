@@ -32,7 +32,7 @@
       "two"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -149,6 +149,12 @@
         "source": "derived"
       },
       {
+        "name": "Version Battery",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -162,12 +168,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Three names reached two binaries: `opencode` and `opencode2` both ran OpenCode 2",
     "created_at": "2026-10-24T08:39:54Z",
-    "last_save_at": "2026-10-24T08:44:46.039Z",
+    "last_save_at": "2026-10-24T11:09:43.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d417a81fe27d2b3e69db51d5526cc19f9949086e5094ed3c6930654ea61aa75",
+    "source_fingerprint": "sha256:199e3fd907a61ec694dca27e5c6e29a5ce9376126a75f0e4fd1e418876a57142",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "070ab732765747a84dc870bf077ab7d2caa0d86632eaea75aebc1cd3f3a3074e",
       "plan.md": "d30bd2e3c8c68fe84fe0d1b68e037f4438688c3a2e689a19b044912b244e0751",
-      "tasks.md": "9fa308a5aa957dbd59237fdd6762d81506c175b25c69d66af1fdff0defd85732",
-      "implementation-summary.md": "ffe40ed521c2338f6992f9739f9c0bf5e4e8f92a97750111a9bcddda50b2ef49"
+      "tasks.md": "08ffac421c7ccbde9f71f3271342dc93d43e6cab58e87fecbc849ed5e46ae381",
+      "implementation-summary.md": "9fadbc1fd945c971826752a16184114b304fd12272dce39a3dae686511bc22bb"
     },
     "last_active_at": null
   }

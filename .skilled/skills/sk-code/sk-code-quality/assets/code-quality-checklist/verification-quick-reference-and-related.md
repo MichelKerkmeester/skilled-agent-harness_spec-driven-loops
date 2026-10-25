@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate resources"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.17
+version: 1.5.1.0
 ---
 
 # Verification Summary, Quick Reference & Related
@@ -119,15 +119,9 @@ After completing validation, document the results using the appropriate template
 
 ### Per-language source standards
 
-- [shared/cross-language-rules.md](../../../sk-code-webflow/references/shared/cross-language-rules.md) - File naming, comment principles, file-header banner, platform prefixes
-- [javascript/style-guide/overview-naming-and-structure.md](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md) - JS naming + file structure + formatting + JSDoc
-- [javascript/quality-standards/init-dom-error-and-async.md](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md) - JS defensive patterns + naming/init enforcement
-- [css/style-guide.md](../../../sk-code-webflow/references/css/style-guide.md) - CSS naming + custom properties + animation CSS
-- [css/quality-standards/patterns-and-naming-enforcement.md](../../../sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns + enforcement subsections
 
 ### Enforcement Reference
 
-- [enforcement.md](../../../sk-code-webflow/references/shared/enforcement.md) - Validation prompts, examples, remediation
 
 ### Parent Skill
 

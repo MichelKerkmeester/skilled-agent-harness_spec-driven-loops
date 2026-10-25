@@ -1,0 +1,53 @@
+# Workflow scaffold. Copy this file to .github/workflows/<name>.yml, then replace every
+# prose placeholder in a comment and rename the workflow and the job. The block order is
+# the order the existing workflows use: name, triggers, permissions, concurrency, jobs.
+
+# Rename this to a short title that matches the row the workflow README gets.
+name: Example Workflow
+
+on:
+  push:
+    # Integration branches only. A workflow that must see every branch is an
+    # intentional exception and is recorded in the trigger rules, so do not copy
+    # the every-branch trigger without that record.
+    branches: [main, 'skilled/**']
+    # Add a paths: filter only when the workflow reads a known set of files. Every
+    # entry that names .skilled/ needs its .opencode/ twin in the same filter, and a
+    # filter on generated paths belongs to push only, never to pull_request.
+  pull_request:
+    branches: [main]
+
+# Least privilege. Widen it per job, and only for a job that runs no repository code.
+permissions:
+  contents: read
+
+# One group per workflow and ref. A superseded pull request run is cancelled and a
+# branch push run is never cancelled. Switch the value to true to cancel on main too.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  example:
+    name: Say what this job proves
+    # The switch condition. It is job-level because on: filters see no contexts. AND it
+    # onto any condition the job already has. off is the only disable token. Use the
+    # group variable that matches the job: TESTS, REPORTS, REVIEW, FRESHNESS or MESSAGES.
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    # Size from measured runs: max(10, 3 x p50, 2 x p100) minutes. Replace this value.
+    timeout-minutes: 10
+    steps:
+      # Every remote action is pinned to a full commit SHA with the release tag as a comment.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # A job that imports built trees calls the composite setup action here instead of
+      # repeating install and build steps. See the job block template for the call.
+
+      - name: Run the check
+        run: |
+          set -euo pipefail
+          echo "replace this with the check"
+
+# Required last step: add one row for this workflow to .github/workflows/README.md, in the
+# contents table and in the push versus pull-request table.

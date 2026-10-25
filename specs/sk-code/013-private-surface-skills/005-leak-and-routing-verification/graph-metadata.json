@@ -39,7 +39,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
-      ".github/workflows/routing-registry-drift.yml",
-      ".skilled/bin/relink-local-specs.sh",
-      ".github/workflows/trigger-index-rebuild.yml",
-      ".skilled/bin/skill-advisor.cjs",
-      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
-      ".skilled/skills/system-skill-advisor/runtime/database/.gitignore",
-      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs",
-      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs"
+      "scratch/evidence/00-preflight.md",
+      "scratch/evidence/01-head-leak-sweep.md",
+      "scratch/evidence/02-fresh-clone.md",
+      "scratch/evidence/03-fresh-clone-leak.md",
+      "scratch/evidence/04-d6-kept-records.md",
+      "scratch/evidence/05-advisor-db.md",
+      "scratch/evidence/06-trigger-index.md",
+      "scratch/evidence/07-routing-probes.md",
+      "scratch/evidence/08-local-invisibility.md",
+      "scratch/evidence/09-ci.md",
+      "scratch/evidence/12-history-inventory.md",
+      "scratch/evidence/13-drift.md",
+      "scratch/evidence/14-corpus-boundary.md"
     ],
     "entities": [
       {
@@ -106,81 +106,81 @@
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "name": "00-preflight.md",
+        "kind": "doc",
+        "path": "scratch/evidence/00-preflight.md",
         "source": "derived"
       },
       {
-        "name": "corpus.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "name": "01-head-leak-sweep.md",
+        "kind": "doc",
+        "path": "scratch/evidence/01-head-leak-sweep.md",
         "source": "derived"
       },
       {
-        "name": "routing-registry-drift.yml",
-        "kind": "config",
-        "path": ".github/workflows/routing-registry-drift.yml",
+        "name": "02-fresh-clone.md",
+        "kind": "doc",
+        "path": "scratch/evidence/02-fresh-clone.md",
         "source": "derived"
       },
       {
-        "name": "relink-local-specs.sh",
-        "kind": "script",
-        "path": ".skilled/bin/relink-local-specs.sh",
+        "name": "03-fresh-clone-leak.md",
+        "kind": "doc",
+        "path": "scratch/evidence/03-fresh-clone-leak.md",
         "source": "derived"
       },
       {
-        "name": "trigger-index-rebuild.yml",
-        "kind": "config",
-        "path": ".github/workflows/trigger-index-rebuild.yml",
+        "name": "04-d6-kept-records.md",
+        "kind": "doc",
+        "path": "scratch/evidence/04-d6-kept-records.md",
         "source": "derived"
       },
       {
-        "name": "skill-advisor.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/skill-advisor.cjs",
+        "name": "05-advisor-db.md",
+        "kind": "doc",
+        "path": "scratch/evidence/05-advisor-db.md",
         "source": "derived"
       },
       {
-        "name": "skill-graph-db.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        "name": "06-trigger-index.md",
+        "kind": "doc",
+        "path": "scratch/evidence/06-trigger-index.md",
         "source": "derived"
       },
       {
-        "name": ".gitignore",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/database/.gitignore",
+        "name": "07-routing-probes.md",
+        "kind": "doc",
+        "path": "scratch/evidence/07-routing-probes.md",
         "source": "derived"
       },
       {
-        "name": "sync-skills-hermes.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        "name": "08-local-invisibility.md",
+        "kind": "doc",
+        "path": "scratch/evidence/08-local-invisibility.md",
         "source": "derived"
       },
       {
-        "name": "skill_graph_compiler.py",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+        "name": "09-ci.md",
+        "kind": "doc",
+        "path": "scratch/evidence/09-ci.md",
         "source": "derived"
       },
       {
-        "name": "ci-skill-root-metadata.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "name": "12-history-inventory.md",
+        "kind": "doc",
+        "path": "scratch/evidence/12-history-inventory.md",
         "source": "derived"
       },
       {
-        "name": "ci-skill-derived-freshness.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs",
+        "name": "13-drift.md",
+        "kind": "doc",
+        "path": "scratch/evidence/13-drift.md",
         "source": "derived"
       },
       {
-        "name": "skill-graph-freshness.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "name": "14-corpus-boundary.md",
+        "kind": "doc",
+        "path": "scratch/evidence/14-corpus-boundary.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored `local-` symlinks, but nothing yet proves the result",
     "created_at": "2026-10-23T07:03:41Z",
-    "last_save_at": "2026-10-24T08:12:38.592Z",
+    "last_save_at": "2026-10-24T21:54:47.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7dbb99c8fb055c6876ee4329387c7a0d04bf623991529aa41aed0d7ee8e8490",
+    "source_fingerprint": "sha256:3e2a2d986b70385ffd1d22b48b8c0bceaa6996cc3980b810777b5c0270df8b25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "464c582049b3c14d5ed209a69f2c37ddd7cff6a6f64cc91b26be2f85284d6011",
-      "plan.md": "f3c7da8ba94bb7009703e37ea8fd1872f5bf9331945107d64cc5c516cb09b5e2",
-      "tasks.md": "7b705db63589398e52b7e435e66d174934df8db40a8593fe6595ef4dd593d129",
-      "decision-record.md": "a3d4db31fa74373af6e8574542ee17674511c5a5cbd0465492f48444589c923b",
-      "implementation-summary.md": "2e2966d19fc7ef3dd5e22710d2737b0371b2c050d61c006f968fc7b7d18e4a3a"
+      "spec.md": "4e098ed3c7d0a4a5f8c4ac217622398a4df85944ec00e4c6ab9631ebd9b437c1",
+      "plan.md": "24aa1104ccd86ec8ca0b753f90fa467ff4b2fd62b488241f03c921a70cf5620e",
+      "tasks.md": "a8047a014f38c4db682600f0d333871f30ed67dbe6135d19663b680a816b3858",
+      "decision-record.md": "6cd9ba386fd4b5c172485fa821529368e5e8298ee66519857140a13f79837e0c",
+      "implementation-summary.md": "daac61b63cf9dc82ccd34be41aee3776c374f29b6aa32ebb7e786679833f53e7"
     },
     "last_active_at": null
   }

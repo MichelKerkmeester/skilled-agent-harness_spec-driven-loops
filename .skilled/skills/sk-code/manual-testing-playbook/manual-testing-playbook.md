@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -25,9 +25,6 @@ Canonical package artifacts:
 - `language-sub-detection/`
 - `routing-disambiguation/`
 - `skill-advisor-integration/`
-- `motion-dev-and-animation-regression/`
-- `cross-browser-and-performance-gates/`
-- `cross-stack-routing/`
 - `design-restraint/`
 - `tooling-and-hooks/`
 - `plugins-and-hooks/`
@@ -37,18 +34,14 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §19 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing and derived counts.
+This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §16 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing and derived counts.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
-- WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
 - SKILLED surface detection (CWD or target path under `.skilled/`).
 - UNKNOWN fallback (Go / Swift / React Native markers — disambiguation expected).
 - SKILLED language sub-detection (TypeScript, Python, Shell, JSON/JSONC) with correct sub-language reference loading.
-- Routing disambiguation under mixed-marker conditions and the sk-code vs sk-doc anti-pattern.
+- Routing disambiguation and the sk-code vs sk-doc anti-pattern.
 - Skill advisor integration: confidence ≥ 0.80 win for positive controls, no false positives on doc-edit prompts.
-- Motion.dev integration checks: pinned CDN/API smoke, reduced-motion behavior, animation regression baselines.
-- Cross-browser and performance gates: Chrome/Safari/Firefox behavior, LCP/CLS/INP thresholds, and compositor-friendly animation checks.
-- Cross-stack routing checks: Webflow plus Motion.dev, non-Webflow Motion.dev, OpenCode plus Motion.dev, decision-matrix use, snippet reuse, CWV dual loading, and reduced-motion guidance.
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
 - Tooling and hooks: the two warn-only banner branches of the legacy `claude-posttooluse.sh` PostToolUse hook, kept for direct tests and registered in no runtime — dist-staleness wiring (`check-dist-staleness.sh`; TH-001, added 2026-07-02, v3.5.0.16) and comment-hygiene wiring (`check-comment-hygiene.sh`; TH-002, added 2026-07-07) — each a deterministic stdout/exit-code check independent of skill routing.
 - Plugins and hooks: the runtime-neutral `sk-code-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter (`tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform`) and the Claude Code `PostToolUse(Write|Edit)` hook (`post-edit-quality-router`, added 2026-07-11) — a live dual-runtime dispatch/checker check independent of skill routing.
@@ -74,15 +67,13 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 
 ## 2. GLOBAL PRECONDITIONS
 
-Motion peer-resource folders must be present before MR/CB scenarios run: `sk-code-webflow/references/animation/` and `sk-code-webflow/assets/animation/`.
 
 1. Working directory is project root and has `.git/`.
-2. The sk-code skill is present at `.skilled/skills/sk-code/` with surface and peer-resource subfolders intact: `references/{router,opencode,webflow,universal,motion_dev}/` and `assets/{opencode,webflow,universal,motion_dev}/`.
+2. The sk-code skill is present at `.skilled/skills/sk-code/` with the `sk-code-quality/`, `sk-code-review/`, and `sk-code-skilled/` packets intact.
 3. The skill advisor at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable and `skill-graph.json` includes the `sk-code` entry with `signals` array intact.
 4. The orchestrator runtime has a Skill Advisor Hook OR can invoke `skill_advisor.py` via Bash.
-5. The operator uses sandboxed scratch paths under `/tmp/skc-NNN-sandbox/` for any file fixtures the scenarios need (e.g. fake `wrangler.toml` to trigger WEBFLOW detection).
-6. **Concurrency cap**: When running multi-scenario waves, cap at 5 parallel scenarios. Scenarios that invoke `skill_advisor.py` are CPU-light and can run concurrently; scenarios that dispatch `@code` (write work) MUST run serially to avoid scope-collision on the working tree.
-7. Destructive scenarios (currently none in this playbook — all scenarios are READ-ONLY against the skill surface) MUST verify recovery is possible if added in future.
+5. **Concurrency cap**: When running multi-scenario waves, cap at 5 parallel scenarios. Scenarios that invoke `skill_advisor.py` are CPU-light and can run concurrently; scenarios that dispatch `@code` (write work) MUST run serially to avoid scope-collision on the working tree.
+6. Destructive scenarios (currently none in this playbook — all scenarios are READ-ONLY against the skill surface) MUST verify recovery is possible if added in future.
 
 ---
 
@@ -90,7 +81,7 @@ Motion peer-resource folders must be present before MR/CB scenarios run: `sk-cod
 
 - The exact user prompt that was tested.
 - The skill advisor output (top-1 skill, confidence score, gap to second, advisorStatus).
-- The detected code surface (SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN) reported by sk-code.
+- The detected code surface (SKILLED / UNKNOWN) reported by sk-code.
 - The exact list of references/assets the AI loaded (verbatim relative paths under `.skilled/skills/sk-code/`).
 - The agent dispatched (if any) with name and runtime (e.g. `@code` via `.skilled/agents/code.md`).
 - The AI's user-visible response (the answer it produced or the action it took).
@@ -117,7 +108,7 @@ Motion peer-resource folders must be present before MR/CB scenarios run: `sk-cod
 1. `manual-testing-playbook.md` (this file).
 2. Per-feature files under `manual-testing-playbook/{NN--category-name}/`.
 3. Scenario execution evidence (advisor outputs, surface-detection logs, resource-loading transcripts).
-4. Feature-to-scenario coverage map (§19 FEATURE CATALOG CROSS-REFERENCE INDEX).
+4. Feature-to-scenario coverage map (§16 FEATURE CATALOG CROSS-REFERENCE INDEX).
 5. Triage notes for all PARTIAL / FAIL outcomes.
 
 ### Scenario Acceptance Rules
@@ -144,14 +135,14 @@ For each executed scenario, check:
 - `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
-Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Critical-path scenarios are SD-001, SD-002, SD-003 (the three primary surface-detection paths) plus CS-001, CS-002, and CS-003 for the cross-stack Motion.dev routing path.
+Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Critical-path scenarios are SD-002, SD-003, RD-002, and SA-001.
 
 ### Release Readiness Rule
 
 Release is READY only when:
 1. No feature verdict is FAIL.
-2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (34 / 34).
+2. All critical scenarios (SD-002, SD-003, RD-002, SA-001) are PASS.
+3. Coverage is 100% of playbook scenarios (17 / 17).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -184,18 +175,15 @@ This section records wave planning and capacity guidance for the manual testing 
 - Expected reference/asset load list (exact relative paths).
 - Expected agent dispatch (or no-dispatch with rationale).
 - Pass/fail criteria.
-- Failure triage steps (e.g. "if WEBFLOW not detected, verify markers in code_surface_detection.md:30-37").
 
 ---
 
-## 7. SURFACE DETECTION (`SD-001..SD-004`)
+## 7. SURFACE DETECTION (`SD-002..SD-003`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `SD-001` | WEBFLOW Detection | Verify sk-code routes a vanilla-JS animation request to WEBFLOW surface | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver so it only runs once the hero section is visible.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: WEBFLOW; refs: webflow/* + router/* + universal/code-quality-standards.md | `/tmp/skc-SD001-advisor.txt`, `/tmp/skc-SD001-loaded-refs.txt` | PASS iff advisor wins sk-code AND surface == WEBFLOW AND `sk-code-webflow/references/implementation/*` is in load set | If WEBFLOW not detected, verify `Lenis`, `src/2_javascript/`, `IntersectionObserver` markers in `shared/references/stack-detection.md:30-37` |
 | `SD-002` | SKILLED Detection | Verify sk-code routes a system-code task to SKILLED surface | `Add a console.error fallback to .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts when the input prompt is empty.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: SKILLED; sub-language: TYPESCRIPT; refs: opencode/typescript/* + opencode/shared/* + router/* | `/tmp/skc-SD002-advisor.txt`, `/tmp/skc-SD002-loaded-refs.txt` | PASS iff surface == SKILLED AND sub-language detected as TYPESCRIPT AND `sk-code-skilled/references/typescript/*` in load set | If SKILLED not detected, verify CWD/target check at `shared/references/stack-detection.md:39-40` |
 | `SD-003` | UNKNOWN Fallback | Verify sk-code asks for disambiguation on unsupported stacks (Go) | `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1 with caveat OR no win; surface: UNKNOWN; AI asks "which runtime / verification commands?" | `/tmp/skc-SD003-advisor.txt`, `/tmp/skc-SD003-response.txt` | PASS iff surface == UNKNOWN AND AI explicitly asks for runtime/verification disambiguation AND no surface-specific refs are loaded | If sk-code silently proceeds, verify the disambiguation rule in SKILL.md "Unsupported / Unknown" row |
-| `SD-004` | OBSIDIAN Detection | Verify sk-code routes a Note Database plugin task to the OBSIDIAN surface | `Rename the table cell classes in src/views/DatabaseView.ts of the Note Database Obsidian plugin to the .db-* naming convention.` | advisor probe -> compiled route -> inspect surface and references | advisor: sk-code top-1 at ≥0.80; surface: OBSIDIAN; route: single sk-code-obsidian; refs: stack-detection.md, phase-detection.md, universal/code-quality-standards.md, sk-code-obsidian/references/db-class-naming.md; no Webflow or Skilled surface refs | `/tmp/skc-SD004-advisor.txt`, `/tmp/skc-SD004-route.txt` | PASS iff advisor wins sk-code at ≥0.80 AND compiled route returns route/single/sk-code-obsidian AND expected references load without Webflow or Skilled surface refs | If OBSIDIAN is not detected, check the repo-root markers in shared/references/stack-detection.md:46-51 and the OBSIDIAN_PLUGIN map in ROUTER.md:555-559 |
 
 Per-feature files: see `surface-detection/`.
 
@@ -214,11 +202,10 @@ Per-feature files: see `language-sub-detection/`.
 
 ---
 
-## 9. ROUTING DISAMBIGUATION (`RD-001..RD-002`)
+## 9. ROUTING DISAMBIGUATION (`RD-002`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `RD-001` | Mixed-Marker Ambiguity | Verify sk-code asks for clarification when WEBFLOW + SKILLED markers co-occur | `I want to add a Lenis smooth-scroll initializer to my .skilled/skills/sk-doc/scripts/preview-server.js so the local preview server has smooth-scroll on its index page.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1; surface: ambiguous (BOTH SKILLED path AND WEBFLOW library marker); AI asks "is this an OpenCode internal tool or a Webflow shipping artifact?" | `/tmp/skc-RD001-response.txt` | PASS iff AI explicitly asks for surface clarification AND does not silently pick one | If AI silently picks SKILLED (because of `.skilled/` path), document as a known-limitation finding |
 | `RD-002` | sk-code vs sk-doc Anti-Pattern | Verify skill advisor routes doc-edit prompts to sk-doc, NOT sk-code | `Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.` | advisor probe → inspect top-1 + score | advisor: sk-doc top-1, score ≥ 0.70; sk-code score lower | `/tmp/skc-RD002-advisor.txt` | PASS iff advisor top-1 != sk-code AND sk-doc is in the top-3 | If sk-code wins despite this being a doc-edit, propose anti-signal in skill-graph.json (Phase E5) |
 
 Per-feature files: see `routing-disambiguation/`.
@@ -229,63 +216,13 @@ Per-feature files: see `routing-disambiguation/`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥14 of 17 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
+| `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥10 of 12 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
 
 Per-feature file: see `skill-advisor-integration/advisor-probe-battery.md`.
 
 ---
 
-## 11. MOTION.DEV AND ANIMATION REGRESSION (`MR-001..MR-004`)
-
-> Motion.dev API surface and full reference docs are documented in [../sk-code-webflow/references/animation/](../sk-code-webflow/references/animation) (populated in Packet 2 of this rework). The scenarios below test motion.dev integration points; consult the canonical motion.dev docs for full API details.
-
-Motion.dev install and API behavior referenced in these scenarios is anchored to the official Motion docs, especially `https://motion.dev/docs/quick-start`, plus API subpages such as `https://motion.dev/docs/animate`, `https://motion.dev/docs/inview`, `https://motion.dev/docs/spring`, and `https://motion.dev/docs/performance`.
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| `MR-001` | Motion.dev API Smoke | Verify pinned CDN Motion exports and basic runtime calls work in a Webflow-style sandbox | `Create a sandboxed Webflow-style Motion smoke page that imports animate, inView, and spring from a pinned motion CDN URL. Run it in Chrome, verify exports are functions, run one animate() call, trigger one inView() callback, and return PASS/FAIL with console evidence.` | create sandbox -> open in Chrome -> inspect console -> run smoke calls -> save transcript | pinned CDN URL; `animate`, `inView`, `spring` are functions; no uncaught console errors | `/tmp/skc-MR001-console.txt`, screenshot/video | PASS iff exports exist and smoke calls complete without throwing | Verify CDN URL, pinned version, export names, and selector visibility |
-| `MR-002` | CDN Bundle Version Pin | Verify Motion CDN usage is version-pinned and not `@latest` | `Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @latest, record the pinned version(s), and verify the pinned ESM bundle exposes animate, inView, scroll, and motionValue for the testimonial slider pattern.` | `rg` CDN URLs -> classify production/docs hits -> probe pinned exports -> save results | no production `@latest`; pinned version(s) recorded; required exports present | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff production Motion URLs are pinned and required exports exist | Classify docs/example hits separately; fail production `@latest` |
-| `MR-003` | Prefers Reduced Motion | Verify Motion interactions respect `prefers-reduced-motion: reduce` | `Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.` | capture normal video -> enable reduced-motion emulation -> reload -> exercise flows -> capture reduced video | media query true; large transform motion removed or neutralized; UI still usable | `/tmp/skc-MR003-normal.mp4`, `/tmp/skc-MR003-reduced.mp4`, console transcript | PASS iff reduced-motion mode removes large motion while preserving state changes | Verify emulation, source guards, and Motion accessibility guidance |
-| `MR-004` | Animation Regression Baseline | Capture baseline videos for key Motion-driven UI elements | `Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.` | open target -> record dropdown -> record slider -> save console -> compare baseline | correct open/close and slider final states; no console errors; drift noted | `/tmp/skc-MR004-nav-dropdown.mp4`, `/tmp/skc-MR004-testimonial.mp4`, `/tmp/skc-MR004-verdict.md` | PASS iff current behavior matches baseline or establishes approved first baseline | Isolate markup, Motion API, timing constants, or reduced-motion settings |
-
-Per-feature files: see `motion-dev-and-animation-regression/`.
-
----
-
-## 12. CROSS-BROWSER AND PERFORMANCE GATES (`CB-001..CB-003`)
-
-These scenarios validate browser compatibility and performance evidence for Motion-driven UI. They use browser tooling and fixed thresholds so release review can distinguish visual quirks from blocking regressions.
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| `CB-001` | Cross-Browser Motion Animate | Verify Motion UI behavior in Chrome, Safari, and Firefox latest stable | `Run the Motion nav dropdown and testimonial slider scenarios in Chrome, Safari, and Firefox latest stable. Capture browser/version, console output, screenshots or videos, and any rendering quirks. Return PASS/FAIL per browser plus an aggregate verdict.` | run interactions in Chrome -> Safari -> Firefox -> save per-browser evidence -> write matrix | same final states; no uncaught Motion errors; quirks documented | `/tmp/skc-CB001-{browser}.txt`, `/tmp/skc-CB001-{browser}.mp4`, matrix | PASS iff all browsers reach correct final states and have clean runtime evidence | Isolate browser import support, WAAPI behavior, CSS differences, or reduced-motion settings |
-| `CB-002` | Core Web Vitals Gates | Verify Motion-heavy page stays under CWV thresholds | `Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav dropdown. Use Chrome DevTools Performance panel or PageSpeed Insights, capture the report, and return PASS/FAIL against LCP < 2.5s, CLS < 0.1, INP < 200ms.` | open target -> run DevTools/PageSpeed -> interact -> export report -> write verdict | LCP < 2.5s; CLS < 0.1; INP < 200ms | `/tmp/skc-CB002-report.json` or `.html`, `/tmp/skc-CB002-verdict.md` | PASS iff all metrics meet thresholds and no animation-specific regression appears | Inspect hero delay, layout shifts, long tasks, and interaction handlers |
-| `CB-003` | GPU Compositing | Verify Motion animations use compositor-friendly properties where expected | `Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav dropdown and testimonial slider. Verify transform/opacity animations are compositor-friendly, flag any height/layout animation, and return PASS/FAIL with screenshots and trace notes.` | enable paint/layer tooling -> record trace -> exercise flows -> inspect layout/paint/composite events -> write verdict | transform/opacity composited where expected; layout-affecting animations documented; no forced-layout loop | `/tmp/skc-CB003-trace.json`, `/tmp/skc-CB003-rendering.png`, verdict | PASS iff compositor-friendly behavior is confirmed and layout animation is bounded/documented | Inspect `scrollHeight`, `offsetHeight`, `translate3d`, `willChange`, and CWV correlation |
-
-Per-feature files: see `cross-browser-and-performance-gates/`.
-
----
-
-## 13. CROSS-STACK ROUTING (`CS-001..CS-007`)
-
-These scenarios validate Motion.dev as a cross-stack peer resource rather than a third surface. They are designed for the cross-CLI harness, where each runtime must analyze routing decisions without editing files or dispatching agents.
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| `CS-001` | WEBFLOW Plus Motion.dev | Verify Webflow animation work also loads `motion_dev/*` peer refs | `I'm building a vanilla HTML/CSS/JS Webflow site with motion.dev animations on a hero section. Show me the proper CDN install pattern and the in-view animation snippet for src/2_javascript/hero.js.` | universal prompt -> runtime YAML -> inspect surface/refs/assets | surface: WEBFLOW; refs include webflow implementation and motion_dev quick/start/integration; agent none | `/tmp/skc-CS-001-<cli>.txt`, `results/CS-001-<cli>.yaml` | PASS iff WEBFLOW + motion_dev peer refs + no dispatch | If motion_dev missing, inspect the `MOTION_DEV MAP` in `ROUTER.md` |
-| `CS-002` | Non-Webflow Plus Motion.dev | Verify generic vanilla Motion.dev does not become WEBFLOW | `In a plain static HTML/CSS/JS microsite that is not Webflow, I want to use motion.dev for a hover card and in-view reveal. Which sk-code references would you load and how would you route this?` | universal prompt -> runtime YAML -> inspect surface/refs/assets | surface: UNKNOWN/N/A; refs include motion_dev only; no Webflow-owned route | `/tmp/skc-CS-002-<cli>.txt`, `results/CS-002-<cli>.yaml` | PASS iff not WEBFLOW and motion_dev refs load | If WEBFLOW wins, inspect generic-node guard |
-| `CS-003` | SKILLED Plus Motion.dev | Verify `.skilled/` TypeScript target wins precedence with Motion supplementary refs | `Update .skilled/skills/sk-doc/scripts/preview-server.ts so its docs preview page can show a small motion.dev animate() demo. Analyze how sk-code should route this before any edit.` | universal prompt -> runtime YAML -> inspect SKILLED TS refs plus motion_dev | surface: SKILLED; TS refs load; motion_dev supplementary; no Webflow-owned route | `/tmp/skc-CS-003-<cli>.txt`, `results/CS-003-<cli>.yaml` | PASS iff SKILLED + TS refs + motion_dev supplementary + no dispatch | If WEBFLOW wins, inspect SKILLED precedence |
-| `CS-004` | Decision Matrix Routing | Verify Motion.dev vs CSS hover questions load `decision-matrix.md` | `For a hover state on cards, should I use motion.dev or plain CSS? I need the routing decision and the references you would load, not an implementation.` | universal prompt -> runtime YAML -> inspect refs and response trade-off | refs include `sk-code-webflow/references/animation/decision-matrix.md`; response compares CSS and Motion.dev | `/tmp/skc-CS-004-<cli>.txt`, `results/CS-004-<cli>.yaml` | PASS iff decision matrix loads and answer names conditions | If omitted, inspect resource-loading CODE_QUALITY/DECISION map |
-| `CS-005` | Snippet Reuse Cross-Stack | Verify cross-stack snippet reuse surfaces snippet plus snake_case caveat | `Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla JS page? Tell me which snippet and references you would load, and call out any naming-convention caveat.` | universal prompt -> runtime YAML -> inspect assets and response caveat | assets include `in-view-reveal.js`; response flags snake_case Webflow convention caveat | `/tmp/skc-CS-005-<cli>.txt`, `results/CS-005-<cli>.yaml` | PASS iff snippet and caveat both appear | If caveat missing, inspect Webflow style guide |
-| `CS-006` | CWV Gates Animation Heavy | Verify animation-heavy Webflow performance prompts load both Motion and Webflow CWV refs | `Our Webflow landing page in src/2_javascript/hero.js uses motion.dev for scroll reveals and hover cards. LCP and INP regressed. Which sk-code references would you load before advising fixes?` | universal prompt -> runtime YAML -> inspect performance refs | refs include `sk-code-webflow/references/animation/performance-and-pitfalls.md` and `sk-code-webflow/references/performance/cwv-remediation.md` | `/tmp/skc-CS-006-<cli>.txt`, `results/CS-006-<cli>.yaml` | PASS iff both required performance refs load | If one side missing, inspect resource-loading PERFORMANCE maps |
-| `CS-007` | Prefers Reduced Motion | Verify Webflow plus Motion.dev reduced-motion prompts cite Motion accessibility guidance | `For a Webflow page with motion.dev-powered cards in src/2_javascript/cards.js, how should sk-code route a prefers-reduced-motion fix before editing?` | universal prompt -> runtime YAML -> inspect reduced-motion refs and response | surface: WEBFLOW; refs include Motion reduced-motion and Webflow verification guidance | `/tmp/skc-CS-007-<cli>.txt`, `results/CS-007-<cli>.yaml` | PASS iff both Webflow and Motion reduced-motion guidance load | If missing, inspect `performance-and-pitfalls.md` and `verification_workflows.md` |
-
-Per-feature files: see `cross-stack-routing/`.
-
----
-
-## 14. DESIGN RESTRAINT (`DR-001..DR-004`)
-
+## 11. DESIGN RESTRAINT (`DR-001..DR-004`)
 These scenarios validate the v3.4.0.0 ponytail-based refinement: the pre-write Design Restraint Ladder, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator. The first three run after surface and intent routing and change neither surface precedence nor the Iron Law; the fourth is a deterministic exit-code check.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -299,8 +236,7 @@ Per-feature files: see `design-restraint/`.
 
 ---
 
-## 15. TOOLING AND HOOKS (`TH-001..TH-002`)
-
+## 12. TOOLING AND HOOKS (`TH-001..TH-002`)
 This category validates shared tooling hooks that sk-code ships or wires into, independent of skill-advisor routing or surface detection. Scenarios here are deterministic checks against a script's real stdout/exit-code contract, not routing decisions.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -312,8 +248,7 @@ Per-feature files: see `tooling-and-hooks/`.
 
 ---
 
-## 16. PLUGINS AND HOOKS (`plugins-and-hooks`)
-
+## 13. PLUGINS AND HOOKS (`plugins-and-hooks`)
 This category validates the runtime-neutral `sk-code-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter and the Claude Code `PostToolUse` hook. Scenarios here exercise the real dispatch/router core, the real Claude hook binary, and the real OpenCode plugin module end-to-end — independent of skill-advisor routing or surface detection. IDs in this category are descriptive kebab-slugs, not numbered `{PREFIX}-NNN` ids.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -324,8 +259,7 @@ Per-feature files: see `plugins-and-hooks/`.
 
 ---
 
-## 17. DOCTOR COMMANDS (`DOC-382..DOC-383`)
-
+## 14. DOCTOR COMMANDS (`DOC-382..DOC-383`)
 This category validates the `/doctor:sk-code setup` battery, the read-only check that reports whether the sk-code surface can route end to end. The two scenarios here are deterministic checks against the battery's real stdout and exit-code contract, not routing decisions. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -337,23 +271,17 @@ Per-feature files: see `doctor-commands/`.
 
 ---
 
-## 18. AUTOMATED TEST CROSS-REFERENCE
-
+## 15. AUTOMATED TEST CROSS-REFERENCE
 The sk-code skill currently has these automated tests:
 
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (SKILLED alignment verifier).
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator (deterministic exit-code check; exercised manually by DR-004).
 
 Tests NOT covered by automation (manual playbook is the only validation):
-- Surface detection routing decisions (SD-001, SD-002, SD-003, SD-004).
+- Surface detection routing decisions (SD-002, SD-003).
 - Language sub-detection within SKILLED (LS-001, LS-002, LS-003, LS-004).
-- Mixed-marker disambiguation (RD-001).
 - Advisor anti-pattern routing (RD-002).
 - End-to-end advisor probe accuracy (SA-001).
-- Motion.dev API smoke and CDN version pinning (MR-001, MR-002).
-- Reduced-motion and animation regression baseline checks (MR-003, MR-004).
-- Cross-browser, Core Web Vitals, and GPU/compositing checks (CB-001, CB-002, CB-003).
-- Cross-stack Motion.dev smart-routing checks (CS-001, CS-002, CS-003, CS-004, CS-005, CS-006, CS-007).
 - Design restraint behaviors: ladder rung selection, anti-stall, and the `ceiling:` convention (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check.
 - Dist-staleness hook wiring (TH-001): no automated test covers `claude-posttooluse.sh`'s dist-checker branch; this manual scenario is the only coverage.
 
@@ -363,35 +291,17 @@ Tests NOT covered by automation (manual playbook is the only validation):
 
 ---
 
-## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
-
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Surface Detection | SD-001 | [surface-detection/webflow-detection.md](surface-detection/webflow-detection.md) | Yes |
 | Surface Detection | SD-002 | [surface-detection/skilled-detection.md](surface-detection/skilled-detection.md) | Yes |
 | Surface Detection | SD-003 | [surface-detection/unknown-fallback.md](surface-detection/unknown-fallback.md) | Yes |
-| Surface Detection | SD-004 | [surface-detection/obsidian-detection.md](surface-detection/obsidian-detection.md) | No |
 | Language Sub-Detection | LS-001 | [language-sub-detection/skilled-typescript.md](language-sub-detection/skilled-typescript.md) | No |
 | Language Sub-Detection | LS-002 | [language-sub-detection/skilled-python.md](language-sub-detection/skilled-python.md) | No |
 | Language Sub-Detection | LS-003 | [language-sub-detection/skilled-shell.md](language-sub-detection/skilled-shell.md) | No |
 | Language Sub-Detection | LS-004 | [language-sub-detection/skilled-config.md](language-sub-detection/skilled-config.md) | No |
-| Routing Disambiguation | RD-001 | [routing-disambiguation/mixed-marker-ambiguity.md](routing-disambiguation/mixed-marker-ambiguity.md) | No |
 | Routing Disambiguation | RD-002 | [routing-disambiguation/skcode-vs-skdoc.md](routing-disambiguation/skcode-vs-skdoc.md) | Yes |
 | Skill Advisor Integration | SA-001 | [skill-advisor-integration/advisor-probe-battery.md](skill-advisor-integration/advisor-probe-battery.md) | Yes |
-| Motion.dev And Animation Regression | MR-001 | [motion-dev-and-animation-regression/motion-api-smoke.md](motion-dev-and-animation-regression/motion-api-smoke.md) | Yes |
-| Motion.dev And Animation Regression | MR-002 | [motion-dev-and-animation-regression/cdn-bundle-version-pin.md](motion-dev-and-animation-regression/cdn-bundle-version-pin.md) | Yes |
-| Motion.dev And Animation Regression | MR-003 | [motion-dev-and-animation-regression/prefers-reduced-motion.md](motion-dev-and-animation-regression/prefers-reduced-motion.md) | Yes |
-| Motion.dev And Animation Regression | MR-004 | [motion-dev-and-animation-regression/animation-regression-baseline.md](motion-dev-and-animation-regression/animation-regression-baseline.md) | Yes |
-| Cross-Browser And Performance Gates | CB-001 | [cross-browser-and-performance-gates/cross-browser-animate.md](cross-browser-and-performance-gates/cross-browser-animate.md) | Yes |
-| Cross-Browser And Performance Gates | CB-002 | [cross-browser-and-performance-gates/cwv-gates.md](cross-browser-and-performance-gates/cwv-gates.md) | Yes |
-| Cross-Browser And Performance Gates | CB-003 | [cross-browser-and-performance-gates/gpu-compositing.md](cross-browser-and-performance-gates/gpu-compositing.md) | Yes |
-| Cross-Stack Routing | CS-001 | [cross-stack-routing/webflow-plus-motion-dev.md](cross-stack-routing/webflow-plus-motion-dev.md) | Yes |
-| Cross-Stack Routing | CS-002 | [cross-stack-routing/non-webflow-plus-motion-dev.md](cross-stack-routing/non-webflow-plus-motion-dev.md) | Yes |
-| Cross-Stack Routing | CS-003 | [cross-stack-routing/skilled-plus-motion-dev.md](cross-stack-routing/skilled-plus-motion-dev.md) | Yes |
-| Cross-Stack Routing | CS-004 | [cross-stack-routing/decision-matrix-routing.md](cross-stack-routing/decision-matrix-routing.md) | No |
-| Cross-Stack Routing | CS-005 | [cross-stack-routing/snippet-reuse-cross-stack.md](cross-stack-routing/snippet-reuse-cross-stack.md) | No |
-| Cross-Stack Routing | CS-006 | [cross-stack-routing/cwv-gates-animation-heavy.md](cross-stack-routing/cwv-gates-animation-heavy.md) | No |
-| Cross-Stack Routing | CS-007 | [cross-stack-routing/prefers-reduced-motion.md](cross-stack-routing/prefers-reduced-motion.md) | No |
 | Design Restraint | DR-001 | [design-restraint/design-restraint-ladder.md](design-restraint/design-restraint-ladder.md) | No |
 | Design Restraint | DR-002 | [design-restraint/implementer-anti-stall.md](design-restraint/implementer-anti-stall.md) | No |
 | Design Restraint | DR-003 | [design-restraint/ceiling-comment-convention.md](design-restraint/ceiling-comment-convention.md) | No |
@@ -402,6 +312,6 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Doctor Commands | DOC-382 | [doctor-commands/doctor-sk-code-setup.md](doctor-commands/doctor-sk-code-setup.md) | No |
 | Doctor Commands | DOC-383 | [doctor-commands/doctor-sk-code-pre-v4-checkout.md](doctor-commands/doctor-sk-code-pre-v4-checkout.md) | No |
 
-**Total scenarios**: 34
-**Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
-**Categories**: 11
+**Total scenarios**: 17
+**Critical-path scenarios**: 4 (SD-002, SD-003, RD-002, SA-001)
+**Categories**: 8

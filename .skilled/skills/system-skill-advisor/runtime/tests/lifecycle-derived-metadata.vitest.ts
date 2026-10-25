@@ -346,6 +346,17 @@ describe('027/002 derived metadata acceptance', () => {
     expect(derived.score).toBeLessThan(1);
   });
 
+  it('discounts a derived block more at a later explicit date, so the calendar keeps mattering', () => {
+    const generatedAt = new Date('2026-01-01T00:00:00Z');
+    const lane = { trustLane: 'derived_generated', score: 1 } as const;
+
+    const earlier = applyAgeHaircutToLane(lane, { generatedAt, now: new Date('2026-02-01T00:00:00Z') });
+    const later = applyAgeHaircutToLane(lane, { generatedAt, now: new Date('2026-10-01T00:00:00Z') });
+
+    expect(earlier.score).toBeLessThan(1);
+    expect(later.score).toBeLessThan(earlier.score);
+  });
+
   it('AC-4 supports additive v1 to v2 backfill while v1 remains routable during transition', () => {
     const root = workspace('migration');
     const dir = writeSkillFixture(root);

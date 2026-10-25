@@ -39,7 +39,7 @@
       "registration"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
       ".github/workflows/message-contract.yml",
+      ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md",
+      ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml",
+      ".skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md",
+      ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/hub-router.json",
       ".skilled/skills/sk-code/ROUTER.md",
-      ".skilled/skills/sk-code/description.json",
-      ".skilled/skills/sk-code/SKILL.md",
-      "shared/README.md",
-      ".skilled/skills/sk-code/leaf-manifest.json",
-      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
-      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
-      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
+      ".skilled/skills/sk-code/description.json"
     ],
     "entities": [
       {
@@ -106,9 +106,57 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-and-filter-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
+        "source": "derived"
+      },
+      {
         "name": "message-contract.yml",
         "kind": "config",
         "path": ".github/workflows/message-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-workflow-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "protected-set.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-template.yml",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-implement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -133,54 +181,6 @@
         "name": "description.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-code/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "verify-router-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "canary-cases.v1.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-surface-hint.test.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "durable-directory-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repository's 33 workflows encode a large body of convention that no single artifact states",
     "created_at": "2026-10-23T08:47:59Z",
-    "last_save_at": "2026-10-23T16:28:20.299Z",
+    "last_save_at": "2026-10-24T22:09:03.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4f7d2ff9b3b9c6e777839e45d73f2bb8e6ee31ad95c079d3c987ba01b013074",
+    "source_fingerprint": "sha256:cf054aaba6f27d9b3a9130e73ff6a45b4631d5c9262cd87f193e2aae3076419e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ea5560a97e3d2222565bda32eb3f4180aa8367a960d18ad5d11b67bff1ec2ac",
-      "plan.md": "0e2e4f3c27010713d22a9f34b01819ad19811429afca60215580c5c9cd1b750a",
-      "tasks.md": "0696ff2013bb4867e6367ffb8bdc2fb2030c7db9ad401303b9ad76a74d7747f2",
-      "decision-record.md": "a7b7ea27e9981e80ff7bd7a95fbeb9e3f822039d406ec23f805e9b3387670a32",
-      "implementation-summary.md": "22d6e84294c7bd352a97b65af4f56ab1fcd5a32673fc14dec6e6720c565793e1"
+      "spec.md": "b27ba41185809c743fd031a01a7edf6c776d230658d25d1e8eacd6a422eb1efa",
+      "plan.md": "e20f6f43bb6ac83c3356db7eec88010516cfb1896b2a6c7dc199c296c6c91102",
+      "tasks.md": "11968ec79d4283204810e399662c81e9fd0dac51014b05ebcfe284275b309689",
+      "decision-record.md": "ce4830acf38db00f8ce7de842e258412b11b784b51c551047f85b1b996e73eda",
+      "implementation-summary.md": "159ba5d8281121e71068d2a28f1f211850ff7a2f597fcab5764381359a54802d"
     },
     "last_active_at": null
   }

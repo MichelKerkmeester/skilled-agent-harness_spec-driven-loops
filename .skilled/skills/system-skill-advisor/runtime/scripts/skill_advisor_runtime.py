@@ -15,10 +15,9 @@ from __future__ import annotations
 # 1. IMPORTS
 # ───────────────────────────────────────────────────────────────
 
-import glob
 import os
 import re
-from typing import Any, Dict, Iterable, Optional, Set, Tuple
+from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -150,10 +149,84 @@ def _build_keyword_variants(keywords: str) -> Set[str]:
 # 5. SKILL RECORD BUILDERS
 # ───────────────────────────────────────────────────────────────
 
+PRIVATE_SKILL_ROOTS_ENV = "SPECKIT_PRIVATE_SKILL_ROOTS"
+
+
+def _path_inside(root: str, target: str, allow_self: bool) -> bool:
+    """True when `target` is `root` itself (only if allowed) or sits below it."""
+    try:
+        relative = os.path.relpath(target, root)
+    except ValueError:
+        return False
+    if relative == os.curdir:
+        return allow_self
+    return relative != os.pardir and not relative.startswith(os.pardir + os.sep) and not os.path.isabs(relative)
+
+
+def _trusted_private_roots(skills_dir: str) -> List[Tuple[str, bool]]:
+    """Resolve the roots a linked private skill may live in.
+
+    The skills root is trusted but cannot be named by a link directly, because a
+    link to it would make a scan re-enter its own tree. A root declared in the
+    private-skill roots variable may be named directly.
+    """
+    roots: List[Tuple[str, bool]] = [(os.path.realpath(skills_dir), False)]
+    for part in os.environ.get(PRIVATE_SKILL_ROOTS_ENV, "").split(os.pathsep):
+        candidate = part.strip()
+        if candidate and os.path.exists(candidate):
+            roots.append((os.path.realpath(candidate), True))
+    return roots
+
+
+def create_private_skill_link_check(skills_dir: str) -> Callable[[str], bool]:
+    """Return a check that a linked private skill resolves inside a trusted root.
+
+    Mirror of the TypeScript containment check. One scan tests many entries, so
+    the trusted roots are resolved at most once, and only when a link is met.
+    """
+    roots: Optional[List[Tuple[str, bool]]] = None
+
+    def is_trusted(entry_path: str) -> bool:
+        nonlocal roots
+        try:
+            target = os.path.realpath(entry_path)
+            if not os.path.isdir(target):
+                return False
+        except OSError:
+            return False
+        if roots is None:
+            roots = _trusted_private_roots(skills_dir)
+        return any(_path_inside(root, target, allow_self) for root, allow_self in roots)
+
+    return is_trusted
+
+
+def is_scannable_skill_entry(entry: "os.DirEntry[str]", link_check: Callable[[str], bool]) -> bool:
+    """A real directory, or a `local-*` link whose target stays inside a trusted root."""
+    if entry.is_symlink():
+        return entry.name.startswith("local-") and link_check(entry.path)
+    return entry.is_dir()
+
+
 def _discover_skill_files(skills_dir: str) -> list[str]:
-    """Discover every `SKILL.md` file under the top-level skills directory."""
-    pattern = os.path.join(skills_dir, "*/SKILL.md")
-    return sorted(glob.glob(pattern))
+    """Discover every `SKILL.md` file under the top-level skills directory.
+
+    A hidden folder is not a skill, and a symlinked folder is followed only by
+    the private-skill rule, so a stray link cannot pull an outside tree in.
+    """
+    link_check = create_private_skill_link_check(skills_dir)
+    try:
+        entries = list(os.scandir(skills_dir))
+    except OSError:
+        return []
+    discovered: list[str] = []
+    for entry in entries:
+        if entry.name.startswith(".") or not is_scannable_skill_entry(entry, link_check):
+            continue
+        candidate = os.path.join(entry.path, "SKILL.md")
+        if os.path.lexists(candidate):
+            discovered.append(candidate)
+    return sorted(discovered)
 
 
 def _compute_signature(file_paths: Iterable[str]) -> Tuple[Tuple[str, int, int], ...]:

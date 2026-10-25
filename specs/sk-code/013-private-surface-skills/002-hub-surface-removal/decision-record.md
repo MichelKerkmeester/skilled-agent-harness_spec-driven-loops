@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 2: hub-surface-removal"
-description: "The six decisions that shape the hub surface removal: what leaves the tracked tree, which files stay hand-owned, what the scenario families do, what the keep-list holds, where the closure boundary sits, and which generated data waits for CI."
+description: "Six accepted decisions and the 2026-10-24 amendment that records proof drift and the D6 precedence boundary."
 trigger_phrases:
   - "hub surface removal decision record"
   - "architecture decision"
@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "specs/sk-code/013-private-surface-skills/002-hub-surface-removal"
-    last_updated_at: "2026-10-23T12:40:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Wrote the six phase decisions with their alternatives and consequences"
-    next_safe_action: "Run the tasks in tasks.md; change a decision here first if one no longer holds"
+    last_updated_at: "2026-10-24T11:01:04.139Z"
+    last_updated_by: "codex"
+    recent_action: "Added the 2026-10-24 proof and D6 drift amendments."
+    next_safe_action: "SWE-2 review (T105), validate (T106), commit and push (T108)."
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deepseek-v4.1-flash-1017-002-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -636,3 +636,24 @@ Five artifacts have a generator inside the repository: `leaf-manifest.json`, the
 <!-- /ANCHOR:adr-006 -->
 
 ---
+
+## Amendments (2026-10-24)
+
+For work inside D6, the Proof's end state wins over the Change's line list. D6 also outranks the expected counts in T081 and T094.
+
+- T057: Removed the Webflow-only CHK-INI-07 item and conditional example because the file proof requires zero surface tokens. The Proof's end state wins over the Change's line list within D6.
+- T058: Removed two stale Webflow trigger phrases because the file proof requires zero surface tokens. The Proof's end state wins over the Change's line list within D6.
+- T068: Replaced the remaining WEBFLOW hint with SKILLED and corrected the stale undefined fixture. The Proof's end state wins over the Change's line list within D6.
+- T069: The control expected 50 and returned 22. Eighteen cases existed before editing and seven remain. The Proof's end state wins over the Change's line list within D6.
+- T072: Removed stale Motion/MIXED overlay descriptions and branches so replay logic matches the remaining SKILLED surface. The Proof's end state wins over the Change's line list within D6.
+- T074: Kept archived-mode skip coverage with a generic archived identifier after the single-surface fixture removed its archived example. The Proof's end state wins over the Change's line list within D6.
+- T077: The new assertion contradicted the preceding FAIL assertion. The obsolete assertion was deleted because the two excused example surfaces were removed. The Proof's end state wins over the Change's line list within D6.
+- T081: The original rg -ciE command has an invalid encoding flag. The corrected scan finds five D6-kept mcp-obsidian paths and zero removed sk-code paths, and README parity passes. D6 outranks T081's expected whole-file count of zero.
+- T094: The original rg -ciE command has an invalid encoding flag. The corrected scan finds five D6-kept mcp-obsidian paths and zero removed sk-code paths, and the manifest is reproducible. D6 outranks T094's expected whole-file count of zero.
+- T082 and T084: The original rg -ciE proofs have an invalid encoding flag. The corrected scans return zero, and T084's link checker reports zero broken links. The Proof's end state wins over the Change's line list within D6.
+- T087: The immediate post-generator packet-name count was one. The generator preserves fields edited by T088-T092, so the whole-file proof passes after those ordered edits. The Proof's end state wins over the Change's line list within D6.
+- T089: Removed the additional obsidian plugin conventions entry because the section proof still found it. The Proof's end state wins over the Change's line list within D6.
+- T104: The unfiltered archive diff includes the cli-external-orchestration activation manifest from another packet. Excluding that file gives the phase-specific result 20, 0 and 0. The Proof's end state wins over the Change's line list within D6.
+- T097: This Node version prints ℹ pass 9 and ℹ fail 0, not # pass 7 and # fail 0. The router-sync suite has nine tests after T074. The Proof's end state wins over the Change's line list within D6.
+- T055: Kept probe P15 because its row is labeled SKILLED, then updated the surviving probe count and accuracy threshold. The Proof's end state wins over the Change's line list within D6.
+- T053: The anchor inventory missed five stale lines in the playbook index: three deleted family bullets, the critical-path set naming SD-001 and the CS family, and the 34 / 34 total. Review found them; the index now matches its own section 16 with 17 scenarios. `cite-drift-labels.jsonl:32` still names `webflow-detection.md`; it is a recorded citation sample keyed to a commit and content hashes, so D6 keeps it.

@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".github/workflows/hooks-node-tests.yml",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      "scratch/decisions.md",
+      "scratch/phase-result.md",
+      ".github/actions/setup/action.yml",
       ".github/workflows/opencode-plugin-tests.yml",
       ".github/workflows/opencode-dual-version.yml",
-      ".github/scripts/check-gate-inputs.sh",
       ".github/workflows/rule-canary-sync.yml",
-      ".github/scripts/tests/check-gate-inputs.test.sh",
       ".github/workflows/routing-registry-drift.yml",
       ".github/workflows/README.md",
+      "scratch/cache-adoption-runs.md",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
-      ".github/workflows/spec-kit-check.yml",
-      ".github/workflows/skill-advisor-stress.yml",
-      ".github/workflows/sk-doc-script-tests.yml",
-      ".github/workflows/sk-doc-rename-harness.yml"
+      ".github/workflows/spec-kit-check.yml"
     ],
     "entities": [
       {
@@ -106,9 +106,33 @@
         "source": "derived"
       },
       {
-        "name": "hooks-node-tests.yml",
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.md",
+        "kind": "doc",
+        "path": "scratch/decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-result.md",
+        "kind": "doc",
+        "path": "scratch/phase-result.md",
+        "source": "derived"
+      },
+      {
+        "name": "action.yml",
         "kind": "config",
-        "path": ".github/workflows/hooks-node-tests.yml",
+        "path": ".github/actions/setup/action.yml",
         "source": "derived"
       },
       {
@@ -124,21 +148,9 @@
         "source": "derived"
       },
       {
-        "name": "check-gate-inputs.sh",
-        "kind": "script",
-        "path": ".github/scripts/check-gate-inputs.sh",
-        "source": "derived"
-      },
-      {
         "name": "rule-canary-sync.yml",
         "kind": "config",
         "path": ".github/workflows/rule-canary-sync.yml",
-        "source": "derived"
-      },
-      {
-        "name": "check-gate-inputs.test.sh",
-        "kind": "script",
-        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
         "source": "derived"
       },
       {
@@ -154,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "cache-adoption-runs.md",
+        "kind": "doc",
+        "path": "scratch/cache-adoption-runs.md",
+        "source": "derived"
+      },
+      {
         "name": "vitest.config.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
@@ -163,24 +181,6 @@
         "name": "spec-kit-check.yml",
         "kind": "config",
         "path": ".github/workflows/spec-kit-check.yml",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-stress.yml",
-        "kind": "config",
-        "path": ".github/workflows/skill-advisor-stress.yml",
-        "source": "derived"
-      },
-      {
-        "name": "sk-doc-script-tests.yml",
-        "kind": "config",
-        "path": ".github/workflows/sk-doc-script-tests.yml",
-        "source": "derived"
-      },
-      {
-        "name": "sk-doc-rename-harness.yml",
-        "kind": "config",
-        "path": ".github/workflows/sk-doc-rename-harness.yml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository is cached",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-23T16:28:16.459Z",
+    "last_save_at": "2026-10-24T21:15:40.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d508eda27f3ed3cd2ddc151cd42c873a8d4f711c128b7d4898d1d52ece84ee1a",
+    "source_fingerprint": "sha256:0be47d6ea918cf36a9610e133200404abf4a91293ed95db91820da2eee749d47",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49bd8b4e263b986c73b6f8b10a35e3c94726349c714d3a0da3ee56453dd7859a",
+      "spec.md": "321f8e5e1f8748f9d270399a896fbe01342b2249e6fd4df15bb85b4769973f87",
       "plan.md": "25ad14eb16726850505ddba8a1fe1977414a5f5138dbb071e9e4e0e315b7e01e",
-      "tasks.md": "e1311fe0d41a00b19684e4b6215a34938a899f510a556f69defdef20fea81907",
-      "decision-record.md": "30031fbf80aad15047c101d97fc5cd87ea99da9583f66b552e4cb440f4c6cc34",
-      "implementation-summary.md": "fcd538f47f4da8002beac06e55ce3edd0b086277dfab96e9dc392550303ee521"
+      "tasks.md": "7b269b859403fcac55e9929640f9e0c68fba15c4d385d0f41591b468f524efde",
+      "decision-record.md": "69f6b92070587abcfea391bfd99770f3f7fd20e4a9648880074142b9e59848e0",
+      "implementation-summary.md": "d8afdc9a01afd19cc5c96e2bac3935fc2510b5fc02cfdfcfebe106269339c5fc"
     },
     "last_active_at": null
   }

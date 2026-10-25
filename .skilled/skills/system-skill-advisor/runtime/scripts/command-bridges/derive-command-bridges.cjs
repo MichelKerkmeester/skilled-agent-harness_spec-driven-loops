@@ -75,11 +75,16 @@ function sourcePath(filePath) {
   return relative(REPO_ROOT, filePath).split(sep).join('/');
 }
 
-function metadataEntries() {
+function metadataEntries(skillsRoot = SKILLS_ROOT) {
   const entries = [];
-  const skillIds = readdirSync(SKILLS_ROOT).sort();
+  const skillIds = readdirSync(skillsRoot, { withFileTypes: true })
+    // A private skill is local to one checkout and must never reach a tracked bridge file.
+    // Only a private skill may be a link, so any other linked folder is not a skill source.
+    .filter((entry) => !entry.name.startsWith('local-') && !entry.isSymbolicLink())
+    .map((entry) => entry.name)
+    .sort();
   for (const skillId of skillIds) {
-    const filePath = join(SKILLS_ROOT, skillId, 'command-metadata.json');
+    const filePath = join(skillsRoot, skillId, 'command-metadata.json');
     if (!existsSync(filePath)) continue;
 
     const metadata = readJson(filePath);
@@ -683,4 +688,6 @@ function main() {
   if (checkOnly && changed.length > 0) process.exitCode = 1;
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { metadataEntries };

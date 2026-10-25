@@ -1,0 +1,6 @@
+ci(workflows): declare least-privilege token scopes
+
+Twelve workflows declared no token scope, so each ran with the
+repository default. Every one of them only checks out the tree and runs
+a script, so each now requests read access to repository contents and
+nothing else. No workflow gains a scope it did not already use.

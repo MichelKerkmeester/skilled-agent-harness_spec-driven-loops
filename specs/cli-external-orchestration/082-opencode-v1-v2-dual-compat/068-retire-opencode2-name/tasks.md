@@ -55,7 +55,7 @@ contextType: "general"
 
 - [x] T009 config-shape, battery and cli-opencode suites 88 of 88; dispatch-audit 124 of 124 under vitest
 - [x] T010 shellcheck clean on the helper; launcher byte-identical to the machine's
-- [ ] T011 CI green on the pushed commit
+- [x] T011 CI green on the pushed commit: 19 of 19 runs on `0bf53bfadc`, including the OpenCode Dual-Version Battery
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,7 +65,7 @@ contextType: "general"
 
 - [x] All local tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] CI green on the pushed commit
+- [x] CI green on the pushed commit
 <!-- /ANCHOR:completion -->
 
 ---

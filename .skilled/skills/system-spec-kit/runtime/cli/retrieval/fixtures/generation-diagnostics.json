@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7262,
-    "ok": 15099,
+    "missing-frontmatter": 7194,
+    "ok": 14998,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25909,
+  "documentsScanned": 25740,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fb80845b688454811d100f7407d16b4e299780d5e6c5fd2d4e2503d5395b3c44",
+  "manifestHash": "d1962aea5092edfc84a687a3feb7375713524d0d7b192505802e7ed40a33cea9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37806,
+      "ok": 37332,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -10698,66 +10698,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-browser-and-performance-gates/cross-browser-animate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-browser-and-performance-gates/cwv-gates.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-browser-and-performance-gates/gpu-compositing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/cwv-gates-animation-heavy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/decision-matrix-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/non-webflow-plus-motion-dev.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/prefers-reduced-motion.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/snippet-reuse-cross-stack.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/webflow-plus-motion-dev.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/ceiling-comment-convention.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10830,36 +10770,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/motion-dev-and-animation-regression/animation-regression-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/motion-dev-and-animation-regression/cdn-bundle-version-pin.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/motion-dev-and-animation-regression/motion-api-smoke.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/motion-dev-and-animation-regression/prefers-reduced-motion.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/mixed-marker-ambiguity.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10872,12 +10782,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/obsidian-detection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10885,12 +10789,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/webflow-detection.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10914,175 +10812,19 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+      "path": ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/ci-surface/ci-surface.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/code-quality-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/debugging-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/implementation-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/stack-standards-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/verification-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/db-class-rename-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/debugging-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/folder-docs-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/modal-screenshot-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/verification-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/assets-only-isolation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/references-only-isolation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/obsidian-surface-resolution.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/floor-single-resource.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/median-load.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md",
+      "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11594,156 +11336,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--live-mode-b--live/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--live-mode-b--live/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--router-mode-a--router/failed-runs.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--router-mode-a--router/findings-and-recommendations.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/deployment-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/forms-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/video-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/code-quality-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/debugging-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/implementation-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/testing-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/verification-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/language-standards/language-standards-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/accessibility-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/animation-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/motion-dev-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/performance-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -68932,15 +68524,15 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/references/workflow-debug.md",
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/references/workflow-implement.md",
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/references/workflow-verify.md",
+      "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
@@ -68953,18 +68545,6 @@
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-verify.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/sk-code-webflow/references/workflow-debug.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/sk-code-webflow/references/workflow-implement.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/sk-code-webflow/references/workflow-verify.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
@@ -69681,6 +69261,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4/scratch",
       "reason": "excluded directory"
     },
     {
@@ -71125,6 +70709,18 @@
     },
     {
       "path": "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/001-quality-mode-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/002-review-mode-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/014-code-modes-research/scratch",
       "reason": "excluded directory"
     },
     {
@@ -72641,6 +72237,10 @@
     },
     {
       "path": "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/041-writer-lock-stale-reclaim-race/scratch",
       "reason": "excluded directory"
     },
     {

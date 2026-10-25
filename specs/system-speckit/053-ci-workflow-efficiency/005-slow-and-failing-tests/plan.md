@@ -36,13 +36,14 @@ Prove file parallelism safe with three local runs of the `cli` project, then set
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified (`gh` scopes, a checkout with the spec-kit, deep-loop and advisor dependencies installed; no operator decision)
+- [x] Problem statement clear and scope documented [EVIDENCE: spec.md Executive Summary and section 3 read 2026-10-25]
+- [x] Success criteria measurable [EVIDENCE: spec.md SC-001 to SC-005 each name a number or a count, and every AC row carries a runnable check, read 2026-10-25]
+- [x] Dependencies identified (`gh` scopes, a checkout with the spec-kit, deep-loop and advisor dependencies installed; no operator decision) [EVIDENCE: `gh run list` and `gh run view` read the runs on 2026-10-25 from this checkout]
 
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] The probe recorded, the config flip or the shard applied, and the CLI step under 400 s with 5 green CI runs
+  - The 400 s ceiling is judged on the median of five green runs on main, by the operator ruling of 2026-10-24 on AC-003, recorded in `decision-record.md` (ADR-003 amendment) and measured in `scratch/r20-ci-step.md`.
 - [ ] Each of the three workflows at 10 green runs or a filed root cause, and the five stale failures recorded closed
 - [ ] `check-gate-inputs.sh` and `validate.sh --strict` both `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
@@ -191,9 +192,9 @@ Setup (install, serial baseline, R19 probe) ──► Change (R20 config or shar
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes) - not applicable, no data changes
-- [ ] Feature flag configured - not applicable; the one `fileParallelism` line is the switch
-- [ ] Monitoring alerts set - the CI step seconds and the 5-run green streak are the monitoring
+- [x] Backup created (if data changes) - not applicable, no data changes [EVIDENCE: n/a because the two commits change only workflow YAML]
+- [x] Feature flag configured - not applicable; the one `fileParallelism` line is the switch [EVIDENCE: n/a because the shard branch left `vitest.config.ts` unmodified and the split sits in the workflow step]
+- [x] Monitoring alerts set - the CI step seconds and the 5-run green streak are the monitoring [EVIDENCE: n/a because no alert exists; `scratch/r20-ci-step.md` records the step seconds per run, four of five read on 2026-10-25]
 
 ### Rollback Procedure
 1. Revert the config commit, or the shard-step commit, on `main`.
@@ -257,7 +258,7 @@ The R19 block is strictly serial: the real config is not touched until the probe
 | Deep-loop drift fix (T023 to T026) | T002, T021 | A fresh contract when the checker exits 2, a fast-fail step before the suite, a proven negative | T030, T033 |
 | Diagram and advisor fixes (T027, T028) | T002, T021 | The newest run recorded closed, or one corrected version or module-shape line | T033 |
 | Stale confirmations (T029) | `gh` | Five rows with date, SHA, later green run and `closed` | T039 |
-| No-retry proof (T030) | T023 to T029 | An empty grep over the three workflows and the staged diff | T033 |
+| No-retry proof (T030) | T023 to T029 | An empty grep over the three workflows and the unstaged diff of the workflow files | T033 |
 | Gates and commits (T031 to T033) | Every edit above | `RESULT: PASSED`, a clean YAML parse, two validated commit messages, no ephemeral id in the diff | T034 to T040 |
 | CI measurement and streaks (T034 to T037) | T032, real CI traffic | The post-change step seconds, 5 green `Spec-Kit Check` runs, 10 green runs per workflow or a filed row | T038 to T040 |
 | Closure (T038 to T040) | Every task above | Every acceptance row `Met`, `validate.sh --strict` `RESULT: PASSED`, one closure commit | `007-workflow-hygiene-on-off-control` |
@@ -306,7 +307,7 @@ The R19 block is strictly serial: the real config is not touched until the probe
 
 ### ADR-001: Probe the setting on a copy, then change the real config
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: The `cli` project sets `fileParallelism: false` at `vitest.config.ts:67` without a stated reason, and 183 files run one at a time. Turning it on in the real file before measuring would put the repository's slowest step behind an untested assumption.
 
@@ -321,7 +322,7 @@ The R19 block is strictly serial: the real config is not touched until the probe
 - Flip the real config and revert on failure: a red `main` between the two commits, and the slowest step is exactly where a red run is most expensive.
 - Run a subset of files: it would miss the fixture collision the probe exists to find.
 
-The formal records, including every design choice this plan freezes, are `decision-record.md` ADR-001 to ADR-010.
+The formal records, including every design choice this plan freezes, are `decision-record.md` ADR-001 to ADR-011.
 
 ---
 

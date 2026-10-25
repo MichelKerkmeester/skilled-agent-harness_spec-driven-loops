@@ -51,14 +51,14 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 1. **RECEIVE** → Parse scope from orchestrator (task description, target files, success criteria, packet/spec-folder context, dispatch mode if specified, verification expectation).
 2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` §1 Law 2, SCOPE LOCK.
-3. **INVOKE sk-code** → Read `.skilled/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
+3. **INVOKE sk-code** → Read `.skilled/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **FALLBACK**: if `sk-code` returns UNKNOWN or ambiguous routing, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json` and read the top pick at `.data.recommendations[0].skillId`; when it starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN's Summary line, and continue. Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
 4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
 5. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
 6. **RETURN** → Structured RETURN to orchestrator (see §8 format).
 
 ### Stack Delegation Contract
 
-@code does NOT pre-detect the project route. The full code-routing logic lives in `.skilled/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
+@code does NOT pre-detect the project route. The full code-routing logic lives in `.skilled/skills/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE` to the orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
 
 ### Diagnosis-Based Handoff Validation
 
@@ -95,7 +95,7 @@ If any required handoff field is missing, empty, or unsupported by the native de
 | --- | --- | --- | --- |
 | **Router** | `sk-code` | Always | Smart detection, intent routing, router-selected standards, security/correctness minimums, verification commands |
 | **Excluded** | `sk-code`'s code-review mode | Always excluded inside @code | Review-side only; @orchestrate dispatches @review separately |
-| **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |
+| **Fallback** | Advisor `local-*` overlay | Route cannot be determined | Run `advisor_recommend`; when `.data.recommendations[0].skillId` starts with `local-`, load that `SKILL.md` as the standards overlay; otherwise return `UNKNOWN_ROUTE` |
 
 **Precedence rules:**
 1. Load `sk-code` on every @code invocation.
@@ -103,7 +103,7 @@ If any required handoff field is missing, empty, or unsupported by the native de
 3. Apply only the resources returned for that route and intent.
 4. `sk-code` security/correctness minimums always remain enforced.
 5. Returned verification commands are authoritative for the resolved route.
-6. If `sk-code` returns UNKNOWN, escalate `UNKNOWN_ROUTE`. NEVER guess.
+6. If `sk-code` returns UNKNOWN, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<task text>"}' --format json`; when `.data.recommendations[0].skillId` starts with `local-`, read that skill's `SKILL.md` as the standards overlay, cite it in the RETURN Summary and continue. With no such pick, escalate `UNKNOWN_ROUTE`. NEVER guess.
 
 ### Tools
 
@@ -195,7 +195,7 @@ PRE-IMPLEMENTATION:
 [ ] File allowlist understood; any needed file outside dispatch scope is escalated before editing.
 [ ] Every place the change must reach is listed (callers, tests, fixtures, config and exports). Each place the change will not touch is named with the reason.
 [ ] Relevant spec-folder docs or packet-local plan/tasks named by orchestrator are read before implementation.
-[ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated.
+[ ] `sk-code` invoked or loaded for the resolved route; UNKNOWN or ambiguous routing escalated when the advisor's top pick is not a `local-*` skill.
 [ ] Applicable `sk-code` quality checklist path identified; router-selected rules remain delegated to that checklist.
 [ ] Verification command or manual verification action identified before the first edit.
 [ ] Expected behavior and non-goals explicit enough to detect scope creep during implementation.
@@ -344,7 +344,7 @@ Map `failure_type` from existing escalation classes only: `UNKNOWN_STACK -> unkn
 ### Escalation Triggers
 
 Return BLOCKED with the appropriate escalation classifier in any of:
-- sk-code returns UNKNOWN → `UNKNOWN_STACK`
+- sk-code returns UNKNOWN and the advisor's top pick is not a `local-*` skill → `UNKNOWN_STACK`
 - Verification fails (per §1 step 5 fail-closed contract) → `VERIFY_FAIL`
 - Scope conflict detected (file outside orchestrator-named scope) → `SCOPE_CONFLICT`
 - Diagnosis-based @debug handoff is missing required fields → `LOW_CONFIDENCE`
@@ -356,7 +356,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 ## 9. RULES
 
 ### ✅ ALWAYS
-- Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN)
+- Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN when the advisor's top pick is not a `local-*` skill)
 - Read every file before editing; re-read every edited file after the final edit
 - Run the `sk-code`-returned verification command and capture exit code
 - Stay within orchestrator-named file allowlist
@@ -377,11 +377,11 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 - Pivot stack silently — if `sk-code` says X but task implies Y, HALT and escalate
 - Add phantom edge-case handling without evidence the case occurs
 - Return "mostly done" or "should work" — RETURN is `DONE` (PASS) or `BLOCKED` (FAIL) only
-- Pick a default overlay when stack is uncertain — escalate `UNKNOWN_STACK`
+- Pick a default overlay when stack is uncertain and the advisor's top pick is not a `local-*` skill — escalate `UNKNOWN_STACK`
 - Cargo-cult neighbor patterns without verifying applicability via the loaded checklist
 
 ### ⚠️ ESCALATE IF
-- `sk-code` returns UNKNOWN or stack/task implication mismatch detected
+- `sk-code` returns UNKNOWN and the advisor's top pick is not a `local-*` skill, or a stack/task implication mismatch is detected
 - Verification command fails after the targeted in-scope fix
 - A required file falls outside the dispatch allowlist
 - Confidence stays < 80% on a load-bearing decision
@@ -422,7 +422,7 @@ Before returning `DONE` or any successful RETURN, answer these 7 questions. **Al
 4. Did I stay inside the dispatch scope and avoid adjacent cleanup or Bash write bypasses?
 5. Did the applicable quality gate pass, with all P0 items resolved and any P1/P2 deferrals documented?
 6. Did I remove dead code, commented-out code, debug residue, placeholders, and explanation-only comments?
-7. Did I cite sk-code's detected stack + selected intents + loaded resource paths in my RETURN Summary, proving the smart router actually fired (not just the SKILL.md read)? If sk-code returned UNKNOWN, did I escalate `UNKNOWN_STACK` instead of implementing?
+7. Did I cite sk-code's detected stack + selected intents + loaded resource paths in my RETURN Summary, proving the smart router actually fired (not just the SKILL.md read)? If sk-code returned UNKNOWN and the advisor's top pick is not a `local-*` skill, did I escalate `UNKNOWN_STACK` instead of implementing?
 
 If ANY is NO: **DO NOT return `DONE`.** Fix the verification gap or RETURN the appropriate escalation.
 
@@ -503,7 +503,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 | **Dead-code/comment leftover** | Debug prints, commented-out code, stale TODOs, scratch notes, temporary fixtures, or unused imports remain after the patch | Leave temporary artifacts because tests pass | Re-read every edited file before RETURN, remove scratch artifacts, verify diff contains only intentional production changes |
 | **Spec-doc authorship bleed** | The code agent notices missing or stale packet docs while implementing application code | Edit `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane | RETURN BLOCKED / SCOPE_CONFLICT with the doc gap. Packet docs belong to the main agent under Distributed Governance Rule, not the coder leaf |
 | **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.skilled/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
-| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN`, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
 | **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§10) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
 
 **Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
@@ -535,7 +535,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 │  IMPLEMENTATION MODES                                                   │
 │  ├─► Full implementation, surgical fix, and refactor-only changes        │
 │  ├─► Test-add, scaffold-new-file, rename-move, dependency-bump           │
-│  └─► Escalate UNKNOWN stack, scope conflict, or low confidence            │
+│  └─► Escalate UNKNOWN unless local-*, scope conflict, or low confidence   │
 │                                                                         │
 │  WORKFLOW                                                               │
 │  ├─► 1. RECEIVE scope, success criteria, and spec-folder context        │

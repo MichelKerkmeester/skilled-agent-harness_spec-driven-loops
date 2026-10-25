@@ -21,7 +21,9 @@ concurrency:
 jobs:
   sk-doc-scripts:
     name: sk-doc script tests
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -29,6 +31,8 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.x'
+          cache: pip
+          cache-dependency-path: .github/workflows/sk-doc-script-tests.yml
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -61,7 +65,9 @@ jobs:
   # validator's fixture test, which lives beside the validator, runs here.
   catalog-packages:
     name: Feature catalog packages validate
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -78,7 +84,9 @@ jobs:
 
   citation-drift:
     name: No new broken citations
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # The base comparison needs the base commit, so the full history is fetched.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

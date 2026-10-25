@@ -34,9 +34,7 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   // +0.38 to every prompt containing it, which handed sk-code phrases that other hubs
   // declare verbatim — browser debug, browser agent, review this layout. A hint is for
   // a phrase that belongs to this hub, not a word that merely appears in its domain.
-  // 'obsidian plugin' is the same mechanism used as intended: sk-code declares that
-  // exact phrase and was losing it to a bare-token overlap by 0.004.
-  'sk-code': ['css', 'html', 'javascript', 'frontend', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline', 'obsidian plugin'],
+  'sk-code': ['css', 'html', 'javascript', 'frontend', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
 };
 
 const BM25_SHADOW_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'shadow', 'experimental']);

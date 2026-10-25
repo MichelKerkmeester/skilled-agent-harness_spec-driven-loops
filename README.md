@@ -793,7 +793,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- One native surface and two optional examples. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The Webflow example covers Webflow and vanilla HTML, CSS and JavaScript sites, and the Obsidian example covers an Obsidian plugin
+- One native surface. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
 - Reviews before you ship (`code-review` mode): security, correctness and design checklists always run first, then the surface evidence above, and findings come ranked P0, P1 or P2
 
@@ -1415,8 +1415,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **`sk-code`** - 🎨 stack-specific, the customization point
 
 - Surface-aware code-quality patterns
-- Keep the native Skilled surface, and remove or replace the optional example Webflow and Obsidian surfaces with your own (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
-- Motion.dev is an animation overlay inside the Webflow surface, not a surface of its own
+- Keep the native Skilled surface, and add a surface of your own for another stack (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
 - Includes the findings-first `code-review` mode that reuses these surfaces as review evidence
 
 **`sk-doc`** - ✅ codebase-agnostic
@@ -1478,7 +1477,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-`sk-code` ships one native surface and two optional examples. The Skilled surface holds the standards for this framework's own code, so keep it. The Webflow and Obsidian surfaces are examples you can remove, keep as models or replace with your own stack.
+`sk-code` ships one native surface. The Skilled surface holds the standards for this framework's own code, so keep it. Add a surface of your own when you want the hub to carry another stack.
 
 - **Remove an example surface** by deleting its folder and its entries in the hub's registry, router and generated files
 - **Add your own surface** with `/create:skill-parent update --surfaces <name>`, which scaffolds and registers it ahead of the Skilled surface

@@ -20,7 +20,7 @@ contextType: "general"
 
 `spec-kit-check`'s `check` job spends 791 s of its 1,215 s in one serial vitest project, because the `cli` project runs 183 test files one at a time. Three workflows also carry real, deterministic failures rather than flake, and the newest runs of two of them already pass, so the research phase's failure counts are no longer current. This phase proves file parallelism safe with a three-run probe, flips the `cli` project or shards the step when a fixture collides, re-checks the latest 40 runs of the three workflows, fixes what is still real without a retry, and records five single old failures closed.
 
-**Key Decisions**: the probe decides between one config line and a two-way shard, and the phase adds no retry anywhere. No operator decision gates this phase.
+**Key Decisions**: the probe decides between one config line and a two-way shard, and the phase adds no retry anywhere. No operator decision gated the start of this phase. Rulings made during it (the probe outcome, the rebalanced split, the median rule, the AC-003 waiver) are recorded in `decision-record.md`.
 
 **Critical Dependencies**: a `gh` session with the `repo` scope, a checkout with the spec-kit CLI built, and the 002 baseline for the after-R1 figure only.
 
@@ -32,14 +32,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 9 |
 | **Predecessor** | 002-rebuild-fanout-removal (baseline only) |
 | **Successor** | 006-sk-code-ci-surface |
-| **Handoff Criteria** | The `CLI vitest project` step is under 400 s on CI with 5 consecutive green `Spec-Kit Check` runs; deep-loop-runtime, diagram-corpus and skill-advisor-stress each show 10 consecutive green runs or a filed root cause in `scratch/r21-recheck.md`; the five single old failures are recorded closed; `bash .github/scripts/check-gate-inputs.sh` and `validate.sh --strict` both print `RESULT: PASSED` |
+| **Handoff Criteria** | The `CLI vitest project` step is under 400 s on CI with 5 consecutive green `Spec-Kit Check` runs; deep-loop-runtime, diagram-corpus and skill-advisor-stress each show 10 consecutive green runs or a filed root cause in `scratch/r21-recheck.md`; the five single old failures are recorded closed; `bash .github/scripts/check-gate-inputs.sh` and `validate.sh --strict` both print `RESULT: PASSED`. At closure on 2026-10-25 the step median over five green runs is 451 s, so the 400 s bar is not met and AC-003 is waived by the operator's ruling (ADR-011) and deep-loop-runtime carries a filed root cause, `specs/system-deep-loop/041-writer-lock-stale-reclaim-race` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,7 +55,7 @@ This is **Phase 5** of the CI efficiency implementation phases specification. It
 - `002-rebuild-fanout-removal` for the baseline only. R20's saving is ~460 runner-min/day standalone on today's 50 `spec-kit-check` runs per window, and ~138 runner-min/day after R1 leaves 15 (`final-review.md:410-417`). This phase can run in parallel with `003-trigger-and-job-hygiene` and `004-setup-caching-provisioning`, and it needs nothing from them.
 - `gh` authenticated with the `repo` scope, for the 40-run re-pull, the failed-log reads and the 5- and 10-run green streaks. The current token carries `repo` and `workflow`, and every read this phase needs worked with it.
 - A checkout with the spec-kit, deep-loop and skill-advisor dependencies installed. The worktree that authored this plan carries `node_modules` for the spec-kit package and `runtime/dist`, but not `runtime/cli/dist` and not the deep-loop or advisor trees, so the probe cannot run until T002 builds and installs them.
-- No operator decision gates this phase. The review lists none for R19 to R21, and this phase adds none.
+- No operator decision gated the start of this phase. The review lists none for R19 to R21. The operator's later rulings are recorded as amendments and in ADR-011 of `decision-record.md`.
 - `007-workflow-hygiene-on-off-control` depends on this phase's final job shapes, because R24 sizes its timeouts after R20 and after the deep-loop step this phase adds.
 
 **Deliverables**:
@@ -174,8 +174,11 @@ R19's saving is 0: it is the probe that decides R20. R20's saving is ~460 runner
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The `CLI vitest project` step is under 400 s on CI, down from 791 s, and 5 consecutive `Spec-Kit Check` runs are green.
+  - The step time is judged on the median of five green runs on main, by the operator ruling of 2026-10-24 on AC-003, recorded in `decision-record.md` (ADR-003 amendment) and measured in `scratch/r20-ci-step.md`.
+  - Read on 2026-10-25: five green runs read 459, 299, 313, 451 and 467 s, a median of 451 s and a 43 percent cut against the 791 s reference. The 400 s bar is not met, and the operator waived AC-003 on 2026-10-25 (`decision-record.md`, ADR-011).
 - **SC-002**: The probe is recorded and the decision is explicit: three green parallel runs choose the config flip, and any collision chooses the two-way shard.
 - **SC-003**: Each of deep-loop-runtime, diagram-corpus and skill-advisor-stress shows 10 consecutive green runs, or a filed root cause that names the test, the error class and the SHA.
+  - Read on 2026-10-25: diagram-corpus and skill-advisor-stress show ten `success` each, and deep-loop-runtime, the only red workflow, carries a filed root cause for `tests/unit/jsonl-repair.vitest.ts` (`AssertionError: expected 9 records, got 8`, first failing SHA e00fef3) in `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`.
 - **SC-004**: The five single old failures are recorded closed with their date, SHA and the later green run that proves them stale.
 - **SC-005**: No retry, rerun or `continue-on-error` is added to any of the three workflows.
 <!-- /ANCHOR:success-criteria -->
@@ -313,7 +316,7 @@ R19's saving is 0: it is the probe that decides R20. R20's saving is ~460 runner
 
 - Do the 183 CLI test files share a mutable fixture that only collides under parallelism? R19 answers it with three runs; a collision is the shard trigger, not a redesign.
 - Will 10 green runs accumulate at this repository's traffic? diagram-corpus can be dispatched through `workflow_dispatch` at `:15`; deep-loop-runtime and skill-advisor-stress are path-filtered, so the phase waits for natural runs rather than rerunning a failed one.
-- Is 791 s a stable baseline? Four samples read 776, 791, 950 and 795 s (`iteration-005.md:47`), and a later run reads 642 s, so the step moves with runner load. The acceptance is an absolute ceiling of 400 s on the first post-change run plus 5 green runs, not a ratio against 791.
+- Is 791 s a stable baseline? Four samples read 776, 791, 950 and 795 s (`iteration-005.md:47`), so the step moves with runner load. The acceptance is an absolute ceiling of 400 s on the first post-change run plus 5 green runs, not a ratio against 791.
 - Does the `STALE_SOURCE_DIGEST` class still appear in the latest 40 deep-loop-runtime runs? The sample read on 2026-10-23 has 13 failures, the newest on `b1f6c78` at 2026-10-22, and the newest three runs pass, so the class is in the window and its fix may already be in the tree. The re-check records which, and the fast-fail step is added either way because the class recurs whenever a contract source is edited without recompiling.
 <!-- /ANCHOR:questions -->
 

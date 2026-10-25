@@ -141,7 +141,8 @@ function findSkillRoots(skillsDir) {
     throw err;
   }
   return entries
-    .filter((entry) => entry.isDirectory() && entry.name !== 'node_modules' && !entry.name.startsWith('.'))
+    .filter((entry) => entry.isDirectory() && entry.name !== 'node_modules'
+      && !entry.name.startsWith('.') && !entry.name.startsWith('local-'))
     .map((entry) => path.join(skillsDir, entry.name))
     .filter((dir) => fs.existsSync(path.join(dir, rootContract.SKILL_MARKER)))
     .sort();

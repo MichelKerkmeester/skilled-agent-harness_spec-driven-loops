@@ -101,6 +101,10 @@ let dbDir = path.join(runtimeDir, 'database');
 let lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
 const PID_FILE_NAME = '.system-skill-advisor-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
+// Lease field telling the embedding client whether this launcher arms the shared
+// model server. MUST stay byte-identical to ADVISOR_LEASE_SUPERVISION_FIELD in
+// .skilled/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts.
+const OWNER_LEASE_SUPERVISION_FIELD = 'supervisesModelServer';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
 // Files the model server shares with its clients (pid, respawn lock, give-up marker)
 // live beside its socket in the short default directory the embedding client also
@@ -138,6 +142,9 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_COMPILED_ROUTING',
   'SPECKIT_ADVISOR_FRESHNESS',
   'SPECKIT_ADVISOR_DOC_TRIGGERS',
+  // Trusted roots for private `local-*` skill links. The daemon resolves each
+  // link against these roots, so without the key it indexes no private skill.
+  'SPECKIT_PRIVATE_SKILL_ROOTS',
   'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
   'SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW',
   'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED',
@@ -468,6 +475,10 @@ function buildOwnerLease(ownerPid = process.pid) {
     lastHeartbeatIso: new Date().toISOString(),
     ttlMs: 60000,
     canonicalDbDir: resolvedAdvisorDbDir(),
+    // The client cannot see this process's environment, so the lease carries the
+    // answer: a launcher that will not start a server is no reason to wait for one.
+    // That covers the flag being off and the supervision library being absent.
+    [OWNER_LEASE_SUPERVISION_FIELD]: isModelServerEnabled() && Boolean(hfControl),
   };
 }
 
@@ -1634,6 +1645,7 @@ module.exports = {
   artifactsReady,
   bridgeStdioThroughSessionProxy,
   buildIfNeeded,
+  buildOwnerLease,
   classifyOwnerLease,
   classifySkillAdvisorFrame,
   clearOwnerLeaseFile,

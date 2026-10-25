@@ -36,10 +36,10 @@ Use the `sk-code-review` mode (of the sk-code family) when:
 
 ### When NOT to Use
 
-- Feature implementation without review intent; load the surface packet (`sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian`) that carries the implement doctrine.
+- Feature implementation without review intent; load the surface packet (`sk-code-skilled`) that carries the implement doctrine.
 - Pure documentation editing where code behavior is not being assessed.
 - Git-only workflow tasks (branching, rebasing, commit hygiene) without code quality evaluation intent.
-- Applying review fixes after findings are accepted; load the surface packet (`sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian`) that carries the implement doctrine.
+- Applying review fixes after findings are accepted; load the surface packet (`sk-code-skilled`) that carries the implement doctrine.
 - Author-side quality gates before review; use `sk-code-quality`.
 - Root-cause debugging; use the surface's `workflow-debug.md` doctrine.
 - Verification evidence collection; use the surface's `workflow-verify.md` doctrine.
@@ -55,7 +55,7 @@ Review behavior follows a baseline+surface-evidence model:
 
 - Baseline (always): the `sk-code-review` mode (of the sk-code family) findings-first doctrine.
 - Surface standards evidence (when available): `sk-code` detected surface resources.
-- Surface detection: the markers and the precedence (SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN) come from the shared detection contract, [`stack-detection.md`](../shared/references/stack-detection.md) section 2. `detect_surface_evidence` below restates that contract and keeps no rules of its own, so it changes only when the contract does.
+- Surface detection: the markers and the precedence (SKILLED > UNKNOWN) come from the shared detection contract, [`stack-detection.md`](../shared/references/stack-detection.md) section 2. `detect_surface_evidence` below restates that contract and keeps no rules of its own, so it changes only when the contract does.
 - Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
 
 ### Phase Detection
@@ -221,17 +221,9 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
 # Surface markers restate the shared detection contract,
 # ../shared/references/stack-detection.md section 2, which owns them. Change them only when it changes.
 SKILLED_PATH_MARKER = ".skilled/"
-OBSIDIAN_FILE_MARKERS = ("esbuild.config.mjs",)
-OBSIDIAN_CONTENT_MARKERS = {"manifest.json": '"minAppVersion"', "styles.css": ".db-"}
-OBSIDIAN_SOURCE_IMPORT = 'from "obsidian"'
-# The hub router's OBSIDIAN_PLUGIN keywords, so a prompt that names the plugin bundles the surface.
-OBSIDIAN_PROMPT_TERMS = ["obsidian plugin", "note database plugin"]
-WEBFLOW_PATH_MARKERS = ("src/2_javascript/", ".webflow.js", "wrangler.toml")
-WEBFLOW_CONTENT_MARKERS = ("Webflow.push", "--vw-", "window.Motion", "window.gsap", "gsap.to", "gsap.from", "gsap.set", "gsap.timeline", "gsap.registerPlugin", "new Lenis", "new Hls", "new Swiper", "FilePond")
-NON_WEBFLOW_TERMS = ["not webflow", "no webflow designer", "without webflow", "non-webflow", "vanilla html/css/js only", "stack-agnostic"]
 
 def detect_surface_evidence(task, workspace_files=None, changed_files=None, read_text=None) -> str:
-    """Return SKILLED, OBSIDIAN, WEBFLOW or UNKNOWN, in the shared contract's precedence.
+    """Return SKILLED or UNKNOWN, in the shared contract's precedence.
 
     Paths are repository-relative and already resolved through symlinks, as the
     contract's symlink guard requires. read_text(path) returns a file's text, or "".
@@ -243,25 +235,8 @@ def detect_surface_evidence(task, workspace_files=None, changed_files=None, read
     def name(path: str) -> str:
         return path.rsplit("/", 1)[-1]
 
-    def in_src(path: str) -> bool:
-        return path.startswith("src/") or "/src/" in path
-
     if any(path.startswith(SKILLED_PATH_MARKER) or "/" + SKILLED_PATH_MARKER in path for path in paths):
         return "SKILLED"
-    if (
-        any(name(path) in OBSIDIAN_FILE_MARKERS for path in paths)
-        or any(name(path) in OBSIDIAN_CONTENT_MARKERS and OBSIDIAN_CONTENT_MARKERS[name(path)] in read(path) for path in paths)
-        or any(in_src(path) and OBSIDIAN_SOURCE_IMPORT in read(path) for path in paths)
-        or any(keyword_present(term, text) for term in OBSIDIAN_PROMPT_TERMS)
-    ):
-        return "OBSIDIAN"
-    # Explicit non-Webflow wording wins before any Webflow marker.
-    if any(keyword_present(term, text) for term in NON_WEBFLOW_TERMS):
-        return "UNKNOWN"
-    if any(marker in path for path in paths for marker in WEBFLOW_PATH_MARKERS) or any(
-        marker in read(path) for path in paths for marker in WEBFLOW_CONTENT_MARKERS
-    ):
-        return "WEBFLOW"
     # Generic Node (a package.json or src/ alone) is not owned by any surface.
     return "UNKNOWN"
 
@@ -372,7 +347,7 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]
 **Baseline used**: [sk-code (`sk-code-review`)]
-**Surface evidence used**: [SKILLED | OBSIDIAN | WEBFLOW | UNKNOWN]
+**Surface evidence used**: [SKILLED | UNKNOWN]
 
 ## Findings
 
@@ -496,7 +471,7 @@ Downstream automation parses this final line via exact string match — do not v
 
 - Primary review baseline for `@review` agents in `.skilled/agents/review.md`.
 - Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
-- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.
+- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-skilled`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.
 
 ---
 

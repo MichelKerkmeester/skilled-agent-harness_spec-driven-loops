@@ -33,7 +33,7 @@ Thirty of the repository's 33 workflows answer a pull request, and 32 of the 33 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -77,7 +77,7 @@ This is **Phase 3** of the CI efficiency implementation phases specification. It
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for. `command-tree-parity.yml:47-50` says in so many words that it is unfiltered on purpose, and `agent-mirror-sync.yml` has no filter at all, so both re-check the whole tree on a documentation-only change. `dispatch-enforcement-guard.yml` runs `dispatch-audit.test.mjs` twice per run, once explicitly at `:50` and again through the whole-tree vitest run at `:67`, and both jobs pay their own checkout and `npm --prefix .skilled ci` (`:44`, `:61`). `advisory-checks.yml` pairs `continue-on-error: true` with a second `|| true` or `|| echo` on the same command (`:38`, `:52`, `:68`), and `strict-pass-freshness-report.yml` does the same at `:165` and `:172`, so a failing step reports success twice over. Three workflows check out full history they do not need (`rule-canary-sync.yml:15`, `repo-rules-corpus.yml:33`, `deep-loop-runtime.yml:42`), and no document records which CI jobs merely repeat a pre-commit hook.
+Thirty-one workflows answer a pull request, and 32 of the repository's 33 workflows have no `concurrency:` group (`research.md:101`), so two pushes to one PR leave two full runs racing and the older verdict is thrown away only after it has been paid for. `command-tree-parity.yml:47-50` says in so many words that it is unfiltered on purpose, and `agent-mirror-sync.yml` has no filter at all, so both re-check the whole tree on a documentation-only change. `dispatch-enforcement-guard.yml` runs `dispatch-audit.test.mjs` twice per run, once explicitly at `:50` and again through the whole-tree vitest run at `:67`, and both jobs pay their own checkout and `npm --prefix .skilled ci` (`:44`, `:61`). `advisory-checks.yml` pairs `continue-on-error: true` with a second `|| true` or `|| echo` on the same command (`:38`, `:52`, `:68`), and `strict-pass-freshness-report.yml` does the same at `:165` and `:172`, so a failing step reports success twice over. Three workflows check out full history they do not need (`rule-canary-sync.yml:15`, `repo-rules-corpus.yml:33`, `deep-loop-runtime.yml` at `:42` before the concurrency block, `:46` after it), and no document records which CI jobs merely repeat a pre-commit hook.
 
 ### Purpose
 Make every workflow run only when its inputs change, cancel the run it supersedes, pay for one copy of the work it does, and report a failure as a failure, for about 160-240 runner-minutes a day after R1 plus an unmeasured PR-side wall-clock gain.
@@ -90,7 +90,7 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 
 ### In Scope
 - R3: a `concurrency:` block on the 30 PR-triggered workflows other than `dependabot-auto-merge.yml`, with `cancel-in-progress` on pull requests and D2=pr-only (2026-10-23) leaving main's runs alone.
-- R4: a `paths:` filter on both events of `command-tree-parity.yml`, naming every input its four checkers read, and a rewrite of the comment at `:47-50`.
+- R4: a `paths:` filter on both events of `command-tree-parity.yml`, naming every input its four checkers read, and a rewrite of the comment at `:98-102` (planned `:47-50`, moved by the filters).
 - R5: D10=skip (2026-10-23) leaves `changed-packet-validation.yml` unfiltered, with the skip recorded rather than filtered.
 - R6: removing the duplicate `dispatch-audit.test.mjs` step from `dispatch-enforcement-guard.yml` while keeping the whole-tree vitest run and the fail-closed rule-suite guard.
 - R7: dropping the inner suppression in `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172`, keeping `continue-on-error` in both.
@@ -114,14 +114,14 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.github/workflows/advisory-checks.yml` and 29 other PR-triggered workflows | Modify | Add the `concurrency:` block above `jobs:` |
-| `.github/workflows/command-tree-parity.yml` | Modify | Add `paths:` to both events after `:5-8`; rewrite the comment at `:47-50` |
+| `.github/workflows/command-tree-parity.yml` | Modify | Add `paths:` to both events after `:5-8`; rewrite the comment at `:98-102` |
 | `.github/workflows/changed-packet-validation.yml` | Unchanged under D10=skip (2026-10-23) | Add `paths:` to both events after `:4-7` only if a later phase flips the choice |
 | `.github/workflows/dispatch-enforcement-guard.yml` | Modify | Delete the `Run the dispatch audit core suite` step at `:41-50`; keep `:22-40` and `:52-67` |
 | `.github/workflows/advisory-checks.yml` | Modify | Replace `\|\| true` at `:38` and `\|\| echo` at `:52,68` with an explicit failing branch |
 | `.github/workflows/strict-pass-freshness-report.yml` | Modify | Capture the status at `:172` and exit with it after printing the report; keep `continue-on-error` at `:165` |
 | `.github/workflows/rule-canary-sync.yml` | Modify | Delete the `with: fetch-depth: 0` block at `:14-15` |
 | `.github/workflows/repo-rules-corpus.yml` | Modify | Delete the `with: fetch-depth: 0` block at `:32-33` |
-| `.github/workflows/deep-loop-runtime.yml` | Modify | `fetch-depth: 0` at `:42` becomes `fetch-depth: 2` |
+| `.github/workflows/deep-loop-runtime.yml` | Modify | `fetch-depth: 0` at `:42` before the concurrency block becomes `fetch-depth: 2` at `:46` after it |
 | `.github/workflows/agent-mirror-sync.yml` | Modify | Add `paths:` under `pull_request:` at `:3-4` |
 | `.github/workflows/skill-doc-frontmatter.yml` | Modify | Add the guard at both roots and the workflow file to the lists at `:5-14` and `:17-23` |
 | `.github/workflows/README.md` | Modify | Move `command-tree-parity.yml` from the `:66` row to the `:69` row; amend the `:71` row for `agent-mirror-sync.yml` |
@@ -139,11 +139,11 @@ Make every workflow run only when its inputs change, cancel the run it supersede
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | **R3.** All 30 PR-triggered workflows except `dependabot-auto-merge.yml` carry `concurrency: group: ${{ github.workflow }}-${{ github.event.pull_request.number \|\| github.ref }}` and `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` above `jobs:`; `trigger-index-rebuild.yml` keeps its own group at `:21-23`, and D2=pr-only (2026-10-23) leaves `cancel-in-progress` off main |
-| REQ-002 | **R4.** `command-tree-parity.yml` carries a `paths:` list on both `pull_request:` and `push:`, naming every input `validate-command-tree-parity.sh`, `sync-runtime-mirrors.cjs`, `sync-skills-hermes.cjs` and `sync-prompts-hermes.cjs` read, with an `.opencode/` twin for every `.skilled/` entry, and the comment at `:47-50` describes the filter instead of claiming there is none |
+| REQ-002 | **R4.** `command-tree-parity.yml` carries a `paths:` list on both `pull_request:` and `push:`, naming every input `validate-command-tree-parity.sh`, `sync-runtime-mirrors.cjs`, `sync-skills-hermes.cjs` and `sync-prompts-hermes.cjs` read, with an `.opencode/` twin for every `.skilled/` entry, and the comment at `:98-102` describes the filter instead of claiming there is none |
 | REQ-003 | **R5.** D10=skip (2026-10-23) is recorded in `plan.md` with its ~10 runner-min/day figure, so no filter is added; the alternative adds `paths:` (`specs/**`, `.skilled/skills/system-spec-kit/**`, `.opencode/skills/system-spec-kit/**`, the workflow file) to both events |
 | REQ-004 | **R6.** `dispatch-enforcement-guard.yml` runs `dispatch-audit.test.mjs` once per run, not twice: either the two jobs merge or the explicit step at `:41-50` is deleted. The whole-tree vitest run at `:67` keeps no project or path filter, and the fail-closed guard at `:31-35` stays byte-identical |
-| REQ-005 | **R7.** `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172` no longer suppress a failing command, while `continue-on-error: true` stays on the same steps (`advisory-checks.yml:27,41,55`, `strict-pass-freshness-report.yml:165`), so the step reports `failure` and the job reports `success` |
-| REQ-006 | **R8.** `rule-canary-sync.yml` and `repo-rules-corpus.yml` check out at the default depth, and `deep-loop-runtime.yml:42` reads `fetch-depth: 2` under D7=depth-2 (2026-10-23); the seven workflows that do read history keep `fetch-depth: 0` |
+| REQ-005 | **R7.** `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172` no longer suppress a failing command, while `continue-on-error: true` stays on the same steps (`advisory-checks.yml:27,41,55`, `strict-pass-freshness-report.yml:165`), so the step prints an error line and a failure annotation while the job reports `success` (the REST API reports a `continue-on-error` step as `success`, per the 2026-10-24 operator ruling in `decision-record.md`) |
+| REQ-006 | **R8.** `rule-canary-sync.yml` and `repo-rules-corpus.yml` check out at the default depth, and `deep-loop-runtime.yml` reads `fetch-depth: 2` at `:46` after the concurrency block (the original position was `:42` before it) under D7=depth-2 (2026-10-23); the seven workflows that do read history keep `fetch-depth: 0` |
 | REQ-007 | **R9.** `agent-mirror-sync.yml` carries a `paths:` list under `pull_request:` naming `.opencode/agents/**`, `.skilled/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `check-agent-mirror-sync.cjs` at both roots and the workflow file; `comment-hygiene.yml` stays unfiltered |
 | REQ-008 | **R10.** Both filter lists in `skill-doc-frontmatter.yml` name `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`, its `.opencode/` twin, and `.github/workflows/skill-doc-frontmatter.yml` |
 | REQ-009 | **R11.** `scratch/pre-commit-inventory.md` lists every gate key in `.skilled/scripts/git-hooks/pre-commit` against every workflow step, names the workflow that duplicates each one, and says `keep` or `drop` with a reason |
@@ -172,10 +172,10 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 
 #### R4 — A real path filter on command-tree-parity (REQ-002)
 
-- **Functional requirement**: `command-tree-parity.yml` carries 23 `paths:` entries on both `pull_request:` and `push:`, the comment at `:47-50` describes the filter, and `check-gate-inputs.sh` prints `RESULT: PASSED`. The entries name the command trees, the agent trees, `SKILL.md`, `.hermes/**`, the spec-kit package, the four hook configs and their four hook mirrors, and the workflow file.
+- **Functional requirement**: `command-tree-parity.yml` carries 23 `paths:` entries on both `pull_request:` and `push:`, the comment at `:98-102` describes the filter, and `check-gate-inputs.sh` prints `RESULT: PASSED`. The entries name the command trees, the agent trees, `SKILL.md`, `.hermes/**`, the spec-kit package, the four hook configs and their four hook mirrors, and the workflow file.
 - **Edge cases**: a `specs/**`-only change starts no run; a nested `SKILL.md` change starts both jobs; a change to `.hermes/**` starts a run even though that tree is generated, because a hand edit there would otherwise go uncompared. A `.skilled/` entry with no `.opencode/` twin fails the gate before merge rather than at run time.
 - **Risk and mitigation**: a filter that misses an input lets a stale Hermes copy or a broken mirror land green. The list is derived from a full read of `validate-command-tree-parity.sh`, `sync-runtime-mirrors.cjs`, `sync-skills-hermes.cjs` and `sync-prompts-hermes.cjs`, and both trigger probes are recorded.
-- **Rollback**: delete both `paths:` blocks and restore the four comment lines at `:47-50`. The workflow returns to running on every push and pull request.
+- **Rollback**: delete both `paths:` blocks and restore the four comment lines at `:98-102`. The workflow returns to running on every push and pull request.
 
 #### R5 — An optional path filter on changed-packet-validation (REQ-003)
 
@@ -193,14 +193,14 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 
 #### R7 — Remove the double suppression in the report-only workflows (REQ-005)
 
-- **Functional requirement**: `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172` no longer suppress a failing command, and `continue-on-error: true` stays on the same steps (`advisory-checks.yml:27,41,55`, `strict-pass-freshness-report.yml:165`), so the step reports `failure` and the job reports `success`.
+- **Functional requirement**: `advisory-checks.yml:38,52,68` and `strict-pass-freshness-report.yml:172` no longer suppress a failing command, and `continue-on-error: true` stays on the same steps (`advisory-checks.yml:27,41,55`, `strict-pass-freshness-report.yml:165`), so the step prints an error line and a failure annotation while the job reports `success` (the REST API reports a `continue-on-error` step as `success`, per the 2026-10-24 operator ruling in `decision-record.md`).
 - **Edge cases**: the repair report must print before the step exits, so the status is captured and the exit follows `cat` and `rm`. The fix hints that lived in the `|| echo` branches move into the `::error::` line, so a reader still gets the repair instruction. A step that fails for a missing script keeps its existing fail-closed branch.
 - **Risk and mitigation**: a red step under a green job alarms a reader who only looks at the run status. That is the point: the run page now shows which report failed, and the job stays green by design.
 - **Rollback**: restore the suppressed command lines. The step returns to reporting success on a failure.
 
 #### R8 — Shallow checkout where history is unread (REQ-006)
 
-- **Functional requirement**: `rule-canary-sync.yml:14-15` and `repo-rules-corpus.yml:32-33` lose their `with: fetch-depth: 0` block, `deep-loop-runtime.yml:42` reads `fetch-depth: 2` under D7, and the seven workflows that do read history keep depth 0.
+- **Functional requirement**: `rule-canary-sync.yml:14-15` and `repo-rules-corpus.yml:32-33` lose their `with: fetch-depth: 0` block, `deep-loop-runtime.yml` reads `fetch-depth: 2` at `:46` after the concurrency block (the original position was `:42` before it) under D7, and the seven workflows that do read history keep depth 0.
 - **Edge cases**: a default-depth checkout still contains the full working tree, so a checker that only reads files is unaffected. `deep-loop-runtime` keeps depth 2 rather than 1 because its mode-event suites bind a run to a commit and its parent (`:38-39`). `comment-hygiene` and `agent-mirror-sync` diff against the PR base and keep depth 0.
 - **Risk and mitigation**: a checker could shell out to git without saying so. Both checkers were read and match no `git`, `child_process`, `execFile` or `spawn`, and the probe compares each checkout step against its 002 baseline sample.
 - **Rollback**: restore the `with:` block or the `fetch-depth: 0` value. The next run checks out full history again.
@@ -221,7 +221,7 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 
 #### R11 — Inventory CI jobs that duplicate pre-commit hooks (REQ-009)
 
-- **Functional requirement**: `scratch/pre-commit-inventory.md` gives each of the 12 gate keys in `.skilled/scripts/git-hooks/pre-commit` one row with the checker path, the installed-hook line, the CI counterpart and a verdict of `keep CI`, `drop CI` or `local only`.
+- **Functional requirement**: `scratch/pre-commit-inventory.md` gives each of the 13 gate keys in `.skilled/scripts/git-hooks/pre-commit` one row with the checker path, the installed-hook line, the CI counterpart, a verdict of `keep CI`, `drop CI` or `local only`, and the reason for the verdict (the thirteenth key, `private-skill`, came with `7648ae8b56`; the 2026-10-24 amendment corrects the planned 12 keys and five columns).
 - **Edge cases**: a gate with no CI counterpart is `local only`, never `drop CI`; `hook-flags` and `hook-trust` have none by design, because they configure and guard the hook itself. The 115-line compatibility helper at `.skilled/hooks/git/pre-commit` is not the installed hook and is not the source of the key list.
 - **Risk and mitigation**: the inventory could be read as an action list. The document states that nothing in this phase acts on it, and each verdict carries its reason.
 - **Rollback**: delete the file. It is a record, not state.
@@ -273,7 +273,7 @@ Each recommendation gets four facts: what must be true when it lands, the cases 
 ### Performance
 - **NFR-P01**: The phase removes about 162 runner-min/day after R1 from R4 and R8 alone, plus R6's re-measured 0-78, against the 002 baseline.
 - **NFR-P02**: A superseded pull-request run stops consuming a runner instead of finishing into a discarded verdict; the wall-clock gain is unmeasured because the 23.5 h window held no PR runs.
-- **NFR-P03**: Three checkouts drop by about 20 s each, and `rule-canary-sync`'s 78 s median job is inferred to drop under 60 s, which would bill one minute instead of two.
+- **NFR-P03**: Three checkouts drop by at least about 20 s each, and `rule-canary-sync`'s 78 s median job is inferred to drop under 60 s, which would bill one minute instead of two.
 
 ### Security
 - **NFR-S01**: No workflow gains a permission, a secret or a write scope. `permissions:` blocks are untouched; this phase adds no `permissions:` key and removes none.

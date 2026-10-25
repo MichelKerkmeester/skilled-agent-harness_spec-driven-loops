@@ -486,6 +486,86 @@ echo 'cp "$REPO_ROOT/.opencode/bin/gone.sh" /dev/null/.skilled-untrusted' >> "$T
 run_check; RC=$?
 expect "a missing path beside the sentinel still fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/scripts/git-hooks/pre-commit:4 $REPO_ROOT/.opencode/bin/gone.sh resolves nowhere'
 
+# ── 50. a composite action in the tree is scanned and passes ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions the demo tree
+runs:
+  using: composite
+  steps:
+    - run: bash .opencode/bin/tool.sh
+ACTION
+run_check; RC=$?
+expect "a composite action in the tree is scanned and passes" 0 "$RC" "RESULT: PASSED"
+
+# ── 51. an unresolved path in a composite action fails workflow-inputs ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions the demo tree
+runs:
+  using: composite
+  steps:
+    - run: bash .skilled/bin/gone.sh
+ACTION
+run_check; RC=$?
+expect "an unresolved path in a composite action fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/actions/demo/action.yml:6 .skilled/bin/gone.sh resolves nowhere"
+
+# ── 52. an unreadable root shape in a composite action fails parser-miss ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions the demo tree
+runs:
+  using: composite
+  steps:
+    - run: npm --prefix "$GITHUB_WORKSPACE/.skilled" ci
+ACTION
+run_check; RC=$?
+expect "an unreadable root shape in a composite action fails parser-miss" 1 "$RC" "FAIL parser-miss: .github/actions/demo/action.yml:6 names a source root that no rule reads"
+
+# ── 53. a description that names a path is a label ──
+setup_fixture
+mkdir -p "$TMP/repo/.github/actions/demo"
+cat > "$TMP/repo/.github/actions/demo/action.yml" <<'ACTION'
+name: demo
+description: Provisions .skilled/bin/gone.sh and .opencode/bin/gone.sh
+runs:
+  using: composite
+  steps:
+    - run: bash .opencode/bin/tool.sh
+ACTION
+run_check; RC=$?
+expect "a description that names a path is a label" 0 "$RC" "RESULT: PASSED"
+
+# ── 54. an ignored build output under an existing directory passes ──
+setup_fixture
+git -C "$TMP/repo" init -q
+echo '.opencode/bin/built.cjs' > "$TMP/repo/.gitignore"
+echo '      - run: node .opencode/bin/built.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "an ignored absent file under an existing directory passes" 0 "$RC" "RESULT: PASSED"
+
+# ── 55. an ignored build output under a missing directory fails workflow-inputs ──
+setup_fixture
+git -C "$TMP/repo" init -q
+echo '.opencode/gone/built.cjs' > "$TMP/repo/.gitignore"
+echo '      - run: node .opencode/gone/built.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "an ignored absent file under a missing directory fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/workflows/demo.yml:12 .opencode/gone/built.cjs is generated under .opencode/gone, which resolves nowhere"
+
+# ── 56. a missing path that git does not ignore still fails workflow-inputs ──
+setup_fixture
+git -C "$TMP/repo" init -q
+echo '.opencode/bin/built.cjs' > "$TMP/repo/.gitignore"
+echo '      - run: node .opencode/bin/other.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "a missing path that is not ignored still fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/workflows/demo.yml:12 .opencode/bin/other.cjs resolves nowhere"
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

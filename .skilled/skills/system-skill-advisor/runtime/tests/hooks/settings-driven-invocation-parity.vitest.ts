@@ -30,8 +30,9 @@
 // `Stop`):
 //   - The event value is a single-element array of matcher-groups.
 //   - Each matcher-group has a `matcher` string and a `hooks[]` array.
-//   - `hooks[]` is a single-element array (no parallel-hook fan-out).
-//   - The single hook has type === "command" and a `command` string.
+//   - `hooks[]` holds the event's handler first, then the other registered
+//     hooks for that event, at the counts in EXPECTED_HOOK_COUNTS.
+//   - The first hook has type === "command" and a `command` string.
 //   - The matcher-group has NO top-level `bash:` field (the F23.1 trigger).
 //   - The `command` string points at `dist/hooks/claude/<event>.js`
 //     (NOT `dist/hooks/copilot/...` — the F23.1 wrong-adapter trigger).
@@ -99,10 +100,10 @@ const EXPECTED_HANDLER_FRAGMENTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], 
   Stop: 'dist/hooks/claude/session-stop.js',
 };
 const EXPECTED_HOOK_COUNTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], number> = {
-  UserPromptSubmit: 2,
+  UserPromptSubmit: 3,
   PreCompact: 1,
-  SessionStart: 7,
-  Stop: 2,
+  SessionStart: 8,
+  Stop: 3,
 };
 
 interface HookCommand {

@@ -32,10 +32,15 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 jobs:
   frontmatter-coverage:
     name: Skill reference/asset frontmatter contract
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Run skill-doc frontmatter guard (coverage mode)
@@ -59,8 +64,9 @@ jobs:
     name: Changed skill docs raise their version
     # Only a pull request has a base to compare against. This is what catches a
     # commit made with SPECKIT_SKIP_DOC_VERSION_BUMP set, or one that never ran the hook.
-    if: github.event_name == 'pull_request'
+    if: ${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_TESTS != 'off') && (github.event_name == 'pull_request') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       # The comparison needs the base branch, so the full history is fetched.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
