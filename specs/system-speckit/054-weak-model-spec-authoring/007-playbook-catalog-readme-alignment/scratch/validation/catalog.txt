@@ -1,0 +1,5 @@
+PACKAGE system-spec-kit: PASS tier=fail violations=0
+NOTE: 2 violation(s) (0 fail, 0 warn, 2 note):
+  - [note] [ignored_path_absent] system-spec-kit/session-relaunch-loop.md:95: prose path is absent and ignored by a repository .gitignore: .skilled/skills/.state/session-relaunch/hop-history.log
+  - [note] [ignored_path_absent] system-spec-kit/spec-validation-rule-engine.md:29: prose path is absent and ignored by a repository .gitignore: .skilled/hooks/hook-flags.env
+exit=0

@@ -1,0 +1,46 @@
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/leaf-aliases.json
+ M .skilled/skills/system-spec-kit/leaf-manifest.json
+ M .skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+ M .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+ M .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+ M specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md
+?? .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+?? .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-A.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-B.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-C.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T011.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/candidates.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/coverage.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/dropped.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read-annotated.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/unsafe.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/
+?? specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/briefs/T012-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/briefs/T012-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/
+?? specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/runs/
+?? specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/status-start.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/test/
+?? specs/zz-bench-card/

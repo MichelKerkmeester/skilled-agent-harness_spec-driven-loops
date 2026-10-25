@@ -1,6 +1,6 @@
 ---
 description: "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch."
-argument-hint: "[report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>]"
+argument-hint: "[report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Write
 ---
 <!-- skill_agent: sk-code -->
@@ -80,5 +80,5 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-ci-p
 
 1. `report` runs the read-only report once: every workflow with its switch state, triggers, path filters, purpose and drift flags, and the newest commit on main that is not a trigger-index rebuild. It writes nothing.
 2. `scaffold` creates one new file under `.github/workflows/` from the workflow standards templates. It refuses a path that already exists and refuses a protected workflow name, prints the whole file, and writes it only after a yes. It never edits an existing workflow and never stages or commits.
-3. `toggle` turns one of the six documented switch variables off, or back on, in the repository's Actions variables. It prints the exact `gh variable` command and the current state, refuses the message-contract variable and the master switch while the workflows README forbids switching them off, runs the command only after a yes, and reads the state back.
+3. `toggle` turns one of the six documented switch variables off, or back on, in the repository's Actions variables. It prints the exact `gh variable` command and the current state, refuses the message-contract variable and the master switch while the workflows README forbids switching them off, because either one skips `message-contract.yml`, the only check the ruleset requires, and a skipped job reports Success. It runs the command only after a yes, and reads the state back.
 4. Render the result and next step from the presentation contract.

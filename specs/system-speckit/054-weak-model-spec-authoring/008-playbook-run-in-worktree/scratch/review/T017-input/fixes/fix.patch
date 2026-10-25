@@ -1,0 +1,7 @@
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt b/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+new file mode 100644
+index 0000000000..f07c694473
+--- /dev/null
++++ b/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+@@ -0,0 +1 @@
++/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.prgbe0xBco

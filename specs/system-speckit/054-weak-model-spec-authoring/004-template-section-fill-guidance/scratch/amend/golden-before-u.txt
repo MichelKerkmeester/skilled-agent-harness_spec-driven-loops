@@ -1,0 +1,133 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/scaffold-golden-snapshots.vitest.ts (12 tests | 3 failed) 5030ms
+     × renders required docs for Level 2 from manifest templates 3ms
+     × renders required docs for Level 3 from manifest templates 1ms
+     × renders required docs for Level 3+ from manifest templates 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 2 from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-spec.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -131,11 +131,11 @@
+
+  ---
+
+  <!-- ANCHOR:edge-cases -->
+  ## L2: EDGE CASES
+- <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
++ <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+  <!-- /ANCHOR:edge-cases -->
+
+  ### Data Boundaries
+  - Empty input: [YOUR_VALUE_HERE: How system handles]
+  - Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
+@@ -152,11 +152,11 @@
+
+  ---
+
+  <!-- ANCHOR:complexity -->
+  ## L2: COMPLEXITY ASSESSMENT
+- <!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
++ <!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+
+  | Dimension | Score | Notes |
+  |-----------|-------|-------|
+  | Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
+  | Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3 from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-plan.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -69,11 +69,11 @@
+
+  ---
+
+  <!-- ANCHOR:affected-surfaces -->
+  ## FIX ADDENDUM: AFFECTED SURFACES
+- <!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
++ <!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
+
+  Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+  | Surface | Current Role | Action | Verification |
+  |---------|--------------|--------|--------------|
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 3+ from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-plan.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -69,11 +69,11 @@
+
+  ---
+
+  <!-- ANCHOR:affected-surfaces -->
+  ## FIX ADDENDUM: AFFECTED SURFACES
+- <!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
++ <!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
+
+  Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+  | Surface | Current Role | Action | Verification |
+  |---------|--------------|--------|--------------|
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+  Snapshots  3 failed
+             7 obsolete
+             ↳ runtime/cli/tests/scaffold-golden-snapshots.vitest.ts
+               · manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-plan.md 1
+               · manifest template golden snapshots > renders required docs for Level 2 from manifest templates > 2-tasks.md 1
+               · manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 3 from manifest templates > 3-tasks.md 1
+               · manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 3+ from manifest templates > 3+-tasks.md 1
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 9 passed (12)
+   Start at  21:53:58
+   Duration  5.12s (transform 23ms, setup 11ms, import 19ms, tests 5.03s, environment 0ms)
+

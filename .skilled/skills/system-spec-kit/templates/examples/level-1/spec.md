@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Add User Authentication"
-description: "required for a simple authentication feature (~80 LOC). Use this as a reference when"
+description: "Level 1 spec for a small user authentication feature of about 80 lines, used as a reference for baseline documentation depth."
 trigger_phrases:
   - "feature specification"
   - "problem statement"

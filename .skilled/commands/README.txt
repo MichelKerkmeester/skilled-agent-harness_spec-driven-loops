@@ -47,9 +47,9 @@ Commands are organized into six groups plus root-level utilities:
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
-| **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
+| **root** | `commands/` | 2 | Standalone `/goal-opencode` and `/vision` utilities |
 
-Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+Standalone commands live at the root level: `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
 Each group's command count above is the number of command files in that folder. When a command is added, update the count and its row in section 4. A group whose file set outgrew this index is the failure mode this document has hit before.
 
@@ -73,7 +73,6 @@ This file is descriptive only. The executable contract for any workflow lives in
 
 ```
 command/
-├── agent-router.md           # Route requests to AI systems
 ├── goal-opencode.md          # Session-goal router for the opencode-goal plugin (OpenCode only)
 ├── vision.md                 # On-device read of your most recent image
 ├── prompt/                   # Prompt engineering command group
@@ -200,7 +199,6 @@ Root commands have no group prefix.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Agent Router | `/agent-router <request>` | Route a request through intelligent AI system selection |
 | Prompt | `/prompt:improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
 | Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin |
 | Vision | `/vision [question about your most recent image]` | On-device scene read, caption and OCR of your most recent image. Omit the question for a full read |
@@ -227,7 +225,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 ## 5. INSTRUCTIONS
 
 1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt` or `speckit`.
-2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent-router` or `/goal-opencode`.
+2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/goal-opencode` or `/vision`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
 5. Follow the family-specific index under `commands/<group>/README.txt` when one exists and you need detailed routing help.
@@ -263,14 +261,6 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 /speckit:complete "New feature" :with-research
 
 # With automatic debug recovery notes
-```
-
-### Agent Router
-
-```
-# Route a request through intelligent agent selection
-# Use the exact command name (not /agents or /agents-router)
-/agent-router "Build a new authentication system"
 ```
 
 <!-- /ANCHOR:usage -->
@@ -327,7 +317,6 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | Problem | Cause | Fix |
 |---------|-------|-----|
 | Command not recognized | Wrong invocation format | Use `/<group>:<command>` format (e.g., `/speckit:save`) |
-| Agent router command not found | Used `/agents` or `/agents-router` alias | Use `/agent-router "<request>"` |
 | Missing arguments error | Required argument not provided | Check the `argument-hint` in the command's frontmatter |
 | YAML workflow not found | Missing asset file | Verify `assets/` folder contains the corresponding YAML |
 | `create` vs `update` mismatch | Target package exists/does not exist as expected | Re-run the command with the matching operation |

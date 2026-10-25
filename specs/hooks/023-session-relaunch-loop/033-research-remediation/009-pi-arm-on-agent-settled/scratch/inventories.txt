@@ -1,0 +1,22 @@
+$ rg -n "agent_end" .skilled/hooks/session-relaunch --glob "!*.test.ts"
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:478: * Register the message_end, before_agent_start, agent_start, agent_end, agent_settled and
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:542:  // The held nudge leaves on agent_end rather than on the settle: a follow-up queued here runs
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:545:  pi.on('agent_end', async (_event, ctx) => {
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:574:  // The arm waits for the settle because agent_end closes one agent loop, not the run: an
+.skilled/hooks/session-relaunch/README.md:126:Pi checks usage at `message_end` and holds the nudge for `agent_end`, because the message that crosses the threshold usually carries the prepare call itself. At `agent_end` it re-checks the pending or fresh armed record and the hop limit, then sends the held text with `deliverAs: 'followUp'` and `triggerTurn: true`, so the nudge reaches the model without an operator turn. Its adapter finds `killer.cjs` by walking up from any repository subdirectory. `tsconfig.pi.json` includes the extension entry so the adapter is type-checked. OpenCode adds its active nudge to the system prompt on every request while this session has no pending or fresh armed record. When `SKILLED_LOOP_ID` is set but names no record, it keeps the nudge only while the planned note file does not exist. It keeps a claim seed in the system prompt until the note leaves `open` or a new non-seed user message arrives, then arms the record on `session.idle`.
+
+$ rg -n "armRelaunch|agent_settled" .skilled/hooks .pi --glob "!**/node_modules/**"
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:165:    event: 'agent_settled',
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:438:async function armRelaunch(
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:478: * Register the message_end, before_agent_start, agent_start, agent_end, agent_settled and
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:576:  // withdraw an arm made a moment before. Pi emits agent_settled once per run, after all of
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:579:  (pi as unknown as AgentSettledRegistrar).on('agent_settled', async (event, ctx) => {
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:588:      await armRelaunch(modules, pi, ctx, sessionId);
+.skilled/hooks/session-relaunch/README.md:138:Every arm path restarts a killer for an armed record that has no live killer owner: Claude Stop, Codex Stop, Hermes session end, OpenCode `session.idle` and Pi `agent_settled`. It does nothing while a killer owns the lock. A record left armed by a failed spawn is therefore recovered by the next arm event.
+.skilled/hooks/session-relaunch/README.md:223:| armed | The runtime's arm event armed the record and started the killer: `Stop` on Claude and Codex, `agent_settled` on Pi, `session.idle` on OpenCode and session end on Hermes. |
+.skilled/hooks/goal/pi/goal-context.ts:205: * NOTE: `turn_end`/`agent_end`/`agent_settled` are `void`-returning events
+
+$ rg -n "agent-end-arm-error|agent-settled-arm-error" (repo, excluding specs and node_modules)
+./.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:553:      .filter((line) => line.includes('agent-settled-arm-error stage=spawn'));
+./.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:591:        .filter((line) => line.includes('agent-settled-arm-error stage=spawn'));
+./.skilled/hooks/session-relaunch/pi/session-relaunch.ts:332:    core.appendLog('agent-settled-arm-error', {

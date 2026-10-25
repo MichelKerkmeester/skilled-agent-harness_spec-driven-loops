@@ -1,0 +1,188 @@
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index d284cacb49..018afd9f14 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -1106,7 +1106,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write \`N/A\` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ \`\`\`
+ Phase 1 (Setup) ──────┐
+@@ -1126,7 +1126,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write \`N/A\` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -1796,7 +1796,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write \`N/A\` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ \`\`\`
+ Phase 1 (Setup) ──────┐
+@@ -1816,7 +1816,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write \`N/A\` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -1855,7 +1855,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
+-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write \`N/A\` with one reason, or delete the whole section. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+ 
+ \`\`\`
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+@@ -1883,7 +1883,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
+-<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write \`N/A\` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+ 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+@@ -1900,7 +1900,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
+-<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. \`rg -n quiet\` prints it. WEAK: Milestones are tracked. -->
++<!-- FILL: Name three milestones with a command-checkable success criterion. Write \`N/A\` with one reason, or delete the whole section. GOOD: M1: the branch exists. \`rg -n quiet\` prints it. WEAK: Milestones are tracked. -->
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+@@ -2678,7 +2678,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write \`N/A\` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ \`\`\`
+ Phase 1 (Setup) ──────┐
+@@ -2698,7 +2698,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write \`N/A\` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -2737,7 +2737,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
+-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write \`N/A\` with one reason, or delete the whole section. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+ 
+ \`\`\`
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+@@ -2765,7 +2765,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
+-<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write \`N/A\` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+ 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+@@ -2782,7 +2782,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
+-<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. \`rg -n quiet\` prints it. WEAK: Milestones are tracked. -->
++<!-- FILL: Name three milestones with a command-checkable success criterion. Write \`N/A\` with one reason, or delete the whole section. GOOD: M1: the branch exists. \`rg -n quiet\` prints it. WEAK: Milestones are tracked. -->
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+diff --git a/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+index 794ad5ddc1..b9fc6fec51 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+@@ -184,7 +184,7 @@ N/A — record rollback steps beyond reverting the scoped change here.
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ ```
+ Phase 1 (Setup) ──────┐
+@@ -204,7 +204,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+-<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write `N/A` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -245,7 +245,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
+-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+ 
+ ```
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+@@ -273,7 +273,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
+-<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+ 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+@@ -290,7 +290,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
+-<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
++<!-- FILL: Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md
+index a5815068fa..0b13a0f3b1 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-004-template-section-fill-guidance.md
+@@ -69,5 +69,5 @@ Every `## ` section in the four core templates now carries one `<!-- FILL: ... -
+ - The drift guard checks anchors and descriptions, not prose quality. The frontier review read the prose at phase close.
+ - The packet types are out of scope. templates/packet-types serves research and review packets and keeps its current guidance.
+ - Amended 2026-10-24: the six optional sections the review named now carry a non-applicable escape in their fill line (Level 2 edge cases, Level 2 complexity assessment, the fix addendum affected surfaces, and the Level 3+ architecture verification, documentation verification and sign-off). The Level 3+ implementation summary example now lists Verification and Known Limitations after Key Decisions, the same order as the template, and the golden snapshot was regenerated for the 11 rendered fill lines that changed.
+-- Still open: the other optional anchors, such as phase dependencies, effort estimation, dependency graph, critical path and milestones in the plan template, keep a fill line with no escape.
++- Amended 2026-10-24 (second pass): on the operator's decision "Add them before 009", the five plan template sections that were left without an escape (phase dependencies, effort estimation, dependency graph, critical path and milestones) now carry "Write `N/A` with one reason, or delete the whole section." in their fill line. All five anchors are optional in the contract. The golden snapshot was regenerated for the 12 rendered fill lines that changed, and the plan rows equal the shipped lines.
+ - A leftover fill comment is not a placeholder. The gate does not count it, so a filled document can still carry the line.
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-007-playbook-catalog-readme-alignment.md b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-007-playbook-catalog-readme-alignment.md
+index 1a27699b93..d22da96ead 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-007-playbook-catalog-readme-alignment.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-007-playbook-catalog-readme-alignment.md
+@@ -63,8 +63,8 @@ The phase copied eight scenario texts, four catalog leaves and 14 doc edits from
+ 
+ ### Follow-Ups
+ 
+-- Phase 8 proves the scenarios run. This phase proves each file is well formed and that 84 path and link references in the new files resolve. A command that only fails on a live run is found in phase 8, not here.
++- Phase 8 proves the scenarios run. This phase proves each file is well formed and that 72 of 73 path and link references in the 12 new files resolve (scratch/validation/paths.txt). The one left is the output file scenario 483 writes when it runs. A command that only fails on a live run is found in phase 8, not here.
+ - The catalog carries no execution detail. The scenario steps stay in the playbook, and the catalog leaf links to them.
+-- Four P2 review findings are open for phase 8 and the operator. README.md line 538 says a Draft packet may warn and pass strict without the v2.3 condition. Scenarios 479 and 482 list their tools without awk and rg. Scenario 483 keeps its pointer file in this phase's scratch/verify/ and never removes it. The other 24 findings are serial commas in frozen prose.
+-- README.md still says references/ (41 files). Phase 5 added the card, so the count is 42. No frozen edit covers the line, so it stays for the operator.
++- Four P2 review findings were recorded for phase 8 and the operator; the README line is now fixed. README.md line 538 said a Draft packet may warn and pass strict without the v2.3 condition (fixed by 9a0b4a935e, which states the condition). Scenarios 479 and 482 list their tools without awk and rg. Scenario 483 keeps its pointer file in this phase's scratch/verify/ and never removes it. The other 24 findings are serial commas in frozen prose.
++- README.md said references/ (41 files). Phase 5 added the card, so the count is 42. Fixed by 9a0b4a935e, which sets the count to the real file total.
+ - The catalog validator prints two baseline notes. They sit in session-relaunch-loop.md and spec-validation-rule-engine.md, files this phase does not own.

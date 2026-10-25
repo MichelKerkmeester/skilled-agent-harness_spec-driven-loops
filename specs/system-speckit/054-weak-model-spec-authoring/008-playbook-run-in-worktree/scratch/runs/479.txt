@@ -1,0 +1,9 @@
+clean_exit=0
+EXAMPLE_DRIFT_OK
+description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one. leaked -->"
+broken_exit=1
+1
+0
+cleanup=ok
+truncated=no
+exit=0

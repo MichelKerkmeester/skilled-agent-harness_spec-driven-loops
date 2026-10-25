@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.0.68
+version: 2.7.2.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -50,7 +50,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | Rule ID              | Severity | Applies To    | Description                                    |
 | -------------------- | -------- | ------------- | ---------------------------------------------- |
 | `FILE_EXISTS`        | ERROR    | All levels    | Required files present for documentation level |
-| `PLACEHOLDER_FILLED` | ERROR    | Core files    | No unfilled template placeholders              |
+| `PLACEHOLDER_FILLED` | ERROR or WARNING | Core files | No unfilled template tokens. A v2.3 doc warns while Draft |
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
 | `AC_COVERAGE`        | INFO     | acceptance-criteria.md | Advisory traceability scan over each criterion's Verification cell (on by default; `SPECKIT_AC_COVERAGE_ENFORCE=true` makes an under-floor result fail) |
 | `AC_CLOSURE`         | ERROR    | acceptance-criteria.md | Closure gate for Levels 2/3/3+: unmet criteria block a completion claim, waivers must cite a real ADR |
@@ -266,7 +266,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 
 ## 4. PLACEHOLDER_FILLED
 
-**Severity:** ERROR  
+**Severity:** ERROR, or WARNING for an unfilled token in a doc stamped v2.3 or later while its status is Draft  
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.
 
 ### Patterns Detected
@@ -284,6 +284,17 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 - `tasks.md`
 - `acceptance-criteria.md` (if exists)
 - `decision-record.md` (if exists)
+
+### Lifecycle For Docs Stamped v2.3 Or Later
+
+A doc whose `SPECKIT_TEMPLATE_SOURCE` stamp names version v2.3 or later ships every authoring hint as a `[YOUR_VALUE_HERE: ...]` token. For such a doc the rule reads the Status row of `spec.md` and decides the severity of each unfilled token.
+
+| Status in `spec.md` | Unfilled `[YOUR_VALUE_HERE: ...]` token | `[NEEDS CLARIFICATION: ...]` |
+| ------------------- | --------------------------------------- | ---------------------------- |
+| Draft               | WARNING                                 | ERROR                        |
+| Any other value     | ERROR                                   | ERROR                        |
+
+A doc with an older stamp, or none, keeps the ERROR it always had, and Draft changes nothing for it. The orchestrator reads every authored doc that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. A warning never fails `--strict`. The status word must be exactly Draft, so Planned, In Progress and Complete all count as any other value.
 
 ### Excluded Paths
 

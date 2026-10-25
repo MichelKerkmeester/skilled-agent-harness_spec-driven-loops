@@ -1,0 +1,12 @@
+packet=specs/zz-pb-gate-legacy/001-gate-legacy
+spec 1
+plan 1
+tasks 1
+implementation-summary 1
+acceptance-criteria 1
+| **Status** | Draft |
+error
+false
+cleanup=ok
+truncated=no
+exit=0

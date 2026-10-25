@@ -41,6 +41,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:problem-summary -->
 ## 1. PROBLEM SUMMARY
+<!-- FILL: State the failure, the command and the first bad output. GOOD: `--quiet` prints 3 lines. Expected 1. WEAK: It is broken. -->
 
 ### Error Category
 [YOUR_VALUE_HERE: syntax_error | type_error | runtime_error | test_failure | build_error | lint_error]
@@ -57,6 +58,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:attempted-fixes -->
 ## 2. ATTEMPTED FIXES
+<!-- FILL: List each attempt and its result. GOOD: Moved the exit after the print. Still 3 lines. WEAK: Tried some fixes. -->
 
 ### Attempt 1
 - **Approach:** [YOUR_VALUE_HERE: description]
@@ -74,6 +76,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:context-for-specialist -->
 ## 3. CONTEXT FOR SPECIALIST
+<!-- FILL: Give the specialist the files, the command and the evidence. GOOD: File `recommend-level.sh` line 510. Command `--quiet`. Output 3 lines. WEAK: See the code. -->
 
 ### Relevant Code Section
 ```[YOUR_VALUE_HERE: language]
@@ -89,6 +92,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:recommended-next-steps -->
 ## 4. RECOMMENDED NEXT STEPS
+<!-- FILL: Name the next check and the expected result. GOOD: Run `bash -x` and confirm one `echo` on the quiet path. WEAK: Keep debugging. -->
 
 1. [YOUR_VALUE_HERE: suggested_action_1]
 2. [YOUR_VALUE_HERE: suggested_action_2]
@@ -96,6 +100,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
 
 <!-- ANCHOR:handoff-checklist -->
 ## 5. HANDOFF CHECKLIST
+<!-- FILL: List what the next person needs before starting. GOOD: Branch, start commit and the failing command. WEAK: Everything is in the ticket. -->
 
 - [ ] All attempted fixes documented
 - [ ] Error logs attached

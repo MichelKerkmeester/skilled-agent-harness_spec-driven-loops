@@ -13,7 +13,7 @@ metadata:
 
 # CI Surface: GitHub Actions Workflow Evidence
 
-**Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`. The packet states each workflow rule with the file and line that prove it, names the workflows that must never be weakened, records the one trigger that looks like drift and is not, and carries two scaffold templates. It writes nothing. The workflow mode the hub pairs it with reads the evidence and applies it.
+**Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`. The packet states each workflow rule with the file and line that prove it, names the workflows that must never be weakened, records the one trigger that looks like drift and is not, and carries two scaffold templates. It writes nothing. The workflow mode the hub pairs it with reads the evidence and applies it, and when the hub routes this packet alone because no workflow mode scored, the acting agent reads and applies it directly. Read-only means this packet writes nothing. It does not limit what the acting agent may do.
 
 A workflow change looks small and has a wide effect. One path filter decides which workflows a commit starts, one missing twin entry fails the gate that guards the source tree, and one switched-off workflow can remove the only check a branch ruleset requires. This packet keeps those facts in one place so a reviewer or author does not rebuild them from the workflow files and review history.
 
@@ -58,7 +58,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "concurrency group", "action to a sha", "sha-pinned action"]},
+    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]},
 }
 
 RESOURCE_MAP = {

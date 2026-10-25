@@ -36,6 +36,7 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
+<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Print one parseable level line on request. WEAK: Improve the script. -->
 
 **Objective:** [One sentence. What this packet is for. Not how, not progress.]
 
@@ -54,6 +55,7 @@ Frozen choices. Changing one is an amendment.
 <!-- IF level:phase -->
 <!-- ANCHOR:binding -->
 ## 2. BINDING
+<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
@@ -74,6 +76,7 @@ string, not these files.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
+<!-- FILL: Write one command-checkable criterion per line. GOOD: `--quiet` prints 1 line and exits 0. WEAK: The work is done. -->
 
 - [ ] [A check whose answer is an exit code, a count, or a named artifact]
 - [ ] [Another]
@@ -84,6 +87,7 @@ string, not these files.
 
 <!-- ANCHOR:log -->
 ## 4. LOG
+<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `rg -n quiet` printed line 510. WEAK: Progress is good. -->
 
 Everything below is VOLATILE. It is not part of the directive, it is not copied
 into the objective, and it is expected to grow. Progress, evidence, deviations

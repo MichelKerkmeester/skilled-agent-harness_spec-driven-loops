@@ -625,7 +625,7 @@ Removing both still leaves 2,191 - 90 - 114 = 1,987, above 1,850 (`summary.md:69
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The unexplained 137 min above the old band hides a second fan-out | M | Phase 003 onward measure per-workflow deltas against the recorded table |
+| The unexplained 137 min above the old band hides a second fan-out | M | Phase 003 onward measure per-workflow deltas against the recorded table. Closed 2026-10-25: the remainder is the window's 891 min of pull_request runs, which the push-only pre-change window did not hold, 564 from phase 003 probe branches and 327 from Dependabot |
 | One quiet or busy window is not typical | M | The window bounds and the 795-run sample size are recorded in `summary.md` |
 <!-- /ANCHOR:adr-006-consequences -->
 

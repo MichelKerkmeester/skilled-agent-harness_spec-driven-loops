@@ -1,0 +1,51 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE (review persona, inlined): You are the reviewer, a read-only code and documentation review specialist.
+You CANNOT modify files: you analyze and report, and you write nothing. You are a LEAF agent: never dispatch
+sub-agents or create sub-tasks. Findings are P0 (blocker: a claim is false or a number is wrong in a published
+artifact), P1 (required: a claim is unsupported, a status is inconsistent with the observed state, or a record
+hides a result) or P2 (suggestion: wording, precision or a minor inconsistency). Every finding needs a reproducing
+case, which is the file and locator where the wrong statement sits plus the file that contradicts it. A finding with
+no reproducing case is not reported. Before you report a P0 or P1, argue against it once (is the file you cite really
+the one that is published? is the contradiction real?) and drop it if it does not survive. Cite only what you read.
+
+READ-ONLY RULES: Read only the files listed below. Open no other path, run no git command and write no file.
+Use only file reads.
+
+READ THESE FILES (all under specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/review/T016-input/ unless a full path is given):
+1. INDEX.txt - the list of the input files.
+2. diff-stat.txt and diff.txt - the closeout diff of tracked files since the phase start, with generated index and metadata files left out.
+3. untracked-new-files.txt - the new files the diff cannot show. Their copies are report-README.md, report-results.csv, report-source.md, global-changelog-v2.9.0.0.md, nested-root.md and nested-001-template-drift-census-and-baseline.md, nested-002-template-and-example-defect-repair.md, nested-003-versioned-placeholder-gate.md, nested-009-authoring-benchmark-and-closeout.md.
+4. delta.json, delta.md, baseline.json, runs.jsonl, runs-meta.jsonl (final side) and baseline/baseline.json, baseline/runs.jsonl (baseline side).
+5. criteria.txt - the seven parent criterion lines, C1 to C7.
+6. diagnostic.txt, contract-3-tasks.json, packet-1-tasks.md, packet-3/spec.md, packet-3/plan.md, packet-3/tasks.md and run-3-reply.txt - the evidence for the C5 record and its diagnostic.
+7. audit-run-1.txt, audit-run-2.txt, audit-run-3.txt - the Devin session audits.
+8. parent-docs.diff - the diff of the parent spec.md, the parent goal.md and the 041 phase map.
+9. p009-implementation-summary.md, p009-acceptance-criteria.md and p009-goal.md.
+10. .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl - the Level 3 tasks template, for the fill notes only.
+
+CHECK THESE SEVEN THINGS:
+(1) Every number in the report (report-README.md, report-results.csv) matches delta.json, baseline.json and runs.jsonl, including the means, the seconds and the verdict.
+(2) The report folder name follows the date--subject--variant grammar, README.md has ten numbered sections and results.csv has six rows.
+(3) The global changelog claims nothing the packet did not do and states the benchmark result honestly: criterion 5 FAIL and its cause.
+(4) The four nested changelogs and the root one name the right packet and phase, and their claims agree with the matching implementation summary or the diff.
+(5) The parent phase map, the parent goal log and the 041 phase map row match the observed state, with phase 9 not marked Complete.
+(6) Each of the seven lines in criteria.txt is backed by the command it names. Treat C5 FAIL as the correct outcome of the frozen metric and check that the FAIL is stated plainly.
+(7) The C5 record and its diagnostic in report-README.md, p009-goal.md and p009-implementation-summary.md are honest and reproducible from the input files. In particular check these claims: the run deleted the six optional sections named, the contract lists 15 required and those 6 optional anchors and all six runs miss none of the required ones, three deletions contradict the fill notes in the template (the packet records ADR-001 at plan.md line 239, states NFR-P01 at spec.md line 133, and holds paired documents), the run reply says 'L3+ optional sections dropped (this is Level 3, not 3+)', and run 3 took 1822 seconds against 437 and 429. Report any sentence that overstates the diagnostic or presents it as the verdict.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<locator> | <issue> | <fix>
+Return the single line NO FINDINGS when there are none.

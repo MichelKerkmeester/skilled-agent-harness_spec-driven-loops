@@ -1,0 +1,10 @@
+Live Claude hop with CLAUDE_CONFIG_DIR stopped: auth fails under a throwaway config dir.
+Config dir: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/cfg033a (outside the repo), seeded with copies of ~/.claude/settings.json, ~/.claude/.credentials.json (dated 2026-10-14) and ~/.claude.json.
+Command: env -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID -u CLAUDE_CODE_ENTRYPOINT CLAUDE_CONFIG_DIR=<cfg> claude -p 'Reply with the single word PONG.' --model claude-sonnet-5-5 </dev/null
+Exit: 1
+First output line:
+Failed to authenticate: OAuth session expired and could not be refreshed
+
+After the first run the copied .credentials.json was gone from the config dir and a keychain item named 'Claude Code-credentials-636b909c' existed, created 20261025175337Z. The operator's own login lives in the item 'Claude Code-credentials', which a custom config dir does not read.
+No ANTHROPIC_API_KEY or CLAUDE_CODE_OAUTH_TOKEN is set in this environment (names checked only).
+Not attempted: copying the live keychain secret into the hashed item, because a token refresh there could rotate the refresh token the operator's own login uses.

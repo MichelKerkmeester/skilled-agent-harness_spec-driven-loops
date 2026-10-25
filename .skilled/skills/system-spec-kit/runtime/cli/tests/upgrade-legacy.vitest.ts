@@ -1472,7 +1472,7 @@ describe('upgrade-legacy', () => {
 
     // The source line and the architecture pair are removed so the modes have
     // to put them back; the removed lines are kept to compare the result to.
-    const planSourceLine = '<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->';
+    const planSourceLine = '<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->';
     const architectureOpen = '<!-- ANCHOR:architecture -->';
     const architectureClose = '<!-- /ANCHOR:architecture -->';
     fs.writeFileSync(

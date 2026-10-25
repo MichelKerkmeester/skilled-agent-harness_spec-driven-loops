@@ -1,0 +1,5 @@
+P0 report-README.md:11; p009-implementation-summary.md:3,41 | These say the benchmark ran twice or had two final sets, while report-README.md:163 and p009-implementation-summary.md:137 identify three sets: swe-2 history, DeepSeek label-fix, and fresh. | State that three sets ran overall and identify the fresh set as deciding.
+
+P0 p009-implementation-summary.md:92; p009-acceptance-criteria.md:67 | The handoff says one local commit and AC-014 is marked Met on that assertion, but p009-goal.md:153–154 records 23657e227e as a second local commit and e13115c7da as a later pre-fresh commit. | Reconcile the handoff and AC-014 evidence/status with the documented commit history.
+
+P1 criteria.txt:9 | C7 PASS records head=a15bc…, the phase-start commit (p009-goal.md:82), while p009-goal.md:153–154 records later commits; this evidence does not show that those later commits stayed unpushed. | Rerun C7 against the latest HEAD and replace the stale evidence.

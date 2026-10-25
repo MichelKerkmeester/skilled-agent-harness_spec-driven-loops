@@ -1,0 +1,2 @@
+EXAMPLE_DRIFT_OK
+exit=0

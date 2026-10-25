@@ -155,11 +155,11 @@ Insert the constructed line immediately below the heading. When a section has tw
 
 | ID | Template | Heading | FILL instruction | Good | Weak |
 |----|----------|---------|------------------|------|------|
-| B01 | `core/spec.md.tmpl` | `## L2: NON-FUNCTIONAL REQUIREMENTS` | Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service. | The flag adds no measurable time: the same 40 ms run. | Performance is good. |
-| B02 | `core/spec.md.tmpl` | `## 7. NON-FUNCTIONAL REQUIREMENTS` | Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service. | The flag adds no measurable time: the same 40 ms run. | Performance is good. |
-| B03 | `core/spec.md.tmpl` | `## L2: EDGE CASES` | Name the empty input, the maximum input and the failure path. One line each. | Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. | Handle edge cases. |
+| B01 | `core/spec.md.tmpl` | `## L2: NON-FUNCTIONAL REQUIREMENTS` | Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. | The flag adds no measurable time: the same 40 ms run. | Performance is good. |
+| B02 | `core/spec.md.tmpl` | `## 7. NON-FUNCTIONAL REQUIREMENTS` | Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. | The flag adds no measurable time: the same 40 ms run. | Performance is good. |
+| B03 | `core/spec.md.tmpl` | `## L2: EDGE CASES` | Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. | Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. | Handle edge cases. |
 | B04 | `core/spec.md.tmpl` | `## 8. EDGE CASES` | Name the empty input, the maximum input and the failure path. One line each. | Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. | Handle edge cases. |
-| B05 | `core/spec.md.tmpl` | `## L2: COMPLEXITY ASSESSMENT` | Score each row with the number the change earns. The total must match the level. | Scope 4/25: one file and 12 lines. Total 18/100. | Complexity is medium. |
+| B05 | `core/spec.md.tmpl` | `## L2: COMPLEXITY ASSESSMENT` | Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. | Scope 4/25: one file and 12 lines. Total 18/100. | Complexity is medium. |
 | B06 | `core/spec.md.tmpl` | `## 9. COMPLEXITY ASSESSMENT` | Score each row with the number the change earns. The total must match the level. | Scope 4/25: one file and 12 lines. Total 18/100. | Complexity is medium. |
 | B07 | `core/spec.md.tmpl` | `## 10. RISK MATRIX` | List each risk with impact, likelihood and one mitigation. | R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. | Some risks exist. |
 | B08 | `core/spec.md.tmpl` | `## 11. USER STORIES` | Write one story per user. Name the actor, the want and the benefit. | As a build script, I want one parseable line, so that I can skip the report. | Users want a quiet mode. |
@@ -172,13 +172,13 @@ Insert the constructed line immediately below the heading. When a section has tw
 | B15 | `core/spec.md.tmpl` | `## 16. OPEN QUESTIONS` | Write each open question as one line. Write `None` when nothing blocks. | Does `--quiet` suppress warnings? No, stderr is unchanged. | Edge cases are unclear. |
 | B16 | `core/spec.md.tmpl` | `## EXECUTIVE SUMMARY` | Write three sentences: the problem, the change and the proof. | Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. | This document describes the feature. |
 | B17 | `core/spec.md.tmpl` | `## RELATED DOCUMENTS` | Leave the four links in place. | - | - |
-| B18 | `core/plan.md.tmpl` | `## FIX ADDENDUM: AFFECTED SURFACES` | Name each surface the change touches. Write `not a consumer` when it does not read the change. | `recommend-level.sh`: owns the output. Action: update. | Various files. |
-| B19 | `core/plan.md.tmpl` | `## L2: PHASE DEPENDENCIES` | Draw the phase order in the fence, then fill the table with depends-on and blocks. | Setup to Implementation to Verification. Verification blocks close. | Phases depend on each other. |
-| B20 | `core/plan.md.tmpl` | `## L2: EFFORT ESTIMATION` | Give each phase an estimate and a total. Mark the total as an assumption. | Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. | A few hours. |
-| B21 | `core/plan.md.tmpl` | `## L2: ENHANCED ROLLBACK` | Name the trigger, the steps and the data reversal. Write `No` when no data changes. | Trigger: default output changes. Steps: revert one commit, rerun the two commands. | Roll back if needed. |
-| B22 | `core/plan.md.tmpl` | `## L3: DEPENDENCY GRAPH` | Draw the component order and fill the matrix with produces and blocks. | Script to test to close. | Components depend on each other. |
-| B23 | `core/plan.md.tmpl` | `## L3: CRITICAL PATH` | Name the longest chain and its total. List what can run in parallel. | Implementation to verification, 40 minutes. Docs run in parallel. | The critical path is the main path. |
-| B24 | `core/plan.md.tmpl` | `## L3: MILESTONES` | Name three milestones with a command-checkable success criterion. | M1: the branch exists. `rg -n quiet` prints it. | Milestones are tracked. |
+| B18 | `core/plan.md.tmpl` | `## FIX ADDENDUM: AFFECTED SURFACES` | Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. | `recommend-level.sh`: owns the output. Action: update. | Various files. |
+| B19 | `core/plan.md.tmpl` | `## L2: PHASE DEPENDENCIES` | Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. | Setup to Implementation to Verification. Verification blocks close. | Phases depend on each other. |
+| B20 | `core/plan.md.tmpl` | `## L2: EFFORT ESTIMATION` | Give each phase an estimate and a total. Mark the total as an assumption. Write `N/A` with one reason, or delete the whole section. | Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. | A few hours. |
+| B21 | `core/plan.md.tmpl` | `## L2: ENHANCED ROLLBACK` | Name the trigger, the steps and the data reversal. Write `No` when no data changes. Delete the whole section when the packet ships no deployable service. | Trigger: default output changes. Steps: revert one commit, rerun the two commands. | Roll back if needed. |
+| B22 | `core/plan.md.tmpl` | `## L3: DEPENDENCY GRAPH` | Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. | Script to test to close. | Components depend on each other. |
+| B23 | `core/plan.md.tmpl` | `## L3: CRITICAL PATH` | Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. | Implementation to verification, 40 minutes. Docs run in parallel. | The critical path is the main path. |
+| B24 | `core/plan.md.tmpl` | `## L3: MILESTONES` | Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. | M1: the branch exists. `rg -n quiet` prints it. | Milestones are tracked. |
 | B25 | `core/plan.md.tmpl` | `## L3: ARCHITECTURE DECISION RECORD` | Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. | ADR-001: a flag, because callers already pass flags. | We made a decision. |
 | B26 | `core/plan.md.tmpl` | `## L3+: AI EXECUTION FRAMEWORK` | Name the workers, their files and the order. Keep file ownership disjoint. | One worker owns the script. One owns the test. | Agents work in parallel. |
 | B27 | `core/plan.md.tmpl` | `## L3+: WORKSTREAM COORDINATION` | Name each workstream, its owner and its files. One file per owner. | W-A owns the script. W-B owns the test. | Work is split into streams. |
@@ -188,17 +188,17 @@ Insert the constructed line immediately below the heading. When a section has tw
 | B31 | `core/tasks.md.tmpl` | `## Pre-Implementation` | Write one check per setup fact, each with a command. | CHK-001 [P0] The start commit is in `goal.md` section 4. | Setup is ready. |
 | B32 | `core/tasks.md.tmpl` | `## Code Quality` | Write one check per file rule. A command must answer it. | CHK-010 [P0] `bash -n recommend-level.sh` exits 0. | Code is clean. |
 | B33 | `core/tasks.md.tmpl` | `## Testing Checklist` | Write one check per acceptance criterion. | CHK-020 [P0] `--quiet` prints one line. | Tests pass. |
-| B34 | `core/tasks.md.tmpl` | `## Fix Completeness` | Write one check per finding class this packet can produce. Delete the rows that do not apply. | CHK-FIX-001 [P0] Every finding names one class. | All findings handled. |
+| B34 | `core/tasks.md.tmpl` | `## Fix Completeness` | Keep this section, because every level requires it. Write one check per finding class this packet can produce. Delete only the rows that do not apply, never the section. | CHK-FIX-001 [P0] Every finding names one class. | All findings handled. |
 | B35 | `core/tasks.md.tmpl` | `## Security` | Write one check per security surface. Write `N/A` with a reason when none applies. | CHK-030 [P0] The script reads no credential. | Security is fine. |
 | B36 | `core/tasks.md.tmpl` | `## Documentation` | Write one check per document that must agree. | CHK-040 [P1] `spec.md` and `tasks.md` name the same flag. | Docs are updated. |
 | B37 | `core/tasks.md.tmpl` | `## File Organization` | Write one check per file location rule. | CHK-050 [P1] Test copies live under `scratch/test/`. | Files are organized. |
 | B38 | `core/tasks.md.tmpl` | `## Verification Summary` | Count the boxes by priority and write the three totals. | P0 12, P1 13, P2 1. | Most items done. |
-| B39 | `core/tasks.md.tmpl` | `## L3+: Architecture Verification` | Write one check per ADR. | CHK-100 [P0] ADR-001 is followed by T002. | Architecture is verified. |
-| B40 | `core/tasks.md.tmpl` | `## L3+: Performance Verification` | Write one check per performance claim, or delete the section when the packet makes none. | CHK-110 [P1] The flag adds under 5 ms. | Performance is verified. |
-| B41 | `core/tasks.md.tmpl` | `## L3+: Deployment Readiness` | Write one check per deployment step, or delete the section when the packet ships no service. | CHK-120 [P0] The rollback command was run in a copy. | Ready to deploy. |
-| B42 | `core/tasks.md.tmpl` | `## L3+: Compliance Verification` | Write one check per compliance surface, or delete the section when none applies. | CHK-130 [P1] No license changed. | Compliance is verified. |
-| B43 | `core/tasks.md.tmpl` | `## L3+: Documentation Verification` | Write one check per document pair that must agree. | CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. | Docs are verified. |
-| B44 | `core/tasks.md.tmpl` | `## L3+: Sign-Off` | Name the real approver for each role. Delete a row when the role does not exist. | Conductor, runs every task. Operator, merges the commit. | Signed off. |
+| B39 | `core/tasks.md.tmpl` | `## L3+: Architecture Verification` | L3+ means Level 3 and above, so this section stays at Level 3. Write one check per ADR, or delete the section when the packet records no ADR. | CHK-100 [P0] ADR-001 is followed by T002. | Architecture is verified. |
+| B40 | `core/tasks.md.tmpl` | `## L3+: Performance Verification` | L3+ means Level 3 and above, so this section stays at Level 3. Write one check per performance claim, or delete the section when the packet makes none. | CHK-110 [P1] The flag adds under 5 ms. | Performance is verified. |
+| B41 | `core/tasks.md.tmpl` | `## L3+: Deployment Readiness` | L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. | CHK-120 [P0] The rollback command was run in a copy. | Ready to deploy. |
+| B42 | `core/tasks.md.tmpl` | `## L3+: Compliance Verification` | L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. | CHK-130 [P1] No license changed. | Compliance is verified. |
+| B43 | `core/tasks.md.tmpl` | `## L3+: Documentation Verification` | L3+ means Level 3 and above, so this section stays at Level 3. Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. | CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. | Docs are verified. |
+| B44 | `core/tasks.md.tmpl` | `## L3+: Sign-Off` | L3+ means Level 3 and above, so this section stays at Level 3. Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. | Conductor, runs every task. Operator, merges the commit. | Signed off. |
 
 ### FILL TEXT TABLE C: addon templates
 
@@ -279,6 +279,13 @@ A weak model fills `Feature flag configured`, `OWASP Top 10 checklist completed`
 | `## L3+: Performance Verification` | The anchor is `optional` at Level 3 and Level 3+. | Delete the whole section when the packet makes no performance claim. |
 | `## 13. COMPLIANCE CHECKPOINTS` | The anchor is `required` at Level 3+. | Write `N/A` and one reason. Do not delete the section. |
 | `## L3+: Compliance Verification` | The anchor is `optional` at Level 3 and Level 3+. | Delete the whole section when no compliance surface applies. |
+| `## L2: EDGE CASES`, `## L2: COMPLEXITY ASSESSMENT` | Both anchors are `optional` at Level 2. | Write `N/A` with one reason, or delete the whole section. |
+| `## FIX ADDENDUM: AFFECTED SURFACES` | The anchor is `optional` at Levels 2, 3 and 3+. | Write `N/A` or delete the whole addendum when no fix surface applies. |
+| `## L3+: Architecture Verification` | The anchor is `optional` at Level 3 and Level 3+. | Delete the section when the packet records no ADR. |
+| `## L3+: Documentation Verification` | The anchor is `optional` at Level 3 and Level 3+. | Delete the section when the packet holds no paired documents. |
+| `## L3+: Sign-Off` | The anchor is `optional` at Level 3 and Level 3+. | Write `N/A` or delete the section when no sign-off applies. |
+| `## L2: PHASE DEPENDENCIES`, `## L2: EFFORT ESTIMATION` | Both anchors are `optional` at Levels 2, 3 and 3+. | Write `N/A` with one reason, or delete the whole section. |
+| `## L3: DEPENDENCY GRAPH`, `## L3: CRITICAL PATH`, `## L3: MILESTONES` | All three anchors are `optional` at Level 3 and Level 3+. | Write `N/A` with one reason, or delete the whole section. |
 
 Evidence: `node runtime/cli/utils/template-structure.js compare 3+ spec.md templates/examples/level-3+/spec.md anchors` prints `required_anchor compliance-checkpoints`, and the same command on `2 plan.md` prints `optional_anchor enhanced-rollback`.
 

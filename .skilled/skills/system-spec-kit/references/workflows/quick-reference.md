@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.0.52
+version: 1.6.2.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -182,7 +182,7 @@ Before making ANY file changes, verify:
 - [ ] Rendered template output names are correct
 - [ ] Filled ALL template sections with actual content
 - [ ] Removed placeholder text and sample sections
-- [ ] Copied optional templates if needed (Level 3 only)
+- [ ] Copied optional templates if needed (resource-map.md at any level; research and decision records at Level 3)
 - [ ] Presented approach to user (including templates used)
 - [ ] Got explicit approval ("yes"/"go ahead"/"proceed")
 
@@ -445,7 +445,7 @@ Before presenting documentation to user:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + acceptance-criteria.md
   - [ ] Level 3: Level 2 + decision-record.md
-- [ ] Optional templates copied if needed (Level 3 only)
+- [ ] Optional templates copied if needed (resource-map.md at any level; research and decision records at Level 3)
 - [ ] All placeholders replaced (`<PLACEHOLDER>`, `<NEEDS_CLARIFICATION: ...>`)
 - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
 - [ ] Template footer deleted
@@ -686,7 +686,8 @@ When in doubt:
 ## 20. RELATED RESOURCES
 
 ### Reference Files
-- [template-guide.md](../templates/template-guide.md) - Template selection, adaptation, and quality standards
+- [spec-authoring-card.md](spec-authoring-card.md) - The short authoring path the four writing intents load first
+- [template-guide.md](../templates/template-guide.md) - Long-form template selection, adaptation, and quality standards
 - level specifications reference - Complete Level 1-3 requirements and migration
 - [path-scoped-rules.md](../validation/path-scoped-rules.md) - Path-scoped validation rules reference
 

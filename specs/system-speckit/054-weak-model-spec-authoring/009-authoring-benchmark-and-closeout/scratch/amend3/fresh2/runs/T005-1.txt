@@ -1,0 +1,115 @@
+I'll start by invoking the spec-kit skill and creating the spec folder.
+
+Folder created. Let me read the scaffolded files and the skill's document format guidance.
+
+Now let me read the actual script being documented, plus check validation rules and an existing packet for conventions.
+
+Let me read the rest of the script's main section to be precise about the output flow.
+
+Now let me check what validate.sh enforces so the docs satisfy it.
+
+
+
+
+
+
+
+Let me look at a filled example packet in the repo to match conventions, especially the AI Execution Protocol section.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check consumers of the script so the affected-surfaces section is accurate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write `spec.md`.
+
+
+
+
+
+Now `plan.md`.
+
+
+
+Now `tasks.md`.
+
+
+
+
+
+Now `acceptance-criteria.md`.
+
+All four docs are written. Running the validator.
+
+The validator flags stale derived metadata. Let me preview the sanctioned repair, then apply it.
+
+
+
+
+
+
+
+Let me verify a couple of exact-count claims in `tasks.md` before finalizing.
+
+
+
+
+
+
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag — RESULT: PASSED

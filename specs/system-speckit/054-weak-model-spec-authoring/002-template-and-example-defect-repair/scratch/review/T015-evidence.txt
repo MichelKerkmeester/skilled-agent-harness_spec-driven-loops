@@ -1,0 +1,11 @@
+$ rg -l --hidden "\.hashes" .skilled --glob "!**/node_modules/**" --glob "!.git"
+exit=1
+$ test -e .skilled/skills/system-spec-kit/templates/.hashes
+exit=1
+$ rg -c "^### Why a Table$" template-style-guide.md
+1
+exit=0
+$ rg -n -A6 "^### Why a Table$" template-style-guide.md | grep -ciE "bullet|list"
+0
+$ test -d specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag
+exit=0

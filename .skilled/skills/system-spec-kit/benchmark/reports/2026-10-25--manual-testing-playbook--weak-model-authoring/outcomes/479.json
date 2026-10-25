@@ -1,0 +1,36 @@
+{
+  "scenarioId": "479",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "The drift guard exited 0 with EXAMPLE_DRIFT_OK on the clean tree. On a copy with one injected description tail it exited 1 with one description failure line and no EXAMPLE_DRIFT_OK line. The scratch folder was removed (cleanup=ok).",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "The drift guard exited 0 with EXAMPLE_DRIFT_OK on the clean tree. On a copy with one injected description tail it exited 1 with one description failure line and no EXAMPLE_DRIFT_OK line. The scratch folder was removed (cleanup=ok).",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/479.txt",
+          "bytes": 233,
+          "sha256": "6f731892dad8a8ce1e025610828d457fb68fff1c33327efb9bbb0e6c29e350ea"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/479.txt",
+      "bytes": 233,
+      "sha256": "6f731892dad8a8ce1e025610828d457fb68fff1c33327efb9bbb0e6c29e350ea"
+    }
+  ]
+}

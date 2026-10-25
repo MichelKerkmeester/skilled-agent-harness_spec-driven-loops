@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "the completed authentication feature. Created AFTER implementation completes. -->"
+description: "Level 1 implementation summary for the user authentication example, written after the feature shipped."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -52,6 +52,13 @@ Implemented a complete email/password authentication system including user regis
 
 
 <!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Merged after the two manual runs in tasks T008 and T009.
+<!-- /ANCHOR:how-delivered -->
 ---
 
 <!-- ANCHOR:decisions -->

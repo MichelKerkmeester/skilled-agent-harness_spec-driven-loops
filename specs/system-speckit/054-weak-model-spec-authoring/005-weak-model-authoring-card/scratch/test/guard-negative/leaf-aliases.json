@@ -1,0 +1,232 @@
+[
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "assets/complexity-decision-matrix.md",
+    "diskPath": "assets/complexity-decision-matrix.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "assets/level-decision-matrix.md",
+    "diskPath": "assets/level-decision-matrix.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "assets/parallel-dispatch-config.md",
+    "diskPath": "assets/parallel-dispatch-config.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "assets/template-mapping.md",
+    "diskPath": "assets/template-mapping.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/cli/daemon-cli-reference.md",
+    "diskPath": "references/cli/daemon-cli-reference.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/cli/memory-handback.md",
+    "diskPath": "references/cli/memory-handback.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/cli/shared-smart-router.md",
+    "diskPath": "references/cli/shared-smart-router.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/config/environment-variables.md",
+    "diskPath": "references/config/environment-variables.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/config/hook-system.md",
+    "diskPath": "references/config/hook-system.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/config/launcher-lease.md",
+    "diskPath": "references/config/launcher-lease.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/debugging/troubleshooting.md",
+    "diskPath": "references/debugging/troubleshooting.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/debugging/universal-debugging-methodology.md",
+    "diskPath": "references/debugging/universal-debugging-methodology.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/memory/embedder-pluggability.md",
+    "diskPath": "references/memory/embedder-pluggability.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/memory/epistemic-vectors.md",
+    "diskPath": "references/memory/epistemic-vectors.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/memory/memory-system.md",
+    "diskPath": "references/memory/memory-system.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/memory/save-workflow.md",
+    "diskPath": "references/memory/save-workflow.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/memory/trigger-config.md",
+    "diskPath": "references/memory/trigger-config.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/retrieval/retrieval-conventions.md",
+    "diskPath": "references/retrieval/retrieval-conventions.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/folder-routing.md",
+    "diskPath": "references/structure/folder-routing.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/folder-structure.md",
+    "diskPath": "references/structure/folder-structure.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/grep-convention.md",
+    "diskPath": "references/structure/grep-convention.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/phase-definitions.md",
+    "diskPath": "references/structure/phase-definitions.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/phase-system.md",
+    "diskPath": "references/structure/phase-system.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/structure/sub-folder-versioning.md",
+    "diskPath": "references/structure/sub-folder-versioning.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/templates/level-selection-guide.md",
+    "diskPath": "references/templates/level-selection-guide.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/templates/level-specifications.md",
+    "diskPath": "references/templates/level-specifications.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/templates/template-guide.md",
+    "diskPath": "references/templates/template-guide.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/templates/template-style-guide.md",
+    "diskPath": "references/templates/template-style-guide.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/validation/decision-format.md",
+    "diskPath": "references/validation/decision-format.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/validation/five-checks.md",
+    "diskPath": "references/validation/five-checks.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/validation/path-scoped-rules.md",
+    "diskPath": "references/validation/path-scoped-rules.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/validation/phase-checklists.md",
+    "diskPath": "references/validation/phase-checklists.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/validation/template-compliance-contract.md",
+    "diskPath": "references/validation/template-compliance-contract.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/validation/validation-rules.md",
+    "diskPath": "references/validation/validation-rules.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/agent-io-contract.md",
+    "diskPath": "references/workflows/agent-io-contract.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/auto-mode-contract.md",
+    "diskPath": "references/workflows/auto-mode-contract.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/execution-methods.md",
+    "diskPath": "references/workflows/execution-methods.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/goal-set-string-playbook.md",
+    "diskPath": "references/workflows/goal-set-string-playbook.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/intake-contract.md",
+    "diskPath": "references/workflows/intake-contract.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/nested-changelog.md",
+    "diskPath": "references/workflows/nested-changelog.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/quick-reference.md",
+    "diskPath": "references/workflows/quick-reference.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/rename-pattern.md",
+    "diskPath": "references/workflows/rename-pattern.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/spec-authoring-card.md",
+    "diskPath": "references/workflows/spec-authoring-card.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/spec-folder-authoring-checklist.md",
+    "diskPath": "references/workflows/spec-folder-authoring-checklist.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/spec-folder-write-recipe.md",
+    "diskPath": "references/workflows/spec-folder-write-recipe.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/worked-examples.md",
+    "diskPath": "references/workflows/worked-examples.md"
+  }
+]

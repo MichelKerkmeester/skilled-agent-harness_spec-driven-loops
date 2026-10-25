@@ -1,0 +1,3 @@
+2026-10-25T15:48:03.814Z  handed-over  pi        sb033a-pi-hop (hop 1)  Keep the pong keeper running.  [note-hop.md]
+2026-10-25T15:48:09.171Z  claimed      pi        sb033a-pi-hop by 01a173bf  Keep the pong keeper running.  [note-hop.md]
+2026-10-25T15:48:23.066Z  done         pi        sb033a-pi-hop  Keep the pong keeper running.  [note-hop.md]

@@ -1,0 +1,264 @@
+---
+title: "Tasks: Add a quiet flag to recommend-level.sh"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "recommend level quiet flag tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
+# Tasks: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+**Paths used below**:
+- `S` = `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh`
+- `T` = `.skilled/skills/system-spec-kit/runtime/cli/tests/recommend-level-quiet.vitest.ts`
+- `P` = `specs/zz-bench-authoring/001-recommend-level-quiet-flag`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Capture the pre-change report for both reference invocations into `$P/scratch/baseline-report.txt` (`$P/scratch`). Verify: `bash $S --loc 50 --files 2 | wc -l` prints `16` and `bash $S --loc 500 --files 15 --auth --api --db --architectural | wc -l` prints `17`.
+- [ ] T002 Read the parser and the output dispatch in `$S`. Verify: `rg -n 'JSON_OUTPUT|output_text|output_json' $S` prints the global at line 122, the two renderers at 508 and 562, the parser branch at 707 and the dispatch at 770.
+- [ ] T003 [P] Confirm no shell consumer parses the report (`$S`). Verify: `rg -n 'recommend-level\.sh' . --glob '*.sh' --glob '!node_modules/**'` prints only the script itself.
+- [ ] T004 [P] Record the level label set (`$S`). Verify: `rg -n 'LEVEL_NAME=' $S` prints `Quick`, `Baseline`, `Verification` and `Full`.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T005 Add a `QUIET=false` global beside `JSON_OUTPUT` (`$S`). Verify: `rg -n '^QUIET=false' $S` prints one line.
+- [ ] T006 Add the `--quiet` case branch to the argument parser (`$S`). Verify: `rg -n -A 3 -- '--quiet\)' $S` prints the branch that sets `QUIET=true` and shifts.
+- [ ] T007 Add `output_quiet()` that prints only `Recommended Level: ${RECOMMENDED_LEVEL} (${LEVEL_NAME})` (`$S`). Verify: `bash -n $S` exits 0.
+- [ ] T008 Wire the dispatch so `--quiet` selects the quiet renderer, `--json` keeps precedence and text stays the default (`$S`). Verify: `bash $S --loc 50 --files 2 --quiet | wc -l` prints `1`; `bash $S --loc 50 --files 2 | wc -l` still prints `16`.
+- [ ] T009 Add `--quiet` to the `--help` OPTIONS list and add one quiet example, then update the header OPTIONS block (`$S`). Verify: `bash $S --help | rg -c -- '--quiet'` prints `2`.
+- [ ] T010 [P] Create the regression test with cases for none, `--quiet`, `--json`, both flags, `--no-recommend-phases`, and the error paths (`T`). Verify: `npx vitest run tests/recommend-level-quiet.vitest.ts` passes from `.skilled/skills/system-spec-kit/runtime/cli`.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T011 Verify the quiet line at every level: 0, 1, 2 and 3 (`$S`). Verify: each of `--loc 10 --files 1`, `--loc 100 --files 5`, `--loc 300 --files 10`, `--loc 900 --files 20 --auth --api --db --architectural` with `--quiet` prints one line that matches `^Recommended Level: [0-3] \([A-Za-z]+\)$`.
+- [ ] T012 Verify the default report is byte-identical to the Phase 1 baseline (`$P/scratch`). Verify: `diff` against `baseline-report.txt` prints nothing.
+- [ ] T013 Verify JSON precedence (`$S`). Verify: `bash $S --loc 50 --files 2 --json --quiet | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);console.log(j.recommended_level)})'` prints `0`.
+- [ ] T014 Verify error paths keep stdout empty and exit 1 (`$S`). Verify: `bash $S --quiet --loc abc` prints the error on stderr, writes nothing to stdout and exits 1; same for `--quiet --bogus`.
+- [ ] T015 Verify the quiet line has no leading blank line (`$S`). Verify: `bash $S --loc 50 --files 2 --quiet | head -c 20` prints `Recommended Level: 0`.
+- [ ] T016 Run the existing phase suites (`$S`). Verify: `node tests/test-phase-system.js` and `node tests/test-phase-validation.js` each print `failed=0`.
+- [ ] T017 Reconcile this packet with the shipped behavior (`$P`). Verify: `spec.md` requirement IDs, `plan.md` sections and this file name the same flag and the same line label.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed: one line under `--quiet`, unchanged report without it, both phase suites green
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Acceptance criteria**: See `acceptance-criteria.md`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in `spec.md` section 4
+- [ ] CHK-002 [P0] Technical approach defined in `plan.md` section 3
+- [ ] CHK-003 [P1] Baseline report captured in `scratch/baseline-report.txt`
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] `bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` exits 0
+- [ ] CHK-011 [P0] No new shellcheck-class warning: every new variable is quoted and declared
+- [ ] CHK-012 [P1] The new branch follows the existing `case` style and shifts exactly once
+- [ ] CHK-013 [P1] The quiet renderer reads `RECOMMENDED_LEVEL` and `LEVEL_NAME`, not a new label
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] AC-001 through AC-006 in `acceptance-criteria.md` are met with observed evidence
+- [ ] CHK-021 [P0] The new vitest file passes
+- [ ] CHK-022 [P1] Edge cases from `spec.md` section 8 are exercised
+- [ ] CHK-023 [P1] Error scenarios print to stderr and exit 1
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets added; the script reads no credential
+- [ ] CHK-031 [P0] Input validation unchanged: `--quiet` adds no new input value
+- [ ] CHK-032 [P1] N/A for auth: the script has no authentication or authorization surface
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` name the same flag and the same line label
+- [ ] CHK-041 [P1] The script header OPTIONS block and the `--help` OPTIONS list agree
+- [ ] CHK-042 [P2] README updated if it documents the script options
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files live in `scratch/` only
+- [ ] CHK-051 [P1] `scratch/` holds only the baseline capture, and it is removed before the packet closes
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 15 | 0/15 |
+| P1 Items | 23 | 0/23 |
+| P2 Items | 9 | 0/9 |
+
+**Verification Date**: 2026-10-25
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: Architecture Verification
+
+- [ ] CHK-100 [P0] ADR-001 is followed: the change is a flag on the existing parser, not an environment variable
+- [ ] CHK-101 [P1] Both ADRs in `plan.md` carry a status
+- [ ] CHK-102 [P1] Both ADRs list rejected alternatives with a reason
+- [ ] CHK-103 [P2] N/A for migration: no stored data and no published interface changes
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: Performance Verification
+
+- [ ] CHK-110 [P1] NFR-P01 holds: the quiet run finishes within 5 ms of the default run on the same inputs
+- [ ] CHK-111 [P1] N/A for throughput: the script scores one input per invocation
+- [ ] CHK-112 [P2] N/A for load testing: no service
+- [ ] CHK-113 [P2] Both timings recorded in `scratch/` with the command used
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: Deployment Readiness
+
+- [ ] CHK-120 [P0] Rollback procedure in `plan.md` section 7 was read and the revert path is one commit
+- [ ] CHK-121 [P0] N/A for feature flags: `--quiet` is the opt-in and defaults off
+- [ ] CHK-122 [P1] N/A for monitoring: the script is not a service
+- [ ] CHK-123 [P1] N/A for a runbook: the rollback is a single revert
+- [ ] CHK-124 [P2] N/A for a deployment runbook: no deploy step
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: Compliance Verification
+
+- [ ] CHK-130 [P1] N/A for security review: the change alters stdout formatting only
+- [ ] CHK-131 [P1] No dependency added, so no license changes
+- [ ] CHK-132 [P2] N/A for OWASP: no network or data surface
+- [ ] CHK-133 [P2] N/A for data handling: the script stores no data
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: Documentation Verification
+
+- [ ] CHK-140 [P1] `spec.md`, `plan.md` and `tasks.md` are synchronized on scope and label
+- [ ] CHK-141 [P1] N/A for API docs: the script is not an API
+- [ ] CHK-142 [P2] The `--help` text is the user-facing documentation and lists the flag
+- [ ] CHK-143 [P2] N/A for knowledge transfer: the packet carries the rationale
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: Sign-Off
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| Packet author | Planning | [ ] Approved | |
+| Operator | Implementation | [ ] Approved | |
+| Reviewer | Verification | [ ] Approved | |
+<!-- /ANCHOR:sign-off -->
+
+---

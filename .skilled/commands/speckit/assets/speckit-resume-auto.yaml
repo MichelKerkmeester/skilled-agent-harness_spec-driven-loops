@@ -89,7 +89,7 @@ session_detection:
 # CONTEXT LOADING
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
-  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/checklist/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
   note: "Recover from the canonical packet first: handover, then _memory.continuity, then supporting spec docs. The ripgrep recipe fills a named gap only. Nothing here needs a background service."
 
 packet_graph_metadata:

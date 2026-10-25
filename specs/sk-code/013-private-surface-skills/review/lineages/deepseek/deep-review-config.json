@@ -1,0 +1,134 @@
+{
+  "topic": "Review: specs/sk-code/013-private-surface-skills",
+  "sessionId": "fanout-deepseek-1792944728998-cwb2cp",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/013-private-surface-skills",
+  "createdAt": "2026-10-25T17:20:00Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/sk-code/013-private-surface-skills",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    "specs/sk-code/013-private-surface-skills/spec.md",
+    "specs/sk-code/013-private-surface-skills/goal.md",
+    "specs/sk-code/013-private-surface-skills/description.json",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/spec.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/implementation-summary.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/implementation-summary.md",
+    ".gitignore",
+    ".skilled/scripts/git-hooks/pre-commit",
+    ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+    ".skilled/skills/sk-code/mode-registry.json",
+    ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/freshness.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/private-skill-target.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+    ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "resource_map": {
+    "emit": false
+  },
+  "fanoutLineage": {
+    "label": "deepseek",
+    "artifactDir": "specs/sk-code/013-private-surface-skills/review/lineages/deepseek"
+  }
+}

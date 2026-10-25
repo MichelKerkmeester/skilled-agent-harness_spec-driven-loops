@@ -1,0 +1,22 @@
+diff --git a/specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md b/specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md
+index 7df6639559..e432347e38 100644
+--- a/specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md
++++ b/specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md
+@@ -106,7 +106,7 @@ Run the level helper first.
+ bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --loc <lines> --files <count>
+ ```
+ 
+-Use the level it prints. Do not raise the level yourself. The level decides which files the packet needs.
++Use the level it prints. If it prints Level 0, use `--level 1`. Do not raise the level yourself. The level decides which files the packet needs.
+ 
+ | Level | Files the packet needs |
+ |-------|------------------------|
+@@ -122,7 +122,7 @@ Verify: `rg -n 'SPECKIT_LEVEL' <packet folder>/spec.md` prints one line with tha
+ Create the packet with one command. Keep `--skip-branch` so no git state changes.
+ 
+ ```bash
+-bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level <level> --track <track> --short-name <two-to-four-words> "<one sentence>"
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --with-goal --level <level> --track <track> --short-name <two-to-four-words> "<one sentence>"
+ ```
+ 
+ The command prints the folder it made. Use that path for every later command.

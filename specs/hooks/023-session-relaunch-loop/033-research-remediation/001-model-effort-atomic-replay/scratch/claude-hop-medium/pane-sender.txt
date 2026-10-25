@@ -1,0 +1,50 @@
+ ▐▛███▛█   Claude Code v2.1.310
+▝▜██████▀  Opus 5.5 with medium effort · Claude Max
+ ▝▝   ▝▝   /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sb001m
+
+
+❯ Reply with the single word PONG.
+
+⏺ PONG
+
+✻ Churned for 1s · done 7:19 PM
+
+❯ /model claude-opus-5-5
+  ⎿  Set model to Opus 5.5 and saved as your default for new sessions
+
+❯ /effort medium
+  ⎿  Set effort level to medium (saved as your default for new sessions): Balanced approach with standard implementation and testing
+
+❯ Reply with the single word PONG.
+
+⏺ PONG
+
+✻ Cogitated for 1s · done 7:20 PM
+
+⏺ cache-tax: cold write of 24k tokens paid ($0.24). Keeping the cache warm for 3h00m so it is not paid again today; /keepwarm off to stop.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⚠ cache-tax: keepwarm 3h00m left · ping in 50m
+  ⏵⏵ bypass permissions on (shift+tab to cycle)                                                                                                                                                    /rc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

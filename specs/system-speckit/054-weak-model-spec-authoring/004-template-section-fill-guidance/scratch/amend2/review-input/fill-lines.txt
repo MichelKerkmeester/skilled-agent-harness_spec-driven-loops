@@ -1,0 +1,15 @@
+== phase-deps
+SHIPPED:
+<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+== effort
+SHIPPED:
+<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write `N/A` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+== dependency-graph
+SHIPPED:
+<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+== critical-path
+SHIPPED:
+<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+== milestones
+SHIPPED:
+<!-- FILL: Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->

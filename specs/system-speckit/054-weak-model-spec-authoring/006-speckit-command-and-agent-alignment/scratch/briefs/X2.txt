@@ -1,0 +1,32 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review 51 proposed one-place text replacements in YAML command files. A script checks your output line by line.
+
+READ THESE FILES:
+1. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/X2-input.txt - every row (R-028 to R-078) with its locator, its replacement and 3 lines of file context, then the skipped list, then the tree facts.
+2. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/rows-extra.jsonl - the same rows as JSON.
+3. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/extra-skipped.txt - the skipped list.
+You may also search .skilled/commands/create/assets and .skilled/commands/deep/assets with file reads and ripgrep-style searches to confirm a count.
+
+BACKGROUND: the spec-kit templates no longer include a separate checklist.md document. Level 2 packets hold spec.md, plan.md, tasks.md, implementation-summary.md and acceptance-criteria.md. A verification checklist is a section inside tasks.md. The rows replace every checklist.md mention in the 16 command assets.
+
+CHECK THESE FIVE THINGS FOR EACH ROW:
+(1) The locator occurs exactly once in its file (the input states the count; confirm it from the context lines or a search).
+(2) The replacement is true to the tree: every file it names exists in the tree facts, and no replacement names checklist.md.
+(3) The replacement keeps the YAML valid: indentation, list dashes and quotes are unchanged except for the words replaced.
+(4) The replacement changes only what the row is for, and does not touch another line.
+(5) The skipped list is complete: no checklist.md mention that tells an author to read, write or validate a spec checklist is left without a row. A row count that does not cover a hit in the files is a finding.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 R-0NN <reason>
+Use R-000 for a finding about the skipped list as a whole.
+Return the single line NO FINDINGS when there are none.

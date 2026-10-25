@@ -1,0 +1,19 @@
+4. **Remove placeholders** - Replace ALL `[PLACEHOLDER]` text with actual content
+---
+4. **Remove placeholders** - Replace every `[YOUR_VALUE_HERE: ...]` token with actual content. A new packet may keep tokens while its status is Draft, and validation fails them at any other status
+===
+- `[PLACEHOLDER]` - **MUST** be replaced with actual content
+---
+- `[YOUR_VALUE_HERE: ...]` - **MUST** be replaced with actual content. In a doc stamped v2.3 or later it is a warning while the spec status is Draft and an error at any other status. In an older doc it is always an error
+===
+- Search for `[PLACEHOLDER]`
+---
+- Search for `YOUR_VALUE_HERE:`
+===
+3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
+---
+3. **Fill every placeholder** - Replace every `[YOUR_VALUE_HERE: ...]` token with actual content
+===
+- [ ] All placeholders replaced (`[PLACEHOLDER]`, `[NEEDS CLARIFICATION: ...]`)
+---
+- [ ] All placeholders replaced (`[YOUR_VALUE_HERE: ...]`, `[NEEDS CLARIFICATION: ...]`)

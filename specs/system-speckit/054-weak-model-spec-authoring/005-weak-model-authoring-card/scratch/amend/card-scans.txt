@@ -1,0 +1,14 @@
+--- vocab
+rc=1
+--- em dash
+rc=1
+--- semicolon
+rc=1
+--- hint
+rc=1
+--- lines
+     172
+--- longest sections
+18 ## 6. THE PLAN SHAPE
+18 ## 2. PICK THE LEVEL
+17 ## 7. TASK LINES

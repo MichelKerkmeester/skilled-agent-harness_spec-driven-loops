@@ -131,7 +131,7 @@ documentation_level:
     - spec.md
     - plan.md
     - tasks.md
-    - checklist.md
+    - acceptance-criteria.md
   note: "Testing playbook package creation typically needs verification because it spans root and per-feature docs"
 
 defaults:
@@ -250,12 +250,12 @@ context_loading:
     order:
       - "Read {spec_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
-      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
+      - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, decision-record.md"
       - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   behavior:
     memory_choice_A: "Load handover.md plus implementation-summary.md _memory.continuity for spec_path; sets memory_loaded: handover"
-    memory_choice_B: "Load canonical spec docs (spec.md, plan.md, tasks.md, checklist.md) for spec_path up to a recent cap; sets memory_loaded: spec_docs"
+    memory_choice_B: "Load canonical spec docs (spec.md, plan.md, tasks.md) for spec_path up to a recent cap; sets memory_loaded: spec_docs"
     memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
   when_to_skip: ["New spec folder or target with no prior context", "User says 'skip context' or 'fresh start'"]
   output: memory_loaded
@@ -292,18 +292,19 @@ workflow:
       - Create folder: specs/[NNN]-[skill_name]-testing-playbook/
     - IF spec_choice == A or C (Existing or Related):
       - Use selected spec_path
-    - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+    - "Route spec.md, plan.md, tasks.md, and acceptance-criteria.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
     templates:
     # Use Level 2 templates as default for testing playbook package creation
     - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
     - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
     - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+    - .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md
     outputs:
     - spec_path_resolved
     - spec.md: created_or_updated
     - plan.md: created_or_updated
     - tasks.md: created_or_updated
-    - checklist.md: created_or_updated
+    - acceptance-criteria.md: created_or_updated
     checkpoint:
       question: "Spec folder resolved at [spec_path]. Continue to source discovery?"
       options:

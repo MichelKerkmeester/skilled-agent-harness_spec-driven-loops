@@ -1,0 +1,3 @@
+goal records: 2
+record=5b54b1ab2552 goalId=goal-7cc901c6-31e9-478f-8407-694ea5a619cd runtime=pi status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T15:53:24.150Z
+record=e961f14240c8 goalId=goal-8d403a19-a2c2-4427-a854-78732d411d3d runtime=pi status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T15:54:01.626Z

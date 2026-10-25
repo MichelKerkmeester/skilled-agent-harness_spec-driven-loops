@@ -1,0 +1,3 @@
+      if (tokenGated && draftPacket && !CLARIFICATION_MARKER_RE.test(line)) {
+---
+      if (tokenGated && draftPacket && match[0] === '[YOUR_VALUE_HERE:') {

@@ -1,0 +1,4 @@
+spec 7
+plan 14
+tasks 21
+acceptance-criteria 3

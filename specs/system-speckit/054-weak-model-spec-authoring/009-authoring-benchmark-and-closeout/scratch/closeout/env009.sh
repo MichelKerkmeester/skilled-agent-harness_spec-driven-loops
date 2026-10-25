@@ -1,0 +1,10 @@
+export WORKTREE=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring
+export SCR=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad
+export PKT=$WORKTREE/specs/system-speckit/054-weak-model-spec-authoring
+export PHASE=$PKT/009-authoring-benchmark-and-closeout
+export SC=$PHASE/scratch
+export S=.skilled/skills/system-spec-kit
+export P1=$PKT/001-template-drift-census-and-baseline
+export BL=$P1/scratch/baseline-swe-l3
+export P3=$PKT/003-versioned-placeholder-gate
+export RUNBOOK_SCR=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/24ab0085-14d1-4aa2-8427-2071c5562263/scratchpad

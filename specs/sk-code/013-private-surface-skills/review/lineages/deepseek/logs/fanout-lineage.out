@@ -1,0 +1,17 @@
+The lineage is complete. Summary of what was executed and found:
+
+**Run:** 5/5 iterations, `maxIterationsReached`, all state through the append gateway (7 ledger receipts, exit 0 each), reducer run after every iteration, terminal synthesis record carrying `stopReason: maxIterationsReached`.
+
+**Verdict: CONDITIONAL** — 4 × P1, 13 × P2, 0 × P0.
+
+| Dimension | Result |
+|---|---|
+| Correctness | PASS — hub sheds both surfaces, 0 live tracked surface paths, 4 ignore rules match, guard covers 8 roots, trigger index clean |
+| Security | PASS — realpath containment holds in TS and Python, all 8 tracked writers skip `local-*`, no leak path found |
+| Traceability | **CONDITIONAL** — parent spec says `Complete` while its own phase map marks 2-4 unfinished; phase 2's AC-013 reads `Met` in the row and `Unmet` in the evidence; AC-014 stays `Unmet` although both commits are ancestors of `origin/main`; phase 3's AC-026/027 are `Unmet` while the goal says Done |
+| Maintainability | PASS — rule repeated across 16 scan sites, three hand-maintained root lists, uneven evidence durability |
+| Completeness | PASS — 107 acceptance rows (103 Met / 3 Unmet / 1 Waived, ADR-008 exists); hooks README omits the new blocking gate |
+
+**One item for the operator:** `specs/sk-code/013-private-surface-skills/description.json` is modified in the working tree (a `memoryNameHistory` entry stamped 17:20, before this lineage wrote anything). No command in this lineage writes that file, and reverting it would need a git write, which this run is barred from. It is the only modified tracked file repo-wide; everything else this lineage produced is inside `review/lineages/deepseek/`.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

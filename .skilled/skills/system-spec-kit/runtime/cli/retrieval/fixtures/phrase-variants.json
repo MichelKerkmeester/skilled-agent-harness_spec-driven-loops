@@ -1,5 +1,5 @@
 {
-  "manifestHash": "621c996bdfc90c2b4d2eda4bc7d90dfea0df9ff5203115e9c4b2756ea2c3a432",
+  "manifestHash": "0057be58ba3b29b94bb81ad095fc7fd0ff597a830b3998e9e33833c1b6008d02",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12399,6 +12399,9 @@
     "authoring boundary": [
       "authoring boundary"
     ],
+    "authoring card": [
+      "authoring card"
+    ],
     "authoring card documentation": [
       "authoring card documentation"
     ],
@@ -17014,6 +17017,9 @@
     ],
     "check evidence strict semantic marker": [
       "check-evidence strict semantic marker"
+    ],
+    "check example drift": [
+      "check-example-drift"
     ],
     "check generated metadata drift": [
       "check generated metadata drift"
@@ -28186,6 +28192,9 @@
     "create commands inventory extract implementation summary": [
       "create commands inventory extract implementation summary"
     ],
+    "create commands name acceptance criteria": [
+      "create commands name acceptance criteria"
+    ],
     "create commands presentation markdown complete": [
       "create commands presentation markdown complete"
     ],
@@ -34246,6 +34255,9 @@
     "deep review readme nine section pattern": [
       "deep-review readme nine-section pattern"
     ],
+    "deep review reads acceptance criteria": [
+      "deep review reads acceptance criteria"
+    ],
     "deep review receipt contract plan": [
       "deep-review receipt contract plan"
     ],
@@ -39102,6 +39114,9 @@
     "draft compare tasks": [
       "draft compare tasks"
     ],
+    "draft placeholder rule": [
+      "Draft placeholder rule"
+    ],
     "draw io import": [
       "draw.io import"
     ],
@@ -41885,6 +41900,12 @@
     "exacttriggersearch parity": [
       "exactTriggerSearch parity"
     ],
+    "example anchor drift": [
+      "example anchor drift"
+    ],
+    "example description check": [
+      "example description check"
+    ],
     "example drift guard": [
       "example drift guard"
     ],
@@ -42365,6 +42386,9 @@
     ],
     "extension convention lint pin": [
       "extension convention lint pin"
+    ],
+    "extension floors sk code review": [
+      "extension floors sk-code-review"
     ],
     "extension guide ac traceability": [
       "extension guide ac traceability"
@@ -44574,6 +44598,9 @@
     ],
     "fill a new rule": [
       "fill a new rule"
+    ],
+    "fill a spec scaffold": [
+      "fill a spec scaffold"
     ],
     "fill guidance test source": [
       "fill guidance test source"
@@ -49580,6 +49607,9 @@
     ],
     "golden snapshot verification task": [
       "golden snapshot verification task"
+    ],
+    "good and weak example": [
+      "good and weak example"
     ],
     "google embeddinggemma cocoindex": [
       "google embeddinggemma cocoindex"
@@ -58332,6 +58362,9 @@
     ],
     "local rest api reference folder": [
       "local rest api reference folder"
+    ],
+    "local skill link": [
+      "local skill link"
     ],
     "local vision": [
       "local vision"
@@ -72247,6 +72280,9 @@
     "phase 10 post fix research": [
       "phase 10 post fix research"
     ],
+    "phase 10 review remediation": [
+      "phase 10 review remediation"
+    ],
     "phase 10 trigger index ci rebuild": [
       "phase 10 trigger index ci rebuild"
     ],
@@ -72787,6 +72823,9 @@
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
+    "phase 3 review remediation": [
+      "phase 3 review remediation"
+    ],
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
@@ -73158,6 +73197,9 @@
     ],
     "phase 6 research lineage reducer path": [
       "phase 6 research lineage reducer path"
+    ],
+    "phase 6 review remediation": [
+      "phase 6 review remediation"
     ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
@@ -75042,6 +75084,9 @@
     ],
     "placeholder syntax types": [
       "placeholder syntax types"
+    ],
+    "placeholder token warning": [
+      "placeholder token warning"
     ],
     "placeholder warning plan": [
       "placeholder warning plan"
@@ -76939,6 +76984,9 @@
     "private procedure card structure": [
       "private procedure card structure"
     ],
+    "private skill containment": [
+      "private skill containment"
+    ],
     "private skill guard adr": [
       "private skill guard adr"
     ],
@@ -78122,6 +78170,9 @@
     ],
     "quality fallback fts5 bm25 grep plan": [
       "quality fallback fts5 bm25 grep plan"
+    ],
+    "quality floor split": [
+      "quality floor split"
     ],
     "quality gate": [
       "quality gate"
@@ -85662,6 +85713,9 @@
     "review remediation closeout tasks": [
       "review remediation closeout tasks"
     ],
+    "review remediation decision record": [
+      "review remediation decision record"
+    ],
     "review remediation doc accuracy changelog": [
       "review remediation doc accuracy changelog"
     ],
@@ -92963,6 +93017,9 @@
     "sk code modes research": [
       "sk-code modes research"
     ],
+    "sk code modes research review fixes": [
+      "sk-code modes research review fixes"
+    ],
     "sk code no ephemeral artifact pointers fix": [
       "sk-code no ephemeral-artifact pointers fix"
     ],
@@ -93207,6 +93264,9 @@
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
     ],
+    "sk code quality 1 3 0 0": [
+      "sk-code-quality 1.3.0.0"
+    ],
     "sk code quality mode research": [
       "sk-code quality mode research"
     ],
@@ -93239,6 +93299,9 @@
     ],
     "sk code quality v1 2 0 0": [
       "sk-code-quality v1.2.0.0"
+    ],
+    "sk code quality v1 3 0 0": [
+      "sk-code-quality v1.3.0.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -94935,6 +94998,9 @@
     "sk doc 2 3 10 0": [
       "sk-doc 2.3.10.0"
     ],
+    "sk doc 2 3 11 0": [
+      "sk-doc 2.3.11.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -95267,6 +95333,9 @@
     ],
     "sk doc v2 3 10 0": [
       "sk-doc v2.3.10.0"
+    ],
+    "sk doc v2 3 11 0": [
+      "sk-doc v2.3.11.0"
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
@@ -99697,6 +99766,9 @@
     "spec folder authoring docs relocation": [
       "spec-folder authoring docs relocation"
     ],
+    "spec folder authoring steps": [
+      "spec folder authoring steps"
+    ],
     "spec folder completion check": [
       "spec folder completion check"
     ],
@@ -101435,6 +101507,9 @@
     ],
     "speckit presentation verification": [
       "speckit presentation verification"
+    ],
+    "speckit private skill roots": [
+      "SPECKIT_PRIVATE_SKILL_ROOTS"
     ],
     "speckit quick reference": [
       "speckit quick reference"
@@ -104248,6 +104323,9 @@
     "system deep loop 1 6 5 0": [
       "system-deep-loop 1.6.5.0"
     ],
+    "system deep loop 1 6 6 0": [
+      "system-deep-loop 1.6.6.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -104388,6 +104466,9 @@
     ],
     "system deep loop v1 6 5 0": [
       "system-deep-loop v1.6.5.0"
+    ],
+    "system deep loop v1 6 6 0": [
+      "system-deep-loop v1.6.6.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -104989,6 +105070,9 @@
     "system spec kit 2 8 5 0": [
       "system-spec-kit 2.8.5.0"
     ],
+    "system spec kit 2 9 0 0": [
+      "system-spec-kit 2.9.0.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -105423,6 +105507,9 @@
     ],
     "system spec kit v2 8 5 0": [
       "system-spec-kit v2.8.5.0"
+    ],
+    "system spec kit v2 9 0 0": [
+      "system-spec-kit v2.9.0.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -105977,6 +106064,9 @@
     ],
     "template examples": [
       "template examples"
+    ],
+    "template fill line": [
+      "template fill line"
     ],
     "template first palette data contract": [
       "template-first palette data contract"
@@ -108428,6 +108518,9 @@
     "trusted mutation gate": [
       "trusted mutation gate"
     ],
+    "trusted private skill roots": [
+      "trusted private skill roots"
+    ],
     "truthful stop without consensus": [
       "truthful stop without consensus"
     ],
@@ -109132,6 +109225,9 @@
     ],
     "universal ceiling probe audit": [
       "universal ceiling probe audit"
+    ],
+    "universal checklist baseline": [
+      "universal checklist baseline"
     ],
     "universal code quality checklist": [
       "universal code quality checklist"
@@ -109855,6 +109951,9 @@
     ],
     "v2 2 1 0 release notes": [
       "v2.2.1.0 release notes"
+    ],
+    "v2 3 template stamp": [
+      "v2.3 template stamp"
     ],
     "v2 4 0 0 release notes": [
       "v2.4.0.0 release notes"
@@ -110780,6 +110879,9 @@
     ],
     "value of computation allocation tasks": [
       "value of computation allocation tasks"
+    ],
+    "value token gate": [
+      "value token gate"
     ],
     "value token lifecycle": [
       "value token lifecycle"
@@ -112043,8 +112145,38 @@
     "weak model loop adherence tasks": [
       "weak model loop adherence tasks"
     ],
+    "weak model spec authoring benchmark and closeout changelog": [
+      "weak model spec authoring benchmark and closeout changelog"
+    ],
+    "weak model spec authoring changelog": [
+      "weak model spec authoring changelog"
+    ],
     "weak model spec authoring phase parent spec": [
       "weak model spec authoring phase parent spec"
+    ],
+    "weak model spec authoring playbook catalog readme alignment changelog": [
+      "weak model spec authoring playbook catalog readme alignment changelog"
+    ],
+    "weak model spec authoring playbook run in worktree changelog": [
+      "weak model spec authoring playbook run in worktree changelog"
+    ],
+    "weak model spec authoring speckit command and agent alignment changelog": [
+      "weak model spec authoring speckit command and agent alignment changelog"
+    ],
+    "weak model spec authoring template and example defect repair changelog": [
+      "weak model spec authoring template and example defect repair changelog"
+    ],
+    "weak model spec authoring template drift census and baseline changelog": [
+      "weak model spec authoring template drift census and baseline changelog"
+    ],
+    "weak model spec authoring template section fill guidance changelog": [
+      "weak model spec authoring template section fill guidance changelog"
+    ],
+    "weak model spec authoring versioned placeholder gate changelog": [
+      "weak model spec authoring versioned placeholder gate changelog"
+    ],
+    "weak model spec authoring weak model authoring card changelog": [
+      "weak model spec authoring weak model authoring card changelog"
     ],
     "weak model write boundary": [
       "weak model write boundary"
@@ -113056,6 +113188,9 @@
     ],
     "write a readme": [
       "write a readme"
+    ],
+    "write a spec packet": [
+      "write a spec packet"
     ],
     "write a test about deep review": [
       "write a test about deep review"

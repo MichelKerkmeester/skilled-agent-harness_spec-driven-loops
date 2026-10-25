@@ -1,8 +1,8 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-10-24"
-version: 2.1.3.0
+last_updated: "2026-10-25"
+version: 2.1.5.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -31,6 +31,7 @@ Canonical package artifacts:
 - `memory-quality-and-indexing/` — spec-doc quality, generated metadata and the post-save review
 - `plugins-and-hooks/`
 - `retrieval/`
+- `template-authoring/` - placeholder gate, fill guidance, example drift guard and the authoring card
 - `tooling-and-scripts/`
 - `ux-hooks/`
 
@@ -219,6 +220,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | PHASE-001 | Phase detection scoring | [PHASE-001](tooling-and-scripts/phase-detection-scoring.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
 | PHASE-002 | Phase folder creation | [PHASE-002](tooling-and-scripts/phase-folder-creation.md) | [spec-lifecycle-automation](../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) |
 | 236 | Phase-system knowledge node | [236](tooling-and-scripts/phase-system-knowledge-node.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
+| 484 | Private skill commit guard | [484](tooling-and-scripts/private-skill-commit-guard.md) | — |
 | 062 | Progressive validation for spec documents | [062](tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md) | [progressive-validation-for-spec-documents](../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md) |
 | PHASE-003 | Recursive phase validation | [PHASE-003](tooling-and-scripts/recursive-phase-validation.md) | [spec-validation-rule-engine](../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md) |
 | 472 | Repository era report | [472](tooling-and-scripts/repo-era-report.md) | [repo-era-report](../feature-catalog/tooling-and-scripts/repo-era-report.md) |
@@ -330,6 +332,21 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | 453 | Speckit autopilot lifecycle | [453](lifecycle/speckit-autopilot-lifecycle.md) | [speckit-autopilot-lifecycle](../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) |
 | 190 | Session recovery via /speckit:resume | [190](retrieval/session-recovery-spec-kit-resume.md) | [session-recovery-spec-kit-resume](../feature-catalog/retrieval/session-recovery-spec-kit-resume.md) |
 | 270 | Resource map template | [270](context-preservation/resource-map-template.md) | [resource-map-template](../feature-catalog/context-preservation/resource-map-template.md) |
+
+---
+
+### 7.9 Template Authoring
+
+| Playbook ID | Scenario | Scenario File | Catalog Entry |
+|---|---|---|---|
+| 476 | Placeholder token warning while Draft | [476](template-authoring/placeholder-token-warning-while-draft.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
+| 477 | Placeholder token error after Draft | [477](template-authoring/placeholder-token-error-after-draft.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
+| 478 | Placeholder gate unchanged for a v2.2 doc | [478](template-authoring/placeholder-gate-legacy-stamp-unchanged.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
+| 479 | Example drift guard catches a leaked description | [479](template-authoring/example-drift-guard-catches-leak.md) | [example-drift-guard](../feature-catalog/tooling-and-scripts/example-drift-guard.md) |
+| 480 | Golden render of every level | [480](template-authoring/golden-render-all-levels.md) | [template-section-fill-guidance](../feature-catalog/tooling-and-scripts/template-section-fill-guidance.md) |
+| 481 | Authoring card loaded by four intents | [481](template-authoring/authoring-card-router-intents.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
+| 482 | Authoring card sync guard | [482](template-authoring/authoring-card-sync-guard.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
+| 483 | Level 1 packet authored from the card | [483](template-authoring/level-1-packet-authored-from-card.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 
 ---
 

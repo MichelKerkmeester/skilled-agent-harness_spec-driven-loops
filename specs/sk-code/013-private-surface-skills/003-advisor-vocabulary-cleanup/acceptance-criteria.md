@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup"
-    last_updated_at: "2026-10-23T13:10:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Rewrote the criteria for Level 3 with fenced proofs and positive controls"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-10-25T12:00:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Closed AC-026 and AC-027, every criterion Met"
+    next_safe_action: "Phase complete, continue in phase 004"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-003-advisor-vocabulary-cleanup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup
 **Level:** 3
-**Status:** In progress; AC-026 and AC-027 wait on review, commit and push
+**Status:** Complete
 **Date:** 2026-10-23
 <!-- /ANCHOR:metadata -->
 
@@ -76,8 +76,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-023 | REQ-010 | Given a `local-*` symlink to a directory outside the source tree, When the Hermes sync writes, Then no folder from the link is written | Met | - |
 | AC-024 | REQ-011 | Given a `local-beta` skill declaring `conflicts_with: alpha`, When the conflict reader runs, Then `declarations['local-beta']` contains `alpha` | Met | - |
 | AC-025 | REQ-012 | Given the two private source trees at `42b41dd286`, When the leaf-manifest screen runs, Then the fleet control returns 14, the private trees return 0, and the gate reports `checked=14 fresh=14 failed=0` | Met | - |
-| AC-026 | REQ-013 | Given the final commit, When delivery completes, Then `git status --porcelain` is empty and HEAD equals `origin/main` | Unmet | - |
-| AC-027 | REQ-013 | Given the independent review, When it closes, Then its report ends with `VERDICT: CLEAN` or every finding is resolved or recorded | Unmet | - |
+| AC-026 | REQ-013 | Given the final commit, When delivery completes, Then `git status --porcelain` is empty and HEAD equals `origin/main` | Met | `e00fef3e76` ancestor of `origin/main` (`git merge-base --is-ancestor e00fef3e76 origin/main`, exit 0). The `git status --porcelain` half was a delivery-moment check and cannot be replayed |
+| AC-027 | REQ-013 | Given the independent review, When it closes, Then its report ends with `VERDICT: CLEAN` or every finding is resolved or recorded | Met | Every round 1 to 4 finding resolved or recorded in `decision-record.md` section Review follow-up amendments |
 | AC-028 | REQ-009 | Given the phase start and the phase end, When `implementation-summary.md` is read, Then the baseline table, the red-first table and the final-counts table are present and agree with the suite runs | Met | - |
 | AC-029 | REQ-001 | Given the working tree, When the predecessor check runs, Then both surface folders are absent | Met | - |
 | AC-030 | REQ-014 | Given `.skilled/agents/code.md` step 3, When `sk-code` returns UNKNOWN or ambiguous routing, Then the agent runs the advisor CLI, uses a top `local-*` `skillId` as the standards overlay and cites it, and escalates `UNKNOWN_ROUTE` only when the top pick is not `local-*` | Met | - |
@@ -341,13 +341,21 @@ git rev-parse origin/main
 
 Expected: an ignored-file count of at least `1`, then no output from `git status --porcelain`, then two identical hashes.
 
+Those four lines held at delivery and cannot be replayed once later commits land. The replayable proxy is commit ancestry:
+
+```bash
+git merge-base --is-ancestor e00fef3e76 origin/main && echo ANCESTOR
+```
+
+Expected: `ANCESTOR`.
+
 ### AC-027
 
 ```bash
-tail -1 /tmp/phase3-review.txt
+rg -n '^### Review follow-up amendments' decision-record.md
 ```
 
-Expected: `VERDICT: CLEAN`, or a `VERDICT: FINDINGS` line whose findings are all resolved or recorded.
+Expected: four headings, at `:772`, `:789`, `:820` and `:833`, one per review round, each recording its findings and their resolution.
 
 ### AC-028
 
@@ -482,7 +490,7 @@ rg -l "startsWith\('local-'\)|startswith\(\"local-\"\)|createPrivateSkillLinkChe
 cd .skilled/skills/system-skill-advisor/runtime && python3 tests/python/test_skill_advisor.py | rg 'DISCOVER|Summary'
 ```
 
-Expected: `16`, then seven `T246-DISCOVER` lines reading `PASS`, then `Summary: pass=84, fail=0`. The sixteen files are the fifteen files that hold the sixteen scans in the `spec.md` section 3 inventory (`skill_advisor.py` holds two) plus the helper `private-skill-target.ts`. With the old `glob.glob("*/SKILL.md")` swapped into `_discover_skill_files`, `T246-DISCOVER-001`, `-003` and `-005` fail. With the hidden-folder skip removed, `T246-DISCOVER-007` fails.
+Expected: `17`, then seven `T246-DISCOVER` lines reading `PASS`, then `Summary: pass=84, fail=0`. The seventeen files are the sixteen files that hold scans 1 to 16 and 18 in the `spec.md` section 3 inventory (`skill_advisor.py` holds two) plus the helper `private-skill-target.ts`. Scan 17 reaches the rule through `listSkillRoots`, so this pattern does not list it. The count was `16` until scan 18 gained its skip on 2026-10-25. With the old `glob.glob("*/SKILL.md")` swapped into `_discover_skill_files`, `T246-DISCOVER-001`, `-003` and `-005` fail. With the hidden-folder skip removed, `T246-DISCOVER-007` fails.
 
 ### AC-040
 

@@ -1,0 +1,1246 @@
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+     1	---
+     2	title: "481 -- Authoring card loaded by four intents"
+     3	description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load the authoring card and leave the long guide on demand."
+     4	version: 1.0.0.0
+     5	id: template-authoring-authoring-card-router-intents
+     6	---
+     7	
+     8	# 481 -- Authoring card loaded by four intents
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the router change phase 5 makes. The `RESOURCE_MAP` in `SKILL.md` sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
+    13	
+    14	### Why This Matters
+    15	
+    16	A weak model follows the first document it is given. If an authoring intent still loads the 1,200 line guide, the model spends its context on the long path and never sees the card. The counts prove the router points at the short path and keeps the long one for a deliberate lookup.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators count the card and guide lines in the router and read three numbers.
+    23	
+    24	- Objective: Prove that the four authoring intent blocks name the card four times and the guide zero times, and that the on demand list names the guide once.
+    25	- Playbook ID: 481.
+    26	- Real user request: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
+    27	- Prompt: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
+    28	- Preconditions: A checkout with `awk` on PATH and phase 5 closed so `SKILL.md` and the card exist. The scenario needs no network.
+    29	- Expected execution process: Run one `awk` count over the four intent blocks for the card, one for the guide, and one over the on demand list for the guide.
+    30	- Expected signals: The card count prints `4`. The intent guide count prints `0`. The on demand guide count prints `1`.
+    31	- Desired user-visible outcome: The operator sees the four intents load the card and the guide held for an on demand read.
+    32	- Pass/fail: PASS if the three counts are `4`, `0` and `1` in that order. FAIL if any count differs.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session.
+    47	
+    48	1. Count the card lines in the four authoring intent blocks.
+    49	
+    50	```bash
+    51	S=.skilled/skills/system-spec-kit
+    52	awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /spec-authoring-card\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/SKILL.md"
+    53	```
+    54	
+    55	2. Count the guide lines in the same four blocks.
+    56	
+    57	```bash
+    58	awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /template-guide\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/SKILL.md"
+    59	```
+    60	
+    61	3. Count the guide lines in the on demand list.
+    62	
+    63	```bash
+    64	awk '/"ON_DEMAND": \[/ {od=1; next} od && /^    \],$/ {od=0} od && /template-guide\.md/ {n++} END {print n+0}' "$S/SKILL.md"
+    65	```
+    66	
+    67	### Expected
+    68	
+    69	Step 1 prints `4`. Step 2 prints `0`. Step 3 prints `1`.
+    70	
+    71	### Evidence
+    72	
+    73	- The `4` from step 1.
+    74	- The `0` from step 2.
+    75	- The `1` from step 3.
+    76	- The four intent block headers from `SKILL.md`, quoted in the report.
+    77	
+    78	### Pass / Fail
+    79	
+    80	- **Pass**: The three counts are `4`, `0` and `1`.
+    81	- **Fail**: Any count differs.
+    82	
+    83	### Failure Triage
+    84	
+    85	A `3` on step 1 means one intent block still points elsewhere, so read the four blocks and name the missing intent. A `1` on step 2 means the guide did not leave that intent, so compare the block with the card row. A `0` on step 3 means the guide became unreachable, so add it back to `ON_DEMAND` before closing phase 5.
+    86	
+    87	---
+    88	
+    89	## 4. SOURCE FILES
+    90	
+    91	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+    92	- Feature catalog: [spec-authoring-card.md](../../feature-catalog/tooling-and-scripts/spec-authoring-card.md)
+    93	- Implementation: [SKILL.md](../../SKILL.md)
+    94	
+    95	Provenance: manual only - awk over the four intent blocks in .skilled/skills/system-spec-kit/SKILL.md
+    96	
+    97	---
+    98	
+    99	## 5. SOURCE METADATA
+   100	
+   101	- Group: Template Authoring
+   102	- Playbook ID: 481
+   103	- Canonical root source: `manual-testing-playbook.md`
+   104	- Feature file path: `template-authoring/authoring-card-router-intents.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md
+     1	---
+     2	title: "482 -- Authoring card sync guard"
+     3	description: "This scenario validates that the card sync guard passes the changed tree and fails a disposable copy whose card is missing."
+     4	version: 1.0.0.0
+     5	id: template-authoring-authoring-card-sync-guard
+     6	---
+     7	
+     8	# 482 -- Authoring card sync guard
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the read-only card sync guard. The guard reads the card, the router, the leaf inventory files and the authoring checklist, and it fails on the first disagreement. The scenario runs it on the tree, copies the skill into a scratch folder, deletes the card from the copy and runs the guard again.
+    13	
+    14	### Why This Matters
+    15	
+    16	Four surfaces describe one authoring path. A reader who edits one surface alone sends the next reader down a path the other three do not describe. The guard turns that quiet drift into a failed command.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators run the guard twice, once on the tree and once on a copy without the card.
+    23	
+    24	- Objective: Prove that the guard prints nine `PASS` lines and `CARD SYNC OK` on the tree, and `FAIL card-exists` with `CARD SYNC FAILED` on the copy.
+    25	- Playbook ID: 482.
+    26	- Real user request: `Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.`
+    27	- Prompt: `Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.`
+    28	- Preconditions: A checkout with bash, rsync and `jq` on PATH, and phase 5 closed so `runtime/cli/spec/check-card-sync.sh` and the card exist. The scenario needs no network.
+    29	- Expected execution process: Run the guard on the tree, copy the skill without `node_modules` into a scratch folder, run the guard on the copy, delete the card from the copy, run the guard again, then remove the scratch folder.
+    30	- Expected signals: The tree run prints nine `PASS` lines, then `CARD SYNC OK`, and exits 0. The copy run prints `CARD SYNC OK` before the card is deleted. The broken run exits 1, prints one `FAIL card-exists` line, then `CARD SYNC FAILED`.
+    31	- Desired user-visible outcome: The operator sees the four surfaces agree and the guard refuse a copy that lost one of them.
+    32	- Pass/fail: PASS if the tree run prints nine `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with `FAIL card-exists` and `CARD SYNC FAILED`. FAIL if either run returns the other verdict.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Confirm the authoring card, the router, the leaf inventory and the checklist agree, then prove the guard notices a missing card.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session, so the variables set in step 1 stay defined.
+    47	
+    48	1. Run the guard on the tree and count its pass lines.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	S=.skilled/skills/system-spec-kit
+    53	bash "$S/runtime/cli/spec/check-card-sync.sh" > "$OUT/clean.txt" 2>&1
+    54	echo "clean_exit=$?"
+    55	grep -c '^PASS ' "$OUT/clean.txt"
+    56	tail -1 "$OUT/clean.txt"
+    57	```
+    58	
+    59	2. Copy the skill into a scratch folder and run the guard on the copy.
+    60	
+    61	```bash
+    62	N="$OUT/skill"
+    63	rsync -a --exclude node_modules "$S/" "$N/"
+    64	bash "$N/runtime/cli/spec/check-card-sync.sh" > "$OUT/copy.txt" 2>&1
+    65	echo "copy_exit=$?"
+    66	tail -1 "$OUT/copy.txt"
+    67	```
+    68	
+    69	3. Delete the card from the copy and run the guard again.
+    70	
+    71	```bash
+    72	rm "$N/references/workflows/spec-authoring-card.md"
+    73	bash "$N/runtime/cli/spec/check-card-sync.sh" > "$OUT/broken.txt" 2>&1
+    74	echo "broken_exit=$?"
+    75	grep -c '^FAIL card-exists' "$OUT/broken.txt"
+    76	tail -1 "$OUT/broken.txt"
+    77	```
+    78	
+    79	4. Remove the scratch folder.
+    80	
+    81	```bash
+    82	rm -rf "$OUT"
+    83	test ! -d "$OUT" && echo "cleanup=ok"
+    84	```
+    85	
+    86	### Expected
+    87	
+    88	Step 1 prints `clean_exit=0`, then `9`, then `CARD SYNC OK`. Step 2 prints `copy_exit=0`, then `CARD SYNC OK`. Step 3 prints `broken_exit=1`, then `1`, then `CARD SYNC FAILED`. Step 4 prints `cleanup=ok`.
+    89	
+    90	### Evidence
+    91	
+    92	- The exit code, the `PASS` count and the last line from step 1.
+    93	- The exit code and the last line from step 2.
+    94	- The exit code, the failure count and the last line from step 3.
+    95	- The `cleanup=ok` line from step 4.
+    96	
+    97	### Pass / Fail
+    98	
+    99	- **Pass**: The tree run exits 0 with nine `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with one `FAIL card-exists` line and `CARD SYNC FAILED`.
+   100	- **Fail**: A pass count differs, the broken run passes, or the failure line names a different check.
+   101	
+   102	### Failure Triage
+   103	
+   104	A tree failure means one of the four surfaces is already out of step, so read `$OUT/clean.txt` and fix the named check before this scenario. A copy failure before the deletion means `rsync` skipped a file, so read `$OUT/copy.txt`. A broken run that passes means the card deletion did not land, so list the copy's `references/workflows/` folder.
+   105	
+   106	---
+   107	
+   108	## 4. SOURCE FILES
+   109	
+   110	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+   111	- Feature catalog: [spec-authoring-card.md](../../feature-catalog/tooling-and-scripts/spec-authoring-card.md)
+   112	- Implementation: [check-card-sync.sh](../../runtime/cli/spec/check-card-sync.sh)
+   113	
+   114	Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+   115	
+   116	---
+   117	
+   118	## 5. SOURCE METADATA
+   119	
+   120	- Group: Template Authoring
+   121	- Playbook ID: 482
+   122	- Canonical root source: `manual-testing-playbook.md`
+   123	- Feature file path: `template-authoring/authoring-card-sync-guard.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md
+     1	---
+     2	title: "479 -- Example drift guard catches a leaked description"
+     3	description: "This scenario validates that the example drift guard passes a clean tree and fails a copy whose description holds a leaked comment tail."
+     4	version: 1.0.0.0
+     5	id: template-authoring-example-drift-guard-catches-leak
+     6	---
+     7	
+     8	# 479 -- Example drift guard catches a leaked description
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the read-only example drift guard. The guard compares every hand-written example with its template and checks the description line. The scenario runs the guard on the clean tree, injects a leaked comment tail into one copy of an example, and runs the guard on that copy.
+    13	
+    14	### Why This Matters
+    15	
+    16	A weak model copies an example. A description that keeps the end of an HTML comment teaches the model to write a broken frontmatter line. The guard turns that defect into a failed command instead of a copy that spreads.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators run the guard twice, once on the clean tree and once on a copy with one injected leak.
+    23	
+    24	- Objective: Prove that the guard prints `EXAMPLE_DRIFT_OK` and exits 0 on the clean tree, and prints a description failure and exits 1 on the copy.
+    25	- Playbook ID: 479.
+    26	- Real user request: `Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.`
+    27	- Prompt: `Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.`
+    28	- Preconditions: A checkout with Node, bash and perl on PATH, and phase 4 closed so `runtime/cli/spec/check-example-drift.sh` exists. The scenario needs no network.
+    29	- Expected execution process: Run the guard on the tree, copy one example into a scratch folder, inject a leaked comment tail into its description, run the guard on the scratch folder, then remove the scratch folder.
+    30	- Expected signals: The clean run prints `EXAMPLE_DRIFT_OK` and exits 0. The broken run prints one line with `description holds an HTML comment tail` and exits 1. The broken run does not print `EXAMPLE_DRIFT_OK`.
+    31	- Desired user-visible outcome: The operator sees the guard accept the tree and reject the injected defect.
+    32	- Pass/fail: PASS if the clean run exits 0 with `EXAMPLE_DRIFT_OK` and the broken run exits 1 with the description failure. FAIL if either run returns the other verdict.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Check every template example for drift, then prove the guard notices a description that leaked the end of an HTML comment.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session, so the variables set in step 1 stay defined.
+    47	
+    48	1. Run the guard on the clean tree.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh > "$OUT/clean.txt" 2>&1
+    53	echo "clean_exit=$?"
+    54	tail -1 "$OUT/clean.txt"
+    55	```
+    56	
+    57	2. Copy one example into a scratch folder and inject a leaked comment tail.
+    58	
+    59	```bash
+    60	T="$OUT/examples"
+    61	mkdir -p "$T/level-2"
+    62	cp .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md "$T/level-2/"
+    63	perl -0pi -e 's/^(description: ")([^"]*)(")$/$1$2 leaked -->$3/m' "$T/level-2/acceptance-criteria.md"
+    64	grep -m1 '^description:' "$T/level-2/acceptance-criteria.md"
+    65	```
+    66	
+    67	3. Run the guard on the scratch copy.
+    68	
+    69	```bash
+    70	bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh "$T" > "$OUT/broken.txt" 2>&1
+    71	echo "broken_exit=$?"
+    72	grep -c 'description holds an HTML comment tail' "$OUT/broken.txt"
+    73	grep -c 'EXAMPLE_DRIFT_OK' "$OUT/broken.txt"
+    74	```
+    75	
+    76	4. Remove the scratch folder.
+    77	
+    78	```bash
+    79	rm -rf "$OUT"
+    80	test ! -d "$OUT" && echo "cleanup=ok"
+    81	```
+    82	
+    83	### Expected
+    84	
+    85	Step 1 prints `clean_exit=0`, then `EXAMPLE_DRIFT_OK`. Step 2 prints a description line that ends with `leaked -->"`. Step 3 prints `broken_exit=1`, then `1`, then `0`. Step 4 prints `cleanup=ok`.
+    86	
+    87	### Evidence
+    88	
+    89	- The exit code and the last line from step 1.
+    90	- The injected description line from step 2.
+    91	- The exit code, the failure count and the `EXAMPLE_DRIFT_OK` count from step 3.
+    92	- The `cleanup=ok` line from step 4.
+    93	
+    94	### Pass / Fail
+    95	
+    96	- **Pass**: The clean run exits 0 with `EXAMPLE_DRIFT_OK`, and the broken run exits 1 with exactly one description failure and no `EXAMPLE_DRIFT_OK`.
+    97	- **Fail**: The clean run fails, the broken run passes, or the failure count is not 1.
+    98	
+    99	### Failure Triage
+   100	
+   101	A clean failure means the tree already holds drift, so read `$OUT/clean.txt` and fix that before this scenario. A broken run that passes means the injection did not match, so read the description line from step 2. A count of 0 for the failure line means the guard changed its message, so read `$OUT/broken.txt` and report the new wording.
+   102	
+   103	---
+   104	
+   105	## 4. SOURCE FILES
+   106	
+   107	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+   108	- Feature catalog: [example-drift-guard.md](../../feature-catalog/tooling-and-scripts/example-drift-guard.md)
+   109	- Implementation: [check-example-drift.sh](../../runtime/cli/spec/check-example-drift.sh)
+   110	
+   111	Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+   112	
+   113	---
+   114	
+   115	## 5. SOURCE METADATA
+   116	
+   117	- Group: Template Authoring
+   118	- Playbook ID: 479
+   119	- Canonical root source: `manual-testing-playbook.md`
+   120	- Feature file path: `template-authoring/example-drift-guard-catches-leak.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/golden-render-all-levels.md
+     1	---
+     2	title: "480 -- Golden render of every level"
+     3	description: "This scenario validates that every level renders to the stored golden snapshots and that each document keeps its frozen anchor count."
+     4	version: 1.0.0.0
+     5	id: template-authoring-golden-render-all-levels
+     6	---
+     7	
+     8	# 480 -- Golden render of every level
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the two template guards phase 4 adds. The golden test renders every level and compares the result with a stored snapshot. The fill guidance test renders every level and document and checks the anchor count and the one fill line per section. The scenario runs both and reads their test counts.
+    13	
+    14	### Why This Matters
+    15	
+    16	A fill instruction sits inside a template that a renderer prunes. A change that reads well in the source can alter the rendered shape, move an anchor or drop a section. The stored snapshots catch the shape change, and the anchor counts catch the structural change.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators run both template guards and read the pass counts.
+    23	
+    24	- Objective: Prove that the golden render prints `12 passed` and the fill guidance test prints `16 passed` without a snapshot update.
+    25	- Playbook ID: 480.
+    26	- Real user request: `Render every level and confirm the stored snapshots still match and every document still holds its anchors.`
+    27	- Prompt: `Render every level and confirm the stored snapshots still match and every document still holds its anchors.`
+    28	- Preconditions: A checkout with Node and the installed `node_modules` under `.skilled/skills/system-spec-kit`, and phase 4 closed so both test files exist. The scenario needs no network.
+    29	- Expected execution process: Run the golden test without a snapshot update, then run the fill guidance test, then read the `Tests` line from each run.
+    30	- Expected signals: The golden run prints `Tests  12 passed (12)`. The fill run prints `Tests  16 passed (16)`. Neither run prints `failed`.
+    31	- Desired user-visible outcome: The operator sees both guards green on the unchanged tree.
+    32	- Pass/fail: PASS if both runs print their expected pass count and neither prints a failure. FAIL if a run fails or updates a snapshot.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Render every level and confirm the stored snapshots still match and every document still holds its anchors.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session. The `cd` runs in a subshell so the checkout root stays current.
+    47	
+    48	1. Run the golden render test without a snapshot update.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	( cd .skilled/skills/system-spec-kit && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts ) > "$OUT/golden.txt" 2>&1
+    53	echo "golden_exit=$?"
+    54	grep -E '^ *Tests +12 passed' "$OUT/golden.txt"
+    55	grep -c 'failed' "$OUT/golden.txt"
+    56	```
+    57	
+    58	2. Run the fill guidance test.
+    59	
+    60	```bash
+    61	( cd .skilled/skills/system-spec-kit && ./node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts ) > "$OUT/fill.txt" 2>&1
+    62	echo "fill_exit=$?"
+    63	grep -E '^ *Tests +16 passed' "$OUT/fill.txt"
+    64	grep -c 'failed' "$OUT/fill.txt"
+    65	```
+    66	
+    67	3. Remove the scratch folder.
+    68	
+    69	```bash
+    70	rm -rf "$OUT"
+    71	test ! -d "$OUT" && echo "cleanup=ok"
+    72	```
+    73	
+    74	### Expected
+    75	
+    76	Step 1 prints `golden_exit=0`, then the `Tests  12 passed (12)` line, then `0`. Step 2 prints `fill_exit=0`, then the `Tests  16 passed (16)` line, then `0`. Step 3 prints `cleanup=ok`.
+    77	
+    78	### Evidence
+    79	
+    80	- The exit code, the `Tests` line and the `failed` count from step 1.
+    81	- The exit code, the `Tests` line and the `failed` count from step 2.
+    82	- The `cleanup=ok` line from step 3.
+    83	
+    84	### Pass / Fail
+    85	
+    86	- **Pass**: Both runs exit 0, the golden run prints `12 passed`, the fill run prints `16 passed`, and neither output holds the word `failed`.
+    87	- **Fail**: A run exits non-zero, a pass count differs, or a failure line appears.
+    88	
+    89	### Failure Triage
+    90	
+    91	A snapshot mismatch means a template change altered the render, so read the diff in `$OUT/golden.txt` and fix the template rather than updating the snapshot. A fill failure names the section that lacks one fill line, so read `$OUT/fill.txt`. A missing test file means phase 4 is not closed, so stop and report it.
+    92	
+    93	---
+    94	
+    95	## 4. SOURCE FILES
+    96	
+    97	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+    98	- Feature catalog: [template-section-fill-guidance.md](../../feature-catalog/tooling-and-scripts/template-section-fill-guidance.md)
+    99	- Implementation: [scaffold-golden-snapshots.vitest.ts](../../runtime/cli/tests/scaffold-golden-snapshots.vitest.ts)
+   100	
+   101	Provenance: manual only - cd .skilled/skills/system-spec-kit && ./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts
+   102	
+   103	---
+   104	
+   105	## 5. SOURCE METADATA
+   106	
+   107	- Group: Template Authoring
+   108	- Playbook ID: 480
+   109	- Canonical root source: `manual-testing-playbook.md`
+   110	- Feature file path: `template-authoring/golden-render-all-levels.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+     1	---
+     2	title: "483 -- Level 1 packet authored from the card"
+     3	description: "This scenario validates that a cli-devin swe-2-max worker can scaffold and fill a Level 1 packet from the authoring card alone, with strict validation passing and no token left."
+     4	version: 1.0.0.0
+     5	id: template-authoring-level-1-packet-authored-from-card
+     6	---
+     7	
+     8	# 483 -- Level 1 packet authored from the card
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the card as an authoring instruction. It dispatches one cli-devin swe-2-max worker with the card as its guidance and a throwaway track as its only write path. The worker scaffolds and fills a Level 1 packet. The operator then runs strict validation and counts the tokens left in the four documents.
+    13	
+    14	### Why This Matters
+    15	
+    16	A card that reads well but cannot drive a finished packet is a brochure. This scenario is the end to end check: one model, one card, one strict pass and zero tokens left.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators dispatch one worker, then validate the packet it wrote.
+    23	
+    24	- Objective: Prove that a cli-devin swe-2-max worker writes a Level 1 packet from the card, that strict validation prints `RESULT: PASSED`, and that the four documents hold no value token or open question marker.
+    25	- Playbook ID: 483.
+    26	- Real user request: `Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.`
+    27	- Prompt: `Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.`
+    28	- Preconditions: A checkout with Node, bash and `rg` on PATH, the `devin` CLI on PATH with `devin auth status` printing `Logged in`, the operator's approval for `--permission-mode dangerous` on this run, and phase 5 closed so the card exists. The scenario needs network access and one cli-devin swe-2-max run.
+    29	- Expected execution process: Remove any earlier throwaway track, write the worker brief, dispatch the worker with cli-devin, validate the packet it wrote, count the tokens left, then remove the track.
+    30	- Expected signals: The worker returns a final reply and `devin` exits `0`. The packet holds `spec.md`. Strict validation prints `RESULT: PASSED`. The token count prints `0`. The track is gone at the end.
+    31	- Desired user-visible outcome: The operator sees a finished Level 1 packet that a strict run accepts, with no authoring hint left for a reader to fill.
+    32	- Pass/fail: PASS if the worker returns a reply, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone. FAIL if any of those checks fails.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Use the authoring card to write a complete Level 1 packet for a small feature, then prove it passes strict validation with nothing left to fill.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run steps 1 to 4 from the checkout root. Step 1 writes the scratch path to a fixed file, so each later step recovers it. Step 2 runs the `devin` CLI. This scenario spends one cli-devin swe-2-max run.
+    47	
+    48	1. Clear the throwaway track and write the worker brief.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	POINTER=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+    53	mkdir -p "$(dirname "$POINTER")"
+    54	printf '%s\n' "$OUT" > "$POINTER"
+    55	echo "out=$OUT"
+    56	echo "pointer=$POINTER"
+    57	rm -rf specs/zz-pb-card
+    58	cat > "$OUT/brief.txt" <<'TXT'
+    59	GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+    60	
+    61	You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+    62	SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+    63	defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+    64	and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+    65	
+    66	Your write authority is already bound. The spec folder you create and fill is:
+    67	  specs/zz-pb-card/001-card-authoring
+    68	
+    69	ROLE: You are a documentation author. You read one card and write one Level 1 packet.
+    70	
+    71	ALLOWED WRITE PATHS:
+    72	  specs/zz-pb-card/ and everything under it
+    73	
+    74	BANNED OPERATIONS: git commit, git push, git checkout, git switch, git branch, git reset, git stash, generate-context.js, /speckit:save, and any edit outside specs/zz-pb-card/. Do not edit recommend-level.sh. Do not edit anything under .skilled/.
+    75	
+    76	TASK:
+    77	1. Read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md completely.
+    78	2. Run exactly: bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 1 --track zz-pb-card --short-name card-authoring --number 1 "Author a Level 1 packet from the card"
+    79	3. Fill spec.md, plan.md, tasks.md and implementation-summary.md. Describe this feature in the packet and do not build it: a --quiet flag for .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh that prints only the final recommended-level line. Say in implementation-summary.md that the packet is planned and not implemented.
+    80	4. Run: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/zz-pb-card/001-card-authoring --strict
+    81	5. Fix what it reports and run it again, at most three times in all.
+    82	
+    83	RETURN exactly one line: the last RESULT line validate.sh printed.
+    84	TXT
+    85	echo "brief=$(wc -l < "$OUT/brief.txt") lines"
+    86	```
+    87	
+    88	2. Dispatch one worker with cli-devin.
+    89	
+    90	```bash
+    91	OUT="$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
+    92	AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 devin -p --model swe-2-max --permission-mode dangerous -- "$(cat "$OUT/brief.txt")" </dev/null > "$OUT/reply.txt" 2> "$OUT/reply.err"
+    93	echo "devin_exit=$?"
+    94	tail -n 1 "$OUT/reply.txt"
+    95	```
+    96	
+    97	3. Validate the packet and count the tokens left.
+    98	
+    99	```bash
+   100	OUT="$(cat specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
+   101	P=specs/zz-pb-card/001-card-authoring
+   102	test -f "$P/spec.md" && echo "packet=$P"
+   103	bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict > "$OUT/val.txt" 2>&1
+   104	echo "val_exit=$?"
+   105	grep 'RESULT:' "$OUT/val.txt"
+   106	rg -o --no-filename 'YOUR_VALUE_HERE:|NEEDS CLARIFICATION:' "$P/spec.md" "$P/plan.md" "$P/tasks.md" "$P/implementation-summary.md" | wc -l | tr -d ' '
+   107	```
+   108	
+   109	4. Remove the throwaway track.
+   110	
+   111	```bash
+   112	rm -rf specs/zz-pb-card
+   113	test ! -d specs/zz-pb-card && echo "cleanup=ok"
+   114	```
+   115	
+   116	### Expected
+   117	
+   118	Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20. Step 2 prints `devin_exit=0`, then the worker's last `RESULT` line, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`. Step 4 prints `cleanup=ok`.
+   119	
+   120	### Evidence
+   121	
+   122	- The `out=` line, the `pointer=` line and the brief line count from step 1.
+   123	- The reply file in the scratch path from step 2 and the worker's last `RESULT` line.
+   124	- The packet path, the validation exit code, the `RESULT` line and the token count from step 3.
+   125	- The `cleanup=ok` line from step 4.
+   126	
+   127	### Pass / Fail
+   128	
+   129	- **Pass**: The worker returns a reply, the packet exists, strict validation prints `RESULT: PASSED`, the token count is `0` and the track is gone.
+   130	- **Fail**: The worker returns no reply, the packet is missing, strict validation fails, the token count is above zero, or the track remains.
+   131	
+   132	### Failure Triage
+   133	
+   134	A missing packet means the worker did not run the scaffold command, so read `$OUT/reply.txt` and `$OUT/reply.err` and check that `devin auth status` prints `Logged in` before retrying. A free-tier rate-limit reply is a retry and not a FAIL, so wait for the reset the message names and run step 2 again. A failed strict run means the packet is incomplete, so read `$OUT/val.txt` and name the rule. A token count above zero means the card did not drive a finished fill, so record the token lines in `$OUT/val.txt` before the next run. Remove `specs/zz-pb-card` before every retry.
+   135	
+   136	---
+   137	
+   138	## 4. SOURCE FILES
+   139	
+   140	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+   141	- Feature catalog: [spec-authoring-card.md](../../feature-catalog/tooling-and-scripts/spec-authoring-card.md)
+   142	- Implementation: [spec-authoring-card.md](../../references/workflows/spec-authoring-card.md)
+   143	
+   144	Provenance: manual only - cli-devin swe-2-max, permission mode dangerous
+   145	
+   146	---
+   147	
+   148	## 5. SOURCE METADATA
+   149	
+   150	- Group: Template Authoring
+   151	- Playbook ID: 483
+   152	- Canonical root source: `manual-testing-playbook.md`
+   153	- Feature file path: `template-authoring/level-1-packet-authored-from-card.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md
+     1	---
+     2	title: "478 -- Placeholder gate unchanged for a v2.2 doc"
+     3	description: "This scenario validates that a packet stamped v2.2 keeps the placeholder error it always had, even while its status is Draft."
+     4	version: 1.0.0.0
+     5	id: template-authoring-placeholder-gate-legacy-stamp-unchanged
+     6	---
+     7	
+     8	# 478 -- Placeholder gate unchanged for a v2.2 doc
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the compatibility half of the versioned placeholder gate. A packet with a v2.2 stamp, or with no stamp, must keep the old verdict. The scenario scaffolds a Level 2 packet, rewrites its stamp to v2.2, leaves its status at Draft and keeps its tokens. The gate must report an error.
+    13	
+    14	### Why This Matters
+    15	
+    16	External packets are written under the old contract. A new gate that changed their verdict would break `/doctor:update` for every repository that already holds a packet. This scenario proves the stamp is the switch, and that an unstamped or older packet is never treated as Draft.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators rewrite the stamp on a scaffold, keep the Draft status, and confirm that the gate still fails.
+    23	
+    24	- Objective: Prove that a Draft packet stamped v2.2 reports `PLACEHOLDER_FILLED` as `error` and `passed: false`, with no Draft warning.
+    25	- Playbook ID: 478.
+    26	- Real user request: `This packet uses the older template stamp. Confirm that the placeholder rule still gives it the same error it always had.`
+    27	- Prompt: `This packet uses the older template stamp. Confirm that the placeholder rule still gives it the same error it always had.`
+    28	- Preconditions: A checkout with Node, bash, perl and jq on PATH, and a built `.skilled/skills/system-spec-kit` so `validate.sh` runs. The scenario needs no network.
+    29	- Expected execution process: Scaffold one Level 2 packet, rewrite every v2.3 stamp to v2.2, confirm the Draft status and the stamp, run strict validation with JSON output, then read the gate entry.
+    30	- Expected signals: Each document stamp ends with `v2.2 -->`. The status line reads Draft. The gate entry prints `error`. The `passed` field prints `false`.
+    31	- Desired user-visible outcome: The operator sees the older packet keep its error, so no existing repository changes verdict.
+    32	- Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warn`, or if `passed` is `true`.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	This packet uses the older template stamp. Confirm that the placeholder rule still gives it the same error it always had.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session, so the variables set in step 1 stay defined.
+    47	
+    48	1. Scaffold a Level 2 packet.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 2 --track zz-pb-gate-legacy --short-name gate-legacy --number 1 "Placeholder gate legacy" > "$OUT/create.txt" 2>&1
+    53	P=specs/zz-pb-gate-legacy/001-gate-legacy
+    54	test -f "$P/spec.md" && echo "packet=$P"
+    55	```
+    56	
+    57	2. Rewrite the stamp in every packet document and confirm the stamp and the status.
+    58	
+    59	```bash
+    60	for f in spec plan tasks implementation-summary acceptance-criteria; do
+    61	  perl -pi -e 's/\| v2\.3 -->/| v2.2 -->/g' "$P/$f.md"
+    62	  printf '%s ' "$f"
+    63	  grep -c 'v2\.2 -->' "$P/$f.md"
+    64	done
+    65	grep -m1 '| \*\*Status\*\* |' "$P/spec.md"
+    66	```
+    67	
+    68	3. Run strict validation with JSON output and read the gate entry.
+    69	
+    70	```bash
+    71	bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict --json > "$OUT/gate.json" 2>&1
+    72	jq -r '.entries[] | select(.rule == "PLACEHOLDER_FILLED") | .status' "$OUT/gate.json"
+    73	jq -r '.passed' "$OUT/gate.json"
+    74	```
+    75	
+    76	4. Remove the throwaway track.
+    77	
+    78	```bash
+    79	rm -rf specs/zz-pb-gate-legacy
+    80	test ! -d specs/zz-pb-gate-legacy && echo "cleanup=ok"
+    81	```
+    82	
+    83	### Expected
+    84	
+    85	Step 1 prints `packet=specs/zz-pb-gate-legacy/001-gate-legacy`. Step 2 prints five lines, each a document name followed by `1`, then a Status row that reads Draft. Step 3 prints `error`, then `false`. Step 4 prints `cleanup=ok`.
+    86	
+    87	### Evidence
+    88	
+    89	- The packet path from step 1.
+    90	- The five stamp counts and the Draft status line from step 2.
+    91	- The `error` line and the `false` line from step 3, and the `$OUT/gate.json` file.
+    92	- The `cleanup=ok` line from step 4.
+    93	
+    94	### Pass / Fail
+    95	
+    96	- **Pass**: Every document reports one v2.2 stamp, the status stays Draft, the gate entry is `error`, and `passed` is `false`.
+    97	- **Fail**: A document keeps a v2.3 stamp, the gate entry is `warn`, or `passed` is `true`.
+    98	
+    99	### Failure Triage
+   100	
+   101	A stamp count of `0` means the rewrite did not match, so read the stamp line and confirm the template version. A `warn` entry means the stamp gate still saw v2.3 somewhere, so check all five documents before judging the rule. A different rule failure is separate from this scenario, so read the other error entries.
+   102	
+   103	---
+   104	
+   105	## 4. SOURCE FILES
+   106	
+   107	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+   108	- Feature catalog: [versioned-placeholder-gate.md](../../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md)
+   109	- Implementation: [validate.sh](../../runtime/cli/spec/validate.sh)
+   110	
+   111	Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict --json
+   112	
+   113	---
+   114	
+   115	## 5. SOURCE METADATA
+   116	
+   117	- Group: Template Authoring
+   118	- Playbook ID: 478
+   119	- Canonical root source: `manual-testing-playbook.md`
+   120	- Feature file path: `template-authoring/placeholder-gate-legacy-stamp-unchanged.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md
+     1	---
+     2	title: "477 -- Placeholder token error after Draft"
+     3	description: "This scenario validates that the same v2.3 packet fails strict validation once its status leaves Draft with a value token still unfilled."
+     4	version: 1.0.0.0
+     5	id: template-authoring-placeholder-token-error-after-draft
+     6	---
+     7	
+     8	# 477 -- Placeholder token error after Draft
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the other half of the versioned placeholder gate. A packet that carries a value token must fail once its status leaves Draft. The scenario scaffolds a Level 2 packet, keeps its tokens, changes the Status row to Complete, and reads the gate entry.
+    13	
+    14	### Why This Matters
+    15	
+    16	The Draft warning exists so planning commits can land. It must not survive into a finished packet. This scenario proves the status word is the switch, so a weak model cannot leave a token in place and still claim completion.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators scaffold a packet, set its status to Complete, and confirm that the gate now fails.
+    23	
+    24	- Objective: Prove that a v2.3 packet with an unfilled value token reports `PLACEHOLDER_FILLED` as `error` and `passed: false` once its Status row reads Complete.
+    25	- Playbook ID: 477.
+    26	- Real user request: `Mark this scaffold Complete and tell me whether strict validation now fails on the value tokens I left behind.`
+    27	- Prompt: `Mark this scaffold Complete and tell me whether strict validation now fails on the value tokens I left behind.`
+    28	- Preconditions: A checkout with Node, bash, perl and jq on PATH, and a built `.skilled/skills/system-spec-kit` so `validate.sh` runs. The scenario needs no network.
+    29	- Expected execution process: Scaffold one Level 2 packet, change the Status row from Draft to Complete, run strict validation with JSON output, then read the gate entry and the `passed` field.
+    30	- Expected signals: The status line reads Complete. The gate entry prints `error`. The `passed` field prints `false`.
+    31	- Desired user-visible outcome: The operator sees the gate refuse a finished packet that still holds a token, with the token lines named in the details.
+    32	- Pass/fail: PASS if the gate entry is `error` and `passed` is `false`. FAIL if the entry is `warn` or `pass`, or if `passed` is `true`.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Mark this scaffold Complete and tell me whether strict validation now fails on the value tokens I left behind.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session, so the variables set in step 1 stay defined.
+    47	
+    48	1. Scaffold a Level 2 packet.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 2 --track zz-pb-gate-complete --short-name gate-complete --number 1 "Placeholder gate complete" > "$OUT/create.txt" 2>&1
+    53	P=specs/zz-pb-gate-complete/001-gate-complete
+    54	test -f "$P/spec.md" && echo "packet=$P"
+    55	```
+    56	
+    57	2. Change the Status row from Draft to Complete and confirm it.
+    58	
+    59	```bash
+    60	perl -pi -e 's/\| \*\*Status\*\* \| Draft \|/| **Status** | Complete |/' "$P/spec.md"
+    61	grep -m1 '| \*\*Status\*\* |' "$P/spec.md"
+    62	```
+    63	
+    64	3. Run strict validation with JSON output and read the gate entry.
+    65	
+    66	```bash
+    67	bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict --json > "$OUT/gate.json" 2>&1
+    68	jq -r '.entries[] | select(.rule == "PLACEHOLDER_FILLED") | .status' "$OUT/gate.json"
+    69	jq -r '.passed' "$OUT/gate.json"
+    70	jq -r '.entries[] | select(.rule == "PLACEHOLDER_FILLED") | .details[]' "$OUT/gate.json" | head -3
+    71	```
+    72	
+    73	4. Remove the throwaway track.
+    74	
+    75	```bash
+    76	rm -rf specs/zz-pb-gate-complete
+    77	test ! -d specs/zz-pb-gate-complete && echo "cleanup=ok"
+    78	```
+    79	
+    80	### Expected
+    81	
+    82	Step 1 prints `packet=specs/zz-pb-gate-complete/001-gate-complete`. Step 2 prints a Status row that reads Complete. Step 3 prints `error`, then `false`, then at least one detail line that names a document and a line number. Step 4 prints `cleanup=ok`.
+    83	
+    84	### Evidence
+    85	
+    86	- The packet path from step 1.
+    87	- The Complete status line from step 2.
+    88	- The `error` line, the `false` line and the first three detail lines from step 3.
+    89	- The `cleanup=ok` line from step 4.
+    90	
+    91	### Pass / Fail
+    92	
+    93	- **Pass**: The gate entry is `error`, `passed` is `false`, and at least one detail line names a token.
+    94	- **Fail**: The gate entry is `warn` or `pass`, `passed` is `true`, or no detail line names a token.
+    95	
+    96	### Failure Triage
+    97	
+    98	A `warn` entry means the status edit did not land, so check step 2. A `pass` entry means the scaffold held no token, so read the stamp line and confirm phase 3 is closed. A `true` `passed` value means the gate did not run, so read `$OUT/gate.json` for the `PLACEHOLDER_FILLED` entry itself.
+    99	
+   100	---
+   101	
+   102	## 4. SOURCE FILES
+   103	
+   104	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+   105	- Feature catalog: [versioned-placeholder-gate.md](../../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md)
+   106	- Implementation: [validate.sh](../../runtime/cli/spec/validate.sh)
+   107	
+   108	Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict --json
+   109	
+   110	---
+   111	
+   112	## 5. SOURCE METADATA
+   113	
+   114	- Group: Template Authoring
+   115	- Playbook ID: 477
+   116	- Canonical root source: `manual-testing-playbook.md`
+   117	- Feature file path: `template-authoring/placeholder-token-error-after-draft.md`
+=================== FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md
+     1	---
+     2	title: "476 -- Placeholder token warning while Draft"
+     3	description: "This scenario validates that a v2.3 scaffold keeps an unfilled value token as a warning and still passes strict validation while its status is Draft."
+     4	version: 1.0.0.0
+     5	id: template-authoring-placeholder-token-warning-while-draft
+     6	---
+     7	
+     8	# 476 -- Placeholder token warning while Draft
+     9	
+    10	## 1. OVERVIEW
+    11	
+    12	This scenario validates the Draft half of the versioned placeholder gate. A packet scaffolded from a v2.3 template carries `[YOUR_VALUE_HERE: ...]` tokens and a Status row that reads Draft. The gate must report an unfilled token as a warning and must not fail the strict run, because a planning commit is expected to hold tokens.
+    13	
+    14	### Why This Matters
+    15	
+    16	A gate that fails a fresh scaffold blocks every new packet before its first word is written. A gate that passes a finished packet lets a weak model ship a document that still says `[YOUR_VALUE_HERE: feature name]`. This scenario proves the first half. Draft warns and passes.
+    17	
+    18	---
+    19	
+    20	## 2. SCENARIO CONTRACT
+    21	
+    22	Operators scaffold a Level 2 packet, read the gate entry from a strict JSON run, and confirm the warning.
+    23	
+    24	- Objective: Prove that a v2.3 Level 2 scaffold with its Status row at Draft reports `PLACEHOLDER_FILLED` as `warn`, and that the strict run still reports `passed: true`.
+    25	- Playbook ID: 476.
+    26	- Real user request: `Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.`
+    27	- Prompt: `Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.`
+    28	- Preconditions: A checkout with Node, bash and jq on PATH, and a built `.skilled/skills/system-spec-kit` so `validate.sh` runs. The scenario needs no network.
+    29	- Expected execution process: Scaffold one Level 2 packet, confirm the v2.3 stamp and the Draft status, run strict validation with JSON output, then read the `PLACEHOLDER_FILLED` entry and the `passed` field.
+    30	- Expected signals: The scaffold prints the packet path. The stamp line ends with `v2.3 -->`. The status line reads Draft. The gate entry prints `warn`. The `passed` field prints `true`.
+    31	- Desired user-visible outcome: The operator sees a clean strict pass and one warning that names the unfilled tokens, with the packet left ready to fill.
+    32	- Pass/fail: PASS if the gate entry is `warn` and `passed` is `true`. FAIL if the entry is `error` or `pass`, or if `passed` is `false`.
+    33	
+    34	---
+    35	
+    36	## 3. TEST EXECUTION
+    37	
+    38	### Prompt
+    39	
+    40	```
+    41	Scaffold a Level 2 packet, leave the value tokens unfilled, and tell me whether strict validation still passes while the packet is a Draft.
+    42	```
+    43	
+    44	### Commands
+    45	
+    46	Run the commands from the checkout root in one shell session, so the variables set in step 1 stay defined.
+    47	
+    48	1. Scaffold a Level 2 packet and confirm its stamp and status.
+    49	
+    50	```bash
+    51	OUT="$(mktemp -d)"
+    52	bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --skip-branch --level 2 --track zz-pb-gate-draft --short-name gate-draft --number 1 "Placeholder gate draft" > "$OUT/create.txt" 2>&1
+    53	P=specs/zz-pb-gate-draft/001-gate-draft
+    54	test -f "$P/spec.md" && echo "packet=$P"
+    55	grep -m1 'SPECKIT_TEMPLATE_SOURCE' "$P/spec.md"
+    56	grep -m1 '| \*\*Status\*\* |' "$P/spec.md"
+    57	```
+    58	
+    59	2. Run strict validation with JSON output and read the gate entry.
+    60	
+    61	```bash
+    62	bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict --json > "$OUT/gate.json" 2>&1
+    63	jq -r '.entries[] | select(.rule == "PLACEHOLDER_FILLED") | .status' "$OUT/gate.json"
+    64	jq -r '.passed' "$OUT/gate.json"
+    65	```
+    66	
+    67	3. Remove the throwaway track.
+    68	
+    69	```bash
+    70	rm -rf specs/zz-pb-gate-draft
+    71	test ! -d specs/zz-pb-gate-draft && echo "cleanup=ok"
+    72	```
+    73	
+    74	### Expected
+    75	
+    76	Step 1 prints `packet=specs/zz-pb-gate-draft/001-gate-draft`, then a stamp line that ends with `v2.3 -->`, then a Status row that reads Draft. Step 2 prints `warn`, then `true`. Step 3 prints `cleanup=ok`.
+    77	
+    78	### Evidence
+    79	
+    80	- The packet path, the stamp line and the status line from step 1.
+    81	- The `warn` line and the `true` line from step 2, and the `$OUT/gate.json` file.
+    82	- The `cleanup=ok` line from step 3.
+    83	
+    84	### Pass / Fail
+    85	
+    86	- **Pass**: The gate entry is `warn`, `passed` is `true`, and the track is gone at the end.
+    87	- **Fail**: The gate entry is `error` or `pass`, `passed` is `false`, or the track remains.
+    88	
+    89	### Failure Triage
+    90	
+    91	A `pass` entry means the scaffold held no token, so read the stamp line. A stamp below v2.3 means phase 3 is not closed, so stop and report it. An `error` entry at Draft means the gate is not installed, so run the phase 3 test file before this scenario. A `false` `passed` value means another rule failed, so read the other error entries in `$OUT/gate.json` before judging the gate.
+    92	
+    93	---
+    94	
+    95	## 4. SOURCE FILES
+    96	
+    97	- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
+    98	- Feature catalog: [versioned-placeholder-gate.md](../../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md)
+    99	- Implementation: [validate.sh](../../runtime/cli/spec/validate.sh)
+   100	
+   101	Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict --json
+   102	
+   103	---
+   104	
+   105	## 5. SOURCE METADATA
+   106	
+   107	- Group: Template Authoring
+   108	- Playbook ID: 476
+   109	- Canonical root source: `manual-testing-playbook.md`
+   110	- Feature file path: `template-authoring/placeholder-token-warning-while-draft.md`
+=================== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+     1	---
+     2	title: "Versioned placeholder gate"
+     3	description: "Gates unfilled value tokens by the template stamp, warning while a v2.3 packet is Draft and failing it at any other status."
+     4	trigger_phrases:
+     5	  - "versioned placeholder gate"
+     6	  - "placeholder token warning"
+     7	  - "Draft placeholder rule"
+     8	  - "v2.3 template stamp"
+     9	version: 1.0.0.0
+    10	---
+    11	
+    12	# Versioned placeholder gate
+    13	
+    14	## 1. OVERVIEW
+    15	
+    16	The versioned placeholder gate decides the severity of an unfilled authoring token from the template stamp a document carries. A document stamped v2.3 or later warns while the packet status is Draft and fails at any other status. A document with an older stamp, or with no stamp, keeps the error it always had.
+    17	
+    18	The gate exists so a planning commit can land with tokens still in place, while a finished packet cannot. It also keeps every existing packet on its old verdict, because a new rule that failed them would break an external repository on update.
+    19	
+    20	---
+    21	
+    22	## 2. HOW IT WORKS
+    23	
+    24	### Stamp Detection
+    25	
+    26	The rule reads the first 70 lines of each document for a `SPECKIT_TEMPLATE_SOURCE` line. A version of v2.3 or later opens the gate. A version of v2.2 or earlier, or no line at all, leaves the document on the old rule.
+    27	
+    28	### Draft Lifecycle
+    29	
+    30	When the gate is open, the rule reads the first Status row of the packet's `spec.md`. The exact word Draft, ignoring case, bold marks, backticks, quotes and trailing punctuation, makes an unfilled token a warning. Every other value, and a missing Status row, makes it an error. An open question marker is an error in both cases.
+    31	
+    32	A warning does not fail `--strict`. The run passes when no other rule reports an error.
+    33	
+    34	### Scope
+    35	
+    36	The orchestrator reads every authored document that is present. The shell mirror reads `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, and it adds `acceptance-criteria.md`, `implementation-summary.md` and `goal.md` only when they carry the stamp. Both implementations answer with the same verdict, and one test file compares them.
+    37	
+    38	### Edge Cases
+    39	
+    40	A fenced code block is skipped, so a token shown in an example does not fail a document. A token inside an inline code span is skipped for the same reason. A status such as `Draft (phase 3)` is not the word Draft, so it counts as any other value.
+    41	
+    42	---
+    43	
+    44	## 3. SOURCE FILES
+    45	
+    46	### Implementation
+    47	
+    48	| File | Layer | Role |
+    49	|------|-------|------|
+    50	| `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Handler | Reads the stamp and the status and returns the rule entry |
+    51	| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` | Script | Shell mirror used by the isolated rule harness |
+    52	
+    53	### Validation And Tests
+    54	
+    55	| File | Type | Role |
+    56	|------|------|------|
+    57	| `.skilled/skills/system-spec-kit/runtime/cli/tests/placeholder-token-gate.vitest.ts` | Vitest | Drives both implementations across the stamp and status matrix |
+    58	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md` | Manual playbook | Scenario 476, the Draft warning |
+    59	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md` | Manual playbook | Scenario 477, the error after Draft |
+    60	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md` | Manual playbook | Scenario 478, the older stamp |
+    61	
+    62	---
+    63	
+    64	## 4. SOURCE METADATA
+    65	
+    66	- Group: Tooling and Scripts
+    67	- Canonical catalog source: `feature-catalog.md`
+    68	- Feature file path: `tooling-and-scripts/versioned-placeholder-gate.md`
+    69	
+    70	Related references:
+    71	- [spec-validation-rule-engine.md](spec-validation-rule-engine.md) - the orchestrator that runs the rule
+    72	- [template-section-fill-guidance.md](template-section-fill-guidance.md) - the instruction that tells a writer what to put in a token
+=================== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md
+     1	---
+     2	title: "Template section fill guidance"
+     3	description: "Places one imperative fill instruction below every template section heading, with a good and a weak example, and holds the rendered result with a golden test."
+     4	trigger_phrases:
+     5	  - "template section fill guidance"
+     6	  - "section fill instruction"
+     7	  - "good and weak example"
+     8	  - "template fill line"
+     9	version: 1.0.0.0
+    10	---
+    11	
+    12	# Template section fill guidance
+    13	
+    14	## 1. OVERVIEW
+    15	
+    16	Template section fill guidance is the line below each content heading in the packet templates. It tells a writer the one action the section needs, then shows a good answer and a weak answer. A token alone says what to replace. The fill line says what a finished answer looks like.
+    17	
+    18	The guidance covers every content section of the four core templates and the ten addon templates. The `TEMPLATE INSTRUCTIONS` and `Author Instructions` headings hold fixed instructions and get no fill line.
+    19	
+    20	---
+    21	
+    22	## 2. HOW IT WORKS
+    23	
+    24	### The Fill Line
+    25	
+    26	Each line is one HTML comment that starts with `FILL:`. It sits directly below the section heading and stays on one physical line, so a renderer cannot break the section. The line names the action, then a good example, then a weak example where the section needs both.
+    27	
+    28	The text never holds an authoring token or an open question marker. A test renders the templates and fails when a section lacks its fill line, holds two of them, or carries a token inside one.
+    29	
+    30	### Render and Anchor Guards
+    31	
+    32	The fill guidance test renders all 16 level and document pairs. It compares the anchor count with a frozen table and checks one fill line per section. The golden snapshot test renders every level and compares the result with a stored file, so a change that moves a heading or prunes a gated block fails before it ships.
+    33	
+    34	### Example Alignment
+    35	
+    36	The hand-written examples a model copies carry the same anchors as their templates. The example drift guard compares each example with its template and reports a missing or extra anchor. The fill line and the anchor count are tested together, because a fill line inside a pruned block changes the rendered shape.
+    37	
+    38	---
+    39	
+    40	## 3. SOURCE FILES
+    41	
+    42	### Implementation
+    43	
+    44	| File | Layer | Role |
+    45	|------|-------|------|
+    46	| `.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl` | Template | Carries the fill lines for the specification sections |
+    47	| `.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl` | Template | Carries the fill lines for the plan sections |
+    48	| `.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl` | Template | Carries the fill lines for the task sections |
+    49	| `.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl` | Template | Carries the fill lines for the summary sections |
+    50	| `.skilled/skills/system-spec-kit/templates/addons/*.tmpl` | Template | Carries the fill lines for the addon sections |
+    51	
+    52	### Validation And Tests
+    53	
+    54	| File | Type | Role |
+    55	|------|------|------|
+    56	| `.skilled/skills/system-spec-kit/runtime/cli/tests/template-fill-guidance.vitest.ts` | Vitest | Renders 16 documents and checks one fill line and the anchor count |
+    57	| `.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts` | Vitest | Compares every rendered level with a stored snapshot |
+    58	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/golden-render-all-levels.md` | Manual playbook | Scenario 480, both template guards |
+    59	
+    60	---
+    61	
+    62	## 4. SOURCE METADATA
+    63	
+    64	- Group: Tooling and Scripts
+    65	- Canonical catalog source: `feature-catalog.md`
+    66	- Feature file path: `tooling-and-scripts/template-section-fill-guidance.md`
+    67	
+    68	Related references:
+    69	- [versioned-placeholder-gate.md](versioned-placeholder-gate.md) - the rule that reads a token a writer left behind
+    70	- [example-drift-guard.md](example-drift-guard.md) - the guard that keeps the examples aligned
+=================== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md
+     1	---
+     2	title: "Example drift guard"
+     3	description: "Compares every hand-written example with its template and fails when an anchor or a description drifts."
+     4	trigger_phrases:
+     5	  - "example drift guard"
+     6	  - "check-example-drift"
+     7	  - "example anchor drift"
+     8	  - "example description check"
+     9	version: 1.0.0.0
+    10	---
+    11	
+    12	# Example drift guard
+    13	
+    14	## 1. OVERVIEW
+    15	
+    16	The example drift guard is a read-only script that compares the hand-written example packets with the templates they came from. A model copies an example, so a drifted example teaches the model a structure the validator no longer expects.
+    17	
+    18	The guard reports one line per problem and exits 1 on any drift. It exits 0 and prints `EXAMPLE_DRIFT_OK` when every example agrees with its template.
+    19	
+    20	---
+    21	
+    22	## 2. HOW IT WORKS
+    23	
+    24	### Anchor Comparison
+    25	
+    26	The guard calls `runtime/cli/utils/template-structure.js compare <level> <doc> <example> anchors`. It fails on every `missing_anchor` line and every `extra_anchor` line. The compare step reads the level contract, so the guard inherits the required and optional anchor lists instead of hard-coding a copy.
+    27	
+    28	### Description Check
+    29	
+    30	The guard reads the first `description:` line of each example. It fails when the line holds the end of an HTML comment, starts lowercase, or lacks a closing period. Those three defects were the leaked line phase 2 repaired, and the check keeps them from coming back.
+    31	
+    32	### Invocation
+    33	
+    34	The script takes one optional directory. With no argument it reads `templates/examples`. With an argument it reads that directory, which lets a test run it against a scratch copy. A vitest wrapper runs it in the suite.
+    35	
+    36	---
+    37	
+    38	## 3. SOURCE FILES
+    39	
+    40	### Implementation
+    41	
+    42	| File | Layer | Role |
+    43	|------|-------|------|
+    44	| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh` | Script | Compares every example with its template and checks the description |
+    45	| `.skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js` | Shared | Compares anchors for one level and document |
+    46	
+    47	### Validation And Tests
+    48	
+    49	| File | Type | Role |
+    50	|------|------|------|
+    51	| `.skilled/skills/system-spec-kit/runtime/cli/tests/example-drift.vitest.ts` | Vitest | Runs the guard in the suite |
+    52	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md` | Manual playbook | Scenario 479, the clean run and the injected leak |
+    53	
+    54	---
+    55	
+    56	## 4. SOURCE METADATA
+    57	
+    58	- Group: Tooling and Scripts
+    59	- Canonical catalog source: `feature-catalog.md`
+    60	- Feature file path: `tooling-and-scripts/example-drift-guard.md`
+    61	
+    62	Related references:
+    63	- [template-section-fill-guidance.md](template-section-fill-guidance.md) - the guidance that decides the section shape an example must keep
+    64	- [template-compliance-contract-enforcement.md](template-compliance-contract-enforcement.md) - the anchor contract the compare step reads
+=================== FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+     1	---
+     2	title: "Spec authoring card"
+     3	description: "One short card that the four authoring intents load instead of the long template guide, held in sync with the router and the checklist."
+     4	trigger_phrases:
+     5	  - "spec authoring card"
+     6	  - "authoring card"
+     7	  - "write a spec packet"
+     8	  - "fill a spec scaffold"
+     9	version: 1.0.0.0
+    10	---
+    11	
+    12	# Spec authoring card
+    13	
+    14	## 1. OVERVIEW
+    15	
+    16	The spec authoring card is the short authoring path for a model. It lives at `references/workflows/spec-authoring-card.md` and fits in one read. The `PLAN`, `IMPLEMENT`, `INTAKE` and `TEMPLATE_AUTHORING` intents load the card. The long template guide stays reachable from the on demand list only.
+    17	
+    18	The card covers the bounds of a packet write, the level choice, the scaffold command, the fill rules, the validation command and the close steps. Each step carries one action, one acceptance line and one command.
+    19	
+    20	---
+    21	
+    22	## 2. HOW IT WORKS
+    23	
+    24	### Router Change
+    25	
+    26	`RESOURCE_MAP` in `SKILL.md` lists the resources each intent loads. Four rows changed from the long guide to the card. The `ON_DEMAND` list keeps one guide entry, so a reader can still ask for the long path.
+    27	
+    28	### Sync Guard
+    29	
+    30	`runtime/cli/spec/check-card-sync.sh` reads the card, the router, the generated leaf inventory files and the authoring checklist. It prints one `PASS` line per check and fails on the first disagreement. The checks cover the card length, the four intent rows, the guide level, the two inventory files and the checklist wording.
+    31	
+    32	### Inventory Regeneration
+    33	
+    34	The card is a leaf resource, so the two generated inventory files list it. Both files are written by their generator scripts and are never edited by hand. The sync guard reads them, and the leaf inventory check reports a missing card entry.
+    35	
+    36	### Authoring Use
+    37	
+    38	A model reads the card, scaffolds with `create.sh`, fills every section, removes every token, and runs `validate.sh --strict`. Three smoke runs measure the path, and the manual playbook holds a full end to end scenario.
+    39	
+    40	---
+    41	
+    42	## 3. SOURCE FILES
+    43	
+    44	### Implementation
+    45	
+    46	| File | Layer | Role |
+    47	|------|-------|------|
+    48	| `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` | Reference | The short authoring path |
+    49	| `.skilled/skills/system-spec-kit/SKILL.md` | Router | Loads the card for the four authoring intents |
+    50	| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Script | Compares the four surfaces and fails on the first disagreement |
+    51	
+    52	### Validation And Tests
+    53	
+    54	| File | Type | Role |
+    55	|------|------|------|
+    56	| `.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts` | Vitest | Runs the sync guard in the suite |
+    57	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md` | Manual playbook | Scenario 481, the four intent rows |
+    58	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md` | Manual playbook | Scenario 482, the guard on the tree and on a copy |
+    59	| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md` | Manual playbook | Scenario 483, the end to end write |
+    60	
+    61	---
+    62	
+    63	## 4. SOURCE METADATA
+    64	
+    65	- Group: Tooling and Scripts
+    66	- Canonical catalog source: `feature-catalog.md`
+    67	- Feature file path: `tooling-and-scripts/spec-authoring-card.md`
+    68	
+    69	Related references:
+    70	- [spec-validation-rule-engine.md](spec-validation-rule-engine.md) - the strict run the card closes with
+    71	- [versioned-placeholder-gate.md](versioned-placeholder-gate.md) - the rule that decides when a token must be gone

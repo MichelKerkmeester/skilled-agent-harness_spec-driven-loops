@@ -1,0 +1,14 @@
+SCRATCH_CLEAN
+PATCH_SAVED
+STATUS_SAVED
+RUNS_RECORDED 8
+PATCHED specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+PATCH_GATE_COVERED
+status_entries=1 patched=1
+REMOVAL_OK
+To undo: git worktree add -b <new branch> <dir> 95abd302c8fbe320f9fd76b36951e33fff5f7d10, then git apply scratch/fixes/fix.patch
+fatal: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/221-playbook-run' contains modified or untracked files, use --force to delete it
+FORCE_NEEDED: the sole blocker is the 1 untracked file(s) already captured in fix.patch
+WORKTREE_GONE
+Deleted branch worktrees/221-playbook-run (was 95abd302c8).
+BRANCH_GONE

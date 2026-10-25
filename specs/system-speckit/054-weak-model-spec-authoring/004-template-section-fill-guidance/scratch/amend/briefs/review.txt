@@ -1,0 +1,44 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a text diff. A script checks your output line by line.
+
+READ THESE FILES AND NO OTHERS. All paths are under
+specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/amend/review-input/
+
+1. stat.txt - every file changed since the start commit.
+2. changes.diff - the diff of the templates, the golden snapshot, the example, the authoring card and the two changelog files.
+3. fill-vs-plan.txt - the six edited fill lines next to the plan rows they must equal.
+4. plan-004.diff - the plan edits for the fill lines (six table rows and five new applicability rows).
+5. example-move.diff and example-headings.txt - the example change and the heading order of the example and the template.
+6. card.diff and plan-005.diff - the two card edits and the identical edits to the card block in the plan.
+7. checks.txt - the outputs of the checks that were run.
+
+BACKGROUND, so you judge against the intent:
+- Six optional template sections each got a non-applicable escape added to their one-line fill comment: Level 2 edge cases, Level 2 complexity assessment, the fix addendum affected surfaces, and the Level 3+ architecture verification, documentation verification and sign-off.
+- The rule for a fill comment: one physical line, ends with --> , the instruction ends with a period, no semicolon, no [YOUR_VALUE_HERE: token, wording in the same style as the existing Level 2 enhanced rollback and non-functional requirements lines.
+- The Level 3 headings "## 8. EDGE CASES" and "## 9. COMPLEXITY ASSESSMENT" were left unchanged on purpose: they are unanchored at Level 3.
+- The example change must be a pure move of two sections: the same lines removed and added, nothing reworded.
+- The card change is two inline edits: a Level 0 sentence in step 2 and the --with-goal flag in the step 3 command. create.sh takes --with-goal with no value.
+- The golden snapshot may change only fill lines.
+
+CHECK THESE SEVEN THINGS:
+(1) Each of the six edited fill lines obeys the rule above and its new sentence is true for that section.
+(2) Each plan row equals its shipped line word for word, and the new applicability rows say what the fill lines say.
+(3) Every changed line in the snapshot is a fill line, and the fill lines in it match the templates.
+(4) The example diff is a pure move: the removed and added lines are the same set, the order after the move is Key Decisions, then Verification Results, then Known Limitations, and each anchor open and close pair is intact.
+(5) The card diff is exactly the two edits, and plan-005.diff makes the same two edits.
+(6) The changelog edits hold no raw task id, no placeholder text, no em dash and no semicolon, and every statement in them is supported by checks.txt or the diffs.
+(7) Anything in checks.txt that contradicts a claim above, or a check that could not have failed.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<locator> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

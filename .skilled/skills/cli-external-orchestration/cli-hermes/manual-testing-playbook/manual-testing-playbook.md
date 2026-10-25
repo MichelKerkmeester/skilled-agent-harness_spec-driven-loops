@@ -1,7 +1,7 @@
 ---
 title: "cli-hermes: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-hermes skill."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-hermes: Manual Testing Playbook
@@ -228,7 +228,7 @@ Read-only is a separate mechanism, not the absence of `--yolo` and not a narrowe
 
 This category proves the inlined-persona route. Hermes has no flag that loads an agent file, so a persona reaches a dispatch only inside the prompt; the generated `.hermes/prompts/*.md` templates are the repeatable vehicle.
 
-- `HERMES-008`: [Inlined persona via the agent-router template](agent-routing/inlined-persona-via-agent-router-template.md)
+- `HERMES-008`: [Inlined persona via a command template](agent-routing/inlined-persona-via-command-template.md)
 - `HERMES-023`: [Persona via the agent skill mirror and the plugin binding](agent-routing/persona-via-agent-skill-and-plugin.md)
 
 ---
@@ -352,7 +352,7 @@ No `feature-catalog/` package exists for `cli-hermes`, so no scenario carries a 
 
 ### AGENT ROUTING
 
-- HERMES-008: [Inlined persona via the agent-router template](agent-routing/inlined-persona-via-agent-router-template.md)
+- HERMES-008: [Inlined persona via a command template](agent-routing/inlined-persona-via-command-template.md)
 - HERMES-023: [Persona via the agent skill mirror and the plugin binding](agent-routing/persona-via-agent-skill-and-plugin.md)
 
 ### PROMPT TEMPLATES

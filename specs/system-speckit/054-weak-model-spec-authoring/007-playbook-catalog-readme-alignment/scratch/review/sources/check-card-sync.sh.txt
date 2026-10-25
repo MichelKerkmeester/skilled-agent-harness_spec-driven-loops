@@ -1,0 +1,120 @@
+     1	#!/usr/bin/env bash
+     2	# ───────────────────────────────────────────────────────────────
+     3	# COMPONENT: CHECK CARD SYNC
+     4	# ───────────────────────────────────────────────────────────────
+     5	# The authoring card is only useful when four surfaces agree: the card file,
+     6	# the router that loads it, the leaf inventory that lists it, and the checklist
+     7	# that sends a reader to a filled example. Each surface can be edited alone,
+     8	# and a reader then follows a path the others do not describe. This guard
+     9	# reads all four and fails on the first disagreement.
+    10	#
+    11	# Read-only. It writes no file and prints one PASS or FAIL line per check.
+    12	#
+    13	# Usage: check-card-sync.sh [--skill-root <path>]
+    14	# Exit codes: 0 every check passed, 1 one check failed, 2 bad invocation.
+    15	# ───────────────────────────────────────────────────────────────
+    16	
+    17	set -euo pipefail
+    18	
+    19	SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    20	SKILL_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+    21	
+    22	while [ "$#" -gt 0 ]; do
+    23	    case "$1" in
+    24	        --skill-root)
+    25	            [ "$#" -ge 2 ] || { echo "check-card-sync.sh: --skill-root needs a path" >&2; exit 2; }
+    26	            SKILL_ROOT="$2"
+    27	            shift 2
+    28	            ;;
+    29	        --help|-h)
+    30	            sed -n '2,14p' "${BASH_SOURCE[0]}"
+    31	            exit 0
+    32	            ;;
+    33	        *)
+    34	            echo "check-card-sync.sh: unknown option: $1" >&2
+    35	            exit 2
+    36	            ;;
+    37	    esac
+    38	done
+    39	
+    40	CARD_REL="references/workflows/spec-authoring-card.md"
+    41	CARD="$SKILL_ROOT/$CARD_REL"
+    42	ROUTER="$SKILL_ROOT/SKILL.md"
+    43	LEAVES="$SKILL_ROOT/leaf-manifest.json"
+    44	ALIASES="$SKILL_ROOT/leaf-aliases.json"
+    45	CHECKLIST="$SKILL_ROOT/references/workflows/spec-folder-authoring-checklist.md"
+    46	MAX_LINES=260
+    47	STATUS=0
+    48	
+    49	pass() { printf 'PASS %s\n' "$1"; }
+    50	fail_check() { printf 'FAIL %s: %s\n' "$1" "$2"; STATUS=1; }
+    51	
+    52	# 1. The card exists and stays short enough to read in one pass.
+    53	if [ ! -f "$CARD" ]; then
+    54	    fail_check card-exists "missing $CARD_REL"
+    55	else
+    56	    LINES=$(wc -l < "$CARD" | tr -d ' ')
+    57	    if [ "$LINES" -le "$MAX_LINES" ]; then
+    58	        pass "card-exists ($LINES lines)"
+    59	    else
+    60	        fail_check card-length "$LINES lines, limit $MAX_LINES"
+    61	    fi
+    62	fi
+    63	
+    64	# 2. Every authoring intent loads the card.
+    65	for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING; do
+    66	    if awk -v intent="$INTENT" '
+    67	        $0 == "    \"" intent "\": [" { inside = 1; next }
+    68	        inside && $0 == "    ]," { inside = 0 }
+    69	        inside && /spec-authoring-card\.md/ { found = 1 }
+    70	        END { exit(found ? 0 : 1) }
+    71	    ' "$ROUTER"; then
+    72	        pass "intent-$INTENT"
+    73	    else
+    74	        fail_check "intent-$INTENT" "does not load $CARD_REL"
+    75	    fi
+    76	done
+    77	
+    78	# 3. The long guide is listed only in the on-demand level, not in an intent list.
+    79	GUIDE_IN_MAP=$(awk '
+    80	    /^RESOURCE_MAP = \{/ { map = 1; next }
+    81	    map && /^\}$/ { map = 0 }
+    82	    map && /"references\/templates\/template-guide\.md"/ { n++ }
+    83	    END { print n + 0 }
+    84	' "$ROUTER")
+    85	GUIDE_ON_DEMAND=$(awk '
+    86	    /"ON_DEMAND": \[/ { od = 1; next }
+    87	    od && /^    \],$/ { od = 0 }
+    88	    od && /"references\/templates\/template-guide\.md"/ { n++ }
+    89	    END { print n + 0 }
+    90	' "$ROUTER")
+    91	if [ "$GUIDE_IN_MAP" -eq 0 ] && [ "$GUIDE_ON_DEMAND" -eq 1 ]; then
+    92	    pass guide-on-demand-only
+    93	else
+    94	    fail_check guide-on-demand-only "in intent lists: $GUIDE_IN_MAP, in ON_DEMAND: $GUIDE_ON_DEMAND"
+    95	fi
+    96	
+    97	# 4. The inventory lists the card and the identity projection agrees.
+    98	if jq -e --arg p "$CARD_REL" '.modes[].leaves | index($p) != null' "$LEAVES" > /dev/null; then
+    99	    pass leaf-manifest
+   100	else
+   101	    fail_check leaf-manifest "does not list $CARD_REL"
+   102	fi
+   103	if jq -e --arg p "$CARD_REL" '[.[] | select(.diskPath == $p)] | length > 0' "$ALIASES" > /dev/null; then
+   104	    pass leaf-aliases
+   105	else
+   106	    fail_check leaf-aliases "does not list $CARD_REL"
+   107	fi
+   108	
+   109	# 5. The checklist sends a reader to a filled example, not the gated source root.
+   110	if rg -q 'Read templates from `\.skilled/skills/system-spec-kit/templates/`' "$CHECKLIST"; then
+   111	    fail_check checklist "still sends a reader to the templates root"
+   112	else
+   113	    pass checklist
+   114	fi
+   115	
+   116	if [ "$STATUS" -ne 0 ]; then
+   117	    echo "CARD SYNC FAILED"
+   118	    exit 1
+   119	fi
+   120	echo "CARD SYNC OK"

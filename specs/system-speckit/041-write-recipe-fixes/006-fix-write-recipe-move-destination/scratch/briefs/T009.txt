@@ -1,0 +1,28 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a text diff. A script checks your output line by line.
+
+READ THESE FILES:
+1. specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/review/T009.diff - the full diff of the recipe since the phase start commit.
+2. specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/review/T009-stat.txt - every changed file under .skilled since the phase start commit.
+3. .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md - the changed file as it is now.
+
+CHECK THESE FIVE THINGS:
+(1) The only changed lines are the Step 2 destination line and the two added lines after the code block.
+(2) The new destination is specs/system-speckit/078-opencode-authoring-recipe and the line keeps its two leading spaces.
+(3) The added sentence says the track is an example and the reader substitutes the track they selected.
+(4) No other line in the file changed, and the Step 2 block still reads as a working command.
+(5) The added prose holds no em dash and no semicolon.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<line> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

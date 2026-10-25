@@ -1,0 +1,3 @@
+final run 1: spec=7/7 plan=14/14 tasks=18/21 acceptance-criteria=3/3 | tasks.md lacks versus run 2: deploy-ready, compliance-verify, sign-off
+final run 2: spec=7/7 plan=14/14 tasks=21/21 acceptance-criteria=3/3 | tasks.md lacks versus run 2: none
+final run 3: spec=7/7 plan=14/14 tasks=21/21 acceptance-criteria=3/3 | tasks.md lacks versus run 2: none

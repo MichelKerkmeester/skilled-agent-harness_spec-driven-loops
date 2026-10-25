@@ -1,0 +1,22 @@
+661:// Canonical spec-doc placeholder markers. Mirrors check-placeholders.sh
+662:// (YOUR_VALUE_HERE + NEEDS_CLARIFICATION underscore/space). Mustache `{{...}}`
+663:// is intentionally NOT included: it is not the canonical spec-doc placeholder
+665:const PLACEHOLDER_MARKER_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLARIFICATION:|\[NEEDS CLARIFICATION:/u;
+670:// a defect while the packet is a Draft. A doc with an older stamp, or none, was
+692:// value is exactly Draft. Mirrors the shell classifier: quotes, case, trailing
+694:function specStatusIsDraft(folder: string): boolean {
+709:    return value === 'draft';
+714:function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
+716:  const draftTokens: string[] = [];
+717:  const draftPacket = specStatusIsDraft(folder);
+726:    // itself skipped, matching check-placeholders.sh awk behavior.
+734:      const match = PLACEHOLDER_MARKER_RE.exec(line);
+743:      if (tokenGated && draftPacket && match[0] === '[YOUR_VALUE_HERE:' && !CLARIFICATION_MARKER_RE.test(line)) {
+744:        draftTokens.push(finding);
+751:    return entry('PLACEHOLDER_FILLED', 'error', `${findings.length} placeholder(s) found`, findings);
+753:  if (draftTokens.length > 0) {
+755:      'PLACEHOLDER_FILLED',
+757:      `${draftTokens.length} unfilled value token(s) in a Draft packet. Fill each one before the status leaves Draft`,
+758:      draftTokens,
+761:  return entry('PLACEHOLDER_FILLED', 'pass', 'No unfilled template placeholders found');
+1234:  entries.push(validatePlaceholders(folder, level));

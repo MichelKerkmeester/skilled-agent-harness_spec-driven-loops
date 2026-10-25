@@ -1,0 +1,4034 @@
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index 993f550e03d..2726cc3630b 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -23,6 +23,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the document id, the date and the author. GOOD: BA-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ **Subject:** [SUBJECT]
+ **Status:** [Draft/Accepted/Archived]
+@@ -35,6 +36,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 2. SUMMARY
++<!-- FILL: Write two sentences: what changed and the net effect. GOOD: The flag adds one line of output. The default path is unchanged. WEAK: A change was made. -->
+ 
+ **What changed:** [CONCISE DESCRIPTION OF THE CHANGE].
+ 
+@@ -45,6 +47,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:comparison -->
+ ## 3. COMPARISON
++<!-- FILL: Put the before and after side by side, one row per behavior. GOOD: Before: 17 lines. After with the flag: 1 line. WEAK: Before and after differ. -->
+ 
+ Write one block per aspect the change touched. Name the aspect, state how it was, then state how it is now. Keep it prose. Do not use a table.
+ 
+@@ -61,6 +64,7 @@ After: [CURRENT STATE].
+ 
+ <!-- ANCHOR:net-effect -->
+ ## 4. NET EFFECT
++<!-- FILL: State the one effect a reader should remember. GOOD: A caller can now read the level without parsing the report. WEAK: It is better. -->
+ 
+ **Behavior:** [WHAT A USER OR THE SYSTEM DOES DIFFERENTLY].
+ **Operational impact:** [RUNTIME, SUPPORT OR PROCESS EFFECT].
+@@ -71,6 +75,7 @@ After: [CURRENT STATE].
+ 
+ <!-- ANCHOR:notes-caveats -->
+ ## 5. NOTES & CAVEATS
++<!-- FILL: Name one caveat and one thing not covered. GOOD: stderr is unchanged. No Windows test ran. WEAK: Some caveats apply. -->
+ 
+ [LIMIT, ASSUMPTION, EXCEPTION OR EVIDENCE NOTE. Write "None" if nothing applies.]
+ <!-- /ANCHOR:notes-caveats -->"
+@@ -112,6 +117,7 @@ _memory:
+ 
+ <!-- ANCHOR:adr-001 -->
+ ## ADR-001: [Decision Title]
++<!-- FILL: Write one ADR per decision with context, choice, consequences and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We decided on a flag. -->
+ 
+ ### Metadata
+ 
+@@ -247,6 +253,7 @@ _memory:
+ 
+ <!-- ANCHOR:directive -->
+ ## 1. DURABLE DIRECTIVE
++<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Print one parseable level line on request. WEAK: Improve the script. -->
+ 
+ **Objective:** [One sentence. What this packet is for. Not how, not progress.]
+ 
+@@ -265,6 +272,7 @@ Frozen choices. Changing one is an amendment.
+ 
+ <!-- ANCHOR:completion -->
+ ## 3. COMPLETION CRITERIA
++<!-- FILL: Write one command-checkable criterion per line. GOOD: \`--quiet\` prints 1 line and exits 0. WEAK: The work is done. -->
+ 
+ - [ ] [A check whose answer is an exit code, a count, or a named artifact]
+ - [ ] [Another]
+@@ -275,6 +283,7 @@ Frozen choices. Changing one is an amendment.
+ 
+ <!-- ANCHOR:log -->
+ ## 4. LOG
++<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. \`rg -n quiet\` printed line 510. WEAK: Progress is good. -->
+ 
+ Everything below is VOLATILE. It is not part of the directive, it is not copied
+ into the objective, and it is expected to grow. Progress, evidence, deviations
+@@ -317,6 +326,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the roadmap id, the date and the owner. GOOD: RM-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ **Subject:** [SUBJECT]
+ **Status:** [Draft/Active/Archived]
+@@ -329,6 +339,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:now-next-later -->
+ ## 2. PHASES: NOW / NEXT / LATER
++<!-- FILL: Put each item in one bucket and name its proof. GOOD: Now: the flag. Next: docs. Later: a Windows test. WEAK: Items are planned. -->
+ 
+ Write one block per phase. State the status, the focus, then the signal that closes the phase. Use prose, not a table.
+ 
+@@ -343,6 +354,7 @@ Write one block per phase. State the status, the focus, then the signal that clo
+ 
+ <!-- ANCHOR:milestones-targets -->
+ ## 3. MILESTONES & TARGETS
++<!-- FILL: Name each milestone and the date it must pass. GOOD: M1, 2026-10-24, the flag prints one line. WEAK: Milestones are set. -->
+ 
+ **[MILESTONE]:** phase [Now/Next/Later], target [YYYY-MM-DD OR CONDITION]. Status: [Planned/In Progress/Done]. Evidence: [LINK, PATH OR NOTE].
+ <!-- /ANCHOR:milestones-targets -->
+@@ -351,6 +363,7 @@ Write one block per phase. State the status, the focus, then the signal that clo
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 4. DEPENDENCIES
++<!-- FILL: Name each dependency and what it blocks. GOOD: Bash 3.2 blocks the test matrix. WEAK: Dependencies exist. -->
+ 
+ **[DEPENDENCY]:** needed by [MILESTONE OR PHASE], owner [NAME OR ROLE]. Status: [Open/Ready/Blocked]. Risk and mitigation: [RISK AND MITIGATION].
+ <!-- /ANCHOR:dependencies -->"
+@@ -379,6 +392,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the timeline id, the date and the owner. GOOD: TL-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ **Subject:** [SUBJECT]
+ **Status:** [Draft/In Progress/Complete/Archived]
+@@ -391,6 +405,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:timeline -->
+ ## 2. TIMELINE
++<!-- FILL: Put each event in date order with its evidence. GOOD: 2026-10-24: flag merged. \`rg -n quiet\` printed line 510. WEAK: Events happened. -->
+ 
+ List events in order. For each, give the date, what happened, then what it led to. Use prose, not a table.
+ 
+@@ -403,6 +418,7 @@ List events in order. For each, give the date, what happened, then what it led t
+ 
+ <!-- ANCHOR:milestones -->
+ ## 3. MILESTONES
++<!-- FILL: Name each milestone and whether it passed. GOOD: M1 passed. One line printed. WEAK: Milestones met. -->
+ 
+ **[MILESTONE]:** target [YYYY-MM-DD OR CONDITION]. Status: [Planned/In Progress/Done]. Evidence: [LINK, PATH OR NOTE].
+ <!-- /ANCHOR:milestones -->"
+@@ -446,6 +462,7 @@ _memory:
+ 
+ <!-- ANCHOR:metadata -->
+ ## Metadata
++<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: \`004-recommend-level-quiet\`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -458,6 +475,7 @@ _memory:
+ 
+ <!-- ANCHOR:what-built -->
+ ## What Was Built
++<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: \`--quiet\` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
+ 
+ [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+ 
+@@ -477,6 +495,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:how-delivered -->
+ ## How It Was Delivered
++<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran \`--quiet\` and the default form, then the suite. All three passed. WEAK: Tested and shipped. -->
+ 
+ [YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+ <!-- /ANCHOR:how-delivered -->
+@@ -485,6 +504,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
++<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Flag over env var: callers already pass flags. WEAK: Used the best approach. -->
+ 
+ | Decision | Why |
+ |----------|-----|
+@@ -495,6 +515,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:verification -->
+ ## Verification
++<!-- FILL: Write one check per row with the exact output. GOOD: \`--quiet\` line count: 1. Default line count: 17. Suite: PASSED. WEAK: All tests pass. -->
+ 
+ | Check | Result |
+ |-------|--------|
+@@ -505,6 +526,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
++<!-- FILL: Name one real limit and the workaround. GOOD: \`--quiet\` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+ <!-- /ANCHOR:limitations -->
+@@ -533,6 +555,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 1. SUMMARY
++<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
+ 
+ ### Technical Context
+ 
+@@ -551,6 +574,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:quality-gates -->
+ ## 2. QUALITY GATES
++<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: \`rg -n 'quiet' recommend-level.sh\` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
+ 
+ ### Definition of Ready
+ - [ ] Problem statement clear and scope documented
+@@ -567,6 +591,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:architecture -->
+ ## 3. ARCHITECTURE
++<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`recommend-level.sh\`. WEAK: Standard architecture. -->
+ 
+ ### Pattern
+ [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+@@ -584,6 +609,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phases -->
+ ## 4. IMPLEMENTATION PHASES
++<!-- FILL: Point to \`tasks.md\` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
+ 
+ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+ <!-- /ANCHOR:phases -->
+@@ -592,6 +618,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:testing -->
+ ## 5. TESTING STRATEGY
++<!-- FILL: Name the one command you will run and the output it must print. GOOD: \`--quiet\` prints 1 line. The default prints 17. WEAK: Test it manually. -->
+ 
+ N/A — record any testing beyond the verification tasks in \`tasks.md\` here.
+ <!-- /ANCHOR:testing -->
+@@ -600,6 +627,7 @@ N/A — record any testing beyond the verification tasks in \`tasks.md\` here.
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 6. DEPENDENCIES
++<!-- FILL: List each tool the change needs, or write \`None\`. GOOD: \`bash\` and \`awk\`. No new package. WEAK: Usual dependencies. -->
+ 
+ N/A — record dependencies beyond the components named in the architecture here.
+ <!-- /ANCHOR:dependencies -->
+@@ -608,6 +636,7 @@ N/A — record dependencies beyond the components named in the architecture here
+ 
+ <!-- ANCHOR:rollback -->
+ ## 7. ROLLBACK PLAN
++<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
+ 
+ N/A — record rollback steps beyond reverting the scoped change here.
+ <!-- /ANCHOR:rollback -->
+@@ -635,6 +664,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch \`feat/recommend-level-quiet\`. WEAK: Priority TBD. Status maybe. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -649,6 +679,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:problem -->
+ ## 2. PROBLEM & PURPOSE
++<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+ 
+ ### Problem Statement
+ [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+@@ -661,6 +692,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:scope -->
+ ## 3. SCOPE
++<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--quiet\` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+ 
+ ### In Scope
+ - [YOUR_VALUE_HERE: Deliverable 1]
+@@ -682,6 +714,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:requirements -->
+ ## 4. REQUIREMENTS
++<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With \`--quiet\`, stdout holds exactly one line that starts with \`Recommended Level:\`. WEAK: The flag should work well. -->
+ 
+ ### P0 - Blockers (MUST complete)
+ 
+@@ -700,6 +733,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:success-criteria -->
+ ## 5. SUCCESS CRITERIA
++<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: \`recommend-level.sh --quiet --loc 500 --files 15\` prints one line and exits 0. WEAK: The feature is successful. -->
+ 
+ - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+ - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+@@ -709,6 +743,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:risks -->
+ ## 6. RISKS & DEPENDENCIES
++<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+ 
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+@@ -720,6 +755,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:questions -->
+ ## 7. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write \`None\` when nothing blocks. GOOD: Does \`--quiet\` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
+ 
+ - [YOUR_VALUE_HERE: Question 1 requiring clarification]
+ - [YOUR_VALUE_HERE: Question 2 requiring clarification]
+@@ -749,6 +785,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:notation -->
+ ## Task Notation
++<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: \`S\` is the script path. \`P\` is the packet path. WEAK: Variables are defined below. -->
+ 
+ | Prefix | Meaning |
+ |--------|---------|
+@@ -764,6 +801,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-1 -->
+ ## Phase 1: Setup
++<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in \`recommend-level.sh\`. Verify: \`rg -n 'Recommended Level'\` prints one line. WEAK: T001 Set up the project. -->
+ 
+ - [ ] T001 Create project structure
+ - [ ] T002 Install dependencies
+@@ -774,6 +812,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-2 -->
+ ## Phase 2: Implementation
++<!-- FILL: Write one implementation task per file change. Add a \`Verify:\` line with the command and its expected output. GOOD: T002 Add the \`--quiet\` branch. Verify: \`--quiet\` prints one line. WEAK: T002 Implement the feature. -->
+ 
+ - [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+ - [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+@@ -785,6 +824,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-3 -->
+ ## Phase 3: Verification
++<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: \`wc -l\` prints 1 and 17. WEAK: T003 Test everything. -->
+ 
+ - [ ] T008 Test happy path manually
+ - [ ] T009 Test edge cases
+@@ -795,6 +835,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:completion -->
+ ## Completion Criteria
++<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: \`--quiet\` prints one line and the suite passes. WEAK: Work is complete. -->
+ 
+ - [ ] All tasks marked \`[x]\`
+ - [ ] No \`[B]\` blocked tasks remaining
+@@ -805,6 +846,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:cross-refs -->
+ ## Cross-References
++<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: \`spec.md\`. Plan: \`plan.md\`. WEAK: See the other docs. -->
+ 
+ - **Specification**: See \`spec.md\`
+ - **Plan**: See \`plan.md\`
+@@ -851,6 +893,7 @@ _memory:
+ 
+ <!-- ANCHOR:metadata -->
+ ## Metadata
++<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: \`004-recommend-level-quiet\`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -863,6 +906,7 @@ _memory:
+ 
+ <!-- ANCHOR:what-built -->
+ ## What Was Built
++<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: \`--quiet\` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
+ 
+ [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+ 
+@@ -882,6 +926,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:how-delivered -->
+ ## How It Was Delivered
++<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran \`--quiet\` and the default form, then the suite. All three passed. WEAK: Tested and shipped. -->
+ 
+ [YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+ <!-- /ANCHOR:how-delivered -->
+@@ -890,6 +935,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
++<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Flag over env var: callers already pass flags. WEAK: Used the best approach. -->
+ 
+ | Decision | Why |
+ |----------|-----|
+@@ -900,6 +946,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:verification -->
+ ## Verification
++<!-- FILL: Write one check per row with the exact output. GOOD: \`--quiet\` line count: 1. Default line count: 17. Suite: PASSED. WEAK: All tests pass. -->
+ 
+ | Check | Result |
+ |-------|--------|
+@@ -910,6 +957,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
++<!-- FILL: Name one real limit and the workaround. GOOD: \`--quiet\` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+ <!-- /ANCHOR:limitations -->
+@@ -938,6 +986,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 1. SUMMARY
++<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
+ 
+ ### Technical Context
+ 
+@@ -956,6 +1005,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:quality-gates -->
+ ## 2. QUALITY GATES
++<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: \`rg -n 'quiet' recommend-level.sh\` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
+ 
+ ### Definition of Ready
+ - [ ] Problem statement clear and scope documented
+@@ -972,6 +1022,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:architecture -->
+ ## 3. ARCHITECTURE
++<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`recommend-level.sh\`. WEAK: Standard architecture. -->
+ 
+ ### Pattern
+ [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+@@ -988,6 +1039,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -1008,6 +1060,7 @@ Required inventories:
+ 
+ <!-- ANCHOR:phases -->
+ ## 4. IMPLEMENTATION PHASES
++<!-- FILL: Point to \`tasks.md\` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
+ 
+ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+ <!-- /ANCHOR:phases -->
+@@ -1016,6 +1069,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:testing -->
+ ## 5. TESTING STRATEGY
++<!-- FILL: Name the one command you will run and the output it must print. GOOD: \`--quiet\` prints 1 line. The default prints 17. WEAK: Test it manually. -->
+ 
+ | Test Type | Scope | Tools |
+ |-----------|-------|-------|
+@@ -1028,6 +1082,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 6. DEPENDENCIES
++<!-- FILL: List each tool the change needs, or write \`None\`. GOOD: \`bash\` and \`awk\`. No new package. WEAK: Usual dependencies. -->
+ 
+ | Dependency | Type | Status | Impact if Blocked |
+ |------------|------|--------|-------------------|
+@@ -1038,6 +1093,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:rollback -->
+ ## 7. ROLLBACK PLAN
++<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
+ 
+ - **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+ - **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+@@ -1050,6 +1106,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ \`\`\`
+ Phase 1 (Setup) ──────┐
+@@ -1069,6 +1126,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -1082,6 +1140,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
++<!-- FILL: Name the trigger, the steps and the data reversal. Write \`No\` when no data changes. GOOD: Trigger: default output changes. Steps: revert one commit, rerun the two commands. WEAK: Roll back if needed. -->
+ 
+ ### Pre-deployment Checklist
+ - [ ] Backup created (if data changes)
+@@ -1122,6 +1181,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch \`feat/recommend-level-quiet\`. WEAK: Priority TBD. Status maybe. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -1136,6 +1196,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:problem -->
+ ## 2. PROBLEM & PURPOSE
++<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+ 
+ ### Problem Statement
+ [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+@@ -1148,6 +1209,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:scope -->
+ ## 3. SCOPE
++<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--quiet\` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+ 
+ ### In Scope
+ - [YOUR_VALUE_HERE: Deliverable 1]
+@@ -1169,6 +1231,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:requirements -->
+ ## 4. REQUIREMENTS
++<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With \`--quiet\`, stdout holds exactly one line that starts with \`Recommended Level:\`. WEAK: The flag should work well. -->
+ 
+ ### P0 - Blockers (MUST complete)
+ 
+@@ -1190,6 +1253,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:success-criteria -->
+ ## 5. SUCCESS CRITERIA
++<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: \`recommend-level.sh --quiet --loc 500 --files 15\` prints one line and exits 0. WEAK: The feature is successful. -->
+ 
+ - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+ - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+@@ -1199,6 +1263,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:risks -->
+ ## 6. RISKS & DEPENDENCIES
++<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+ 
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+@@ -1213,6 +1278,8 @@ contextType: "general"
+ 
+ <!-- ANCHOR:nfr -->
+ ## L2: NON-FUNCTIONAL REQUIREMENTS
++<!-- FILL: Name one measurable limit per line. Write \`N/A\` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
++<!-- /ANCHOR:nfr -->
+ 
+ ### Performance
+ - **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
+@@ -1225,12 +1292,13 @@ contextType: "general"
+ ### Reliability
+ - **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
+ - **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+-<!-- /ANCHOR:nfr -->
+ 
+ ---
+ 
+ <!-- ANCHOR:edge-cases -->
+ ## L2: EDGE CASES
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
++<!-- /ANCHOR:edge-cases -->
+ 
+ ### Data Boundaries
+ - Empty input: [YOUR_VALUE_HERE: How system handles]
+@@ -1245,12 +1313,12 @@ contextType: "general"
+ ### State Transitions
+ - Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
+ - Session expiry: [YOUR_VALUE_HERE: User experience]
+-<!-- /ANCHOR:edge-cases -->
+ 
+ ---
+ 
+ <!-- ANCHOR:complexity -->
+ ## L2: COMPLEXITY ASSESSMENT
++<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ 
+ | Dimension | Score | Notes |
+ |-----------|-------|-------|
+@@ -1264,6 +1332,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:questions -->
+ ## 10. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write \`None\` when nothing blocks. GOOD: Does \`--quiet\` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+ 
+ - [YOUR_VALUE_HERE: Question 1 requiring clarification]
+ - [YOUR_VALUE_HERE: Question 2 requiring clarification]
+@@ -1293,6 +1362,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:notation -->
+ ## Task Notation
++<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: \`S\` is the script path. \`P\` is the packet path. WEAK: Variables are defined below. -->
+ 
+ | Prefix | Meaning |
+ |--------|---------|
+@@ -1308,6 +1378,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-1 -->
+ ## Phase 1: Setup
++<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in \`recommend-level.sh\`. Verify: \`rg -n 'Recommended Level'\` prints one line. WEAK: T001 Set up the project. -->
+ 
+ - [ ] T001 Create project structure
+ - [ ] T002 Install dependencies
+@@ -1318,6 +1389,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-2 -->
+ ## Phase 2: Implementation
++<!-- FILL: Write one implementation task per file change. Add a \`Verify:\` line with the command and its expected output. GOOD: T002 Add the \`--quiet\` branch. Verify: \`--quiet\` prints one line. WEAK: T002 Implement the feature. -->
+ 
+ - [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+ - [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+@@ -1329,6 +1401,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-3 -->
+ ## Phase 3: Verification
++<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: \`wc -l\` prints 1 and 17. WEAK: T003 Test everything. -->
+ 
+ - [ ] T008 Test happy path manually
+ - [ ] T009 Test edge cases
+@@ -1339,6 +1412,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:completion -->
+ ## Completion Criteria
++<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: \`--quiet\` prints one line and the suite passes. WEAK: Work is complete. -->
+ 
+ - [ ] All tasks marked \`[x]\`
+ - [ ] No \`[B]\` blocked tasks remaining
+@@ -1349,6 +1423,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:cross-refs -->
+ ## Cross-References
++<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: \`spec.md\`. Plan: \`plan.md\`. WEAK: See the other docs. -->
+ 
+ - **Specification**: See \`spec.md\`
+ - **Plan**: See \`plan.md\`
+@@ -1357,9 +1432,11 @@ contextType: "general"
+ ---
+ 
+ ## Verification Checklist
++<!-- FILL: Fill each checklist section below. -->
+ 
+ <!-- ANCHOR:protocol -->
+ ## Verification Protocol
++<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+ 
+ | Priority | Handling | Completion Impact |
+ |----------|----------|-------------------|
+@@ -1372,6 +1449,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:pre-impl -->
+ ## Pre-Implementation
++<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in \`goal.md\` section 4. WEAK: Setup is ready. -->
+ 
+ - [ ] CHK-001 [P0] Requirements documented in spec.md
+ - [ ] CHK-002 [P0] Technical approach defined in plan.md
+@@ -1382,6 +1460,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:code-quality -->
+ ## Code Quality
++<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] \`bash -n recommend-level.sh\` exits 0. WEAK: Code is clean. -->
+ 
+ - [ ] CHK-010 [P0] Code passes lint/format checks
+ - [ ] CHK-011 [P0] No console errors or warnings
+@@ -1393,6 +1472,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:testing -->
+ ## Testing Checklist
++<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] \`--quiet\` prints one line. WEAK: Tests pass. -->
+ 
+ - [ ] CHK-020 [P0] All acceptance criteria met
+ - [ ] CHK-021 [P0] Manual testing complete
+@@ -1404,6 +1484,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:fix-completeness -->
+ ## Fix Completeness
++<!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+ 
+ - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: \`instance-only\`, \`class-of-bug\`, \`cross-consumer\`, \`algorithmic\`, \`matrix/evidence\`, or \`test-isolation\`.
+ - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+@@ -1418,6 +1499,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:security -->
+ ## Security
++<!-- FILL: Write one check per security surface. Write \`N/A\` with a reason when none applies. GOOD: CHK-030 [P0] The script reads no credential. WEAK: Security is fine. -->
+ 
+ - [ ] CHK-030 [P0] No hardcoded secrets
+ - [ ] CHK-031 [P0] Input validation implemented
+@@ -1428,6 +1510,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs -->
+ ## Documentation
++<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] \`spec.md\` and \`tasks.md\` name the same flag. WEAK: Docs are updated. -->
+ 
+ - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+ - [ ] CHK-041 [P1] Code comments adequate
+@@ -1438,6 +1521,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:file-org -->
+ ## File Organization
++<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under \`scratch/test/\`. WEAK: Files are organized. -->
+ 
+ - [ ] CHK-050 [P1] Temp files in scratch/ only
+ - [ ] CHK-051 [P1] scratch/ cleaned before completion
+@@ -1447,6 +1531,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## Verification Summary
++<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+@@ -1498,6 +1583,7 @@ _memory:
+ 
+ <!-- ANCHOR:metadata -->
+ ## Metadata
++<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: \`004-recommend-level-quiet\`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -1510,6 +1596,7 @@ _memory:
+ 
+ <!-- ANCHOR:what-built -->
+ ## What Was Built
++<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: \`--quiet\` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
+ 
+ [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+ 
+@@ -1529,6 +1616,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:how-delivered -->
+ ## How It Was Delivered
++<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran \`--quiet\` and the default form, then the suite. All three passed. WEAK: Tested and shipped. -->
+ 
+ [YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+ <!-- /ANCHOR:how-delivered -->
+@@ -1537,6 +1625,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
++<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Flag over env var: callers already pass flags. WEAK: Used the best approach. -->
+ 
+ | Decision | Why |
+ |----------|-----|
+@@ -1547,6 +1636,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:verification -->
+ ## Verification
++<!-- FILL: Write one check per row with the exact output. GOOD: \`--quiet\` line count: 1. Default line count: 17. Suite: PASSED. WEAK: All tests pass. -->
+ 
+ | Check | Result |
+ |-------|--------|
+@@ -1557,6 +1647,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
++<!-- FILL: Name one real limit and the workaround. GOOD: \`--quiet\` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+ <!-- /ANCHOR:limitations -->
+@@ -1585,6 +1676,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 1. SUMMARY
++<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
+ 
+ ### Technical Context
+ 
+@@ -1603,6 +1695,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:quality-gates -->
+ ## 2. QUALITY GATES
++<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: \`rg -n 'quiet' recommend-level.sh\` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
+ 
+ ### Definition of Ready
+ - [ ] Problem statement clear and scope documented
+@@ -1619,6 +1712,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:architecture -->
+ ## 3. ARCHITECTURE
++<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`recommend-level.sh\`. WEAK: Standard architecture. -->
+ 
+ ### Pattern
+ [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+@@ -1635,6 +1729,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -1655,6 +1750,7 @@ Required inventories:
+ 
+ <!-- ANCHOR:phases -->
+ ## 4. IMPLEMENTATION PHASES
++<!-- FILL: Point to \`tasks.md\` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
+ 
+ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+ <!-- /ANCHOR:phases -->
+@@ -1663,6 +1759,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:testing -->
+ ## 5. TESTING STRATEGY
++<!-- FILL: Name the one command you will run and the output it must print. GOOD: \`--quiet\` prints 1 line. The default prints 17. WEAK: Test it manually. -->
+ 
+ | Test Type | Scope | Tools |
+ |-----------|-------|-------|
+@@ -1675,6 +1772,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 6. DEPENDENCIES
++<!-- FILL: List each tool the change needs, or write \`None\`. GOOD: \`bash\` and \`awk\`. No new package. WEAK: Usual dependencies. -->
+ 
+ | Dependency | Type | Status | Impact if Blocked |
+ |------------|------|--------|-------------------|
+@@ -1685,6 +1783,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:rollback -->
+ ## 7. ROLLBACK PLAN
++<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
+ 
+ - **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+ - **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+@@ -1697,6 +1796,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ \`\`\`
+ Phase 1 (Setup) ──────┐
+@@ -1716,6 +1816,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -1729,6 +1830,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
++<!-- FILL: Name the trigger, the steps and the data reversal. Write \`No\` when no data changes. GOOD: Trigger: default output changes. Steps: revert one commit, rerun the two commands. WEAK: Roll back if needed. -->
+ 
+ ### Pre-deployment Checklist
+ - [ ] Backup created (if data changes)
+@@ -1753,6 +1855,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+ 
+ \`\`\`
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+@@ -1780,6 +1883,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+ 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+@@ -1796,6 +1900,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
++<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. \`rg -n quiet\` prints it. WEAK: Milestones are tracked. -->
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+@@ -1807,6 +1912,7 @@ Phase 1.5 (Config) ───┘
+ ---
+ 
+ ## L3: ARCHITECTURE DECISION RECORD
++<!-- FILL: Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We made a decision. -->
+ 
+ ### ADR-001: [YOUR_VALUE_HERE: Decision Title]
+ 
+@@ -1847,6 +1953,7 @@ contextType: "general"
+ ---
+ 
+ ## EXECUTIVE SUMMARY
++<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
+ 
+ [2-3 sentence high-level overview for stakeholders who need quick context]
+ 
+@@ -1857,6 +1964,7 @@ contextType: "general"
+ ---
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch \`feat/recommend-level-quiet\`. WEAK: Priority TBD. Status maybe. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -1871,6 +1979,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:problem -->
+ ## 2. PROBLEM & PURPOSE
++<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+ 
+ ### Problem Statement
+ [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+@@ -1883,6 +1992,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:scope -->
+ ## 3. SCOPE
++<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--quiet\` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+ 
+ ### In Scope
+ - [YOUR_VALUE_HERE: Deliverable 1]
+@@ -1904,6 +2014,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:requirements -->
+ ## 4. REQUIREMENTS
++<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With \`--quiet\`, stdout holds exactly one line that starts with \`Recommended Level:\`. WEAK: The flag should work well. -->
+ 
+ ### P0 - Blockers (MUST complete)
+ 
+@@ -1925,6 +2036,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:success-criteria -->
+ ## 5. SUCCESS CRITERIA
++<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: \`recommend-level.sh --quiet --loc 500 --files 15\` prints one line and exits 0. WEAK: The feature is successful. -->
+ 
+ - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+ - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+@@ -1934,6 +2046,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:risks -->
+ ## 6. RISKS & DEPENDENCIES
++<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+ 
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+@@ -1945,6 +2058,7 @@ contextType: "general"
+ 
+ 
+ ## 7. NON-FUNCTIONAL REQUIREMENTS
++<!-- FILL: Name one measurable limit per line. Write \`N/A\` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+ 
+ ### Performance
+ - **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
+@@ -1958,6 +2072,7 @@ contextType: "general"
+ ---
+ 
+ ## 8. EDGE CASES
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+ 
+ ### Data Boundaries
+ - Empty input: [YOUR_VALUE_HERE: How system handles]
+@@ -1967,9 +2082,14 @@ contextType: "general"
+ - External service failure: [YOUR_VALUE_HERE: Fallback behavior]
+ - Network timeout: [YOUR_VALUE_HERE: Retry strategy]
+ 
++### State Transitions
++- Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
++- Session expiry: [YOUR_VALUE_HERE: User experience]
++
+ ---
+ 
+ ## 9. COMPLEXITY ASSESSMENT
++<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ 
+ | Dimension | Score | Triggers |
+ |-----------|-------|----------|
+@@ -1983,6 +2103,7 @@ contextType: "general"
+ ---
+ 
+ ## 10. RISK MATRIX
++<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
+ 
+ | Risk ID | Description | Impact | Likelihood | Mitigation |
+ |---------|-------------|--------|------------|------------|
+@@ -1991,6 +2112,7 @@ contextType: "general"
+ ---
+ 
+ ## 11. USER STORIES
++<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
+ 
+ ### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
+ 
+@@ -2010,6 +2132,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:questions -->
+ ## 12. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write \`None\` when nothing blocks. GOOD: Does \`--quiet\` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+ 
+ - [YOUR_VALUE_HERE: Question 1 requiring clarification]
+ - [YOUR_VALUE_HERE: Question 2 requiring clarification]
+@@ -2018,6 +2141,7 @@ contextType: "general"
+ ---
+ 
+ ## RELATED DOCUMENTS
++<!-- FILL: Leave the four links in place. -->
+ 
+ - **Implementation Plan**: See \`plan.md\`
+ - **Task Breakdown**: See \`tasks.md\`
+@@ -2048,6 +2172,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:notation -->
+ ## Task Notation
++<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: \`S\` is the script path. \`P\` is the packet path. WEAK: Variables are defined below. -->
+ 
+ | Prefix | Meaning |
+ |--------|---------|
+@@ -2063,6 +2188,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-1 -->
+ ## Phase 1: Setup
++<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in \`recommend-level.sh\`. Verify: \`rg -n 'Recommended Level'\` prints one line. WEAK: T001 Set up the project. -->
+ 
+ - [ ] T001 Create project structure
+ - [ ] T002 Install dependencies
+@@ -2073,6 +2199,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-2 -->
+ ## Phase 2: Implementation
++<!-- FILL: Write one implementation task per file change. Add a \`Verify:\` line with the command and its expected output. GOOD: T002 Add the \`--quiet\` branch. Verify: \`--quiet\` prints one line. WEAK: T002 Implement the feature. -->
+ 
+ - [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+ - [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+@@ -2084,6 +2211,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-3 -->
+ ## Phase 3: Verification
++<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: \`wc -l\` prints 1 and 17. WEAK: T003 Test everything. -->
+ 
+ - [ ] T008 Test happy path manually
+ - [ ] T009 Test edge cases
+@@ -2094,6 +2222,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:completion -->
+ ## Completion Criteria
++<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: \`--quiet\` prints one line and the suite passes. WEAK: Work is complete. -->
+ 
+ - [ ] All tasks marked \`[x]\`
+ - [ ] No \`[B]\` blocked tasks remaining
+@@ -2104,6 +2233,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:cross-refs -->
+ ## Cross-References
++<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: \`spec.md\`. Plan: \`plan.md\`. WEAK: See the other docs. -->
+ 
+ - **Specification**: See \`spec.md\`
+ - **Plan**: See \`plan.md\`
+@@ -2112,9 +2242,11 @@ contextType: "general"
+ ---
+ 
+ ## Verification Checklist
++<!-- FILL: Fill each checklist section below. -->
+ 
+ <!-- ANCHOR:protocol -->
+ ## Verification Protocol
++<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+ 
+ | Priority | Handling | Completion Impact |
+ |----------|----------|-------------------|
+@@ -2127,6 +2259,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:pre-impl -->
+ ## Pre-Implementation
++<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in \`goal.md\` section 4. WEAK: Setup is ready. -->
+ 
+ - [ ] CHK-001 [P0] Requirements documented in spec.md
+ - [ ] CHK-002 [P0] Technical approach defined in plan.md
+@@ -2137,6 +2270,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:code-quality -->
+ ## Code Quality
++<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] \`bash -n recommend-level.sh\` exits 0. WEAK: Code is clean. -->
+ 
+ - [ ] CHK-010 [P0] Code passes lint/format checks
+ - [ ] CHK-011 [P0] No console errors or warnings
+@@ -2148,6 +2282,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:testing -->
+ ## Testing Checklist
++<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] \`--quiet\` prints one line. WEAK: Tests pass. -->
+ 
+ - [ ] CHK-020 [P0] All acceptance criteria met
+ - [ ] CHK-021 [P0] Manual testing complete
+@@ -2159,6 +2294,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:fix-completeness -->
+ ## Fix Completeness
++<!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+ 
+ - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: \`instance-only\`, \`class-of-bug\`, \`cross-consumer\`, \`algorithmic\`, \`matrix/evidence\`, or \`test-isolation\`.
+ - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+@@ -2173,6 +2309,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:security -->
+ ## Security
++<!-- FILL: Write one check per security surface. Write \`N/A\` with a reason when none applies. GOOD: CHK-030 [P0] The script reads no credential. WEAK: Security is fine. -->
+ 
+ - [ ] CHK-030 [P0] No hardcoded secrets
+ - [ ] CHK-031 [P0] Input validation implemented
+@@ -2183,6 +2320,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs -->
+ ## Documentation
++<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] \`spec.md\` and \`tasks.md\` name the same flag. WEAK: Docs are updated. -->
+ 
+ - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+ - [ ] CHK-041 [P1] Code comments adequate
+@@ -2193,6 +2331,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:file-org -->
+ ## File Organization
++<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under \`scratch/test/\`. WEAK: Files are organized. -->
+ 
+ - [ ] CHK-050 [P1] Temp files in scratch/ only
+ - [ ] CHK-051 [P1] scratch/ cleaned before completion
+@@ -2202,6 +2341,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## Verification Summary
++<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+@@ -2216,6 +2356,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
++<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -2227,6 +2368,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:perf-verify -->
+ ## L3+: Performance Verification
++<!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+ 
+ - [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+ - [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+@@ -2238,6 +2380,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:deploy-ready -->
+ ## L3+: Deployment Readiness
++<!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+ 
+ - [ ] CHK-120 [P0] Rollback procedure documented and tested
+ - [ ] CHK-121 [P0] Feature flag configured (if applicable)
+@@ -2250,6 +2393,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:compliance-verify -->
+ ## L3+: Compliance Verification
++<!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+ 
+ - [ ] CHK-130 [P1] Security review completed
+ - [ ] CHK-131 [P1] Dependency licenses compatible
+@@ -2261,6 +2405,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
++<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -2272,6 +2417,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+@@ -2319,6 +2465,7 @@ _memory:
+ 
+ <!-- ANCHOR:metadata -->
+ ## Metadata
++<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: \`004-recommend-level-quiet\`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -2331,6 +2478,7 @@ _memory:
+ 
+ <!-- ANCHOR:what-built -->
+ ## What Was Built
++<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: \`--quiet\` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
+ 
+ [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+ 
+@@ -2350,6 +2498,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:how-delivered -->
+ ## How It Was Delivered
++<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran \`--quiet\` and the default form, then the suite. All three passed. WEAK: Tested and shipped. -->
+ 
+ [YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+ <!-- /ANCHOR:how-delivered -->
+@@ -2358,6 +2507,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
++<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Flag over env var: callers already pass flags. WEAK: Used the best approach. -->
+ 
+ | Decision | Why |
+ |----------|-----|
+@@ -2368,6 +2518,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:verification -->
+ ## Verification
++<!-- FILL: Write one check per row with the exact output. GOOD: \`--quiet\` line count: 1. Default line count: 17. Suite: PASSED. WEAK: All tests pass. -->
+ 
+ | Check | Result |
+ |-------|--------|
+@@ -2378,6 +2529,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
++<!-- FILL: Name one real limit and the workaround. GOOD: \`--quiet\` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+ <!-- /ANCHOR:limitations -->
+@@ -2406,6 +2558,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 1. SUMMARY
++<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
+ 
+ ### Technical Context
+ 
+@@ -2424,6 +2577,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:quality-gates -->
+ ## 2. QUALITY GATES
++<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: \`rg -n 'quiet' recommend-level.sh\` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
+ 
+ ### Definition of Ready
+ - [ ] Problem statement clear and scope documented
+@@ -2440,6 +2594,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:architecture -->
+ ## 3. ARCHITECTURE
++<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`recommend-level.sh\`. WEAK: Standard architecture. -->
+ 
+ ### Pattern
+ [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+@@ -2456,6 +2611,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -2476,6 +2632,7 @@ Required inventories:
+ 
+ <!-- ANCHOR:phases -->
+ ## 4. IMPLEMENTATION PHASES
++<!-- FILL: Point to \`tasks.md\` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
+ 
+ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+ <!-- /ANCHOR:phases -->
+@@ -2484,6 +2641,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:testing -->
+ ## 5. TESTING STRATEGY
++<!-- FILL: Name the one command you will run and the output it must print. GOOD: \`--quiet\` prints 1 line. The default prints 17. WEAK: Test it manually. -->
+ 
+ | Test Type | Scope | Tools |
+ |-----------|-------|-------|
+@@ -2496,6 +2654,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 6. DEPENDENCIES
++<!-- FILL: List each tool the change needs, or write \`None\`. GOOD: \`bash\` and \`awk\`. No new package. WEAK: Usual dependencies. -->
+ 
+ | Dependency | Type | Status | Impact if Blocked |
+ |------------|------|--------|-------------------|
+@@ -2506,6 +2665,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:rollback -->
+ ## 7. ROLLBACK PLAN
++<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
+ 
+ - **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+ - **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+@@ -2518,6 +2678,7 @@ Follow the ordered tasks in \`tasks.md\`. It owns the Setup, Implementation and
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ \`\`\`
+ Phase 1 (Setup) ──────┐
+@@ -2537,6 +2698,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -2550,6 +2712,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
++<!-- FILL: Name the trigger, the steps and the data reversal. Write \`No\` when no data changes. GOOD: Trigger: default output changes. Steps: revert one commit, rerun the two commands. WEAK: Roll back if needed. -->
+ 
+ ### Pre-deployment Checklist
+ - [ ] Backup created (if data changes)
+@@ -2574,6 +2737,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+ 
+ \`\`\`
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+@@ -2601,6 +2765,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+ 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+@@ -2617,6 +2782,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
++<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. \`rg -n quiet\` prints it. WEAK: Milestones are tracked. -->
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+@@ -2628,6 +2794,7 @@ Phase 1.5 (Config) ───┘
+ ---
+ 
+ ## L3: ARCHITECTURE DECISION RECORD
++<!-- FILL: Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We made a decision. -->
+ 
+ ### ADR-001: [YOUR_VALUE_HERE: Decision Title]
+ 
+@@ -2651,6 +2818,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:ai-execution -->
+ ## L3+: AI EXECUTION FRAMEWORK
++<!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
+ 
+ ### Tier 1: Sequential Foundation
+ **Files**: spec.md (sections 1-3)
+@@ -2698,6 +2866,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:workstreams -->
+ ## L3+: WORKSTREAM COORDINATION
++<!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
+ 
+ ### Workstream Definition
+ 
+@@ -2724,6 +2893,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:communication -->
+ ## L3+: COMMUNICATION PLAN
++<!-- FILL: Name the update cadence and the escalation path. GOOD: A note in \`goal.md\` section 4 after each task. WEAK: Communicate regularly. -->
+ 
+ ### Checkpoints
+ - **Daily**: Status update in tasks.md
+@@ -2760,6 +2930,7 @@ contextType: "general"
+ ---
+ 
+ ## EXECUTIVE SUMMARY
++<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
+ 
+ [2-3 sentence high-level overview for stakeholders who need quick context]
+ 
+@@ -2771,6 +2942,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch \`feat/recommend-level-quiet\`. WEAK: Priority TBD. Status maybe. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -2785,6 +2957,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:problem -->
+ ## 2. PROBLEM & PURPOSE
++<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+ 
+ ### Problem Statement
+ [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+@@ -2797,6 +2970,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:scope -->
+ ## 3. SCOPE
++<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--quiet\` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+ 
+ ### In Scope
+ - [YOUR_VALUE_HERE: Deliverable 1]
+@@ -2818,6 +2992,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:requirements -->
+ ## 4. REQUIREMENTS
++<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With \`--quiet\`, stdout holds exactly one line that starts with \`Recommended Level:\`. WEAK: The flag should work well. -->
+ 
+ ### P0 - Blockers (MUST complete)
+ 
+@@ -2839,6 +3014,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:success-criteria -->
+ ## 5. SUCCESS CRITERIA
++<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: \`recommend-level.sh --quiet --loc 500 --files 15\` prints one line and exits 0. WEAK: The feature is successful. -->
+ 
+ - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+ - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+@@ -2848,6 +3024,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:risks -->
+ ## 6. RISKS & DEPENDENCIES
++<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+ 
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+@@ -2859,6 +3036,7 @@ contextType: "general"
+ 
+ 
+ ## 7. NON-FUNCTIONAL REQUIREMENTS
++<!-- FILL: Name one measurable limit per line. Write \`N/A\` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+ 
+ ### Performance
+ - **NFR-P01**: [YOUR_VALUE_HERE: Response time target]
+@@ -2872,6 +3050,7 @@ contextType: "general"
+ ---
+ 
+ ## 8. EDGE CASES
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+ 
+ ### Data Boundaries
+ - Empty input: [YOUR_VALUE_HERE: How system handles]
+@@ -2880,9 +3059,14 @@ contextType: "general"
+ ### Error Scenarios
+ - External service failure: [YOUR_VALUE_HERE: Fallback behavior]
+ 
++### State Transitions
++- Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
++- Session expiry: [YOUR_VALUE_HERE: User experience]
++
+ ---
+ 
+ ## 9. COMPLEXITY ASSESSMENT
++<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ 
+ | Dimension | Score | Triggers |
+ |-----------|-------|----------|
+@@ -2896,6 +3080,7 @@ contextType: "general"
+ ---
+ 
+ ## 10. RISK MATRIX
++<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
+ 
+ | Risk ID | Description | Impact | Likelihood | Mitigation |
+ |---------|-------------|--------|------------|------------|
+@@ -2904,6 +3089,7 @@ contextType: "general"
+ ---
+ 
+ ## 11. USER STORIES
++<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
+ 
+ ### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
+ 
+@@ -2915,6 +3101,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:approval-workflow -->
+ ## 12. APPROVAL WORKFLOW
++<!-- FILL: Name the real approver for each checkpoint and the date it passed. GOOD: Spec review: operator, 2026-10-24. WEAK: Approvals pending. -->
+ 
+ | Checkpoint | Approver | Status | Date |
+ |------------|----------|--------|------|
+@@ -2928,6 +3115,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:compliance-checkpoints -->
+ ## 13. COMPLIANCE CHECKPOINTS
++<!-- FILL: Mark each box or write \`N/A\` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the script reads no user data and opens no socket. WEAK: Compliance checked. -->
+ 
+ ### Security Compliance
+ - [ ] Security review completed
+@@ -2943,6 +3131,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:stakeholder-matrix -->
+ ## 14. STAKEHOLDER MATRIX
++<!-- FILL: Name each stakeholder, their interest and how you update them. GOOD: Build team, high interest, weekly note. WEAK: Stakeholders informed. -->
+ 
+ | Stakeholder | Role | Interest | Communication |
+ |-------------|------|----------|---------------|
+@@ -2954,6 +3143,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:change-log -->
+ ## 15. CHANGE LOG
++<!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added \`--quiet\`. WEAK: Initial version. -->
+ 
+ ### v1.0 ([YOUR_VALUE_HERE: Date])
+ **Initial specification**
+@@ -2963,13 +3153,16 @@ contextType: "general"
+ 
+ <!-- ANCHOR:questions -->
+ ## 16. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write \`None\` when nothing blocks. GOOD: Does \`--quiet\` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+ 
+ - [YOUR_VALUE_HERE: Question 1 requiring clarification]
++- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+ <!-- /ANCHOR:questions -->
+ 
+ ---
+ 
+ ## RELATED DOCUMENTS
++<!-- FILL: Leave the four links in place. -->
+ 
+ - **Implementation Plan**: See \`plan.md\`
+ - **Task Breakdown**: See \`tasks.md\`
+@@ -3000,6 +3193,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:notation -->
+ ## Task Notation
++<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: \`S\` is the script path. \`P\` is the packet path. WEAK: Variables are defined below. -->
+ 
+ | Prefix | Meaning |
+ |--------|---------|
+@@ -3015,6 +3209,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-1 -->
+ ## Phase 1: Setup
++<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in \`recommend-level.sh\`. Verify: \`rg -n 'Recommended Level'\` prints one line. WEAK: T001 Set up the project. -->
+ 
+ - [ ] T001 Create project structure
+ - [ ] T002 Install dependencies
+@@ -3025,6 +3220,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-2 -->
+ ## Phase 2: Implementation
++<!-- FILL: Write one implementation task per file change. Add a \`Verify:\` line with the command and its expected output. GOOD: T002 Add the \`--quiet\` branch. Verify: \`--quiet\` prints one line. WEAK: T002 Implement the feature. -->
+ 
+ - [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+ - [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+@@ -3036,6 +3232,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-3 -->
+ ## Phase 3: Verification
++<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: \`wc -l\` prints 1 and 17. WEAK: T003 Test everything. -->
+ 
+ - [ ] T008 Test happy path manually
+ - [ ] T009 Test edge cases
+@@ -3046,6 +3243,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:completion -->
+ ## Completion Criteria
++<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: \`--quiet\` prints one line and the suite passes. WEAK: Work is complete. -->
+ 
+ - [ ] All tasks marked \`[x]\`
+ - [ ] No \`[B]\` blocked tasks remaining
+@@ -3056,6 +3254,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:cross-refs -->
+ ## Cross-References
++<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: \`spec.md\`. Plan: \`plan.md\`. WEAK: See the other docs. -->
+ 
+ - **Specification**: See \`spec.md\`
+ - **Plan**: See \`plan.md\`
+@@ -3064,9 +3263,11 @@ contextType: "general"
+ ---
+ 
+ ## Verification Checklist
++<!-- FILL: Fill each checklist section below. -->
+ 
+ <!-- ANCHOR:protocol -->
+ ## Verification Protocol
++<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+ 
+ | Priority | Handling | Completion Impact |
+ |----------|----------|-------------------|
+@@ -3079,6 +3280,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:pre-impl -->
+ ## Pre-Implementation
++<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in \`goal.md\` section 4. WEAK: Setup is ready. -->
+ 
+ - [ ] CHK-001 [P0] Requirements documented in spec.md
+ - [ ] CHK-002 [P0] Technical approach defined in plan.md
+@@ -3089,6 +3291,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:code-quality -->
+ ## Code Quality
++<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] \`bash -n recommend-level.sh\` exits 0. WEAK: Code is clean. -->
+ 
+ - [ ] CHK-010 [P0] Code passes lint/format checks
+ - [ ] CHK-011 [P0] No console errors or warnings
+@@ -3100,6 +3303,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:testing -->
+ ## Testing Checklist
++<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] \`--quiet\` prints one line. WEAK: Tests pass. -->
+ 
+ - [ ] CHK-020 [P0] All acceptance criteria met
+ - [ ] CHK-021 [P0] Manual testing complete
+@@ -3111,6 +3315,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:fix-completeness -->
+ ## Fix Completeness
++<!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+ 
+ - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: \`instance-only\`, \`class-of-bug\`, \`cross-consumer\`, \`algorithmic\`, \`matrix/evidence\`, or \`test-isolation\`.
+ - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+@@ -3125,6 +3330,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:security -->
+ ## Security
++<!-- FILL: Write one check per security surface. Write \`N/A\` with a reason when none applies. GOOD: CHK-030 [P0] The script reads no credential. WEAK: Security is fine. -->
+ 
+ - [ ] CHK-030 [P0] No hardcoded secrets
+ - [ ] CHK-031 [P0] Input validation implemented
+@@ -3135,6 +3341,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs -->
+ ## Documentation
++<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] \`spec.md\` and \`tasks.md\` name the same flag. WEAK: Docs are updated. -->
+ 
+ - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+ - [ ] CHK-041 [P1] Code comments adequate
+@@ -3145,6 +3352,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:file-org -->
+ ## File Organization
++<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under \`scratch/test/\`. WEAK: Files are organized. -->
+ 
+ - [ ] CHK-050 [P1] Temp files in scratch/ only
+ - [ ] CHK-051 [P1] scratch/ cleaned before completion
+@@ -3154,6 +3362,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## Verification Summary
++<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+@@ -3168,6 +3377,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
++<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -3179,6 +3389,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:perf-verify -->
+ ## L3+: Performance Verification
++<!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+ 
+ - [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+ - [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+@@ -3190,6 +3401,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:deploy-ready -->
+ ## L3+: Deployment Readiness
++<!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+ 
+ - [ ] CHK-120 [P0] Rollback procedure documented and tested
+ - [ ] CHK-121 [P0] Feature flag configured (if applicable)
+@@ -3202,6 +3414,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:compliance-verify -->
+ ## L3+: Compliance Verification
++<!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+ 
+ - [ ] CHK-130 [P1] Security review completed
+ - [ ] CHK-131 [P1] Dependency licenses compatible
+@@ -3213,6 +3426,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
++<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -3224,6 +3438,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+index df6b80295c7..a86a70ed738 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+@@ -39,6 +39,7 @@ _memory:
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-recommend-level-quiet`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
+ 
+ **Packet:** [YOUR_VALUE_HERE: PACKET-ID]
+ **Level:** [2/3/3+]
+@@ -50,6 +51,7 @@ _memory:
+ 
+ <!-- ANCHOR:criteria -->
+ ## 2. CRITERIA
++<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--quiet` runs, Then `wc -l` prints 1. WEAK: The feature works. -->
+ 
+ One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
+ 
+@@ -79,6 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
+ 
+ <!-- ANCHOR:closure -->
+ ## 3. CLOSURE STATEMENT
++<!-- FILL: Write Yes or No and one sentence that names the criteria that carried the packet. GOOD: No. AC-002 is unmet. WEAK: Almost done. -->
+ 
+ **Closeable:** [YOUR_VALUE_HERE: Yes/No]
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl
+index 071c47d12fe..335f82e04ad 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl
+@@ -20,6 +20,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the document id, the date and the author. GOOD: BA-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ **Subject:** [SUBJECT]
+ **Status:** [Draft/Accepted/Archived]
+@@ -32,6 +33,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 2. SUMMARY
++<!-- FILL: Write two sentences: what changed and the net effect. GOOD: The flag adds one line of output. The default path is unchanged. WEAK: A change was made. -->
+ 
+ **What changed:** [CONCISE DESCRIPTION OF THE CHANGE].
+ 
+@@ -42,6 +44,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:comparison -->
+ ## 3. COMPARISON
++<!-- FILL: Put the before and after side by side, one row per behavior. GOOD: Before: 17 lines. After with the flag: 1 line. WEAK: Before and after differ. -->
+ 
+ Write one block per aspect the change touched. Name the aspect, state how it was, then state how it is now. Keep it prose. Do not use a table.
+ 
+@@ -58,6 +61,7 @@ After: [CURRENT STATE].
+ 
+ <!-- ANCHOR:net-effect -->
+ ## 4. NET EFFECT
++<!-- FILL: State the one effect a reader should remember. GOOD: A caller can now read the level without parsing the report. WEAK: It is better. -->
+ 
+ **Behavior:** [WHAT A USER OR THE SYSTEM DOES DIFFERENTLY].
+ **Operational impact:** [RUNTIME, SUPPORT OR PROCESS EFFECT].
+@@ -68,6 +72,7 @@ After: [CURRENT STATE].
+ 
+ <!-- ANCHOR:notes-caveats -->
+ ## 5. NOTES & CAVEATS
++<!-- FILL: Name one caveat and one thing not covered. GOOD: stderr is unchanged. No Windows test ran. WEAK: Some caveats apply. -->
+ 
+ [LIMIT, ASSUMPTION, EXCEPTION OR EVIDENCE NOTE. Write "None" if nothing applies.]
+ <!-- /ANCHOR:notes-caveats -->
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
+index ad7dd6fea30..3b22f6251e5 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
+@@ -41,6 +41,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
+ 
+ <!-- ANCHOR:problem-summary -->
+ ## 1. PROBLEM SUMMARY
++<!-- FILL: State the failure, the command and the first bad output. GOOD: `--quiet` prints 3 lines. Expected 1. WEAK: It is broken. -->
+ 
+ ### Error Category
+ [YOUR_VALUE_HERE: syntax_error | type_error | runtime_error | test_failure | build_error | lint_error]
+@@ -57,6 +58,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
+ 
+ <!-- ANCHOR:attempted-fixes -->
+ ## 2. ATTEMPTED FIXES
++<!-- FILL: List each attempt and its result. GOOD: Moved the exit after the print. Still 3 lines. WEAK: Tried some fixes. -->
+ 
+ ### Attempt 1
+ - **Approach:** [YOUR_VALUE_HERE: description]
+@@ -74,6 +76,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
+ 
+ <!-- ANCHOR:context-for-specialist -->
+ ## 3. CONTEXT FOR SPECIALIST
++<!-- FILL: Give the specialist the files, the command and the evidence. GOOD: File `recommend-level.sh` line 510. Command `--quiet`. Output 3 lines. WEAK: See the code. -->
+ 
+ ### Relevant Code Section
+ ```[YOUR_VALUE_HERE: language]
+@@ -89,6 +92,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
+ 
+ <!-- ANCHOR:recommended-next-steps -->
+ ## 4. RECOMMENDED NEXT STEPS
++<!-- FILL: Name the next check and the expected result. GOOD: Run `bash -x` and confirm one `echo` on the quiet path. WEAK: Keep debugging. -->
+ 
+ 1. [YOUR_VALUE_HERE: suggested_action_1]
+ 2. [YOUR_VALUE_HERE: suggested_action_2]
+@@ -96,6 +100,7 @@ Debug delegation template for escalating stuck issues to specialized debugging a
+ 
+ <!-- ANCHOR:handoff-checklist -->
+ ## 5. HANDOFF CHECKLIST
++<!-- FILL: List what the next person needs before starting. GOOD: Branch, start commit and the failing command. WEAK: Everything is in the ticket. -->
+ 
+ - [ ] All attempted fixes documented
+ - [ ] Error logs attached
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+index 03e56ee37d3..999876b959b 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+@@ -33,6 +33,7 @@ _memory:
+ 
+ <!-- ANCHOR:adr-001 -->
+ ## ADR-001: [Decision Title]
++<!-- FILL: Write one ADR per decision with context, choice, consequences and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We decided on a flag. -->
+ 
+ ### Metadata
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
+index 75131311d26..8369979a0bd 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
+@@ -36,6 +36,7 @@ _memory:
+ 
+ <!-- ANCHOR:directive -->
+ ## 1. DURABLE DIRECTIVE
++<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Print one parseable level line on request. WEAK: Improve the script. -->
+ 
+ **Objective:** [One sentence. What this packet is for. Not how, not progress.]
+ 
+@@ -54,6 +55,7 @@ Frozen choices. Changing one is an amendment.
+ <!-- IF level:phase -->
+ <!-- ANCHOR:binding -->
+ ## 2. BINDING
++<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
+ 
+ **Read the child goal before working a phase.** Each is authoritative for its
+ phase and binds as if written here.
+@@ -74,6 +76,7 @@ string, not these files.
+ 
+ <!-- ANCHOR:completion -->
+ ## 3. COMPLETION CRITERIA
++<!-- FILL: Write one command-checkable criterion per line. GOOD: `--quiet` prints 1 line and exits 0. WEAK: The work is done. -->
+ 
+ - [ ] [A check whose answer is an exit code, a count, or a named artifact]
+ - [ ] [Another]
+@@ -84,6 +87,7 @@ string, not these files.
+ 
+ <!-- ANCHOR:log -->
+ ## 4. LOG
++<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `rg -n quiet` printed line 510. WEAK: Progress is good. -->
+ 
+ Everything below is VOLATILE. It is not part of the directive, it is not copied
+ into the objective, and it is expected to grow. Progress, evidence, deviations
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
+index 2aa4052ef61..451c5ffffcd 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
+@@ -35,6 +35,7 @@ Session handover template for preserving context and enabling seamless continuat
+ 
+ <!-- ANCHOR:handover-summary -->
+ ## 1. Handover Summary
++<!-- FILL: Write three sentences: what shipped, what is open and where to start. GOOD: The flag shipped. Docs are open. Start at `tasks.md` T004. WEAK: Work was handed over. -->
+ 
+ - **From Session:** [YOUR_VALUE_HERE: session_id or date]
+ - **To Session:** [YOUR_VALUE_HERE: next_session]
+@@ -47,6 +48,7 @@ Session handover template for preserving context and enabling seamless continuat
+ 
+ <!-- ANCHOR:context-transfer -->
+ ## 2. Context Transfer
++<!-- FILL: Name the files, the decisions and the state a successor needs. GOOD: Branch `feat/quiet`, start commit `abc123`. WEAK: Context is in the repo. -->
+ 
+ ### 2.1 Key Decisions Made
+ | Decision     | Rationale | Impact                 |
+@@ -80,6 +82,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
+ 
+ <!-- ANCHOR:next-session -->
+ ## 3. For Next Session
++<!-- FILL: Write the first command the next session should run. GOOD: Run `bash validate.sh <packet> --strict`. WEAK: Continue the work. -->
+ 
+ ### 3.1 Recommended Starting Point
+ - **File:** [YOUR_VALUE_HERE: file:line_number]
+@@ -102,6 +105,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
+ 
+ <!-- ANCHOR:validation-checklist -->
+ ## 4. Validation Checklist
++<!-- FILL: List the checks the successor must rerun. GOOD: `--quiet` line count, default line count and the suite. WEAK: Validate everything. -->
+ 
+ Before handover, verify:
+ - [ ] All in-progress work committed or stashed
+@@ -115,6 +119,7 @@ Before handover, verify:
+ 
+ <!-- ANCHOR:session-notes -->
+ ## 5. Session Notes
++<!-- FILL: Record what was tried and what was learned. GOOD: The quiet branch must return before the report block. WEAK: Notes below. -->
+ 
+ [YOUR_VALUE_HERE: free-form notes for next session]
+ <!-- /ANCHOR:session-notes -->
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
+index 15ba4e75123..16f64a7ccd3 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
+@@ -19,6 +19,7 @@ Complete research documentation providing in-depth technical analysis, architect
+ 
+ <!-- ANCHOR:when-to-use -->
+ ## WHEN TO USE THIS TEMPLATE
++<!-- FILL: State the one question this research answers. GOOD: A flag fits because callers already pass flags. WEAK: Research this topic. -->
+ 
+ **Use research.md when:**
+ - Complex features requiring deep technical investigation spanning multiple areas
+@@ -38,6 +39,7 @@ Complete research documentation providing in-depth technical analysis, architect
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the research id, the date and the owner. GOOD: R-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ - **Research ID**: RESEARCH-[FORMAT: ###]
+ - **Feature/Spec**: [YOUR_VALUE_HERE: link to related spec.md or feature name]
+@@ -58,6 +60,7 @@ Complete research documentation providing in-depth technical analysis, architect
+ 
+ <!-- ANCHOR:file-organization -->
+ ## FILE ORGANIZATION
++<!-- FILL: List each file this research produces. GOOD: `research.md`, `notes/` and `sources/`. WEAK: Files are organized. -->
+ 
+ **During research, organize files as:**
+ - Research findings → This file (research.md)
+@@ -77,6 +80,7 @@ Complete research documentation providing in-depth technical analysis, architect
+ 
+ <!-- ANCHOR:investigation-report -->
+ ## 2. INVESTIGATION REPORT
++<!-- FILL: State the method and the sources in one paragraph. GOOD: Read the script, ran both forms, counted lines. WEAK: We investigated. -->
+ 
+ ### Request Summary
+ [YOUR_VALUE_HERE: summarize the original request or problem - what question are we trying to answer? What feature are we investigating? - 2-4 sentences]
+@@ -104,6 +108,7 @@ Complete research documentation providing in-depth technical analysis, architect
+ 
+ <!-- ANCHOR:executive-overview -->
+ ## 3. EXECUTIVE OVERVIEW
++<!-- FILL: Write the answer in three sentences before the detail. GOOD: A flag fits. Callers already pass flags. An env var adds a hidden input. WEAK: This is the overview. -->
+ 
+ ### Executive Summary
+ [YOUR_VALUE_HERE: 2-3 paragraph high-level summary of the research, findings, and recommendations - should be understandable by non-technical stakeholders]
+@@ -146,9 +151,10 @@ Example:
+ 
+ ---
+ 
+-<!-- ANCHOR:core-architecture -->
+ <!-- IF level:2,3,3+,phase -->
++<!-- ANCHOR:core-architecture -->
+ ## 4. CORE ARCHITECTURE
++<!-- FILL: Name the components the answer touches. GOOD: One script and one output branch. WEAK: The architecture is standard. -->
+ 
+ ### System Components
+ 
+@@ -217,6 +223,7 @@ User Input → Validation → Processing → Storage → Response
+ 
+ <!-- ANCHOR:technical-specifications -->
+ ## 5. TECHNICAL SPECIFICATIONS
++<!-- FILL: Describe the interface the answer adds. GOOD: `--quiet`: no argument, one output line. WEAK: The API is described. -->
+ 
+ ### API Documentation
+ 
+@@ -292,6 +299,7 @@ User Input → Validation → Processing → Storage → Response
+ 
+ <!-- ANCHOR:constraints-limitations -->
+ ## 6. CONSTRAINTS & LIMITATIONS
++<!-- FILL: Name each constraint and its source. GOOD: Bash 3.2 must run the script. WEAK: There are constraints. -->
+ 
+ ### Platform Limitations
+ - **[Limitation 1]**: [Description, impact, and workaround if available]
+@@ -322,10 +330,11 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ ---
+ 
+-<!-- ANCHOR:integration-patterns -->
+ <!-- /IF -->
+ <!-- IF level:3,3+,phase -->
++<!-- ANCHOR:integration-patterns -->
+ ## 7. INTEGRATION PATTERNS
++<!-- FILL: Name each caller and how it uses the result. GOOD: The build script reads the last line. WEAK: It integrates. -->
+ 
+ ### Third-Party Service Integration
+ 
+@@ -391,6 +400,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ <!-- ANCHOR:implementation-guide -->
+ ## 8. IMPLEMENTATION GUIDE
++<!-- FILL: Write the steps in order, one command each. GOOD: 1. Add the flag. 2. Return before the report. WEAK: Follow the guide. -->
+ 
+ ### Markup Requirements
+ 
+@@ -477,6 +487,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ <!-- ANCHOR:code-examples -->
+ ## 9. CODE EXAMPLES & SNIPPETS
++<!-- FILL: Show one working example and its output. GOOD: `recommend-level.sh --quiet --loc 500` prints one line. WEAK: Code below. -->
+ 
+ ### Initialization Patterns
+ 
+@@ -545,6 +556,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ <!-- ANCHOR:testing-debugging -->
+ ## 10. TESTING & DEBUGGING
++<!-- FILL: Name the commands that prove the answer. GOOD: `wc -l` prints 1 and 17. WEAK: Test it. -->
+ 
+ ### Test Strategies
+ 
+@@ -606,6 +618,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ <!-- ANCHOR:performance-optimization -->
+ ## 11. PERFORMANCE OPTIMIZATION
++<!-- FILL: Name the measured cost, or write `N/A` with a reason. GOOD: The flag adds under 5 ms. WEAK: It is fast. -->
+ 
+ ### Optimization Tactics
+ 
+@@ -654,6 +667,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ <!-- ANCHOR:security-considerations -->
+ ## 12. SECURITY CONSIDERATIONS
++<!-- FILL: Name each security surface, or write `N/A` with a reason. GOOD: The flag reads no user input. WEAK: It is secure. -->
+ 
+ ### Validation Approach
+ 
+@@ -710,6 +724,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
+ 
+ <!-- ANCHOR:future-proofing-maintenance -->
+ ## 13. FUTURE-PROOFING & MAINTENANCE
++<!-- FILL: Name what a future change must preserve. GOOD: Keep the `Recommended Level:` prefix. WEAK: Maintain it. -->
+ 
+ ### Upgrade Paths
+ 
+@@ -759,6 +774,7 @@ Should I use [Option A] or [Option B]?
+ 
+ <!-- ANCHOR:api-reference -->
+ ## 14. API REFERENCE
++<!-- FILL: List each flag and its effect. GOOD: `--quiet`: one line. `--json`: a JSON object. WEAK: See the flags. -->
+ 
+ ### Attributes Table
+ 
+@@ -824,6 +840,7 @@ Should I use [Option A] or [Option B]?
+ 
+ <!-- ANCHOR:troubleshooting-guide -->
+ ## 15. TROUBLESHOOTING GUIDE
++<!-- FILL: Name one failure and its fix. GOOD: Three lines with `--quiet`: the report block ran first. WEAK: Check the logs. -->
+ 
+ ### Common Issues
+ 
+@@ -885,6 +902,7 @@ Should I use [Option A] or [Option B]?
+ 
+ <!-- ANCHOR:acknowledgements -->
+ ## 16. ACKNOWLEDGEMENTS
++<!-- FILL: Name the sources and people that helped. GOOD: The script author and the phase 1 baseline. WEAK: Thanks. -->
+ 
+ ### Research Contributors
+ - [Name/Role]: [Contribution]
+@@ -903,6 +921,7 @@ Should I use [Option A] or [Option B]?
+ 
+ <!-- ANCHOR:appendix -->
+ ## APPENDIX
++<!-- FILL: Add terms a new reader needs. GOOD: `quiet`: one-line mode. WEAK: Appendix below. -->
+ 
+ ### Glossary
+ - **[Term 1]**: [Definition]
+@@ -918,9 +937,10 @@ Should I use [Option A] or [Option B]?
+ 
+ ---
+ 
+-<!-- ANCHOR:changelog-updates -->
+ <!-- /IF -->
++<!-- ANCHOR:changelog-updates -->
+ ## CHANGELOG & UPDATES
++<!-- FILL: Add one row per version with the date and the change. GOOD: 1.0.0, 2026-10-24, initial research. WEAK: Initial version. -->
+ 
+ ### Version History
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+index 184846d80cb..c088c214d0e 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+@@ -36,6 +36,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## Summary
++<!-- FILL: Write two sentences: what this map covers and how to use it. GOOD: Every path a new session needs. Start at section 1. WEAK: This is a map. -->
+ 
+ - **Total references**: [YOUR_VALUE_HERE: count]
+ - **By category**: READMEs=[YOUR_VALUE_HERE: n], Documents=[YOUR_VALUE_HERE: n], Commands=[YOUR_VALUE_HERE: n], Agents=[YOUR_VALUE_HERE: n], Skills=[YOUR_VALUE_HERE: n], Specs=[YOUR_VALUE_HERE: n], Scripts=[YOUR_VALUE_HERE: n], Tests=[YOUR_VALUE_HERE: n], Config=[YOUR_VALUE_HERE: n], Meta=[YOUR_VALUE_HERE: n]
+@@ -52,6 +53,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:readmes -->
+ ## 1. READMEs
++<!-- FILL: List each README and why it matters. GOOD: `SKILL.md`, the router entry. WEAK: Read the READMEs. -->
+ 
+ | Path | Action | Status | Note |
+ |------|--------|--------|------|
+@@ -62,6 +64,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:documents -->
+ ## 2. Documents
++<!-- FILL: List each doc and its role. GOOD: `template-guide.md`, the authoring rules. WEAK: Docs are listed. -->
+ 
+ > Long-form markdown artifacts that are not READMEs: guides, specs, references, install docs, catalogs, playbooks.
+ 
+@@ -74,6 +77,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:commands -->
+ ## 3. Commands
++<!-- FILL: List each command and when to run it. GOOD: `/speckit:plan`, before authoring. WEAK: Commands are listed. -->
+ 
+ > `.skilled/commands/**` and any runtime-specific command surfaces.
+ 
+@@ -86,6 +90,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:agents -->
+ ## 4. Agents
++<!-- FILL: List each agent and its scope. GOOD: `markdown`, writes spec docs. WEAK: Agents are listed. -->
+ 
+ > `.skilled/agents/**`, `.claude/agents/**`, `.skilled/agents/**`.
+ 
+@@ -98,6 +103,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:skills -->
+ ## 5. Skills
++<!-- FILL: List each skill and its trigger. GOOD: `system-spec-kit`, spec folders. WEAK: Skills are listed. -->
+ 
+ > `.skilled/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `runtime/cli/`, `shared/`, `runtime/`.
+ 
+@@ -110,6 +116,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:specs -->
+ ## 6. Specs
++<!-- FILL: List each spec folder and its state. GOOD: `054-weak-model-spec-authoring`, planning. WEAK: Specs are listed. -->
+ 
+ > `specs/**` — spec folders, phase children, packet docs, research, review, scratch. **Takes precedence over `Config`** for spec-folder JSON metadata (`description.json`, `graph-metadata.json`).
+ 
+@@ -122,6 +129,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:scripts -->
+ ## 7. Scripts
++<!-- FILL: List each script and its one job. GOOD: `validate.sh`, strict validation. WEAK: Scripts are listed. -->
+ 
+ > Executable or build/test scripts: `.sh`, `.js`, `.ts`, `.mjs`, `.cjs`, `.py`.
+ 
+@@ -134,6 +142,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:tests -->
+ ## 8. Tests
++<!-- FILL: List each test and what it guards. GOOD: `example-drift.vitest.ts`, anchor drift. WEAK: Tests are listed. -->
+ 
+ > Test files, fixtures, snapshots. Group unit, integration, and vitest/pytest paths here.
+ 
+@@ -146,6 +155,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:config -->
+ ## 9. Config
++<!-- FILL: List each config file and its effect. GOOD: `spec-kit-docs.json`, template versions. WEAK: Config is listed. -->
+ 
+ > Machine-readable configuration: `.json`, `.jsonc`, `.yaml`, `.yml`, `.toml`, `.env.example`. Spec-folder metadata (`description.json`, `graph-metadata.json`) belongs under §Specs, not here (see precedence rule below).
+ 
+@@ -158,6 +168,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:meta -->
+ ## 10. Meta
++<!-- FILL: Record how the map itself is maintained. GOOD: Regenerate after a phase close. WEAK: Meta notes. -->
+ 
+ > Repository-wide governance artifacts: `AGENTS.md`, `CLAUDE.md`, license, changelog. **Takes precedence over `READMEs`** for the root-level `README.md`.
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl
+index 6d4ba3abc2b..ce26c844903 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl
+@@ -20,6 +20,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the roadmap id, the date and the owner. GOOD: RM-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ **Subject:** [SUBJECT]
+ **Status:** [Draft/Active/Archived]
+@@ -32,6 +33,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:now-next-later -->
+ ## 2. PHASES: NOW / NEXT / LATER
++<!-- FILL: Put each item in one bucket and name its proof. GOOD: Now: the flag. Next: docs. Later: a Windows test. WEAK: Items are planned. -->
+ 
+ Write one block per phase. State the status, the focus, then the signal that closes the phase. Use prose, not a table.
+ 
+@@ -46,6 +48,7 @@ Write one block per phase. State the status, the focus, then the signal that clo
+ 
+ <!-- ANCHOR:milestones-targets -->
+ ## 3. MILESTONES & TARGETS
++<!-- FILL: Name each milestone and the date it must pass. GOOD: M1, 2026-10-24, the flag prints one line. WEAK: Milestones are set. -->
+ 
+ **[MILESTONE]:** phase [Now/Next/Later], target [YYYY-MM-DD OR CONDITION]. Status: [Planned/In Progress/Done]. Evidence: [LINK, PATH OR NOTE].
+ <!-- /ANCHOR:milestones-targets -->
+@@ -54,6 +57,7 @@ Write one block per phase. State the status, the focus, then the signal that clo
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 4. DEPENDENCIES
++<!-- FILL: Name each dependency and what it blocks. GOOD: Bash 3.2 blocks the test matrix. WEAK: Dependencies exist. -->
+ 
+ **[DEPENDENCY]:** needed by [MILESTONE OR PHASE], owner [NAME OR ROLE]. Status: [Open/Ready/Blocked]. Risk and mitigation: [RISK AND MITIGATION].
+ <!-- /ANCHOR:dependencies -->
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl
+index 0c575772915..ff749df19f1 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl
+@@ -20,6 +20,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill the timeline id, the date and the owner. GOOD: TL-001, 2026-10-24, conductor. WEAK: TBD. -->
+ 
+ **Subject:** [SUBJECT]
+ **Status:** [Draft/In Progress/Complete/Archived]
+@@ -32,6 +33,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:timeline -->
+ ## 2. TIMELINE
++<!-- FILL: Put each event in date order with its evidence. GOOD: 2026-10-24: flag merged. `rg -n quiet` printed line 510. WEAK: Events happened. -->
+ 
+ List events in order. For each, give the date, what happened, then what it led to. Use prose, not a table.
+ 
+@@ -44,6 +46,7 @@ List events in order. For each, give the date, what happened, then what it led t
+ 
+ <!-- ANCHOR:milestones -->
+ ## 3. MILESTONES
++<!-- FILL: Name each milestone and whether it passed. GOOD: M1 passed. One line printed. WEAK: Milestones met. -->
+ 
+ **[MILESTONE]:** target [YYYY-MM-DD OR CONDITION]. Status: [Planned/In Progress/Done]. Evidence: [LINK, PATH OR NOTE].
+ <!-- /ANCHOR:milestones -->
+diff --git a/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+index 722c36d4253..913890aa2cb 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+@@ -83,6 +83,7 @@ _memory:
+ 
+ <!-- ANCHOR:metadata -->
+ ## Metadata
++<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-recommend-level-quiet`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -95,6 +96,7 @@ _memory:
+ 
+ <!-- ANCHOR:what-built -->
+ ## What Was Built
++<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--quiet` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
+ 
+ [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+ 
+@@ -114,6 +116,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:how-delivered -->
+ ## How It Was Delivered
++<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--quiet` and the default form, then the suite. All three passed. WEAK: Tested and shipped. -->
+ 
+ [YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+ <!-- /ANCHOR:how-delivered -->
+@@ -122,6 +125,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
++<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Flag over env var: callers already pass flags. WEAK: Used the best approach. -->
+ 
+ | Decision | Why |
+ |----------|-----|
+@@ -132,6 +136,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:verification -->
+ ## Verification
++<!-- FILL: Write one check per row with the exact output. GOOD: `--quiet` line count: 1. Default line count: 17. Suite: PASSED. WEAK: All tests pass. -->
+ 
+ | Check | Result |
+ |-------|--------|
+@@ -142,6 +147,7 @@ Explain what the user gains, not what files you touched.]
+ 
+ <!-- ANCHOR:limitations -->
+ ## Known Limitations
++<!-- FILL: Name one real limit and the workaround. GOOD: `--quiet` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+ <!-- /ANCHOR:limitations -->
+diff --git a/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+index cdf1f4706c1..b7e84405bc9 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+@@ -45,6 +45,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## 1. SUMMARY
++<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
+ 
+ ### Technical Context
+ 
+@@ -63,6 +64,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:quality-gates -->
+ ## 2. QUALITY GATES
++<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `rg -n 'quiet' recommend-level.sh` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
+ 
+ ### Definition of Ready
+ - [ ] Problem statement clear and scope documented
+@@ -79,6 +81,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:architecture -->
+ ## 3. ARCHITECTURE
++<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `recommend-level.sh`. WEAK: Standard architecture. -->
+ 
+ ### Pattern
+ [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+@@ -96,6 +99,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
++<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -117,6 +121,7 @@ Required inventories:
+ 
+ <!-- ANCHOR:phases -->
+ ## 4. IMPLEMENTATION PHASES
++<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
+ 
+ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+ <!-- /ANCHOR:phases -->
+@@ -125,6 +130,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ 
+ <!-- ANCHOR:testing -->
+ ## 5. TESTING STRATEGY
++<!-- FILL: Name the one command you will run and the output it must print. GOOD: `--quiet` prints 1 line. The default prints 17. WEAK: Test it manually. -->
+ 
+ <!-- IF level:1 -->
+ N/A — record any testing beyond the verification tasks in `tasks.md` here.
+@@ -142,6 +148,7 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
+ 
+ <!-- ANCHOR:dependencies -->
+ ## 6. DEPENDENCIES
++<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
+ 
+ <!-- IF level:1 -->
+ N/A — record dependencies beyond the components named in the architecture here.
+@@ -157,6 +164,7 @@ N/A — record dependencies beyond the components named in the architecture here
+ 
+ <!-- ANCHOR:rollback -->
+ ## 7. ROLLBACK PLAN
++<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
+ 
+ <!-- IF level:1 -->
+ N/A — record rollback steps beyond reverting the scoped change here.
+@@ -176,6 +184,7 @@ N/A — record rollback steps beyond reverting the scoped change here.
+ 
+ <!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
++<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+ 
+ ```
+ Phase 1 (Setup) ──────┐
+@@ -195,6 +204,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
++<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+@@ -208,6 +218,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
++<!-- FILL: Name the trigger, the steps and the data reversal. Write `No` when no data changes. GOOD: Trigger: default output changes. Steps: revert one commit, rerun the two commands. WEAK: Roll back if needed. -->
+ 
+ ### Pre-deployment Checklist
+ - [ ] Backup created (if data changes)
+@@ -234,6 +245,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
++<!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+ 
+ ```
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+@@ -261,6 +273,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
++<!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+ 
+ 1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+ 2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+@@ -277,6 +290,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
++<!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+@@ -288,6 +302,7 @@ Phase 1.5 (Config) ───┘
+ ---
+ 
+ ## L3: ARCHITECTURE DECISION RECORD
++<!-- FILL: Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We made a decision. -->
+ 
+ ### ADR-001: [YOUR_VALUE_HERE: Decision Title]
+ 
+@@ -313,6 +328,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:ai-execution -->
+ ## L3+: AI EXECUTION FRAMEWORK
++<!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
+ 
+ ### Tier 1: Sequential Foundation
+ **Files**: spec.md (sections 1-3)
+@@ -360,6 +376,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:workstreams -->
+ ## L3+: WORKSTREAM COORDINATION
++<!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
+ 
+ ### Workstream Definition
+ 
+@@ -386,6 +403,7 @@ Phase 1.5 (Config) ───┘
+ 
+ <!-- ANCHOR:communication -->
+ ## L3+: COMMUNICATION PLAN
++<!-- FILL: Name the update cadence and the escalation path. GOOD: A note in `goal.md` section 4 after each task. WEAK: Communicate regularly. -->
+ 
+ ### Checkpoints
+ - **Daily**: Status update in tasks.md
+diff --git a/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+index 63edd3c4400..cb9f1fc8418 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+@@ -56,6 +56,7 @@ contextType: "general"
+ ---
+ 
+ ## EXECUTIVE SUMMARY
++<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
+ 
+ [2-3 sentence high-level overview for stakeholders who need quick context]
+ 
+@@ -70,6 +71,7 @@ contextType: "general"
+ <!-- /IF -->
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
++<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/recommend-level-quiet`. WEAK: Priority TBD. Status maybe. -->
+ 
+ | Field | Value |
+ |-------|-------|
+@@ -95,6 +97,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:problem -->
+ ## 2. PROBLEM & PURPOSE
++<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+ 
+ ### Problem Statement
+ [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+@@ -107,6 +110,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:scope -->
+ ## 3. SCOPE
++<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--quiet` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+ 
+ ### In Scope
+ - [YOUR_VALUE_HERE: Deliverable 1]
+@@ -128,6 +132,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:requirements -->
+ ## 4. REQUIREMENTS
++<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With `--quiet`, stdout holds exactly one line that starts with `Recommended Level:`. WEAK: The flag should work well. -->
+ 
+ ### P0 - Blockers (MUST complete)
+ 
+@@ -163,6 +168,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:success-criteria -->
+ ## 5. SUCCESS CRITERIA
++<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: `recommend-level.sh --quiet --loc 500 --files 15` prints one line and exits 0. WEAK: The feature is successful. -->
+ 
+ - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+ - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+@@ -172,6 +178,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:risks -->
+ ## 6. RISKS & DEPENDENCIES
++<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+ 
+ | Type | Item | Impact | Mitigation |
+ |------|------|--------|------------|
+@@ -188,9 +195,12 @@ contextType: "general"
+ 
+ <!-- ANCHOR:nfr -->
+ ## L2: NON-FUNCTIONAL REQUIREMENTS
++<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
++<!-- /ANCHOR:nfr -->
+ <!-- /IF -->
+ <!-- IF level:3,3+ -->
+ ## 7. NON-FUNCTIONAL REQUIREMENTS
++<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+ <!-- /IF -->
+ 
+ ### Performance
+@@ -220,7 +230,6 @@ contextType: "general"
+ - **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
+ <!-- IF level:2 -->
+ - **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+-<!-- /ANCHOR:nfr -->
+ <!-- /IF -->
+ <!-- /IF -->
+ <!-- IF level:3+ -->
+@@ -232,9 +241,12 @@ contextType: "general"
+ <!-- IF level:2 -->
+ <!-- ANCHOR:edge-cases -->
+ ## L2: EDGE CASES
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
++<!-- /ANCHOR:edge-cases -->
+ <!-- /IF -->
+ <!-- IF level:3,3+ -->
+ ## 8. EDGE CASES
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+ <!-- /IF -->
+ 
+ ### Data Boundaries
+@@ -248,24 +260,25 @@ contextType: "general"
+ - External service failure: [YOUR_VALUE_HERE: Fallback behavior]
+ <!-- IF level:2,3 -->
+ - Network timeout: [YOUR_VALUE_HERE: Retry strategy]
++<!-- /IF -->
+ <!-- IF level:2 -->
+ - Concurrent access: [YOUR_VALUE_HERE: Conflict resolution]
++<!-- /IF -->
+ 
+ ### State Transitions
+ - Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
+ - Session expiry: [YOUR_VALUE_HERE: User experience]
+-<!-- /ANCHOR:edge-cases -->
+-<!-- /IF -->
+-<!-- /IF -->
+ 
+ ---
+ 
+ <!-- IF level:2 -->
+ <!-- ANCHOR:complexity -->
+ ## L2: COMPLEXITY ASSESSMENT
++<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ <!-- /IF -->
+ <!-- IF level:3,3+ -->
+ ## 9. COMPLEXITY ASSESSMENT
++<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ <!-- /IF -->
+ 
+ <!-- IF level:2 -->
+@@ -301,14 +314,25 @@ contextType: "general"
+ <!-- IF level:2 -->
+ <!-- ANCHOR:questions -->
+ ## 10. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
++
++- [YOUR_VALUE_HERE: Question 1 requiring clarification]
++- [YOUR_VALUE_HERE: Question 2 requiring clarification]
++<!-- /ANCHOR:questions -->
+ <!-- /IF -->
+ <!-- /IF -->
+ <!-- IF level:1 -->
+ <!-- ANCHOR:questions -->
+ ## 7. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
++
++- [YOUR_VALUE_HERE: Question 1 requiring clarification]
++- [YOUR_VALUE_HERE: Question 2 requiring clarification]
++<!-- /ANCHOR:questions -->
+ <!-- /IF -->
+ <!-- IF level:3,3+ -->
+ ## 10. RISK MATRIX
++<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
+ 
+ | Risk ID | Description | Impact | Likelihood | Mitigation |
+ |---------|-------------|--------|------------|------------|
+@@ -317,6 +341,7 @@ contextType: "general"
+ ---
+ 
+ ## 11. USER STORIES
++<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
+ 
+ ### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
+ 
+@@ -329,6 +354,7 @@ contextType: "general"
+ <!-- IF level:3+ -->
+ <!-- ANCHOR:approval-workflow -->
+ ## 12. APPROVAL WORKFLOW
++<!-- FILL: Name the real approver for each checkpoint and the date it passed. GOOD: Spec review: operator, 2026-10-24. WEAK: Approvals pending. -->
+ <!-- /IF -->
+ <!-- IF level:3 -->
+ ### US-002: [YOUR_VALUE_HERE: Title] (Priority: P1)
+@@ -354,6 +380,7 @@ contextType: "general"
+ <!-- IF level:3+ -->
+ <!-- ANCHOR:compliance-checkpoints -->
+ ## 13. COMPLIANCE CHECKPOINTS
++<!-- FILL: Mark each box or write `N/A` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the script reads no user data and opens no socket. WEAK: Compliance checked. -->
+ 
+ ### Security Compliance
+ - [ ] Security review completed
+@@ -369,6 +396,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:stakeholder-matrix -->
+ ## 14. STAKEHOLDER MATRIX
++<!-- FILL: Name each stakeholder, their interest and how you update them. GOOD: Build team, high interest, weekly note. WEAK: Stakeholders informed. -->
+ 
+ | Stakeholder | Role | Interest | Communication |
+ |-------------|------|----------|---------------|
+@@ -380,6 +408,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:change-log -->
+ ## 15. CHANGE LOG
++<!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added `--quiet`. WEAK: Initial version. -->
+ 
+ ### v1.0 ([YOUR_VALUE_HERE: Date])
+ **Initial specification**
+@@ -387,28 +416,32 @@ contextType: "general"
+ 
+ ---
+ 
++<!-- IF level:3+ -->
+ <!-- ANCHOR:questions -->
+ ## 16. OPEN QUESTIONS
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
++
++- [YOUR_VALUE_HERE: Question 1 requiring clarification]
++- [YOUR_VALUE_HERE: Question 2 requiring clarification]
++<!-- /ANCHOR:questions -->
++<!-- /IF -->
+ <!-- /IF -->
+ <!-- IF level:3 -->
+ <!-- ANCHOR:questions -->
+ ## 12. OPEN QUESTIONS
+-<!-- /IF -->
+-<!-- /IF -->
++<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+ 
+ - [YOUR_VALUE_HERE: Question 1 requiring clarification]
+-<!-- IF level:3+ -->
+-<!-- /ANCHOR:questions -->
+-<!-- /IF -->
+-<!-- IF level:1,2,3 -->
+ - [YOUR_VALUE_HERE: Question 2 requiring clarification]
+ <!-- /ANCHOR:questions -->
+ <!-- /IF -->
++<!-- /IF -->
+ <!-- IF level:3,3+ -->
+ 
+ ---
+ 
+ ## RELATED DOCUMENTS
++<!-- FILL: Leave the four links in place. -->
+ 
+ - **Implementation Plan**: See `plan.md`
+ - **Task Breakdown**: See `tasks.md`
+diff --git a/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+index 8eadb43cb69..a6562ca8b17 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+@@ -41,6 +41,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:notation -->
+ ## Task Notation
++<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `S` is the script path. `P` is the packet path. WEAK: Variables are defined below. -->
+ 
+ | Prefix | Meaning |
+ |--------|---------|
+@@ -56,6 +57,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-1 -->
+ ## Phase 1: Setup
++<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in `recommend-level.sh`. Verify: `rg -n 'Recommended Level'` prints one line. WEAK: T001 Set up the project. -->
+ 
+ - [ ] T001 Create project structure
+ - [ ] T002 Install dependencies
+@@ -66,6 +68,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-2 -->
+ ## Phase 2: Implementation
++<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--quiet` branch. Verify: `--quiet` prints one line. WEAK: T002 Implement the feature. -->
+ 
+ - [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+ - [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+@@ -77,6 +80,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:phase-3 -->
+ ## Phase 3: Verification
++<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `wc -l` prints 1 and 17. WEAK: T003 Test everything. -->
+ 
+ - [ ] T008 Test happy path manually
+ - [ ] T009 Test edge cases
+@@ -87,6 +91,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:completion -->
+ ## Completion Criteria
++<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--quiet` prints one line and the suite passes. WEAK: Work is complete. -->
+ 
+ - [ ] All tasks marked `[x]`
+ - [ ] No `[B]` blocked tasks remaining
+@@ -97,6 +102,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:cross-refs -->
+ ## Cross-References
++<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
+ 
+ - **Specification**: See `spec.md`
+ - **Plan**: See `plan.md`
+@@ -106,9 +112,11 @@ contextType: "general"
+ 
+ <!-- IF level:2,3,3+ -->
+ ## Verification Checklist
++<!-- FILL: Fill each checklist section below. -->
+ 
+ <!-- ANCHOR:protocol -->
+ ## Verification Protocol
++<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+ 
+ | Priority | Handling | Completion Impact |
+ |----------|----------|-------------------|
+@@ -121,6 +129,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:pre-impl -->
+ ## Pre-Implementation
++<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
+ 
+ - [ ] CHK-001 [P0] Requirements documented in spec.md
+ - [ ] CHK-002 [P0] Technical approach defined in plan.md
+@@ -131,6 +140,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:code-quality -->
+ ## Code Quality
++<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n recommend-level.sh` exits 0. WEAK: Code is clean. -->
+ 
+ - [ ] CHK-010 [P0] Code passes lint/format checks
+ - [ ] CHK-011 [P0] No console errors or warnings
+@@ -142,6 +152,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:testing -->
+ ## Testing Checklist
++<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--quiet` prints one line. WEAK: Tests pass. -->
+ 
+ - [ ] CHK-020 [P0] All acceptance criteria met
+ - [ ] CHK-021 [P0] Manual testing complete
+@@ -153,6 +164,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:fix-completeness -->
+ ## Fix Completeness
++<!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+ 
+ - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+ - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+@@ -167,6 +179,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:security -->
+ ## Security
++<!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] The script reads no credential. WEAK: Security is fine. -->
+ 
+ - [ ] CHK-030 [P0] No hardcoded secrets
+ - [ ] CHK-031 [P0] Input validation implemented
+@@ -177,6 +190,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs -->
+ ## Documentation
++<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` name the same flag. WEAK: Docs are updated. -->
+ 
+ - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+ - [ ] CHK-041 [P1] Code comments adequate
+@@ -187,6 +201,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:file-org -->
+ ## File Organization
++<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
+ 
+ - [ ] CHK-050 [P1] Temp files in scratch/ only
+ - [ ] CHK-051 [P1] scratch/ cleaned before completion
+@@ -196,6 +211,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:summary -->
+ ## Verification Summary
++<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+@@ -211,6 +227,7 @@ contextType: "general"
+ <!-- IF level:3,3+ -->
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
++<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -222,6 +239,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:perf-verify -->
+ ## L3+: Performance Verification
++<!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+ 
+ - [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+ - [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+@@ -233,6 +251,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:deploy-ready -->
+ ## L3+: Deployment Readiness
++<!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+ 
+ - [ ] CHK-120 [P0] Rollback procedure documented and tested
+ - [ ] CHK-121 [P0] Feature flag configured (if applicable)
+@@ -245,6 +264,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:compliance-verify -->
+ ## L3+: Compliance Verification
++<!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+ 
+ - [ ] CHK-130 [P1] Security review completed
+ - [ ] CHK-131 [P1] Dependency licenses compatible
+@@ -256,6 +276,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
++<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -267,6 +288,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
+index c6856e3140f..e64d02c5dd3 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
+@@ -54,6 +54,13 @@ Implemented a complete email/password authentication system including user regis
+ <!-- /ANCHOR:what-built -->
+ ---
+ 
++<!-- ANCHOR:how-delivered -->
++## How It Was Delivered
++
++Merged after the two manual runs in tasks T008 and T009.
++<!-- /ANCHOR:how-delivered -->
++---
++
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
+index bd64434cc79..d113234546e 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
+@@ -60,6 +60,13 @@ Implemented a complete email/password authentication system including user regis
+ <!-- /ANCHOR:what-built -->
+ ---
+ 
++<!-- ANCHOR:how-delivered -->
++## How It Was Delivered
++
++Merged after the unit and integration runs in Verification and one manual pass over the happy path.
++<!-- /ANCHOR:how-delivered -->
++---
++
+ <!-- ANCHOR:decisions -->
+ ## Key Decisions
+ 
+@@ -98,7 +105,6 @@ Implemented a complete email/password authentication system including user regis
+ <!-- /ANCHOR:verification -->
+ ---
+ 
+-<!-- ANCHOR:nfr-verify -->
+ ## NFR Verification
+ 
+ | NFR ID | Target | Actual | Status |
+@@ -110,7 +116,6 @@ Implemented a complete email/password authentication system including user regis
+ | NFR-S03 | Input sanitized | express-validator | Pass |
+ 
+ 
+-<!-- /ANCHOR:nfr-verify -->
+ ---
+ 
+ <!-- ANCHOR:limitations -->
+@@ -125,7 +130,6 @@ Implemented a complete email/password authentication system including user regis
+ <!-- /ANCHOR:limitations -->
+ ---
+ 
+-<!-- ANCHOR:deviations -->
+ ## Deviations from Plan
+ 
+ | Planned | Actual | Reason |
+@@ -133,7 +137,6 @@ Implemented a complete email/password authentication system including user regis
+ | 4-6 hours core impl | 5.5 hours | Added extra input validation |
+ | No auth.css | Created auth.css | Needed for error message styling |
+ 
+-<!-- /ANCHOR:deviations -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+index 0dc40ed9502..eb8af950766 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+@@ -148,7 +148,7 @@ MVC - Following existing Express.js application structure
+ <!-- /ANCHOR:rollback -->
+ ---
+ 
+-<!-- ANCHOR:l2-phase-deps -->
++<!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+ 
+ ```
+@@ -165,10 +165,10 @@ Phase 1.5 (Schema) ───┘
+ | Verify | Core | None |
+ 
+ 
+-<!-- /ANCHOR:l2-phase-deps -->
++<!-- /ANCHOR:phase-deps -->
+ ---
+ 
+-<!-- ANCHOR:l2-effort -->
++<!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+ 
+ | Phase | Complexity | Estimated Effort |
+@@ -180,10 +180,10 @@ Phase 1.5 (Schema) ───┘
+ | **Total** | | **7.5-10.5 hours** |
+ 
+ 
+-<!-- /ANCHOR:l2-effort -->
++<!-- /ANCHOR:effort -->
+ ---
+ 
+-<!-- ANCHOR:l2-rollback -->
++<!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
+ 
+ ### Pre-deployment Checklist
+@@ -202,7 +202,7 @@ Phase 1.5 (Schema) ───┘
+ - **Has data migrations?** Yes (users table)
+ - **Reversal procedure**: DROP TABLE users; (no data to preserve for new feature)
+ 
+-<!-- /ANCHOR:l2-rollback -->
++<!-- /ANCHOR:enhanced-rollback -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+index f61a1d660c8..f5c7382c5ca 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+@@ -184,14 +184,12 @@ Implement a basic email/password authentication system that allows users to regi
+ <!-- /ANCHOR:questions -->
+ ---
+ 
+-<!-- ANCHOR:related-docs -->
+ ## RELATED DOCUMENTS
+ 
+ - **Implementation Plan**: See `plan.md`
+ - **Task Breakdown**: See `tasks.md`
+ - **Verification Checklist**: See `tasks.md`
+ 
+-<!-- /ANCHOR:related-docs -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+index 0258fdc2eee..a57bf4f8e1b 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+@@ -131,3 +131,106 @@ LEVEL 2 TASKS (~100 lines)
+ - Effort estimates per task
+ - Explicit verification tasks
+ -->
++
++---
++
++## Verification Checklist
++
++<!-- ANCHOR:protocol -->
++## Verification Protocol
++
++| Priority | Handling | Completion Impact |
++|----------|----------|-------------------|
++| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
++| **[P1]** | Required | Must complete OR get user approval |
++| **[P2]** | Optional | Can defer with documented reason |
++<!-- /ANCHOR:protocol -->
++
++---
++
++<!-- ANCHOR:pre-impl -->
++## Pre-Implementation
++
++- [ ] CHK-001 [P0] Requirements documented in spec.md
++- [ ] CHK-002 [P0] Technical approach defined in plan.md
++- [ ] CHK-003 [P1] Dependencies identified and available
++<!-- /ANCHOR:pre-impl -->
++
++---
++
++<!-- ANCHOR:code-quality -->
++## Code Quality
++
++- [ ] CHK-010 [P0] Code passes lint/format checks
++- [ ] CHK-011 [P0] No console errors or warnings
++- [ ] CHK-012 [P1] Error handling implemented
++- [ ] CHK-013 [P1] Code follows project patterns
++<!-- /ANCHOR:code-quality -->
++
++---
++
++<!-- ANCHOR:testing -->
++## Testing Checklist
++
++- [ ] CHK-020 [P0] All acceptance criteria met
++- [ ] CHK-021 [P0] Manual testing complete
++- [ ] CHK-022 [P1] Edge cases tested
++- [ ] CHK-023 [P1] Error scenarios validated
++<!-- /ANCHOR:testing -->
++
++---
++
++<!-- ANCHOR:fix-completeness -->
++## Fix Completeness
++
++- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class.
++- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed.
++- [ ] CHK-FIX-003 [P0] Consumer inventory completed.
++- [ ] CHK-FIX-004 [P0] Security fixes include adversarial cases.
++- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed.
++- [ ] CHK-FIX-006 [P1] Hostile env variant executed when needed.
++- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or diff range.
++<!-- /ANCHOR:fix-completeness -->
++
++---
++
++<!-- ANCHOR:security -->
++## Security
++
++- [ ] CHK-030 [P0] No hardcoded secrets
++- [ ] CHK-031 [P0] Input validation implemented
++- [ ] CHK-032 [P1] Auth/authz working correctly
++<!-- /ANCHOR:security -->
++
++---
++
++<!-- ANCHOR:docs -->
++## Documentation
++
++- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
++- [ ] CHK-041 [P1] Code comments adequate
++- [ ] CHK-042 [P2] README updated when applicable
++<!-- /ANCHOR:docs -->
++
++---
++
++<!-- ANCHOR:file-org -->
++## File Organization
++
++- [ ] CHK-050 [P1] Temp files in scratch/ only
++- [ ] CHK-051 [P1] scratch/ cleaned before completion
++<!-- /ANCHOR:file-org -->
++
++---
++
++<!-- ANCHOR:summary -->
++## Verification Summary
++
++| Category | Total | Verified |
++|----------|-------|----------|
++| P0 Items | 12 | 0/12 |
++| P1 Items | 13 | 0/13 |
++| P2 Items | 1 | 0/1 |
++
++**Verification Date**: 2026-10-24
++<!-- /ANCHOR:summary -->
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
+index 69c266e52c4..0252a4d53d0 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
+@@ -284,7 +284,6 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
+ <!-- /ANCHOR:adr-003 -->
+ ---
+ 
+-<!-- ANCHOR:adr-index -->
+ ## ADR Index
+ 
+ | ADR | Title | Status | Date | Deciders |
+@@ -293,7 +292,6 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
+ | ADR-002 | Password Hashing Algorithm | Accepted | 2025-01-15 | Jordan, Alex |
+ | ADR-003 | Client-Side Token Storage | Accepted | 2025-01-15 | Jordan, Alex, Frontend Lead |
+ 
+-<!-- /ANCHOR:adr-index -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+index 52fee998965..0e1889246d8 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+@@ -37,7 +37,6 @@ learned. Use this for enterprise-scale changes requiring multi-agent coordinatio
+ <!-- /ANCHOR:metadata -->
+ ---
+ 
+-<!-- ANCHOR:exec-summary -->
+ ## Executive Summary
+ 
+ Successfully implemented a production-ready, enterprise-grade user authentication system with full governance compliance. The system supports email/password registration, login, logout, and protected routes using JWT tokens and bcrypt password hashing. All 5 approval gates were passed, security review completed, and the implementation follows AI execution protocols for multi-agent coordination.
+@@ -50,7 +49,6 @@ Successfully implemented a production-ready, enterprise-grade user authenticatio
+ - 3 ADRs documented and accepted
+ 
+ 
+-<!-- /ANCHOR:exec-summary -->
+ ---
+ 
+ <!-- ANCHOR:what-built -->
+@@ -89,7 +87,13 @@ Implemented a complete authentication system including:
+ <!-- /ANCHOR:what-built -->
+ ---
+ 
+-<!-- ANCHOR:arch-decisions -->
++<!-- ANCHOR:how-delivered -->
++## How It Was Delivered
++
++Merged after the unit, integration, manual and workstream sync runs in Verification Results, with the governance checkpoints signed.
++<!-- /ANCHOR:how-delivered -->
++---
++
+ ## Architecture Decisions Summary
+ 
+ | ADR | Decision | Status | Impact |
+@@ -101,7 +105,6 @@ Implemented a complete authentication system including:
+ See `decision-record.md` for full ADR documentation.
+ 
+ 
+-<!-- /ANCHOR:arch-decisions -->
+ ---
+ 
+ <!-- ANCHOR:verification -->
+@@ -144,7 +147,6 @@ See `decision-record.md` for full ADR documentation.
+ <!-- /ANCHOR:verification -->
+ ---
+ 
+-<!-- ANCHOR:governance -->
+ ## Governance Compliance
+ 
+ ### Approval Status
+@@ -168,10 +170,8 @@ See `decision-record.md` for full ADR documentation.
+ | Data Protection | Pass | Passwords hashed, no PII in logs |
+ 
+ 
+-<!-- /ANCHOR:governance -->
+ ---
+ 
+-<!-- ANCHOR:workstream-perf -->
+ ## Workstream Performance
+ 
+ ### W-A: Core Services (Primary Agent)
+@@ -213,10 +213,8 @@ See `decision-record.md` for full ADR documentation.
+ | SYNC-003 | All complete | 60 min | Final verification, launch ready |
+ 
+ 
+-<!-- /ANCHOR:workstream-perf -->
+ ---
+ 
+-<!-- ANCHOR:ai-analysis -->
+ ## AI Execution Analysis
+ 
+ ### Protocol Adherence
+@@ -241,10 +239,8 @@ See `decision-record.md` for full ADR documentation.
+ | **Overall** | **16** | **14** | **87.5%** |
+ 
+ 
+-<!-- /ANCHOR:ai-analysis -->
+ ---
+ 
+-<!-- ANCHOR:milestones -->
+ ## Milestone Achievement
+ 
+ | Milestone | Target | Actual | Variance | Status |
+@@ -259,7 +255,6 @@ See `decision-record.md` for full ADR documentation.
+ **Total Variance**: +2 hours (+9% over estimate)
+ 
+ 
+-<!-- /ANCHOR:milestones -->
+ ---
+ 
+ <!-- ANCHOR:limitations -->
+@@ -275,7 +270,6 @@ See `decision-record.md` for full ADR documentation.
+ <!-- /ANCHOR:limitations -->
+ ---
+ 
+-<!-- ANCHOR:risks-realized -->
+ ## Risks Realized vs Mitigated
+ 
+ | Risk ID | Description | Occurred | Mitigation Applied |
+@@ -288,9 +282,9 @@ See `decision-record.md` for full ADR documentation.
+ | R-006 | Security review delay | No | Scheduled early, parallel work |
+ 
+ 
+-<!-- /ANCHOR:risks-realized -->
+ ---
+ 
++<!-- ANCHOR:decisions -->
+ ## Key Decisions
+ 
+ ### What Went Well
+@@ -313,9 +307,9 @@ See `decision-record.md` for full ADR documentation.
+ 4. **Consider authentication library** (Passport.js) for OAuth integration
+ 
+ 
++<!-- /ANCHOR:decisions -->
+ ---
+ 
+-<!-- ANCHOR:deviations -->
+ ## Deviations from Plan
+ 
+ | Planned | Actual | Reason | Impact |
+@@ -326,10 +320,8 @@ See `decision-record.md` for full ADR documentation.
+ | 2 sync points | 3 sync points | Added SYNC-003 for final verification | Improved quality |
+ 
+ 
+-<!-- /ANCHOR:deviations -->
+ ---
+ 
+-<!-- ANCHOR:follow-up -->
+ ## Follow-Up Items
+ 
+ ### Phase 2 (Planned)
+@@ -345,10 +337,8 @@ See `decision-record.md` for full ADR documentation.
+ - [ ] Implement concurrent session management
+ 
+ 
+-<!-- /ANCHOR:follow-up -->
+ ---
+ 
+-<!-- ANCHOR:handoff -->
+ ## Handoff Notes
+ 
+ **For On-Call Team**:
+@@ -361,7 +351,6 @@ See `decision-record.md` for full ADR documentation.
+ - Password reset will need email service integration
+ - Rate limiting should use Redis for distributed state
+ 
+-<!-- /ANCHOR:handoff -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
+index 05b2b755516..9e11c6a316f 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
+@@ -198,7 +198,7 @@ MVC - Following existing Express.js application structure
+ <!-- /ANCHOR:rollback -->
+ ---
+ 
+-<!-- ANCHOR:l2-phase-deps -->
++<!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+ 
+ ```
+@@ -217,10 +217,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | Verify | All | None |
+ 
+ 
+-<!-- /ANCHOR:l2-phase-deps -->
++<!-- /ANCHOR:phase-deps -->
+ ---
+ 
+-<!-- ANCHOR:l2-effort -->
++<!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+ 
+ | Phase | Complexity | Estimated Effort |
+@@ -234,10 +234,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | **Total** | | **22 hours (~3 days)** |
+ 
+ 
+-<!-- /ANCHOR:l2-effort -->
++<!-- /ANCHOR:effort -->
+ ---
+ 
+-<!-- ANCHOR:l2-rollback -->
++<!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
+ 
+ ### Pre-deployment Checklist
+@@ -258,10 +258,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ - **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
+ 
+ 
+-<!-- /ANCHOR:l2-rollback -->
++<!-- /ANCHOR:enhanced-rollback -->
+ ---
+ 
+-<!-- ANCHOR:l3-dep-graph -->
++<!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
+ 
+ ```
+@@ -300,10 +300,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ ```
+ 
+ 
+-<!-- /ANCHOR:l3-dep-graph -->
++<!-- /ANCHOR:dependency-graph -->
+ ---
+ 
+-<!-- ANCHOR:l3-critical-path -->
++<!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
+ 
+ 1. **Setup** - 2 hours - CRITICAL
+@@ -316,10 +316,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ **Total Critical Path**: 23 hours + external review time
+ 
+ 
+-<!-- /ANCHOR:l3-critical-path -->
++<!-- /ANCHOR:critical-path -->
+ ---
+ 
+-<!-- ANCHOR:l3-milestones -->
++<!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
+ 
+ | Milestone | Description | Success Criteria | Target |
+@@ -332,10 +332,9 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | M6 | Release Ready | All tests pass, all approvals | Day 5 EOD |
+ 
+ 
+-<!-- /ANCHOR:l3-milestones -->
++<!-- /ANCHOR:milestones -->
+ ---
+ 
+-<!-- ANCHOR:l3-adr-summary -->
+ ## L3: ARCHITECTURE DECISION SUMMARY
+ 
+ See `decision-record.md` for full ADRs:
+@@ -347,10 +346,9 @@ See `decision-record.md` for full ADRs:
+ | ADR-003 | localStorage for tokens (MVP) | Accepted |
+ 
+ 
+-<!-- /ANCHOR:l3-adr-summary -->
+ ---
+ 
+-<!-- ANCHOR:l3plus-ai-exec -->
++<!-- ANCHOR:ai-execution -->
+ ## L3+: AI EXECUTION FRAMEWORK
+ 
+ ### Tier 1: Sequential Foundation (Primary Agent)
+@@ -397,7 +395,7 @@ See `decision-record.md` for full ADRs:
+ ### Status Reporting Format
+ ```
+ 
+-<!-- /ANCHOR:l3plus-ai-exec -->
++<!-- /ANCHOR:ai-execution -->
+ <!-- ANCHOR:status-update-timestamp -->
+ ## Status Update - [TIMESTAMP]
+ - **Task**: T### - [Description]
+@@ -412,7 +410,7 @@ See `decision-record.md` for full ADRs:
+ <!-- /ANCHOR:status-update-timestamp -->
+ ---
+ 
+-<!-- ANCHOR:l3plus-workstreams -->
++<!-- ANCHOR:workstreams -->
+ ## L3+: WORKSTREAM COORDINATION
+ 
+ ### Workstream Definition
+@@ -449,10 +447,10 @@ W-C (Testing) ◄─────────────────────
+ ```
+ 
+ 
+-<!-- /ANCHOR:l3plus-workstreams -->
++<!-- /ANCHOR:workstreams -->
+ ---
+ 
+-<!-- ANCHOR:l3plus-communication -->
++<!-- ANCHOR:communication -->
+ ## L3+: COMMUNICATION PLAN
+ 
+ ### Checkpoints
+@@ -476,7 +474,7 @@ W-C (Testing) ◄─────────────────────
+ | Security concern | Security Lead | Security channel |
+ | Launch ready | All stakeholders | Email + Slack |
+ 
+-<!-- /ANCHOR:l3plus-communication -->
++<!-- /ANCHOR:communication -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+index 0c5e408b7d9..57b266784ff 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+@@ -289,7 +289,7 @@ Implement a production-ready, enterprise-grade email/password authentication sys
+ <!-- /ANCHOR:approval-workflow -->
+ ---
+ 
+-<!-- ANCHOR:compliance -->
++<!-- ANCHOR:compliance-checkpoints -->
+ ## 13. COMPLIANCE CHECKPOINTS
+ 
+ ### Security Compliance
+@@ -309,10 +309,10 @@ Implement a production-ready, enterprise-grade email/password authentication sys
+ - [x] Documentation complete
+ 
+ 
+-<!-- /ANCHOR:compliance -->
++<!-- /ANCHOR:compliance-checkpoints -->
+ ---
+ 
+-<!-- ANCHOR:stakeholders -->
++<!-- ANCHOR:stakeholder-matrix -->
+ ## 14. STAKEHOLDER MATRIX
+ 
+ | Stakeholder | Role | Interest | Communication |
+@@ -325,10 +325,10 @@ Implement a production-ready, enterprise-grade email/password authentication sys
+ | QA Team | Quality Assurance | Medium | Test plan review, defect triage |
+ 
+ 
+-<!-- /ANCHOR:stakeholders -->
++<!-- /ANCHOR:stakeholder-matrix -->
+ ---
+ 
+-<!-- ANCHOR:changelog -->
++<!-- ANCHOR:change-log -->
+ ## 15. CHANGE LOG
+ 
+ ### v1.0 (2025-01-15)
+@@ -356,7 +356,7 @@ Implement a production-ready, enterprise-grade email/password authentication sys
+ - Status updated to Complete
+ 
+ 
+-<!-- /ANCHOR:changelog -->
++<!-- /ANCHOR:change-log -->
+ ---
+ 
+ <!-- ANCHOR:questions -->
+@@ -370,7 +370,6 @@ Implement a production-ready, enterprise-grade email/password authentication sys
+ <!-- /ANCHOR:questions -->
+ ---
+ 
+-<!-- ANCHOR:related-docs -->
+ ## RELATED DOCUMENTS
+ 
+ - **Implementation Plan**: See `plan.md`
+@@ -378,7 +377,6 @@ Implement a production-ready, enterprise-grade email/password authentication sys
+ - **Verification Checklist**: See `tasks.md`
+ - **Decision Records**: See `decision-record.md`
+ 
+-<!-- /ANCHOR:related-docs -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+index 8b45a838c06..5a411dc09f4 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+@@ -36,7 +36,6 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
+ <!-- /ANCHOR:notation -->
+ ---
+ 
+-<!-- ANCHOR:milestones -->
+ ## Milestone Reference
+ 
+ | Milestone | Tasks | Target | Status |
+@@ -49,10 +48,8 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
+ | M6 Release | T031-T050 | Day 5 EOD | Complete |
+ 
+ 
+-<!-- /ANCHOR:milestones -->
+ ---
+ 
+-<!-- ANCHOR:ai-exec -->
+ ## AI Execution Protocol
+ 
+ ### Pre-Task Checklist
+@@ -74,10 +71,8 @@ Before starting any task, verify:
+ | TASK-SYNC | Wait at sync points |
+ 
+ 
+-<!-- /ANCHOR:ai-exec -->
+ ---
+ 
+-<!-- ANCHOR:workstreams -->
+ ## Workstream Organization
+ 
+ | Workstream | Owner | Scope | Files |
+@@ -87,7 +82,6 @@ Before starting any task, verify:
+ | W-C | Test Agent | Testing | tests/*.js |
+ 
+ 
+-<!-- /ANCHOR:workstreams -->
+ ---
+ 
+ <!-- ANCHOR:phase-1 -->
+@@ -245,7 +239,6 @@ Before starting any task, verify:
+ <!-- /ANCHOR:completion -->
+ ---
+ 
+-<!-- ANCHOR:status-log -->
+ ## Status Updates Log
+ 
+ ### 2025-01-15 14:00
+@@ -284,7 +277,6 @@ Before starting any task, verify:
+ - **Next**: Launch approval
+ 
+ 
+-<!-- /ANCHOR:status-log -->
+ ---
+ 
+ <!-- ANCHOR:cross-refs -->
+@@ -306,3 +298,106 @@ LEVEL 3+ TASKS (~220 lines)
+ - AI Execution Protocol
+ - Status updates log
+ -->
++
++---
++
++## Verification Checklist
++
++<!-- ANCHOR:protocol -->
++## Verification Protocol
++
++| Priority | Handling | Completion Impact |
++|----------|----------|-------------------|
++| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
++| **[P1]** | Required | Must complete OR get user approval |
++| **[P2]** | Optional | Can defer with documented reason |
++<!-- /ANCHOR:protocol -->
++
++---
++
++<!-- ANCHOR:pre-impl -->
++## Pre-Implementation
++
++- [ ] CHK-001 [P0] Requirements documented in spec.md
++- [ ] CHK-002 [P0] Technical approach defined in plan.md
++- [ ] CHK-003 [P1] Dependencies identified and available
++<!-- /ANCHOR:pre-impl -->
++
++---
++
++<!-- ANCHOR:code-quality -->
++## Code Quality
++
++- [ ] CHK-010 [P0] Code passes lint/format checks
++- [ ] CHK-011 [P0] No console errors or warnings
++- [ ] CHK-012 [P1] Error handling implemented
++- [ ] CHK-013 [P1] Code follows project patterns
++<!-- /ANCHOR:code-quality -->
++
++---
++
++<!-- ANCHOR:testing -->
++## Testing Checklist
++
++- [ ] CHK-020 [P0] All acceptance criteria met
++- [ ] CHK-021 [P0] Manual testing complete
++- [ ] CHK-022 [P1] Edge cases tested
++- [ ] CHK-023 [P1] Error scenarios validated
++<!-- /ANCHOR:testing -->
++
++---
++
++<!-- ANCHOR:fix-completeness -->
++## Fix Completeness
++
++- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class.
++- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed.
++- [ ] CHK-FIX-003 [P0] Consumer inventory completed.
++- [ ] CHK-FIX-004 [P0] Security fixes include adversarial cases.
++- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed.
++- [ ] CHK-FIX-006 [P1] Hostile env variant executed when needed.
++- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or diff range.
++<!-- /ANCHOR:fix-completeness -->
++
++---
++
++<!-- ANCHOR:security -->
++## Security
++
++- [ ] CHK-030 [P0] No hardcoded secrets
++- [ ] CHK-031 [P0] Input validation implemented
++- [ ] CHK-032 [P1] Auth/authz working correctly
++<!-- /ANCHOR:security -->
++
++---
++
++<!-- ANCHOR:docs -->
++## Documentation
++
++- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
++- [ ] CHK-041 [P1] Code comments adequate
++- [ ] CHK-042 [P2] README updated when applicable
++<!-- /ANCHOR:docs -->
++
++---
++
++<!-- ANCHOR:file-org -->
++## File Organization
++
++- [ ] CHK-050 [P1] Temp files in scratch/ only
++- [ ] CHK-051 [P1] scratch/ cleaned before completion
++<!-- /ANCHOR:file-org -->
++
++---
++
++<!-- ANCHOR:summary -->
++## Verification Summary
++
++| Category | Total | Verified |
++|----------|-------|----------|
++| P0 Items | 12 | 0/12 |
++| P1 Items | 13 | 0/13 |
++| P2 Items | 1 | 0/1 |
++
++**Verification Date**: 2026-10-24
++<!-- /ANCHOR:summary -->
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
+index d17ff155bc1..ad56353f1a3 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
+@@ -34,13 +34,11 @@ decision summary, comprehensive metrics, and lessons learned sections. -->
+ <!-- /ANCHOR:metadata -->
+ ---
+ 
+-<!-- ANCHOR:exec-summary -->
+ ## Executive Summary
+ 
+ Successfully implemented a complete email/password authentication system with registration, login, logout, and protected routes. The system uses JWT tokens for stateless session management and bcrypt for secure password hashing. All milestones were achieved, and the implementation is production-ready with comprehensive test coverage and monitoring in place.
+ 
+ 
+-<!-- /ANCHOR:exec-summary -->
+ ---
+ 
+ <!-- ANCHOR:what-built -->
+@@ -78,7 +76,13 @@ Implemented a production-ready authentication system including:
+ <!-- /ANCHOR:what-built -->
+ ---
+ 
+-<!-- ANCHOR:arch-decisions -->
++<!-- ANCHOR:how-delivered -->
++## How It Was Delivered
++
++Merged after the unit, integration and manual runs in Verification Results, with the checklist at 100 percent.
++<!-- /ANCHOR:how-delivered -->
++---
++
+ ## Architecture Decisions Summary
+ 
+ | ADR | Decision | Status | Impact |
+@@ -90,10 +94,9 @@ Implemented a production-ready authentication system including:
+ See `decision-record.md` for full ADR documentation.
+ 
+ 
+-<!-- /ANCHOR:arch-decisions -->
+ ---
+ 
+-<!-- ANCHOR:impl-decisions -->
++<!-- ANCHOR:decisions -->
+ ## Key Decisions (Implementation)
+ 
+ | Decision | Rationale |
+@@ -104,7 +107,7 @@ See `decision-record.md` for full ADR documentation.
+ | No refresh tokens | Simplified MVP, planned for Phase 2 |
+ 
+ 
+-<!-- /ANCHOR:impl-decisions -->
++<!-- /ANCHOR:decisions -->
+ ---
+ 
+ <!-- ANCHOR:verification -->
+@@ -132,7 +135,6 @@ See `decision-record.md` for full ADR documentation.
+ <!-- /ANCHOR:verification -->
+ ---
+ 
+-<!-- ANCHOR:milestones -->
+ ## Milestone Achievement
+ 
+ | Milestone | Target | Actual | Status |
+@@ -144,7 +146,6 @@ See `decision-record.md` for full ADR documentation.
+ | M5 Release | Day 5 EOD | Day 5 + 2h | Slight delay |
+ 
+ 
+-<!-- /ANCHOR:milestones -->
+ ---
+ 
+ <!-- ANCHOR:limitations -->
+@@ -160,7 +161,6 @@ See `decision-record.md` for full ADR documentation.
+ <!-- /ANCHOR:limitations -->
+ ---
+ 
+-<!-- ANCHOR:risks-realized -->
+ ## Risks Realized
+ 
+ | Risk ID | Occurred | Impact | Resolution |
+@@ -171,7 +171,6 @@ See `decision-record.md` for full ADR documentation.
+ | R-004 | Accepted | Med | Rate limiting spec created for Phase 2 |
+ 
+ 
+-<!-- /ANCHOR:risks-realized -->
+ ---
+ 
+ ## Key Decisions
+@@ -194,7 +193,6 @@ See `decision-record.md` for full ADR documentation.
+ 
+ ---
+ 
+-<!-- ANCHOR:deviations -->
+ ## Deviations from Plan
+ 
+ | Planned | Actual | Reason |
+@@ -204,10 +202,8 @@ See `decision-record.md` for full ADR documentation.
+ | 4 test files | 5 test files | Split unit tests for clarity |
+ 
+ 
+-<!-- /ANCHOR:deviations -->
+ ---
+ 
+-<!-- ANCHOR:follow-up -->
+ ## Follow-Up Items
+ 
+ - [ ] spec/013-oauth-integration - Google/GitHub OAuth
+@@ -215,7 +211,6 @@ See `decision-record.md` for full ADR documentation.
+ - [ ] spec/015-rate-limiting - Protect login endpoint
+ - [ ] Phase 2: Migrate to HttpOnly cookies
+ 
+-<!-- /ANCHOR:follow-up -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
+index c3c07798cb1..7bff6331879 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
+@@ -202,7 +202,7 @@ User Request → Validator → Controller → Service → Model → Database
+ <!-- /ANCHOR:rollback -->
+ ---
+ 
+-<!-- ANCHOR:l2-phase-deps -->
++<!-- ANCHOR:phase-deps -->
+ ## L2: PHASE DEPENDENCIES
+ 
+ ```
+@@ -221,10 +221,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | Verify | All | None |
+ 
+ 
+-<!-- /ANCHOR:l2-phase-deps -->
++<!-- /ANCHOR:phase-deps -->
+ ---
+ 
+-<!-- ANCHOR:l2-effort -->
++<!-- ANCHOR:effort -->
+ ## L2: EFFORT ESTIMATION
+ 
+ | Phase | Complexity | Estimated Effort |
+@@ -238,10 +238,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | **Total** | | **22 hours (~3 days)** |
+ 
+ 
+-<!-- /ANCHOR:l2-effort -->
++<!-- /ANCHOR:effort -->
+ ---
+ 
+-<!-- ANCHOR:l2-rollback -->
++<!-- ANCHOR:enhanced-rollback -->
+ ## L2: ENHANCED ROLLBACK
+ 
+ ### Pre-deployment Checklist
+@@ -261,10 +261,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ - **Reversal procedure**: `npx prisma migrate rollback` or manual DROP TABLE
+ 
+ 
+-<!-- /ANCHOR:l2-rollback -->
++<!-- /ANCHOR:enhanced-rollback -->
+ ---
+ 
+-<!-- ANCHOR:l3-dep-graph -->
++<!-- ANCHOR:dependency-graph -->
+ ## L3: DEPENDENCY GRAPH
+ 
+ ```
+@@ -316,10 +316,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | UI | API | Forms, feedback | Verify |
+ 
+ 
+-<!-- /ANCHOR:l3-dep-graph -->
++<!-- /ANCHOR:dependency-graph -->
+ ---
+ 
+-<!-- ANCHOR:l3-critical-path -->
++<!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
+ 
+ 1. **Setup** - 2 hours - CRITICAL
+@@ -336,10 +336,10 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ - Unit tests can be written alongside service implementation
+ 
+ 
+-<!-- /ANCHOR:l3-critical-path -->
++<!-- /ANCHOR:critical-path -->
+ ---
+ 
+-<!-- ANCHOR:l3-milestones -->
++<!-- ANCHOR:milestones -->
+ ## L3: MILESTONES
+ 
+ | Milestone | Description | Success Criteria | Target |
+@@ -351,10 +351,9 @@ Phase 2 (Database) ───┴──> Phase 3 (Services) ──> Phase 4 (API)
+ | M5 | Release Ready | All tests pass, docs complete | Day 5 EOD |
+ 
+ 
+-<!-- /ANCHOR:l3-milestones -->
++<!-- /ANCHOR:milestones -->
+ ---
+ 
+-<!-- ANCHOR:l3-adr-summary -->
+ ## L3: ARCHITECTURE DECISION SUMMARY
+ 
+ See `decision-record.md` for full ADRs:
+@@ -365,7 +364,6 @@ See `decision-record.md` for full ADRs:
+ | ADR-002 | bcrypt with 10 rounds | Industry standard, good security/perf balance |
+ | ADR-003 | localStorage for tokens | Simple MVP, HttpOnly cookies in Phase 2 |
+ 
+-<!-- /ANCHOR:l3-adr-summary -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
+index 6c7e0a03b4b..aaf5f183faf 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
+@@ -20,7 +20,6 @@ and cross-references to decision records. Use this for complex features (500+ LO
+ 
+ ---
+ 
+-<!-- ANCHOR:executive-summary -->
+ ## EXECUTIVE SUMMARY
+ 
+ This specification covers the implementation of a comprehensive user authentication system for the application. The system will support email/password registration and login, secure password storage with bcrypt, and JWT-based session management. This is a foundational feature that enables all future user-specific functionality including personalization, user preferences, and access control.
+@@ -30,7 +29,6 @@ This specification covers the implementation of a comprehensive user authenticat
+ **Critical Dependencies**: PostgreSQL database, bcrypt library
+ 
+ 
+-<!-- /ANCHOR:executive-summary -->
+ ---
+ 
+ <!-- ANCHOR:metadata -->
+@@ -156,7 +154,6 @@ Implement a production-ready email/password authentication system that provides
+ <!-- /ANCHOR:risks -->
+ ---
+ 
+-<!-- ANCHOR:nfr -->
+ ## 7. NON-FUNCTIONAL REQUIREMENTS
+ 
+ ### Performance
+@@ -176,10 +173,8 @@ Implement a production-ready email/password authentication system that provides
+ - **NFR-R03**: No data loss on service restart (stateless auth)
+ 
+ 
+-<!-- /ANCHOR:nfr -->
+ ---
+ 
+-<!-- ANCHOR:edge-cases -->
+ ## 8. EDGE CASES
+ 
+ ### Data Boundaries
+@@ -199,10 +194,8 @@ Implement a production-ready email/password authentication system that provides
+ - **Simultaneous registration**: Database unique constraint prevents duplicates
+ 
+ 
+-<!-- /ANCHOR:edge-cases -->
+ ---
+ 
+-<!-- ANCHOR:risk-matrix -->
+ ## 9. RISK MATRIX
+ 
+ | Risk ID | Description | Impact | Likelihood | Mitigation |
+@@ -214,10 +207,8 @@ Implement a production-ready email/password authentication system that provides
+ | R-005 | Database breach exposes hashes | M | L | bcrypt makes cracking expensive |
+ 
+ 
+-<!-- /ANCHOR:risk-matrix -->
+ ---
+ 
+-<!-- ANCHOR:user-stories -->
+ ## 10. USER STORIES
+ 
+ ### US-001: New User Registration (Priority: P0)
+@@ -246,10 +237,9 @@ Implement a production-ready email/password authentication system that provides
+ 1. Given I am logged in, When I click logout, Then my session is terminated and I am redirected to the login page
+ 
+ 
+-<!-- /ANCHOR:user-stories -->
+ ---
+ 
+-<!-- ANCHOR:open-questions -->
++<!-- ANCHOR:questions -->
+ ## 11. OPEN QUESTIONS
+ 
+ - Should we implement "Remember Me" functionality in this phase? **RESOLVED: Deferred to Phase 2**
+@@ -257,10 +247,9 @@ Implement a production-ready email/password authentication system that provides
+ - Should we support concurrent sessions? **RESOLVED: Yes, no limit initially**
+ 
+ 
+-<!-- /ANCHOR:open-questions -->
++<!-- /ANCHOR:questions -->
+ ---
+ 
+-<!-- ANCHOR:related-docs -->
+ ## RELATED DOCUMENTS
+ 
+ - **Implementation Plan**: See `plan.md`
+@@ -268,7 +257,6 @@ Implement a production-ready email/password authentication system that provides
+ - **Verification Checklist**: See `tasks.md`
+ - **Decision Records**: See `decision-record.md`
+ 
+-<!-- /ANCHOR:related-docs -->
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+index 94d0e1eda7a..53d1db8bfdd 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+@@ -35,7 +35,6 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
+ <!-- /ANCHOR:notation -->
+ ---
+ 
+-<!-- ANCHOR:milestones -->
+ ## Milestone Reference
+ 
+ | Milestone | Tasks | Target |
+@@ -47,7 +46,6 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
+ | M5 | T029-T042 | Day 5 EOD |
+ 
+ 
+-<!-- /ANCHOR:milestones -->
+ ---
+ 
+ <!-- ANCHOR:phase-1 -->
+@@ -201,3 +199,106 @@ LEVEL 3 TASKS (~160 lines)
+ - Task dependencies explicit
+ - Milestone mapping
+ -->
++
++---
++
++## Verification Checklist
++
++<!-- ANCHOR:protocol -->
++## Verification Protocol
++
++| Priority | Handling | Completion Impact |
++|----------|----------|-------------------|
++| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
++| **[P1]** | Required | Must complete OR get user approval |
++| **[P2]** | Optional | Can defer with documented reason |
++<!-- /ANCHOR:protocol -->
++
++---
++
++<!-- ANCHOR:pre-impl -->
++## Pre-Implementation
++
++- [ ] CHK-001 [P0] Requirements documented in spec.md
++- [ ] CHK-002 [P0] Technical approach defined in plan.md
++- [ ] CHK-003 [P1] Dependencies identified and available
++<!-- /ANCHOR:pre-impl -->
++
++---
++
++<!-- ANCHOR:code-quality -->
++## Code Quality
++
++- [ ] CHK-010 [P0] Code passes lint/format checks
++- [ ] CHK-011 [P0] No console errors or warnings
++- [ ] CHK-012 [P1] Error handling implemented
++- [ ] CHK-013 [P1] Code follows project patterns
++<!-- /ANCHOR:code-quality -->
++
++---
++
++<!-- ANCHOR:testing -->
++## Testing Checklist
++
++- [ ] CHK-020 [P0] All acceptance criteria met
++- [ ] CHK-021 [P0] Manual testing complete
++- [ ] CHK-022 [P1] Edge cases tested
++- [ ] CHK-023 [P1] Error scenarios validated
++<!-- /ANCHOR:testing -->
++
++---
++
++<!-- ANCHOR:fix-completeness -->
++## Fix Completeness
++
++- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class.
++- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed.
++- [ ] CHK-FIX-003 [P0] Consumer inventory completed.
++- [ ] CHK-FIX-004 [P0] Security fixes include adversarial cases.
++- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed.
++- [ ] CHK-FIX-006 [P1] Hostile env variant executed when needed.
++- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or diff range.
++<!-- /ANCHOR:fix-completeness -->
++
++---
++
++<!-- ANCHOR:security -->
++## Security
++
++- [ ] CHK-030 [P0] No hardcoded secrets
++- [ ] CHK-031 [P0] Input validation implemented
++- [ ] CHK-032 [P1] Auth/authz working correctly
++<!-- /ANCHOR:security -->
++
++---
++
++<!-- ANCHOR:docs -->
++## Documentation
++
++- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
++- [ ] CHK-041 [P1] Code comments adequate
++- [ ] CHK-042 [P2] README updated when applicable
++<!-- /ANCHOR:docs -->
++
++---
++
++<!-- ANCHOR:file-org -->
++## File Organization
++
++- [ ] CHK-050 [P1] Temp files in scratch/ only
++- [ ] CHK-051 [P1] scratch/ cleaned before completion
++<!-- /ANCHOR:file-org -->
++
++---
++
++<!-- ANCHOR:summary -->
++## Verification Summary
++
++| Category | Total | Verified |
++|----------|-------|----------|
++| P0 Items | 12 | 0/12 |
++| P1 Items | 13 | 0/13 |
++| P2 Items | 1 | 0/1 |
++
++**Verification Date**: 2026-10-24
++<!-- /ANCHOR:summary -->

@@ -1,0 +1,290 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "Add a --quiet branch to one Bash script: a flag, a one-line renderer, and a dispatch branch, proved by line counts and the existing Node test harness."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash 3.2 or newer (`set -euo pipefail`) |
+| **Framework** | None - a single CLI script |
+| **Storage** | None |
+| **Testing** | Node test harness (`runtime/cli/tests/test-phase-validation.js`) plus direct CLI runs |
+
+### Overview
+The change touches one script and one test file. A `QUIET` global is set by a new `--quiet` case in the existing argument loop, a new `output_quiet()` function prints the level line, and the output dispatch chooses that renderer before the JSON and text branches. The proof is a line count: one line with `--quiet`, the same 17 lines without it, and a JSON document that still parses.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] `bash -n` and the Node test suite pass
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Single-script branch - no new module, no new file.
+
+### Key Components
+- **Argument parser** (`while [[ $# -gt 0 ]]` loop, section 5): recognizes flags and sets globals. Gains one `--quiet` case.
+- **Output functions** (section 4): `output_text()`, `output_json()`, and the new `output_quiet()`. All three read the same scored globals.
+- **Output dispatch** (section 7): picks one renderer after scoring. Gains one branch, checked before the JSON branch.
+
+### Data Flow
+Arguments enter the parser, numeric inputs are validated, the four score components are summed, and `determine_level()` sets `RECOMMENDED_LEVEL` and `LEVEL_NAME`. Only then does the dispatch choose a renderer. `output_quiet()` reads those two globals and prints one line; it never touches the report sections, so it cannot reorder or duplicate them.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+The change adds an option rather than fixing a defect, but the script has consumers and the table below records what each one sees.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `runtime/cli/spec/recommend-level.sh` | Producer - owns the level label and both renderers | update | `rg -n 'output_quiet\|--quiet' recommend-level.sh` prints the flag case, the function, and the dispatch |
+| `runtime/cli/tests/test-phase-validation.js` | Consumer - asserts phase fields through `--json` | update (one new case) | `node test-phase-validation.js` reports `failed=0` |
+| `runtime/cli/tests/test-phase-system.js` | Consumer - asserts phase scoring through `--json` | unchanged - never passes `--quiet` | `node test-phase-system.js` reports `failed=0` |
+| `.skilled/skills/system-spec-kit/README.md` | Mentions the helper; documents no options | not a consumer | `rg -n 'recommend-level' README.md` prints the table row only |
+| `assets/level-decision-matrix.md`, `assets/template-mapping.md` | Reference the helper by name | not a consumer | `rg -n 'recommend-level' assets/` prints prose mentions only |
+
+Required inventories:
+- Same-class producers: `rg -n 'echo "Recommended Level' runtime/cli/spec/recommend-level.sh` - one producer line today, in `output_text()`.
+- Consumers of the level label: `rg -n 'Recommended Level' .skilled/` - the script and the manual-testing playbook transcripts.
+- Matrix axes: `--quiet` x `--json` (four combinations), and `--quiet` x valid/invalid input (two outcomes).
+- Algorithm invariant: the quiet line equals the text report's level line for every input; no scoring path changes.
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+
+### Step 1: Record the baseline
+
+Acceptance: the current default report is measured before anything changes.
+Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --loc 500 --files 15 --auth --api --db --architectural | wc -l` prints 17.
+
+### Step 2: Add the flag and the renderer
+
+Acceptance: `--quiet` is accepted, `output_quiet()` exists, and the dispatch reaches it.
+Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --quiet --loc 500 --files 15 --auth --api --db --architectural` prints exactly `Recommended Level: 3 (Full)`.
+
+### Step 3: Document the flag
+
+Acceptance: the header OPTIONS block and `show_help()` both name `--quiet`.
+Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --help | rg -c -- '--quiet'` prints 1.
+
+### Step 4: Prove the unchanged paths
+
+Acceptance: the default report, the JSON document, and the error path behave exactly as before.
+Verify: the default run prints 17 lines, `--json` parses, `--quiet --loc abc` exits 1 with an empty stdout, and `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-validation.js` prints `failed=0`.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | `output_quiet()` and the `--quiet` parser case | Direct CLI runs, `wc -l`, `bash -n` |
+| Integration | `--quiet` combined with `--json`, `--no-recommend-phases`, and invalid input | Direct CLI runs with `echo $?` |
+| Regression | The 51-case phase suite and the default 17-line report | `node runtime/cli/tests/test-phase-validation.js` |
+| Manual | Reading the one-line output in a terminal | Shell |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Bash 3.2 or newer | External | Green | The script cannot run; already required today |
+| Node (test harness only) | External | Green | The new case cannot run; direct CLI checks still cover the behavior |
+| `wc`, `printf`, `rg` | External | Green | Line-count evidence is unavailable; `od` or `sed -n '$='` substitute |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: the default text report or the JSON document changes for any existing invocation.
+- **Procedure**: revert the single commit that touches `recommend-level.sh` and its test case, then rerun the 17-line check and the Node suite.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────► Phase 2 (Implementation) ──────► Phase 3 (Verification)
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 10 minutes |
+| Core Implementation | Low | 20 minutes |
+| Verification | Low | 15 minutes |
+| **Total** | | **~45 minutes** (assumption: the script is read once, not re-explored) |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [x] Backup created (if data changes) - no data changes
+- [ ] Feature flag configured - not applicable; the flag is opt-in per invocation
+- [ ] Monitoring alerts set - not applicable; no service
+
+### Rollback Procedure
+1. Revert the commit that edits `recommend-level.sh` and the test case.
+2. Rerun the default 17-line check and `bash -n`.
+3. Rerun the Node phase suite and confirm `failed=0`.
+4. Notify callers only if the revert follows a released change; none is released here.
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
+│    Setup    │     │Implementation│     │ Verification│
+└─────────────┘     └──────┬──────┘     └─────────────┘
+                           │
+                    ┌──────▼──────┐
+                    │  Help text  │
+                    │  (parallel) │
+                    └─────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture | None | The 17-line reference count | Verification |
+| `QUIET` global and parser case | Baseline capture | A reachable flag | Renderer |
+| `output_quiet()` | Parser case | One-line renderer | Dispatch |
+| Dispatch branch | Renderer | Quiet behavior | Verification |
+| Help and header text | Parser case | Documented flag | Verification |
+| Test case | Dispatch | Regression coverage | Verification |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Baseline capture** - 5 minutes - CRITICAL
+2. **Flag, renderer, and dispatch** - 20 minutes - CRITICAL
+3. **Verification runs** - 15 minutes - CRITICAL
+
+**Total Critical Path**: ~40 minutes
+
+**Parallel Opportunities**:
+- The help text and the header comment can be written while the renderer is edited, since both are prose in the same file but independent of the dispatch.
+- The test case can be written against the planned contract before the implementation lands, then run once it does.
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Flag accepted | `--quiet --loc 10 --files 1` exits 0 | Phase 1 |
+| M2 | One line printed | `wc -l` prints 1 for the Level 3 fixture | Phase 2 |
+| M3 | Nothing else moved | 17-line default, JSON parses, suite `failed=0` | Phase 3 |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: `--quiet` wins over `--json`
+
+**Status**: Accepted
+
+**Context**: Two output selectors can now be passed together. The script needs one rule for that combination, and either rule is defensible: refuse the pair, or let one win.
+
+**Decision**: `--quiet` takes precedence. When both flags are present the script prints the one text line and no JSON.
+
+**Consequences**:
+- A caller that appends `--quiet` to an existing command line still receives a level, which is the reason the flag exists.
+- A JSON consumer that also passes `--quiet` receives text. Mitigation: the help text states the precedence, and AC-004 pins it.
+
+**Alternatives Rejected**:
+- Reject the pair with exit 1: adds a failure mode nobody asked for, and turns a harmless combination into a broken script run.
+- Emit one-line JSON under `--quiet`: satisfies "one line" but not "the recommended-level line", and doubles the contract every caller must parse.
+
+### ADR-002: Reuse the `Recommended Level:` label
+
+**Status**: Accepted
+
+**Context**: The quiet line could introduce a terse format such as `3` or `3 Full`, or reuse the label `output_text()` already prints.
+
+**Decision**: Reuse `Recommended Level: <N> (<Name>)` verbatim, built from the same `RECOMMENDED_LEVEL` and `LEVEL_NAME` globals.
+
+**Consequences**:
+- One label exists in one shape, so a parser written for the report also reads the quiet line.
+- The line is longer than a bare number. Accepted, because stability beats brevity for a value a script parses.
+
+**Alternatives Rejected**:
+- Print only the number: shortest, but loses the level name and diverges from the existing label.
+- Print the JSON field: forces every caller to parse JSON for one value.

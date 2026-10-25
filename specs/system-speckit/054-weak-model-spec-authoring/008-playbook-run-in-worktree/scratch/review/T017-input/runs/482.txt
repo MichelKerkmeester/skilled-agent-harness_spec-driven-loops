@@ -1,0 +1,11 @@
+clean_exit=0
+9
+CARD SYNC OK
+copy_exit=0
+CARD SYNC OK
+broken_exit=1
+1
+CARD SYNC FAILED
+cleanup=ok
+truncated=no
+exit=0

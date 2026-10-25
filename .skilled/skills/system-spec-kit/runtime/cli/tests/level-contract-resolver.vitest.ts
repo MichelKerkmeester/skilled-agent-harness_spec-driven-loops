@@ -91,7 +91,7 @@ describe('resolveLevelContract', () => {
     expect(serialized.lifecycleRequiredDocs).toEqual({
       afterImplementationStarts: ['implementation-summary.md'],
     });
-    expect(serialized.templateVersions['spec.md.tmpl']).toBe('v2.2');
+    expect(serialized.templateVersions['spec.md.tmpl']).toBe('v2.3');
     expect(serialized.templateVersions['before-after.md.tmpl']).toBe('v2.2');
     expect(Object.keys(serialized)).toEqual([
       'requiredCoreDocs',

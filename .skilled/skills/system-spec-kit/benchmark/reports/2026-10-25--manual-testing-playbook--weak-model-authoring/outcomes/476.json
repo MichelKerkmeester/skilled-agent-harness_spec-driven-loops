@@ -1,0 +1,36 @@
+{
+  "scenarioId": "476",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "A Level 2 scaffold stamped v2.3 with its Status row at Draft printed warn for PLACEHOLDER_FILLED and true for passed under strict validation. The throwaway track was removed (cleanup=ok).",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "A Level 2 scaffold stamped v2.3 with its Status row at Draft printed warn for PLACEHOLDER_FILLED and true for passed under strict validation. The throwaway track was removed (cleanup=ok).",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/476.txt",
+          "bytes": 160,
+          "sha256": "ba39b8ad7bc4ca94bb5f34d41f22c20ca6ca3966131578e56265a4491be5d3a1"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/476.txt",
+      "bytes": 160,
+      "sha256": "ba39b8ad7bc4ca94bb5f34d41f22c20ca6ca3966131578e56265a4491be5d3a1"
+    }
+  ]
+}

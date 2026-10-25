@@ -1,0 +1,7 @@
+ .../templates/addons/acceptance-criteria.md.tmpl   |  16 +--
+ .../templates/core/implementation-summary.md.tmpl  |  20 ++--
+ .../system-spec-kit/templates/core/plan.md.tmpl    | 100 ++++++++--------
+ .../system-spec-kit/templates/core/spec.md.tmpl    | 128 ++++++++++-----------
+ .../system-spec-kit/templates/core/tasks.md.tmpl   |  16 +--
+ .../system-spec-kit/templates/spec-kit-docs.json   |  10 +-
+ 6 files changed, 145 insertions(+), 145 deletions(-)

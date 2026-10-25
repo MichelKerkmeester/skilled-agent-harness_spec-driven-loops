@@ -1,0 +1,3 @@
+{"run":1,"subject":"swe-2-max-baseline","rc":0,"strict_passed":1,"leftover_hints":0,"missing_anchors":0,"out_of_scope_writes":0,"seconds":201}
+{"run":2,"subject":"swe-2-max-baseline","rc":0,"strict_passed":1,"leftover_hints":0,"missing_anchors":0,"out_of_scope_writes":0,"seconds":188}
+{"run":3,"subject":"swe-2-max-baseline","rc":0,"strict_passed":1,"leftover_hints":1,"missing_anchors":0,"out_of_scope_writes":0,"seconds":284}

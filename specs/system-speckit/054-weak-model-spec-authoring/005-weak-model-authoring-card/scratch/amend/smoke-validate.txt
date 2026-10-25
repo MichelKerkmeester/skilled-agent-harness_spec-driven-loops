@@ -1,0 +1,92 @@
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/zz-amend-probe/001-amend-probe
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
+! PLACEHOLDER_FILLED: 36 unfilled value token(s) in a Draft packet. Fill each one before the status leaves Draft
+    - spec.md:3: description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain poin
+    - spec.md:23: | **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
+    - spec.md:36: [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+    - spec.md:39: [YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+    - spec.md:49: - [YOUR_VALUE_HERE: Deliverable 1]
+    - spec.md:50: - [YOUR_VALUE_HERE: Deliverable 2]
+    - spec.md:51: - [YOUR_VALUE_HERE: Deliverable 3]
+    - spec.md:54: - [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+    - spec.md:55: - [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+    - spec.md:61: | [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+    - spec.md:74: | REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+    - spec.md:80: | REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+    - spec.md:89: - **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+    - spec.md:90: - **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+    - spec.md:101: | Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+    - spec.md:102: | Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] 
+    - spec.md:111: - [YOUR_VALUE_HERE: Question 1 requiring clarification]
+    - spec.md:112: - [YOUR_VALUE_HERE: Question 2 requiring clarification]
+    - plan.md:24: | **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
+    - plan.md:25: | **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
+    - plan.md:26: | **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
+    - plan.md:27: | **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+    - plan.md:57: [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+    - plan.md:60: - **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
+    - plan.md:61: - **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+    - plan.md:64: [YOUR_VALUE_HERE: Brief description of how data moves through the system]
+    - tasks.md:47: - [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
+    - tasks.md:48: - [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
+    - tasks.md:49: - [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
+    - tasks.md:50: - [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+    - implementation-summary.md:50: [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+    - implementation-summary.md:61: | [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishe
+    - implementation-summary.md:70: [YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+    - implementation-summary.md:81: | [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+    - implementation-summary.md:92: | [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+    - implementation-summary.md:101: 1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'Draft', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Draft classified=planned
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=13, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '001-amend-probe' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 5 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: metadata paths carry the scaffold marker; the packet is not filed yet
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity normalization drift detected (soft detector)
+    - identity=scaffold/001-amend-probe
+    - identity=zz-amend-probe/001-amend-probe
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED

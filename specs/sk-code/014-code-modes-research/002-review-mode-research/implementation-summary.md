@@ -98,7 +98,7 @@ The second pass ran after child 001's pass had finished and released its lock, n
 | Findings only, no hub change | The parent freezes this as D1. |
 | Stop policy `max-iterations` | Parent D3. Convergence was telemetry only. |
 | Per-iteration alternation as the working assumption | Parent D4. DeepSeek was unavailable for the first pass, so the second model came as a separate pass. |
-| Boundary check limited to the two mode folders | Concurrent CI wiring edited other `.skilled/` paths during the first run. The operator directed comparing only `sk-code-quality/` and `sk-code-review/`. |
+| Boundary check limited to the two mode folders | ADR-003. Concurrent CI wiring edited other `.skilled/` paths during the first run. The operator directed comparing only `sk-code-quality/` and `sk-code-review/`. |
 | AC-011 narrowed to the research content | ADR-001, the operator's ruling of 2026-10-25. |
 | Five second-model iterations on cli-devin DeepSeek | ADR-002, the operator's ruling of 2026-10-25. |
 | Rank numbers kept, refreshed order added beside them | The rest of the synthesis cites the first-pass rank numbers. |
@@ -111,7 +111,7 @@ The second pass ran after child 001's pass had finished and released its lock, n
 
 | Check | Result |
 |-------|--------|
-| AC-001 to AC-010 | Met, re-run after iteration 15, with command output in `acceptance-criteria.md` |
+| AC-001 to AC-010 | Met, re-run after iteration 15, with command output in `acceptance-criteria.md`, apart from AC-009, which is Superseded by ADR-003 |
 | AC-011 | Met. The amended check, which skips a line that only states the sibling folder was not read, prints nothing. Devin's session records show no call that read the sibling folder |
 | Second-model claims | The orchestrator re-ran both routing replays from iteration 11 and opened the lines behind each refuted or new claim before it entered the synthesis |
 | Strict validation | See `acceptance-criteria.md` AC-010 |
@@ -125,7 +125,7 @@ The second pass ran after child 001's pass had finished and released its lock, n
 1. **Some rows stay half-tested.** The second model left the decisive claim of ranks 2 and 10 untested, and parts of ranks 3, 4, 6 and 11. Section 6a lists each.
 2. **Hub files moved during the first run.** Concurrent CI wiring edited `ROUTER.md`, `hub-router.json`, the hub `SKILL.md` and `shared/references/stack-detection.md`. The I-6 replay ran after those changes and still holds.
 3. **Runtime defect found.** The write-containment guard does not exempt a sibling single-executor run's `research/` folder, so the first run's quarantine held the sibling's files. The second pass ran the children one after the other and no quarantine folder appeared.
-4. **One stray dispatch file.** Iteration 12 left `research/.tmp-iter-012-event.json` beside the run's state. It is kept for the operator to decide on.
+4. **One stray dispatch file.** Iteration 12 left `research/.tmp-iter-012-event.json` beside the run's state. It was deleted with the operator's approval, and `ls -a research` no longer lists it.
 5. **No runtime proof of usefulness.** Neither pass ran a live review scenario, so catch rate and cost stay unmeasured.
 <!-- /ANCHOR:limitations -->
 

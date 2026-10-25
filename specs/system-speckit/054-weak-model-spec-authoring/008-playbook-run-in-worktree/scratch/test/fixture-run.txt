@@ -1,0 +1,4 @@
+FIXTURE_OK
+FIXTURE_OK_SECOND
+truncated=no
+exit=0

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Add User Authentication"
-description: "features including 3-Tier Task Format, AI Execution Protocol, and Workstream"
+description: "Level 3+ task list example with the three-tier task format, AI execution protocol and workstream tracking."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"
@@ -36,7 +36,6 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 <!-- /ANCHOR:notation -->
 ---
 
-<!-- ANCHOR:milestones -->
 ## Milestone Reference
 
 | Milestone | Tasks | Target | Status |
@@ -46,13 +45,11 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
 | M3 API | T013-T022 | Day 3 EOD | Complete |
 | M4 UI | T023-T028 | Day 4 noon | Complete |
 | M5 Security | T029-T030 | Day 4 EOD | Complete |
-| M6 Release | T031-T048 | Day 5 EOD | Complete |
+| M6 Release | T031-T050 | Day 5 EOD | Complete |
 
 
-<!-- /ANCHOR:milestones -->
 ---
 
-<!-- ANCHOR:ai-exec -->
 ## AI Execution Protocol
 
 ### Pre-Task Checklist
@@ -74,10 +71,8 @@ Before starting any task, verify:
 | TASK-SYNC | Wait at sync points |
 
 
-<!-- /ANCHOR:ai-exec -->
 ---
 
-<!-- ANCHOR:workstreams -->
 ## Workstream Organization
 
 | Workstream | Owner | Scope | Files |
@@ -87,7 +82,6 @@ Before starting any task, verify:
 | W-C | Test Agent | Testing | tests/*.js |
 
 
-<!-- /ANCHOR:workstreams -->
 ---
 
 <!-- ANCHOR:phase-1 -->
@@ -237,7 +231,7 @@ Before starting any task, verify:
 - [x] All integration tests passing
 - [x] Manual verification in 2+ browsers
 - [x] Security review approved
-- [x] Checklist.md fully verified
+- [x] Verification checklist in tasks.md fully verified
 - [x] All ADRs have status: Accepted
 - [x] All approvals obtained (spec.md section 12)
 
@@ -245,7 +239,6 @@ Before starting any task, verify:
 <!-- /ANCHOR:completion -->
 ---
 
-<!-- ANCHOR:status-log -->
 ## Status Updates Log
 
 ### 2025-01-15 14:00
@@ -284,7 +277,6 @@ Before starting any task, verify:
 - **Next**: Launch approval
 
 
-<!-- /ANCHOR:status-log -->
 ---
 
 <!-- ANCHOR:cross-refs -->
@@ -306,3 +298,106 @@ LEVEL 3+ TASKS (~220 lines)
 - AI Execution Protocol
 - Status updates log
 -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [ ] CHK-003 [P1] Dependencies identified and available
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Code passes lint/format checks
+- [ ] CHK-011 [P0] No console errors or warnings
+- [ ] CHK-012 [P1] Error handling implemented
+- [ ] CHK-013 [P1] Code follows project patterns
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-021 [P0] Manual testing complete
+- [ ] CHK-022 [P1] Edge cases tested
+- [ ] CHK-023 [P1] Error scenarios validated
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed.
+- [ ] CHK-FIX-004 [P0] Security fixes include adversarial cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed.
+- [ ] CHK-FIX-006 [P1] Hostile env variant executed when needed.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or diff range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets
+- [ ] CHK-031 [P0] Input validation implemented
+- [ ] CHK-032 [P1] Auth/authz working correctly
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-041 [P1] Code comments adequate
+- [ ] CHK-042 [P2] README updated when applicable
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [ ] CHK-051 [P1] scratch/ cleaned before completion
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 12 | 0/12 |
+| P1 Items | 13 | 0/13 |
+| P2 Items | 1 | 0/1 |
+
+**Verification Date**: 2026-10-24
+<!-- /ANCHOR:summary -->

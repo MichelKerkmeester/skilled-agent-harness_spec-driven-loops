@@ -1,0 +1,1 @@
+Now let me verify the scripts and the rule that decides placeholder severity.

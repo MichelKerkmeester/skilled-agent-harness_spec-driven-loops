@@ -115,7 +115,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 3 | `003-fix-write-recipe-workspace-bullet/` | Point the workspace bullet at sk-git | Complete |
 | 4 | `004-fix-write-recipe-post-checks/` | Reword the status and push post-check rows | Complete |
 | 5 | `005-fix-write-recipe-verification-gate/` | Check the staged set in the Step 7 gate | Complete |
-| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Draft |
+| 6 | `006-fix-write-recipe-move-destination/` | Replace the bare `<spec-folder>` move destination in Step 2 with a real example path | Complete |
 
 ### Phase Transition Rules
 

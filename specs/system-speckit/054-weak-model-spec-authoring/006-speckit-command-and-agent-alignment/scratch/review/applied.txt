@@ -1,0 +1,234 @@
+APPLIED R-001 .skilled/commands/speckit/plan.md
+CHECK R-001 extra_paths=0
+APPLIED R-002 .skilled/commands/speckit/implement.md
+CHECK R-002 extra_paths=0
+APPLIED R-003 .skilled/commands/speckit/complete.md
+CHECK R-003 extra_paths=0
+APPLIED R-004 .skilled/commands/speckit/assets/speckit-plan.yaml
+CHECK R-004 extra_paths=0
+APPLIED R-005 .skilled/commands/speckit/assets/speckit-implement.yaml
+CHECK R-005 extra_paths=0
+APPLIED R-006 .skilled/commands/speckit/assets/speckit-complete.yaml
+CHECK R-006 extra_paths=0
+APPLIED R-007 .skilled/commands/speckit/assets/speckit-plan.yaml
+CHECK R-007 extra_paths=0
+APPLIED R-008 .skilled/commands/speckit/assets/speckit-complete.yaml
+CHECK R-008 extra_paths=0
+APPLIED R-009 .skilled/commands/speckit/assets/speckit-complete.yaml
+CHECK R-009 extra_paths=0
+APPLIED R-010 .skilled/commands/speckit/assets/speckit-complete.yaml
+CHECK R-010 extra_paths=0
+APPLIED R-011 .skilled/commands/speckit/assets/speckit-complete.yaml
+CHECK R-011 extra_paths=0
+APPLIED R-012 .skilled/commands/speckit/assets/speckit-plan.yaml
+CHECK R-012 extra_paths=0
+APPLIED R-013 .skilled/commands/speckit/assets/speckit-plan.yaml
+CHECK R-013 extra_paths=0
+APPLIED R-014 .skilled/commands/speckit/assets/speckit-resume-auto.yaml
+CHECK R-014 extra_paths=0
+APPLIED R-015 .skilled/commands/speckit/assets/speckit-resume-confirm.yaml
+CHECK R-015 extra_paths=0
+APPLIED R-016 .skilled/agents/markdown.md
+CHECK R-016 extra_paths=0
+APPLIED R-017 .skilled/agents/orchestrate.md
+CHECK R-017 extra_paths=0
+APPLIED R-018 .skilled/agents/orchestrate.md
+CHECK R-018 extra_paths=0
+APPLIED R-019 .skilled/agents/code.md
+CHECK R-019 extra_paths=0
+APPLIED R-020 .skilled/agents/code.md
+CHECK R-020 extra_paths=0
+APPLIED R-021 .skilled/agents/context.md
+CHECK R-021 extra_paths=0
+APPLIED R-022 .claude/agents/markdown.md
+CHECK R-022 extra_paths=0
+APPLIED R-023 .claude/agents/orchestrate.md
+CHECK R-023 extra_paths=0
+APPLIED R-024 .claude/agents/orchestrate.md
+CHECK R-024 extra_paths=0
+APPLIED R-025 .claude/agents/code.md
+CHECK R-025 extra_paths=0
+APPLIED R-026 .claude/agents/code.md
+CHECK R-026 extra_paths=0
+APPLIED R-027 .claude/agents/context.md
+CHECK R-027 extra_paths=0
+APPLIED R-028 .skilled/commands/create/assets/create-agent-auto.yaml
+CHECK R-028 extra_paths=0
+APPLIED R-029 .skilled/commands/create/assets/create-agent-confirm.yaml
+CHECK R-029 extra_paths=0
+APPLIED R-030 .skilled/commands/create/assets/create-agent-confirm.yaml
+CHECK R-030 extra_paths=0
+APPLIED R-031 .skilled/commands/create/assets/create-benchmark-auto.yaml
+CHECK R-031 extra_paths=0
+APPLIED R-032 .skilled/commands/create/assets/create-benchmark-auto.yaml
+CHECK R-032 extra_paths=0
+APPLIED R-033 .skilled/commands/create/assets/create-benchmark-confirm.yaml
+CHECK R-033 extra_paths=0
+APPLIED R-034 .skilled/commands/create/assets/create-benchmark-confirm.yaml
+CHECK R-034 extra_paths=0
+APPLIED R-035 .skilled/commands/create/assets/create-command-auto.yaml
+CHECK R-035 extra_paths=0
+APPLIED R-036 .skilled/commands/create/assets/create-command-confirm.yaml
+CHECK R-036 extra_paths=0
+APPLIED R-037 .skilled/commands/create/assets/create-feature-catalog-auto.yaml
+CHECK R-037 extra_paths=0
+APPLIED R-038 .skilled/commands/create/assets/create-feature-catalog-auto.yaml
+CHECK R-038 extra_paths=0
+APPLIED R-039 .skilled/commands/create/assets/create-feature-catalog-auto.yaml
+CHECK R-039 extra_paths=0
+APPLIED R-040 .skilled/commands/create/assets/create-feature-catalog-auto.yaml
+CHECK R-040 extra_paths=0
+APPLIED R-041 .skilled/commands/create/assets/create-feature-catalog-auto.yaml
+CHECK R-041 extra_paths=0
+APPLIED R-042 .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+CHECK R-042 extra_paths=0
+APPLIED R-043 .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+CHECK R-043 extra_paths=0
+APPLIED R-044 .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+CHECK R-044 extra_paths=0
+APPLIED R-045 .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+CHECK R-045 extra_paths=0
+APPLIED R-046 .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+CHECK R-046 extra_paths=0
+APPLIED R-047 .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+CHECK R-047 extra_paths=0
+APPLIED R-048 .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml
+CHECK R-048 extra_paths=0
+APPLIED R-049 .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml
+CHECK R-049 extra_paths=0
+APPLIED R-050 .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml
+CHECK R-050 extra_paths=0
+APPLIED R-051 .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml
+CHECK R-051 extra_paths=0
+APPLIED R-052 .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml
+CHECK R-052 extra_paths=0
+APPLIED R-053 .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+CHECK R-053 extra_paths=0
+APPLIED R-054 .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+CHECK R-054 extra_paths=0
+APPLIED R-055 .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+CHECK R-055 extra_paths=0
+APPLIED R-056 .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+CHECK R-056 extra_paths=0
+APPLIED R-057 .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+CHECK R-057 extra_paths=0
+APPLIED R-058 .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+CHECK R-058 extra_paths=0
+APPLIED R-059 .skilled/commands/create/assets/create-skill-auto.yaml
+CHECK R-059 extra_paths=0
+APPLIED R-060 .skilled/commands/create/assets/create-skill-confirm.yaml
+CHECK R-060 extra_paths=0
+APPLIED R-061 .skilled/commands/create/assets/create-skill-confirm.yaml
+CHECK R-061 extra_paths=0
+APPLIED R-062 .skilled/commands/create/assets/create-skill-parent-auto.yaml
+CHECK R-062 extra_paths=0
+APPLIED R-063 .skilled/commands/create/assets/create-skill-parent-auto.yaml
+CHECK R-063 extra_paths=0
+APPLIED R-064 .skilled/commands/create/assets/create-skill-parent-auto.yaml
+CHECK R-064 extra_paths=0
+APPLIED R-065 .skilled/commands/create/assets/create-skill-parent-auto.yaml
+CHECK R-065 extra_paths=0
+APPLIED R-066 .skilled/commands/create/assets/create-skill-parent-auto.yaml
+CHECK R-066 extra_paths=0
+APPLIED R-067 .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+CHECK R-067 extra_paths=0
+APPLIED R-068 .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+CHECK R-068 extra_paths=0
+APPLIED R-069 .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+CHECK R-069 extra_paths=0
+APPLIED R-070 .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+CHECK R-070 extra_paths=0
+APPLIED R-071 .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+CHECK R-071 extra_paths=0
+APPLIED R-072 .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+CHECK R-072 extra_paths=0
+APPLIED R-073 .skilled/commands/deep/assets/deep-review-auto.yaml
+CHECK R-073 extra_paths=0
+APPLIED R-074 .skilled/commands/deep/assets/deep-review-auto.yaml
+CHECK R-074 extra_paths=0
+APPLIED R-075 .skilled/commands/deep/assets/deep-review-auto.yaml
+CHECK R-075 extra_paths=0
+APPLIED R-076 .skilled/commands/deep/assets/deep-review-confirm.yaml
+CHECK R-076 extra_paths=0
+APPLIED R-077 .skilled/commands/deep/assets/deep-review-confirm.yaml
+CHECK R-077 extra_paths=0
+APPLIED R-078 .skilled/commands/deep/assets/deep-review-confirm.yaml
+CHECK R-078 extra_paths=0
+RCHECK R-001 locator=1 expected=1
+RCHECK R-002 locator=1 expected=1
+RCHECK R-003 locator=1 expected=1
+RCHECK R-004 locator=1 expected=1
+RCHECK R-005 locator=1 expected=1
+RCHECK R-006 locator=1 expected=1
+RCHECK R-007 locator=0 expected=1
+RCHECK R-008 locator=0 expected=1
+RCHECK R-009 locator=0 expected=1
+RCHECK R-010 locator=1 expected=1
+RCHECK R-011 locator=0 expected=1
+RCHECK R-012 locator=0 expected=1
+RCHECK R-013 locator=0 expected=1
+RCHECK R-014 locator=0 expected=1
+RCHECK R-015 locator=0 expected=1
+RCHECK R-016 locator=0 expected=1
+RCHECK R-017 locator=0 expected=1
+RCHECK R-018 locator=0 expected=1
+RCHECK R-019 locator=0 expected=1
+RCHECK R-020 locator=0 expected=1
+RCHECK R-021 locator=0 expected=1
+RCHECK R-022 locator=0 expected=1
+RCHECK R-023 locator=0 expected=1
+RCHECK R-024 locator=0 expected=1
+RCHECK R-025 locator=0 expected=1
+RCHECK R-026 locator=0 expected=1
+RCHECK R-027 locator=0 expected=1
+RCHECK R-028 locator=0 expected=1
+RCHECK R-029 locator=0 expected=1
+RCHECK R-030 locator=0 expected=1
+RCHECK R-031 locator=0 expected=1
+RCHECK R-032 locator=0 expected=1
+RCHECK R-033 locator=0 expected=1
+RCHECK R-034 locator=0 expected=1
+RCHECK R-035 locator=0 expected=1
+RCHECK R-036 locator=0 expected=1
+RCHECK R-037 locator=0 expected=1
+RCHECK R-038 locator=0 expected=1
+RCHECK R-039 locator=0 expected=1
+RCHECK R-040 locator=0 expected=1
+RCHECK R-041 locator=0 expected=1
+RCHECK R-042 locator=0 expected=1
+RCHECK R-043 locator=0 expected=1
+RCHECK R-044 locator=0 expected=1
+RCHECK R-045 locator=0 expected=1
+RCHECK R-046 locator=0 expected=1
+RCHECK R-047 locator=0 expected=1
+RCHECK R-048 locator=0 expected=1
+RCHECK R-049 locator=0 expected=1
+RCHECK R-050 locator=0 expected=1
+RCHECK R-051 locator=0 expected=1
+RCHECK R-052 locator=0 expected=1
+RCHECK R-053 locator=0 expected=1
+RCHECK R-054 locator=0 expected=1
+RCHECK R-055 locator=0 expected=1
+RCHECK R-056 locator=0 expected=1
+RCHECK R-057 locator=0 expected=1
+RCHECK R-058 locator=0 expected=1
+RCHECK R-059 locator=0 expected=1
+RCHECK R-060 locator=0 expected=1
+RCHECK R-061 locator=0 expected=1
+RCHECK R-062 locator=0 expected=1
+RCHECK R-063 locator=0 expected=1
+RCHECK R-064 locator=0 expected=1
+RCHECK R-065 locator=0 expected=1
+RCHECK R-066 locator=0 expected=1
+RCHECK R-067 locator=0 expected=1
+RCHECK R-068 locator=0 expected=1
+RCHECK R-069 locator=0 expected=1
+RCHECK R-070 locator=0 expected=1
+RCHECK R-071 locator=0 expected=1
+RCHECK R-072 locator=0 expected=1
+RCHECK R-073 locator=0 expected=1
+RCHECK R-074 locator=0 expected=1
+RCHECK R-075 locator=0 expected=1
+RCHECK R-076 locator=0 expected=1
+RCHECK R-077 locator=0 expected=1
+RCHECK R-078 locator=0 expected=1

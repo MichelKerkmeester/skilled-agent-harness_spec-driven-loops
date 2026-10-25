@@ -24,6 +24,8 @@ Each row below is one immutable run folder. Rows are written by the benchmark ru
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max (first set) and deepseek-v4-1-flash-1017-max (second set and two fresh sets), frozen Level 3 authoring brief | 4 final sets of 3 runs, 2 baselines of 3 runs, 5 metrics | **PASS** on the deciding second fresh set, **FAIL** on the three earlier sets | `054-weak-model-spec-authoring` |
+| 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](./2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/) | claude, pi, opencode, codex session-relaunch | 11 PASS, 2 FAIL | **PASS (after fixes)** | `manual-testing-playbook` |

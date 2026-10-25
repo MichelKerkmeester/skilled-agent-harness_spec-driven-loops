@@ -20,6 +20,7 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
+<!-- FILL: Fill the document id, the date and the author. GOOD: BA-001, 2026-10-24, conductor. WEAK: TBD. -->
 
 **Subject:** [SUBJECT]
 **Status:** [Draft/Accepted/Archived]
@@ -32,6 +33,7 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 2. SUMMARY
+<!-- FILL: Write two sentences: what changed and the net effect. GOOD: The flag adds one line of output. The default path is unchanged. WEAK: A change was made. -->
 
 **What changed:** [CONCISE DESCRIPTION OF THE CHANGE].
 
@@ -42,6 +44,7 @@ contextType: "general"
 
 <!-- ANCHOR:comparison -->
 ## 3. COMPARISON
+<!-- FILL: Put the before and after side by side, one row per behavior. GOOD: Before: 17 lines. After with the flag: 1 line. WEAK: Before and after differ. -->
 
 Write one block per aspect the change touched. Name the aspect, state how it was, then state how it is now. Keep it prose. Do not use a table.
 
@@ -58,6 +61,7 @@ After: [CURRENT STATE].
 
 <!-- ANCHOR:net-effect -->
 ## 4. NET EFFECT
+<!-- FILL: State the one effect a reader should remember. GOOD: A caller can now read the level without parsing the report. WEAK: It is better. -->
 
 **Behavior:** [WHAT A USER OR THE SYSTEM DOES DIFFERENTLY].
 **Operational impact:** [RUNTIME, SUPPORT OR PROCESS EFFECT].
@@ -68,6 +72,7 @@ After: [CURRENT STATE].
 
 <!-- ANCHOR:notes-caveats -->
 ## 5. NOTES & CAVEATS
+<!-- FILL: Name one caveat and one thing not covered. GOOD: stderr is unchanged. No Windows test ran. WEAK: Some caveats apply. -->
 
 [LIMIT, ASSUMPTION, EXCEPTION OR EVIDENCE NOTE. Write "None" if nothing applies.]
 <!-- /ANCHOR:notes-caveats -->

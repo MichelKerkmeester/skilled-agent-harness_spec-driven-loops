@@ -1,0 +1,18 @@
+✔ arm with a new model and no effort clears the recorded effort (12.17375ms)
+✔ a live model with no live effort drops the launch effort: claude (828.965417ms)
+✔ a live model with its live effort renders that effort: claude (1020.7545ms)
+✔ a live model with no live effort drops the launch effort: codex (905.085167ms)
+✔ a live model with its live effort renders that effort: codex (778.311416ms)
+✔ a live model with no live effort drops the launch effort: pi (709.1055ms)
+✔ a live model with its live effort renders that effort: pi (679.2815ms)
+✔ a live model equal to the launch model keeps the launch effort (677.121375ms)
+✔ a launch with no model keeps its launch effort beside a live model (700.808291ms)
+✔ a Hermes live model with no live effort keeps the launch reasoning (677.2405ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7030.221375

@@ -1,0 +1,8 @@
+trigger index matches the corpus
+  index             : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  documents scanned : 25925
+  stale documents   : 0 (0 missing from the index)
+  obsolete paths    : 0
+  untrusted docs    : 0
+  duration ms       : 4771.3
+  note: manifest hash differs (index 23d3f687945a21c2e6c9589839cd14d4190f07d6b2b94a1b22ad52d63c3b085f, corpus 8400a166826a7ba2b6829f6bb57e7aef8822967c637052c421ad0f9e83168285); no lookup answer depends on it

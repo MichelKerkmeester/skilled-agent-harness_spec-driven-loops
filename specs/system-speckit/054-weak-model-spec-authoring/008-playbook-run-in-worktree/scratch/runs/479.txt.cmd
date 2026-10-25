@@ -1,0 +1,15 @@
+OUT="$(mktemp -d)"
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh > "$OUT/clean.txt" 2>&1
+echo "clean_exit=$?"
+tail -1 "$OUT/clean.txt"
+T="$OUT/examples"
+mkdir -p "$T/level-2"
+cp .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md "$T/level-2/"
+perl -0pi -e 's/^(description: ")([^"]*)(")$/$1$2 leaked -->$3/m' "$T/level-2/acceptance-criteria.md"
+grep -m1 '^description:' "$T/level-2/acceptance-criteria.md"
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh "$T" > "$OUT/broken.txt" 2>&1
+echo "broken_exit=$?"
+grep -c 'description holds an HTML comment tail' "$OUT/broken.txt"
+grep -c 'EXAMPLE_DRIFT_OK' "$OUT/broken.txt"
+rm -rf "$OUT"
+test ! -d "$OUT" && echo "cleanup=ok"

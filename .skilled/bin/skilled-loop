@@ -31,6 +31,8 @@ script_directory=$(dirname "$script_path")
 relaunch_cli="$script_directory/../hooks/session-relaunch/bin/session-relaunch.cjs"
 relaunch_core="$script_directory/../hooks/session-relaunch/lib/relaunch-core.cjs"
 goal_handover="$script_directory/../hooks/session-relaunch/lib/goal-handover.cjs"
+relaunch_nudge="$script_directory/../hooks/session-relaunch/lib/nudge.cjs"
+hook_flags="$script_directory/../hooks/shared/hook-flags.cjs"
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
 consumed_record_json=''
@@ -100,6 +102,34 @@ consumed_note_state() {
     ' <<< "$consumed_record_json" 2>/dev/null) || note_state=''
   fi
   printf '%s' "$note_state"
+}
+
+# Succeeds when consume found the hand-over withdrawn. Consume judges the record under the
+# lock a withdraw takes, so this catches a withdraw that landed after should-relaunch
+# approved the hop. Consume prints compact JSON and escapes every quote inside a value, so
+# the key can only match as a real field, with no extra process on the relaunch path.
+consumed_withdrawn() {
+  [[ "$consumed_record_json" == *'"withdrawn":true'* ]]
+}
+
+# The approved path's decline for a withdrawn hand-over, worded as the declined path words
+# it: the note stays open with nothing to claim. A different note an earlier hop seeded and
+# never claimed is still owed its warning and command.
+decline_withdrawn() {
+  local handoff_path="$1"
+
+  if has_line_break "$handoff_path"; then
+    printf '%s\n' 'warning: the prepared hand-over was withdrawn in the session' >&2
+  else
+    printf 'warning: the prepared hand-over was withdrawn in the session; %s stays open and out of date\n' \
+      "$handoff_path" >&2
+  fi
+  if [[ -n "$relaunched_handoff" && "$handoff_path" != "$relaunched_handoff" ]] \
+    && [[ "$(handoff_note_state "$relaunched_handoff")" == 'open' ]]; then
+    printf 'warning: the relaunched session ended before claiming %s; its handoff note was not claimed\n' \
+      "$relaunched_handoff" >&2
+    print_manual_command "$relaunched_handoff" "$relaunched_spec_folder" || true
+  fi
 }
 
 consumed_spec_folder() {
@@ -186,6 +216,27 @@ model_is_valid() {
   ((${#1} <= 128)) && [[ "$1" =~ $model_pattern ]]
 }
 
+# An effort belongs to the model it was chosen for, so a hop onto a different model without a
+# usable effort of its own must not replay the launch effort: some models reject an effort
+# chosen for another, and the runtime default is the safe fallback. An empty launch model proves
+# no switch. Hermes is exempt because its sender records a live model but never an effort.
+# Pi accepts `provider/model` on its launch line but records the bare id beside its provider,
+# so that spelling of the same model is no switch either.
+# Succeeds when the launch effort must be dropped.
+# Arguments: runtime, launch model, accepted live model (empty when none), live effort,
+# live provider (empty when none).
+live_model_voids_launch_effort() {
+  local runtime_name="$1" launch_model="$2" live_model="$3" live_effort="$4"
+  local live_provider="${5:-}"
+  [[ "$runtime_name" != 'hermes' ]] || return 1
+  [[ -n "$launch_model" && -n "$live_model" && "$live_model" != "$launch_model" ]] || return 1
+  if [[ "$runtime_name" == 'pi' && -n "$live_provider" \
+    && "$launch_model" == "$live_provider/$live_model" ]]; then
+    return 1
+  fi
+  [[ -z "$live_effort" ]] || ! effort_is_valid "$runtime_name" "$live_effort"
+}
+
 # Appends the carried effort in the runtime's own flag syntax, when the level is one that
 # runtime accepts.
 append_effort_arguments() {
@@ -233,6 +284,45 @@ render_goal_slice() {
     );
     process.exit(1);
   ' -- "$goal_handover" "$goal_packet"
+}
+
+# Prints the goal packet of the note a claim seed names, or nothing. Only an open note whose
+# real path is inside the repository's handoffs directory is read, so a seed can never point
+# the wrapper at a file elsewhere, and the core applies the goal switch and the packet checks
+# exactly as consume does. Any failure prints nothing and the launch goes on unbound.
+seeded_goal_packet() {
+  local seed="$1"
+
+  node -e '
+    const [corePath, nudgePath, flagsPath, seed] = process.argv.slice(1);
+    try {
+      const fs = require("node:fs");
+      const path = require("node:path");
+      const core = require(corePath);
+      const { resolveRepoRoot, handoffDir } = require(nudgePath);
+      const { loadConfigFile, configPath } = require(flagsPath);
+      const parsed = core.parseClaimSeed(seed);
+      if (parsed === null) process.exit(0);
+      const repoRoot = resolveRepoRoot(process.env);
+      const realDirectory = fs.realpathSync(handoffDir(repoRoot));
+      const realNote = fs.realpathSync(parsed.notePath);
+      const relative = path.relative(realDirectory, realNote);
+      if (
+        relative === ""
+        || relative === ".."
+        || relative.startsWith(".." + path.sep)
+        || path.isAbsolute(relative)
+      ) {
+        process.exit(0);
+      }
+      if (core.noteState(realNote) !== "open") process.exit(0);
+      const { frontmatter } = core.parseHandoff(fs.readFileSync(realNote, "utf8"));
+      const switches = { ...loadConfigFile(configPath()), ...process.env };
+      process.stdout.write(core.usableGoalPacket(frontmatter, switches, repoRoot));
+    } catch {
+      // An unreadable or unparsable note binds nothing.
+    }
+  ' -- "$relaunch_core" "$relaunch_nudge" "$hook_flags" "$seed" 2>/dev/null || true
 }
 
 # Prints the note's state through the core, so the wrapper judges a note exactly as a
@@ -634,6 +724,31 @@ if ((opencode_two == 1 && opencode_server_seen == 0 && opencode_standalone_seen 
   fi
 fi
 
+# A manual claim starts as a first launch, which dropped any packet an outer session left
+# above, so the packet comes from the note the seed names. The seed sits at a different place
+# per runtime and moves with the prepends above, so it is found by its prefix, and only that
+# one element of the operator's arguments may change.
+claim_seed_prefix='[session-relaunch] claim and continue handoff '
+for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
+  if [[ "${launch_arguments[$index]}" == "$claim_seed_prefix"* ]]; then
+    first_launch_seed=${launch_arguments[$index]}
+    goal_packet=$(seeded_goal_packet "$first_launch_seed")
+    if [[ -n "$goal_packet" ]]; then
+      export SESSION_RELAUNCH_GOAL_PACKET="$goal_packet"
+      if [[ "$runtime" == 'hermes' ]]; then
+        export HERMES_SPEC_FOLDER="$goal_packet"
+      elif [[ "$runtime" == 'claude' ]] && goal_slice=$(render_goal_slice "$goal_packet"); then
+        # Claude takes its goal from a start prompt that is the goal command alone, so the
+        # seed moves to the environment for the start hook, as it does on a hop.
+        launch_arguments[index]="/goal $goal_slice"
+        SKILLED_LOOP_CLAIM_SEED="$first_launch_seed"
+        export SKILLED_LOOP_CLAIM_SEED
+      fi
+    fi
+    break
+  fi
+done
+
 SKILLED_LOOP_MANUAL_TEMPLATE=$(build_manual_command_template)
 export SKILLED_LOOP_MANUAL_TEMPLATE
 manual_template_conflict=$(find_manual_template_conflict)
@@ -707,12 +822,22 @@ while true; do
         || has_line_break "$relaunch_cwd" \
         || has_line_break "$handoff_path"; then
         consume_record
+        # A withdrawn hand-over was never going to relaunch, so the unusable cwd or path
+        # does not matter and there is no claim command to offer.
+        if consumed_withdrawn; then
+          decline_withdrawn "$handoff_path"
+          exit "$runtime_exit"
+        fi
         spec_folder=$(consumed_spec_folder)
         print_manual_command "$handoff_path" "$spec_folder" || true
         exit 1
       fi
       if ! cd -- "$relaunch_cwd"; then
         consume_record
+        if consumed_withdrawn; then
+          decline_withdrawn "$handoff_path"
+          exit "$runtime_exit"
+        fi
         spec_folder=$(consumed_spec_folder)
         print_manual_command "$handoff_path" "$spec_folder" || true
         exit 1
@@ -722,11 +847,22 @@ while true; do
       # signalled: some runtimes exit 130 on SIGTERM too.
       if ((runtime_exit == 130)) && [[ "$relaunch_signalled" != 1 ]]; then
         consume_record
+        if consumed_withdrawn; then
+          decline_withdrawn "$handoff_path"
+          exit 130
+        fi
         spec_folder=$(consumed_spec_folder)
         print_manual_command "$handoff_path" "$spec_folder" || true
         exit 130
       fi
       consume_record
+      # Consume rechecks the record under the withdraw's lock, so a withdraw that landed
+      # after should-relaunch approved this hop still declines it, before any hand-over is
+      # recorded or a runtime started.
+      if consumed_withdrawn; then
+        decline_withdrawn "$handoff_path"
+        exit "$runtime_exit"
+      fi
       # A seed for a note that is not open, or one that lost its Gate 3 answer because
       # consume failed, sends the fresh session into a claim that cannot succeed.
       note_state=$(consumed_note_state)
@@ -786,6 +922,8 @@ while true; do
       fi
       # The sender's own latest turn beats what the launch line said, and a value that does
       # not pass the runtime's check leaves the launch value in place.
+      launch_model="${SKILLED_LOOP_MODEL:-}"
+      accepted_live_model=''
       live_model=$(consumed_field model)
       live_model_accepted=0
       if [[ -n "$live_model" ]]; then
@@ -793,6 +931,7 @@ while true; do
           SKILLED_LOOP_MODEL="$live_model"
           export SKILLED_LOOP_MODEL
           live_model_accepted=1
+          accepted_live_model="$live_model"
         else
           printf 'warning: ignoring the sender model %s; relaunching on the launch model\n' \
             "$live_model" >&2
@@ -812,13 +951,19 @@ while true; do
         fi
       fi
       live_effort=$(consumed_field effort)
+      effort_fallback='the launch effort'
+      if live_model_voids_launch_effort "$runtime" "$launch_model" "$accepted_live_model" \
+        "$live_effort" "$live_provider"; then
+        unset SKILLED_LOOP_EFFORT
+        effort_fallback='the runtime default effort'
+      fi
       if [[ -n "$live_effort" ]]; then
         if effort_is_valid "$runtime" "$live_effort"; then
           SKILLED_LOOP_EFFORT="$live_effort"
           export SKILLED_LOOP_EFFORT
         else
-          printf 'warning: ignoring the sender effort %s; relaunching on the launch effort\n' \
-            "$live_effort" >&2
+          printf 'warning: ignoring the sender effort %s; relaunching on %s\n' \
+            "$live_effort" "$effort_fallback" >&2
         fi
       fi
       if [[ -n "${SKILLED_LOOP_EFFORT:-}" ]] && ! effort_is_valid "$runtime" "$SKILLED_LOOP_EFFORT"; then

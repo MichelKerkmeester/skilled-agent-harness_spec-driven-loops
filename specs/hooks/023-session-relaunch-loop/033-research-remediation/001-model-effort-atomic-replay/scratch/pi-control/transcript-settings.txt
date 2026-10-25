@@ -1,0 +1,18 @@
+-- transcript-2026-10-25T15-46-55-961Z_01a173be-5558-757a-86bc-5a6ecabe78ea.jsonl
+session    2026-10-25T15:46:55.961Z
+model_change openai gpt-5.6-luna  2026-10-25T15:46:56.181Z
+thinking_level_change   low 2026-10-25T15:46:56.182Z
+message openai gpt-5.6-luna  2026-10-25T15:47:06.030Z
+model_change openai gpt-6-luna  2026-10-25T15:47:27.588Z
+thinking_level_change   max 2026-10-25T15:47:27.589Z
+thinking_level_change   off 2026-10-25T15:47:30.769Z
+message openai gpt-6-luna  2026-10-25T15:47:36.459Z
+message openai gpt-6-luna  2026-10-25T15:48:02.450Z
+-- transcript-2026-10-25T15-48-06-247Z_01a173bf-67e6-707f-a5c9-308e4f6bca78.jsonl
+session    2026-10-25T15:48:06.247Z
+model_change openai gpt-6-luna  2026-10-25T15:48:06.335Z
+thinking_level_change   max 2026-10-25T15:48:06.335Z
+message openai gpt-6-luna  2026-10-25T15:48:11.616Z
+message openai gpt-6-luna  2026-10-25T15:48:35.730Z
+message openai gpt-6-luna  2026-10-25T15:48:44.714Z
+message openai gpt-6-luna  2026-10-25T15:48:47.440Z

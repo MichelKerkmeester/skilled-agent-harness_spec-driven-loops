@@ -1,0 +1,36 @@
+---
+title: "system-spec-kit v2.9.0.0, templates a weak model can follow"
+description: "New packets ship every hint in the five core templates as a value token, the validator gates an unfilled token after Draft, each core section says how to fill it, and a short authoring card replaces the long guide as the first read. The benchmark criterion failed three times and passed on the fourth final set, and all four sets are recorded here."
+trigger_phrases:
+  - "system-spec-kit v2.9.0.0"
+  - "system-spec-kit 2.9.0.0"
+  - "value token gate"
+  - "spec authoring card"
+importance_tier: "normal"
+contextType: "general"
+version: 2.9.0.0
+---
+# v2.9.0.0, Templates a Weak Model Can Follow
+
+A weak model can now see what a template still needs, because every hint in the five core templates is a value token that fails validation once the packet leaves Draft. The four authoring intents also load a short card rather than the long guide, and the examples no longer teach the defects the old text carried. The before and after benchmark found fewer leftover hints, and its missing-anchor criterion failed three times before it passed, as described below.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring` (a phased packet of Level 3 phases)
+
+&nbsp;
+
+## What's New at a Glance
+
+- **An unfilled hint can no longer pass as finished.** A doc stamped v2.3 warns while the spec is Draft and fails strict validation at any other status.
+- **Every core section says how to fill it.** Each section carries a short instruction and a good and weak example.
+- **Authoring starts on one page.** The router loads a short card for the four authoring intents.
+- **The examples stop teaching the old defects.** Their descriptions, stale checklist lines and anchors now match the templates.
+- **Commands and agents name the new gate and the card.** A speckit or doctor run describes the same authoring path a worker follows.
+- **The playbook and catalog cover the new behavior.** A focused run of eight scenarios passed on a disposable worktree.
+- **The `L3+` label says what it means.** The fill note under each of the six `## L3+:` headings of the `tasks.md` template now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.'
+- **The result is measured, and one criterion failed three times before it passed.** Three runs of one frozen Level 3 authoring task on each side gave a range for five metrics. On the first set (swe-2-max) leftover hints fell from a worst case of 1 to 0 and every run passed strict validation, but one final run deleted the six optional Level 3 verification sections of `tasks.md`, so the missing-anchor metric failed (6 against 0). After the label fix the final set was rerun on deepseek-v4-1-flash-1017-max against a new DeepSeek baseline. Leftover hints were 0 in all three runs and every run passed strict validation, but one run dropped three of the six sections (3 against 0), so the criterion failed again, and one run is contaminated because its session read the frozen vocabulary files. The operator then fixed an anchor rule (an optional section deleted as its fill note allows does not count) and three fresh runs in a disposable worktree with no benchmark files readable passed strict validation with no leftover hints, but run 1 deleted the required `fix-completeness` section, so the counted missing-anchor metric was 1 against 0 and the criterion failed a third time. The cause was fixed at the source: the fill note of the required `fix-completeness` section now says to keep the section and delete only rows. A second fresh set then passed the criterion, with counted missing anchors of 0 against 0, leftover hints of at most 1 against a baseline maximum of 1, and strict validation passing in every run.
+
+&nbsp;
+
+## Upgrade
+
+No migration required. Existing packets keep their verdict, because the token gate applies only to docs stamped v2.3. Scaffold a new packet to get the new templates and the authoring card.

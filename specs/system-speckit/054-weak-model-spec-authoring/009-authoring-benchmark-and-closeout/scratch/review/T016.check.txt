@@ -1,0 +1,3 @@
+# extracted from scratch/review/T016.last.txt (P0/P1/P2 lines only); check output below
+T016_FORMAT findings=3 no_findings=0 bad=0
+T016_COUNTS_MATCH

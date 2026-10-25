@@ -1,0 +1,35 @@
+Every path-like text in the new text of the 78 rows (a name with a slash), resolved from the repo root, .skilled/skills/ and .skilled/skills/system-spec-kit/.
+Bare doc names such as spec.md or tasks.md are packet doc names, not repo paths, and are not listed.
+An entry that prints 'no such file' is text the rows kept unchanged or prose, not a path a row adds: .opencode/specs/ (existing text in R-010 and R-011), assets/frontmatter-values.json (existing text in R-001 to R-003, a path inside another skill), research/research.md (existing text in R-017 and R-023, a path inside a packet), anchors/headers and tasks/plan/decision-record/resource-map (prose).
+$ ls -d .opencode/specs/
+ls: no such file or directory
+$ ls -d .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+$ ls -d .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+$ ls -d .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh
+$ ls -d .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh
+$ ls -d .skilled/skills/system-spec-kit/templates/examples/
+.skilled/skills/system-spec-kit/templates/examples/
+$ ls -d .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md
+.skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md
+$ ls -d .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+$ ls -d anchors/headers
+ls: no such file or directory
+$ ls -d assets/frontmatter-values.json
+ls: no such file or directory
+$ ls -d .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+$ ls -d .skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+$ ls -d research/research.md
+ls: no such file or directory
+$ ls -d .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md
+$ ls -d .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md
+.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md
+$ ls -d tasks/plan/decision-record/resource-map
+ls: no such file or directory

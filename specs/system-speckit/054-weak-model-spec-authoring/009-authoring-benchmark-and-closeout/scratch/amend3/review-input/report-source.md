@@ -1,0 +1,35 @@
+# system-spec-kit Benchmark Sources
+
+> system-spec-kit · model-eval · authoring-baseline
+
+---
+
+## 1. OVERVIEW
+
+This map names where the raw evidence behind this folder lives. The folder holds curated outputs only.
+
+| Resource | Purpose |
+|---|---|
+| Target skill | `.skilled/skills/system-spec-kit` |
+| Source packet | `specs/system-speckit/054-weak-model-spec-authoring` |
+| Baseline runs | `specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json` |
+| Final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/baseline.json` |
+| Per-run extras | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/runs-meta.jsonl` |
+| Run and metric script | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/run-final.sh` |
+| Delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json` |
+| Run briefs and replies | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/briefs/` and `scratch/runs/` |
+| Packet copies | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/bench-evidence/` holds the final `spec`, `plan` and `tasks` and the baseline `tasks` of each run as `.txt` files |
+| Second set baseline | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/baseline-deepseek/baseline.json` |
+| Second set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/baseline.json`, with runs, audits and packet copies beside it |
+| Second set delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/delta.json` |
+| Fresh set final runs | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/amend3/fresh/baseline.json`, with runs, audits, rule scores and packet copies beside it |
+| Anchor rule script and scores | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/justified-anchors.sh` and `scratch/amend3/justified-anchors-test.txt` |
+| Models | cli-devin `swe-2-max` (first set) and cli-devin `deepseek-v4-1-flash-1017-max` (second set) |
+
+---
+
+## 2. BOUNDARY
+
+The corpus is an input and is never rewritten by a run. This folder holds outputs only. A run whose result changes gets a new folder rather than overwriting this one.
+
+The second set (third amendment) and the fresh set (new anchor rule) are recorded in this folder as a dated update, because both sets share one subject and one date. Last updated 2026-10-25.

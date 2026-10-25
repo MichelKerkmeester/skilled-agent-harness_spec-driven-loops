@@ -107,7 +107,7 @@ The phase shipped `/doctor:ci` as three routes in three commits on main. The R30
 | `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/*.test.cjs` | Exit 0, `tests 27`, `pass 27`, `fail 0`, the same as the baseline |
 | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Exit 0, `all 4 guards PASSED, 10 non-blocking warning(s)` |
 | Live report | 32 workflows against 32 files, switch set `['on']`, newest non-rebuild SHA `bce45aa297aac14f6b0e92f85126c57dc53c4ba2` |
-| Acceptance rows | 22 rows, 17 `Met` and 5 `Superseded`, none `Unmet`, `Closeable: Yes` |
+| Acceptance rows | 24 rows, 19 `Met` and 5 `Superseded`, none `Unmet`, `Closeable: Yes` (AC-023 and AC-024 added on 2026-10-25) |
 | Verification checklist in `tasks.md` | 26 of 26 rows closed with evidence re-run on 2026-10-25 (12 P0, 13 P1 and 1 P2) |
 | Decision statuses in `decision-record.md` | ADR-001, ADR-003 to ADR-005 and ADR-007 to ADR-013 `Accepted`, ADR-006 superseded by ADR-013, ADR-002 not applied because the probe answered write |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <phase> --strict --no-recursive` | `RESULT: PASSED` (recorded in `scratch/phase-result.md`) |
@@ -120,7 +120,7 @@ The phase shipped `/doctor:ci` as three routes in three commits on main. The R30
 
 1. **The review router's own surface label reads `UNKNOWN` for a workflow diff.** The inline `detect_surface_evidence` in `sk-code-review/SKILL.md` has one branch, `SKILLED`, so `.github/workflows/spec-kit-check.yml` returns `UNKNOWN` (observed 2026-10-25). The `sk-code-ci` evidence still loads through request vocabulary bundling, so a review is not left without it. This is recorded and not a task. A later hub change can decide whether the label should change (ADR-013).
 2. **AC-021 counts six by entry and prints twelve by line.** The literal `grep -c 'command-doctor-ci-'` prints `12` because each of the six activation entries matches on two lines. The row records the deviation.
-3. **Uncommitted edits by another process.** `.skilled/commands/doctor/ci.md` and the `sk-code-ci` docs were edited in this worktree while the closure pass ran. They are not part of this phase's three commits, and the final gates ran against the tree with those edits present.
+3. **Resolved: the edits made by another process are committed.** `.skilled/commands/doctor/ci.md` and the `sk-code-ci` docs were edited in this worktree while the closure pass ran. They landed in `d16cab7620` and `0781e81da2`, outside this phase's three commits.
 <!-- /ANCHOR:limitations -->
 
 ---

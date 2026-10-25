@@ -1,0 +1,24 @@
+Two raw /effort entry pairs, operator transcript 2705f7b2-...jsonl (Claude Code 2.1.284), content field only:
+{"type":"user","isSidechain":false,"timestamp":"2026-09-30T05:37:48.719Z","content":"<command-name>/effort</command-name>
+            <command-message>effort</command-message>
+            <command-args></command-args>"}
+{"type":"user","isSidechain":false,"timestamp":"2026-09-30T05:37:48.719Z","content":"<local-command-stdout>Set effort level to medium (saved as your default for new sessions): Balanced approach with standard implementation and testing</local-command-stdout>"}
+{"type":"user","isSidechain":false,"timestamp":"2026-09-30T15:53:38.318Z","content":"<command-name>/effort</command-name>
+            <command-message>effort</command-message>
+            <command-args></command-args>"}
+{"type":"user","isSidechain":false,"timestamp":"2026-09-30T15:53:38.318Z","content":"<local-command-stdout>Cancelled</local-command-stdout>"}
+
+Survey of every /model and /effort command pair in ~/.claude/projects (44 transcripts), count, args, stdout (first 110 chars):
+19 effort args="" => Set effort level to medium (saved as your default for new sessions): Balanced approach with standard implement
+10 effort args="" => Set effort level to high (saved as your default for new sessions): Comprehensive implementation with extensive
+9 model args="" => Set model to `Sonnet 5.5` and saved as your default for new sessions
+7 model args="" => Set model to `Opus 5.5` and saved as your default for new sessions
+4 effort args="" => Cancelled
+3 effort args="" => Set effort level to xhigh (saved as your default for new sessions): Deeper reasoning than high, just below max
+2 model args="claude-opus-5-5" => Set model to `Opus 5.5` and saved as your default for new sessions
+2 effort args="" => Set effort level to max (this session only): Maximum capability with deepest reasoning. May use excessive toke
+1 model args="" => Set model to `claude-sonnet-5-5` and saved as your default for new sessions
+1 model args="" => Set model to `Opus 5.5 (default)` and saved as your default for new sessions
+1 effort args="" => Set effort level to xhigh (this session only): Deeper reasoning than high, just below maximum (on supported mo
+1 model args="" => Set model to `Sonnet 5.5 (default)` and saved as your default for new sessions
+1 model args="" => Set model to `Haiku 5.5` and saved as your default for new sessions

@@ -1,7 +1,7 @@
 ---
 title: "review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
-version: 1.5.0.11
+version: 1.5.0.12
 ---
 
 # review: Manual Testing Playbook
@@ -34,7 +34,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 30 deterministic scenarios across 8 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides a derived census of deterministic scenarios across categories validating the `review` skill surface and its review-agent consumers. The operator validator computes those counts from the walked tree, so the root index in section 16 is the only list to maintain. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
 Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk.
 
@@ -135,7 +135,7 @@ The release is cleared to ship only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 31`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`, both counted from the section 16 index).
 4. No unresolved blocking triage item remains.
 5. External CLI handbacks preserve review severity and evidence contracts.
 
@@ -164,7 +164,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 31 files.
+2. Per-feature structural sweep checks every file the section 16 index links.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
@@ -180,7 +180,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 31-scenario review battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the review battery the section 16 index lists. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 

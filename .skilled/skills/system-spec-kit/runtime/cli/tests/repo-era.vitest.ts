@@ -11,6 +11,12 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { buildReport, classifyRepo } from '../spec/repo-era.mjs';
 
 const temporaryRoots: string[] = [];
+const manifestVersions: Record<string, string> = JSON.parse(
+  fs.readFileSync(
+    path.resolve(__dirname, '../../../templates/spec-kit-docs.json'),
+    'utf8',
+  ),
+).versions;
 
 function makeTemporaryRoot(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-repo-era-'));
@@ -272,6 +278,42 @@ describe('repository era report', () => {
       generatedMetadata: classification.packets.length,
       levelDocuments: classification.packets.length,
     });
+  });
+
+  it('counts only stamps older than the first v4-era stamp as legacy', () => {
+    const root = makeTemporaryRoot();
+    const specVersion = manifestVersions['spec.md.tmpl'];
+    const [specMajor] = specVersion.slice(1).split('.').map(Number);
+    const stamps: Record<string, string> = {
+      'current.md': `spec-core | ${specVersion}`,
+      'floor.md': 'spec-core | v2.2',
+      'old-minor.md': 'spec-core | v2.1',
+      'old-major.md': 'spec-core | v1.0',
+      'bare-major.md': 'spec-core | v2',
+      'trailing-dot.md': 'spec-core | v2.',
+      'three-part.md': 'spec-core | v2.0.0',
+      'numeric-newer.md': `spec-core | v${specMajor}.10`,
+      'newer-major.md': `spec-core | v${specMajor + 1}.0`,
+      'unknown-template.md': 'mystery-doc | v2.2',
+      'below-floor-current.md': `handover | ${manifestVersions['handover.md.tmpl']}`,
+    };
+    writePacket(root, 'specs/fixture-track/001-stamps', { extraDocuments: stamps });
+
+    const documents = classifyRepo(root).packets[0]?.documents ?? [];
+    const statusOf = (name: string) => documents
+      .find((document) => document.name === name)?.templateMarker.status;
+
+    expect(statusOf('current.md')).toBe('new');
+    expect(statusOf('floor.md')).toBe('new');
+    expect(statusOf('old-minor.md')).toBe('legacy');
+    expect(statusOf('old-major.md')).toBe('legacy');
+    expect(statusOf('bare-major.md')).toBe('legacy');
+    expect(statusOf('trailing-dot.md')).toBe('legacy');
+    expect(statusOf('three-part.md')).toBe('legacy');
+    expect(statusOf('numeric-newer.md')).toBe('legacy');
+    expect(statusOf('newer-major.md')).toBe('legacy');
+    expect(statusOf('unknown-template.md')).toBe('legacy');
+    expect(statusOf('below-floor-current.md')).toBe('new');
   });
 
   it('distinguishes v3 and v4 roots and flags a level document-set mismatch', () => {

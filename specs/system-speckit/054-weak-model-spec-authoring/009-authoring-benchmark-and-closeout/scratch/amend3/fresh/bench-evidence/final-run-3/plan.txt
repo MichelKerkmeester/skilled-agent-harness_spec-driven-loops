@@ -1,0 +1,271 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "Add one option branch and one emitter to recommend-level.sh so --quiet prints the recommended-level line alone, and prove the change with a captured baseline diff plus the two existing phase suites."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash (3.2-compatible, `set -euo pipefail`) |
+| **Framework** | None; a standalone CLI script under `runtime/cli/spec/` |
+| **Storage** | None; the script reads arguments and writes stdout/stderr |
+| **Testing** | Bash invocation checks plus the existing Node suites `tests/test-phase-system.js` and `tests/test-phase-validation.js` |
+
+### Overview
+
+The change lives entirely in `recommend-level.sh`: one `QUIET` global beside the other output flags, one `--quiet` case in the argument parser, one conflict check after parsing, and one output dispatch that prints the level line instead of calling `output_text()`. The technical approach is deliberately additive — no scoring function, no threshold constant, and no existing emitter changes, so the default output cannot drift by construction and the proof is a diff against a captured baseline.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] `diff scratch/baseline-default.txt <(bash recommend-level.sh --loc 50 --files 2)` prints nothing
+- [ ] `diff scratch/baseline-json.txt <(bash recommend-level.sh --loc 100 --files 3 --json)` prints nothing
+- [ ] `bash recommend-level.sh --quiet --loc 50 --files 2 | wc -l` prints `1`
+- [ ] `node runtime/cli/tests/test-phase-system.js` exits 0
+- [ ] `node runtime/cli/tests/test-phase-validation.js` exits 0
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+
+Single script branch: one new output path beside the existing text and JSON paths.
+
+### Key Components
+- **`recommend-level.sh` argument parser**: reads `$@`, sets `LOC`, `FILES`, the risk flags, `RECOMMEND_PHASES`, `PHASE_THRESHOLD`, `JSON_OUTPUT`, and now `QUIET`.
+- **`output_text()`**: the sixteen-line human report; unchanged, and not called when `QUIET` is true.
+- **`output_json()`**: the JSON document; unchanged, and still reachable only when `JSON_OUTPUT` is true and `QUIET` is false.
+- **Quiet emitter**: one `printf` of `Recommended Level: <N> (<Name>)` in the output dispatch block.
+
+### Data Flow
+
+`$@` → parser sets `QUIET` → numeric and required-input validation (unchanged, exits 1 on failure) → score calculation and `determine_level()` (unchanged) → output dispatch: `QUIET` prints the one line, else `JSON_OUTPUT` calls `output_json()`, else `output_text()`. The conflict check sits between parsing and validation so a contradictory invocation fails before any work runs.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `recommend-level.sh` | Producer; owns parsing, scoring and all three output paths | update | `rg -n 'QUIET' recommend-level.sh` prints the global, the case arm, the conflict check and the emitter |
+| `output_text()` | Helper; renders the human report | unchanged | Baseline diff for `--loc 50 --files 2` and `--loc 500 --files 15 --auth --api --db --architectural` prints nothing |
+| `output_json()` | Helper; renders the machine document | unchanged | Baseline diff for `--loc 100 --files 3 --json` prints nothing |
+| `runtime/cli/tests/test-phase-system.js` | Consumer; runs the script with `--json` and parses fields | not a consumer of the text path | Suite exits 0 |
+| `runtime/cli/tests/test-phase-validation.js` | Consumer; runs the script with `--json` against phase fixtures | not a consumer of the text path | Suite exits 0 |
+| `references/workflows/spec-authoring-card.md` | Docs caller; invokes the script with `--loc` and `--files` only | not a consumer of `--quiet` | Command in §2 of the card stays valid unchanged |
+| `references/workflows/quick-reference.md` | Docs caller; names the script as the level helper | not a consumer of `--quiet` | No command there passes the flag |
+| `runtime/cli/spec/README.md` | Topology index; one line names the script | unchanged | The line describes purpose, not options |
+
+Required inventories:
+- Same-class producers: `rg -n 'Recommended Level' .skilled/skills/system-spec-kit` finds the one emitter in `output_text()` plus documentation prose; no second producer exists.
+- Consumers of changed symbols: `rg -n 'recommend-level\.sh' .skilled --glob '*.js' --glob '*.md'` finds the two Node suites, the authoring card, the quick reference, the spec README and the playbook pages; only the suites execute the script, and both pass `--json`.
+- Matrix axes: output mode (`text`, `json`, `quiet`) × input validity (`valid`, `invalid`) × flag order (`--quiet` first, `--quiet` last, `--quiet` twice).
+- Algorithm invariant: the scoring functions are untouched, so for any input the recommended level under `--quiet` equals the level in the same invocation's text or JSON output.
+<!-- /ANCHOR:affected-surfaces -->
+
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+
+Setup captures the two baselines. Implementation adds the flag, the conflict check and the two documentation blocks. Verification diffs the baselines, runs the two Node suites, and exercises the error paths.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit (script-level) | The `--quiet` path, the conflict check, and the two documentation blocks | `bash`, `rg`, `wc -l`, `diff` |
+| Integration | The two existing Node suites that drive the script through `--json` | `node runtime/cli/tests/test-phase-system.js`, `node runtime/cli/tests/test-phase-validation.js` |
+| Manual | `--help` output and one hand-read quiet invocation | Terminal |
+
+The primary proof is a line count: `bash recommend-level.sh --quiet --loc 50 --files 2 | wc -l` prints `1` while the same call without the flag prints `16`. The secondary proof is a diff of both captured baselines, which must print nothing.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| `bash` 3.2+ | Internal | Green | The script cannot run; already a hard requirement today |
+| `coreutils` (`wc`, `diff`, `sed`) | Internal | Green | Verification commands change, implementation does not |
+| `node` (for the two phase suites) | Internal | Green | Integration proof falls back to the bash invocation matrix |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: the default output differs from the captured baseline, or a phase suite fails.
+- **Procedure**: revert the single commit that touches `recommend-level.sh`. The change adds one flag and one branch, so no data, schema, or caller migration has to be undone.
+<!-- /ANCHOR:rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Core |
+| Core | Setup | Verify |
+| Verify | Core | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 10 minutes |
+| Core Implementation | Low | 30 minutes |
+| Verification | Low | 20 minutes |
+| **Total** | | **About 1 hour (assumption)** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Baseline captured before the edit (covered by T002 and T003)
+- [ ] Feature flag configured (not applicable; the flag is opt-in per invocation)
+- [ ] Monitoring alerts set (not applicable; no service)
+
+### Rollback Procedure
+1. Revert the commit that touches `recommend-level.sh`.
+2. Re-run `bash recommend-level.sh --loc 50 --files 2` and confirm the 16-line report returns.
+3. Re-run the two phase suites and confirm both exit 0.
+4. Notify no one: the default path was never changed, so no caller saw a difference.
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
+│   Setup     │     │    Core     │     │   Verify    │
+└─────────────┘     └─────────────┘     └─────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture (T002, T003) | None | `scratch/baseline-default.txt`, `scratch/baseline-json.txt` | Regression diff |
+| Parser and conflict check (T004-T006) | Baseline capture | `--quiet` accepted, contradictory invocation rejected | Quiet emitter |
+| Quiet emitter and docs (T007-T009) | Parser | One-line output, documented flag | Verification |
+| Verification (T010-T015) | All above | Recorded evidence for every criterion | Packet closure |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Baseline capture** - 10 minutes - CRITICAL
+2. **Parser, conflict check and emitter** - 30 minutes - CRITICAL
+3. **Regression diff and suites** - 20 minutes - CRITICAL
+
+**Total Critical Path**: about 1 hour.
+
+**Parallel Opportunities**:
+- The `--json` baseline (T003) can be captured alongside the default baseline (T002).
+- The header OPTIONS block (T009) can be written while the emitter (T007) is being tested.
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Baselines captured | `wc -l scratch/baseline-default.txt` prints 16 and `wc -l scratch/baseline-json.txt` prints 36 | Phase 1 |
+| M2 | Flag works | `bash recommend-level.sh --quiet --loc 50 --files 2 \| wc -l` prints 1 | Phase 2 |
+| M3 | No regression | Both baseline diffs print nothing and both phase suites exit 0 | Phase 3 |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: Print the existing label behind `--quiet`, and reject `--quiet` with `--json`
+
+**Status**: Proposed
+
+**Context**: The script already prints `Recommended Level: <N> (<Name>)` inside its human report, and it already has a machine format in `--json`. A quiet flag has to decide two things: what the one line looks like, and what happens when a caller asks for both machine formats at once.
+
+**Decision**: `--quiet` prints the same label the report prints, on its own line, with no leading blank line. A `--quiet` and `--json` invocation is a usage error: the message goes to stderr, stdout stays empty, and the exit code is 1.
+
+**Consequences**:
+- A caller can move from `grep '^Recommended Level:'` on the report to `--quiet` without changing its pattern.
+- The label becomes a public contract, so a future rename is a breaking change that needs its own packet.
+- A contradictory invocation fails loudly instead of producing output the caller did not ask for, at the cost of one more error message to document.
+
+**Alternatives Rejected**:
+- Bare integer output (`0`): it is marginally easier to consume but drops the level name and gives a caller no stable prefix to anchor on.
+- `--quiet` wins over `--json`: silent precedence produces a text line for a caller that asked for JSON, which is the failure mode hardest to notice.
+- A new `--format level` option: a larger surface for the same one-line result, and it would invite a second format later.
+
+---
+

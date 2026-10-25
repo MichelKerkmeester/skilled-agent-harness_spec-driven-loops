@@ -1,0 +1,524 @@
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring
+  Level:  phase
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Phase parent lean document set accepted
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; spec.md or implementation-summary.md is absent
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ FOLDER_NAMING: Folder name '054-weak-model-spec-authoring' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 2 document(s) conform
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Live packet root exposes a canonical spec.md surface
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Live packet root graph metadata has non-empty derived.source_docs
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/6 ACs have evidence; floor 6/6. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=64, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '001-template-drift-census-and-baseline' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/7 ACs have evidence; floor 7/7. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007
++ AC_CLOSURE: AC_CLOSURE: 7/7 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=67, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '002-template-and-example-defect-repair' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/9 ACs have evidence; floor 9/9. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009
++ AC_CLOSURE: AC_CLOSURE: 9/9 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=75, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '003-versioned-placeholder-gate' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/9 ACs have evidence; floor 9/9. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009
++ AC_CLOSURE: AC_CLOSURE: 9/9 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=73, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '004-template-section-fill-guidance' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/9 ACs have evidence; floor 9/9. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009
++ AC_CLOSURE: AC_CLOSURE: 9/9 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=70, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '005-weak-model-authoring-card' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/8 ACs have evidence; floor 8/8. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008
++ AC_CLOSURE: AC_CLOSURE: 8/8 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=64, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '006-speckit-command-and-agent-alignment' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/12 ACs have evidence; floor 11/12. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-010, AC-011, AC-012
++ AC_CLOSURE: AC_CLOSURE: 12/12 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=67, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '007-playbook-catalog-readme-alignment' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory: 9/9 ACs have evidence; floor 9/9
++ AC_CLOSURE: AC_CLOSURE: 9/9 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=69, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '008-playbook-run-in-worktree' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+  Level:  3
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 3
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
+! FRONTMATTER_MEMORY_BLOCK: 1 frontmatter_memory_block issue(s) found
+    - SPECDOC_FRONTMATTER_004: implementation-summary.md: recent_action reads long or narrative; keep it compact
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed)', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed)' and implementation-summary.md Status 'In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed)' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/15 ACs have evidence; floor 14/15. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-010, AC-011, AC-012, AC-013, AC-014, AC-015
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocols present and complete (4/4)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 3; phases=3, tasks=69, stories=2, scenarios=0)
++ FOLDER_NAMING: Folder name '009-authoring-benchmark-and-closeout' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 3)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED

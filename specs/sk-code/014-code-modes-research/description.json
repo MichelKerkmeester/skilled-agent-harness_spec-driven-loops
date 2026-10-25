@@ -1,26 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-code/014-code-modes-research",
-  "description": "Research how to make the sk-code quality and review modes more repo-agnostic, more useful and better integrated with sibling and user-authored modes",
+  "description": "The sk-code hub ships two workflow modes that code work passes through",
   "keywords": [
-    "research",
     "sk-code",
-    "quality",
-    "review",
+    "hub",
+    "ships",
+    "two",
+    "workflow",
     "modes",
-    "repo-agnostic",
-    "useful",
-    "better",
-    "integrated",
-    "sibling",
-    "user-authored"
+    "code",
+    "work",
+    "passes"
   ],
-  "lastUpdated": "2026-10-25T08:24:47.379Z",
+  "lastUpdated": "2026-10-25T13:26:51.638Z",
   "specId": "014",
   "folderSlug": "code-modes-research",
   "parentChain": [
     "sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

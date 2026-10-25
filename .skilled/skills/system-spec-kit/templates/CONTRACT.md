@@ -5,7 +5,7 @@ trigger_phrases:
   - "template manifest"
   - "level contract manifest"
   - "spec-kit-docs json"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Template Manifest
@@ -95,7 +95,7 @@ Run template and spec validation from the repository root after contract edits:
 
 ```bash
 npm --prefix .skilled/skills/system-spec-kit/runtime run typecheck
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
 ```
 
 Rendered output should match the intended public Level contract and must not leak private manifest terms.

@@ -34,7 +34,7 @@ Phases 2 to 6 change the templates, the placeholder gate and the authoring path.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

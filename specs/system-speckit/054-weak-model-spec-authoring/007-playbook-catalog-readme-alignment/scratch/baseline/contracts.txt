@@ -1,0 +1,3 @@
+sk-create-manual-testing-playbook=present
+sk-create-feature-catalog=present
+sk-create-readme=present

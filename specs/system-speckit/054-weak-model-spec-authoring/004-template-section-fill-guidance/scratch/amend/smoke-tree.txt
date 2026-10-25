@@ -1,0 +1,11 @@
+specs/zz-amend-probe
+specs/zz-amend-probe/001-amend-probe
+specs/zz-amend-probe/001-amend-probe/description.json
+specs/zz-amend-probe/001-amend-probe/goal.md
+specs/zz-amend-probe/001-amend-probe/graph-metadata.json
+specs/zz-amend-probe/001-amend-probe/implementation-summary.md
+specs/zz-amend-probe/001-amend-probe/plan.md
+specs/zz-amend-probe/001-amend-probe/scratch
+specs/zz-amend-probe/001-amend-probe/scratch/.gitkeep
+specs/zz-amend-probe/001-amend-probe/spec.md
+specs/zz-amend-probe/001-amend-probe/tasks.md

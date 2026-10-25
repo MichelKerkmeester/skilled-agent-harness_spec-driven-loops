@@ -1321,12 +1321,6 @@ Ten commands check and repair the setup, one per area.
 &nbsp;
 #### UTILITY
 
-**`/agent-router`**
-
-- Routes a request to an AI system defined in the repository, found through its `AGENTS.md`
-- The current agent loads that system's skill and adopts its identity in full, then runs the request itself
-- Use when a request belongs to one of those systems rather than to this framework
-
 **`/prompt:improve`**
 
 - Refines prompts and prompt packages through 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)

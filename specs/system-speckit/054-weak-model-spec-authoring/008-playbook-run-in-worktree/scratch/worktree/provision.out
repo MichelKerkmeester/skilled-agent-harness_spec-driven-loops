@@ -1,0 +1,17 @@
+  provisioning .skilled (npm ci)
+  provisioning .opencode (npm ci)
+  provisioning .skilled/skills/sk-vision/vision-runtime (bun install)
+  building .skilled/skills/sk-vision/vision-runtime
+  provisioning .skilled/skills/system-spec-kit (npm ci)
+  building .skilled/skills/system-spec-kit/runtime
+  building .skilled/skills/system-spec-kit/runtime/cli
+  provisioning .skilled/skills/system-skill-advisor/runtime (npm ci)
+  building .skilled/skills/system-skill-advisor/runtime
+  provisioning .skilled/skills/system-deep-loop (npm ci)
+  provisioning .skilled/skills/system-deep-loop/runtime (npm ci)
+  provisioning .skilled/skills/sk-doc (npm ci)
+  provisioning .pi/extensions/pi-cache-optimizer (npm ci)
+  provisioning .pi/extensions/pi-fast-mode-w-subagent-support (npm ci)
+  provisioning .skilled/skills/sk-design/sk-design-md-generator/backend (npm ci)
+  building .skilled/skills/sk-design/sk-design-md-generator/backend
+provisioned: 11 installed, 5 built, 3 already present, 0 failed

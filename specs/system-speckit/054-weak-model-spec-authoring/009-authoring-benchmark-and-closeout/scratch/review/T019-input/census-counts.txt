@@ -1,0 +1,5 @@
+rows: b-final-0/1/2     2561 extra     1164 rem       62 done-part1     4626 b-final     4688
+done-part1 keys not in first or extra shards:      901
+done-part1 union rem vs b-final keys differing:        0
+b-before.cut b-final.cut identical,     4688 lines
+PASS 4496 FAIL 192

@@ -1,0 +1,8 @@
+.codex/agents/code.toml
+.codex/agents/context.toml
+.codex/agents/markdown.toml
+.codex/agents/orchestrate.toml
+.pi/agents/code.md
+.pi/agents/context.md
+.pi/agents/markdown.md
+.pi/agents/orchestrate.md

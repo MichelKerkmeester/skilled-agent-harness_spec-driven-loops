@@ -1,0 +1,13 @@
+I'll read all the review artifacts in parallel.Now the main diff file:All five checks verified against the artifacts:
+
+**(1) Changed lines vs rows** — Every `+` line in the diff under `.skilled/commands`, `.skilled/agents` and `.claude/agents` maps to a row's `expected_text` (R-001–R-078, including substring rows like R-019/R-055 and pure-insert rows like R-004/R-010/R-040). Line counts reconcile: 90 insertions = 66 command rows + 6 `.skilled` agent rows + 6 `.claude` agent rows + 12 mirror lines; stat's 94 adds goal.md (the packet's own doc).
+
+**(2) Named paths exist** — T013-ls.txt confirms `check-example-drift.sh`, `check-card-sync.sh`, `validate.sh`, `spec-authoring-card.md`, `templates/examples/`, and `level-2/{acceptance-criteria,tasks}.md` all exist; the "no such file" entries are pre-existing retained text or prose per the file's own adjudication.
+
+**(3) Searches** — A1_rc=1, A2_rc=1, A3_rc=1, A4_rc=1, A6_rc=1, GUARD_REFS=6 (3 YAML `guard_scripts_command` + 3 prose mentions).
+
+**(4) Generated mirrors** — The 8 `.codex`/`.pi` files are exactly the named set; each changed line is textually identical to the matching `.skilled/agents` row; generators wrote 4 agents each, prompts 0, all 8 mirror checks PASS rc=0.
+
+**(5) Frozen trees** — No file under `system-spec-kit/{templates,references,runtime}` appears in T013-stat.txt.
+
+NO FINDINGS

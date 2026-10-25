@@ -1,0 +1,303 @@
+---
+title: "Tasks: Add a quiet flag to recommend-level.sh"
+description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>. No task is ticked: this packet plans the change and does not build it."
+trigger_phrases:
+  - "recommend level quiet flag tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
+# Tasks: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed, with the evidence named on the line |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Every task below is open. This packet is a planning artifact: it describes the change and the proof, and the banned-operation list forbids editing the script from here. A ticked box would claim an implementation that does not exist. The baselines the tasks refer to were measured on 2026-10-25 and are restated in the task text so the implementer can compare rather than re-derive.
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Read the output block at `recommend-level.sh:502-558` and record the line counts for the three shapes. Verify: `wc -l` prints `17` for the full default run, `12` with `--no-recommend-phases` and `36` with `--json` (`.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh`)
+- [ ] T002 Capture those three outputs into `scratch/baseline/` so the verification phase can diff rather than eyeball. Verify: `ls scratch/baseline` lists `default.txt`, `no-phases.txt` and `json.txt` (`scratch/baseline/`)
+- [ ] T003 [P] Record the two suite baselines on the unmodified script. Verify: `node tests/test-phase-validation.js` prints `passed=51 failed=0` and `node tests/test-phase-system.js` prints `passed=27 failed=0` (`runtime/cli/tests/`)
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T004 Add `output_level_line()` to section 4 and replace the inline echo at line 510 with a call to it. Verify: the default output diffs clean against `scratch/baseline/default.txt` (`recommend-level.sh`)
+- [ ] T005 Add `QUIET=false` to section 2's globals and a `--quiet|-q)` branch to section 5's `case`. Verify: `bash -n` exits 0 and `rg -n 'quiet' recommend-level.sh` shows both the global and the branch (`recommend-level.sh`)
+- [ ] T006 Add `output_quiet()` that calls `output_level_line()` and returns. Verify: `--quiet --loc 500 --files 15 --auth --api --db --architectural` prints exactly 1 line (`recommend-level.sh`)
+- [ ] T007 Add the conflict guard after the parse loop, ahead of the dispatch: `--quiet` with `--json` exits 1 and writes both flag names to stderr. Verify: the run's stdout is empty and its exit status is 1 (`recommend-level.sh`)
+- [ ] T008 Order the dispatch as conflict guard, quiet, JSON, text. Verify: all three existing shapes diff clean against their baselines (`recommend-level.sh`)
+- [ ] T009 Add `--quiet, -q` to the header OPTIONS block and to `show_help()`. Verify: `rg -c 'quiet, -q' recommend-level.sh` prints `2` and `--help` lists the flag (`recommend-level.sh`)
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T010 Replay the thirteen-row matrix and record the result of each row. Verify: every row matches the expectation in the list below (`scratch/evidence/matrix.txt`)
+- [ ] T011 Compare the quiet line against the text report's line 2 byte for byte. Verify: `diff` exits 0 between the quiet output and `sed -n '2p'` of the default run (`scratch/evidence/quiet-vs-line2.diff`)
+- [ ] T012 Run the exact command each YAML asset runs, with `--json --recommend-phases --phase-threshold 25 --loc 500 --files 8`, and parse the output. Verify: `node -e 'JSON.parse(...)'` exits 0 and the object still has its 36 lines (`scratch/evidence/yaml-callers.txt`)
+- [ ] T013 Rerun both Node suites on the changed script. Verify: `passed=51 failed=0` and `passed=27 failed=0`, unchanged from T003 (`scratch/evidence/suites.txt`)
+- [ ] T014 Run `validate.sh --strict` on this packet. Verify: the last line reads `RESULT: PASSED` (`specs/zz-bench-authoring/001-recommend-level-quiet-flag`)
+
+### T010 matrix rows
+
+| Row | Invocation | Expected |
+|-----|------------|----------|
+| 1 | `--loc 500 --files 15 --auth --api --db --architectural` | 17 lines, exit 0 |
+| 2 | row 1 plus `--no-recommend-phases` | 12 lines, exit 0 |
+| 3 | row 1 plus `--json` | 36 lines, exit 0, parses as JSON |
+| 4 | row 1 plus `--quiet` | 1 line, exit 0 |
+| 5 | row 1 plus `-q` | 1 line, byte-identical to row 4 |
+| 6 | row 1 plus `--quiet --json` | exit 1, empty stdout, stderr names both |
+| 7 | row 1 plus `--json --quiet` | identical to row 6, proving order independence |
+| 8 | `--quiet` with no `--loc` or `--files` | exit 1, empty stdout, usage error on stderr |
+| 9 | row 1 plus `--quiet=1` | exit 1, unknown option, empty stdout |
+| 10 | row 1 plus `-qj` | exit 1, unknown option; the parser does not bundle short flags |
+| 11 | `--loc --quiet` | exit 1, `--loc requires a numeric value` |
+| 12 | row 1 plus `--quiet --quiet` | 1 line, identical to row 4 |
+| 13 | `--help --quiet` | help text, exit 0; help short-circuits every mode |
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+- [ ] The three existing shapes diff clean against `scratch/baseline/` and both suites hold 51 and 27 passed
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Acceptance criteria**: See `acceptance-criteria.md`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+
+A blocked row stays `[ ]` with a `[B]` marker and the reason on the line. A row that reads N/A is closed by the reason it states, not by a tick.
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [x] CHK-001 [P0] Requirements documented in `spec.md`: REQ-001 to REQ-007, each naming a command or an observable output
+- [x] CHK-002 [P0] Technical approach defined in `plan.md`: one shared emitter, one new mode, one conflict guard
+- [x] CHK-003 [P1] Dependencies identified and available: bash 3.2, `wc`, `diff`, `sed` and Node, all present in this checkout
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] `bash -n recommend-level.sh` exits 0
+- [ ] CHK-011 [P0] No new shellcheck-class warning: the new branch uses the same `case` and `[[ ]]` forms as its neighbours
+- [ ] CHK-012 [P1] The conflict guard writes to stderr and leaves stdout empty
+- [ ] CHK-013 [P1] The new function follows the file's existing section-4 shape: a comment, then `output_*`
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` reads Met
+- [ ] CHK-021 [P0] The thirteen matrix rows in T010 each match their expectation
+- [ ] CHK-022 [P1] Edge cases tested: no-input, repeated flag, `--quiet=1`, `-qj` and `--loc --quiet`
+- [ ] CHK-023 [P1] Error scenarios validated: exit 1 and empty stdout on every rejected combination
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+This packet adds a feature rather than closing a finding, so the finding-class and fix-SHA rows do not apply. The inventory rows still do, because the change alters a surface other files consume.
+
+- [ ] CHK-FIX-001 [P0] Same-class producer inventory completed: `rg -n 'Recommended Level' .skilled/` returns one code producer at `recommend-level.sh:510`; every other hit is a template hint or a golden snapshot of one
+- [ ] CHK-FIX-002 [P0] Consumer inventory completed: the two YAML call sites, the two Node suites and the prose references are listed in `plan.md` section 3
+- [ ] CHK-FIX-003 [P1] Matrix axes and row count listed before implementation: T010 carries thirteen rows across quiet, JSON, help and input validity
+- [ ] CHK-FIX-004 [P1] Argument-parser adversarial rows present: `--quiet=1`, `-qj`, `--loc --quiet`, a repeated flag and reversed flag order
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets: the script holds none and the change adds none
+- [ ] CHK-031 [P0] Input validation preserved: `--quiet` does not bypass the numeric checks or the empty-input check
+- [ ] CHK-032 [P1] N/A: the script has no authentication or authorization surface to test
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` name the same flag, the same three line counts and the same conflict rule
+- [ ] CHK-041 [P1] Both help surfaces list the flag: the header OPTIONS block and `show_help()`
+- [ ] CHK-042 [P2] `README.md` needs no change: it names no flags. Its broken example at line 514 is out of scope, as `spec.md` section 3 records
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Baselines and probe output live under `scratch/` only
+- [ ] CHK-051 [P1] `scratch/` holds only the baseline and evidence files at completion, with no stray copy of the script
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 13 | 2/13 |
+| P1 Items | 22 | 1/22 |
+| P2 Items | 9 | 0/9 |
+
+**Verification Date**: 2026-10-25
+
+The three verified rows are the pre-implementation checks, which the packet itself satisfies. Every implementation and verification row is open, because no code changed.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: Architecture Verification
+
+- [ ] CHK-100 [P0] ADR-001 is followed: the level literal is emitted by one function that both output paths call
+- [ ] CHK-101 [P1] Both ADRs carry a status: ADR-001 and ADR-002 each read Proposed
+- [ ] CHK-102 [P1] Alternatives documented with rejection rationale: each ADR names at least two rejected options and why
+- [ ] CHK-103 [P2] N/A: no migration path. The change adds a mode and removes nothing
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: Performance Verification
+
+- [ ] CHK-110 [P1] NFR-P01 holds: the quiet path returns before the breakdown and phase echoes, so it cannot be slower than the default path
+- [ ] CHK-111 [P1] N/A: the script makes no throughput claim
+- [ ] CHK-112 [P2] N/A: no load to test; the script is invoked once per call
+- [ ] CHK-113 [P2] N/A: no benchmark to document; the comparison in CHK-110 is structural
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: Deployment Readiness
+
+- [ ] CHK-120 [P0] Rollback documented and exercised: revert the commit and rerun the three shapes and both suites
+- [ ] CHK-121 [P0] N/A: no feature flag. The CLI flag is the surface, and removing the branch removes the feature
+- [ ] CHK-122 [P1] N/A: no monitoring. The script runs in a repository rather than a service
+- [ ] CHK-123 [P1] N/A: no runbook. `--help` is the operating document
+- [ ] CHK-124 [P2] N/A: nothing to review beyond CHK-120
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: Compliance Verification
+
+- [ ] CHK-130 [P1] N/A: no security surface changes, so no review is required beyond CHK-030 and CHK-031
+- [ ] CHK-131 [P1] No dependency license change: the change adds no dependency
+- [ ] CHK-132 [P2] N/A: no web surface, so no OWASP checklist applies
+- [ ] CHK-133 [P2] N/A: the script handles no personal or regulated data
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: Documentation Verification
+
+- [ ] CHK-140 [P1] `spec.md`, `plan.md` and `tasks.md` agree on the flag name, the three counts and the conflict rule
+- [ ] CHK-141 [P1] N/A: no API documentation. The help text is the interface, and CHK-041 covers it
+- [ ] CHK-142 [P2] No user-facing document lists the script's flags, so none needs updating
+- [ ] CHK-143 [P2] N/A: single-session packet, no knowledge transfer
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: Sign-Off
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| Operator (dispatch) | Technical Lead | [ ] Pending | |
+| Operator | Product Owner | [ ] Pending | |
+| Reviewer | QA Lead | [ ] Pending | |
+<!-- /ANCHOR:sign-off -->
+
+---
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- [ ] Read the task's target region in `recommend-level.sh` before editing it, and confirm the line numbers still match the section named
+- [ ] Confirm `scratch/baseline/` holds the three captured outputs before touching the output block
+- [ ] Confirm `bash -n recommend-level.sh` exits 0 on the unmodified file, so a later failure is attributable
+
+### Execution Rules
+
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Run T001 to T009 in order. T010 onward runs only after the script parses |
+| TASK-SCOPE | Modify `recommend-level.sh` only. The two YAML assets, the two suites and the templates stay untouched |
+| TASK-PROOF | Every task names its verification command. A task with no observed output stays open |
+| TASK-BASELINE | Compare against the captured baseline rather than a remembered count. 17, 12 and 36 are the numbers to match |
+
+### Status Reporting Format
+
+After each task: `Task T### complete. Files modified: <list>. Verify: <command> printed <observed output>.`
+
+### Blocked Task Protocol
+
+If a task cannot be completed: stop, mark it `[B]` with the reason on the line, write the blocker and what was tried into `scratch/`, and report it. Do not widen scope to route around a blocker, and do not tick a box whose verification was not observed.

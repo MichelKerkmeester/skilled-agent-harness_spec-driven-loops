@@ -1,1 +1,0 @@
-../../.skilled/commands/agent-router.md

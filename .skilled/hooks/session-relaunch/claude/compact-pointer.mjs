@@ -62,12 +62,16 @@ function logEvent(event, fields) {
   } catch {}
 }
 
-function noteSpecFolder(notePath) {
+// The pointer names the note's date so the session can check git for work done since.
+function noteFields(notePath) {
   try {
-    const folder = parseHandoff(fs.readFileSync(notePath, 'utf8')).frontmatter.spec_folder;
-    return typeof folder === 'string' ? folder : '';
+    const { frontmatter } = parseHandoff(fs.readFileSync(notePath, 'utf8'));
+    return {
+      specFolder: typeof frontmatter.spec_folder === 'string' ? frontmatter.spec_folder : '',
+      createdAt: typeof frontmatter.created_at === 'string' ? frontmatter.created_at : '',
+    };
   } catch {
-    return '';
+    return { specFolder: '', createdAt: '' };
   }
 }
 
@@ -206,12 +210,14 @@ async function main() {
   }
 
   logEvent('compact-pointer', { sessionId, note: notePath });
+  const { specFolder, createdAt } = noteFields(notePath);
   return emit(payloadEventName(payload, { runtime: 'claude' }), nudge.seedText({
     notePath,
-    specFolder: noteSpecFolder(notePath),
+    specFolder,
     sessionId,
     cliPath: nudge.CLI_COMMAND,
     afterCompaction: true,
+    createdAt,
   }));
 }
 

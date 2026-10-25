@@ -1,0 +1,37 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a documentation diff. A script checks your output line by line.
+
+READ THESE FILES AND NO OTHERS. All paths are under
+specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/review/
+
+1. diff-stat.txt - every changed or new file under .skilled since the phase start commit.
+2. diff-skilled.txt - the full diff of the existing files that changed: the playbook index, the catalog root, the two READMEs and the four reference files.
+3. new-files.txt - the eight new playbook scenarios and the four new catalog leaves, each with line numbers. Each file starts at a header line that gives its repository path.
+4. scenario-483-before-after.txt - the changes made to scenario 483 after it was first written.
+5. validation-outputs.txt - the output of the playbook validator, the catalog validator, the document validators, the two vitest runs and the hygiene counts.
+6. Under sources/ in the same folder, numbered copies of what the new text names: check-example-drift.sh.txt, check-card-sync.sh.txt, spec-authoring-card.md.txt, check-placeholders.sh.txt, orchestrator-placeholder-lines.txt, and the vitest files placeholder-token-gate, card-sync, example-drift, template-fill-guidance and scaffold-golden-snapshots (each ending .vitest.ts.txt).
+
+CHECK THESE FIVE THINGS FOR EACH FILE:
+(1) The claim matches the code or script the doc names.
+(2) A command in a scenario would print what the scenario says it prints. You cannot run it, so read the script it calls and the validation output, and judge from those.
+(3) A link resolves to a file that exists.
+(4) The prose follows Human Voice Rules with no em dash, no semicolon and no serial comma. Judge only prose, and skip code blocks and frontmatter.
+(5) No scenario leaves a track behind: each one that creates a track under specs/zz-pb-* removes it in its last step, and scenario 483 asks the worker for no edit outside specs/zz-pb-card/.
+
+For a finding, use the file path from the listing header and the line number shown beside it.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<line> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.
+
+FINISH RULE: Open no file outside the list above. When you have read them, write your final message, which holds only the result lines above. A reply that ends without a result line is discarded and counts as no review.

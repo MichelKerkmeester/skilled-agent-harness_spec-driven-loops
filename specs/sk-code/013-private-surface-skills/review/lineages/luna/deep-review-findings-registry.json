@@ -1,0 +1,710 @@
+{
+  "sessionId": "fanout-luna-1792944728998-cwb2cp",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-10-25T16:44:13.543Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "LUNA-R1-P1-001",
+      "severity": "P1",
+      "title": "Packet completion status contradicts active phase records",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R2-P2-001",
+      "severity": "P2",
+      "title": "Staged type-change paths bypass the local-skill guard",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R4-P2-001",
+      "severity": "P2",
+      "title": "The scanner inventory omits the derived-freshness root scan",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+      "line": 164,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "LUNA-R1-P1-001",
+      "severity": "P1",
+      "title": "Packet completion status contradicts active phase records",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R2-P2-001",
+      "severity": "P2",
+      "title": "Staged type-change paths bypass the local-skill guard",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R4-P2-001",
+      "severity": "P2",
+      "title": "The scanner inventory omits the derived-freshness root scan",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+      "line": 164,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "LUNA-R1-P1-001",
+      "severity": "P1",
+      "title": "Packet completion status contradicts active phase records",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R2-P2-001",
+      "severity": "P2",
+      "title": "Staged type-change paths bypass the local-skill guard",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R4-P2-001",
+      "severity": "P2",
+      "title": "The scanner inventory omits the derived-freshness root scan",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+      "line": 164,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 2
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_status_propagation",
+      "advisor_index_containment",
+      "evidence_reference_mismatch",
+      "hub_overlay_scope",
+      "local_root_policy_drift",
+      "phase_status_drift",
+      "private_scan_visibility",
+      "scanner_inventory_omission",
+      "staged_type_change_guard_bypass",
+      "trusted_root_escape"
+    ],
+    "ruledOut": [
+      "cross_language_containment_drift",
+      "evidence_reference_mismatch",
+      "hub_overlay_scope",
+      "ignored_corpus_traversal",
+      "missing_hub_overlay_scenario",
+      "private_scan_visibility",
+      "trusted_root_escape",
+      "untrusted_local_link"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "phase_status_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "staged_type_change_guard_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "trusted_root_escape": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "acceptance_status_propagation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "evidence_reference_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "scanner_inventory_omission": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "local_root_policy_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cross_language_containment_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "private_scan_visibility": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "advisor_index_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "hub_overlay_scope": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "ignored_corpus_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "untrusted_local_link": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "missing_hub_overlay_scenario": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "trusted_root_escape",
+      "disposition": "ruled_out",
+      "rationale": "The path-boundary calculation does not use unsafe string-prefix matching.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:40",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:191"
+      ],
+      "reason": "Direct read shows canonical realpath plus path-relative containment in both runtimes."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md"
+      ],
+      "bugClass": "evidence_reference_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The sampled evidence references resolve and the control and result values line up with their acceptance rows.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md:68",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md:71",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md:44",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md:87",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md:133"
+      ],
+      "reason": "Direct reads matched the phase 5 acceptance row summaries to cited evidence excerpts."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "cross_language_containment_drift",
+      "disposition": "ruled_out",
+      "rationale": "The core path-boundary calculation matches across the two language-specific helpers.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155"
+      ],
+      "reason": "Direct source comparison found equivalent relative-path containment logic."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-008",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "private_scan_visibility",
+      "disposition": "ruled_out",
+      "rationale": "The relevant consumers honor ignored-path or trusted-root checks before reading local skill contents.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:275",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:278",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:280",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1215",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1271",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155",
+        ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:197",
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21"
+      ],
+      "reason": "Direct source traces show the guard at the entry to each traversal or reader."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-009",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "bugClass": "hub_overlay_scope",
+      "disposition": "ruled_out",
+      "rationale": "These documents inventory and validate the public sk-code hub, while local skills route only through the operator local advisor.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md:15",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:15",
+        "specs/sk-code/013-private-surface-skills/spec.md:62",
+        "specs/sk-code/013-private-surface-skills/spec.md:83"
+      ],
+      "reason": "The spec's frozen D1/D6 boundary excludes local skills from hub-surface documentation."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "trusted_root_escape",
+      "disposition": "ruled_out",
+      "rationale": "The path-boundary calculation does not use unsafe string-prefix matching.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:40",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:191"
+      ],
+      "proof": "Direct read shows canonical realpath plus path-relative containment in both runtimes."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md"
+      ],
+      "bugClass": "evidence_reference_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The sampled evidence references resolve and the control and result values line up with their acceptance rows.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md:68",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md:71",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md:44",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md:87",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md:133"
+      ],
+      "proof": "Direct reads matched the phase 5 acceptance row summaries to cited evidence excerpts."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "cross_language_containment_drift",
+      "disposition": "ruled_out",
+      "rationale": "The core path-boundary calculation matches across the two language-specific helpers.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155"
+      ],
+      "proof": "Direct source comparison found equivalent relative-path containment logic."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-008",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "private_scan_visibility",
+      "disposition": "ruled_out",
+      "rationale": "The relevant consumers honor ignored-path or trusted-root checks before reading local skill contents.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:275",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:278",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:280",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1215",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1271",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155",
+        ".skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:197",
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21"
+      ],
+      "proof": "Direct source traces show the guard at the entry to each traversal or reader."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-009",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "bugClass": "hub_overlay_scope",
+      "disposition": "ruled_out",
+      "rationale": "These documents inventory and validate the public sk-code hub, while local skills route only through the operator local advisor.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-code/feature-catalog/feature-catalog.md:15",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:15",
+        "specs/sk-code/013-private-surface-skills/spec.md:62",
+        "specs/sk-code/013-private-surface-skills/spec.md:83"
+      ],
+      "proof": "The spec's frozen D1/D6 boundary excludes local skills from hub-surface documentation."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "private_scan_visibility",
+      "advisor_index_containment",
+      "hub_overlay_scope"
+    ],
+    "covered": [
+      "private_scan_visibility",
+      "advisor_index_containment",
+      "hub_overlay_scope"
+    ],
+    "ruledOut": [
+      "ignored_corpus_traversal",
+      "untrusted_local_link",
+      "missing_hub_overlay_scenario"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

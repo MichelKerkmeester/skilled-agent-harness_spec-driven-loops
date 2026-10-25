@@ -28,6 +28,11 @@ const FRONTMATTER_PATTERN = new RegExp(
   '^(?:\\uFEFF)?---[ \\t]*\\r?\\n[\\s\\S]*?\\r?\\n---[ \\t]*(?:\\r?\\n|$)',
 );
 const LEGACY_SPEC_ROOT_PATTERN = /(?:^|\/)\.opencode\/specs(?:\/|$)/;
+const TEMPLATE_VERSION_PATTERN = /^v(\d+)\.(\d+)$/;
+// The first template stamp of the v4 era. A stamp counts as legacy when it is
+// older than this floor, so a later manifest bump does not turn current docs
+// into a pre-v4 signal.
+const FIRST_V4_TEMPLATE_VERSION = Object.freeze({ major: 2, minor: 2 });
 
 /**
  * Paths that do not represent independent packets. The corpus walker applies
@@ -298,6 +303,46 @@ function detectFrontmatterSignal(text) {
 }
 
 /**
+ * Parses a `v<major>.<minor>` template stamp. Other shapes, such as `v2`,
+ * `v2.` or `v2.0.0`, return null and therefore never reach the v4 floor.
+ * @param {string | null} version Template stamp.
+ * @returns {{ major: number, minor: number } | null} Parsed stamp.
+ */
+function parseTemplateVersion(version) {
+  const match = TEMPLATE_VERSION_PATTERN.exec(version ?? '');
+  return match ? { major: Number(match[1]), minor: Number(match[2]) } : null;
+}
+
+/**
+ * Compares two parsed stamps numerically, so v2.10 sorts after v2.9.
+ * @param {{ major: number, minor: number }} left First stamp.
+ * @param {{ major: number, minor: number }} right Second stamp.
+ * @returns {number} Negative, zero or positive.
+ */
+function compareTemplateVersions(left, right) {
+  return left.major - right.major || left.minor - right.minor;
+}
+
+/**
+ * Decides whether a document stamp is a v4-era stamp that the template has not
+ * moved past. An exact match with the manifest always counts, which keeps
+ * templates whose manifest version sits below the floor current.
+ * @param {string | null} version Document stamp.
+ * @param {string | null} currentVersion Manifest version of the template.
+ * @returns {boolean} True when the stamp is current for the v4 era.
+ */
+function isCurrentTemplateStamp(version, currentVersion) {
+  if (!version || !currentVersion) return false;
+  if (version === currentVersion) return true;
+
+  const stamp = parseTemplateVersion(version);
+  const current = parseTemplateVersion(currentVersion);
+  return Boolean(stamp && current)
+    && compareTemplateVersions(stamp, FIRST_V4_TEMPLATE_VERSION) >= 0
+    && compareTemplateVersions(stamp, current) <= 0;
+}
+
+/**
  * Normalizes a template source header and compares its version with the manifest.
  * @param {string} source Header source name.
  * @param {string | null} version Header version.
@@ -317,7 +362,7 @@ function normalizeTemplateHeader(source, version) {
     canonical,
     version: normalizedVersion,
     currentVersion,
-    status: normalizedVersion && normalizedVersion === currentVersion ? 'new' : 'legacy',
+    status: isCurrentTemplateStamp(normalizedVersion, currentVersion) ? 'new' : 'legacy',
   };
 }
 

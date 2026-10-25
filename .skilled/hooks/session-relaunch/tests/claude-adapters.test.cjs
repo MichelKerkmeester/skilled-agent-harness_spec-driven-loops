@@ -1224,6 +1224,7 @@ test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload car
 });
 
 const COMPACT_POINTER = path.resolve(__dirname, '../claude/compact-pointer.mjs');
+const NOTE_CREATED_AT = '2026-10-25T10:00:00Z';
 
 function writeOpenNote(sandbox, sessionId = SESSION_ID) {
   const directory = path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs');
@@ -1237,7 +1238,7 @@ function writeOpenNote(sandbox, sessionId = SESSION_ID) {
     'runtime: claude',
     `cwd: ${sandbox.repoRoot}`,
     'spec_folder: ',
-    `created_at: ${new Date().toISOString()}`,
+    `created_at: ${NOTE_CREATED_AT}`,
     '---',
     '## Goal', 'g', '## Done', 'd', '## Remaining work', 'r', '## In-flight state', 'i',
   ].join('\n'));
@@ -1286,6 +1287,18 @@ test('compact-pointer points a compacted session at its open note and resets the
   assert.match(context, /^\[session-relaunch\] This session was compacted after it wrote a handoff note/);
   assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), context);
   assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+test('compaction pointer carries the note date', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const { parentPath } = writeSessionTranscripts(sandbox);
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes(`git log --since='${NOTE_CREATED_AT}'`), context);
+  assert.ok(context.includes('git status'), context);
 });
 
 test('compact-pointer adds nothing on a fresh start or when no note is open', async (t) => {

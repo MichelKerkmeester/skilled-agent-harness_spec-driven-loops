@@ -12,7 +12,7 @@ title: "Feature Specification: [NAME] [template:level_3+/spec.md]"
 <!-- IF level:3 -->
 title: "Feature Specification: [NAME] [template:level-3/spec.md]"
 <!-- /IF -->
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -33,14 +33,14 @@ contextType: "general"
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- /IF -->
 <!-- IF level:1,2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.3 -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.3 -->
 <!-- /IF -->
 <!-- IF level:3 -->
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 <!-- IF level:3+ -->
@@ -56,12 +56,13 @@ contextType: "general"
 ---
 
 ## EXECUTIVE SUMMARY
+<!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
 
 [2-3 sentence high-level overview for stakeholders who need quick context]
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: [YOUR_VALUE_HERE: Major decision 1], [YOUR_VALUE_HERE: Major decision 2]
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: [YOUR_VALUE_HERE: Blocking dependency]
 
 <!-- /IF -->
 ---
@@ -70,6 +71,7 @@ contextType: "general"
 <!-- /IF -->
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
+<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/recommend-level-quiet`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
@@ -85,7 +87,7 @@ contextType: "general"
 <!-- IF level:3 -->
 | **Level** | 3 |
 <!-- /IF -->
-| **Priority** | [P0/P1/P2] |
+| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `[###-feature-name]` |
@@ -95,51 +97,54 @@ contextType: "general"
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
+<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
 <!-- /ANCHOR:problem -->
 
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
+<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--quiet` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- [YOUR_VALUE_HERE: Deliverable 1]
+- [YOUR_VALUE_HERE: Deliverable 2]
+- [YOUR_VALUE_HERE: Deliverable 3]
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
+- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
+<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With `--quiet`, stdout holds exactly one line that starts with `Recommended Level:`. WEAK: The flag should work well. -->
 
 ### P0 - Blockers (MUST complete)
 
 <!-- IF level:1 -->
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
 <!-- /IF -->
 <!-- IF level:2,3,3+ -->
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
 <!-- /IF -->
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -147,12 +152,12 @@ contextType: "general"
 <!-- IF level:1 -->
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
 <!-- /IF -->
 <!-- IF level:2,3,3+ -->
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -163,20 +168,22 @@ contextType: "general"
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
+<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: `recommend-level.sh --quiet --loc 500 --files 15` prints one line and exits 0. WEAK: The feature is successful. -->
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
+<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
+| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -188,43 +195,45 @@ contextType: "general"
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+<!-- /ANCHOR:nfr -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
 <!-- /IF -->
 
 ### Performance
 <!-- IF level:2,3 -->
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
 <!-- IF level:2 -->
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-- **NFR-P01**: [Response time target]
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target]
 <!-- /IF -->
 
 ### Security
 <!-- IF level:2,3 -->
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
 <!-- IF level:2 -->
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-- **NFR-S01**: [Auth requirement]
+- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement]
 <!-- /IF -->
 
 ### Reliability
 <!-- IF level:2,3 -->
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
 <!-- IF level:2 -->
-- **NFR-R02**: [Error rate - e.g., <1%]
-<!-- /ANCHOR:nfr -->
+- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3+ -->
-- **NFR-R01**: [Uptime target]
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target]
 <!-- /IF -->
 
 ---
@@ -232,67 +241,71 @@ contextType: "general"
 <!-- IF level:2 -->
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+<!-- /ANCHOR:edge-cases -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 8. EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
 <!-- /IF -->
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: [YOUR_VALUE_HERE: How system handles]
+- Maximum length: [YOUR_VALUE_HERE: Limit and behavior]
 <!-- IF level:2 -->
-- Invalid format: [Validation response]
+- Invalid format: [YOUR_VALUE_HERE: Validation response]
 <!-- /IF -->
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
+- External service failure: [YOUR_VALUE_HERE: Fallback behavior]
 <!-- IF level:2,3 -->
-- Network timeout: [Retry strategy]
+- Network timeout: [YOUR_VALUE_HERE: Retry strategy]
+<!-- /IF -->
 <!-- IF level:2 -->
-- Concurrent access: [Conflict resolution]
+- Concurrent access: [YOUR_VALUE_HERE: Conflict resolution]
+<!-- /IF -->
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
-<!-- /ANCHOR:edge-cases -->
-<!-- /IF -->
-<!-- /IF -->
+- Partial completion: [YOUR_VALUE_HERE: Recovery behavior]
+- Session expiry: [YOUR_VALUE_HERE: User experience]
 
 ---
 
 <!-- IF level:2 -->
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 9. COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
 <!-- /IF -->
 
 <!-- IF level:2 -->
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files: X, LOC: Y, Systems: Z] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth: Y/N, API: Y/N, Breaking: Y/N] |
 <!-- /IF -->
-| Research | [/20] | [Investigation needs] |
+| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
 <!-- IF level:2 -->
-| **Total** | **[/70]** | **Level 2** |
+| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
+| Multi-Agent | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Workstreams: X] |
+| Coordination | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Dependencies: X] |
 <!-- IF level:3+ -->
-| **Total** | **[/100]** | **Level 3+** |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3+** |
 <!-- /IF -->
 <!-- IF level:3 -->
-| **Total** | **[/100]** | **Level 3** |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3** |
 <!-- /IF -->
 <!-- /IF -->
 
@@ -301,26 +314,38 @@ contextType: "general"
 <!-- IF level:2 -->
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- /IF -->
 <!-- IF level:1 -->
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 ## 10. RISK MATRIX
+<!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | [YOUR_VALUE_HERE: Risk] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: H/M/L] | [YOUR_VALUE_HERE: Strategy] |
 
 ---
 
 ## 11. USER STORIES
+<!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
 
-### US-001: [Title] (Priority: P0)
+### US-001: [YOUR_VALUE_HERE: Title] (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
@@ -329,22 +354,23 @@ contextType: "general"
 <!-- IF level:3+ -->
 <!-- ANCHOR:approval-workflow -->
 ## 12. APPROVAL WORKFLOW
+<!-- FILL: Name the real approver for each checkpoint and the date it passed. GOOD: Spec review: operator, 2026-10-24. WEAK: Approvals pending. -->
 <!-- /IF -->
 <!-- IF level:3 -->
-### US-002: [Title] (Priority: P1)
+### US-002: [YOUR_VALUE_HERE: Title] (Priority: P1)
 <!-- /IF -->
 
 <!-- IF level:3+ -->
 | Checkpoint | Approver | Status | Date |
 |------------|----------|--------|------|
-| Spec Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Design Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Implementation Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Launch Approval | [Role/Name] | [Pending/Approved] | [Date] |
+| Spec Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Design Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Implementation Review | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
+| Launch Approval | [YOUR_VALUE_HERE: Role/Name] | [YOUR_VALUE_HERE: Pending/Approved] | [YOUR_VALUE_HERE: Date] |
 <!-- /ANCHOR:approval-workflow -->
 <!-- /IF -->
 <!-- IF level:3 -->
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: needed behavior], **so that** [YOUR_VALUE_HERE: benefit].
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 <!-- /IF -->
@@ -354,6 +380,7 @@ contextType: "general"
 <!-- IF level:3+ -->
 <!-- ANCHOR:compliance-checkpoints -->
 ## 13. COMPLIANCE CHECKPOINTS
+<!-- FILL: Mark each box or write `N/A` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the script reads no user data and opens no socket. WEAK: Compliance checked. -->
 
 ### Security Compliance
 - [ ] Security review completed
@@ -369,46 +396,52 @@ contextType: "general"
 
 <!-- ANCHOR:stakeholder-matrix -->
 ## 14. STAKEHOLDER MATRIX
+<!-- FILL: Name each stakeholder, their interest and how you update them. GOOD: Build team, high interest, weekly note. WEAK: Stakeholders informed. -->
 
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
-| [Name] | Product | High | [Weekly sync] |
-| [Name] | Engineering | High | [Daily standup] |
+| [YOUR_VALUE_HERE: Name] | Product | High | [YOUR_VALUE_HERE: Weekly sync] |
+| [YOUR_VALUE_HERE: Name] | Engineering | High | [YOUR_VALUE_HERE: Daily standup] |
 <!-- /ANCHOR:stakeholder-matrix -->
 
 ---
 
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
+<!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added `--quiet`. WEAK: Initial version. -->
 
-### v1.0 ([Date])
+### v1.0 ([YOUR_VALUE_HERE: Date])
 **Initial specification**
 <!-- /ANCHOR:change-log -->
 
 ---
 
+<!-- IF level:3+ -->
 <!-- ANCHOR:questions -->
 ## 16. OPEN QUESTIONS
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
+<!-- /IF -->
 <!-- /IF -->
 <!-- IF level:3 -->
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
-<!-- /IF -->
-<!-- /IF -->
+<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
 
-- [Question 1 requiring clarification]
-<!-- IF level:3+ -->
+- [YOUR_VALUE_HERE: Question 1 requiring clarification]
+- [YOUR_VALUE_HERE: Question 2 requiring clarification]
 <!-- /ANCHOR:questions -->
 <!-- /IF -->
-<!-- IF level:1,2,3 -->
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
 <!-- /IF -->
 <!-- IF level:3,3+ -->
 
 ---
 
 ## RELATED DOCUMENTS
+<!-- FILL: Leave the four links in place. -->
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

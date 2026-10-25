@@ -1,0 +1,297 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "Add a third output mode to recommend-level.sh that prints only the recommended-level line, emit that line from one shared function so the literal has a single producer, and prove the three existing shapes are byte-identical."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash 3.2 or later, which is what macOS ships and what the script already targets |
+| **Framework** | None. A single self-contained script with no sourced library |
+| **Storage** | None |
+| **Testing** | `bash`, `wc -l` and `diff` for the flag matrix; `node tests/test-phase-validation.js` and `node tests/test-phase-system.js` for the JSON regression |
+
+### Overview
+
+The change lands in one file and adds about twenty lines. Parsing gains one case branch and one global, the level line moves into a shared function that both the text report and the new quiet path call, and the output dispatch gains a branch ahead of the JSON check. Nothing in the scoring, the phase logic or the thresholds moves.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented in `spec.md`
+- [x] Success criteria measurable, each naming a command
+- [x] Dependencies identified: the two `--json` callers and the two Node test files
+- [x] Baseline captured: 17, 12 and 36 lines for the three shapes; suites at 51 and 27 passed
+
+### Definition of Done
+- [ ] Every acceptance row in `acceptance-criteria.md` is Met
+- [ ] `bash -n` exits 0 on the changed script
+- [ ] The three existing shapes are byte-identical to their captured baselines
+- [ ] `node tests/test-phase-validation.js` reports 51 passed, 0 failed
+- [ ] `node tests/test-phase-system.js` reports 27 passed, 0 failed
+- [ ] Both help surfaces list the flag
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+
+Single script, three output modes.
+
+### Key Components
+- **Argument parser (section 5)**: owns flag acceptance, sets `QUIET`, and is the only place a new flag is admitted.
+- **`output_level_line()`**: new. The one producer of the `Recommended Level:` literal, called by both the text report and the quiet path.
+- **`output_quiet()`**: new. Calls `output_level_line()` and returns, so it inherits the label rather than restating it.
+- **`output_text()` / `output_json()`**: behavior unchanged. The text report swaps its inline echo for the shared call and prints the same bytes.
+- **Conflict guard (section 7)**: rejects `--quiet` with `--json` after the parse loop, so flag order cannot change the answer.
+
+### Data Flow
+
+Arguments enter the `while`/`case` loop, which sets `QUIET` and the existing flags. `show_help` exits from inside the loop, so `--help` short-circuits every mode. After the loop, validation rejects a non-numeric or empty input. Scoring runs unchanged, `determine_level` sets `RECOMMENDED_LEVEL` and `LEVEL_NAME`, and the dispatch selects one mode in this order: conflict guard, quiet, JSON, text.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+This packet is not a bug fix, but it changes a public output surface that other files consume, so the inventory below is filled rather than skipped.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `runtime/cli/spec/recommend-level.sh` | Owns argument parsing and all three output modes; the only producer of the level literal at line 510 | update | `bash -n` exit 0; quiet run prints 1 line; default 17, `--no-recommend-phases` 12, `--json` 36 |
+| `.skilled/commands/speckit/assets/speckit-plan.yaml:86` | Calls the script with `--json --recommend-phases` and reads the object | unchanged | Run its exact command; JSON still parses and still has 36 lines |
+| `.skilled/commands/speckit/assets/speckit-complete.yaml:147` | Same call as the plan asset | unchanged | Same command and check |
+| `runtime/cli/tests/test-phase-validation.js` | Parses the `--json` object from several fixtures and from a default-on run | unchanged | `node tests/test-phase-validation.js` reports 51 passed, 0 failed |
+| `runtime/cli/tests/test-phase-system.js` | Parses `recommended_phases` and phase counts from `--json` | unchanged | `node tests/test-phase-system.js` reports 27 passed, 0 failed |
+| `references/workflows/spec-authoring-card.md:35`, `references/structure/phase-system.md:89` | Show invocations with `--loc`, `--files` and `--recommend-phases` | not a consumer | Grep shows prose and examples only, no parsing |
+| `AGENTS.md:251`, `README.md:423`, `SKILL.md:114`, `assets/template-mapping.md:297`, `assets/level-decision-matrix.md:302` | Describe what the script does | not a consumer | Grep shows descriptions, no flag list to keep in sync |
+
+Required inventories:
+- Same-class producers: `rg -n 'Recommended Level' .skilled/` returns one code producer, `recommend-level.sh:510`. Every other hit is a template authoring hint or a golden snapshot of one.
+- Consumers of changed symbols: `rg -n 'recommend-level\.sh' . --glob '!specs/**'` returns the two YAML call sites, the two test files, and prose references.
+- Matrix axes: quiet on or off, JSON on or off, help on or off, and valid or invalid input. The thirteen rows the axes produce are listed in `tasks.md` T010.
+- Algorithm invariant: for the same arguments, the quiet line equals line 2 of the text report byte for byte. That equality is the contract, and AC-002 pins it.
+<!-- /ANCHOR:affected-surfaces -->
+
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. Setup captures the baselines that the verification phase compares against, Implementation adds the shared emitter and the quiet mode, and Verification replays the matrix and the two suites.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | The flag matrix against the script directly: three existing shapes, quiet, `-q`, the conflict, and invalid input | `bash`, `wc -l`, `diff` |
+| Regression | The two Node suites that parse `--json` output | `node tests/test-phase-validation.js`, `node tests/test-phase-system.js` |
+| Integration | The exact commands the two YAML assets run | `bash`, `node -e` for JSON parse |
+| Manual | `--help` and a quiet run at a terminal | Terminal |
+
+The baselines are measured, not assumed: the validation suite reports `passed=51 failed=0` and the phase suite `passed=27 failed=0` on the unmodified script, and the three output shapes measure 17, 12 and 36 lines. A run that reports different numbers is a regression, not a new baseline.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Bash 3.2 or later | Internal | Green | The script already avoids bash 4 features, so nothing new is needed |
+| `wc`, `diff`, `sed` | Internal | Green | Verification only; the change itself needs none of them |
+| Node, for the two suites | Internal | Green | The JSON regression could not run, and REQ-003 would rest on manual comparison alone |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: any of the three existing shapes stops matching its captured baseline, or either Node suite drops below its baseline.
+- **Procedure**: `git revert` the single commit that carries the change, then rerun the three shapes and both suites. The script has no generated artifact and no cached state, so the revert is complete.
+<!-- /ANCHOR:rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────┐
+                      ├──► Phase 2 (Implementation) ──► Phase 3 (Verification)
+                      │
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation, Verification |
+| Implementation | Setup | Verification |
+| Verification | Setup, Implementation | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 15 minutes |
+| Core Implementation | Low | 30 minutes |
+| Verification | Low | 20 minutes |
+| **Total** | | **About 1 hour, as an assumption** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Backup created - N/A, the change touches no data
+- [ ] Feature flag configured - N/A, the flag is the feature
+- [ ] Monitoring alerts set - N/A, the script ships in a repository rather than a service
+
+### Rollback Procedure
+1. Stop: do not push a second commit on top of a broken one.
+2. `git revert` the commit that carries the change.
+3. Rerun the three shapes and both Node suites, and confirm the counts match the baselines.
+4. Tell the operator if the change had already reached a shared branch.
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A. The script writes no file and holds no state between runs.
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌──────────────┐     ┌──────────────────┐     ┌──────────────┐
+│   Phase 1    │────►│    Phase 2       │────►│   Phase 3    │
+│  Baselines   │     │  Emitter + mode  │     │   Matrix     │
+└──────────────┘     └────────┬─────────┘     └──────────────┘
+                              │
+                     ┌────────▼─────────┐
+                     │  Conflict guard  │
+                     └──────────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture | None | Three reference outputs and two suite counts | Shared emitter, matrix |
+| `output_level_line()` | Baseline capture | One producer of the level literal | Quiet mode, text report |
+| `--quiet` parsing | Shared emitter | A parsed `QUIET` global | Quiet mode |
+| `output_quiet()` | Shared emitter, parsing | The one-line output | Matrix |
+| Conflict guard | Parsing | An exit 1 for the JSON pairing | Matrix |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Baseline capture** - 15 minutes - CRITICAL
+2. **Shared emitter and quiet mode** - 30 minutes - CRITICAL
+3. **Matrix replay and suite comparison** - 20 minutes - CRITICAL
+
+**Total Critical Path**: About 65 minutes.
+
+**Parallel Opportunities**:
+- The help-text edits and the conflict guard touch different regions of the same file and can be written in either order, though they must land in one commit.
+- The two Node suites run independently of each other and can be started together.
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Baselines captured | Three output files and two suite counts recorded in `scratch/baseline/` | Phase 1 |
+| M2 | Quiet mode works | `--quiet` prints one line and exits 0 | Phase 2 |
+| M3 | Nothing else moved | The three shapes diff clean against the baselines and both suites hold their counts | Phase 3 |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: The level line has one emitter, and quiet is a third output mode
+
+**Status**: Proposed
+
+**Context**: The level literal appears once today, at `recommend-level.sh:510`, inside `output_text()`. A quiet mode that echoes the same string a second time would create two producers of a contract that callers parse. A quiet mode that filters the text report instead, by suppressing echoes, would couple the flag to the layout of the report and break whenever a line is added.
+
+**Decision**: Extract `output_level_line()`, have `output_text()` call it in place of its inline echo, and have `output_quiet()` call the same function. `--quiet` becomes a third output mode selected in the dispatch, not a filter applied to the first one.
+
+**Consequences**:
+- The label has one producer, so the quiet line and the report line cannot drift.
+- The text report gains one function call and prints the same bytes, which the baseline diff proves.
+- One more function to name and place; it sits in section 4 beside the other output functions.
+
+**Alternatives Rejected**:
+- Filter the text report with `grep` or `sed` inside the script: the filter would encode the report's layout, and the phase block already makes that layout conditional.
+- Duplicate the echo in a new function: two producers of a parsed contract, and the duplication is exactly the risk R-001 names.
+
+---
+
+### ADR-002: `--quiet` with `--json` is a usage error
+
+**Status**: Proposed
+
+**Context**: The script already has two machine-readable modes. `--quiet` and `--json` each claim stdout, and a caller that passes both has made a mistake that a precedence rule would hide.
+
+**Decision**: After the parse loop, reject the combination with exit 1, a stderr message naming both flags, and an empty stdout. Check it after the loop rather than inside it, so the answer does not depend on flag order.
+
+**Consequences**:
+- A caller cannot silently receive the wrong shape, and the failure is immediate and legible.
+- The existing `--json` callers are unaffected, because neither passes `--quiet`.
+- The guard is one more branch, and it must sit ahead of the quiet branch in the dispatch.
+
+**Alternatives Rejected**:
+- Last flag wins: order-dependent behavior that is invisible in the command line a caller writes.
+- Quiet wins over JSON: a caller that asked for an object would get a string, and its parser would fail somewhere else with no clue why.
+- JSON wins over quiet: the flag would appear to be accepted while doing nothing, which is worse than an error.
+
+---

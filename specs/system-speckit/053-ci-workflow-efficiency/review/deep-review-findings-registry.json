@@ -1,0 +1,646 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "All nine child packets point at a changelog folder that does not exist",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "CI standard states no persist-credentials rule; the one write-scoped job relies on convention",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Nine amended acceptance rows carry two observed clauses with no supersession marker",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Packet documents one of its two skip semantics, which fail in opposite directions",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Packet standard says 32 workflows, parent and the 006-to-009 handoff criterion say 33",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Parent OPEN QUESTIONS lists two questions its own children have answered",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Parent phase map and continuity block stale for six of nine phases",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "LUNA-P2-001",
+      "severity": "P2",
+      "title": "Parent phase status and next action lag the child goals",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/spec.md",
+      "line": 105,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Phase 002 AC-003 cites the guarding test case at :895, actual :897",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Phase 002 closure statement contradicts its own T021 commit evidence",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P2",
+      "title": "Phase 004 AC-014 Unmet on a premise the tree contradicts, pinning the phase at 10%",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Phase 005 proves a concurrent two-process step by running the halves sequentially",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "LUNA-P2-002",
+      "severity": "P2",
+      "title": "Phase 007 closure text says the permission split is absent after it landed",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/acceptance-criteria.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Phase 007 completion state inverted: four documents say not built, tree says built",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "Phase 007 task list cannot express completion: 8 of 102 headings carry no status marker",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Phase 009 closure statement defers a closure commit its own task list records as landed",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "LUNA-P2-003",
+      "severity": "P2",
+      "title": "Phase 009 cross-reference leaves REQ-010 and REQ-011 without acceptance criteria",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md",
+      "line": 74,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "Phase 009 decision record still describes the report as parsing 33 YAML files",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "findingId": "R5-P2-003",
+      "severity": "P2",
+      "title": "R1-P1-003 downgraded to P2: the phase 004 delta table is genuinely missing",
+      "file": "specs/system-speckit/053-ci-workflow-efficiency",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 15
+  },
+  "openFindingsCount": 19,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 4,
+  "activeP2": 15
+}

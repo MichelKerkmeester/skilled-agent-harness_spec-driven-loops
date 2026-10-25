@@ -97,7 +97,8 @@ fi
 # A private skill belongs to the operator, not to this repository: staging one
 # publishes a file that exists only on this machine. Names are read NUL-separated,
 # so a path with a space or non-ASCII bytes is refused rather than skipped, and
-# --diff-filter=ACMR ignores a staged deletion, which publishes nothing. The match
+# --diff-filter=ACMRT ignores a staged deletion, which publishes nothing, while a
+# type change still counts because the new blob is published. The match
 # is on the path name, so a renamed copy is not caught; a content match would need
 # a manifest of private bytes to compare against, and this guard owns no such
 # manifest. There is no bypass variable and no gate-config row: staging a private
@@ -108,7 +109,7 @@ while IFS= read -r -d '' PRIVATE_PATH; do
   if [[ "$PRIVATE_PATH" =~ $PRIVATE_SKILL_RE ]]; then
     PRIVATE_STAGED+=("$PRIVATE_PATH")
   fi
-done < <(git diff --cached --name-only -z --diff-filter=ACMR)
+done < <(git diff --cached --name-only -z --diff-filter=ACMRT)
 if [[ "${#PRIVATE_STAGED[@]}" -gt 0 ]]; then
   echo "BLOCKED [gate:private-skill]: a private skill is staged and would be published:" >&2
   for PRIVATE_PATH in "${PRIVATE_STAGED[@]}"; do

@@ -1,0 +1,2 @@
+warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.
+Hook failed: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && node .skilled/skills/system-spec-kit…: Failed to parse Claude hook output: missing field `decision`

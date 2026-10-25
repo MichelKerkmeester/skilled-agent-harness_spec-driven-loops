@@ -1,0 +1,4 @@
+repaired specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

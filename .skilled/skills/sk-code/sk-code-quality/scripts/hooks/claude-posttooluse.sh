@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CLAUDE POSTTOOLUSE ADAPTER
+# ───────────────────────────────────────────────────────────────
 """
 Claude Code PostToolUse compatibility adapter — source edit warnings.
 

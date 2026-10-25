@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Add User Authentication"
-description: "needed for a simple authentication feature. Note the straightforward task numbering"
+description: "Level 1 task list for the user authentication example, with straightforward sequential task numbering."
 trigger_phrases:
   - "task breakdown"
   - "implementation tasks"

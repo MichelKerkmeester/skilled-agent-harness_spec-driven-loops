@@ -1,0 +1,276 @@
+=== .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+## Metadata
+  <!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-recommend-level-quiet`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
+## What Was Built
+  <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--quiet` prints one line. The default report is unchanged. WEAK: Implemented the feature. -->
+## How It Was Delivered
+  <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--quiet` and the default form, then the suite. All three passed. WEAK: Tested and shipped. -->
+## Key Decisions
+  <!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Flag over env var: callers already pass flags. WEAK: Used the best approach. -->
+## Verification
+  <!-- FILL: Write one check per row with the exact output. GOOD: `--quiet` line count: 1. Default line count: 17. Suite: PASSED. WEAK: All tests pass. -->
+## Known Limitations
+  <!-- FILL: Name one real limit and the workaround. GOOD: `--quiet` does not hide stderr warnings. Redirect stderr when silence is required. WEAK: No limitations. -->
+=== .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+## 1. SUMMARY
+  <!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
+## 2. QUALITY GATES
+  <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `rg -n 'quiet' recommend-level.sh` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
+## 3. ARCHITECTURE
+  <!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `recommend-level.sh`. WEAK: Standard architecture. -->
+## FIX ADDENDUM: AFFECTED SURFACES
+  <!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
+## 4. IMPLEMENTATION PHASES
+  <!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
+## 5. TESTING STRATEGY
+  <!-- FILL: Name the one command you will run and the output it must print. GOOD: `--quiet` prints 1 line. The default prints 17. WEAK: Test it manually. -->
+## 6. DEPENDENCIES
+  <!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
+## 7. ROLLBACK PLAN
+  <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
+## L2: PHASE DEPENDENCIES
+  <!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+## L2: EFFORT ESTIMATION
+  <!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
+## L2: ENHANCED ROLLBACK
+  <!-- FILL: Name the trigger, the steps and the data reversal. Write `No` when no data changes. GOOD: Trigger: default output changes. Steps: revert one commit, rerun the two commands. WEAK: Roll back if needed. -->
+## L3: DEPENDENCY GRAPH
+  <!-- FILL: Draw the component order and fill the matrix with produces and blocks. GOOD: Script to test to close. WEAK: Components depend on each other. -->
+## L3: CRITICAL PATH
+  <!-- FILL: Name the longest chain and its total. List what can run in parallel. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
+## L3: MILESTONES
+  <!-- FILL: Name three milestones with a command-checkable success criterion. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
+## L3: ARCHITECTURE DECISION RECORD
+  <!-- FILL: Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We made a decision. -->
+## L3+: AI EXECUTION FRAMEWORK
+  <!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
+## L3+: WORKSTREAM COORDINATION
+  <!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
+## L3+: COMMUNICATION PLAN
+  <!-- FILL: Name the update cadence and the escalation path. GOOD: A note in `goal.md` section 4 after each task. WEAK: Communicate regularly. -->
+=== .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+## EXECUTIVE SUMMARY
+  <!-- FILL: Write three sentences: the problem, the change and the proof. GOOD: Callers parse a 17-line report to read one value. The flag prints one line. A line count proves it. WEAK: This document describes the feature. -->
+## 1. METADATA
+  <!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/recommend-level-quiet`. WEAK: Priority TBD. Status maybe. -->
+## 2. PROBLEM & PURPOSE
+  <!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The recommend-level script prints a 17-line report, so a caller that needs only the level cannot parse the answer. WEAK: The script has issues with output. -->
+## 3. SCOPE
+  <!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--quiet` flag that prints only the recommended-level line. WEAK: Update the script and docs. -->
+## 4. REQUIREMENTS
+  <!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With `--quiet`, stdout holds exactly one line that starts with `Recommended Level:`. WEAK: The flag should work well. -->
+## 5. SUCCESS CRITERIA
+  <!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: `recommend-level.sh --quiet --loc 500 --files 15` prints one line and exits 0. WEAK: The feature is successful. -->
+## 6. RISKS & DEPENDENCIES
+  <!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A caller parses the level line and breaks when the label changes. Mitigation: keep the label stable and test it. WEAK: There may be some risk. -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+  <!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+  <!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service. GOOD: The flag adds no measurable time: the same 40 ms run. WEAK: Performance is good. -->
+## L2: EDGE CASES
+  <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+## 8. EDGE CASES
+  <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+## L2: COMPLEXITY ASSESSMENT
+  <!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+## 9. COMPLEXITY ASSESSMENT
+  <!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+## 10. OPEN QUESTIONS
+  <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+## 7. OPEN QUESTIONS
+  <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
+## 10. RISK MATRIX
+  <!-- FILL: List each risk with impact, likelihood and one mitigation. GOOD: R1: a caller parses the label. Impact M, likelihood L. Mitigation: a test pins the label. WEAK: Some risks exist. -->
+## 11. USER STORIES
+  <!-- FILL: Write one story per user. Name the actor, the want and the benefit. GOOD: As a build script, I want one parseable line, so that I can skip the report. WEAK: Users want a quiet mode. -->
+## 12. APPROVAL WORKFLOW
+  <!-- FILL: Name the real approver for each checkpoint and the date it passed. GOOD: Spec review: operator, 2026-10-24. WEAK: Approvals pending. -->
+## 13. COMPLIANCE CHECKPOINTS
+  <!-- FILL: Mark each box or write `N/A` with one reason. Never leave the template wording. GOOD: Mark N/A with the reason: the script reads no user data and opens no socket. WEAK: Compliance checked. -->
+## 14. STAKEHOLDER MATRIX
+  <!-- FILL: Name each stakeholder, their interest and how you update them. GOOD: Build team, high interest, weekly note. WEAK: Stakeholders informed. -->
+## 15. CHANGE LOG
+  <!-- FILL: Add one row per version with the date and the change. GOOD: v1.0 2026-10-24: added `--quiet`. WEAK: Initial version. -->
+## 16. OPEN QUESTIONS
+  <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+## 12. OPEN QUESTIONS
+  <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` suppress warnings? No, stderr is unchanged. WEAK: Edge cases are unclear. -->
+## RELATED DOCUMENTS
+  <!-- FILL: Leave the four links in place. -->
+=== .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+## Task Notation
+  <!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `S` is the script path. `P` is the packet path. WEAK: Variables are defined below. -->
+## Phase 1: Setup
+  <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Read the output block in `recommend-level.sh`. Verify: `rg -n 'Recommended Level'` prints one line. WEAK: T001 Set up the project. -->
+## Phase 2: Implementation
+  <!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--quiet` branch. Verify: `--quiet` prints one line. WEAK: T002 Implement the feature. -->
+## Phase 3: Verification
+  <!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `wc -l` prints 1 and 17. WEAK: T003 Test everything. -->
+## Completion Criteria
+  <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--quiet` prints one line and the suite passes. WEAK: Work is complete. -->
+## Cross-References
+  <!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
+## Verification Checklist
+  <!-- FILL: Fill each checklist section below. -->
+## Verification Protocol
+  <!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+## Pre-Implementation
+  <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
+## Code Quality
+  <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n recommend-level.sh` exits 0. WEAK: Code is clean. -->
+## Testing Checklist
+  <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--quiet` prints one line. WEAK: Tests pass. -->
+## Fix Completeness
+  <!-- FILL: Write one check per finding class this packet can produce. Delete the rows that do not apply. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+## Security
+  <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] The script reads no credential. WEAK: Security is fine. -->
+## Documentation
+  <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` name the same flag. WEAK: Docs are updated. -->
+## File Organization
+  <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
+## Verification Summary
+  <!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+## L3+: Architecture Verification
+  <!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+## L3+: Performance Verification
+  <!-- FILL: Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] The flag adds under 5 ms. WEAK: Performance is verified. -->
+## L3+: Deployment Readiness
+  <!-- FILL: Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
+## L3+: Compliance Verification
+  <!-- FILL: Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
+## L3+: Documentation Verification
+  <!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
+## L3+: Sign-Off
+  <!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+=== .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+## 1. METADATA
+  <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-recommend-level-quiet`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
+## 2. CRITERIA
+  <!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--quiet` runs, Then `wc -l` prints 1. WEAK: The feature works. -->
+## 3. CLOSURE STATEMENT
+  <!-- FILL: Write Yes or No and one sentence that names the criteria that carried the packet. GOOD: No. AC-002 is unmet. WEAK: Almost done. -->
+=== .skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl
+## 1. METADATA
+  <!-- FILL: Fill the document id, the date and the author. GOOD: BA-001, 2026-10-24, conductor. WEAK: TBD. -->
+## 2. SUMMARY
+  <!-- FILL: Write two sentences: what changed and the net effect. GOOD: The flag adds one line of output. The default path is unchanged. WEAK: A change was made. -->
+## 3. COMPARISON
+  <!-- FILL: Put the before and after side by side, one row per behavior. GOOD: Before: 17 lines. After with the flag: 1 line. WEAK: Before and after differ. -->
+## 4. NET EFFECT
+  <!-- FILL: State the one effect a reader should remember. GOOD: A caller can now read the level without parsing the report. WEAK: It is better. -->
+## 5. NOTES & CAVEATS
+  <!-- FILL: Name one caveat and one thing not covered. GOOD: stderr is unchanged. No Windows test ran. WEAK: Some caveats apply. -->
+=== .skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
+## 1. PROBLEM SUMMARY
+  <!-- FILL: State the failure, the command and the first bad output. GOOD: `--quiet` prints 3 lines. Expected 1. WEAK: It is broken. -->
+## 2. ATTEMPTED FIXES
+  <!-- FILL: List each attempt and its result. GOOD: Moved the exit after the print. Still 3 lines. WEAK: Tried some fixes. -->
+## 3. CONTEXT FOR SPECIALIST
+  <!-- FILL: Give the specialist the files, the command and the evidence. GOOD: File `recommend-level.sh` line 510. Command `--quiet`. Output 3 lines. WEAK: See the code. -->
+## 4. RECOMMENDED NEXT STEPS
+  <!-- FILL: Name the next check and the expected result. GOOD: Run `bash -x` and confirm one `echo` on the quiet path. WEAK: Keep debugging. -->
+## 5. HANDOFF CHECKLIST
+  <!-- FILL: List what the next person needs before starting. GOOD: Branch, start commit and the failing command. WEAK: Everything is in the ticket. -->
+=== .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+## ADR-001: [Decision Title]
+  <!-- FILL: Write one ADR per decision with context, choice, consequences and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We decided on a flag. -->
+=== .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
+## 1. DURABLE DIRECTIVE
+  <!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Print one parseable level line on request. WEAK: Improve the script. -->
+## 2. BINDING
+  <!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
+## 3. COMPLETION CRITERIA
+  <!-- FILL: Write one command-checkable criterion per line. GOOD: `--quiet` prints 1 line and exits 0. WEAK: The work is done. -->
+## 4. LOG
+  <!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `rg -n quiet` printed line 510. WEAK: Progress is good. -->
+=== .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
+## 1. Handover Summary
+  <!-- FILL: Write three sentences: what shipped, what is open and where to start. GOOD: The flag shipped. Docs are open. Start at `tasks.md` T004. WEAK: Work was handed over. -->
+## 2. Context Transfer
+  <!-- FILL: Name the files, the decisions and the state a successor needs. GOOD: Branch `feat/quiet`, start commit `abc123`. WEAK: Context is in the repo. -->
+## 3. For Next Session
+  <!-- FILL: Write the first command the next session should run. GOOD: Run `bash validate.sh <packet> --strict`. WEAK: Continue the work. -->
+## 4. Validation Checklist
+  <!-- FILL: List the checks the successor must rerun. GOOD: `--quiet` line count, default line count and the suite. WEAK: Validate everything. -->
+## 5. Session Notes
+  <!-- FILL: Record what was tried and what was learned. GOOD: The quiet branch must return before the report block. WEAK: Notes below. -->
+=== .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
+## WHEN TO USE THIS TEMPLATE
+  <!-- FILL: State the one question this research answers. GOOD: A flag fits because callers already pass flags. WEAK: Research this topic. -->
+## 1. METADATA
+  <!-- FILL: Fill the research id, the date and the owner. GOOD: R-001, 2026-10-24, conductor. WEAK: TBD. -->
+## FILE ORGANIZATION
+  <!-- FILL: List each file this research produces. GOOD: `research.md`, `notes/` and `sources/`. WEAK: Files are organized. -->
+## 2. INVESTIGATION REPORT
+  <!-- FILL: State the method and the sources in one paragraph. GOOD: Read the script, ran both forms, counted lines. WEAK: We investigated. -->
+## 3. EXECUTIVE OVERVIEW
+  <!-- FILL: Write the answer in three sentences before the detail. GOOD: A flag fits. Callers already pass flags. An env var adds a hidden input. WEAK: This is the overview. -->
+## 4. CORE ARCHITECTURE
+  <!-- FILL: Name the components the answer touches. GOOD: One script and one output branch. WEAK: The architecture is standard. -->
+## 5. TECHNICAL SPECIFICATIONS
+  <!-- FILL: Describe the interface the answer adds. GOOD: `--quiet`: no argument, one output line. WEAK: The API is described. -->
+## 6. CONSTRAINTS & LIMITATIONS
+  <!-- FILL: Name each constraint and its source. GOOD: Bash 3.2 must run the script. WEAK: There are constraints. -->
+## 7. INTEGRATION PATTERNS
+  <!-- FILL: Name each caller and how it uses the result. GOOD: The build script reads the last line. WEAK: It integrates. -->
+## 8. IMPLEMENTATION GUIDE
+  <!-- FILL: Write the steps in order, one command each. GOOD: 1. Add the flag. 2. Return before the report. WEAK: Follow the guide. -->
+## 9. CODE EXAMPLES & SNIPPETS
+  <!-- FILL: Show one working example and its output. GOOD: `recommend-level.sh --quiet --loc 500` prints one line. WEAK: Code below. -->
+## 10. TESTING & DEBUGGING
+  <!-- FILL: Name the commands that prove the answer. GOOD: `wc -l` prints 1 and 17. WEAK: Test it. -->
+## 11. PERFORMANCE OPTIMIZATION
+  <!-- FILL: Name the measured cost, or write `N/A` with a reason. GOOD: The flag adds under 5 ms. WEAK: It is fast. -->
+## 12. SECURITY CONSIDERATIONS
+  <!-- FILL: Name each security surface, or write `N/A` with a reason. GOOD: The flag reads no user input. WEAK: It is secure. -->
+## 13. FUTURE-PROOFING & MAINTENANCE
+  <!-- FILL: Name what a future change must preserve. GOOD: Keep the `Recommended Level:` prefix. WEAK: Maintain it. -->
+## 14. API REFERENCE
+  <!-- FILL: List each flag and its effect. GOOD: `--quiet`: one line. `--json`: a JSON object. WEAK: See the flags. -->
+## 15. TROUBLESHOOTING GUIDE
+  <!-- FILL: Name one failure and its fix. GOOD: Three lines with `--quiet`: the report block ran first. WEAK: Check the logs. -->
+## 16. ACKNOWLEDGEMENTS
+  <!-- FILL: Name the sources and people that helped. GOOD: The script author and the phase 1 baseline. WEAK: Thanks. -->
+## APPENDIX
+  <!-- FILL: Add terms a new reader needs. GOOD: `quiet`: one-line mode. WEAK: Appendix below. -->
+## CHANGELOG & UPDATES
+  <!-- FILL: Add one row per version with the date and the change. GOOD: 1.0.0, 2026-10-24, initial research. WEAK: Initial version. -->
+=== .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+## Summary
+  <!-- FILL: Write two sentences: what this map covers and how to use it. GOOD: Every path a new session needs. Start at section 1. WEAK: This is a map. -->
+## 1. READMEs
+  <!-- FILL: List each README and why it matters. GOOD: `SKILL.md`, the router entry. WEAK: Read the READMEs. -->
+## 2. Documents
+  <!-- FILL: List each doc and its role. GOOD: `template-guide.md`, the authoring rules. WEAK: Docs are listed. -->
+## 3. Commands
+  <!-- FILL: List each command and when to run it. GOOD: `/speckit:plan`, before authoring. WEAK: Commands are listed. -->
+## 4. Agents
+  <!-- FILL: List each agent and its scope. GOOD: `markdown`, writes spec docs. WEAK: Agents are listed. -->
+## 5. Skills
+  <!-- FILL: List each skill and its trigger. GOOD: `system-spec-kit`, spec folders. WEAK: Skills are listed. -->
+## 6. Specs
+  <!-- FILL: List each spec folder and its state. GOOD: `054-weak-model-spec-authoring`, planning. WEAK: Specs are listed. -->
+## 7. Scripts
+  <!-- FILL: List each script and its one job. GOOD: `validate.sh`, strict validation. WEAK: Scripts are listed. -->
+## 8. Tests
+  <!-- FILL: List each test and what it guards. GOOD: `example-drift.vitest.ts`, anchor drift. WEAK: Tests are listed. -->
+## 9. Config
+  <!-- FILL: List each config file and its effect. GOOD: `spec-kit-docs.json`, template versions. WEAK: Config is listed. -->
+## 10. Meta
+  <!-- FILL: Record how the map itself is maintained. GOOD: Regenerate after a phase close. WEAK: Meta notes. -->
+=== .skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl
+## 1. METADATA
+  <!-- FILL: Fill the roadmap id, the date and the owner. GOOD: RM-001, 2026-10-24, conductor. WEAK: TBD. -->
+## 2. PHASES: NOW / NEXT / LATER
+  <!-- FILL: Put each item in one bucket and name its proof. GOOD: Now: the flag. Next: docs. Later: a Windows test. WEAK: Items are planned. -->
+## 3. MILESTONES & TARGETS
+  <!-- FILL: Name each milestone and the date it must pass. GOOD: M1, 2026-10-24, the flag prints one line. WEAK: Milestones are set. -->
+## 4. DEPENDENCIES
+  <!-- FILL: Name each dependency and what it blocks. GOOD: Bash 3.2 blocks the test matrix. WEAK: Dependencies exist. -->
+=== .skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl
+## 1. METADATA
+  <!-- FILL: Fill the timeline id, the date and the owner. GOOD: TL-001, 2026-10-24, conductor. WEAK: TBD. -->
+## 2. TIMELINE
+  <!-- FILL: Put each event in date order with its evidence. GOOD: 2026-10-24: flag merged. `rg -n quiet` printed line 510. WEAK: Events happened. -->
+## 3. MILESTONES
+  <!-- FILL: Name each milestone and whether it passed. GOOD: M1 passed. One line printed. WEAK: Milestones met. -->

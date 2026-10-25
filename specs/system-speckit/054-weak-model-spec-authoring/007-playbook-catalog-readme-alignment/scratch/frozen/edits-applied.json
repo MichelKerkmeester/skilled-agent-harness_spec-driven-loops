@@ -1,0 +1,98 @@
+[
+ {
+  "label": "E1.1",
+  "file": ".skilled/skills/system-spec-kit/README.md",
+  "old": "| **Validation** | the 41-rule registry with three strict-only rules gated behind `--strict` |",
+  "new": "| **Validation** | the 41-rule registry with three strict-only rules gated behind `--strict` |\n| **Authoring** | one short card as the default load for the four writing intents, a placeholder gate that warns while a packet is Draft, and two read-only guards for examples and card sync |"
+ },
+ {
+  "label": "E1.2",
+  "file": ".skilled/skills/system-spec-kit/README.md",
+  "old": "| Placeholder check fails | run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values |",
+  "new": "| Placeholder check fails | run `check-placeholders.sh` and replace every `[YOUR_VALUE_HERE: ...]` token. A Draft packet may warn and still pass strict |"
+ },
+ {
+  "label": "E1.3",
+  "file": ".skilled/skills/system-spec-kit/README.md",
+  "old": "A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new placeholder values that need filling.",
+  "new": "A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new value tokens that need filling."
+ },
+ {
+  "label": "E1.4",
+  "file": ".skilled/skills/system-spec-kit/README.md",
+  "old": "| `check-placeholders.sh` | find remaining `[PLACEHOLDER]` values after a level upgrade |",
+  "new": "| `check-placeholders.sh` | find remaining `[YOUR_VALUE_HERE: ...]` tokens after a level upgrade |\n| `check-example-drift.sh` | report an example whose anchors or description drifted from its template |\n| `check-card-sync.sh` | report a disagreement between the authoring card, the router, the leaf inventory and the checklist |"
+ },
+ {
+  "label": "E1.5",
+  "file": ".skilled/skills/system-spec-kit/README.md",
+  "old": "| [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |",
+  "new": "| [`references/workflows/spec-authoring-card.md`](./references/workflows/spec-authoring-card.md) | the short authoring path the four writing intents load first |\n| [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |"
+ },
+ {
+  "label": "E2.1",
+  "file": ".skilled/skills/system-spec-kit/templates/README.md",
+  "old": "- `core/`, `addons/` and `packet-types/` `*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.\n- `examples/` stores rendered reference packets for each supported Level.",
+  "new": "- `core/`, `addons/` and `packet-types/` `*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.\n- Every content section carries one `<!-- FILL: ... -->` instruction below its heading, with a good and a weak answer where the section needs one.\n- The four core templates and `addons/acceptance-criteria.md.tmpl` are stamped v2.3 and ship `[YOUR_VALUE_HERE: ...]` tokens in place of bare hints.\n- `examples/` stores rendered reference packets for each supported Level."
+ },
+ {
+  "label": "E2.2",
+  "file": ".skilled/skills/system-spec-kit/templates/README.md",
+  "old": "For template changes, also run the template and resolver test suite used by the repository.",
+  "new": "For template changes, also run the golden render, the fill guidance test and the example drift guard:\n\n```bash\ncd .skilled/skills/system-spec-kit\n./node_modules/.bin/vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts --config vitest.config.ts\n./node_modules/.bin/vitest run runtime/cli/tests/template-fill-guidance.vitest.ts --config vitest.config.ts\nbash runtime/cli/spec/check-example-drift.sh\n```\n\nExpected: `Tests  12 passed (12)`, `Tests  16 passed (16)` and `EXAMPLE_DRIFT_OK`."
+ },
+ {
+  "label": "E3.1",
+  "file": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+  "old": "| `PLACEHOLDER_FILLED` | ERROR    | Core files    | No unfilled template placeholders              |",
+  "new": "| `PLACEHOLDER_FILLED` | ERROR or WARNING | Core files | No unfilled template tokens. A v2.3 doc warns while Draft |"
+ },
+ {
+  "label": "E3.2",
+  "file": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+  "old": "## 4. PLACEHOLDER_FILLED\n\n**Severity:** ERROR  \n**Description:** Detects unfilled template placeholders that should be replaced with actual content.",
+  "new": "## 4. PLACEHOLDER_FILLED\n\n**Severity:** ERROR, or WARNING for an unfilled token in a doc stamped v2.3 or later while its status is Draft  \n**Description:** Detects unfilled template placeholders that should be replaced with actual content."
+ },
+ {
+  "label": "E4.1",
+  "file": ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
+  "old": "| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders       |",
+  "new": "| `PLACEHOLDER_FILLED` | ERROR or WARNING | No unfilled `[YOUR_VALUE_HERE:]` tokens. A v2.3 doc warns while Draft |"
+ },
+ {
+  "label": "E4.2",
+  "file": ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
+  "old": "- `[YOUR_VALUE_HERE: ...]` - Template placeholder, must be filled",
+  "new": "- `[YOUR_VALUE_HERE: ...]` - Template token, must be filled. In a doc stamped v2.3 or later it is a warning while `spec.md` has the status Draft, and an error at any other status"
+ },
+ {
+  "label": "E5.1",
+  "file": ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+  "old": "| `[OPTIONAL: description]` | Optional fields | `[OPTIONAL: link to spec.md]` |\n\n### Usage Guidelines",
+  "new": "| `[OPTIONAL: description]` | Optional fields | `[OPTIONAL: link to spec.md]` |\n\nA scaffold stamped v2.3 or later ships each hint as a `[YOUR_VALUE_HERE: ...]` token. Replace the whole token, brackets included, with real content. While `spec.md` has the status Draft an unfilled token is a warning and strict validation can still pass. At every other status it is an error. A doc with an older stamp keeps the error it always had.\n\n### Usage Guidelines"
+ },
+ {
+  "label": "E5.2",
+  "file": ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+  "old": "| Placeholder completion | No unfilled `[YOUR_VALUE_HERE:]` | ERROR |",
+  "new": "| Placeholder completion while Draft | No unfilled `[YOUR_VALUE_HERE:]` token in a v2.3 doc | WARNING |\n| Placeholder completion after Draft | No unfilled `[YOUR_VALUE_HERE:]` token | ERROR |"
+ },
+ {
+  "label": "E6.1",
+  "file": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+  "old": "- [template-guide.md](../templates/template-guide.md) - Template selection, adaptation, and quality standards",
+  "new": "- [spec-authoring-card.md](spec-authoring-card.md) - The short authoring path the four writing intents load first\n- [template-guide.md](../templates/template-guide.md) - Long-form template selection, adaptation, and quality standards"
+ },
+ {
+  "label": "T007-1",
+  "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+  "old": "- `retrieval/`\n- `tooling-and-scripts/`\n- `ux-hooks/`",
+  "new": "- `retrieval/`\n- `template-authoring/` - placeholder gate, fill guidance, example drift guard and the authoring card\n- `tooling-and-scripts/`\n- `ux-hooks/`"
+ },
+ {
+  "label": "T007-2",
+  "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+  "old": "## 8. AUTOMATED TEST CROSS-REFERENCE",
+  "new": "### 7.9 Template Authoring\n\n| Playbook ID | Scenario | Scenario File | Catalog Entry |\n|---|---|---|---|\n| 476 | Placeholder token warning while Draft | [476](template-authoring/placeholder-token-warning-while-draft.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |\n| 477 | Placeholder token error after Draft | [477](template-authoring/placeholder-token-error-after-draft.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |\n| 478 | Placeholder gate unchanged for a v2.2 doc | [478](template-authoring/placeholder-gate-legacy-stamp-unchanged.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |\n| 479 | Example drift guard catches a leaked description | [479](template-authoring/example-drift-guard-catches-leak.md) | [example-drift-guard](../feature-catalog/tooling-and-scripts/example-drift-guard.md) |\n| 480 | Golden render of every level | [480](template-authoring/golden-render-all-levels.md) | [template-section-fill-guidance](../feature-catalog/tooling-and-scripts/template-section-fill-guidance.md) |\n| 481 | Authoring card loaded by four intents | [481](template-authoring/authoring-card-router-intents.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |\n| 482 | Authoring card sync guard | [482](template-authoring/authoring-card-sync-guard.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |\n| 483 | Level 1 packet authored from the card | [483](template-authoring/level-1-packet-authored-from-card.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |\n\n---\n\n## 8. AUTOMATED TEST CROSS-REFERENCE"
+ }
+]

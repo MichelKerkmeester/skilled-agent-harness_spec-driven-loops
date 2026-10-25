@@ -1,0 +1,42 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Read only the files listed; open no other path.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a test report and the evidence behind it. A script checks your output line by line.
+
+BACKGROUND: Eight manual-testing scenarios (playbook ids 476 to 483) ran in a disposable git worktree.
+Seven were scripted (S1 to S7 = ids 476 to 482). S8 (id 483) dispatched one cli-devin worker. No scenario
+failed, so no fix brief or fix rerun exists, and that is correct. The worktree was then removed.
+
+READ THESE FILES. Every path starts with specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/review/T017-input/ and is called <IN> below.
+1. <IN>/report-README.md - the report.
+2. <IN>/results.csv and <IN>/results.tsv - the verdict rows.
+3. <IN>/scenarios.tsv - one row per scenario: label, id, scenario file, then up to three frozen pass patterns (regular expressions, matched per line, a pattern holding \n spans lines).
+4. <IN>/verdicts.md and <IN>/source.md.
+5. <IN>/outcomes/476.json to <IN>/outcomes/483.json - the eight outcome files.
+6. <IN>/runs/ - for each id: <id>.txt is the captured run, <id>.txt.check.txt is the comparator diagnosis, <id>.txt.stderr.txt is empty on a pass. 483.worker-reply.txt and 483.worker-val.txt are the worker's reply and the validation output.
+7. <IN>/scenario-pass-sections.txt - the Expected, Evidence and Pass / Fail text of each scenario, the authority for what counts as a pass.
+8. <IN>/fixes/fix.patch, <IN>/fixes/status.txt, <IN>/fixes/gate.txt - the saved worktree diff, status and patch gate.
+9. <IN>/worktree/removal.txt, <IN>/worktree/evidence-before-remove.txt, <IN>/worktree/create.out, <IN>/worktree/provision-exit.txt, <IN>/worktree/own-code.txt, <IN>/worktree/precondition.txt - the worktree record.
+10. <IN>/main-status-compare.txt - the primary checkout status comparison.
+11. <IN>/x1-amendments.md - the amendments made before the first run, with before and after.
+
+CHECK THESE SIX THINGS:
+(1) For each scenario, the captured run <IN>/runs/<id>.txt matches the verdict in results.csv and in the outcome JSON.
+(2) Every non-empty frozen pattern in scenarios.tsv for that scenario is present in the run, and the run also satisfies the scenario's own Pass / Fail text in scenario-pass-sections.txt.
+(3) results.csv, results.tsv, verdicts.md, the outcome JSON files and the README table agree on the eight verdicts, the playbook ids and the counts. The README headline follows the rule: PASS when all 8 are PASS or FIXED, otherwise FAIL with counts.
+(4) removal.txt recorded REMOVAL_OK only after every changed path in status.txt appeared in fix.patch, the branch carried no commit beyond the base ref, and the worktree and branch are reported gone. A forced removal is acceptable only when the sole blocker is an untracked file that fix.patch holds.
+(5) main-status-compare.txt shows no change under a watched path.
+(6) The README claims (timings, counts, the wording about amendments and the worker's two strict runs) are supported by the files above, and x1-amendments.md matches the patterns in scenarios.tsv.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<line> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

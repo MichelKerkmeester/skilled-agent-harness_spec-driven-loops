@@ -1704,6 +1704,75 @@ test('consume removes the relaunch file under the record lock', (t) => {
   assert.equal(fs.existsSync(`${filePath}.lock`), false);
 });
 
+// The wrapper consumes in a call of its own after should-relaunch approved the hop, so a
+// withdraw can land in between. Consume is the last point that can still see it.
+for (const reason of ['cancelled', 'user-message']) {
+  test(`consume reports withdrawn for a record ${reason} before it`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    const filePath = writeRelaunchRecord(sandbox, {
+      loopId: LOOP_ID,
+      status: 'disarmed',
+      disarmReason: reason,
+      handoff: handoffPath,
+    });
+
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(JSON.parse(result.stdout), {
+      handoff: handoffPath,
+      spec_folder: SPEC_FOLDER,
+      note: 'open',
+      withdrawn: true,
+    });
+    assert.equal(fs.existsSync(filePath), false);
+  });
+}
+
+// A record read before the lock is taken can be one a withdraw replaces before the unlink,
+// so the withdrawn check would judge a record that no longer exists.
+test('consume reads the record under the same lock as its unlink', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed' });
+  const probePath = path.join(sandbox.root, 'read-probe.json');
+  const preloadPath = path.join(sandbox.root, 'read-probe.cjs');
+  fs.writeFileSync(preloadPath, `
+    const fs = require('node:fs');
+    const realReadFileSync = fs.readFileSync;
+    fs.readFileSync = (target, ...rest) => {
+      if (String(target) === ${JSON.stringify(filePath)}) {
+        fs.writeFileSync(${JSON.stringify(probePath)}, JSON.stringify({
+          lockHeld: fs.existsSync(${JSON.stringify(`${filePath}.lock`)}),
+        }));
+      }
+      return realReadFileSync(target, ...rest);
+    };
+  `);
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID], {
+    ...sandbox.env,
+    NODE_OPTIONS: `--require=${preloadPath}`,
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(probePath, 'utf8')), { lockHeld: true });
+  assert.equal(fs.existsSync(filePath), false);
+});
+
+test('consume output has no withdrawn key for an armed record or another disarm reason', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  for (const fields of [{ status: 'armed' }, { status: 'disarmed', disarmReason: 'expired' }]) {
+    writeRelaunchRecord(sandbox, { loopId: LOOP_ID, handoff: handoffPath, ...fields });
+
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(Object.hasOwn(JSON.parse(result.stdout), 'withdrawn'), false, result.stdout);
+  }
+});
+
 test('consume returns the handoff path and its spec folder', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);

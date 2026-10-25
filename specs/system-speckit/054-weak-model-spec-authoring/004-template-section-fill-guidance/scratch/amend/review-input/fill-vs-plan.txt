@@ -1,0 +1,36 @@
+ROW B03 core/spec.md.tmpl ## L2: EDGE CASES
+  PLAN INSTRUCTION : Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section.
+  SHIPPED LINE     : <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+  PLAN GOOD/WEAK   : Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. / Handle edge cases.
+  EQUAL            : True
+
+ROW B05 core/spec.md.tmpl ## L2: COMPLEXITY ASSESSMENT
+  PLAN INSTRUCTION : Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section.
+  SHIPPED LINE     : <!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+  PLAN GOOD/WEAK   : Scope 4/25: one file and 12 lines. Total 18/100. / Complexity is medium.
+  EQUAL            : True
+
+ROW B18 core/plan.md.tmpl ## FIX ADDENDUM: AFFECTED SURFACES
+  PLAN INSTRUCTION : Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies.
+  SHIPPED LINE     : <!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
+  PLAN GOOD/WEAK   : `recommend-level.sh`: owns the output. Action: update. / Various files.
+  EQUAL            : True
+
+ROW B39 core/tasks.md.tmpl ## L3+: Architecture Verification
+  PLAN INSTRUCTION : Write one check per ADR, or delete the section when the packet records no ADR.
+  SHIPPED LINE     : <!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+  PLAN GOOD/WEAK   : CHK-100 [P0] ADR-001 is followed by T002. / Architecture is verified.
+  EQUAL            : True
+
+ROW B43 core/tasks.md.tmpl ## L3+: Documentation Verification
+  PLAN INSTRUCTION : Write one check per document pair that must agree, or delete the section when the packet holds no paired documents.
+  SHIPPED LINE     : <!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
+  PLAN GOOD/WEAK   : CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. / Docs are verified.
+  EQUAL            : True
+
+ROW B44 core/tasks.md.tmpl ## L3+: Sign-Off
+  PLAN INSTRUCTION : Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies.
+  SHIPPED LINE     : <!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write `N/A` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+  PLAN GOOD/WEAK   : Conductor, runs every task. Operator, merges the commit. / Signed off.
+  EQUAL            : True
+

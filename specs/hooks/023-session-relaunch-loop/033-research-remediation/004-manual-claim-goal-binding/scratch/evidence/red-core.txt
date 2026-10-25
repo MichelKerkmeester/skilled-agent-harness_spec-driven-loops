@@ -1,0 +1,32 @@
+✖ claim seed parser inverts the seed suffix (0.900708ms)
+✖ usableGoalPacket is exported by the core (2.746375ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.395584
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2357:1
+✖ claim seed parser inverts the seed suffix (0.900708ms)
+  TypeError: parseClaimSeed is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2364:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2391:1
+✖ usableGoalPacket is exported by the core (2.746375ms)
+  TypeError: usableGoalPacket is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2400:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

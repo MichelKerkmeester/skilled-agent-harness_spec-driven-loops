@@ -1,0 +1,99 @@
+MUTATED
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/placeholder-token-gate.vitest.ts (5 tests | 1 failed) 698ms
+     × keeps the strict verdict for a v2.2 doc even while the packet is a Draft 111ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED token gate > keeps the strict verdict for a v2.2 doc even while the packet is a Draft
+AssertionError: expected 'warn' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "warn"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:111:26
+    109|     const folder = buildPacket({ stamp: 'v2.2', status: 'Draft', line:…
+    110|     const { entry, passed } = runOrchestrator(folder);
+    111|     expect(entry.status).toBe('error');
+       |                          ^
+    112|     expect(passed).toBe(false);
+    113|     expect(runShellRule(folder)).toBe('error');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  14:18:17
+   Duration  769ms (transform 12ms, setup 11ms, import 6ms, tests 698ms, environment 0ms)
+MUTATED
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/placeholder-token-gate.vitest.ts (5 tests | 1 failed) 718ms
+     × fails a v2.3 doc with an unfilled token once the status is not Draft 120ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED token gate > fails a v2.3 doc with an unfilled token once the status is not Draft
+AssertionError: expected 'warn' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "warn"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:103:26
+    101|     const folder = buildPacket({ stamp: 'v2.3', status: 'Complete', li…
+    102|     const { entry, passed } = runOrchestrator(folder);
+    103|     expect(entry.status).toBe('error');
+       |                          ^
+    104|     expect(passed).toBe(false);
+    105|     expect(runShellRule(folder)).toBe('error');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  14:18:19
+   Duration  792ms (transform 13ms, setup 11ms, import 7ms, tests 718ms, environment 0ms)
+MUTATED
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/placeholder-token-gate.vitest.ts (5 tests | 1 failed) 791ms
+     × keeps the strict verdict for a v2.2 doc even while the packet is a Draft 200ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/placeholder-token-gate.vitest.ts > PLACEHOLDER_FILLED token gate > keeps the strict verdict for a v2.2 doc even while the packet is a Draft
+AssertionError: expected 'warn' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "warn"
+
+ ❯ tests/placeholder-token-gate.vitest.ts:113:34
+    111|     expect(entry.status).toBe('error');
+    112|     expect(passed).toBe(false);
+    113|     expect(runShellRule(folder)).toBe('error');
+       |                                  ^
+    114|   });
+    115|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  14:18:21
+   Duration  860ms (transform 11ms, setup 10ms, import 6ms, tests 791ms, environment 0ms)

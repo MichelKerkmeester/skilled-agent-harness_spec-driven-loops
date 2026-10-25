@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-code/014-code-modes-research"
     last_updated_at: "2026-10-25T08:50:00Z"
     last_updated_by: "claude-sonnet-5-5"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Marked D3 and D4 superseded by ADR-002 and amended the criteria"
+    next_safe_action: "None. The packet is closed"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-25-skcode-014"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does the executor alternation run per iteration or per child?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Executor alternation unit: moot. cli-pi was refused, so the second model ran as iterations 11 to 15 per ADR-002."
 ---
 # Goal: sk-code Quality and Review Modes Research
 
@@ -53,6 +53,7 @@ Frozen choices. Changing one is an amendment.
 | D4 | Luna max fast via cli-codex and DeepSeek flash max 1017 via cli-pi through llmgateway alternate by iteration, odd on Luna and even on DeepSeek. |
 | D5 | Every finding carries OBSERVED, DERIVED or INFERRED and a source tag with a path and line. Nothing is fetched. |
 | D6 | Neither run reads the other child's `research/` folder before its own synthesis exists. |
+| D7 | D3 and D4 are superseded by ADR-002 in each research child: fifteen iterations per run, 1 to 10 on Luna via cli-codex and 11 to 15 on DeepSeek V4.1 Flash Max via cli-devin. D1 binds the two research phases, checked as ADR-003 sets. Phase 3 then applies the deep review's fixes to the two mode folders. |
 
 <!-- /ANCHOR:directive -->
 
@@ -68,6 +69,7 @@ phase and binds as if written here.
 |-------|---------------|
 | 001-quality-mode-research | `001-quality-mode-research/goal.md` |
 | 002-review-mode-research | `002-review-mode-research/goal.md` |
+| 003-review-remediation | `003-review-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -81,10 +83,10 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `research/research.md` exists in both phase folders and both hold a Ranked Recommendations section of at least eight rows that carry OBSERVED, DERIVED or INFERRED.
-- [ ] `research/deep-research-state.jsonl` in both phase folders holds 10 records of type iteration and one synthesis_complete record with a stopReason field.
-- [ ] `git diff --stat` from the sha logged as Baseline in the Progress table below to HEAD prints no path under `.skilled/`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/014-code-modes-research --recursive --strict` prints `RESULT: PASSED`.
+- [x] `research/research.md` exists in both research phase folders and both hold a Ranked Recommendations section of at least eight rows that carry OBSERVED, DERIVED or INFERRED.
+- [x] `research/deep-research-state.jsonl` in both research phase folders holds 15 records of type iteration, and its latest synthesis_complete record carries a stopReason and totalIterations 15.
+- [x] `git diff --stat f8671e07c2 ee8c7e6f24 -- .skilled/skills/sk-code/sk-code-quality .skilled/skills/sk-code/sk-code-review` prints nothing.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/014-code-modes-research --recursive --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,13 +105,16 @@ and findings belong here.
 | Packet scaffolded and documents written | Done | Created 2026-10-25 with `create.sh --phase --level 2 --with-goal`, strict validation result recorded in the first close-out |
 | Baseline | Done | `f8671e07c2a7ae00cda7ba2a2d30b192d5928606`, from `git rev-parse HEAD` on 2026-10-25 before the 002 run's first iteration |
 | 001 quality run | Done | Fifteen iterations: 1 to 10 on Luna after cli-pi DeepSeek was refused three times with 402, then 11 to 15 on cli-devin `deepseek-v4-1-flash-max` per ADR-002. Refreshed `research/research.md` of 14 rows, 12 confirmed by the second model and 2 refuted in part. AC-011 narrowed per ADR-001 still prints 1, an attestation line in `iteration-011.md`. Closed on the operator's ruling that the narrowed check may skip a line that only states the sibling folder was not read, recorded in ADR-001 |
+| Criteria re-run | Done | 2026-10-25 after the amendment: both state logs hold 15 iteration records and a latest `synthesis_complete` with `stopReason` maxIterationsReached and `totalIterations` 15. Both iteration folders list `iteration-001.md` to `iteration-015.md`. The ADR-003 diff printed nothing. Recursive strict validation printed `RESULT: PASSED`. The awk label count printed 47 and 26 |
 | 002 review run | Done | Fifteen iterations: 1 to 10 on Luna, then 11 to 15 on cli-devin `deepseek-v4-1-flash-max` per ADR-002, run after 001 finished. Refreshed `research/research.md` of 12 rows, 9 confirmed, 1 refuted in part, 2 untested in their decisive claim. AC-011 narrowed per ADR-001 still prints 1 each for attestation lines in `iteration-013.md` and `iteration-014.md`. Closed on the operator's ruling that the narrowed check may skip a line that only states the sibling folder was not read, recorded in ADR-001 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Executor alternation unit | D4 assumes per iteration. The brief said only "alternating", so the operator confirms the unit before launch. |
-| Second-model pass | The operator ruled on 2026-10-25 for five more iterations per child on DeepSeek flash through cli-devin. D3's ten and the completion criteria's 10 records now read fifteen, recorded as ADR-002 in each child. The directive text is left as written. |
+| Executor alternation unit | D4 assumed per iteration. cli-pi was refused, so the question became moot, and D7 records D4 as superseded by ADR-002. |
+| Second-model pass | The operator ruled on 2026-10-25 for five more iterations per child on DeepSeek flash through cli-devin. Recorded as ADR-002 in each child. D7 marks D3 and D4 superseded, and criteria 2 and 3 were amended to fifteen and to the ADR-003 boundary. |
 | AC-011 | The operator ruled on 2026-10-25 to delete the containment copies and narrow the check to the research content, recorded as ADR-001 in each child. |
+| Boundary check | The operator scoped the `.skilled` check to the two mode folders, recorded as ADR-003 in each child. `f8671e07c2` is the Baseline and `ee8c7e6f24` the commit that closed the research. |
+| Deep review | `review/review-report.md` returned CONDITIONAL with 2 P1 and 14 P2 findings. Phase 3 applies them. |
 <!-- /ANCHOR:log -->

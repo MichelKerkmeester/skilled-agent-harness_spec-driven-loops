@@ -45,6 +45,7 @@ const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
 const SPEC_FOLDER_MARKER = ' | Spec folder: ';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
 const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
 const GOAL_FILENAME = 'goal.md';
 // Runtimes whose goal record names the packet the session is bound to; the lookup differs
 // only in how the record is keyed.
@@ -90,6 +91,36 @@ function specFolderSuffix(specFolder) {
   if (specFolder === 'none') return `${SPEC_FOLDER_MARKER}none${SPEC_FOLDER_SKIP_SUFFIX}`;
   if (!validSpecFolder(specFolder)) return '';
   return `${SPEC_FOLDER_MARKER}${specFolder}${SPEC_FOLDER_SUFFIX}`;
+}
+
+/**
+ * Read a claim seed back into the note path and spec folder it was built from. The suffix is
+ * taken from the last marker, because a spec folder can never hold the marker text while a
+ * note path can.
+ *
+ * @param {string} prompt - A start prompt that may be a claim seed.
+ * @returns {{notePath: string, specFolder: string}|null} The parts, with specFolder '' when
+ *   the seed carries no answer the builder would write; null when the prompt is no seed or
+ *   names no absolute path.
+ */
+function parseClaimSeed(prompt) {
+  if (typeof prompt !== 'string' || !prompt.startsWith(CLAIM_SEED_PREFIX)) return null;
+  let notePath = prompt.slice(CLAIM_SEED_PREFIX.length);
+  let specFolder = '';
+  const markerIndex = notePath.lastIndexOf(SPEC_FOLDER_MARKER);
+  if (markerIndex >= 0) {
+    const answer = notePath.slice(markerIndex + SPEC_FOLDER_MARKER.length);
+    if (answer.endsWith(SPEC_FOLDER_SKIP_SUFFIX)) {
+      specFolder = answer.slice(0, -SPEC_FOLDER_SKIP_SUFFIX.length) === 'none' ? 'none' : '';
+      notePath = notePath.slice(0, markerIndex);
+    } else if (answer.endsWith(SPEC_FOLDER_SUFFIX)) {
+      const candidate = answer.slice(0, -SPEC_FOLDER_SUFFIX.length);
+      specFolder = validSpecFolder(candidate) ? candidate : '';
+      notePath = notePath.slice(0, markerIndex);
+    }
+  }
+  if (!notePath || notePath !== notePath.trim() || /[\r\n]/.test(notePath)) return null;
+  return path.isAbsolute(notePath) ? { notePath, specFolder } : null;
 }
 
 /** Parse a `pid ppid` process table into a child-to-parent map. */
@@ -413,6 +444,36 @@ function goalPacketProblem(goalPacket, roots) {
 function goalSwitchOn(switches) {
   const value = String(switches?.SESSION_RELAUNCH_GOAL ?? '').trim().toLowerCase();
   return !GOAL_SWITCH_OFF_VALUES.includes(value);
+}
+
+/**
+ * List the checkouts a note's packet may live in: the repository, and the working directory
+ * the fresh session starts in, which a git worktree session does not share with the repository.
+ *
+ * @param {string} repoRoot - Absolute repository root.
+ * @param {string} noteCwd - The working directory the note records, used only when absolute.
+ * @returns {string[]} Roots for goalPacketProblem.
+ */
+function goalRoots(repoRoot, noteCwd) {
+  const roots = [repoRoot];
+  if (typeof noteCwd === 'string' && path.isAbsolute(noteCwd)) roots.push(noteCwd);
+  return roots;
+}
+
+/**
+ * Pick the packet a note carries that its receiver may be given: the switch is on and the
+ * packet still holds a goal.md, which it may have lost since the note was written.
+ *
+ * @param {Object} frontmatter - The note's parsed frontmatter.
+ * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
+ * @param {string} repoRoot - Absolute repository root.
+ * @returns {string} The packet, or '' when none may be handed on.
+ */
+function usableGoalPacket(frontmatter, switches, repoRoot) {
+  const packet = typeof frontmatter?.goal_packet === 'string' ? frontmatter.goal_packet : '';
+  if (packet === '' || !goalSwitchOn(switches)) return '';
+  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
+  return goalPacketProblem(packet, goalRoots(repoRoot, noteCwd)) === null ? packet : '';
 }
 
 // A spec folder and the packets above it, nearest first: a child packet rarely holds the
@@ -809,8 +870,13 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
   for (const key of ['model', 'provider', 'effort']) {
     if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
   }
+  // An effort belongs to the model it was chosen for, so a new model that brings no effort
+  // leaves the record without one rather than beside the old model's effort.
+  const { effort: _recordedEffort, ...withoutEffort } = unsignalled;
+  const modelSwitched = liveSettings.model !== undefined && liveSettings.model !== record.model;
+  const base = modelSwitched && liveSettings.effort === undefined ? withoutEffort : unsignalled;
   const armed = {
-    ...unsignalled,
+    ...base,
     ...liveSettings,
     status: 'armed',
     armedAt: toIsoTimestamp(now),
@@ -1041,9 +1107,17 @@ function shouldRelaunch(
     return { relaunch: false, reason: 'stale' };
   }
 
-  const hops = Number(record.hops);
+  // Read the count as stored, never coerced: coercion turns null into 0 and "3" into 3,
+  // so a malformed or hand-edited record would slip under the cap.
+  const hops = record.hops;
   const hopLimit = Number(maxHops);
-  if (!Number.isFinite(hops) || !Number.isFinite(hopLimit) || hops >= hopLimit) {
+  if (
+    typeof hops !== 'number'
+    || !Number.isInteger(hops)
+    || hops < 0
+    || !Number.isFinite(hopLimit)
+    || hops >= hopLimit
+  ) {
     return { relaunch: false, reason: 'hop-cap' };
   }
   // A relaunch needs a note to claim and a directory to start in. Declining here keeps
@@ -1052,6 +1126,38 @@ function shouldRelaunch(
     return { relaunch: false, reason: 'incomplete-record' };
   }
   return { relaunch: true };
+}
+
+/**
+ * Build the refusal for a note that is not open.
+ *
+ * The bare status alone left a session guessing, so a refused claim says what the
+ * state means and a session never continues finished work or another session's claim.
+ * An unrecognized status keeps the bare prefix rather than a guessed meaning.
+ *
+ * @param {Object} frontmatter - Parsed frontmatter of the refused note.
+ * @returns {string} Refusal message, always starting `cannot claim handoff with status X`.
+ */
+function claimRefusalMessage(frontmatter) {
+  const status = frontmatter.status || 'missing';
+  const prefix = `cannot claim handoff with status ${status}`;
+  if (status === 'done') {
+    const superseded = nonEmptyString(frontmatter.superseded_by)
+      ? ` and superseded by ${frontmatter.superseded_by}`
+      : '';
+    return `${prefix}. The work in this note is finished${superseded}; do not continue it.`;
+  }
+  if (status === 'claimed') {
+    const owner = nonEmptyString(frontmatter.claimed_by)
+      ? `session ${frontmatter.claimed_by}`
+      : 'an unknown session';
+    const when = nonEmptyString(frontmatter.claimed_at) ? frontmatter.claimed_at : 'an unknown time';
+    return `${prefix}. It was claimed by ${owner} at ${when}; do not continue another session's claim.`;
+  }
+  if (status === 'missing') {
+    return `${prefix}. The file has no status, so it is not a handoff note.`;
+  }
+  return prefix;
 }
 
 /**
@@ -1070,9 +1176,7 @@ function claimHandoff(filePath, { sessionId, now } = {}) {
     const text = readHandoffText(filePath);
     const parsed = parseHandoff(text);
     if (parsed.frontmatter.status !== 'open') {
-      throw new Error(
-        `cannot claim handoff with status ${parsed.frontmatter.status || 'missing'}`,
-      );
+      throw new Error(claimRefusalMessage(parsed.frontmatter));
     }
 
     const updated = updateFrontmatter(text, {
@@ -1767,8 +1871,11 @@ module.exports = {
   SPEC_FOLDER_SKIP_SUFFIX,
   validSpecFolder,
   specFolderSuffix,
+  parseClaimSeed,
   goalPacketProblem,
   goalSwitchOn,
+  goalRoots,
+  usableGoalPacket,
   resolveGoalPacket,
   resolveSessionSettings,
   recordGoalPacket,

@@ -66,8 +66,6 @@ This is **Phase 4** of the CI efficiency implementation phases specification. It
 - Install-block substitutions in the ten multi-install workflows this phase edits, and `cache: pip` in the four pip workflows.
 - `scratch/`: the baseline rows, the cache probe, the npm-dedupe record and the phase result.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

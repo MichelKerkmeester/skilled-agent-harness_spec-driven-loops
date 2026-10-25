@@ -82,6 +82,11 @@ function parseTranscriptEntry(line) {
 // Returns the last entry `matches` accepts, widening the tail while the read starts
 // mid-file and holds no match. A read error propagates to the caller.
 function latestTailEntry(transcriptPath, tailBytes, matches) {
+  return latestTailEntryWithTrail(transcriptPath, tailBytes, matches).entry;
+}
+
+// Same search, also returning the parsed entries written after the match, in order.
+function latestTailEntryWithTrail(transcriptPath, tailBytes, matches) {
   let byteCount = tailBytes;
   for (;;) {
     const tail = readTail(transcriptPath, byteCount);
@@ -95,12 +100,21 @@ function latestTailEntry(transcriptPath, tailBytes, matches) {
     }
 
     let latest = null;
+    let trail = [];
     for (const line of lines) {
       if (!line.trim()) continue;
       const entry = parseTranscriptEntry(line);
-      if (entry !== null && matches(entry)) latest = entry;
+      if (entry === null) continue;
+      if (matches(entry)) {
+        latest = entry;
+        trail = [];
+      } else {
+        trail.push(entry);
+      }
     }
-    if (latest !== null || tail.startsAtBeginning || byteCount >= MAX_TAIL_BYTES) return latest;
+    if (latest !== null || tail.startsAtBeginning || byteCount >= MAX_TAIL_BYTES) {
+      return { entry: latest, trail };
+    }
     byteCount = Math.min(Math.max(byteCount * 4, DEFAULT_TAIL_BYTES), MAX_TAIL_BYTES);
   }
 }
@@ -142,18 +156,82 @@ function settingText(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+const LOCAL_COMMAND_PATTERN = /<command-name>\/(model|effort)<\/command-name>[\s\S]*?<command-args>([\s\S]*?)<\/command-args>/;
+const LOCAL_COMMAND_STDOUT_PATTERN = /<local-command-stdout>([\s\S]*?)<\/local-command-stdout>/;
+const MODEL_SET_PATTERN = /^Set model to `([^`]+)`/;
+const EFFORT_SET_PATTERN = /^Set effort level to ([A-Za-z]+)\b/;
+const MODEL_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:[\]-]*$/;
+// Terminal colour codes are presentation, not part of the confirmation text.
+const ANSI_PATTERN = /\x1b\[[0-9;]*m/g;
+
+function entryText(entry) {
+  const content = entry.message?.content;
+  if (typeof content === 'string') return content;
+  if (!Array.isArray(content)) return '';
+  return content.map((part) => (typeof part?.text === 'string' ? part.text : '')).join('');
+}
+
+// The id a confirmed /model switch moved to. Typed arguments are the id or alias Claude
+// accepted, and the picker leaves them empty and confirms with a display name, which is an id
+// only when it looks like one. '' means the switch happened but its id is not proven.
+function switchedModel(args, confirmedName) {
+  const typed = args.trim();
+  if (typed !== '') return typed;
+  return MODEL_ID_PATTERN.test(confirmedName) ? confirmedName : '';
+}
+
+// Claude writes a /model or /effort switch to the log as soon as it is confirmed, as a
+// command entry followed by its stdout, so a switch made after the last assistant turn is
+// still the session's current setting. A cancelled or failed command confirms nothing.
+function applyLocalSwitches(settings, entries) {
+  let { model, effort } = settings;
+  let effortSwitched = false;
+  let pending = null;
+  for (const entry of entries) {
+    if (entry.type !== 'user' || entry.isSidechain === true) continue;
+    const text = entryText(entry);
+    const command = LOCAL_COMMAND_PATTERN.exec(text);
+    if (command !== null) {
+      pending = { name: command[1], args: command[2] };
+      continue;
+    }
+    const stdout = LOCAL_COMMAND_STDOUT_PATTERN.exec(text);
+    if (pending === null || stdout === null) continue;
+    const confirmation = stdout[1].replace(ANSI_PATTERN, '').trim();
+    if (pending.name === 'effort') {
+      const level = EFFORT_SET_PATTERN.exec(confirmation);
+      if (level !== null) {
+        effort = level[1];
+        effortSwitched = true;
+      }
+    } else {
+      const confirmed = MODEL_SET_PATTERN.exec(confirmation);
+      const nextModel = confirmed === null ? null : switchedModel(pending.args, confirmed[1]);
+      // An effort belongs to the model it was chosen for, so the old turn's effort does not
+      // follow the session onto a new model; an effort switched on its own still does.
+      if (nextModel !== null && nextModel !== model) {
+        model = nextModel;
+        if (!effortSwitched) effort = '';
+      }
+    }
+    pending = null;
+  }
+  return { model, effort };
+}
+
 /**
- * Read the model and effort of the most recent main-chain Claude assistant turn.
+ * Read the model and effort the main Claude session runs on now: the last main-chain
+ * assistant turn, updated by any /model or /effort switch confirmed after it.
  *
  * @param {string} transcriptPath - Claude JSONL transcript path.
  * @param {{tailBytes?: number}} [options] - Maximum transcript bytes to read.
- * @returns {{model: string, effort: string}|null} The values, or null when no assistant
- * entry exists or the transcript cannot be read.
+ * @returns {{model: string, effort: string}|null} The values, or null when neither an
+ * assistant entry nor a switch exists or the transcript cannot be read.
  */
 function readClaudeSettings(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
-  let lastAssistant;
+  let found;
   try {
-    lastAssistant = latestTailEntry(
+    found = latestTailEntryWithTrail(
       transcriptPath,
       tailBytes,
       (entry) => entry.type === 'assistant' && entry.isSidechain !== true,
@@ -161,15 +239,21 @@ function readClaudeSettings(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } =
   } catch {
     return null;
   }
-  if (lastAssistant === null) return null;
-  // The session's own request names the model it asked for, which is what a relaunch has
-  // to ask for too. The response model is the fallback, and a synthetic marker is no model.
-  const model = settingText(lastAssistant.requestedModel)
-    || settingText(lastAssistant.message?.model);
-  return {
-    model: model.startsWith('<') ? '' : model,
-    effort: settingText(lastAssistant.effort),
-  };
+  const lastAssistant = found.entry;
+  let fromTurn = { model: '', effort: '' };
+  if (lastAssistant !== null) {
+    // The session's own request names the model it asked for, which is what a relaunch has
+    // to ask for too. The response model is the fallback, and a synthetic marker is no model.
+    const model = settingText(lastAssistant.requestedModel)
+      || settingText(lastAssistant.message?.model);
+    fromTurn = {
+      model: model.startsWith('<') ? '' : model,
+      effort: settingText(lastAssistant.effort),
+    };
+  }
+  const settings = applyLocalSwitches(fromTurn, found.trail);
+  if (lastAssistant === null && settings.model === '' && settings.effort === '') return null;
+  return settings;
 }
 
 /**

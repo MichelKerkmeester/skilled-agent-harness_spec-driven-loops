@@ -1,0 +1,541 @@
+diff --git a/.skilled/skills/system-spec-kit/references/templates/level-specifications.md b/.skilled/skills/system-spec-kit/references/templates/level-specifications.md
+index 32d2279e56b..39b4ce2a871 100644
+--- a/.skilled/skills/system-spec-kit/references/templates/level-specifications.md
++++ b/.skilled/skills/system-spec-kit/references/templates/level-specifications.md
+@@ -733,7 +733,7 @@ Some templates are not level-specific but can be used at any documentation level
+ - `templates/addons/handover.md.tmpl`
+ - `templates/addons/debug-delegation.md.tmpl`
+ 
+-### Summary Templates (REQUIRED for ALL Levels)
++### Summary Templates (implementation-summary.md required at all levels)
+ 
+ | Template | Purpose | When to Use | Created By |
+ |----------|---------|-------------|------------|
+diff --git a/.skilled/skills/system-spec-kit/references/templates/template-guide.md b/.skilled/skills/system-spec-kit/references/templates/template-guide.md
+index 7b1aa044f44..a241f4e7e0f 100644
+--- a/.skilled/skills/system-spec-kit/references/templates/template-guide.md
++++ b/.skilled/skills/system-spec-kit/references/templates/template-guide.md
+@@ -268,7 +268,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --pat
+ 
+ **Rules:**
+ - Keep numbering sequential (1, 2, 3, ...)
+-- Never remove emojis (they provide visual scanning cues)
++- Emojis are optional; when a template uses them, keep them consistent
+ - Use ALL CAPS for section titles
+ - Maintain consistent spacing
+ 
+@@ -1039,7 +1039,7 @@ specs/122-skill-standardization/
+     spec.md             # Feature specification (Level 2)
+     plan.md             # Implementation plan
+     validation-rules.md # Detailed validation logic
+-    testing_checklist.md # Test procedures
++    testing-plan.md # Test procedures
+ ```
+ 
+ **Benefits of this organization:**
+diff --git a/.skilled/skills/system-spec-kit/references/templates/template-style-guide.md b/.skilled/skills/system-spec-kit/references/templates/template-style-guide.md
+index 6836d289813..4197687cbe4 100644
+--- a/.skilled/skills/system-spec-kit/references/templates/template-style-guide.md
++++ b/.skilled/skills/system-spec-kit/references/templates/template-style-guide.md
+@@ -74,7 +74,7 @@ Core spec templates use a markdown table for the METADATA section, as rendered b
+ |----------|--------|--------|
+ | `debug-delegation.md` | Inline format | Auto-generated content structure |
+ 
+-### Why Bulleted Lists
++### Why a Table
+ 
+ - **Consistency** - Same format across all templates
+ - **Readability** - Clear visual hierarchy
+@@ -255,7 +255,7 @@ The `validate.sh` script enforces these rules:
+ 
+ | Rule | Description |
+ |------|-------------|
+-| Metadata format | Bulleted list format used |
++| Metadata format | Table with Field and Value columns |
+ | Date format | ISO 8601 (YYYY-MM-DD) |
+ | Section numbering | Sequential, UPPERCASE |
+ | File naming | kebab-case |
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md b/.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md
+index 9e43d1f865f..cb27478610b 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md
+@@ -14,7 +14,7 @@ version: 1.6.0.7
+ 
+ # Auto Mode Contract Reference
+ 
+-This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
++This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/execution-methods.md b/.skilled/skills/system-spec-kit/references/workflows/execution-methods.md
+index db340d282ca..caebc08e023 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/execution-methods.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/execution-methods.md
+@@ -216,7 +216,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
+ 
+ ## 8. MEMORY WORKFLOW (10 STEPS)
+ 
+-The `generate-context.js` script orchestrates a 12-step workflow via `workflow.ts`:
++The `generate-context.js` script orchestrates 10 numbered steps with two substeps via `workflow.ts`:
+ 
+ ### Workflow Steps
+ 
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/intake-contract.md b/.skilled/skills/system-spec-kit/references/workflows/intake-contract.md
+index 267c9e3d9a1..a33c4985717 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/intake-contract.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/intake-contract.md
+@@ -221,7 +221,7 @@ Memory save runs AFTER Emit success, only when:
+ 
+ Invocation:
+ ```bash
+-node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>
++node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/
+ ```
+ 
+ Report save result independently from trio success — a failed save never invalidates a successful trio.
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/quick-reference.md b/.skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+index 7179990d0fd..eabed81cffe 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/quick-reference.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+@@ -445,7 +445,7 @@ Before presenting documentation to user:
+   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
+   - [ ] Level 2: Level 1 + acceptance-criteria.md
+   - [ ] Level 3: Level 2 + decision-record.md
+-- [ ] Optional templates copied if needed (Level 3 only)
++- [ ] Optional templates copied if needed (resource-map.md at any level; research and decision records at Level 3)
+ - [ ] All placeholders replaced (`<PLACEHOLDER>`, `<NEEDS_CLARIFICATION: ...>`)
+ - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
+ - [ ] Template footer deleted
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/rename-pattern.md b/.skilled/skills/system-spec-kit/references/workflows/rename-pattern.md
+index 9c09fe02218..98a723d7f61 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/rename-pattern.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/rename-pattern.md
+@@ -46,7 +46,7 @@ Every rename touches some subset of these categories. Map each before starting.
+ | **Live auto-memory** | `~/.claude/projects/.../memory/MEMORY.md` index + current-state memory files | Literal substitution; preserve filename slugs to avoid breaking inbound `[[wikilinks]]` |
+ | **Live compiled indexes** | `skill-graph.json`, SQLite caches | REGENERATE (never hand-edit) |
+ | **Historical narrative** | Memory feedback entries describing past incidents under the old name | Tag inline: `(renamed <new> YYYY-MM-DD)` — keep dates intact |
+-| **Historical spec docs** | Originating packet's `spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`implementation-summary.md` | PRESERVE — do not edit |
++| **Historical spec docs** | Originating packet's `spec.md`/`plan.md`/`tasks.md`/`acceptance-criteria.md`/`implementation-summary.md` | PRESERVE — do not edit |
+ | **Historical research/review iterations** | Deep-research / deep-review `iterations/*.md`, `deltas/*.jsonl` | PRESERVE — do not edit |
+ | **Historical version notes** | Renamed skill's prior `changelog/v*.md` | PRESERVE — add a NEW `vN+1.0.0.md` as forward-link |
+ | **Frozen bench fixtures** | `benchmarks/.../per-probe.jsonl` recording prior-name state | PRESERVE |
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md b/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+index 4b8bd5f9005..bbee1871e61 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md
+@@ -32,7 +32,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
+ 
+ ## 2. PRE-CHECKS
+ 
+-- [ ] Read the Level 1 contract files in an existing packet such as `<spec-folder>`.
++- [ ] Read the Level 1 contract files in an existing packet such as `specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag`.
+ - [ ] Read templates from `.skilled/skills/system-spec-kit/templates/` and the manifest entries under `.skilled/skills/system-spec-kit/templates/`.
+ - [ ] Verify the required Level 1 docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
+ - [ ] Confirm required anchor counts for the selected level before writing.
+@@ -70,5 +70,5 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
+ ## 5. RELATED RESOURCES
+ 
+ - sk-doc templates and system-spec-kit/templates/ (source-of-truth for document contract rules)
+-- Prior example: `<spec-folder>`
++- Prior example: `specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag`
+ - Verification recipes: `spec-folder-write-recipe.md`
+diff --git a/.skilled/skills/system-spec-kit/references/workflows/worked-examples.md b/.skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+index e14c353a282..925f5d86ee8 100644
+--- a/.skilled/skills/system-spec-kit/references/workflows/worked-examples.md
++++ b/.skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+@@ -56,7 +56,7 @@ Fix a CSS alignment issue affecting button positioning on mobile viewports. Esti
+ **Phase 1: Initiate with Command**
+ 
+ ```bash
+-User: /spec_kit:complete
++User: /speckit:complete
+ AI: Spec folder? A) Existing B) New (new or unrelated work only) C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) D) Skip
+ User: B
+ ```
+diff --git a/.skilled/skills/system-spec-kit/templates/.hashes b/.skilled/skills/system-spec-kit/templates/.hashes
+deleted file mode 100644
+index d9d9a837f71..00000000000
+--- a/.skilled/skills/system-spec-kit/templates/.hashes
++++ /dev/null
+@@ -1,9 +0,0 @@
+-# Template Version Tracking
+-# Generated: 2025-12-25
+-# SHA256 hashes for template integrity verification
+-# Regenerate with: for f in *.md; do echo "$(shasum -a 256 "$f" | cut -d' ' -f1)  $f"; done
+-
+-f5066de4f2c218fe9272109e2369c68f3c46b80fe8d3ba82373397a6346d1544  README.md
+-31b45e5375cbd7ea47fab4dc544133086ec74eaca2006ac2e352af2597b55a66  debug-delegation.md
+-8e6cdc58ac7165edd44bd518f64075e3479a4f56457c61173a81429c373138c9  handover.md
+-62fb4a47afa0decfff714beea3a2c99f72ce5a6ce344ae7f0f9ff13dab4a33ff  research.md
+diff --git a/.skilled/skills/system-spec-kit/templates/CONTRACT.md b/.skilled/skills/system-spec-kit/templates/CONTRACT.md
+index aca095cff67..73d3cd3879f 100644
+--- a/.skilled/skills/system-spec-kit/templates/CONTRACT.md
++++ b/.skilled/skills/system-spec-kit/templates/CONTRACT.md
+@@ -95,7 +95,7 @@ Run template and spec validation from the repository root after contract edits:
+ 
+ ```bash
+ npm --prefix .skilled/skills/system-spec-kit/runtime run typecheck
+-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
+ ```
+ 
+ Rendered output should match the intended public Level contract and must not leak private manifest terms.
+diff --git a/.skilled/skills/system-spec-kit/templates/README.md b/.skilled/skills/system-spec-kit/templates/README.md
+index ffcdad80857..08a8bbbc714 100644
+--- a/.skilled/skills/system-spec-kit/templates/README.md
++++ b/.skilled/skills/system-spec-kit/templates/README.md
+@@ -66,8 +66,7 @@ templates/
+ ├── spec-kit-docs.json     │ The level contract
+ ├── CONTRACT.md            │ Maintainer guide for the contract
+ ├── examples/              │ Pre-rendered reference packets
+-├── changelog/             │ Template change records
+-├── stress-test/           │ Deep-review grading materials
++├── changelog/             │ Packet-local changelog templates
+ └── scratch/               │ Local debug space, gitignored
+ ```
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl b/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+index 04396343893..184846d80cb 100644
+--- a/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+@@ -111,7 +111,7 @@ contextType: "general"
+ <!-- ANCHOR:specs -->
+ ## 6. Specs
+ 
+-> `.opencode/specs/**` — spec folders, phase children, packet docs, research, review, scratch. **Takes precedence over `Config`** for spec-folder JSON metadata (`description.json`, `graph-metadata.json`).
++> `specs/**` — spec folders, phase children, packet docs, research, review, scratch. **Takes precedence over `Config`** for spec-folder JSON metadata (`description.json`, `graph-metadata.json`).
+ 
+ | Path | Action | Status | Note |
+ |------|--------|--------|------|
+diff --git a/.skilled/skills/system-spec-kit/templates/changelog/README.md b/.skilled/skills/system-spec-kit/templates/changelog/README.md
+index eadcd1a2c28..fed40394a69 100644
+--- a/.skilled/skills/system-spec-kit/templates/changelog/README.md
++++ b/.skilled/skills/system-spec-kit/templates/changelog/README.md
+@@ -88,7 +88,7 @@ Generation flow:
+ Run from the repository root after template edits:
+ 
+ ```bash
+-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
++bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
+ ```
+ 
+ Generated changelogs should reference available packet docs and avoid claiming task completion beyond those docs.
+diff --git a/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl b/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+index 6f3010c5cb6..6d6400b6419 100644
+--- a/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
++++ b/.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+@@ -26,13 +26,13 @@ _memory:
+     packet_pointer: "000-feature-name"
+ <!-- /IF -->
+ <!-- IF level:2 -->
+-    packet_pointer: "system-spec-kit/templates/level-2"
++    packet_pointer: "[PACKET-ID]"
+ <!-- /IF -->
+ <!-- IF level:3 -->
+-    packet_pointer: "system-spec-kit/templates/level-3"
++    packet_pointer: "[PACKET-ID]"
+ <!-- /IF -->
+ <!-- IF level:3+ -->
+-    packet_pointer: "system-spec-kit/templates/level-3+"
++    packet_pointer: "[PACKET-ID]"
+ <!-- /IF -->
+     last_updated_at: "2026-04-11T00:00:00Z"
+     last_updated_by: "template-author"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/README.md b/.skilled/skills/system-spec-kit/templates/examples/README.md
+index d8785c4945d..1098ae992a7 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/README.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/README.md
+@@ -47,10 +47,10 @@ examples/
+ +-- level-1/      # Minimal scope and lightweight planning example
+ +-- level-2/      # Verification-focused example
+ +-- level-3/      # Architecture and decision-record example
+-`-- level_3+/     # Governance and coordination example
++`-- level-3+/     # Governance and coordination example
+ ```
+ 
+-Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/*.md.tmpl`, and the manifest maps public levels to those templates.
++Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/core/` and `templates/addons/`, and the manifest maps public levels to those templates.
+ 
+ ---
+ 
+@@ -113,4 +113,4 @@ For spec packet validation, run the system-spec-kit validator against the target
+ 
+ - `../README.md`
+ - `../manifest/README.md`
+-- `../manifest/spec-kit-docs.json`
++- `../spec-kit-docs.json`
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
+index b032bdf7207..c6856e3140f 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Summary"
+-description: "the completed authentication feature. Created AFTER implementation completes. -->"
++description: "Level 1 implementation summary for the user authentication example, written after the feature shipped."
+ trigger_phrases:
+   - "implementation summary"
+   - "what shipped"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-1/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-1/plan.md
+index fdbddc46ac8..ea3b4e7a998 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-1/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-1/plan.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Plan: Add User Authentication"
+-description: "planning required for a simple authentication feature. Note the straightforward"
++description: "Level 1 plan for the user authentication example, with the minimum planning a small feature needs."
+ trigger_phrases:
+   - "implementation plan"
+   - "technical approach"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-1/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-1/spec.md
+index 47581b17c81..00e750b2873 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-1/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-1/spec.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Feature Specification: Add User Authentication"
+-description: "required for a simple authentication feature (~80 LOC). Use this as a reference when"
++description: "Level 1 spec for a small user authentication feature of about 80 lines, used as a reference for baseline documentation depth."
+ trigger_phrases:
+   - "feature specification"
+   - "problem statement"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
+index 3d37c36f130..fbde5bd6fe7 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Tasks: Add User Authentication"
+-description: "needed for a simple authentication feature. Note the straightforward task numbering"
++description: "Level 1 task list for the user authentication example, with straightforward sequential task numbering."
+ trigger_phrases:
+   - "task breakdown"
+   - "implementation tasks"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
+index e094703e242..bd64434cc79 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Summary"
+-description: "verification documentation and test coverage details. -->"
++description: "Level 2 implementation summary for the user authentication example, with verification and test coverage details."
+ trigger_phrases:
+   - "implementation summary"
+   - "what shipped"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+index a33e1ae752d..0dc40ed9502 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Plan: Add User Authentication"
+-description: "planning. Note the addition of Phase Dependencies, Effort Estimation, and Enhanced"
++description: "Level 2 plan for the user authentication example, adding phase dependencies, effort estimation and an enhanced rollback."
+ trigger_phrases:
+   - "implementation plan"
+   - "technical approach"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+index 02e222a4a04..f61a1d660c8 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Feature Specification: Add User Authentication"
+-description: "documentation. Note the addition of NFRs and Edge Cases sections compared to Level 1."
++description: "Level 2 spec for the user authentication example, adding non-functional requirements and edge cases to the Level 1 sections."
+ trigger_phrases:
+   - "feature specification"
+   - "problem statement"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+index c7eefce63a3..0258fdc2eee 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Tasks: Add User Authentication"
+-description: "including effort estimates and explicit verification tasks for each feature. -->"
++description: "Level 2 task list for the user authentication example, with effort estimates and explicit verification tasks."
+ trigger_phrases:
+   - "task breakdown"
+   - "implementation tasks"
+@@ -108,7 +108,7 @@ including effort estimates and explicit verification tasks for each feature. -->
+ - [x] All unit tests passing
+ - [x] All integration tests passing
+ - [x] Manual verification passed
+-- [x] Checklist.md fully verified
++- [x] Verification checklist in tasks.md fully verified
+ 
+ 
+ <!-- /ANCHOR:completion -->
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
+index 2e7b241095c..69c266e52c4 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Decision Record: Add User Authentication"
+-description: "Level 3, demonstrating that governance-level features are primarily in spec.md"
++description: "Level 3+ decision record example, showing that governance features live mainly in spec.md rather than here."
+ trigger_phrases:
+   - "decision"
+   - "record"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/description.json b/.skilled/skills/system-spec-kit/templates/examples/level-3+/description.json
+index 73113de2f4b..f160c1be3b7 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/description.json
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/description.json
+@@ -16,7 +16,7 @@
+   ],
+   "lastUpdated": "2026-09-07T16:14:55.108Z",
+   "specId": "",
+-  "folderSlug": "level-3",
++  "folderSlug": "level-3+",
+   "parentChain": [
+     "system-speckit",
+     "z_archive",
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+index 005c49ff1b6..52fee998965 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Summary"
+-description: "metrics, workstream performance, AI execution analysis, and comprehensive lessons"
++description: "Level 3+ implementation summary example with metrics, workstream performance, AI execution analysis and lessons learned."
+ trigger_phrases:
+   - "implementation summary"
+   - "what shipped"
+@@ -256,7 +256,7 @@ See `decision-record.md` for full ADR documentation.
+ | M5 Security | Day 4 EOD | Day 4 EOD | 0 | On time |
+ | M6 Release | Day 5 EOD | Day 5 + 2h | +2h | Slight delay |
+ 
+-**Total Variance**: +4 hours (+9% over estimate)
++**Total Variance**: +2 hours (+9% over estimate)
+ 
+ 
+ <!-- /ANCHOR:milestones -->
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
+index 7d981bfb927..05b2b755516 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Plan: Add User Authentication"
+-description: "Note the AI Execution Framework, Workstream Coordination, and Communication Plan"
++description: "Level 3+ plan example with the AI execution framework, workstream coordination and a communication plan."
+ trigger_phrases:
+   - "implementation plan"
+   - "technical approach"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+index f0bb15d1019..0c5e408b7d9 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Feature Specification: Add User Authentication"
+-description: "Note the Complexity Assessment, Approval Workflow, Compliance Checkpoints, Stakeholder"
++description: "Level 3+ spec example with a complexity assessment, approval workflow, compliance checkpoints and stakeholder matrix."
+ trigger_phrases:
+   - "feature specification"
+   - "problem statement"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+index e65843aed53..8b45a838c06 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Tasks: Add User Authentication"
+-description: "features including 3-Tier Task Format, AI Execution Protocol, and Workstream"
++description: "Level 3+ task list example with the three-tier task format, AI execution protocol and workstream tracking."
+ trigger_phrases:
+   - "task breakdown"
+   - "implementation tasks"
+@@ -46,7 +46,7 @@ organization. Use this for enterprise-scale multi-agent coordination. -->
+ | M3 API | T013-T022 | Day 3 EOD | Complete |
+ | M4 UI | T023-T028 | Day 4 noon | Complete |
+ | M5 Security | T029-T030 | Day 4 EOD | Complete |
+-| M6 Release | T031-T048 | Day 5 EOD | Complete |
++| M6 Release | T031-T050 | Day 5 EOD | Complete |
+ 
+ 
+ <!-- /ANCHOR:milestones -->
+@@ -237,7 +237,7 @@ Before starting any task, verify:
+ - [x] All integration tests passing
+ - [x] Manual verification in 2+ browsers
+ - [x] Security review approved
+-- [x] Checklist.md fully verified
++- [x] Verification checklist in tasks.md fully verified
+ - [x] All ADRs have status: Accepted
+ - [x] All approvals obtained (spec.md section 12)
+ 
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md
+index 72cdfcfc06a..67dca47b816 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Decision Record: Add User Authentication"
+-description: "architecture decisions with proper context, alternatives, and consequences."
++description: "Level 3 decision record example showing architecture decisions with their context, alternatives and consequences."
+ trigger_phrases:
+   - "decision"
+   - "record"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
+index bcc3f1f9bd2..d17ff155bc1 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Summary"
+-description: "decision summary, comprehensive metrics, and lessons learned sections. -->"
++description: "Level 3 implementation summary example with a decision summary, metrics and lessons learned."
+ trigger_phrases:
+   - "implementation summary"
+   - "what shipped"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
+index cb9909cb2ae..c3c07798cb1 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/plan.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Implementation Plan: Add User Authentication"
+-description: "planning. Note the addition of Dependency Graph, Critical Path, Milestones, and"
++description: "Level 3 plan example adding a dependency graph, critical path and milestones."
+ trigger_phrases:
+   - "implementation plan"
+   - "technical approach"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
+index 0da46f5441b..6c7e0a03b4b 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/spec.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Feature Specification: Add User Authentication"
+-description: "documentation. Note the addition of Executive Summary, Risk Matrix, User Stories"
++description: "Level 3 spec example adding an executive summary, risk matrix and user stories."
+ trigger_phrases:
+   - "feature specification"
+   - "problem statement"
+diff --git a/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md b/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+index 7092787c488..94d0e1eda7a 100644
+--- a/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
++++ b/.skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "Tasks: Add User Authentication"
+-description: "including dependencies, milestone mapping, and detailed verification tasks. -->"
++description: "Level 3 task list example with dependencies, milestone mapping and detailed verification tasks."
+ trigger_phrases:
+   - "task breakdown"
+   - "implementation tasks"
+@@ -176,7 +176,7 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
+ - [x] All unit tests passing (100% for services)
+ - [x] All integration tests passing
+ - [x] Manual verification in 2+ browsers
+-- [x] Checklist.md fully verified
++- [x] Verification checklist in tasks.md fully verified
+ - [x] All ADRs have status: Accepted
+ 
+ 

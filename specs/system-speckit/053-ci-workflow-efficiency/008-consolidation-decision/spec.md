@@ -70,8 +70,6 @@ This is **Phase 8** of the CI efficiency implementation phases specification. It
 - `scratch/consolidation-decision.md`: the decision record with the before and after numbers and D8's answer.
 - Under D8 = yes only: one merged workflow, the README rows and `scratch/merge-probe.md`.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---

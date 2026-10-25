@@ -1,0 +1,2 @@
+?? specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/start-commit.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/baseline/status-start.txt

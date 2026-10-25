@@ -1,0 +1,33 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review fill guidance text in templates. A script checks your output line by line.
+
+READ THESE FILES:
+1. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/plan.md - the fill text tables A, B and C, the fix blocks and the example alignment table in section 3.
+2. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/review/T015-fill-lines.txt - every FILL line now in the four core templates and the ten addon templates, each preceded by its heading.
+3. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/review/T015-templates.diff - the diff of the core and addon templates since the phase start commit.
+4. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/review/T015-fill-counts.txt - the FILL line count per template.
+5. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/review/T015-contract.txt - the template contract output for the 14 aligned examples (a missing_anchor or extra_anchor line would be drift).
+6. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/review/T015-stat.txt - the changed files since the phase start commit.
+7. specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/review/T015-newfiles.txt - the three new guard files.
+
+CHECK THESE FIVE THINGS FOR EACH FILL LINE IN THE FOUR CORE TEMPLATES AND THE TEN ADDON TEMPLATES:
+(1) the instruction names one action and ends with a period,
+(2) the good example is concrete and the weak example shows a real failure,
+(3) the line holds no value token, no semicolon and no HTML comment tail,
+(4) an optional section says N/A or delete, and a required section says N/A and never delete,
+(5) the running example is the same feature in every line.
+THEN check that every listed edit in the example alignment table matches the contract output in T015-contract.txt, and that the anchor repairs in the diff match the fix blocks in plan.md.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <template>:<heading> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

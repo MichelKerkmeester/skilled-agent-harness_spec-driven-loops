@@ -380,6 +380,50 @@ test('seed text carries the complete command the reminder builder returns', () =
   );
 });
 
+test('after-compaction pointer names the note created_at and the git checks', () => {
+  const createdAt = '2026-10-25T10:00:00Z';
+  const pointer = seedText({
+    notePath: NOTE_PATH,
+    specFolder: SPEC_FOLDER,
+    sessionId: SESSION_ID,
+    cliPath: CLI_PATH,
+    afterCompaction: true,
+    createdAt,
+  });
+  const lines = pointer.split('\n');
+  const checkIndex = lines.findIndex((line) => line.includes('git status'));
+  const continueIndex = lines.findIndex((line) => line.includes('Continue the work'));
+
+  assert.ok(pointer.includes(createdAt), pointer);
+  assert.ok(pointer.includes(`git log --since='${createdAt}'`), pointer);
+  assert.ok(checkIndex > 0 && checkIndex < continueIndex, pointer);
+  assert.deepEqual(
+    lines.slice(1).map((line) => Number.parseInt(line, 10)),
+    [1, 2, 3, 4, 5],
+  );
+
+  // A date the session pastes into its shell stays one quoted argument.
+  const hostile = seedText({ notePath: NOTE_PATH, afterCompaction: true, createdAt: "x'; rm -rf ~" });
+  assert.ok(hostile.includes(`git log --since='x'"'"'; rm -rf ~'\``), hostile);
+});
+
+test('after-compaction pointer without a note date keeps the undated git step', () => {
+  for (const createdAt of [undefined, '', null]) {
+    const pointer = seedText({
+      notePath: NOTE_PATH,
+      specFolder: '',
+      sessionId: SESSION_ID,
+      cliPath: CLI_PATH,
+      afterCompaction: true,
+      createdAt,
+    });
+    assert.ok(pointer.includes('`git log`'), pointer);
+    assert.ok(pointer.includes('`git status`'), pointer);
+    assert.equal(pointer.includes('--since'), false, pointer);
+    assert.equal(/undefined|null/.test(pointer), false, pointer);
+  }
+});
+
 test('isSeedPrompt recognizes the relaunch seed prefix only', () => {
   assert.equal(isSeedPrompt('[session-relaunch] continue the handoff'), true);
   assert.equal(isSeedPrompt('continue the handoff'), false);

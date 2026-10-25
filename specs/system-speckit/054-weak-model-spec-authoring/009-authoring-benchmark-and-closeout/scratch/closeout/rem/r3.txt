@@ -1,0 +1,15 @@
+specs/system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/005-rename-root-docs-hooks-index
+specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild
+specs/system-deep-loop/z_archive/023-deep-loop-workflows/002-runtime-backend-promotions
+specs/system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode
+specs/system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/002-lineage-timestamp-guard
+specs/system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet
+specs/system-skill-advisor/035-doctor-command-routing
+specs/system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling
+specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor
+specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity
+specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity

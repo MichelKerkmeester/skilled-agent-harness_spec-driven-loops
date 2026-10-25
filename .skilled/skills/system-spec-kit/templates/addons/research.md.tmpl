@@ -19,6 +19,7 @@ Complete research documentation providing in-depth technical analysis, architect
 
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
+<!-- FILL: State the one question this research answers. GOOD: A flag fits because callers already pass flags. WEAK: Research this topic. -->
 
 **Use research.md when:**
 - Complex features requiring deep technical investigation spanning multiple areas
@@ -38,6 +39,7 @@ Complete research documentation providing in-depth technical analysis, architect
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
+<!-- FILL: Fill the research id, the date and the owner. GOOD: R-001, 2026-10-24, conductor. WEAK: TBD. -->
 
 - **Research ID**: RESEARCH-[FORMAT: ###]
 - **Feature/Spec**: [YOUR_VALUE_HERE: link to related spec.md or feature name]
@@ -58,6 +60,7 @@ Complete research documentation providing in-depth technical analysis, architect
 
 <!-- ANCHOR:file-organization -->
 ## FILE ORGANIZATION
+<!-- FILL: List each file this research produces. GOOD: `research.md`, `notes/` and `sources/`. WEAK: Files are organized. -->
 
 **During research, organize files as:**
 - Research findings → This file (research.md)
@@ -77,6 +80,7 @@ Complete research documentation providing in-depth technical analysis, architect
 
 <!-- ANCHOR:investigation-report -->
 ## 2. INVESTIGATION REPORT
+<!-- FILL: State the method and the sources in one paragraph. GOOD: Read the script, ran both forms, counted lines. WEAK: We investigated. -->
 
 ### Request Summary
 [YOUR_VALUE_HERE: summarize the original request or problem - what question are we trying to answer? What feature are we investigating? - 2-4 sentences]
@@ -104,6 +108,7 @@ Complete research documentation providing in-depth technical analysis, architect
 
 <!-- ANCHOR:executive-overview -->
 ## 3. EXECUTIVE OVERVIEW
+<!-- FILL: Write the answer in three sentences before the detail. GOOD: A flag fits. Callers already pass flags. An env var adds a hidden input. WEAK: This is the overview. -->
 
 ### Executive Summary
 [YOUR_VALUE_HERE: 2-3 paragraph high-level summary of the research, findings, and recommendations - should be understandable by non-technical stakeholders]
@@ -146,9 +151,10 @@ Example:
 
 ---
 
-<!-- ANCHOR:core-architecture -->
 <!-- IF level:2,3,3+,phase -->
+<!-- ANCHOR:core-architecture -->
 ## 4. CORE ARCHITECTURE
+<!-- FILL: Name the components the answer touches. GOOD: One script and one output branch. WEAK: The architecture is standard. -->
 
 ### System Components
 
@@ -217,6 +223,7 @@ User Input → Validation → Processing → Storage → Response
 
 <!-- ANCHOR:technical-specifications -->
 ## 5. TECHNICAL SPECIFICATIONS
+<!-- FILL: Describe the interface the answer adds. GOOD: `--quiet`: no argument, one output line. WEAK: The API is described. -->
 
 ### API Documentation
 
@@ -292,6 +299,7 @@ User Input → Validation → Processing → Storage → Response
 
 <!-- ANCHOR:constraints-limitations -->
 ## 6. CONSTRAINTS & LIMITATIONS
+<!-- FILL: Name each constraint and its source. GOOD: Bash 3.2 must run the script. WEAK: There are constraints. -->
 
 ### Platform Limitations
 - **[Limitation 1]**: [Description, impact, and workaround if available]
@@ -322,10 +330,11 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 ---
 
-<!-- ANCHOR:integration-patterns -->
 <!-- /IF -->
 <!-- IF level:3,3+,phase -->
+<!-- ANCHOR:integration-patterns -->
 ## 7. INTEGRATION PATTERNS
+<!-- FILL: Name each caller and how it uses the result. GOOD: The build script reads the last line. WEAK: It integrates. -->
 
 ### Third-Party Service Integration
 
@@ -391,6 +400,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 <!-- ANCHOR:implementation-guide -->
 ## 8. IMPLEMENTATION GUIDE
+<!-- FILL: Write the steps in order, one command each. GOOD: 1. Add the flag. 2. Return before the report. WEAK: Follow the guide. -->
 
 ### Markup Requirements
 
@@ -477,6 +487,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 <!-- ANCHOR:code-examples -->
 ## 9. CODE EXAMPLES & SNIPPETS
+<!-- FILL: Show one working example and its output. GOOD: `recommend-level.sh --quiet --loc 500` prints one line. WEAK: Code below. -->
 
 ### Initialization Patterns
 
@@ -545,6 +556,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 <!-- ANCHOR:testing-debugging -->
 ## 10. TESTING & DEBUGGING
+<!-- FILL: Name the commands that prove the answer. GOOD: `wc -l` prints 1 and 17. WEAK: Test it. -->
 
 ### Test Strategies
 
@@ -606,6 +618,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 <!-- ANCHOR:performance-optimization -->
 ## 11. PERFORMANCE OPTIMIZATION
+<!-- FILL: Name the measured cost, or write `N/A` with a reason. GOOD: The flag adds under 5 ms. WEAK: It is fast. -->
 
 ### Optimization Tactics
 
@@ -654,6 +667,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 <!-- ANCHOR:security-considerations -->
 ## 12. SECURITY CONSIDERATIONS
+<!-- FILL: Name each security surface, or write `N/A` with a reason. GOOD: The flag reads no user input. WEAK: It is secure. -->
 
 ### Validation Approach
 
@@ -710,6 +724,7 @@ Legend: ✅ Supported | ⚠️ Partial support | ❌ Not supported
 
 <!-- ANCHOR:future-proofing-maintenance -->
 ## 13. FUTURE-PROOFING & MAINTENANCE
+<!-- FILL: Name what a future change must preserve. GOOD: Keep the `Recommended Level:` prefix. WEAK: Maintain it. -->
 
 ### Upgrade Paths
 
@@ -759,6 +774,7 @@ Should I use [Option A] or [Option B]?
 
 <!-- ANCHOR:api-reference -->
 ## 14. API REFERENCE
+<!-- FILL: List each flag and its effect. GOOD: `--quiet`: one line. `--json`: a JSON object. WEAK: See the flags. -->
 
 ### Attributes Table
 
@@ -824,6 +840,7 @@ Should I use [Option A] or [Option B]?
 
 <!-- ANCHOR:troubleshooting-guide -->
 ## 15. TROUBLESHOOTING GUIDE
+<!-- FILL: Name one failure and its fix. GOOD: Three lines with `--quiet`: the report block ran first. WEAK: Check the logs. -->
 
 ### Common Issues
 
@@ -885,6 +902,7 @@ Should I use [Option A] or [Option B]?
 
 <!-- ANCHOR:acknowledgements -->
 ## 16. ACKNOWLEDGEMENTS
+<!-- FILL: Name the sources and people that helped. GOOD: The script author and the phase 1 baseline. WEAK: Thanks. -->
 
 ### Research Contributors
 - [Name/Role]: [Contribution]
@@ -903,6 +921,7 @@ Should I use [Option A] or [Option B]?
 
 <!-- ANCHOR:appendix -->
 ## APPENDIX
+<!-- FILL: Add terms a new reader needs. GOOD: `quiet`: one-line mode. WEAK: Appendix below. -->
 
 ### Glossary
 - **[Term 1]**: [Definition]
@@ -918,9 +937,10 @@ Should I use [Option A] or [Option B]?
 
 ---
 
-<!-- ANCHOR:changelog-updates -->
 <!-- /IF -->
+<!-- ANCHOR:changelog-updates -->
 ## CHANGELOG & UPDATES
+<!-- FILL: Add one row per version with the date and the change. GOOD: 1.0.0, 2026-10-24, initial research. WEAK: Initial version. -->
 
 ### Version History
 

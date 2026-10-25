@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-24T09:00:00Z"
+    last_updated_at: "2026-10-25T12:00:00Z"
     last_updated_by: "markdown"
-    recent_action: "Reconciled phase 002 after three qualifying zero-run rebuild SHAs and a fourth additional zero-run SHA landed"
-    next_safe_action: "Remaining 002: T019 24 h baseline, then T020/T021; 003 T027-T034; 004 T002/T003"
+    recent_action: "Progress synced to the child Status lines"
+    next_safe_action: "007 T100-T102; 004 T072-T074; 008 after D8"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 28
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -85,10 +85,10 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all ten folders
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/053-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all eleven folders
 - [ ] Every R1-R30 is closed in its owning phase, and `rg -c '\| Unmet \|' specs/system-speckit/053-ci-workflow-efficiency/00*/acceptance-criteria.md` prints nothing
 - [ ] `gh run list --commit <sha>` returns `[]` for each of three consecutive post-change rebuild commits
-- [ ] `rg -o 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
+- [ ] `rg -o --no-filename 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
 - [ ] `.skilled/skills/sk-code/sk-code-ci/SKILL.md` and `.skilled/commands/doctor/ci.md` exist
 - [ ] The final commit on `main` has no failed run: `gh run list --commit <sha> --json conclusion --jq '[.[] | select(.conclusion == "failure")] | length'` returns `0`
 <!-- /ANCHOR:completion -->
@@ -108,14 +108,21 @@ and findings belong here.
 |------|-------|----------|
 | Goal authored | Done | Nine binding rows match the nine direct phase folders |
 | Phase 001 research | Done | `001-research/implementation-summary.md` |
-| Phase 002 rebuild fan-out | In progress | `[skip ci]` landed in `8e62a3d096` and probe PR #71 ran green; three of three qualifying zero-run rebuild SHAs plus a fourth additional SHA each returned `[]`; T019's 24 h baseline remains |
-| Phase 003 trigger and job hygiene | In progress | Six concern commits are on `main` (concurrency, filters, dedupe, suppression, depths, README, inventory); the T027-T034 CI probes, T036 delta and T037/T038 closure remain |
-| Phase 004 setup caching provisioning | In progress | `D5=approve` recorded; T004-T009 delivered the gate scan, label branch and four fixtures, uncommitted — T002/T003 baseline, T010/T011/T011A and the rest remain |
-| Phases 005-009 | Pending | Plans exist; no phase has run |
+| Phase 002 rebuild fan-out | Done | `002-rebuild-fanout-removal/spec.md` Status `Complete`, closure `03baa89ac6` |
+| Phase 003 trigger and job hygiene | Done | `003-trigger-and-job-hygiene/spec.md` Status `Complete` |
+| Phase 004 setup caching provisioning | In progress | 16 of 17 acceptance rows `Met`; T072 phase delta, then T073 and T074 remain |
+| Phase 005 slow and failing tests | Done | `005-slow-and-failing-tests/spec.md` Status `Complete` |
+| Phase 006 sk-code-ci surface | Done | `006-sk-code-ci-surface/spec.md` Status `Complete` |
+| Phase 007 hygiene and on/off control | In progress | The five concern commits are on `main`; T100 (after 2026-10-26T00:45Z), then T101 and T102 remain |
+| Phase 008 consolidation decision | Pending | Blocked on D8 by design (`T002 [B]`) |
+| Phase 009 doctor ci and review wiring | Done | `009-doctor-ci-review-wiring/spec.md` Status `Complete`, closure `8811c7e36d` |
+| Phase 010 review remediation | Done | Applied the confirmed findings of `review/review-report.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | The directive was authored from `spec.md`, whose phase map and direct folders agree |
+| Amendment 2026-10-25, criterion 4 | The switch-count command gained `--no-filename`. Without it `rg` prefixes each match with its file name, so `sort -u` counted file and name pairs and printed `62` on a correct tree. With it the pipeline prints `6`. |
+| Amendment 2026-10-25, criterion 1 | The folder count moved from ten to eleven when `010-review-remediation` was added for the deep-review remediation. |
+| 010 has no child goal | `010-review-remediation` is a Level 1 remediation phase. Its `spec.md` scope is its directive, so the binding table keeps its nine rows. |
 <!-- /ANCHOR:log -->

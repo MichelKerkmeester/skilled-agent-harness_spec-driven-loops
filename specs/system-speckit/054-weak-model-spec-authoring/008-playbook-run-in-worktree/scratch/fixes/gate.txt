@@ -1,0 +1,2 @@
+PATCHED specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+PATCH_GATE_COVERED

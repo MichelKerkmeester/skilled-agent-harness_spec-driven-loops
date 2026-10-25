@@ -54,7 +54,7 @@ The numbers in these Verify lines are the expected shape, not a measurement of t
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Check the phase 007 close and the operator inputs (no file). Run the block below. Verify: the first command prints `1`, the second prints `4` and the third prints `BASE_REF_OK`. When the first prints nothing, phase 007 is not closed: write `BLOCKED phase 007 open` in `goal.md` section 4 and stop. When the second is below `4`, a launch precondition is open: write `BLOCKED preconditions` and stop. When the third prints nothing, the operator has not recorded `BASE_REF`: write `BLOCKED base ref` and stop. The operator's row in `../goal.md` section 4 has exactly three cells, `| BASE_REF | Pending | <note> |`. The State cell `Pending` sits in column 3 and the operator replaces it with the ref, so the awk below reads column 3.
+- [x] T001 Check the phase 007 close and the operator inputs (no file). Run the block below. Verify: the first command prints `1`, the second prints `4` and the third prints `BASE_REF_OK`. When the first prints nothing, phase 007 is not closed: write `BLOCKED phase 007 open` in `goal.md` section 4 and stop. When the second is below `4`, a launch precondition is open: write `BLOCKED preconditions` and stop. When the third prints nothing, the operator has not recorded `BASE_REF`: write `BLOCKED base ref` and stop. The operator's row in `../goal.md` section 4 has exactly three cells, `| BASE_REF | Pending | <note> |`. The State cell `Pending` sits in column 3 and the operator replaces it with the ref, so the awk below reads column 3.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -67,7 +67,7 @@ BASE_REF=$(awk -F'|' '/^\| BASE_REF /{gsub(/^ +| +$/,"",$3); print $3}' "$RUNROO
 test -n "$BASE_REF" && git rev-parse --verify "$BASE_REF^{commit}" >/dev/null && echo BASE_REF_OK
 ```
 
-- [ ] T002 Check the tools and the provider (no file). Verify: the block prints eight lines, seven versions and a count of at least `1`. A missing tool stops the phase with `BLOCKED tools`.
+- [x] T002 Check the tools and the provider (no file). Verify: the block prints eight lines, seven versions and a count of at least `1`. A missing tool stops the phase with `BLOCKED tools`.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -84,7 +84,7 @@ perl -e 'print "perl $]\n"'
 rsync --version | head -1
 ```
 
-- [ ] T003 Record the start state and the environment (`scratch/env.sh`, `scratch/status-start.txt`). Run the block below. Verify: `grep -c '^BASE_REF=' "$PHASE/scratch/env.sh"` prints `1`, `grep -c '^START=' "$PHASE/scratch/env.sh"` prints `1` and `tail -1 "$PHASE/scratch/status-start.txt"` prints the last status line or nothing when the tree is clean.
+- [x] T003 Record the start state and the environment (`scratch/env.sh`, `scratch/status-start.txt`). Run the block below. Verify: `grep -c '^BASE_REF=' "$PHASE/scratch/env.sh"` prints `1`, `grep -c '^START=' "$PHASE/scratch/env.sh"` prints `1` and `tail -1 "$PHASE/scratch/status-start.txt"` prints the last status line or nothing when the tree is clean.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -109,7 +109,7 @@ EOF
 cat "$PHASE/scratch/env.sh"
 ```
 
-- [ ] T004 Build the scenario map (`scratch/scenarios.tsv`, `scratch/tools/build-scenario-map.cjs`). Write the script with the first block, then run it with the second. The script carries the eight ids and paths that phase 007 plan section 3.1 freezes: 476 to 483 under `template-authoring/`. Verify: the block prints `SCENARIO_MAP_OK 8`, `wc -l < "$PHASE/scratch/scenarios.tsv"` prints `8`, `awk -F'\t' 'NF != 6' "$PHASE/scratch/scenarios.tsv"` prints nothing and `awk -F'\t' '{print $1}' "$PHASE/scratch/scenarios.tsv" | sort -u | wc -l` prints `8`. A line `NO_FILE S<n>` means phase 007 did not create that file. A line `AMBIGUOUS S<n>` means two playbook index rows carry that playbook id. Write the line in `goal.md` section 4 and stop. Do not edit phase 007.
+- [x] T004 Build the scenario map (`scratch/scenarios.tsv`, `scratch/tools/build-scenario-map.cjs`). Write the script with the first block, then run it with the second. The script carries the eight ids and paths that phase 007 plan section 3.1 freezes: 476 to 483 under `template-authoring/`. Verify: the block prints `SCENARIO_MAP_OK 8`, `wc -l < "$PHASE/scratch/scenarios.tsv"` prints `8`, `awk -F'\t' 'NF != 6' "$PHASE/scratch/scenarios.tsv"` prints nothing and `awk -F'\t' '{print $1}' "$PHASE/scratch/scenarios.tsv" | sort -u | wc -l` prints `8`. A line `NO_FILE S<n>` means phase 007 did not create that file. A line `AMBIGUOUS S<n>` means two playbook index rows carry that playbook id. Write the line in `goal.md` section 4 and stop. Do not edit phase 007.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -131,14 +131,14 @@ if (!playbookRoot || !outPath) {
 }
 
 const rows = [
-  ['S1', '476', 'template-authoring/placeholder-token-warning-while-draft.md', '^warning$', '^true$', 'cleanup=ok'],
+  ['S1', '476', 'template-authoring/placeholder-token-warning-while-draft.md', '^warn$', '^true$', 'cleanup=ok'],
   ['S2', '477', 'template-authoring/placeholder-token-error-after-draft.md', '^error$', '^false$', 'cleanup=ok'],
   ['S3', '478', 'template-authoring/placeholder-gate-legacy-stamp-unchanged.md', '^error$', '^false$', 'cleanup=ok'],
   ['S4', '479', 'template-authoring/example-drift-guard-catches-leak.md', 'EXAMPLE_DRIFT_OK', 'broken_exit=1', 'cleanup=ok'],
   ['S5', '480', 'template-authoring/golden-render-all-levels.md', 'Tests\\s+12 passed \\(12\\)', 'Tests\\s+16 passed \\(16\\)', 'cleanup=ok'],
   ['S6', '481', 'template-authoring/authoring-card-router-intents.md', '^4$', '^0$', '^1$'],
   ['S7', '482', 'template-authoring/authoring-card-sync-guard.md', 'CARD SYNC OK', 'CARD SYNC FAILED', 'cleanup=ok'],
-  ['S8', '483', 'template-authoring/level-1-packet-authored-from-card.md', 'RESULT: PASSED', '^leftover_tokens 0$', 'cleanup=ok'],
+  ['S8', '483', 'template-authoring/level-1-packet-authored-from-card.md', '^devin_exit=0$', '^packet=specs/zz-pb-card/001-card-authoring\\nval_exit=0\\nRESULT: PASSED\\n0$', 'cleanup=ok'],
 ];
 
 const indexPath = path.join(playbookRoot, 'manual-testing-playbook.md');
@@ -171,7 +171,7 @@ node "$PHASE/scratch/tools/build-scenario-map.cjs" \
   "$PHASE/scratch/scenarios.tsv"
 ```
 
-- [ ] T005 Create the disposable worktree (`scratch/worktree/create.out`, `scratch/worktree/create.err`). Run the block below. Verify: `read -r WT_BRANCH WT_DIR < "$PHASE/scratch/worktree/create.out"` gives a branch that matches `^worktrees/[0-9]{3}-playbook-run$`, `test -d "$WT"` prints `WORKTREE_DIR_OK` and `git -C "$WT" rev-parse --verify HEAD` prints a 40 character hash. When `create.out` is empty, read `create.err`, write its last line in `goal.md` section 4 and stop.
+- [x] T005 Create the disposable worktree (`scratch/worktree/create.out`, `scratch/worktree/create.err`). Run the block below. Verify: `read -r WT_BRANCH WT_DIR < "$PHASE/scratch/worktree/create.out"` gives a branch that matches `^worktrees/[0-9]{3}-playbook-run$`, `test -d "$WT"` prints `WORKTREE_DIR_OK` and `git -C "$WT" rev-parse --verify HEAD` prints a 40 character hash. When `create.out` is empty, read `create.err`, write its last line in `goal.md` section 4 and stop.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -190,7 +190,7 @@ EOF
 test -d "$WT" && echo WORKTREE_DIR_OK
 ```
 
-- [ ] T006 Provision the worktree and prove it runs its own code (`scratch/worktree/provision.out`, `scratch/worktree/provision-exit.txt`, `scratch/worktree/own-code.txt`). Run the block below. Verify: `cat "$PHASE/scratch/worktree/provision-exit.txt"` prints `exit=0`, the last provisioning line ends with `0 failed`, `rg -c '^FOREIGN ' "$PHASE/scratch/worktree/own-code.txt" || true` prints nothing and `test -f "$WT/$S/runtime/dist/lib/validation/orchestrator.js" && echo ORCH_OK` prints `ORCH_OK`. When `provision-exit.txt` holds `exit=142`, the 45 minute alarm stopped provisioning: write `BLOCKED provisioning timeout` in `goal.md` section 4 and stop. When it holds any other non-zero exit, run the same command once more and keep its output. A second failure writes `BLOCKED provisioning` in `goal.md` section 4 and stops the phase.
+- [x] T006 Provision the worktree and prove it runs its own code (`scratch/worktree/provision.out`, `scratch/worktree/provision-exit.txt`, `scratch/worktree/own-code.txt`). Run the block below. Verify: `cat "$PHASE/scratch/worktree/provision-exit.txt"` prints `exit=0`, the last provisioning line ends with `0 failed`, `rg -c '^FOREIGN ' "$PHASE/scratch/worktree/own-code.txt" || true` prints nothing and `test -f "$WT/$S/runtime/dist/lib/validation/orchestrator.js" && echo ORCH_OK` prints `ORCH_OK`. When `provision-exit.txt` holds `exit=142`, the 45 minute alarm stopped provisioning: write `BLOCKED provisioning timeout` in `goal.md` section 4 and stop. When it holds any other non-zero exit, run the same command once more and keep its output. A second failure writes `BLOCKED provisioning` in `goal.md` section 4 and stops the phase.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -218,7 +218,7 @@ cat "$PHASE/scratch/worktree/own-code.txt"
 test -f "$WT/$S/runtime/dist/lib/validation/orchestrator.js" && echo ORCH_OK
 ```
 
-- [ ] T007 Prove the worktree holds the phase 002 to 007 changes (`scratch/worktree/precondition.txt`). Run the block below. Verify: `grep -c '^PRESENT ' "$PHASE/scratch/worktree/precondition.txt"` prints `5`. When a line is missing, `BASE_REF` does not contain that phase: write `BLOCKED base ref incomplete` and the missing line in `goal.md` section 4 and stop.
+- [x] T007 Prove the worktree holds the phase 002 to 007 changes (`scratch/worktree/precondition.txt`). Run the block below. Verify: `grep -c '^PRESENT ' "$PHASE/scratch/worktree/precondition.txt"` prints `5`. When a line is missing, `BASE_REF` does not contain that phase: write `BLOCKED base ref incomplete` and the missing line in `goal.md` section 4 and stop.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -241,7 +241,7 @@ cat "$PHASE/scratch/worktree/precondition.txt"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T008 Write the runner, the comparator, their fixture and the shared brief skeleton (`scratch/tools/run-scenario.sh`, `scratch/tools/check-run.cjs`, `scratch/test/fixture-scenario.md`, `scratch/briefs/skeleton.txt`). Write the five blocks below in order, then run the last one. The runner truncates a run above 2 MB and writes a `truncated=` line. The comparator writes `<run file>.check.txt` with the result, the missing pattern, the exit line and the last output line, and `<run file>.stderr.txt` with the failing line. A run that ends with `exit=142` compares as `FAIL` with `missing:exit=142`. Verify: the last block prints `SYNTAX_OK`, `FIXTURE_OK`, `FIXTURE_OK_SECOND`, `truncated=no`, `exit=0`, `DIAG_OK`, `STDERR_OK` and `COMPARATOR_OK`. A `NO_COMMANDS` line means the fixture was written wrong: fix the fixture, not the runner.
+- [x] T008 Write the runner, the comparator, their fixture and the shared brief skeleton (`scratch/tools/run-scenario.sh`, `scratch/tools/check-run.cjs`, `scratch/test/fixture-scenario.md`, `scratch/briefs/skeleton.txt`). Write the five blocks below in order, then run the last one. The runner truncates a run above 2 MB and writes a `truncated=` line. The comparator writes `<run file>.check.txt` with the result, the missing pattern, the exit line and the last output line, and `<run file>.stderr.txt` with the failing line. A run that ends with `exit=142` compares as `FAIL` with `missing:exit=142`. Verify: the last block prints `SYNTAX_OK`, `FIXTURE_OK`, `FIXTURE_OK_SECOND`, `truncated=no`, `exit=0`, `DIAG_OK`, `STDERR_OK` and `COMPARATOR_OK`. A `NO_COMMANDS` line means the fixture was written wrong: fix the fixture, not the runner.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -260,8 +260,8 @@ mkdir -p "$(dirname "$out")"
 awk '
   /^### Commands[[:space:]]*$/ { section = 1; next }
   section && /^### / { exit }
-  section && /^```/ { block = !block; next }
-  section && block { print }
+  section && /^```/ { if (fence) { fence = 0; run = 0 } else { fence = 1; run = ($0 ~ /^```(bash|sh)[[:space:]]*$/) }; next }
+  section && run { print }
 ' "$scenario" > "$out.cmd"
 if [ ! -s "$out.cmd" ]; then
   printf 'NO_COMMANDS\n' > "$out"
@@ -406,7 +406,7 @@ test -f "$PHASE/scratch/test/fixture-run.txt.stderr.txt" && echo STDERR_OK
 printf '%s' "$OUT" | grep -q '^S1\tPASS' && echo COMPARATOR_OK
 ```
 
-- [ ] T009 Run scenarios S1 to S7 from their own command blocks (`scratch/runs/*.txt`, `scratch/results.tsv`). Run the block below from `RUNROOT`. It removes any old results file first, then runs each row whose label is not S8 from `$WT`. Each run is captured to `scratch/runs/<id>.txt` and the comparator writes a `.check.txt` sidecar beside it. Verify: `wc -l < "$PHASE/scratch/results.tsv"` prints `7` and `rg -c '^S[1-7]\t(PASS|FAIL|SCENARIO_DEFECT)\t' "$PHASE/scratch/results.tsv"` prints `7`. A `NO_COMMANDS` run is a scenario defect: the block writes `SCENARIO_DEFECT`, records it in `goal.md` section 4 and continues. A run that ends with `exit=142` hit the 30 minute alarm: record `FAIL` in the verdict page and run T011. Do not retype the scenario.
+- [x] T009 Run scenarios S1 to S7 from their own command blocks (`scratch/runs/*.txt`, `scratch/results.tsv`). Run the block below from `RUNROOT`. It removes any old results file first, then runs each row whose label is not S8 from `$WT`. Each run is captured to `scratch/runs/<id>.txt` and the comparator writes a `.check.txt` sidecar beside it. Verify: `wc -l < "$PHASE/scratch/results.tsv"` prints `7` and `rg -c '^S[1-7]\t(PASS|FAIL|SCENARIO_DEFECT)\t' "$PHASE/scratch/results.tsv"` prints `7`. A `NO_COMMANDS` run is a scenario defect: the block writes `SCENARIO_DEFECT`, records it in `goal.md` section 4 and continues. A run that ends with `exit=142` hit the 30 minute alarm: record `FAIL` in the verdict page and run T011. Do not retype the scenario.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -416,7 +416,7 @@ source "$PHASE/scratch/env.sh"
 : > "$PHASE/scratch/results.tsv"
 while IFS=$'\t' read -r LABEL ID SCENARIO PASS_A PASS_B; do
   [ "$LABEL" = "S8" ] && continue
-  ( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$PHASE/scratch/runs/$ID.txt" )
+  ( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$PHASE/scratch/runs/$ID.txt" </dev/null )
   if grep -q '^NO_COMMANDS$' "$PHASE/scratch/runs/$ID.txt"; then
     printf '%s\tSCENARIO_DEFECT\t%s\t%s\n' "$LABEL" "$ID" "$PHASE/scratch/runs/$ID.txt" >> "$PHASE/scratch/results.tsv"
     printf 'SCENARIO_DEFECT %s %s\n' "$LABEL" "$ID" >> "$PHASE/goal.md"
@@ -428,7 +428,7 @@ done < "$PHASE/scratch/scenarios.tsv"
 cat "$PHASE/scratch/results.tsv"
 ```
 
-- [ ] T010 Run S8 as a DeepSeek authoring dispatch (`scratch/briefs/S8.txt`, `scratch/runs/<S8 id>.txt`). Read the shared skeleton, extract the scenario prompt, assemble the brief with the first block below, then dispatch it with the Task tool. Each worker reply is saved as `scratch/runs/<S8 id>.worker-<n>.txt` and the run file holds conductor-written lines only, so a `RESULT: PASSED` line inside the reply can never satisfy the S8 pattern. A provider error is retried once after 10 minutes, and a second failure marks S8 `ESCALATED`. Verify: `test -s "$PHASE/scratch/runs/$S8_ID.txt" && echo S8_RUN_OK` prints `S8_RUN_OK`, `rg -c '^RESULT: PASSED$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^leftover_tokens 0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^dispatch_exit=0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1` and `rg -c '^S8\tPASS\t' "$PHASE/scratch/results.tsv"` prints `1`. When the packet is missing, the worker did not follow the frozen path: append `S8 FAIL <S8 id> <run file>` as four tab-separated fields to the results file and run T011. When the second dispatch also fails, the block prints `S8_ESCALATED`, writes the first error line in `goal.md` section 4 and appends the `ESCALATED` row.
+- [x] T010 Run S8 as a DeepSeek authoring dispatch (`scratch/briefs/S8.txt`, `scratch/runs/<S8 id>.txt`). Read the shared skeleton, extract the scenario prompt, assemble the brief with the first block below, then dispatch it with the Task tool. Each worker reply is saved as `scratch/runs/<S8 id>.worker-<n>.txt` and the run file holds conductor-written lines only, so a `RESULT: PASSED` line inside the reply can never satisfy the S8 pattern. A provider error is retried once after 10 minutes, and a second failure marks S8 `ESCALATED`. Verify: `test -s "$PHASE/scratch/runs/$S8_ID.txt" && echo S8_RUN_OK` prints `S8_RUN_OK`, `rg -c '^RESULT: PASSED$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^leftover_tokens 0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1`, `rg -c '^dispatch_exit=0$' "$PHASE/scratch/runs/$S8_ID.txt"` prints `1` and `rg -c '^S8\tPASS\t' "$PHASE/scratch/results.tsv"` prints `1`. When the packet is missing, the worker did not follow the frozen path: append `S8 FAIL <S8 id> <run file>` as four tab-separated fields to the results file and run T011. When the second dispatch also fails, the block prints `S8_ESCALATED`, writes the first error line in `goal.md` section 4 and appends the `ESCALATED` row.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -511,7 +511,7 @@ fi
 tail -1 "$PHASE/scratch/results.tsv"
 ```
 
-- [ ] T011 Fix one failed scenario, one file, at most three attempts (`scratch/fix/<label>-<n>.txt`). Run this task only for a `FAIL` row. Set `LABEL` from that row before the first block. The first block reads the fix target from the scenario's `## 4. SOURCE FILES` list, quotes the failing line from the run's `.stderr.txt` file and writes the next attempt brief. Dispatch that brief with the Task tool, then run the second block to rerun the scenario and record the attempt. Repeat the two blocks only while the row is still `FAIL`, so `N` advances only after a failed rerun and the loop stops at the first PASS. Verify: the first block prints `FIX_TARGET=<the one repo-relative file the scenario names>` and `ATTEMPT=<n>`, the second block prints one `attempt=<n> verdict=<value>` line per attempt, `test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK` prints `FIX_OK`, `grep -c 'ALLOWED WRITE PATHS' "$PHASE/scratch/fix/$LABEL-1.txt"` prints `1` and `find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l` prints `1` to `3`. After the third failed attempt the row reads `ESCALATED` and the other scenarios continue. When the scenario has no `- Implementation:` bullet, the first block writes `SCENARIO_DEFECT` and prints `SCENARIO_DEFECT <label>`.
+- [x] T011 Fix one failed scenario, one file, at most three attempts (`scratch/fix/<label>-<n>.txt`). Run this task only for a `FAIL` row. Set `LABEL` from that row before the first block. The first block reads the fix target from the scenario's `## 4. SOURCE FILES` list, quotes the failing line from the run's `.stderr.txt` file and writes the next attempt brief. Dispatch that brief with the Task tool, then run the second block to rerun the scenario and record the attempt. Repeat the two blocks only while the row is still `FAIL`, so `N` advances only after a failed rerun and the loop stops at the first PASS. Verify: the first block prints `FIX_TARGET=<the one repo-relative file the scenario names>` and `ATTEMPT=<n>`, the second block prints one `attempt=<n> verdict=<value>` line per attempt, `test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK` prints `FIX_OK`, `grep -c 'ALLOWED WRITE PATHS' "$PHASE/scratch/fix/$LABEL-1.txt"` prints `1` and `find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l` prints `1` to `3`. After the third failed attempt the row reads `ESCALATED` and the other scenarios continue. When the scenario has no `- Implementation:` bullet, the first block writes `SCENARIO_DEFECT` and prints `SCENARIO_DEFECT <label>`.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -562,7 +562,7 @@ SCENARIO=$(awk -F'\t' -v l="$LABEL" '$1==l{print $3}' "$PHASE/scratch/scenarios.
 N=$(find "$PHASE/scratch/fix" -name "$LABEL-*.txt" | wc -l | tr -d ' ')
 [ "$N" -ge 1 ] || { echo "NO_BRIEF $LABEL"; exit 0; }
 LATEST="$PHASE/scratch/runs/$ID.fix-$N.txt"
-( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$LATEST" )
+( cd "$WT" && bash "$PHASE/scratch/tools/run-scenario.sh" "$SCENARIO" "$LATEST" </dev/null )
 LINE=$(node "$PHASE/scratch/tools/check-run.cjs" "$PHASE/scratch/scenarios.tsv" "$LABEL" "$LATEST")
 printf '%s\n' "$LINE"
 if printf '%s' "$LINE" | grep -q 'PASS'; then
@@ -579,7 +579,7 @@ printf 'attempt=%s verdict=%s\n' "$N" "$VERDICT"
 test -s "$PHASE/scratch/fix/$LABEL-1.txt" && echo FIX_OK
 ```
 
-- [ ] T012 Build the verdict page (`scratch/results.tsv`, `scratch/verdicts.md`). Run the block below. Verify: `rg -c '^\| S[1-8] \|' "$PHASE/scratch/verdicts.md"` prints `8`, `wc -l < "$PHASE/scratch/results.tsv"` prints `8` and `awk -F'\t' '{print $2}' "$PHASE/scratch/results.tsv" | grep -cvE '^(PASS|FAIL|FIXED|ESCALATED|SCENARIO_DEFECT)$'` prints `0`, which means every verdict uses the one status vocabulary.
+- [x] T012 Build the verdict page (`scratch/results.tsv`, `scratch/verdicts.md`). Run the block below. Verify: `rg -c '^\| S[1-8] \|' "$PHASE/scratch/verdicts.md"` prints `8`, `wc -l < "$PHASE/scratch/results.tsv"` prints `8` and `awk -F'\t' '{print $2}' "$PHASE/scratch/results.tsv" | grep -cvE '^(PASS|FAIL|FIXED|ESCALATED|SCENARIO_DEFECT)$'` prints `0`, which means every verdict uses the one status vocabulary.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -596,7 +596,7 @@ source "$PHASE/scratch/env.sh"
 cat "$PHASE/scratch/verdicts.md"
 ```
 
-- [ ] T013 Build the report package (`$REPORT`). Run the block below. It first inspects the newest existing `manual-testing-playbook` report folder, then picks a new dated folder, writes `results.csv`, one outcome JSON per scenario, `source.md` and the ten-section `README.md`. Verify: the block prints `EXISTING_REPORT=<path>`, `PRESENT README.md`, `PRESENT results.csv`, `PRESENT source.md`, `PRESENT outcomes` and the `scenario_id,runtime,run,evidence_class,verdict` header, then `find "$REPORT" -maxdepth 1 -type f | wc -l` prints `3`, `find "$REPORT/outcomes" -name '*.json' | wc -l` prints `8`, `wc -l < "$REPORT/results.csv"` prints `9` and `rg -c '^## [0-9]+\. ' "$REPORT/README.md"` prints `10`. When a report folder with today's name already exists, the block appends `-2`, `-3` and so on. Do not overwrite an older folder.
+- [x] T013 Build the report package (`$REPORT`). Run the block below. It first inspects the newest existing `manual-testing-playbook` report folder, then picks a new dated folder, writes `results.csv`, one outcome JSON per scenario, `source.md` and the ten-section `README.md`. Verify: the block prints `EXISTING_REPORT=<path>`, `PRESENT README.md`, `PRESENT results.csv`, `PRESENT source.md`, `PRESENT outcomes` and the `scenario_id,runtime,run,evidence_class,verdict` header, then `find "$REPORT" -maxdepth 1 -type f | wc -l` prints `3`, `find "$REPORT/outcomes" -name '*.json' | wc -l` prints `8`, `wc -l < "$REPORT/results.csv"` prints `9` and `rg -c '^## [0-9]+\. ' "$REPORT/README.md"` prints `10`. When a report folder with today's name already exists, the block appends `-2`, `-3` and so on. Do not overwrite an older folder.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -777,7 +777,7 @@ MD
 cat "$REPORT/README.md"
 ```
 
-- [ ] T014 Add the reports index row (`.skilled/skills/system-spec-kit/benchmark/reports/README.md`). Run the block below. It prints the row, inserts it after the header separator and prints `1`. Verify: `rg -c "$FOLDER" "$RUNROOT/$S/benchmark/reports/README.md"` prints `1`. When it prints `2`, the row was already added: remove the duplicate by hand and record it in `goal.md` section 4.
+- [x] T014 Add the reports index row (`.skilled/skills/system-spec-kit/benchmark/reports/README.md`). Run the block below. It prints the row, inserts it after the header separator and prints `1`. Verify: `rg -c "$FOLDER" "$RUNROOT/$S/benchmark/reports/README.md"` prints `1`. When it prints `2`, the row was already added: remove the duplicate by hand and record it in `goal.md` section 4.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -798,7 +798,7 @@ mv "$PHASE/scratch/reports-index.tmp" "$INDEX"
 rg -c "$FOLDER" "$INDEX"
 ```
 
-- [ ] T015 Check the primary checkout (`scratch/primary-status.txt`). Run the block below. It compares the current status with the baseline T003 saved. Verify: `grep -c '^PRIMARY_CLEAN$' "$PHASE/scratch/primary-status.txt"` prints `1`. When a path is listed, stop the phase and record it in `goal.md` section 4. Do not remove the path by hand.
+- [x] T015 Check the primary checkout (`scratch/primary-status.txt`). Run the block below. It compares the current status with the baseline T003 saved. Verify: `grep -c '^PRIMARY_CLEAN$' "$PHASE/scratch/primary-status.txt"` prints `1`. When a path is listed, stop the phase and record it in `goal.md` section 4. Do not remove the path by hand.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -822,7 +822,7 @@ else
 fi
 ```
 
-- [ ] T016 Save the worktree diff, check the evidence and remove the disposable worktree and its branch (`scratch/fixes/fix.patch`, `scratch/fixes/status.txt`, `scratch/worktree/removal.txt`). Run the block below. It prints `RUNS_RECORDED 8` only when eight verdict rows exist and every evidence file is non-empty. It then saves the worktree diff and status, writes `PATCHED` or `UNPATCHED` for every changed path and prints `PATCH_GATE_COVERED` when the two counts agree. Verify: the block prints `SCRATCH_CLEAN`, `PATCH_SAVED`, `STATUS_SAVED`, `RUNS_RECORDED 8`, `PATCH_GATE_COVERED`, `REMOVAL_OK`, `WORKTREE_GONE` and `BRANCH_GONE`. It clears untracked output under `$WT/scratch/` before it saves the status, so a scratch artifact cannot read `UNPATCHED`. A `NO_ROWS`, `EMPTY <label>` or `UNPATCHED <path>` line stops the removal with `REMOVAL_REFUSED`, keeps the worktree and must be recorded in `goal.md` section 4. The rollback sentence is in `plan.md` section 7. Removal is irreversible for uncommitted files in the worktree.
+- [x] T016 Save the worktree diff, check the evidence and remove the disposable worktree and its branch (`scratch/fixes/fix.patch`, `scratch/fixes/status.txt`, `scratch/worktree/removal.txt`). Run the block below. It prints `RUNS_RECORDED 8` only when eight verdict rows exist and every evidence file is non-empty. It then saves the worktree diff and status, writes `PATCHED` or `UNPATCHED` for every changed path and prints `PATCH_GATE_COVERED` when the two counts agree. Verify: the block prints `SCRATCH_CLEAN`, `PATCH_SAVED`, `STATUS_SAVED`, `RUNS_RECORDED 8`, `PATCH_GATE_COVERED`, `REMOVAL_OK`, `WORKTREE_GONE` and `BRANCH_GONE`. It clears untracked output under `$WT/scratch/` before it saves the status, so a scratch artifact cannot read `UNPATCHED`. A `NO_ROWS`, `EMPTY <label>` or `UNPATCHED <path>` line stops the removal with `REMOVAL_REFUSED`, keeps the worktree and must be recorded in `goal.md` section 4. The rollback sentence is in `plan.md` section 7. Removal is irreversible for uncommitted files in the worktree.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -878,7 +878,7 @@ PATCHED_N=$(grep -c '^PATCHED ' "$PHASE/scratch/fixes/gate.txt" || true)
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T017 Frontier review of the report and the runs (`scratch/review/T017.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Write the brief with the first block and send it with the second. Verify: `test -s "$PHASE/scratch/review/T017.txt" && echo REVIEW_FILE_OK` prints `REVIEW_FILE_OK` and `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$PHASE/scratch/review/T017.txt"` prints `0`, which means every line is a finding or the file holds the single line `NO FINDINGS`.
+- [x] T017 Frontier review of the report and the runs (`scratch/review/T017.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Write the brief with the first block and send it with the second. Verify: `test -s "$PHASE/scratch/review/T017.txt" && echo REVIEW_FILE_OK` prints `REVIEW_FILE_OK` and `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' "$PHASE/scratch/review/T017.txt"` prints `0`, which means every line is a finding or the file holds the single line `NO FINDINGS`.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -915,7 +915,7 @@ AI_SESSION_CHILD=1 codex -a never exec \
   "$(cat "$PHASE/scratch/review/T017-brief.txt")" </dev/null
 ```
 
-- [ ] T018 Apply the review findings (`scratch/review/T017.txt`, `goal.md`). Run the first block to number every finding as `F01`, `F02` and so on. For each line it prints, apply the fix when the finding names a file in this phase folder or the report folder, otherwise record it. Write one plain line per finding in `goal.md` section 4, not a table row, as `T018-APPLIED F<n>` or `T018-RECORDED F<n> <reason>`, using the finding's own fix text as the reason. When T017 holds `NO FINDINGS`, write `T018 NO FINDINGS` in `goal.md` section 4. Then run the second block. Verify: the first block prints one `F<n>` line per finding and nothing for `NO FINDINGS`, the second block prints `findings=<the first block's line count>` and `unrecorded=0`, and `grep -cE '^T018-(APPLIED|RECORDED) ' "$PHASE/goal.md"` equals the finding count. Do not edit a scenario file or a product file.
+- [x] T018 Apply the review findings (`scratch/review/T017.txt`, `goal.md`). Run the first block to number every finding as `F01`, `F02` and so on. For each line it prints, apply the fix when the finding names a file in this phase folder or the report folder, otherwise record it. Write one plain line per finding in `goal.md` section 4, not a table row, as `T018-APPLIED F<n>` or `T018-RECORDED F<n> <reason>`, using the finding's own fix text as the reason. When T017 holds `NO FINDINGS`, write `T018 NO FINDINGS` in `goal.md` section 4. Then run the second block. Verify: the first block prints one `F<n>` line per finding and nothing for `NO FINDINGS`, the second block prints `findings=<the first block's line count>` and `unrecorded=0`, and `grep -cE '^T018-(APPLIED|RECORDED) ' "$PHASE/goal.md"` equals the finding count. Do not edit a scenario file or a product file.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -943,7 +943,7 @@ awk -F'\t' 'FILENAME == ARGV[1] { need[$1] = 1; next }
   "$PHASE/scratch/review/T018-findings.tsv" "$PHASE/goal.md"
 ```
 
-- [ ] T019 Close the phase (this folder). Run the block below, then compare its status output with `scratch/status-start.txt`. Fill `implementation-summary.md` and mark each `acceptance-criteria.md` row. Verify: `validate.sh` prints `RESULT: PASSED` and `rg -c '^\| AC-[0-9]+ .*\| Unmet \|' "$PHASE/acceptance-criteria.md"` prints nothing. Record the report tally and the review result in `goal.md` section 4.
+- [x] T019 Close the phase (this folder). Run the block below, then compare its status output with `scratch/status-start.txt`. Fill `implementation-summary.md` and mark each `acceptance-criteria.md` row. Verify: `validate.sh` prints `RESULT: PASSED` and `rg -c '^\| AC-[0-9]+ .*\| Unmet \|' "$PHASE/acceptance-criteria.md"` prints nothing. Record the report tally and the review result in `goal.md` section 4.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"
@@ -960,10 +960,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, or `[B]` with a recorded blocker
-- [ ] No `[B]` blocked task without a line in `goal.md` section 4
-- [ ] Every acceptance criterion marked `Met` with its evidence
-- [ ] Every scenario has one of the five verdict values: `PASS`, `FAIL`, `FIXED`, `ESCALATED` or `SCENARIO_DEFECT`
+- [x] All tasks marked `[x]`, or `[B]` with a recorded blocker
+- [x] No `[B]` blocked task without a line in `goal.md` section 4
+- [x] Every acceptance criterion marked `Met` with its evidence
+- [x] Every scenario has one of the five verdict values: `PASS`, `FAIL`, `FIXED`, `ESCALATED` or `SCENARIO_DEFECT`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -994,9 +994,9 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 007 is closed and every launch precondition is recorded as met
-- [ ] CHK-002 [P0] `BASE_REF` resolves and contains the card, both guard scripts and the v2.3 stamp
-- [ ] CHK-003 [P1] Every brief is saved under `scratch/briefs/` before dispatch
+- [x] CHK-001 [P0] Phase 007 is closed and every launch precondition is recorded as met (Evidence: phase 007 `**Closeable:** Yes`, 6 Done precondition rows)
+- [x] CHK-002 [P0] `BASE_REF` resolves and contains the card, both guard scripts and the v2.3 stamp (Evidence: `BASE_REF` `95abd302c8` resolves, the card, both guards, `template-authoring/` and a `v2.3` stamp are present (T001, T007))
+- [x] CHK-003 [P1] Every brief is saved under `scratch/briefs/` before dispatch (Evidence: the scenario 483 worker brief is the scenario's own and is saved at `scratch/runs/483.worker-1/brief.txt`, the review brief at `scratch/briefs/T017.txt`)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1004,10 +1004,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `run-scenario.sh` passes `bash -n` and `check-run.cjs` passes `node --check`
-- [ ] CHK-011 [P0] No scenario command was retyped by the conductor
-- [ ] CHK-012 [P1] No file under `.skilled/` was edited by hand
-- [ ] CHK-013 [P1] Every fix brief names exactly one ALLOWED WRITE PATH
+- [x] CHK-010 [P0] `run-scenario.sh` passes `bash -n` and `check-run.cjs` passes `node --check` (Evidence: `bash -n` printed `SYNTAX_OK` and `node --check` printed `CHECK_OK`)
+- [x] CHK-011 [P0] No scenario command was retyped by the conductor (Evidence: every run came from the runner, which writes the scenario's own blocks to `<run>.cmd`)
+- [x] CHK-012 [P1] No file under `.skilled/` was edited by hand (Evidence: no source file under `.skilled/` was edited by hand. The one exemption is the reports index row (T014) and the new report folder, which are products of the phase)
+- [x] CHK-013 [P1] Every fix brief names exactly one ALLOWED WRITE PATH (Evidence: no fix brief was needed, so none exists)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -1015,10 +1015,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Eight run files exist and eight verdict rows exist
-- [ ] CHK-022 [P1] A run that hit the 30 minute alarm is recorded with its `exit=142` line and `FAIL`
-- [ ] CHK-023 [P1] The fixture test proves the extractor and comparator before the first real run
+- [x] CHK-020 [P0] All acceptance criteria met (Evidence: nine of nine acceptance rows Met)
+- [x] CHK-021 [P0] Eight run files exist and eight verdict rows exist (Evidence: 28 `.txt` run records including eight run files, and eight verdict rows)
+- [x] CHK-022 [P1] A run that hit the 30 minute alarm is recorded with its `exit=142` line and `FAIL` (Evidence: no run hit the alarm, none ended `exit=142`)
+- [x] CHK-023 [P1] The fixture test proves the extractor and comparator before the first real run (Evidence: the fixture printed `FIXTURE_OK`, `COMPARATOR_OK` and the fence test printed only `BASH_RAN` and `SH_RAN` before the first real run)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1026,11 +1026,11 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every `FAIL` row has a fix brief and a rerun, or an `ESCALATED` row after three attempts
-- [ ] CHK-FIX-002 [P0] Each fix brief limits writes to the one file the scenario's `## 4. SOURCE FILES` list names
-- [ ] CHK-FIX-003 [P1] A `SCENARIO_DEFECT` row is escalated to phase 007 and no scenario file is edited
-- [ ] CHK-FIX-004 [P1] The report `results.csv` matches `scratch/results.tsv` row for row
-- [ ] CHK-FIX-005 [P1] The reports index holds exactly one row for the new folder
+- [x] CHK-FIX-001 [P0] Every `FAIL` row has a fix brief and a rerun, or an `ESCALATED` row after three attempts (Evidence: no `FAIL` row occurred, so no fix brief and no escalation row exist)
+- [x] CHK-FIX-002 [P0] Each fix brief limits writes to the one file the scenario's `## 4. SOURCE FILES` list names (Evidence: no fix brief was needed)
+- [x] CHK-FIX-003 [P1] A `SCENARIO_DEFECT` row is escalated to phase 007 and no scenario file is edited (Evidence: no `SCENARIO_DEFECT` row occurred and no scenario file was edited)
+- [x] CHK-FIX-004 [P1] The report `results.csv` matches `scratch/results.tsv` row for row (Evidence: `results.csv` has the same eight ids and verdicts as `scratch/results.tsv`)
+- [x] CHK-FIX-005 [P1] The reports index holds exactly one row for the new folder (Evidence: `rg -c` for the folder name printed `1`)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1038,9 +1038,9 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No brief contains a credential, a token or a key
-- [ ] CHK-031 [P0] Every worker was one Task subagent and its brief states that the spec-folder question is pre-resolved
-- [ ] CHK-032 [P1] No worker wrote outside the disposable worktree
+- [x] CHK-030 [P0] No brief contains a credential, a token or a key (Evidence: no brief holds a credential, token or key)
+- [x] CHK-031 [P0] Every worker was one Task subagent and its brief states that the spec-folder question is pre-resolved (Evidence: superseded wording: the single worker was the phase agent plus scenario 483's own cli-devin worker, whose brief states the spec-folder question is pre-resolved)
+- [x] CHK-032 [P1] No worker wrote outside the disposable worktree (Evidence: the only untracked path in the worktree was the scenario 483 pointer file, held in `fix.patch`)
 <!-- /ANCHOR:security -->
 
 ---
@@ -1048,9 +1048,9 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` agree on the eight scenarios and the report shape
-- [ ] CHK-041 [P1] `goal.md` section 4 records `BASE_REF`, the worktree pair, every verdict and every escalation
-- [ ] CHK-042 [P2] `source.md` names every run file
+- [x] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` agree on the eight scenarios and the report shape (Evidence: the documents agree on the eight scenarios and the report shape, with the amendments recorded in `goal.md`)
+- [x] CHK-041 [P1] `goal.md` section 4 records `BASE_REF`, the worktree pair, every verdict and every escalation (Evidence: `goal.md` section 4 records `BASE_REF`, the worktree pair, every verdict and the review outcomes. No scenario escalated)
+- [x] CHK-042 [P2] `source.md` names every run file (Evidence: `source.md` names the run files directory, the worker files, the provisioning record and the runner)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1058,9 +1058,9 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Working files are under this phase's `scratch/` only
-- [ ] CHK-051 [P1] The disposable worktree does not exist at phase close
-- [ ] CHK-052 [P1] The primary checkout gate prints `PRIMARY_CLEAN`
+- [x] CHK-050 [P1] Working files are under this phase's `scratch/` only (Evidence: working files are under `scratch/` only)
+- [x] CHK-051 [P1] The disposable worktree does not exist at phase close (Evidence: `git worktree list` shows no `playbook-run` entry and the directory is gone)
+- [x] CHK-052 [P1] The primary checkout gate prints `PRIMARY_CLEAN` (Evidence: `PRIMARY_CLEAN`)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1070,11 +1070,11 @@ git -C "$RUNROOT" status --porcelain
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 |
-| P1 Items | 24 | 0/24 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 24 | 24/24 |
+| P2 Items | 9 | 9/9 |
 
-**Verification Date**: not yet run
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---
@@ -1082,10 +1082,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] ADR-001, ADR-002, ADR-003 and ADR-004 in `plan.md` are followed by T008 to T013
-- [ ] CHK-101 [P1] Every ADR has status Accepted
-- [ ] CHK-102 [P1] Each ADR names the alternative it rejected and why
-- [ ] CHK-103 [P2] No database migration applies to this phase
+- [x] CHK-100 [P0] ADR-001, ADR-002, ADR-003 and ADR-004 in `plan.md` are followed by T008 to T013 (Evidence: T008 to T013 follow the four ADRs, with the recorded amendments)
+- [x] CHK-101 [P1] Every ADR has status Accepted (Evidence: the ADRs in `plan.md` keep status Accepted)
+- [x] CHK-102 [P1] Each ADR names the alternative it rejected and why (Evidence: the ADRs name their rejected alternatives in `plan.md`)
+- [x] CHK-103 [P2] No database migration applies to this phase (Evidence: no database migration applies)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -1093,10 +1093,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] Each scenario returned within 30 minutes or ended with its `exit=142` alarm line
-- [ ] CHK-111 [P1] Provisioning time is recorded in `goal.md` section 4
-- [ ] CHK-112 [P2] No load test applies to this phase
-- [ ] CHK-113 [P2] The report's expected wall clock matches the observed range
+- [x] CHK-110 [P1] Each scenario returned within 30 minutes or ended with its `exit=142` alarm line (Evidence: every scenario returned within 30 minutes, the longest (S8) took 174 s)
+- [x] CHK-111 [P1] Provisioning time is recorded in `goal.md` section 4 (Evidence: provisioning time (1094 s) is in `goal.md` section 4 and `scratch/timings.txt`)
+- [x] CHK-112 [P2] No load test applies to this phase (Evidence: no load test applies)
+- [x] CHK-113 [P2] The report's expected wall clock matches the observed range (Evidence: the report states about 18 minutes plus about 3 minutes, matching `scratch/timings.txt`)
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -1104,11 +1104,11 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] The removal block ran and its output is saved
-- [ ] CHK-121 [P0] Nothing outside the allowed set changed in the primary checkout
-- [ ] CHK-122 [P1] Phase 009 can start: the report folder and `results.csv` exist
-- [ ] CHK-123 [P1] `goal.md` section 4 names the next phase as ready
-- [ ] CHK-124 [P2] No deployment applies to this phase
+- [x] CHK-120 [P0] The removal block ran and its output is saved (Evidence: the removal block ran and `scratch/worktree/removal.txt` holds `REMOVAL_OK`)
+- [x] CHK-121 [P0] Nothing outside the allowed set changed in the primary checkout (Evidence: MAIN status has 0 changed lines)
+- [x] CHK-122 [P1] Phase 009 can start: the report folder and `results.csv` exist (Evidence: the report folder and `results.csv` exist)
+- [x] CHK-123 [P1] `goal.md` section 4 names the next phase as ready (Evidence: `goal.md` section 4 names phase 009 as ready)
+- [x] CHK-124 [P2] No deployment applies to this phase (Evidence: no deployment applies)
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -1116,10 +1116,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] The frontier review ran read-only and its reply is saved
-- [ ] CHK-131 [P1] No new dependency was added to a manifest
-- [ ] CHK-132 [P2] No user data is handled by this phase
-- [ ] CHK-133 [P2] No OWASP surface is touched by this phase
+- [x] CHK-130 [P1] The frontier review ran read-only and its reply is saved (Evidence: the review ran read-only on cli-devin swe-2-max `auto` and its reply is `scratch/review/T017.raw.txt`)
+- [x] CHK-131 [P1] No new dependency was added to a manifest (Evidence: no manifest was changed)
+- [x] CHK-132 [P2] No user data is handled by this phase (Evidence: no user data is handled)
+- [x] CHK-133 [P2] No OWASP surface is touched by this phase (Evidence: no OWASP surface is touched)
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -1127,10 +1127,10 @@ git -C "$RUNROOT" status --porcelain
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] The six phase documents agree at close
-- [ ] CHK-141 [P1] `implementation-summary.md` cites the report folder and the eight verdicts
-- [ ] CHK-142 [P2] No user-facing documentation changes outside the report
-- [ ] CHK-143 [P2] The report names the exact `BASE_REF`
+- [x] CHK-140 [P1] The six phase documents agree at close (Evidence: the phase documents agree at close)
+- [x] CHK-141 [P1] `implementation-summary.md` cites the report folder and the eight verdicts (Evidence: `implementation-summary.md` cites the report folder and the eight verdicts)
+- [x] CHK-142 [P2] No user-facing documentation changes outside the report (Evidence: no user-facing documentation changed outside the report)
+- [x] CHK-143 [P2] The report names the exact `BASE_REF` (Evidence: the report names `95abd302c8fbe320f9fd76b36951e33fff5f7d10`)
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -1140,7 +1140,7 @@ git -C "$RUNROOT" status --porcelain
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Conductor | Runs and verifies every task | Pending | |
-| Frontier reviewer | Reads the report read-only | Pending | |
+| Conductor | Runs and verifies every task | Done | 2026-10-25 |
+| Frontier reviewer | Reads the report read-only | Done | 2026-10-25 |
 | Operator | Merges the report and closes the phase | Pending | |
 <!-- /ANCHOR:sign-off -->

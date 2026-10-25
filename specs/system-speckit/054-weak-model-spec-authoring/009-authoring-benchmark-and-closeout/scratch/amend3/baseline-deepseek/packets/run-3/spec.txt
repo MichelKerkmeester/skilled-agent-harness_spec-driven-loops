@@ -1,0 +1,226 @@
+---
+title: "Feature Specification: Add a quiet flag to recommend-level.sh"
+description: "recommend-level.sh answers one question but prints a sixteen-line report to answer it, so a caller that only needs the level slices stdout with head, grep or sed against a layout nobody promised. A --quiet flag that prints only the recommended-level line removes that slicing while leaving every existing invocation byte-identical."
+trigger_phrases:
+  - "recommend level quiet flag"
+  - "add a quiet flag to recommend level sh"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+# Feature Specification: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+
+---
+
+## EXECUTIVE SUMMARY
+
+`recommend-level.sh` decides which documentation level a task needs, then prints a sixteen-line report to say so. Any caller that only needs the level has to slice that report with `head`, `grep` or `sed`, and the slice is tied to a layout the script never promised. This packet adds `--quiet`, which prints only the recommended-level line and leaves every existing invocation byte-identical.
+
+**Key Decisions**: `--quiet` is a text-output modifier rather than a fourth report; `--json` takes precedence when both flags are passed; the level line comes from one shared helper so the quiet and default paths cannot drift apart.
+
+**Critical Dependencies**: Bash 3.2 compatibility, because macOS ships 3.2 as `/bin/bash`, and the existing vitest CLI project that holds the script's tests.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-10-25 |
+| **Branch** | `scaffold/001-recommend-level-quiet-flag` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+`recommend-level.sh` answers one question, which documentation level a task needs, but prints a sixteen-line report to answer it. A caller that needs only the level must slice stdout with `head -1`, `grep '^Recommended Level:'` or `sed`, and every slice depends on a layout no interface promises; for `--loc 50 --files 2` the report is sixteen lines. The script rejects `--quiet` today with `ERROR: Unknown option: --quiet` and exit 1, so slicing is the only option available.
+
+### Purpose
+One flag, one line: `--quiet` prints only `Recommended Level: <N> (<Name>)`, so a caller reads the answer without parsing the report, while every invocation that does not pass the flag keeps its exact current output.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Accept `--quiet` in the option parser and record it in a `QUIET_OUTPUT` global.
+- Add a quiet output path that prints exactly the recommended-level line.
+- Document `--quiet` in the file header OPTIONS block and in `--help`, with an example.
+- Add a regression test covering the quiet line, unchanged default output, JSON precedence and the error paths.
+
+### Out of Scope
+- Scoring, thresholds, confidence and phase logic - the flag changes presentation only, and those functions are not edited.
+- The JSON document shape - `--json` keeps its current output, including when `--quiet` is also passed.
+- A `-q` short alias - the request names `--quiet`, sibling scripts use `-q`, and adding one is a separate interface decision.
+- Callers and documentation outside the script - no caller needs a change because default output is unchanged.
+- Commit, push or branch operations - those stay with the operator.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Modify | `QUIET_OUTPUT` global, `--quiet` parsing, quiet output function, dispatch branch, header and help text |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/recommend-level-quiet.vitest.ts` | Create | Regression test for the quiet line, unchanged default output, JSON precedence and error paths |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | The parser accepts `--quiet` and sets quiet mode instead of reporting an unknown option. |
+| REQ-002 | With `--quiet` and text output, stdout is exactly one line, `Recommended Level: <N> (<Name>)`, followed by one newline. There is no leading blank line and no score, breakdown or phase section. |
+| REQ-003 | Without `--quiet`, text output is byte-identical to the pre-change script for every existing invocation. |
+| REQ-004 | `--help` lists `--quiet` and includes an example, and the file header OPTIONS block lists the same option. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-005 | `--quiet` combined with `--json` leaves the JSON document unchanged; `--json` takes precedence. |
+| REQ-006 | `--quiet` does not suppress stderr messages and does not change any exit code. |
+| REQ-007 | The regression test covers REQ-001 through REQ-006 in the existing vitest CLI project. |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `recommend-level.sh --loc 50 --files 2 --quiet | wc -l` prints `1`, and the line reads `Recommended Level: 0 (Quick)`.
+- **SC-002**: `recommend-level.sh --loc 50 --files 2` produces output that diffs clean against a capture taken before the change.
+- **SC-003**: `recommend-level.sh --help` contains the `--quiet` option and an example that uses it.
+- **SC-004**: The focused test file and the full CLI vitest project both pass.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Bash 3.2 (`/bin/bash` on macOS) | A bash 4-only construct would break the default shell on the operator's machine | Use 3.2-compatible syntax only; run `bash -n` and the suite on macOS |
+| Dependency | vitest CLI project | Without it the regression has no home and the change ships unverified | Add the test beside the existing CLI script tests |
+| Risk | The quiet and default paths drift apart | High: the two lines would disagree after a later edit | Both paths call one shared line-formatting helper |
+| Risk | `--json --quiet` is ambiguous | Medium: a caller could receive a different document than it parses today | Decide that JSON wins, state it in help, and test it |
+<!-- /ANCHOR:risks -->
+
+---
+
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The quiet path adds no measurable work; one invocation completes well under 100 ms on the reference machine.
+
+### Security
+- **NFR-S01**: The flag adds no input, file or network access, so the script's attack surface is unchanged.
+
+### Reliability
+- **NFR-R01**: Exit codes stay as they are - 0 for success, 1 for a usage or validation error - and `set -euo pipefail` stays in force.
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+- Empty input: `--loc 0 --files 0` keeps its `At least --loc or --files must be provided` error and exit 1, with or without `--quiet`.
+- Maximum length: no new input is accepted, and numeric handling is untouched, so no new boundary exists.
+
+### Error Scenarios
+- Missing or invalid value: `--quiet --loc` still prints `ERROR: --loc requires a numeric value` on stderr and exits 1.
+- Unknown option: unaffected; `--quiet` no longer reaches that branch.
+- `--help` with `--quiet`: help wins and exits 0 before any output mode runs.
+- `--json` with `--quiet`: JSON wins, and the document is byte-identical to a plain `--json` run.
+- Repeated `--quiet`: idempotent; the flag sets the same boolean twice.
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 10/25 | Files: 2 (one script, one test), LOC: about 35, Systems: 1 |
+| Risk | 3/25 | Auth: N, API: N, Breaking: N (default output unchanged) |
+| Research | 6/20 | Read the script, its callers and the CLI test harness |
+| Multi-Agent | 2/15 | Workstreams: 1 |
+| Coordination | 2/15 | Dependencies: 1 (the existing vitest CLI project) |
+| **Total** | **23/100** | **Level 1 by score; Level 3 by operator decision** |
+
+The operator fixed the documentation level at 3 when scaffolding this packet (`create.sh --level 3`). The score records the change's own size and is not re-derived into a different level; the packet's verification depth follows the Level 3 contract.
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Default text output changes by accident | H | M | Byte-diff a pre-change capture before and after, and assert it in the test |
+| R-002 | The quiet line and the full report disagree | M | M | One shared helper formats the line for both paths |
+| R-003 | `--json --quiet` surprises an existing caller | M | L | Document JSON precedence in help and test the combination |
+
+---
+
+## 11. USER STORIES
+
+### US-001: Just the level (Priority: P0)
+
+**As a** command or agent that decides a documentation level, **I want** the script to print only its recommendation, **so that** I do not carry or parse a sixteen-line report to read one value.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: Unchanged report (Priority: P0)
+
+**As an** operator reading the full report, **I want** today's output left untouched, **so that** existing habits, scripts and docs keep working.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-003: Documented interface (Priority: P1)
+
+**As a** maintainer of the spec-kit scripts, **I want** the flag in `--help` and in the file header, **so that** the option is discoverable without reading the parser.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- None outstanding. The `--json` precedence question is decided in REQ-005 and recorded as ADR-001 in `plan.md`.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `tasks.md`
+- **Decision Records**: See `plan.md`, ADR-001
+
+---
+

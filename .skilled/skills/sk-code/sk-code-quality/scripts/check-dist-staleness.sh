@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: DIST STALENESS CHECKER
+# ───────────────────────────────────────────────────────────────
 """
 Dist staleness checker for edited source files.
 

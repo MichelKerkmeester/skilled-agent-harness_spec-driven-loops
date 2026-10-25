@@ -1,0 +1,16 @@
+1 spec: metadata problem questions requirements risks scope success-criteria
+1 plan: architecture dependencies phases quality-gates rollback summary testing
+1 tasks: completion cross-refs notation phase-1 phase-2 phase-3
+1 implementation-summary: decisions how-delivered limitations metadata verification what-built
+2 spec: complexity edge-cases metadata nfr problem questions requirements risks scope success-criteria
+2 plan: affected-surfaces architecture dependencies effort enhanced-rollback phase-deps phases quality-gates rollback summary testing
+2 tasks: code-quality completion cross-refs docs file-org fix-completeness notation phase-1 phase-2 phase-3 pre-impl protocol security summary testing
+2 implementation-summary: decisions how-delivered limitations metadata verification what-built
+3 spec: metadata problem questions requirements risks scope success-criteria
+3 plan: affected-surfaces architecture critical-path dependencies dependency-graph effort enhanced-rollback milestones phase-deps phases quality-gates rollback summary testing
+3 tasks: arch-verify code-quality completion compliance-verify cross-refs deploy-ready docs docs-verify file-org fix-completeness notation perf-verify phase-1 phase-2 phase-3 pre-impl protocol security sign-off summary testing
+3 implementation-summary: decisions how-delivered limitations metadata verification what-built
+3+ spec: approval-workflow change-log compliance-checkpoints metadata problem questions requirements risks scope stakeholder-matrix success-criteria
+3+ plan: affected-surfaces ai-execution architecture communication critical-path dependencies dependency-graph effort enhanced-rollback milestones phase-deps phases quality-gates rollback summary testing workstreams
+3+ tasks: arch-verify code-quality completion compliance-verify cross-refs deploy-ready docs docs-verify file-org fix-completeness notation perf-verify phase-1 phase-2 phase-3 pre-impl protocol security sign-off summary testing
+3+ implementation-summary: decisions how-delivered limitations metadata verification what-built

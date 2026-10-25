@@ -71,15 +71,13 @@ The reasons and the one cost are in `decision-record.md` under the 2026-10-24 am
 The concurrency template's main-branch value is not a phase dependency. It records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` as D2's recorded PR-only answer (2026-10-23), and names `cancel-in-progress: true` on main as the alternative in one line.
 
 **Deliverables**:
-- `.skilled/skills/sk-code/sk-code-ci/`: `SKILL.md`, `README.md`, `changelog/v0.1.0.0.md`, four `references/` documents, two `assets/` templates and three workflow-doctrine symlinks.
+- `.skilled/skills/sk-code/sk-code-ci/`: `SKILL.md`, `README.md`, `changelog/v1.0.0.0.md`, four `references/` documents, two `assets/` templates and three workflow-doctrine symlinks.
 - `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json` and `leaf-manifest.json` entries for `sk-code-ci`.
 - `ROUTER.md` prose and machine maps, and the `verify-router-sync.cjs` surface lists that make the union leg read the new packet.
 - `SKILL.md`, `README.md`, `shared/README.md`, `feature-catalog/` and `shared/references/phase-detection.md` surface wording and counts.
 - One canary case plus its authored twin, one compiled-route test case and one playbook scenario.
 - `scratch/`: the baseline, the ordering state, the source anchors and the phase result.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -120,7 +118,7 @@ One read-only `sk-code-ci` surface packet records the rules, the protected set, 
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-code/sk-code-ci/SKILL.md` | Create | Surface contract: when the hub bundles it, the reference map, the machine-readable `DEFAULT_RESOURCE`, `INTENT_SIGNALS` and `RESOURCE_MAP` |
 | `.skilled/skills/sk-code/sk-code-ci/README.md` | Create | Human orientation: packet kind, tools, what it carries, what it refuses to do |
-| `.skilled/skills/sk-code/sk-code-ci/changelog/v0.1.0.0.md` | Create | First packet release, matching the packet `SKILL.md` version |
+| `.skilled/skills/sk-code/sk-code-ci/changelog/v1.0.0.0.md` | Create | First packet release, matching the packet `SKILL.md` version |
 | `.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md` | Create | Rule index: path parity, SHA pins, README row, `set -euo pipefail`, fork and secret safety, matrix and `fail-fast` |
 | `.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md` | Create | Twin rule with the 8-entry form, inert twins, rebuild-skip rule, push-only scope, message-contract exception |
 | `.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md` | Create | Timeout sizing, least privilege, concurrency template, composite action, switch `if:` shape |
@@ -162,7 +160,7 @@ Each requirement names the R-id it serves. R22 owns the packet and its registrat
 
 | ID | R-id | Requirement |
 |----|------|-------------|
-| REQ-001 | R22 | **Packet exists and is read-only.** `.skilled/skills/sk-code/sk-code-ci/` exists with `SKILL.md`, `README.md`, `changelog/v0.1.0.0.md`, four `references/*.md` documents, two `assets/*.yml` templates and the three `references/workflow-*.md` symlinks; the `SKILL.md` frontmatter declares `name: sk-code-ci`, `allowed-tools: [Read, Bash, Grep, Glob]`, `metadata.packetKind: surface` and a version that matches its newest changelog entry |
+| REQ-001 | R22 | **Packet exists and is read-only.** `.skilled/skills/sk-code/sk-code-ci/` exists with `SKILL.md`, `README.md`, `changelog/v1.0.0.0.md`, four `references/*.md` documents, two `assets/*.yml` templates and the three `references/workflow-*.md` symlinks; the `SKILL.md` frontmatter declares `name: sk-code-ci`, `allowed-tools: [Read, Bash, Grep, Glob]`, `metadata.packetKind: surface` and a version that matches its newest changelog entry |
 | REQ-002 | R22 | **The rule data is complete.** The four references and two templates carry all ten rule families the final review names, each with a `file:line` citation: the twin rule with the 8-entry form and inert `.opencode/` twins, the rebuild-skip rule in D1's chosen form, push-only scope for generated-path rules, the timeout sizing formula, least privilege, the concurrency template, the composite-action rule, the switch `if:` shape, the protected set and the scaffold templates. Numbers use the final review's corrected figures, including `standalone` and `after R1` where it gives both |
 | REQ-003 | R22 | **The registration list is complete.** `research.md:228-235` names eleven artifacts; all eleven exist: the `mode-registry.json` entry and surface-axis membership, the `hub-router.json` tie-break slot, `routerSignals` entry and two vocabulary classes, the generated `leaf-manifest.json`, the `ROUTER.md` projections, `graph-metadata.json`, `description.json`, the hub `SKILL.md` table, the packet folder, a compiled-route test case and a canary fixture with its authored twin |
 | REQ-004 | R22 | **The router union reaches the packet.** `ROUTER.md` §11 carries `CI_WORKFLOW` in both `INTENT_SIGNALS` and `RESOURCE_MAP` with the packet's four reference paths, and `verify-router-sync.cjs` lists `sk-code-ci` in both `SURFACES` and `SURFACE_PACKETS`, so leg 2's union includes the new packet and its map equals the parent projection |

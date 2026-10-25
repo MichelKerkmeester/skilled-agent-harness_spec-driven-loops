@@ -64,7 +64,7 @@ A search across the five task files found AC-ID references only in two phase-005
 
 9. **UPHELD as a proof limitation — iteration 004, f-iter004-002.** T004 proves absence of named paths and surface markers. It cannot prove absence of arbitrary private bytes copied under different names; add a reachable-blob comparison for complete files, and name a separate policy for partial-content scans if those are in scope. [SOURCE: specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md:60]
 
-10. **UPHELD as a test-coverage gap — iteration 004, f-iter004-003.** T008 still runs routing checks only in the operator’s main checkout. The Obsidian Plugin dependency is documented, but its active checkout path and symlink targets remain unknown. Amend phase 005 tasks.md and acceptance-criteria.md to run link and route probes from that checkout. [SOURCE: .skilled/skills/sk-code/sk-code-obsidian/README.md:75] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:67] [SOURCE: specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md:88]
+10. **UPHELD as a test-coverage gap — iteration 004, f-iter004-003.** T008 still runs routing checks only in the operator’s main checkout. The Obsidian Plugin dependency is documented, but its active checkout path and symlink targets remain unknown. Amend phase 005 tasks.md and acceptance-criteria.md to run link and route probes from that checkout. [SOURCE: sk-code-obsidian README line 75 at commit 42b41dd286] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:67] [SOURCE: specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md:88]
 
 ## Amendment targets
 

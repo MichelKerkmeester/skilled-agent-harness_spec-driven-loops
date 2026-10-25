@@ -1,0 +1,9 @@
+golden_exit=0
+      Tests  12 passed (12)
+0
+fill_exit=0
+      Tests  16 passed (16)
+0
+cleanup=ok
+truncated=no
+exit=0

@@ -1,0 +1,2 @@
+call_32f2ca5df5d94162b15a021b4a335b35 | rg -n "recommend-level" --glob '!specs/**' --glob '!node_modules/**' -l . | head -20 | hits ['authoring-baseline', 'model-eval']
+call_ee470bbcdb374393a3e8e7b519eeec0b | git branch --show-current; git status --porcelain | head -10 | hits ['anchors-', 'baseline-swe']

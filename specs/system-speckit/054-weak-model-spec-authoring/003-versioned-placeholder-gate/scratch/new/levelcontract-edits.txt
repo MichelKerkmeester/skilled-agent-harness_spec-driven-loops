@@ -1,0 +1,3 @@
+    expect(serialized.templateVersions['spec.md.tmpl']).toBe('v2.2');
+---
+    expect(serialized.templateVersions['spec.md.tmpl']).toBe('v2.3');

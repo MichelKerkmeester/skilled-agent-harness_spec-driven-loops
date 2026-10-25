@@ -1,0 +1,15 @@
+specs/system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/003-lib-runtime-migration	PASS	0	0	pass
+specs/system-deep-loop/z_archive/010-deep-context-gathering/003-runtime-feature-utilization	PASS	0	1	pass
+specs/system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting	PASS	0	0	pass
+specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention	PASS	0	0	pass
+specs/system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization	PASS	0	0	pass
+specs/system-skill-advisor/019-code-graph-retirement-drift	PASS	0	0	pass
+specs/system-skill-advisor/z_archive/001-skill-advisor-refinement	PASS	0	2	pass
+specs/system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit	PASS	0	2	pass
+specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor	PASS	0	0	pass
+specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation	PASS	0	1	pass
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep	PASS	0	0	pass
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup	PASS	0	0	pass
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design	PASS	0	0	pass
+specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening	PASS	0	0	pass
+specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution	PASS	0	2	pass

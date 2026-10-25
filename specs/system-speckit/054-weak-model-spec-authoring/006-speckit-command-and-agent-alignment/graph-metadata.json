@@ -39,7 +39,7 @@
       "commands"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/mirrors/gen-hermes.txt",
       ".skilled/commands/speckit/plan.md",
-      ".skilled/commands/speckit/assets/speckit-plan.yaml",
-      ".skilled/commands/speckit/assets/speckit-implement.yaml",
-      ".skilled/commands/speckit/assets/speckit-complete.yaml",
-      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
       ".skilled/agents/markdown.md",
-      ".skilled/agents/orchestrate.md",
-      ".claude/agents/markdown.md",
-      ".skilled/commands/doctor/speckit.md",
-      ".skilled/commands/doctor/update.md",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/create/assets/create-goal-auto.yaml",
-      ".skilled/commands/speckit/implement.md",
-      ".skilled/commands/speckit/complete.md"
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".hermes/skills/agent-code/SKILL.md",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      "scratch/suite-end.txt",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "scratch/audit/rows.jsonl",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+      "runtime/cli/spec/check-card-sync.sh",
+      "runtime/cli/spec/check-example-drift.sh",
+      "scratch/audit/applied.txt",
+      "scratch/audit/searches.txt"
     ],
     "entities": [
       {
@@ -100,27 +100,9 @@
         "source": "derived"
       },
       {
-        "name": "speckit-plan.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-implement.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-complete.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "name": "gen-hermes.txt",
+        "kind": "file",
+        "path": "scratch/mirrors/gen-hermes.txt",
         "source": "derived"
       },
       {
@@ -130,45 +112,63 @@
         "source": "derived"
       },
       {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".skilled/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/speckit.md",
-        "source": "derived"
-      },
-      {
-        "name": "update.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/update.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
+        "name": "deep-review-auto.yaml",
         "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
         "source": "derived"
       },
       {
-        "name": "create-goal-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "implement.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/commands/speckit/implement.md",
+        "path": ".hermes/skills/agent-code/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "complete.md",
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "suite-end.txt",
+        "kind": "file",
+        "path": "scratch/suite-end.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rows.jsonl",
+        "kind": "file",
+        "path": "scratch/audit/rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-authoring-card.md",
         "kind": "doc",
-        "path": ".skilled/commands/speckit/complete.md",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-card-sync.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "applied.txt",
+        "kind": "file",
+        "path": "scratch/audit/applied.txt",
+        "source": "derived"
+      },
+      {
+        "name": "searches.txt",
+        "kind": "file",
+        "path": "scratch/audit/searches.txt",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A speckit command tells a writer where to find authoring guidance, how a placeholder is treated and which files a packet holds",
     "created_at": "2026-10-23T12:53:05Z",
-    "last_save_at": "2026-10-23T16:16:32.130Z",
+    "last_save_at": "2026-10-24T20:39:10.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d57ffa8a88e280dd9b2b3335cefbb15170867cf4b09047c33eca439b5e4fa908",
+    "source_fingerprint": "sha256:3964738fdda2fdd667180ea0183bc441b2a6924dac8dc62853fbf7e418cb5d82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fbeddabada3427cc4cdeeace6cb2c93bc1786016f9863527b857147533d66961",
-      "plan.md": "f677bfea405111bcbd1eeed4ee812d244a0f890eab203932bc55caf51f5ce486",
-      "tasks.md": "3f7c398deb3e5ba446500c13aaaede00fcb1e69a9184fbe11af0ff7cde40086f",
-      "implementation-summary.md": "da21549c829ff51efc5248ede3c7c7a7fe1eddf66809e0a981cefa7a6947369b"
+      "spec.md": "a486e0da1e1e8f118fb5de2e98851914e9d9b106267a741c6ba84d7e47178909",
+      "plan.md": "77d4a9b8abc0355559706849dd53915bbb9a36b9ce2e71c93146694e28766650",
+      "tasks.md": "5fd4a1c73993fbde86e059fd60ab08fa10e62fc94f418dcdb2130bee67b2021f",
+      "implementation-summary.md": "32197e92a92f40776f1d4c3cc553c6662744614c5e4e0bdcba45673206800f47"
     },
     "last_active_at": null
   }

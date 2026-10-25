@@ -1,0 +1,9 @@
+scenario_id,runtime,run,evidence_class,verdict
+476,conductor,1,manual-testing-playbook,PASS
+477,conductor,1,manual-testing-playbook,PASS
+478,conductor,1,manual-testing-playbook,PASS
+479,conductor,1,manual-testing-playbook,PASS
+480,conductor,1,manual-testing-playbook,PASS
+481,conductor,1,manual-testing-playbook,PASS
+482,conductor,1,manual-testing-playbook,PASS
+483,conductor,1,manual-testing-playbook,PASS

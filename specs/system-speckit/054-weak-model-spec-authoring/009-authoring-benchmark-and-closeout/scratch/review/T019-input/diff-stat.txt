@@ -1,0 +1,12 @@
+ .../README.md                                      |  4 +-
+ .../source.md                                      |  1 +
+ .../acceptance-criteria.md                         |  2 +-
+ .../009-authoring-benchmark-and-closeout/goal.md   | 18 ++++--
+ .../graph-metadata.json                            | 70 +++++++++++-----------
+ .../implementation-summary.md                      |  5 +-
+ .../scratch/tools/run-final.sh                     |  2 +-
+ .../009-authoring-benchmark-and-closeout/tasks.md  | 12 ++--
+ ...log-054-009-authoring-benchmark-and-closeout.md |  3 +-
+ .../graph-metadata.json                            |  8 +--
+ .../054-weak-model-spec-authoring/spec.md          | 10 ++--
+ 11 files changed, 75 insertions(+), 60 deletions(-)

@@ -1,0 +1,2 @@
+FAIL /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/test/examples/level-2/acceptance-criteria.md: description holds an HTML comment tail
+guard exit=1

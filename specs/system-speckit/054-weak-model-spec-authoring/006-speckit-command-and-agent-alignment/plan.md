@@ -37,17 +37,17 @@ The audit is already done. Twenty-one stale statements were found in 12 authored
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The launch preconditions in `../spec.md` section 3 are recorded as met in `../goal.md` section 4
-- [ ] Phase 5 closed: the authoring card and `check-card-sync.sh` exist
-- [ ] Phase 4 closed: `check-example-drift.sh` exists
-- [ ] `tasks.md` T001 to T005 are done: phase checks, tools, start state, rows saved, applier tested
+- [x] The launch preconditions in `../spec.md` section 3 are recorded as met in `../goal.md` section 4
+- [x] Phase 5 closed: the authoring card and `check-card-sync.sh` exist
+- [x] Phase 4 closed: `check-example-drift.sh` exists
+- [x] `tasks.md` T001 to T005 are done: phase checks, tools, start state, rows saved, applier tested
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] `tasks.md` T007 prints four empty searches and `GUARD_REFS=6`
-- [ ] `tasks.md` T008 prints eight passing checks
-- [ ] `tasks.md` T012 prints `SUITE_MATCH`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] `tasks.md` T007 prints four empty searches and `GUARD_REFS=6`
+- [x] `tasks.md` T008 prints eight passing checks
+- [x] `tasks.md` T012 prints `SUITE_MATCH`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -475,9 +475,9 @@ Setup (T001-T005) ──► Apply rows (T006) ──► Search gates (T007) ─�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Phase start commit hash recorded in `goal.md` section 4 before the first row is applied
-- [ ] `git status --porcelain` saved to `scratch/status-start.txt`
-- [ ] No feature flag applies, the changed files are documentation and generated mirrors
+- [x] Phase start commit hash recorded in `goal.md` section 4 before the first row is applied
+- [x] `git status --porcelain` saved to `scratch/status-start.txt`
+- [x] No feature flag applies, the changed files are documentation and generated mirrors
 
 ### Rollback Procedure
 1. List changed files with `git diff --name-only`.
@@ -565,9 +565,9 @@ Written for the executing swarm. Follow each rule as written. Where a rule and y
 
 ### Pre-Task Checklist
 - [ ] Read this phase's `spec.md`, this plan and `tasks.md` before the first command
-- [ ] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
+- [x] Confirm the working directory is the build worktree recorded in `../goal.md` section 4, never the main checkout
 - [ ] Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` before the review command
-- [ ] Save the review brief to `scratch/briefs/T013.txt` before dispatching it
+- [x] Save the review brief to `scratch/briefs/T013.txt` before dispatching it
 
 ### Execution Rules
 

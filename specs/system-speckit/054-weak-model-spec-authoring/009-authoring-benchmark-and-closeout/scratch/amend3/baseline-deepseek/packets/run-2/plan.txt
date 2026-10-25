@@ -1,0 +1,313 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "Add a boolean --quiet flag to the spec-kit level recommender, emit a single recommended-level line through a dedicated output function, and preserve every existing text and JSON byte. The plan covers parser placement, output dispatch, regression coverage, and the verification matrix."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+  - "recommend-level quiet implementation"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash 3.2-compatible shell script |
+| **Framework** | None; standalone CLI helper in the spec-kit runtime |
+| **Storage** | None |
+| **Testing** | `bash -n`, output assertions, `diff`, Vitest |
+
+### Overview
+
+The change adds a `QUIET` boolean to the script's globals, one `--quiet` arm to the existing argument loop, a small `output_quiet` function, and one branch in the output dispatch. JSON output keeps precedence, quiet text prints one line, and the default report is untouched. A focused Vitest file pins the three output modes and the error path.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] Focused test passing and existing phase-system tests unchanged
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+
+Single-file bash CLI with a linear pipeline: parse arguments into globals, calculate scores, determine the level, then dispatch to one output formatter.
+
+### Key Components
+
+- **Argument parser**: the `while [[ $# -gt 0 ]]` loop in section 5 of the script; owns flag acceptance and validation.
+- **Scoring functions**: `calculate_loc_score`, `calculate_files_score`, `calculate_risk_score`, `calculate_complexity_score`, and `determine_level`; unchanged.
+- **Output dispatch**: the final `if` in section 7 that selects JSON or text; gains the quiet branch.
+- **`output_quiet`**: new function in section 4 that prints the single recommended-level line.
+- **`output_text` and `output_json`**: existing formatters; unchanged.
+
+### Data Flow
+
+`argv` → parser sets `LOC`, `FILES`, risk flags, `JSON_OUTPUT`, and the new `QUIET` → scoring functions fill `TOTAL_SCORE` → `determine_level` sets `RECOMMENDED_LEVEL` and `LEVEL_NAME` → `calculate_confidence` and `determine_phasing` run as today → dispatch chooses `output_json`, `output_quiet`, or `output_text`.
+
+The dispatch is exclusive and ordered: JSON first, quiet text second, default text last. Quiet mode never modifies scores or reaches the JSON path.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `recommend-level.sh` argument parser | Accepts options and sets globals | Update | `bash -n`; `--quiet` accepted in any order; `--quiet=true` rejected |
+| `recommend-level.sh` output dispatch | Chooses JSON versus text | Update | JSON plus quiet stays JSON; quiet text is one line |
+| `output_text` | Human-readable report | Unchanged | Baseline diff is empty |
+| `output_json` | Machine-readable report | Unchanged | Baseline diff is empty and JSON parses |
+| `show_help` and file-header OPTIONS | Document the CLI surface | Update | Help lists `--quiet`; `--quiet --help` exits 0 |
+| `.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` | Documents `level_recommendation` as script output | Unchanged | Reference inspection found no line-by-line stdout parser |
+| `runtime/cli/tests/test-phase-system.js` | Invokes the script with `--json` | Unchanged | Existing test remains green |
+
+Required inventories:
+- Same-class producers: `rg -n 'JSON_OUTPUT|output_text|output_json|Recommended Level:' .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh`.
+- Consumers of the changed surface: `rg -n 'recommend-level\.sh' .skilled/skills/system-spec-kit --glob '!node_modules'`.
+- Matrix axes: flag state (absent, `--quiet`) crossed with output mode (text, JSON, help, error). Required rows: default text, quiet text, JSON, JSON plus quiet, help plus quiet, missing-input error, non-numeric error, unknown-option error.
+- Algorithm invariant: for one input the computed level and score are identical across all output modes; only the formatter changes. Quiet mode must never emit a blank line, and JSON mode must never emit the quiet text line.
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+
+- **Phase 1 — Setup**: capture default text and JSON baselines, confirm parser and dispatch line locations, inventory consumers.
+- **Phase 2 — Implementation**: add the global, parser arm, `output_quiet`, dispatch branch, documentation, and focused test.
+- **Phase 3 — Verification**: run syntax, output, JSON, help, and error assertions; run the focused test; run strict spec validation.
+<!-- /ANCHOR:phases -->
+
+---
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- [ ] Read the argument parser, the output functions, and the final dispatch in `recommend-level.sh` before editing.
+- [ ] Capture default text and JSON baselines for the representative inputs in `scratch/`.
+- [ ] Confirm the file scope in `tasks.md`; scoring functions and `output_text` stay untouched.
+
+### Execution Rules
+
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Execute `tasks.md` in order; finish the Phase 1 baselines before any edit. |
+| TASK-SCOPE | Modify only `recommend-level.sh` and add the focused test file. |
+| OUTPUT-PRESERVE | Default text and JSON output must remain byte-identical to the captured baselines. |
+| VERIFY-FIRST | Run `bash -n` and the output assertions after every edit, before moving on. |
+| NO-WORKAROUND | Do not change scoring, level mapping, or existing formatters to make the quiet path easier. |
+
+### Status Reporting Format
+Report `Task T### complete` with the files touched and the command that proves the result. On failure, report the command, exit status, observed output, and expected output.
+
+### Blocked Task Protocol
+Stop, record the blocker in the packet, and escalate with the failing command and both outputs. Do not widen scope or alter unrelated behavior to clear the blocker.
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | `output_quiet` output shape and the `--quiet` parser arm | Vitest invoking the script with `spawnSync` |
+| Integration | Flag matrix across text, JSON, help, and error modes | Bash assertions and `diff` against baselines |
+| Regression | Default text and JSON output byte equality | `diff -u` against `scratch/` baselines |
+| Manual | Help text and the documented examples | Terminal |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Bash 3.2 or newer | Internal | Green | The script already runs on the macOS default shell; no new syntax is introduced. |
+| Vitest test runner | Internal | Green | The focused test follows the existing `runtime/cli/tests` convention. |
+| Existing spec-kit validator | Internal | Green | The packet's final gate uses `validate.sh --strict`. |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: Any default text or JSON output diff, any exit-code change, or a quiet output that is not exactly one line.
+- **Procedure**: Revert the single script commit and delete the focused test file. The flag is opt-in, so no caller needs a migration step.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────► Phase 2 (Implementation) ──────► Phase 3 (Verification)
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 15-30 minutes |
+| Core Implementation | Low | 30-60 minutes |
+| Verification | Low | 30-45 minutes |
+| **Total** | | **1.5-2.5 hours** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Baselines captured in `scratch/`
+- [ ] No feature flag needed; `--quiet` is opt-in at the call site
+- [ ] Existing phase-system test confirmed green before the change
+
+### Rollback Procedure
+1. Revert the script change.
+2. Delete the focused test file.
+3. Rerun `bash -n` and the default-output diff against the baseline.
+4. Confirm the existing phase-system test is green.
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: Not applicable; the change touches no persisted state.
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│    Phase 1      │────►│    Phase 2      │────►│    Phase 3      │
+│  Baseline maps  │     │  Flag + output  │     │  Test + gates   │
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+                        ┌────────▼────────┐
+                        │  Focused test   │
+                        │  depends on all │
+                        └─────────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture | None | Reference text and JSON files | Output diff |
+| Parser and dispatch change | Baseline capture | `--quiet` behavior | Focused test, output diff |
+| `output_quiet` | `RECOMMENDED_LEVEL`, `LEVEL_NAME` | Single-line stdout | Dispatch, focused test |
+| Focused test | Parser and dispatch change | Regression evidence | Verification sign-off |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Capture baselines** — 15-30 minutes — CRITICAL
+2. **Add flag, output function, and dispatch branch** — 30-60 minutes — CRITICAL
+3. **Run output matrix and focused test** — 30-45 minutes — CRITICAL
+
+**Total Critical Path**: 1.5-2.5 hours
+
+**Parallel Opportunities**:
+- The focused test can be drafted while the script edit is reviewed.
+- Help-text wording can be prepared alongside the parser change.
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Baselines captured | Text and JSON references exist in `scratch/` | Phase 1 |
+| M2 | Quiet flag implemented | `--quiet` prints one line and help documents it | Phase 2 |
+| M3 | Verification complete | Focused test and strict validation pass | Phase 3 |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: JSON output takes precedence over quiet text
+
+**Status**: Accepted
+
+**Context**: `--json` and `--quiet` are both output modifiers. A caller could pass both, and the script must choose one shape. Printing a text line alongside JSON would break every JSON consumer, while ignoring quiet in JSON mode keeps the machine contract intact.
+
+**Decision**: When `JSON_OUTPUT` is true, emit the unchanged JSON object and ignore `--quiet`. Quiet applies only to text mode.
+
+**Consequences**:
+- JSON consumers cannot receive mixed output.
+- A caller that passes both flags gets the more structured format.
+- The behavior is explicit and testable, with no error path added for the combination.
+
+**Alternatives Rejected**:
+- **Reject the combination with exit 1**: adds a new failure mode for an otherwise harmless pair.
+- **Quiet wins over JSON**: breaks the documented machine-readable contract.
+- **Embed the quiet line inside JSON**: changes the schema and every consumer.
+
+---
+
+### ADR-002: Add a dedicated quiet formatter instead of changing output_text
+
+**Status**: Accepted
+
+**Context**: `output_text` owns the leading blank line and the full report. Adding an early return inside it would keep one formatter but would place quiet behavior in the middle of the report code and risk changing the default path.
+
+**Decision**: Add a small `output_quiet` function and select it in the final dispatch. Leave `output_text` and `output_json` untouched.
+
+**Consequences**:
+- The default report cannot change as a side effect of the quiet work.
+- The recommended-level format appears in two places, so the focused test asserts that both lines are identical.
+- The diff stays small and reviewable.
+
+**Alternatives Rejected**:
+- **Early return in `output_text`**: couples quiet to the verbose formatter and makes regression review harder.
+- **Refactor both formatters onto a shared helper**: wider diff for no user-visible gain in this packet.
+
+---

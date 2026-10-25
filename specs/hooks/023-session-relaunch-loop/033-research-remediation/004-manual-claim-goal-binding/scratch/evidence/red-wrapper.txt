@@ -1,0 +1,136 @@
+✖ manual first launch with a claim seed exports the note goal packet (206.083584ms)
+✖ a seeded Claude first launch starts on the goal command with the seed in place (176.923334ms)
+✖ a seeded Hermes first launch after -q binds the packet as its spec folder (175.079166ms)
+✖ a seeded OpenCode 2 first launch finds the seed after the prepended --standalone (188.155167ms)
+✖ a seeded Claude first launch with no slice to send keeps its seed as the prompt (186.104583ms)
+✔ manual first launch ignores a seed for a claimed or outside note (1741.270084ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 1
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2722.501834
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3110:1
+✖ manual first launch with a claim seed exports the note goal packet (206.083584ms)
+  AssertionError [ERR_ASSERTION]: pi
+  + actual - expected
+  
+  + ''
+  - 'specs/hooks/023-session-relaunch-loop'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3123:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'specs/hooks/023-session-relaunch-loop',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3129:1
+✖ a seeded Claude first launch starts on the goal command with the seed in place (176.923334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '--model',
+      'opus',
+  +   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-mZql0X/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md | Spec folder: specs/hooks/023-session-relaunch-loop (carried from the handoff; Gate 3 answered in the sending session)',
+  -   '/goal # Goal: Example\n\nShip the example.',
+      '--name',
+      'Work'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3134:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '--model', 'opus', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-mZql0X/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md | Spec folder: specs/hooks/023-session-relaunch-loop (carried from the handoff; Gate 3 answered in the sending session)', '--name', 'Work' ],
+    expected: [ '--model', 'opus', '/goal # Goal: Example\n\nShip the example.', '--name', 'Work' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3140:1
+✖ a seeded Hermes first launch after -q binds the packet as its spec folder (175.079166ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'specs/operator-chosen'
+  - 'specs/hooks/023-session-relaunch-loop'
+           ^
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3147:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'specs/operator-chosen',
+    expected: 'specs/hooks/023-session-relaunch-loop',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3152:1
+✖ a seeded OpenCode 2 first launch finds the seed after the prepended --standalone (188.155167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + ''
+  - 'specs/hooks/023-session-relaunch-loop'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3159:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'specs/hooks/023-session-relaunch-loop',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3162:1
+✖ a seeded Claude first launch with no slice to send keeps its seed as the prompt (186.104583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + ''
+  - 'specs/hooks/023-session-relaunch-loop'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:3169:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'specs/hooks/023-session-relaunch-loop',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,7 @@
+C1 PASS validate.sh packet --recursive --strict printed RESULT: PASSED
+C2 PASS draft=RESULT: PASSED complete_errors=1 v22_with_tokens_errors=1 clean_v22_complete_placeholder_errors=0 clean_v22_rule_result=RESULT: PASSED
+C3 PASS CENSUS_SAME gate B over 4688 frozen folders, before[ 192 FAIL 4496 PASS ] after[ 192 FAIL 4496 PASS ]
+C4 PASS EXAMPLE_DRIFT_OK rc=0, CARD SYNC OK rc=0
+C5 FAIL metrics=5 runs=3+3 leftover_max=1 -> 0 missing_anchors_max=0 -> 6 (frozen metric; diagnostic against contract-required anchors: all six runs miss 0 of 15, see scratch/closeout/diagnostic.txt)
+C6 PASS report=2026-10-25--manual-testing-playbook--weak-model-authoring scenarios: 481=PASS 482=PASS 479=PASS 480=PASS 483=PASS 478=PASS 477=PASS 476=PASS
+C7 PASS head=a15bc0636efaa04655ce809ebbf4aabfdfc338f6 commits_since_parent_start=25 remote_branches_with_head=0

@@ -1,0 +1,14 @@
+.skilled/skills/system-spec-kit/templates/core/spec.md.tmpl 24
+.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl 18
+.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl 22
+.skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl 6
+.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl 3
+.skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl 5
+.skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl 5
+.skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl 1
+.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl 4
+.skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl 5
+.skilled/skills/system-spec-kit/templates/addons/research.md.tmpl 20
+.skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl 11
+.skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl 4
+.skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl 3

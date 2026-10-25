@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validate first try"
 importance_tier: normal
 contextType: implementation
-version: 2.7.0.23
+version: 2.7.1.0
 ---
 
 # Spec Folder Write Recipe
@@ -49,8 +49,10 @@ Move the scaffolded folder from the default location into the selected track, fo
 
 ```bash
 mv specs/078-opencode-authoring-recipe \
-  <spec-folder>
+  specs/system-speckit/078-opencode-authoring-recipe
 ```
+
+The `system-speckit` track in the destination above is an example, so substitute the track you chose in the pre-conditions.
 
 Verification gate: confirm the final path is under `specs/` or `.opencode/specs/` and matches the packet pointer.
 

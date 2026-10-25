@@ -126,9 +126,9 @@
     "timeout-minutes",
     "required status check workflow",
     "ci job",
-    "concurrency group",
     "sha-pinned action",
-    "action to a sha"
+    "action to a sha",
+    ".github/workflows/"
   ],
   "derived": {
     "trigger_phrases": [

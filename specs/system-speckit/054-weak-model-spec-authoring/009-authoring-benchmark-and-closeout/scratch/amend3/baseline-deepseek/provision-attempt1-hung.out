@@ -1,0 +1,6 @@
+  provisioning .skilled (npm ci)
+  provisioning .opencode (npm ci)
+  provisioning .skilled/skills/sk-vision/vision-runtime (bun install)
+  building .skilled/skills/sk-vision/vision-runtime
+  provisioning .skilled/skills/system-spec-kit (npm ci)
+  building .skilled/skills/system-spec-kit/runtime

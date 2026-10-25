@@ -1,0 +1,13 @@
+I'll review the proposed replacements. Reading the three input files first.I have the JSONL and skipped list. Now reading the rest of the input file (lines 268-703).Now I'll verify the claims against the actual files. Running searches in parallel: all `checklist` hits in the two asset dirs (and the wider commands tree), plus counts for each distinct locator string.The broad grep truncated. Let me scope to the two asset directories to enumerate every `checklist` hit.The scoped greps give me the full hit inventory. Let me spot-check the actual files for the two-line locators (`- checklist.md` + `note:`, `level-2/tasks.md` + `outputs:`) to confirm adjacency and indentation.Spot checks confirm adjacency for the two-line locators. Verifying the remaining six `note:`-anchor regions directly.All verification complete. Summary of what I confirmed:
+
+**Check 1 (locator uniqueness)** — every distinct locator string greps to exactly one occurrence per file: the `Read the packet-first…` line (14 files), the two `Load canonical spec docs` variants (5 files), the bare `    - checklist.md` requires-list item (8 files), `Route spec.md…` (6), `level-2/tasks.md` (6), `checklist.md: created_or_updated` (6), and the 6 deep-review locators. Stated counts all hold.
+
+**Check 2 (tree-true)** — replacements name only `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, `acceptance-criteria.md`, and `templates/examples/level-2/acceptance-criteria.md`; all exist in the tree facts; no replacement names `checklist.md`.
+
+**Check 3 (YAML)** — quoting, 4-space list indentation, dashes, and the preserved `note:`/`outputs:` second lines are untouched; verified directly in the files for the two-line locators.
+
+**Check 4 (scope)** — each row touches only its targeted mention; the six anchor rows only insert one list line.
+
+**Check 5 (skipped list)** — grep over `create/assets` + `deep/assets` finds exactly 45 `checklist.md` hits (39 + 6) across 14 + 2 files, every one mapped to a row; remaining `checklist` hits are non-doc mentions (`progressive_task_checklists`, `validation_checklist`, `checklist_results`, `checklist_evidence`, `Spec/checklist alignment`, `Checklist vs Evidence`) that still refer to the tasks.md verification-checklist section, not the deleted doc; no hits under `tests/`.
+
+NO FINDINGS

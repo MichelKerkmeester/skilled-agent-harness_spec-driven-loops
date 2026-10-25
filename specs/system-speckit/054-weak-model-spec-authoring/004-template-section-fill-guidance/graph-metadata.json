@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/cli/spec/check-example-drift.sh",
+      "runtime/cli/tests/example-drift.vitest.ts",
+      "runtime/cli/tests/template-fill-guidance.vitest.ts",
+      "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+      "scratch/amend2/anchors.txt",
+      "scratch/amend2/check-plan-equals-shipped.py",
       ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
       ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
       ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
@@ -54,13 +60,7 @@
       ".skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
       ".skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md",
       ".skilled/skills/system-spec-kit/templates/examples/level-2/plan.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-2/spec.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/plan.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/spec.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
-      ".skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md"
+      ".skilled/skills/system-spec-kit/templates/examples/level-2/spec.md"
     ],
     "entities": [
       {
@@ -97,6 +97,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "example-drift.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/example-drift.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-fill-guidance.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/template-fill-guidance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": "runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "anchors.txt",
+        "kind": "file",
+        "path": "scratch/amend2/anchors.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-plan-equals-shipped.py",
+        "kind": "file",
+        "path": "scratch/amend2/check-plan-equals-shipped.py",
         "source": "derived"
       },
       {
@@ -170,48 +206,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Recommended Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fresh Level 2 scaffold holds 97 bracketed hints and validates clean",
     "created_at": "2026-10-23T11:27:22Z",
-    "last_save_at": "2026-10-23T16:26:22.845Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-25T13:09:13.001Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:531441b06396174808a2dcb0ecd587daa7e821d711144756ad0b7de349eecc97",
+    "source_fingerprint": "sha256:243597eb5a5a90aa4ed43fad2c9d9f064ab618d8ba3117ea0e917ee274254353",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfe823c6dcc93442534d5a9d721f5e9fcd6b61d25cb50b955167cee4cb375a0d",
-      "plan.md": "807356c69f03659b345d92a31f50b1f6157bf55516a631c974149d4495aecc78",
-      "tasks.md": "50db94c91d1ee9ceb8d2864970179c48c6a46d28aeccf3821f7bd684340016fd",
-      "implementation-summary.md": "aea0971e57a7328c7dac11c8dc56fae25d0b00c2f4a2b03d52975a007be0fec9"
+      "spec.md": "39c34c08b9d861e4c7b163012205ba20c35c8704705c1bdeba58891c0fefb75a",
+      "plan.md": "9be371c9d623477b2d824405ce595bbff851408fb6736e17ec93a3e0cf51a67a",
+      "tasks.md": "1cba7f6670313a86956cdea92083fa8345719dca61dbd7af88613a6dfeecb5c1",
+      "implementation-summary.md": "d4500ca7eb80c8d065c8b9578b42e4d2aa781bca93cd17148570dec76ae1e4f7"
     },
     "last_active_at": null
   }

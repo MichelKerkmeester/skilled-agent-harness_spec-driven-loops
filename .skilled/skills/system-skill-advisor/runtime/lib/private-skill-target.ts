@@ -9,6 +9,7 @@
 import { existsSync, realpathSync, statSync } from 'node:fs';
 import { delimiter, isAbsolute, relative, resolve, sep } from 'node:path';
 
+/** Environment variable naming extra trusted roots, joined by the platform path delimiter. */
 export const PRIVATE_SKILL_ROOTS_ENV = 'SPECKIT_PRIVATE_SKILL_ROOTS';
 
 interface TrustedRoot {
@@ -48,12 +49,22 @@ function resolvesInside(entryPath: string, roots: TrustedRoot[]): boolean {
   return roots.some((root) => isInside(root, target));
 }
 
+/**
+ * True when a top-level `local-*` entry resolves to a directory inside a trusted root.
+ * @param entryPath - The skills-root entry to resolve.
+ * @param skillsRoot - The skills root the entry was listed from.
+ * @returns Whether the entry's real target is a directory inside a trusted root.
+ */
 export function isTrustedPrivateSkillLink(entryPath: string, skillsRoot: string): boolean {
   return resolvesInside(entryPath, trustedRoots(skillsRoot));
 }
 
-// One scan checks many entries; resolve the trusted roots at most once, and
-// only when a `local-*` link is actually met.
+/**
+ * Return a per-scan check that resolves the trusted roots at most once, and only
+ * when a `local-*` link is actually met, because one scan checks many entries.
+ * @param skillsRoot - The skills root the scan lists.
+ * @returns A check that reports whether one entry resolves inside a trusted root.
+ */
 export function createPrivateSkillLinkCheck(skillsRoot: string): (entryPath: string) => boolean {
   let roots: TrustedRoot[] | null = null;
   return (entryPath: string): boolean => {

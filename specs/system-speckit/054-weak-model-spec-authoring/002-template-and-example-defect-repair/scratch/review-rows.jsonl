@@ -1,0 +1,4 @@
+{"id": "R-1", "file": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md", "locator": "- [ ] Copied optional templates if needed (Level 3 only)", "expected_text": "- [ ] Copied optional templates if needed (resource-map.md at any level; research and decision records at Level 3)"}
+{"id": "R-2", "file": ".skilled/skills/system-spec-kit/templates/examples/README.md", "locator": "`-- level_3+/", "expected_text": "`-- level-3+/"}
+{"id": "R-3", "file": ".skilled/skills/system-spec-kit/templates/examples/README.md", "locator": "| `level_3+/` |", "expected_text": "| `level-3+/` |"}
+{"id": "R-4", "file": ".skilled/skills/system-spec-kit/templates/examples/README.md", "locator": "- `../manifest/README.md`", "expected_text": "DELETE LINE"}

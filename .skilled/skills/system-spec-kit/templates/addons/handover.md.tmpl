@@ -35,6 +35,7 @@ Session handover template for preserving context and enabling seamless continuat
 
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
+<!-- FILL: Write three sentences: what shipped, what is open and where to start. GOOD: The flag shipped. Docs are open. Start at `tasks.md` T004. WEAK: Work was handed over. -->
 
 - **From Session:** [YOUR_VALUE_HERE: session_id or date]
 - **To Session:** [YOUR_VALUE_HERE: next_session]
@@ -47,6 +48,7 @@ Session handover template for preserving context and enabling seamless continuat
 
 <!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
+<!-- FILL: Name the files, the decisions and the state a successor needs. GOOD: Branch `feat/quiet`, start commit `abc123`. WEAK: Context is in the repo. -->
 
 ### 2.1 Key Decisions Made
 | Decision     | Rationale | Impact                 |
@@ -80,6 +82,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 
 <!-- ANCHOR:next-session -->
 ## 3. For Next Session
+<!-- FILL: Write the first command the next session should run. GOOD: Run `bash validate.sh <packet> --strict`. WEAK: Continue the work. -->
 
 ### 3.1 Recommended Starting Point
 - **File:** [YOUR_VALUE_HERE: file:line_number]
@@ -102,6 +105,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 
 <!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
+<!-- FILL: List the checks the successor must rerun. GOOD: `--quiet` line count, default line count and the suite. WEAK: Validate everything. -->
 
 Before handover, verify:
 - [ ] All in-progress work committed or stashed
@@ -115,6 +119,7 @@ Before handover, verify:
 
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
+<!-- FILL: Record what was tried and what was learned. GOOD: The quiet branch must return before the report block. WEAK: Notes below. -->
 
 [YOUR_VALUE_HERE: free-form notes for next session]
 <!-- /ANCHOR:session-notes -->

@@ -39,7 +39,7 @@
       "switch"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".github/workflows/dependabot-auto-merge.yml",
       ".github/workflows/advisory-checks.yml",
+      ".github/workflows/dependabot-auto-merge.yml",
+      "scratch/r24/size-timeouts.mjs",
+      ".github/workflows/README.md",
+      "scratch/gate-after-permissions.txt",
+      "scratch/r24/gate-after-timeouts.txt",
+      "scratch/r26-probe.md",
+      "scratch/r25-dependabot.md",
+      "scratch/r24/timeouts.md",
       ".github/workflows/skill-doc-frontmatter.yml",
       ".github/workflows/trigger-index-rebuild.yml",
       ".github/workflows/message-contract.yml",
-      ".github/workflows/README.md",
-      "scratch/r26-probe.md",
-      "scratch/r24/timeouts.md",
-      "scratch/switch-groups.md",
-      "scratch/decisions.md",
-      ".github/scripts/check-gate-inputs.sh",
-      "scratch/inventory.md",
-      "scratch/r25-dependabot.md"
+      "scratch/switch-groups.md"
     ],
     "entities": [
       {
@@ -106,15 +106,57 @@
         "source": "derived"
       },
       {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
         "name": "dependabot-auto-merge.yml",
         "kind": "config",
         "path": ".github/workflows/dependabot-auto-merge.yml",
         "source": "derived"
       },
       {
-        "name": "advisory-checks.yml",
-        "kind": "config",
-        "path": ".github/workflows/advisory-checks.yml",
+        "name": "size-timeouts.mjs",
+        "kind": "file",
+        "path": "scratch/r24/size-timeouts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-after-permissions.txt",
+        "kind": "file",
+        "path": "scratch/gate-after-permissions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-after-timeouts.txt",
+        "kind": "file",
+        "path": "scratch/r24/gate-after-timeouts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "r26-probe.md",
+        "kind": "doc",
+        "path": "scratch/r26-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "r25-dependabot.md",
+        "kind": "doc",
+        "path": "scratch/r25-dependabot.md",
+        "source": "derived"
+      },
+      {
+        "name": "timeouts.md",
+        "kind": "doc",
+        "path": "scratch/r24/timeouts.md",
         "source": "derived"
       },
       {
@@ -136,51 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".github/workflows/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "r26-probe.md",
-        "kind": "doc",
-        "path": "scratch/r26-probe.md",
-        "source": "derived"
-      },
-      {
-        "name": "timeouts.md",
-        "kind": "doc",
-        "path": "scratch/r24/timeouts.md",
-        "source": "derived"
-      },
-      {
         "name": "switch-groups.md",
         "kind": "doc",
         "path": "scratch/switch-groups.md",
-        "source": "derived"
-      },
-      {
-        "name": "decisions.md",
-        "kind": "doc",
-        "path": "scratch/decisions.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-gate-inputs.sh",
-        "kind": "script",
-        "path": ".github/scripts/check-gate-inputs.sh",
-        "source": "derived"
-      },
-      {
-        "name": "inventory.md",
-        "kind": "doc",
-        "path": "scratch/inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "r25-dependabot.md",
-        "kind": "doc",
-        "path": "scratch/r25-dependabot.md",
         "source": "derived"
       },
       {
@@ -210,8 +210,8 @@
     ],
     "causal_summary": "A GitHub Actions job with no `timeout-minutes` inherits the 360-minute default, so a hung install or a stuck test holds a runner for six hours",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-25T01:25:02.074Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-25T17:46:59.861Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62f112cff8307ab42a99cfeb61ea7025293ea5c471a9bea3f2492e99840c19d0",
+    "source_fingerprint": "sha256:5df14a7ec0aa36636732e8054ec81019b662da4f970a1272cffc9764260024c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db3e18ac283ae62558d09cc09edd2eaef5a28e61b7c7ccbf6f73a3f147290e16",
+      "spec.md": "be0fe86c15cfd9c5dd39d38a141e3848dc96b74b702ad70f8f1e96f90807c389",
       "plan.md": "34a379e8624f3fa0523a32de44099cf223aacdde9cd4f0788216a6984a466355",
-      "tasks.md": "d5f3f99f8f31cc7390106f54892a1454f0ac6bea7fd99cdc85cda64399c698e8",
+      "tasks.md": "3fe34da026c8512f3e0fdcac32494fd709f9b0a20955511a8d1fa560fe55ef8c",
       "decision-record.md": "a4ddf1c6c93323052a698ab1bb5fa5254e80888090f6242913a7013d6d456901",
-      "implementation-summary.md": "e7e028500e6a59f6ed0e38af05bd934e1ba9f48f4a6c3155bb9747c0521b17c8"
+      "implementation-summary.md": "ba1cbde78ec1222eb040f7e3349ec3a8bb8da7a2c0819e9cf2e99e2e70447596"
     },
     "last_active_at": null
   }

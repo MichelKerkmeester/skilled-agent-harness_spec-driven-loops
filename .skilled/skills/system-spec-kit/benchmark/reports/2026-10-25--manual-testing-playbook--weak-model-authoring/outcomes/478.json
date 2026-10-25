@@ -1,0 +1,36 @@
+{
+  "scenarioId": "478",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "A Draft scaffold with all five stamps rewritten to v2.2 printed error and false, so the older stamp kept its error and received no Draft warning. The track was removed (cleanup=ok).",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "A Draft scaffold with all five stamps rewritten to v2.2 printed error and false, so the older stamp kept its error and received no Draft warning. The track was removed (cleanup=ok).",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/478.txt",
+          "bytes": 182,
+          "sha256": "e6b9b63a609ee6c6c16b033e4521370eca4b5067308584931532aebcc7a1db67"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/478.txt",
+      "bytes": 182,
+      "sha256": "e6b9b63a609ee6c6c16b033e4521370eca4b5067308584931532aebcc7a1db67"
+    }
+  ]
+}

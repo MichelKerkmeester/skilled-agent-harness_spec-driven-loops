@@ -1,0 +1,33 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and
+SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+You are a READ-ONLY reviewer. You write nothing: do not edit, create or delete any file, and do
+not run shell commands, because your session refuses them. Use only file reads and searches.
+Proceed directly to the review. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+ROLE: You review a text diff. A script checks your output line by line.
+
+READ THESE FILES:
+1. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013-stat.txt - every file changed since the phase start commit (it also lists this phase's own docs).
+2. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013.diff - the full diff of .skilled, .claude/agents, .codex and .pi since the phase start commit.
+3. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/rows.jsonl - the 27 frozen rows. Each row has id, file, locator, expected_text.
+4. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/rows-extra.jsonl - the 51 extra rows R-028 to R-078, same shape. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/extra-skipped.txt - the mentions they left alone.
+5. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/applied.txt - the result line of every applied row.
+6. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/searches.txt - the search codes. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/yaml-parse.txt - the YAML parse result of the 21 changed YAML files.
+7. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013-ls.txt - the result of ls for every path the new text names.
+8. specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-runtime.txt, specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-codex-agents.txt, specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-codex-prompts.txt, specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-pi-agents.txt, specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-pi-prompts.txt and specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/mirror-summary.txt - the five generator runs and the eight mirror checks.
+
+CHECK THESE FIVE THINGS:
+(1) Every changed line under .skilled/commands, .skilled/agents and .claude/agents equals the expected_text of one row in rows.jsonl or rows-extra.jsonl, and no other line changed there.
+(2) No row's new text names a file that does not exist. Use T013-ls.txt for each named path.
+(3) The A1 to A4 and A6 searches in searches.txt each ended with a code of 1, and GUARD_REFS is 6.
+(4) Every changed file under .codex and .pi is a generated agent file, and the generator output files show it came from a generator run: the 8 changes are .codex/agents/{code,context,markdown,orchestrate}.toml and .pi/agents/{code,context,markdown,orchestrate}.md, and each carries only the same text as the matching .skilled/agents row.
+(5) No file under .skilled/skills/system-spec-kit/templates, references or runtime changed. Use T013-stat.txt.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<line> | <what is wrong> | <the fix>
+Return the single line NO FINDINGS when there are none.

@@ -1,0 +1,76 @@
+{
+  "scenarioId": "483",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "One cli-devin swe-2-max worker (permission mode dangerous) wrote a Level 1 packet from the card. devin exited 0 and the worker returned RESULT: PASSED. The conductor-side strict run printed val_exit=0 and RESULT: PASSED, the leftover token count was 0 and the track was removed (cleanup=ok). It took one attempt with no rate-limit reply.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "swe-2-max",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "One cli-devin swe-2-max worker (permission mode dangerous) wrote a Level 1 packet from the card. devin exited 0 and the worker returned RESULT: PASSED. The conductor-side strict run printed val_exit=0 and RESULT: PASSED, the leftover token count was 0 and the track was removed (cleanup=ok). It took one attempt with no rate-limit reply.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt",
+          "bytes": 1101,
+          "sha256": "bee158dfe6f99616d78865b6a3917b275f41597cef7a0382de17edab4e7ba14c"
+        },
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/brief.txt",
+          "bytes": 1822,
+          "sha256": "9d42b6b4b09dcd1485d3e75979f7bca4ddf0c51efd34bdf8cf9ed7fcbcaed67b"
+        },
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/reply.txt",
+          "bytes": 764,
+          "sha256": "610cf07a9cb270ef2b6ec2ca699e936aa020d2310f217b9d86b69ef5566c6890"
+        },
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/reply.err",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/val.txt",
+          "bytes": 3630,
+          "sha256": "93724131a102fb2249690da4956cf8c1825a950bcfd87de115666541f31f64c8"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.txt",
+      "bytes": 1101,
+      "sha256": "bee158dfe6f99616d78865b6a3917b275f41597cef7a0382de17edab4e7ba14c"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/brief.txt",
+      "bytes": 1822,
+      "sha256": "9d42b6b4b09dcd1485d3e75979f7bca4ddf0c51efd34bdf8cf9ed7fcbcaed67b"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/reply.txt",
+      "bytes": 764,
+      "sha256": "610cf07a9cb270ef2b6ec2ca699e936aa020d2310f217b9d86b69ef5566c6890"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/reply.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/483.worker-1/val.txt",
+      "bytes": 3630,
+      "sha256": "93724131a102fb2249690da4956cf8c1825a950bcfd87de115666541f31f64c8"
+    }
+  ]
+}

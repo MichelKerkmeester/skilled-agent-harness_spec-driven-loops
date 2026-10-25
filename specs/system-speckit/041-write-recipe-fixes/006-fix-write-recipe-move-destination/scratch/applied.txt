@@ -1,0 +1,2 @@
+APPLIED K-041-006-01 .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md
+exit=0

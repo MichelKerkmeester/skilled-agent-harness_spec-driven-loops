@@ -1,0 +1,208 @@
+     1	#!/usr/bin/env bash
+     2	# ───────────────────────────────────────────────────────────────
+     3	# COMPONENT: CHECK-PLACEHOLDERS
+     4	# ───────────────────────────────────────────────────────────────
+     5	
+     6	# Sourced by validate.sh and compatible with strict mode.
+     7	set -euo pipefail
+     8	
+     9	_placeholder_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    10	# shellcheck source=../lib/status-classifier.sh
+    11	source "${_placeholder_rule_dir}/../lib/status-classifier.sh"
+    12	
+    13	# Rule: PLACEHOLDER_FILLED
+    14	# Severity: error
+    15	# Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:],
+    16	#   and a [template:...] provenance token left in a title line. Bracketed authoring hints such as [Decision Title]
+    17	#   are soft by design and belong to spec/check-placeholders.sh, the standalone report.
+    18	# Lifecycle: a doc whose SPECKIT_TEMPLATE_SOURCE stamp is v2.3 or later ships every authoring hint as a
+    19	#   [YOUR_VALUE_HERE: ...] token. While spec.md has the Status Draft, an unfilled token in such a doc is a
+    20	#   warning. At any other status it is an error. A doc with an older stamp, or none, keeps the error it
+    21	#   always had. [NEEDS_CLARIFICATION:] is an error in every packet.
+    22	# Parity: mirrors the runtime orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
+    23	# (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
+    24	# The post-edit hook runs the broader bracket scan at spec/check-placeholders.sh
+    25	# instead; that one catches leftovers of upgrade-level, this one gates closure.
+    26	
+    27	# ───────────────────────────────────────────────────────────────
+    28	# 1. HELPERS
+    29	# ───────────────────────────────────────────────────────────────
+    30	
+    31	# Succeeds when the doc carries a SPECKIT_TEMPLATE_SOURCE stamp of v2.3 or later
+    32	# within its first 70 lines. A doc with an older stamp, or none, fails.
+    33	carries_token_gate_stamp() {
+    34	    local filepath="$1"
+    35	    local stamp_line major minor
+    36	    stamp_line=$(head -n 70 "$filepath" 2>/dev/null | \
+    37	        grep -m1 -E '^[[:space:]]*<!--[[:space:]]*SPECKIT_TEMPLATE_SOURCE:[^|>]*\|[[:space:]]*v[0-9]+\.[0-9]+[[:space:]]*-->' || true)
+    38	    [[ -n "$stamp_line" ]] || return 1
+    39	    major=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\1/')
+    40	    minor=$(printf '%s' "$stamp_line" | sed -E 's/.*\|[[:space:]]*v([0-9]+)\.([0-9]+).*/\2/')
+    41	    if (( major > 2 )) || { (( major == 2 )) && (( minor >= 3 )); }; then
+    42	        return 0
+    43	    fi
+    44	    return 1
+    45	}
+    46	
+    47	# Succeeds when the Status row of spec.md holds exactly the word Draft.
+    48	spec_status_is_draft() {
+    49	    local folder="$1"
+    50	    local value
+    51	    value="$(extract_status_table_value "$folder/spec.md")"
+    52	    [[ "$(speckit_status_trim "$value")" == "draft" ]]
+    53	}
+    54	
+    55	# ───────────────────────────────────────────────────────────────
+    56	# 2. INITIALIZATION
+    57	# ───────────────────────────────────────────────────────────────
+    58	
+    59	run_check() {
+    60	    local folder="$1"
+    61	    local level="$2"
+    62	    
+    63	    RULE_NAME="PLACEHOLDER_FILLED"
+    64	    RULE_STATUS="pass"
+    65	    RULE_MESSAGE=""
+    66	    RULE_DETAILS=()
+    67	    RULE_REMEDIATION=""
+    68	    
+    69	    local -a files=("spec.md" "plan.md" "tasks.md")
+    70	    [[ -f "$folder/decision-record.md" ]] && files+=("decision-record.md")
+    71	    # These three are read only when they carry the token-gate stamp, so a doc
+    72	    # with an older stamp is scanned exactly as it was before.
+    73	    files+=("acceptance-criteria.md" "implementation-summary.md" "goal.md")
+    74	    
+    75	    local -a found_placeholders=()
+    76	    local -a draft_tokens=()
+    77	    local draft_packet=false
+    78	    if spec_status_is_draft "$folder"; then
+    79	        draft_packet=true
+    80	    fi
+    81	
+    82	# ───────────────────────────────────────────────────────────────
+    83	# 3. VALIDATION LOGIC
+    84	# ───────────────────────────────────────────────────────────────
+    85	
+    86	    for file in "${files[@]}"; do
+    87	        local filepath="$folder/$file"
+    88	        [[ ! -f "$filepath" ]] && continue
+    89	        
+    90	        # Skip: scratch/, memory/, templates/
+    91	        if [[ "$filepath" == *"/scratch/"* ]] || \
+    92	           [[ "$filepath" == *"/memory/"* ]] || \
+    93	           [[ "$filepath" == *"/templates/"* ]]; then
+    94	            continue
+    95	        fi
+    96	        
+    97	        if type -t should_skip_path &>/dev/null; then
+    98	            if should_skip_path "$filepath"; then
+    99	                continue
+   100	            fi
+   101	        fi
+   102	
+   103	        local token_gated=false
+   104	        if carries_token_gate_stamp "$filepath"; then
+   105	            token_gated=true
+   106	        fi
+   107	        case "$file" in
+   108	            acceptance-criteria.md|implementation-summary.md|goal.md)
+   109	                [[ "$token_gated" == true ]] || continue
+   110	                ;;
+   111	        esac
+   112	        
+   113	        # Filter out fenced code blocks
+   114	        local filtered
+   115	        filtered=$(awk '
+   116	            BEGIN { in_code = 0 }
+   117	            /^```/ { in_code = !in_code; next }
+   118	            !in_code { print NR ":" $0 }
+   119	        ' "$filepath" 2>/dev/null)
+   120	        
+   121	        # Pattern 1: [YOUR_VALUE_HERE:] (skip inline backticks)
+   122	        # A token in a Draft packet is deferred to a warning when the doc carries
+   123	        # the token-gate stamp and the line holds no open question.
+   124	        while IFS= read -r match; do
+   125	            if [[ -n "$match" ]]; then
+   126	                local linenum="${match%%:*}"
+   127	                if [[ "$token_gated" == true && "$draft_packet" == true ]] && \
+   128	                   ! printf '%s' "$match" | grep -qE '\[NEEDS[_ ]CLARIFICATION:'; then
+   129	                    draft_tokens+=("$file:$linenum")
+   130	                else
+   131	                    found_placeholders+=("$file:$linenum")
+   132	                fi
+   133	            fi
+   134	        done < <(echo "$filtered" | grep -E '\[YOUR_VALUE_HERE:' 2>/dev/null | \
+   135	                 grep -v '`\[YOUR_VALUE_HERE:' | \
+   136	                 grep -v '\[YOUR_VALUE_HERE:[^]]*\]`' || true)
+   137	        
+   138	        # Pattern 2: [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:] (underscore + space)
+   139	        # Strict superset-parity with the canonical orchestrator: both variants flagged.
+   140	        while IFS= read -r match; do
+   141	            if [[ -n "$match" ]]; then
+   142	                local linenum="${match%%:*}"
+   143	                found_placeholders+=("$file:$linenum")
+   144	            fi
+   145	        done < <(echo "$filtered" | grep -E '\[NEEDS[_ ]CLARIFICATION:' 2>/dev/null | \
+   146	                 grep -v '`\[NEEDS[_ ]CLARIFICATION:' | \
+   147	                 grep -v '\[NEEDS[_ ]CLARIFICATION:[^]]*\]`' || true)
+   148	
+   149	        # Pattern 3: a template's [template:...] provenance token left in a title.
+   150	        # Scoped to title lines because that is the only place a scaffold ever
+   151	        # carried it; the scaffolder strips it, so a survivor is a hand-copied
+   152	        # template or a document older than that fix.
+   153	        while IFS= read -r match; do
+   154	            if [[ -n "$match" ]]; then
+   155	                local linenum="${match%%:*}"
+   156	                found_placeholders+=("$file:$linenum")
+   157	            fi
+   158	        done < <(echo "$filtered" | grep -E '^[0-9]+:[[:space:]]*title:.*\[template:' 2>/dev/null || true)
+   159	    done
+   160	    
+   161	    # Deduplicate (bash 3.2 compatible)
+   162	    local -a unique_placeholders=()
+   163	    local seen_list=""
+   164	    if [[ ${#found_placeholders[@]} -gt 0 ]]; then
+   165	        for item in "${found_placeholders[@]}"; do
+   166	            if [[ "$seen_list" != *"|$item|"* ]]; then
+   167	                seen_list="$seen_list|$item|"
+   168	                unique_placeholders+=("$item")
+   169	            fi
+   170	        done
+   171	    fi
+   172	
+   173	    local -a unique_draft_tokens=()
+   174	    seen_list=""
+   175	    if [[ ${#draft_tokens[@]} -gt 0 ]]; then
+   176	        for item in "${draft_tokens[@]}"; do
+   177	            if [[ "$seen_list" != *"|$item|"* ]]; then
+   178	                seen_list="$seen_list|$item|"
+   179	                unique_draft_tokens+=("$item")
+   180	            fi
+   181	        done
+   182	    fi
+   183	
+   184	# ───────────────────────────────────────────────────────────────
+   185	# 4. RESULTS
+   186	# ───────────────────────────────────────────────────────────────
+   187	
+   188	    local count=${#unique_placeholders[@]}
+   189	    local draft_count=${#unique_draft_tokens[@]}
+   190	    
+   191	    if [[ $count -gt 0 ]]; then
+   192	        RULE_STATUS="fail"
+   193	        RULE_MESSAGE="Found $count unfilled placeholder(s)"
+   194	        RULE_DETAILS=("${unique_placeholders[@]}")
+   195	        RULE_REMEDIATION="Replace [YOUR_VALUE_HERE:] and [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:] with actual values"
+   196	    elif [[ $draft_count -gt 0 ]]; then
+   197	        RULE_STATUS="warn"
+   198	        RULE_MESSAGE="Found $draft_count unfilled value token(s) in a Draft packet"
+   199	        RULE_DETAILS=("${unique_draft_tokens[@]}")
+   200	        RULE_REMEDIATION="Replace each [YOUR_VALUE_HERE: ...] token with actual content before the status leaves Draft"
+   201	    else
+   202	        RULE_STATUS="pass"
+   203	        RULE_MESSAGE="No unfilled placeholders found"
+   204	    fi
+   205	}
+   206	
+   207	# Exit codes:
+   208	#   0 - Success

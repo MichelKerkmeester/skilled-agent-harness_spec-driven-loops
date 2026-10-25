@@ -1,0 +1,71 @@
+---
+title: "system-spec-kit Benchmark Reports"
+description: "Index of curated benchmark run reports for system-spec-kit, one row per run folder."
+trigger_phrases:
+  - "system-spec-kit benchmark reports"
+  - "system-spec-kit benchmark index"
+importance_tier: "important"
+contextType: "general"
+---
+
+# system-spec-kit Benchmark Reports
+
+> Curated reports derived from completed benchmark runs, newest first. Raw execution evidence stays in the packet that produced it, named in each run's `source.md`.
+
+---
+
+## 1. OVERVIEW
+
+Each row below is one immutable run folder. Rows are written by the benchmark runner when it writes the report. Consult [`supersession-manifest.json`](./supersession-manifest.json) before treating an older row as current. Corrected runs append mappings instead of rewriting history.
+
+---
+
+## 2. RUN INDEX
+
+| Executed | Folder | Runtime | Result | Verdict | Source |
+|---|---|---|---|---|---|
+| 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max (first set) and deepseek-v4-1-flash-1017-max (second set and two fresh sets), frozen Level 3 authoring brief | 4 final sets of 3 runs, 2 baselines of 3 runs, 5 metrics | **PASS** on the deciding second fresh set, **FAIL** on the three earlier sets | `054-weak-model-spec-authoring` |
+| 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |
+| 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](./2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/) | claude, pi, opencode, codex session-relaunch | 11 PASS, 2 FAIL | **PASS (after fixes)** | `manual-testing-playbook` |
+| 2026-09-27 | [`2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/`](./2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/) | pi, opencode, devin, cursor, codex directive-lifecycle-dedup | 5 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-09-26 | [`2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/`](./2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/) | pi, opencode, devin, cursor, codex directive-lifecycle-dedup | 5 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified/`](./2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified/) | vitest pi-repeat-suppression-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-adapter-driven-verified/`](./2026-08-11--manual-testing-playbook--pi-adapter-driven-verified/) | vitest pi-adapter-driven-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--opencode-adapter-driven-verified/`](./2026-08-11--manual-testing-playbook--opencode-adapter-driven-verified/) | vitest opencode-adapter-driven-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--devin-registered-path-verified/`](./2026-08-11--manual-testing-playbook--devin-registered-path-verified/) | node devin-registered-path-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--cursor-native-host-verified/`](./2026-08-11--manual-testing-playbook--cursor-native-host-verified/) | cursor-native-host-verified | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--cursor-registered-path-verified/`](./2026-08-11--manual-testing-playbook--cursor-registered-path-verified/) | node cursor-registered-path-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--codex-registered-path-verified/`](./2026-08-11--manual-testing-playbook--codex-registered-path-verified/) | node codex-registered-path-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--claude-registered-path-verified/`](./2026-08-11--manual-testing-playbook--claude-registered-path-verified/) | node claude-registered-path-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--directive-unit-verified/`](./2026-08-11--manual-testing-playbook--directive-unit-verified/) | vitest directive-unit-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-adapter-driven-final/`](./2026-08-11--manual-testing-playbook--pi-adapter-driven-final/) | vitest pi-adapter-driven-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--opencode-adapter-driven-final/`](./2026-08-11--manual-testing-playbook--opencode-adapter-driven-final/) | vitest opencode-adapter-driven-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--devin-registered-path-final/`](./2026-08-11--manual-testing-playbook--devin-registered-path-final/) | node devin-registered-path-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--cursor-native-host-final/`](./2026-08-11--manual-testing-playbook--cursor-native-host-final/) | cursor-native-host-final | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--cursor-registered-path-final/`](./2026-08-11--manual-testing-playbook--cursor-registered-path-final/) | node cursor-registered-path-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--codex-registered-path-final/`](./2026-08-11--manual-testing-playbook--codex-registered-path-final/) | node codex-registered-path-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--claude-registered-path-final/`](./2026-08-11--manual-testing-playbook--claude-registered-path-final/) | node claude-registered-path-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--directive-unit-final/`](./2026-08-11--manual-testing-playbook--directive-unit-final/) | vitest directive-unit-final | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-adapter-suite/`](./2026-08-11--manual-testing-playbook--pi-adapter-suite/) | vitest pi-adapter-suite | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--opencode-test-seam/`](./2026-08-11--manual-testing-playbook--opencode-test-seam/) | vitest opencode-test-seam | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--devin-adapter/`](./2026-08-11--manual-testing-playbook--devin-adapter/) | node devin-adapter | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--cursor-native-host/`](./2026-08-11--manual-testing-playbook--cursor-native-host/) | cursor-native-host | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--cursor-adapter/`](./2026-08-11--manual-testing-playbook--cursor-adapter/) | node cursor-adapter | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--codex-adapter/`](./2026-08-11--manual-testing-playbook--codex-adapter/) | node codex-adapter | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--claude-adapter/`](./2026-08-11--manual-testing-playbook--claude-adapter/) | node claude-adapter | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--ux-hooks-5/`](./2026-08-11--manual-testing-playbook--ux-hooks-5/) | devin SWE-1.7 ux-hooks | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--ux-hooks-4/`](./2026-08-11--manual-testing-playbook--ux-hooks-4/) | cursor composer-2.5 ux-hooks | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--ux-hooks-3/`](./2026-08-11--manual-testing-playbook--ux-hooks-3/) | codex gpt-5.6-luna composer-2.5 ux-hooks | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--ux-hooks-2/`](./2026-08-11--manual-testing-playbook--ux-hooks-2/) | claude sonnet-5 ux-hooks | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi/`](./2026-08-11--manual-testing-playbook--pi/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-11 | [`2026-08-11--manual-testing-playbook--ux-hooks/`](./2026-08-11--manual-testing-playbook--ux-hooks/) | opencode opencode-go/deepseek-v4-flash ux-hooks | 1 PASS | **PASS** | `manual-testing-playbook` |
+
+---
+
+## 3. STORAGE RULE
+
+Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. Keep curated summaries and machine-readable result tables here, and raw transcripts and copied artifacts in the source packet. A run whose result changes gets a new folder rather than overwriting a prior one.
+
+The grammar and the report file set are owned by `create-benchmark`. This index states them only so the folder reads on its own. Where the two differ, that skill is correct.

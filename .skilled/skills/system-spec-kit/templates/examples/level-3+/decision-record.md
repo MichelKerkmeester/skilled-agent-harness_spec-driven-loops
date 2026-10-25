@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Add User Authentication"
-description: "Level 3, demonstrating that governance-level features are primarily in spec.md"
+description: "Level 3+ decision record example, showing that governance features live mainly in spec.md rather than here."
 trigger_phrases:
   - "decision"
   - "record"
@@ -284,7 +284,6 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
 <!-- /ANCHOR:adr-003 -->
 ---
 
-<!-- ANCHOR:adr-index -->
 ## ADR Index
 
 | ADR | Title | Status | Date | Deciders |
@@ -293,7 +292,6 @@ JWT tokens need to be stored client-side for authenticated requests. The storage
 | ADR-002 | Password Hashing Algorithm | Accepted | 2025-01-15 | Jordan, Alex |
 | ADR-003 | Client-Side Token Storage | Accepted | 2025-01-15 | Jordan, Alex, Frontend Lead |
 
-<!-- /ANCHOR:adr-index -->
 
 ---
 

@@ -1,0 +1,4 @@
+2026-10-25T15:47:54.494Z  handed-over  codex     Public (hop 1)  Complete the operator-requested session hand-over.  [20261025T154743Z-01a173be-d3ba-7b73-a254-7fa60b6eeb46.md]
+2026-10-25T15:48:01.372Z  claimed      codex     Public by 01a173bf  Run the requested shell probe and hand over the remaining work for the session-relaunch loop.  [20261025T154738Z-01a173be-cc32-7b01-a732-e13507ddc8de.md]
+2026-10-25T15:48:44.312Z  claimed      codex     Public by 01a173bf  Complete the operator-requested session hand-over.  [20261025T154743Z-01a173be-d3ba-7b73-a254-7fa60b6eeb46.md]
+open notes: 1 handoff note not claimed yet, oldest 20261024T092243Z-01a16d31-f09f-7bc2-9ad9-2537dc9ec353.md

@@ -1,0 +1,215 @@
+---
+title: "Feature Specification: Add a quiet flag to recommend-level.sh"
+description: "recommend-level.sh prints a multi-line report, so a caller that needs only the recommended level must parse prose or JSON. A --quiet flag prints just that one line."
+trigger_phrases:
+  - "recommend level quiet flag"
+  - "add a quiet flag to recommend level sh"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
+# Feature Specification: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+
+---
+
+## EXECUTIVE SUMMARY
+
+`recommend-level.sh` always prints its full report — a 16-to-18-line text block or a multi-field JSON document — so a caller that needs only the recommended level must parse output meant for humans. This change adds a `--quiet` flag that prints exactly the `Recommended Level: N (Name)` line and nothing else. The proof is a line count: `--quiet` prints one line while a diff of the default output stays empty.
+
+**Key Decisions**: `--quiet` prints the same level line `output_text` already emits (ADR-001); `--quiet` takes precedence over `--json` (ADR-002)
+
+**Critical Dependencies**: None — bash only, and the existing scoring path runs unchanged
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-10-25 |
+| **Branch** | `scaffold/001-recommend-level-quiet-flag` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+`recommend-level.sh` prints a 16-to-18-line report (or a multi-field JSON document) even when the caller wants only the recommended level. Automation that needs that one value — for example a script choosing a documentation level — must parse prose or JSON fields it does not use, coupling itself to the report's format.
+
+### Purpose
+A caller can run `recommend-level.sh --quiet` and read the recommended level from a stdout that holds exactly one line.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Add a `--quiet` flag (with a `-q` alias) to the option parser in `recommend-level.sh`
+- With `--quiet`, print exactly one line on stdout: `Recommended Level: <N> (<Name>)` — the same line `output_text` emits today
+- Document the flag in the header comment's OPTIONS list and in `show_help`
+- Keep every non-quiet output path byte-identical to today's output
+
+### Out of Scope
+- Changing the scoring algorithm, level thresholds, or phase recommendation — the flag only selects an output format
+- A minimal JSON payload for `--quiet --json` — quiet prints the same text line in every mode (ADR-002)
+- Adopting `--quiet` in existing callers such as `spec-authoring-card.md` — a separate docs change
+- Editing any file other than `recommend-level.sh`
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Modify | Add `QUIET_OUTPUT` global, `--quiet|-q` parser case, quiet output branch, and help text |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | With `--quiet` or `-q` and valid inputs, stdout is exactly one line matching `^Recommended Level: [0-3] \((Quick\|Baseline\|Verification\|Full)\)$` |
+| REQ-002 | Without `--quiet`, text and JSON output for identical inputs is byte-identical to the output before this change |
+| REQ-003 | `--quiet` combined with `--json` still prints only the single recommended-level line (quiet wins over output format) |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-004 | `show_help` lists `--quiet, -q` and describes its behavior |
+| REQ-005 | The header comment's OPTIONS list documents `--quiet, -q` |
+| REQ-006 | The existing test scripts `test-phase-system.js` and `test-phase-validation.js`, which parse `--json` output strictly, still pass |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `bash recommend-level.sh --quiet --loc 500 --files 15 | wc -l` prints `1` and the run exits 0
+- **SC-002**: A `diff` of default text and JSON runs before and after the change is empty
+- **SC-003**: `bash recommend-level.sh --quiet --json --loc 500 --files 15` prints the single text line, not a JSON document
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | bash with `set -euo pipefail` | Script cannot run | Already required by the current script; nothing new |
+| Dependency | `test-phase-system.js` and `test-phase-validation.js` parse `--json` output | Test failures if JSON output changes | REQ-002 pins byte-identical default output; both scripts rerun in verification |
+| Risk | Callers break if the level-line label drifts | Med | Print the identical `Recommended Level: N (Name)` label `output_text` uses; REQ-001 pins the regex |
+| Risk | `--quiet --json` surprises a JSON-expecting caller | Low | Quiet wins by rule, documented in help and ADR-002; no current caller passes both |
+<!-- /ANCHOR:risks -->
+
+---
+
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: `--quiet` adds no measurable time — it skips report rendering but runs the same scoring path
+
+### Security
+- **NFR-S01**: No new input surface — the flag takes no value, so argument validation is unchanged
+
+### Reliability
+- **NFR-R01**: Exit codes and stderr behavior are unchanged: errors still exit 1 and write to stderr, success exits 0
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+- Empty input: `--quiet` with neither `--loc` nor `--files` hits the existing required-input error (stderr, exit 1); no level line prints
+- Maximum length: extreme values such as `--loc 100000 --files 9999 --quiet` still print exactly one line
+
+### Error Scenarios
+- External service failure: N/A — the script makes no external calls
+- Network timeout: N/A — the script runs fully offline
+- Unknown option alongside `--quiet`: the existing `ERROR: Unknown option` path fires during parsing, before any output
+
+### State Transitions
+- Partial completion: N/A — the script is atomic: it parses, scores, then prints
+- Session expiry: N/A — the script holds no session state
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 4/25 | Files: 1, LOC: ~15, Systems: 1 |
+| Risk | 4/25 | Auth: N, API: N, Breaking: N (default output pinned byte-identical) |
+| Research | 2/20 | None — the script was read end-to-end; one new output branch |
+| Multi-Agent | 1/15 | Workstreams: 1 |
+| Coordination | 2/15 | Dependencies: 0 new |
+| **Total** | **13/100** | Scores Level 0; doc level 3 was prescribed at scaffold time |
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | A caller parses the `Recommended Level:` label and breaks if it drifts | M | L | The quiet branch reuses the exact label; REQ-001's regex pins it |
+| R-002 | `--quiet --json` returns non-JSON and confuses a strict JSON caller | L | M | Quiet wins by documented rule (ADR-002); no existing caller passes both flags |
+| R-003 | `--quiet`/`-q` collides with an existing option | L | L | `rg -n 'quiet'` on the script shows no collision today |
+| R-004 | Scoring or phase logic is accidentally skipped outside quiet mode | M | L | Quiet branches only at output dispatch; the scoring path is shared |
+
+---
+
+## 11. USER STORIES
+
+### US-001: One-Line Level for Automation (Priority: P0)
+
+**As a** calling script, **I want** `--quiet` to print a single parseable line, **so that** I can read the recommended level without parsing the full report or JSON.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: Unchanged Human Output (Priority: P1)
+
+**As a** human operator, **I want** the default output to stay byte-identical, **so that** my docs, muscle memory, and existing tests still apply.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- Does `--quiet` suppress stderr errors? **RESOLVED: No — error paths and exit codes are unchanged.**
+- Should `--quiet --json` print a one-field JSON object instead? **RESOLVED: No — quiet prints the same text line in every mode (ADR-002); a third output format adds surface for no current caller.**
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `tasks.md`
+- **Decision Records**: See `decision-record.md`
+
+---

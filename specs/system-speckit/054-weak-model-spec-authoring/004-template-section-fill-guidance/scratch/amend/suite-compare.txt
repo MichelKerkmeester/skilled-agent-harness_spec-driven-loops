@@ -1,0 +1,8 @@
+baseline: 006-speckit-command-and-agent-alignment/scratch/suite-end.txt (exit=0)
+run1 baseline: Test Files 276 passed | 3 skipped (279), Tests 4162 passed | 21 skipped (4183)
+run1 now:      Test Files 276 passed | 3 skipped (279), Tests 4162 passed | 21 skipped (4183)
+run2 baseline: Test Files 184 passed | 3 skipped (187), Tests 2085 passed | 20 skipped (2105)
+run2 now:      Test Files 184 passed | 3 skipped (187), Tests 2085 passed | 20 skipped (2105)
+FAIL lines: 10 in both, text differs only in millisecond timings
+last line: exit=0, wall time 2277 s
+SUITE_MATCH

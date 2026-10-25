@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Add User Authentication"
-description: "architecture decisions with proper context, alternatives, and consequences."
+description: "Level 3 decision record example showing architecture decisions with their context, alternatives and consequences."
 trigger_phrases:
   - "decision"
   - "record"

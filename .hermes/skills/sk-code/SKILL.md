@@ -34,7 +34,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | **sk-code-quality** | Quality gate, P0/P1/P2 author checks, comment hygiene and surface checklists. | `sk-code/sk-code-quality/` |
 | **sk-code-review** | Findings-first review, security and correctness baseline, checklists, output contract and PR-state gates. | `sk-code/sk-code-review/` |
 
-**Surface axis** (read-only, advisor-invisible evidence the hub bundles alongside the primary mode, never a primary itself):
+**Surface axis** (read-only, advisor-invisible evidence. When a workflow mode scores, the hub bundles the surface after that primary mode. When no workflow mode scores, the hub routes the surface alone for a lookup, implement, debug or verify task, and the acting agent hands the author gates to `sk-code-quality` before it claims completion):
 
 | Surface | Carries | Packet |
 |---------|---------|--------|

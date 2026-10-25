@@ -1,0 +1,41 @@
+$ rg -n "function usableGoalPacket" .skilled/hooks/session-relaunch
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:472:function usableGoalPacket(frontmatter, switches, repoRoot) {
+
+$ rg -n "usableGoalPacket|parseClaimSeed" .skilled .opencode --glob *.cjs --glob *.ts --glob *.js
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:106:function parseClaimSeed(prompt) {
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:472:function usableGoalPacket(frontmatter, switches, repoRoot) {
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1874:  parseClaimSeed,
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1878:  usableGoalPacket,
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2358:  const { parseClaimSeed, specFolderSuffix } = relaunchCore;
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2364:        parseClaimSeed(seed), { notePath, specFolder }, JSON.stringify(seed),
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2372:  assert.deepEqual(parseClaimSeed(badFolder), { notePath: '/repo/note.md', specFolder: '' });
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2375:  assert.deepEqual(parseClaimSeed(skipNotNone), { notePath: '/repo/note.md', specFolder: '' });
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2387:    assert.equal(parseClaimSeed(prompt), null, JSON.stringify(prompt));
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2391:test('usableGoalPacket is exported by the core', (t) => {
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2392:  const { usableGoalPacket } = relaunchCore;
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2400:  assert.equal(usableGoalPacket({ goal_packet: GOAL_PACKET }, on, sandbox.repoRoot), GOAL_PACKET);
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2402:    usableGoalPacket({ goal_packet: GOAL_PACKET }, { SESSION_RELAUNCH_GOAL: '0' }, sandbox.repoRoot),
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2405:  assert.equal(usableGoalPacket({}, on, sandbox.repoRoot), '');
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2406:  assert.equal(usableGoalPacket({ goal_packet: 7 }, on, sandbox.repoRoot), '');
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2407:  assert.equal(usableGoalPacket({ goal_packet: GOAL_PARENT }, on, sandbox.repoRoot), '');
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2409:    usableGoalPacket({ goal_packet: worktreePacket, cwd: worktree }, on, sandbox.repoRoot),
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2413:    usableGoalPacket({ goal_packet: worktreePacket, cwd: 'worktree' }, on, sandbox.repoRoot),
+.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:371:  return core.usableGoalPacket(frontmatter, resolvedSwitches(), nudge.resolveRepoRoot(process.env));
+
+$ rg -n "claim and continue handoff|SPEC_FOLDER_MARKER" .skilled .opencode (non-test code)
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:45:const SPEC_FOLDER_MARKER = ' | Spec folder: ';
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:48:const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:91:  if (specFolder === 'none') return `${SPEC_FOLDER_MARKER}none${SPEC_FOLDER_SKIP_SUFFIX}`;
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:93:  return `${SPEC_FOLDER_MARKER}${specFolder}${SPEC_FOLDER_SUFFIX}`;
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:110:  const markerIndex = notePath.lastIndexOf(SPEC_FOLDER_MARKER);
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:112:    const answer = notePath.slice(markerIndex + SPEC_FOLDER_MARKER.length);
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1305:  const seed = `"[session-relaunch] claim and continue handoff ${handoffSeed}"`;
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1869:  SPEC_FOLDER_MARKER,
+.skilled/hooks/session-relaunch/lib/nudge.cjs:20:const SEED_COMMAND = SEED_PREFIX + ' claim and continue handoff ';
+.skilled/hooks/session-relaunch/lib/nudge.cjs:21:const SPEC_FOLDER_MARKER = core.SPEC_FOLDER_MARKER;
+.skilled/hooks/session-relaunch/lib/nudge.cjs:284:  const markerIndex = prompt.indexOf(SPEC_FOLDER_MARKER);
+.skilled/hooks/session-relaunch/lib/nudge.cjs:286:  const rawFolder = prompt.slice(markerIndex + SPEC_FOLDER_MARKER.length);
+.skilled/hooks/session-relaunch/lib/nudge.cjs:305:  const markerIndex = notePath.indexOf(SPEC_FOLDER_MARKER);
+493:  local manual_seed="[session-relaunch] claim and continue handoff $manual_handoff_token"
+731:claim_seed_prefix='[session-relaunch] claim and continue handoff '
+901:      seed="[session-relaunch] claim and continue handoff $handoff_path"

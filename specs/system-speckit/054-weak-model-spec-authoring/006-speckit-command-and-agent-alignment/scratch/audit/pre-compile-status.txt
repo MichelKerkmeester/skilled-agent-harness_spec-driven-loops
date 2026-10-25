@@ -1,0 +1,199 @@
+ M .claude/agents/code.md
+ M .claude/agents/context.md
+ M .claude/agents/markdown.md
+ M .claude/agents/orchestrate.md
+ M .codex/agents/code.toml
+ M .codex/agents/context.toml
+ M .codex/agents/markdown.toml
+ M .codex/agents/orchestrate.toml
+ M .pi/agents/code.md
+ M .pi/agents/context.md
+ M .pi/agents/markdown.md
+ M .pi/agents/orchestrate.md
+ M .skilled/agents/code.md
+ M .skilled/agents/context.md
+ M .skilled/agents/markdown.md
+ M .skilled/agents/orchestrate.md
+ M .skilled/commands/create/assets/create-agent-auto.yaml
+ M .skilled/commands/create/assets/create-agent-confirm.yaml
+ M .skilled/commands/create/assets/create-benchmark-auto.yaml
+ M .skilled/commands/create/assets/create-benchmark-confirm.yaml
+ M .skilled/commands/create/assets/create-command-auto.yaml
+ M .skilled/commands/create/assets/create-command-confirm.yaml
+ M .skilled/commands/create/assets/create-feature-catalog-auto.yaml
+ M .skilled/commands/create/assets/create-feature-catalog-confirm.yaml
+ M .skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml
+ M .skilled/commands/create/assets/create-manual-testing-playbook-confirm.yaml
+ M .skilled/commands/create/assets/create-skill-auto.yaml
+ M .skilled/commands/create/assets/create-skill-confirm.yaml
+ M .skilled/commands/create/assets/create-skill-parent-auto.yaml
+ M .skilled/commands/create/assets/create-skill-parent-confirm.yaml
+ M .skilled/commands/deep/assets/deep-review-auto.yaml
+ M .skilled/commands/deep/assets/deep-review-confirm.yaml
+ M .skilled/commands/speckit/assets/speckit-complete.yaml
+ M .skilled/commands/speckit/assets/speckit-implement.yaml
+ M .skilled/commands/speckit/assets/speckit-plan.yaml
+ M .skilled/commands/speckit/assets/speckit-resume-auto.yaml
+ M .skilled/commands/speckit/assets/speckit-resume-confirm.yaml
+ M .skilled/commands/speckit/complete.md
+ M .skilled/commands/speckit/implement.md
+ M .skilled/commands/speckit/plan.md
+ M specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/goal.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/anchors-v2.2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/baseline.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/baseline.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/hints-v2.2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/runs.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-after-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-after-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-after-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-before-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-before-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-before-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/status-start.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/suite-start.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-A.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-B.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T004-C.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T009-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/briefs/T011.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/candidates.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/coverage.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/dropped.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read-annotated.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-a.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-b.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.all.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.missing.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/lane-c.read.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/unsafe.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011-run1-timeout.err
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011-run1-timeout.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.err
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.rc
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.stdout
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/review/T011.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T004-A.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T004-B.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T004-C.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-1.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-1.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-2.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-2.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-3.t0
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-3.t1
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/T009-3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/runs/run-t011.sh
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-1-packet/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-2-packet/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/acceptance-criteria.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/description.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/graph-metadata.json
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/implementation-summary.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/plan.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/scratch/.gitkeep
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/spec.md
+?? specs/system-speckit/054-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/test/T009-3-packet/tasks.md
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/a1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/a2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/a3.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/a4.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/a6.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/allowed-files.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/applied.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/changed-files.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/changed-generated.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/changed-outside-generated.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/extra-skipped.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/owner-006-open.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/owner-006-status.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/owner-006.tsv
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/pre-compile-status.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/row-files.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/rows-extra.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/rows.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/searches.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/unexplained-files.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/audit/yaml-parse.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/briefs/T013.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/briefs/X2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/doctor-after.err
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/doctor-after.exit
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/doctor-after.json
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/doctor-before.err
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/doctor-before.exit
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/doctor-before.json
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/gate1.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/index-after.json
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/index-before.json
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/lookup.json
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-agent-bodies.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-catalog.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-codex-agents.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-codex-prompts.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-pi-agents.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-pi-prompts.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-roster.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/check-runtime.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/gen-codex-agents.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/gen-codex-prompts.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/gen-pi-agents.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/gen-pi-prompts.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/gen-runtime.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/mirrors/summary.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/post.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/pre.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013-ls.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013-stat.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013.diff
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013.err
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013.raw.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/T013.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/X2-input.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/X2.err
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/X2.exit
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/X2.raw.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/X2.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/applied.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/extra-skipped.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-codex-agents.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-codex-prompts.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-pi-agents.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-pi-prompts.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/gen-runtime.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/mirror-summary.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/rows-extra.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/rows.jsonl
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/searches.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/review/yaml-parse.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/status-start.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/suite-before.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/suite-end.txt
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/tools/apply_row.py
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/tools/check_rows.py
+?? specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/tools/lib.sh

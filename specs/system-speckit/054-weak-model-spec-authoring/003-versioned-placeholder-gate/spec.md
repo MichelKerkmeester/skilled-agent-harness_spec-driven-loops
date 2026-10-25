@@ -33,14 +33,14 @@ A fresh Level 2 scaffold holds 97 bracketed hint occurrences and `validate.sh --
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 9 |
 | **Predecessor** | 002-template-and-example-defect-repair |
 | **Successor** | 004-template-section-fill-guidance |
-| **Handoff Criteria** | The failing-first test passes and goes red under each mutation, recursive strict counts over `specs/` match before and after, and the five core templates hold 214 value tokens, the kept texts listed in `tasks.md` T011 and the v2.3 stamp |
+| **Handoff Criteria** | The failing-first test passes and goes red under each mutation, recursive strict counts over `specs/` match before and after, and the five core templates hold 217 value tokens, the kept texts listed in `tasks.md` T011 and the v2.3 stamp |
 <!-- /ANCHOR:metadata -->
 
 ---

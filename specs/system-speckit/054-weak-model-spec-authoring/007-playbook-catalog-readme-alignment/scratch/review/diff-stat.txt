@@ -1,0 +1,21 @@
+ .skilled/skills/system-spec-kit/README.md          | 10 +++-
+ .../feature-catalog/feature-catalog.md             | 64 ++++++++++++++++++++++
+ .../manual-testing-playbook.md                     | 16 ++++++
+ .../references/templates/template-style-guide.md   |  5 +-
+ .../references/validation/path-scoped-rules.md     |  4 +-
+ .../references/validation/validation-rules.md      |  4 +-
+ .../references/workflows/quick-reference.md        |  3 +-
+ .../skills/system-spec-kit/templates/README.md     | 13 ++++-
+ 8 files changed, 109 insertions(+), 10 deletions(-)
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-section-fill-guidance.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/example-drift-guard-catches-leak.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/golden-render-all-levels.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-gate-legacy-stamp-unchanged.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-error-after-draft.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/placeholder-token-warning-while-draft.md

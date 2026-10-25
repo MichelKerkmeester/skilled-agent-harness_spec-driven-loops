@@ -1,0 +1,222 @@
+---
+title: "Feature Specification: Add a quiet flag to recommend-level.sh"
+description: "recommend-level.sh prints a 16 to 17 line report, so a caller that needs only the level has to parse or count lines. A --quiet flag prints the single Recommended Level line and leaves the default report unchanged."
+trigger_phrases:
+  - "recommend level quiet flag"
+  - "add a quiet flag to recommend level sh"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.3 -->
+# Feature Specification: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+
+---
+
+## EXECUTIVE SUMMARY
+
+A caller that wants one number from `recommend-level.sh` reads a report. `--loc 50 --files 2` prints 16 lines and `--loc 500 --files 15 --auth --api --db --architectural` prints 17, measured on this checkout. The level sits on one of those lines, so every caller either parses the report or counts lines. A `--quiet` flag prints only `Recommended Level: N (Name)`, and the default report stays byte-identical.
+
+**Key Decisions**: `--quiet` is a flag on the existing parser, not an environment variable. `--json` keeps precedence when a caller passes both flags.
+
+**Critical Dependencies**: bash, already required by the script. No new package.
+
+---
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P2 |
+| **Status** | Draft |
+| **Created** | 2026-10-25 |
+| **Branch** | `worktrees/224-deepseek-final2` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+`recommend-level.sh` prints a human report. Measured on this checkout, `bash recommend-level.sh --loc 50 --files 2` writes 16 lines and the full-flag example writes 17. The recommended level is the second line, behind a blank line. A caller that needs the level either parses text it does not want or pipes the report through `awk`/`sed`. The existing `--json` flag returns a whole object, so it needs a JSON parser and still hands back more than the caller asked for.
+
+### Purpose
+One flag prints one line: `Recommended Level: N (Name)`. Callers get the answer without parsing the report, and the default report does not change.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Add `--quiet` to the argument parser in `recommend-level.sh`.
+- Add a quiet renderer that prints only the `Recommended Level: N (Name)` line.
+- List `--quiet` in the `--help` output and the script header OPTIONS block.
+- Pin the default report and the quiet line with a regression test.
+
+### Out of Scope
+- The `--json` output shape. It already serves machine callers and stays untouched.
+- Scoring weights, level thresholds and phase scoring. The flag changes rendering only.
+- stderr messages and exit codes. They stay as they are so existing error handling keeps working.
+- A `-q` short alias. No caller asked for one, and the single-letter namespace is still open.
+- Other scripts that might call this one. A repository search found no shell consumer, only two Node test files.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Modify | Parse `--quiet`, add the quiet renderer, update help and the header |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/recommend-level-quiet.vitest.ts` | Create | Assert the one-line quiet output and the unchanged default report |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | With `--quiet`, stdout holds exactly one line that matches `^Recommended Level: [0-3] \([A-Za-z]+\)$`, and the process exits 0. |
+| REQ-002 | Without `--quiet`, stdout is byte-identical to the output before the change for every example printed by `--help`. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-003 | When a caller passes both `--json` and `--quiet`, the script prints JSON. JSON wins because it is already machine-readable. |
+| REQ-004 | `--help` lists `--quiet` in OPTIONS and shows one quiet example. |
+| REQ-005 | Error paths keep stdout empty, write the message to stderr and exit 1, with or without `--quiet`. |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `recommend-level.sh --loc 50 --files 2 --quiet | wc -l` prints `1`.
+- **SC-002**: `recommend-level.sh --loc 50 --files 2 | wc -l` prints `16` and `recommend-level.sh --loc 500 --files 15 --auth --api --db --architectural | wc -l` prints `17`, the same counts measured before the change.
+- **SC-003**: `recommend-level.sh --help | rg -c -- '--quiet'` prints `2`, one OPTIONS line and one example.
+- **SC-004**: `npx vitest run tests/recommend-level-quiet.vitest.ts` passes in the `runtime/cli` workspace.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | `bash` 3.2 or newer, already required by the script | The script does not run at all | No new dependency; the flag uses the same `case` parser as every other option |
+| Risk | An older installed copy of the script rejects `--quiet` with `Unknown option` | A caller fails loudly instead of silently getting the full report | Document the flag in the same release as the script change; the parser already exits 1 on unknown options |
+| Risk | A caller parses the quiet line and a later label change breaks it | Silent wrong answer downstream | Reuse the exact string `output_text` already prints and pin it in a test |
+| Risk | A future `-q` alias collides with another tool's convention | Rework of the alias | Ship no short alias now; add one only on request |
+<!-- /ANCHOR:risks -->
+
+---
+
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The flag adds no measurable time. It skips formatting work the default path does, so the quiet run finishes within 5 ms of the default run on the same inputs.
+
+### Security
+- **NFR-S01**: N/A. The flag changes stdout only. The script reads no credential, writes no file and makes no network call.
+
+### Reliability
+- **NFR-R01**: Output is deterministic. The same arguments produce the same bytes on every run.
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+- Empty input: `--quiet` with neither `--loc` nor `--files` exits 1 and writes `ERROR: At least --loc or --files must be provided` to stderr. stdout stays empty.
+- Maximum length: The line is short at every level. `Recommended Level: 3 (Full)` is the longest form, because the level name comes from a fixed set of four words.
+
+### Error Scenarios
+- External service failure: N/A. The script calls no service.
+- Network timeout: N/A. The script makes no network call.
+- Invalid number: `--quiet --loc abc` exits 1 with `ERROR: --loc must be a positive integer` on stderr.
+- Unknown option: `--quiet --bogus` exits 1 with `ERROR: Unknown option: --bogus` on stderr.
+
+### State Transitions
+- Partial completion: N/A. The script is stateless and writes nothing.
+- Session expiry: N/A. There is no session.
+- Both flags: `--quiet --json` prints the JSON object. The quiet renderer never runs when JSON is requested.
+- Help wins: `--help` exits 0 from inside the parser, so `--quiet --help` prints the full help text.
+- No phase section: `--quiet --no-recommend-phases` still prints one line, because the quiet renderer emits no phase fields.
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 3/25 | Files: 2 (1 script, 1 test), LOC: about 20, Systems: 1 |
+| Risk | 0/25 | Auth: N, API: N, Breaking: N; the change is additive |
+| Research | 1/20 | Read one 780-line script and two existing test files |
+| Multi-Agent | 0/15 | Workstreams: 1 |
+| Coordination | 2/15 | Dependencies: 1 (bash), one shared string with the default report |
+| **Total** | **6/100** | **Level 3** |
+
+The script scores this change itself: `recommend-level.sh --loc 20 --files 2` reports 6/100 and Level 0. The packet runs at Level 3 because the authoring task fixes the level, not because the change carries that risk. The extra sections are documentation overhead here.
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Default output drifts while adding the flag | H | L | Capture the pre-change output and diff it in the regression test |
+| R-002 | A caller passes both `--json` and `--quiet` and expects a line | M | L | JSON precedence is documented in help and pinned by a test |
+| R-003 | The quiet line diverges from the report line | M | L | Build both from the same `RECOMMENDED_LEVEL` and `LEVEL_NAME` variables |
+
+---
+
+## 11. USER STORIES
+
+### US-001: One-line answer for scripts (Priority: P0)
+
+**As a** build script that picks a documentation level, **I want** `--quiet` to print only the recommended-level line, **so that** I can read the level without parsing a report.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: Report readers keep their output (Priority: P1)
+
+**As a** developer reading the report by hand, **I want** the default output to stay exactly as it is, **so that** the new flag costs me nothing.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- Does `--quiet` need a short `-q` alias? Not now. The plan ships the long form and leaves `-q` free.
+- Should `--quiet` suppress stderr warnings? No. Silence on stdout is the request; errors stay visible.
+- Does `--quiet` change the exit code? No. It stays 0 on success and 1 on input errors.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `tasks.md`
+- **Decision Records**: See `plan.md` section `L3: ARCHITECTURE DECISION RECORD`
+
+---

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: CI workflow efficiency, speed and operator control"
-description: "Phased packet to cut the CI load of the 33 GitHub Actions workflows, give clones an on/off control, and add a /doctor:ci command and an sk-code-ci standard. Phase 001 is the research; 002-009 are the planned implementation phases."
+description: "Phased packet to cut the CI load of the 33 GitHub Actions workflows, give clones an on/off control, and add a /doctor:ci command and an sk-code-ci standard. Phase 001 is the research, 002-009 are the implementation phases and 010 applies the deep-review remediation."
 trigger_phrases:
   - "ci workflow efficiency phase parent spec"
   - "053 ci workflow efficiency"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
-    last_updated_at: "2026-10-23T08:00:00Z"
+    last_updated_at: "2026-10-25T12:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 002 now has three qualifying zero-run rebuild SHAs and a fourth additional SHA; its 24 h baseline remains"
-    next_safe_action: "Remaining 002: T019 24 h baseline, then T020/T021; 003 T027-T034; 004 T002/T003"
+    recent_action: "Phase map synced to the child Status lines after the deep review"
+    next_safe_action: "007 T100-T102; 004 T072-T074; 008 after D8"
     blockers: []
     key_files:
       - "001-research/research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-ci-workflow-efficiency"
       parent_session_id: null
-    completion_pct: 13
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -102,14 +102,15 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-research/ | Research: 20-iteration measured study and phase plan (`research/research.md`) | Complete |
-| 2 | 002-rebuild-fanout-removal/ | Implementation: stop the CI fan-out on trigger-index rebuild commits with a `[skip ci]` token (R1), assert that token in the rebuild workflow's vitest suite (R2), and record the post-change 24 h baseline every later phase measures against | In progress |
-| 3 | 003-trigger-and-job-hygiene/ | Implementation: PR-only cancel-in-progress concurrency (R3), a real path filter on command-tree-parity (R4), the changed-packet-validation and pre-commit duplication probes (R5, R11), the dispatch-enforcement-guard dedupe (R6), the double-suppression removal (R7), shallower checkouts (R8), PR-time path filters (R9) and the skill-doc-frontmatter filter gap (R10) | In progress |
+| 2 | 002-rebuild-fanout-removal/ | Implementation: stop the CI fan-out on trigger-index rebuild commits with a `[skip ci]` token (R1), assert that token in the rebuild workflow's vitest suite (R2), and record the post-change 24 h baseline every later phase measures against | Complete |
+| 3 | 003-trigger-and-job-hygiene/ | Implementation: PR-only cancel-in-progress concurrency (R3), a real path filter on command-tree-parity (R4), the changed-packet-validation and pre-commit duplication probes (R5, R11), the dispatch-enforcement-guard dedupe (R6), the double-suppression removal (R7), shallower checkouts (R8), PR-time path filters (R9) and the skill-doc-frontmatter filter gap (R10) | Complete |
 | 4 | 004-setup-caching-provisioning/ | Implementation: gate-inputs scanning `.github/actions/**` (R12), the cache probe (R13), the composite setup action (R14), the hooks/plugin workflow merge (R15), npm install dedupe (R16), pip cache (R17) and the sparse-checkout probe (R18) | In progress |
-| 5 | 005-slow-and-failing-tests/ | Implementation: the `fileParallelism` probe (R19), the spec-kit CLI vitest project made parallel or sharded (R20), and the re-check and root-cause of the failing workflows (R21) | Planned |
-| 6 | 006-sk-code-ci-surface/ | Implementation: the read-only `sk-code-ci` surface packet and its hub registration (R22), plus message-contract's every-branch trigger recorded as an intentional exception (R23) | Planned |
-| 7 | 007-workflow-hygiene-on-off-control/ | Implementation: per-job timeouts sized on job samples (R24), least-privilege permissions and the dependabot job split (R25), and the `vars.SKILLED_CI*` on/off switches defaulting on (R26) | Planned |
-| 8 | 008-consolidation-decision/ | Implementation: re-measure the always-run workflows after phases 002 to 007 and merge them into one switch group only on an operator yes (R27) | Planned |
-| 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30) | Planned |
+| 5 | 005-slow-and-failing-tests/ | Implementation: the `fileParallelism` probe (R19), the spec-kit CLI vitest project made parallel or sharded (R20), and the re-check and root-cause of the failing workflows (R21) | Complete |
+| 6 | 006-sk-code-ci-surface/ | Implementation: the read-only `sk-code-ci` surface packet and its hub registration (R22), plus message-contract's every-branch trigger recorded as an intentional exception (R23) | Complete |
+| 7 | 007-workflow-hygiene-on-off-control/ | Implementation: per-job timeouts sized on job samples (R24), least-privilege permissions and the dependabot job split (R25), and the `vars.SKILLED_CI*` on/off switches defaulting on (R26) | In progress |
+| 8 | 008-consolidation-decision/ | Implementation: re-measure the always-run workflows after phases 002 to 007 and merge them into one switch group only on an operator yes (R27) | Planned (blocked on D8) |
+| 9 | 009-doctor-ci-review-wiring/ | Implementation: the repository-variable probe (R28), the `/doctor:ci` command with its advisor bridges (R29), and the CI surface value in sk-code's stack detection and review selection (R30, superseded by 009 ADR-013) | Complete |
+| 10 | 010-review-remediation/ | Remediation: apply the confirmed deep-review findings to the CI routing vocabulary, the sk-code-ci references and templates, the `/doctor:ci` contract and the phase records | Complete |
 
 ### Phase Transition Rules
 
@@ -125,9 +126,10 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | 001 | 002 | `research/research.md` sections 14-15 hold the ranked plan, and `final-review.md` reduces the open decisions to D1 as the only blocker | `001-research/acceptance-criteria.md` all Met |
 | 002 | 003, 004, 005 | The rebuild commit starts no run (option A) or exactly the rebuild workflow's own run (option B), gate-inputs passes and spec-kit-check is green, so the fresh 24 h snapshot is the baseline every later phase measures against | Three consecutive rebuild SHAs by `gh run list --commit`; `check-gate-inputs.sh` prints `RESULT: PASSED`; `002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` recorded |
 | 004 | 006 | The gate-inputs actions scan (R12) and the composite setup action (R14) have landed, so the packet records real patterns rather than proposals | gate-inputs passes with `.github/actions/**` scanned; a warm run's job seconds recorded against the 002 baseline |
-| 003, 004, 005, 006 | 007 | The job shapes are final: 003's concurrency and filter edits, 004's composite action and merge, 005's CLI step, and 006's timeout, least-privilege and switch rule data | The seven hooks vitest suites still run; the cold-path run passes; the CLI vitest step is under 400 s; `006-sk-code-ci-surface` passes `validate.sh --strict` |
+| 003, 004, 005, 006 | 007 | The job shapes are final: 003's concurrency and filter edits, 004's composite action and merge, 005's CLI step, and 006's timeout, least-privilege and switch rule data | The seven hooks vitest suites still run; the cold-path run passes; the CLI vitest step is under 400 s (waived at a 451 s median by 005 ADR-011); `006-sk-code-ci-surface` passes `validate.sh --strict` |
 | 002-007 | 008 | A re-measured after snapshot exists for the nine always-run workflows, and D8 is answered | `008-consolidation-decision/scratch/consolidation-decision.md` carries the before and after numbers; under D8 = no the phase's `.github/workflows` diff is empty |
-| 006, 007 | 009 | The `sk-code-ci` packet supplies its rule data and templates, and the six `vars.SKILLED_CI*` names exist in the workflows | `/doctor:ci report` lists all 33 workflows with switch state; `route-validate.sh` and the bridge deriver pass |
+| 006, 007 | 009 | The `sk-code-ci` packet supplies its rule data and templates, and the six `vars.SKILLED_CI*` names exist in the workflows | `/doctor:ci report` lists every file `glob('.github/workflows/*.yml')` returns (32 today) with switch state; `route-validate.sh` and the bridge deriver pass |
+| 009 | 010 | The deep review's confirmed findings are listed with file, line and fix | `review/review-report.md` lists 5 P1 and 16 P2 confirmed findings; `010-review-remediation` passes `validate.sh --strict` |
 
 ### Recommendation Traceability
 
@@ -160,7 +162,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 - R27 (P3): job consolidation decision gate -> 008-consolidation-decision
 - R28 (P2, probe): can the owner's token write repository variables? -> 009-doctor-ci-review-wiring
 - R29 (P2): `/doctor:ci` command -> 009-doctor-ci-review-wiring
-- R30 (P3): fifth stack-detection surface value for workflow diffs -> 009-doctor-ci-review-wiring
+- R30 (P3): fifth stack-detection surface value for workflow diffs -> 009-doctor-ci-review-wiring (superseded by 009 ADR-013)
 
 ### Operator Decisions
 
@@ -174,7 +176,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | D6: timeout floor | 007-workflow-hygiene-on-off-control | 10 minutes |
 | D7: deep-loop-runtime `fetch-depth: 2` | 003-trigger-and-job-hygiene | Depth 2 |
 | D8: job consolidation after re-measurement | 008-consolidation-decision | Pending: default no merge, asked in 008 with measured numbers |
-| D9: `/doctor:ci` toggle writes variables or prints the command | 009-doctor-ci-review-wiring | Probe pre-approved; R28 outcome decides write or print |
+| D9: `/doctor:ci` toggle writes variables or prints the command | 009-doctor-ci-review-wiring | Write (R28 probe, `009-doctor-ci-review-wiring/scratch/r28-probe.md`) |
 | D10: changed-packet-validation filter | 003-trigger-and-job-hygiene | Skip |
 <!-- /ANCHOR:phase-map -->
 
@@ -183,8 +185,10 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Are the spec-kit CLI tests safe under `fileParallelism: true`, or does phase 005 need sharding?
-- Can the owner's token write repository variables, so that `/doctor:ci` toggle writes rather than prints?
+None. Both earlier questions are answered:
+
+- Phase 005 took the shard branch for the spec-kit CLI tests (`005-slow-and-failing-tests/acceptance-criteria.md`, AC-002).
+- The owner's token writes repository variables, so `/doctor:ci` toggle writes (D9 = write, `009-doctor-ci-review-wiring/acceptance-criteria.md`, AC-001 and AC-002).
 <!-- /ANCHOR:questions -->
 
 ---

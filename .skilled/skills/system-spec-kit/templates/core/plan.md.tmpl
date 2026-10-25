@@ -39,21 +39,22 @@ contextType: "general"
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- /IF -->
 <!-- IF level:1,2,3,3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
 
 ---
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
+<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one output branch. Prove it with a line count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
+| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
+| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
+| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
@@ -63,6 +64,7 @@ contextType: "general"
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
+<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `rg -n 'quiet' recommend-level.sh` prints the new branch before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
 - [ ] Problem statement clear and scope documented
@@ -79,16 +81,17 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
+<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `recommend-level.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
+- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
 
 ### Data Flow
-[Brief description of how data moves through the system]
+[YOUR_VALUE_HERE: Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 <!-- IF level:2,3,3+ -->
@@ -96,13 +99,14 @@ contextType: "general"
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
+<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `recommend-level.sh`: owns the output. Action: update. WEAK: Various files. -->
 
 Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -117,6 +121,7 @@ Required inventories:
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
+<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads the current output. Implementation adds the branch. Verification counts lines. WEAK: See tasks. -->
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
@@ -125,6 +130,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
+<!-- FILL: Name the one command you will run and the output it must print. GOOD: `--quiet` prints 1 line. The default prints 17. WEAK: Test it manually. -->
 
 <!-- IF level:1 -->
 N/A — record any testing beyond the verification tasks in `tasks.md` here.
@@ -132,9 +138,9 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
 <!-- IF level:2,3,3+ -->
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
+| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
+| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
 <!-- /IF -->
 <!-- /ANCHOR:testing -->
 
@@ -142,6 +148,7 @@ N/A — record any testing beyond the verification tasks in `tasks.md` here.
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
+<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 <!-- IF level:1 -->
 N/A — record dependencies beyond the components named in the architecture here.
@@ -149,7 +156,7 @@ N/A — record dependencies beyond the components named in the architecture here
 <!-- IF level:2,3,3+ -->
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
 <!-- /IF -->
 <!-- /ANCHOR:dependencies -->
 
@@ -157,13 +164,14 @@ N/A — record dependencies beyond the components named in the architecture here
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
+<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: the default output changes. Revert the one commit. WEAK: Roll back if needed. -->
 
 <!-- IF level:1 -->
 N/A — record rollback steps beyond reverting the scoped change here.
 <!-- /IF -->
 <!-- IF level:2,3,3+ -->
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
+- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
 <!-- /IF -->
 <!-- /ANCHOR:rollback -->
 
@@ -176,6 +184,7 @@ N/A — record rollback steps beyond reverting the scoped change here.
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
+<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Phase 1 (Setup) ──────┐
@@ -195,19 +204,21 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
+<!-- FILL: Give each phase an estimate and a total. Mark the total as an assumption. Write `N/A` with one reason, or delete the whole section. GOOD: Setup 10 minutes, implementation 30, verification 10. Total 50 minutes. WEAK: A few hours. -->
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| Core Implementation | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 4-8 hours] |
+| Verification | [YOUR_VALUE_HERE: Low/Med/High] | [YOUR_VALUE_HERE: e.g., 1-2 hours] |
+| **Total** | | **[YOUR_VALUE_HERE: e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
 ---
 
 <!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
+<!-- FILL: Name the trigger, the steps and the data reversal. Write `No` when no data changes. Delete the whole section when the packet ships no deployable service. GOOD: Trigger: default output changes. Steps: revert one commit, rerun the two commands. WEAK: Roll back if needed. -->
 
 ### Pre-deployment Checklist
 - [ ] Backup created (if data changes)
@@ -215,14 +226,14 @@ Phase 1.5 (Config) ───┘
 - [ ] Monitoring alerts set
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. [YOUR_VALUE_HERE: Immediate action - e.g., disable feature flag]
+2. [YOUR_VALUE_HERE: Revert code - e.g., git revert or redeploy previous version]
+3. [YOUR_VALUE_HERE: Verify rollback - e.g., smoke test critical paths]
+4. [YOUR_VALUE_HERE: Notify stakeholders - if user-facing]
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** [YOUR_VALUE_HERE: Yes/No]
+- **Reversal procedure**: [YOUR_VALUE_HERE: Steps or "N/A"]
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -234,6 +245,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
+<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Script to test to close. WEAK: Components depend on each other. -->
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
@@ -251,58 +263,61 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| [YOUR_VALUE_HERE: Component A] | None | [YOUR_VALUE_HERE: Output] | B, C |
+| [YOUR_VALUE_HERE: Component B] | A | [YOUR_VALUE_HERE: Output] | D |
+| [YOUR_VALUE_HERE: Component C] | A | [YOUR_VALUE_HERE: Output] | D |
+| [YOUR_VALUE_HERE: Component D] | B, C | [YOUR_VALUE_HERE: Final] | None |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
 
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
+<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
+3. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: [YOUR_VALUE_HERE: Sum of durations]
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- [YOUR_VALUE_HERE: Task A] and [YOUR_VALUE_HERE: Task B] can run simultaneously
+- [YOUR_VALUE_HERE: Task C] and [YOUR_VALUE_HERE: Task D] can run after Phase 1
 <!-- /ANCHOR:critical-path -->
 
 ---
 
 <!-- ANCHOR:milestones -->
 ## L3: MILESTONES
+<!-- FILL: Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. GOOD: M1: the branch exists. `rg -n quiet` prints it. WEAK: Milestones are tracked. -->
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | [YOUR_VALUE_HERE: Setup Complete] | [YOUR_VALUE_HERE: All dependencies ready] | [YOUR_VALUE_HERE: Date/Phase] |
+| M2 | [YOUR_VALUE_HERE: Core Done] | [YOUR_VALUE_HERE: Main features working] | [YOUR_VALUE_HERE: Date/Phase] |
+| M3 | [YOUR_VALUE_HERE: Release Ready] | [YOUR_VALUE_HERE: All tests pass] | [YOUR_VALUE_HERE: Date/Phase] |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
+<!-- FILL: Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. GOOD: ADR-001: a flag, because callers already pass flags. WEAK: We made a decision. -->
 
-### ADR-001: [Decision Title]
+### ADR-001: [YOUR_VALUE_HERE: Decision Title]
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: [YOUR_VALUE_HERE: Proposed/Accepted/Deprecated]
 
-**Context**: [What problem we're solving]
+**Context**: [YOUR_VALUE_HERE: What problem we're solving]
 
-**Decision**: [What we decided]
+**Decision**: [YOUR_VALUE_HERE: What we decided]
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- [YOUR_VALUE_HERE: Positive outcome 1]
+- [YOUR_VALUE_HERE: Negative outcome + mitigation]
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- [YOUR_VALUE_HERE: Option B]: [YOUR_VALUE_HERE: Why rejected]
 
 ---
 
@@ -313,6 +328,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:ai-execution -->
 ## L3+: AI EXECUTION FRAMEWORK
+<!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns the script. One owns the test. WEAK: Agents work in parallel. -->
 
 ### Tier 1: Sequential Foundation
 **Files**: spec.md (sections 1-3)
@@ -360,14 +376,15 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:workstreams -->
 ## L3+: WORKSTREAM COORDINATION
+<!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns the script. W-B owns the test. WEAK: Work is split into streams. -->
 
 ### Workstream Definition
 
 | ID | Name | Owner | Files | Status |
 |----|------|-------|-------|--------|
-| W-A | [Core Logic] | [Primary] | [file1.ts, file2.ts] | [Active] |
-| W-B | [UI Components] | [Secondary] | [comp1.tsx, comp2.tsx] | [Active] |
-| W-C | [Tests] | [Primary] | [test/*.ts] | [Blocked on W-A] |
+| W-A | [YOUR_VALUE_HERE: Core Logic] | [YOUR_VALUE_HERE: Primary] | [YOUR_VALUE_HERE: file1.ts, file2.ts] | [YOUR_VALUE_HERE: Active] |
+| W-B | [YOUR_VALUE_HERE: UI Components] | [YOUR_VALUE_HERE: Secondary] | [YOUR_VALUE_HERE: comp1.tsx, comp2.tsx] | [YOUR_VALUE_HERE: Active] |
+| W-C | [YOUR_VALUE_HERE: Tests] | [YOUR_VALUE_HERE: Primary] | [YOUR_VALUE_HERE: test/*.ts] | [YOUR_VALUE_HERE: Blocked on W-A] |
 
 ### Sync Points
 
@@ -386,6 +403,7 @@ Phase 1.5 (Config) ───┘
 
 <!-- ANCHOR:communication -->
 ## L3+: COMMUNICATION PLAN
+<!-- FILL: Name the update cadence and the escalation path. GOOD: A note in `goal.md` section 4 after each task. WEAK: Communicate regularly. -->
 
 ### Checkpoints
 - **Daily**: Status update in tasks.md

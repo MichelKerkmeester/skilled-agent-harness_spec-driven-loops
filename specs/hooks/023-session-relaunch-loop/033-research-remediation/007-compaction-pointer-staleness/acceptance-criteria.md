@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-25
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001, REQ-002 | Given a note with `created_at: 2026-10-25T10:00:00Z`, When `seedText` runs with `afterCompaction: true`, Then the text holds that timestamp, `git log --since=2026-10-25T10:00:00Z` and `git status` | `nudge.test.cjs`, red before | Unmet | - |
-| AC-002 | REQ-003 | Given each runtime's compaction path with that note, When it sends the pointer, Then the sent text holds the timestamp | One test per adapter | Unmet | - |
-| AC-003 | REQ-004 | Given `afterCompaction` false, When `seedText` runs, Then existing seed tests pass unedited | Test run | Unmet | - |
-| AC-004 | REQ-005 | Given a note with no `created_at`, When the pointer builds, Then it holds the git step and no `undefined` | Test | Unmet | - |
+| AC-001 | REQ-001, REQ-002 | Given a note with `created_at: 2026-10-25T10:00:00Z`, When `seedText` runs with `afterCompaction: true`, Then the text holds that timestamp, `git log --since=2026-10-25T10:00:00Z` and `git status` | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs:383` "after-compaction pointer names the note created_at and the git checks": red before (AssertionError), green after; node suite exit 0. The date is shell-quoted, so the text reads `git log --since='2026-10-25T10:00:00Z'` | Met | - |
+| AC-002 | REQ-003 | Given each runtime's compaction path with that note, When it sends the pointer, Then the sent text holds the timestamp | "compaction pointer carries the note date" at `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1267`, `.opencode/plugins/tests/session-relaunch.test.cjs:1473` and `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1127`: each red before, green after; node exit 0, vitest exit 0 | Met | - |
+| AC-003 | REQ-004 | Given `afterCompaction` false, When `seedText` runs, Then existing seed tests pass unedited | Only the after-compaction branch at `.skilled/hooks/session-relaunch/lib/nudge.cjs:243` changed and no existing seed test was edited; node 896/896 pass, vitest 59/59 pass; relaunch text compared with HEAD `nudge.cjs` over 24 rows, 0 byte differences | Met | - |
+| AC-004 | REQ-005 | Given a note with no `created_at`, When the pointer builds, Then it holds the git step and no `undefined` | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs:410` "after-compaction pointer without a note date keeps the undated git step" covers missing, empty and null: holds `git log` and `git status`, no `undefined` or `null`; node exit 0 | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not closed yet. Every criterion is still Unmet.
+All four criteria are Met with observed test evidence.
 <!-- /ANCHOR:closure -->

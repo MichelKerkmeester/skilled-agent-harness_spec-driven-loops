@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,10 +43,19 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
       ".skilled/hooks/session-relaunch/README.md",
-      ".skilled/hooks/session-relaunch/lib/context-usage.cjs"
+      "scratch/test/red-before.txt",
+      "scratch/test/green-after.txt",
+      "scratch/harness/build-sandbox.sh",
+      "scratch/test/full-node-after-t008.txt",
+      "scratch/test/vitest-after-t008.txt",
+      "scratch/test/reader-red-before.txt",
+      "scratch/test/reader-green-after.txt",
+      "scratch/test/pi-prefix-red-before.txt"
     ],
     "entities": [
       {
@@ -92,6 +101,12 @@
         "source": "derived"
       },
       {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
         "name": "skilled-loop.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
@@ -104,15 +119,63 @@
         "source": "derived"
       },
       {
+        "name": "context-usage.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
         "source": "derived"
       },
       {
-        "name": "context-usage.cjs",
+        "name": "red-before.txt",
         "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "path": "scratch/test/red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after.txt",
+        "kind": "file",
+        "path": "scratch/test/green-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "build-sandbox.sh",
+        "kind": "script",
+        "path": "scratch/harness/build-sandbox.sh",
+        "source": "derived"
+      },
+      {
+        "name": "full-node-after-t008.txt",
+        "kind": "file",
+        "path": "scratch/test/full-node-after-t008.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-after-t008.txt",
+        "kind": "file",
+        "path": "scratch/test/vitest-after-t008.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reader-red-before.txt",
+        "kind": "file",
+        "path": "scratch/test/reader-red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reader-green-after.txt",
+        "kind": "file",
+        "path": "scratch/test/reader-green-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-prefix-red-before.txt",
+        "kind": "file",
+        "path": "scratch/test/pi-prefix-red-before.txt",
         "source": "derived"
       },
       {
@@ -138,65 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Make",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Sonnet",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shell",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
     "created_at": "2026-10-25T13:42:25Z",
-    "last_save_at": "2026-10-25T14:10:22.665Z",
+    "last_save_at": "2026-10-25T18:23:53.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d37ad362ad87cc1a715dcaf9322bb8ff53b36c0d4685b0685ad5a51cca6a2338",
+    "source_fingerprint": "sha256:66a3a6ff49f8f762efed706c72bff1a377252fe2a9ff93dbadbcd16ace8f9d5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5f53689aca4b04383fb8db8228543c54990e19f6a00abe9776ffe6013308338",
+      "spec.md": "415f8c37cbaf6a808b74fb1e9a3cf37156aef5c84286beff71f3ebdb3640612e",
       "plan.md": "e3e30e64d2922a97ed6d136f4f0bc29b24c8215ece340ea4c9c2b00de998fc06",
-      "tasks.md": "89e656885cea62138a1fa5b19914b54d5f424ccd6b4fcf7a1c9f795a6de945a8",
-      "implementation-summary.md": "33964e7174139fc6f2d4e6da1b4958aa68776b593495ac17793cf35a9fe21357"
+      "tasks.md": "1f89bbaedc38d80300789f8731bbf5fc3f16d289f9d319d5a0d0fbb53f2e757a",
+      "implementation-summary.md": "d3148d91d683027795a1834ecf60c1e10594c2bec099ba380faeb1cdf64e45f0"
     },
     "last_active_at": null
   }

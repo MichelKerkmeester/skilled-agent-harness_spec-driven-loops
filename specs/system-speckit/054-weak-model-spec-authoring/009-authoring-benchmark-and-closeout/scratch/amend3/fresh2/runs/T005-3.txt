@@ -1,0 +1,73 @@
+I'll start by running the spec creation command, then read the created templates and the target script to write accurate planning documents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now I'll write the four planning documents. Starting with `spec.md`.
+
+Now `plan.md`:
+
+Now `tasks.md` with the full verification checklist:
+
+
+
+Now `acceptance-criteria.md`:
+
+
+
+
+
+
+
+
+
+
+
+The only failures are derived-metadata drift from my doc edits. Let me preview the sanctioned repair before applying it.
+
+
+
+The repair applied inside my packet folder only. Re-running validation:
+
+Validation passes. Final state checks:
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag RESULT: PASSED

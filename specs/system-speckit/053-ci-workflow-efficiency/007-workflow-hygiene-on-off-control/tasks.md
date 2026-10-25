@@ -618,7 +618,7 @@ Evidence: gate tail `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=3
 
 ---
 
-### T021 Commit the permissions pass (AC-001)
+### T021 [x] Commit the permissions pass (AC-001)
 
 File: `.github/workflows/` (the 12 permission headers). Anchor (read): `scratch/pass-permissions.md`, the `## Permissions pass` heading written by T020.
 
@@ -650,7 +650,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ---
 
-### T022 [B] Prove the split on a real Dependabot pull request (AC-002)
+### T022 [x] Prove the split on a real Dependabot pull request (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md` (new file). Anchor: none.
 
@@ -671,11 +671,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: a run exists and its `metadata` job is not green, or the run id cannot be read. Never create a pull request from a non-Dependabot account to force the path, because the job's `if:` would skip it.
 
-Evidence: pending. 4 open Dependabot pull requests (86, 73, 72, 69) and the newest run id 40126121487 (event `pull_request`, skipped, a non-Dependabot branch) all predate the split, which is uncommitted. `scratch/r25-dependabot.md` holds one `pending:` line. The task stays blocked until a Dependabot pull request triggers the two-job workflow on the default branch.
+Evidence: run id 40200559794 on pull request 89 and run id 40148156911 on pull request 86, both `pull_request` runs of the two-job workflow after the split landed. The metadata job concluded `success` and the auto-merge job concluded `skipped` in both, because neither is a security patch update. The write path of the merge job on a real security patch is not observed. `scratch/r25-dependabot.md` holds `run id: 40200559794`, and `grep -cE 'run id: [0-9]+|pending:'` over it prints 1.
 
 ---
 
-### T023 Commit the Dependabot split (AC-002)
+### T023 [x] Commit the Dependabot split (AC-002)
 
 File: `.github/workflows/dependabot-auto-merge.yml` and `scratch/r25-dependabot.md`. Anchor (read): `scratch/r25-dependabot.md:1`, the run id or `pending:` line written by T022.
 
@@ -1577,7 +1577,7 @@ Evidence: `size-timeouts.mjs --assert --floor 10` printed `values match formula:
 
 ---
 
-### T061 Commit the timeout pass (AC-003)
+### T061 [x] Commit the timeout pass (AC-003)
 
 File: `.github/workflows/*.yml` and `scratch/r24/`. Anchor (read): `scratch/r24/timeouts.md`, the `## R24 proof` heading written by T060.
 
@@ -2452,7 +2452,7 @@ Evidence: `switches 42 expected 42` and `switch count: ok` (`hooks-node-tests.ym
 
 ---
 
-### T097 Commit the switch pass (AC-005)
+### T097 [x] Commit the switch pass (AC-005)
 
 File: `.github/workflows/*.yml` and `scratch/pass-switch.md`. Anchor (read): `scratch/pass-switch.md`, the `## R26 proof` heading written by T096.
 
@@ -2485,7 +2485,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ---
 
-### T098 Commit the README section (AC-007)
+### T098 [x] Commit the README section (AC-007)
 
 File: `.github/workflows/README.md`. Anchor (read): `.github/workflows/README.md`, the `### On/off switches` heading written by T095.
 
@@ -2592,7 +2592,7 @@ Stop and escalate if: the push is rejected, the fork's `main` does not equal `HE
 
 ---
 
-### T100 Read the first 24 hours of runs for a timeout kill (AC-003)
+### T100 [ ] Read the first 24 hours of runs for a timeout kill (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md` (new file). Anchor: none.
 
@@ -2615,7 +2615,7 @@ Stop and escalate if: the kill message appears and the value cannot be raised fr
 
 ---
 
-### T101 Run the final gates and record the phase result (AC-009, AC-011, AC-012)
+### T101 [ ] Run the final gates and record the phase result (AC-009, AC-011, AC-012)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md`. Anchor: none; append a `## Final gates` section.
 
@@ -2641,7 +2641,7 @@ Stop and escalate if: either gate does not print `RESULT: PASSED`, or the epheme
 
 ---
 
-### T102 Commit the closure records (AC-009, AC-011, AC-012)
+### T102 [ ] Commit the closure records (AC-009, AC-011, AC-012)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md`, `acceptance-criteria.md` and the verification records under `scratch/`. Anchor: none; T101 has closed the acceptance rows and set `Closeable: Yes`.
 

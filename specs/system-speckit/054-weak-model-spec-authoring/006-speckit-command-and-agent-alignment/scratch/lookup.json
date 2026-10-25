@@ -1,0 +1,189 @@
+{
+  "candidatePhraseCount": 1698,
+  "discardedTokens": [],
+  "indexHash": "7fd05a5e95ae60930bac7fa886bbcfb507a4d294ed01b35c4974280ace21cd0f",
+  "manifestHash": "ea30bfda6fd83050d9ca945f538fc6e19436a259f26a4b459c7739dd28d0584e",
+  "normalizedQuery": "spec authoring card",
+  "results": [
+    {
+      "matchClass": "exact",
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/spec.md",
+      "phrases": [
+        "phase 5 weak model authoring card",
+        "route authoring intents to a card",
+        "spec authoring card",
+        "weak model authoring card"
+      ],
+      "score": 1
+    },
+    {
+      "matchClass": "phrase-containment",
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card/plan.md",
+      "phrases": [
+        "card sync guard",
+        "router intent card rows",
+        "spec authoring card text",
+        "weak model authoring card plan"
+      ],
+      "score": 0.94
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/changelog/skilled/v2+/v2.1.4.0.md",
+      "phrases": [
+        "spec folder detection"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/changelog/skilled/v2+/v2.4.0.0.md",
+      "phrases": [
+        "spec folder filtering"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/changelog/skilled/v3+/v3.0.0.1.md",
+      "phrases": [
+        "spec document indexing"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/changelog/skilled/v4.0.0.1.md",
+      "phrases": [
+        "pre v4 spec upgrade",
+        "upgrade legacy spec folders"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/changelog/skilled/v4.0.0.9.md",
+      "phrases": [
+        "skill authoring checks"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/.state/spec-gate/README.md",
+      "phrases": [
+        "spec gate archive",
+        "spec gate runtime state",
+        "spec gate warnings"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md",
+      "phrases": [
+        "jev prompt card"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md",
+      "phrases": [
+        "claude code prompt quality card"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.10.0.md",
+      "phrases": [
+        "prompt quality card related resources",
+        "prompt quality card template"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.11.0.md",
+      "phrases": [
+        "prompt quality card moved"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.3.0.md",
+      "phrases": [
+        "active spec folder handoff"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md",
+      "phrases": [
+        "codex prompt quality card"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.3.3.0.md",
+      "phrases": [
+        "approved spec folder",
+        "codex spec folder handoff"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.1.0.md",
+      "phrases": [
+        "playbook authoring bugs"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.5.0.md",
+      "phrases": [
+        "canonical card cross link",
+        "prompt card precedence"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.7.0.md",
+      "phrases": [
+        "prompt quality card template"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md",
+      "phrases": [
+        "cursor prompt quality card"
+      ],
+      "score": 0
+    },
+    {
+      "matchClass": "partial",
+      "path": ".skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md",
+      "phrases": [
+        "devin prompt quality card"
+      ],
+      "score": 0
+    }
+  ],
+  "schemaVersion": 2,
+  "specFolder": null,
+  "tokens": [
+    "spec",
+    "authoring",
+    "card"
+  ],
+  "truncated": true
+}

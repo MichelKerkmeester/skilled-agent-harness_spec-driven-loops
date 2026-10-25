@@ -55,13 +55,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `grep -cF -- '  <spec-folder>' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `0` and `grep -cF -- '  specs/system-speckit/078-opencode-authoring-recipe' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `1`
-- [ ] `grep -cF -- 'track in the destination above is an example' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `1`
-- [ ] `grep -c '^YES ' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `0` and `grep -c '^bare=0$' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `1`
-- [ ] `wc -l < specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/changed-files.txt` prints `1`
-- [ ] `diff specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-start-summary.txt specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-end-summary.txt > /dev/null && echo SUITE_MATCH` prints `SUITE_MATCH`
-- [ ] `grep -cvE '^(P[012]) |^NO FINDINGS$' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/review/T009.txt` prints `0`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination --strict` prints `RESULT: PASSED`
+- [x] `grep -cF -- '  <spec-folder>' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `0` and `grep -cF -- '  specs/system-speckit/078-opencode-authoring-recipe' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `1`
+- [x] `grep -cF -- 'track in the destination above is an example' .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` prints `1`
+- [x] `grep -c '^YES ' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `0` and `grep -c '^bare=0$' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/recheck.txt` prints `1`
+- [x] `wc -l < specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/changed-files.txt` prints `1`
+- [x] `diff specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-start-summary.txt specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/suite-end-summary.txt > /dev/null && echo SUITE_MATCH` prints `SUITE_MATCH`
+- [x] `grep -cvE '^(P[012]) |^NO FINDINGS$' specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination/scratch/review/T009.txt` prints `0`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-write-recipe-fixes/006-fix-write-recipe-move-destination --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,17 +77,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
-| Start commit | Pending | |
-| Applier present | Pending | |
-| Known row saved | Pending | |
-| Known row applied | Pending | |
-| Ledger sweep | Pending | |
-| Diff check | Pending | |
-| Evidence recheck | Pending | |
-| Suite match | Pending | |
-| Frontier review | Pending | |
-| Phase close | Pending | |
+| Phase opened | Done | T001 printed APPLIER_OK, Python 3.9.6, jq-1.7.1-apple, ripgrep 15.2.0 and 1 |
+| Start commit | Done | d01455d107f0d1a05b3c688dd23be2b362b7fdff |
+| Applier present | Done | T001 APPLIER_OK |
+| Known row saved | Done | T003 printed 1, 1, 1 |
+| Known row applied | Done | T004 printed `APPLIED K-041-006-01` and `exit=0`, then `1`, `1`, `0`, `1`, `1` |
+| Ledger sweep | Done | T005 `scratch/census.txt` holds `SKIP-GONE L-C-024`, the known row's own entry. BLOCKED count `0`, other lines `0` |
+| Diff check | Done | T006 `scratch/changed-files.txt` names only the recipe, `wc -l` printed `1` |
+| Evidence recheck | Done | T007 printed `bare=0`, `destination=1`, `sentence=1` and no `YES` line |
+| Suite match | Done | T008 printed `SUITE_MATCH` against the 054 phase 001 start: core 276 files and 4162 tests passed, cli 180 files and 2061 tests passed, `exit=0`. End run 2195 s |
+| Frontier review | Done | T009 on cli-devin swe-2-max `--permission-mode auto`, 19 s, reply `NO FINDINGS`. Backed by scripted checks of the same five points: 3 non-blank changed lines in the diff, 0 em dash or semicolon in the added lines, no `version:` line |
+| Phase close | Done | T010: no findings, so no review rows. Strict validation `RESULT: PASSED`, AC 6 of 6 Met. One local commit on the worktree branch |
 
 ### Deviations and findings
 
@@ -95,5 +95,9 @@ and findings belong here.
 |------|------|
 | Adjacent, not fixed | `spec-folder-write-recipe.md` Steps 3 to 6 hold bare `<folder>` placeholders at lines 64, 72, 78, 84 and 92. Step 5 also holds `<repo-root>` at line 79, and Step 7 holds `<track>/<packet>` at line 104. |
 | Adjacent, not fixed | `references/debugging/troubleshooting.md` line 304 ends a `generate-context.js` command with `  <spec-folder>`. It is the same class in another file and no ledger row owns it here. |
-| Execution deviations | None yet |
+| Start suite flake | The T002 start run ended `exit=1`: `authorized-ledger.vitest.ts` "serializes concurrent processes into one contiguous unambiguous head" failed with `LOCK_LOST` (writer lock identity changed before release), so the cli lane was skipped. 1421 s. The end run passed that test, and T008 compares with the 054 phase 001 start, so it does not block. A deep-loop multi-process race, outside this phase |
+| Review executor | T009 names cli-codex. Parent D4 names cli-devin swe-2-max, which ran on `--permission-mode auto`. Auto refuses shell, so the conductor wrote the diff and the stat to `scratch/review/` and the reviewer read files only |
+| Commit decision on 2026-10-24 | D5 says the operator commits. The operator chose one local commit per phase on the worktree branch, never pushed, so this phase ends with a local commit |
+| AC-006 cell pipe | The AC-006 verification cell held an unescaped `|` inside its grep pattern, so the table parser split the row and AC_CLOSURE read it as unmet. The conductor escaped that one pipe as `\|`. The T010 verify grep still prints `6` |
+| Counts for the operator | One owner `041-006` ledger row: 0 applied, 1 `SKIP-GONE` (L-C-024, fixed by the known row) |
 <!-- /ANCHOR:log -->

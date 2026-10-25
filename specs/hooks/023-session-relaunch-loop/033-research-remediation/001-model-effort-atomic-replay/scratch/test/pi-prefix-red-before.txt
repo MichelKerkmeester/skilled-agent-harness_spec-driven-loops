@@ -1,0 +1,39 @@
+✖ a Pi live model matching the provider-prefixed launch model keeps the launch thinking (597.78925ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 639.76575
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1460:1
+✖ a Pi live model matching the provider-prefixed launch model keeps the launch thinking (597.78925ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '--provider',
+      'openai',
+      '--model',
+      'gpt-6-luna',
+  -   '--thinking',
+  -   'low',
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-iEAHdE/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1470:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '--provider', 'openai', '--model', 'gpt-6-luna', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-iEAHdE/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    expected: [ '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-iEAHdE/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

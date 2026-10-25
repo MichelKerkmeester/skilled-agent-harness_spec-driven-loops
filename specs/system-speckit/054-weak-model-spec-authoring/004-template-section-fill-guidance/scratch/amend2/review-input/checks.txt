@@ -1,0 +1,83 @@
+--- anchors (contract) ---
+== level 2
+optional_anchor	phase-deps
+optional_anchor	effort
+== level 3
+optional_anchor	phase-deps
+optional_anchor	effort
+optional_anchor	dependency-graph
+optional_anchor	critical-path
+optional_anchor	milestones
+== level 3+
+optional_anchor	phase-deps
+optional_anchor	effort
+optional_anchor	dependency-graph
+optional_anchor	critical-path
+optional_anchor	milestones
+--- plan-equals-shipped ---
+rows total 131 core rows 70
+spec fill lines 24 covered 24
+plan fill lines 18 covered 18
+tasks fill lines 22 covered 22
+implementation-summary fill lines 6 covered 6
+PLAN_EQUALS_SHIPPED
+--- chk-fill ---
+
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  23:43:49
+   Duration  90ms (transform 17ms, setup 11ms, import 13ms, tests 11ms, environment 0ms)
+
+exit=0
+--- chk-drift ---
+EXAMPLE_DRIFT_OK
+exit=0
+--- chk-drift-vitest ---
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  23:43:49
+   Duration  1.04s (transform 12ms, setup 11ms, import 6ms, tests 961ms, environment 0ms)
+
+exit=0
+--- chk-card-sync ---
+PASS intent-INTAKE
+PASS intent-TEMPLATE_AUTHORING
+PASS guide-on-demand-only
+PASS leaf-manifest
+PASS leaf-aliases
+PASS checklist
+CARD SYNC OK
+exit=0
+--- golden-after ---
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  23:42:27
+   Duration  5.06s (transform 22ms, setup 11ms, import 19ms, tests 4.97s, environment 0ms)
+
+--- suite-end tail vs baseline ---
+ Test Files  276 passed | 3 skipped (279)
+      Tests  4162 passed | 21 skipped (4183)
+ Test Files  184 passed | 3 skipped (187)
+      Tests  2085 passed | 20 skipped (2105)
+baseline:
+ Test Files  276 passed | 3 skipped (279)
+      Tests  4162 passed | 21 skipped (4183)
+ Test Files  184 passed | 3 skipped (187)
+      Tests  2085 passed | 20 skipped (2105)
+exit=0
+--- 007 paths ---
+files 12
+refs 73 resolved 72 unresolved 1
+UNRESOLVED manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md -> specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+--- 007 catalog start vs end diff ---
+IDENTICAL
+--- tasks.md counts ---
+67
+68
+| `[x]` | Completed |

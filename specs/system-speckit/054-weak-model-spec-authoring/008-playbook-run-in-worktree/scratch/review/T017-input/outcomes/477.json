@@ -1,0 +1,36 @@
+{
+  "scenarioId": "477",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "The same kind of scaffold with its Status row changed to Complete printed error and false. The detail lines named spec.md lines that still held YOUR_VALUE_HERE tokens. The track was removed (cleanup=ok).",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "The same kind of scaffold with its Status row changed to Complete printed error and false. The detail lines named spec.md lines that still held YOUR_VALUE_HERE tokens. The track was removed (cleanup=ok).",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/477.txt",
+          "bytes": 433,
+          "sha256": "501b4c3efddf3fffe29270d3e976342d5e4640028874c977ede05b7dd69c6dec"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/477.txt",
+      "bytes": 433,
+      "sha256": "501b4c3efddf3fffe29270d3e976342d5e4640028874c977ede05b7dd69c6dec"
+    }
+  ]
+}

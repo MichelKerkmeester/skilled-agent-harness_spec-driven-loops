@@ -1,0 +1,57 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit
+
+ ❯ |cli| tests/scaffold-golden-snapshots.vitest.ts (12 tests | 1 failed) 5498ms
+     × renders required docs for Level 1 from manifest templates 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/scaffold-golden-snapshots.vitest.ts > manifest template golden snapshots > renders required docs for Level 1 from manifest templates
+Error: Snapshot `manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-spec.md 1` mismatched
+
+- Expected
++ Received
+
+@@ -105,11 +105,13 @@
+  <!-- /ANCHOR:risks -->
+
+  ---
+
+  <!-- ANCHOR:questions -->
+- ## 7. OPEN QUESTIONS
++ ## 7. OPEN QUESTIONS
++
++ MUTATION PROBE
+  <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does `--quiet` also suppress warnings on stderr? Decision: no, stderr is unchanged. WEAK: Edge cases are unclear. -->
+
+  - [YOUR_VALUE_HERE: Question 1 requiring clarification]
+  - [YOUR_VALUE_HERE: Question 2 requiring clarification]
+  <!-- /ANCHOR:questions -->
+
+ ❯ tests/scaffold-golden-snapshots.vitest.ts:94:28
+     92|           expectAnchorsWellOrdered(normalized, `${level}-${docName}`);
+     93|         }
+     94|         expect(normalized).toMatchSnapshot(`${level}-${docName}`);
+       |                            ^
+     95|       }
+     96|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+  Snapshots  1 failed
+             3 obsolete
+             ↳ runtime/cli/tests/scaffold-golden-snapshots.vitest.ts
+               · manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-implementation-summary.md 1
+               · manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-plan.md 1
+               · manifest template golden snapshots > renders required docs for Level 1 from manifest templates > 1-tasks.md 1
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  18:47:23
+   Duration  5.60s (transform 30ms, setup 16ms, import 23ms, tests 5.50s, environment 0ms)
+
+exit=1

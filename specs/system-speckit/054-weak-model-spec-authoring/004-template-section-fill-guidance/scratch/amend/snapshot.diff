@@ -1,0 +1,103 @@
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+index cc25dd06ad..d284cacb49 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
++++ b/.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+@@ -1039,7 +1039,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. Write \`N/A\` or delete the whole addendum when no fix surface applies. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -1297,7 +1297,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:edge-cases -->
+ ## L2: EDGE CASES
+-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
++<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write \`N/A\` with one reason, or delete the whole section. GOOD: Empty input: the script exits 2 with usage. Maximum: 10,000 files scores in under one second. WEAK: Handle edge cases. -->
+ <!-- /ANCHOR:edge-cases -->
+ 
+ ### Data Boundaries
+@@ -1318,7 +1318,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:complexity -->
+ ## L2: COMPLEXITY ASSESSMENT
+-<!-- FILL: Score each row with the number the change earns. The total must match the level. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
++<!-- FILL: Score each row with the number the change earns. The total must match the level. Write \`N/A\` with one reason, or delete the whole section. GOOD: Scope 4/25: one file and 12 lines. Total 18/100. WEAK: Complexity is medium. -->
+ 
+ | Dimension | Score | Notes |
+ |-----------|-------|-------|
+@@ -1729,7 +1729,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. Write \`N/A\` or delete the whole addendum when no fix surface applies. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -2356,7 +2356,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
+-<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -2405,7 +2405,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
+-<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -2417,7 +2417,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+@@ -2611,7 +2611,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+-<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
++<!-- FILL: Name each surface the change touches. Write \`not a consumer\` when it does not read the change. Write \`N/A\` or delete the whole addendum when no fix surface applies. GOOD: \`recommend-level.sh\`: owns the output. Action: update. WEAK: Various files. -->
+ 
+ Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+ 
+@@ -3377,7 +3377,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
+-<!-- FILL: Write one check per ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
++<!-- FILL: Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
+ 
+ - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+ - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+@@ -3426,7 +3426,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:docs-verify -->
+ ## L3+: Documentation Verification
+-<!-- FILL: Write one check per document pair that must agree. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
++<!-- FILL: Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] \`plan.md\` and \`tasks.md\` agree on the three phases. WEAK: Docs are verified. -->
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+ - [ ] CHK-141 [P1] API documentation complete (if applicable)
+@@ -3438,7 +3438,7 @@ contextType: "general"
+ 
+ <!-- ANCHOR:sign-off -->
+ ## L3+: Sign-Off
+-<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
++<!-- FILL: Name the real approver for each role. Delete a row when the role does not exist. Write \`N/A\` or delete the section when no sign-off applies. GOOD: Conductor, runs every task. Operator, merges the commit. WEAK: Signed off. -->
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|

@@ -58,9 +58,9 @@
       ".skilled/skills/sk-code/shared/references/phase-detection.md",
       ".skilled/skills/sk-code/shared/references/universal-debugging-checklist.md",
       ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md",
-      ".skilled/skills/sk-code/shared/references/performance-loading-checklist.md",
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
-      ".skilled/skills/sk-code/shared/references/universal/error-recovery.md"
+      ".skilled/skills/sk-code/shared/references/universal/error-recovery.md",
+      ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md"
     ],
     "entities": [
       {
@@ -166,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "performance-loading-checklist.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/shared/references/performance-loading-checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "code-style-guide.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
@@ -181,6 +175,12 @@
         "name": "error-recovery.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/shared/references/universal/error-recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-agent-research.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian, that exist only for the operator's own work: 1.5M and 504K of stack knowledge, 226 tracked files together",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-24T12:54:17.095Z",
+    "last_save_at": "2026-10-25T17:44:44.426Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf68a583df8e2d3595b2ddcbe69321ff3908ae84c5dc2dc65fc80f487645553d",
+    "source_fingerprint": "sha256:326b660fbc14375552c84b6b31e29667645d6b8e3b84f92d6cab4bffccf8511e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ff5b115c7e9ccc3047df0e34f68016a6803bfa012eeb5512aa3a2d60706a4eb",
+      "spec.md": "811a2c276dff2b336f83586ec9a8d477c547a2a866e98a86e9ffbc3b04ca9ef7",
       "plan.md": "19be0a6a268c6dceecbf8f8876985df21376207c6474c18c86d42765e923afe2",
-      "tasks.md": "6d61aaa9fe642b1d4170961cd7af58088ad8bc711f0c4daa8be217429978530c",
+      "tasks.md": "bd85503413c495cbc9cf230a8a5fb1f7609a9304b2349754e9b553ef0e72f0f4",
       "decision-record.md": "00bbfc41cbccac0bb7fe4521c464450d68fb50a5953249edf9979ff2003b13d4",
-      "implementation-summary.md": "c89582966f0f81e685db4db110d336bea0ea1c32354b659f4b6dfc4c840b8b77"
+      "implementation-summary.md": "1a4d04e9ac036e1e6ebb36953ef19a4a4067e17984081e6e4b291299ff90c439"
     },
     "last_active_at": null
   }

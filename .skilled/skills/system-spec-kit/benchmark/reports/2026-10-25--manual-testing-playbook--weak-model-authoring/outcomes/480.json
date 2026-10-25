@@ -1,0 +1,36 @@
+{
+  "scenarioId": "480",
+  "runtime": "conductor",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "The golden render test printed Tests 12 passed (12) and the fill guidance test printed Tests 16 passed (16). Both exited 0 and neither output held the word failed. The scratch folder was removed (cleanup=ok).",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "The golden render test printed Tests 12 passed (12) and the fill guidance test printed Tests 16 passed (16). Both exited 0 and neither output held the word failed. The scratch folder was removed (cleanup=ok).",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/480.txt",
+          "bytes": 117,
+          "sha256": "2de69da35ad6e00fbb8ddc8322ecdbc8f8d88012b7492b60004d6860afb886cd"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/054-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs/480.txt",
+      "bytes": 117,
+      "sha256": "2de69da35ad6e00fbb8ddc8322ecdbc8f8d88012b7492b60004d6860afb886cd"
+    }
+  ]
+}
