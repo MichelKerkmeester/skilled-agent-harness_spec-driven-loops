@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.11.0
+version: 1.4.12.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -90,7 +90,7 @@ opencode run \
 On OpenCode 2 (2.0.32), the same dispatch rides `max` on the model id as `#max`, replaces `--dir` with `cd`, and adds `--standalone`:
 
 ```bash
-cd "$REPO_ROOT" && opencode2 run \
+cd "$REPO_ROOT" && opencode run \
   --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent general \
@@ -100,7 +100,7 @@ cd "$REPO_ROOT" && opencode2 run \
 
 On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
-OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`).
+OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`).
 
 ### Why it matters
 
@@ -232,7 +232,7 @@ opencode run \
 On OpenCode 2 (2.0.32), the same translation as use case 1 applies:
 
 ```bash
-cd "$REPO_ROOT" && opencode2 run \
+cd "$REPO_ROOT" && opencode run \
   --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent general \
@@ -397,7 +397,7 @@ timeout 720 opencode run \
 On OpenCode 2 (2.0.32), the same dispatch adds `--standalone` and rides `max` on the model id as `#max`:
 
 ```bash
-timeout 720 opencode2 run \
+timeout 720 opencode run \
   --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --auto \

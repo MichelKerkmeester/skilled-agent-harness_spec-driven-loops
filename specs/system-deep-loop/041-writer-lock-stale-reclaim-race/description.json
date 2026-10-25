@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/041-writer-lock-stale-reclaim-race",
+  "description": "Fix the stale-lock reclaim race in the shared deep-loop writer lock",
+  "keywords": [
+    "stale-lock",
+    "reclaim",
+    "race",
+    "shared",
+    "deep-loop",
+    "writer",
+    "lock"
+  ],
+  "lastUpdated": "2026-10-25T07:12:28.417Z",
+  "specId": "041",
+  "folderSlug": "writer-lock-stale-reclaim-race",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

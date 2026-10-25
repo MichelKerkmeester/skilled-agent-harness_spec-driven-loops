@@ -664,6 +664,12 @@ def post_api_request(
         model = details.get("response_model") or details.get("model")
         if isinstance(model, str) and model:
             record["model"] = model
+        # A relaunch asks for the model this session asked for, which the provider may report
+        # back under a dated name, so the request's own model and provider are kept apart.
+        for key, field in (("requested_model", "model"), ("provider", "provider")):
+            value = details.get(field)
+            if isinstance(value, str) and value:
+                record[key] = value
         window = details.get("model_context_window")
         if window is None and record.get("model"):
             window = _model_context_window(record["model"], details)
@@ -1127,10 +1133,13 @@ def on_session_end(session_id: Any = "", cwd: str = "", **_: Any) -> None:
             and os.environ.get("SKILLED_LOOP_ID", "").strip()
             and session_key
         ):
-            _run_core(
-                HERMES_SESSION_END_ARM,
-                {"session_id": session_key, "cwd": cwd or os.getcwd()},
-            )
+            arm_payload = {"session_id": session_key, "cwd": cwd or os.getcwd()}
+            usage = HERMES_SESSION_USAGE.get(session_key) or {}
+            if usage.get("requested_model"):
+                arm_payload["model"] = usage["requested_model"]
+            if usage.get("provider"):
+                arm_payload["provider"] = usage["provider"]
+            _run_core(HERMES_SESSION_END_ARM, arm_payload)
     except Exception:
         pass
     try:

@@ -32,7 +32,7 @@ The rebuild commit that repairs the trigger index after every corpus push re-run
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-23 |
 | **Branch** | `main (work in any checkout level with origin/main; push with git push origin HEAD:main)` |
 | **Parent Spec** | ../spec.md |
@@ -86,7 +86,7 @@ One commit-message token removes the whole fan-out with no filter entries and no
 ## 3. SCOPE
 
 ### In Scope
-- R1: append `[skip ci]` to the body line of the rebuild commit (`trigger-index-rebuild.yml:148-150`), keeping `Trigger-Index-Rebuild: ci` as the final line so the loop guard at `:33` still matches.
+- R1: append `[skip ci]` to the body line of the rebuild commit (`trigger-index-rebuild.yml:150-152`), keeping `Trigger-Index-Rebuild: ci` as the final line so the loop guard at `:33` still matches.
 - R1 documentation: the rebuild row (`README.md:58`) and the push/PR row (`README.md:75`) in `.github/workflows/README.md`.
 - R2: a vitest case in `trigger-index-rebuild-workflow.vitest.ts` asserting the token and the trailer, plus a recorded negative proof.
 - R2 trigger: `.github/workflows/trigger-index-rebuild.yml` added to both `spec-kit-check.yml` path lists (`:9`, `:37`).
@@ -102,7 +102,7 @@ One commit-message token removes the whole fan-out with no filter entries and no
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.github/workflows/trigger-index-rebuild.yml` | Modify | Append `[skip ci]` to the commit body line at `:149`; trailer at `:150` stays last |
+| `.github/workflows/trigger-index-rebuild.yml` | Modify | Append `[skip ci]` to the commit body line at `:151`; trailer at `:152` stays last |
 | `.github/workflows/README.md` | Modify | Rebuild row `:58` and push/PR row `:75` state that the pushed rebuild starts no workflow run |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index-rebuild-workflow.vitest.ts` | Modify | Add `SKIP_TOKEN` beside `:83-84` and one case after `:887-892` asserting the token in the body and the trailer last |
 | `.github/workflows/spec-kit-check.yml` | Modify | Add `.github/workflows/trigger-index-rebuild.yml` to the push list after `:9` and the PR list after `:37` |
@@ -119,7 +119,7 @@ One commit-message token removes the whole fan-out with no filter entries and no
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | **R1.** The rebuild commit body line at `trigger-index-rebuild.yml:149` carries the `[skip ci]` token, and the last `-m` argument at `:150` is still `Trigger-Index-Rebuild: ci`, so `endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')` at `:33` still matches |
+| REQ-001 | **R1.** The rebuild commit body line at `trigger-index-rebuild.yml:151` carries the `[skip ci]` token, and the last `-m` argument at `:152` is still `Trigger-Index-Rebuild: ci`, so `endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')` at `:33` still matches |
 | REQ-002 | **R1.** `.github/workflows/README.md:58` and `:75` state that the rebuild commit carries `[skip ci]` and starts no downstream workflow run, and that the loop guard remains as the second line of defence |
 | REQ-003 | **R2.** `trigger-index-rebuild-workflow.vitest.ts` has a case that fails when the token is removed from the workflow and passes when it is restored, and that also asserts the trailer is still the message's last line |
 | REQ-004 | **R2.** `.github/workflows/spec-kit-check.yml` names `.github/workflows/trigger-index-rebuild.yml` in both the `push:` list (after `:9`) and the `pull_request:` list (after `:37`) |
@@ -153,7 +153,7 @@ Each row states what the R-id must do, the edges it must survive, what can go wr
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The push-to-`main` total falls from 3,812 to about 1,739 runner-min/day, a drop of about 2,073 (`final-review.md:193-209`), measured on the fresh 24 h snapshot rather than asserted.
+- **SC-001**: The push-to-`main` total falls from 3,812 to the measured 2,191 runner-min/day, a drop of 1,621 or 42.5%, on the fresh 24 h snapshot rather than asserted. The research predicted about 1,739 (a drop of about 2,073, `final-review.md:193-209`); the operator amended the band to the measured value on 2026-10-25 (ADR-006) because the prediction left out the rebuild workflow's own 90 min and 114 min of manual dispatches.
 - **SC-002**: Every rebuild SHA on `main` after the change shows 0 workflow runs, where each of the 35 rebuild SHAs in the measured window showed 14.
 - **SC-003**: The token is guarded: removing it makes the vitest suite fail, and a pull request that touches only the rebuild workflow starts spec-kit-check.
 - **SC-004**: `scratch/baseline-24h/summary.md` exists with the total and the per-workflow rows, so phases 003 to 009 can state deltas against it.
@@ -180,7 +180,7 @@ Each row states what the R-id must do, the edges it must survive, what can go wr
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Push-to-`main` runner-minutes per day fall by about 2,073, from 3,812 to about 1,739, measured on a 24 h window.
+- **NFR-P01**: Push-to-`main` runner-minutes per day fall from 3,812 to the measured 2,191 on a 24 h window, a drop of 1,621 (42.5%); the research prediction of about 1,739 was amended to this value on 2026-10-25 (ADR-006).
 - **NFR-P02**: The rebuild workflow's own cost does not change: the commit step gains no command, and the token is one string in an existing `-m` argument.
 
 ### Security

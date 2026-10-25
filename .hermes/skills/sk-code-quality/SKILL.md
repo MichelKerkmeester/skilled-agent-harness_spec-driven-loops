@@ -13,11 +13,11 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: code-quality, quality gate, phase 1.5, comment hygiene, authoring checklist, p0, p1, p2, opencode checklist, webflow checklist, surface standards -->
+<!-- Keywords: code-quality, quality gate, phase 1.5, comment hygiene, authoring checklist, p0, p1, p2, opencode checklist, surface standards -->
 
 # Code Quality (quality)
 
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 
 ---
 
@@ -30,8 +30,6 @@ Use this mode when the request involves:
 - Applying P0/P1/P2 author-side checks to changed code, scripts, skills, agents, commands, MCP servers, or spec docs.
 - Checking comment hygiene on modified files and removing ephemeral artifact references from comments while preserving durable WHY.
 - Loading an OpenCode authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `.opencode/specs/`, MCP server source, or language-specific OpenCode files.
-- Applying Webflow/frontend quality standards after implementation and before runtime verification.
-- Applying the Obsidian plugin quality checklists from `sk-code-obsidian` after implementation, when the surface resolves to OBSIDIAN.
 - Fixing quality-gate failures in place with `Edit` when the fix belongs to the already-authored file.
 
 Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface checklist`, `P0`, `P1`, `P2`, `authoring checklist`, `OpenCode checklist`, `skill authoring`, `agent authoring`, `command authoring`, `MCP server authoring`, `spec folder authoring`, `check before done`.
@@ -39,7 +37,7 @@ Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface ch
 ### When NOT to Use
 
 Skip this mode when:
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-skilled`) and its implementation workflow.
 - A failure needs symptom-to-root-cause investigation or a single-cause bug fix. Use the surface's debugging workflow (`workflow-debug.md`).
 - The task is to collect final non-mutating verification evidence. Use the surface's verification workflow (`workflow-verify.md`).
 - The user asks for findings-first review output, severity-ranked findings, or PR review. Use `sk-code-review`.
@@ -50,7 +48,7 @@ Skip this mode when:
 This is an independently invokable member of the `sk-code` family. It owns the quality gate, not implementation planning, debugging, verification evidence, or formal review reporting. It may edit files that the surface skill already changed to satisfy gate failures, but it does not create new files and does not dispatch subagents.
 
 Pairs well with:
-- The surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface skill (`sk-code-skilled`) immediately before this gate, because implementation writes the files this mode checks.
 - The surface's debugging workflow (`workflow-debug.md`) when a quality failure reveals a functional bug or failing command.
 - The surface's verification workflow (`workflow-verify.md`) after P0 quality issues are clear, because verification gates the final claim.
 - `sk-code-review` when the user wants findings-only output rather than author-side correction.
@@ -70,9 +68,7 @@ QUALITY TASK
     +- Phase lifecycle  -> ../shared/references/phase-detection.md
     +- Resource routing -> ../ROUTER.md
     |
-    +- WEBFLOW target     -> assets/code-quality-checklist/overview-header-and-comments.md + shared web standards
     +- SKILLED target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
-    +- OBSIDIAN target    -> ../sk-code-obsidian/assets/<target-checklist>.md
     +- Comment hygiene    -> scripts/check-comment-hygiene.sh per modified file
     +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
 ```
@@ -93,9 +89,8 @@ Phase 1 Implementation writes or changes files
 
 ### Resource Domains
 
-- `assets/code-quality-checklist/overview-header-and-comments.md` is the Webflow/frontend quality checklist and the general post-implementation quality gate.
+- `assets/code-quality-checklist/overview-header-and-comments.md` is the author-side quality checklist and the general post-implementation quality gate.
 - `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
-- `../sk-code-obsidian/assets/` holds the Obsidian plugin checklists this gate loads when `../shared/references/stack-detection.md` section 2 resolves the surface to OBSIDIAN: comment banners, folder docs, `.db-*` class renames and screenshot fixtures. Its verification checklist belongs to the verification hand-off, not to this gate.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
 - `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal. Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts. It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
@@ -115,7 +110,6 @@ Phase 1 Implementation writes or changes files
 | CONDITIONAL | `.opencode/specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
 | CONDITIONAL | MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-skilled/assets/checklists/javascript-checklist.md`, `../sk-code-skilled/assets/checklists/typescript-checklist.md`, `../sk-code-skilled/assets/checklists/python-checklist.md`, `../sk-code-skilled/assets/checklists/shell-checklist.md`, `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-skilled/assets/checklists/config-checklist.md` as applicable |
-| CONDITIONAL | Obsidian plugin target (surface OBSIDIAN) | `../sk-code-obsidian/assets/comment-banner-checklist.md`, `../sk-code-obsidian/assets/folder-docs-checklist.md`, `../sk-code-obsidian/assets/db-class-rename-checklist.md`, `../sk-code-obsidian/assets/fixture-authoring-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
 | ON_DEMAND | Debt pass, before a release or a reviewer asks what limits the code knowingly accepts | `scripts/ceiling-report.sh` |
 | ON_DEMAND | Need the legacy write-time hook's behavior, which no runtime registers | `scripts/hooks/claude-posttooluse.sh` |
@@ -130,11 +124,6 @@ Phase 1 Implementation writes or changes files
 | `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
 | MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
 | OpenCode language/config files | language/config checklist in `../sk-code-skilled/assets/checklists/` | Check language-specific quality and style expectations. |
-| Webflow/frontend files | `assets/code-quality-checklist/overview-header-and-comments.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |
-| Obsidian plugin source under `src/` or `tools/` | `../sk-code-obsidian/assets/comment-banner-checklist.md` | Check that a `MODULE:` banner or numbered section rule follows the target grammar where a file adopts it, and that no comment carries a spec, requirement, task or checklist id. |
-| Obsidian plugin folder under `src/` or `tools/` that gains or loses source files | `../sk-code-obsidian/assets/folder-docs-checklist.md` | Check the paired `README.md` and `CODE.md` threshold in both directions. |
-| Obsidian plugin `.db-*` class rename in `styles.css` or `src/` | `../sk-code-obsidian/assets/db-class-rename-checklist.md` | Check the rename map, the static and dynamic class sites, fixture parity and the render proof. |
-| Obsidian plugin screenshot fixture under `tools/screenshots/scenarios/` | `../sk-code-obsidian/assets/fixture-authoring-checklist.md` | Check that the fixture names only real `.db-*` classes and passes the fixture guard test. |
 
 ### Comment-Hygiene Enforcement Gates
 
@@ -192,13 +181,13 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 
 ### Quality Gate Workflow
 
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned, or from `../sk-code-obsidian/assets/` when the surface is OBSIDIAN.
+3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned.
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-skilled`).
 8. If a gate failure is caused by an unclear runtime failure, hand to the surface's debugging workflow (`workflow-debug.md`) with the observed command, output, and failing target.
 9. When P0 items are clear, hand to the surface's verification workflow (`workflow-verify.md`) for non-mutating evidence before any done-claim.
 
@@ -227,7 +216,7 @@ CODE_QUALITY_RESULT v1
 schema_version: code-quality/v1
 status: advisory
 modified_files: <repo-relative paths, or none>
-resolved_surface: <webflow | opencode | obsidian | unknown>
+resolved_surface: <skilled | unknown>
 checklists_loaded: <checklist paths loaded, or none>
 checker_outputs: <comment-hygiene and dist-staleness results, or N/A>
 p0_p1_p2_decisions: <per-severity dispositions>
@@ -280,7 +269,6 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - Surface identity came from the shared router, not packet-local detection logic.
 - `assets/code-quality-checklist/overview-header-and-comments.md` was loaded before any quality-pass claim.
 - The correct `../sk-code-skilled/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
-- The matching `../sk-code-obsidian/assets/*` checklist was loaded for Obsidian plugin targets.
 - `scripts/check-comment-hygiene.sh` ran for each modified comment-capable file and reported zero violations or a documented escalation.
 - P0 issues are fixed in place or escalated with evidence; P1/P2 handling is explicit.
 - No new files were authored by this mode.
@@ -291,7 +279,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ## 6. INTEGRATION POINTS
 
 - `sk-code` routes quality prompts here through `mode-registry.json` and keeps the hub routing-only.
-- `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
 - `sk-code-review` owns findings-first review output and PR-style severity reporting.
 - `system-spec-kit` owns spec-folder documentation, validation, and memory workflows when the broader task requires them.
 
@@ -325,10 +313,6 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`assets/checklists/rust-checklist/p1-required.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
 - [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
 - [`assets/checklists/config-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
-- [`comment-banner-checklist.md`](../../../.skilled/skills/sk-code/sk-code-obsidian/assets/comment-banner-checklist.md) - Obsidian plugin MODULE banner and section-comment checklist.
-- [`folder-docs-checklist.md`](../../../.skilled/skills/sk-code/sk-code-obsidian/assets/folder-docs-checklist.md) - Obsidian plugin folder-docs pairing checklist.
-- [`db-class-rename-checklist.md`](../../../.skilled/skills/sk-code/sk-code-obsidian/assets/db-class-rename-checklist.md) - Obsidian plugin `.db-*` class-rename checklist.
-- [`fixture-authoring-checklist.md`](../../../.skilled/skills/sk-code/sk-code-obsidian/assets/fixture-authoring-checklist.md) - Obsidian plugin screenshot fixture authoring checklist.
 
 ### Scripts
 

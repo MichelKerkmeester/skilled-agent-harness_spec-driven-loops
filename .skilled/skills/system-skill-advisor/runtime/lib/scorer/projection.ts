@@ -14,6 +14,7 @@ import Database from 'better-sqlite3';
 import { getManifest } from '../embedders/registry.js';
 import type { BackendKind } from '../embedders/types.js';
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
+import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 import { sanitizeDerivedMetadata, sanitizeMetadataStringArray } from '../skill-graph/metadata-sanitizer.js';
 import { docTierWeight, isDocTriggerHarvestEnabled } from '../skill-graph/doc-frontmatter.js';
 import { providerModelId } from '../skill-graph/skill-graph-db.js';
@@ -61,6 +62,8 @@ interface SkillMarkdownMetadata {
 export interface CommandBridgeProjection extends SkillProjection {
   readonly inventoryId?: string;
   readonly routingEnabled?: boolean;
+  /** Set when the command's route only reads, so a list or show prompt may reach it. */
+  readonly readOnly?: boolean;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -249,6 +252,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['set up skilled', 'help me set up skilled', 'is my skilled install healthy', 'skilled setup check', 'getting started with skilled'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:setup'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -301,6 +305,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['runtime mirror drift', 'agent command mirror parity', 'command catalog drift', 'cursor devin codex sync check', 'discovery mirror out of sync'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:runtime-mirrors'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -318,6 +323,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['skill budget audit', 'description budget check', 'skill char count drift', 'frontmatter description trim'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:skill-advisor skill-budget'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -335,6 +341,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['sk-git setup check', 'is my sk-git setup working', 'which git rules are live', 'check my git hooks setup'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:git setup'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -369,6 +376,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['sk-code setup check', 'verify my sk-code surface', 'sk-code battery fails', 'does my sk-code surface route'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:sk-code'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -420,6 +428,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['parent skill structure audit', 'nested mode packet check', 'mode-registry drift guard', 'single graph-metadata identity', 'skill root metadata contract', 'missing skill json files'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:skill-advisor parent-skill'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -437,6 +446,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['skill graph freshness', 'skill-graph zombie ghost nodes', 'compiled vs sqlite vs disk graph drift', 'reindex staleness check'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:skill-advisor skill-graph-freshness'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -454,6 +464,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['router reach check', 'does a declared phrase reach its hub', 'router vocabulary reach', 'phrase reaches nobody', 'routing residue allowlist'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:skill-advisor router-reach'],
+    readOnly: true,
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -539,6 +550,59 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     keywords: ['install the MCP servers', 'Code Mode fresh install', 'reinstall Code Mode MCP'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:mcp install'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
+  {
+    inventoryId: 'command-doctor-ci-report',
+    routingEnabled: true,
+    id: 'command-doctor-ci-report',
+    kind: 'command',
+    family: 'system',
+    category: 'command',
+    name: '/doctor:ci report',
+    description: '',
+    keywords: ['ci workflow status report', 'which ci workflow switches are off', 'github actions drift report', 'ci workflow inventory', 'ci workflow switch state', 'ci switch report'],
+    domains: ['doctor', 'command'],
+    intentSignals: ['/doctor:ci report'],
+    leadPhrases: ['which ci workflow switches are off', 'ci workflow switch state', 'ci switch report'],
+    readOnly: true,
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
+  {
+    inventoryId: 'command-doctor-ci-scaffold',
+    routingEnabled: true,
+    id: 'command-doctor-ci-scaffold',
+    kind: 'command',
+    family: 'system',
+    category: 'command',
+    name: '/doctor:ci scaffold',
+    description: '',
+    keywords: ['scaffold a github actions workflow', 'create a workflow from the ci template', 'new workflow with timeout and switch', 'scaffold a new ci workflow'],
+    domains: ['doctor', 'command'],
+    intentSignals: ['/doctor:ci scaffold'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
+  {
+    inventoryId: 'command-doctor-ci-toggle',
+    routingEnabled: true,
+    id: 'command-doctor-ci-toggle',
+    kind: 'command',
+    family: 'system',
+    category: 'command',
+    name: '/doctor:ci toggle',
+    description: '',
+    keywords: ['turn off a ci workflow', 'set a ci switch variable', 'disable a workflow group', 'turn the ci switch'],
+    domains: ['doctor', 'command'],
+    intentSignals: ['/doctor:ci toggle'],
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -1462,8 +1526,14 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       source: 'filesystem',
     };
   }
+  const isTrustedLink = createPrivateSkillLinkCheck(skillRoot);
   for (const entry of readdirSync(skillRoot, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
+    // A private skill is linked in on purpose; read it only when its target
+    // stays inside a directory the operator trusts.
+    const linkedPrivateSkill = entry.name.startsWith('local-')
+      && entry.isSymbolicLink()
+      && isTrustedLink(join(skillRoot, entry.name));
+    if (!entry.isDirectory() && !linkedPrivateSkill) continue;
     const skillDir = join(skillRoot, entry.name);
     const metadataPath = join(skillDir, 'graph-metadata.json');
     if (!existsSync(metadataPath)) continue;

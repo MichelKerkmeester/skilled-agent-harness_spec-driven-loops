@@ -110,7 +110,8 @@ Default resolution table:
 
   Chat slice for the operator (set or resend it; this command never binds it).
   Send it only when the report shows packet_budget=ok, and cut the file first
-  when it is over:
+  when it is over. On Claude Code, put the slice in one fenced code block that
+  holds the slice and nothing else, in place of the dividers:
   ---
   {chat_slice}
   ---

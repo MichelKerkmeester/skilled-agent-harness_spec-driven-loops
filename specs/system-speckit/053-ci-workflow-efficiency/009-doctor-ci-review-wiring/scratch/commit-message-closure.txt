@@ -1,0 +1,10 @@
+docs(spec): close the doctor ci and review wiring criteria
+
+The acceptance rows now carry the results observed on 2026-10-25, with
+17 met and 5 superseded. The operator ruled to drop the CI surface value
+and keep the sk-code hub as it stands, so a new decision record
+supersedes it. The spec, tasks, goal and summary mark that work as
+superseded without deleting its text, and the phase result records the
+final gates.
+
+Spec: system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring

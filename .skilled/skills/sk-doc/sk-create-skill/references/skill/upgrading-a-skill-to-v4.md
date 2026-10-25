@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -51,7 +51,7 @@ The live layout to copy from is `.skilled/skills/sk-code/` (parent hub) and `.sk
 
 Count distinct jobs, not files.
 
-A **job** is a process the assistant follows (a workflow mode) or a read-only evidence base it loads beside that process (a surface packet). Two quality-gate checklists in the same `SKILL.md` are still one job. Implement versus review, or Webflow evidence versus OpenCode evidence, are distinct jobs.
+A **job** is a process the assistant follows (a workflow mode) or a read-only evidence base it loads beside that process (a surface packet). Two quality-gate checklists in the same `SKILL.md` are still one job. Implement versus review, or two different surface evidence sets, are distinct jobs.
 
 | What you have | What you do |
 | --- | --- |
@@ -69,7 +69,7 @@ Do not invent a third class. A root is a hub when both `mode-registry.json` and 
 
 ### `sk-code`: convert to parent, or keep your own single skill
 
-The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality` and `sk-code-review` act. Surface packets `sk-code-webflow` and `sk-code-skilled` are read-only evidence. `graph-metadata.json` lives only at `.skilled/skills/sk-code/`. Nested packets have none.
+The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality` and `sk-code-review` act. The surface packet `sk-code-skilled` is read-only evidence. `graph-metadata.json` lives only at `.skilled/skills/sk-code/`. Nested packets have none.
 
 You have two legal outcomes:
 
@@ -119,7 +119,7 @@ Copy the customized folder out of `.skilled/skills/<name>` to a backup path you 
 Example for a customized `sk-code` with quality, review, and two evidence bases:
 
 ```text
-@markdown /create:skill-parent sk-code create --modes quality,review --surfaces webflow,opencode
+@markdown /create:skill-parent sk-code create --modes quality,review --surfaces acme,opencode
 ```
 
 That command creates:
@@ -127,11 +127,11 @@ That command creates:
 - A thin hub `SKILL.md` (routing only)
 - `mode-registry.json`, `hub-router.json`, `description.json`, and exactly one hub `graph-metadata.json`
 - One workflow packet per distinct mode, folder `[hub-prefix]-<mode>` (so `--modes quality,review` under `sk-code` yields `sk-code-quality` and `sk-code-review`)
-- Optional surface packets from `--surfaces` as **bare-noun** folders (`webflow`, `opencode`), each `packetKind: surface`
+- Optional surface packets from `--surfaces` as **bare-noun** folders (`acme`, `opencode`), each `packetKind: surface`
 - Hub `changelog/`, `manual-testing-playbook/`, and a non-discoverable `shared/` with `shared/README.md`
 - No `graph-metadata.json` inside any packet or inside `shared/`
 
-**Surface folder names.** The command scaffolds `--surfaces` as bare-noun folders. The published nested-packet convention and the live `sk-code` hub use hub-prefixed surface folders (`sk-code-webflow`, `sk-code-skilled`). After scaffold, rename those folders so `folder == packetSkillName` and update `modes[].packet` plus `modes[].packetSkillName`. No `--surface-prefix` flag exists.
+**Surface folder names.** The command scaffolds `--surfaces` as bare-noun folders. The published nested-packet convention and the live `sk-code` hub use hub-prefixed surface folders (`sk-code-acme`, `sk-code-skilled`). After scaffold, rename those folders so `folder == packetSkillName` and update `modes[].packet` plus `modes[].packetSkillName`. No `--surface-prefix` flag exists.
 
 **One-Identity Invariant.** The hub owns exactly one `graph-metadata.json`. Never add one inside a mode packet or inside `shared/`. A nested copy becomes a second advisor identity.
 

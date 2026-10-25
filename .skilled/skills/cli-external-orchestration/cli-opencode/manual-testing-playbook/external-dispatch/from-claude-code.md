@@ -1,12 +1,12 @@
 ---
 title: "CO-006 -- External dispatch from Claude Code into OpenCode"
 description: "This scenario validates use case 1 (external runtime to OpenCode) for `CO-006`. It focuses on confirming Claude Code can dispatch into a fresh OpenCode session via cli-opencode and load the project's full plugin / skill / MCP runtime."
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # CO-006 -- External dispatch from Claude Code into OpenCode
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-006`.
 

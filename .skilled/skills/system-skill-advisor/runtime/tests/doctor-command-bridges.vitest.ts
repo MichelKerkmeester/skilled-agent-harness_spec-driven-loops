@@ -39,6 +39,7 @@ interface DoctorBridgeExpectation {
   readonly runnable: string;
   readonly phrases: readonly string[];
   readonly leadPhrases?: readonly string[];
+  readonly readOnly: boolean;
 }
 
 interface DoctorManifest {
@@ -47,17 +48,20 @@ interface DoctorManifest {
     readonly target: string;
     readonly trigger_phrases: readonly string[];
     readonly lead_phrases?: readonly string[];
+    readonly mutating?: string;
   }[];
   readonly standalone?: readonly {
     readonly command?: string;
     readonly runnable?: string;
     readonly trigger_phrases?: readonly string[];
     readonly lead_phrases?: readonly string[];
+    readonly mutating?: string;
   }[];
   readonly mcp_subroutes?: readonly {
     readonly sub_action: string;
     readonly trigger_phrases: readonly string[];
     readonly lead_phrases?: readonly string[];
+    readonly mutating?: string;
   }[];
 }
 
@@ -95,6 +99,7 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
       phrases: route.trigger_phrases,
       leadPhrases: route.lead_phrases?.length ? route.lead_phrases : undefined,
+      readOnly: route.mutating === 'read-only',
     });
   }
 
@@ -106,6 +111,7 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
       runnable,
       phrases: Array.isArray(item.trigger_phrases) ? item.trigger_phrases : [],
       leadPhrases: item.lead_phrases?.length ? item.lead_phrases : undefined,
+      readOnly: item.mutating === 'read-only',
     });
   }
 
@@ -115,6 +121,7 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
       runnable: `${DOCTOR_MCP_COMMAND} ${item.sub_action}`,
       phrases: item.trigger_phrases,
       leadPhrases: item.lead_phrases?.length ? item.lead_phrases : undefined,
+      readOnly: item.mutating === 'read-only',
     });
   }
 
@@ -212,6 +219,29 @@ describe('doctor command bridges', () => {
     expect(failures).toEqual([]);
     const envBridge = GENERATED_COMMAND_BRIDGES.find((entry) => entry.id === 'command-doctor-env');
     expect(envBridge?.leadPhrases).toEqual(['check my environment variables']);
+  });
+
+  it('every active TypeScript doctor bridge is read-only exactly when its manifest route is', () => {
+    const manifest = manifestDoctorBridges();
+    const failures: string[] = [];
+
+    for (const entry of GENERATED_COMMAND_BRIDGES) {
+      if (entry.routingEnabled === false || !entry.id.startsWith(DOCTOR_PREFIX)) continue;
+      const expected = manifest.get(entry.id);
+      if (!expected) {
+        failures.push(`${entry.id}: no bridge in the doctor route manifest`);
+        continue;
+      }
+      if ((entry.readOnly === true) !== expected.readOnly) {
+        failures.push(`${entry.id}: readOnly ${String(entry.readOnly)} !== ${String(expected.readOnly)}`);
+      }
+    }
+
+    expect(failures).toEqual([]);
+    const byId = (id: string) => GENERATED_COMMAND_BRIDGES.find((entry) => entry.id === id);
+    expect(byId('command-doctor-ci-report')?.readOnly).toBe(true);
+    expect(byId('command-doctor-ci-scaffold')?.readOnly).toBeUndefined();
+    expect(byId('command-doctor-ci-toggle')?.readOnly).toBeUndefined();
   });
 
   it('every active Python doctor bridge matches only on its runnable slash string', () => {

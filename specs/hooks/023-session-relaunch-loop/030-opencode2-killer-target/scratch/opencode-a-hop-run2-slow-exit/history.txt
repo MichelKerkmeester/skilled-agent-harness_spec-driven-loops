@@ -1,0 +1,2 @@
+2026-10-25T07:20:36.933Z  timed-out    opencode  sb-oc-a  Keep the pong keeper running.  [note-a.md]
+open notes: 1 handoff note not claimed yet, oldest note-a.md

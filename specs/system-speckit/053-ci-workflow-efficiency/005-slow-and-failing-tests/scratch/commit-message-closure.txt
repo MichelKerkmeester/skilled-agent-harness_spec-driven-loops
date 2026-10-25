@@ -1,0 +1,9 @@
+docs(spec): close the slow and failing test criteria
+
+Ten acceptance rows are met and the CLI step row is waived by the operator.
+Five consecutive green runs read a median of 451 s against the 400 s bar, a
+43 percent cut from the 791 s reference, so the missed bar stays on record.
+The writer-lock failure in the deep-loop runtime is filed to its own packet,
+and the decision record gains the waiver and the accepted records.
+
+Spec: system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests

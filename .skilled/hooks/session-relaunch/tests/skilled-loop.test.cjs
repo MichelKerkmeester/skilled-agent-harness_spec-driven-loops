@@ -11,6 +11,12 @@ const os = require('node:os');
 const path = require('node:path');
 const { RUNTIMES, manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
 
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and a manual template that carries options would change every printed claim command.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
+
 const WRAPPER_PATH = path.resolve(__dirname, '../../../bin/skilled-loop');
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SEED = '[session-relaunch] claim and continue handoff';
@@ -154,9 +160,17 @@ const record = {
     SKILLED_LOOP_NAME: process.env.SKILLED_LOOP_NAME || "",
     SKILLED_LOOP_MODEL: process.env.SKILLED_LOOP_MODEL || "",
     SKILLED_LOOP_PROVIDER: process.env.SKILLED_LOOP_PROVIDER || "",
+    SKILLED_LOOP_EFFORT: process.env.SKILLED_LOOP_EFFORT || "",
+    SKILLED_LOOP_LAUNCHED_AT: process.env.SKILLED_LOOP_LAUNCHED_AT || "",
     SKILLED_LOOP_MANUAL_TEMPLATE: process.env.SKILLED_LOOP_MANUAL_TEMPLATE || "",
     hasModel: Object.hasOwn(process.env, "SKILLED_LOOP_MODEL"),
-    hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER")
+    hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER"),
+    SESSION_RELAUNCH_GOAL_PACKET: process.env.SESSION_RELAUNCH_GOAL_PACKET || "",
+    hasGoalPacket: Object.hasOwn(process.env, "SESSION_RELAUNCH_GOAL_PACKET"),
+    SKILLED_LOOP_CLAIM_SEED: process.env.SKILLED_LOOP_CLAIM_SEED || "",
+    hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED"),
+    HERMES_SPEC_FOLDER: process.env.HERMES_SPEC_FOLDER || "",
+    hasHermesSpecFolder: Object.hasOwn(process.env, "HERMES_SPEC_FOLDER")
   }
 };
 fs.appendFileSync(recordPath, JSON.stringify(record) + "\\n");
@@ -169,20 +183,30 @@ if (markerPath && fs.existsSync(markerPath)) {
     fs.mkdirSync(stateDir, { recursive: true });
     const loopId = process.env.SKILLED_LOOP_ID;
     const status = process.env.PENDING_ON_INVOCATION === String(invocation) ? "pending" : "armed";
+    const disarmed = process.env.DISARMED_ON_INVOCATION === String(invocation);
     const armedAt = process.env.STALE_ON_INVOCATION === String(invocation)
       ? new Date(Date.now() - 11 * 60 * 1000).toISOString()
       : new Date().toISOString();
     const relaunch = {
       version: 1,
-      status,
+      status: disarmed ? "disarmed" : status,
+      ...(disarmed ? { disarmReason: process.env.DISARM_REASON || "cancelled" } : {}),
       loopId,
-      handoff: process.env.HANDOFF_PATH,
+      handoff: disarmed && process.env.DISARMED_HANDOFF_PATH
+        ? process.env.DISARMED_HANDOFF_PATH
+        : process.env.HANDOFF_PATH,
       sessionId: "session-wrapper-0001",
       runtime: process.env.SESSION_RELAUNCH_TEST_RUNTIME || "claude",
       name: process.env.SKILLED_LOOP_NAME || null,
       cwd: process.env.RECORDED_CWD,
       hops: Number(process.env.SKILLED_LOOP_HOPS || 0),
-      armedAt
+      armedAt,
+      ...(process.env.SIGNALLED_ON_INVOCATION === String(invocation)
+        ? { signalledAt: new Date().toISOString() }
+        : {}),
+      ...(process.env.RECORD_MODEL ? { model: process.env.RECORD_MODEL } : {}),
+      ...(process.env.RECORD_EFFORT ? { effort: process.env.RECORD_EFFORT } : {}),
+      ...(process.env.RECORD_PROVIDER ? { provider: process.env.RECORD_PROVIDER } : {})
     };
     fs.writeFileSync(path.join(stateDir, "relaunch-" + loopId + ".json"), JSON.stringify(relaunch));
   }
@@ -192,6 +216,10 @@ if (noteDoneInvocation === String(invocation)) {
   const notePath = process.env.HANDOFF_PATH;
   const note = fs.readFileSync(notePath, "utf8");
   fs.writeFileSync(notePath, note.replace(/^status: open$/m, "status: done"));
+}
+const noteRewriteInvocation = process.env.NOTE_REWRITE_ON_INVOCATION;
+if (noteRewriteInvocation === String(invocation)) {
+  fs.writeFileSync(process.env.HANDOFF_PATH, fs.readFileSync(process.env.NOTE_REWRITE_SOURCE, "utf8"));
 }
 const exitCodes = (process.env.STUB_EXIT_CODES || "0").split(",").map(Number);
 process.exitCode = exitCodes[Math.min(invocation - 1, exitCodes.length - 1)];
@@ -225,21 +253,39 @@ function createSandbox(t) {
     'SKILLED_LOOP_NAME',
     'SKILLED_LOOP_MODEL',
     'SKILLED_LOOP_PROVIDER',
+    'SKILLED_LOOP_EFFORT',
     'SESSION_RELAUNCH_MAX_HOPS',
     'SESSION_RELAUNCH_MAX_AGE_MIN',
+    'SESSION_RELAUNCH_GOAL',
+    'SESSION_RELAUNCH_GOAL_PACKET',
+    'SKILLED_LOOP_CLAIM_SEED',
+    'HERMES_SPEC_FOLDER',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, binDir, recordedCwd, env };
 }
 
+function handoffsDirectory(sandbox) {
+  return path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+  );
+}
+
 function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrides } = {}) {
   const recordPath = path.join(sandbox.root, 'runtime-record.jsonl');
   const markerPath = path.join(sandbox.root, 'arm.marker');
-  const handoffPath = path.join(sandbox.root, 'handoff.md');
+  // The hand-over call takes only a note inside the repository's handoffs directory.
+  const handoffPath = path.join(handoffsDirectory(sandbox), 'handoff.md');
+  fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
   fs.writeFileSync(markerPath, markers);
   fs.writeFileSync(handoffPath, OPEN_NOTE);
   const shellProgram = `#!/usr/bin/env bash
 set -euo pipefail
+# A capability probe is answered from STUB_HELP and never recorded as a session.
+if [[ "\${1:-}" == "--help" ]]; then
+  printf '%s' "\${STUB_HELP:-}"
+  exit 0
+fi
 export SESSION_RELAUNCH_TEST_RUNTIME="$SKILLED_LOOP_RUNTIME"
 export SESSION_RELAUNCH_TEST_COMMAND="\${0##*/}"
 node -e '${RUNTIME_SOURCE}' -- "$@"
@@ -276,6 +322,15 @@ function runWrapperScript(sandbox, wrapperPath, args) {
 
 function runWrapper(sandbox, args) {
   return runWrapperScript(sandbox, WRAPPER_PATH, args);
+}
+
+function handOverLines(sandbox) {
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+  );
+  if (!fs.existsSync(historyPath)) return [];
+  return fs.readFileSync(historyPath, 'utf8').split('\n')
+    .filter((line) => line.split('\t')[1] === 'handed-over');
 }
 
 function installSkilledLoopCommand(sandbox) {
@@ -460,6 +515,21 @@ function installMalformedConsumeStub(sandbox) {
   sandbox.env.REAL_NODE = process.execPath;
 }
 
+function installFailingHandOverStub(sandbox) {
+  const nodePath = path.join(sandbox.binDir, 'node');
+  const source = [
+    '#!/usr/bin/env bash',
+    'set -euo pipefail',
+    'if [[ "$2" == "hand-over" ]]; then',
+    '  exit 9',
+    'fi',
+    'exec "$REAL_NODE" "$@"',
+    '',
+  ].join('\n');
+  fs.writeFileSync(nodePath, source, { mode: 0o755 });
+  sandbox.env.REAL_NODE = process.execPath;
+}
+
 function readRecords(recordPath) {
   if (!fs.existsSync(recordPath)) return [];
   return fs.readFileSync(recordPath, 'utf8')
@@ -476,7 +546,7 @@ function readLog(sandbox) {
 
 test('second invocation uses only the seed and name, recorded cwd, and the same loop id', (t) => {
   const sandbox = createSandbox(t);
-  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
   const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
   assert.equal(result.status, 0, result.stderr);
   const records = readRecords(recordPath);
@@ -484,7 +554,7 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   assert.deepEqual(records[0].args, ['-n', 'X', 'initial prompt']);
   assert.equal(records[0].env.SKILLED_LOOP_NAME, 'X');
   assert.deepEqual(records[1].args, [
-    SEED + ` ${path.join(sandbox.root, 'handoff.md')}`,
+    SEED + ` ${handoffPath}`,
     '--name',
     'X',
   ]);
@@ -495,6 +565,8 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   assert.equal(records.some((record) => (
     record.args.some((arg) => ['--resume', '-r', '--continue', '-c'].includes(arg))
   )), false);
+  assert.equal(handOverLines(sandbox).length, 1);
+  assert.equal(handOverLines(sandbox)[0].split('\t')[3], 'hop 1');
 });
 
 test('devin runtime dispatch does not fall through to claude', (t) => {
@@ -625,6 +697,8 @@ test('wrapper stops the hop and prints the manual command when consumed JSON can
   assert.equal(readRecords(recordPath).length, 1);
   assert.match(result.stderr, /warning: could not read the consumed relaunch record; not relaunching/);
   assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+  // The wrapper declined this hop, so no hand-over line may exist for it.
+  assert.deepEqual(handOverLines(sandbox), []);
 });
 
 test('name scanning stops at -- and relaunch omits the name option', (t) => {
@@ -925,6 +999,84 @@ test('opencode normalizes --model=m before --prompt on relaunch', (t) => {
   ]);
 });
 
+// OpenCode 2 lists --standalone in its root help. Without it a session lands on the shared
+// background service, which carries no loop id, so the relaunch never arms.
+const OPENCODE_2_HELP = [
+  'FLAGS',
+  '  --standalone            Run with a private server instead of the background service',
+  '  --server string         Connect to a server URL instead of the background service',
+  '  --prompt string         Prompt to use',
+].join('\n');
+
+test('opencode 2 starts standalone on the first launch and on every relaunch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    STUB_HELP: OPENCODE_2_HELP,
+  });
+  const result = runWrapper(sandbox, ['opencode', 'initial prompt']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  const relaunch = ['--standalone', '--prompt', `${SEED} ${handoffPath}`];
+  assert.equal(records.length, 3);
+  assert.deepEqual(records[0].args, ['--standalone', 'initial prompt']);
+  assert.deepEqual(records[1].args, relaunch);
+  assert.deepEqual(records[2].args, relaunch);
+});
+
+test('opencode 2 does not duplicate an operator-supplied --standalone', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+  });
+  const result = runWrapper(sandbox, ['opencode', '--standalone', '--auto']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[0].args, ['--standalone', '--auto']);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
+test('opencode 2 relaunch drops -m because its root command has no model flag', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+  });
+  const result = runWrapper(sandbox, ['opencode', '--model', 'openai/gpt-6-luna']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
+test('opencode 2 on --server leaves the launch alone and warns the loop cannot arm', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { STUB_HELP: OPENCODE_2_HELP });
+  const result = runWrapper(sandbox, ['opencode', '--server', 'http://localhost:4096']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[0].args, ['--server', 'http://localhost:4096']);
+  assert.match(result.stderr, /warning: .*--server.*cannot arm/);
+});
+
+test('opencode without --standalone in its help keeps the launch and the -m replay', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: '  -m, --model   model to use',
+  });
+  const result = runWrapper(sandbox, ['opencode', '-m', 'p/m']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[0].args, ['-m', 'p/m']);
+  assert.deepEqual(records[1].args, ['-m', 'p/m', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
 test('wrapper declines a stale armed record and logs the decline', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
@@ -1068,6 +1220,203 @@ test('codex does not duplicate an operator-supplied --no-daemon option', (t) => 
   assert.equal(records[1].args.filter((argument) => argument === '--no-daemon').length, 1);
 });
 
+// Each runtime names its effort flag differently and accepts a different level list, so the
+// wrapper replays the operator's own flag in that runtime's syntax and drops a level the
+// runtime would reject, which would otherwise end the relaunch at a usage error.
+const EFFORT_CARRY_CASES = [
+  {
+    name: 'claude --effort',
+    runtime: 'claude',
+    first: ['--model', 'm', '--effort', 'high', 'p'],
+    relaunch: (seed) => ['--model', 'm', '--effort', 'high', seed],
+  },
+  {
+    name: 'claude --effort=',
+    runtime: 'claude',
+    first: ['--effort=max', 'p'],
+    relaunch: (seed) => ['--effort', 'max', seed],
+  },
+  {
+    name: 'codex quoted -c model_reasoning_effort',
+    runtime: 'codex',
+    first: ['-m', 'm', '-c', 'model_reasoning_effort="xhigh"', 'p'],
+    relaunch: (seed) => ['--no-daemon', '-m', 'm', '-c', 'model_reasoning_effort="xhigh"', seed],
+  },
+  {
+    name: 'codex bare --config model_reasoning_effort',
+    runtime: 'codex',
+    first: ['--config', 'model_reasoning_effort=low', 'p'],
+    relaunch: (seed) => ['--no-daemon', '-c', 'model_reasoning_effort="low"', seed],
+  },
+  {
+    name: 'pi --thinking',
+    runtime: 'pi',
+    first: ['--model', 'm', '--thinking', 'high', 'p'],
+    relaunch: (seed) => ['--model', 'm', '--thinking', 'high', seed],
+  },
+  {
+    name: 'hermes chat --reasoning',
+    runtime: 'hermes',
+    first: ['chat', '--reasoning', 'ultra', '-m', 'm', '-q', 'p'],
+    relaunch: (seed) => ['chat', '-m', 'm', '--reasoning', 'ultra', '-q', seed],
+  },
+];
+
+for (const effortCase of EFFORT_CARRY_CASES) {
+  test(`relaunch replays the launch effort: ${effortCase.name}`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    const result = runWrapper(sandbox, [effortCase.runtime, ...effortCase.first]);
+
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2);
+    assert.deepEqual(records[1].args, effortCase.relaunch(`${SEED} ${handoffPath}`));
+  });
+}
+
+test('relaunch drops a launch effort its runtime would reject', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '--model', 'm', '--effort', 'bogus', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, ['--model', 'm', `${SEED} ${handoffPath}`]);
+  assert.match(result.stderr, /warning: .*bogus.*relaunching without it/);
+});
+
+test('relaunch does not invent an effort for a runtime with no effort flag', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['devin', '--model', 'm', '--', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, ['--model', 'm', '--', `${SEED} ${handoffPath}`]);
+});
+
+test('the sender live model and effort replace the launch values for that hop', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'live-model',
+    RECORD_EFFORT: 'max',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'launch-model', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[1].args, [
+    '--model', 'live-model', '--effort', 'max', `${SEED} ${handoffPath}`,
+  ]);
+  assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'live-model');
+  assert.equal(records[1].env.SKILLED_LOOP_EFFORT, 'max');
+});
+
+test('a Pi sender live provider, model and thinking level replace the launch values', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+    RECORD_EFFORT: 'high',
+  });
+  const result = runWrapper(sandbox, [
+    'pi', '--provider', 'anthropic', '--model', 'claude-sonnet-5-5', '--thinking', 'low',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'high', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a Hermes sender live provider and model replace the launch values', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+  });
+  const result = runWrapper(sandbox, [
+    'hermes', 'chat', '--provider', 'anthropic', '-m', 'claude-sonnet-5-5', '--reasoning', 'low',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    'chat', '--provider', 'openai', '-m', 'gpt-6-luna', '--reasoning', 'low', '-q',
+    `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('every launch carries the time it started, so a hop can tell its own changes apart', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const before = Date.now();
+  const result = runWrapper(sandbox, ['cursor', '--model', 'm', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const stamps = readRecords(recordPath).map((record) => Number(record.env.SKILLED_LOOP_LAUNCHED_AT));
+  assert.equal(stamps.length, 2);
+  for (const stamp of stamps) assert.ok(stamp >= before - 1000 && stamp <= Date.now(), String(stamp));
+  assert.ok(stamps[1] >= stamps[0]);
+});
+
+test('a Cursor live model keeps its bracketed parameters on the relaunch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'grok-4.7[context=256k,reasoning_effort=xhigh,fast=true]',
+  });
+  const result = runWrapper(sandbox, ['cursor', '--model', 'gpt-5.6-luna', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'grok-4.7[context=256k,reasoning_effort=xhigh,fast=true]', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live provider is ignored on a runtime that does not take one', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PROVIDER: 'openai',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'm', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, ['--model', 'm', `${SEED} ${handoffPath}`]);
+});
+
+test('a live model or effort the runtime would reject falls back to the launch value', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: '--evil',
+    RECORD_EFFORT: 'bogus',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'launch-model', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'launch-model', '--effort', 'low', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live value is the next hop launch value when that hop records none', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    RECORD_MODEL: 'live-model',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'launch-model', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.deepEqual(records[2].args, ['--model', 'live-model', `${SEED} ${handoffPath}`]);
+});
+
 test('multi-hop relaunches carry each runtime model and provider on every invocation', (t) => {
   const cases = [
     {
@@ -1205,6 +1554,22 @@ test('wrapper prints the manual command after runtime exit 130', (t) => {
     `skilled-loop claude "[session-relaunch] claim and continue handoff ${handoffPath}"`,
   ));
   assert.equal(fs.existsSync(recordPathOnDisk), false);
+});
+
+// OpenCode 2 exits 130 on the killer's SIGTERM as well as on an interrupt, so a record the
+// killer stamped before signalling is a hop, not the operator stopping the loop.
+test('wrapper relaunches after runtime exit 130 when the killer signalled the record', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    exitCodes: '130,0',
+    SIGNALLED_ON_INVOCATION: '1',
+  });
+  const result = runWrapper(sandbox, ['opencode']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.ok(records[1].args.includes(`[session-relaunch] claim and continue handoff ${handoffPath}`));
 });
 
 test('wrapper names pi in the manual command after runtime exit 130', (t) => {
@@ -2009,6 +2374,8 @@ for (const runtimeCase of COMMAND_ONLY_RUNTIMES) {
         note: '---\nstatus: claimed\n---\n',
         status: 1,
         warning: /warning: the handoff note is claimed; not relaunching/,
+        // A claim on a claimed note throws, so a printed command could never work.
+        commandPrinted: false,
       },
     ]) {
       const sandbox = createSandbox(t);
@@ -2027,7 +2394,7 @@ for (const runtimeCase of COMMAND_ONLY_RUNTIMES) {
       assert.equal(records.length, 1, message);
       assert.deepEqual(
         result.stdout.split('\n').filter((line) => line.startsWith('skilled-loop ')),
-        [manualCommand(handoffPath)],
+        scenario.commandPrinted === false ? [] : [manualCommand(handoffPath)],
         message,
       );
       assert.equal(
@@ -2087,10 +2454,13 @@ test('wrapper consumes a pending decline record and preserves the runtime exit c
   assert.equal(fs.existsSync(relaunchPath), false);
 });
 
-for (const [label, writeNote, state] of [
-  ['missing', (handoffPath) => fs.rmSync(handoffPath), 'missing'],
-  ['unparseable', (handoffPath) => fs.writeFileSync(handoffPath, 'status: open\n'), 'invalid'],
-  ['already claimed', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: claimed\n---\n'), 'claimed'],
+// A claim only succeeds on an open note, so a claimed, done or missing note gets the warning
+// alone. An invalid note is one the operator can repair and then claim, so it keeps its command.
+for (const [label, writeNote, state, claimable] of [
+  ['missing', (handoffPath) => fs.rmSync(handoffPath), 'missing', false],
+  ['unparseable', (handoffPath) => fs.writeFileSync(handoffPath, 'status: open\n'), 'invalid', true],
+  ['already claimed', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: claimed\n---\n'), 'claimed', false],
+  ['already done', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: done\n---\n'), 'done', false],
 ]) {
   test(`wrapper does not relaunch a claim for a ${label} note`, (t) => {
     const sandbox = createSandbox(t);
@@ -2102,9 +2472,117 @@ for (const [label, writeNote, state] of [
     assert.equal(result.status, 1, result.stderr);
     assert.equal(readRecords(recordPath).length, 1);
     assert.match(result.stderr, new RegExp(`warning: the handoff note is ${state}; not relaunching`));
-    assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+    assert.equal(
+      result.stdout.includes(expectedClaudeManualCommand(handoffPath)),
+      claimable,
+      result.stdout + result.stderr,
+    );
+    // The decision approved this hop, but the wrapper declined it, so no hand-over happened.
+    assert.deepEqual(handOverLines(sandbox), []);
   });
 }
+
+for (const reason of ['cancelled', 'user-message']) {
+  test(`wrapper reports a ${reason} hand-over as withdrawn and prints no claim command`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      exitCodes: '7',
+      DISARMED_ON_INVOCATION: '1',
+      DISARM_REASON: reason,
+    });
+    writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+
+    const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+
+    assert.equal(result.status, 7, result.stderr);
+    assert.equal(readRecords(recordPath).length, 1);
+    const lines = result.stderr.split('\n').filter((line) => line.includes('withdrawn'));
+    assert.deepEqual(lines, [
+      'warning: the prepared hand-over was withdrawn in the session; '
+        + `${handoffPath} stays open and out of date`,
+    ]);
+    assert.equal(
+      (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+      false,
+    );
+    assert.doesNotMatch(result.stderr, /not claimed/);
+    assert.deepEqual(handOverLines(sandbox), []);
+    const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
+    assert.equal(fs.existsSync(path.join(
+      sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`,
+    )), false);
+    assert.match(readLog(sandbox), /decline loopId=\d+ reason=withdrawn/);
+  });
+}
+
+// A relaunched session that cancels its own follow-up hand-over leaves the note it was
+// started from open, but the withdrawal already says what happened, so the unclaimed-note
+// warning and its claim command would contradict it.
+test('wrapper prints only the withdrawn line when a relaunched session calls off its next hand-over', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1,2',
+    DISARMED_ON_INVOCATION: '2',
+    DISARM_REASON: 'cancelled',
+  });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.match(result.stderr, /the prepared hand-over was withdrawn in the session/);
+  assert.doesNotMatch(result.stderr, /not claimed/);
+  assert.equal(
+    (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
+    false,
+  );
+});
+
+// The withdrawal speaks only for the note it names. A note the relaunched session was
+// seeded with and never claimed is a different note, still open, and still owed its warning.
+test('wrapper still warns about an unclaimed seed note when a different next hand-over is withdrawn', (t) => {
+  const sandbox = createSandbox(t);
+  const otherNote = path.join(handoffsDirectory(sandbox), 'other.md');
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1,2',
+    DISARMED_ON_INVOCATION: '2',
+    DISARM_REASON: 'cancelled',
+    DISARMED_HANDOFF_PATH: otherNote,
+  });
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  fs.writeFileSync(otherNote, OPEN_NOTE);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.match(
+    result.stderr,
+    new RegExp(`the prepared hand-over was withdrawn in the session; ${otherNote} stays open`),
+  );
+  assert.ok(
+    result.stderr.includes(`the relaunched session ended before claiming ${handoffPath}`),
+    result.stderr,
+  );
+  assert.equal(
+    result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
+    expectedClaudeManualCommand(handoffPath, SPEC_FOLDER),
+  );
+});
+
+test('wrapper keeps a clean runtime exit when the hand-over call itself fails', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  installFailingHandOverStub(sandbox);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.deepEqual(handOverLines(sandbox), []);
+});
 
 test('wrapper declines a record without a cwd and keeps the runtime exit code', (t) => {
   const sandbox = createSandbox(t);
@@ -2120,4 +2598,291 @@ test('wrapper declines a record without a cwd and keeps the runtime exit code', 
   assert.equal(readRecords(recordPath).length, 1);
   assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
   assert.match(readLog(sandbox), /reason=incomplete-record/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL PACKET
+// ─────────────────────────────────────────────────────────────────────────────
+
+const GOAL_PACKET = 'specs/hooks/023-session-relaunch-loop';
+
+const BUDGET_MANIFEST = path.join(
+  '.skilled', 'skills', 'system-spec-kit', 'templates', 'spec-kit-docs.json',
+);
+const GOAL_TEXT = '---\ntitle: "Goal: Example"\n---\n# Goal: Example\n\nShip the example.\n';
+const GOAL_SLICE = '# Goal: Example\n\nShip the example.';
+
+function writeGoalNote(sandbox, handoffPath, {
+  packetHoldsGoal = true, goalText = GOAL_TEXT, budget = true,
+} = {}) {
+  const packetPath = path.join(sandbox.repoRoot, GOAL_PACKET);
+  fs.mkdirSync(packetPath, { recursive: true });
+  if (packetHoldsGoal) fs.writeFileSync(path.join(packetPath, 'goal.md'), goalText);
+  // The budget check reads the spec kit's manifest from the checkout, so a sandbox without it
+  // cannot call any slice ok.
+  const manifestPath = path.join(sandbox.repoRoot, BUDGET_MANIFEST);
+  fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
+  if (budget) {
+    fs.writeFileSync(manifestPath, JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }));
+  }
+  fs.writeFileSync(
+    handoffPath,
+    `---\nstatus: open\nspec_folder: ${GOAL_PACKET}\ngoal_packet: ${GOAL_PACKET}\n---\n`,
+  );
+}
+
+test('wrapper exports the goal packet to the relaunched session only', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+});
+
+test('wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1', SESSION_RELAUNCH_GOAL: '0',
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+  assert.deepEqual(records[1].args, [
+    `${SEED} ${handoffPath} | Spec folder: ${GOAL_PACKET}${SPEC_FOLDER_SUFFIX}`,
+  ]);
+});
+
+test('wrapper exports no goal packet for a note without one or a packet that lost goal.md', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeSpecFolderNote(handoffPath, GOAL_PACKET);
+
+  assert.equal(runWrapper(sandbox, ['claude']).status, 0);
+  let records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+
+  fs.rmSync(recordPath);
+  writeGoalNote(sandbox, handoffPath, { packetHoldsGoal: false });
+  assert.equal(runWrapper(sandbox, ['claude']).status, 0);
+  records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[1].env.hasGoalPacket, false);
+});
+
+test('wrapper drops a goal packet inherited from an outer session on every launch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1', SESSION_RELAUNCH_GOAL_PACKET: 'specs/hooks/999-outer-session',
+  });
+  writeSpecFolderNote(handoffPath, GOAL_PACKET);
+
+  assert.equal(runWrapper(sandbox, ['claude']).status, 0);
+
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(records[1].env.hasGoalPacket, false);
+});
+
+test('wrapper drops the previous hop goal packet when the next note carries none', (t) => {
+  const sandbox = createSandbox(t);
+  const nextNote = path.join(sandbox.root, 'next-note.md');
+  writeSpecFolderNote(nextNote, GOAL_PACKET);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    // The second launch writes a fresh note without a packet, as a sender whose goal ended does.
+    NOTE_REWRITE_ON_INVOCATION: '2',
+    NOTE_REWRITE_SOURCE: nextNote,
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.equal(records[0].env.hasGoalPacket, false);
+  assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.equal(records[2].env.hasGoalPacket, false);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL START PROMPT AND HERMES EXPORT
+// ─────────────────────────────────────────────────────────────────────────────
+
+function claimSeedFor(handoffPath) {
+  return `${SEED} ${handoffPath} | Spec folder: ${GOAL_PACKET}${SPEC_FOLDER_SUFFIX}`;
+}
+
+function warningLines(result) {
+  return result.stderr.split('\n').filter((line) => /goal/i.test(line));
+}
+
+test('a Claude hop with a goal starts on the goal command and carries the claim in the environment', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude', '--model', 'opus', '--name', 'Work']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasClaimSeed, false);
+  assert.deepEqual(records[1].args, ['--model', 'opus', `/goal ${GOAL_SLICE}`, '--name', 'Work']);
+  assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, claimSeedFor(handoffPath));
+  assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.deepEqual(warningLines(result), []);
+});
+
+test('a Claude hop keeps the claim seed as its start prompt when no goal can be sent', (t) => {
+  const cases = [
+    ['switch off', { env: { SESSION_RELAUNCH_GOAL: '0' }, note: {}, warns: false }],
+    ['no packet in the note', { env: {}, note: 'none', warns: false }],
+    ['packet lost its goal.md', { env: {}, note: { packetHoldsGoal: false }, warns: false }],
+    ['slice over budget', {
+      env: {},
+      note: { goalText: `---\ntitle: x\n---\n# Goal\n\n${'x'.repeat(4001)}` },
+      warns: /over the 4000-character limit/,
+    }],
+    ['no budget to check against', { env: {}, note: { budget: false }, warns: /no budget/ }],
+    ['empty durable slice', {
+      env: {}, note: { goalText: '---\ntitle: x\n---\n<!-- ANCHOR:log -->\n' }, warns: /no durable slice/,
+    }],
+  ];
+
+  for (const [label, { env, note, warns }] of cases) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1', ...env });
+    if (note === 'none') writeSpecFolderNote(handoffPath, GOAL_PACKET);
+    else writeGoalNote(sandbox, handoffPath, note);
+
+    const result = runWrapper(sandbox, ['claude']);
+
+    assert.equal(result.status, 0, `${label}: ${result.stderr}`);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, label);
+    assert.deepEqual(records[1].args, [claimSeedFor(handoffPath)], label);
+    assert.equal(records[1].env.hasClaimSeed, false, label);
+    const lines = warningLines(result);
+    if (warns === false) {
+      assert.deepEqual(lines, [], label);
+    } else {
+      assert.equal(lines.length, 1, `${label}: one line, got ${JSON.stringify(lines)}`);
+      assert.match(lines[0], warns, label);
+    }
+  }
+});
+
+test('a hop on another runtime keeps its claim seed and gets no claim variable', (t) => {
+  for (const runtime of ['pi', 'opencode', 'codex', 'cursor', 'devin']) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    writeGoalNote(sandbox, handoffPath);
+
+    const result = runWrapper(sandbox, [runtime]);
+
+    assert.equal(result.status, 0, `${runtime}: ${result.stderr}`);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, runtime);
+    assert.ok(records[1].args.includes(claimSeedFor(handoffPath)), runtime);
+    assert.ok(!records[1].args.some((argument) => argument.startsWith('/goal')), runtime);
+    assert.equal(records[1].env.hasClaimSeed, false, runtime);
+    assert.equal(records[1].env.hasHermesSpecFolder, false, runtime);
+    assert.deepEqual(warningLines(result), [], runtime);
+  }
+});
+
+test('the claim variable never leaks from an outer session or into the next hop', (t) => {
+  const sandbox = createSandbox(t);
+  const nextNote = path.join(sandbox.root, 'next-note.md');
+  writeSpecFolderNote(nextNote, GOAL_PACKET);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    SKILLED_LOOP_CLAIM_SEED: `${SEED} /outer/note.md`,
+    NOTE_REWRITE_ON_INVOCATION: '2',
+    NOTE_REWRITE_SOURCE: nextNote,
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.equal(records[0].env.hasClaimSeed, false);
+  assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, claimSeedFor(handoffPath));
+  assert.equal(records[2].env.hasClaimSeed, false);
+  assert.ok(records[2].args[0].startsWith(SEED));
+});
+
+test('a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['hermes', 'chat']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasHermesSpecFolder, false);
+  assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
+  assert.deepEqual(records[1].args, ['chat', '-q', claimSeedFor(handoffPath)]);
+  assert.equal(records[1].env.hasClaimSeed, false);
+});
+
+test('a Hermes hop exports no folder with the switch off or without a packet', (t) => {
+  for (const [label, env, noteWithoutGoal] of [
+    ['switch off', { SESSION_RELAUNCH_GOAL: '0' }, false],
+    ['no packet', {}, true],
+  ]) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1', ...env });
+    if (noteWithoutGoal) writeSpecFolderNote(handoffPath, GOAL_PACKET);
+    else writeGoalNote(sandbox, handoffPath);
+
+    assert.equal(runWrapper(sandbox, ['hermes']).status, 0, label);
+
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, label);
+    assert.equal(records[1].env.hasHermesSpecFolder, false, label);
+  }
+});
+
+test('a Hermes hop restores the operator folder once a hop carries no goal', (t) => {
+  const sandbox = createSandbox(t);
+  const nextNote = path.join(sandbox.root, 'next-note.md');
+  writeSpecFolderNote(nextNote, GOAL_PACKET);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    HERMES_SPEC_FOLDER: 'specs/operator-chosen',
+    NOTE_REWRITE_ON_INVOCATION: '2',
+    NOTE_REWRITE_SOURCE: nextNote,
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['hermes']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.equal(records[0].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
+  assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
+  assert.equal(records[2].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
 });

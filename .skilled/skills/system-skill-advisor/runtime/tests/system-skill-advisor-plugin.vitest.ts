@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { EventEmitter } from 'node:events';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -697,9 +697,6 @@ describe('system-skill-advisor OpenCode plugin', () => {
   // The plugin knows the session's workspace, so it passes the surface its root markers
   // name. The front door uses the hint only to order surfaces the prompt matched.
   it.each([
-    ['an Obsidian plugin', (dir: string) => writeFileSync(join(dir, 'manifest.json'), '{"id":"x","minAppVersion":"1.4.0"}'), 'OBSIDIAN'],
-    ['a Webflow project', (dir: string) => mkdirSync(join(dir, 'src', '2_javascript'), { recursive: true }), 'WEBFLOW'],
-    ['a Cloudflare-deployed Webflow project', (dir: string) => writeFileSync(join(dir, 'wrangler.toml'), 'name = "x"\n'), 'WEBFLOW'],
     ['a folder inside the hub', (_dir: string) => undefined, 'SKILLED'],
     ['a .skilled folder outside the hub', (dir: string) => mkdirSync(join(dir, '.skilled', 'skills'), { recursive: true }), undefined],
     ['a workspace with no surface markers', (_dir: string) => undefined, undefined],

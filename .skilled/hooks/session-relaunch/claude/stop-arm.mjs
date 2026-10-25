@@ -18,6 +18,7 @@ import {
   armableRecord,
   dropNestedLoop,
   isEntrypoint,
+  markDeferred,
   readRelaunchFile,
   resolveKillerTarget,
 } from '../lib/relaunch-core.cjs';
@@ -124,6 +125,12 @@ async function armPendingRecord(payload, dependencies = {}) {
       sessionId: record.sessionId,
       tasks: payload.background_tasks.length,
     }, env);
+    // The mark lets a prompt the operator sends while the record waits withdraw it.
+    try {
+      markDeferred({ loopId, env });
+    } catch (error) {
+      logEvent('stop-arm-error', { stage: 'defer', loopId, message: error.message }, env);
+    }
     return null;
   }
 

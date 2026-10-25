@@ -61,6 +61,7 @@ type GoalCore = {
     assistantText?: string;
   }): { verdict: string; reason: string };
   readGoalRecord(options: GoalOptions): GoalRecord | null;
+  bindRelaunchGoal(options: GoalOptions): { bound: boolean; reason: string };
   recordTurn(input: object, options: GoalOptions): GoalRecord | null;
 };
 
@@ -93,6 +94,17 @@ function goalOptions(ctx: ExtensionContext): GoalOptions {
     cwd: ctx.cwd,
     scope: { workspace: ctx.cwd, runtime: RUNTIME, sessionId },
   };
+}
+
+// A hop receiver binds the hand-over packet once per session. The core refuses a session
+// that already has or had a goal, so this set only spares the repeat file reads on later turns.
+const handOverAttempted = new Set<string>();
+
+function bindHandOverGoal(core: GoalCore, options: GoalOptions): void {
+  const { sessionId } = options.scope;
+  if (!sessionId || handOverAttempted.has(sessionId)) return;
+  handOverAttempted.add(sessionId);
+  core.bindRelaunchGoal(options);
 }
 
 async function runGoalCommand(
@@ -223,6 +235,7 @@ export default function goalContext(pi: ExtensionAPI): void {
       const core = await loadGoalCore();
       if (core.isPluginDisabled()) return { action: 'continue' };
       const options = goalOptions(ctx);
+      bindHandOverGoal(core, options);
       const goal = core.readGoalRecord(options);
       const brief = core.renderGoalBrief({
         goal,
@@ -251,6 +264,7 @@ export default function goalContext(pi: ExtensionAPI): void {
       const core = await loadGoalCore();
       if (core.isPluginDisabled()) return;
       const options = goalOptions(ctx);
+      bindHandOverGoal(core, options);
       const goal = core.readGoalRecord(options);
       const brief = core.renderGoalBrief({
         goal,

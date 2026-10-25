@@ -1,0 +1,45 @@
+── alignment-drift  (verify_alignment_drift.py --check-router)
+[alignment-drift] PASS
+Scanned files: 15659
+Findings: 10
+Errors: 0
+Warnings: 10
+
+Actionable findings:
+- .opencode/plugins/lib/opencode-goal-core.js:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- .opencode/plugins/lib/tool-identity.js:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only/pi-dedup-test.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/check-citations.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/check-research-citations.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/init-event.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/make-synthesis-event.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/lineages/deepseek/assemble-research.sh:1 [SH-STRICT-MODE] [WARN] Missing `set -uo pipefail` strict mode declaration. Fix: Add `set -uo pipefail` (or `set -euo pipefail`) near the top of the script.
+- specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/lineages/deepseek/verify.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity/research/002-copilot-hook-followup-deep-review-remediation/run-iterations.sh:1 [SH-SHEBANG] [WARN] Missing canonical bash shebang. Fix: Set first line to `#!/usr/bin/env bash`.
+
+Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings fail.
+PASS: alignment-drift  (verify_alignment_drift.py --check-router) (10 warnings)
+
+── stack-folders    (verify_stack_folders.py)
+OK: 6 language folder(s) all resolve — config, javascript, python, rust, shell, typescript
+PASS: stack-folders    (verify_stack_folders.py)
+
+── router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
+PASS check 1a: machine-router paths exist and the prose maps are routed
+PASS check 1b: every routable reference or asset doc is routed
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
+PASS check 4: playbook expected_resource is emitted by the router
+router-sync: 5/5 checks passed
+PASS: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
+
+── doc-claims       (verify-doc-claims.cjs)
+PASS check paths: path references in the hub docs resolve on disk
+PASS check names: no retired packet names remain
+PASS check surfaces: surface counts match mode-registry.json
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+doc-claims: 4/4 checks passed
+PASS: doc-claims       (verify-doc-claims.cjs)
+
+run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)
+exit=0

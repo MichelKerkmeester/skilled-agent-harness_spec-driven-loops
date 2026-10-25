@@ -46,9 +46,12 @@ function read(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
-// A hyphen or word character before `opencode2` makes a different command, so the
-// lookbehind keeps a longer token from being read as this one.
-const COMMAND_PATTERN = /(?<![\w-])opencode2\s+models\b/g;
+// A hyphen or word character before the binary makes a different command, so the
+// lookbehind keeps a longer token from being read as this one. OpenCode 2 answers to
+// `opencode` on the recommended layout and to `opencode2` where its package left that
+// name, so both binaries are matched and the form decides which version a command is.
+const COMMAND_PATTERN = /(?<![\w-])(opencode2?)\s+models\b/g;
+const SERVER_FORM_PATTERN = /(?:^|\s)--(?:standalone|server)\b/;
 
 // The remainder ends at the first shell metacharacter, so a pipeline, redirect,
 // separator or closing parenthesis is left out of the quoted command. A redirect's
@@ -57,7 +60,9 @@ const COMMAND_PATTERN = /(?<![\w-])opencode2\s+models\b/g;
 const REMAINDER_END_PATTERN = /[`|&;)]|(?:^|\s)\d*>/;
 
 function commandsIn(markdown) {
-  return [...markdown.matchAll(COMMAND_PATTERN)].map((match) => {
+  // An `opencode models` without a server form is the OpenCode 1 listing, which the
+  // version-label check owns, so only `opencode2` and the server forms are v2 commands.
+  return [...markdown.matchAll(COMMAND_PATTERN)].flatMap((match) => {
     const lineEnd = markdown.indexOf('\n', match.index + match[0].length);
     const restOfLine = markdown.slice(
       match.index + match[0].length,
@@ -67,10 +72,11 @@ function commandsIn(markdown) {
     // A continued line leaves a run of spaces where the line break was, so the quoted
     // command collapses every run to one space and the binary and subcommand read as the
     // single command they are.
-    return {
-      text: `opencode2 models${remainder}`.replace(/\s+/g, ' ').trim(),
+    if (match[1] === 'opencode' && !SERVER_FORM_PATTERN.test(remainder)) return [];
+    return [{
+      text: `${match[1]} models${remainder}`.replace(/\s+/g, ' ').trim(),
       args: remainder.split(/\s+/).filter(Boolean),
-    };
+    }];
   });
 }
 
@@ -132,6 +138,8 @@ function v1CommandProblems(source, lineNumber, labelled) {
     const remainder = source
       .slice(match.index + match[0].length)
       .split(REMAINDER_END_PATTERN)[0];
+    // A server form is the OpenCode 2 listing, which OpenCode 1 does not take.
+    if (SERVER_FORM_PATTERN.test(remainder)) continue;
     offenders.push({ lineNumber, text: `${match[0]}${remainder}`.trim() });
   }
 
@@ -218,7 +226,7 @@ function unquotedListingCommands(markdown) {
 // A note that sends a reader to the standalone listing is only useful when it says what
 // to look for. OpenCode 2 prints ids as `<provider>/<model>`, so the note has to name
 // the prefix, filter or grep for it, or quote a span ending in `/`.
-const LISTING_NOTE_PATTERN = /opencode2 models --standalone\b/;
+const LISTING_NOTE_PATTERN = /opencode2? models --standalone\b/;
 const CHECK_WORD_PATTERN = /\b(check|checks|checking|confirm|confirms|confirmed|confirming)\b/i;
 const PREFIX_WORD_PATTERN = /\bprefix(?:es)?\b/i;
 const FILTER_WORD_PATTERN = /\bfilter(?:ed)?\b/i;
@@ -250,7 +258,7 @@ function unprefixedListingNotes(markdown) {
       const spans = [...clause.matchAll(INLINE_CODE_SPAN_PATTERN)].map((match) => match[1]);
       if (spans.some((span) => span.endsWith('/'))) continue;
       // A span carrying both the listing and its grep is the filtered command itself.
-      if (spans.some((span) => span.includes('opencode2 models --standalone') && GREP_WORD_PATTERN.test(span))) {
+      if (spans.some((span) => /opencode2? models --standalone/.test(span) && GREP_WORD_PATTERN.test(span))) {
         continue;
       }
 
@@ -485,7 +493,7 @@ const GREP_PATTERN = /^grep(?:\s+-[^\s]+)*\s+(['"])\^([^/'"\s]+)\/\1(?:\s*\d*(?:
 const OK_VARIABLE_PATTERN = /^([A-Za-z_][A-Za-z0-9_]*_OK)=1$/;
 
 function listingSource(text) {
-  if (/^opencode2\s+models\s+--standalone(?:\s|$)/.test(text)) return { direct: true };
+  if (/^opencode2?\s+models\s+--standalone(?:\s|$)/.test(text)) return { direct: true };
   if (!/^(?:printf|echo)\b/.test(text)) return null;
 
   const words = shellWords(text)
@@ -552,7 +560,7 @@ function lastAssignedValue(lines, beforeIndex, name) {
 // substitution of the standalone listing with only redirects inside, optionally quoted.
 // A second command or pipeline in the substitution changes what the grep reads.
 const STANDALONE_LISTING_VALUE_PATTERN =
-  /^\$\(\s*opencode2\s+models\s+--standalone(?:\s+\d*(?:>>?|<)\s*\S+)*\s*\)$/;
+  /^\$\(\s*opencode2?\s+models\s+--standalone(?:\s+\d*(?:>>?|<)\s*\S+)*\s*\)$/;
 const QUOTED_VALUE_PATTERN = /^"([^"]*)"$/;
 
 function holdsStandaloneListing(value) {
@@ -815,7 +823,7 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
 
   const standalone = blocks
     .map(activeBlockLines)
-    .find((fenced) => fenced.some((line) => /opencode2 models --standalone\b/.test(line)));
+    .find((fenced) => fenced.some((line) => /opencode2? models --standalone\b/.test(line)));
   assert.ok(
     standalone !== undefined,
     'the provider pre-flight section has no fenced bash block with an "opencode2 models --standalone" command',

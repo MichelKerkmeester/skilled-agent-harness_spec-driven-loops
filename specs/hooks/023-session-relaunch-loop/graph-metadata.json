@@ -25,7 +25,18 @@
     "hooks/023-session-relaunch-loop/019-fork-compact-pointer-research",
     "hooks/023-session-relaunch-loop/020-fork-session-guards",
     "hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards",
-    "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode"
+    "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+    "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+    "hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes",
+    "hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher",
+    "hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode",
+    "hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex",
+    "hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
+    "hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift",
+    "hooks/023-session-relaunch-loop/030-opencode2-killer-target",
+    "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
+    "hooks/023-session-relaunch-loop/032-opencode2-standalone-replay",
+    "hooks/023-session-relaunch-loop/033-research-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -39,9 +50,7 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding",
-      "session relaunch research",
-      "session relaunch architecture"
+      "goal binding"
     ],
     "key_topics": [
       "session",
@@ -75,7 +84,8 @@
       "008-review-3-remediation/goal.md",
       "009-research-fixes-and-core-consolidation/goal.md",
       "010-post-fix-research/goal.md",
-      "011-post-fix-remediation/goal.md"
+      "011-post-fix-remediation/goal.md",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts"
     ],
     "entities": [
       {
@@ -100,6 +110,12 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review-archive/20261018T184826Z/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
         "source": "derived"
       },
       {
@@ -147,7 +163,7 @@
       {
         "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -175,31 +191,37 @@
         "source": "derived"
       },
       {
-        "name": "Session Relaunch Loop After Phase",
+        "name": "Executive Summary This",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Verified Findings The",
+        "name": "Method The",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "The Claude",
+        "name": "Goal Packet Persistence The",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Architecture Both",
+        "name": "Receiver Binding",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Outside This Packet The",
+        "name": "Environment Restoration The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Effort Persistence Launch",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -207,21 +229,21 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-22T12:50:40.551Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-25T14:13:48.517Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a3be4df0152642d7812a19f4152c59eb2ab70bd468b199821c1060b1de127173",
+    "source_fingerprint": "sha256:b74a7786592003831a62229884d6b1fa3f82883f52125314f976826c9546dc77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2bed9badfef2dddafa1caf72a6fc13c6ef54c1206d5da1e2c787afcfb7d76d80",
-      "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
+      "spec.md": "87e68a27e9ef20876c0f327ef4caa151aab718e3f1f8d03553583f6ed985ac37",
+      "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
-    "last_active_at": "2026-10-22T11:28:04.362Z"
+    "last_active_child_id": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
+    "last_active_at": "2026-10-25T09:18:16.700Z"
   }
 }

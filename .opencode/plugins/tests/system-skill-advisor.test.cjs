@@ -353,7 +353,7 @@ test('plugin module exports a loader-compatible dual-plugin object as its defaul
 
 test('bounded route rendering caps targets and exposes a complete reveal path', async () => {
   const renderHelpers = await loadRenderHelpers();
-  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
+  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'skilled', 'typescript']);
   const unbounded = renderHelpers.renderCompiledRouteSummaryLine(summary);
   const bounded = renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: true });
   const revealed = renderHelpers.revealCompiledRouteSummaryTargets(summary);
@@ -374,7 +374,7 @@ test('bounded route rendering caps targets and exposes a complete reveal path', 
 
 test('flag-off route rendering and plugin delivery remain byte-identical to the baseline', async () => {
   const renderHelpers = await loadRenderHelpers();
-  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
+  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'skilled', 'typescript']);
   const baseline = legacyCompiledRouteSummaryLine(summary);
 
   assert.equal(renderHelpers.renderCompiledRouteSummaryLine(summary), baseline);
@@ -400,7 +400,7 @@ test('flag-off route rendering and plugin delivery remain byte-identical to the 
 
 test('bounded flag selects the bounded line in the OpenCode transform', async () => {
   const renderHelpers = await loadRenderHelpers();
-  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
+  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'skilled', 'typescript']);
   const child = fakeChild({
     stdout: cliEnvelope({
       recommendations: [{

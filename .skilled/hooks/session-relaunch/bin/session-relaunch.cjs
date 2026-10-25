@@ -12,9 +12,11 @@ const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const hopHistory = require('../lib/hop-history.cjs');
+const withdraw = require('../lib/withdraw.cjs');
 const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = core.RUNTIMES;
+const GOAL_FILENAME = 'goal.md';
 // Non-shell children run no job the killer could interrupt, so they are not detected.
 const LIVE_SHELL_NAMES = new Set([
   'sh', 'bash', 'zsh', 'fish', 'dash', 'ksh', 'mksh', 'tcsh', 'csh', 'nu', 'pwsh',
@@ -26,8 +28,8 @@ const USAGE_PROGRAM = 'node .skilled/hooks/session-relaunch/bin/session-relaunch
 const SUBCOMMANDS = {
   prepare: {
     syntax: 'prepare --handoff <handoff-path> [--session <session-id>] [--runtime <runtime>]',
-    summary: 'Validate the note and arm the relaunch; outside a loop, or at the hop limit'
-      + ' inside one, it prints the claim command and exits 3.',
+    summary: 'Validate the note and write the pending record that the runtime arms on its own stop event;'
+      + ' outside a loop, or at the hop limit inside one, it prints the claim command and exits 3.',
   },
   'should-relaunch': {
     syntax: 'should-relaunch --loop-id <loop-id>',
@@ -40,7 +42,7 @@ const SUBCOMMANDS = {
   },
   claim: {
     syntax: 'claim <handoff-path> [--session <session-id>]',
-    summary: 'Mark an open note claimed and print its body.',
+    summary: 'Mark an open note claimed and print its body, then the goal packet it carries.',
   },
   complete: {
     syntax: 'complete <handoff-path>',
@@ -48,7 +50,18 @@ const SUBCOMMANDS = {
   },
   consume: {
     syntax: 'consume --loop-id <loop-id>',
-    summary: 'Print the handoff path and its spec folder, then remove the relaunch record.',
+    summary: 'Print the handoff path, its spec folder and its goal packet, then remove the'
+      + ' relaunch record.',
+  },
+  cancel: {
+    syntax: 'cancel [--loop-id <loop-id>]',
+    summary: 'Call off this loop\'s prepared hand-over so the session keeps running; the note'
+      + ' stays open. The loop id defaults to SKILLED_LOOP_ID.',
+  },
+  'hand-over': {
+    syntax: 'hand-over --handoff <handoff-path> [--hop <hop>] [--runtime <runtime>]',
+    summary: 'When the note is open, record the hand-over and its notice; the wrapper calls it'
+      + ' once it is about to relaunch, and it prints nothing and consumes nothing.',
   },
   history: {
     syntax: 'history [--last <count>]',
@@ -350,6 +363,43 @@ function sessionIdFor(options, runtime) {
   return sessionId;
 }
 
+// The checkouts a note's packet may live in: this repository, and the working directory the
+// fresh session starts in, which a git worktree session does not share with the CLI's checkout.
+function goalRoots(noteCwd) {
+  const roots = [nudge.resolveRepoRoot(process.env)];
+  if (path.isAbsolute(noteCwd)) roots.push(noteCwd);
+  return roots;
+}
+
+// A packet the note carries and the receiver may be given: the switch is on and the packet
+// still holds a goal.md, which it may have lost since the note was written.
+function usableGoalPacket(frontmatter) {
+  const packet = typeof frontmatter.goal_packet === 'string' ? frontmatter.goal_packet : '';
+  if (packet === '' || !core.goalSwitchOn(resolvedSwitches())) return '';
+  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
+  return core.goalPacketProblem(packet, goalRoots(noteCwd)) === null ? packet : '';
+}
+
+// The field belongs to this command and not to whoever wrote the note. Every prepare and keep
+// resolves the sending session's goal again and writes the result, removing the field when no
+// goal can be proven, so a note prepared after its goal ended does not hand the dead goal on. A
+// failed write leaves the note as it was, since a hand-over never fails for want of a goal.
+function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId }) {
+  if (!core.goalSwitchOn(resolvedSwitches())) return;
+  const resolved = core.resolveGoalPacket({
+    runtime,
+    sessionId,
+    specFolder: specFolder === 'none' ? '' : specFolder,
+    roots: goalRoots(noteCwd),
+    env: process.env,
+  });
+  try {
+    core.recordGoalPacket(handoffPath, resolved);
+  } catch {
+    // The note stays as written, and the receiver is simply told nothing.
+  }
+}
+
 // prepare and keep accept the same note, so they share one check of it.
 function validatedNote(options, runtime) {
   if (!options['--handoff']) throw new Error('--handoff is required');
@@ -360,17 +410,39 @@ function validatedNote(options, runtime) {
 
   // An answer the note cannot carry forward would drop silently downstream.
   let specFolder = '';
+  let noteCwd = '';
   try {
     const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
     specFolder = typeof note.frontmatter.spec_folder === 'string'
       ? note.frontmatter.spec_folder
       : '';
+    noteCwd = typeof note.frontmatter.cwd === 'string' ? note.frontmatter.cwd : '';
   } catch {}
   if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
     throw new Error(
       'spec_folder must be the repo-relative packet path, none, or empty',
     );
   }
+  // A shaped path can still name a packet this repository never had, and the fresh session
+  // would then answer Gate 3 with a folder that is not there. Notes live in the checkout the
+  // CLI runs from, yet the session may work in a git worktree whose packet that checkout does
+  // not hold yet, and the fresh session starts in the note's own working directory.
+  if (specFolder !== '' && specFolder !== 'none') {
+    const roots = [nudge.resolveRepoRoot(process.env)];
+    if (path.isAbsolute(noteCwd)) roots.push(noteCwd);
+    const isDirectory = roots.some((root) => {
+      try {
+        return fs.statSync(path.join(root, specFolder)).isDirectory();
+      } catch {
+        // An unreadable path is a missing one, and the check below names it.
+        return false;
+      }
+    });
+    if (!isDirectory) {
+      throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
+    }
+  }
+  recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId });
   return { handoffPath, sessionId, specFolder };
 }
 
@@ -449,6 +521,7 @@ function prepare(args) {
     return 3;
   }
 
+  const settings = core.resolveSessionSettings({ runtime, sessionId, env: process.env });
   const record = core.preparePending({
     loopId,
     handoffPath,
@@ -457,6 +530,8 @@ function prepare(args) {
     name: process.env.SKILLED_LOOP_NAME || null,
     cwd: process.cwd(),
     hops,
+    model: settings.model,
+    effort: settings.effort,
     env: process.env,
   });
   supersedeClaimedNotes(handoffPath, { loopId, sessionId });
@@ -533,6 +608,7 @@ function shouldRelaunch(args) {
     name: record?.name ?? null,
     runtime: record?.runtime ?? null,
     hops: record?.hops ?? null,
+    signalled: typeof record?.signalledAt === 'string',
   };
   process.stdout.write(`${JSON.stringify(result)}\n`);
   // The JSON decision is the command result; its log is best-effort.
@@ -542,14 +618,6 @@ function shouldRelaunch(args) {
       reason: decision.reason ?? 'ready',
     });
   } catch {}
-  if (decision.relaunch && typeof record?.handoff === 'string') {
-    const hops = Number(record.hops);
-    hopHistory.recordHop('handed-over', record.handoff, {
-      hop: Number.isInteger(hops) && hops >= 0 ? hops + 1 : null,
-      runtime: record.runtime,
-    });
-    hopHistory.notifyHandOver(record.handoff, { switches, runtime: record.runtime });
-  }
   return decision.relaunch ? 0 : 1;
 }
 
@@ -565,9 +633,16 @@ function claim(args) {
       : '--session';
     throw new Error(`session id is required through ${sessionSource}`);
   }
-  core.claimHandoff(handoffPath, { sessionId });
-  hopHistory.recordHop('claimed', handoffPath);
+  const claimed = core.claimHandoff(handoffPath, { sessionId });
+  hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
+  const goalPacket = usableGoalPacket(claimed.frontmatter);
+  if (goalPacket !== '') {
+    process.stdout.write(
+      `\nGoal packet: ${goalPacket} (the goal the sending session worked under;`
+        + ` read its ${GOAL_FILENAME})\n`,
+    );
+  }
   return 0;
 }
 
@@ -618,6 +693,7 @@ function consume(args) {
   const record = core.readRelaunchFile(loopId);
   const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
   let specFolder = '';
+  let goalPacket = '';
   let invalidSpecFolder = false;
   if (handoffPath) {
     let handoffText = '';
@@ -629,6 +705,7 @@ function consume(args) {
         : '';
       if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
+      goalPacket = usableGoalPacket(note.frontmatter);
     } catch {
       ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }
@@ -637,18 +714,88 @@ function consume(args) {
   // the fresh session and loses the hop, so it prints the manual command instead.
   const note = core.noteState(handoffPath);
   const statePath = core.relaunchFilePath(loopId);
-  try {
-    fs.unlinkSync(statePath);
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
+  // A withdraw rewrites the record under its lock, so the unlink waits for the same lock.
+  core.withAppendLock(statePath, () => {
+    try {
+      fs.unlinkSync(statePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+  });
   if (invalidSpecFolder) {
     try {
       core.appendLog('spec-folder-dropped', { loopId });
     } catch {}
   }
+  // A note with no goal packet keeps the output it always had.
+  const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
+  if (goalPacket !== '') consumed.goal_packet = goalPacket;
+  // The sender's own latest model, provider and effort, which the wrapper checks before it
+  // uses them.
+  for (const key of ['model', 'provider', 'effort']) {
+    if (typeof record?.[key] === 'string' && record[key] !== '') consumed[key] = record[key];
+  }
+  process.stdout.write(`${JSON.stringify(consumed)}\n`);
+  return 0;
+}
+
+// The wrapper still declines after an approved decision when the note is not open or its
+// consumed record cannot be read, so the hand-over is recorded here, in a call of its own
+// made once the wrapper is about to relaunch. Nothing the wrapper needs comes back through
+// it, so a hop is never held up by this call.
+function handOver(args) {
+  const { options } = parseArgs(args, { flags: ['--handoff', '--hop', '--runtime'] });
+  if (!options['--handoff']) throw invocationError('--handoff is required');
+  const handoffPath = handoffPathWithinRepo(options['--handoff']);
+  const runtime = options['--runtime'];
+  if (runtime !== undefined && !LOOP_RUNTIMES.includes(runtime)) {
+    throw invocationError(`--runtime must be one of ${LOOP_RUNTIMES.join(', ')}`);
+  }
+  let hop = null;
+  if (options['--hop'] !== undefined) {
+    hop = Number(options['--hop']);
+    if (!Number.isInteger(hop) || hop < 1) {
+      throw invocationError('--hop must be a positive whole number');
+    }
+  }
+  if (core.noteState(handoffPath) !== 'open') return 0;
+  try {
+    hopHistory.recordHop('handed-over', handoffPath, { hop, runtime });
+    hopHistory.notifyHandOver(handoffPath, { switches: resolvedSwitches(), runtime });
+  } catch {
+    // The history and the notice are a record for the operator; the hop goes ahead without them.
+  }
+  return 0;
+}
+
+// A disarmed record is one no arm path takes and the killer refuses to act on, so the
+// session keeps running. The note stays open, and the session gets one more nudge, since
+// it may already have spent its last.
+function cancel(args) {
+  // A runtime started from this loop session's shell inherits the loop variables, and the
+  // outer loop's id would then cancel the outer hand-over. An explicit --loop-id still
+  // names the loop to cancel.
+  core.dropNestedLoop(process.env);
+
+  const { options } = parseArgs(args, { flags: ['--loop-id'] });
+  const loopId = options['--loop-id'] || process.env.SKILLED_LOOP_ID;
+  if (!loopId) throw new Error('--loop-id is required outside a loop');
+  // The helper reads, judges and disarms under one lock, so a record a Stop armed or a
+  // withdraw replaced in the meantime is never cancelled on the strength of an older read.
+  const cancelled = withdraw.withdrawHandOver({ loopId, reason: 'cancelled', pending: 'any' });
+  if (cancelled === null) {
+    process.stdout.write('no prepared hand-over to cancel\n');
+    return 1;
+  }
+  try {
+    // Only an armed record carries an armedAt, so the stamp says which state was cancelled.
+    core.appendLog('cancel', { loopId, status: cancelled.armedAt ? 'armed' : 'pending' });
+  } catch {
+    // The cancel is already done; its log is best-effort.
+  }
   process.stdout.write(
-    `${JSON.stringify({ handoff: handoffPath, spec_folder: specFolder, note })}\n`,
+    `cancelled the prepared hand-over for ${path.basename(String(cancelled.handoff ?? ''))};`
+      + ' the note stays open\n',
   );
   return 0;
 }
@@ -694,6 +841,8 @@ function main(args = process.argv.slice(2)) {
       case 'claim': return claim(commandArgs);
       case 'complete': return complete(commandArgs);
       case 'consume': return consume(commandArgs);
+      case 'hand-over': return handOver(commandArgs);
+      case 'cancel': return cancel(commandArgs);
       case 'history': return history(commandArgs);
       default: throw invocationError(
         `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,

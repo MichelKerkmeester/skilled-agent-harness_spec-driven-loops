@@ -1,7 +1,7 @@
 ---
 title: "DR-001: Design Restraint Ladder (pre-write rung selection)"
 description: "Verify sk-code walks the Design Restraint Ladder and selects the laziest viable rung before writing new code, after surface and intent routing, without overriding surface precedence or the Iron Law."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # DR-001: Design Restraint Ladder (pre-write rung selection)
@@ -10,7 +10,7 @@ version: 1.5.1.0
 
 This scenario verifies that for an implementation-intent request, sk-code climbs the Design Restraint Ladder and picks the laziest viable rung before writing any new code: does this need to exist at all (YAGNI), then a helper, component, service or pattern already in this codebase, then a standard-library primitive, a native platform or runtime feature, an already-installed dependency, a one-line expression, and only then minimal custom code.
 
-The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
+The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (SKILLED > UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
 
 The ladder is defined in `shared/references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `shared/references/phase-detection.md`.
 

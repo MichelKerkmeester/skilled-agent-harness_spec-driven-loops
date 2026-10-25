@@ -7,12 +7,12 @@ trigger_phrases:
   - "two-axis registry routing"
   - "sk-code compiled routing"
 last_updated: "2026-10-10"
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # sk-code: Feature Catalog
 
-This catalog inventories the live `sk-code` hub surface. The skill advisor routes any code-related prompt to the single identity `sk-code`; the hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) declaratively from `mode-registry.json`. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-code` hub surface. The skill advisor routes any code-related prompt to the single identity `sk-code`; the hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-ci`, `sk-code-skilled`) declaratively from `mode-registry.json`. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -32,7 +32,7 @@ Use this catalog as the current-state inventory for the `sk-code` hub. The hub d
 
 #### Current Reality
 
-`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` are advisor-invisible SURFACE packets bundled alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. The hub carries no root `references/<key>/` resource router — resource slicing lives inside the nested packets.
+`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-ci` and `sk-code-skilled` are advisor-invisible SURFACE packets bundled alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. The hub carries no root `references/<key>/` resource router — resource slicing lives inside the nested packets.
 
 #### Source Files
 

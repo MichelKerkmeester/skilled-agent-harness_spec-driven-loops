@@ -111,6 +111,9 @@ const MAX_SHADOW_ROUTE_ONLY_LOG = 256;
 // so the renderer never imports the scorer projection (which loads SQLite).
 // BEGIN GENERATED DOCTOR COMMANDS
 const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({
+  'command-doctor-ci-report': '/doctor:ci report',
+  'command-doctor-ci-scaffold': '/doctor:ci scaffold',
+  'command-doctor-ci-toggle': '/doctor:ci toggle',
   'command-doctor-deep-loop': '/doctor:deep-loop',
   'command-doctor-env': '/doctor:env list',
   'command-doctor-git-hooks': '/doctor:git hooks',

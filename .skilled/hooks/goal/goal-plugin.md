@@ -9,7 +9,7 @@ trigger_phrases:
   - "session goal"
 importance_tier: "important"
 contextType: "implementation"
-version: 3.8.1.0
+version: 3.8.3.0
 ---
 
 # OpenCode Goal Plugin Contract
@@ -41,14 +41,15 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 - `/goal-opencode bind <packet-path>` resolves the path inside the workspace, refuses anything outside it or without a `goal.md`, derives the objective from the file (pointer, binding sentence when phased, criteria copied out) and stores `packetPath`. From then on injection renders from the file on every turn; a bound goal whose file is gone injects nothing.
 - `/goal-opencode resent` records the durable-slice hash that was resent in chat so `resend_pending` clears. `/goal-opencode unbind` drops the pointer and keeps the record. `/goal-opencode log <item> | <state> | <evidence>` appends one row below the packet's log anchor through the shared core's locked append. `/goal-opencode packet <packet-path>` reads a packet's slice, hash, size and budget tier without binding. An action the tool does not know fails with `UNKNOWN_ACTION` instead of falling back to `show`.
 - `/goal-opencode set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`. A different objective on a bound goal replaces the record and drops the packet pointer: text and packet are two modes, and `set` selects text. Bind again to return to the packet.
-- `/goal-opencode set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
+- `/goal-opencode set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call. The budget is recorded and shown as `token_budget` and in the usage line only, and the reply carries one `notice=` line that says so. No token budget, turn count or elapsed time ends, pauses or silences a goal.
 - `/goal-opencode history` lists archived goal records from `.skilled/skills/.state/goal/.archive/` without creating or mutating active state.
 - Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
 - `/goal-opencode doctor` and `/goal-opencode health` are read-only inspections that report active state-file count, archive-file count, `.continuation.log` and `.goal-events.log` byte sizes, last sweep time, and orphan-candidate count.
-- `/goal-opencode resume` reactivates `paused`, `usage_limited` and `budget_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
+- `/goal-opencode resume` reactivates `paused`, `usage_limited` and `budget_limited` goals (an older version wrote the last status, nothing sets it now), clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection. It also releases an `active` goal that an older version suppressed with a retired reason (`auto_turn_cap_reached`, `wall_clock_cap_reached`, `budget_exhausted` or `token budget reached`), and leaves an `active` goal with any other suppression reason, or none, as it is.
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
 - The injected block keeps a short raw `objective:` preview for auditability and uses `goal_prompt:` for model-facing steering.
 - A bound packet's completion criteria render as their own `criteria:` field, one per line, in both the full and the compact block. A budget drops whole criteria rather than cutting one, and adds an `- (N more in the goal file)` line when it does.
+- On `session.created`, the first top-level session of the process is bound to the packet named by `SESSION_RELAUNCH_GOAL_PACKET` when it has no goal of its own: no live record, no archived one and no unreadable one. A relaunch hop sets that variable for its receiver and `SESSION_RELAUNCH_GOAL=0` turns the bind off. A live hop on OpenCode 2.1.4, started with `--standalone`, showed the receiver binding the sender's packet as a new goal record. On OpenCode 2's default background service the relaunch loop does not run, so no hop reaches a receiver there. The wrapper adds `--standalone` itself when `opencode --help` lists it. A session running with `AI_SESSION_CHILD=1` (a dispatched child, which inherits the variable from its parent) never binds, and neither does an in-process child session that has a parent session. The check and the write happen under the session's mutation lock, so the bind never replaces a record, including one set a moment earlier, and it sends no chat text. The injection then renders from the packet like any bound session.
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
 - `/goal-opencode show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
@@ -64,6 +65,9 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | `OPENCODE_GOAL_VERIFIER_TIMEOUT_MS` | `30000` | Ceiling on one verifier run, in milliseconds. |
 | `OPENCODE_GOAL_CONTINUATION_TIMEOUT_MS` | `30000` | Ceiling on one guarded continuation turn, in milliseconds. |
 | `OPENCODE_GOAL_JSONL_MAX_BYTES` | `5242880` | Size at which a goal event log rotates. |
+| `SESSION_RELAUNCH_GOAL_PACKET` | unset | Set by the relaunch launcher for a receiver. A repo-relative packet directory bound at session start when the session has no goal. |
+| `SESSION_RELAUNCH_GOAL` | on | `0`, `false`, `off` or `no` turns the hand-over bind off, in the environment or in `hook-flags.env`. |
+| `AI_SESSION_CHILD` | unset | Read only, never set here. `1` marks a dispatched child session, which never binds the hand-over packet. |
 | `OPENCODE_GOAL_STATE_DIR` | unset | Relocates the record store for both engines. The packet lock deliberately stays under the workspace state directory, so two sessions with different stores still serialize. |
 | `OPENCODE_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
 | `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.state/goal`. |
@@ -72,8 +76,6 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | `OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | Caps generated `goalPrompt`; values above 4000 are clamped. |
 | `OPENCODE_GOAL_MAX_INJECTION_CHARS` | `4800` | Caps the active-goal injection block. |
 | `OPENCODE_GOAL_MAX_EVIDENCE_CHARS` | `1200` | Caps verifier evidence retained in state. |
-| `OPENCODE_GOAL_MAX_AUTO_TURNS` | `8` | Caps guarded auto-continuation turns for new and normalized goals. |
-| `OPENCODE_GOAL_MAX_WALL_MS` | `1800000` | Caps guarded auto-continuation wall-clock duration in milliseconds. |
 | `OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | Days before an archived goal-state file is pruned. |
 | `OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | Age threshold before an orphaned active-state file is swept and archived. |
 | `OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
@@ -91,12 +93,9 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | `packet_path` | repo-relative path or empty | The bound packet directory; empty when the goal was set from text. |
 | `packet_state` | `bound`, `missing`, `unbound` | `bound` when the pointer resolves to a document, `missing` when the pointer is set but the document is gone or outside the workspace (a `hint=` line follows and injection is silent), `unbound` when the goal was set from text. |
 | `packet_bound` | `true`, `false` | `true` only when `packet_state=bound`. |
+| `notice` | text | Present after a `set` or `bind` that passes a token budget: one line saying the figure is recorded as a reading only and is never enforced. Absent when no budget is passed, and on a re-set that keeps the stored budget. |
 | `warning` | text | Present after a text `set` whose objective exceeded 4000 characters and was truncated, and after a `bind` whose durable slice is past the one 4000-character limit (`packet_budget=over`). Nothing warns below that limit. |
 | `resend_pending` | `true`, `false` | Whether the packet's durable slice changed since it was last marked resent. Log rows and reflow never flip it. |
-| `max_auto_turns` | positive integer | Effective auto-turn cap after `OPENCODE_GOAL_MAX_AUTO_TURNS` and stored state normalization. |
-| `remaining_auto_turns` | integer >= 0 | Auto-continuation turns still available before the cap suppresses continuation. |
-| `max_wall_ms` | positive integer | Effective wall-clock cap after `OPENCODE_GOAL_MAX_WALL_MS`. |
-| `remaining_wall_ms` | integer >= 0 | Wall-clock budget still available for guarded continuation. |
 | `provider_retry_after_ms` | epoch ms or `none` | Stored retry-after recovery deadline for `usage_limited` goals. |
 | `verifier_source` | `none`, `injected`, `default-heuristic`, `default-llm` | Provenance for the last verifier verdict. Injected verifiers keep precedence over defaults. |
 
@@ -134,6 +133,7 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
 node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs
 node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
+node .skilled/plugins/tests/opencode-goal-handover.test.cjs
 python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/plugins
 python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/plugins/opencode-goal.js
 ```

@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal opencode plugin"
   - "/goal-opencode command"
   - "opencode_goal"
-version: 0.8.1.0
+version: 0.8.2.0
 id: CL-007
 category: cli_hooks_and_plugin
 stage: routing
@@ -78,18 +78,18 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 8. With `OPENCODE_GOAL_AUTONOMY` unset, confirm continuation is suppressed with `autonomy_disabled`.
 9. With `OPENCODE_GOAL_AUTONOMY=smoke`, confirm the decision is `would_fire` and no prompt is submitted.
 10. With `OPENCODE_GOAL_AUTONOMY=active`, confirm `promptAsync` is called only when every guard passes; if a live OpenCode session is unavailable in this run, fall back to the plugin tool path directly (see §1).
-11. With `OPENCODE_GOAL_MAX_AUTO_TURNS=3` and `OPENCODE_GOAL_MAX_WALL_MS=4000`, restart OpenCode and verify `/goal-opencode show` reports `remaining_auto_turns=`, `remaining_wall_ms=`, and `provider_retry_after_ms=`.
+11. With `OPENCODE_GOAL_MAX_AUTO_TURNS=3` and `OPENCODE_GOAL_MAX_WALL_MS=4000` set (both retired), restart OpenCode and verify `/goal-opencode show` reports `provider_retry_after_ms=` and neither `remaining_auto_turns=` nor `remaining_wall_ms=`.
 12. With `OPENCODE_GOAL_VERIFIER` unset or `heuristic`, verify only explicit objective-specific evidence completes and the adversarial negative matrix remains `not_met`. With `OPENCODE_GOAL_VERIFIER=llm`, verify `ctx.client.session.promptAsync` is called and status reports `verifier_source=default-llm`.
 
 ### Expected Signals
 
 - `/goal-opencode` does not read or write `.skilled/skills/.state/goal` directly; all state access goes through `opencode_goal` or `opencode_goal_status`.
 - `/goal-opencode set` output includes `mutation=created|refreshed|replaced` matching the actual set-time outcome.
-- `/goal-opencode set <objective> --budget N` rejects invalid budgets and reports the accepted token budget in status output.
+- `/goal-opencode set <objective> --budget N` rejects invalid budgets and reports the accepted token budget in status output. The budget never stops the goal.
 - `/goal-opencode history`, `/goal-opencode doctor`, `/goal-opencode health`, and `/goal-opencode resume` route through `opencode_goal`; none reads `.skilled/skills/.state/goal` directly from command markdown.
 - Status/set output includes `store_health=no_active_goal` or `store_health=state_age_ms:<N>`.
 - Status/set output includes `verifier_source=none|injected|default-heuristic|default-llm`.
-- Status/set output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`; env caps honor `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS`.
+- Status/set output includes `provider_retry_after_ms`. The retired `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS` change nothing.
 - Per-session JSON state is isolated by session id.
 - Passive injection is bounded and sanitized.
 - Supervisor verdicts map to durable goal state: `met` completes, `blocked` blocks, and ambiguous evidence remains active. Injected verifiers keep precedence. The default heuristic rejects empty, unrelated, mixed blocker, generic, truncated, repeat-only, investigation-only, and TODO evidence.
@@ -106,7 +106,7 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 | Active continuation fires by default | `OPENCODE_GOAL_AUTONOMY` unset still submits a prompt | Block release; default-off gate regressed. |
 | Resume revives terminal goals | `/goal-opencode resume` succeeds after `/goal-opencode complete` | Block release; transition map must reject `complete` to `active`. |
 | Doctor or history mutates state | `history`, `doctor`, or `health` creates active JSON files | Block release; these verbs must stay read-only. |
-| Env caps ignored | `OPENCODE_GOAL_MAX_AUTO_TURNS` or `OPENCODE_GOAL_MAX_WALL_MS` does not alter status/caps after restart | Inspect `normalizeOptions` env reads and status output. |
+| Goal stops on a limit | status shows `budget_limited`, or `continuation_suppressed=true` with a token, turn or wall-clock reason | Search `opencode-goal.js` for any new check that suppresses continuation on usage, turn count or elapsed time. |
 | Default verifier false-completes | Weak or mixed evidence marks a goal complete under `OPENCODE_GOAL_VERIFIER=heuristic` | Block release; the heuristic must fail closed unless evidence is explicit and objective-specific. |
 | Verifier provenance missing | Status omits `verifier_source` after a verifier run | Inspect `lastVerifierSource` persistence and status rendering. |
 | LLM verifier cannot call client | `OPENCODE_GOAL_VERIFIER=llm` never reaches `ctx.client.session.promptAsync` | Inspect `client: ctx?.client` threading into `maybeVerifyGoal`. |

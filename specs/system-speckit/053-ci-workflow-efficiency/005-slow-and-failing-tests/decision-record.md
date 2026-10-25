@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: slow and failing tests"
-description: "The ten design choices this phase freezes: the one-setting probe copy, the CLI-only flip, the two-way shard fallback, the behavioural comment, the re-check before the fix, the no-retry rule, the fast-fail drift step, the filed-root-cause branch, the natural-run green watch, and the five stale confirmations. No operator decision gates this phase."
+description: "The eleven design choices this phase freezes: the one-setting probe copy, the CLI-only flip, the two-way shard fallback, the behavioural comment, the re-check before the fix, the no-retry rule, the fast-fail drift step, the filed-root-cause branch, the natural-run green watch, the five stale confirmations and the waiver of the CLI step bar. The operator's rulings of 2026-10-24 and 2026-10-25 are recorded as amendments and in the last record."
 trigger_phrases:
   - "slow and failing tests decision record"
   - "file parallelism probe adr"
@@ -11,13 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/005-slow-and-failing-tests"
-    last_updated_at: "2026-10-23T14:05:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded ten proposed ADRs for the planned phase"
-    next_safe_action: "Run the phase's tasks from T001"
-    blockers:
-      - "002-rebuild-fanout-removal baseline pending; the 001 dataset stands in as provisional"
-      - "runtime/cli/dist and the deep-loop and advisor trees are not installed in this worktree"
+    last_updated_at: "2026-10-25T07:20:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Recorded the AC-003 waiver as ADR-011 and accepted ADR-005 to ADR-009"
+    next_safe_action: "Phase closed; no further work in this phase"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,11 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-005-slow-and-failing-tests"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Do the 183 CLI test files share a mutable fixture that only collides under parallelism?"
-      - "Will 10 green runs accumulate at this repository's traffic?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Do the 183 CLI test files share a mutable fixture that only collides under parallelism? The probe found parallel-only 30 s timeouts with an empty collision log and took the shard (ADR-001)."
+      - "Will 10 green runs accumulate at this repository's traffic? Two workflows did and deep-loop-runtime closed through a filed row (ADR-008)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: slow and failing tests
@@ -47,9 +45,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Amended 2026-10-24, operator ruling recorded |
 | **Date** | 2026-10-23 |
-| **Deciders** | Plan author; no operator decision |
+| **Deciders** | Plan author; operator ruling of 2026-10-24 (question tool) |
 
 ---
 
@@ -73,6 +71,8 @@ The `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-
 **We chose**: copy the real config to `vitest.config.parallel-probe.ts` beside it, flip only the `cli` project's `fileParallelism`, run the project three times, delete the copy, and edit the real file only when all three runs exit 0.
 
 **How it works**: the copy is byte-identical apart from one line, which a `diff` against a `sed`-rewritten copy proves. The three runs write `scratch/r19-run-{1,2,3}.log`, and the copy is deleted in T009 before T011 or T013 touches a real file.
+
+**Amendment (2026-10-24, operator ruling, written after the data)**: the probe did not run clean. The serial run passed all 183 collected files; parallel run 1 passed, and parallel runs 2 and 3 each failed one test with a 30-second timeout (`tests/auto-detection-fixes.vitest.ts` and `tests/trigger-phrase-no-prose-bigrams.vitest.ts`), with an empty collision log. The planned rules only named a collision token (`EEXIST`, `EADDRINUSE`, `SQLITE_BUSY`) as the shard trigger, so the planned T010 script would have stopped as unclassified and its Stop-if fired. The operator ruled on 2026-10-24, after seeing these rows, to accept the shard: a timeout that appears only in parallel rows while the serial row passed counts as a concurrency result alongside the collision tokens. This ruling is a disclosed deviation from the planned rule, not a reading of it.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -147,7 +147,7 @@ The `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: the probe selected the shard (see Amendment, 2026-10-24) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -173,6 +173,8 @@ Five `fileParallelism` sites live in four files, because `.opencode/skills` is a
 **We chose**: set `fileParallelism: true` on the `cli` project only, and leave the four other sites serial.
 
 **How it works**: T012 replaces the one line at `:67` with a three-line reason and the new value. The root project's `:50` line is untouched, and the acceptance proves one `true` and one `false` remain in that file.
+
+**Amendment (2026-10-24)**: the probe selected the shard, so no `fileParallelism` site was flipped. `rg -n 'fileParallelism' .skilled/skills --glob 'vitest.config.ts'` still finds 5 sites in 4 files, all `false`, and `vitest.config.ts` is unmodified. The comment rewrite and the setting flip are skipped by the shard branch; the `cli` project stays serial inside each shard.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -247,9 +249,9 @@ Five `fileParallelism` sites live in four files, because `.opencode/skills` is a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Amended 2026-10-25, operator rulings recorded |
 | **Date** | 2026-10-23 |
-| **Deciders** | Plan author; no operator decision |
+| **Deciders** | Plan author; operator ruling of 2026-10-24 (question tool) |
 
 ---
 
@@ -273,6 +275,11 @@ If the probe collides, the config stays serial and the step still has to fall un
 **We chose**: run `--shard=1/2` and `--shard=2/2` as two background processes inside the existing step, capture both pids, wait for each with `|| status=1`, and exit with the accumulated status.
 
 **How it works**: T013 replaces the three-line `run:` block with ten lines: `set -uo pipefail`, the same `cd`, the two shards with `&`, `first=$!`, `second=$!`, `status=0`, two `wait` lines and `exit "$status"`. T014 proves both halves locally.
+
+**Amendment (2026-10-24, operator ruling)**: the count-based `--shard=1/2` and `--shard=2/2` split was committed and measured, and it did not reach the ceiling. Spec-Kit Check run 40090109005 timed the `CLI vitest project` step at 643 s and run 40094302049 at 482 s, against 791 s in run 39909844384; the reference moved between 776 s and 950 s across four planning samples, so two samples do not establish a gain, and both are over 400 s. The cause is the split: the local sequential halves took 145.13 s and 561.58 s, and one file, `tests/upgrade-legacy.vitest.ts`, takes about half of the project's serial time (369.0 of 709 s of per-file time in a timing run), so a file-count split cannot balance it. The spec's rule for a miss is to re-measure and not relax the ceiling, and the operator ruled on 2026-10-24 to keep two shards and rebalance them by hand. The step now runs two concurrent processes inside the existing step, with the same wait-and-propagate block: the first runs `tests/upgrade-legacy.vitest.ts` alone and the second runs every other file through `--exclude`. This stays inside G3 (two shards, one step, no job count or check name change). Local check, one process after the other: 313.90 s for the heavy file (exit 0, 67 tests) and 356.56 s for the 182 others (exit 0, 1995 passed, 20 skipped), covering all 183 files and the serial run's 2062 passed and 20 skipped. AC-003 stays Unmet, awaiting CI measurement after the commit; the cost of the hand-kept split is that a new slow file, or a rename of the heavy one, changes the balance (a rename fails loudly, because the first process then finds no test file).
+**Amendment (2026-10-24, operator ruling on AC-003)**: the plan let the first `Spec-Kit Check` run after the rebalanced split decide whether the `CLI vitest project` step is under 400 s. That run, 40102448836 at 75b27df21c, took 459 s, and the next, 40107239895 at e00fef3e76, took 299 s, against 791 s in run 39909844384. Shared runners vary this much from run to run, so one sample is a poor judge. The operator ruled to judge AC-003 on the median of the five green `Spec-Kit Check` runs on main that the phase already collects for its green streak: AC-003 is Met when that median is under 400 s. The 400 s ceiling is unchanged. The runs count only when their head contains 04d9b0c84f. Until five exist, AC-003 stays Unmet, awaiting runs N of 5.
+
+**Amendment (2026-10-25, operator ruling on AC-003)**: five green runs now exist, and the median is 451 s, over the 400 s bar. ADR-011 records the operator's ruling to close AC-003 by waiver. The split itself is unchanged.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -346,7 +353,7 @@ If the probe collides, the config stays serial and the step still has to fall un
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: the probe selected the shard (see Amendment, 2026-10-24) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -444,7 +451,7 @@ The repository bans ephemeral identifiers in code comments: no spec path, packet
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: the 40-run re-pull is in `scratch/r21-recheck.md` (three run tables, AC-004 is Met) and the closure gate passes |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -543,7 +550,7 @@ The research phase recorded deep-loop-runtime at 13 failures in 40, diagram-corp
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: the no-retry check is clean (AC-007 is Met) and AC-006 settled through a filed row and not through a retry or a rerun |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -568,7 +575,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 **We chose**: fix the cause the log names, and add no `retry`, `rerun` or `continue-on-error` to any of the three workflows. A workflow that stays red after its fix gets a filed root cause instead of a retry.
 
-**How it works**: T029 greps the three workflows and the staged diff for the three tokens and records `retry-proof: clean`. T037 appends a `filed` row for any workflow still red, and AC-006 accepts that branch.
+**How it works**: T029 greps the three workflows and the unstaged diff of the workflow files for the three tokens and records `retry-proof: clean`. T037 appends a `filed` row for any workflow still red, and AC-006 accepts that branch.
 <!-- /ANCHOR:adr-006-decision -->
 
 ---
@@ -642,7 +649,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: the fast-fail step sits above the suite in `.github/workflows/deep-loop-runtime.yml` (commit `e094a852ed`) and was proven with exit 2 then exit 0 (AC-009 is Met) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -742,7 +749,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: AC-006 is Met through the filed row for deep-loop-runtime, the only red workflow (the writer-lock race goes to `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -841,7 +848,7 @@ R21's acceptance is 10 consecutive green runs for each of three workflows, or a 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted 2026-10-25: diagram-corpus was dispatched seven times on main (all `workflow_dispatch`, all `success`), skill-advisor-stress reached ten natural `success` runs, and deep-loop-runtime, which has no dispatch trigger, closed through the filed branch (ADR-008). No failed run was rerun |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 
@@ -940,9 +947,9 @@ The 10-green acceptance needs ten runs per workflow. `diagram-corpus.yml` declar
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Amended 2026-10-24, operator ruling recorded |
 | **Date** | 2026-10-23 |
-| **Deciders** | Plan author; no operator decision |
+| **Deciders** | Plan author; operator ruling of 2026-10-24 (question tool) |
 
 ---
 
@@ -966,6 +973,8 @@ Five workflows carry one old failure each: repo-rules-corpus on 2026-09-18 at `6
 **We chose**: record one row per workflow with the failure date, the failure SHA, the failure run id, the newest green run id and the verdict `closed`, and change no file for them.
 
 **How it works**: T029 reads the newest failure in the last 100 runs and the newest run for each workflow, writes the five rows, and requires the newest run to be `success`. A workflow with no failure in its last 100 runs gets a `no failure in 100` row instead.
+
+**Amendment (2026-10-24, operator ruling)**: T029's Stop-if fired on routing-registry-drift. Its newest failures are `e3beac65f4` (run 40089268105) and `db30b0f543` (run 40089318887), both dated 2026-10-24 and newer than the planned 2026-10-17 `407de0d` failure. Both failed with `STALE COMPILED: skill-graph.json generated_at 2026-10-17T10:21:42 is older than the newest source stamp 2026-10-24T00:00:00Z (sk-code)`. `e3beac65f4` is the sk-code hub commit that moved the stamp; `db30b0f543` is an OpenCode pin commit stacked on it. The fix is `1218b94938`, which regenerated the compiled skill graph, and all 15 workflow runs on that commit are `success` (`gh api repos/{owner}/{repo}/actions/runs?head_sha=1218b94938b2e0b1bed55907425f50368caf8537` returned `total_count` 15, all `success`), including routing-registry-drift run 40089725657. The operator ruled on 2026-10-24 to close the workflow on this evidence: the row records the 2026-10-24 failures and the `1218b94938` fix, and the verdict is `closed`.
 <!-- /ANCHOR:adr-010-decision -->
 
 ---
@@ -1029,5 +1038,105 @@ Five workflows carry one old failure each: repo-rules-corpus on 2026-09-18 at `6
 **How to roll back**: delete the `## Stale failures` section.
 <!-- /ANCHOR:adr-010-impl -->
 <!-- /ANCHOR:adr-010 -->
+
+---
+
+<!-- ANCHOR:adr-011 -->
+## ADR-011: AC-003 closes by waiver after five runs read a median of 451 s
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-25 |
+| **Deciders** | Operator ruling of 2026-10-25 (question tool) |
+
+---
+
+<!-- ANCHOR:adr-011-context -->
+### Context
+
+The ADR-003 amendment of 2026-10-24 made AC-003 depend on the median of five green `Spec-Kit Check` runs on main, with the 400 s bar unchanged. Those five runs now exist: they are the first five consecutive green runs since 75b27df21c, and every head contains 04d9b0c84f. The `CLI vitest project` step read 459 s (run 40102448836), 299 s (40107239895), 313 s (40123498034), 451 s (40125544852) and 467 s (40147796034, head 8ff7da700d). Sorted they read 299, 313, 451, 459 and 467, so the median is 451 s and the AC-003 awk check prints `NOT_MET`. Against the 791 s reference the median is a 43 percent cut ((791 - 451) / 791 = 0.4298), and the five samples span 299 to 467 s, which is the runner spread. A sixth green run (40170908787 at 1fd95b59cd) read 324 s. It is not one of the five. One run between the fifth and the sixth (40149635448 on 03abdb20d8) was red for a cause unrelated to this phase: a workflow-condition assertion in `tests/trigger-index-rebuild-workflow.vitest.ts`, changed by another phase and fixed in 1fd95b59cd.
+
+### Constraints
+
+- A waived row must name an ADR that exists, and the waiver must not read as a pass.
+- The five runs are recorded as measured. The median is not moved by dropping a slow run or by swapping in the sixth run.
+- The 400 s bar stays visible in the AC-003 row, because the ruling waives the criterion and does not change the bar.
+<!-- /ANCHOR:adr-011-context -->
+
+---
+
+<!-- ANCHOR:adr-011-decision -->
+### Decision
+
+**We chose**: close AC-003 by waiver on the operator's ruling of 2026-10-25, with the five runs recorded as measured, the 43 percent cut against the 791 s reference and the 299 to 467 s runner spread noted, and the 400 s bar kept in the row text.
+
+**How it works**: the AC-003 Status cell reads `Waived` and its Waiver cell reads `ADR-011, operator ruling of 2026-10-25`. `scratch/r20-ci-step.md` holds five `| after |` rows and, below them, the `## Median and waiver` section with the awk output and the `## Green streak` section with `all_green: true`. The two later runs sit in their own table and do not count. No workflow file changes under this decision.
+<!-- /ANCHOR:adr-011-decision -->
+
+---
+
+<!-- ANCHOR:adr-011-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Waive on the measured median (chosen)** | The record keeps the real figure and the real cut, and the bar stays visible | The bar of 400 s is not met | 8/10 |
+| Hold the phase open for more runs | A later window might read under 400 s | The sample is chosen after the data, and the step moves with runner load, so the wait has no end | 3/10 |
+| Mark the row Met by raising the bar | The row would read green | It rewrites the bar after the measurement, which the spec forbids | 1/10 |
+
+**Why this one**: the split halved the heavy tail and the figure is on record, so a waiver states exactly what happened. Moving the bar or the sample would hide it.
+<!-- /ANCHOR:adr-011-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-011-consequences -->
+### Consequences
+
+**What improves**:
+- The phase closes with the measured figures and the ruling that accepted them.
+- The 400 s bar and the 451 s median sit in the same row, so a reader sees the gap.
+
+**What it costs**:
+- The step is 51 s over its bar at the median. Mitigation: the five runs and the spread are on file, so a later phase that sizes timeouts reads the measured range and not the bar.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The waiver is read as a pass | M | The row says `Waived`, never `Met`, and its Verification cell prints `NOT_MET` |
+| The hand-kept split drifts further when a new slow file is added | M | Known Limitation 1 in `implementation-summary.md` names it, and a renamed heavy file fails the first process loudly |
+<!-- /ANCHOR:adr-011-consequences -->
+
+---
+
+<!-- ANCHOR:adr-011-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The awk check prints `NOT_MET`, and a row cannot be Met on that output |
+| 2 | **Beyond Local Maxima?** | PASS | Three treatments compared, including holding the phase open |
+| 3 | **Sufficient?** | PASS | Five runs, the median, the reference cut and the spread are all on file |
+| 4 | **Fits Goal?** | PASS | It is R20's measurement clause closed by the operator, as the acceptance document allows for a waived row |
+| 5 | **Open Horizons?** | PASS | The five rows are the baseline any later change to the split compares against |
+<!-- /ANCHOR:adr-011-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-011-impl -->
+### Implementation
+
+**What changes**:
+- `acceptance-criteria.md`: the AC-003 row and the closure statement.
+- `scratch/r20-ci-step.md`: the fifth `| after |` row, the later-runs table, the `## Median and waiver` section and the `## Green streak` section.
+
+**Gated tasks**: T034, T035, T038.
+
+**How to roll back**: restore `Unmet` in the AC-003 Status cell and `-` in its Waiver cell, and delete this record, if the operator withdraws the ruling. The workflow is unchanged, so nothing else reverts.
+<!-- /ANCHOR:adr-011-impl -->
+<!-- /ANCHOR:adr-011 -->
 
 ---

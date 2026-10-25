@@ -30,8 +30,8 @@ const NON_ROUTED_ALLOWLIST = new Set([
 ]);
 // A hub may ship without an example surface, so each list keeps only the packets present on disk.
 const onDisk = (packet) => fs.existsSync(path.join(SKCODE, packet));
-const SURFACES = ['sk-code-webflow', 'sk-code-skilled'].filter(onDisk);
-const SURFACE_PACKETS = new Set([...SURFACES, ...['sk-code-obsidian'].filter(onDisk)]);
+const SURFACES = ['sk-code-ci', 'sk-code-skilled'].filter(onDisk);
+const SURFACE_PACKETS = new Set([...SURFACES]);
 // The hub-level shared controls are declared once in ROUTER.md: its SHARED_CONTROL_RESOURCES
 // list plus its DEFAULT_RESOURCE preamble, and leg 2 reads both. A parent-map path under a
 // workflow mode packet is that packet's own leaf in leaf-manifest.json, not a shared control.
@@ -132,7 +132,7 @@ function proseExplicitPaths(problems) {
     problems.push(`ROUTER.md section anchors not found (start=${start}, end=${end}), so the prose scan would be empty`);
     return new Set();
   }
-  const re = /`((?:shared|references|assets|webflow|opencode|animation)\/[^`*{}\s]+\.md)`/g;
+  const re = /`((?:shared|references|assets|opencode|animation)\/[^`*{}\s]+\.md)`/g;
   const set = new Set();
   let m;
   while ((m = re.exec(md.slice(start, end))) !== null) set.add(m[1]);

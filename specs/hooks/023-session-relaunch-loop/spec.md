@@ -68,6 +68,8 @@ The nine child phases define a runtime-neutral core, the runtime-specific trigge
 - Phase 007 lets a session with no Gate 3 answer write its handoff note without an operator prompt, and pins the OpenCode default model.
 - Phase 008 fixes the fifteen findings of the third deep review, a DeepSeek and Luna fan-out run after phase 007.
 - Phase 009 fixes the verified findings of the DeepSeek and Luna research run after phase 008, moves the decisions every adapter repeats into the shared core and adds an adapter conformance suite.
+- Phases 24 to 28 keep the session goal across a hand-over: four probes settle what Claude, Codex and Hermes allow, the note and launcher carry the sender's goal packet, every runtime binds or requests the goal in the receiver, and live hops prove it.
+- Phase 29 captures the thin live evidence the phase 23 runs left and corrects two playbook lines that disagree with a run.
 
 ### Out of Scope
 - Changing autoCompactEnabled or autoCompactWindow.
@@ -123,6 +125,17 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 20 | 020-fork-session-guards/ | [Phase 20 scope] | Pending |
 | 21 | 021-fork-nudge-and-precompact-guards/ | [Phase 21 scope] | Pending |
 | 22 | 022-runtime-certainty-claude-pi-opencode/ | Live certification of S1 to S13 on Claude, Pi and OpenCode, with the defects it found fixed test-first | Complete |
+| 23 | 023-relaunch-cancel-and-test-isolation/ | Test isolation from the loop environment, withdraw or cancel of a prepared hand-over, and a hop line written only when the wrapper relaunches | Complete |
+| 24 | 024-goal-rebind-claude-codex-hermes-probes/ | Run four recorded probes with controls: Claude start prompt as a command, a Claude start hook sending `/goal`, a Codex goal from seed or hook context, and Hermes with `HERMES_SPEC_FOLDER`, then name the phase 27 path | Complete |
+| 25 | 025-goal-binding-record-and-launcher/ | The hand-over note records the sender's goal packet, claim and `skilled-loop` pass it to the receiver, and `SESSION_RELAUNCH_GOAL=0` turns it off | Complete |
+| 26 | 026-goal-rebind-shared-core-and-opencode/ | Pi, Devin, Cursor, Hermes and OpenCode bind the hand-over goal packet on the first turn when they have no goal of their own | Complete |
+| 27 | 027-goal-rebind-claude-and-codex/ | A Claude or Codex receiver sets the hand-over goal from `goal.md` on the path phase 24 proved, within the 4,000-character slice limit, or asks for the fenced slice | Complete |
+| 28 | 028-goal-rebind-live-proof-and-docs/ | Live hops show the goal surviving a hand-over on Claude and Pi with switch-off and no-goal controls, a Codex no-goal control, and the receiver half on OpenCode 2 and Devin; the OpenCode 2 hop failed at first and passed after phase 30, Devin and Cursor have no hop path, Cursor and Hermes were skipped; playbook scenarios and doc updates landed | Complete |
+| 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Complete |
+| 30 | 030-opencode2-killer-target/ | An OpenCode 2 hop reaches its receiver: the killer signals the loop's child instead of the plugin's server, a signalled exit 130 counts as the hop, and the post-signal grace covers a slow TUI exit | Complete |
+| 31 | 031-relaunch-model-and-effort/ | A relaunched session starts on the sender's model and effort on every runtime that takes them at launch, from the launch flags or the sender's current state | Complete |
+| 32 | 032-opencode2-standalone-replay/ | The wrapper starts OpenCode 2 with `--standalone` on the first launch and every relaunch and drops the `-m` replay it rejects, so the loop hops more than once with no flag to remember | Complete |
+| 33 | 033-research-remediation/ | Nine children fix what the research after phase 32 verified: model and effort replay as one set, a locked consume that honours a withdraw, live settings and the goal packet on manual claims, hop validation, four test gaps, a dated compaction pointer, per-state claim errors and Pi arming on `agent_settled` | Draft |
 
 ### Phase Transition Rules
 
@@ -156,6 +169,17 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 019-fork-compact-pointer-research | 020-fork-session-guards | [Criteria TBD] | [Verification TBD] |
 | 020-fork-session-guards | 021-fork-nudge-and-precompact-guards | [Criteria TBD] | [Verification TBD] |
 | 021-fork-nudge-and-precompact-guards | 022-runtime-certainty-claude-pi-opencode | [Criteria TBD] | [Verification TBD] |
+| 022-runtime-certainty-claude-pi-opencode | 023-relaunch-cancel-and-test-isolation | Phase 22 live matrix closed | 022 acceptance-criteria.md all rows Met, Waived or Superseded |
+| 023-relaunch-cancel-and-test-isolation | 024-goal-rebind-claude-codex-hermes-probes | Phase 23 is Complete and the operator asked for goal persistence across a hand-over | `validate.sh 023-relaunch-cancel-and-test-isolation --strict` RESULT: PASSED |
+| 024-goal-rebind-claude-codex-hermes-probes | 025-goal-binding-record-and-launcher | None. Phase 25 needs no probe verdict, so the two can run side by side | Phase 25 baseline gate recorded |
+| 025-goal-binding-record-and-launcher | 026-goal-rebind-shared-core-and-opencode | Phase 25 is Complete and the launcher hands the packet to the receiver | `validate.sh 025-goal-binding-record-and-launcher --strict` RESULT: PASSED, and the relaunch gate is at or above its baseline |
+| 026-goal-rebind-shared-core-and-opencode | 027-goal-rebind-claude-and-codex | Phases 24 and 25 are Complete, so the probe verdicts pick the Claude and Codex path | `024` implementation summary holds a verdict per probe and names the phase 27 path |
+| 027-goal-rebind-claude-and-codex | 028-goal-rebind-live-proof-and-docs | Phases 25 to 27 are Complete | `validate.sh` strict RESULT: PASSED for each, and the goal suites at their baselines |
+| 023-relaunch-cancel-and-test-isolation | 029-relaunch-evidence-gaps-and-playbook-drift | Phase 23 is Complete and its live runs recorded the four evidence gaps and two playbook lines | The gaps are listed in the 023 implementation summary |
+| 028-goal-rebind-live-proof-and-docs | 030-opencode2-killer-target | Phase 28 recorded the OpenCode 2 hop as Unmet with its run evidence | `028` AC-009 names the failed run and the inferred cause |
+| 030-opencode2-killer-target | 031-relaunch-model-and-effort | Phase 30 is Complete and committed, because both change `skilled-loop` | `validate.sh 030-opencode2-killer-target --strict` RESULT: PASSED |
+| 030-opencode2-killer-target | 032-opencode2-standalone-replay | Phase 30 is pushed, and its live hop relied on a PATH shim that added `--standalone` | The 030 harness `run-hop.sh` holds the shim |
+| 032-opencode2-standalone-replay | 033-research-remediation | Phase 32 is Complete and the research after it has a merged report reviewed against the code | `validate.sh 032-opencode2-standalone-replay --strict` RESULT: PASSED, and `research/research.md` sections 9 to 15 hold the findings |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -166,6 +190,15 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 - Do pre-commit and CI run sync checks with --check?
 - Do the Pi and OpenCode spikes verify their usage events, nudge APIs, arm events and interactive seed and name flags well enough for an AUTO verdict?
 - What interactive seed syntax, Stop or sessionEnd events and command mirror forms do the Codex, Cursor, Devin and Hermes spikes verify, and which verdict does each runtime receive?
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Deep research after phase 032 (10 iterations, `research/research.md`) left these open:
+
+- A live Pi or Hermes model with no live provider keeps the launch provider (`.skilled/bin/skilled-loop:803-805`).
+- `consume` reads the relaunch record outside its lock and does not recheck its status, so a late withdraw can lose to an approved hop (`.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:693-723`).
+- Whether a Cursor session can replay another Cursor session's model from the shared `cli-config.json`, and whether manual Cursor and Devin claims should carry the goal packet.
+- Coverage gaps: negative or fractional persisted hops, `--server=` on OpenCode 2, a missing runtime binary, two simultaneous claims, and a reused note while the goal switch is off.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

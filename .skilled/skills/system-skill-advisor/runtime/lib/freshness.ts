@@ -10,6 +10,7 @@ import {
   statSync,
 } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { createPrivateSkillLinkCheck } from './private-skill-target.js';
 import {
   ADVISOR_SOURCE_CACHE_TTL_MS,
   getOrCompute,
@@ -139,8 +140,12 @@ function listSkillSlugs(skillRoot: string): string[] {
   if (!existsSync(skillRoot)) {
     return [];
   }
+  const isTrustedLink = createPrivateSkillLinkCheck(skillRoot);
   return readdirSync(skillRoot, { withFileTypes: true })
-    .filter(entry => entry.isDirectory() && !entry.name.startsWith('.'))
+    .filter(entry => !entry.name.startsWith('.') && (entry.isDirectory()
+      || (entry.name.startsWith('local-')
+        && entry.isSymbolicLink()
+        && isTrustedLink(join(skillRoot, entry.name)))))
     .map(entry => entry.name)
     .sort((left, right) => left.localeCompare(right));
 }

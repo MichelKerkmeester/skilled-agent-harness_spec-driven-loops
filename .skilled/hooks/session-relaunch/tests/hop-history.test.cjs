@@ -130,13 +130,26 @@ function runCli(sandbox, args) {
   });
 }
 
-test('a relaunch decision records a hand-over line with the note goal and hop number', (t) => {
+function handOverArgs(handoffPath, hop = 3) {
+  return ['hand-over', '--handoff', handoffPath, '--hop', String(hop), '--runtime', 'claude'];
+}
+
+test('hand-over records a hand-over line with the note goal and hop number', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeNote(sandbox);
   armRecord(sandbox, handoffPath);
 
-  const result = runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]);
+  const decision = runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]);
+  assert.equal(decision.status, 0, decision.stderr);
+  // The wrapper can still decline after an approved decision, so the decision records nothing.
+  assert.deepEqual(historyLines(sandbox), []);
+
+  const result = runCli(sandbox, handOverArgs(handoffPath));
   assert.equal(result.status, 0, result.stderr);
+  // The wrapper reads nothing from it, so a stdout that never parses cannot hold the hop back.
+  assert.equal(result.stdout, '');
+  // The record is consume's to remove, so hand-over leaves it for that one call.
+  assert.equal(fs.existsSync(core.relaunchFilePath(LOOP_ID, sandbox.env)), true);
 
   const lines = historyLines(sandbox);
   assert.equal(lines.length, 1);
@@ -147,6 +160,43 @@ test('a relaunch decision records a hand-over line with the note goal and hop nu
   assert.equal(fields[4], sandbox.repoRoot);
   assert.equal(fields[5], GOAL);
   assert.equal(fields[6], 'handoff.md');
+});
+
+test('hand-over records nothing when the note is no longer open', (t) => {
+  const sandbox = createSandbox(t);
+  fs.writeFileSync(sandbox.flagsFile, 'SESSION_RELAUNCH_NOTIFY_HOPS=1\n');
+  const handoffPath = writeNote(sandbox);
+  armRecord(sandbox, handoffPath);
+  core.claimHandoff(handoffPath, { sessionId: SESSION_ID });
+
+  const result = runCli(sandbox, handOverArgs(handoffPath));
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(historyLines(sandbox), []);
+  assert.equal(fs.existsSync(sandbox.noticeLog), false);
+});
+
+test('hand-over refuses a note outside the handoffs directory and records nothing', (t) => {
+  const sandbox = createSandbox(t);
+  fs.writeFileSync(sandbox.flagsFile, 'SESSION_RELAUNCH_NOTIFY_HOPS=1\n');
+  const elsewhere = path.join(sandbox.root, 'elsewhere.md');
+  fs.copyFileSync(writeNote(sandbox), elsewhere);
+
+  const result = runCli(sandbox, handOverArgs(elsewhere));
+  assert.equal(result.status, 2);
+  assert.match(result.stderr, /handoff path must be inside the session-relaunch handoffs directory/);
+  assert.deepEqual(historyLines(sandbox), []);
+  assert.equal(fs.existsSync(sandbox.noticeLog), false);
+});
+
+test('hand-over rejects a hop that is not a positive whole number', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox);
+  for (const hop of ['0', '-1', 'two', '1.5']) {
+    const result = runCli(sandbox, handOverArgs(handoffPath, hop));
+    assert.equal(result.status, 2, hop);
+  }
+  assert.deepEqual(historyLines(sandbox), []);
 });
 
 test('a declined relaunch records nothing', (t) => {
@@ -165,6 +215,15 @@ test('claim and complete record the receiving session picking the note up and fi
 
   const events = historyLines(sandbox).map((line) => line.split('\t')[1]);
   assert.deepEqual(events, ['claimed', 'done']);
+
+  // The claim names its session, so a note its own writer claimed reads differently
+  // from a hand-over; the done line has no session to name.
+  const [claimedLine, doneLine] = historyLines(sandbox);
+  assert.equal(claimedLine.split('\t')[7], 'receiver');
+  assert.equal(doneLine.split('\t').length, 7);
+  const printed = runCli(sandbox, ['history']);
+  assert.equal(printed.status, 0, printed.stderr);
+  assert.match(printed.stdout, /claimed\s+claude\s+repo by receiver\s/);
 });
 
 test('history prints the latest lines and says when no hop is recorded yet', (t) => {
@@ -220,16 +279,14 @@ test('history rejects a --last value that is not a positive whole number', (t) =
 
 test('the hand-over notice stays off by default', (t) => {
   const sandbox = createSandbox(t);
-  armRecord(sandbox, writeNote(sandbox));
-  assert.equal(runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]).status, 0);
+  assert.equal(runCli(sandbox, handOverArgs(writeNote(sandbox))).status, 0);
   assert.equal(fs.existsSync(sandbox.noticeLog), false);
 });
 
 test('the hand-over notice fires once the switch is set in the hook-flags file', (t) => {
   const sandbox = createSandbox(t);
   fs.writeFileSync(sandbox.flagsFile, 'SESSION_RELAUNCH_NOTIFY_HOPS=1\n');
-  armRecord(sandbox, writeNote(sandbox));
-  assert.equal(runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]).status, 0);
+  assert.equal(runCli(sandbox, handOverArgs(writeNote(sandbox))).status, 0);
 
   const notice = fs.readFileSync(sandbox.noticeLog, 'utf8');
   assert.match(notice, /Session handed over/);
@@ -279,4 +336,72 @@ test('history adds an open-notes line until the note is claimed', (t) => {
 
   runCli(sandbox, ['claim', handoffPath, '--session', 'receiver-0001']);
   assert.equal(runCli(sandbox, ['history']).stdout.includes('open notes:'), false);
+});
+
+test('history renders a withdrawn line with the session that withdrew the hand-over', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox);
+
+  assert.equal(
+    hopHistory.recordHop('withdrawn', handoffPath, { env: sandbox.env, session: SESSION_ID }),
+    true,
+  );
+
+  const [line] = hopHistory.readHistory({ env: sandbox.env });
+  assert.match(line, /withdrawn\s+claude\s+repo by session-\s/);
+  assert.match(line, /\[handoff\.md\]$/);
+});
+
+test('open notes report a withdrawn note apart from one nobody has claimed', (t) => {
+  const sandbox = createSandbox(t);
+  const withdrawnPath = writeNote(sandbox, '20261020T040936Z-session-a.md');
+  writeNote(sandbox, '20261021T040936Z-session-b.md');
+  hopHistory.recordHop('withdrawn', withdrawnPath, { env: sandbox.env, session: SESSION_ID });
+
+  assert.deepEqual(
+    hopHistory.openNotes({ env: sandbox.env }).map(({ name, withdrawn }) => [name, withdrawn]),
+    [['20261020T040936Z-session-a.md', true], ['20261021T040936Z-session-b.md', false]],
+  );
+  assert.equal(
+    hopHistory.openNotesLine({ env: sandbox.env }),
+    'open notes: 1 handoff note not claimed yet, oldest 20261021T040936Z-session-b.md;'
+      + ' 1 withdrawn note still with its session',
+  );
+});
+
+test('open notes that are all withdrawn say only that', (t) => {
+  const sandbox = createSandbox(t);
+  for (const name of ['20261020T040936Z-session-a.md', '20261021T040936Z-session-b.md']) {
+    hopHistory.recordHop('withdrawn', writeNote(sandbox, name), { env: sandbox.env });
+  }
+
+  const line = hopHistory.openNotesLine({ env: sandbox.env });
+  assert.equal(line, 'open notes: 2 withdrawn notes still with their sessions');
+  const printed = runCli(sandbox, ['history']);
+  assert.match(printed.stdout, /^open notes: 2 withdrawn notes still with their sessions$/m);
+  assert.doesNotMatch(printed.stdout, /not claimed yet/);
+});
+
+test('a note handed over again after a withdrawal counts as unclaimed work again', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox);
+  hopHistory.recordHop('withdrawn', handoffPath, { env: sandbox.env });
+  hopHistory.recordHop('handed-over', handoffPath, { env: sandbox.env, hop: 1 });
+
+  assert.equal(
+    hopHistory.openNotesLine({ env: sandbox.env }),
+    'open notes: 1 handoff note not claimed yet, oldest handoff.md',
+  );
+});
+
+test('a history file written before withdrawn existed still reads', (t) => {
+  const sandbox = createSandbox(t);
+  seedHistory(sandbox, 2);
+  writeNote(sandbox);
+
+  assert.equal(hopHistory.readHistory({ env: sandbox.env }).length, 2);
+  assert.equal(
+    hopHistory.openNotesLine({ env: sandbox.env }),
+    'open notes: 1 handoff note not claimed yet, oldest handoff.md',
+  );
 });

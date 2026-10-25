@@ -52,7 +52,7 @@ Every task below names one file, quotes the anchor text it edits, gives that anc
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 DECISION D6 (operator yes required) - approve or change the timeout floor (AC-010)
+### T001 [x] DECISION D6 (operator yes required) - approve or change the timeout floor (AC-010)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the `D6=` line.
 
@@ -75,9 +75,11 @@ Rollback: delete the `D6=` line.
 
 Stop and escalate if: the `D6=` line is absent, or its value is neither `5` nor `10`.
 
+Evidence: `grep -cE '^D6=(5|10)$' scratch/decisions.md` printed `1`; the file holds `D6=10`, and it was not rewritten.
+
 ---
 
-### T002 Record the pre-phase baseline (AC-009)
+### T002 [x] Record the pre-phase baseline (AC-009)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-baseline.md` (new file). Anchor: none.
 
@@ -103,9 +105,11 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hy
 
 Stop and escalate if: the file counts are neither the scaffold set nor the post-`004` set, or the `## Pre-phase tree` block is not written.
 
+Evidence: `BASELINE_PRESENT`; 32 files; 43 jobs; 5 files with a timeout line; 12 files without a permissions block; `SHA_PRESENT`; the `## Pre-phase tree` count is `1`. The tree is the post-004 set the task allows.
+
 ---
 
-### T003 [B] Confirm the dependency phases and record the final inventory (AC-003, AC-005)
+### T003 [x] Confirm the dependency phases and record the final inventory (AC-003, AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/inventory.md` (new file). Anchor: none.
 
@@ -140,9 +144,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: `job-shape-rules.md` is absent, or `grep -c 'max(<floor>'` is not `1`, or the parse prints fewer than `40` lines, or the inventory's row count differs from the parse count.
 
+Evidence: dependency state read from the tree. `hooks: merged`; `grep -c plugin-and-hook-tests` printed `1`; `grep -c 'max(<floor>'` printed `1`; the parse found 43 jobs in 32 files; `inventory.md` holds 44 `| ` rows (43 plus the header). The marker was cleared because phases 003, 004 and 005 report In progress for measurement only while the workflow files already hold their landed shape (concurrency blocks, no hook workflow, merged plugin job, composite setup action).
+
 ---
 
-### T004 Record the switch group assignment (AC-006)
+### T004 [x] Record the switch group assignment (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md` (new file). Anchor: none.
 
@@ -168,9 +174,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the group count is not `5`, or `extra` is not empty, or the file counts do not sum to the tree's file count.
 
+Evidence: 5 group rows; `missing [] extra []`. Counts read from the tree: FRESHNESS 8 files and 11 jobs, TESTS 17 and 24, REVIEW 3 and 3, REPORTS 2 and 3, MESSAGES 1 and 1; 31 switched files plus the exempt one is 32, and 42 switched jobs plus 1 is 43. These differ from the expected 9/13 and 16/22 only in the placement of `skill-doc-frontmatter.yml` (2 jobs), which the README table puts in the path-filtered (TESTS) row; the deviation is recorded in the file.
+
 ---
 
-### T005 Record the constraints the passes must respect (AC-005)
+### T005 [x] Record the constraints the passes must respect (AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md` (new file). Anchor: none.
 
@@ -190,9 +198,13 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the `if:` count is not four, or a quoted condition differs from the file.
 
+Evidence: 4 `CONSTRAINT ` lines. Before any edit the job-level `if:` grep returned four lines (`dependabot-auto-merge.yml:18`, `skill-doc-frontmatter.yml:62`, `trigger-index-rebuild.yml:33` and `:188`); the numbers differ from the plan because earlier phases moved them, and the quoted text matched.
+
 ---
 
-### T006 Capture the probe fork (operator input required) (AC-008)
+### T006 [x] Capture the probe fork (operator input required) (AC-008)
+
+Evidence: `grep -cE '^PROBE_FORK=[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' scratch/decisions.md` printed `1`; the value is `MichelKerkmeester/ci-switch-probe-throwaway`, a private throwaway repository the operator approved. A same-account fork is not possible, see `scratch/r26-probe.md`.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md:1`, anchor: the `D6=` line written by T001.
 
@@ -217,7 +229,7 @@ Stop and escalate if: no answer arrives, or the value is not an `<owner>/<repo>`
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation - R25 permissions and the Dependabot split
 
-### T007 Add the workflow-level permission block to `advisory-checks.yml` (AC-001)
+### T007 [x] Add the workflow-level permission block to `advisory-checks.yml` (AC-001)
 
 File: `.github/workflows/advisory-checks.yml:16`, anchor: `jobs:`.
 
@@ -237,9 +249,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse prints anything other than `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T008 Add the workflow-level permission block to `agent-mirror-sync.yml` (AC-001)
+### T008 [x] Add the workflow-level permission block to `agent-mirror-sync.yml` (AC-001)
 
 File: `.github/workflows/agent-mirror-sync.yml:6`, anchor: `jobs:`.
 
@@ -258,9 +272,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T009 Add the workflow-level permission block to `chart-corpus.yml` (AC-001)
+### T009 [x] Add the workflow-level permission block to `chart-corpus.yml` (AC-001)
 
 File: `.github/workflows/chart-corpus.yml:25`, anchor: `jobs:`.
 
@@ -279,9 +295,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25). The block sits above the comment that introduces `jobs:`, so that comment stays attached.
+
 ---
 
-### T010 Add the workflow-level permission block to `comment-hygiene.yml` (AC-001)
+### T010 [x] Add the workflow-level permission block to `comment-hygiene.yml` (AC-001)
 
 File: `.github/workflows/comment-hygiene.yml:6`, anchor: `jobs:`.
 
@@ -300,9 +318,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T011 Add the workflow-level permission block to `diagram-corpus.yml` (AC-001)
+### T011 [x] Add the workflow-level permission block to `diagram-corpus.yml` (AC-001)
 
 File: `.github/workflows/diagram-corpus.yml:25`, anchor: `jobs:`.
 
@@ -321,9 +341,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25). The block sits above the comment that introduces `jobs:`, so that comment stays attached.
+
 ---
 
-### T012 Add the workflow-level permission block to `markdown-link-integrity.yml` (AC-001)
+### T012 [x] Add the workflow-level permission block to `markdown-link-integrity.yml` (AC-001)
 
 File: `.github/workflows/markdown-link-integrity.yml:31`, anchor: `jobs:`.
 
@@ -342,9 +364,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T013 Add the workflow-level permission block to `playbook-operator-contract.yml` (AC-001)
+### T013 [x] Add the workflow-level permission block to `playbook-operator-contract.yml` (AC-001)
 
 File: `.github/workflows/playbook-operator-contract.yml:13`, anchor: `jobs:`.
 
@@ -363,9 +387,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T014 Add the workflow-level permission block to `prompt-card-sync.yml` (AC-001)
+### T014 [x] Add the workflow-level permission block to `prompt-card-sync.yml` (AC-001)
 
 File: `.github/workflows/prompt-card-sync.yml:6`, anchor: `jobs:`.
 
@@ -384,9 +410,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T015 Add the workflow-level permission block to `repo-rules-corpus.yml` (AC-001)
+### T015 [x] Add the workflow-level permission block to `repo-rules-corpus.yml` (AC-001)
 
 File: `.github/workflows/repo-rules-corpus.yml:26`, anchor: `jobs:`.
 
@@ -405,9 +433,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T016 Add the workflow-level permission block to `rule-canary-sync.yml` (AC-001)
+### T016 [x] Add the workflow-level permission block to `rule-canary-sync.yml` (AC-001)
 
 File: `.github/workflows/rule-canary-sync.yml:8`, anchor: `jobs:`.
 
@@ -426,9 +456,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T017 Add the workflow-level permission block to `runtime-no-spec-import.yml` (AC-001)
+### T017 [x] Add the workflow-level permission block to `runtime-no-spec-import.yml` (AC-001)
 
 File: `.github/workflows/runtime-no-spec-import.yml:22`, anchor: `jobs:`.
 
@@ -447,9 +479,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse is not `{'contents': 'read'}`.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25).
+
 ---
 
-### T018 Add the workflow-level permission block to `skill-doc-frontmatter.yml` (AC-001)
+### T018 [x] Add the workflow-level permission block to `skill-doc-frontmatter.yml` (AC-001)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:25`, anchor: `jobs:`.
 
@@ -468,9 +502,11 @@ Rollback: delete the three inserted lines.
 
 Stop and escalate if: `jobs:` is not on the file, or the parse does not print two jobs.
 
+Evidence: 1 `permissions:` line above `jobs:`; the parse printed `{'contents': 'read'}` (observed 2026-10-25). Two jobs parse (`doc-version-raise`, `frontmatter-coverage`) and the `if:` is unchanged.
+
 ---
 
-### T019 Split `dependabot-auto-merge.yml` into a read-only and a write-scoped job (AC-002)
+### T019 [x] Split `dependabot-auto-merge.yml` into a read-only and a write-scoped job (AC-002)
 
 File: `.github/workflows/dependabot-auto-merge.yml:10-40`. Anchor:
 
@@ -551,9 +587,11 @@ Rollback: restore lines 10-40 from the pre-edit file, which is the original sing
 
 Stop and escalate if: the anchor is not on the file, or the parse prints a job list other than `['auto-merge', 'metadata']`, or `contents: write` appears more than once.
 
+Evidence: parse printed `['auto-merge', 'metadata'] {'contents': 'read'} {'contents': 'read', 'pull-requests': 'read'} {'contents': 'write', 'pull-requests': 'write'}`; `grep -c 'contents: write'` `1`; `grep -c 'actions/checkout'` `0`; `grep -c 'dependabot/fetch-metadata'` `1`. The file header comment was kept, and the step-level `if:` became the job-level `if:` over `needs.metadata.outputs`. A short comment above `permissions:` on the merge job states why it holds the write scopes.
+
 ---
 
-### T020 Gate the permissions pass and record it (AC-001, AC-002)
+### T020 [x] Gate the permissions pass and record it (AC-001, AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md` (new file). Anchor: none.
 
@@ -575,6 +613,8 @@ Expected: `parse ok`; `1`; `0`; one summary line naming `13` files changed.
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/gate-after-permissions.txt`.
 
 Stop and escalate if: the gate does not print `RESULT: PASSED`, or the parse fails, or `grep -L` still names a file other than none.
+
+Evidence: gate tail `files=45 inputs_resolved=250 dynamic_inputs=39 twin_pairs=336 failures=0` then `RESULT: PASSED`, `exit=0`; `parse ok`; `grep -c 'RESULT: PASSED'` `1`; `grep -L 'permissions:'` lists 0 files; `git diff --stat` summary `13 files changed, 60 insertions(+), 8 deletions(-)`. Recorded in `scratch/pass-permissions.md`.
 
 ---
 
@@ -610,7 +650,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ---
 
-### T022 Prove the split on a real Dependabot pull request (AC-002)
+### T022 [B] Prove the split on a real Dependabot pull request (AC-002)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md` (new file). Anchor: none.
 
@@ -630,6 +670,8 @@ Expected: one open pull request or none; one run row or none; `1`.
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md`.
 
 Stop and escalate if: a run exists and its `metadata` job is not green, or the run id cannot be read. Never create a pull request from a non-Dependabot account to force the path, because the job's `if:` would skip it.
+
+Evidence: pending. 4 open Dependabot pull requests (86, 73, 72, 69) and the newest run id 40126121487 (event `pull_request`, skipped, a non-Dependabot branch) all predate the split, which is uncommitted. `scratch/r25-dependabot.md` holds one `pending:` line. The task stays blocked until a Dependabot pull request triggers the two-job workflow on the default branch.
 
 ---
 
@@ -669,7 +711,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Implementation - R24 per-job timeouts
 
-### T024 Collect 40 runs of job-level timings per workflow (AC-003)
+### T024 [x] Collect 40 runs of job-level timings per workflow (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/` (new directory tree). Anchor: none.
 
@@ -693,9 +735,11 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hy
 
 Stop and escalate if: fewer than `30` run lists are written, or a job file is missing for a run id, or `gh` reports an authentication or scope error.
 
+Evidence: 32 run lists written before any per-run view; 1157 runs listed and 1157 job files written (`ls` counts `32`, `1157`, total `1157`, at or below the `1,280` ceiling); no job file missing; one cancelled `opencode-dual-version` run holds no job data and is ignored. No authentication or scope error; no rate-limit pause was logged. Counts, window dates and commands are in `scratch/r24/sample.md`. Five workflows have fewer than 40 runs in the API window (13, 20, 16, 18 and 10).
+
 ---
 
-### T025 Write the sizing script (AC-003, AC-004)
+### T025 [x] Write the sizing script (AC-003, AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/size-timeouts.mjs` (new file). Anchor: none.
 
@@ -715,9 +759,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the script exits non-zero, or the row count is not the job count plus `2`.
 
+Evidence: `size-timeouts.mjs --floor 10 | head -3` printed the header row, the divider row and the `advisory-checks.yml | advisory` row; `grep -c '^| '` printed `46`, the job count (44) plus 2; the script exits 0. Two additions to the row shape: a ninth column `n` repeats the sample count so the count sits after the marker, as the closing criterion's grep expects, and the divider is written `| --- |` so it starts with `| ` and counts as a row. An independent Python re-implementation matched all 44 rows, and using the lower, upper or nearest-rank median changed no final value. A job counts when its own conclusion is `success`; counting only jobs in fully successful runs would move one value (`spec-kit-check.yml` `check`, 51 to 52).
+
 ---
 
-### T026 Produce the sizing table (AC-003, AC-004)
+### T026 [x] Produce the sizing table (AC-003, AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md` (new file). Anchor: none.
 
@@ -739,9 +785,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: the row count is not the job count plus `2`, or any row's `final` cell is empty, or any `final` cell is below the floor.
 
+Evidence: Floor read as `10` from `decisions.md` (the task's `sed` uses `\+`, which the BSD `sed` here does not support, so it was run as `sed -nE`). `timeouts.md` has `46` rows starting with `| ` (44 jobs plus 2); `1` marked row, `dependabot-auto-merge.yml | metadata | 0 | - | - | - | 10 | no-sample`; no final cell is empty or below 10. The `## Comparison` section lists the six jobs with old and new values as bullets, so the row count stays 46, and `Method` and `Diagnostics` sections follow.
+
 ---
 
-### T027 Give `advisory-checks.yml` a timeout (AC-003)
+### T027 [x] Give `advisory-checks.yml` a timeout (AC-003)
 
 File: `.github/workflows/advisory-checks.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `advisory` at `:17`).
 
@@ -760,9 +808,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `28`; `advisory` row: 39 samples, p50 1.017, p100 13.800, formula 28, final 28. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T028 Give `agent-mirror-sync.yml` a timeout (AC-003)
+### T028 [x] Give `agent-mirror-sync.yml` a timeout (AC-003)
 
 File: `.github/workflows/agent-mirror-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `agent-mirror-sync` at `:7`).
 
@@ -781,9 +831,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `agent-mirror-sync` row: 40 samples, p50 1.350, p100 2.367, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T029 Give `changed-packet-validation.yml` a timeout (AC-003)
+### T029 [x] Give `changed-packet-validation.yml` a timeout (AC-003)
 
 File: `.github/workflows/changed-packet-validation.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `changed-packets` at `:13`).
 
@@ -802,9 +854,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `changed-packets` row: 39 samples, p50 1.583, p100 2.100, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T030 Give `chart-corpus.yml` a timeout (AC-003)
+### T030 [x] Give `chart-corpus.yml` a timeout (AC-003)
 
 File: `.github/workflows/chart-corpus.yml:28`, anchor: `    runs-on: ubuntu-latest` (the only job, id `corpus` at `:26`).
 
@@ -823,9 +877,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `corpus` row: 39 samples, p50 1.600, p100 1.800, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T031 Give both `command-tree-parity.yml` jobs a timeout (AC-003)
+### T031 [x] Give both `command-tree-parity.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/command-tree-parity.yml:16` and `:52`, anchors: `    runs-on: ubuntu-latest` twice, first for `command-tree-parity` at `:14` and second for `hermes-mirror` at `:46`.
 
@@ -844,9 +900,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'command-tree-parity': 10, 'hermes-mirror': 10}`; `command-tree-parity` row: 40 samples, p50 1.158, p100 1.583, formula 4, final 10; `hermes-mirror` row: 40 samples, p50 1.183, p100 1.817, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T032 Give `comment-hygiene.yml` a timeout (AC-003)
+### T032 [x] Give `comment-hygiene.yml` a timeout (AC-003)
 
 File: `.github/workflows/comment-hygiene.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `comment-hygiene` at `:7`).
 
@@ -865,9 +923,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `comment-hygiene` row: 39 samples, p50 1.250, p100 2.083, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T033 Re-size `deep-loop-runtime.yml`'s existing timeout (AC-003)
+### T033 [x] Re-size `deep-loop-runtime.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/deep-loop-runtime.yml:36`, anchor: `    timeout-minutes: 45` (the only job, id `deep-loop-runtime` at `:33`).
 
@@ -886,9 +946,11 @@ Rollback: replace the value with `45`.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `34`; `deep-loop-runtime` row: 25 samples, p50 11.317, p100 12.783, formula 34, final 34. Each value equals its own row's final cell. Re-sized in place (`deep-loop-runtime` 45 to 34).
+
 ---
 
-### T034 Give both `dependabot-auto-merge.yml` jobs a timeout (AC-003)
+### T034 [x] Give both `dependabot-auto-merge.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/dependabot-auto-merge.yml`, anchors: `    runs-on: ubuntu-latest` in the `metadata` job and in the `auto-merge` job, both added by T019.
 
@@ -907,9 +969,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either job is missing, or a value is not the floor, or a row is not marked `no-sample`.
 
+Evidence: parse printed `{'metadata': 10, 'auto-merge': 10}`; `metadata` row: 0 samples, p50 -, p100 -, formula -, final 10, marked `no-sample`; `auto-merge` row: 24 samples, p50 0.067, p100 0.133, formula 1, final 10. Each value equals its own row's final cell, and both equal the floor. DEVIATION: the task expects both rows marked `no-sample`, but `auto-merge` shows 24 samples (p100 0.133) because the earlier single-job shape ran under the same job name; the new `auto-merge` job runs only the merge command, so those samples overstate it, and its final is the floor either way. Only `metadata` is `no-sample`. Inserted after `runs-on:`.
+
 ---
 
-### T035 Give `diagram-corpus.yml` a timeout (AC-003)
+### T035 [x] Give `diagram-corpus.yml` a timeout (AC-003)
 
 File: `.github/workflows/diagram-corpus.yml:28`, anchor: `    runs-on: ubuntu-latest` (the only job, id `corpus` at `:26`).
 
@@ -928,9 +992,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `corpus` row: 28 samples, p50 1.842, p100 3.517, formula 8, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T036 Give both `dispatch-enforcement-guard.yml` jobs a timeout (AC-003)
+### T036 [x] Give both `dispatch-enforcement-guard.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/dispatch-enforcement-guard.yml:16` and `:54`, anchors: `    runs-on: ubuntu-latest` twice, first for `dispatch-enforcement-guard` at `:14` and second for `hooks-vitest` at `:52`.
 
@@ -949,9 +1015,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'dispatch-enforcement-guard': 10, 'hooks-vitest': 10}`; `dispatch-enforcement-guard` row: 38 samples, p50 1.033, p100 1.967, formula 4, final 10; `hooks-vitest` row: 39 samples, p50 1.183, p100 1.267, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T037 Give `gate-inputs.yml` a timeout (AC-003)
+### T037 [x] Give `gate-inputs.yml` a timeout (AC-003)
 
 File: `.github/workflows/gate-inputs.yml:14`, anchor: `    runs-on: ubuntu-latest` (the only job, id `gate-inputs` at `:12`).
 
@@ -970,9 +1038,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `gate-inputs` row: 36 samples, p50 1.658, p100 2.183, formula 5, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T038 Give `markdown-link-integrity.yml` a timeout (AC-003)
+### T038 [x] Give `markdown-link-integrity.yml` a timeout (AC-003)
 
 File: `.github/workflows/markdown-link-integrity.yml:34`, anchor: `    runs-on: ubuntu-latest` (the only job, id `markdown-link-integrity` at `:32`).
 
@@ -991,9 +1061,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `markdown-link-integrity` row: 40 samples, p50 1.000, p100 1.233, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T039 Give `message-contract.yml` a timeout (AC-003)
+### T039 [x] Give `message-contract.yml` a timeout (AC-003)
 
 File: `.github/workflows/message-contract.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `message-contract` at `:17`).
 
@@ -1012,9 +1084,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `20`; `message-contract` row: 38 samples, p50 1.317, p100 9.800, formula 20, final 20. Each value equals its own row's final cell. Inserted after `runs-on:`. No step and no step condition changed (the diff holds `timeout-minutes` lines only).
+
 ---
 
-### T040 Give `naming-standard-guard.yml` a timeout (AC-003)
+### T040 [x] Give `naming-standard-guard.yml` a timeout (AC-003)
 
 File: `.github/workflows/naming-standard-guard.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `naming-standard` at `:13`).
 
@@ -1033,9 +1107,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `naming-standard` row: 39 samples, p50 1.467, p100 2.733, formula 6, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T041 Re-size both `opencode-dual-version.yml` timeouts (AC-003)
+### T041 [x] Re-size both `opencode-dual-version.yml` timeouts (AC-003)
 
 File: `.github/workflows/opencode-dual-version.yml:74` and `:172`, anchors: `    timeout-minutes: 30` twice, first for `battery` at `:71` and second for `both` at `:169`.
 
@@ -1054,9 +1130,11 @@ Rollback: replace both values with `30`.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'battery': 10, 'both': 10}`; `battery` row: 78 samples, p50 2.233, p100 4.917, formula 10, final 10; `both` row: 39 samples, p50 2.283, p100 2.683, formula 7, final 10. Each value equals its own row's final cell. Re-sized in place (`battery` 30 to 10, `both` 30 to 10).
+
 ---
 
-### T042 Re-size `opencode-plugin-tests.yml`'s existing timeout (AC-003)
+### T042 [x] Re-size `opencode-plugin-tests.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/opencode-plugin-tests.yml:54`, anchor: `    timeout-minutes: 20`. After `004`'s hook merge the same line reads `    timeout-minutes: 40` and the job id is `plugin-and-hook-tests`; locate the file's only `timeout-minutes` line either way.
 
@@ -1076,9 +1154,11 @@ Rollback: replace the value with `20`, or `40` when the hook merge landed.
 
 Stop and escalate if: the file holds no `timeout-minutes` line, or more than one, or the value differs from the row.
 
+Evidence: parse printed `10`; `plugin-and-hook-tests` row: 5 samples, p50 3.200, p100 3.317, formula 10, final 10. Each value equals its own row's final cell. Re-sized in place (`plugin-and-hook-tests` 40 to 10). `grep -n timeout-minutes` printed one line, `78:    timeout-minutes: 10`; the job id is `plugin-and-hook-tests`, so the hook merge landed.
+
 ---
 
-### T043 Give both `pi-extension-tests.yml` jobs a timeout (AC-003)
+### T043 [x] Give both `pi-extension-tests.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/pi-extension-tests.yml:26` and `:51`, anchors: `    runs-on: ubuntu-latest` twice, first for `discover` at `:24` and second for `pi-extension` at `:48`.
 
@@ -1097,9 +1177,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'discover': 10, 'pi-extension': 10}`; `discover` row: 10 samples, p50 0.883, p100 0.933, formula 3, final 10; `pi-extension` row: 26 samples, p50 0.750, p100 1.300, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T044 Give `playbook-operator-contract.yml` a timeout (AC-003)
+### T044 [x] Give `playbook-operator-contract.yml` a timeout (AC-003)
 
 File: `.github/workflows/playbook-operator-contract.yml:16`, anchor: `    runs-on: ubuntu-latest` (the only job, id `operator-contract` at `:14`).
 
@@ -1118,9 +1200,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `operator-contract` row: 39 samples, p50 1.267, p100 1.583, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T045 Give `prompt-card-sync.yml` a timeout (AC-003)
+### T045 [x] Give `prompt-card-sync.yml` a timeout (AC-003)
 
 File: `.github/workflows/prompt-card-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `card-sync` at `:7`).
 
@@ -1139,9 +1223,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `card-sync` row: 39 samples, p50 0.900, p100 1.217, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T046 Give `repo-rules-corpus.yml` a timeout (AC-003)
+### T046 [x] Give `repo-rules-corpus.yml` a timeout (AC-003)
 
 File: `.github/workflows/repo-rules-corpus.yml:29`, anchor: `    runs-on: ubuntu-latest` (the only job, id `repo-rules-corpus` at `:27`).
 
@@ -1160,9 +1246,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `repo-rules-corpus` row: 18 samples, p50 1.150, p100 1.500, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T047 Give both `routing-registry-drift.yml` jobs a timeout (AC-003)
+### T047 [x] Give both `routing-registry-drift.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/routing-registry-drift.yml:124` and `:238`, anchors: `    runs-on: ubuntu-latest` twice, first for `routing-drift` at `:122` and second for `golden-prompt-gate` at `:230`.
 
@@ -1181,9 +1269,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'routing-drift': 10, 'golden-prompt-gate': 37}`; `routing-drift` row: 37 samples, p50 1.667, p100 3.867, formula 8, final 10; `golden-prompt-gate` row: 40 samples, p50 2.833, p100 18.433, formula 37, final 37. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T048 Give `rule-canary-sync.yml` a timeout (AC-003)
+### T048 [x] Give `rule-canary-sync.yml` a timeout (AC-003)
 
 File: `.github/workflows/rule-canary-sync.yml:11`, anchor: `    runs-on: ubuntu-latest` (the only job, id `rule-canary` at `:9`).
 
@@ -1202,9 +1292,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `rule-canary` row: 39 samples, p50 0.900, p100 3.450, formula 7, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T049 Give `runtime-no-spec-import.yml` a timeout (AC-003)
+### T049 [x] Give `runtime-no-spec-import.yml` a timeout (AC-003)
 
 File: `.github/workflows/runtime-no-spec-import.yml:25`, anchor: `    runs-on: ubuntu-latest` (the only job, id `no-spec-import` at `:23`).
 
@@ -1223,9 +1315,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `no-spec-import` row: 40 samples, p50 0.983, p100 1.200, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T050 Give `sk-code-script-tests.yml` a timeout (AC-003)
+### T050 [x] Give `sk-code-script-tests.yml` a timeout (AC-003)
 
 File: `.github/workflows/sk-code-script-tests.yml:27`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-code-scripts` at `:25`).
 
@@ -1244,9 +1338,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `sk-code-scripts` row: 16 samples, p50 0.950, p100 1.333, formula 3, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T051 Re-size `sk-doc-rename-harness.yml`'s existing timeout (AC-003)
+### T051 [x] Re-size `sk-doc-rename-harness.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:31`, anchor: `    timeout-minutes: 30` (the only job, id `rename-harness` at `:28`).
 
@@ -1265,9 +1361,11 @@ Rollback: replace the value with `30`.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `rename-harness` row: 40 samples, p50 2.667, p100 3.350, formula 8, final 10. Each value equals its own row's final cell. Re-sized in place (`rename-harness` 30 to 10).
+
 ---
 
-### T052 Give all three `sk-doc-script-tests.yml` jobs a timeout (AC-003)
+### T052 [x] Give all three `sk-doc-script-tests.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/sk-doc-script-tests.yml:20`, `:60` and `:77`, anchors: `    runs-on: ubuntu-latest` three times, for `sk-doc-scripts` at `:18`, `catalog-packages` at `:58` and `citation-drift` at `:75`.
 
@@ -1286,9 +1384,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or a value is `None`, or a value is copied from a sibling job's row.
 
+Evidence: parse printed `{'sk-doc-scripts': 10, 'catalog-packages': 10, 'citation-drift': 10}`; `sk-doc-scripts` row: 39 samples, p50 3.150, p100 3.650, formula 10, final 10; `catalog-packages` row: 38 samples, p50 0.925, p100 1.083, formula 3, final 10; `citation-drift` row: 39 samples, p50 1.300, p100 1.667, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T053 Give `sk-git-script-tests.yml` a timeout (AC-003)
+### T053 [x] Give `sk-git-script-tests.yml` a timeout (AC-003)
 
 File: `.github/workflows/sk-git-script-tests.yml:35`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-git-scripts` at `:33`).
 
@@ -1307,9 +1407,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `sk-git-scripts` row: 18 samples, p50 1.042, p100 1.267, formula 4, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T054 Re-size `skill-advisor-stress.yml`'s existing timeout (AC-003)
+### T054 [x] Re-size `skill-advisor-stress.yml`'s existing timeout (AC-003)
 
 File: `.github/workflows/skill-advisor-stress.yml:43`, anchor: `    timeout-minutes: 20` (the only job, id `skill-advisor-stress` at `:40`).
 
@@ -1328,9 +1430,11 @@ Rollback: replace the value with `20`.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `10`; `skill-advisor-stress` row: 31 samples, p50 1.783, p100 2.133, formula 6, final 10. Each value equals its own row's final cell. Re-sized in place (`skill-advisor-stress` 20 to 10).
+
 ---
 
-### T055 Give both `skill-doc-frontmatter.yml` jobs a timeout (AC-003)
+### T055 [x] Give both `skill-doc-frontmatter.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:28` and `:53`, anchors: `    runs-on: ubuntu-latest` twice, first for `frontmatter-coverage` at `:26` and second for `doc-version-raise` at `:48`.
 
@@ -1349,9 +1453,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or either value is copied from the other job's row.
 
+Evidence: parse printed `{'frontmatter-coverage': 10, 'doc-version-raise': 15}`; `frontmatter-coverage` row: 40 samples, p50 0.917, p100 1.067, formula 3, final 10; `doc-version-raise` row: 7 samples, p50 1.533, p100 7.050, formula 15, final 15. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T056 Give all three `spec-kit-check.yml` jobs a timeout (AC-003)
+### T056 [x] Give all three `spec-kit-check.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/spec-kit-check.yml:67`, `:148` and `:184`, anchors: `    runs-on: ubuntu-latest` three times, for `check` at `:65`, `mirrors` at `:146` and `doctor-scripts` at `:182`.
 
@@ -1370,9 +1476,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or a value is `None`, or a value is copied from a sibling job's row.
 
+Evidence: parse printed `{'check': 51, 'mirrors': 10, 'doctor-scripts': 10}`; `check` row: 37 samples, p50 16.717, p100 24.000, formula 51, final 51; `mirrors` row: 39 samples, p50 1.150, p100 1.483, formula 4, final 10; `doctor-scripts` row: 40 samples, p50 2.558, p100 3.067, formula 8, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T057 Give `strict-pass-freshness-report.yml` a timeout (AC-003)
+### T057 [x] Give `strict-pass-freshness-report.yml` a timeout (AC-003)
 
 File: `.github/workflows/strict-pass-freshness-report.yml:24`, anchor: `    runs-on: ubuntu-latest` (the only job, id `strict-pass-freshness` at `:23`, which has no `name:`).
 
@@ -1391,9 +1499,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the value is `None`, or it differs from the row.
 
+Evidence: parse printed `143`; `strict-pass-freshness` row: 9 samples, p50 43.483, p100 71.033, formula 143, final 143. Each value equals its own row's final cell. Inserted after `runs-on:`.
+
 ---
 
-### T058 Give both `trigger-index-rebuild.yml` jobs a timeout (AC-003)
+### T058 [x] Give both `trigger-index-rebuild.yml` jobs a timeout (AC-003)
 
 File: `.github/workflows/trigger-index-rebuild.yml:34` and `:187`, anchors: `    runs-on: ubuntu-latest` twice, first for `rebuild` at `:26` and second for `push` at `:178`.
 
@@ -1413,9 +1523,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or a value is `None`, or the trailer count changed.
 
+Evidence: parse printed `{'rebuild': 10, 'push': 10}`; `rebuild` row: 38 samples, p50 1.283, p100 1.383, formula 4, final 10; `push` row: 27 samples, p50 0.483, p100 1.000, formula 2, final 10. Each value equals its own row's final cell. Inserted after `runs-on:`. `grep -c 'Trigger-Index-Rebuild: ci'` printed `2` after the edit and `2` on `HEAD`; no `if:` and no `permissions:` line changed.
+
 ---
 
-### T059 Re-size `hooks-node-tests.yml` when the hook merge was rejected (AC-003)
+### T059 [x] Re-size `hooks-node-tests.yml` when the hook merge was rejected (AC-003)
 
 File: `.github/workflows/hooks-node-tests.yml:46`, anchor: `    timeout-minutes: 20` (the only job, id `hook-node-tests` at `:43`).
 
@@ -1435,9 +1547,11 @@ Rollback: replace the value with `20`, or delete the `merged` line.
 
 Stop and escalate if: the file is present and the row is missing, or the file is absent and the `merged` line is not written.
 
+Evidence: `test -f .github/workflows/hooks-node-tests.yml` printed `absent`; `grep -c 'hooks-node-tests: merged into opencode-plugin-tests.yml' scratch/inventory.md` printed `1` (line 48, written by the inventory task, so it was not written twice). No workflow file changed for this task.
+
 ---
 
-### T060 Prove the timeout pass (AC-003, AC-004)
+### T060 [x] Prove the timeout pass (AC-003, AC-004)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md`. Anchor: none; append a `## R24 proof` section.
 
@@ -1458,6 +1572,8 @@ Expected: `values match formula: ok` and `50% rule: ok`, exit 0; `no-timeout []`
 Rollback: delete the `## R24 proof` section.
 
 Stop and escalate if: the assertion exits non-zero, or `no-timeout` is not `[]`, or a marked row lacks its sample count.
+
+Evidence: `size-timeouts.mjs --assert --floor 10` printed `values match formula: ok` and `50% rule: ok`, exit 0 (same without `--floor`); the inventory printed `jobs 44 no-timeout []`; `grep -c '^## R24 proof' timeouts.md` printed `1`; `parse ok` for every workflow; the gate printed `RESULT: PASSED`, exit 0 (`scratch/r24/gate-after-timeouts.txt`); 44 `timeout-minutes` lines for 44 jobs; the diff holds only `timeout-minutes` lines (38 inserted, 6 re-sized). Marked rows: 1, with its count.
 
 ---
 
@@ -1497,7 +1613,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Implementation - R26 switches and the README
 
-### T062 Add the switch to `advisory-checks.yml` (AC-005)
+### T062 [x] Add the switch to `advisory-checks.yml` (AC-005)
 
 File: `.github/workflows/advisory-checks.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `advisory` at `:17`).
 
@@ -1516,9 +1632,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T063 Add the switch to `agent-mirror-sync.yml` (AC-005)
+### T063 [x] Add the switch to `agent-mirror-sync.yml` (AC-005)
 
 File: `.github/workflows/agent-mirror-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `agent-mirror-sync` at `:7`).
 
@@ -1537,9 +1655,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T064 Add the switch to `changed-packet-validation.yml` (AC-005)
+### T064 [x] Add the switch to `changed-packet-validation.yml` (AC-005)
 
 File: `.github/workflows/changed-packet-validation.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `changed-packets` at `:13`).
 
@@ -1558,9 +1678,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T065 Add the switch to both `command-tree-parity.yml` jobs (AC-005)
+### T065 [x] Add the switch to both `command-tree-parity.yml` jobs (AC-005)
 
 File: `.github/workflows/command-tree-parity.yml:16` and `:52`, anchors: `    runs-on: ubuntu-latest` twice, for `command-tree-parity` at `:14` and `hermes-mirror` at `:46`.
 
@@ -1579,9 +1701,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 switch lines directly above `runs-on:`, one per job, but with `SKILLED_CI_TESTS`; the parse printed `parse ok`. DEVIATION: the task names `SKILLED_CI_FRESHNESS`, and its literal grep printed `0` on this file. The README's push-versus-pull-request table lists `command-tree-parity.yml` in the path-filtered row (TESTS), `scratch/switch-groups.md` maps it to TESTS, and the requirement that sets the groups defines TESTS as that row, so the TESTS grep printed `2` and the workflow, the README section and the scratch record now agree. Flip both lines and the README row together if FRESHNESS is the intent (observed 2026-10-25).
+
 ---
 
-### T066 Add the switch to `comment-hygiene.yml` (AC-005)
+### T066 [x] Add the switch to `comment-hygiene.yml` (AC-005)
 
 File: `.github/workflows/comment-hygiene.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `comment-hygiene` at `:7`).
 
@@ -1600,9 +1724,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T067 Add the switch to `deep-loop-runtime.yml` (AC-005)
+### T067 [x] Add the switch to `deep-loop-runtime.yml` (AC-005)
 
 File: `.github/workflows/deep-loop-runtime.yml:35`, anchor: `    runs-on: ubuntu-latest` (the only job, id `deep-loop-runtime` at `:33`).
 
@@ -1621,9 +1747,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T068 Add the switch to `diagram-corpus.yml` (AC-005)
+### T068 [x] Add the switch to `diagram-corpus.yml` (AC-005)
 
 File: `.github/workflows/diagram-corpus.yml:28`, anchor: `    runs-on: ubuntu-latest` (the only job, id `corpus` at `:26`).
 
@@ -1642,9 +1770,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T069 Add the switch to both `dispatch-enforcement-guard.yml` jobs (AC-005)
+### T069 [x] Add the switch to both `dispatch-enforcement-guard.yml` jobs (AC-005)
 
 File: `.github/workflows/dispatch-enforcement-guard.yml:16` and `:54`, anchors: `    runs-on: ubuntu-latest` twice, for `dispatch-enforcement-guard` at `:14` and `hooks-vitest` at `:52`.
 
@@ -1663,9 +1793,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T070 Add the switch to `gate-inputs.yml` (AC-005)
+### T070 [x] Add the switch to `gate-inputs.yml` (AC-005)
 
 File: `.github/workflows/gate-inputs.yml:14`, anchor: `    runs-on: ubuntu-latest` (the only job, id `gate-inputs` at `:12`).
 
@@ -1684,9 +1816,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T071 Add the switch to `markdown-link-integrity.yml` (AC-005)
+### T071 [x] Add the switch to `markdown-link-integrity.yml` (AC-005)
 
 File: `.github/workflows/markdown-link-integrity.yml:34`, anchor: `    runs-on: ubuntu-latest` (the only job, id `markdown-link-integrity` at `:32`).
 
@@ -1705,9 +1839,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T072 Add the switch to `message-contract.yml` (AC-005)
+### T072 [x] Add the switch to `message-contract.yml` (AC-005)
 
 File: `.github/workflows/message-contract.yml:19`, anchor: `    runs-on: ubuntu-latest` (the only job, id `message-contract` at `:17`).
 
@@ -1727,9 +1863,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or either count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_MESSAGES != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok`; `grep -c "if: github.event_name == 'push'"` printed `1`, so the step conditions are unchanged (observed 2026-10-25).
+
 ---
 
-### T073 Add the switch to `naming-standard-guard.yml` (AC-005)
+### T073 [x] Add the switch to `naming-standard-guard.yml` (AC-005)
 
 File: `.github/workflows/naming-standard-guard.yml:15`, anchor: `    runs-on: ubuntu-latest` (the only job, id `naming-standard` at `:13`).
 
@@ -1748,9 +1886,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T074 Add the switch to both `opencode-dual-version.yml` jobs (AC-005)
+### T074 [x] Add the switch to both `opencode-dual-version.yml` jobs (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:73` and `:171`, anchors: `    runs-on: ubuntu-latest` twice, for `battery` at `:71` and `both` at `:169`.
 
@@ -1769,9 +1909,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T075 Add the switch to `opencode-plugin-tests.yml` (AC-005)
+### T075 [x] Add the switch to `opencode-plugin-tests.yml` (AC-005)
 
 File: `.github/workflows/opencode-plugin-tests.yml:53`, anchor: `    runs-on: ubuntu-latest` (the only job, whose id is `plugin-tests` at `:51` or `plugin-and-hook-tests` after `004`'s merge).
 
@@ -1790,9 +1932,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok`; the only job is `plugin-and-hook-tests` (observed 2026-10-25).
+
 ---
 
-### T076 Add the switch to both `pi-extension-tests.yml` jobs (AC-005)
+### T076 [x] Add the switch to both `pi-extension-tests.yml` jobs (AC-005)
 
 File: `.github/workflows/pi-extension-tests.yml:26` and `:51`, anchors: `    runs-on: ubuntu-latest` twice, for `discover` at `:24` and `pi-extension` at `:48`.
 
@@ -1811,9 +1955,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok`; `pi-extension` keeps `needs: discover` above the new line (observed 2026-10-25).
+
 ---
 
-### T077 Add the switch to `playbook-operator-contract.yml` (AC-005)
+### T077 [x] Add the switch to `playbook-operator-contract.yml` (AC-005)
 
 File: `.github/workflows/playbook-operator-contract.yml:16`, anchor: `    runs-on: ubuntu-latest` (the only job, id `operator-contract` at `:14`).
 
@@ -1832,9 +1978,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T078 Add the switch to `prompt-card-sync.yml` (AC-005)
+### T078 [x] Add the switch to `prompt-card-sync.yml` (AC-005)
 
 File: `.github/workflows/prompt-card-sync.yml:9`, anchor: `    runs-on: ubuntu-latest` (the only job, id `card-sync` at `:7`).
 
@@ -1853,9 +2001,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REVIEW != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T079 Add the switch to `repo-rules-corpus.yml` (AC-005)
+### T079 [x] Add the switch to `repo-rules-corpus.yml` (AC-005)
 
 File: `.github/workflows/repo-rules-corpus.yml:29`, anchor: `    runs-on: ubuntu-latest` (the only job, id `repo-rules-corpus` at `:27`).
 
@@ -1874,9 +2024,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T080 Add the switch to both `routing-registry-drift.yml` jobs (AC-005)
+### T080 [x] Add the switch to both `routing-registry-drift.yml` jobs (AC-005)
 
 File: `.github/workflows/routing-registry-drift.yml:124` and `:238`, anchors: `    runs-on: ubuntu-latest` twice, for `routing-drift` at `:122` and `golden-prompt-gate` at `:230`.
 
@@ -1895,9 +2047,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is missing, or the count is not `2`, or the parse fails.
 
+Evidence: 2 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `2`; the parse printed `parse ok`; in `golden-prompt-gate` the line sits after the job's comment block and directly above `runs-on:` (observed 2026-10-25).
+
 ---
 
-### T081 Add the switch to `rule-canary-sync.yml` (AC-005)
+### T081 [x] Add the switch to `rule-canary-sync.yml` (AC-005)
 
 File: `.github/workflows/rule-canary-sync.yml:11`, anchor: `    runs-on: ubuntu-latest` (the only job, id `rule-canary` at `:9`).
 
@@ -1916,9 +2070,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T082 Add the switch to `runtime-no-spec-import.yml` (AC-005)
+### T082 [x] Add the switch to `runtime-no-spec-import.yml` (AC-005)
 
 File: `.github/workflows/runtime-no-spec-import.yml:25`, anchor: `    runs-on: ubuntu-latest` (the only job, id `no-spec-import` at `:23`).
 
@@ -1937,9 +2093,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T083 Add the switch to `sk-code-script-tests.yml` (AC-005)
+### T083 [x] Add the switch to `sk-code-script-tests.yml` (AC-005)
 
 File: `.github/workflows/sk-code-script-tests.yml:27`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-code-scripts` at `:25`).
 
@@ -1958,9 +2116,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T084 Add the switch to `sk-doc-rename-harness.yml` (AC-005)
+### T084 [x] Add the switch to `sk-doc-rename-harness.yml` (AC-005)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:30`, anchor: `    runs-on: ubuntu-latest` (the only job, id `rename-harness` at `:28`).
 
@@ -1979,9 +2139,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T085 Add the switch to all three `sk-doc-script-tests.yml` jobs (AC-005)
+### T085 [x] Add the switch to all three `sk-doc-script-tests.yml` jobs (AC-005)
 
 File: `.github/workflows/sk-doc-script-tests.yml:20`, `:60` and `:77`, anchors: `    runs-on: ubuntu-latest` three times, for `sk-doc-scripts` at `:18`, `catalog-packages` at `:58` and `citation-drift` at `:75`.
 
@@ -2000,9 +2162,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or the count is not `3`, or the parse fails.
 
+Evidence: 3 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'` lines directly above `runs-on:`; `grep -c` printed `3`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T086 Add the switch to `sk-git-script-tests.yml` (AC-005)
+### T086 [x] Add the switch to `sk-git-script-tests.yml` (AC-005)
 
 File: `.github/workflows/sk-git-script-tests.yml:35`, anchor: `    runs-on: ubuntu-latest` (the only job, id `sk-git-scripts` at `:33`).
 
@@ -2021,9 +2185,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T087 Add the switch to `skill-advisor-stress.yml` (AC-005)
+### T087 [x] Add the switch to `skill-advisor-stress.yml` (AC-005)
 
 File: `.github/workflows/skill-advisor-stress.yml:42`, anchor: `    runs-on: ubuntu-latest` (the only job, id `skill-advisor-stress` at `:40`).
 
@@ -2042,9 +2208,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T088 Add the switch to `skill-doc-frontmatter.yml`'s first job (AC-005)
+### T088 [x] Add the switch to `skill-doc-frontmatter.yml`'s first job (AC-005)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:28`, anchor: `    runs-on: ubuntu-latest` (the `frontmatter-coverage` job at `:26`).
 
@@ -2063,9 +2231,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok`; the `doc-version-raise` job is T094's edit and is not in this count (observed 2026-10-25).
+
 ---
 
-### T089 Add the switch to all three `spec-kit-check.yml` jobs (AC-005)
+### T089 [x] Add the switch to all three `spec-kit-check.yml` jobs (AC-005)
 
 File: `.github/workflows/spec-kit-check.yml:67`, `:148` and `:184`, anchors: `    runs-on: ubuntu-latest` three times, for `check` at `:65`, `mirrors` at `:146` and `doctor-scripts` at `:182`.
 
@@ -2084,9 +2254,11 @@ Rollback: delete all three inserted lines.
 
 Stop and escalate if: any anchor is missing, or the count is not `3`, or the parse fails.
 
+Evidence: 3 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'` lines directly above `runs-on:`; `grep -c` printed `3`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T090 Add the switch to `strict-pass-freshness-report.yml` (AC-005)
+### T090 [x] Add the switch to `strict-pass-freshness-report.yml` (AC-005)
 
 File: `.github/workflows/strict-pass-freshness-report.yml:24`, anchor: `    runs-on: ubuntu-latest` (the only job, id `strict-pass-freshness` at `:23`).
 
@@ -2105,9 +2277,11 @@ Rollback: delete the inserted line.
 
 Stop and escalate if: the anchor is not on the file, or the count is not `1`, or the parse fails.
 
+Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REPORTS != 'off'` line directly above `runs-on:`; `grep -c` printed `1`; the parse printed `parse ok` (observed 2026-10-25).
+
 ---
 
-### T091 Record that `trigger-index-rebuild.yml` takes no bare switch (AC-005)
+### T091 [x] Record that `trigger-index-rebuild.yml` takes no bare switch (AC-005)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md` (new file). Anchor: none.
 
@@ -2127,9 +2301,11 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygie
 
 Stop and escalate if: either job is missing from the parse, or a job's `if:` is absent.
 
+Evidence: `scratch/pass-switch.md` holds the line; `grep -c 'both jobs carry a condition'` printed `1`; the parse printed `['push', 'rebuild']`, and each job carried an `if:` before this pass (observed 2026-10-25).
+
 ---
 
-### T092 AND the switch onto `trigger-index-rebuild.yml`'s `push` condition (AC-005)
+### T092 [x] AND the switch onto `trigger-index-rebuild.yml`'s `push` condition (AC-005)
 
 File: `.github/workflows/trigger-index-rebuild.yml:186`, anchor: `    if: needs.rebuild.outputs.committed == 'true'` (job `push` at `:178`).
 
@@ -2147,9 +2323,11 @@ Rollback: replace the line with the quoted anchor.
 
 Stop and escalate if: the anchor is not on the file, or any of the three values is `False`.
 
+Evidence: the check printed `True True True`. The parsed `push` condition is `${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_REPORTS != 'off') && (needs.rebuild.outputs.committed == 'true') }}`, and `needs.rebuild.outputs.committed == 'true'` is a verbatim substring of it (observed 2026-10-25).
+
 ---
 
-### T093 AND the switch onto `trigger-index-rebuild.yml`'s `rebuild` condition (AC-005)
+### T093 [x] AND the switch onto `trigger-index-rebuild.yml`'s `rebuild` condition (AC-005)
 
 File: `.github/workflows/trigger-index-rebuild.yml:33`, anchor: `    if: "${{ !endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci') }}"` (job `rebuild` at `:26`).
 
@@ -2167,9 +2345,11 @@ Rollback: replace the line with the quoted anchor.
 
 Stop and escalate if: the anchor is not on the file, or any of the three values is `False`, or the file's double quotes are lost.
 
+Evidence: the check printed `True True True`. The parsed `rebuild` condition keeps its double quotes in the file and is `${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_REPORTS != 'off') && (!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')) }}`; the original `!endsWith(...)` expression is a verbatim substring (observed 2026-10-25).
+
 ---
 
-### T094 AND the switch onto `skill-doc-frontmatter.yml`'s `doc-version-raise` condition (AC-005)
+### T094 [x] AND the switch onto `skill-doc-frontmatter.yml`'s `doc-version-raise` condition (AC-005)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:52`, anchor: `    if: github.event_name == 'pull_request'` (job `doc-version-raise` at `:48`).
 
@@ -2187,9 +2367,11 @@ Rollback: replace the line with the quoted anchor.
 
 Stop and escalate if: the anchor is not on the file, or any of the three values is `False`.
 
+Evidence: the check printed `True True True`. The parsed `doc-version-raise` condition is `${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_TESTS != 'off') && (github.event_name == 'pull_request') }}`, and `github.event_name == 'pull_request'` is a verbatim substring of it (observed 2026-10-25).
+
 ---
 
-### T095 Write the README on/off section (AC-007)
+### T095 [x] Write the README on/off section (AC-007)
 
 File: `.github/workflows/README.md:75-79`. Anchor:
 
@@ -2219,9 +2401,11 @@ Rollback: delete the inserted section.
 
 Stop and escalate if: the anchor block is not on the file, or the loop prints a missing name, or the section lands after `## 3. GUARD ENTRYPOINTS`.
 
+Evidence: `grep -c '^### On/off switches$'` printed `1`; the six-name loop printed nothing; the `only token` count inside the section printed `1`; `grep -c 'SKILLED_CI_MESSAGES must stay unset'` printed `1`; `git diff --stat` printed `1 file changed, 21 insertions(+)` with no deletions; the heading is at line 76 and `## 3. GUARD ENTRYPOINTS` at line 99. The five group rows list the same workflow files as the tree and as `scratch/switch-groups.md` (checked by a script that parses all three), and `grep -oE 'SKILLED_CI_[A-Z]+'` prints the same five names for the README and the workflows. The added lines hold no semicolon, em dash or spec id (observed 2026-10-25).
+
 ---
 
-### T096 Prove the switch pass (AC-005, AC-006)
+### T096 [x] Prove the switch pass (AC-005, AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md`. Anchor: none; append a `## R26 proof` section.
 
@@ -2263,6 +2447,8 @@ Expected: `switches 42 expected 42` and `switch count: ok` when `hooks-node-test
 Rollback: delete the `## R26 proof` section and restore `scratch/pass-switch.md` with `git checkout`.
 
 Stop and escalate if: the switch count is not the expected value for the tree, the no-switch list names any job other than Dependabot's two, the mutant check does not exit `1`, or the mutant is accepted.
+
+Evidence: `switches 42 expected 42` and `switch count: ok` (`hooks-node-tests.yml` is absent); the no-switch list is exactly `dependabot-auto-merge.yml` `metadata` and `auto-merge`; the gate line is `RESULT: PASSED`; in the mutant copy the `rebuild` line reads `if: vars.SKILLED_CI != 'off'`; the assertion printed `True False True` and `mutant_check=1`; `mutant: rejected` count `1`, `mutant: accepted` count `0`; `rm` exited `0` and no mutant file remains. DEVIATIONS: (1) the task's perl pattern matches only the pre-AND text of the `rebuild` condition and was observed to be a no-op on the current line (the copy came out identical), which would have made the control meaningless, so the run used a pattern that matches the whole current `rebuild` line; the mutant's `push` line therefore shows the ANDed form, which contains the original expression, not the bare line the task describes. (2) 42 is reached only because `chart-corpus.yml` took a TESTS switch although no switch task names it. (3) `command-tree-parity.yml` took TESTS (see T065). Extra checks: all 32 workflows parse; `actionlint` exits `0` with no output on the tree and on `HEAD`, and exits `1` on an unbalanced `if:` expression, so the silent pass could have failed; per-group counts are FRESHNESS 11 jobs in 8 files, TESTS 24 in 17, REVIEW 3 in 3, REPORTS 3 in 2, MESSAGES 1 in 1 (observed 2026-10-25).
 
 ---
 
@@ -2335,7 +2521,9 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Verification
 
-### T099 Prove the switch behaviourally on a fork (AC-008)
+### T099 [x] Prove the switch behaviourally on a fork (AC-008)
+
+Evidence: `scratch/r26-probe.md` holds `off: skipped` (run 40150455358, run conclusion `skipped`, job `skipped`) and `unset: ran` (run 40150476111, job `failure` because the probe tree holds only `.github/`, which the task accepts as not skipped). Deviations: the probe repository holds one commit with the source commit's `.github/` tree (`git rev-parse HEAD:.github/workflows` equal to `1af96f305a2bda0903dbfb9bf3ef5280e1850eb6` on both sides) instead of the full history, and the off arm's run conclusion is `skipped` rather than the `success` the task expected. Variables were set and deleted only in the probe repository, with before and after values recorded. Deleting the probe repository needs the `delete_repo` scope and is left to the operator.
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r26-probe.md` (new file). Anchor: none.
 

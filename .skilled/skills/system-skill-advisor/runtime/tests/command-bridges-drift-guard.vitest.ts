@@ -3,7 +3,9 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
@@ -273,5 +275,36 @@ describe('command-bridges drift guard', () => {
     // The live runtime consumes the generated projection, so any divergence —
     // a missing id, an extra id, or a field mismatch — is real drift.
     expect(actualDiff).toEqual([]);
+  });
+
+  it('derives bridges from real skill folders only, never a local-* folder or a linked one', () => {
+    const { metadataEntries } = createRequire(import.meta.url)(
+      join(COMMAND_BRIDGES_DIR, 'derive-command-bridges.cjs'),
+    ) as { metadataEntries: (skillsRoot: string) => Array<{ skillId: string }> };
+    const root = mkdtempSync(join(tmpdir(), 'command-bridges-'));
+    try {
+      const skills = join(root, 'skills');
+      const writeMetadata = (folder: string, command: string): void => {
+        mkdirSync(join(skills, folder), { recursive: true });
+        writeFileSync(
+          join(skills, folder, 'command-metadata.json'),
+          JSON.stringify([{ command, ownerMode: folder }]),
+          'utf8',
+        );
+      };
+      writeMetadata('alpha', '/alpha:run');
+      writeMetadata('local-private', '/private:run');
+      mkdirSync(join(root, 'elsewhere'), { recursive: true });
+      writeFileSync(
+        join(root, 'elsewhere', 'command-metadata.json'),
+        JSON.stringify([{ command: '/linked:run', ownerMode: 'linked' }]),
+        'utf8',
+      );
+      symlinkSync(join(root, 'elsewhere'), join(skills, 'linked'));
+
+      expect(metadataEntries(skills).map((entry) => entry.skillId)).toEqual(['alpha']);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

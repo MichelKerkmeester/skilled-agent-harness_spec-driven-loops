@@ -1,0 +1,2 @@
+goal records: 1
+record=253daddf1059 goalId=goal-8b954b3f-c99b-4e76-943d-38e28bd0ee8a runtime=pi status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T00:30:05.552Z

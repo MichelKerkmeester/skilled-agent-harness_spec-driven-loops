@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -628,7 +628,7 @@ git worktree prune
 **Solution**:
 ```bash
 # Load only this worktree's .opencode on OpenCode 2
-OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$PWD/.opencode" opencode2
+OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$PWD/.opencode" opencode
 ```
 The doctor battery does this on its own: its v2 read names each outer plugin folder in an `isolated:` line.
 

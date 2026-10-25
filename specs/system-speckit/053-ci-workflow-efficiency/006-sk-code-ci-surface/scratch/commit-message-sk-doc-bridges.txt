@@ -1,0 +1,11 @@
+fix(system-skill-advisor): route ci switch questions to the doctor bridges
+
+A list or show prompt is treated as a read-only question and every candidate was
+held under the confidence bar, so switch-state questions returned nothing. The
+bridge deriver now carries the read-only class of each doctor route, and a
+read-only bridge passes that gate when its phrase matches.
+
+The ci report, scaffold and toggle routes gained narrow phrases, and mutating
+bridges stay gated.
+
+Spec: system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface

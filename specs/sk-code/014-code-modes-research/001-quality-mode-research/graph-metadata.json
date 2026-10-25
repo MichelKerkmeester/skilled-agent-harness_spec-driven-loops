@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/014-code-modes-research/001-quality-mode-research",
+  "spec_folder": "sk-code/014-code-modes-research/001-quality-mode-research",
+  "parent_id": "sk-code/014-code-modes-research",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality mode research",
+      "phase 1 quality mode research",
+      "sk-code-quality research",
+      "repo-agnostic quality gate",
+      "user-authored mode integration",
+      "quality mode research plan",
+      "sk-code-quality research angles",
+      "quality mode research tasks",
+      "quality mode research acceptance criteria",
+      "quality mode research goal",
+      "quality mode research decision record",
+      "ac-011 sibling path narrowing"
+    ],
+    "key_topics": [
+      "quality",
+      "mode",
+      "research",
+      "phase",
+      "sk-code-quality",
+      "repo-agnostic",
+      "gate",
+      "user-authored",
+      "integration",
+      "plan",
+      "angles",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/synthesis-v1.md",
+      "research/resource-map.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      "specs/sk-code/013-private-surface-skills/spec.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-v1.md",
+        "kind": "doc",
+        "path": "research/synthesis-v1.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Modes Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-code-quality` is the author-side gate that runs after implementation and before a completion claim",
+    "created_at": "2026-10-25T08:24:47Z",
+    "last_save_at": "2026-10-25T13:27:40.084Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2fc8442f2002d9cb4d7d613a2ae9366b7e862d3d5bc739f767283a9de56fdae8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fc60f28a83005739835194a1fc7c59c6e9675cc003c0171e28789677999bcf91",
+      "plan.md": "89b2a0cd3de33b94417dceea85a1fc93caad4fdc5a302ff01dab93b236835cf5",
+      "tasks.md": "a2429d2e0ade5646688a4c67ecc5efe01c82cbe4555c0b2fb4eb4d3b29663aec",
+      "decision-record.md": "c280842dfdf5062b48e2cfc8362276463b1f8a5435053f08ee0a4da26a8813e9",
+      "implementation-summary.md": "15549f22357b1c0a5f5e67673eca99f4afaeaf475e4e9f6314256245ecfec19d",
+      "research/research.md": "d960d70fc1d895d2a6e9c6ba5eb5983d450f6bfe63b028ce01c8a8ab2e29c80b"
+    },
+    "last_active_at": null
+  }
+}

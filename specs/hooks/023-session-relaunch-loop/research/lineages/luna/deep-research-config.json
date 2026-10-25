@@ -1,20 +1,20 @@
 {
-  "topic": "Session relaunch loop after phase 008 (.skilled/hooks/session-relaunch, .skilled/bin/skilled-loop, /speckit:handoff, the OpenCode plugin and runtime adapters, their tests and docs): find remaining drift between code, docs and spec records; latent bugs and edge cases; refinements; the ideal architecture of the core and adapters; and alignment gaps against the sk-code-skilled surface standards and checklists and the sk-doc document standards. Each finding needs file:line evidence and a concrete fix.",
-  "maxIterations": 5,
-  "convergenceThreshold": 0.1,
+  "topic": "Session relaunch loop as shipped on main through phases 024-032 (.skilled/bin/skilled-loop, .skilled/bin/skilled-loop-shell.sh, .skilled/hooks/session-relaunch/ lib, bin, claude, codex, hermes and pi adapters, .opencode/plugins session-relaunch, .hermes/plugins/repo-guards, .skilled/commands/speckit/handoff.md, their tests, README, feature catalog and playbooks). Find remaining defects and missing test coverage in four areas: (1) goal persistence across a hop on all seven runtimes (goal_packet in note and record, SESSION_RELAUNCH_GOAL_PACKET and HERMES_SPEC_FOLDER export and restore, SESSION_RELAUNCH_GOAL=0, receiver rebind); (2) model, provider and effort persistence (launch-flag capture and replay per runtime, live values from Claude log, Codex rollout, Cursor cli-config.json, Pi arm and Hermes post_api_request, precedence, validation and drop warnings, carry to later hops, OpenCode 2 and Devin limits); (3) OpenCode 2 --standalone first launch and relaunch, --server handling; (4) operator UX and edge cases: warnings and messages, manual claim command, nested runs, hop cap, cancel and withdraw, stale or racing records, odd paths and quoting, missing binaries, concurrent sessions. Every finding must cite file:line and say whether a test covers it.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
   "antiConvergence": {
     "minIterations": 3,
     "convergenceMode": "default",
-    "stopPolicy": "max-iterations"
+    "stopPolicy": "fail-closed",
+    "divergent": {}
   },
-  "stopPolicy": "max-iterations",
   "stuckThreshold": 3,
   "maxDurationMinutes": 120,
-  "maxToolCallsPerIteration": 12,
+  "maxToolCallsPerIteration": 24,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
   "specFolder": "specs/hooks/023-session-relaunch-loop",
-  "createdAt": "2026-10-19T17:14:56Z",
+  "createdAt": "2026-10-25T11:36:21Z",
   "status": "complete",
   "executionMode": "auto",
   "executor": {
@@ -26,20 +26,80 @@
     "timeoutSeconds": 900
   },
   "lineage": {
-    "sessionId": "fanout-luna-1792429886029-no7lpl",
+    "sessionId": "fanout-luna-1792927892367-86umpv",
     "parentSessionId": null,
     "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
     "generation": 1,
     "continuedFromRun": null
   },
-  "resource_map_present": false,
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
   "fileProtection": {
     "deep-research-config.json": "immutable",
     "deep-research-state.jsonl": "append-only",
     "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
     "findings-registry.json": "auto-generated",
     "iteration-*.md": "write-once",
-    "deltas/iter-*.jsonl": "write-once",
-    "research.md": "mutable"
-  }
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "minIterations": 3,
+  "stopPolicy": "max-iterations",
+  "minIdeaObservations": 2,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
 }

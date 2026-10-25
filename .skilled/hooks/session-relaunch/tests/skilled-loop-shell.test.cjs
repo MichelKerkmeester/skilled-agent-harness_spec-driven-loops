@@ -36,7 +36,10 @@ const INTERACTIVE = {
 const PASSTHROUGH = {
   claude: [['-p', 'hi'], ['--print'], ['--version'], ['-h'], ['doctor'], ['mcp', 'list'], ['--bg']],
   pi: [['-p', 'hi'], ['--version'], ['install', 'npm:x'], ['config'], ['--mode', 'rpc'], ['--list-models']],
-  opencode: [['run', 'hi'], ['serve'], ['--version'], ['-h'], ['models']],
+  opencode: [
+    ['run', 'hi'], ['serve'], ['--version'], ['-h'], ['models'],
+    ['api'], ['service'], ['reload'], ['pair'], ['mini'],
+  ],
   codex: [['exec', 'hi'], ['e', 'hi'], ['review'], ['login'], ['--version'], ['-V'], ['--help']],
   hermes: [
     ['-z', 'hi'], ['--oneshot', 'hi'], ['setup'], ['gateway'], ['--version'],

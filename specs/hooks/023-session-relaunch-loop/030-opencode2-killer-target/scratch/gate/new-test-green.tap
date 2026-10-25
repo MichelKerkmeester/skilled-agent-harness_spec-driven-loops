@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: session.idle arms a matching record and spawns the killer without a transcript
+ok 1 - session.idle arms a matching record and spawns the killer without a transcript
+  ---
+  duration_ms: 25.08075
+  type: 'test'
+  ...
+# Subtest: session.idle targets the loop child above the plugin host, not the host itself
+ok 2 - session.idle targets the loop child above the plugin host, not the host itself
+  ---
+  duration_ms: 83.072667
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 146.046

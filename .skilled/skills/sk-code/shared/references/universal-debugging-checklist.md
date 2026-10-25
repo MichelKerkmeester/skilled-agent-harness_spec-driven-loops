@@ -8,18 +8,18 @@ trigger_phrases:
   - "stack agnostic debugging"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Universal Debugging Checklist - Surface-Agnostic 4-Phase Workflow
 
-Surface-agnostic 4-phase debugging workflow. Use as a structured progression for any non-trivial debugging session across the WEBFLOW and SKILLED surfaces.
+Surface-agnostic 4-phase debugging workflow. Use as a structured progression for any non-trivial debugging session across the SKILLED surface.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Captures the universal debugging protocol that applies regardless of surface: reproduce reliably, identify root cause, test one hypothesis at a time, fix at source. Surface-specific tooling (Chrome DevTools for WEBFLOW, package/script diagnostics for SKILLED) is referenced from each surface's debugging docs.
+Captures the universal debugging protocol that applies regardless of surface: reproduce reliably, identify root cause, test one hypothesis at a time, fix at source. Surface-specific tooling (package/script diagnostics) is referenced from each surface's debugging docs.
 
 ### Usage
 
@@ -66,7 +66,6 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 
 | Surface | Primary tool | Reference |
 |---|---|---|
-| WEBFLOW | Chrome DevTools (Console + Network + Performance) | `.skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md` |
 | SKILLED | Targeted tests, package typecheck/build, `verify_alignment_drift.py` | `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` |
 | UNKNOWN | Disambiguation prompt — sk-code does not own Go / React Native / Swift / React/Next.js / generic Node.js | n/a |
 
@@ -88,5 +87,4 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 - [`./phase-detection.md`](./phase-detection.md) — Phase 2 Debugging position in the sk-code lifecycle.
 - [`./universal/error-recovery.md`](./universal/error-recovery.md) — universal recover-in-place / rollback / escalate decision tree.
 - [`./universal-verification-checklist.md`](./universal-verification-checklist.md) — runs after debugging completes, before any completion claim.
-- `.skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md` — WEBFLOW deep-dive (DevTools workflows, network capture, multi-viewport).
 - `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` — SKILLED alignment diagnostics.

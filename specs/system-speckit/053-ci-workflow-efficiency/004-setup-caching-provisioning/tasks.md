@@ -30,6 +30,8 @@ contextType: "general"
 Every task below names one file, quotes the anchor text it edits, gives that anchor's line number, puts every command in a fenced block, states the expected result, names the acceptance criterion it satisfies, gives a rollback, and gives one concrete stop condition.
 
 Line numbers are the values on disk when that task runs, after the tasks before it in the same file. Within a workflow file the install block is replaced before the filter lists above it are extended, so each quoted number stays valid. `hooks-node-tests.yml` is edited before T038 deletes it.
+**Review amendment (2026-10-24):** the action derives the Node major itself and has no `node-major` input, so every call block below that shows a `node-major:` line drops it, and an action call is then `uses:` alone or `uses:` with a `cache:` line. Its cache lists name 21 paths (the 18 planned plus the shared dist, the sk-vision bundle and the Node version marker) and its key also hashes the action file, the bun version and 14 package manifests. Task text that quotes the older shape is superseded by the `Drift:` notes under T014 to T027.
+
 <!-- /ANCHOR:notation -->
 
 ---
@@ -37,9 +39,11 @@ Line numbers are the values on disk when that task runs, after the tasks before 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T001 DECISION D5 (operator yes required) - approve or reject the hook-and-plugin merge (AC-015)
+### T001 [x] DECISION D5 (operator yes required) - approve or reject the hook-and-plugin merge (AC-015)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the answer line.
+
+Done: `scratch/decisions.md` holds `D5=approve` (grep `^D5=` count 1).
 
 Default: `approve`. One workflow, one job titled `OpenCode plugin and hook node:test suites`, worth 124 runner-min/day standalone, about 53 after R1 and about 27 after R1 and R14. No required check is renamed, because the only active ruleset requires `message-contract.yml`'s context.
 
@@ -62,11 +66,11 @@ Stop and escalate if: no answer arrives, or the answer is neither `approve` nor 
 
 ---
 
-### T002 Copy the baseline rows this phase measures against (AC-014)
+### T002 [x] Copy the baseline rows this phase measures against (AC-014)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md` (new file). Anchor: none.
 
-Change: copy the first 40 lines of the 002 summary, then append one row per workflow this phase touches: `hooks-node-tests`, `opencode-plugin-tests`, `opencode-dual-version`, `spec-kit-check`, `routing-registry-drift`, `skill-advisor-stress`, `sk-doc-script-tests`, `sk-doc-rename-harness`, `deep-loop-runtime`, `skill-doc-frontmatter`, `playbook-operator-contract`, `gate-inputs`, `command-tree-parity`, `naming-standard-guard`, `rule-canary-sync`.
+Change: copy the first 40 lines of the 002 summary, then append one row per workflow this phase touches: `hooks-node-tests`, `opencode-plugin-tests`, `opencode-dual-version`, `spec-kit-check`, `routing-registry-drift`, `skill-advisor-stress`, `sk-doc-script-tests`, `sk-doc-rename-harness`, `deep-loop-runtime`, `skill-doc-frontmatter`, `playbook-operator-contract`, `gate-inputs`, `command-tree-parity`, `naming-standard-guard`, `rule-canary-sync`. Keep those appended rows under `## Workflows this phase touches`; the copied 001 summary already carries rows for the same workflows.
 
 Check:
 
@@ -74,7 +78,7 @@ Check:
 test -f specs/system-speckit/053-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
 ```
 
-Expected: `BASELINE_PRESENT`. When it prints `BASELINE_MISSING`, copy `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md` instead and write `source: 001 dataset (provisional)` as the file's first line.
+Expected: `BASELINE_PRESENT`. When it prints `BASELINE_MISSING`, copy `specs/system-speckit/053-ci-workflow-efficiency/001-research/scratch/ci-run-data/summary.md` instead and write `source: 001 dataset (provisional)` as the file's first line. As of 2026-10-24 it prints `BASELINE_MISSING`, so the 001-dataset fallback is the expected path until the 002 baseline exists.
 
 Then:
 
@@ -90,18 +94,20 @@ Then append the fifteen rows, each naming the workflow and its baseline runner-m
 Check:
 
 ```bash
-grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md
+awk '/^## Workflows this phase touches/{f=1;next} /^## /{f=0} f' specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md | grep -cE '^\| `?(hooks-node-tests|opencode-plugin-tests|opencode-dual-version|spec-kit-check|routing-registry-drift|skill-advisor-stress|sk-doc-script-tests|sk-doc-rename-harness|deep-loop-runtime|skill-doc-frontmatter|playbook-operator-contract|gate-inputs|command-tree-parity|naming-standard-guard|rule-canary-sync)'
 ```
 
-Expected: `15`.
+Expected: `15` in the phase section. The whole file contains `30` matching rows because the copied 001 summary already carries the same fifteen workflows.
 
 Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`.
 
 Stop and escalate if: neither summary file exists, or the row count is not 15.
 
+Done: `BASELINE_MISSING`; the 001 fallback prefix matched, the whole-file count was `30`, and the phase-section count was `15`.
+
 ---
 
-### T003 Record the pre-change inventory (AC-001, AC-002, AC-014)
+### T003 [x] Record the pre-change inventory (AC-001, AC-002, AC-014)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-baseline.md`, anchor: the last row T002 wrote.
 
@@ -117,7 +123,7 @@ find . \( -name package-lock.json -o -name bun.lock -o -name bun.lockb \) -not -
 cd .github/workflows && for f in *.yml; do c=$(grep -cE 'npm --prefix [^ ]+ ci$' "$f"); [ "$c" -ge 2 ] && echo "$f"; done | wc -l
 ```
 
-Expected: `files=45`, `failures=0` and `RESULT: PASSED`; `inputs_resolved` at least `236`; `dynamic_inputs=11`; `twin_pairs` at least `311`; `check-gate-inputs: 50 passed, 0 failed`; `5`; `13`; `11` when `grep -cE 'npm --prefix [^ ]+ ci$' .github/workflows/dispatch-enforcement-guard.yml` returns `2`, and `10` after phase 003's R6 leaves `1`. The `236` and `311` are the pre-003 minima; phase 003's R4, R9 and R10 add twin-matched filter entries, so both rise when 003 lands first.
+Expected: the gate output matches this phase's measured baseline on the post-003 tree — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` — with `RESULT: PASSED`; `check-gate-inputs: 54 passed, 0 failed`; `5`; `13`; and `10`, since phase 003's R6 left `dispatch-enforcement-guard.yml` with one install. The planned constants (`inputs_resolved` at least `236`, `dynamic_inputs=11`, `twin_pairs` at least `311`, suite `50`) went stale when 003's filters and this phase's T005 description-as-label rule landed; the 2026-10-24 amendment replaces them with the measured baseline.
 
 Then:
 
@@ -129,7 +135,9 @@ Expected: at least `5` (the five section headings; the copied 002 summary may ad
 
 Rollback: delete the five appended sections.
 
-Stop and escalate if: the gate fails, `inputs_resolved` is below `236`, `twin_pairs` is below `311`, `dynamic_inputs` is not `11`, the fixture suite is not `50 passed, 0 failed`, the bun site count is not `5`, the lockfile count is not `13`, or the install count is neither `10` nor `11`.
+Stop and escalate if: the gate fails, its counters differ from the measured baseline `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, the fixture suite is not `54 passed, 0 failed`, the bun site count is not `5`, the lockfile count is not `13`, or the install count is not `10`.
+
+Done: gate printed `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`; fixture suite printed `check-gate-inputs: 54 passed, 0 failed`; counts were `5`, `13`, `10`, dispatcher count `1`, and heading count `6`.
 
 ---
 
@@ -140,7 +148,7 @@ Stop and escalate if: the gate fails, `inputs_resolved` is below `236`, `twin_pa
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-### T004 Add the composite-action scan loop to the gate (AC-001)
+### T004 [x] Add the composite-action scan loop to the gate (AC-001)
 
 File: `.github/scripts/check-gate-inputs.sh:484-485`, anchor:
 
@@ -148,6 +156,8 @@ File: `.github/scripts/check-gate-inputs.sh:484-485`, anchor:
   scan_workflow "${wf#"$ROOT"/}"
 done
 ```
+
+Done: the `.github/actions` scan loop sits after this `done` at `~:487-494` (uncommitted edit); the real-tree gate still prints `files=45 … RESULT: PASSED` because no `.github/actions/` directory exists yet.
 
 Change: insert this block immediately after `done`:
 
@@ -168,21 +178,23 @@ Check:
 bash .github/scripts/check-gate-inputs.sh
 ```
 
-Expected: `files=45`, `failures=0` and `RESULT: PASSED`; `inputs_resolved` at least `236`; `dynamic_inputs=11`; `twin_pairs` at least `311`.
+Expected: the gate output matches this phase's measured baseline — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` — with `RESULT: PASSED` (the planned `≥236`/`11`/`≥311` constants went stale post-003 and post-T005; see the 2026-10-24 amendment).
 
 Rollback: delete the inserted block and the blank line above it, restoring the quoted anchor.
 
-Stop and escalate if: the anchor text is not on the file, `files` is not `45`, `inputs_resolved` is below `236`, `twin_pairs` is below `311`, or the gate does not print `RESULT: PASSED`.
+Stop and escalate if: the anchor text is not on the file, the gate counters differ from the measured baseline `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0`, or the gate does not print `RESULT: PASSED`.
 
 ---
 
-### T005 Treat a `description:` line as a label (AC-001)
+### T005 [x] Treat a `description:` line as a label (AC-001)
 
 File: `.github/scripts/check-gate-inputs.sh:384`, anchor:
 
 ```awk
   if (code ~ /^[ ]*-?[ ]*name:/) { if (code ~ /\.(opencode|skilled)/) emit("note", "label"); next }
 ```
+
+Done: `(name|description):` sits at the awk label rule (uncommitted edit); `grep -cF '(name|description):'` returns 1.
 
 Change: replace it with:
 
@@ -204,7 +216,7 @@ Stop and escalate if: the anchor text is not on the file, or the count is not 1.
 
 ---
 
-### T006 Add fixture case 50, a clean composite action passes (AC-002)
+### T006 [x] Add fixture case 50, a clean composite action passes (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:489`, anchor:
 
@@ -212,6 +224,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:489`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 50 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -246,7 +260,7 @@ Stop and escalate if: the anchor is not on the file, or the count is not 51.
 
 ---
 
-### T007 Add fixture case 51, an unresolved path in an action fails `workflow-inputs` (AC-002)
+### T007 [x] Add fixture case 51, an unresolved path in an action fails `workflow-inputs` (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:503`, anchor:
 
@@ -254,6 +268,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:503`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 51 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -288,7 +304,7 @@ Stop and escalate if: the anchor is not on the file, the count is not 52, or the
 
 ---
 
-### T008 Add fixture case 52, an unreadable root shape in an action fails `parser-miss` (AC-002)
+### T008 [x] Add fixture case 52, an unreadable root shape in an action fails `parser-miss` (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:517`, anchor:
 
@@ -296,6 +312,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:517`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 52 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -330,7 +348,7 @@ Stop and escalate if: the anchor is not on the file, the count is not 53, or the
 
 ---
 
-### T009 Add fixture case 53, a description that names a path is a label (AC-002)
+### T009 [x] Add fixture case 53, a description that names a path is a label (AC-002)
 
 File: `.github/scripts/tests/check-gate-inputs.test.sh:531`, anchor:
 
@@ -338,6 +356,8 @@ File: `.github/scripts/tests/check-gate-inputs.test.sh:531`, anchor:
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 ```
+
+Done: case 53 sits before the summary echo (uncommitted edit); the suite prints `check-gate-inputs: 54 passed, 0 failed` with the new PASS label present.
 
 Change: insert this case immediately before that block:
 
@@ -372,7 +392,7 @@ Stop and escalate if: the anchor is not on the file, or the count is not 54. Thi
 
 ---
 
-### T010 Name composite actions in the rule comment (AC-001)
+### T010 [x] Name composite actions in the rule comment (AC-001)
 
 File: `.github/scripts/check-gate-inputs.sh:18-25`, anchor:
 
@@ -412,9 +432,11 @@ Rollback: replace the eight new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file at `:18-25`, or the count is not 2.
 
+Done: `grep -c 'composite action' .github/scripts/check-gate-inputs.sh` printed `2`.
+
 ---
 
-### T011 Prove the gate after the scan change (AC-001, AC-002, AC-013)
+### T011 [x] Prove the gate after the scan change (AC-001, AC-002, AC-013)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md` (new file), anchor: none.
 
@@ -428,7 +450,7 @@ bash .github/scripts/tests/check-gate-inputs.test.sh | tail -1
 python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]"
 ```
 
-Expected: `files=45` with `failures=0` and `RESULT: PASSED`; `check-gate-inputs: 54 passed, 0 failed`; exit `0` with no output.
+Expected: the gate output matches this phase's measured baseline — `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` — with `RESULT: PASSED` (the planned `inputs_resolved` ≥`236` and `dynamic_inputs=11` went stale post-003 and post-T005; see the 2026-10-24 amendment); `check-gate-inputs: 54 passed, 0 failed`; exit `0` with no output.
 
 Then:
 
@@ -442,11 +464,15 @@ Rollback: `rm specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-
 
 Stop and escalate if: any of the three checks fails, or `files` is not 45.
 
+Done: gate printed `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`; fixture suite printed `check-gate-inputs: 54 passed, 0 failed`; YAML parse exited `0` with no output; heading count printed `1`.
+
 ---
 
-### T011A Commit the gate scan (AC-001, AC-002, AC-017)
+### T011A [x] Commit the gate scan (AC-001, AC-002, AC-017)
 
 File: `.github/scripts/check-gate-inputs.sh`, `.github/scripts/tests/check-gate-inputs.test.sh`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+
+Done: committed cd58109fc5 'ci(gate-inputs): scan composite actions for input paths'; validate-message exit 0; id grep empty; pushed with 12c4a00612, CI 10/10 success.
 
 Change: stage the gate scan, write its message, validate it, scan the staged diff for ephemeral ids, and commit.
 
@@ -474,7 +500,7 @@ Stop and escalate if: the validator exits non-zero twice, the id search prints a
 
 ---
 
-### T012 Create the cache probe workflow on a throwaway branch (AC-003)
+### T012 [x] Create the cache probe workflow on a throwaway branch (AC-003)
 
 File: `.github/workflows/cache-probe.yml` (new file, on branch `probe/provision-cache` only; never merged). Anchor: none.
 
@@ -594,9 +620,13 @@ Rollback: `git switch -` and `git branch -D probe/provision-cache`.
 
 Stop and escalate if: the branch cannot be created, or the YAML parse fails twice.
 
+Done 2026-10-24: created `branches/031-probe-provision-cache` from `origin/main` (`78b171b005`) with `worktree-naming.sh create-branch probe-provision-cache origin/main`, and wrote `cache-probe.yml` in the separate probe worktree only. YAML parse printed `ok` and `actionlint` exited `0`.
+
+Drift: the throwaway branch name `branches/031-probe-provision-cache` replaces `probe/provision-cache` in the push filter and everywhere else, per the operator's recorded probe-branch approval, and the branch was made without `git switch -c`. `<cache-sha>` resolved to `0057852bfaa89a56745cba8c7296529d2fc39830`, written as `# v4.3.0` because the `v4` tag and `v4.3.0` point at the same commit.
+
 ---
 
-### T013 Run the probe twice and record the go/no-go (AC-003)
+### T013 [x] Run the probe twice and record the go/no-go (AC-003)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/cache-probe/summary.md` (new file). Anchor: none.
 
@@ -647,9 +677,13 @@ Rollback: `rm -r specs/system-speckit/053-ci-workflow-efficiency/004-setup-cachi
 
 Stop and escalate if: either run is not green, or the remote branch holds no `cache-probe.yml`. Write `verdict=no-go` and stop T014 to T066 when the largest `provision-` entry is 2 GB or more, or their total is 5 GB or more.
 
+Done 2026-10-24: both runs green. Cold run 40104579813 on `474eaf6357` and warm run 40104779129 on `0c19bb2514`, both with Message Contract green. The one `provision-` entry is 1,278,641,883 bytes (1.28 GB), so the largest entry and the total are both under the 2 GB and 5 GB ceilings. Restore 24 s on the hit (6 s on the miss), `provision_worktree` 35 s cold (`11 installed, 5 built`) against 1 s warm (`0 installed, 0 built, 14 already present`), and `grep -cE` on `scratch/cache-probe/summary.md` printed `5`. Verdict `go`. The saving per job is thinner than planned: about 29 s warm (restore 24, bun 4, walk 1) against about 40 s uncached (bun 5, walk 35), roughly 10 s. Raw numbers sit in `scratch/cache-probe/observations.md` and `scratch/cache-probe/caches-raw.json`. Cleanup done: the cache entry deleted, the remote and local probe branches deleted, the probe worktree removed, no pull request opened.
+
+Drift: the commit messages sit in the session scratchpad rather than `/tmp`. The local pre-commit hook blocked the first probe commit in the new worktree with `BLOCKED [gate:mirror-parity]` and `Cannot find module 'js-yaml'`, because the worktree held no dependency trees. No bypass was used. `provision_worktree` was run in the probe worktree and the unchanged hook then passed. The pre-push hook refused to create and later to delete the remote probe branch until the push named it with `SPECKIT_ALLOW_REMOTE_PUSH=branches/031-probe-provision-cache`, the hook's own one-off form, under the recorded operator approval. `gh run list --workflow cache-probe.yml` returns HTTP 404 for a workflow that exists on no default branch, so the runs were read with `--branch`. The warm run reads `provision_seconds=1` because the restored build stamps make every path count as present.
+
 ---
 
-### T014 Create the composite setup action (AC-004)
+### T014 [x] Create the composite setup action (AC-004)
 
 File: `.github/actions/setup/action.yml` (new file). Anchor: none.
 
@@ -763,9 +797,17 @@ Rollback: `rm -r .github/actions/setup`.
 
 Stop and escalate if: the gate reports a failure naming the action, or `restore-keys` is present, or `files` is not 46.
 
+Done 2026-10-24: T013's verdict was `go`, so `.github/actions/setup/action.yml` was written in the working tree and left uncommitted for T014A. Checks printed `ok`, `0`, `1`, `1`, `1`, `2`. The gate printed `files=46 inputs_resolved=239 dynamic_inputs=37 twin_pairs=340 failures=0` and `RESULT: PASSED`, the fixture suite printed `check-gate-inputs: 54 passed, 0 failed`, and the YAML parse of every workflow exited `0`.
+
+Drift: `<cache-sha>` is `0057852bfaa89a56745cba8c7296529d2fc39830` (`# v4.3.0`) and `<bun-sha>` is `0c5077e51419868618aeaa5fe8019c62421857d6` (`# v2.2.0`), the commits the `v4` and `v2` tags resolve to. The gate counters moved from `inputs_resolved=235 dynamic_inputs=9` to `239` and `37` after the 18 cache path lines and the key expression entered the scan (not traced further, and the planned figures never named these two counters for the action), and `failures` stays `0`. `actionlint` is a workflow linter and rejects an `action.yml` for lacking `jobs` and `on`, so it is not a valid check for this file.
+
+Review amendment 2026-10-24: the action was rewritten after review. Counts now read `ok`, `0`, `1`, `1`, `1` and `0` for `restore-keys`, `hashFiles`, `provision_worktree`, `cache-hit` and `node-major`, and the gate prints `files=46 inputs_resolved=251 dynamic_inputs=39 twin_pairs=340 failures=0` with `RESULT: PASSED`.
+
+Drift: the `node-major` input is gone, so the planned count `2` is now `0`, and the first step `node` prints the major that the key reads through `steps.node.outputs.major`. The cache lists name 21 paths, the restore and save blocks are byte-identical, the key also hashes `.github/actions/setup/action.yml`, `inputs.bun-version` and 14 explicit manifests, and the description claims only what the walk checks. The gate counters rose again because the longer lists and key entered the scan, and `failures` stays `0`.
+
 ---
 
-### T014A Commit the composite action (AC-004, AC-017)
+### T014A [x] Commit the composite action (AC-004, AC-017)
 
 File: `.github/actions/setup/action.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -793,9 +835,11 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-setup-action.txt
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside `.github/actions/setup/action.yml`.
 
+Done 2026-10-24: committed by the coordinator as 3073f372c9 `ci(actions): add the cached setup action`, local only, not pushed.
+
 ---
 
-### T015 Replace the hooks provision step with the action (AC-005)
+### T015 [x] Replace the hooks provision step with the action (AC-005)
 
 File: `.github/workflows/hooks-node-tests.yml:57-64`, anchor:
 
@@ -832,9 +876,15 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the eight-line block in `hooks-node-tests.yml` is now the four-line action call. `grep -c 'uses: ./.github/actions/setup'` printed `1` and `grep -c 'bun@1.3.9'` printed `0`.
+
+Drift: the block sat at lines 61-68 rather than 57-64 and was located by its content. The bun comment line lived inside the replaced `run:` block, so only the two comment lines above the step stayed.
+
+Review amendment 2026-10-24: the call is the single line `uses: ./.github/actions/setup` with no `with:` block, because the `node-major` input is removed.
+
 ---
 
-### T016 Put `.github/actions/**` in both hook-test filters (AC-005)
+### T016 [x] Put `.github/actions/**` in both hook-test filters (AC-005)
 
 File: `.github/workflows/hooks-node-tests.yml:37` and `:24`, anchors:
 
@@ -857,9 +907,13 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice in the file, or the gate fails.
 
+Done 2026-10-24: `'.github/actions/**'` sits before the workflow entry in both lists. The count printed `2` and the gate printed `RESULT: PASSED`.
+
+Drift: the entries were at `:37` and `:24`, found by content. The grep patterns in this task and in T020, T026 and T027 that contain `\${{` match nothing under macOS grep, so the counts were read with `grep -cF` against the literal text.
+
 ---
 
-### T017 Replace the plugin provision step with the action (AC-005)
+### T017 [x] Replace the plugin provision step with the action (AC-005)
 
 File: `.github/workflows/opencode-plugin-tests.yml:63-73`, anchor:
 
@@ -899,9 +953,15 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the plugin provision step is the four-line action call. The counts printed `1` and `0`.
+
+Drift: the block sat at lines 70-77 rather than 63-73 and was located by its content, with the three comment lines above it kept.
+
+Review amendment 2026-10-24: the call is `uses:` alone, with no `with:` block, because the `node-major` input is removed.
+
 ---
 
-### T018 Put `.github/actions/**` in both plugin-test filters (AC-005)
+### T018 [x] Put `.github/actions/**` in both plugin-test filters (AC-005)
 
 File: `.github/workflows/opencode-plugin-tests.yml:45` and `:28`, anchors:
 
@@ -924,9 +984,13 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice in the file, or the gate fails.
 
+Done 2026-10-24: the count printed `2` and the gate printed `RESULT: PASSED`.
+
+Drift: the entries were at `:45` and `:28`, located by content.
+
 ---
 
-### T019 Add the `cold` dispatch input to the plugin workflow (AC-006)
+### T019 [x] Add the `cold` dispatch input to the plugin workflow (AC-006)
 
 File: `.github/workflows/opencode-plugin-tests.yml:47`, anchor:
 
@@ -962,9 +1026,11 @@ Rollback: delete the inserted block.
 
 Stop and escalate if: the anchor is not on the file, or the YAML parse fails.
 
+Done 2026-10-24: the `workflow_dispatch` block with the `cold` choice input sits after the last push filter entry and before `permissions:`. The counts printed `1` and `1` and the YAML parse printed `ok`.
+
 ---
 
-### T020 Pass the `cold` input to the plugin action call (AC-006)
+### T020 [x] Pass the `cold` input to the plugin action call (AC-006)
 
 File: `.github/workflows/opencode-plugin-tests.yml:77-78`, anchor:
 
@@ -991,9 +1057,13 @@ Rollback: delete the `cache:` line.
 
 Stop and escalate if: the anchor appears more than once, or the count is not 1.
 
+Done 2026-10-24: `cache: ${{ inputs.cold != 'true' }}` follows `node-major: '22'` in the plugin action call, at line 83. `grep -cF` printed `1`.
+
+Review amendment 2026-10-24: with `node-major` removed the `with:` block holds only the `cache:` line, so the anchor `node-major: '22'` no longer exists and the line follows `with:`. `grep -cF` still prints `1`.
+
 ---
 
-### T021 Replace the dual-version battery provision step with the action (AC-005)
+### T021 [x] Replace the dual-version battery provision step with the action (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:98-105`, anchor:
 
@@ -1030,9 +1100,15 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor does not appear exactly twice before the edit, or the action-call count is not 1.
 
+Done 2026-10-24: the battery step is the four-line action call. The counts printed `1` and `1`. Before the edit the step name appeared twice.
+
+Drift: the block sat at lines 102-109 rather than 98-105.
+
+Review amendment 2026-10-24: the call is `uses:` alone, with no `with:` block, until T026 adds the `cache:` line.
+
 ---
 
-### T022 Replace the dual-version `both` provision step with the action (AC-005)
+### T022 [x] Replace the dual-version `both` provision step with the action (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:177-184`, anchor: the same eight-line block T021 quoted, now at this position. Locate the block by its first line when the number has moved.
 
@@ -1051,9 +1127,11 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the `both` step is the four-line action call. The counts printed `2` and `0`.
+
 ---
 
-### T023 Delete the redundant bun PATH export in the sk-vision step (AC-005)
+### T023 [x] Delete the redundant bun PATH export in the sk-vision step (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:124`, anchor:
 
@@ -1075,9 +1153,13 @@ Rollback: restore the deleted line at the same position.
 
 Stop and escalate if: the anchor does not appear exactly once, or the count is not 0.
 
+Done 2026-10-24: the bun `PATH` export in the sk-vision step is deleted, and `grep -c 'RUNNER_TEMP/bun'` printed `0`.
+
+Drift: the line was at `:132`, found as the only remaining match.
+
 ---
 
-### T024 Put `.github/actions/**` in both dual-version filters (AC-005)
+### T024 [x] Put `.github/actions/**` in both dual-version filters (AC-005)
 
 File: `.github/workflows/opencode-dual-version.yml:65` and `:37`, anchors:
 
@@ -1100,9 +1182,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice, or the gate fails.
 
+Done 2026-10-24: the count printed `2` and the gate printed `RESULT: PASSED`.
+
 ---
 
-### T025 Add the `cold` dispatch input to the dual-version workflow (AC-006)
+### T025 [x] Add the `cold` dispatch input to the dual-version workflow (AC-006)
 
 File: `.github/workflows/opencode-dual-version.yml:67`, anchor:
 
@@ -1127,9 +1211,11 @@ Rollback: delete the inserted block.
 
 Stop and escalate if: the anchor is not on the file, or the YAML parse fails.
 
+Done 2026-10-24: the dispatch block is in place, `grep -c '^  workflow_dispatch:'` printed `1` and the YAML parse printed `ok`.
+
 ---
 
-### T026 Pass the `cold` input to the battery action call (AC-006)
+### T026 [x] Pass the `cold` input to the battery action call (AC-006)
 
 File: `.github/workflows/opencode-dual-version.yml:110`, anchor: the first of the file's two `          node-major: '22'` lines, inside the `battery` job.
 
@@ -1147,9 +1233,13 @@ Rollback: delete the `cache:` line.
 
 Stop and escalate if: the file does not hold exactly two `node-major: '22'` lines, or the count is not 1.
 
+Done 2026-10-24: the battery action call carries the `cache:` line, at line 115. The file held exactly two `node-major: '22'` lines before the edit.
+
+Review amendment 2026-10-24: the anchor `node-major: '22'` no longer exists, so the `cache:` line follows the battery job's `with:`. The file holds two such `with:` blocks after T027 and the count is `2` for the file.
+
 ---
 
-### T027 Pass the `cold` input to the `both` action call (AC-006)
+### T027 [x] Pass the `cold` input to the `both` action call (AC-006)
 
 File: `.github/workflows/opencode-dual-version.yml:190`, anchor: the second `          node-major: '22'` line, inside the `both` job. Locate the second line by the job when the number has moved.
 
@@ -1167,9 +1257,15 @@ Rollback: delete the second `cache:` line.
 
 Stop and escalate if: the count is not 2.
 
+Done 2026-10-24: the `both` action call carries the `cache:` line, at line 194. `grep -cF` printed `2` for the file.
+
+Drift for T027A: that task lists `spec-kit-check.yml` and its message says the spec-kit job adopts the action, but this phase adopts it there at T045, so the staged diff holds only the three workflows edited here and the message should say so.
+
+Review amendment 2026-10-24: the `cache:` line follows the `both` job's `with:` line. The file count is `2`, and the three workflows hold no `node-major` line.
+
 ---
 
-### T027A Commit the five adoption sites (AC-005, AC-006, AC-009, AC-017)
+### T027A [x] Commit the five adoption sites (AC-005, AC-006, AC-009, AC-017)
 
 File: `.github/workflows/hooks-node-tests.yml`, `.github/workflows/opencode-plugin-tests.yml`, `.github/workflows/opencode-dual-version.yml`, `.github/workflows/spec-kit-check.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -1197,9 +1293,13 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-adoptions.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside the four adoption files.
 
+Done 2026-10-24: the adoption is on `main` as `68e735d630` (`ci(workflows): adopt the cached setup action at four sites`), the action as `fafaaa4e49` and its key fix as `5efe36e731`. `git merge-base --is-ancestor HEAD origin/main` printed `adoption-on-main`.
+
+Drift: the commit holds four call sites in three workflows and not the five in four files this task lists, because `spec-kit-check.yml` adopts at T045.
+
 ---
 
-### T028 Run the cold path and record it (AC-006)
+### T028 [x] Run the cold path and record it (AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## Gate after R12` section T011 wrote.
 
@@ -1224,9 +1324,13 @@ Rollback: delete the `## R14 cold run` section.
 
 Stop and escalate if: `git merge-base` reports that the adoption commit is not an ancestor of `origin/main`, `gh workflow run` reports that the workflow has no `workflow_dispatch` trigger, the conclusion is not `success`, or the log holds no `provisioning` line.
 
+Done 2026-10-24: `workflow_dispatch` with `cold=true` on `main` gave run 40107101405 for `opencode-plugin-tests.yml` (head `0029a3ead5`, conclusion `success`, 11 `provisioning` lines, summary `11 installed, 5 built, 3 already present, 0 failed`, restore and save steps not run) and run 40107567830 for `opencode-dual-version.yml` (head `b0b52243f0`, `success`, 11 `provisioning` lines in each of its three jobs, same summary). A first dual-version dispatch, run 40107103375, was `cancelled` by the concurrency group when a newer push run replaced it and was dispatched again. The `R14 cold run` section is in `scratch/phase-result.md` and the per-job figures are in `scratch/cache-adoption-runs.md`.
+
+Drift: `hooks-node-tests.yml` has no `workflow_dispatch` trigger, so it has no cold run. The check's `gh run list --limit 1` can pick a push run, so the run ids were read from the dispatch output.
+
 ---
 
-### T029 Prove the warm run and the gate (AC-005, AC-006)
+### T029 [x] Prove the warm run and the gate (AC-005, AC-006)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 cold run` section T028 wrote.
 
@@ -1260,9 +1364,15 @@ Rollback: delete the `## R14 warm run` section.
 
 Stop and escalate if: a job is not green, a workflow has no run at `MAIN_SHA`, or a job's provision step is not shorter than its baseline. Record the figure and revert that file's adoption rather than editing the measurement.
 
+Done 2026-10-24: every run is green and every provision step is below the 56 to 67 s baseline. The first push runs at `0029a3ead5` missed and saved one 1121994943 byte entry. The warm push runs at `e00fef3e76` (40107240022, 40107240008, 40107239943) hit the cache and printed `0 installed, 3 built, 14 already present` at 45, 46 and 41/46/42 s. Attempt 2 of the first runs (40107034084, 40107034118, 40107034090) hit it at the same commit and printed `0 installed, 0 built, 14 already present, 0 failed` at 45, 34 and 44/36/29 s, with the save step skipped. The gate printed `files=46` and `RESULT: PASSED`, and the three greps returned the AC-005 counts. `grep -c '^## R14 warm run'` printed `1`.
+
+Done 2026-10-24 (round 2, after the operator ruling to drop `~/.npm` from the cached paths): the miss push runs at `113d8b56d1` (40108770493, 40108770392, 40108770355) saved a new 864407808 byte entry (was 1121994943) at 71, 87 and 90/57/66 s. The warm dispatches at `75ef2608d0` (40109118557, 40109120309) hit and printed `0 installed, 2 built, 14 already present` at 35 and 40/35/34 s. Attempt 2 of the miss runs hit and printed `0 installed, 0 built, 14 already present, 0 failed` at 34, 29 and 30/30/30 s, save skipped. The cold dispatches (40109540094, 40109542114) printed 11 `provisioning` lines at 65 and 50/52/50 s. Every run is green.
+
+Drift: the walk prints `provisioned: N installed, M built, K already present, 0 failed` and never `skipped already present`, so the summary line is the warm proof. The clean warm saving is 31 s at the median (22 to 38 s) against the 61 s baseline median, up from about 25 s before the trim and still short of the 40 s the task expects. The operator accepted that figure, so AC-006 is Met at 31 s (ADR-005 amendment).
+
 ---
 
-### T030 Give the merged workflow both rationale comments (AC-007)
+### T030 [x] Give the merged workflow both rationale comments (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:3-10`, anchor:
 
@@ -1303,7 +1413,7 @@ Stop and escalate if: the eight anchor lines are not at `:3-10`, or the count is
 
 ---
 
-### T031 Add `.hermes/**` to the merged workflow's push list (AC-007)
+### T031 [x] Add `.hermes/**` to the merged workflow's push list (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:46`, anchor:
 
@@ -1330,7 +1440,7 @@ Stop and escalate if: the three-line block does not appear exactly twice, or eit
 
 ---
 
-### T032 Add `.hermes/**` to the merged workflow's pull-request list (AC-007)
+### T032 [x] Add `.hermes/**` to the merged workflow's pull-request list (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:28`, anchor: the first of the file's two identical `.devin/**` / `.env.example` / `specs/...` three-line blocks.
 
@@ -1352,7 +1462,7 @@ Stop and escalate if: the count is not 2, the pull-request count is not 1, or th
 
 ---
 
-### T033 Rename the merged job and its check title (AC-007, AC-015)
+### T033 [x] Rename the merged job and its check title (AC-007, AC-015)
 
 File: `.github/workflows/opencode-plugin-tests.yml:69-70`, anchor:
 
@@ -1383,7 +1493,7 @@ Stop and escalate if: the anchor is not on the file, or either count is not 1.
 
 ---
 
-### T034 Raise the merged job's timeout to 40 minutes (AC-007)
+### T034 [x] Raise the merged job's timeout to 40 minutes (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:72`, anchor:
 
@@ -1407,7 +1517,7 @@ Stop and escalate if: the anchor appears more than once, or the count is not 1.
 
 ---
 
-### T035 Move the hook steps into the merged job (AC-007)
+### T035 [x] Move the hook steps into the merged job (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:90-92`, anchor:
 
@@ -1475,7 +1585,7 @@ Stop and escalate if: the anchor is not on the file, or any count differs.
 
 ---
 
-### T036 Make the merged workflow's cache expression honour the schedule (AC-007)
+### T036 [x] Make the merged workflow's cache expression honour the schedule (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:88`, anchor:
 
@@ -1503,7 +1613,7 @@ Stop and escalate if: the anchor is not on the file, or the count is not 1.
 
 ---
 
-### T037 Add the weekly cold schedule to the merged workflow (AC-007)
+### T037 [x] Add the weekly cold schedule to the merged workflow (AC-007)
 
 File: `.github/workflows/opencode-plugin-tests.yml:63`, anchor:
 
@@ -1536,7 +1646,7 @@ Stop and escalate if: the anchor is not on the file, or the YAML parse fails.
 
 ---
 
-### T038 Delete the hook workflow file (AC-007)
+### T038 [x] Delete the hook workflow file (AC-007)
 
 File: `.github/workflows/hooks-node-tests.yml:1-94`, anchor: the whole file, whose first line is `name: Hook Node Tests`.
 
@@ -1557,7 +1667,7 @@ Stop and escalate if: the merged workflow does not carry the installer step, or 
 
 ---
 
-### T039 Merge the two README rows (AC-016)
+### T039 [x] Merge the two README rows (AC-016)
 
 File: `.github/workflows/README.md:37` and `:41`, anchors:
 
@@ -1590,7 +1700,7 @@ Stop and escalate if: either anchor is not on the file, or either count differs.
 
 ---
 
-### T040 Drop the deleted workflow from the README path-filtered row (AC-016)
+### T040 [x] Drop the deleted workflow from the README path-filtered row (AC-016)
 
 File: `.github/workflows/README.md:68`, anchor:
 
@@ -1618,7 +1728,7 @@ Stop and escalate if: the anchor is not on the file, or the count is not 0.
 
 ---
 
-### T040A Commit the hook-and-plugin merge (AC-007, AC-008, AC-015, AC-016, AC-017)
+### T040A [x] Commit the hook-and-plugin merge (AC-007, AC-008, AC-015, AC-016, AC-017)
 
 File: `.github/workflows/opencode-plugin-tests.yml`, `.github/workflows/hooks-node-tests.yml` (deleted), `.github/workflows/README.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -1646,9 +1756,11 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-merge.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside the two workflows and the README.
 
+Done 2026-10-24: committed as `2759de1119` and pushed with the install commit; `validate-message.mjs` exit `0`, id search empty.
+
 ---
 
-### T041 Probe the merged job on a `.hermes`-only change (AC-008)
+### T041 [x] Probe the merged job on a `.hermes`-only change (AC-008)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R14 warm run` section T029 wrote.
 
@@ -1687,9 +1799,11 @@ Rollback: delete the `## R15 merge` section, `git push origin --delete probe/her
 
 Stop and escalate if: the run is absent, which means the union trigger did not fire, or the suite list is shorter than the pre-merge runs.
 
+Done 2026-10-24: the `.hermes` probe went through main as `666844f806` (a branch push cannot start the workflow), run 40125544828 `success`, recorded under `## R15 merge`; the probe file is removed by `a60192ef4e`.
+
 ---
 
-### T042 Replace the golden-prompt install block (AC-009)
+### T042 [x] Replace the golden-prompt install block (AC-009)
 
 File: `.github/workflows/routing-registry-drift.yml:246-253`, anchor:
 
@@ -1725,9 +1839,11 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or the count is not 1.
 
+Done 2026-10-24: the golden-prompt job calls the action as a single `uses:` line with no `with:` block, because the `node-major` input is removed. The call count in that job is 1, and the file holds 2 after T043.
+
 ---
 
-### T043 Replace the routing-drift install block (AC-009)
+### T043 [x] Replace the routing-drift install block (AC-009)
 
 File: `.github/workflows/routing-registry-drift.yml:132-142`, anchor:
 
@@ -1767,9 +1883,11 @@ Rollback: replace the four new lines with the eleven quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: the routing-drift job calls the action. `grep -c` printed `2` for the action and `0` for the `npm --prefix ... ci` lines. The anchor held with `.opencode/skills` paths, at lines 136-146.
+
 ---
 
-### T044 Put `.github/actions/**` in both routing filters (AC-009)
+### T044 [x] Put `.github/actions/**` in both routing filters (AC-009)
 
 File: `.github/workflows/routing-registry-drift.yml:25` and `:71`, anchors:
 
@@ -1793,9 +1911,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: the two-line anchor does not appear exactly twice, or the gate fails.
 
+Done 2026-10-24: `grep -c` printed `2` and the gate printed `RESULT: PASSED` (`files=46 inputs_resolved=248 dynamic_inputs=39 twin_pairs=340 failures=0`).
+
 ---
 
-### T045 Replace the spec-kit check job's install and sk-vision steps (AC-009)
+### T045 [x] Replace the spec-kit check job's install and sk-vision steps (AC-009)
 
 File: `.github/workflows/spec-kit-check.yml:76-105`, anchor:
 
@@ -1858,9 +1978,11 @@ Rollback: replace the seven new lines with the quoted block.
 
 Stop and escalate if: the anchor is not on the file, or any count differs.
 
+Done 2026-10-24: the `check` job holds the seven-line call at lines 90-92 as printed by the grep. Counts after T045 to T047 read `3`, `0` and `0` for the action, `bun@1.3.9` and the sk-vision step. The anchor sat at lines 86-115, not 76-105, because earlier lanes added lines above it.
+
 ---
 
-### T046 Replace the spec-kit mirrors install step (AC-009)
+### T046 [x] Replace the spec-kit mirrors install step (AC-009)
 
 File: `.github/workflows/spec-kit-check.yml:140-144`, anchor:
 
@@ -1893,9 +2015,11 @@ Rollback: replace the four new lines with the five quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or the count is not 2.
 
+Done 2026-10-24: the mirrors job calls the action at line 163. The file count read `3` after T047.
+
 ---
 
-### T047 Split the spec-kit doctor install step into pip and the action (AC-009)
+### T047 [x] Split the spec-kit doctor install step into pip and the action (AC-009)
 
 File: `.github/workflows/spec-kit-check.yml:181-191`, anchor:
 
@@ -1939,9 +2063,11 @@ Rollback: replace the seven new lines with the eleven quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or any count differs.
 
+Done 2026-10-24: the doctor job runs the pip step and then the action call. Counts read `3`, `1` and `0` for the action, `pyyaml==6.0.3` and the `npm --prefix ... ci` lines. The comment above the old step is split so the PyYAML sentence heads the pip step and the rest heads the action call.
+
 ---
 
-### T048 Put `.github/actions/**` in both spec-kit filters (AC-009)
+### T048 [x] Put `.github/actions/**` in both spec-kit filters (AC-009)
 
 File: `.github/workflows/spec-kit-check.yml:9` and `:37`, anchors:
 
@@ -1965,9 +2091,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: the two-line anchor does not appear exactly twice, or the gate fails.
 
+Done 2026-10-24: `grep -c` printed `2` and the gate printed `RESULT: PASSED` (`files=45 inputs_resolved=233 dynamic_inputs=37 twin_pairs=336 failures=0`). The file count is 45 because `hooks-node-tests.yml` was deleted by the merge lane.
+
 ---
 
-### T049 Replace the stress-suite install block (AC-010)
+### T049 [x] Replace the stress-suite install block (AC-010)
 
 File: `.github/workflows/skill-advisor-stress.yml:55-62`, anchor:
 
@@ -2004,9 +2132,11 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`. The comment above the step is kept because it still names what the stress suite loads.
+
 ---
 
-### T050 Put `.github/actions/**` in both stress-suite filters (AC-010)
+### T050 [x] Put `.github/actions/**` in both stress-suite filters (AC-010)
 
 File: `.github/workflows/skill-advisor-stress.yml:34` and `:20`, anchors:
 
@@ -2028,9 +2158,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice, or the count is not 2.
 
+Done 2026-10-24: `grep -c` printed `2`.
+
 ---
 
-### T051 Replace the sk-doc script-tests install block (AC-010)
+### T051 [x] Replace the sk-doc script-tests install block (AC-010)
 
 File: `.github/workflows/sk-doc-script-tests.yml:42-48`, anchor:
 
@@ -2066,9 +2198,11 @@ Rollback: replace the four new lines with the seven quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`. The old comment narrated the install order the action now owns, so it went with the block.
+
 ---
 
-### T052 Replace the rename-harness install block (AC-010)
+### T052 [x] Replace the rename-harness install block (AC-010)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:48-54`, anchor:
 
@@ -2097,9 +2231,11 @@ Rollback: replace the four new lines with the seven quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`.
+
 ---
 
-### T053 Put `.github/actions/**` in both rename-harness filters (AC-010)
+### T053 [x] Put `.github/actions/**` in both rename-harness filters (AC-010)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:22` and `:14`, anchors:
 
@@ -2121,9 +2257,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice, or the count is not 2.
 
+Done 2026-10-24: `grep -c` printed `2`.
+
 ---
 
-### T054 Replace the deep-loop install block (AC-010)
+### T054 [x] Replace the deep-loop install block (AC-010)
 
 File: `.github/workflows/deep-loop-runtime.yml:51-57`, anchor:
 
@@ -2159,9 +2297,11 @@ Rollback: replace the four new lines with the seven quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`. The old comment narrated the install order the action now owns, so it went with the block.
+
 ---
 
-### T055 Put `.github/actions/**` in both deep-loop filters (AC-010)
+### T055 [x] Put `.github/actions/**` in both deep-loop filters (AC-010)
 
 File: `.github/workflows/deep-loop-runtime.yml:27` and `:17`, anchors:
 
@@ -2183,9 +2323,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found twice, or the count is not 2.
 
+Done 2026-10-24: `grep -c` printed `2`.
+
 ---
 
-### T056 Replace the frontmatter engine install block (AC-010)
+### T056 [x] Replace the frontmatter engine install block (AC-010)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:66-71`, anchor:
 
@@ -2220,9 +2362,11 @@ Rollback: replace the four new lines with the six quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`. The old comment narrated the install order the action now owns, so it went with the block.
+
 ---
 
-### T057 Put `.github/actions/**` in both frontmatter filters (AC-010)
+### T057 [x] Put `.github/actions/**` in both frontmatter filters (AC-010)
 
 File: `.github/workflows/skill-doc-frontmatter.yml:26` and `:17`, anchors:
 
@@ -2251,9 +2395,11 @@ Rollback: delete both inserted lines.
 
 Stop and escalate if: either anchor is not found once, or the YAML parse fails.
 
+Done 2026-10-24: `grep -c` printed `2` and the YAML parse printed `ok`. The quoted anchors were stale, so the line follows the last entry of each list, which is the workflow-file entry in the push list and the same entry in the pull-request list.
+
 ---
 
-### T058 Replace the playbook contract install block (AC-010)
+### T058 [x] Replace the playbook contract install block (AC-010)
 
 File: `.github/workflows/playbook-operator-contract.yml:22-32`, anchor:
 
@@ -2293,9 +2439,11 @@ Rollback: replace the four new lines with the eleven quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`.
+
 ---
 
-### T059 Replace the gate-inputs install block (AC-010)
+### T059 [x] Replace the gate-inputs install block (AC-010)
 
 File: `.github/workflows/gate-inputs.yml:29-34`, anchor:
 
@@ -2330,9 +2478,11 @@ Rollback: replace the four new lines with the six quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `1` and `0`.
+
 ---
 
-### T060 Replace the Hermes-mirror install step (AC-010)
+### T060 [x] Replace the Hermes-mirror install step (AC-010)
 
 File: `.github/workflows/command-tree-parity.yml:58-61`, anchor:
 
@@ -2366,9 +2516,11 @@ Rollback: replace the five new lines with the five quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or the count is not 1.
 
+Done 2026-10-24: the Hermes-mirror job calls the action. The job count read `1` for the section from that job down.
+
 ---
 
-### T061 Replace the command-tree-parity install step (AC-010)
+### T061 [x] Replace the command-tree-parity install step (AC-010)
 
 File: `.github/workflows/command-tree-parity.yml:22-29`, anchor:
 
@@ -2405,9 +2557,11 @@ Rollback: replace the four new lines with the eight quoted anchor lines.
 
 Stop and escalate if: the anchor is not on the file, or either count differs.
 
+Done 2026-10-24: counts read `2` and `0` for the file.
+
 ---
 
-### T061A Commit the install substitutions (AC-009, AC-010, AC-017)
+### T061A [x] Commit the install substitutions (AC-009, AC-010, AC-017)
 
 File: `.github/workflows/routing-registry-drift.yml`, `.github/workflows/skill-advisor-stress.yml`, `.github/workflows/sk-doc-script-tests.yml`, `.github/workflows/sk-doc-rename-harness.yml`, `.github/workflows/deep-loop-runtime.yml`, `.github/workflows/skill-doc-frontmatter.yml`, `.github/workflows/playbook-operator-contract.yml`, `.github/workflows/gate-inputs.yml`, `.github/workflows/command-tree-parity.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -2437,9 +2591,11 @@ Rollback: `git push origin --delete probe/install-substitutions`, `git reset --s
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside the nine listed workflows.
 
+Done 2026-10-24: one combined commit `1c0c3534cf` carries the install substitutions and the pip caches, because five files carry both edits. No `probe/install-substitutions` branch was pushed: the warm runs are reruns of the pushed commit's own runs on main.
+
 ---
 
-### T062 Record the npm dedupe and revert any block that did not drop (AC-010)
+### T062 [x] Record the npm dedupe and revert any block that did not drop (AC-010)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md` (new file). Anchor: none.
 
@@ -2462,9 +2618,11 @@ Rollback: delete the file, and restore any reverted block with `git checkout -- 
 
 Stop and escalate if: a touched workflow has no run at `TRIAL_SHA`, a row lacks a baseline number or a warm number, or a file marked `revert` still carries the action call.
 
+Done 2026-10-24: `scratch/npm-dedupe.md` has `10` rows: `routing-registry-drift` is `keep` and nine are `revert` (warm install seconds were not 10 s shorter).
+
 ---
 
-### T062A Commit the dedupe record and any reverted block (AC-010, AC-017)
+### T062A [x] Commit the dedupe record and any reverted block (AC-010, AC-017)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/npm-dedupe.md`, and every workflow T062 marked `revert`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -2492,9 +2650,11 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-dedupe.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or a staged workflow is not marked `revert` in the record.
 
+Done 2026-10-24: committed as `b5451258b2` with the nine restored workflows; the pip cache lines stay.
+
 ---
 
-### T063 Cache pip in the naming guard (AC-011)
+### T063 [x] Cache pip in the naming guard (AC-011)
 
 File: `.github/workflows/naming-standard-guard.yml:25`, anchor:
 
@@ -2522,9 +2682,11 @@ Rollback: delete the two added lines.
 
 Stop and escalate if: the anchor appears more than once, or either count differs.
 
+Done 2026-10-24: counts read `1` and `1`.
+
 ---
 
-### T064 Cache pip in the rename harness (AC-011)
+### T064 [x] Cache pip in the rename harness (AC-011)
 
 File: `.github/workflows/sk-doc-rename-harness.yml:40`, anchor:
 
@@ -2552,9 +2714,11 @@ Rollback: delete the two added lines.
 
 Stop and escalate if: the anchor appears more than once, or either count differs.
 
+Done 2026-10-24: counts read `1` and `1`.
+
 ---
 
-### T065 Cache pip in the sk-doc script tests (AC-011)
+### T065 [x] Cache pip in the sk-doc script tests (AC-011)
 
 File: `.github/workflows/sk-doc-script-tests.yml:27`, anchor:
 
@@ -2582,9 +2746,11 @@ Rollback: delete the two added lines.
 
 Stop and escalate if: the anchor appears more than once, or either count differs.
 
+Done 2026-10-24: counts read `1` and `1`. The file holds `python-version: '3.x'` twice, so the stop condition on a repeated anchor was read against the task's own line reference. The edit went into the first one, the `sk-doc-scripts` job that installs pytest and PyYAML. The `catalog-packages` job installs no Python package and is untouched.
+
 ---
 
-### T066 Cache pip in the spec-kit doctor job (AC-011)
+### T066 [x] Cache pip in the spec-kit doctor job (AC-011)
 
 File: `.github/workflows/spec-kit-check.yml:174`, anchor:
 
@@ -2612,9 +2778,11 @@ Rollback: delete the two added lines.
 
 Stop and escalate if: the anchor appears more than once, or either count differs.
 
+Done 2026-10-24: counts read `1` and `1`.
+
 ---
 
-### T066A Commit the pip cache (AC-011, AC-017)
+### T066A [x] Commit the pip cache (AC-011, AC-017)
 
 File: `.github/workflows/naming-standard-guard.yml`, `.github/workflows/sk-doc-rename-harness.yml`, `.github/workflows/sk-doc-script-tests.yml`, `.github/workflows/spec-kit-check.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -2642,9 +2810,11 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-pip.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside the four pip workflows.
 
+Done 2026-10-24: the four pip caches landed in `1c0c3534cf` and survive the restore in `b5451258b2`; no separate pip commit was made because the files overlap with the install edits.
+
 ---
 
-### T067 Confirm the shallow checkout R18 builds on (AC-012)
+### T067 [x] Confirm the shallow checkout R18 builds on (AC-012)
 
 File: `.github/workflows/rule-canary-sync.yml:13-15`, anchor:
 
@@ -2667,9 +2837,11 @@ Rollback: none; no file changed.
 
 Stop and escalate if: the checkout line is not at `:13`, or the count is neither 0 nor 1.
 
+Done 2026-10-24: `grep -c 'fetch-depth'` printed `0` and the checkout step carried no `with:` block.
+
 ---
 
-### T068 Trial `filter: blob:none` on the canary checkout (AC-012)
+### T068 [x] Trial `filter: blob:none` on the canary checkout (AC-012)
 
 File: `.github/workflows/rule-canary-sync.yml:13`, anchor: the checkout line T067 quoted.
 
@@ -2710,9 +2882,11 @@ Rollback: delete `/tmp/probe-msg-checkout-blob.txt`, `git switch -`, `git branch
 
 Stop and escalate if: the checkout line is not at `:13`, the YAML parse fails, or the canary run is not green.
 
+Done 2026-10-24: run 40125935561 on test PR #87 (probe branch `branches/032-probe-checkout-trial`, created through the approved sk-git naming), checkout step 98 s against about 50 s; PR closed unmerged and the branch deleted.
+
 ---
 
-### T069 Trial a sparse checkout when `blob:none` saved less than 10 s (AC-012)
+### T069 [x] Trial a sparse checkout when `blob:none` saved less than 10 s (AC-012)
 
 File: `.github/workflows/rule-canary-sync.yml:14-15`, anchor:
 
@@ -2761,9 +2935,11 @@ Rollback: delete `/tmp/probe-msg-checkout-sparse.txt`, `git switch "$(cat specs/
 
 Stop and escalate if: the canary run is not green, which means the cone omitted a file the checker reads.
 
+Done 2026-10-24: run 40126121698 on test PR #88 (`branches/033-probe-checkout-sparse`), checkout step 3 s, canary green; PR closed unmerged and the branch deleted. The block adds `/.opencode/skills`, see `scratch/checkout-probe.md`.
+
 ---
 
-### T070 Record the checkout verdict (AC-012)
+### T070 [x] Record the checkout verdict (AC-012)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/checkout-probe.md` (new file). Anchor: none.
 
@@ -2795,9 +2971,11 @@ Rollback: delete the file, `git checkout -- .github/workflows/rule-canary-sync.y
 
 Stop and escalate if: a row lacks its seconds, or the diff shows a variant the verdict did not name.
 
+Done 2026-10-24: `scratch/checkout-probe.md` has `3` rows and `verdict: sparse`; the sparse variant was applied to `rule-canary-sync.yml`.
+
 ---
 
-### T070G Commit the kept checkout variant (AC-012, AC-017)
+### T070G [x] Commit the kept checkout variant (AC-012, AC-017)
 
 File: `.github/workflows/rule-canary-sync.yml`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
@@ -2825,6 +3003,8 @@ Rollback: `git reset --soft HEAD~1` and delete `/tmp/commit-msg-checkout.txt`.
 
 Stop and escalate if: the validator exits non-zero twice, the id search prints a line, or the commit stages a path outside `rule-canary-sync.yml`.
 
+Done 2026-10-24: committed as `ea39cd7b2c`.
+
 ---
 
 <!-- /ANCHOR:phase-2 -->
@@ -2834,7 +3014,7 @@ Stop and escalate if: the validator exits non-zero twice, the id search prints a
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-### T071 Run the whole-tree gates from the final state (AC-013, AC-017)
+### T071 [x] Run the whole-tree gates from the final state (AC-013, AC-017)
 
 File: `specs/system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning/scratch/phase-result.md`, anchor: the `## R15 merge` section T041 wrote.
 
@@ -2854,6 +3034,8 @@ Expected: `check-gate-inputs: 54 passed, 0 failed`; `files=46` with `inputs_reso
 Rollback: delete the `## Final gates` section.
 
 Stop and escalate if: any check fails, or the ephemeral-id search prints a line. A printed line names a comment, step name, action input, cache key or README row that must lose the id in the commit that carries it.
+
+Done 2026-10-24: `57 passed, 0 failed`, `files=45 ... failures=0`, `RESULT: PASSED`, YAML parse exit `0`; see `## Final gates` in `scratch/phase-result.md`.
 
 ---
 

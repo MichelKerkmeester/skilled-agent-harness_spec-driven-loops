@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness",
+  "description": "Phase 7: compaction-pointer-staleness",
+  "keywords": [
+    "phase",
+    "compaction-pointer-staleness"
+  ],
+  "lastUpdated": "2026-10-25T13:42:34.287Z",
+  "specId": "007",
+  "folderSlug": "compaction-pointer-staleness",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

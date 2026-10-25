@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay",
+  "description": "Phase 1: model-effort-atomic-replay",
+  "keywords": [
+    "phase",
+    "model-effort-atomic-replay"
+  ],
+  "lastUpdated": "2026-10-25T13:42:26.110Z",
+  "specId": "001",
+  "folderSlug": "model-effort-atomic-replay",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

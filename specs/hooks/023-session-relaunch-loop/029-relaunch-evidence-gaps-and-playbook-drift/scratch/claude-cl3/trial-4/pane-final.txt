@@ -1,0 +1,50 @@
+      9 ---
+     … +19 lines
+
+  Ran 1 shell command
+
+⏺ Prepare exited 0. Starting the background sleep now, as you asked.
+
+  Ran 1 shell command
+
+⏺ prepare exited 0, and sleep 90 is now running as a background shell task (ID b6owq2h8f). I'm ending the turn here, so the relaunch loop can end this session and start a fresh one.
+
+  - Probe: echo probe printed probe.
+  - Handoff note: I wrote it to .skilled/skills/.state/session-relaunch/handoffs/20261024T223657Z-c91bbc21-54ff-44c1-befc-986095c71438.md with spec_folder: none. Gate 3 was D) Skip, and that path is
+    gitignored runtime state.
+  - Repo files: I didn't change any. The uncommitted edits already in the tree at session start are untouched.
+  - Operator: Nothing needs doing from you. If you want this session to stay, run node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs cancel.
+
+✻ Brewed for 15s · done 12:37 AM
+
+❯ Run the shell command 'echo staying'. Then quote, word for word, the first sentence of every [session-relaunch] message you received since my last message, and reply STAYING.
+
+  Ran 1 shell command
+
+⏺ staying
+
+  The only [session-relaunch] message since your last message is the one from the prompt-submit hook. Its first sentence is:
+
+  "[session-relaunch] The prepared hand-over was withdrawn because a new prompt arrived before it took effect."
+
+  STAYING
+
+✻ Sautéed for 4s · done 12:37 AM
+
+⏺ Background command "Sleep 90 seconds in background" completed (exit code 0)
+
+⏺ The background sleep 90 finished with exit 0. That completion notice came from the system, not from you, so I'm not treating it as input from you.
+
+  The [session-relaunch] hook has fired again and wants a new handoff note and prepare. I'm not doing that, for two reasons:
+  - Nothing is left to hand over. The probe ran, the first handoff was written, prepare exited 0, and the sleep has completed.
+  - You told this session to stay. Your last request was to reply STAYING, and the hook itself says the earlier hand-over was withdrawn.
+
+  Nothing is pending on my side. If you do want a fresh session, say so and I'll update the note and run prepare again.
+
+✻ Sautéed for 6s · done 12:38 AM
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

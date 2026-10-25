@@ -19,6 +19,9 @@ const {
   preparePending,
   arm,
   unarm,
+  markDeferred,
+  markSignalled,
+  withdrawRecord,
   readRelaunchFile,
   shouldRelaunch,
   claimHandoff,
@@ -35,7 +38,20 @@ const {
   liveKillerPid,
   lockIsExpired,
   readLockState,
+  goalPacketProblem,
+  goalSwitchOn,
+  resolveGoalPacket,
+  recordGoalPacket,
 } = relaunchCore;
+
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and a case that reads the default environment would then describe the outer loop.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
+// The goal reader honors this override, so a value inherited from an operator shell would
+// send the record lookups to a directory these cases never wrote.
+delete process.env.OPENCODE_GOAL_STATE_DIR;
 
 const SESSION_ID = 'session-test-00000001';
 const LOOP_ID = 'loop-test-00000001';
@@ -447,6 +463,57 @@ test('supersedeClaimed leaves unrelated and malformed notes untouched', (t) => {
   });
 });
 
+// A claim lands under the note's lock, so a supersede that read the note outside it could
+// write back a stale copy over the claim. The lock has to cover the read and the write.
+test('supersedeClaimed reads and rewrites each candidate note under its lock', (t) => {
+  const sandbox = createSandbox(t);
+  const directory = path.join(sandbox.repoRoot, 'handoffs');
+  fs.mkdirSync(directory, { recursive: true });
+  const oldPath = path.join(directory, 'old.md');
+  const orphanPath = path.join(directory, 'orphan.md');
+  const newPath = path.join(directory, 'new.md');
+  fs.writeFileSync(oldPath, handoffText({ status: 'claimed', claimedBy: SESSION_ID }));
+  fs.writeFileSync(orphanPath, handoffText());
+  fs.writeFileSync(newPath, handoffText());
+
+  const realReadFileSync = fs.readFileSync;
+  const realRenameSync = fs.renameSync;
+  const lockHeldAt = [];
+  fs.readFileSync = (target, ...rest) => {
+    const resolved = path.resolve(String(target));
+    if (resolved === oldPath || resolved === orphanPath) {
+      lockHeldAt.push(['read', resolved, fs.existsSync(`${resolved}.lock`)]);
+    }
+    return realReadFileSync(target, ...rest);
+  };
+  fs.renameSync = (from, to) => {
+    const resolved = path.resolve(String(to));
+    if (resolved === oldPath || resolved === orphanPath) {
+      lockHeldAt.push(['write', resolved, fs.existsSync(`${resolved}.lock`)]);
+    }
+    return realRenameSync(from, to);
+  };
+  t.after(() => {
+    fs.readFileSync = realReadFileSync;
+    fs.renameSync = realRenameSync;
+  });
+
+  assert.equal(supersedeClaimed(newPath, { sessionId: SESSION_ID, now: NOW }).length, 2);
+
+  assert.deepEqual(
+    lockHeldAt.sort((a, b) => `${a[1]}${a[0]}`.localeCompare(`${b[1]}${b[0]}`)),
+    [
+      ['read', oldPath, true],
+      ['write', oldPath, true],
+      ['read', orphanPath, true],
+      ['write', orphanPath, true],
+    ].sort((a, b) => `${a[1]}${a[0]}`.localeCompare(`${b[1]}${b[0]}`)),
+  );
+  assert.equal(fs.existsSync(`${oldPath}.lock`), false);
+  assert.equal(fs.existsSync(`${orphanPath}.lock`), false);
+  assert.equal(fs.existsSync(`${newPath}.lock`), false);
+});
+
 test('preparePending writes the exact pending record shape', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -558,6 +625,50 @@ test('a re-arm makes an armed record older than the age limit relaunchable again
   assert.deepEqual(
     shouldRelaunch(readRelaunchFile(LOOP_ID, sandbox.env), { now: NOW.getTime(), maxAgeMin: 10 }),
     { relaunch: true },
+  );
+});
+
+// Some runtimes exit 130 on SIGTERM as well as on an interrupt, so the stamp is how the
+// wrapper tells the killer's signal from the operator's. It must name only the arm the
+// killer watched, and a later arm must not inherit it.
+test('markSignalled stamps only the armed record it was given, and a re-arm clears it', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'pending',
+    loopId: LOOP_ID,
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'opencode',
+    cwd: '/tmp/cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
+  });
+  const armed = arm({ loopId: LOOP_ID, cwd: '/tmp/cwd', env: sandbox.env, now: NOW });
+  const expected = { handoff: armed.handoff, armId: armed.armId, armedAt: armed.armedAt };
+
+  assert.equal(
+    markSignalled({ loopId: LOOP_ID, ...expected, armId: 'another-arm', env: sandbox.env }),
+    null,
+  );
+  assert.equal(
+    markSignalled({ loopId: LOOP_ID, ...expected, handoff: '/tmp/other.md', env: sandbox.env }),
+    null,
+  );
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).signalledAt, undefined);
+
+  const signalled = markSignalled({ loopId: LOOP_ID, ...expected, env: sandbox.env, now: NOW });
+  assert.equal(signalled.signalledAt, NOW.toISOString());
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).signalledAt, NOW.toISOString());
+
+  const rearmed = arm({ loopId: LOOP_ID, cwd: '/tmp/cwd', env: sandbox.env, now: NOW });
+  assert.equal(Object.hasOwn(rearmed, 'signalledAt'), false);
+  assert.equal(Object.hasOwn(readRelaunchFile(LOOP_ID, sandbox.env), 'signalledAt'), false);
+
+  unarm({ loopId: LOOP_ID, reason: 'cancelled', env: sandbox.env });
+  assert.equal(
+    markSignalled({ loopId: LOOP_ID, handoff: rearmed.handoff, armId: rearmed.armId, env: sandbox.env }),
+    null,
   );
 });
 
@@ -1132,18 +1243,21 @@ test('nestedUnderLoop is false for an unrelated or invalid loop id', () => {
   }
 });
 
-test('dropNestedLoop removes the loop variables for a nested run', () => {
+test('dropNestedLoop removes the loop variables for a nested run', (t) => {
+  // A dropped loop writes a log line, so the runtime directory must be the sandbox's.
+  const { xdgRuntimeDir } = createSandbox(t);
   const env = {
     SKILLED_LOOP_ID: '100',
     SKILLED_LOOP_RUNTIME: 'pi',
     SKILLED_LOOP_HOPS: '2',
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
     OTHER: 'x',
   };
   assert.equal(
     dropNestedLoop(env, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
     true,
   );
-  assert.deepEqual(env, { OTHER: 'x' });
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir, OTHER: 'x' });
 });
 
 test('dropNestedLoop keeps the loop variables for the loop own runtime', () => {
@@ -1181,7 +1295,8 @@ test('dropNestedLoop does nothing outside the loop', () => {
   assert.deepEqual(unset, { SKILLED_LOOP_ID: '', OTHER: 'x' });
 });
 
-test('dropNestedLoop resolves the host from pid when hostPid is omitted', () => {
+test('dropNestedLoop resolves the host from pid when hostPid is omitted', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
   const table = [
     '310 300 node',
     '300 250 pi',
@@ -1194,10 +1309,11 @@ test('dropNestedLoop resolves the host from pid when hostPid is omitted', () => 
     SKILLED_LOOP_ID: '100',
     SKILLED_LOOP_RUNTIME: 'pi',
     SKILLED_LOOP_HOPS: '1',
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
   };
   // The hook's parent is the nested runtime, so the walk from pid meets it before any shell.
   assert.equal(dropNestedLoop(env, { pid: 310, processTable: table }), true);
-  assert.deepEqual(env, {});
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir });
 });
 
 test('readProcessTable returns null instead of blocking on a stuck ps', (t) => {
@@ -1659,4 +1775,439 @@ test('shouldRelaunch reads a Date clock the way it reads epoch milliseconds', (t
     ),
     { relaunch: true },
   );
+});
+
+test('shouldRelaunch reports a hand-over the session called off as withdrawn', (t) => {
+  createSandbox(t);
+  const options = { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 };
+  for (const disarmReason of ['cancelled', 'user-message']) {
+    assert.deepEqual(
+      shouldRelaunch({ status: 'disarmed', disarmReason, hops: 0 }, options),
+      { relaunch: false, reason: 'withdrawn' },
+      disarmReason,
+    );
+  }
+  // A disarm the session did not choose still reads as an unarmed record.
+  assert.deepEqual(
+    shouldRelaunch({ status: 'disarmed', disarmReason: 'killer-timeout', hops: 0 }, options),
+    { relaunch: false, reason: 'not-armed' },
+  );
+});
+
+test('dropNestedLoop removes every loop variable, manual template included', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
+  const env = {
+    SKILLED_LOOP_ID: '100',
+    SKILLED_LOOP_RUNTIME: 'pi',
+    SKILLED_LOOP_HOPS: '2',
+    SKILLED_LOOP_MANUAL_TEMPLATE: 'outer --seed "{{handoff}}"',
+    SKILLED_LOOP_MODEL: 'outer-model',
+    SKILLED_LOOP_NAME: 'outer',
+    SKILLED_LOOP_PROVIDER: 'outer-provider',
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
+    OTHER: 'x',
+  };
+  assert.equal(
+    dropNestedLoop(env, { hostPid: 300, processTable: NESTED_PROCESS_TABLE }),
+    true,
+  );
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir, OTHER: 'x' });
+});
+
+// The lock helper is a mkdir lock, so a lock taken shows up as a mkdir of `<path>.lock`.
+function trackLocks(t) {
+  const realMkdirSync = fs.mkdirSync;
+  const taken = [];
+  fs.mkdirSync = (target, ...rest) => {
+    const result = realMkdirSync(target, ...rest);
+    if (String(target).endsWith('.lock')) taken.push(String(target));
+    return result;
+  };
+  t.after(() => {
+    fs.mkdirSync = realMkdirSync;
+  });
+  return taken;
+}
+
+test('arm, unarm and markDeferred each take the record lock once and release it', (t) => {
+  const sandbox = createSandbox(t);
+  const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const taken = trackLocks(t);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'pending',
+    handoff: '/repo/note.md',
+    sessionId: SESSION_ID,
+  });
+
+  assert.equal(markDeferred({ loopId: LOOP_ID, env: sandbox.env, now: NOW }).status, 'pending');
+  assert.equal(arm({ loopId: LOOP_ID, env: sandbox.env, now: NOW }).status, 'armed');
+  assert.equal(
+    unarm({ loopId: LOOP_ID, env: sandbox.env, reason: 'cancelled', now: NOW }).status,
+    'disarmed',
+  );
+
+  assert.deepEqual(taken, Array(3).fill(`${recordPath}.lock`));
+  assert.equal(fs.existsSync(`${recordPath}.lock`), false);
+});
+
+test('preparePending writes the record under the record lock', (t) => {
+  const sandbox = createSandbox(t);
+  const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const taken = trackLocks(t);
+  const realRenameSync = fs.renameSync;
+  const heldAtWrite = [];
+  fs.renameSync = (from, to) => {
+    if (path.resolve(String(to)) === path.resolve(recordPath)) {
+      heldAtWrite.push(fs.existsSync(`${recordPath}.lock`));
+    }
+    return realRenameSync(from, to);
+  };
+  t.after(() => {
+    fs.renameSync = realRenameSync;
+  });
+
+  preparePending({
+    loopId: LOOP_ID,
+    handoffPath: '/repo/note.md',
+    sessionId: SESSION_ID,
+    cwd: '/repo',
+    env: sandbox.env,
+    now: NOW,
+  });
+
+  assert.deepEqual(heldAtWrite, [true]);
+  assert.deepEqual(taken, [`${recordPath}.lock`]);
+  assert.equal(fs.existsSync(`${recordPath}.lock`), false);
+});
+
+test('withdrawRecord takes the record lock once and disarms only a record it accepts', (t) => {
+  const sandbox = createSandbox(t);
+  const recordPath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const taken = trackLocks(t);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: '/repo/note.md',
+    sessionId: SESSION_ID,
+  });
+  const seen = [];
+
+  const refused = withdrawRecord({
+    loopId: LOOP_ID,
+    reason: 'user-message',
+    accept: (record) => {
+      seen.push(record.status);
+      return false;
+    },
+    env: sandbox.env,
+    now: NOW,
+  });
+  assert.equal(refused, null);
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).status, 'armed');
+
+  const withdrawn = withdrawRecord({
+    loopId: LOOP_ID,
+    reason: 'user-message',
+    accept: (record) => record.status === 'armed',
+    env: sandbox.env,
+    now: NOW,
+  });
+  assert.equal(withdrawn.status, 'disarmed');
+  assert.equal(withdrawn.disarmReason, 'user-message');
+  assert.deepEqual(seen, ['armed']);
+  // The inner disarm must not take the lock the withdraw already holds.
+  assert.deepEqual(taken, [`${recordPath}.lock`, `${recordPath}.lock`]);
+
+  const absent = withdrawRecord({
+    loopId: 'loop-absent-00000001',
+    reason: 'user-message',
+    accept: () => true,
+    env: sandbox.env,
+  });
+  assert.equal(absent, null);
+  assert.equal(fs.existsSync(`${recordPath}.lock`), false);
+});
+
+test('claimHandoff and completeHandoff each take the note lock and release it', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const taken = trackLocks(t);
+
+  claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW });
+  assert.throws(
+    () => claimHandoff(handoffPath, { sessionId: 'session-test-00000002', now: NOW }),
+    /cannot claim handoff with status claimed/,
+  );
+  completeHandoff(handoffPath, { now: NOW });
+
+  assert.deepEqual(taken, Array(3).fill(`${handoffPath}.lock`));
+  assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+  assert.match(readNote(handoffPath), /^status: done$/m);
+  assert.match(readNote(handoffPath), new RegExp(`^claimed_by: ${SESSION_ID}$`, 'm'));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL PACKET
+// ─────────────────────────────────────────────────────────────────────────────
+
+const GOAL_PARENT = 'specs/hooks/023-session-relaunch-loop';
+const GOAL_PACKET = `${GOAL_PARENT}/025-goal-binding-record-and-launcher`;
+const GOAL_HEADLINE = '# Goal: Session relaunch loop';
+const GOAL_SESSION_ID = 'ses_goalpacket0001';
+// sha256 of GOAL_SESSION_ID: the file name OpenCode keeps a session's goal record under.
+const GOAL_SESSION_DIGEST = '654f6cbd49ac65da0027b794a9bb1e73db42845d372541ff5f09d8f3783f7d8a';
+
+function writeGoalPacket(root, packet = GOAL_PACKET, text = `${GOAL_HEADLINE}\n`) {
+  fs.mkdirSync(path.join(root, packet), { recursive: true });
+  fs.writeFileSync(path.join(root, packet, 'goal.md'), text);
+}
+
+// Goal records live under the checkout's own state directory, which is also what marks the
+// directory as the workspace root for the record reader.
+function goalRecordPath(root, runtime, sessionId = GOAL_SESSION_ID) {
+  const goalCore = require('../../goal/lib/goal-core.cjs');
+  return runtime === 'opencode'
+    ? path.join(goalCore.resolveStateDir({ workspace: root }), `${GOAL_SESSION_DIGEST}.json`)
+    : goalCore.statePath({ scope: { workspace: root, runtime, sessionId } });
+}
+
+function writeGoalRecord(root, runtime, record, sessionId = GOAL_SESSION_ID) {
+  const filePath = goalRecordPath(root, runtime, sessionId);
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(record));
+}
+
+function writeClaudeLog(sandbox, entries, sessionId = GOAL_SESSION_ID) {
+  const configDirectory = path.join(sandbox.root, 'claude-config');
+  const logPath = path.join(configDirectory, 'projects', '-some-project', `${sessionId}.jsonl`);
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.writeFileSync(logPath, entries.map((entry) => JSON.stringify(entry)).join('\n') + '\n');
+  return { ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory };
+}
+
+function goalStatus(fields) {
+  return { type: 'attachment', attachment: { type: 'goal_status', ...fields } };
+}
+
+test('goalPacketProblem accepts a packet whose goal.md is real and refuses everything else', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  const outside = path.join(sandbox.root, 'outside');
+  fs.mkdirSync(outside);
+  fs.writeFileSync(path.join(outside, 'goal.md'), GOAL_HEADLINE);
+  const linkedPacket = 'specs/hooks/030-linked-packet';
+  fs.mkdirSync(path.join(sandbox.repoRoot, 'specs/hooks'), { recursive: true });
+  fs.symlinkSync(outside, path.join(sandbox.repoRoot, linkedPacket));
+  const linkedGoal = 'specs/hooks/031-linked-goal';
+  fs.mkdirSync(path.join(sandbox.repoRoot, linkedGoal), { recursive: true });
+  fs.symlinkSync(
+    path.join(outside, 'goal.md'),
+    path.join(sandbox.repoRoot, linkedGoal, 'goal.md'),
+  );
+  const noGoal = 'specs/hooks/032-no-goal';
+  fs.mkdirSync(path.join(sandbox.repoRoot, noGoal), { recursive: true });
+  const goalDirectory = 'specs/hooks/033-goal-directory';
+  fs.mkdirSync(path.join(sandbox.repoRoot, goalDirectory, 'goal.md'), { recursive: true });
+  const roots = [sandbox.repoRoot];
+
+  assert.equal(goalPacketProblem(GOAL_PACKET, roots), null);
+  const cases = [
+    { packet: '', reason: /repo-relative packet path/ },
+    { packet: '../outside', reason: /repo-relative packet path/ },
+    { packet: path.join(sandbox.root, 'outside'), reason: /repo-relative packet path/ },
+    { packet: `${GOAL_PACKET} ${GOAL_PACKET}`, reason: /repo-relative packet path/ },
+    { packet: `${GOAL_PACKET}\n${GOAL_PACKET}`, reason: /repo-relative packet path/ },
+    { packet: 'specs/hooks/../024-other', reason: /repo-relative packet path/ },
+    { packet: linkedPacket, reason: /resolves outside the repository/ },
+    { packet: linkedGoal, reason: /resolves outside the repository/ },
+    { packet: noGoal, reason: /holds no goal\.md/ },
+    { packet: goalDirectory, reason: /holds no goal\.md/ },
+    { packet: 'specs/hooks/034-missing', reason: /holds no goal\.md/ },
+  ];
+  for (const { packet, reason } of cases) {
+    assert.match(goalPacketProblem(packet, roots), reason, JSON.stringify(packet));
+  }
+});
+
+test('goalPacketProblem accepts a packet that only a second root holds', (t) => {
+  const sandbox = createSandbox(t);
+  const worktree = path.join(sandbox.root, 'worktree');
+  writeGoalPacket(worktree);
+
+  assert.match(goalPacketProblem(GOAL_PACKET, [sandbox.repoRoot]), /holds no goal\.md/);
+  assert.equal(goalPacketProblem(GOAL_PACKET, [sandbox.repoRoot, worktree]), null);
+});
+
+test('goalSwitchOn is on unless the operator turns it off', () => {
+  for (const value of [undefined, '', '1', 'on', 'yes', 'anything']) {
+    assert.equal(goalSwitchOn({ SESSION_RELAUNCH_GOAL: value }), true, String(value));
+  }
+  for (const value of ['0', 'false', 'OFF', ' no ']) {
+    assert.equal(goalSwitchOn({ SESSION_RELAUNCH_GOAL: value }), false, String(value));
+  }
+  assert.equal(goalSwitchOn({}), true);
+});
+
+for (const runtime of ['opencode', 'pi', 'devin', 'cursor', 'hermes']) {
+  test(`resolveGoalPacket reads the ${runtime} goal record`, (t) => {
+    const sandbox = createSandbox(t);
+    writeGoalPacket(sandbox.repoRoot);
+    const roots = [sandbox.repoRoot];
+    const resolve = () => resolveGoalPacket({
+      runtime, sessionId: GOAL_SESSION_ID, roots, env: sandbox.env,
+    });
+
+    assert.equal(resolve(), '', 'no record');
+    writeGoalRecord(sandbox.repoRoot, runtime, { status: 'active', packetPath: GOAL_PACKET });
+    assert.equal(resolve(), GOAL_PACKET);
+    writeGoalRecord(sandbox.repoRoot, runtime, { status: 'paused', packetPath: GOAL_PACKET });
+    assert.equal(resolve(), '', 'a paused goal is not carried');
+    writeGoalRecord(sandbox.repoRoot, runtime, { status: 'active', objective: 'free text only' });
+    assert.equal(resolve(), '', 'a goal with no packet');
+    writeGoalRecord(sandbox.repoRoot, runtime, {
+      status: 'active', packetPath: 'specs/hooks/040-gone',
+    });
+    assert.equal(resolve(), '', 'a packet that lost its goal.md');
+    fs.writeFileSync(goalRecordPath(sandbox.repoRoot, runtime), '{not json');
+    assert.equal(resolve(), '', 'an unreadable record');
+  });
+}
+
+test('resolveGoalPacket keys a record by the session, so another session finds nothing', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  writeGoalRecord(sandbox.repoRoot, 'pi', { status: 'active', packetPath: GOAL_PACKET });
+
+  assert.equal(resolveGoalPacket({
+    runtime: 'pi', sessionId: 'ses_someone_else', roots: [sandbox.repoRoot], env: sandbox.env,
+  }), '');
+  assert.equal(resolveGoalPacket({
+    runtime: 'opencode', sessionId: GOAL_SESSION_ID, roots: [sandbox.repoRoot], env: sandbox.env,
+  }), '', 'a Pi record is not an OpenCode goal');
+});
+
+test('resolveGoalPacket gives a Codex sender no packet, whatever the spec folder holds', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);
+  writeGoalPacket(sandbox.repoRoot);
+
+  for (const specFolder of [GOAL_PACKET, GOAL_PARENT, '', 'none']) {
+    assert.equal(resolveGoalPacket({
+      runtime: 'codex', sessionId: GOAL_SESSION_ID, specFolder, roots, env: sandbox.env,
+    }), '', JSON.stringify(specFolder));
+  }
+});
+
+test('resolveGoalPacket follows the Claude session log goal entries', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);
+  const roots = [sandbox.repoRoot];
+  const claude = (entries, specFolder = GOAL_PACKET) => resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  });
+  const active = goalStatus({ met: false, sentinel: true, condition: `${GOAL_HEADLINE}\n\nbody` });
+
+  assert.equal(claude([active]), GOAL_PARENT);
+  assert.equal(claude([active, goalStatus({ met: false, condition: active.attachment.condition })]), GOAL_PARENT);
+  assert.equal(claude([active, goalStatus({ met: true, condition: active.attachment.condition })]), '');
+  assert.equal(claude([active, goalStatus({
+    met: false, failed: true, condition: active.attachment.condition,
+  })]), '');
+  assert.equal(claude([active, {
+    type: 'system',
+    subtype: 'local_command',
+    content: '<command-name>/goal</command-name><command-args>clear</command-args>',
+  }]), '');
+  assert.equal(claude([{ type: 'user', message: { content: 'hello' } }]), '', 'no goal entry');
+  assert.equal(claude([goalStatus({ met: false, condition: '# Goal: A different goal\n' })]), '',
+    'a goal whose text no packet carries');
+  assert.equal(claude([goalStatus({
+    met: false, condition: `${GOAL_HEADLINE}\nsee ${GOAL_PARENT}/goal.md`,
+  })], 'none'), GOAL_PARENT, 'a packet the text names');
+});
+
+test('resolveGoalPacket answers empty when no Claude log can be read', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);
+  writeGoalPacket(sandbox.repoRoot);
+  const roots = [sandbox.repoRoot];
+  const claude = (env, sessionId = GOAL_SESSION_ID) => resolveGoalPacket({
+    runtime: 'claude', sessionId, specFolder: GOAL_PACKET, roots, env,
+  });
+  const missingConfig = { ...sandbox.env, CLAUDE_CONFIG_DIR: path.join(sandbox.root, 'no-such-config') };
+
+  assert.equal(claude(missingConfig), '', 'no projects folder');
+  assert.equal(claude(missingConfig, '../escape'), '', 'a session id that is not a file name');
+
+  const configDirectory = path.join(sandbox.root, 'claude-config');
+  fs.mkdirSync(path.join(configDirectory, 'projects', '-some-project', `${GOAL_SESSION_ID}.jsonl`), {
+    recursive: true,
+  });
+  assert.equal(claude({ ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory }), '', 'an unreadable log');
+  fs.rmSync(path.join(configDirectory, 'projects', '-some-project', `${GOAL_SESSION_ID}.jsonl`), {
+    recursive: true,
+  });
+  assert.equal(claude({ ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory }), '', 'a project folder with no log');
+});
+
+test('resolveGoalPacket widens the Claude log tail past one large entry', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);
+  const filler = { type: 'user', message: { content: 'x'.repeat(400000) } };
+  const env = writeClaudeLog(sandbox, [
+    goalStatus({ met: false, sentinel: true, condition: `${GOAL_HEADLINE}\nbody` }),
+    filler,
+  ]);
+
+  assert.equal(resolveGoalPacket({
+    runtime: 'claude', sessionId: GOAL_SESSION_ID, specFolder: GOAL_PACKET,
+    roots: [sandbox.repoRoot], env,
+  }), GOAL_PARENT);
+});
+
+test('resolveGoalPacket answers empty for an unknown runtime or a missing session', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  const roots = [sandbox.repoRoot];
+
+  assert.equal(resolveGoalPacket({
+    runtime: 'mystery', sessionId: GOAL_SESSION_ID, specFolder: GOAL_PACKET, roots,
+  }), '');
+  assert.equal(resolveGoalPacket({ runtime: 'codex', specFolder: GOAL_PACKET, roots }), '');
+  assert.equal(resolveGoalPacket({}), '');
+});
+
+test('recordGoalPacket writes, replaces and removes the field and skips an unchanged note', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const taken = trackLocks(t);
+  const field = () => parseHandoff(readNote(handoffPath)).frontmatter.goal_packet;
+
+  assert.equal(recordGoalPacket(handoffPath, ''), false, 'nothing to remove');
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), true);
+  assert.equal(field(), GOAL_PACKET);
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), false, 'the same value');
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PARENT), true);
+  assert.equal(field(), GOAL_PARENT, 'a held value is replaced');
+  assert.equal(recordGoalPacket(handoffPath, ''), true);
+  assert.equal(field(), undefined);
+  assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
+  assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.status, 'open');
+  assert.deepEqual(taken, Array(5).fill(`${handoffPath}.lock`));
+  assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+});
+
+test('recordGoalPacket removes an empty field the note holds', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  fs.writeFileSync(handoffPath, readNote(handoffPath).replace(/^(status: .*)$/m, '$1\ngoal_packet: '));
+
+  assert.equal(recordGoalPacket(handoffPath, ''), true);
+  assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
 });

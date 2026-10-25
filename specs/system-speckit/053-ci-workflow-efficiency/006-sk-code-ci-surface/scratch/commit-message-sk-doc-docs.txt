@@ -1,0 +1,13 @@
+docs(sk-code): bring the hub and CI surface docs to the sk-doc standards
+
+The hub README, playbook and stack-detection reference no longer describe the
+removed Webflow and Obsidian surfaces or the Motion.dev category, and the README
+now points at every packet, including the CI surface.
+
+The CI surface README quotes its frontmatter so it parses, gains the related
+documents section and a full workflow path, its references cite the current
+workflow lines and counts, and its playbook carries the result marker and the
+automated test cross-reference. The global changelog view for the hub drops the
+two links to removed packets and links the CI packet changelog.
+
+Spec: system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface

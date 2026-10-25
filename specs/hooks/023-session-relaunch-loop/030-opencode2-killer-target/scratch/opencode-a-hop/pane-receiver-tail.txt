@@ -1,0 +1,30 @@
+  ┃
+  ┃  specs/demo/001-demo
+  ┃
+  ┃
+  ┃  $ cat specs/demo/001-demo/goal.md
+  ┃
+  ┃  (50 earlier lines)
+  ┃  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  ┃
+  ┃
+  ┃  $ printf '%s' 'specs/demo/001-demo' > GOALENV.marker
+  ┃  printf '%s' 'Goal: Focused OpenCode execution agent operating under the active session goal.' > GOALSEEN.marker
+  ┃
+  ┃  (no output)
+  ┃
+  ┃
+  ┃  $ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete '/private/tmp/claude-501/ev030/sb-oc-a/.skilled/skills/.state/session-relaun
+  ┃  ch/handoffs/note-a.md'
+  ┃
+  ┃  (no output)
+  ┃
+     PONG
+                                                                                                                                                           █
+     Build · GPT-6 Luna · 22.8s · 22.6 tok/s                                                                                                               █
+  ┃
+  ┃
+  ┃
+  ┃  Build · GPT-6 Luna OpenAI
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /private/tmp/claude-501/ev030/sb-oc-a                                                                                           8.9K (2%)  ctrl+p commands    /private/tmp/claude-501/ev030/sb-oc-a

@@ -13,10 +13,20 @@ on:
 #
 # continue-on-error keeps the job green: a red X nobody is expected to act on is how a
 # gate becomes background noise. Read the step output, not the run status.
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
 jobs:
   advisory:
     name: Advisory — test suites and doc-model references
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 28
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -35,7 +45,7 @@ jobs:
             echo "::error::Node test runner not found at $RUNNER — failing closed."
             exit 1
           fi
-          node "$RUNNER" || true
+          node "$RUNNER"
 
       - name: Doc-model reference drift (report-only)
         continue-on-error: true
@@ -49,7 +59,10 @@ jobs:
             echo "::error::Doc-model validator not found at $VALIDATOR — failing closed."
             exit 1
           fi
-          node "$VALIDATOR" || echo "doc-model drift reported above; fix by citing canonical model names from registry.ts"
+          if ! node "$VALIDATOR"; then
+            echo "::error::doc-model drift found; fix by citing canonical model names from registry.ts"
+            exit 1
+          fi
 
       - name: Trigger index freshness (report-only)
         continue-on-error: true
@@ -65,4 +78,7 @@ jobs:
           fi
           # The checkout is committed content, so this compares the committed index with
           # the corpus it should describe. The lookup cannot afford this walk per call.
-          node "$GENERATOR" --check || echo "trigger index drift reported above; the trigger-index-rebuild workflow repairs drift on the integration branches after merge, or regenerate locally with node $GENERATOR"
+          if ! node "$GENERATOR" --check; then
+            echo "::error::trigger index drift found; the trigger-index-rebuild workflow repairs drift on the integration branches after merge, or regenerate locally with node $GENERATOR"
+            exit 1
+          fi

@@ -1,0 +1,18 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
+  "description": "Phase 28: goal-rebind-live-proof-and-docs",
+  "keywords": [
+    "phase",
+    "goal-rebind-live-proof-and-docs"
+  ],
+  "lastUpdated": "2026-10-24T19:03:15.465Z",
+  "specId": "028",
+  "folderSlug": "goal-rebind-live-proof-and-docs",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

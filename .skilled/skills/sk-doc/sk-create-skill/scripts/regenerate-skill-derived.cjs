@@ -210,11 +210,25 @@ function regenerateRoot(skillDir, { write, now = isoNow() } = {}) {
   return { name, status: write ? 'written' : 'would-change', changes };
 }
 
-function listSkillRoots() {
-  return fs.readdirSync(SKILLS_DIR, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules')
-    .map((e) => path.join(SKILLS_DIR, e.name))
+function listSkillRoots(skillsDir = SKILLS_DIR) {
+  return fs.readdirSync(skillsDir, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && !e.name.startsWith('.') && !e.name.startsWith('local-') && e.name !== 'node_modules')
+    .map((e) => path.join(skillsDir, e.name))
     .filter((dir) => fs.existsSync(path.join(dir, 'graph-metadata.json')));
+}
+
+// A private skill belongs to one checkout. The name is judged on the path as typed
+// and on its real target, so a link with a neutral name cannot reach one. The
+// comparison ignores case because a case-insensitive disk resolves `LOCAL-foo`
+// to the same directory as `local-foo`.
+function isPrivateSkillPath(dir) {
+  const names = [path.basename(dir)];
+  try {
+    names.push(path.basename(fs.realpathSync(dir)));
+  } catch {
+    // A missing path has no target; regenerateRoot reports it.
+  }
+  return names.some((name) => name.toLowerCase().startsWith('local-'));
 }
 
 function parseArgs(argv) {
@@ -233,14 +247,18 @@ function parseArgs(argv) {
 /**
  * Regenerate (or check) the `derived` block of every skill root under the
  * skills dir, driven by CLI arguments.
- * @param {string[]} [argv] CLI args; `--all` or `--root <skill-dir>` picks the roots, `--write` applies repairs, `--dry-run` (the default) reports only.
+ * @param {string[]} [argv] CLI args; `--all` or `--root <skill-dir>` picks the roots (a `local-*` root is refused), `--write` applies repairs, `--dry-run` (the default) reports only.
  * @returns {number} Exit code: 0 when every root was processed (a root that would change is reported, not failed), 2 when a root errored; the CLI entry also exits 2 for a bad-argument inputError.
  */
 function run(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   let roots;
   if (args.root) {
-    roots = [path.resolve(args.root)];
+    const rootDir = path.resolve(args.root);
+    if (isPrivateSkillPath(rootDir)) {
+      throw inputError(`Refusing a private skill root: ${args.root} (a local-* skill is never regenerated)`);
+    }
+    roots = [rootDir];
   } else if (args.all) {
     roots = listSkillRoots();
   } else {
@@ -258,7 +276,7 @@ function run(argv = process.argv.slice(2)) {
   return 0;
 }
 
-module.exports = { repairDerived, derivedChanged, regenerateRoot, listSkillRoots, keyFileExists, skillFileExists, REPO_ROOT, SKILLS_DIR };
+module.exports = { repairDerived, derivedChanged, regenerateRoot, listSkillRoots, isPrivateSkillPath, keyFileExists, skillFileExists, REPO_ROOT, SKILLS_DIR };
 
 if (require.main === module) {
   try {

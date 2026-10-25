@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: killer signals an idle armed target after --idle-ms without a transcript
+ok 1 - killer signals an idle armed target after --idle-ms without a transcript
+  ---
+  duration_ms: 174.264458
+  type: 'test'
+  ...
+# Subtest: markSignalled stamps only the armed record it was given, and a re-arm clears it
+ok 2 - markSignalled stamps only the armed record it was given, and a re-arm clears it
+  ---
+  duration_ms: 28.5345
+  type: 'test'
+  ...
+# Subtest: wrapper prints the manual command after runtime exit 130
+ok 3 - wrapper prints the manual command after runtime exit 130
+  ---
+  duration_ms: 195.564041
+  type: 'test'
+  ...
+# Subtest: wrapper relaunches after runtime exit 130 when the killer signalled the record
+ok 4 - wrapper relaunches after runtime exit 130 when the killer signalled the record
+  ---
+  duration_ms: 422.837833
+  type: 'test'
+  ...
+# Subtest: wrapper names pi in the manual command after runtime exit 130
+ok 5 - wrapper names pi in the manual command after runtime exit 130
+  ---
+  duration_ms: 191.012833
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 848.067959

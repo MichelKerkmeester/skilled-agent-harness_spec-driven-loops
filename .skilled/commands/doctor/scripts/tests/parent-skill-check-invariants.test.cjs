@@ -488,16 +488,15 @@ test('5k warns, and does not fail, on alias drift that another hub already carri
 
 test('5l fails when a hand-added sk-code surface sorts after sk-code-skilled', () => {
   const hub = buildHub('sk-code');
-  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
+  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-acme']);
   const { status, output } = runChecker(hub);
   assertLine(output, 'FAIL', '5l', 'sk-code-acme.*move them ahead of "sk-code-skilled".*/create:skill-parent update --surfaces');
-  assert.doesNotMatch(output, /^FAIL: 5l:.*sk-code-(obsidian|webflow)/m);
   assert.equal(status, 1, output);
 });
 
-test('5l passes on the shipped sk-code order, with both examples after sk-code-skilled', () => {
+test('5l passes on the shipped sk-code order with only its native surface', () => {
   const hub = buildHub('sk-code');
-  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-obsidian', 'sk-code-webflow']);
+  addNamedSurfaces(hub, ['sk-code-skilled']);
   const { output } = runChecker(hub);
   assertLine(output, 'PASS', '5l');
   assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);

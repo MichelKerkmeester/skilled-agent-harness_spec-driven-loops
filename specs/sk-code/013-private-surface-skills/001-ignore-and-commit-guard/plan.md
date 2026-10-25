@@ -37,17 +37,17 @@ The earlier draft covered six roots and four cases. Both counts were short: `.co
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The planning commit that ships the Level 3 upgrade of all five phases is on `main`, so the phase starts from a clean worktree
-- [ ] Every anchor in T002 to T004 re-read at the phase base; the line numbers in `tasks.md` match the files
-- [ ] `git check-ignore -v .skilled/skills/local-webflow/SKILL.md` exits 1 before the change, which is the failing baseline
-- [ ] The installed hook's resolution is known (`bash .skilled/scripts/install-git-hooks.sh --status`); it is `SHADOWED` in this worktree, which is expected and does not block
+- [x] The planning commit that ships the Level 3 upgrade of all five phases is on `main`, so the phase starts from a clean worktree
+- [x] Every anchor in T002 to T004 re-read at the phase base; the line numbers in `tasks.md` match the files
+- [x] `git check-ignore -v .skilled/skills/local-webflow/SKILL.md` exits 1 before the change, which is the failing baseline
+- [x] The installed hook's resolution is known (`bash .skilled/scripts/install-git-hooks.sh --status`); planning expected `SHADOWED` here; at build time it resolved installed and unshadowed inside this checkout, which also does not block (see implementation-summary.md deviations)
 
 ### Definition of Done
-- [ ] All fifteen acceptance criteria in `acceptance-criteria.md` are `Met`
-- [ ] `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` exits 0 with `pre-commit gates: 131 passed, 0 failed`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard --strict` prints `RESULT: PASSED`
-- [ ] Docs updated (spec/plan/tasks/acceptance criteria/decision record/goal)
-- [ ] The phase ships as one commit pushed as `HEAD:main` (T025 and T026), and `git status --porcelain` is empty with HEAD equal to `origin/main` (T027)
+- [x] All fifteen acceptance criteria in `acceptance-criteria.md` are `Met`
+- [x] `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` exits 0 with `pre-commit gates: 131 passed, 0 failed`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard --strict` prints `RESULT: PASSED`
+- [x] Docs updated (spec/plan/tasks/acceptance criteria/decision record/goal)
+- [x] The phase ships as one commit pushed as `HEAD:main` (T025 and T026), and `git status --porcelain` is empty with HEAD equal to `origin/main` (T027)
 <!-- /ANCHOR:quality-gates -->
 
 ---

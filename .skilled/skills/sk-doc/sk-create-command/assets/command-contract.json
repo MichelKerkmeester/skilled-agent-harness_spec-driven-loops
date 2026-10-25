@@ -5,7 +5,7 @@
     "purpose": "Single machine-readable source of behavioral truth for the six router-shaped OpenCode command families. Templates, validators, benchmark adapters, and generated routers consume this instead of restating it as prose.",
     "confirm_auto_relationship": "The observed 'confirm == auto + checkpoints' relationship holds only for light single-pass mode-pair families (verified on design; inferred for create and speckit:plan). For autonomy-heavy commands (speckit:complete, all deep:*) the :auto workflow carries orchestration machinery the :confirm variant lacks, so the two are divergent siblings and must be modeled independently rather than derived. Downstream checks must not assume the invariant universally.",
     "granularity": "One entry per family; router_path is a directory glob for families whose per-operation routers share one uniform pattern (create, design, deep) and an explicit list for families whose routers differ (speckit, memory, doctor).",
-    "coverage": "Covers the six router-shaped families only. The prompt group, the three root-level utilities (/agent-router, /goal-opencode, /vision) and two plain workflow commands inside routed families (/speckit:handoff and /doctor:setup, which take no arguments and no modes) ship no family router and carry no entry here; a consumer that walks this file is walking 34 of the 40 shipped commands, not all of them.",
+    "coverage": "Covers the six router-shaped families only. The prompt group, the three root-level utilities (/agent-router, /goal-opencode, /vision) and two plain workflow commands inside routed families (/speckit:handoff and /doctor:setup, which take no arguments and no modes) ship no family router and carry no entry here; a consumer that walks this file is walking 35 of the 41 shipped commands, not all of them.",
     "asset_naming": "Owned assets are hyphen-joined: <family>-<command>-<kind> for create, speckit, doctor and deep. A family whose commands already read unambiguously drops the family prefix and names assets <command>-<kind> — the memory family (save.md/search.md, now hosted under the speckit command folder as /speckit:save and /speckit:search; save-presentation.txt) and design (extract-auto.yaml) both do. The kind suffixes are -presentation.txt, -auto.yaml and -confirm.yaml. Underscores are not used; the shipped prompt group is the tree's lone underscore holdout and is out of scope here.",
     "path_templates": "A per-command asset path carries exactly one <placeholder>, which expands to the router's command name. generate-command-routers.cjs special-cases the memory family key (the internal contract identifier for the save/search direct-dispatch commands) when the placeholder opens the basename; a prefix-dropping family it does not special-case must therefore spell its assets literally rather than as a template, which is why design carries concrete filenames."
   },
@@ -200,6 +200,7 @@
         ".skilled/commands/doctor/runtime-mirrors.md",
         ".skilled/commands/doctor/sk-code.md",
         ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/ci.md",
         ".skilled/commands/doctor/mcp.md",
         ".skilled/commands/doctor/update.md",
         ".skilled/commands/doctor/env.md"
@@ -207,10 +208,10 @@
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
+        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [--json] [--sha=<sha>] [--no-gh] [--dry-run] [--name=<file>] [--variable=<name>] [--state=<on|off>] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code and git", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
+        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git and ci", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
         { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
@@ -259,7 +260,7 @@
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
+      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
       "workflow_schema_ref": null
     },
     "deep": {

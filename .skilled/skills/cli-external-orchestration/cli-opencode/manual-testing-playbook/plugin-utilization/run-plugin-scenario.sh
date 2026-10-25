@@ -121,15 +121,17 @@ CONFIG="$(PORT="$PORT" node -e '
 
 cd "$ROOT" || exit 2
 if [[ "$VERSION" == v1 ]]; then
+  # Side by side, OpenCode 1 answers only to opencode1; a v1-only machine names it opencode
+  V1_BIN="$(command -v opencode1 || command -v opencode)"
   OPENCODE_CONFIG_CONTENT="$CONFIG" perl -e 'alarm shift; exec @ARGV' "$ALARM" \
-    opencode run --model "$MODEL_V1" --variant high --format json --dir "$ROOT" "$@" "$PROMPT" \
+    "$V1_BIN" run --model "$MODEL_V1" --variant high --format json --dir "$ROOT" "$@" "$PROMPT" \
     </dev/null >"$EVENTS" 2>&1
 else
   # OpenCode 2 loads every parent folder's .opencode, so a nested checkout pins
   # its own config folder or it would load the outer checkout's plugins too.
   OPENCODE_CONFIG_CONTENT="$CONFIG" OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$ROOT/.opencode" \
     perl -e 'alarm shift; exec @ARGV' "$ALARM" \
-    opencode2 run --standalone -m "$MODEL_V2" --format json "$@" "$PROMPT" \
+    opencode run --standalone -m "$MODEL_V2" --format json "$@" "$PROMPT" \
     </dev/null >"$EVENTS" 2>&1
 fi
 STATUS=$?

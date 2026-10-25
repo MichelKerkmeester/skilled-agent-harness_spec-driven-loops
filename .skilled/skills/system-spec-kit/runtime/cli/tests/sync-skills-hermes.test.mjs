@@ -38,6 +38,35 @@ function run(env, args = []) {
   });
 }
 
+test('skips a top-level local-* skill so it is never mirrored', () => {
+  const env = fixture();
+  try {
+    mkdirSync(join(env.source, 'local-webflow'), { recursive: true });
+    writeFileSync(join(env.source, 'local-webflow', 'SKILL.md'), '---\nname: local-webflow\ndescription: "Private"\n---\n\n# Private\n');
+    const out = run(env);
+    assert.match(out, /Wrote 4 of 4/);
+    assert.ok(!existsSync(join(env.output, 'local-webflow')));
+  } finally {
+    rmSync(env.root, { recursive: true, force: true });
+  }
+});
+
+test('never follows a local-* symlink into the mirror', () => {
+  const env = fixture();
+  try {
+    const target = join(env.root, 'private-webflow');
+    mkdirSync(target, { recursive: true });
+    writeFileSync(join(target, 'SKILL.md'), '---\nname: private-webflow\n---\n');
+    symlinkSync(target, join(env.source, 'local-webflow'));
+    const out = run(env);
+    assert.match(out, /Wrote 4 of 4/);
+    assert.ok(!existsSync(join(env.output, 'local-webflow')));
+    assert.ok(!existsSync(join(env.output, 'private-webflow')));
+  } finally {
+    rmSync(env.root, { recursive: true, force: true });
+  }
+});
+
 test('writes one markdown-only folder per SKILL.md, flat by frontmatter name, skipping node_modules', () => {
   const env = fixture();
   try {

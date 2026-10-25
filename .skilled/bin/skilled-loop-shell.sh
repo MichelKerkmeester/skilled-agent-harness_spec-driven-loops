@@ -71,7 +71,8 @@ skilled_loop_first_word_passes() {
       opencode:upgrade|opencode:uninstall|opencode:serve|opencode:web|\
       opencode:models|opencode:stats|opencode:export|opencode:import|\
       opencode:github|opencode:pr|opencode:session|opencode:plugin|\
-      opencode:plug|opencode:db)
+      opencode:plug|opencode:db|opencode:api|opencode:service|opencode:reload|\
+      opencode:pair|opencode:mini)
       return 0
       ;;
     # Codex resume and fork reopen an interactive session, so they stay wrapped.

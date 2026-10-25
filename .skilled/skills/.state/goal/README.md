@@ -5,7 +5,7 @@ trigger_phrases:
   - "goal runtime state"
   - "active session goals"
   - "goal state archive"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Goal Runtime State
@@ -62,7 +62,7 @@ The plugin's event hook keeps the record current during the session:
 | `session.idle` | Runs the completion verifier, applies a compare-safe result and evaluates guarded continuation. |
 | `session.deleted` | Clears volatile locks and moves the session goal file into `.archive/`. |
 
-The idle verifier marks a verified goal complete, marks a blocked verdict as blocked or leaves a not-met goal available for further work. Guarded continuation is disabled unless `OPENCODE_GOAL_AUTONOMY` selects `active` or `smoke`. Before sending another prompt, the plugin checks the active status, verifier result, prompt blockers, session status, cooldown, auto-turn cap, wall-clock cap and token budget. It records non-quiet decisions in `.continuation.log` whether the result is suppression, a smoke-mode `would_fire` decision or a sent continuation.
+The idle verifier marks a verified goal complete, marks a blocked verdict as blocked or leaves a not-met goal available for further work. Guarded continuation is disabled unless `OPENCODE_GOAL_AUTONOMY` selects `active` or `smoke`. Before sending another prompt, the plugin checks the active status, the verifier result (a timed-out, stale or other-goal result suppresses), any suppression already recorded on the goal, prompt blockers, the session status (busy or retrying) and the cooldown. No auto-turn cap, wall-clock cap or token budget stops continuation: a goal keeps going until the verifier marks it complete or the operator pauses or clears it. It records non-quiet decisions in `.continuation.log` whether the result is suppression, a smoke-mode `would_fire` decision or a sent continuation.
 
 ---
 

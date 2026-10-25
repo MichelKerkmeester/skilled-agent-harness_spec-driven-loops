@@ -1,0 +1,12 @@
+docs(sk-code): record the CI surface closure
+
+The phase commit carries the packet and its registration. The closure commit
+records the acceptance rows, the post-phase registration snapshot and each
+gate's observed output, so the tree ends clean.
+
+The record also names the one miss the phase gates did not catch: the compiled
+skill graph went stale when the advisor signals gained CI phrases, and the
+graph freshness check was not in the gate list. The regeneration landed in
+c903c0d103, and the CI run for that commit is recorded as it stood.
+
+Spec: system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface

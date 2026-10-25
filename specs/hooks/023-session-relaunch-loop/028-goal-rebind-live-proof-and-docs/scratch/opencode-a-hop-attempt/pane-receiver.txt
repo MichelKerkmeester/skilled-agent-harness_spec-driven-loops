@@ -1,0 +1,50 @@
+   Goal plugin router specificat +
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.                                                                           Goal plugin router specification
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.                                                                           Context
+     Filler line that only pads this goal toward its size limit and asks for nothing.                                                                           14,575 tokens
+     Filler line that only pads this goal toward its size limit and asks for nothing.                                                                           4% used
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+     Build · GPT-6 Luna · 27.8s · 41.2 tok/s
+
+  ┃
+  ┃  Reply with the single word PONG.
+  ┃
+
+     ✓ execute
+     › opencode_goal [action=resent]                                          ⠋ Connection lost…
+
+     ✓ execute                                                                Reconnecting to the server automatically.
+     › opencode_goal [action=doctor]
+
+     ✓ execute
+     › opencode_goal [action=log, item=Bind demo packet and perform resend, sta...n condition additionally requires operator to send FINISH; not yet met.]
+
+     ✓ execute
+     › opencode_goal [action=show]
+
+  ┃
+  ┃  Reply with the single word PONG again.
+  ┃
+
+     PONG
+
+     Build · GPT-6 Luna · 40.3s · 34.1 tok/s                                                                                                               ▄
+
+  ┃
+  ┃
+  ┃
+  ┃  Build · GPT-6 Luna OpenAI
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /private/tmp/claude-501/ev028/sb-oc-a                                                                                          14.6K (4%)  ctrl+p commands    /private/tmp/claude-501/ev028/sb-oc-a
+

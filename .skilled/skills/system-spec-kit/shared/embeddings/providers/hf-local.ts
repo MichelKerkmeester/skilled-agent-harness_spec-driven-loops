@@ -48,6 +48,10 @@ const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/system-hf-embed';
 // .skilled/bin/system-skill-advisor-launcher.cjs, which is the process that writes it.
 const ADVISOR_OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
 
+// Lease field in which the launcher records whether it arms the shared model server.
+// MUST stay byte-identical to OWNER_LEASE_SUPERVISION_FIELD in the same launcher.
+const ADVISOR_LEASE_SUPERVISION_FIELD = 'supervisesModelServer';
+
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
 // NOTE: legacy compatibility export, not the current default, kept for consumers
@@ -265,29 +269,40 @@ function readSpawnAuthorityPid(filePath: string): number | null {
   }
 }
 
-function hasLiveHfSpawnAuthority(socketPath: string): boolean {
+// A live owner lease is spawn authority only when its launcher arms the shared
+// model server. The launcher writes that decision into the lease, because this
+// process may run with a different environment than the launcher does. A lease
+// without the field comes from an older launcher that always armed the server, so
+// it keeps counting.
+function hasLiveAdvisorOwnerLease(): boolean {
   try {
     const ownerLease = JSON.parse(
       readFileSync(path.join(spawnAuthorityDbDir, ADVISOR_OWNER_LEASE_FILE_NAME), 'utf8'),
     ) as unknown;
     if (isRecord(ownerLease) && Number.isInteger(ownerLease.ownerPid) && (ownerLease.ownerPid as number) > 0) {
+      if (ownerLease[ADVISOR_LEASE_SUPERVISION_FIELD] === false) {
+        return false;
+      }
       const heartbeatMs = typeof ownerLease.lastHeartbeatIso === 'string'
         ? Date.parse(ownerLease.lastHeartbeatIso)
         : NaN;
       const ttlMs = typeof ownerLease.ttlMs === 'number' && Number.isFinite(ownerLease.ttlMs)
         ? ownerLease.ttlMs
         : 0;
-      if (
-        ttlMs > 0
+      return ttlMs > 0
         && Number.isFinite(heartbeatMs)
         && Date.now() - heartbeatMs <= ttlMs * 2
-        && hfSpawnAuthorityLiveness(ownerLease.ownerPid as number) === 'live'
-      ) {
-        return true;
-      }
+        && hfSpawnAuthorityLiveness(ownerLease.ownerPid as number) === 'live';
     }
   } catch {
     // Missing or malformed authority files do not prove that a launcher is active.
+  }
+  return false;
+}
+
+function hasLiveHfSpawnAuthority(socketPath: string): boolean {
+  if (hasLiveAdvisorOwnerLease()) {
+    return true;
   }
 
   const socketDir = path.dirname(socketPath);
@@ -1155,6 +1170,7 @@ export const __hfLocalProviderTestables = {
     spawnAuthorityDbDir = dbDir;
   },
   ADVISOR_OWNER_LEASE_FILE_NAME,
+  ADVISOR_LEASE_SUPERVISION_FIELD,
   defaultSpawnAuthorityDbDir,
   resolveHfLocalServerTarget,
 };

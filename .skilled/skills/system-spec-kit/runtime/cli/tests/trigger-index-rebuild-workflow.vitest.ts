@@ -82,6 +82,7 @@ const BASE_SUBJECT = 'base';
 const RACE_SUBJECT = 'race: corpus moved';
 const REBUILD_SUBJECT = 'chore(system-spec-kit): rebuild the trigger index';
 const LOOP_GUARD_TRAILER = 'Trigger-Index-Rebuild: ci';
+const SKIP_TOKEN = '[skip ci]';
 const IDENTITY_ARGS = ['-c', 'user.name=Trigger Index Test', '-c', 'user.email=trigger-index-test@example.invalid', '-c', 'commit.gpgsign=false'];
 // A repository secret reference in any form, or the push token variable by name.
 const TOKEN_REFERENCE = /\bsecrets\s*[.[]|\(\s*secrets\s*\)|\bPUSH_TOKEN\b/;
@@ -805,7 +806,9 @@ describe('trigger-index rebuild workflow', () => {
       const jobs = loadWorkflow().jobs ?? {};
 
       expect(jobs[PUSH_JOB]?.needs).toBe(REBUILD_JOB);
-      expect(jobs[PUSH_JOB]?.if).toBe(PUSH_IF);
+      // The repository switch is ANDed on, so the output gate is a conjunct rather than the whole condition.
+      expect(String(jobs[PUSH_JOB]?.if)).toContain(PUSH_IF);
+      expect(String(jobs[PUSH_JOB]?.if)).toContain("vars.SKILLED_CI != 'off'");
       expect(jobs[REBUILD_JOB]?.outputs).toEqual({
         committed: '${{ steps.commit.outputs.committed }}',
         rebuild_sha: '${{ steps.commit.outputs.rebuild_sha }}',
@@ -888,6 +891,16 @@ describe('trigger-index rebuild workflow', () => {
       const { origin, env } = clean.fixture;
       const lines = git(origin, ['log', '-1', '--format=%B', 'main'], env).trimEnd().split('\n');
 
+      expect(lines[lines.length - 1]).toBe(LOOP_GUARD_TRAILER);
+    });
+
+    it('marks the rebuild commit so the pushed commit starts no workflow run', () => {
+      const { origin, env } = clean.fixture;
+      const lines = git(origin, ['log', '-1', '--format=%B', 'main'], env).trimEnd().split('\n');
+
+      expect(lines).toContain(
+        `The pushed corpus changed the committed trigger index, so this job rebuilt it. ${SKIP_TOKEN}`,
+      );
       expect(lines[lines.length - 1]).toBe(LOOP_GUARD_TRAILER);
     });
 

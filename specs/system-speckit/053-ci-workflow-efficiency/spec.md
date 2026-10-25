@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency"
     last_updated_at: "2026-10-23T08:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Planned phases 002-009 from the final review"
-    next_safe_action: "D1-D7, D9 and D10 are recorded; next step is 002-rebuild-fanout-removal T002"
+    recent_action: "Phase 002 now has three qualifying zero-run rebuild SHAs and a fourth additional SHA; its 24 h baseline remains"
+    next_safe_action: "Remaining 002: T019 24 h baseline, then T020/T021; 003 T027-T034; 004 T002/T003"
     blockers: []
     key_files:
       - "001-research/research/research.md"
@@ -102,9 +102,9 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-research/ | Research: 20-iteration measured study and phase plan (`research/research.md`) | Complete |
-| 2 | 002-rebuild-fanout-removal/ | Implementation: stop the CI fan-out on trigger-index rebuild commits with a `[skip ci]` token (R1), assert that token in the rebuild workflow's vitest suite (R2), and record the post-change 24 h baseline every later phase measures against | Planned |
-| 3 | 003-trigger-and-job-hygiene/ | Implementation: PR-only cancel-in-progress concurrency (R3), a real path filter on command-tree-parity (R4), the changed-packet-validation and pre-commit duplication probes (R5, R11), the dispatch-enforcement-guard dedupe (R6), the double-suppression removal (R7), shallower checkouts (R8), PR-time path filters (R9) and the skill-doc-frontmatter filter gap (R10) | Planned |
-| 4 | 004-setup-caching-provisioning/ | Implementation: gate-inputs scanning `.github/actions/**` (R12), the cache probe (R13), the composite setup action (R14), the hooks/plugin workflow merge (R15), npm install dedupe (R16), pip cache (R17) and the sparse-checkout probe (R18) | Planned |
+| 2 | 002-rebuild-fanout-removal/ | Implementation: stop the CI fan-out on trigger-index rebuild commits with a `[skip ci]` token (R1), assert that token in the rebuild workflow's vitest suite (R2), and record the post-change 24 h baseline every later phase measures against | In progress |
+| 3 | 003-trigger-and-job-hygiene/ | Implementation: PR-only cancel-in-progress concurrency (R3), a real path filter on command-tree-parity (R4), the changed-packet-validation and pre-commit duplication probes (R5, R11), the dispatch-enforcement-guard dedupe (R6), the double-suppression removal (R7), shallower checkouts (R8), PR-time path filters (R9) and the skill-doc-frontmatter filter gap (R10) | In progress |
+| 4 | 004-setup-caching-provisioning/ | Implementation: gate-inputs scanning `.github/actions/**` (R12), the cache probe (R13), the composite setup action (R14), the hooks/plugin workflow merge (R15), npm install dedupe (R16), pip cache (R17) and the sparse-checkout probe (R18) | In progress |
 | 5 | 005-slow-and-failing-tests/ | Implementation: the `fileParallelism` probe (R19), the spec-kit CLI vitest project made parallel or sharded (R20), and the re-check and root-cause of the failing workflows (R21) | Planned |
 | 6 | 006-sk-code-ci-surface/ | Implementation: the read-only `sk-code-ci` surface packet and its hub registration (R22), plus message-contract's every-branch trigger recorded as an intentional exception (R23) | Planned |
 | 7 | 007-workflow-hygiene-on-off-control/ | Implementation: per-job timeouts sized on job samples (R24), least-privilege permissions and the dependabot job split (R25), and the `vars.SKILLED_CI*` on/off switches defaulting on (R26) | Planned |

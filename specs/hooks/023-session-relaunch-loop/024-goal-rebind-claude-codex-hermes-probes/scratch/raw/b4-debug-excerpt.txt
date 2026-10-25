@@ -1,0 +1,3 @@
+2026-10-24T21:53:37.796Z [DEBUG] Hooks: Parsed initial response: {"hookSpecificOutput":{"hookEventName":"SessionStart","initialUserMessage":"Reply with exactly the word PLAINMSG-RECEIVED and nothing else."}}
+2026-10-24T21:53:37.796Z [DEBUG] Hooks: SessionStart:startup [<scratch>/b4/hook.sh] finished with status 0 (597ms)
+2026-10-24T21:53:37.798Z [DEBUG] Hook SessionStart (<scratch>/b4/hook.sh) provided initialUserMessage (63 chars)

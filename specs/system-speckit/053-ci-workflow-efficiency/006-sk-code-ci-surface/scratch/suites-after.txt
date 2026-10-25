@@ -1,0 +1,179 @@
+✔ resolves the same route from stdin as from argv (111.576708ms)
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-AZWtNM/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-AZWtNM/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-test-AZWtNM/compiled-routing.rollback-43366-1792856986343
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-test-AZWtNM/compiled-routing.rollback-43366-1792856986343
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-test-AZWtNM/compiled-routing.rollback-43366-1792856986343
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-check-fiOvmG/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-staging-fail-7xjVRd/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-postpublish-fail-d7gv3r/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-n0eDcK/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-n0eDcK/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-n0eDcK/compiled-routing.rollback-43366-1792856988535
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-n0eDcK/compiled-routing.rollback-43366-1792856988535
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-n0eDcK/compiled-routing.rollback-43366-1792856988535
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-Lqbvjg/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-Lqbvjg/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-Lqbvjg/compiled-routing.rollback-43366-1792856989126
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-Lqbvjg/compiled-routing.rollback-43366-1792856989126
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-Lqbvjg/compiled-routing.rollback-43366-1792856989126
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-7PJfH3/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-7PJfH3/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-7PJfH3/compiled-routing.rollback-43366-1792856989864
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-7PJfH3/compiled-routing.rollback-43366-1792856989864
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-7PJfH3/compiled-routing.rollback-43366-1792856989864
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-xAjDPP/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-xAjDPP/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-xAjDPP/compiled-routing.rollback-43366-1792856990368
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-xAjDPP/compiled-routing.rollback-43366-1792856990368
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-xAjDPP/compiled-routing.rollback-43366-1792856990368
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing.rollback-43366-1792856990916
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing.rollback-43366-1792856990916
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing.rollback-43366-1792856990916
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing.rollback-43366-1792856991385
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing.rollback-43366-1792856991385
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-MMDi5D/compiled-routing.rollback-43366-1792856991385
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-Hibp85/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-Hibp85/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-Hibp85/compiled-routing.rollback-43366-1792856992043
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-Hibp85/compiled-routing.rollback-43366-1792856992043
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-Hibp85/compiled-routing.rollback-43366-1792856992043
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing.rollback-43366-1792856992669
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing.rollback-43366-1792856992669
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing.rollback-43366-1792856992669
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing.rollback-43366-1792856993221
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing.rollback-43366-1792856993221
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-k6mAKV/compiled-routing.rollback-43366-1792856993221
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856993896
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856993896
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856993896
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856994223
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856994223
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856994223
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856994665
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856994665
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-9fgHCW/compiled-routing.rollback-43366-1792856994665
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/post-publish-runtime
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/revert-runtime
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/revert-runtime
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/revert-runtime.rollback-43366-1792856996388
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/revert-runtime.rollback-43366-1792856996388
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-zG2WwC/revert-runtime.rollback-43366-1792856996388
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-6dLrRg/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-6dLrRg/compiled-routing.rollback-43366-1792856996851
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-6dLrRg/compiled-routing.rollback-43366-1792856996851
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-6dLrRg/compiled-routing.rollback-43366-1792856996851
+▶ canonical compiled-route manifest
+  ✔ rejects unsafe identities and reports a missing safe manifest (1.092541ms)
+  ✔ fails closed on root, registry, source-link, and compiler errors (15.291792ms)
+  ✔ mints one inert generation-one manifest through the CLI (39.5285ms)
+  ✔ keeps routing byte-identical across mint and rejects duplicate mint (58.232792ms)
+  ✔ returns fresh in compact and pretty form, then detects all input drift axes (210.810084ms)
+  ✔ reports malformed manifests without compiling or rewriting them (1.447917ms)
+  ✔ keeps serving cause separate from manifest freshness in status (4.980625ms)
+  ✖ preserves the external manifest across the sync capture/restore round trip (247.165458ms)
+  ✔ publishes the current authored topology atomically into an isolated runtime (705.221875ms)
+  ✔ check fails when a served file is missing or differs from its authored file (441.893958ms)
+  ✔ leaves an existing runtime untouched when the authored source is unavailable (0.875625ms)
+  ✔ sync --check names the authored folder to restore when it is missing, with no stack (172.0535ms)
+  ✔ guard authored-drift names the runtime manifest, its authored twin and the copy (2.308167ms)
+  ✔ guard reports a missing authored manifest by path instead of passing (0.441458ms)
+  ✔ guard stale fix names the refresh command, the skill root and both manifest paths (0.125875ms)
+  ✔ guard stale fix gives a second hub its own skill root and manifest (0.074792ms)
+  ✔ refuses to replace an existing root that is not a verified closure (58.661334ms)
+  ✔ aborts at staging-verify failure without touching the serving root (478.890958ms)
+  ✔ restores the exact prior closure when post-publish verification fails (447.9325ms)
+  ✔ a concurrent external manifest created during publication survives finalize (624.346541ms)
+  ✔ revert swaps the retained rollback back into the serving root (728.1025ms)
+  ✔ rejects arbitrary, symlinked, and stale rollback paths without mutation (530.748042ms)
+  ✔ three-way reconciliation preserves a serving-only external update (512.316333ms)
+  ✔ failed finalize and revert verification retain both recoverable roots (1130.875167ms)
+  ✔ closure fingerprints reject code-byte drift in the retained rollback (589.959791ms)
+  ✔ finalize and revert cleanup resume after individual removal failures (1274.813125ms)
+  ✔ terminal cleanup resumes lock failure without deleting newer publication state (1374.870208ms)
+  ✔ rename failures retain a serving root and recoverable publication state (1747.918959ms)
+  ✔ long-lived status rebinding follows an atomic generation replacement (1163.123ms)
+  ✔ canonical manifest writers refuse mutation while publication is locked (1.15825ms)
+  ✔ canonical manifest writers hold the shared lock through their atomic write (3.270792ms)
+  ✔ fails sync capture and restore closed on invalid or conflicting entries (2.599917ms)
+  ✔ uses atomic create-if-absent under concurrent writers (87.408708ms)
+  ✔ refuses an existing committed manifest before reading source inputs (0.626875ms)
+  ✔ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (48.462625ms)
+  ✔ refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults (47.903875ms)
+  ✔ a concurrent serving-authority flip during refresh is preserved, not reverted (6.624084ms)
+  ✔ refuses to refresh unsafe hub identities and a missing manifest without writing anything (32.003958ms)
+  ✔ preserves a non-default shadowOnly value through refresh rather than hardcoding it (3.18425ms)
+  ✔ keeps the CLI thin, machine-readable, and usage-safe (91.238417ms)
+  ✔ binds an explicit runtime root before the library loads (328.165667ms)
+  ✔ rejects malformed --runtime-root syntax with usage exit 2 (131.847209ms)
+  ✔ fails closed when the override root lacks a coherent compiled-routing layout (133.980625ms)
+  ✔ sequential same-process explicit-root calls each bind their own runtime root (116.430666ms)
+  ✔ a preloaded private binding cannot capture an explicit or a default operation (96.038375ms)
+  ✔ a default operation after an explicit-root operation targets the promoted root (77.998792ms)
+  ✔ symlink aliases of one runtime root share one lock and one closure (335.330042ms)
+  ✔ keeps parse and coherence failures closed through the isolated path (34.523583ms)
+✖ canonical compiled-route manifest (14185.969667ms)
+✔ without a hint the only shipped surface is selected (1.286792ms)
+✔ a matching surface hint preserves the single-surface route (1.190583ms)
+✔ a hint the prompt did not match, UNKNOWN or an unknown name changes nothing (1.955709ms)
+✔ a workflow mode stays first with the shipped surface (0.691708ms)
+✔ a CI workflow prompt bundles the CI surface (0.664792ms)
+✔ a hub without surface packets ignores the hint (37.642417ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (105.143292ms)
+ℹ tests 56
+ℹ suites 1
+ℹ pass 55
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14260.542167
+
+✖ failing tests:
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:435:3
+✖ preserves the external manifest across the sync capture/restore round trip (247.165458ms)
+  AssertionError [ERR_ASSERTION]: SYNC FAILED: 1 served file(s) out of sync; rebuild with compiled-route-sync.cjs, or copy a re-minted activation manifest back to its authored path:
+    009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs differs from its authored file
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/bin/tests/compiled-route-manifest.test.cjs:461:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1

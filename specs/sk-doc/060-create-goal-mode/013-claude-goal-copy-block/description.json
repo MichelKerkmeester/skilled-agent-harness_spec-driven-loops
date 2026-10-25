@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/060-create-goal-mode/013-claude-goal-copy-block",
+  "description": "Phase 13: claude-goal-copy-block",
+  "keywords": [
+    "phase",
+    "claude-goal-copy-block"
+  ],
+  "lastUpdated": "2026-10-24T16:17:09.124Z",
+  "specId": "013",
+  "folderSlug": "claude-goal-copy-block",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

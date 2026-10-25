@@ -78,7 +78,7 @@ Verification-only phase. Read the artifacts four producers leave behind - the tr
 | `.skilled/skills/system-skill-advisor/runtime/database/.gitignore` | `*.sqlite` | The graph database is local only, so a leak there is invisible to the tracked sweep and needs its own check |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | whole file - 200 matching lines at `42b41dd286`, of which 131 are `.skilled/` paths and 69 are `specs/sk-code/007-sk-code-obsidian-surface/` paths | The numbers the CI rebuild must drive to zero for the live population and to 69 for the allowlist |
 | `.github/workflows/trigger-index-rebuild.yml` | `FILES` array at lines 80-83 | The four artifacts that are regenerated together; counting one leaves three unproven |
-| `.github/workflows/routing-registry-drift.yml` | the three commands at lines 201-203 | The drift scripts that scan every direct child of `.skilled/skills`, `local-*` included |
+| `.github/workflows/routing-registry-drift.yml` | the three commands at lines 198-200 | The drift scripts that scan every direct child of `.skilled/skills`, `local-*` included |
 | `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | `listSkillFiles` at line 51, walk at 54-66 | D5 producer: if it ever mirrors a private skill, `.hermes/skills/local-*` becomes a tracked path and step 3 catches it |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py` | `DEFAULT_OUTPUT` at line 33, `os.listdir` loop at line 200 | D5 producer: writes the tracked fallback `runtime/scripts/skill-graph.json`; the drift task redirects its output to `/tmp` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | `findSkillRoots` filter at line 143 | D5 producer: a private skill must not enter a tracked metadata file; read-only without `--fix` |
@@ -227,7 +227,7 @@ Section C classifies every printed path. Two prefixes are the complete D6 allowl
 - `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/` - the playbooks that name units of the past v4.0.0.2 release
 - `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/` - the anchor-repair test fixture
 
-The retained population is 8 paths at the planning tip and must stay 8. Any other path is an active leak: record it, leave REQ-002 `Unmet`, and name the owning phase. The evidence prints the two counts separately, so a retained hit never stands in for an active one.
+The retained population is 8 paths at the planning tip and must stay 8. Amended 2026-10-24 (operator ruling): the sweep prints 17 paths in all, the 8 retained plus 6 test files that use the skill names as fixture directory names (`pre-commit.test.sh`, `skill-root-metadata-contract.test.cjs`, `skill-graph-freshness-panel.vitest.ts`, `advisor-status.vitest.ts`, `private-skill-target.vitest.ts`, `sync-skills-hermes.test.mjs`) and 3 retrieval artifacts (`trigger-index.json`, `corpus-manifest.json`, `phrase-variants.json`) that carry allowlisted retained-record paths and phrase keys. A path in those two extra classes passes only when its hit lines are fixture directory names, `specs/sk-code/007-sk-code-obsidian-surface/` path strings or phrase keys. Any other path is an active leak: record it, leave REQ-002 `Unmet`, and name the owning phase. The evidence prints the two counts separately, so a retained hit never stands in for an active one.
 
 Section D, the bare-token sweep inside the clone, with the same kept list and the same line-level caveat as step 1:
 
@@ -240,27 +240,27 @@ Section E, blob identity. The private trees are restored from `42b41dd286`, so t
 
 ```bash
 OP=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-find "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -print | wc -l                      # expect 228
-find "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -size +0c -print0 \
+find -L "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -print | wc -l                   # expect 228 (find -L follows the two symlinks)
+find -L "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -size +0c -print0 \
   | xargs -0 git hash-object --no-filters | sort -u > /tmp/psurf-private-blob-ids.txt
 git -C "$CLONE" ls-tree -r 42b41dd286 -- \
   .skilled/skills/sk-code/sk-code-webflow .skilled/skills/sk-code/sk-code-obsidian \
   | awk '{print $3}' | sort -u > /tmp/psurf-base-blob-ids.txt
 wc -l < /tmp/psurf-base-blob-ids.txt                                                                                      # expect 223
 comm -12 /tmp/psurf-private-blob-ids.txt /tmp/psurf-base-blob-ids.txt > /tmp/psurf-history-exposure-blob-ids.txt
-wc -l < /tmp/psurf-history-exposure-blob-ids.txt                                                                          # record: already public in history
+wc -l < /tmp/psurf-history-exposure-blob-ids.txt                                                                          # expect 138: already public in history
 git -C "$CLONE" ls-tree 42b41dd286 -- \
   .skilled/skills/sk-code/shared/references/workflow-implement.md \
   .skilled/skills/sk-code/shared/references/workflow-debug.md \
   .skilled/skills/sk-code/shared/references/workflow-verify.md \
   | awk '{print $3}' | sort -u > /tmp/psurf-copied-reference-blob-ids.txt
-comm -12 /tmp/psurf-private-blob-ids.txt /tmp/psurf-copied-reference-blob-ids.txt | wc -l                                  # expect 3
+comm -12 /tmp/psurf-private-blob-ids.txt /tmp/psurf-copied-reference-blob-ids.txt | wc -l                                  # expect 1 (only workflow-debug.md is byte-identical)
 comm -23 /tmp/psurf-private-blob-ids.txt /tmp/psurf-base-blob-ids.txt \
   | comm -23 - /tmp/psurf-copied-reference-blob-ids.txt > /tmp/psurf-new-blob-ids.txt
-wc -l < /tmp/psurf-new-blob-ids.txt                                                                                       # record: new or changed
+wc -l < /tmp/psurf-new-blob-ids.txt                                                                                       # expect 86: new or changed
 git -C "$CLONE" cat-file --batch-all-objects --batch-check='%(objectname) %(objecttype)' \
   | awk '$2=="blob"{print $1}' | sort -u > /tmp/psurf-public-blob-ids.txt
-comm -12 /tmp/psurf-private-blob-ids.txt /tmp/psurf-public-blob-ids.txt | wc -l                                          # expect at least 1: the control
+comm -12 /tmp/psurf-private-blob-ids.txt /tmp/psurf-public-blob-ids.txt | wc -l                                          # expect 139: the control
 comm -12 /tmp/psurf-new-blob-ids.txt /tmp/psurf-public-blob-ids.txt | wc -l                                              # expect 0
 ```
 
@@ -283,7 +283,7 @@ git -C "$CLONE" diff --stat 42b41dd286 HEAD -- \
   .skilled/changelog | wc -l
 ```
 
-Expect `0`. A non-zero diff is a D6 violation by an earlier phase, not a repair task here.
+Expect the one path `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` from commit `e00fef3e76` (`wc -l` prints 2, the path line plus the summary line). Amended 2026-10-24 (operator ruling): that bounded-scan change landed in the third phase of this same program and is the single accepted exception. Any other path is a D6 violation by an earlier phase, not a repair task here.
 
 This step audits ten prefixes, not every record D6 keeps. The surface `changelog/` and `benchmark/reports/` folders are deleted by phase 002 and the `specs/**/z_archive/**` twins are overwritten by phase 002's fixture copies, so those dated records are kept by D6 but sit outside this byte-identity audit. Step 3's four exclusions already keep them out of the leak classification, so nothing claims they are unchanged.
 
@@ -404,8 +404,8 @@ The grouping recorded here covers every run on `main` up to the push that carrie
 **Step 10 - Read-only history inventory** (`specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md`)
 
 ```bash
-git -C "$CLONE" rev-list --objects --all | grep -c -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)'   # expect 1814 at the measured tip
-git -C "$CLONE" tag --list | wc -l                                                                           # expect 164
+git -C "$CLONE" rev-list --objects --all | grep -c -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)'   # expect 1681 at the measured tip
+git -C "$CLONE" tag --list | wc -l                                                                           # expect 157 (the operator checkout's 164 local tags include 7 local-only tags)
 for t in $(git -C "$CLONE" tag --list); do printf '%s %s\n' "$t" "$(git -C "$CLONE" ls-tree -r --name-only "$t" | grep -c -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)')"; done > /tmp/psurf-tag-old-paths.txt
 awk '$2>0' /tmp/psurf-tag-old-paths.txt | wc -l                                                              # expect at least 1
 gh release list --limit 30

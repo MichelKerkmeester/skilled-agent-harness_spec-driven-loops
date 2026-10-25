@@ -1,0 +1,66 @@
+
+Resume this session with:
+claude --resume 9bf67ca7-cde7-4a9f-a174-e0c721856231
+SessionEnd hook [bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && bash .skilled/scripts/session-cleanup.sh || { printf "%s\n" "mk-hook-drift host=claude event=SessionEnd adapter=session-cleanup.sh" >&2; p
+rintf %s "{\"hookSpecificOutput\":{\"hookEventName\":\"SessionEnd\",\"additionalContext\":\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrif
+t\":true}}"; }'] failed: Hook JSON output validation failed — hookSpecificOutput.hookEventName: expected one of "PreToolUse" | "UserPromptSubmit" | "UserPromptExpansion" | "SessionStart" | "Setup" | "
+PreModelSwitch" | …
+
+The hook's output was: {
+  "hookSpecificOutput": {
+    "hookEventName": "SessionEnd",
+    "additionalContext": "mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter",
+    "mkHookDrift": true
+  }
+}
+
+  ⎿  Wrote 1 line to GOALENV.marker
+      1 specs/demo/001-demo
+
+⏺ Write(GOALSEEN.marker)
+  ⎿  Wrote 1 line to GOALSEEN.marker
+      1 # Goal: Pong keeper
+
+  Ran 1 shell command
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+✽ Cascading… (running Stop hooks… 4/5 · 44s · ↓ 2.2k tokens)
+                                                                                                                                                                                  ◎ /goal active (44s)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

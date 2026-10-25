@@ -1,0 +1,4 @@
+2026-10-25T10:19:06.602Z  handed-over  hermes    220-relaunch-cancel-and-test-isolation (hop 1)  Prove the receiver picked up this hand-over.  [ev031-hermes-20261025_111820_f2ff98.md]
+2026-10-25T10:19:25.052Z  claimed      hermes    220-relaunch-cancel-and-test-isolation by 20261025  Prove the receiver picked up this hand-over.  [ev031-hermes-20261025_111820_f2ff98.md]
+2026-10-25T10:19:34.665Z  done         hermes    220-relaunch-cancel-and-test-isolation  Prove the receiver picked up this hand-over.  [ev031-hermes-20261025_111820_f2ff98.md]
+open notes: 23 withdrawn notes still with their sessions

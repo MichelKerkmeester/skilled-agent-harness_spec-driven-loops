@@ -68,7 +68,11 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/066-opencode-v2-default-name",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/068-retire-opencode2-name",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -275,7 +279,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-23T06:31:17.567Z",
+    "last_save_at": "2026-10-24T11:09:46.435Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -283,10 +287,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7e99f556fa45d96a9d6e1206c380af14b06aab156312899237b358e3cc27e412",
+    "source_fingerprint": "sha256:4f9163d8ff454fd06853657374afc1bee01ee948e7d2657d7b11995246a71a52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fdf4d0ff990a9fc11c531d3deddd1611bd108861609eb5d79a0f2f27bdf6c8ae",
+      "spec.md": "63df4bae7499cdcf8fece8cec3c6531cdf7cf22d459c423817ea7015d5a66d2d",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

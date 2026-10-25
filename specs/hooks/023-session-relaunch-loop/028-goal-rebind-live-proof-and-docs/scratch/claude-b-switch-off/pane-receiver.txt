@@ -1,0 +1,66 @@
+
+Resume this session with:
+claude --resume 4d47df67-070b-4987-b8a9-86351f63036f
+SessionEnd hook [bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && bash .skilled/scripts/session-cleanup.sh || { printf "%s\n" "mk-hook-drift host=claude event=SessionEnd adapter=session-cleanup.sh" >&2; p
+rintf %s "{\"hookSpecificOutput\":{\"hookEventName\":\"SessionEnd\",\"additionalContext\":\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrif
+t\":true}}"; }'] failed: Hook JSON output validation failed — hookSpecificOutput.hookEventName: expected one of "PreToolUse" | "UserPromptSubmit" | "UserPromptExpansion" | "SessionStart" | "Setup" | "
+PreModelSwitch" | …
+
+The hook's output was: {
+  "hookSpecificOutput": {
+    "hookEventName": "SessionEnd",
+    "additionalContext": "mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter",
+    "mkHookDrift": true
+  }
+}
+
+
+ ▐▛███▛█   Claude Code v2.1.310
+▝▜██████▀  Sonnet 5.5 with high effort · Claude Max
+ ▝▝   ▝▝   /private/tmp/claude-501/ev028/sb-cl-b · /rc
+
+
+❯ [session-relaunch] claim and continue handoff /private/tmp/claude-501/ev028/sb-cl-b/.skilled/skills/.state/session-relaunch/handoffs/note-b.md | Spec folder: none (Gate 3 answered D, Skip, in the
+  sending session)
+
+  Ran 3 shell commands
+
+⏺ PONG
+
+✻ Baked for 9s · done 2:32 AM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

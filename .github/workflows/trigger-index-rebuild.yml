@@ -25,13 +25,14 @@ concurrency:
 jobs:
   rebuild:
     name: Rebuild the trigger index
-    # The push job pushes the rebuild with a personal token, so its push starts this
-    # workflow again under the token owner's name. The trailer the commit step
-    # adds must END the message: a commit that merely quotes it in its body
-    # still needs its own rebuild. Suffix matching errs toward running, and a
-    # fail-open costs at most one run that finds nothing to commit.
-    if: "${{ !endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci') }}"
+    # The commit carries the skip token, so its push starts no run at all. This
+    # guard is the fallback for any run GitHub creates anyway: the trailer the
+    # commit step adds must END the message, since a commit that merely quotes it
+    # in its body still needs its own rebuild. Suffix matching errs toward
+    # running, and a fail-open costs at most one run that finds nothing to commit.
+    if: "${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_REPORTS != 'off') && (!endsWith(github.event.head_commit.message, 'Trigger-Index-Rebuild: ci')) }}"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # This job holds no secret and no write scope. It runs the repository's install,
     # build and generator, so nothing here may be able to reach the push token. The
     # push job receives the commit as a bundle and nothing else.
@@ -144,9 +145,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           base_sha="$(git rev-parse --verify HEAD)"
           git add "${FILES[@]}"
+          # The skip token makes GitHub start no push- or pull_request-triggered
+          # workflow for this commit, so the rebuild does not re-run the push gate.
           # The guard above matches this trailer to recognize the job's own push.
           git commit -m "chore(system-spec-kit): rebuild the trigger index" \
-            -m "The pushed corpus changed the committed trigger index, so this job rebuilt it." \
+            -m "The pushed corpus changed the committed trigger index, so this job rebuilt it. [skip ci]" \
             -m "Trigger-Index-Rebuild: ci"
           # Re-run the generator's checker against the committed tree so a rebuild
           # that cannot satisfy its own check never reaches the branch.
@@ -183,8 +186,9 @@ jobs:
     # file. Its steps run gh and git only, and the push step is the only one that
     # sees the token.
     needs: rebuild
-    if: needs.rebuild.outputs.committed == 'true'
+    if: ${{ (vars.SKILLED_CI != 'off') && (vars.SKILLED_CI_REPORTS != 'off') && (needs.rebuild.outputs.committed == 'true') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       # contents: write is the push. actions: read lets gh list and fetch the run's
       # artifacts through the Actions API.

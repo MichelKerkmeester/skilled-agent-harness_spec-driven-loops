@@ -2,7 +2,7 @@
 // MODULE: Skill Graph SQLite Indexer Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -14,6 +14,41 @@ describe('skill graph database indexing', () => {
   afterEach(() => {
     closeDb();
     vi.restoreAllMocks();
+  });
+
+  it('indexes a private skill linked from inside the skills root', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-link-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+    try {
+      initDb(dbDir);
+      // The scan skips `.cache` by name, so the skill can only be reached through the link.
+      writeGraphMetadata(join(skillRoot, '.cache', 'private-beta'), 'local-beta');
+      symlinkSync(join(skillRoot, '.cache', 'private-beta'), join(skillRoot, 'local-beta'));
+      indexSkillMetadata(skillRoot);
+      expect(getDb().prepare("SELECT id FROM skill_nodes WHERE id LIKE 'local-%'").all()).toEqual([{ id: 'local-beta' }]);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('does not index a private skill linked from outside the skills root', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-outside-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+    const outside = join(root, 'outside');
+    try {
+      initDb(dbDir);
+      writeGraphMetadata(join(outside, 'private-beta'), 'local-beta');
+      mkdirSync(skillRoot, { recursive: true });
+      symlinkSync(join(outside, 'private-beta'), join(skillRoot, 'local-beta'));
+      indexSkillMetadata(skillRoot);
+      expect(getDb().prepare("SELECT COUNT(*) AS count FROM skill_nodes WHERE id LIKE 'local-%'").get()).toEqual({ count: 0 });
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it('backfills previously rejected edges when the target appears on a later scan', () => {

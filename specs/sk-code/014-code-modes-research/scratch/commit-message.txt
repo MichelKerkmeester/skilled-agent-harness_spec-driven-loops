@@ -1,0 +1,13 @@
+docs(spec): open the sk-code modes research packet
+
+Open a phased research packet with two children that will study how to
+make sk-code-quality and sk-code-review more repo-agnostic, more useful
+and better integrated with their sibling modes and with modes a user adds
+to the hub.
+
+The children are Level 2 and the whole packet is Planned, with nothing
+run. Each child holds ten planned research iterations and a ranked
+recommendation synthesis, and no file under the hub changes. The scaffold
+also lists the new packet in the sk-code track metadata.
+
+Spec: sk-code/014-code-modes-research

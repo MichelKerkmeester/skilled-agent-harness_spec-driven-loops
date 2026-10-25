@@ -186,6 +186,9 @@ test('handoff text opens the ratio nudge imperatively and keeps the exception la
   );
   assert.match(lines[1], /^1\. /);
   assert.equal(lines[lines.length - 1], OPERATOR_EXCEPTION_LINE);
+  // Inside the loop a session told to stay after prepare has a named way back.
+  assert.equal(lines[lines.length - 2], `If the operator asks this session to stay after prepare,`
+    + ` run: node '${CLI_PATH}' cancel, then keep working.`);
 });
 
 test('handoff text outside the wrapper asks for keep, never prepare, and keeps the note shape', () => {
@@ -205,6 +208,7 @@ test('handoff text outside the wrapper asks for keep, never prepare, and keeps t
     assert.ok(text.includes(`## ${section}`), `missing ${section} section`);
   }
   assert.equal(text.includes(' prepare --handoff'), false, text);
+  assert.equal(text.includes(' cancel'), false, text);
   assert.ok(text.includes(
     `keep --handoff '${NOTE_PATH}' --session '${SESSION_ID}' --runtime 'claude'`,
   ), text);
@@ -1242,4 +1246,200 @@ test('an open note under the old eight-character name is still reused', (t) => {
   });
 
   assert.equal(planned, path.join(directory, legacyName));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WITHDRAW RE-ARM
+// ─────────────────────────────────────────────────────────────────────────────
+
+function nudgeStateFile(env) {
+  return path.join(core.stateDir(env), `nudge-${SESSION_ID}.json`);
+}
+
+function loopEnv(t, loopId = 'nudge-rearm-loop') {
+  return { XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR, SKILLED_LOOP_ID: loopId };
+}
+
+test('a withdrawn hand-over grants one more nudge, one step above the fill it was withdrawn at', (t) => {
+  const { nudgeDecision, rearmAfterWithdraw } = nudgeModule;
+  const env = loopEnv(t);
+  const decide = (ratio) => nudgeDecision({ ratio, threshold: 0.8, sessionId: SESSION_ID, env });
+  writeState(SESSION_ID, 2, env);
+  assert.deepEqual(decide(0.9), { nudge: false, level: 2, reason: 'level-spent' });
+
+  assert.equal(rearmAfterWithdraw({ sessionId: SESSION_ID, env }), true);
+  // The first run after the withdraw only fixes the floor; it never nudges.
+  assert.deepEqual(decide(0.9), { nudge: false, level: 2, reason: 'rearm-floor' });
+  assert.deepEqual(decide(0.94), { nudge: false, level: 2, reason: 'rearm-floor' });
+  assert.deepEqual(decide(0.95), { nudge: true, level: 2, reason: 'rearm' });
+
+  // Delivering that nudge persists the level alone, which spends the grant.
+  writeState(SESSION_ID, 2, env);
+  assert.deepEqual(decide(0.99), { nudge: false, level: 2, reason: 'level-spent' });
+  assert.deepEqual(JSON.parse(fs.readFileSync(nudgeStateFile(env), 'utf8')), { level: 2 });
+});
+
+test('rearmAfterWithdraw records a pending grant next to the level and leaves the level alone', (t) => {
+  const { rearmAfterWithdraw } = nudgeModule;
+  const env = loopEnv(t);
+  writeState(SESSION_ID, 1, env);
+
+  assert.equal(rearmAfterWithdraw({ sessionId: SESSION_ID, env }), true);
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(nudgeStateFile(env), 'utf8')),
+    { level: 1, rearm: { pending: true } },
+  );
+  assert.equal(readState(SESSION_ID, env), 1);
+  assert.equal(rearmAfterWithdraw({ sessionId: 'bad id; rm', env }), false);
+});
+
+test('a re-armed session whose level is not spent gets its one nudge at the floor and is then spent', (t) => {
+  const { nudgeDecision, rearmAfterWithdraw } = nudgeModule;
+  const env = loopEnv(t);
+  const decide = (ratio) => nudgeDecision({ ratio, threshold: 0.8, sessionId: SESSION_ID, env });
+  writeState(SESSION_ID, 1, env);
+  rearmAfterWithdraw({ sessionId: SESSION_ID, env });
+
+  assert.deepEqual(decide(0.82), { nudge: false, level: 1, reason: 'rearm-floor' });
+  assert.deepEqual(decide(0.86), { nudge: false, level: 1, reason: 'rearm-floor' });
+  assert.deepEqual(decide(0.87), { nudge: true, level: 2, reason: 'rearm' });
+});
+
+test('a session that was never nudged is re-armed too, so its one nudge waits a step', (t) => {
+  const { nudgeDecision, rearmAfterWithdraw } = nudgeModule;
+  const env = loopEnv(t);
+  const decide = (ratio) => nudgeDecision({ ratio, threshold: 0.8, sessionId: SESSION_ID, env });
+
+  assert.equal(rearmAfterWithdraw({ sessionId: SESSION_ID, env }), true);
+  assert.deepEqual(decide(0.8), { nudge: false, level: 0, reason: 'rearm-floor' });
+  assert.deepEqual(decide(0.84), { nudge: false, level: 0, reason: 'rearm-floor' });
+  assert.deepEqual(decide(0.85), { nudge: true, level: 2, reason: 'rearm' });
+});
+
+test('an old level-only state file stays readable and decides as before', (t) => {
+  const { nudgeDecision } = nudgeModule;
+  const env = loopEnv(t);
+  fs.mkdirSync(core.stateDir(env), { recursive: true });
+  fs.writeFileSync(nudgeStateFile(env), '{"level":1}\n');
+
+  assert.equal(readState(SESSION_ID, env), 1);
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.82, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: false, level: 1, reason: 'level-spent' },
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.85, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: true, level: 2, reason: 'threshold' },
+  );
+});
+
+test('compaction writing level zero clears a pending or fixed re-arm', (t) => {
+  const { nudgeDecision, rearmAfterWithdraw } = nudgeModule;
+  const env = loopEnv(t);
+  writeState(SESSION_ID, 2, env);
+  rearmAfterWithdraw({ sessionId: SESSION_ID, env });
+  nudgeDecision({ ratio: 0.9, threshold: 0.8, sessionId: SESSION_ID, env });
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(nudgeStateFile(env), 'utf8')),
+    { level: 2, rearm: { floor: 0.95 } },
+  );
+
+  writeState(SESSION_ID, 0, env);
+  assert.deepEqual(JSON.parse(fs.readFileSync(nudgeStateFile(env), 'utf8')), { level: 0 });
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.8, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: true, level: 1, reason: 'threshold' },
+  );
+});
+
+test('a re-arm waits behind the hop cap and stays pending until a run can fix its floor', (t) => {
+  const { nudgeDecision, rearmAfterWithdraw } = nudgeModule;
+  const env = loopEnv(t, 'nudge-rearm-quiet');
+  writeState(SESSION_ID, 2, env);
+  rearmAfterWithdraw({ sessionId: SESSION_ID, env });
+  assert.deepEqual(
+    nudgeDecision({
+      ratio: 0.99,
+      threshold: 0.8,
+      sessionId: SESSION_ID,
+      env: { ...env, SKILLED_LOOP_HOPS: '3', SESSION_RELAUNCH_MAX_HOPS: '3' },
+    }),
+    { nudge: false, level: 0, reason: 'hop-limit' },
+  );
+  // A quiet path never converts the grant, so the floor is still unset.
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(nudgeStateFile(env), 'utf8')),
+    { level: 2, rearm: { pending: true } },
+  );
+});
+
+test('staleNoteText tells the session to read the note for background and update it at the next nudge', () => {
+  const text = nudgeModule.staleNoteText({ notePath: NOTE_PATH });
+  assert.ok(text.startsWith('[session-relaunch]'), text);
+  assert.ok(text.includes(NOTE_PATH), text);
+  assert.match(text, /predates the work/);
+  assert.match(text, /background only/);
+  assert.match(text, /next context nudge/);
+  assert.doesNotMatch(text, /claim '/);
+});
+
+test('handoffWithdrawn matches only this session\'s record disarmed by a cancel or a prompt', (t) => {
+  const { handoffWithdrawn } = nudgeModule;
+  const env = loopEnv(t, 'nudge-withdrawn-loop');
+  const notePath = '/tmp/session-relaunch/handoff-withdrawn.md';
+  const disarm = (reason, overrides = {}) => {
+    core.preparePending({
+      loopId: 'nudge-withdrawn-loop',
+      handoffPath: notePath,
+      sessionId: SESSION_ID,
+      runtime: 'claude',
+      cwd: '/repo',
+      env,
+    });
+    core.unarm({ loopId: 'nudge-withdrawn-loop', env, reason });
+    if (Object.keys(overrides).length === 0) return;
+    const file = core.relaunchFilePath('nudge-withdrawn-loop', env);
+    fs.writeFileSync(file, JSON.stringify({ ...JSON.parse(fs.readFileSync(file, 'utf8')), ...overrides }));
+  };
+
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), false);
+  disarm('cancelled');
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), true);
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath: '/tmp/other.md', env }), false);
+  assert.equal(handoffWithdrawn({ sessionId: 'another-session', notePath, env }), false);
+  assert.equal(
+    handoffWithdrawn({ sessionId: SESSION_ID, notePath, env: { ...env, SKILLED_LOOP_ID: '' } }),
+    false,
+  );
+  disarm('user-message');
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), true);
+  disarm('launch-failed');
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), false);
+});
+
+test('handoffWithdrawn stops matching once the session updated the note after the withdraw', (t) => {
+  const { handoffWithdrawn } = nudgeModule;
+  const env = loopEnv(t, 'nudge-withdrawn-edit-loop');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'nudge-withdrawn-note-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const notePath = path.join(directory, 'handoff-edited.md');
+  fs.writeFileSync(notePath, 'note');
+  core.preparePending({
+    loopId: 'nudge-withdrawn-edit-loop',
+    handoffPath: notePath,
+    sessionId: SESSION_ID,
+    runtime: 'claude',
+    cwd: '/repo',
+    env,
+  });
+  const { disarmedAt } = core.unarm({ loopId: 'nudge-withdrawn-edit-loop', env, reason: 'cancelled' });
+  const disarmedMs = Date.parse(disarmedAt);
+  const setModified = (ms) => fs.utimesSync(notePath, new Date(ms), new Date(ms));
+
+  // A note last written before the withdraw is the stale one the hand-over left behind.
+  setModified(disarmedMs - 60_000);
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), true);
+  // One the session updated afterwards is current, so compaction seeds the claim as before.
+  setModified(disarmedMs + 60_000);
+  assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), false);
 });

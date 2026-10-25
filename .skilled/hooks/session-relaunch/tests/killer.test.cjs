@@ -15,6 +15,13 @@ const KILLER_PATH = path.resolve(__dirname, '../lib/killer.cjs');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const { hasAncestor, isLoopAncestor } = require('../lib/killer.cjs');
+
+// The suite also runs from inside a looped session, whose wrapper exports these variables,
+// and every sandbox copies this environment into the killer it spawns.
+for (const key of Object.keys(process.env)) {
+  if (key.startsWith('SKILLED_LOOP_')) delete process.env[key];
+}
+
 const SPEC_FOLDER = 'specs/hooks/001-session-relaunch';
 const SPEC_FOLDER_SUFFIX = ` | Spec folder: ${SPEC_FOLDER}`
   + ' (carried from the handoff; Gate 3 answered in the sending session)';
@@ -106,6 +113,7 @@ function runKiller(sandbox, {
   idleMs = 300,
   timeoutMs = 3000,
   targetParentPid = loopId,
+  preloadPath,
 }) {
   const env = {
     ...sandbox.env,
@@ -115,6 +123,7 @@ function runKiller(sandbox, {
     TARGET_PARENT_PID: String(targetParentPid),
   };
   const args = [
+    ...(preloadPath ? ['--require', preloadPath] : []),
     KILLER_PATH,
     '--loop-id',
     String(loopId),
@@ -600,6 +609,8 @@ test('killer signals an idle armed target after --idle-ms without a transcript',
     assert.equal(result.code, 0);
     assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
     assert.equal(fs.existsSync(lockPath(sandbox, loopId)), false);
+    // The wrapper reads this stamp to tell the signal from an operator interrupt.
+    assert.equal(typeof core.readRelaunchFile(loopId, sandbox.env).signalledAt, 'string');
   } finally {
     killChild(killer);
     killChild(target);
@@ -690,6 +701,29 @@ test('killer refuses loop id 1 and leaves the target alive', async (t) => {
     assert.equal(result.code, 1);
     assert.equal(fs.existsSync(signalPath), false);
     assert.equal(process.kill(target.pid, 0), true);
+  } finally {
+    killChild(killer);
+    killChild(target);
+  }
+});
+
+// A live OpenCode 2 TUI took about six seconds to exit after SIGTERM, so a runtime that
+// shuts down that slowly still has to find its record armed when it is gone.
+test('killer keeps the record armed for a target that takes several seconds to exit', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const target = startTarget(sandbox, signalPath, 6500);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100 });
+  try {
+    const result = await waitForExit(killer, 12000);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
+    assert.equal(core.readRelaunchFile(loopId, sandbox.env).status, 'armed');
+    assert.doesNotMatch(readKillerLog(sandbox), /killer-timeout/);
   } finally {
     killChild(killer);
     killChild(target);
@@ -1120,6 +1154,50 @@ test('killer unarms an armed record at the hop limit without signalling', async 
   }
 });
 
+// A new turn withdraws the arm after Stop, while the killer already watches the record. The
+// withdraw lands after the freshness check, and the killer's last read has to see it.
+test('killer does not signal when an operator prompt withdraws the arm after its freshness check', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  const preloadPath = path.join(sandbox.root, 'withdraw-after-freshness.cjs');
+  fs.writeFileSync(preloadPath, `
+    const nudge = require(${JSON.stringify(path.resolve(__dirname, '../lib/nudge.cjs'))});
+    const { withdrawHandOver } = require(${JSON.stringify(path.resolve(__dirname, '../lib/withdraw.cjs'))});
+    const realCurrent = nudge.armedRecordStillCurrent;
+    nudge.armedRecordStillCurrent = (...args) => {
+      const current = realCurrent(...args);
+      withdrawHandOver({
+        loopId: process.env.SKILLED_LOOP_ID,
+        reason: 'user-message',
+        pending: 'none',
+        env: process.env,
+      });
+      return current;
+    };
+  `);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100, preloadPath });
+  try {
+    const result = await waitForExit(killer, 2500);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.existsSync(signalPath), false, 'a withdrawn hand-over must not signal');
+    assert.equal(process.kill(target.pid, 0), true);
+    const record = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'disarmed');
+    assert.equal(record.disarmReason, 'user-message');
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-called-off/);
+    assert.doesNotMatch(killerLog, /killer-signal/);
+  } finally {
+    killChild(killer);
+    killChild(target);
+  }
+});
+
 test('killer still signals an armed record below the hop limit', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);
@@ -1137,6 +1215,48 @@ test('killer still signals an armed record below the hop limit', async (t) => {
     assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
     assert.doesNotMatch(readKillerLog(sandbox), /killer-hop-cap/);
     assert.equal(fs.existsSync(lockPath(sandbox, loopId)), false);
+  } finally {
+    killChild(killer);
+    killChild(target);
+  }
+});
+
+// The freshness guard and the ancestry check run on the record read before them, and the
+// signal is the one step that cannot be undone. A cancel that lands after those checks has
+// to be seen by a last read, or the called-off session still gets SIGTERM.
+test('killer does not signal when a cancel lands after its freshness check', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  // The preload runs inside the spawned killer: it cancels right after the freshness
+  // guard has accepted the armed record.
+  const preloadPath = path.join(sandbox.root, 'cancel-after-freshness.cjs');
+  fs.writeFileSync(preloadPath, `
+    const core = require(${JSON.stringify(path.resolve(__dirname, '../lib/relaunch-core.cjs'))});
+    const nudge = require(${JSON.stringify(path.resolve(__dirname, '../lib/nudge.cjs'))});
+    const realCurrent = nudge.armedRecordStillCurrent;
+    nudge.armedRecordStillCurrent = (...args) => {
+      const current = realCurrent(...args);
+      core.unarm({ loopId: process.env.SKILLED_LOOP_ID, reason: 'cancelled', env: process.env });
+      return current;
+    };
+  `);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, idleMs: 100, preloadPath });
+  try {
+    const result = await waitForExit(killer, 2500);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.existsSync(signalPath), false, 'a cancelled hand-over must not signal');
+    assert.equal(process.kill(target.pid, 0), true);
+    const record = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'disarmed');
+    assert.equal(record.disarmReason, 'cancelled');
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-called-off/);
+    assert.doesNotMatch(killerLog, /killer-signal/);
   } finally {
     killChild(killer);
     killChild(target);
@@ -1618,6 +1738,137 @@ test('killer timeout leaves a re-armed record for the same handoff alone', async
     assert.doesNotMatch(killerLog, /^\S+ killer-timeout /m);
     assert.equal(notifications.length, 0);
   } finally {
+    clearInterval(touchTimer);
+    childProcess.spawnSync = realSpawnSync;
+    killChild(target);
+  }
+});
+
+// A session that calls its hand-over off disarms the record the killer watched. The same
+// handoff is still on the record, so only its status says the timeout has nothing to report.
+test('killer timeout leaves a hand-over the session called off alone', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff-a.md');
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const target = startPersistentProcess(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
+  const transcriptPath = createTranscript(sandbox);
+  const touchTimer = setInterval(() => {
+    const now = new Date();
+    fs.utimesSync(transcriptPath, now, now);
+  }, 50);
+
+  const realSpawnSync = childProcess.spawnSync;
+  const notifications = [];
+  childProcess.spawnSync = (command, args, options) => {
+    if (command === 'osascript') {
+      notifications.push(args.join(' '));
+      return { status: 0, stdout: '', stderr: '' };
+    }
+    return realSpawnSync(command, args, options);
+  };
+
+  try {
+    const killerModulePath = require.resolve('../lib/killer.cjs');
+    delete require.cache[killerModulePath];
+    const { main } = require(killerModulePath);
+    const timeout = main([
+      '--loop-id', loopId,
+      '--target-pid', String(target.pid),
+      '--transcript', transcriptPath,
+      '--idle-ms', '200',
+      '--timeout-ms', '700',
+    ], sandbox.env);
+
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    core.unarm({ loopId, reason: 'cancelled', env: sandbox.env });
+    await timeout;
+
+    const record = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'disarmed');
+    assert.equal(record.disarmReason, 'cancelled', 'the cancel must stay the recorded reason');
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-timeout-superseded/);
+    assert.doesNotMatch(killerLog, /^\S+ killer-timeout /m);
+    assert.equal(notifications.length, 0, 'a called-off hand-over must not raise a manual-claim notice');
+    const hopHistoryPath = path.join(
+      sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+    );
+    assert.equal(fs.existsSync(hopHistoryPath), false, 'no timed-out hop for a called-off hand-over');
+  } finally {
+    clearInterval(touchTimer);
+    childProcess.spawnSync = realSpawnSync;
+    killChild(target);
+  }
+});
+
+// The timeout branch reads the record, then disarms it. A cancel that lands between the
+// two leaves the guarded disarm with nothing to do, and the cancelled hand-over must not
+// then be logged, recorded or announced as a timeout.
+test('killer timeout stays silent when a cancel lands between its read and its disarm', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff-a.md');
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const target = startPersistentProcess(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
+  const transcriptPath = createTranscript(sandbox);
+  const touchTimer = setInterval(() => {
+    const now = new Date();
+    fs.utimesSync(transcriptPath, now, now);
+  }, 50);
+
+  const realSpawnSync = childProcess.spawnSync;
+  const notifications = [];
+  childProcess.spawnSync = (command, args, options) => {
+    if (command === 'osascript') {
+      notifications.push(args.join(' '));
+      return { status: 0, stdout: '', stderr: '' };
+    }
+    return realSpawnSync(command, args, options);
+  };
+  // The killer reads the record once to watch it and once when the timeout fires; the
+  // cancel lands right after that second read returned the still-armed record.
+  const realReadRelaunchFile = core.readRelaunchFile;
+  let reads = 0;
+  core.readRelaunchFile = (...readArguments) => {
+    const record = realReadRelaunchFile(...readArguments);
+    reads += 1;
+    if (reads === 2) core.unarm({ loopId, reason: 'cancelled', env: sandbox.env });
+    return record;
+  };
+
+  try {
+    const killerModulePath = require.resolve('../lib/killer.cjs');
+    delete require.cache[killerModulePath];
+    const { main } = require(killerModulePath);
+    await main([
+      '--loop-id', loopId,
+      '--target-pid', String(target.pid),
+      '--transcript', transcriptPath,
+      '--idle-ms', '200',
+      '--timeout-ms', '400',
+    ], sandbox.env);
+
+    assert.ok(reads >= 2, 'the timeout branch must have reached its read');
+    const record = realReadRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'disarmed');
+    assert.equal(record.disarmReason, 'cancelled', 'the cancel must stay the recorded reason');
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-timeout-superseded/);
+    assert.doesNotMatch(killerLog, /^\S+ killer-timeout /m);
+    assert.equal(notifications.length, 0, 'a cancelled hand-over must not raise a manual-claim notice');
+    const hopHistoryPath = path.join(
+      sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log',
+    );
+    assert.equal(fs.existsSync(hopHistoryPath), false, 'no timed-out hop for a cancelled hand-over');
+  } finally {
+    core.readRelaunchFile = realReadRelaunchFile;
     clearInterval(touchTimer);
     childProcess.spawnSync = realSpawnSync;
     killChild(target);

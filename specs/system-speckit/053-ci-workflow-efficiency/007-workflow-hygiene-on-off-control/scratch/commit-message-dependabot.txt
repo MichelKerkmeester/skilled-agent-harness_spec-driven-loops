@@ -1,0 +1,7 @@
+ci(dependabot): split metadata reads from the merge write scope
+
+The auto-merge workflow gave both write scopes to the job that also ran
+the third-party metadata action. The metadata job now holds read scopes
+only and passes the update details to the merge job as outputs. The
+merge job holds the write scopes and runs only the gh merge command. The
+existing check name stays on the merge job.

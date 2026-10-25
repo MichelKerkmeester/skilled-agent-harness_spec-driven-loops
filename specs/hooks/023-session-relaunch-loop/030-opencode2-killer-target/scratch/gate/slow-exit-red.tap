@@ -1,0 +1,35 @@
+TAP version 13
+# Subtest: killer keeps the record armed for a target that takes several seconds to exit
+not ok 1 - killer keeps the record armed for a target that takes several seconds to exit
+  ---
+  duration_ms: 5316.881042
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/killer.test.cjs:712:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'disarmed'
+    - 'armed'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'armed'
+  actual: 'disarmed'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/hooks/session-relaunch/tests/killer.test.cjs:725:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5355.746959

@@ -331,26 +331,34 @@ function isPidAlive(pid) {
 }
 
 /**
- * Decide whether an existing lock file is stale and may be reclaimed.
+ * Judge an existing lock file: gone, held, or stale and reclaimable.
  * Reads and parses defensively: a missing, empty, half-written, or non-JSON
  * lock file is stale only once it has aged past the grace window (the holder
  * may be mid-write between openSync and writeSync), so a freshly created peer
  * lock is never deleted out from under it.
  *
+ * A stale verdict carries the exact body it was formed from, so the caller can
+ * remove only that file. A verdict about one file must never be applied to a
+ * different file that has since taken the same path.
+ *
  * @param {string} lockPath - Path to the candidate lock file.
  * @param {number} maxHoldMs - Maximum age before a lock is considered stale.
- * @returns {boolean} True if the lock is stale and safe to remove.
+ * @returns {{verdict: 'gone'|'held'|'stale', raw?: string}} `gone` when the
+ *   file vanished before it could be read (nothing to remove), `held` when a
+ *   live holder owns it or it cannot be judged, `stale` with the body judged.
  */
-function isWriterLockStale(lockPath, maxHoldMs) {
+function judgeWriterLock(lockPath, maxHoldMs) {
   let raw;
   try {
     raw = fs.readFileSync(lockPath, 'utf8');
   } catch (err) {
     const code = err && typeof err === 'object' && 'code' in err ? err.code : undefined;
-    // Vanished between EEXIST and read — already gone, so retrying openSync wins.
-    if (code === 'ENOENT') return true;
+    // Vanished between EEXIST and read. There is no file to judge or remove, and
+    // by now a peer may already have created a fresh lock at the same path, so
+    // the caller retries the exclusive open instead of removing anything.
+    if (code === 'ENOENT') return { verdict: 'gone' };
     // Cannot read it (e.g. permissions); leave it to the maxWait path.
-    return false;
+    return { verdict: 'held' };
   }
 
   let parsed = null;
@@ -378,11 +386,34 @@ function isWriterLockStale(lockPath, maxHoldMs) {
 
   // A live holder inside the hold window owns the lock; respect it.
   if (Number.isInteger(pid) && pid > 0 && isPidAlive(pid) && ageMs < maxHoldMs) {
-    return false;
+    return { verdict: 'held' };
   }
   // Dead pid, or any lock older than the hold window, is reclaimable. A lock
   // with no parseable pid is stale only after it has aged past the window.
-  return ageMs >= maxHoldMs || (Number.isInteger(pid) && pid > 0 && !isPidAlive(pid));
+  const stale = ageMs >= maxHoldMs || (Number.isInteger(pid) && pid > 0 && !isPidAlive(pid));
+  return stale ? { verdict: 'stale', raw } : { verdict: 'held' };
+}
+
+/**
+ * Remove the lock file only while it still holds the body that was judged stale.
+ * If the file vanished, or a peer replaced it after the verdict, there is nothing
+ * of ours to remove and the peer's lock must survive. A narrow window remains
+ * between this re-read and the removal, which needs a peer to create a lock in
+ * those few microseconds.
+ *
+ * @param {string} lockPath - Path to the lock file.
+ * @param {string} judgedRaw - Exact body the stale verdict was formed from.
+ * @returns {void}
+ */
+function removeJudgedLock(lockPath, judgedRaw) {
+  let current;
+  try {
+    current = fs.readFileSync(lockPath, 'utf8');
+  } catch {
+    return;
+  }
+  if (current !== judgedRaw) return;
+  fs.rmSync(lockPath, { force: true });
 }
 
 /**
@@ -450,6 +481,11 @@ function acquireWriterLock(lockPath) {
   // through to the maxWait/throw path instead of spinning indefinitely.
   const MAX_RECLAIM_ATTEMPTS = 8;
   let reclaimAttempts = 0;
+  // Separate, larger cap for locks that vanish between the failed open and the
+  // read. Each one means a real peer made progress, so it must not use up the
+  // budget that guards against a never-removable stale lock.
+  const MAX_VANISHED_RETRIES = 64;
+  let vanishedRetries = 0;
   // Unique per acquisition. Stamped into the lock body so a concurrent reclaimer
   // that rmSync's our file and recreates its own is detectable: the on-disk
   // nonce will no longer be ours. Drives both the acquire re-read and release.
@@ -530,10 +566,18 @@ function acquireWriterLock(lockPath) {
       // so loop — on a re-thrown EEXIST we re-evaluate staleness next pass.
       // Bounded by a reclaim-attempt cap so a pathological never-removable lock
       // (or a peer that keeps re-stamping a stale ts) cannot spin forever.
-      if (reclaimAttempts < MAX_RECLAIM_ATTEMPTS && isWriterLockStale(lockPath, maxHoldMs)) {
+      const judged = judgeWriterLock(lockPath, maxHoldMs);
+      if (judged.verdict === 'gone' && vanishedRetries < MAX_VANISHED_RETRIES) {
+        // The holder released between our failed open and the read. Retry the
+        // open without removing anything: whatever sits at the path now belongs
+        // to a peer that never earned a staleness verdict.
+        vanishedRetries += 1;
+        continue;
+      }
+      if (judged.verdict === 'stale' && reclaimAttempts < MAX_RECLAIM_ATTEMPTS) {
         reclaimAttempts += 1;
         try {
-          fs.rmSync(lockPath, { force: true });
+          removeJudgedLock(lockPath, judged.raw);
         } catch {
           // Another reclaimer may have removed it first; the retry settles it.
         }

@@ -11,13 +11,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/004-setup-caching-provisioning"
-    last_updated_at: "2026-10-23T13:20:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded eleven proposed ADRs for the planned phase"
-    next_safe_action: "D5 is answered; run the phase's tasks from T002"
+    last_updated_at: "2026-10-24T09:00:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Recorded the round-two cache figures in the ADR-005 amendment"
+    next_safe_action: "Build the hook-and-plugin merge (T030)"
     blockers:
       - "002-rebuild-fanout-removal baseline pending"
-      - "003-trigger-and-job-hygiene R8 pending for R18"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-004-setup-caching-provisioning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 10
     open_questions:
       - "Does a 2.22 GB tree set compress under the 10 GB budget with room for dependabot churn?"
       - "Does filter: blob:none save anything on a single-commit checkout?"
@@ -1136,3 +1135,19 @@ The phase touches one gate, one test, one new action, 13 workflow files and one 
 <!-- /ANCHOR:adr-011 -->
 
 ---
+
+## Amendments
+
+- **Amendment (2026-10-24, stale gate constants)**: T003, T004 and T011 planned `inputs_resolved` at least `236`, `dynamic_inputs=11`, `twin_pairs` at least `311` and a `50`-case fixture suite. Phase 003's filter additions and this phase's T005 `description:`-as-label rule moved the real values, which now measure `files=45 inputs_resolved=235 dynamic_inputs=9 twin_pairs=340 failures=0` with `check-gate-inputs: 54 passed, 0 failed`. The task expectations, stop conditions and AC-001's post-action arm now compare against that measured baseline instead of the stale constants.
+- **Amendment (2026-10-24, delivery order)**: T004 through T009 landed before T002 and T003 and remain uncommitted, ahead of the planned baseline-first order. The baseline and inventory are not invalidated by the gate edits — T003 records whatever the commands print — so the sequence deviation is accepted and the next safe action starts at T002.
+- **Amendment (2026-10-24, baseline row-count scope)**: The copied 001 dataset already carries the same workflow names as the fifteen appended phase rows, so the whole-file count returns `30` (15 copied + 15 appended). The appended rows sit under `## Workflows this phase touches`, and T002 counts only that section, which returns `15`.
+
+- **Amendment (2026-10-24, review of the setup action)**: An independent review of the action and the three adopting workflows changed these points, and ADR-005's path list, ADR-006's cold path and the key shape in the cache-key ADR read as below wherever they differ.
+  - **Missing build outputs (P1).** A cold provision in a clean checkout creates three ignored paths the 18-path list did not carry: `.skilled/skills/system-spec-kit/shared/dist`, the sk-vision bundle `.skilled/skills/sk-vision/hooks/opencode/sk-vision.js` and `.skilled/skills/system-spec-kit/.node-version-marker`. The provision list gives `shared` no artifact and checks only `dist/api/index.js` for the runtime, and it checks only `dist/plugin.js` for sk-vision, so on a warm hit nothing rebuilds the shared dist or the bundle. Both lists now name 21 paths and are byte-identical. The two `tsbuildinfo` files sit inside cached `dist` directories already, and no other ignored path appeared.
+  - **Key (P2-1).** The key now also hashes the action file, the bun version input and the 14 manifests the walk installs from, named one by one so fixture manifests under `specs/` never join the hash. The shape is `provision-<os>-node<major>-bun<version>-<hash>` and it still carries no `restore-keys`. An edit to the action therefore replaces the entry instead of reusing one built by older logic.
+  - **Description (P2-2).** The action's `description` claims only what the walk checks: that each tree's first dependency directory exists and that each build output exists with a stamp matching its tracked sources. It no longer says a rejected tree is reinstalled.
+  - **Node major (P2-3).** The `node-major` input is removed. The first step of the action prints `process.versions.node.split(".")[0]` to the step output and the key reads it, so the key follows the Node the job actually runs and four hand-typed values disappear. Callers pass nothing for it. Every later task block that shows `node-major:` drops that line.
+  - **Cold path and a bad entry (P2-4, record only).** `cold: true` skips the restore and the save, so it proves a fresh install and never refreshes an entry. That matches ADR-006's "forces a miss". A bad entry is replaced by a key change, which the action-file hash in the key now covers for edits to the action, and by a lockfile, manifest, bun version or Node major change. A bad entry whose inputs did not change stays until the seven-day eviction or a manual `gh cache delete`.
+  - **Key and description follow-up (review round two).** The key now also hashes `.skilled/skills/system-spec-kit/.npmrc` (its `install-strategy=hoisted` sets the cached `node_modules` layout) and the two tsconfigs that the cached builds extend but no walk fingerprint covers, `system-spec-kit/tsconfig.json` and `system-spec-kit/runtime/tsconfig.json`. The root `.npmrc` sits beside no `package.json`, so it stays out. The `description` now says only that the five listed build outputs carry a stamp matching the tracked sources their list line names, and that the other cached outputs have no walk check. That wording replaces the one in the Description point above.
+
+- **Amendment (2026-10-24, operator ruling on AC-006: drop `~/.npm` from the cached paths)**: The first warm proof saved about 25 s per job against the roughly 40 s target, and restoring the 1.12 GB entry cost 15 to 29 s of that. The operator chose to drop npm's download cache (`~/.npm`) from what the action caches, re-run one cold round and one warm round, and accept whatever saving that gives, with the numbers recorded. Both `path:` lists in `.github/actions/setup/action.yml` (the restore and the save) now name 20 paths and stay byte-identical. The reason: the key carries no `restore-keys`, so any change to a hashed input is a full miss and the walk installs everything from scratch, and on a hit npm never runs. The download cache therefore never serves a single install and only adds restore time. This is the drop ADR-005 and its risk table name as the first component to lose, taken now on measured evidence and not at T013's go/no-go. ADR-005's list, its Decision line and its rollback read as 20 paths without `~/.npm`. Editing the action file changes the key, so the first push after this change misses once and saves a smaller entry. The previous 1.12 GB entry is left to age out, nothing is deleted by hand. The re-run is recorded under `Round 2` in `scratch/cache-adoption-runs.md`: the new entry is 864407808 bytes (was 1121994943), a clean warm provision step is 29 to 34 s (median 30) against the 56 to 67 s baseline (median 61), so the saving is 31 s at the median and 22 to 38 s per job, up from about 25 s. The cold dispatches still install through the full path. AC-006 is Met at that figure under this ruling.

@@ -1,0 +1,275 @@
+{
+  "sessionId": "fanout-luna-1792429886029-no7lpl",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-does-the-core-preserve-session-ownership-file-privacy-time-boundary-and-lock-inv",
+      "inboxId": null,
+      "text": "Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-do-runtime-adapters-translate-usage-session-identity-and-relaunch-decisions-cons",
+      "inboxId": null,
+      "text": "Do runtime adapters translate usage, session identity and relaunch decisions consistently?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-does-skilled-loop-preserve-handoff-claim-save-resume-and-relaunch-behavior-under",
+      "inboxId": null,
+      "text": "Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-do-tests-cover-the-public-behavior-and-edge-cases-claimed-by-docs-and-specs",
+      "inboxId": null,
+      "text": "Do tests cover the public behavior and edge cases claimed by docs and specs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-which-document-spec-record-or-standards-gaps-need-correction",
+      "inboxId": null,
+      "text": "Which document, spec-record or standards gaps need correction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-does-the-core-preserve-session-ownership-file-privacy-time-boundary-and-lock-inv",
+      "inboxId": null,
+      "text": "Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-do-runtime-adapters-translate-usage-session-identity-and-relaunch-decisions-cons",
+      "inboxId": null,
+      "text": "Do runtime adapters translate usage, session identity and relaunch decisions consistently?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-does-skilled-loop-preserve-handoff-claim-save-resume-and-relaunch-behavior-under",
+      "inboxId": null,
+      "text": "Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-do-tests-cover-the-public-behavior-and-edge-cases-claimed-by-docs-and-specs",
+      "inboxId": null,
+      "text": "Do tests cover the public behavior and edge cases claimed by docs and specs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-which-document-spec-record-or-standards-gaps-need-correction",
+      "inboxId": null,
+      "text": "Which document, spec-record or standards gaps need correction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Are the phase 008 acceptance claims consistent with the current code and recorded evidence?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Runtime verification of the symlink and chmod-failure cases remains open because this lineage does not run tests.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The document quality-control extractor was not run, so no structural checklist result or DQI score is claimed.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?",
+    "Do runtime adapters translate usage, session identity and relaunch decisions consistently?",
+    "Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?",
+    "Do tests cover the public behavior and edge cases claimed by docs and specs?",
+    "Which document, spec-record or standards gaps need correction?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-luna-r1-001-the-handoff-directory-is-not-validated-as-a-private-path-boundary-in",
+      "text": "**LUNA-R1-001 — The handoff directory is not validated as a private path boundary (INFERRED).** Evidence: .skilled/hooks/session-relaunch/lib/nudge.cjs:219-225, 267-273; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190; .skilled/hooks/session-relaunch/tests/nudge.test.cjs:495-506. The nudge follows a pre-existing handoffs symlink, attempts chmod through it, suppresses any error and still returns a note path. The CLI then treats the resolved handoffs directory itself as the trusted root without checking that it remains inside the repository. A symlink can therefore redirect handoff writes and chmod outside the repository; a failed chmod can also leave a writable but non-private directory in use. Fix by canonicalizing the repository root, rejecting symlinks in the managed path, requiring the resolved handoffs directory to remain beneath the repository, verifying current ownership and mode 0700, and returning no path when those checks fail. Add cases for an outside symlink and a chmod failure.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:35-57, 404-428, 492-532",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:209-273",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:204-321, 436-449",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:445-506",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1624-1665",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:54-60",
+        "specs/hooks/023-session-relaunch-loop/goal.md:45-53, 120-132",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:40-47"
+      ]
+    },
+    {
+      "id": "finding-1-2-luna-r1-002-the-parent-goal-still-names-the-superseded-worktree-confirmed-eviden",
+      "text": "**LUNA-R1-002 — The parent goal still names the superseded worktree (CONFIRMED).** Evidence: specs/hooks/023-session-relaunch-loop/goal.md:52 says work stays on worktrees/142-session-relaunch-loop; the same file at :131 records the D6 amendment to worktrees/148-session-relaunch-deep-review; phase 008 goal at :46 binds worktree 148. The durable decision and its later log entry conflict, and the child decision confirms the active value. Fix D6 to name worktree 148 or explicitly mark the earlier value superseded in the durable decision.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:35-57, 404-428, 492-532",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:209-273",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:204-321, 436-449",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:445-506",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1624-1665",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:54-60",
+        "specs/hooks/023-session-relaunch-loop/goal.md:45-53, 120-132",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:40-47"
+      ]
+    },
+    {
+      "id": "finding-2-1-luna-r2-001-the-parent-spec-still-records-the-superseded-worktree-confirmed-evid",
+      "text": "**LUNA-R2-001 — The parent spec still records the superseded worktree (CONFIRMED).** Evidence: the parent spec's Branch field still says `worktrees/142-session-relaunch-loop`, while the parent goal log records the amendment to `worktrees/148-session-relaunch-deep-review` and phase 008's durable decision binds worktree 148. Fix the Branch field in the parent spec to worktree 148 and reconcile any remaining active packet metadata with that amendment. [SOURCE: specs/hooks/023-session-relaunch-loop/spec.md:34] [SOURCE: specs/hooks/023-session-relaunch-loop/goal.md:131] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md:46]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-luna-r2-002-the-runtime-adapters-repeat-the-nudge-policy-orchestration-inferred-",
+      "text": "**LUNA-R2-002 — The runtime adapters repeat the nudge policy orchestration (INFERRED refinement).** The inspected adapters independently apply the fill threshold, pending-handoff and hop-cap suppression, nudge-level decision, note planning, persisted-state update and handoff-text construction; Pi and OpenCode then add different deferred-delivery state. This is not evidence of a current policy mismatch, but it makes future policy changes easy to apply unevenly. Extract a shared policy preparation function that accepts normalized usage, session, cwd and runtime inputs and returns a decision plus handoff text; keep host event parsing and delivery timing in each adapter, and add a table-driven parity contract for the common decision. [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:97-128] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:100-130] [SOURCE: .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:80-124] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:306-350] [SOURCE: .opencode/plugins/session-relaunch.js:124-168]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-luna-r3-001-a-consume-failure-loses-the-carried-gate-3-answer-confirmed-control-",
+      "text": "**LUNA-R3-001 — A consume failure loses the carried Gate 3 answer (CONFIRMED control-flow edge).** The wrapper obtains `spec_folder` only from `consume_record`; when that command fails, `consumed_record_json` is empty. The ordinary relaunch path still builds a seed without its `Spec folder:` suffix, and the signal/manual fallback also prints without the suffix. `should-relaunch` returns no `spec_folder`, so the wrapper has no fallback source. The existing consume-failure test uses a note without a packet or Skip answer, while the README promises that the answer carries across the hop. Preserve a validated `spec_folder` before consuming, return it from a read path such as `should-relaunch`, and use it when consume fails; add failing-consume cases for both a packet path and `none`. [SOURCE: .skilled/bin/skilled-loop:68-87] [SOURCE: .skilled/bin/skilled-loop:450-465] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:461-470] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1353-1373] [SOURCE: .skilled/hooks/session-relaunch/README.md:112]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-luna-r3-002-consume-deletes-the-relaunch-record-even-when-the-handoff-cannot-be-",
+      "text": "**LUNA-R3-002 — `consume` deletes the relaunch record even when the handoff cannot be read or parsed (CONFIRMED control-flow edge).** The CLI catches note read/parse errors, may leave `specFolder` empty, then unlinks the state file and returns success. `skilled-loop` treats that success as permission to launch a new runtime with a claim seed pointing at the unreadable or invalid note. Reject consumption before unlinking when the handoff is missing or invalid, and make the wrapper retain a recoverable record or print a manual recovery command instead of starting a guaranteed-failing claim. Add missing-file and malformed-note cases. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/bin/skilled-loop:456-467] [SOURCE: .skilled/hooks/session-relaunch/README.md:105-116]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-luna-r4-001-the-test-inventory-omits-a-link-to-the-opencode-plugin-suite-confirm",
+      "text": "**LUNA-R4-001 — The test inventory omits a link to the OpenCode plugin suite (CONFIRMED documentation gap).** The session-relaunch test README lists the hook-directory adapter files and its validation command runs only `.skilled/hooks/session-relaunch/tests/*.test.cjs`; the actual OpenCode plugin suite lives at `.opencode/plugins/tests/session-relaunch.test.cjs` and is documented separately in the Pi/OpenCode playbook. Add a distinct OpenCode suite entry and command to the test README, or explicitly label that page as covering only the hook-directory suite and link to the plugin test. This makes the documented regression surface discoverable without changing test ownership. [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:18-38] [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:85-115] [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:1-4] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:83-89]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-luna-r5-001-phase-008-overstates-the-handoff-directory-s-privacy-guarantee-confi",
+      "text": "**LUNA-R5-001 — Phase 008 overstates the handoff directory's privacy guarantee (CONFIRMED code/documentation gap; corroborates LUNA-R1-001).** The summary says the nudge creates an owner-only directory and that a failed create makes the model's write fail visibly; however, `ensureHandoffDir` suppresses mkdir/chmod errors and returns the path anyway. The CLI checks that a note is under the resolved handoffs directory, but never verifies that this resolved directory is beneath the canonical repository root. A pre-existing symlink can therefore redirect the note and chmod outside the repository, and a writable non-private target can still accept the note. The focused test checks only that a fresh directory has mode 0700. Reject symlinked path components and repo escapes, verify ownership and mode before returning a note path, add outside-symlink and chmod-failure cases, and revise the phase summary/README to describe the verified guarantee. [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:219-225] [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:267-273] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128-190] [SOURCE: .skilled/hooks/session-relaunch/tests/nudge.test.cjs:495-506] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md:56] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md:52] [SOURCE: specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md:91] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md:101-108]",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 3,
+    "keyFindings": 8,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 9
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review/specs/hooks/023-session-relaunch-loop/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

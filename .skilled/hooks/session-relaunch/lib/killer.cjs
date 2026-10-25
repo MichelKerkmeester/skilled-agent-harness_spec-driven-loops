@@ -21,7 +21,9 @@ const hopHistory = require('./hop-history.cjs');
 
 const POLL_INTERVAL_MS = 100;
 const TRANSCRIPT_MISSING_GRACE_MS = 1000;
-const SIGNAL_WAIT_MS = 5000;
+// How long a signalled runtime gets to exit before the hop is given up. An OpenCode 2 TUI
+// was measured taking about six seconds, so the bound leaves room above that.
+const SIGNAL_WAIT_MS = 15000;
 const NOTIFICATION_TIMEOUT_MS = 3000;
 const DEFAULT_IDLE_MS = 3000;
 const DEFAULT_TIMEOUT_MS = 30000;
@@ -607,8 +609,13 @@ function recordTimeout(options, environment, record) {
   const currentHandoff = typeof current?.handoff === 'string' ? current.handoff : '';
   const watchedArmId = recordArmId(record);
   const currentArmId = recordArmId(current);
+  // A record disarmed (a cancelled hand-over) while this killer watched an armed one has
+  // nothing left to time out, even though it still names the same handoff. A re-prepared
+  // pending record is not covered: the note it names still needs the manual-claim notice.
+  const calledOff = record?.status === 'armed' && current?.status === 'disarmed';
   if (
     currentHandoff !== handoffPath
+    || calledOff
     || (current?.status === 'armed' && current.armedAt !== record?.armedAt)
     || (current?.status === 'armed' && watchedArmId !== undefined && currentArmId !== watchedArmId)
   ) {
@@ -622,7 +629,7 @@ function recordTimeout(options, environment, record) {
     ? record.runtime
     : 'claude';
   if (record?.status === 'armed' && handoffPath) {
-    core.unarm({
+    const disarmed = core.unarm({
       loopId: options.loopId,
       reason: 'killer-timeout',
       expectedStatus: 'armed',
@@ -631,6 +638,19 @@ function recordTimeout(options, environment, record) {
       expectedArmId: watchedArmId,
       env: environment,
     });
+    // The guarded disarm returns null when the record changed after the read above. A
+    // re-prepared pending record still names a note that needs the manual-claim notice,
+    // but a cancel or a re-arm in that window owns the note now.
+    if (!disarmed) {
+      const after = core.readRelaunchFile(options.loopId, environment);
+      if (after?.status !== 'pending' || after.handoff !== handoffPath) {
+        log('killer-timeout-superseded', environment, {
+          watched: handoffPath,
+          current: typeof after?.handoff === 'string' ? after.handoff : '',
+        });
+        return;
+      }
+    }
   }
   log('killer-timeout', environment, { targetPid: options.targetPid });
   if (handoffPath) hopHistory.recordHop('timed-out', handoffPath, { env: environment, runtime });
@@ -747,6 +767,28 @@ async function supervise(options, environment, signalTracker) {
     // and reused between this snapshot and the signal cannot be ruled out.
     if (!isLoopAncestor(options.targetPid, Number(options.loopId))) {
       log('killer-refused-target', environment, { targetPid: options.targetPid });
+      return;
+    }
+
+    // A cancel can land after the checks above, and the signal cannot be taken back, so
+    // the record is checked once more as the last step before it, and stamped in the same
+    // locked step so the wrapper can tell this signal from an operator interrupt. The check
+    // goes after the ancestry snapshot rather than before it: ahead of the snapshot it would
+    // leave the whole process-table walk as a window for a cancel, while behind it the
+    // pid-reuse window grows by only that one locked write.
+    const stamped = core.markSignalled({
+      loopId: options.loopId,
+      handoff: record.handoff,
+      armId: recordArmId(record),
+      armedAt: record.armedAt,
+      env: environment,
+    });
+    if (stamped === null) {
+      const lastLook = core.readRelaunchFile(options.loopId, environment);
+      log('killer-called-off', environment, {
+        targetPid: options.targetPid,
+        status: lastLook?.status ?? 'missing',
+      });
       return;
     }
 

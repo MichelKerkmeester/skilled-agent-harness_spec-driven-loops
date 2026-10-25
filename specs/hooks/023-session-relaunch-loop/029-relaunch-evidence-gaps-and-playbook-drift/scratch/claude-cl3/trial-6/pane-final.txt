@@ -1,0 +1,50 @@
+       8 +created_at: 2026-10-24T22:42:55.947Z
+       9  ---
+      10
+      11  ## Goal
+      12
+      13 -Exercise the session-relaunch hand-over loop end to end: run a probe shell command, write the handoff note when the relaunch instructions arrive, run prepare, then start a background
+         -`sleep 90` and end the turn. Gate 3 was answered D) Skip.
+      13 +Exercise the session-relaunch hand-over loop end to end, including the cancel path: a first hand-over was prepared and then withdrawn when the operator sent a new prompt, and the cont
+         +ext nudge has now fired a second time. Gate 3 was answered D) Skip.
+      14
+      15  ## Done
+      16
+      17 -- Ran `echo probe` (output: `probe`).
+      18 -- Wrote this handoff note with `spec_folder: none`.
+      17 +- Ran `echo probe` and `echo staying`.
+      18 +- Wrote the handoff note and ran `prepare` (exit 0) once; the loop withdrew that hand-over when a new prompt arrived.
+      19 +- Reported the first sentence of each `[session-relaunch]` message received and replied STAYING, as asked.
+      20 +- A background `sleep 90` task completed with exit 0.
+      21
+      22  ## Remaining work
+      23
+     ...
+      26  ## In-flight state
+      27
+      28  - No files in the repository were changed by this session. The worktree already held uncommitted edits to three session-relaunch playbook files and untracked scratch files under `spec
+          s/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch/`; those predate this session.
+      27 -- The `prepare` command has not run yet when this note is written.
+      29 +- This note was rewritten for the second hand-over; `prepare` has not run on this version yet.
+
+  Ran 1 shell command
+
+⏺ prepare exited 0, so I'm starting the background sleep 90 again.
+
+  Ran 1 shell command
+
+⏺ I rewrote the handoff note for the second nudge and ran prepare again, which exited 0. sleep 90 is running in the background again (task byxnxbwvz), and I'm ending the turn.
+
+  - Note: the Done section now covers the first hand-over, the withdrawal and the STAYING reply. spec_folder is still none.
+  - Repo state: I changed no repository files.
+  - Hand-over: I did not run consume or claim by hand.
+
+  Nothing is left for you to do.
+
+✻ Crunched for 16s · done 12:43 AM · 1 shell still running
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on · 1 shell

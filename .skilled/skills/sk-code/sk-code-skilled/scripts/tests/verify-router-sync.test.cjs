@@ -95,18 +95,18 @@ test('a run without --checks includes leg 1b', (t) => {
 });
 
 // Leg 2 reads the hub-level shared controls from the ROUTER.md list and preamble, so this hub gets
-// a parent map, the two surface children and a manifest that names one workflow mode leaf.
+// a parent map, its surface child and a manifest that names one workflow mode leaf.
 function buildLegTwoHub(t, controls, defaults = []) {
   const { hub, guard } = buildHub(t);
   const parentMap = [
-    '"DEMO": ["sk-code-webflow/references/w.md", "sk-code-skilled/references/o.md",',
+    '"DEMO": ["sk-code-skilled/references/o.md",',
     '"shared/references/control.md", "shared/references/undeclared.md", "sk-code-review/assets/leaf.md"],',
   ].join(' ');
   const block = controls.map((c) => `    "${c}",`).join('\n');
   const preamble = defaults.map((c) => `    "${c}",`).join('\n');
   const router = `DEFAULT_RESOURCE = [\n${preamble}\n]\nRESOURCE_MAP = {\n  ${parentMap}\n}\n`;
   write(path.join(hub, 'ROUTER.md'), `${router}SHARED_CONTROL_RESOURCES = [\n${block}\n]\n`);
-  for (const [surface, doc] of [['sk-code-webflow', 'w.md'], ['sk-code-skilled', 'o.md']]) {
+  for (const [surface, doc] of [['sk-code-skilled', 'o.md']]) {
     write(path.join(hub, surface, 'SKILL.md'), `RESOURCE_MAP = {\n  "DEMO": ["references/${doc}"],\n}\n`);
     write(path.join(hub, surface, 'references', doc), `# ${doc}\n`);
   }
@@ -150,19 +150,19 @@ test('leg 3 skips archived gold for a mode the manifest no longer declares', (t)
   write(path.join(hub, 'leaf-manifest.json'), JSON.stringify(manifest));
   const gold = path.join(root, 'specs', 'sk-doc', 'z_archive', '019-skill-routing-refactor', '015-router-unification-program',
     '009-parent-hub-rollout', '001-sk-code', 'compiled', 'route-gold.typed.json');
-  const ids = ['sk-code/sk-code-skilled/sk-code-skilled/surface/evidence-base', 'sk-code/sk-code-webflow/sk-code-webflow/surface/evidence-base'];
-  write(gold, JSON.stringify({ cases: [{ targetQualifiedIds: ids }] }));
+  const ids = ['sk-code/sk-code-skilled/sk-code-skilled/surface/evidence-base'];
+  const archivedId = 'sk-code/sk-code-archived/sk-code-archived/surface/evidence-base';
+  write(gold, JSON.stringify({ cases: [{ targetQualifiedIds: [...ids, archivedId] }] }));
   const pass = runGuard(guard, ['--checks', '3']);
   assert.equal(pass.status, 0, pass.out);
   assert.match(pass.out, /PASS check 3/);
-  write(gold, JSON.stringify({ cases: [{ targetQualifiedIds: [...ids, 'sk-code/sk-code-skilled/not-the-packet/surface/evidence-base'] }] }));
+  write(gold, JSON.stringify({ cases: [{ targetQualifiedIds: [...ids, archivedId, 'sk-code/sk-code-skilled/not-the-packet/surface/evidence-base'] }] }));
   const fail = runGuard(guard, ['--checks', '3']);
   assert.equal(fail.status, 1, fail.out);
   assert.match(fail.out, /compiled destination resolves to no leaf-owning mode: sk-code\/sk-code-skilled\/not-the-packet\//);
-  assert.doesNotMatch(fail.out, /sk-code-webflow/);
 });
 
-test('leg 1a scans the prose maps from the first map heading when the Webflow map is gone', (t) => {
+test('leg 1a scans the prose maps from the first map heading when a map is absent', (t) => {
   const { hub, guard } = buildHub(t);
   write(path.join(hub, 'ROUTER.md'), [
     '## 3. LOAD TIERS',

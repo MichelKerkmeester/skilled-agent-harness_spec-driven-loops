@@ -1,34 +1,26 @@
-# Iteration 3: Wrapper and handoff failure transitions
+# Iteration 3: Live model and provider precedence
 
 ## Focus
 
-Trace skilled-loop's decline, signal and consume paths through the CLI, then compare the handoff guarantees in the README with the implementation and existing tests.
-
-## Actions Taken
-
-- Read the wrapper's successful relaunch, manual fallback, invalid-record and runtime-exit branches.
-- Traced `should-relaunch` and `consume` output fields and the state-file deletion path.
-- Compared the wrapper's consume-failure tests and Gate 3 handoff documentation with those branches. Tests were not run.
+Review launch-flag capture/replay and the later-hop setting merge, with emphasis on how a live model and its provider are carried together.
 
 ## Findings
 
-1. **LUNA-R3-001 — A consume failure loses the carried Gate 3 answer (CONFIRMED control-flow edge).** The wrapper obtains `spec_folder` only from `consume_record`; when that command fails, `consumed_record_json` is empty. The ordinary relaunch path still builds a seed without its `Spec folder:` suffix, and the signal/manual fallback also prints without the suffix. `should-relaunch` returns no `spec_folder`, so the wrapper has no fallback source. The existing consume-failure test uses a note without a packet or Skip answer, while the README promises that the answer carries across the hop. Preserve a validated `spec_folder` before consuming, return it from a read path such as `should-relaunch`, and use it when consume fails; add failing-consume cases for both a packet path and `none`. [SOURCE: .skilled/bin/skilled-loop:68-87] [SOURCE: .skilled/bin/skilled-loop:450-465] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:461-470] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1353-1373] [SOURCE: .skilled/hooks/session-relaunch/README.md:112]
-2. **LUNA-R3-002 — `consume` deletes the relaunch record even when the handoff cannot be read or parsed (CONFIRMED control-flow edge).** The CLI catches note read/parse errors, may leave `specFolder` empty, then unlinks the state file and returns success. `skilled-loop` treats that success as permission to launch a new runtime with a claim seed pointing at the unreadable or invalid note. Reject consumption before unlinking when the handoff is missing or invalid, and make the wrapper retain a recoverable record or print a manual recovery command instead of starting a guaranteed-failing claim. Add missing-file and malformed-note cases. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:504-550] [SOURCE: .skilled/bin/skilled-loop:456-467] [SOURCE: .skilled/hooks/session-relaunch/README.md:105-116]
+1. **P2 — A live model can be replayed under the provider from the first launch when the live provider is absent.** The launcher captures the initial provider into SKILLED_LOOP_PROVIDER. Prepare records model and effort, while arm merges only non-empty live settings into the pending record. Pi and Hermes adapters populate model and provider independently, so a host payload can supply the model without the provider. On consume, the wrapper accepts a valid live model, but it updates the provider only when the record also contains a non-empty valid provider; otherwise the initial launch provider remains active. That can pair a newer model with a stale provider, despite the code comment that they move together. **Test coverage:** the Pi and Hermes precedence tests replace both values together. The broad flag replay matrix checks launch arguments, and there is no model-only or invalid-provider case with a valid live model. [SOURCE: .skilled/bin/skilled-loop:515-568,801-812; .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:524-535; .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:734-760,807-820; .skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417; .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:102-113; .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349]
 
-## Questions Answered
+## Coverage checked
 
-- **Does skilled-loop preserve handoff, claim, save, resume and relaunch behavior under failures?** The reviewed tests cover exit-code preservation and manual fallback for a consume failure, but that fallback has no Gate 3 answer to preserve; static tracing also shows the wrapper proceeds after `consume` reports success even when the note could not be read. No tests were run.
+The launch-argument matrix captures and replays model flags for all seven runtimes, provider flags for Pi and Hermes, and effort for Claude, Codex, Pi, and Hermes. Effort parsing and invalid-value fallback also have focused cases. The gap is the paired model/provider fallback when only one live value is available.
 
-## Workflow Conflicts
+## Sources
 
-- The iteration event was appended through the gateway, but projection again returned `PROJECTION_FAILED` for the existing config-row key set; the path was verified and the same cause had already failed three times in Iteration 2. The gateway recorded this iteration event at ledger sequence 4, while the root state log remains unchanged. Further retries would only repeat the known projection failure; keep the delta artifact as the per-iteration finding record and do not write the state log directly. [SOURCE: specs/hooks/023-session-relaunch-loop/research/lineages/luna/gateway-refusals.jsonl:4] [SOURCE: specs/hooks/023-session-relaunch-loop/research/lineages/luna/deep-research-state.jsonl:1-2] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts:204-233]
+- .skilled/bin/skilled-loop:515-568,801-812
+- .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:524-535
+- .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:734-760,807-820
+- .skilled/hooks/session-relaunch/pi/session-relaunch.ts:401-417
+- .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:102-113
+- .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1315-1349
 
-## Questions Remaining
+## Iteration outcome
 
-- Do tests cover the public behavior and edge cases claimed by docs and specs?
-- Which document, spec-record or standards gaps need correction?
-- Does the core preserve session ownership, file privacy, time-boundary and lock invariants after phase 008?
-
-## Next Focus
-
-Compare the documented test claims and recorded outcomes with available test cases and the sk-code-skilled and sk-doc checklists, focusing on uncovered public edge cases and traceability.
+One setting-precedence gap confirmed; the next review separates each runtime's live-value source from its replay representation.

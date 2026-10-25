@@ -145,6 +145,9 @@ function fromDisk() {
   const root = rel(SKILLS_DIR);
   for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
+    // A private skill is local-only, so it must not look like a node the tracked
+    // graph is missing.
+    if (entry.name.startsWith('local-')) continue;
     const gm = path.join(root, entry.name, 'graph-metadata.json');
     if (!fs.existsSync(gm)) continue;
     let g;

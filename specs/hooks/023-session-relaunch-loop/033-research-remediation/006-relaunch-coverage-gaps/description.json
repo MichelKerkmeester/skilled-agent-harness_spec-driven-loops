@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps",
+  "description": "Phase 6: relaunch-coverage-gaps",
+  "keywords": [
+    "phase",
+    "relaunch-coverage-gaps"
+  ],
+  "lastUpdated": "2026-10-25T13:42:32.887Z",
+  "specId": "006",
+  "folderSlug": "relaunch-coverage-gaps",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

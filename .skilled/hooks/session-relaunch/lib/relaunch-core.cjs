@@ -10,7 +10,7 @@
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { randomUUID } = require('node:crypto');
+const { createHash, randomUUID } = require('node:crypto');
 const { spawnSync } = require('node:child_process');
 const { fileURLToPath } = require('node:url');
 
@@ -33,6 +33,9 @@ const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
 // The runtimes skilled-loop can launch. The CLI refuses any other, so a runtime the wrapper
 // gains has to be added here or prepare refuses the loops that run it.
 const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']);
+// A record disarmed for either reason means the operator kept the session going after its
+// hand-over was prepared, so the note it names stopped matching the work.
+const WITHDRAWN_DISARM_REASONS = new Set(['cancelled', 'user-message']);
 // preparePending's default, which every reader also assumes for a record without a runtime.
 const DEFAULT_RUNTIME = 'claude';
 // The stop and session-end hooks and the CLI all wait on a process-table read, so a hung
@@ -42,6 +45,17 @@ const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
 const SPEC_FOLDER_MARKER = ' | Spec folder: ';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
 const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+const GOAL_FILENAME = 'goal.md';
+// Runtimes whose goal record names the packet the session is bound to; the lookup differs
+// only in how the record is keyed.
+const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor', 'hermes']);
+// The packet a Claude goal names is read from a bounded tail of the session log, so a long
+// session costs the same as a short one.
+const GOAL_LOG_TAIL_BYTES = 262144;
+const GOAL_LOG_MAX_TAIL_BYTES = 16 * 1024 * 1024;
+const GOAL_LOG_PACKET_PATTERN = /specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*/g;
+const GOAL_LOG_MAX_CANDIDATES = 8;
+const GOAL_SWITCH_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 // Defaults for a record that names no limits; the wrapper reads the same values.
 const DEFAULT_MAX_HOPS = 10;
 const DEFAULT_MAX_AGE_MIN = 10;
@@ -170,6 +184,11 @@ function updateFrontmatter(text, updates) {
     // Keys come from this module's own callers and are plain identifiers.
     const keyPattern = new RegExp(`^\\s*${key}\\s*:`);
     const fieldIndex = fields.findIndex((line) => keyPattern.test(line));
+    // A null value removes the field, which is different from writing it empty.
+    if (value === null) {
+      if (fieldIndex !== -1) fields.splice(fieldIndex, 1);
+      continue;
+    }
     const replacement = `${key}: ${value}`;
     if (fieldIndex === -1) fields.push(replacement);
     else fields[fieldIndex] = replacement;
@@ -344,6 +363,357 @@ function noteState(filePath) {
   }
 }
 
+function insideDirectory(parent, child) {
+  const relative = path.relative(parent, child);
+  return relative !== ''
+    && relative !== '..'
+    && !relative.startsWith(`..${path.sep}`)
+    && !path.isAbsolute(relative);
+}
+
+/**
+ * Say why a goal packet cannot be carried to the next session, or null when it can. The
+ * packet is shaped like a spec folder, and it must be a real directory whose goal.md is a
+ * real file, both inside one of the roots once links are followed, so a link out of the
+ * repository never reaches the receiver.
+ *
+ * @param {string} goalPacket - Repo-relative packet directory taken from a note or a record.
+ * @param {string[]} roots - Absolute checkouts the packet may live in.
+ * @returns {string|null} The reason the packet is refused, or null when it is usable.
+ */
+function goalPacketProblem(goalPacket, roots) {
+  if (!validSpecFolder(goalPacket)) {
+    return 'goal_packet must be the repo-relative packet path, or empty';
+  }
+  let reason = `goal_packet ${goalPacket} holds no ${GOAL_FILENAME} in this repository`;
+  for (const root of roots) {
+    try {
+      const realRoot = fs.realpathSync(root);
+      const realPacket = fs.realpathSync(path.join(root, goalPacket));
+      const realGoal = fs.realpathSync(path.join(realPacket, GOAL_FILENAME));
+      if (!insideDirectory(realRoot, realPacket) || !insideDirectory(realRoot, realGoal)) {
+        reason = `goal_packet ${goalPacket} resolves outside the repository`;
+      } else if (fs.statSync(realPacket).isDirectory() && fs.statSync(realGoal).isFile()) {
+        return null;
+      }
+    } catch {
+      // A missing path is a packet without a goal.md, which the reason already says.
+    }
+  }
+  return reason;
+}
+
+/**
+ * Read the goal switch. On unless the operator turned it off, so a hand-over carries the
+ * sender's goal without any setup.
+ *
+ * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
+ * @returns {boolean} False only when SESSION_RELAUNCH_GOAL is an off value.
+ */
+function goalSwitchOn(switches) {
+  const value = String(switches?.SESSION_RELAUNCH_GOAL ?? '').trim().toLowerCase();
+  return !GOAL_SWITCH_OFF_VALUES.includes(value);
+}
+
+// A spec folder and the packets above it, nearest first: a child packet rarely holds the
+// goal.md that its parent packet does.
+function packetLineage(specFolder) {
+  const lineage = [];
+  let current = specFolder;
+  while (validSpecFolder(current)) {
+    lineage.push(current);
+    current = path.posix.dirname(current);
+  }
+  return lineage;
+}
+
+function firstUsablePacket(candidates, roots, accepts = () => true) {
+  return candidates.find((candidate) => (
+    goalPacketProblem(candidate, roots) === null && accepts(candidate)
+  )) ?? '';
+}
+
+// The goal record a runtime keeps for one session. OpenCode keys its record by the session
+// digest alone; the runtime-neutral core scopes it by workspace, runtime and session.
+function goalRecordFor(runtime, sessionId, workspace) {
+  const goalCore = require('../../goal/lib/goal-core.cjs');
+  if (runtime !== 'opencode') {
+    return goalCore.readGoalRecord({ scope: { workspace, runtime, sessionId } });
+  }
+  const digest = createHash('sha256').update(sessionId, 'utf8').digest('hex');
+  const recordPath = path.join(goalCore.resolveStateDir({ workspace }), `${digest}.json`);
+  return JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+}
+
+function readLogTail(filePath, byteCount) {
+  const fileDescriptor = fs.openSync(filePath, 'r');
+  try {
+    const size = fs.fstatSync(fileDescriptor).size;
+    const start = Math.max(0, size - byteCount);
+    const buffer = Buffer.alloc(size - start);
+    const bytesRead = fs.readSync(fileDescriptor, buffer, 0, buffer.length, start);
+    return { text: buffer.subarray(0, bytesRead).toString('utf8'), whole: start === 0 };
+  } finally {
+    fs.closeSync(fileDescriptor);
+  }
+}
+
+// What the goal log last said about the session's goal. A goal ends when its status entry
+// reports it met or failed, and a `/goal clear` command ends it too.
+function goalLogEntry(entry) {
+  if (entry?.attachment?.type === 'goal_status') {
+    const status = entry.attachment;
+    return {
+      active: status.met === false && !status.failed,
+      condition: typeof status.condition === 'string' ? status.condition : '',
+    };
+  }
+  if (entry?.type === 'system' && entry.subtype === 'local_command'
+    && /<command-name>\/goal<\/command-name>[\s\S]*<command-args>\s*clear\s*<\/command-args>/
+      .test(String(entry.content ?? ''))) {
+    return { active: false, condition: '' };
+  }
+  return null;
+}
+
+// The newest goal entry of one Claude session log, widening the tail while the read starts
+// mid-file and holds none. Null when the log has none.
+function latestGoalLogEntry(logPath) {
+  let byteCount = GOAL_LOG_TAIL_BYTES;
+  for (;;) {
+    const tail = readLogTail(logPath, byteCount);
+    const lines = tail.text.split(/\r?\n/);
+    // A tail that starts mid-file begins inside a line, which cannot be parsed.
+    if (!tail.whole) lines.shift();
+    let latest = null;
+    for (const line of lines) {
+      if (!line.includes('goal')) continue;
+      let entry;
+      try {
+        entry = JSON.parse(line);
+      } catch {
+        continue;
+      }
+      latest = goalLogEntry(entry) ?? latest;
+    }
+    if (latest !== null || tail.whole || byteCount >= GOAL_LOG_MAX_TAIL_BYTES) return latest;
+    byteCount = Math.min(byteCount * 4, GOAL_LOG_MAX_TAIL_BYTES);
+  }
+}
+
+// Session logs sit under a per-project folder named from the working directory, which the
+// CLI cannot rebuild exactly, so the folders are searched for the session's own log.
+function claudeSessionLogPath(sessionId, env) {
+  if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
+  const configDirectory = env?.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude');
+  const projectsDirectory = path.join(configDirectory, 'projects');
+  for (const project of fs.readdirSync(projectsDirectory)) {
+    const candidate = path.join(projectsDirectory, project, `${sessionId}.jsonl`);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return null;
+}
+
+function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
+  const lineage = packetLineage(specFolder);
+  let logPath = null;
+  try {
+    logPath = claudeSessionLogPath(sessionId, env);
+  } catch {
+    // An unreadable projects folder reads like a missing log.
+  }
+  // The log is the only record of a Claude goal, so a log that is missing or cannot be read
+  // leaves the goal unproven.
+  if (logPath === null) return '';
+  let latest;
+  try {
+    latest = latestGoalLogEntry(logPath);
+  } catch {
+    return '';
+  }
+  if (latest === null || !latest.active) return '';
+  const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
+  const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
+  const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
+  // The log keeps the goal's text, not its packet, so a packet is the sender's only when its
+  // goal.md carries the text's opening line.
+  return firstUsablePacket(candidates, roots, (candidate) => {
+    for (const root of roots) {
+      try {
+        const goalText = fs.readFileSync(path.join(root, candidate, GOAL_FILENAME), 'utf8');
+        if (headline !== '' && goalText.includes(headline)) return true;
+      } catch {
+        // The next root may hold the file.
+      }
+    }
+    return false;
+  });
+}
+
+// Codex names a rollout for its thread, under a folder per day, so the thread's own file is
+// found by that suffix.
+function codexRolloutPath(sessionId, env) {
+  if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
+  const sessionsDirectory = path.join(
+    env?.CODEX_HOME || path.join(os.homedir(), '.codex'),
+    'sessions',
+  );
+  const suffix = `-${sessionId}.jsonl`;
+  let latest = null;
+  for (const year of fs.readdirSync(sessionsDirectory)) {
+    for (const month of safeDirectory(path.join(sessionsDirectory, year))) {
+      for (const day of safeDirectory(path.join(sessionsDirectory, year, month))) {
+        const dayDirectory = path.join(sessionsDirectory, year, month, day);
+        for (const name of safeDirectory(dayDirectory)) {
+          if (!name.startsWith('rollout-') || !name.endsWith(suffix)) continue;
+          // A rollout name starts with its timestamp, so the greatest name is the newest.
+          if (latest === null || name > latest.name) {
+            latest = { name, file: path.join(dayDirectory, name) };
+          }
+        }
+      }
+    }
+  }
+  return latest === null ? null : latest.file;
+}
+
+// Cursor writes its current model to one config file for every session, so the file is this
+// session's only when it changed after the wrapper launched this hop. Every switch rewrites
+// `model`, while `selectedModel` holds parameters and is rewritten only for a parameterized
+// choice, so its parameters count only while it names the current model. The result is the
+// id or bracketed form `--model` accepts; the auto model has no such id and is left out.
+function cursorSelectedModel(env) {
+  const launchedAt = Number(env?.SKILLED_LOOP_LAUNCHED_AT);
+  if (!Number.isFinite(launchedAt) || launchedAt <= 0) return '';
+  const configPath = path.join(env?.HOME || os.homedir(), '.cursor', 'cli-config.json');
+  if (fs.statSync(configPath).mtimeMs <= launchedAt) return '';
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const modelId = config?.model?.modelId;
+  if (!nonEmptyString(modelId) || modelId === 'default' || config.model.displayModelId === 'auto') {
+    return '';
+  }
+  const selected = config.selectedModel;
+  if (selected?.modelId !== modelId) return modelId;
+  const parameters = (Array.isArray(selected.parameters) ? selected.parameters : [])
+    .filter((entry) => nonEmptyString(entry?.id) && nonEmptyString(entry?.value))
+    .map((entry) => `${entry.id}=${entry.value}`);
+  return parameters.length === 0 ? modelId : `${modelId}[${parameters.join(',')}]`;
+}
+
+function safeDirectory(directory) {
+  try {
+    return fs.readdirSync(directory);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Find the model and effort the sending session is using now, so the relaunched session can
+ * start on them. Claude is read from the last main-chain assistant entry, Codex from the last
+ * turn context, and Cursor from a CLI config change made during this hop, whose effort rides
+ * inside the model. Pi and Hermes hand their values over when they arm. Every reader fails
+ * closed, since a hand-over never fails for want of a setting, and an empty string means the
+ * value is not proven.
+ *
+ * @param {Object} options - The session to read.
+ * @param {string} options.runtime - Runtime that owns the session.
+ * @param {string} options.sessionId - The session's identifier.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
+ * @returns {{model: string, effort: string}} The values the log proves, '' for the rest.
+ */
+function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
+  const none = { model: '', effort: '' };
+  try {
+    if (!nonEmptyString(sessionId)) return none;
+    const usage = require('./context-usage.cjs');
+    let found = null;
+    if (runtime === 'claude') {
+      const logPath = claudeSessionLogPath(sessionId, env);
+      found = logPath === null ? null : usage.readClaudeSettings(logPath);
+    } else if (runtime === 'codex') {
+      const rolloutPath = codexRolloutPath(sessionId, env);
+      found = rolloutPath === null ? null : usage.readCodexSettings(rolloutPath);
+    } else if (runtime === 'cursor') {
+      found = { model: cursorSelectedModel(env), effort: '' };
+    }
+    return found ?? none;
+  } catch {
+    return none;
+  }
+}
+
+function recordedGoalPacket({ runtime, sessionId, roots }) {
+  for (const root of roots) {
+    let record = null;
+    try {
+      record = goalRecordFor(runtime, sessionId, root);
+    } catch {
+      // A record that cannot be read is a goal that cannot be proven.
+    }
+    const packet = record?.status === 'active' && typeof record.packetPath === 'string'
+      ? record.packetPath
+      : '';
+    if (packet !== '' && goalPacketProblem(packet, roots) === null) return packet;
+  }
+  return '';
+}
+
+/**
+ * Find the packet the sending session's goal is bound to, or '' when it had none or none can
+ * be proven. Every reader fails closed: a log or record that cannot be read leaves the answer
+ * empty, so a hand-over never fails for want of a goal and never claims one it cannot show.
+ * Codex always answers empty. Its goal store is keyed by thread and holds the objective text
+ * and a status, with no packet, and no populated record has been read from it, so nothing
+ * proves that a Codex sender had a goal or which packet it named.
+ *
+ * @param {Object} options - The session to resolve.
+ * @param {string} options.runtime - Runtime that owns the session.
+ * @param {string} options.sessionId - The session's identifier.
+ * @param {string} [options.specFolder] - The note's spec folder, where a Claude goal's
+ *   candidate packets start.
+ * @param {string[]} options.roots - Absolute checkouts the packet may live in.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
+ * @returns {string} A repo-relative packet directory holding goal.md, or ''.
+ */
+function resolveGoalPacket({
+  runtime, sessionId, specFolder = '', roots = [], env = process.env,
+} = {}) {
+  try {
+    if (!nonEmptyString(sessionId) || roots.length === 0) return '';
+    if (GOAL_RECORD_RUNTIMES.includes(runtime)) {
+      return recordedGoalPacket({ runtime, sessionId, roots });
+    }
+    if (runtime === 'claude') return claudeGoalPacket({ sessionId, specFolder, roots, env });
+  } catch {
+    // Resolution is a convenience for the receiver, never a reason to refuse a hand-over.
+  }
+  return '';
+}
+
+/**
+ * Make an open note's goal_packet field say what the sender's goal is now: write the packet,
+ * replace a different one, or remove the field when the sender has none. A note that already
+ * says so is left untouched.
+ *
+ * @param {string} filePath - Handoff note path.
+ * @param {string} goalPacket - A packet resolveGoalPacket returned, or '' to remove the field.
+ * @returns {boolean} True when the note changed, false when it already said so.
+ */
+function recordGoalPacket(filePath, goalPacket) {
+  return withAppendLock(filePath, () => {
+    const text = readHandoffText(filePath);
+    const { frontmatter } = parseHandoff(text);
+    const held = Object.hasOwn(frontmatter, 'goal_packet');
+    if (goalPacket === '' ? !held : frontmatter.goal_packet === goalPacket) return false;
+    writeHandoffUpdate(
+      filePath,
+      updateFrontmatter(text, { goal_packet: goalPacket === '' ? null : goalPacket }),
+    );
+    return true;
+  });
+}
+
 /**
  * Store a pending record atomically so a wrapper never reads a partial state.
  *
@@ -355,6 +725,8 @@ function noteState(filePath) {
  * @param {string|null} [options.name=null] - Optional named session.
  * @param {string} options.cwd - Working directory to resume.
  * @param {number} [options.hops=0] - Number of completed hops.
+ * @param {string} [options.model=''] - Model the sending session is using, when proven.
+ * @param {string} [options.effort=''] - Effort the sending session is using, when proven.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object} The persisted pending record.
@@ -367,6 +739,8 @@ function preparePending({
   name = null,
   cwd,
   hops = 0,
+  model = '',
+  effort = '',
   env = process.env,
   now,
 }) {
@@ -381,9 +755,14 @@ function preparePending({
     cwd,
     hops,
     preparedAt: toIsoTimestamp(now),
+    ...(nonEmptyString(model) ? { model } : {}),
+    ...(nonEmptyString(effort) ? { effort } : {}),
   };
   ensureStateDir(env);
-  atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(record)}\n`);
+  // The write shares the lock every other record writer takes, so it cannot land between a
+  // writer's read and its write and be overwritten by that writer's older copy.
+  const filePath = relaunchFilePath(loopId, env);
+  withAppendLock(filePath, () => atomicWriteFile(filePath, `${JSON.stringify(record)}\n`));
   return record;
 }
 
@@ -394,11 +773,21 @@ function preparePending({
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
  * @param {string} [options.cwd=process.cwd()] - Live working directory.
+ * @param {{model?: string, provider?: string, effort?: string}} [options.settings] - The
+ *   session's current model, provider and effort, from an adapter whose host exposes them;
+ *   each non-empty value replaces what prepare recorded.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
  */
-function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
+function arm({ loopId, cwd = process.cwd(), settings = {}, env = process.env, now }) {
+  return withAppendLock(
+    relaunchFilePath(loopId, env),
+    () => armLocked({ loopId, cwd, settings, env, now }),
+  );
+}
+
+function armLocked({ loopId, cwd, settings = {}, env, now }) {
   let record;
   try {
     record = readRelaunchFile(loopId, env);
@@ -414,8 +803,15 @@ function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
   // killer guarding a record the wrapper already declines as stale. An arm that lands
   // in the same millisecond as the record it replaces keeps the same armedAt, so each
   // arm also carries an identity a killer can compare against the one it watched.
+  // A signal stamp belongs to the arm its killer watched, so a new arm starts without one.
+  const { signalledAt: _signalledAt, ...unsignalled } = record;
+  const liveSettings = {};
+  for (const key of ['model', 'provider', 'effort']) {
+    if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
+  }
   const armed = {
-    ...record,
+    ...unsignalled,
+    ...liveSettings,
     status: 'armed',
     armedAt: toIsoTimestamp(now),
     armId: randomUUID(),
@@ -423,6 +819,36 @@ function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
   };
   atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(armed)}\n`);
   return armed;
+}
+
+/**
+ * Stamp the armed record a killer is about to signal, as the last step before the signal.
+ * Some runtimes exit 130 on SIGTERM as well as on an interrupt, so the stamp is how the
+ * wrapper tells the killer's signal from the operator's. The check and the stamp share one
+ * lock, so a cancel or a re-arm cannot land between them.
+ *
+ * @param {Object} options - The arm the killer watched.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.handoff - Handoff path of the watched record.
+ * @param {string} [options.armId] - Arm identity of the watched record, when it has one.
+ * @param {string} [options.armedAt] - Arm time of the watched record; compared only without an armId.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {Date|number|string} [options.now] - Clock value for deterministic records.
+ * @returns {Object|null} The stamped record, or null when the record is no longer that arm.
+ */
+function markSignalled({ loopId, handoff, armId, armedAt, env = process.env, now }) {
+  return withAppendLock(relaunchFilePath(loopId, env), () => {
+    const record = readRelaunchFile(loopId, env);
+    if (
+      record?.status !== 'armed'
+      || record.handoff !== handoff
+      || record.armId !== armId
+      || (armId === undefined && record.armedAt !== armedAt)
+    ) return null;
+    const signalled = { ...record, signalledAt: toIsoTimestamp(now) };
+    atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(signalled)}\n`);
+    return signalled;
+  });
 }
 
 /**
@@ -470,7 +896,12 @@ function armableRecord(record, { loopId, sessionId, runtime, env = process.env }
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The disarmed record, or null when absent or conditions do not match.
  */
-function unarm({
+function unarm(options) {
+  const { loopId, env = process.env } = options;
+  return withAppendLock(relaunchFilePath(loopId, env), () => unarmLocked(options));
+}
+
+function unarmLocked({
   loopId,
   env = process.env,
   reason,
@@ -494,6 +925,50 @@ function unarm({
   };
   atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(disarmed)}\n`);
   return disarmed;
+}
+
+/**
+ * Mark a pending record whose Stop was deferred, so a prompt the operator sends while it
+ * waits can tell it apart from a hand-over the session prepared moments ago.
+ *
+ * @param {Object} options - Loop state transition inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {Date|number|string} [options.now] - Clock value for deterministic records.
+ * @returns {Object|null} The marked record, or null when no pending record exists.
+ */
+function markDeferred({ loopId, env = process.env, now }) {
+  return withAppendLock(relaunchFilePath(loopId, env), () => {
+    const record = readRelaunchFile(loopId, env);
+    if (record?.status !== 'pending') return null;
+    const deferred = { ...record, deferredAt: toIsoTimestamp(now) };
+    atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(deferred)}\n`);
+    return deferred;
+  });
+}
+
+/**
+ * Disarm a record when `accept` approves what is on disk. The read, the verdict and the
+ * disarm share one lock, so a Stop cannot arm the record between the verdict and the write.
+ * Callers do not use this directly: `withdraw.cjs` wraps it with the follow-ups every
+ * withdrawal owes the session, and the guarded `unarm` stays for transitions that are not
+ * the session calling its hand-over off.
+ *
+ * @param {Object} options - Loop state transition inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.reason - Why the record was disarmed.
+ * @param {(record: Object) => boolean} options.accept - Verdict on the record found.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {Date|number|string} [options.now] - Clock value for deterministic records.
+ * @returns {Object|null} The disarmed record, or null when none exists or `accept` refused it.
+ */
+function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
+  // The disarm runs through the unlocked helper because the mkdir lock is not reentrant.
+  return withAppendLock(relaunchFilePath(loopId, env), () => {
+    const record = readRelaunchFile(loopId, env);
+    if (!record || typeof record !== 'object' || !accept(record)) return null;
+    return unarmLocked({ loopId, env, reason, now });
+  });
 }
 
 /**
@@ -534,14 +1009,22 @@ function readRelaunchFile(loopId, env = process.env) {
  * @param {Date|number|string} [options.now=Date.now()] - Current time.
  * @param {number} [options.maxHops=10] - Highest allowed completed-hop count.
  * @param {number} [options.maxAgeMin=10] - Maximum record age in minutes.
- * @returns {{relaunch: true}|{relaunch: false, reason: string}} Decision.
+ * @returns {{relaunch: true}|{relaunch: false, reason: string}} Decision. A refusal reports
+ *   `no-file`, `not-armed`, `withdrawn` (the session called the hand-over off), `stale`,
+ *   `hop-cap` or `incomplete-record`.
  */
 function shouldRelaunch(
   record,
   { now = Date.now(), maxHops = DEFAULT_MAX_HOPS, maxAgeMin = DEFAULT_MAX_AGE_MIN } = {},
 ) {
   if (!record || typeof record !== 'object') return { relaunch: false, reason: 'no-file' };
-  if (record.status !== 'armed') return { relaunch: false, reason: 'not-armed' };
+  if (record.status !== 'armed') {
+    // A hand-over the session itself called off leaves nothing to claim, so the wrapper
+    // must not offer the note as a manual claim the way it does for other unarmed records.
+    const calledOff = record.status === 'disarmed'
+      && WITHDRAWN_DISARM_REASONS.has(record.disarmReason);
+    return { relaunch: false, reason: calledOff ? 'withdrawn' : 'not-armed' };
+  }
 
   const nowMs = parseTimestamp(now);
   const armedAtMs = parseTimestamp(record.armedAt);
@@ -581,21 +1064,25 @@ function shouldRelaunch(
  */
 function claimHandoff(filePath, { sessionId, now } = {}) {
   assertValidSessionId(sessionId);
-  const text = readHandoffText(filePath);
-  const parsed = parseHandoff(text);
-  if (parsed.frontmatter.status !== 'open') {
-    throw new Error(
-      `cannot claim handoff with status ${parsed.frontmatter.status || 'missing'}`,
-    );
-  }
+  // The status check and the write share one lock, so two sessions claiming one note
+  // cannot both read it open; the second sees `claimed` and throws.
+  return withAppendLock(filePath, () => {
+    const text = readHandoffText(filePath);
+    const parsed = parseHandoff(text);
+    if (parsed.frontmatter.status !== 'open') {
+      throw new Error(
+        `cannot claim handoff with status ${parsed.frontmatter.status || 'missing'}`,
+      );
+    }
 
-  const updated = updateFrontmatter(text, {
-    status: 'claimed',
-    claimed_at: toIsoTimestamp(now),
-    claimed_by: sessionId,
+    const updated = updateFrontmatter(text, {
+      status: 'claimed',
+      claimed_at: toIsoTimestamp(now),
+      claimed_by: sessionId,
+    });
+    writeHandoffUpdate(filePath, updated);
+    return parseHandoff(updated);
   });
-  writeHandoffUpdate(filePath, updated);
-  return parseHandoff(updated);
 }
 
 /**
@@ -607,20 +1094,22 @@ function claimHandoff(filePath, { sessionId, now } = {}) {
  * @throws {Error} When the note has not already been claimed.
  */
 function completeHandoff(filePath, { now } = {}) {
-  const text = readHandoffText(filePath);
-  const parsed = parseHandoff(text);
-  if (parsed.frontmatter.status !== 'claimed') {
-    throw new Error(
-      `cannot complete handoff with status ${parsed.frontmatter.status || 'missing'}`,
-    );
-  }
+  return withAppendLock(filePath, () => {
+    const text = readHandoffText(filePath);
+    const parsed = parseHandoff(text);
+    if (parsed.frontmatter.status !== 'claimed') {
+      throw new Error(
+        `cannot complete handoff with status ${parsed.frontmatter.status || 'missing'}`,
+      );
+    }
 
-  const updated = updateFrontmatter(text, {
-    status: 'done',
-    completed_at: toIsoTimestamp(now),
+    const updated = updateFrontmatter(text, {
+      status: 'done',
+      completed_at: toIsoTimestamp(now),
+    });
+    writeHandoffUpdate(filePath, updated);
+    return parseHandoff(updated);
   });
-  writeHandoffUpdate(filePath, updated);
-  return parseHandoff(updated);
 }
 
 /**
@@ -645,31 +1134,37 @@ function supersedeClaimed(handoffPath, { sessionId, now } = {}) {
     const candidatePath = path.join(directory, fileName);
     if (path.resolve(candidatePath) === currentPath) continue;
 
-    let text;
-    let parsed;
-    try {
-      text = readHandoffText(candidatePath);
-      parsed = parseHandoff(text);
-    } catch {
-      continue;
-    }
-    const claimedHere = parsed.frontmatter.status === 'claimed'
-      && parsed.frontmatter.claimed_by === sessionId;
-    const writtenHere = parsed.frontmatter.status === 'open'
-      && parsed.frontmatter.session_id === sessionId;
-    if (!claimedHere && !writtenHere) continue;
+    // A claim runs under the note's lock, so the read and the rewrite share it: a note read
+    // open here and claimed before the write would otherwise be overwritten as done. One
+    // candidate at a time keeps the locks from nesting.
+    const superseded = withAppendLock(candidatePath, () => {
+      let text;
+      let parsed;
+      try {
+        text = readHandoffText(candidatePath);
+        parsed = parseHandoff(text);
+      } catch {
+        return false;
+      }
+      const claimedHere = parsed.frontmatter.status === 'claimed'
+        && parsed.frontmatter.claimed_by === sessionId;
+      const writtenHere = parsed.frontmatter.status === 'open'
+        && parsed.frontmatter.session_id === sessionId;
+      if (!claimedHere && !writtenHere) return false;
 
-    try {
-      const updated = updateFrontmatter(text, {
-        status: 'done',
-        completed_at: completedAt,
-        superseded_by: path.basename(handoffPath),
-      });
-      writeHandoffUpdate(candidatePath, updated);
-      supersededPaths.push(candidatePath);
-    } catch {
-      continue;
-    }
+      try {
+        const updated = updateFrontmatter(text, {
+          status: 'done',
+          completed_at: completedAt,
+          superseded_by: path.basename(handoffPath),
+        });
+        writeHandoffUpdate(candidatePath, updated);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+    if (superseded) supersededPaths.push(candidatePath);
   }
 
   return supersededPaths;
@@ -774,13 +1269,15 @@ function isEntrypoint(moduleUrl, scriptPath = process.argv[1]) {
 }
 
 /**
- * Run `fn` while holding the log's append lock.
+ * Run `fn` while holding the mkdir lock beside a file: the log's append lock, and the
+ * lock that serializes a read-then-write on a relaunch record or a handoff note. The
+ * lock is not reentrant, so `fn` must not take the same file's lock again.
  *
  * Every lock failure falls through to running `fn` without the lock: history logging
- * must never block or fail a hook.
+ * and state writes must never block or fail a hook.
  *
  * @template T
- * @param {string} logPath - Path of the log whose lock is taken.
+ * @param {string} logPath - Path of the file whose lock is taken.
  * @param {() => T} fn - Work to run under the lock.
  * @returns {T} Whatever `fn` returns.
  */
@@ -1212,7 +1709,9 @@ function nestedUnderLoop(loopId, { hostPid, processTable } = {}) {
  * real loop child into an unguarded session. Only a loop id that is a pid can
  * name an ancestor, so any other value skips the read.
  *
- * @param {NodeJS.ProcessEnv} env - Environment to strip; mutated in place.
+ * @param {NodeJS.ProcessEnv} env - Environment to strip; mutated in place. Every
+ *   `SKILLED_LOOP_` key goes, because the outer loop's manual template, model, name and
+ *   provider would otherwise make the nested runtime print the outer loop's command.
  * @param {Object} [options] - Host pid and dependency seams for tests.
  * @param {number} [options.hostPid] - Runtime pid to compare against; resolved from pid when omitted.
  * @param {number} [options.pid=process.pid] - Descendant pid to resolve the host from.
@@ -1243,9 +1742,9 @@ function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) 
       // A log that cannot be written must not keep the inherited loop alive.
     }
 
-    delete env.SKILLED_LOOP_ID;
-    delete env.SKILLED_LOOP_RUNTIME;
-    delete env.SKILLED_LOOP_HOPS;
+    for (const key of Object.keys(env)) {
+      if (key.startsWith('SKILLED_LOOP_')) delete env[key];
+    }
     return true;
   } catch {
     return false;
@@ -1259,6 +1758,7 @@ function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) 
 module.exports = {
   HANDOFF_SECTIONS,
   RUNTIMES,
+  WITHDRAWN_DISARM_REASONS,
   PROCESS_TABLE_TIMEOUT_MS,
   DEFAULT_MAX_HOPS,
   DEFAULT_MAX_AGE_MIN,
@@ -1267,6 +1767,11 @@ module.exports = {
   SPEC_FOLDER_SKIP_SUFFIX,
   validSpecFolder,
   specFolderSuffix,
+  goalPacketProblem,
+  goalSwitchOn,
+  resolveGoalPacket,
+  resolveSessionSettings,
+  recordGoalPacket,
   parentMapFromTable,
   stateDir,
   ensureStateDir,
@@ -1278,6 +1783,9 @@ module.exports = {
   arm,
   armableRecord,
   unarm,
+  markDeferred,
+  markSignalled,
+  withdrawRecord,
   readRelaunchFile,
   shouldRelaunch,
   claimHandoff,
@@ -1288,6 +1796,7 @@ module.exports = {
   payloadEventName,
   isEntrypoint,
   appendLog,
+  withAppendLock,
   readLockState,
   lockOwnerPid,
   lockIsExpired,

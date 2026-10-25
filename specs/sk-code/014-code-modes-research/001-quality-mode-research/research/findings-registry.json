@@ -1,0 +1,783 @@
+{
+  "sessionId": "2026-10-25T08:48:55Z",
+  "parentSessionId": "2026-10-25T08:48:55Z",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-repo-bound-assumptions-does-sk-code-quality-hold-and-how-should-each-be-re",
+      "inboxId": null,
+      "text": "Which repo-bound assumptions does sk-code-quality hold, and how should each be removed, made configurable or isolated so the mode works in a repository without this framework's layout?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-does-the-quality-gate-catch-cost-and-miss-judged-from-its-own-benchmark-rep",
+      "inboxId": null,
+      "text": "What does the quality gate catch, cost and miss, judged from its own benchmark reports, playbook scenarios, changelog entries and checker scripts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-should-sk-code-quality-hand-off-to-verify-debug-and-sk-code-review-and-where",
+      "inboxId": null,
+      "text": "How should sk-code-quality hand off to verify, debug and sk-code-review, and where should the boundary between the quality and review checklists sit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-should-a-surface-packet-or-a-user-authored-workflow-or-surface-mode-plug-int",
+      "inboxId": null,
+      "text": "How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality, and where could a repository keep its own quality configuration without forking the hub?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-behaviors-may-no-recommendation-relax-and-how-would-a-later-change-to-sk-c",
+      "inboxId": null,
+      "text": "Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-repo-bound-assumptions-does-sk-code-quality-hold-and-how-should-each-be-re",
+      "inboxId": null,
+      "text": "Which repo-bound assumptions does sk-code-quality hold, and how should each be removed, made configurable or isolated so the mode works in a repository without this framework's layout?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-does-the-quality-gate-catch-cost-and-miss-judged-from-its-own-benchmark-rep",
+      "inboxId": null,
+      "text": "What does the quality gate catch, cost and miss, judged from its own benchmark reports, playbook scenarios, changelog entries and checker scripts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-3-how-should-sk-code-quality-hand-off-to-verify-debug-and-sk-code-review-and-where",
+      "inboxId": null,
+      "text": "How should sk-code-quality hand off to verify, debug and sk-code-review, and where should the boundary between the quality and review checklists sit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-4-how-should-a-surface-packet-or-a-user-authored-workflow-or-surface-mode-plug-int",
+      "inboxId": null,
+      "text": "How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality, and where could a repository keep its own quality configuration without forking the hub?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-5-which-behaviors-may-no-recommendation-relax-and-how-would-a-later-change-to-sk-c",
+      "inboxId": null,
+      "text": "Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should sk-code-quality hand off to verify, debug and sk-code-review, and where should the boundary between the quality and review checklists sit?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality, and where could a repository keep its own quality configuration without forking the hub?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What does the quality gate catch, cost and miss, judged from its own benchmark reports, playbook scenarios, changelog entries and checker scripts?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality, and where could a repository keep its own quality configuration without forking the hub? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:41]",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What does the quality gate catch, cost and miss, judged from its own benchmark reports, playbook scenarios, changelog entries and checker scripts? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:39]",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should sk-code-quality hand off to verify, debug and sk-code-review, and where should the boundary between the quality and review checklists sit? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:40]",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:42]",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should sk-code-quality hand off to verify, debug and sk-code-review, and where should the boundary between the quality and review checklists sit? The handoff portion is addressed here; the checklist boundary remains open. [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:40] `How should sk-code-quality hand off to verify, debug and sk-code-review`",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality, and where could a repository keep its own quality configuration without forking the hub? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:41] `How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality`",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:42] `Which behaviors may no recommendation relax`",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages? [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:42] `[ ] Which behaviors may no recommendation relax, and how would a later change to sk-code-quality be proven through both routing stages?`",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Rank 4's envelope half — whether `checker_outputs` still admits `N/A` — was **NOT TESTED** this iteration; only the workflow sentence at `SKILL.md:135` was opened.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The checklist boundary between quality and review remains open, as recorded in iterations 5 and 11.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which manifest name and merge rule should a repository without a surface packet use? The operator's decision, and rank 10 waits on it.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where should the boundary between the quality and review checklists sit? Carried from iterations 5 and 11; untouched here.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the house-style P0 items stay P0 for this repository's own `.js` files? The operator's decision, and rank 1 waits on it.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Who consumes the `code-quality/v1` schema id outside this repository, and would a gitignored local skill that parses it be invisible to a token-literal search? (open question 5, narrowed here)",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Who consumes the `code-quality/v1` schema id outside this repository? Narrowed in iteration 13; unchanged here.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What does the CI surface do once selected alone? Whether its packet carries procedural guidance that lets an agent fix a workflow, or only reference material, is unread. (new, from the rank 8 leg-B replay)",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a stage-two intent match a `yagni` or `simplify` prompt, and which instrument can observe it? The keyword comparison says no; no runtime replay has shown it. (open question 4, stage-two half)",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of `ROUTER.md`'s two CODE_QUALITY lists is authoritative — the prose row at line 54 or the keyword row at line 243? Rank 12's fix depends on the answer.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Which of `ROUTER.md`'s two CODE_QUALITY lists is authoritative — the prose row or the keyword row?** Rank 12's fix depends on it, and iteration 14 showed the disagreement is inside one file as much as across two stages.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Who consumes the `code-quality/v1` schema id outside this repository?** Unchanged since iteration 13.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Where should the boundary between the quality and review checklists sit?** Open since iterations 5 and 11, untouched in 12, 13 and here.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does the CI packet carry procedural guidance, or only reference material?** Iteration 14 opened this; it now decides my rank 1. A packet that can only inform cannot act as the workflow primary a \"fix this workflow\" prompt needs.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does a stage-two intent match a `yagni` or `simplify` prompt, and which instrument observes it?** Stage one is confirmed by replay; stage two remains UNKNOWN at runtime.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**NEW — is the `.opencode/specs/` key duplicated anywhere beyond the two sites found here?** Two were found by reading the map and the tier table; a token search across the packet would settle whether a third exists.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**NEW — does any shared-doctrine instruction tell quality to run the dist checker with `--all`?** Rank 14 attributes `--all` to the session-start hook. I did not open that hook, so the attribution is **NOT TESTED**.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-derived-relative-dependency-graph-relative-links-are-portable-when-the-linked-tr",
+      "text": "**DERIVED — Relative dependency graph:** Relative links are portable when the linked tree moves with them. The packet links into the sk-code hub, sk-code-skilled, system-spec-kit and shared references; the scripts README points to hook adapters outside the skill folder. A standalone copy therefore needs a declared dependency contract or packaged shared resources. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:287] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:295] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:300] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/README.md:13] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/README.md:26] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/README.md:27]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-observed-checker-portability-the-comment-checker-takes-explicit-file-inputs-but-",
+      "text": "**OBSERVED — Checker portability:** The comment checker takes explicit file inputs, but its guidance points into `.skilled`. The dist checker permits `HOOK_FLAGS_CONFIG` to relocate its flags file, while its shared checker path and root discovery still assume the current `.skilled` layout. The first checker has a more portable invocation surface; the second exposes one narrow configuration seam, not a general layout setting. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:5] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:15] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:31] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:74] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:88] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:97]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-observed-historical-benchmark-path-a-stored-benchmark-source-map-and-json-report",
+      "text": "**OBSERVED — Historical benchmark path:** A stored benchmark source map and JSON report record an absolute `.opencode/skills/sk-code/code-quality` path from one developer checkout. That output is not relocatable; future benchmark outputs should use a repository-relative path or a root placeholder. [SOURCE: .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/source.md:11] [SOURCE: .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json:9]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-observed-host-integration-paths-the-quality-mode-maps-skilled-skills-skilled-age",
+      "text": "**OBSERVED — Host integration paths:** The quality mode maps `.skilled/skills/`, `.skilled/agents/` and `.skilled/commands/` to sibling checklists, and maps `.opencode/specs/` to system-spec-kit. Its live comment enforcement names Claude settings, `.skilled` Git hook installation and a `.github` workflow. These paths are repository and host integrations. Keep them in optional adapters around shared quality rules. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:102] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:105] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:129] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:130] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:131]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-inferred-the-smallest-portable-core-is-a-surface-neutral-p0-p1-p2-baseline-an-ex",
+      "text": "**INFERRED:** The smallest portable core is a surface-neutral P0/P1/P2 baseline, an explicit changed-file list and checkers that receive those paths. Keep host hooks, .skilled path maps, distribution checks and language-specific authoring rules as optional adapters. The current always-loaded checklist identifies JavaScript and CSS standards, so copying it wholesale would not create a general repository core. A later smoke run in a repository with no .skilled tree would confirm whether the intake and portable subset work without hub paths. [INFERENCE: based on the UNKNOWN contract, quality resource map and checker inputs] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:25] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:87] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:99] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:5] [SOURCE: .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:31]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-observed-the-comment-checker-accepts-explicit-file-paths-and-uses-python-standar",
+      "text": "**OBSERVED:** The comment checker accepts explicit file paths and uses Python standard-library modules. It recognizes TypeScript, JavaScript, Python, shell and JSONC extensions. An unsupported extension returns the skipped status, so that result cannot count as a clean quality pass. The distribution-staleness checker calls a fixed helper under .skilled and derives the repository root from that layout. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:5] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:17] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:35] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:48] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:74] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:85]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-observed-the-detector-reserves-skilled-for-a-current-directory-or-changed-target",
+      "text": "**OBSERVED:** The detector reserves SKILLED for a current directory or changed/target file whose resolved real path lands inside the hub's .skilled directory. A generic root package.json with no .skilled target is UNKNOWN, and the detection table says no standards apply until the surface is clarified. The router asks which surface applies, which paths are changing, which verification command proves the claim and whether a new route should be planned. [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:25] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:36] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:89] [SOURCE: .skilled/skills/sk-code/ROUTER.md:182] [SOURCE: .skilled/skills/sk-code/ROUTER.md:193]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-observed-the-quality-mode-consumes-the-parent-router-s-surface-result-its-machin",
+      "text": "**OBSERVED:** The quality mode consumes the parent router's surface result. Its machine-readable sequence enters UNKNOWN_FALLBACK when no routable target path is available. The documented workflow still requires its general quality checklist, comment-hygiene checks for changed comment-capable files and P0/P1/P2 author checks. Surface-specific checklists load only for listed target families. A repository with no known surface therefore reaches clarification, not a generic stack-specific checklist. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:57] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:87] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:95] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:112] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:161] [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:179]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-observed-the-strategy-s-next-focus-still-points-to-a-historical-benchmark-path-f",
+      "text": "**OBSERVED:** The strategy's Next Focus still points to a historical benchmark-path follow-up. This conflicts with the active dispatch focus, so this iteration followed the dispatch and retained benchmark coverage for the next iteration. [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:127]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-derived-ceiling-report-discovery-with-no-arguments-the-report-uses-git-to-locate",
+      "text": "**DERIVED — Ceiling report discovery:** With no arguments, the report uses Git to locate the checkout from the script path and enumerate tracked files. With explicit file arguments, it bypasses Git discovery and tracked-file filtering, but every path must exist and must not be a directory. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh:5] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh:150] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh:163] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh:187]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        ".skilled/hooks/post-edit-quality/README.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-derived-comment-hygiene-inputs-the-checker-is-a-python-3-program-that-takes-one-",
+      "text": "**DERIVED — Comment hygiene inputs:** The checker is a Python 3 program that takes one or more explicit file paths and opens those files directly. It does not discover a repository root. It handles TS, TSX, JS, MJS, CJS, Python, shell and JSONC files. It skips dist, node_modules, .git, .vitest.js and unknown extensions. If every input is skipped, it exits 2, which means no file was checked rather than a clean pass. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:5] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:24] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:35] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:215]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        ".skilled/hooks/post-edit-quality/README.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-derived-dist-freshness-prerequisites-the-wrapper-needs-python-3-node-and-the-fix",
+      "text": "**DERIVED — Dist freshness prerequisites:** The wrapper needs Python 3, Node and the fixed helper at .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs. It looks for that helper under the current directory, then derives a repository root from its own script path. The helper has a fixed registry of packages under .skilled. It considers a package provisioned only when package.json and node_modules exist. Without them, freshness cannot be assessed or rebuilt. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:74] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:85] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:100] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:36] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:173] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:182]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        ".skilled/hooks/post-edit-quality/README.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md"
+      ]
+    },
+    {
+      "id": "finding-3-4-derived-existing-settings-seam-of-these-three-checkers-dist-freshness-is-the-onl",
+      "text": "**DERIVED — Existing settings seam:** Of these three checkers, dist freshness is the only one with a settings-file reader. HOOK_FLAGS_CONFIG selects that file. Otherwise the checker looks for .skilled/hooks/hook-flags.env. Environment values override file values, and file-read errors produce an empty config. The hook README says the default file is gitignored and copied from hook-flags.env.example. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:28] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:57] [SOURCE: .skilled/hooks/post-edit-quality/README.md:109] [SOURCE: .skilled/hooks/post-edit-quality/README.md:119]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        ".skilled/hooks/post-edit-quality/README.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md"
+      ]
+    },
+    {
+      "id": "finding-3-6-derived-focus-mismatch-the-strategy-s-next-focus-names-the-no-relaxation-and-pro",
+      "text": "**DERIVED — Focus mismatch:** The strategy's Next Focus names the no-relaxation and proof question, while its frozen angle order assigns checker portability to iteration 3. The supplied dispatch agrees with the frozen order, so this iteration followed Angle 3 and records the mismatch. [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:130] [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:155]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        ".skilled/hooks/post-edit-quality/README.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md"
+      ]
+    },
+    {
+      "id": "finding-3-5-inferred-shared-repository-policy-a-repository-can-keep-the-existing-dist-hook-s",
+      "text": "**INFERRED — Shared repository policy:** A repository can keep the existing dist hook switches in .skilled/hooks/hook-flags.env when it uses this hub, or point HOOK_FLAGS_CONFIG at a repository-owned file. That setting does not configure comment-hygiene rules or ceiling-report policy. A shared repo-local quality policy therefore needs a configuration path that all intended checkers consume. A fixture repository without .skilled, exercised with explicit-file inputs, would confirm how much standalone behavior works outside the hub layout. [INFERENCE: the config reader exists only in the dist checker, while the other two expose file arguments but no settings reader] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:28] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:5] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh:5]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        ".skilled/hooks/post-edit-quality/README.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-001.md",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/iterations/iteration-002.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-derived-automated-coverage-is-scoped-and-uneven-comment-hygiene-checks-explicit-",
+      "text": "**DERIVED: Automated coverage is scoped and uneven. Comment hygiene checks explicit files for supported extensions, skips excluded or unknown inputs, and returns 2 when every input was skipped; dist freshness checks the owning package per edited file, offers --all for broader coverage, and always exits 0 while printing warnings. The optional ceiling report scans tracked code when called without paths but exits 0 regardless of findings. Thus a skipped comment check must not be read as clean, and the ceiling report is an on-demand debt inventory rather than routine gate work. Measured runtime and operator time remain UNKNOWN. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:5] `check-comment-hygiene.sh <file> [<file>...]` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:10] `2 — every file was skipped` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:48] `Unknown extension — skip silently` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:224] `sys.exit(0 if 0 in codes else 2)` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:9] `Always exits 0.` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:13] `default (single-file) mode is intentionally edited-file-scoped` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:91] `exits 0 because it reports and does not gate`**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-derived-the-playbook-can-catch-routing-or-resource-map-drift-but-it-does-not-mea",
+      "text": "**DERIVED: The playbook can catch routing or resource-map drift, but it does not measure quality-check behavior. Its sole scenario passes when expected resource paths exist and the frontmatter intent matches QUALITY; its evidence is a transcript, frontmatter, and router excerpt, with no violating code fixture or P0/P1/P2 outcome. [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:19] `Totals: 1 scenario, 1 category.` [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:29] `PASS when every path in expected_resources resolves` [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md:72] `Commands` [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md:84] `Command transcript from steps 1-3`**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-derived-the-saved-benchmark-evidence-establishes-routing-not-the-quality-gate-s-",
+      "text": "**DERIVED: The saved benchmark evidence establishes routing, not the quality gate’s defect catch rate or runtime cost. The live report scores one text-executor scenario; CQ-001 is a routing case, while D4 usefulness and its task-outcome signal are unscored. Catch rate, miss rate, and elapsed gate cost remain UNKNOWN; a future timed run with clean and deliberately failing changed-file cases would resolve them. [SOURCE: .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:9] `Scored (text executors): 1` [SOURCE: .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:20] `D4 usefulness | 25pts | _unscored-mode-a_` [SOURCE: .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:27] `unscored (run --d4 in live mode)` [SOURCE: .skilled/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:42] `CQ-001 | routing | 100/100 | passed`**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-observed-the-changelog-records-concrete-misses-later-corrected-the-dist-switch-r",
+      "text": "**OBSERVED: The changelog records concrete misses later corrected: the dist switch reader mishandled inline comments and a UTF-8 BOM; quality documentation pointed to two hooks that were not installed; and Obsidian targets reached the gate without a checklist. These are documented examples of configuration, enforcement, and surface-coverage gaps, though they do not quantify recurrence. [SOURCE: .skilled/skills/sk-code/sk-code-quality/changelog/v1.0.1.0.md:23] `used to read as 1 # note and leave the check on` [SOURCE: .skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md:16] `Neither is installed.` [SOURCE: .skilled/skills/sk-code/sk-code-quality/changelog/v1.2.0.0.md:16] `reached the gate with nothing to load`**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-observed-the-dispatched-focus-is-angle-4-matching-the-frozen-angle-order-while-t",
+      "text": "**OBSERVED: The dispatched focus is Angle 4, matching the frozen angle order, while the reducer-owned Next Focus still points to the final no-relaxation and proof question. I followed the supplied Angle 4 focus and recommend Angle 5, handoff to verify and debug, next. [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:130] `Which behaviors may no recommendation relax` [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:156] `4 | Usefulness evidence` [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:157] `5 | Handoff to verify and debug`**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-derived-an-unsupported-surface-has-no-documented-automatic-workflow-fallback-the",
+      "text": "**DERIVED — An unsupported surface has no documented automatic workflow fallback.** The hub's shared doctrine is carried by its surfaces, while verification requires the active surface and asks for the command set if the surface is unsupported or ambiguous. The UNKNOWN route applies no standards until clarified. Therefore, when a surface has no workflow document, the supported next step is to resolve the surface and verification command set before making a completion claim. [SOURCE: .skilled/skills/sk-code/SKILL.md:41] `is symlinked into each surface so the active surface carries the full workflow` [SOURCE: .skilled/skills/sk-code/shared/references/workflow-verify.md:53] `ask for the verification command set before claiming anything` [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:28] `No standards applied until clarified`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-inferred-no-explicit-active-tree-parser-is-documented-the-exact-token-search-acr",
+      "text": "**INFERRED — No explicit active-tree parser is documented.** The exact-token search across the active agent, command, deep-loop, and sk-code trees found only the producer declaration. The producer names the orchestrator or surface workflow as the request context, but no active consumer contract says who parses the fields or what action a parser takes. An explicit workflow or agent input contract for `code-quality/v1` would confirm a machine consumer. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:207] `When the orchestrator or surface workflow requests structured evidence` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:210] `CODE_QUALITY_RESULT v1`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-observed-review-is-a-separate-findings-first-route-not-the-quality-handoff-s-ver",
+      "text": "**OBSERVED — Review is a separate findings-first route, not the quality handoff's verifier.** Quality directs a requested review report to `sk-code-review`; the review packet says author-side quality gates precede review and loads its own code-quality checklist. This pass confirms separate ownership but does not compare the checklist contents in depth. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:199] `If the requested output is a review report, use sk-code-review` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:43] `Author-side quality gates before review; use sk-code-quality` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:99] `assets/code-quality-checklist.md`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-observed-the-envelope-is-request-triggered-and-advisory-it-does-not-carry-comple",
+      "text": "**OBSERVED — The envelope is request-triggered and advisory; it does not carry completion authority.** The producer appends it after prose when an orchestrator or surface workflow asks for structured evidence, names `workflow-verify.md` in the handoff field, and fixes its status to advisory. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:207] `When the orchestrator or surface workflow requests structured evidence` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:219] `verification_handoff: workflow-verify.md` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:223] `This envelope is advisory and additive only`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-observed-the-prose-handoff-chooses-debugging-or-verification-by-the-failure-stat",
+      "text": "**OBSERVED — The prose handoff chooses debugging or verification by the failure state.** An unclear runtime failure goes to the surface debugging workflow with the observed command, output, and failing target; once P0 items are clear, the next step is the surface verification workflow. Debugging then returns repaired work through quality and verification. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:186] `hand to the surface's debugging workflow` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:187] `hand to the surface's verification workflow` [SOURCE: .skilled/skills/sk-code/shared/references/workflow-debug.md:24] `sends the result back through quality and verification`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-derived-mode-priority-and-resource-loading-are-separate-routing-controls-the-hub",
+      "text": "**DERIVED — Mode priority and resource loading are separate routing controls.** The hub selects the workflow mode; the second-stage ROUTER maps intent to resources. Its CODE_QUALITY set includes shared and language checklists as well as the review checklist. Separately, the hub configuration lists sk-code-quality before sk-code-review in tieBreak and defines ordered bundles for clearly separate intents. The shared resource set therefore does not erase the modes’ lifecycle boundary; the configured ordering gives quality precedence when the router needs a tie-break, while distinct intents can remain an ordered bundle. [SOURCE: .skilled/skills/sk-code/SKILL.md:54] `hub then picks the mode. Stage two lives in root ROUTER.md` [SOURCE: .skilled/skills/sk-code/ROUTER.md:280] `\"CODE_QUALITY\": [` [SOURCE: .skilled/skills/sk-code/ROUTER.md:281] `shared/references/universal/code-quality-standards.md` [SOURCE: .skilled/skills/sk-code/ROUTER.md:292] `sk-code-review/assets/code-quality-checklist.md` [SOURCE: .skilled/skills/sk-code/hub-router.json:7] `\"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-ci\", \"sk-code-skilled\"]` [SOURCE: .skilled/skills/sk-code/hub-router.json:10] `\"orderedBundle\": \"clearly separate code intents route to an ordered workflow-mode list\"`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-derived-the-checklists-overlap-by-design-with-a-baseline-and-overlay-relationshi",
+      "text": "**DERIVED — The checklists overlap by design, with a baseline-and-overlay relationship.** The quality checklist validates implementation style and explicitly says to use the review mode as the formal-review baseline while carrying the checklist as a web overlay. The review checklist covers non-security defects with production impact and prioritizes silent-failure and data-corruption risks over style. So the checklists should not be treated as mutually exclusive: the author gate owns scoped corrections, while review owns findings and can use surface-specific quality guidance as overlay evidence. [SOURCE: .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:20] `Validate code against style standards before claiming implementation is complete` [SOURCE: .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:40] `use this checklist as the web overlay` [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:25] `systematic pass for non-security defects` [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:33] `silent-failure and data-corruption risks above stylistic concerns`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-observed-the-modes-own-different-lifecycle-outputs-the-quality-mode-runs-after-i",
+      "text": "**OBSERVED — The modes own different lifecycle outputs.** The quality mode runs after implementation and before verification, owns the author-side quality gate, and may fix scoped gate failures. The review mode is explicitly findings-first and review-only; the quality mode directs formal review reports to it. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:15] `runs after the surface skill (sk-code-skilled) implements changes and before the surface's verification workflow or done-claim` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:43] `owns the quality gate, not implementation planning, debugging, verification evidence, or formal review reporting` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:33] `Review-only pass: findings-first output with no code edits` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:43] `Author-side quality gates before review; use sk-code-quality`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-derived-surface-packets-can-own-their-intent-to-resource-map-and-checklist-asset",
+      "text": "**DERIVED:** Surface packets can own their intent-to-resource map and checklist assets. The SKILLED surface includes universal and language checklists in CODE_QUALITY. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:95] `\"CODE_QUALITY\": [` [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:96] `assets/checklists/universal-checklist.md` The CI surface maps CI_WORKFLOW to workflow rule references. [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:64] `RESOURCE_MAP = {` [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:66] `references/ci-workflow-standards.md` The parent router loads the detected surface's slice and defers assets/checklists to on-demand. [SOURCE: .skilled/skills/sk-code/ROUTER.md:389] `only the **detected surface's** slice` [SOURCE: .skilled/skills/sk-code/ROUTER.md:391] `checklists, recipes, templates` The registry describes surface packets as read-only evidence bundles. [SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `Declares the SURFACE axis`",
+      "addedAtIteration": 7,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:77] `select target-path authoring checklist`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:167] `get_routing_key() from target path`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:95] `\"CODE_QUALITY\": [`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:64] `RESOURCE_MAP = {`",
+        "[SOURCE: .skilled/skills/sk-code/ROUTER.md:391] `checklists, recipes, templates`",
+        "[SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `Declares the SURFACE axis`",
+        "[SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:41] `How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality`"
+      ]
+    },
+    {
+      "id": "finding-7-3-inferred-the-inspected-contracts-expose-no-repository-local-checklist-configurat",
+      "text": "**INFERRED:** The inspected contracts expose no repository-local checklist configuration key. The quality workflow names a fixed target-path map, while the registry's surface declaration covers packet identity and bundling. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:112] `Target-Path Checklist Map` [SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `Declares the SURFACE axis` A repository-owned surface packet is a plausible home for local policy under its assets/checklists/ directory, with a resource-map entry that the quality workflow can consume. Automatic selection needs an explicit lookup contract. A user-authored surface fixture passed through both routing stages would confirm the proposed extension.",
+      "addedAtIteration": 7,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:77] `select target-path authoring checklist`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:167] `get_routing_key() from target path`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:95] `\"CODE_QUALITY\": [`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:64] `RESOURCE_MAP = {`",
+        "[SOURCE: .skilled/skills/sk-code/ROUTER.md:391] `checklists, recipes, templates`",
+        "[SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `Declares the SURFACE axis`",
+        "[SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:41] `How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality`"
+      ]
+    },
+    {
+      "id": "finding-7-1-observed-the-quality-workflow-first-resolves-the-surface-and-phase-then-selects-",
+      "text": "**OBSERVED:** The quality workflow first resolves the surface and phase, then selects an authoring checklist from the target path. Its machine-readable call sequence uses the target path to select the path-keyed checklist. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:77] `select target-path authoring checklist` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:167] `get_routing_key() from target path` The explicit map names .skilled/skills/, .skilled/agents/, .skilled/commands/, MCP server sources, .opencode/specs/ and OpenCode language/config files. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:112] `Target-Path Checklist Map` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:116] `.skilled/skills/` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:121] `OpenCode language/config files`",
+      "addedAtIteration": 7,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:77] `select target-path authoring checklist`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:167] `get_routing_key() from target path`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:95] `\"CODE_QUALITY\": [`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:64] `RESOURCE_MAP = {`",
+        "[SOURCE: .skilled/skills/sk-code/ROUTER.md:391] `checklists, recipes, templates`",
+        "[SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `Declares the SURFACE axis`",
+        "[SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:41] `How should a surface packet or a user-authored workflow or surface mode plug into sk-code-quality`"
+      ]
+    },
+    {
+      "id": "finding-8-3-derived-an-evidence-only-user-mode-should-attach-to-sk-code-quality-as-a-read-on",
+      "text": "**DERIVED:** An evidence-only user mode should attach to sk-code-quality as a read-only surface while quality remains the acting workflow. The sk-code router defines surfaceBundle as one primary workflow plus read-only surface evidence. In the eleven-row integration matrix, row 4 carries the mode’s stage-two intent and resource map. Rows 1–3 register and route the mode, while rows 6–11 cover the applicable advisor, human, doctor, manifest, projection and command surfaces. No one row completes integration because every surface that applies to the mode’s routing class must carry it. [SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets as read-only evidence` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:217] `A mode is integrated when every surface that applies to its class carries it.` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:226] `The mode is selected but loads no leaves.`",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:182] `new capability changes the process the assistant follows`",
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:226] `The mode is selected but loads no leaves.`",
+        "[SOURCE: .skilled/repo-rules/skill-hub-routing.md:54] `routing runs in two stages`",
+        "[SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets as read-only evidence`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative.`"
+      ]
+    },
+    {
+      "id": "finding-8-4-inferred-the-current-quality-contract-does-not-establish-automatic-loading-of-an",
+      "text": "**INFERRED:** The current quality contract does not establish automatic loading of an arbitrary user-mode-owned quality checklist. It maps .skilled/skills/ targets to the generic skill-authoring checklist, then selects by target path and calls that map authoritative. Therefore, registering or bundling a surface does not by itself prove that the quality gate consumes its custom checklist. A user-authored fixture routed through both stages would confirm the missing lookup behavior or show an existing path. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:116] `../sk-code-skilled/assets/checklists/skill-authoring.md` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:167] `get_routing_key() from target path` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative.` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:255] `compiled-route.cjs --hub <hub> --prompt`",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:182] `new capability changes the process the assistant follows`",
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:226] `The mode is selected but loads no leaves.`",
+        "[SOURCE: .skilled/repo-rules/skill-hub-routing.md:54] `routing runs in two stages`",
+        "[SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets as read-only evidence`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative.`"
+      ]
+    },
+    {
+      "id": "finding-8-1-observed-a-user-authored-packet-is-a-workflow-when-it-changes-the-assistant-s-pr",
+      "text": "**OBSERVED:** A user-authored packet is a workflow when it changes the assistant’s process, lifecycle or order of work. It is a surface when it contributes read-only domain evidence to an existing workflow. The sk-code registry follows this split: quality is a workflow and SKILLED/CI are surfaces. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:182] `new capability changes the process the assistant follows` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:195] `It is read-only reference material for a domain, stack, platform, or runtime.` [SOURCE: .skilled/skills/sk-code/mode-registry.json:5] `The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-ci/sk-code-skilled) is read-only domain evidence.`",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:182] `new capability changes the process the assistant follows`",
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:226] `The mode is selected but loads no leaves.`",
+        "[SOURCE: .skilled/repo-rules/skill-hub-routing.md:54] `routing runs in two stages`",
+        "[SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets as read-only evidence`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative.`"
+      ]
+    },
+    {
+      "id": "finding-8-2-observed-sk-code-quality-already-runs-at-phase-1-5-after-implementation-and-befo",
+      "text": "**OBSERVED:** sk-code-quality already runs at Phase 1.5, after implementation and before debugging and verification. Its workflow loads a target-path checklist, applies P0/P1/P2 checks and hands broader behavior design back to the surface skill. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:75] `Phase 1.5 Code Quality Gate runs here` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:181] `load the target-path checklist` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:185] `hand back to the surface skill`",
+      "addedAtIteration": 8,
+      "sources": [
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:182] `new capability changes the process the assistant follows`",
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:226] `The mode is selected but loads no leaves.`",
+        "[SOURCE: .skilled/repo-rules/skill-hub-routing.md:54] `routing runs in two stages`",
+        "[SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets as read-only evidence`",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative.`"
+      ]
+    },
+    {
+      "id": "finding-9-4-derived-a-repository-owned-surface-packet-can-hold-reusable-domain-checklists-wi",
+      "text": "**DERIVED — A repository-owned surface packet can hold reusable domain checklists, with the local manifest pointing to those files.** The hub can bundle a surface as read-only evidence, but sk-code-quality still treats its own target-path map as authoritative, so automatic selection needs an explicit adapter from target path to packet checklist. This costs more setup than one flat manifest, and fits policies reused across several projects better. [SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-derived-for-private-or-operator-only-rules-the-private-surface-precedent-stores-",
+      "text": "**DERIVED — For private or operator-only rules, the private-surface precedent stores standalone local-* skills behind gitignored symlinks to local-skills/ repositories and routes them only through the operator's local advisor.** Such a skill can own private checklist content, but it needs external-repository and symlink setup and does not by itself make sk-code-quality select that checklist by target path. [SOURCE: specs/sk-code/013-private-surface-skills/spec.md:69] `gitignored symlinks to` [SOURCE: specs/sk-code/013-private-surface-skills/spec.md:69] `Only the operator's local skill advisor routes them` [SOURCE: specs/sk-code/013-private-surface-skills/spec.md:121] `Two gitignored symlinks` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-derived-the-shared-hub-is-a-poor-place-for-repository-specific-quality-settings-",
+      "text": "**DERIVED — The shared hub is a poor place for repository-specific quality settings: its router selects workflow modes and bundles surface packets as read-only evidence, while its registry defines workflow and surface axes. Editing those files for one repository would couple local checklist policy to shared routing and create a hub fork to maintain.** [SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets as read-only evidence` [SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `packetKind:'surface' entries are read-only domain-evidence packets` [SOURCE: .skilled/skills/sk-code/mode-registry.json:5] `The WORKFLOW axis (sk-code-quality/sk-code-review) is process;`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-inferred-the-lightest-no-fork-extension-is-an-optional-repository-root-manifest-",
+      "text": "**INFERRED — The lightest no-fork extension is an optional repository-root manifest such as .code-quality.json.** It could map repository-relative target patterns to repository-relative checklist files and add local artifact-label patterns while leaving the built-in map and patterns as defaults. This is a proposal, not a current feature. Its cost is a schema and loader, path and pattern validation, clear merge and failure rules, checks that the quality workflow and comment checker read the same file, plus per-repository maintenance. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:116] `../sk-code-skilled/assets/checklists/skill-authoring.md` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:160] `VIOLATION_PATTERNS = [`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-observed-sk-code-quality-declares-its-target-path-checklist-map-inside-skill-md-",
+      "text": "**OBSERVED — sk-code-quality declares its target-path checklist map inside SKILL.md and says that map remains authoritative; the comment checker stores artifact-label violations in a literal VIOLATION_PATTERNS list.** [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:112] `### Target-Path Checklist Map` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:171] `The target-path checklist map remains authoritative` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:160] `VIOLATION_PATTERNS = [`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-derived-a-routing-change-needs-evidence-at-the-advisor-to-hub-boundary-and-insid",
+      "text": "**DERIVED:** A routing change needs evidence at the advisor-to-hub boundary and inside the hub. The routing rule assigns the first boundary to the advisor reading graph-metadata and the second to hub-router.json plus root ROUTER.md [SOURCE: .skilled/repo-rules/skill-hub-routing.md:58] `One | the advisor, reading the hub's graph-metadata.json | the hub |` [SOURCE: .skilled/repo-rules/skill-hub-routing.md:59] `Two | the hub's hub-router.json and root ROUTER.md | the mode, then its leaves |`. The hub documents hub-router.json as mode selection and ROUTER.md as leaf selection [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:132] `hub-router.json selects a workflow mode. The root ROUTER.md then owns stage-two leaf selection`; the live quality signal declares quality classes and the quality skill resource [SOURCE: .skilled/skills/sk-code/hub-router.json:21] `\"sk-code-quality\": {` [SOURCE: .skilled/skills/sk-code/hub-router.json:24] `\"resources\": [\"sk-code-quality/SKILL.md\"]`, while ROUTER.md maps intent to packet-local leaf resources [SOURCE: .skilled/skills/sk-code/ROUTER.md:3] `this doc maps a request's code intent to the exact packet-local leaf resources`. For a future change, run the per-hub checker with .skilled/skills/sk-code, then send the same real quality request through skill_advisor.py and compiled-route.cjs; confirm the advisor surfaces sk-code and the compiled route selects sk-code-quality with the intended leaf resources. A green presence check alone is insufficient [SOURCE: .skilled/repo-rules/skill-hub-routing.md:76] `A green gate is not integration.` The documented replay commands and explicit hub argument are [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:245] `parent-skill-check.cjs .skilled/skills/<hub>` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:255] `compiled-route.cjs --hub <hub> --prompt` [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:256] `skill_advisor.py \"<same request>\" --threshold 0.5`.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-config.json",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-state.jsonl",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+        ".skilled/repo-rules/skill-hub-routing.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md"
+      ]
+    },
+    {
+      "id": "finding-10-2-observed-the-existing-script-tests-use-focused-fixtures-for-checker-behavior-com",
+      "text": "**OBSERVED:** The existing script tests use focused fixtures for checker behavior: comment hygiene rejects temporary labels and accepts allowed standards or ordinary comments [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh:39] `run_case 1 \"rc_ref\" \"js\" \"// RC-2 x\"` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh:50] `run_case 0 \"cwe_allowed\" \"js\" \"// CWE-79\"`; typo-flag cases exercise invalid options [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh:71] `run_case \"check-dist-staleness.sh rejects a misspelled --bogus-xyz flag\"`; and ceiling-report fixtures distinguish measurable markers from no-trigger/no-signal cases and invalid inputs [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh:82] `run_case \"measurable\" \"js\"` [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh:88] `expect_exit 2 \"missing_path\"`. These tests can protect the specific checker behavior a future change touches; route reachability needs its own replay.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-config.json",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-state.jsonl",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+        ".skilled/repo-rules/skill-hub-routing.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md"
+      ]
+    },
+    {
+      "id": "finding-10-1-observed-the-packet-explicitly-protects-the-p0-floor-the-quality-mode-s-lack-of-",
+      "text": "**OBSERVED:** The packet explicitly protects the P0 floor, the quality mode’s lack of Write and Task authority, and the advisory-only status of CODE_QUALITY_RESULT. [SOURCE: specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md:51] `- Relaxing the P0 floor, the missing Write and Task authority, or the advisory-only status of the CODE_QUALITY_RESULT envelope.` The mode contract makes P0 completion-blocking [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:193] `Blocks completion until fixed or escalated.`, forbids file creation and subagent dispatch [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:242] `Never create new files; this mode has no Write authority.` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:243] `Never dispatch subagents; this mode has no Task authority.`, forbids completion claims [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:244] `Never make completion, done, works, or passing claims`, and keeps the result envelope advisory [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:223] `status is fixed to advisory and MUST NOT be pass, success, or done.` P1 acceptance remains explicit and documented, while P2 may be deferred with a stated safety reason [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:194] `unless the user accepts a documented risk.` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:195] `document the deferral and why it is safe.`",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-config.json",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-state.jsonl",
+        "specs/sk-code/014-code-modes-research/001-quality-mode-research/research/deep-research-strategy.md",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+        ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.test.sh",
+        ".skilled/repo-rules/skill-hub-routing.md",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-a049292a2c67",
+      "text": "No implementation or checklist authoring was attempted because this is a research iteration.",
+      "contentHash": "a049292a2c67",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-09dd801e4adf",
+      "text": "No network research was attempted because the strategy's non-goals prohibit it.",
+      "contentHash": "09dd801e4adf",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-0f6ab354ade8",
+      "text": "No implementation or quality-checklist authoring was attempted because this is a research iteration.",
+      "contentHash": "0f6ab354ade8",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-1665215d2fb6",
+      "text": "No network research was attempted because the strategy lists network fetching as a non-goal.",
+      "contentHash": "1665215d2fb6",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9aa7b51f536b",
+      "text": "**Re-deriving the rankings from scratch.** Ruled out: this iteration's mandate is claim verification, and a fresh ranking would duplicate the first pass without adding an independent check.",
+      "contentHash": "9aa7b51f536b",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-369c2fbef071",
+      "text": "**Treating the absence of a generator reference as proof the map is hand-kept.** Ruled out as proof; recorded as DERIVED instead, because a generator could live outside the read range.",
+      "contentHash": "369c2fbef071",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-9f33ef4fa99f",
+      "text": "Re-deriving the rankings from scratch — out of scope, and already recorded as blocked in iteration 11.",
+      "contentHash": "9f33ef4fa99f",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-c3223711e926",
+      "text": "Testing installation by file existence alone: the `core.hooksPath` result shows it is not sufficient.",
+      "contentHash": "c3223711e926",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-389b0313afae",
+      "text": "Treating the single `.github` hit as proof quality names no workflow target at all: the enforcement-gate row does name one file, so the claim was narrowed to \"no `.github/` *checklist* target and no CI surface\" rather than \"no mention\".",
+      "contentHash": "389b0313afae",
+      "addedAtIteration": 12
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 29,
+    "keyFindings": 43,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {
+      "code": 56,
+      "other": 40
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/specs/sk-code/014-code-modes-research/001-quality-mode-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

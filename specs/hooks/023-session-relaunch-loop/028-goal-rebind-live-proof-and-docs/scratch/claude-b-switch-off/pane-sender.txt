@@ -1,0 +1,50 @@
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+✢ Julienning… (running Stop hooks… 4/5 · 25s · ↓ 296 tokens)
+                                                                                                                                                                                  ◎ /goal active (25s)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills/001-ignore-and-commit-guard"
     last_updated_at: "2026-10-23T10:34:19Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Landed guard, ignore rules and seven cases; commit 7648ae8b56 on origin/main"
+    next_safe_action: "Phase complete; continue in phase 002"
     blockers: []
     key_files:
       - ".gitignore"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-001-ignore-and-commit-guard"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,12 +60,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` exits 0 and its last line reads `pre-commit gates: 131 passed, 0 failed`.
-- [ ] `git check-ignore -v` names a rule for a private path under each of `.skilled`, `.hermes`, `.codex` and `.cursor`, and exits 0.
-- [ ] The hook refuses a staged `.skilled/skills/local-probe/SKILL.md` with exit 1, naming the path and `git rm --cached -r`.
-- [ ] The hook refuses a staged symlink and a staged gitlink named `local-*` with exit 1, and passes a renamed copy with exit 0.
-- [ ] `bash -n .skilled/scripts/git-hooks/pre-commit` exits 0, the guard sits before the comment-hygiene gate, and no `SPECKIT_SKIP_*` read and no `lib/gates.tsv` row exists for it.
-- [ ] The phase commit changes only `.gitignore`, `.skilled/scripts/git-hooks/pre-commit` and `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` outside `specs/`, and `git status --porcelain` is empty with HEAD equal to `origin/main`.
+- [x] `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` exits 0 and its last line reads `pre-commit gates: 131 passed, 0 failed`.
+- [x] `git check-ignore -v` names a rule for a private path under each of `.skilled`, `.hermes`, `.codex` and `.cursor`, and exits 0.
+- [x] The hook refuses a staged `.skilled/skills/local-probe/SKILL.md` with exit 1, naming the path and `git rm --cached -r`.
+- [x] The hook refuses a staged symlink and a staged gitlink named `local-*` with exit 1, and passes a renamed copy with exit 0.
+- [x] `bash -n .skilled/scripts/git-hooks/pre-commit` exits 0, the guard sits before the comment-hygiene gate, and no `SPECKIT_SKIP_*` read and no `lib/gates.tsv` row exists for it.
+- [x] The phase commit changes only `.gitignore`, `.skilled/scripts/git-hooks/pre-commit` and `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` outside `specs/`, and `git status --porcelain` is empty with HEAD equal to `origin/main`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,11 +82,11 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Planning documents rewritten for Level 3 on 2026-10-23 |
-| Anchor verification | Pending | T002 to T004 re-read the three insertion points at the phase base |
-| Guard and ignore rules | Pending | T006 and T007 |
-| Harness cases | Pending | T009 to T015, seven cases |
-| Harness and probes | Pending | T016 to T019 |
-| Review, validation, delivery | Pending | T022 to T027 |
+| Anchor verification | Done | T002 to T004 re-read the three insertion points at phase base `ac2be31e`; each anchor still unique, line numbers moved only where expected |
+| Guard and ignore rules | Done | T006 and T007: four rules, `git check-ignore -v` names all four; `bash -n` rc=0 and the guard sits before the comment-hygiene gate |
+| Harness cases | Done | T009 to T015: cases 74 to 80 all PASS in the current run |
+| Harness and probes | Done | T016 to T019: `pre-commit gates: 131 passed, 0 failed`; throwaway repo prints `BLOCKED [gate:private-skill]` with the path and repair; symlink probe names `/.skilled/skills/local-*` |
+| Review, validation, delivery | Done | T022 to T027: review `VERDICT: PASS` 94/100, `validate.sh --strict` `RESULT: PASSED`, commit `7648ae8b56` on `origin/main` |
 
 ### Deviations and findings
 

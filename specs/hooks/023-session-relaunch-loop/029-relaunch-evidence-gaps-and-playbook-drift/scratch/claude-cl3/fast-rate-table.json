@@ -1,0 +1,80 @@
+[
+ {
+  "trial": "trial-1",
+  "promptFill": 73842,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 73842,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":738.47}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "86.2",
+  "firstAttemptDelivered": false
+ },
+ {
+  "trial": "trial-2",
+  "promptFill": 72904,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 72904,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":729.09}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "85.3",
+  "firstAttemptDelivered": false
+ },
+ {
+  "trial": "trial-3",
+  "promptFill": 73119,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 73119,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":731.24}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "86.8",
+  "firstAttemptDelivered": false
+ },
+ {
+  "trial": "trial-4",
+  "promptFill": 73336,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 73336,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":733.41}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "85.8",
+  "firstAttemptDelivered": false
+ },
+ {
+  "trial": "trial-5",
+  "promptFill": 72856,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 72856,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":728.61}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "85.1",
+  "firstAttemptDelivered": false
+ },
+ {
+  "trial": "trial-6",
+  "promptFill": 72941,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 72941,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":729.46}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "85.9",
+  "firstAttemptDelivered": false
+ },
+ {
+  "trial": "trial-7",
+  "promptFill": 72991,
+  "postToolUseHooksInTurn": 1,
+  "firstPostFill": 72991,
+  "firstPostStale": true,
+  "firstPostNudgeState": "{\"level\":2,\"rearm\":{\"floor\":729.96}}",
+  "firstNudgeDeliveredBy": "UserPromptSubmit",
+  "firstNudgeSecondsAfterNotice": "87.0",
+  "firstAttemptDelivered": false
+ }
+]
+first-attempt deliveries: 0 of 7

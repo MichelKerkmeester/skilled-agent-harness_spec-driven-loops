@@ -39,7 +39,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,6 +49,7 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/scripts/git-hooks/README.md",
       ".skilled/scripts/git-hooks/lib/gates.tsv",
       ".skilled/scripts/git-hooks/lib/gate-config.sh",
       ".skilled/scripts/install-git-hooks.sh",
@@ -101,6 +102,12 @@
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The two surfaces that are about to become private skills have no safe place to live yet",
     "created_at": "2026-10-23T07:03:38Z",
-    "last_save_at": "2026-10-23T15:50:52.905Z",
+    "last_save_at": "2026-10-24T08:12:35.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be71f3ab5ff4f9e8421110a34c9442a50fafde55b1b15908d83ca4d90e514cf2",
+    "source_fingerprint": "sha256:0432f338eeccc03cf05b6d74bc990d8e566619ffdaef5f5a6b0cff37bbe97f9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e624d11a60d869ad0a6fd8381b604ae6fce6d6bf40222d7148ca2e8fe9f32b9",
-      "plan.md": "e1ce94b4f5bc49c5b9922dcdced4560352d66cec3bef4a2b89ce1c57696321af",
-      "tasks.md": "3cc7a59e57c903312ee7527caee8af85f49e8a6b49678f9ffbeb942b57728405",
+      "spec.md": "b2397c0d6be0e3b5fb223a88a9c3b4e099b9cc8c0cd1f05bb3ca03eca461925e",
+      "plan.md": "45c7aa0ec090ddab9ef97b76734ce2cf1b352795a73d2cfd3404a9e13f8d1844",
+      "tasks.md": "84467316196b6891ba327cb9e32a0f357640deaed8b5e4bfce0b082ca092ff10",
       "decision-record.md": "05c0e11c1b9c791d8a97be3783098484274958664af83e82e78497c9c59aa365",
-      "implementation-summary.md": "201532656f53067f69dbe97b4629f8e64844ca17eeea76a74a4a2f99d9bc7456"
+      "implementation-summary.md": "fe8dcd8d2b3955ff8392e6dcb2529a52bbcca50d2cda21515b1fac09ab6071b7"
     },
     "last_active_at": null
   }

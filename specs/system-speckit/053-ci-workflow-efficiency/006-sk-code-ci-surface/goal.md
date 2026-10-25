@@ -11,14 +11,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface"
-    last_updated_at: "2026-10-23T15:40:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
-    blockers:
-      - "004-setup-caching-provisioning has not landed; the composite-action rule records status: proposed"
-      - "specs/sk-code/013-private-surface-skills/002-hub-surface-removal edits the same registration files"
-      - "The worktree is not provisioned, so parent-skill-check leg 12-lib fails before this phase starts"
+    last_updated_at: "2026-10-24T22:10:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Closed the goal: all criteria ticked"
+    next_safe_action: "None; reopen only for a failing gate"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -29,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-006-sk-code-ci-surface"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -68,13 +65,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `test -f .skilled/skills/sk-code/sk-code-ci/SKILL.md && test -f .skilled/skills/sk-code/sk-code-ci/references/protected-set.md && test -L .skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md` exits `0`
-- [ ] `grep -c '"CI_WORKFLOW"' .skilled/skills/sk-code/ROUTER.md` returns `2`
-- [ ] `grep -c "'sk-code-ci'" .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` returns `2`
-- [ ] `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` exits `0` and its summary reads `pass 7` with `fail 0`
-- [ ] `grep -c 'intentional-exception' .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md` returns at least `1`, and `git diff --exit-code -- .github/workflows/message-contract.yml` exits `0`
-- [ ] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` exits `0` with `doc-claims: 4/4 checks passed`
-- [ ] `rg -c 'specs/' .skilled/skills/sk-code/sk-code-ci` exits `1` with no output
+- [x] `test -f .skilled/skills/sk-code/sk-code-ci/SKILL.md && test -f .skilled/skills/sk-code/sk-code-ci/references/protected-set.md && test -L .skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md` exits `0` [EVIDENCE: all three exited 0 on 2026-10-24]
+- [x] `grep -c '"CI_WORKFLOW"' .skilled/skills/sk-code/ROUTER.md` returns `2` [EVIDENCE: printed 2 on 2026-10-24]
+- [x] `grep -c "'sk-code-ci'" .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` returns `1` [EVIDENCE: printed 1 on 2026-10-24. The guard keeps one surface list, so the planned count of 2 was a planning error and the criterion now reads 1]
+- [x] `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` exits `0` and its summary reads `pass 8` with `fail 0` [EVIDENCE: exit 0, `tests 8`, `pass 8`, `fail 0` on 2026-10-24. The planned 7 grew to 8 when the routing amendment added the test that keeps non-CI prompts off the surface]
+- [x] `grep -c 'intentional-exception' .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md` returns at least `1`, and `git diff --exit-code -- .github/workflows/message-contract.yml` exits `0` [EVIDENCE: printed 2 and the diff exited 0 on 2026-10-24; the range diff from 028bd0f5cd~1 to HEAD also exits 0]
+- [x] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` exits `0` with `doc-claims: 4/4 checks passed` [EVIDENCE: exit 0 and the line `doc-claims: 4/4 checks passed` on 2026-10-24]
+- [x] `rg -c 'specs/' .skilled/skills/sk-code/sk-code-ci` exits `1` with no output [EVIDENCE: no output, exit 1 on 2026-10-24]
 <!-- /ANCHOR:completion -->
 
 ---
@@ -90,15 +87,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Plan authored | Done | `spec.md` (REQ-001 to REQ-010), `plan.md` (L3 dependency graph, critical path, milestones and decision summary), `tasks.md` (T001 to T068), `acceptance-criteria.md` (AC-001 to AC-012), `decision-record.md` (ADR-001 to ADR-010) |
-| Baseline | Pending | `scratch/phase-baseline.md` is not written |
-| Packet | Pending | `.skilled/skills/sk-code/sk-code-ci/` does not exist |
-| Registration | Pending | `mode-registry.json` declares three surfaces and no `sk-code-ci` entry |
-| Implementation | Pending | No file named by `tasks.md` has changed |
+| Plan authored | Done | `spec.md` (REQ-001 to REQ-010), `plan.md`, `tasks.md` (T001 to T068), `acceptance-criteria.md` (AC-001 to AC-012), `decision-record.md` (ADR-001 to ADR-010) |
+| Baseline | Done | `scratch/phase-baseline.md` records the five gate baselines |
+| Packet | Done | `.skilled/skills/sk-code/sk-code-ci/` holds SKILL.md, README.md, the changelog, four references, three symlinks, two templates and the playbook |
+| Registration | Done | `mode-registry.json`, `hub-router.json`, `description.json`, `ROUTER.md` and the generated manifests name `sk-code-ci`; registration snapshots compare `true true true true true true true` |
+| Implementation | Done | Phase commit `028bd0f5cd`, graph fix `c903c0d103`, closure record `25aa533f0b`, all on `origin/main` |
+| CI | Done | Run `40113489423` (Routing Registry Drift Guard) for `c903c0d103` completed with conclusion `success`; 15 of 15 runs for that commit succeeded |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | The phase has not started, so no work has diverged from the directive |
+| Advisor vocabulary changed | The operator approved three routing-vocabulary changes outside the original scope on 2026-10-24; `spec.md` and `decision-record.md` record them |
+| Stale compiled graph | The phase gates did not include the graph freshness check; CI caught it and `c903c0d103` fixed it |
+| Criteria counts corrected | The guard count is 1 and the surface-hint summary is 8, not the 2 and 7 planned |
 <!-- /ANCHOR:log -->

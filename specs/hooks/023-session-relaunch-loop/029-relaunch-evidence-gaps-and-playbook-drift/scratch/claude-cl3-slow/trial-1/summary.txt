@@ -1,0 +1,16 @@
+trial=1 start=2026-10-24T22:45:44Z
+loop_id=28715 session_id=355f4856-1d13-4381-bda9-cc9edeb58784 setup_seconds=21
+"status":"pending"
+"deferredAt":"2026-10-24T22:46:06.683Z"
+{"relaunch":false,"reason":"not-armed","cwd":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation","handoff":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/.skilled/skills/.state/session-relaunch/handoffs/20261024T224550Z-355f4856-1d13-4381-bda9-cc9edeb58784.md","name":null,"runtime":"claude","hops":0}
+exit 1
+T_PROMPT2=2026-10-24T22:46:07Z.445338000
+delivered_by_state_file=no after_seconds=90
+"disarmReason":"user-message"
+nudge_file={"level":2}
+2026-10-24T22:46:08.084Z withdrawn loopId=28715 sessionId=355f4856-1d13-4381-bda9-cc9edeb58784 reason=user-message
+2026-10-24T22:43:41.733Z  withdrawn    claude    220-relaunch-cancel-and-test-isolation by f35c13a9  Probe the session-relaunch loop: run `echo probe`, then follow the relaunch instructions (note with spec_folder none,...  [20261024T224323Z-f35c13a9-b0a0-440c-bdd0-ec4f45ab7f8e.md]
+2026-10-24T22:46:08.083Z  withdrawn    claude    220-relaunch-cancel-and-test-isolation by 355f4856  Probe the session-relaunch loop: run `echo probe`, then follow the relaunch instructions (write the note with spec_fo...  [20261024T224550Z-355f4856-1d13-4381-bda9-cc9edeb58784.md]
+open notes: 19 withdrawn notes still with their sessions
+pane_nudge_sentence_count=1
+end=2026-10-24T22:47:52Z

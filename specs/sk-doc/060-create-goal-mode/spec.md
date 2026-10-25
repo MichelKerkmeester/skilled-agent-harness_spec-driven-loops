@@ -130,6 +130,9 @@ Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked t
 | 10 | 010-asset-templates-and-folder-readmes/ | Per-kind goal templates checked against `goal.md.tmpl`, code-folder READMEs and the references index removed | Complete |
 | 11 | 011-cross-surface-references/ | Name the mode in the READMEs, the `@markdown` agent and the feature catalog, regenerate the advisor command bridges and update the command counts | Complete |
 | 12 | 012-goal-send-and-dedupe/ | Give the goal chat-send rule one home in sk-create-goal, remove author instructions from the goal templates, and point system-spec-kit and speckit goal nesting to `/create:goal` | Complete |
+| 13 | 013-claude-goal-copy-block/ | Send the goal chat slice to Claude Code as one fenced code block that holds the slice and nothing else, so the operator can copy it into `/goal` whole | Complete |
+| 14 | 014-goal-no-budget-stop/ | Stop the OpenCode goal plugin from ending or silencing a goal on a token budget, a turn count or elapsed time, so no runtime limits a long-running goal | Complete |
+| 15 | 015-goal-legacy-resume-and-budget-notice/ | Let a goal an older OpenCode plugin suppressed resume, print a notice when a budget is recorded as a reading, and prove the autonomy switch live past the old 8-turn cap | Pending |
 
 ### Phase Transition Rules
 
@@ -153,6 +156,9 @@ Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked t
 | 009-verification-and-closeout | 010-asset-templates-and-folder-readmes | The mode is shipped and the operator asked for templates, READMEs and the index removal | `node --test` 15 of 15, guard fresh, recursive strict `RESULT: PASSED` |
 | 010-asset-templates-and-folder-readmes | 011-cross-surface-references | The templates shipped and the operator asked for the mode to be named wherever its siblings are | Recursive strict `RESULT: PASSED` with phase 010 committed |
 | 011-cross-surface-references | 012-goal-send-and-dedupe | Phase 011 shipped and the operator asked for one send rule and no duplicate nesting logic | A read-only xhigh scope analysis, spot-checked, and the operator's review before any rule or template changes |
+| 012-goal-send-and-dedupe | 013-claude-goal-copy-block | Phase 012 shipped the one send rule and the operator asked for the Claude Code slice as a single copyable block | `rg` finds the rule in each send surface, both playbook packages pass and the YAML files parse |
+| 013-claude-goal-copy-block | 014-goal-no-budget-stop | Phase 013 shipped the Claude Code copy block and the operator asked that no runtime stop a long-running goal on a budget, a turn count or elapsed time | The OpenCode goal suites pass 151 of 151, `goal-core.test.cjs` passes 87 of 87 and 10 of the rewritten or new tests fail against the pre-change plugin |
+| 014-goal-no-budget-stop | 015-goal-legacy-resume-and-budget-notice | Phase 014 is Complete and lists the stuck legacy record and the untested autonomy switch as its limits and residual risks | `validate.sh 014-goal-no-budget-stop --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

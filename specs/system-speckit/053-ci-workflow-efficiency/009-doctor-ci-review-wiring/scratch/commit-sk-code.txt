@@ -1,0 +1,10 @@
+feat(sk-code): add the ci surface value
+
+Surface detection returns CI for a path under the workflow or action
+folders, ranked after SKILLED so a resolved hub path still wins. The
+shared detection contract, the review router and every hub restatement
+of the order name the new value, each changed doc raises its version
+with a changelog entry, and the compiled route is refreshed. A
+regression test pins the existing results beside the new CI cases.
+
+Spec: system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring

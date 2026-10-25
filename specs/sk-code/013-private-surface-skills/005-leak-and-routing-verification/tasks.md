@@ -41,7 +41,7 @@ Every evidence path below is packet-relative and written out in full under `spec
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create the evidence directory (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence)
+- [x] T001 Create the evidence directory (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence)
   - **File**: none - the command creates the directory
   - **Anchor**: n/a - no file is edited
   - **Change**: `mkdir -p specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence`
@@ -53,8 +53,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-008
   - **Rollback**: `rmdir specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence` while it is still empty
   - **Stop if**: the directory exists and already holds a file this phase did not write
+  - **Evidence:** the `scratch/evidence/` directory exists and holds `00-preflight.md` through `14-corpus-boundary.md`.
 
-- [ ] T002 Record the preflight and the baselines (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md)
+- [x] T002 Record the preflight and the baselines (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write the file with four blocks. Block 1, a heading `# 00 - Preflight` and one line naming the date and the OpenCode 2 orchestrator that wrote the file. Block 2, a table with one row per command below, each row carrying the command, its output and its expected value: `git log --oneline -8`, `gh auth status`, `sqlite3 --version`, `jq --version`, `node --version`. Block 3, a table titled `Baselines` carrying exactly these rows: tracked paths naming a private skill or a removed surface `336` at `42b41dd286` and `336` at `583316d083`; tracked content lines outside the excluded paths `1528` and `1529`; trigger-index matching lines `200` and `200`; of which `.skilled/` paths `131` and `131`; of which `specs/sk-code/007-sk-code-obsidian-surface/` paths `69` and `69`; trigger-index space-normalized phrase keys `59` and `59`; `corpus-manifest.json` matching lines `not measured` and `260`; `generation-diagnostics.json` matching lines `not measured` and `60`; `phrase-variants.json` matching lines `58` and `59`; bare `WEBFLOW` and `OBSIDIAN` token lines before and after the `WEBFLOW:` filter `not measured` and `566 / 548`; retained content-sweep paths under the two D6 prefixes `not measured` and `8`; advisor `skill_nodes` rows from the step 5 query `1` and `1`; advisor `skillCount` `not measured` and `14`. Block 4, one line stating that the one-line difference between the two commits is `phrase-variants.json`, which the two intervening index rebuilds extended from 58 to 59 matching lines. End the file with `<!-- evidence:end -->`.
@@ -67,6 +68,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-008
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/00-preflight.md`
   - **Stop if**: `gh auth status` reports no logged-in account, or `git log --oneline -8` does not show the phase 001-004 commits, in which case record the output and report blocked
+  - **Evidence:** `scratch/evidence/00-preflight.md`, commands and Baselines sections.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -74,7 +76,7 @@ Every evidence path below is packet-relative and written out in full under `spec
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Sweep the planning commit for tracked paths (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md)
+- [x] T003 Sweep the planning commit for tracked paths (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 01 - Head leak sweep`, a section heading `## A - Tracked paths`, the fenced commands, their output and the line `Expected: 336 at 42b41dd286 as the control, 0 live, 108 retained specs/ paths`. End with `<!-- evidence:end -->`.
@@ -88,22 +90,25 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-001
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md`
   - **Stop if**: the control is not `336` (the pattern is broken), the live count is not `0`, or the retained count is not `108`; name the owning phase (002 for hub files, 003 for advisor vocabulary) and stop before the commit
+  - **Evidence:** `scratch/evidence/01-head-leak-sweep.md` section A.
 
-- [ ] T004 Sweep the planning commit for tracked content (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md)
+- [x] T004 Sweep the planning commit for tracked content (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## B - Tracked content` section holding the positive control, the fenced commands, their output and `Expected: 1528 at 42b41dd286 as the control, then 0`, followed by a blank line and the anchor line again.
+  - **Change**: replace the anchor line with a `## B - Tracked content` section holding the positive control, the fenced commands, their output and `Expected: 1528 at 42b41dd286 as the control, then 256 lines across 17 paths that classify as 8 D6 kept records, 6 test fixtures and 3 retrieval artifacts, with no path outside those classes` (amended 2026-10-24 by operator ruling, classification in `03-fresh-clone-leak.md` section C), followed by a blank line and the anchor line again.
   - **Proof**:
     ```bash
     git grep -c -E "sk-code-(webflow|obsidian)|local-(webflow|obsidian)" 42b41dd286 -- ':!specs' ':!*/changelog/*' ':!.skilled/changelog' ':!*/benchmark/reports/*' | awk -F: '{s+=$NF} END {print s}'
     git grep -n -E "sk-code-(webflow|obsidian)|local-(webflow|obsidian)" -- ':!specs' ':!*/changelog/*' ':!.skilled/changelog' ':!*/benchmark/reports/*' | wc -l
     ```
-    Expected: `1528` as the positive control, then `0`
+    Expected: `1528` as the positive control, then `256` matching lines whose `git grep -l` listing holds 17 paths, each in one of the three classes defined under T012 (8 D6 kept records, 6 test fixtures, 3 retrieval artifacts)
   - **AC**: AC-002
   - **Rollback**: re-run the edit with the section removed; the file returns to T003's content
-  - **Stop if**: the control is not `1528` (the pattern is broken), or the count is not `0`; name the owning phase and stop before the commit
+  - **Stop if**: the control is not `1528` (the pattern is broken), or any path falls outside the three classes. Name the owning phase and stop before the commit
+  - **Amended 2026-10-24 (operator ruling)**: the original expectation was `0` live lines. The run at `9129007915` printed `256` lines across 17 paths. Eight are the retained D6 prefixes. Nine are six test files that use the skill names as fixture directory names (`pre-commit.test.sh`, `skill-root-metadata-contract.test.cjs`, `skill-graph-freshness-panel.vitest.ts`, `advisor-status.vitest.ts`, `private-skill-target.vitest.ts`, `sync-skills-hermes.test.mjs`) and three retrieval artifacts (`corpus-manifest.json`, `phrase-variants.json`, `trigger-index.json`) that carry allowlisted retained-record paths and phrase keys. The operator ruled that the expectation moves to the measured reality and that nothing in the repository changes. See `scratch/evidence/01-head-leak-sweep.md` section B.
+  - **Evidence:** `scratch/evidence/01-head-leak-sweep.md` section B, ticked on the amended expectation only.
 
-- [ ] T005 Sweep the planning commit for bare surface tokens (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md)
+- [x] T005 Sweep the planning commit for bare surface tokens (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Bare surface tokens` section holding the positive control, the two fenced commands, their outputs and `Expected: 566 at 583316d083 as the control, then 4 raw in the post-removal tree, then 0 after the filter`, followed by one quoted line per line the `grep -v 'WEBFLOW:'` stage removed, a note naming any removed line that is a surface instruction rather than a platform tag as a leak the filter hides, a blank line and the anchor line again.
@@ -117,8 +122,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-002
   - **Rollback**: re-run the edit with the section removed; the file returns to T004's content
   - **Stop if**: the control is not `566` (the pattern is broken), the raw count is not `4`, or the filtered count is not `0`, or a removed line is a surface instruction rather than a platform tag; name the owning phase and stop
+  - **Evidence:** `scratch/evidence/01-head-leak-sweep.md` section C.
 
-- [ ] T006 Assert the planning documents on main, then commit the head sweep as C1 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T006 Assert the planning documents on main, then commit the head sweep as C1 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/01-head-leak-sweep.md` (commit only)
   - **Anchor**: n/a - no line is edited
   - **Change**: the six planning documents already landed on `main` in the packet's planning commit before this phase ran. Assert them first, then stage only the first evidence file by name and commit it:
@@ -145,7 +151,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git reset --soft HEAD~1` while C1 is the tip and nothing else has been committed on it
   - **Stop if**: any of the six documents is missing from `origin/main`, which means the planning commit has not landed, or `git status --porcelain` lists a file outside this phase folder; unstage it and stop
 
-- [ ] T007 Push C1 to main (none)
+- [x] T007 Push C1 to main (none)
   - **File**: none - the command changes the remote
   - **Anchor**: n/a - no file is edited
   - **Change**: `git push origin HEAD:main`
@@ -158,7 +164,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git revert --no-edit HEAD` then `git push origin HEAD:main`, which restores the remote tree without rewriting history
   - **Stop if**: the push is rejected because the branch moved; run `git fetch origin main`, re-read the new tip and report instead of forcing
 
-- [ ] T008 Clone origin/main into the throwaway path (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md)
+- [x] T008 Clone origin/main into the throwaway path (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 02 - Fresh clone`, the section `## A - Clone`, the fenced command below, its output and the line `Expected: the clone HEAD equals the C1 sha`. End with `<!-- evidence:end -->`.
@@ -173,8 +179,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-001
   - **Rollback**: `rm -rf /tmp/psurf-clone-main`
   - **Stop if**: the clone fails or the remote rejects it; record the error and stop
+  - **Evidence:** `scratch/evidence/02-fresh-clone.md` section A.
 
-- [ ] T009 Record the clone identity and its clean tree (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md)
+- [x] T009 Record the clone identity and its clean tree (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/02-fresh-clone.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Identity` section holding the fenced command below, its output, the C1 sha copied beside it and the line `Expected: equal shas and an empty status`, followed by a blank line and the anchor line again.
@@ -188,8 +195,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-001
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the shas differ or the status count is not `0`; record both and stop
+  - **Evidence:** `scratch/evidence/02-fresh-clone.md` section B.
 
-- [ ] T010 Sweep the clone for leaked paths (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
+- [x] T010 Sweep the clone for leaked paths (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 03 - Fresh-clone leak sweep`, the section `## A - Tracked paths`, the fenced commands below, their output and `Expected: 0 live, 108 retained specs/ paths`. End with `<!-- evidence:end -->`.
@@ -204,11 +212,12 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-001
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md`
   - **Stop if**: the control is not `336` (the pattern is broken), the live count is not `0`, or the retained count is not `108`
+  - **Evidence:** `scratch/evidence/03-fresh-clone-leak.md` section A.
 
-- [ ] T011 Sweep the clone for leaked content (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
+- [x] T011 Sweep the clone for leaked content (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## B - Tracked content` section holding the positive control, the fenced path-list command below, its full output and `Expected: the control prints 1528, then exactly 8 paths`, followed by a blank line and the anchor line again.
+  - **Change**: replace the anchor line with a `## B - Tracked content` section holding the positive control, the fenced path-list command below, its full output and `Expected: the control prints 1528, then exactly 17 paths, 8 D6 kept records, 6 test fixtures and 3 retrieval artifacts` (amended 2026-10-24 by operator ruling), followed by a blank line and the anchor line again.
   - **Proof**:
     ```bash
     CLONE=/tmp/psurf-clone-main
@@ -216,15 +225,17 @@ Every evidence path below is packet-relative and written out in full under `spec
     git -C "$CLONE" grep -c -E "sk-code-(webflow|obsidian)|local-(webflow|obsidian)" 42b41dd286 -- ':!specs' ':!*/changelog/*' ':!.skilled/changelog' ':!*/benchmark/reports/*' | awk -F: '{s+=$NF} END {print s}'
     git -C "$CLONE" grep -l -E "sk-code-(webflow|obsidian)|local-(webflow|obsidian)" -- ':!specs' ':!*/changelog/*' ':!.skilled/changelog' ':!*/benchmark/reports/*' | wc -l
     ```
-    Expected: `1528`, then `8`
+    Expected: `1528`, then `17`
   - **AC**: AC-002
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: the control is not `1528`, or the path count is not `8`; record the extra paths and name the owning phase
+  - **Stop if**: the control is not `1528`, or the path count is not `17`, or any listed path falls outside the three classes defined under T012. Record the extra paths and name the owning phase
+  - **Amended 2026-10-24 (operator ruling)**: the original expectation was `8` paths. The fresh clone shows `17`, classified in `03-fresh-clone-leak.md` section C. No private skill content was found in any of them, only names, paths and phrase keys.
+  - **Evidence:** `scratch/evidence/03-fresh-clone-leak.md` section B, ticked on the amended expectation only.
 
-- [ ] T012 Classify the content hits as retained or active (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
+- [x] T012 Classify the content hits as retained or active (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## C - Retained versus active` section holding the two fenced commands below, their outputs, the eight retained paths listed by name, and the line `Expected: 8 retained, 0 active`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## C - Retained versus active` section holding the two fenced commands below, their outputs, the eight retained paths listed by name, the nine other paths classified by name as six test fixtures or three retrieval artifacts, and the line `Expected: 8 retained, then 9 unmatched paths that all classify as 6 test fixtures or 3 retrieval artifacts, 0 unclassified` (amended 2026-10-24 by operator ruling). End with the anchor line again.
   - **Proof**:
     ```bash
     CLONE=/tmp/psurf-clone-main
@@ -232,12 +243,14 @@ Every evidence path below is packet-relative and written out in full under `spec
     git -C "$CLONE" grep -l -E "sk-code-(webflow|obsidian)|local-(webflow|obsidian)" -- ':!specs' ':!*/changelog/*' ':!.skilled/changelog' ':!*/benchmark/reports/*' | grep -c -E "$ALLOW" || echo 0
     git -C "$CLONE" grep -l -E "sk-code-(webflow|obsidian)|local-(webflow|obsidian)" -- ':!specs' ':!*/changelog/*' ':!.skilled/changelog' ':!*/benchmark/reports/*' | grep -v -E "$ALLOW" | wc -l
     ```
-    Expected: `8`, then `0`
+    Expected: `8`, then `9`, where the nine unmatched paths pass the classification test below and none is left unclassified
   - **AC**: AC-002
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: the active count is not `0`; record each path and name the owning phase
+  - **Stop if**: any unmatched path fits none of the three classes, or any hit line in a test file or artifact carries private skill content instead of a name, a path string or a phrase key. Record each path and name the owning phase
+  - **Amended 2026-10-24 (operator ruling)**: the original expectation was `0` active. The sweep passes when all 17 paths fall in exactly these three classes and nothing else appears. Class 1, the 8 D6 kept records: the path matches the `ALLOW` prefixes above, and the retained count stays `8`. Class 2, the 6 test fixtures: the path sits under a `tests/` directory and its basename carries `.test.` or `.vitest.`, so the six are `pre-commit.test.sh`, `skill-root-metadata-contract.test.cjs`, `skill-graph-freshness-panel.vitest.ts`, `advisor-status.vitest.ts`, `private-skill-target.vitest.ts` and `sync-skills-hermes.test.mjs`. Each hit line is a fixture directory name written into a temporary directory or a negative assertion on the name, and none holds text from a private skill body. The nearest string is the literal `description: "Private"` that `sync-skills-hermes.test.mjs` writes itself. Class 3, the 3 retrieval artifacts: the path is `trigger-index.json`, `corpus-manifest.json` or `phrase-variants.json`. In the first two every hit line is a `specs/sk-code/007-sk-code-obsidian-surface/` path string (69 each), so removing those lines leaves `0`. In `phrase-variants.json` every hit line is a phrase key that starts with `sk-code-obsidian ` (37) or is `local-webflow local-obsidian` (1), so removing those leaves `0`. A leak is a hit outside these classes, a `.skilled/` routing path in an artifact (T021 counts those) or any hit line that holds skill body text. Read-only check run on the clone at `9129007915` for this amendment, not quoted in the evidence file: the 17 listed paths split into 8, 6 and 3 with 0 left over, and the artifact filters printed `0`, `0` and `0`. Record it in `11-final-tip.md` when T061 reruns the sweep.
+  - **Evidence:** `scratch/evidence/03-fresh-clone-leak.md` section C, ticked on the amended expectation only.
 
-- [ ] T013 Sweep the clone for bare surface tokens (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
+- [x] T013 Sweep the clone for bare surface tokens (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## D - Bare surface tokens` section holding the positive control, the two fenced commands below, their outputs, every line the filter removed quoted, and the line `Expected: 566 at 583316d083 as the control, then 4 raw, then 0 after the filter`. End with the anchor line again.
@@ -252,19 +265,20 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-002
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the control is not `566` (the pattern is broken), the raw count is not `4`, or the filtered count is not `0`; quote the surviving lines and name the owning phase
+  - **Evidence:** `scratch/evidence/03-fresh-clone-leak.md` section D.
 
-- [ ] T014 Classify the private blob identities against the removal commit and the public object database (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
+- [x] T014 Classify the private blob identities against the removal commit and the public object database (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## E - Blob identity` section holding the fenced commands below, their seven outputs and the line `Expected: 228 files, 223 base ids, at least 1 already public in history, 3 copied references, at least 1 new or changed, at least 1 from the control, 0 reachable from the clone`. Record the already-public count and the new-or-changed count in the section, because the first is the input to the history-rewrite decision and the second is the population the zero check covers. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## E - Blob identity` section holding the fenced commands below, their seven outputs and the line `Expected: 228 files, 223 base ids, 138 already public in history, 1 copied reference, 86 new or changed, 139 from the control, 0 reachable from the clone` (amended 2026-10-24 by operator ruling, measured values from the `find -L` run in `03-fresh-clone-leak.md` section E). Record the already-public count and the new-or-changed count in the section, because the first is the input to the history-rewrite decision and the second is the population the zero check covers. End with the anchor line again.
   - **Proof**:
     ```bash
     CLONE=/tmp/psurf-clone-main
     OP=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
     # (a) the private population: file count, then unique non-empty blob ids
-    find "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -print | wc -l
-    find "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -size +0c -print0 \
+    find -L "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -print | wc -l
+    find -L "$OP/.skilled/skills/local-webflow" "$OP/.skilled/skills/local-obsidian" -type f -size +0c -print0 \
       | xargs -0 git hash-object --no-filters | sort -u > /tmp/psurf-private-blob-ids.txt
 
     # (b) the base set: the two archived packets at the removal commit
@@ -296,12 +310,14 @@ Every evidence path below is packet-relative and written out in full under `spec
     comm -12 /tmp/psurf-private-blob-ids.txt /tmp/psurf-public-blob-ids.txt | wc -l
     comm -12 /tmp/psurf-new-blob-ids.txt /tmp/psurf-public-blob-ids.txt | wc -l
     ```
-    Expected: `228` files, `223` base ids, at least `1` already public in history, `3` copied references, at least `1` new or changed, at least `1` from the control, then `0` from the assertion
+    Expected: `228` files, `223` base ids, `138` already public in history, `1` copied reference, `86` new or changed, `139` from the control, then `0` from the assertion
   - **AC**: AC-002
   - **Rollback**: `rm -f /tmp/psurf-private-blob-ids.txt /tmp/psurf-base-blob-ids.txt /tmp/psurf-history-exposure-blob-ids.txt /tmp/psurf-copied-reference-blob-ids.txt /tmp/psurf-new-blob-ids.txt /tmp/psurf-public-blob-ids.txt`
-  - **Stop if**: the file count is not `228` (the trees are incomplete or a symlink target changed), the base set is not `223`, the already-public count is `0` (the comparison is broken), the copied-reference count is not `3`, the new-or-changed count is `0` (nothing is left to test), the control is `0` (the object dump is empty), or the assertion is not `0`; record every value and name the file behind any unmatched id
+  - **Stop if**: the file count is not `228` (the trees are incomplete or a symlink target changed), the base set is not `223`, the already-public count is `0` (the comparison is broken), the copied-reference count is not `1`, the new-or-changed count is `0` (nothing is left to test), the control is `0` (the object dump is empty), or the assertion is not `0`; record every value and name the file behind any unmatched id
+  - **Amended 2026-10-24 (operator ruling)**: as first written, the `find` did not follow the two symlinks under `.skilled/skills/` (`local-webflow` and `local-obsidian` link to the external `local-skills` folders), so it printed the two link names, hashed nothing and made the zero assertion vacuous. The command now uses `find -L`, as the second run in `03-fresh-clone-leak.md` section E did. Measured values: 228 files (225 unique ids, 3 duplicates), 223 base ids, 138 already public, 1 copied reference, 86 new or changed (138 + 1 + 86 = 225), control 139 (138 + 1), assertion 0. The copied-reference count is 1 and not 3 because only `workflow-debug.md` is byte-identical in the private roots. The private `workflow-implement.md` and `workflow-verify.md` differ from the public copies, so they sit in the 86 new or changed ids. Assertion 0 means none of the 86 new or changed ids is reachable from the public clone.
+  - **Evidence:** `scratch/evidence/03-fresh-clone-leak.md` section E (the `find -L` run), ticked on the amended expectation only.
 
-- [ ] T015 State the partial-content policy (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
+- [x] T015 State the partial-content policy (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/03-fresh-clone-leak.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## F - Partial-content policy` section of six sentences, one per line: the identity check covers complete files only; a zero-byte file is excluded because its blob is the reachable empty blob by definition; a fragment of a private file is covered by the marker and token sweeps, not by identity; the bytes the two restored trees inherit from `42b41dd286` were public before the removal, so they are recorded as already public in history and their count is the input to the history-rewrite decision rather than a failure; the three hub references copied from `shared/references/` at that commit are recorded the same way; the zero assertion covers new or changed content only, and neither check claims the other's ground. End with the anchor line again.
@@ -313,23 +329,26 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-002
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the section cannot be written without weakening a claim another section makes
+  - **Evidence:** `scratch/evidence/03-fresh-clone-leak.md` section F.
 
-- [ ] T016 Audit the ten D6 kept-record prefixes (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/04-d6-kept-records.md)
+- [x] T016 Audit the ten D6 kept-record prefixes (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/04-d6-kept-records.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/04-d6-kept-records.md` (new file)
   - **Anchor**: `new file`
-  - **Change**: write a heading `# 04 - D6 kept records`, the full ten-prefix command below, its output, the control command and its output, and the line `Expected: 0 from the audit and at least 1 from the control path`. End with `<!-- evidence:end -->`.
+  - **Change**: write a heading `# 04 - D6 kept records`, the full ten-prefix command below, its output, the control command and its output, and the line `Expected: one changed path, skill_advisor.py from commit e00fef3e76, as the single accepted exception, and at least 1 from the control path` (amended 2026-10-24 by operator ruling). End with `<!-- evidence:end -->`.
   - **Proof**:
     ```bash
     CLONE=/tmp/psurf-clone-main
     git -C "$CLONE" diff --stat 42b41dd286 HEAD -- .skilled/skills/mcp-tooling .skilled/skills/sk-design .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts .skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample .skilled/changelog | wc -l
     git -C "$CLONE" diff --stat 42b41dd286 HEAD -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md | wc -l
     ```
-    Expected: `0`, then at least `1`
+    Expected: `2` (one path line plus the summary line) and the path is `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` from commit `e00fef3e76`, then at least `1` from the control. The other nine prefixes stay empty
   - **AC**: AC-006
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/04-d6-kept-records.md`
-  - **Stop if**: the audit prints a path; record it, name the phase that changed it and stop. This phase never repairs a D6 record
+  - **Stop if**: the audit prints any path other than the accepted one, or the accepted path comes from a commit other than `e00fef3e76`. Record it, name the phase that changed it and stop. This phase never repairs a D6 record
+  - **Amended 2026-10-24 (operator ruling)**: the original expectation was an empty audit. The audit printed one changed path, `skill_advisor.py` (4 insertions, 2 deletions), from `e00fef3e76 refactor(system-skill-advisor): bound private-skill scans and drop surface terms`. That is the intended bounded-scan change landed by the third phase of this same program. It adds symlink-aware private-skill scanning and touches no Webflow or Obsidian record. It is the single accepted exception and every other prefix stays required empty.
+  - **Evidence:** `scratch/evidence/04-d6-kept-records.md` section A, ticked on the amended expectation only.
 
-- [ ] T017 Build a throwaway advisor database from the clone (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md)
+- [x] T017 Build a throwaway advisor database from the clone (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 05 - Advisor database`, the section `## A - Rebuild`, the fenced command below, its full JSON output and the line `Expected: skillCount of 14 or greater and no EMPTY-SKILL-SCAN warning`. End with `<!-- evidence:end -->`.
@@ -343,8 +362,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-004
   - **Rollback**: `rm -rf /tmp/psurf-db`
   - **Stop if**: `skillCount` is `0`, or the warnings contain `EMPTY-SKILL-SCAN`; the rebuild preserved an old graph and proves nothing
+  - **Evidence:** `scratch/evidence/05-advisor-db.md` section A.
 
-- [ ] T018 Query the throwaway database for sk-code surface nodes (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md)
+- [x] T018 Query the throwaway database for sk-code surface nodes (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/05-advisor-db.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Query` section holding the fenced command below, their outputs and the line `Expected: 1 as the positive control, then 0; the same surface query prints 1 at 583316d083`. End with the anchor line again.
@@ -357,8 +377,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-004
   - **Rollback**: `rm -rf /tmp/psurf-db`
   - **Stop if**: the count is not `0`; quote the returned rows and name phase 003 as the owner
+  - **Evidence:** `scratch/evidence/05-advisor-db.md` section B.
 
-- [ ] T019 Poll for the trigger-index rebuild run (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T019 Poll for the trigger-index rebuild run (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 06 - Retrieval artifacts`, the section `## A - Rebuild run`, the fenced command below, its output and the line `Expected: a completed run whose displayTitle is chore(system-spec-kit): rebuild the trigger index and whose headSha is the C1 sha`. Poll for at most 30 minutes. End with `<!-- evidence:end -->`.
@@ -371,7 +392,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md`
   - **Stop if**: 30 minutes pass without a completed rebuild run; record the last output and leave AC-003 `Unmet`
 
-- [ ] T020 Pull the rebuild commit into the clone (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T020 Pull the rebuild commit into the clone (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Rebuild commit` section holding the fenced commands below, the three-line log and the line `Expected: the rebuild commit sits above the C1 commit`, plus one sentence stating that this pull advances the verification clone only and that T057 integrates the same commit into the writer branch. End with the anchor line again.
@@ -385,7 +406,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the pull is not a fast-forward, or the rebuild commit is absent from the log
 
-- [ ] T021 Count live routing paths in the rebuilt trigger index (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T021 Count live routing paths in the rebuilt trigger index (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Live routing paths` section holding the positive control, the scoped command below, its output and `Expected: 200 from the control, then 0`. End with the anchor line again.
@@ -400,8 +421,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-003
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the control is not `200`, or the scoped count is not `0`; quote the surviving paths and name the owning phase
+  - **Evidence:** `scratch/evidence/06-trigger-index.md` section C. Provisional pending the final-tip rerun in T060 to T063.
 
-- [ ] T022 Count the allowlisted 007 paths in the rebuilt index (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T022 Count the allowlisted 007 paths in the rebuilt index (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## D - Allowlisted audit paths` section holding the two fenced commands below, their outputs, the one-sentence reason (`specs` is a corpus root at `corpus.mjs:31` and the 007 folder name carries the token) and `Expected: 69 allowlisted, then 0 unclassified`. End with the anchor line again.
@@ -416,8 +438,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-003
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the allowlist count is not `69`; record the new count, leave AC-003 `Unmet` and report instead of editing the expectation
+  - **Evidence:** `scratch/evidence/06-trigger-index.md` section D. Provisional pending the final-tip rerun in T060 to T063.
 
-- [ ] T023 Count the phrase keys in the rebuilt index (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T023 Count the phrase keys in the rebuilt index (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## E - Phrase keys` section holding the two fenced commands below, their outputs, the one-sentence reason (38 keys come from the 007 packet and `004-private-local-skills/spec.md`; 11 came from the deleted surface folders, or 21 under the broad pattern that also counts `sk code webflow`) and `Expected: 38 retained keys, then 0 bare skill ids`. End with the anchor line again.
@@ -432,8 +455,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-003
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the retained count is not `38`, or the bare-key count is not `0`
+  - **Evidence:** `scratch/evidence/06-trigger-index.md` section E. Provisional pending the final-tip rerun in T060 to T063.
 
-- [ ] T024 Count the corpus manifest hits (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T024 Count the corpus manifest hits (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## F - corpus-manifest.json` section holding the fenced command below, its output and `Expected: 69 0` (69 included paths, all under the 007 prefix, and 0 skipped paths). End with the anchor line again.
@@ -445,8 +469,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-003
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the output is not `69 0`; record it and leave AC-003 `Unmet`
+  - **Evidence:** `scratch/evidence/06-trigger-index.md` section F. Provisional pending the final-tip rerun in T060 to T063.
 
-- [ ] T025 Count the generation diagnostics hits (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T025 Count the generation diagnostics hits (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## G - generation-diagnostics.json` section holding the positive control, the fenced command below, its output and `Expected: 60 at 583316d083 as the control, then 0`. End with the anchor line again.
@@ -460,8 +485,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-003
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the control is not `60`, or the second count is not `0`
+  - **Evidence:** `scratch/evidence/06-trigger-index.md` section G. Provisional pending the final-tip rerun in T060 to T063.
 
-- [ ] T026 Count the phrase-variant hits (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
+- [x] T026 Count the phrase-variant hits (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/06-trigger-index.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## H - phrase-variants.json` section holding the positive control, the fenced command below, its output and `Expected: 59 at 583316d083 as the control, then 38`. End with the anchor line again.
@@ -475,8 +501,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-003
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the control is not `59`, or the second count is not `38`
+  - **Evidence:** `scratch/evidence/06-trigger-index.md` section H. Provisional pending the final-tip rerun in T060 to T063.
 
-- [ ] T027 Rebuild the operator advisor graph (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T027 Rebuild the operator advisor graph (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 07 - Routing probes`, the section `## A - Operator rebuild`, the fenced command below, its output and `Expected: skillCount of 14 or greater`. End with `<!-- evidence:end -->`.
@@ -490,8 +517,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: `export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"` then `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json` in the same checkout
   - **Stop if**: `skillCount` is below `14`, which means the rebuild did not scan the checkout
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section A.
 
-- [ ] T028 Query the operator graph for local skill ids (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T028 Query the operator graph for local skill ids (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Local nodes` section holding the fenced command below, its output and `Expected: local-obsidian and local-webflow, one per line`. End with the anchor line again.
@@ -504,41 +532,44 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: either id is missing; the private skills are not visible to the scan and AC-005 cannot pass
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section B.
 
-- [ ] T029 Probe the Webflow prompt in the operator checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T029 Probe the Webflow prompt in the operator checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## C - Webflow prompt` section holding the fenced command below, its output and `Expected: local-webflow`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## C - Webflow prompt` section holding the fenced command below, its output, the full top-three array with scores (`jq -c '.data.recommendations[0:3] | map({skillId,score,confidence})'`) and `Expected: local-webflow` within the top two with confidence of at least 0.8 and the rank recorded (amended 2026-10-24 by operator ruling, measured ranks in the amendment note of spec.md REQ-005). End with the anchor line again.
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
     export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
-    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0].skillId'
+    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0:2] | map(.skillId) | join(",")'
     ```
-    Expected: `local-webflow`
+    Expected: a top-two list that contains `local-webflow` (for example `sk-code,local-webflow`), then a `confidence` of at least 0.8 for it in the recorded array
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: the top result is not `local-webflow`; record the full `data.recommendations` array and name phase 004 as the owner
+  - **Stop if**: `local-webflow` is not within the top two or its confidence is below 0.8; record the full `data.recommendations` array and name phase 004 as the owner
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section C.
 
-- [ ] T030 Probe the Obsidian prompt in the operator checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T030 Probe the Obsidian prompt in the operator checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## D - Obsidian prompt` section holding the fenced command below, its output and `Expected: local-obsidian`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## D - Obsidian prompt` section holding the fenced command below, its output, the full top-three array with scores (`jq -c '.data.recommendations[0:3] | map({skillId,score,confidence})'`) and `Expected: local-obsidian` within the top two with confidence of at least 0.8 and the rank recorded (amended 2026-10-24 by operator ruling, measured ranks in the amendment note of spec.md REQ-005). End with the anchor line again.
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
     export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
-    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0].skillId'
+    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0:2] | map(.skillId) | join(",")'
     ```
-    Expected: `local-obsidian`
+    Expected: a top-two list that contains `local-obsidian` (for example `mcp-tooling,local-obsidian`), then a `confidence` of at least 0.8 for it in the recorded array
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: the top result is not `local-obsidian`; record the array and name phase 004 as the owner
+  - **Stop if**: `local-obsidian` is not within the top two or its confidence is below 0.8; record the array and name phase 004 as the owner
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section D.
 
-- [ ] T031 Probe the generic frontend prompt in the operator checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T031 Probe the generic frontend prompt in the operator checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## E - Generic frontend prompt` section holding the fenced command below, its output and `Expected: sk-code`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## E - Generic frontend prompt` section holding the fenced command below, its output, the full top-three array with scores and `Expected: sk-code` first (amended 2026-10-24, the operator ruling keeps the generic prompt at sk-code first, measured 0.762). End with the anchor line again.
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -549,8 +580,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the top result is not `sk-code`; record the array and name phase 003 as the owner
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section E.
 
-- [ ] T032 Record the operator checkout's symlink targets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T032 Record the operator checkout's symlink targets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## F - Symlink mode` section holding the fenced command below, its two directory lines, the two resolved targets and one sentence stating that both entries are symlinks into the two external `local-skills/` folders. End with the anchor line again.
@@ -565,8 +597,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: either path is missing or is not a symlink; the probes in sections C through E then have nothing to route to
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section F.
 
-- [ ] T033 Locate the Obsidian Plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T033 Locate the Obsidian Plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## G - Plugin checkout` section holding the fenced command below, its output and the line `Expected: /Users/michelkerkmeester/MEGA/Development/Obsidian Plugin`. End with the anchor line again.
@@ -579,8 +612,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the path is absent or holds no `manifest.json`; record the search output, leave AC-005 partly `Unmet` and stop before T034
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section G.
 
-- [ ] T034 Record the plugin checkout's runtime symlink targets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T034 Record the plugin checkout's runtime symlink targets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## H - Symlink targets` section holding the fenced command below, its eight output lines and `Expected: all eight targets resolve under /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`. End with the anchor line again.
@@ -593,41 +627,46 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: a target resolves outside the hub path; record it and stop, because the three plugin probes would then say nothing about this packet
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section H.
 
-- [ ] T035 Probe the Webflow prompt from the plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T035 Probe the Webflow prompt from the plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## I - Plugin Webflow prompt` section holding the fenced command below, its output and `Expected: local-webflow`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## I - Plugin Webflow prompt` section holding the fenced command below, its output, the full top-three array with scores (`jq -c '.data.recommendations[0:3] | map({skillId,score,confidence})'`) and `Expected: local-webflow` within the top two with confidence of at least 0.8 and the rank recorded (amended 2026-10-24 by operator ruling, measured ranks in the amendment note of spec.md REQ-005). End with the anchor line again.
   - **Proof**:
     ```bash
     cd "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
     export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
-    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0].skillId'
+    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement a responsive webflow animation module"}' --format json | jq -r '.data.recommendations[0:2] | map(.skillId) | join(",")'
     ```
-    Expected: `local-webflow`
+    Expected: a top-two list that contains `local-webflow` (for example `sk-code,local-webflow`), then a `confidence` of at least 0.8 for it in the recorded array
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: the top result is not `local-webflow`; record the array and name phase 004 as the owner
+  - **Stop if**: `local-webflow` is not within the top two or its confidence is below 0.8; record the array and name phase 004 as the owner
+  - **Note**: the Obsidian Plugin checkout's `.skilled` is a symlink to the operator checkout's `.skilled`, so this probe runs the same advisor, graph database and private roots as the operator-checkout probe (T029). It is one surface seen from two working directories, not an independent second measurement (`07-routing-probes.md` section H).
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section I.
 
-- [ ] T036 Probe the Obsidian prompt from the plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T036 Probe the Obsidian prompt from the plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## J - Plugin Obsidian prompt` section holding the fenced command below, its output and `Expected: local-obsidian`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## J - Plugin Obsidian prompt` section holding the fenced command below, its output, the full top-three array with scores (`jq -c '.data.recommendations[0:3] | map({skillId,score,confidence})'`) and `Expected: local-obsidian` within the top two with confidence of at least 0.8 and the rank recorded (amended 2026-10-24 by operator ruling, measured ranks in the amendment note of spec.md REQ-005). End with the anchor line again.
   - **Proof**:
     ```bash
     cd "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
     export SPECKIT_PRIVATE_SKILL_ROOTS="/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin/local-skills:/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/local-skills"
-    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0].skillId'
+    node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"add an obsidian plugin command palette integration"}' --format json | jq -r '.data.recommendations[0:2] | map(.skillId) | join(",")'
     ```
-    Expected: `local-obsidian`
+    Expected: a top-two list that contains `local-obsidian` (for example `mcp-tooling,local-obsidian`), then a `confidence` of at least 0.8 for it in the recorded array
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
-  - **Stop if**: the top result is not `local-obsidian`; record the array and name phase 004 as the owner
+  - **Stop if**: `local-obsidian` is not within the top two or its confidence is below 0.8; record the array and name phase 004 as the owner
+  - **Note**: the Obsidian Plugin checkout's `.skilled` is a symlink to the operator checkout's `.skilled`, so this probe runs the same advisor, graph database and private roots as the operator-checkout probe (T030). It is one surface seen from two working directories, not an independent second measurement (`07-routing-probes.md` section H).
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section J.
 
-- [ ] T037 Probe the generic frontend prompt from the plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
+- [x] T037 Probe the generic frontend prompt from the plugin checkout (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/07-routing-probes.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## K - Plugin generic frontend prompt` section holding the fenced command below, its output and `Expected: sk-code`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## K - Plugin generic frontend prompt` section holding the fenced command below, its output, the full top-three array with scores and `Expected: sk-code` first (amended 2026-10-24, the operator ruling keeps the generic prompt at sk-code first, measured 0.762). End with the anchor line again.
   - **Proof**:
     ```bash
     cd "/Users/michelkerkmeester/MEGA/Development/Obsidian Plugin"
@@ -638,8 +677,10 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-005
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the top result is not `sk-code`; record the array and name phase 003 as the owner
+  - **Note**: the Obsidian Plugin checkout's `.skilled` is a symlink to the operator checkout's `.skilled`, so this probe runs the same advisor, graph database and private roots as the operator-checkout probe (T031). It is one surface seen from two working directories, not an independent second measurement (`07-routing-probes.md` section H).
+  - **Evidence:** `scratch/evidence/07-routing-probes.md` section K.
 
-- [ ] T038 Prove the private skills are invisible to git (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md)
+- [x] T038 Prove the private skills are invisible to git (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 08 - Local invisibility`, the section `## A - Status`, the fenced command below, their outputs and `Expected: 2 ignored entries as the positive control, then 0`. End with `<!-- evidence:end -->`.
@@ -653,8 +694,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-009
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md`
   - **Stop if**: a `local-*` path is listed; the ignore rules are missing or the tree is staged
+  - **Evidence:** `scratch/evidence/08-local-invisibility.md` section A.
 
-- [ ] T039 Prove both ignore rules match (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md)
+- [x] T039 Prove both ignore rules match (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/08-local-invisibility.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Ignore rules` section holding the fenced command below, its two output lines and `Expected: 2, naming /.skilled/skills/local-* and /.hermes/skills/local-* from the root .gitignore`. End with the anchor line again.
@@ -667,8 +709,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-009
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the count is not `2`; the phase 001 rules are missing and AC-009 cannot pass
+  - **Evidence:** `scratch/evidence/08-local-invisibility.md` section B.
 
-- [ ] T040 Record CI on main (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/09-ci.md)
+- [x] T040 Record CI on main (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/09-ci.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/09-ci.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 09 - CI on main`, the fenced command below, its output, the head sha of each run, and a `Limits` paragraph stating that the file covers every run on `main` up to the push that carries it, that the runs of that push are reported in the phase handoff message with run ids and head sha, and that `git commit --no-verify` bypasses the pre-commit guard so this record is not a guard. End with `<!-- evidence:end -->`.
@@ -682,21 +725,24 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-007
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/09-ci.md`
   - **Stop if**: a failing, cancelled or timed-out run appears; record it and leave AC-007 `Unmet`
+  - **Evidence:** `scratch/evidence/09-ci.md`, the run grouping and the Limits section.
 
-- [ ] T041 Inventory the reachable objects with old paths (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md)
+- [x] T041 Inventory the reachable objects with old paths (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md` (new file)
   - **Anchor**: `new file`
-  - **Change**: write a heading `# 12 - History inventory`, the section `## A - Reachable objects`, the fenced command below, its output and the line `Expected: 1814 at the measured tip; a different count is recorded, not corrected`. End with `<!-- evidence:end -->`.
+  - **Change**: write a heading `# 12 - History inventory`, the section `## A - Reachable objects`, the fenced command below, its output and the line `Expected: 1681 at the measured tip; a different count is recorded, not corrected` (amended 2026-10-24 by operator ruling, the original 1814 was not reproduced). End with `<!-- evidence:end -->`.
   - **Proof**:
     ```bash
     git -C /tmp/psurf-clone-main rev-list --objects --all | grep -c -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)'
     ```
-    Expected: `1814` or a recorded different count
+    Expected: `1681` or a recorded different count
   - **AC**: AC-013
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md`
   - **Stop if**: the command fails; the inventory cannot be taken and AC-013 stays `Unmet`
+  - **Amended 2026-10-24 (operator ruling)**: the measured count at `9129007915` is `1681` reachable objects (865369 reachable objects in all), 133 fewer than the `1814` first written. The count is non-zero, so old paths remain reachable in history.
+  - **Evidence:** `scratch/evidence/12-history-inventory.md` section A, ticked on the amended expectation.
 
-- [ ] T042 Map every tag to the old paths it retains (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md)
+- [x] T042 Map every tag to the old paths it retains (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Tags` section holding the fenced commands below, the tag count, the number of tags with a non-zero count and every such tag listed with its count. End with the anchor line again.
@@ -706,12 +752,14 @@ Every evidence path below is packet-relative and written out in full under `spec
     for t in $(git -C /tmp/psurf-clone-main tag --list); do printf '%s %s\n' "$t" "$(git -C /tmp/psurf-clone-main ls-tree -r --name-only "$t" | grep -c -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)')"; done > /tmp/psurf-tag-old-paths.txt
     awk '$2>0' /tmp/psurf-tag-old-paths.txt | wc -l
     ```
-    Expected: `164` at the measured tip or a recorded different count, then a count of at least `1`
+    Expected: `157` tags in the clone, then `18` tags with a non-zero old-path count
   - **AC**: AC-013
   - **Rollback**: `rm -f /tmp/psurf-tag-old-paths.txt`
   - **Stop if**: the tag count is `0`, which means the clone carries no tags and the inventory would be vacuous
+  - **Amended 2026-10-24 (operator ruling)**: the original expectation was `164`. A fresh clone sees the 157 tags on the remote (`git ls-remote --tags origin` printed 157). The operator checkout holds 164 local tags, so 7 tags exist only locally and a clone never sees them. The 18 tags with a non-zero old-path count are listed with their counts in `12-history-inventory.md` section B.
+  - **Evidence:** `scratch/evidence/12-history-inventory.md` section B, ticked on the amended expectation.
 
-- [ ] T043 Inventory the hosted releases and their assets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md)
+- [x] T043 Inventory the hosted releases and their assets (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/12-history-inventory.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Releases` section holding the two fenced commands below, the release list, one asset line per release, and the sentence that no asset archive was opened, so its contents stay `UNKNOWN`. End with the anchor line again.
@@ -724,8 +772,10 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-013
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: `gh` reports the repository has no releases; record that answer rather than treating it as a failure
+  - **Measured 2026-10-24 (operator ruling)**: `--limit 30` lists 30 of the 146 hosted releases and all 30 have `"assets":[]`. A wider read-only `gh api` listing of all 146 also showed zero assets, so every hosted release has zero assets.
+  - **Evidence:** `scratch/evidence/12-history-inventory.md` section C.
 
-- [ ] T044 Run the skill-root metadata drift check (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
+- [x] T044 Run the skill-root metadata drift check (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 13 - Drift scripts`, the section `## A - Root metadata`, the fenced command below, its output and `Expected: exit 0; a non-zero exit is recorded as a finding`. End with `<!-- evidence:end -->`.
@@ -738,8 +788,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-014
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md`
   - **Stop if**: the script is missing; record the path and leave AC-014 `Unmet`
+  - **Evidence:** `scratch/evidence/13-drift.md` section A.
 
-- [ ] T045 Run the leaf-manifest drift check (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
+- [x] T045 Run the leaf-manifest drift check (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Leaf manifest` section holding the fenced command below, its output and `Expected: exit 0; a non-zero exit is recorded as a finding`. End with the anchor line again.
@@ -752,8 +803,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-014
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the script is missing; record the path and leave AC-014 `Unmet`
+  - **Evidence:** `scratch/evidence/13-drift.md` section B.
 
-- [ ] T046 Run the derived-freshness drift check (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
+- [x] T046 Run the derived-freshness drift check (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Derived freshness` section holding the fenced command below, its output and `Expected: exit 0; a non-zero exit is recorded as a finding`. End with the anchor line again.
@@ -766,23 +818,26 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-014
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: the script is missing; record the path and leave AC-014 `Unmet`
+  - **Evidence:** `scratch/evidence/13-drift.md` section C.
 
-- [ ] T047 Export the skill graph and count local ids (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
+- [x] T047 Export the skill graph and count local ids (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/13-drift.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
-  - **Change**: replace the anchor line with a `## D - Exported graph` section holding the two fenced commands below, the compiler's exit code, the `local-` id count and the line `Expected: the export writes /tmp/psurf-skill-graph.json and the count is recorded as-is`. End with the anchor line again.
+  - **Change**: replace the anchor line with a `## D - Exported graph` section holding the two fenced commands below, the compiler's exit code, the `local-` id count and the line `Expected: the export writes a throwaway scratchpad path and the count is recorded as-is, 0` (amended 2026-10-24 by operator ruling). End with the anchor line again.
   - **Proof**:
     ```bash
     cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
     python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --export-json --output /tmp/psurf-skill-graph.json; echo "exit=$?"
     grep -c '"local-' /tmp/psurf-skill-graph.json || echo 0
     ```
-    Expected: the compiler's own output, then `exit=0` or a recorded non-zero code, then a `local-` id count
+    Expected: the compiler's own output, then `exit=0` or a recorded non-zero code, then a `local-` id count of `0`
   - **AC**: AC-014
   - **Rollback**: `rm -f /tmp/psurf-skill-graph.json`
-  - **Stop if**: the export writes to a path other than `/tmp/psurf-skill-graph.json`; stop before it can touch the tracked `runtime/scripts/skill-graph.json`
+  - **Stop if**: the export writes to a path other than a throwaway scratchpad or `/tmp` path. Stop before it can touch the tracked `runtime/scripts/skill-graph.json`
+  - **Amended 2026-10-24 (operator ruling)**: the run wrote the export to the session scratchpad (`psurf-skill-graph.json` under the scratchpad folder) because the dispatch limited temporary files there, and the tracked `runtime/scripts/skill-graph.json` stayed untouched. Measured: `exit=0`, `local-` id count `0`, and `grep -o 'local-[a-z]*'` finds no `local-` token of any kind.
+  - **Evidence:** `scratch/evidence/13-drift.md` section D, ticked on the amended expectation.
 
-- [ ] T048 Build the temporary probe repository (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md)
+- [x] T048 Build the temporary probe repository (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 14 - Corpus boundary`, the section `## A - Probe repository`, the fenced commands below, their output and `Expected: !! .skilled/skills/local-probe/`. End with `<!-- evidence:end -->`.
@@ -803,8 +858,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-012
   - **Rollback**: `rm -rf /tmp/psurf-corpus-probe`
   - **Stop if**: the status line is not `!!`; the ignore rule does not cover the probe skill and the probe proves nothing
+  - **Evidence:** `scratch/evidence/14-corpus-boundary.md` section A.
 
-- [ ] T049 Generate the four artifacts from the probe repository (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md)
+- [x] T049 Generate the four artifacts from the probe repository (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Generation` section holding the fenced command below, its exit code, the four filenames it wrote and `Expected: exit 0 and four files under /tmp/psurf-corpus-probe/out/`. End with the anchor line again.
@@ -818,8 +874,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-012
   - **Rollback**: `rm -rf /tmp/psurf-corpus-probe/out`
   - **Stop if**: the generator exits non-zero; record the error and leave AC-012 `Unmet`
+  - **Evidence:** `scratch/evidence/14-corpus-boundary.md` section B.
 
-- [ ] T050 Assert the marker is absent and the control is present (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md)
+- [x] T050 Assert the marker is absent and the control is present (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/14-corpus-boundary.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Assertion` section holding the three fenced commands below, their eight output lines and `Expected: the control at least 1 in phrase-variants.json and trigger-index.json, the marker 0 in all four, the probe path 0`. End with the anchor line again.
@@ -834,8 +891,9 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **AC**: AC-012
   - **Rollback**: `rm -rf /tmp/psurf-corpus-probe`
   - **Stop if**: the control count is `0` in every artifact, because then the walker indexed nothing and the marker's zero means nothing
+  - **Evidence:** `scratch/evidence/14-corpus-boundary.md` section C.
 
-- [ ] T051 Record the reviewer's verdict per criterion (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md)
+- [x] T051 Record the reviewer's verdict per criterion (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 10 - Review`, a `## A - Verdicts` section, the exact table header `| AC-ID | Verdict | Observed |` followed by its divider row `|-------|---------|----------|`, then one row per criterion from AC-001 through AC-015, each carrying `Met` or `Unmet` and the output the reviewer saw. Run the review through the `subagent` tool with agent `review` (agent `deep-review` for a multi-dimension pass), read-only by instruction: the prompt says it edits no file. Capture `git status --porcelain` before and after and require the two to be identical. The reviewer takes the packet path and the instruction to re-run each criterion's command. At most 2 rounds. End with `<!-- evidence:end -->`.
@@ -848,7 +906,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md`
   - **Stop if**: the reviewer returns a third round, or a verdict cannot name the output it saw
 
-- [ ] T052 Answer the reviewer's findings (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md)
+- [x] T052 Answer the reviewer's findings (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/10-review.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## B - Findings` section holding the exact table header `| Finding | Severity | AC-ID | Finding text | Resolution | Round |` followed by its divider row `|---------|----------|-------|--------------|------------|-------|`, then one row per finding. For each finding, either re-run the command and correct the quoted output and the criterion status, or record why the finding does not hold. Append the round number to each row. End with the anchor line again.
@@ -862,7 +920,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: a finding concerns a file outside this folder; record it, name the owning phase and do not repair it here
 
-- [ ] T053 Transcribe the evidence into the implementation summary (implementation-summary.md)
+- [x] T053 Transcribe the evidence into the implementation summary (implementation-summary.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/implementation-summary.md` (modify)
   - **Anchor**: the seven placeholder lines the file carries now: `[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]`, `[What this feature does and why it exists. 1-2 paragraphs. Use direct address.`, `| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |`, `[How was this tested, verified and shipped? What was the rollout approach?]`, `| [What was decided] | [Active-voice rationale with specific reasoning] |`, `| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |` and `1. **[Limitation]** [Specific detail with workaround if one exists.]`
   - **Change**: replace each placeholder. The hook names the verdict and the commit. The phase paragraph states what the evidence proves. Files Changed gets one row per evidence file with `Created` and its purpose. How It Was Delivered names the three commits and the two CI waits. Key Decisions gets one row per ADR. Verification gets one row per check citing its `scratch/evidence/NN-*.md` path and the observed value. Known Limitations states four limits: removed content stays in git history (D7), `git commit --no-verify` bypasses the pre-commit guard so the fresh-clone sweep carries the proof, an evidence push's own CI runs are reported in the phase handoff message rather than committed, and no pre-push surface-token guard exists so this sweep is a one-time gate. Keep every heading and anchor.
@@ -876,7 +934,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git checkout -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/implementation-summary.md`
   - **Stop if**: a placeholder remains, or a limit is stated as a claim the evidence contradicts
 
-- [ ] T054 Mark the criteria from the evidence (acceptance-criteria.md)
+- [x] T054 Mark the criteria from the evidence (acceptance-criteria.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md` (modify)
   - **Anchor**: the row beginning `| AC-001 | REQ-001 |` through the row beginning `| AC-015 | REQ-015 |`, the line `**Status:** Draft`, and the line `**Closeable:** No`
   - **Change**: set each AC row's Status cell to `Met` with the observed value quoted in its Evidence cell, or leave it `Unmet` and name the blocking command. Replace the closure statement paragraph with which criteria carried the packet and which checks are left blocked and why. Change `**Closeable:** No` to `**Closeable:** Yes` and `**Status:** Draft` to `**Status:** Complete` only when every row is `Met`.
@@ -890,7 +948,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git checkout -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md`
   - **Stop if**: any row is `Unmet`; leave `Closeable: No` and report blocked
 
-- [ ] T055 Reconcile the completion status across three documents (spec.md)
+- [x] T055 Reconcile the completion status across three documents (spec.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md` (modify)
   - **Anchor**: the metadata row `| **Status** | Draft |`
   - **Change**: change the cell to `| **Status** | Complete |`, and add the row `| **Status** | Complete |` to the metadata table in `implementation-summary.md`. If any AC row is `Unmet`, change nothing here and report blocked instead.
@@ -904,7 +962,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git checkout -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/implementation-summary.md`
   - **Stop if**: the three documents would disagree about the status
 
-- [ ] T056 Run the packet validator (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T056 Run the packet validator (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md`, `acceptance-criteria.md`, `implementation-summary.md` and `tasks.md` (modify only what the validator names)
   - **Anchor**: read the validator output line by line; each failing rule names its file
   - **Change**: run the command below and fix only what it names, keeping every template heading, anchor comment and frontmatter key. Re-run until it passes.
@@ -917,7 +975,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git checkout -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification`
   - **Stop if**: the validator names a file outside this folder; record the rule and stop
 
-- [ ] T057 Commit the evidence and the closed packet as C2 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T057 Commit the evidence and the closed packet as C2 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: the fifteen evidence files, `implementation-summary.md`, `acceptance-criteria.md`, `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` and `goal.md` under `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/` (commit only)
   - **Anchor**: n/a - no line is edited
   - **Change**: bring the working checkout level with `origin/main` (`git fetch origin` then `git merge --ff-only origin/main`) first, because C1's push started the trigger-index rebuild that commits to `main` and the checkout has not integrated it, then tick the boxes for T001 through T059, then stage by name and commit:
@@ -948,7 +1006,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git reset --soft HEAD~1` while C2 is the tip; the fast-forward merge changed no local commit and is not rolled back
   - **Stop if**: both the fast-forward merge and its `git rebase origin/main` fallback refuse (a conflict), `origin/main` is not an ancestor of HEAD after the commit, or the stat lists a path outside this phase folder; record the output, unstage nothing and stop
 
-- [ ] T058 Push C2 to main (none)
+- [x] T058 Push C2 to main (none)
   - **File**: none - the command changes the remote
   - **Anchor**: n/a - no file is edited
   - **Change**: confirm the branch is still ahead of `origin/main` only by C2, then push:
@@ -967,7 +1025,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `git revert --no-edit HEAD` then `git push origin HEAD:main`
   - **Stop if**: the `ff-ready` line is missing before the push, or the push is rejected because `origin/main` moved after T057's fast-forward; run `git fetch origin main`, `git rebase origin/main`, re-run T057's proof and push again, and never use `--force`
 
-- [ ] T059 Confirm the tree is clean and HEAD equals origin/main (none)
+- [x] T059 Confirm the tree is clean and HEAD equals origin/main (none)
   - **File**: none - the command reads git state, and C2 carries the boxes for T057 through T059 while the next evidence file does not exist yet, so the working tree is clean here
   - **Anchor**: n/a - no file is edited
   - **Change**: run the two commands below and report their output
@@ -981,7 +1039,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: n/a: the command changes nothing
   - **Stop if**: the status is not empty or the shas differ; commit or push what is outstanding before continuing
 
-- [ ] T060 Re-clone the final tip after the C2 rebuild (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T060 Re-clone the final tip after the C2 rebuild (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (new file)
   - **Anchor**: `new file`
   - **Change**: write a heading `# 11 - Final tip`, the section `## A - Final-tip clone`, the fenced commands below, the clone sha, the three-line log and `Expected: the rebuild commit above C2`. Poll for at most 30 minutes. End with `<!-- evidence:end -->`.
@@ -997,7 +1055,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `rm -rf /tmp/psurf-final-tip` and `rm specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md`
   - **Stop if**: 30 minutes pass without a rebuild commit above C2; record the log and leave AC-015 `Unmet`
 
-- [ ] T061 Rerun the path and content sweeps on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T061 Rerun the path and content sweeps on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## C - Paths and content` section holding the positive control, the fenced commands below, their output and `Expected: 336 at 42b41dd286 as the control, 0 live, 108 retained specs/ paths, 8 D6-kept content paths, 0 active`. End with the anchor line again.
@@ -1016,7 +1074,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: re-run the edit with the section removed
   - **Stop if**: any of the five values differs from Expected
 
-- [ ] T062 Rerun the token and blob checks on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T062 Rerun the token and blob checks on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## D - Tokens and blobs` section holding the fenced commands below, their output and `Expected: 0 tokens, at least 1 from the control, then 0 new or changed blobs`. End with the anchor line again.
@@ -1033,7 +1091,7 @@ Every evidence path below is packet-relative and written out in full under `spec
   - **Rollback**: `rm -f /tmp/psurf-final-blob-ids.txt`
   - **Stop if**: the token count is not `0`, the control is `0` (the final tip's object dump is empty), or the new-or-changed count is not `0`
 
-- [ ] T063 Rerun the artifact counts on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
+- [x] T063 Rerun the artifact counts on the final tip (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` (modify)
   - **Anchor**: `<!-- evidence:end -->`
   - **Change**: replace the anchor line with a `## E - Artifacts` section holding the fenced commands below, their output and `Expected: 0 live index paths, 69 allowlisted, 0 unclassified, 69 and 0 from the manifest, 0 diagnostics, 38 variants`. End with the anchor line again.
@@ -1063,9 +1121,9 @@ Every evidence path below is packet-relative and written out in full under `spec
 
 Phase 3 records the checklist verdict, commits it with the final-tip evidence as C3, pushes that commit, confirms the tree C3 leaves behind, and hands off. The tasks in Phase 2 produced the evidence each item asks about; this phase records the verdict against the same files and then closes them.
 
-- [ ] T064 Run the verification checklist against the evidence (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T064 Run the verification checklist against the evidence (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md` (modify)
-  - **Anchor**: the line `| P0 Items | 12 | [ ]/12 |` in the Verification Summary
+  - **Anchor**: the line `| P0 Items | 12 | 12/12 |` in the Verification Summary
   - **Change**: tick every checkbox this file holds: each task whose proof ran, each CHK item that holds against its evidence file, the three Completion Criteria boxes, and the four boxes for T065 through T068. C3 is the phase's last commit, so it carries the file this task leaves behind, and a box ticked after it would leave `tasks.md` modified and break the clean-tree proof in T067; T065 therefore stages `tasks.md`, and T066 through T068 report their own outcome in the handoff message rather than writing it back here. Replace the three summary rows with the observed counts, keeping the row labels.
   - **Proof**:
     ```bash
@@ -1076,7 +1134,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: `git checkout -- specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md`
   - **Stop if**: a CHK item cannot be ticked from an evidence file, or a task's proof did not run; leave that box unticked and report which one
 
-- [ ] T065 Commit the final-tip verification and the closed checklist as C3 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
+- [x] T065 Commit the final-tip verification and the closed checklist as C3 (specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification)
   - **File**: `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/scratch/evidence/11-final-tip.md` and `specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/tasks.md` (commit only)
   - **Anchor**: n/a - no line is edited
   - **Change**: bring the working checkout level with `origin/main` (`git fetch origin` then `git merge --ff-only origin/main`) first, because C2's push started the rebuild commit this final tip carries and the checkout has not integrated it, then stage both files by name and commit:
@@ -1101,7 +1159,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: `git reset --soft HEAD~1` while C3 is the tip; the fast-forward merge changed no local commit and is not rolled back
   - **Stop if**: both the fast-forward merge and its `git rebase origin/main` fallback refuse (a conflict), `origin/main` is not an ancestor of HEAD after the commit, or the stat names a file outside this phase folder
 
-- [ ] T066 Push C3 to main (none)
+- [x] T066 Push C3 to main (none)
   - **File**: none - the command changes the remote
   - **Anchor**: n/a - no file is edited
   - **Change**: confirm the checkout is still ahead of `origin/main` only by C3, then push:
@@ -1120,7 +1178,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: `git revert --no-edit HEAD` then `git push origin HEAD:main`
   - **Stop if**: the `ff-ready` line is missing before the push, or the push is rejected because `origin/main` moved after T065's fast-forward; run `git fetch origin main`, `git rebase origin/main`, re-run T065's proof and push again, and never use `--force`
 
-- [ ] T067 Confirm the tree is clean and HEAD equals origin/main after C3 (none)
+- [x] T067 Confirm the tree is clean and HEAD equals origin/main after C3 (none)
   - **File**: none - the command reads git state, and C3 carries every checkbox this file holds, so no tick can dirty the tree after it
   - **Anchor**: n/a - no file is edited
   - **Change**: run the two commands below and report their output
@@ -1134,7 +1192,7 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
   - **Rollback**: n/a: the command changes nothing
   - **Stop if**: the status is not empty or the shas differ; record the paths and name the task that left them
 
-- [ ] T068 Report the handoff, including each push's CI runs (none)
+- [x] T068 Report the handoff, including each push's CI runs (none)
   - **File**: none - the report is the phase handoff message
   - **Anchor**: n/a - no file is edited
   - **Change**: post the handoff message with four blocks: the three commit shas C1, C2 and C3; the `gh run list --branch main --limit 10 --json databaseId,headSha,status,conclusion` output covering each push; the four artifact counts observed on the tip after C3; and one line per recorded limit (D7 history retention, `--no-verify`, the evidence push's own runs, and the absent pre-push surface-token guard). Do not append any of it to `09-ci.md`.
@@ -1153,9 +1211,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -1187,9 +1245,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md [EVIDENCE: spec.md section 4 lists REQ-001 to REQ-016 and the success criteria, read 2026-10-24]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [EVIDENCE: plan.md carries the clone, sweep, probe and commit steps the evidence files follow, read 2026-10-24]
+- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: `scratch/evidence/00-preflight.md` records `gh auth status` logged in with `repo` and `workflow` scopes and the phase 001-004 commits present in `git log`]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1197,10 +1255,10 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No production file changed; `git diff --stat 42b41dd286 HEAD` lists paths under this phase folder and the generated retrieval artifacts only
-- [ ] CHK-011 [P0] Every proof command's output is quoted in its evidence file, not summarized
-- [ ] CHK-012 [P1] Every zero check runs after a positive control that still matches a known population
-- [ ] CHK-013 [P1] Each evidence file follows the one-check-per-file convention and ends with `<!-- evidence:end -->`
+- [x] CHK-010 [P0] No production file changed; `git diff --stat 42b41dd286 HEAD` lists paths under this phase folder and the generated retrieval artifacts only [EVIDENCE: `git show --name-only --format= 4aeb061b49 01742752c1 | grep -vc "^specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/"` printed `0` on 2026-10-24; the rebuild commits are generated artifacts only]
+- [x] CHK-011 [P0] Every proof command's output is quoted in its evidence file, not summarized [EVIDENCE: each evidence file that runs a command quotes its output in fenced blocks, for example `scratch/evidence/11-final-tip.md` sections A, C, D and E]
+- [x] CHK-012 [P1] Every zero check runs after a positive control that still matches a known population [EVIDENCE: controls recorded before every zero: 336 paths, 1528 content hits, 566 raw tokens, 139 already-public blobs, 200, 60 and 59 artifact lines at the earlier commits (`11-final-tip.md` sections C, D, E)]
+- [x] CHK-013 [P1] Each evidence file follows the one-check-per-file convention and ends with `<!-- evidence:end -->` [EVIDENCE: all 15 files under `scratch/evidence/` end with `<!-- evidence:end -->`, checked with `tail -1` on 2026-10-24]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -1208,10 +1266,10 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: `acceptance-criteria.md` holds 15 rows, all `Met`, with no waiver]
+- [x] CHK-021 [P0] Manual testing complete [EVIDENCE: every check was run by hand against a fresh clone or the operator checkout, outputs quoted in `scratch/evidence/00` to `14`]
+- [x] CHK-022 [P1] Edge cases tested [EVIDENCE: edge cases covered in `14-corpus-boundary.md` (marker with and without the ignore rule) and `03-fresh-clone-leak.md` section E (the `find -L` correction for a vacuous zero)]
+- [x] CHK-023 [P1] Error scenarios validated [EVIDENCE: fail-closed handling recorded: a vacuous blob assertion was caught and rerun, and two review rounds answered 25 findings in `10-review.md`]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -1219,13 +1277,13 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. [EVIDENCE: n/a because this phase changes no code; review findings are answered in `scratch/evidence/10-review.md` without a fix class]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. [EVIDENCE: n/a because this phase is read-only and fixes nothing]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. [EVIDENCE: n/a because no helper, policy, schema field or test changed]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. [EVIDENCE: n/a because no security, path, parser or redaction code changed]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. [EVIDENCE: n/a because no matrix is claimed]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. [EVIDENCE: n/a because no test reads process-wide state]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [EVIDENCE: evidence rows are pinned to named shas (`9129007915`, `1c0c3534cf`, `a60192ef4e`, `634c32b3c7`), never to a moving range]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -1233,9 +1291,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets [EVIDENCE: `rg` for AWS, GitHub, Slack, PEM and JWT patterns over this phase folder exited 1 with no match, and no `.env`, `.pem` or `.key` file exists, 2026-10-24]
+- [x] CHK-031 [P0] Input validation implemented [EVIDENCE: n/a because the phase only reads and accepts no input]
+- [x] CHK-032 [P1] Auth/authz working correctly [EVIDENCE: n/a because the phase has no auth surface]
 <!-- /ANCHOR:security -->
 
 ---
@@ -1243,9 +1301,9 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: `validate.sh --strict` on this folder prints `RESULT: PASSED` after the status reconciliation (see `scratch/evidence/10-review.md`)]
+- [x] CHK-041 [P1] Code comments adequate [EVIDENCE: n/a because no code changed]
+- [x] CHK-042 [P2] README updated (if applicable) [EVIDENCE: n/a because no README is affected]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -1253,8 +1311,8 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] `scratch/` holds only the evidence record - no temporary working file remains
+- [x] CHK-050 [P1] Temp files in scratch/ only [EVIDENCE: `find scratch -type f` lists `.gitkeep` and the 15 evidence files only]
+- [x] CHK-051 [P1] `scratch/` holds only the evidence record - no temporary working file remains [EVIDENCE: same listing: no temporary working file remains in `scratch/`]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -1264,11 +1322,11 @@ Phase 3 records the checklist verdict, commits it with the final-tip evidence as
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-10-23
+**Verification Date**: 2026-10-24
 <!-- /ANCHOR:summary -->
 
 ---

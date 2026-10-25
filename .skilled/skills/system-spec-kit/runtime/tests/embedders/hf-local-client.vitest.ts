@@ -380,6 +380,64 @@ describe('HfLocalProvider HTTP client', () => {
     await expect(provider.embedQuery('live owner')).resolves.toHaveLength(3);
   });
 
+  it('keeps retrying ENOENT while a live lease records that its launcher supervises the model server', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, __hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME), JSON.stringify({
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now).toISOString(),
+      ttlMs: 60_000,
+      [__hfLocalProviderTestables.ADVISOR_LEASE_SUPERVISION_FIELD]: true,
+    }));
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, clock.now + 6000),
+    });
+
+    await expect(provider.embedQuery('supervision on')).resolves.toHaveLength(3);
+  });
+
+  it('fails fast on a live owner lease that records its launcher does not supervise the model server', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, __hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME), JSON.stringify({
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now).toISOString(),
+      ttlMs: 60_000,
+      [__hfLocalProviderTestables.ADVISOR_LEASE_SUPERVISION_FIELD]: false,
+    }));
+    const startedAt = clock.now;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, null),
+    });
+
+    await expect(provider.embedQuery('supervision off')).rejects.toThrow(/not retrying/);
+    expect(clock.now - startedAt).toBeGreaterThanOrEqual(5000);
+    expect(clock.now - startedAt).toBeLessThan(7000);
+  });
+
+  it('counts a live lease without the supervision field as spawn authority, as an older launcher wrote it', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    const lease = {
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now).toISOString(),
+      ttlMs: 60_000,
+    };
+    expect(Object.keys(lease)).not.toContain(__hfLocalProviderTestables.ADVISOR_LEASE_SUPERVISION_FIELD);
+    writeFileSync(path.join(socketDir, __hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME), JSON.stringify(lease));
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, clock.now + 6000),
+    });
+
+    await expect(provider.embedQuery('older launcher')).resolves.toHaveLength(3);
+  });
+
   it('reads the live lease under the file name the advisor launcher actually writes', async () => {
     const leaseFileName = launcherOwnerLeaseFileName();
     expect(__hfLocalProviderTestables.ADVISOR_OWNER_LEASE_FILE_NAME).toBe(leaseFileName);

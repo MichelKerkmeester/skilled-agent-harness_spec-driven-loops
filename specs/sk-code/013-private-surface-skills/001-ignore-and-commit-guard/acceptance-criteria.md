@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-code/013-private-surface-skills/001-ignore-and-commit-guard"
     last_updated_at: "2026-10-23T10:34:19Z"
     last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Rewrote the criteria for Level 3 with one proof block per criterion"
-    next_safe_action: "Execute tasks.md and mark each criterion Met with observed evidence"
+    recent_action: "All fifteen criteria verified Met; phase commit 7648ae8b56 pushed to origin/main"
+    next_safe_action: "Phase complete; continue in phase 002"
     blockers: []
     key_files:
       - ".gitignore"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-001-ignore-and-commit-guard"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,8 +41,8 @@ _memory:
 
 **Packet:** 001-ignore-and-commit-guard
 **Level:** 3
-**Status:** Draft
-**Date:** 2026-10-23
+**Status:** Complete
+**Date:** 2026-10-24
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -54,21 +54,21 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Status | Waiver |
 |-------|-----|---------------------|--------|--------|
-| AC-001 | REQ-001 | Given the edited root ignore file, when `git check-ignore -v` runs for a private path under each of the four rule-bearing roots, then each of the four rules is named and the command exits 0 | Unmet | - |
-| AC-002 | REQ-001 | Given a symlink named `local-probe` under the skills tree, when the ignore layer is asked about it, then the slash-less rule matches it, and a `local-` file below the skill root is not ignored | Unmet | - |
-| AC-003 | REQ-002 | Given a throwaway repository with `.skilled/skills/local-probe/SKILL.md` staged, when the real hook runs, then it exits 1 and the log names the path, the gate and the repair | Unmet | - |
-| AC-004 | REQ-002 | Given the same staged path, when the operator runs the repair the refusal printed, then the hook exits 0 on the next run, so the guard does not block its own fix | Unmet | - |
-| AC-005 | REQ-004 | Given a private skill staged under each of the eight guarded roots plus a file nested inside one, when the harness runs, then every one of those paths is refused and named | Unmet | - |
-| AC-006 | REQ-004 | Given a `local-` name that sits below the skill root rather than at it, when the hook runs, then nothing is refused and the guard stays silent | Unmet | - |
-| AC-007 | REQ-003 | Given the edited hook, when its syntax and its gate order are checked, then the file parses, the guard's closing `fi` is the last non-blank line before the comment-hygiene gate, and no bypass exists for it | Unmet | - |
-| AC-008 | REQ-003 | Given the edited hook, when its index read and its pattern constant are inspected, then the read is NUL-separated with `--diff-filter=ACMR` and the constant names all eight roots | Unmet | - |
-| AC-009 | REQ-004 | Given a staged symlink named `local-*`, when the hook runs, then the symlink is refused with exit 1 | Unmet | - |
-| AC-010 | REQ-004 | Given a staged gitlink named `local-*`, when the hook runs, then the gitlink entry is refused with exit 1 | Unmet | - |
-| AC-011 | REQ-002 | Given a private skill copied to a tracked name that does not start with `local-`, when the hook runs, then the copy is committable with exit 0, and the limit is recorded in the spec and in ADR-003 | Unmet | - |
-| AC-012 | REQ-004 | Given the harness with the seven new cases, when it runs, then it exits 0 with `pre-commit gates: 131 passed, 0 failed`, and no existing case was rewritten to make that true | Unmet | - |
-| AC-013 | REQ-006 | Given the phase commit, when the diff is inspected, then only the three code files changed outside `specs/`, and no added code comment names a spec path, packet number or phase number | Unmet | - |
-| AC-014 | REQ-005 | Given a reader looking for the limits, when they read `spec.md`, then they find `--no-verify`, git-history retention, the renamed-copy limit and the absence of an ongoing pre-push surface-token guard | Unmet | - |
-| AC-015 | REQ-006 | Given the pushed phase commit, when the worktree and the refs are checked, then `git status --porcelain` prints nothing and HEAD equals `origin/main` | Unmet | - |
+| AC-001 | REQ-001 | Given the edited root ignore file, when `git check-ignore -v` runs for a private path under each of the four rule-bearing roots, then each of the four rules is named and the command exits 0 | Met | - |
+| AC-002 | REQ-001 | Given a symlink named `local-probe` under the skills tree, when the ignore layer is asked about it, then the slash-less rule matches it, and a `local-` file below the skill root is not ignored | Met | - |
+| AC-003 | REQ-002 | Given a throwaway repository with `.skilled/skills/local-probe/SKILL.md` staged, when the real hook runs, then it exits 1 and the log names the path, the gate and the repair | Met | - |
+| AC-004 | REQ-002 | Given the same staged path, when the operator runs the repair the refusal printed, then the hook exits 0 on the next run, so the guard does not block its own fix | Met | - |
+| AC-005 | REQ-004 | Given a private skill staged under each of the eight guarded roots plus a file nested inside one, when the harness runs, then every one of those paths is refused and named | Met | - |
+| AC-006 | REQ-004 | Given a `local-` name that sits below the skill root rather than at it, when the hook runs, then nothing is refused and the guard stays silent | Met | - |
+| AC-007 | REQ-003 | Given the edited hook, when its syntax and its gate order are checked, then the file parses, the guard's closing `fi` is the last non-blank line before the comment-hygiene gate, and no bypass exists for it | Met | - |
+| AC-008 | REQ-003 | Given the edited hook, when its index read and its pattern constant are inspected, then the read is NUL-separated with `--diff-filter=ACMR` and the constant names all eight roots | Met | - |
+| AC-009 | REQ-004 | Given a staged symlink named `local-*`, when the hook runs, then the symlink is refused with exit 1 | Met | - |
+| AC-010 | REQ-004 | Given a staged gitlink named `local-*`, when the hook runs, then the gitlink entry is refused with exit 1 | Met | - |
+| AC-011 | REQ-002 | Given a private skill copied to a tracked name that does not start with `local-`, when the hook runs, then the copy is committable with exit 0, and the limit is recorded in the spec and in ADR-003 | Met | - |
+| AC-012 | REQ-004 | Given the harness with the seven new cases, when it runs, then it exits 0 with `pre-commit gates: 131 passed, 0 failed`, and no existing case was rewritten to make that true | Met | - |
+| AC-013 | REQ-006 | Given the phase commit, when the diff is inspected, then only the three code files changed outside `specs/`, and no added code comment names a spec path, packet number or phase number | Met | - |
+| AC-014 | REQ-005 | Given a reader looking for the limits, when they read `spec.md`, then they find `--no-verify`, git-history retention, the renamed-copy limit and the absence of an ongoing pre-push surface-token guard | Met | - |
+| AC-015 | REQ-006 | Given the pushed phase commit, when the worktree and the refs are checked, then `git status --porcelain` prints nothing and HEAD equals `origin/main` | Met | - |
 
 ### Status values
 
@@ -291,10 +291,12 @@ Expected: `worktree-clean` and `head-equals-origin-main`.
 <!-- ANCHOR:closure -->
 ## 4. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 The packet closes on AC-001 through AC-015, each proven by the block above and each
-recorded `Met` with the observed output. Two things are consciously left out: the
+recorded `Met`. The phase commit ships the three code files and this packet's documents
+as one commit pushed to `main`, so the pushed state behind AC-015 is the same tree the
+other fourteen criteria were proven against. Two things are consciously left out: the
 guard is name-based, so a renamed copy passes it (AC-011 pins that exit code 0 and
 ADR-003 records why), and no recurring pre-push surface-token check exists after the
 one-time fresh-clone sweep in phase 5 (ADR-005).

@@ -1,0 +1,1665 @@
+{
+  "sessionId": "2026-10-25T08:49:26Z",
+  "parentSessionId": "2026-10-25T08:49:26Z",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-repo-bound-inventory-which-skilled-markers-agent-paths-cache-locations-and-st",
+      "inboxId": null,
+      "text": "Q1 Repo-bound inventory: which `.skilled/` markers, agent paths, cache locations and stack-specific path patterns does the sk-code-review packet hold, and is each portable, configurable or repo-bound?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-unknown-surface-path-what-does-a-review-do-when-the-surface-is-unknown-how-mu",
+      "inboxId": null,
+      "text": "Q2 UNKNOWN-surface path: what does a review do when the surface is UNKNOWN, how much of the baseline stays useful, and how could a repository declare its own surface evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-output-contract-which-parts-of-the-review-output-contract-raise-signal-and-wh",
+      "inboxId": null,
+      "text": "Q3 Output contract: which parts of the review output contract raise signal and which add ceremony or parse risk (Case line, finding class, scope proof, riskScore, Not checked line, final status line)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-usefulness-evidence-what-does-review-catch-cost-and-miss-in-the-repository-s-",
+      "inboxId": null,
+      "text": "Q4 Usefulness evidence: what does review catch, cost and miss in the repository's own benchmark reports, playbook scenarios and changelog?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-pr-state-efficiency-gates-how-portable-and-configurable-are-the-content-hash-",
+      "inboxId": null,
+      "text": "Q5 PR-state efficiency gates: how portable and configurable are the content-hash dedup, the minimum-evidence gate and the depth alias for a repository with no remote, a monorepo or other file naming?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-review-and-quality-boundary-does-review-read-what-the-quality-gate-checked-wh",
+      "inboxId": null,
+      "text": "Q6 Review and quality boundary: does review read what the quality gate checked, who reports and who fixes, and how do the shared checklist name and the tie-break order divide the work?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-q7-surface-packets-how-is-surface-evidence-applied-in-review-does-a-workflow-dif",
+      "inboxId": null,
+      "text": "Q7 Surface packets: how is surface evidence applied in review, does a workflow diff get the CI rules, and could a surface declare the evidence review should read?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-8-q8-consumers-and-contracts-which-consumers-depend-on-the-status-line-the-code-re",
+      "inboxId": null,
+      "text": "Q8 Consumers and contracts: which consumers depend on the status line, the CODE-REVIEW prompt prefix and the shared doctrine, and what would a configurable review break?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-9-q9-user-authored-modes-what-does-a-user-s-workflow-or-surface-mode-for-example-a",
+      "inboxId": null,
+      "text": "Q9 User-authored modes: what does a user's workflow or surface mode (for example a security-only reviewer) need from review, what does review need from it, and which of the eleven integration rows carries it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-10-q10-repo-local-policy-and-floors-where-could-a-repository-keep-severity-override",
+      "inboxId": null,
+      "text": "Q10 Repo-local policy and floors: where could a repository keep severity overrides, mandatory checks and ignore paths without forking the hub, which floors may no recommendation relax, and how would a later change be proven through both routing stages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-repo-bound-inventory-which-skilled-markers-agent-paths-cache-locations-and-st",
+      "inboxId": null,
+      "text": "Q1 Repo-bound inventory: which `.skilled/` markers, agent paths, cache locations and stack-specific path patterns does the sk-code-review packet hold, and is each portable, configurable or repo-bound?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-unknown-surface-path-what-does-a-review-do-when-the-surface-is-unknown-how-mu",
+      "inboxId": null,
+      "text": "Q2 UNKNOWN-surface path: what does a review do when the surface is UNKNOWN, how much of the baseline stays useful, and how could a repository declare its own surface evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-output-contract-which-parts-of-the-review-output-contract-raise-signal-and-wh",
+      "inboxId": null,
+      "text": "Q3 Output contract: which parts of the review output contract raise signal and which add ceremony or parse risk (Case line, finding class, scope proof, riskScore, Not checked line, final status line)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-q4-usefulness-evidence-what-does-review-catch-cost-and-miss-in-the-repository-s-",
+      "inboxId": null,
+      "text": "Q4 Usefulness evidence: what does review catch, cost and miss in the repository's own benchmark reports, playbook scenarios and changelog?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-pr-state-efficiency-gates-how-portable-and-configurable-are-the-content-hash-",
+      "inboxId": null,
+      "text": "Q5 PR-state efficiency gates: how portable and configurable are the content-hash dedup, the minimum-evidence gate and the depth alias for a repository with no remote, a monorepo or other file naming?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-q6-review-and-quality-boundary-does-review-read-what-the-quality-gate-checked-wh",
+      "inboxId": null,
+      "text": "Q6 Review and quality boundary: does review read what the quality gate checked, who reports and who fixes, and how do the shared checklist name and the tie-break order divide the work?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-q7-surface-packets-how-is-surface-evidence-applied-in-review-does-a-workflow-dif",
+      "inboxId": null,
+      "text": "Q7 Surface packets: how is surface evidence applied in review, does a workflow diff get the CI rules, and could a surface declare the evidence review should read?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-8-q8-consumers-and-contracts-which-consumers-depend-on-the-status-line-the-code-re",
+      "inboxId": null,
+      "text": "Q8 Consumers and contracts: which consumers depend on the status line, the CODE-REVIEW prompt prefix and the shared doctrine, and what would a configurable review break?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-9-q9-user-authored-modes-what-does-a-user-s-workflow-or-surface-mode-for-example-a",
+      "inboxId": null,
+      "text": "Q9 User-authored modes: what does a user's workflow or surface mode (for example a security-only reviewer) need from review, what does review need from it, and which of the eleven integration rows carries it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-10-q10-repo-local-policy-and-floors-where-could-a-repository-keep-severity-override",
+      "inboxId": null,
+      "text": "Q10 Repo-local policy and floors: where could a repository keep severity overrides, mandatory checks and ignore paths without forking the hub, which floors may no recommendation relax, and how would a later change be proven through both routing stages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q5 PR-state efficiency gates: how portable and configurable are the content-hash dedup, the minimum-evidence gate and the depth alias for a repository with no remote, a monorepo or other file naming?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8 Consumers and contracts: which consumers depend on the status line, the CODE-REVIEW prompt prefix and the shared doctrine, and what would a configurable review break?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 Output contract: which parts of the review output contract raise signal and which add ceremony or parse risk (Case line, finding class, scope proof, riskScore, Not checked line, final status line)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q9 User-authored modes: what does a user's workflow or surface mode (for example a security-only reviewer) need from review, what does review need from it, and which of the eleven integration rows carries it?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 UNKNOWN-surface path: what does a review do when the surface is UNKNOWN, how much of the baseline stays useful, and how could a repository declare its own surface evidence?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 Review and quality boundary: does review read what the quality gate checked, who reports and who fixes, and how do the shared checklist name and the tie-break order divide the work?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10 Repo-local policy and floors: where could a repository keep severity overrides, mandatory checks and ignore paths without forking the hub, which floors may no recommendation relax, and how would a later change be proven through both routing stages?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 Surface packets: how is surface evidence applied in review, does a workflow diff get the CI rules, and could a surface declare the evidence review should read?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 Usefulness evidence: what does review catch, cost and miss in the repository's own benchmark reports, playbook scenarios and changelog?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 through Q10 remain open.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 is separately marked answered and carried forward as open in the reducer state; that status needs clarification.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 through Q10 remain open for the scheduled research angles.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 Surface packets.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8 Consumers and contracts.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 UNKNOWN-surface path remains carried forward as open despite the reducer summary separately marking it answered.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10 Repo-local policy and floors.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q9 User-authored modes.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 Review and quality boundary.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 Output contract.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 PR-state efficiency gates.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6–Q10 remain unchecked in the strategy.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2–Q4 are carried forward as open by the dispatch context despite being checked in the strategy; that state discrepancy was not reconciled here.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the live review runtime follows the documented gates for a no-remote repository or nonstandard sensitive-path naming remains UNKNOWN; confirming it requires a live scenario run.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7–Q10 remain scheduled and unanswered. This iteration does not change reducer-owned state.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2–Q5 remain carried-forward open questions in the dispatch context. Q2–Q4 are also marked answered in the strategy, so that state discrepancy remains unresolved here.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The dispatch context still carries Q2–Q5 as open despite the strategy marking those questions answered. This iteration leaves reducer-owned state reconciliation untouched.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8–Q10 remain scheduled for later iterations.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10 Repo-local policy and floors remains for iteration 10.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether a real user-authored mode can route into review and exchange its evidence or findings remains UNKNOWN. Confirm with a route replay through both routing stages and a focused review scenario after such a mode exists.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UNKNOWN:** Does the live review runtime already load any repository-owned policy file? Resolve by tracing the review-mode loader and running a focused scenario with a policy file, including floor-preservation and ignored-path cases.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The dispatch context still carries Q2–Q9 as open while the strategy marks earlier questions answered. This iteration leaves that reducer/dispatch state discrepancy untouched.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can a real user-authored surface mode route into review and exchange evidence or findings? **UNKNOWN** (carried from iteration 9).",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Would replacing the two-value surface label (rank 7) break the report-format consumers named in I-7? **Open**; not re-tested here.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The dispatch context still carries Q2–Q9 as open while the strategy marks them answered. That reducer/dispatch state discrepancy remains untouched by this iteration.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the `ROUTER.md` prose stage independently bundle CI for a path-only workflow prompt? **UNKNOWN** (F5).",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the live review runtime load a repository-owned policy file? **UNKNOWN** (carried from iteration 10).",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the `ROUTER.md` prose stage independently bundle CI for a path-only workflow prompt?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Would replacing the two-value surface label (rank 7) break the report-format consumers",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the live review runtime load any repository-owned policy file? **Answered negatively",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can a real user-authored surface mode route into review and exchange evidence or findings?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open (carried from iteration 11).** Would replacing the two-value surface label (rank 7) break the report-format consumers named in I-7? Still not re-tested.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open (carried from iteration 9).** Can a real user-authored surface mode route into review and exchange evidence or findings? E-3's answer is \"there is no schema to exchange\", which sharpens the question but does not close it.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open (new).** Rank 6's recommendation row was not read. Its premise is confirmed; its proposed fix, effort and hub-file list are unexamined by this lens and should be re-read in iteration 14 or 15.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UNKNOWN (carried, narrowed).** Does the live runtime bridge any of the three handoffs informally — does an orchestrator paste the envelope into a review prompt, or does a reviewer read the playbook fields by habit? F1–F3 establish that no *file* declares these readers. A live quality-then-review run would decide it. Carried from iterations 6 and 10.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**State discrepancy (carried, untouched).** The dispatch context still lists Q2–Q9 as open while the strategy marks them answered. This iteration does not touch reducer-owned state.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open (carried from iterations 11 and 12).** Would replacing the two-value surface label (rank 7) break the report-format consumers named in I-7?",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**NOT TESTED (new, rank 2).** Do `SKILL.md:108`, `:418`, `:426` and `code-quality-standards.md:54` say what rank 2 claims, and does the 562-line file contain any consolidated extension rule? One full-file section read answers both.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**NOT TESTED (narrowed, rank 5).** Does `references/pr-state-dedup.md` restate or extend the never-skip taxonomy?",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open (carried from iteration 9).** Can a real user-authored surface mode route into review and exchange evidence or findings?",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**NOT TESTED (narrowed, rank 4).** Is a no-origin fallback documented outside §9.1 — in `references/pr-state-dedup.md` or in runtime code? A read of that reference, or a live no-remote review, answers it.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UNKNOWN (carried, narrowed).** Does the live runtime bridge any handoff informally? A live quality-then-review run would decide it.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open (carried from iteration 13).** Rank 6's recommendation row — premise confirmed, row text, effort and hub-file list unread.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Rank 2, narrowed.** `SKILL.md:108` and `code-quality-standards.md:54` were not opened, and the full 562-line file was not read, so \"no consolidated extension rule\" remains partly untested. `:418` and `:426` are now confirmed.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Rank 5, narrowed.** Does `references/pr-state-dedup.md` restate or extend the never-skip taxonomy? Still NOT TESTED.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Live runtime handoffs.** Does a quality-then-review run pass the advisory envelope, and can a real user-authored surface mode route into review and exchange evidence? Both remain UNKNOWN; only a live scenario decides them.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Rank 4, framework-wide.** Is a no-origin M-1 fallback documented outside §9.1 — in `references/pr-state-dedup.md` or runtime code? Still NOT TESTED.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**State discrepancy, carried untouched.** The dispatch context still lists Q2–Q9 as open while the strategy marks them answered. This iteration does not touch reducer-owned state.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Rank 10, narrowed.** D4 scoring, cost columns and the 30-versus-31 playbook count were not reopened.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-001-surface-signal-is-framework-specific",
+      "text": "F-001 — Surface signal is framework-specific",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-f-002-resource-lookup-travels-with-the-packet-operational-paths-assume-this-repo",
+      "text": "F-002 — Resource lookup travels with the packet; operational paths assume this repository layout",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-f-003-cache-base-is-configurable-cache-identity-depends-on-the-git-origin",
+      "text": "F-003 — Cache base is configurable; cache identity depends on the Git origin",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-f-004-sensitive-path-rules-are-cross-repository-globs-with-fixed-stack-specific-",
+      "text": "F-004 — Sensitive-path rules are cross-repository globs with fixed stack-specific entries",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-derived-the-baseline-remains-useful-but-narrow-unknown-keeps-the-findings-first-",
+      "text": "**DERIVED — The baseline remains useful but narrow.** UNKNOWN keeps the findings-first review doctrine and mandatory security/correctness minimums, and the reviewer must disclose uncertainty. Surface-specific style, process, build, and test conventions are unavailable. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:54] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:59] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:64] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:73] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:83] [SOURCE: .skilled/skills/sk-code/sk-code-review/README.md:178]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-inferred-a-small-repository-local-surface-profile-could-fill-that-gap-it-could-d",
+      "text": "**INFERRED — A small repository-local surface profile could fill that gap.** It could declare ownership markers, the review standards to load, and the verification commands, with references constrained to the resolved repository root. Keep UNKNOWN as the fallback when the profile is absent or ambiguous. This is a proposal, not current behavior. Effort is estimated at M. The main risk is stale or untrusted paths applying the wrong standards. It needs a decision on the profile schema and precedence. The likely touch points are sk-code-review/SKILL.md, shared/references/stack-detection.md, hub-router.json, and ROUTER.md; routing changes need both hub stages. It affects sk-code-skilled evidence packets, the shared @review and @deep-review consumers, and future repository-authored surface evidence. A fixture repository without .skilled/ that declares a profile would confirm the proposal if the profile routes its evidence and missing or invalid declarations still fall back to UNKNOWN. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:225] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:36] [SOURCE: .skilled/skills/sk-code/ROUTER.md:184]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-observed-no-persistent-repository-declaration-is-present-in-the-inspected-detect",
+      "text": "**OBSERVED — No persistent repository declaration is present in the inspected detector contract.** The review detector returns only SKILLED or UNKNOWN, recognizes .skilled/ paths, and otherwise returns UNKNOWN. The shared detector says unsupported paths remain UNKNOWN until the user clarifies. The root router's fallback asks for the files and verification command, which supports a per-review clarification rather than a saved repository profile. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:225] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:238] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:241] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:25] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:36] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:89] [SOURCE: .skilled/skills/sk-code/ROUTER.md:184] [SOURCE: .skilled/skills/sk-code/ROUTER.md:188]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-301-case-line",
+      "text": "F-301 — Case line",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-f-302-finding-class-and-scope-proof",
+      "text": "F-302 — Finding class and scope proof",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-f-303-riskscore",
+      "text": "F-303 — riskScore",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-f-304-not-checked-line",
+      "text": "F-304 — Not checked line",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-f-305-final-status-line",
+      "text": "F-305 — Final status line",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-f-306-research-state-consistency",
+      "text": "F-306 — Research-state consistency",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-derived-d3-efficiency-receives-100-100-but-the-reports-record-neither-executor-n",
+      "text": "**DERIVED:** D3 efficiency receives 100/100, but the reports record neither executor nor model, and the result CSV has no duration or token field. Measured runtime cost and operator effort remain unknown. [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md:19`] `D3 efficiency | 15pts | 100/100` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/README.md:24`] `Executor | not recorded` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/README.md:25`] `Model | not recorded` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/results.csv:2`] `tier,stage,class_kind,gold_mode`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/`, including the index and the router-mode-a and live-mode-b report folders.",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` and the injection, large-refactor, same-class-producer and cross-consumer scenarios.",
+        "`.skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md`, `v1.7.0.0.md` and `v1.7.1.0.md`."
+      ]
+    },
+    {
+      "id": "finding-4-5-derived-the-changelog-records-intended-product-gains-such-as-flagging-hand-rolle",
+      "text": "**DERIVED:** The changelog records intended product gains, such as flagging hand-rolled native behavior and unneeded code, classifying a generic Node repository as UNKNOWN, checking both finding shapes and pinning evidence-floor labels. These entries describe changes but provide no measured review outcomes. [SOURCE: `.skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md:20`] `hand-rolled standard-library behavior` [SOURCE: `.skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md:14`] `generic Node repository is reported as UNKNOWN` [SOURCE: `.skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md:22`] `Both finding shapes are checked` [SOURCE: `.skilled/skills/sk-code/sk-code-review/changelog/v1.7.1.0.md:14`] `rule canary now fails when one`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/`, including the index and the router-mode-a and live-mode-b report folders.",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` and the injection, large-refactor, same-class-producer and cross-consumer scenarios.",
+        "`.skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md`, `v1.7.0.0.md` and `v1.7.1.0.md`."
+      ]
+    },
+    {
+      "id": "finding-4-1-derived-the-july-10-report-index-records-seven-passing-scenarios-in-both-runs-th",
+      "text": "**DERIVED:** The July 10 report index records seven passing scenarios in both runs. The detailed reports show only routing-class scenarios, while D4 usefulness is unscored. Therefore, the 100/100 pass does not establish code-review finding accuracy. [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md:27`] `7 PASS **PASS** 100/100` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md:20`] `D4 usefulness | 25pts | _unscored-mode-a_` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:9`] `By class — routing: 7` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:52`] `D4 (ablation) need live mode`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/`, including the index and the router-mode-a and live-mode-b report folders.",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` and the injection, large-refactor, same-class-producer and cross-consumer scenarios.",
+        "`.skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md`, `v1.7.0.0.md` and `v1.7.1.0.md`."
+      ]
+    },
+    {
+      "id": "finding-4-4-derived-the-playbook-is-a-test-contract-not-evidence-that-those-review-behaviors",
+      "text": "**DERIVED:** The playbook is a test contract, not evidence that those review behaviors have been exercised: it requires live execution and retained outcomes, while the benchmark reports contain seven routing scenarios. The playbook also says 30 scenarios in its overview and 31 covered features in its release gate, so the complete validation denominator is inconsistent. [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md:9`] `Every scenario MUST be executed against the live` [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md:37`] `30 deterministic scenarios across 8 categories` [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md:138`] `COVERED_FEATURES == TOTAL_FEATURES == 31` [SOURCE: `.skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:42`] `CR-R01 | routing | 100/100 | passed`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/`, including the index and the router-mode-a and live-mode-b report folders.",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` and the injection, large-refactor, same-class-producer and cross-consumer scenarios.",
+        "`.skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md`, `v1.7.0.0.md` and `v1.7.1.0.md`."
+      ]
+    },
+    {
+      "id": "finding-4-3-observed-the-playbook-sets-concrete-usefulness-targets-trace-untrusted-input-to-",
+      "text": "**OBSERVED:** The playbook sets concrete usefulness targets: trace untrusted input to injection sinks, inventory other producers of the same bug class, identify consumers of changed contracts, and disclose limits on large diffs. [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/security-and-correctness-minimums/input-validation-injection.md:19`] `Source-to-sink tracing for SQL, command, path` [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:19`] `same-class producers must be inventoried` [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/cross-consumer-affected-surface.md:19`] `inventory every consumer of changed symbols` [SOURCE: `.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/baseline-review-flow/large-refactor-pr.md:19`] `500+ LOC across multiple files`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/`, including the index and the router-mode-a and live-mode-b report folders.",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` and the injection, large-refactor, same-class-producer and cross-consumer scenarios.",
+        "`.skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md`, `v1.7.0.0.md` and `v1.7.1.0.md`."
+      ]
+    },
+    {
+      "id": "finding-5-2-derived-m-1-is-repository-scoped-rather-than-package-scoped-the-signature-hashes",
+      "text": "**DERIVED — M-1 is repository-scoped rather than package-scoped.** The signature hashes the full base-ref-to-HEAD diff, while the cache key uses the origin URL. Packages in one monorepo therefore share a cache namespace, and unrelated package changes can invalidate a package-scoped review. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:496] `sha256(git diff <base-ref>...HEAD)` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:503] `sha256(git remote get-url origin).slice(0, 12)`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-inferred-m-1-requires-an-origin-remote-as-documented-the-cache-namespace-hashes-",
+      "text": "**INFERRED — M-1 requires an `origin` remote as documented.** The cache namespace hashes the output of `git remote get-url origin`; no fallback is specified for a repository without that remote. A live no-origin review would confirm whether another layer supplies a fallback. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:503] `sha256(git remote get-url origin).slice(0, 12)`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-observed-carried-forward-question-state-conflicts-with-the-strategy-the-strategy",
+      "text": "**OBSERVED — carried-forward question state conflicts with the strategy.** The strategy currently marks Q2–Q4 answered, while the dispatch context carries them forward as open. This iteration leaves reducer-owned state unchanged. [SOURCE: specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md:28] `- [x] Q2 UNKNOWN-surface path`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-observed-m-2-makes-the-line-threshold-configurable-but-keeps-path-protection-fix",
+      "text": "**OBSERVED — M-2 makes the line threshold configurable but keeps path protection fixed.** `SK_CODE_REVIEW_MIN_CHANGED_LINES` enables the threshold, with zero as the disabled default. The sensitive-path list names common patterns, but the reviewed docs do not define a repository-specific pattern extension; alternate names may therefore fall outside the skip protection. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:522] `# >0 enables; default 0 = disabled` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:530] `NEVER skip when diff touches` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:534] `Security / Authentication / Authorization`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-observed-the-depth-alias-is-configurable-but-advisory-it-resolves-environment-ov",
+      "text": "**OBSERVED — the depth alias is configurable, but advisory.** It resolves environment over config over default and is read by the reviewer in-loop. `lite` maps to M-2 and preserves the stated ALWAYS, security/correctness, and severity floors. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:552] `reviewer reads and applies in-loop` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:556] `it NEVER lowers the ALWAYS tier`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-derived-the-shared-name-marks-an-overlay-not-a-shared-job-both-files-use-the-hea",
+      "text": "**DERIVED — The shared name marks an overlay, not a shared job.** Both files use the heading `Code Quality Checklist`, but review's asset is the broad non-security defect baseline. [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:15] `Code Quality Checklist` [SOURCE: .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:12] `Code Quality Checklist`. Quality mode's separately named nested checklist validates implementation style; it says to use that checklist as the web overlay for formal review. The root `CODE_QUALITY` resource map also lists review's checklist, while the hub tie-break orders `sk-code-quality` ahead of `sk-code-review`. A clearly separate pair of intents can still route as an ordered bundle. [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:25] `systematic pass for non-security defects` [SOURCE: .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:20] `style standards before claiming implementation is complete` [SOURCE: .skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md:40] `formal findings-first review output` [SOURCE: .skilled/skills/sk-code/ROUTER.md:292] `sk-code-review/assets/code-quality-checklist.md` [SOURCE: .skilled/skills/sk-code/hub-router.json:7] `[\"sk-code-quality\", \"sk-code-review\", \"sk-code-ci\", \"sk-code-skilled\"]` [SOURCE: .skilled/skills/sk-code/hub-router.json:10] `code intents route to an ordered workflow-mode list`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-inferred-gate-evidence-is-not-guaranteed-to-reach-review-quality-mode-can-emit-a",
+      "text": "**INFERRED — Gate evidence is not guaranteed to reach review.** Quality mode can emit an advisory envelope containing loaded checklists and checker outputs. Review's documented contract describes its own baseline and available surface standards, but no named consumer for that envelope; the targeted search also found no envelope field names in the review packet. Thus the written contract does not guarantee that review sees the prior gate's checks or accepted deferrals. Actual runtime pass-through is UNKNOWN. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:215] `checklists_loaded: <checklist paths loaded, or none>` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:216] `checker_outputs: <comment-hygiene and dist-staleness results` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:223] `status is fixed to advisory` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:57] `Surface standards evidence (when available)`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-observed-review-reports-quality-fixes-review-declares-a-findings-first-pass-with",
+      "text": "**OBSERVED — Review reports; quality fixes.** Review declares a findings-first pass with no edits and loads its code-quality checklist on every invocation. The checklist covers non-security production defects and prioritizes silent failures and data corruption. The quality mode instead runs after implementation, selects its own target-path checklist, fixes in-scope gate failures, and leaves findings-only output to review. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:33] `Review-only pass: findings-first output with no code edits` [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:99] `Every invocation, including security/correctness reviews` [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:25] `systematic pass for non-security defects` [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:33] `Prioritize silent-failure and data-corruption risks above stylistic concerns` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:15] `leaves findings-only output to sk-code-review` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:181] `then load the target-path checklist` [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:184] `Fix gate failures in place`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-f-iter008-001-status-line-consumers",
+      "text": "F-iter008-001 — Status-line consumers",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-f-iter008-002-prompt-marker-consumers",
+      "text": "F-iter008-002 — Prompt marker consumers",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-f-iter008-003-shared-doctrine-consumers",
+      "text": "F-iter008-003 — Shared doctrine consumers",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-derived-no-row-in-the-eleven-row-integration-list-defines-the-semantic-data-hand",
+      "text": "[DERIVED] No row in the eleven-row integration list defines the semantic data handoff between a user-authored mode and review. Rows 1–4 make a mode selectable and routable, and row 9 inventories its leaves. Rows 6–8 cover advisor, human-facing, and doctor discovery. For review to load a security surface, rows 4 and 9 are the closest content path; row 7 makes the mode visible to an agent. Row 5 applies only where a hub has FULL_INVENTORY, row 10 only to non-metadata routing, and row 11 when command mirrors are owned. None defines the two-way payload. The checked-in registry describes the built-in quality/review workflows and skilled/CI surfaces, so live reachability for an external mode remains unverified. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:223] `Nothing routes at all`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:224] `The hub never selects the mode`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:225] `exact permutation of the registry`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:226] `mode is selected but loads no leaves`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:227] `The full-toolkit intent silently omits the mode`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:228] `The advisor never surfaces the hub`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:229] `An agent that loads the hub`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:230] `missing from the hub's advertised surface`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:231] `Regenerate rather than hand-edit`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:232] `A metadata mode needs none of this`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:233] `The command is unreachable from those runtimes`; [SOURCE: .skilled/skills/sk-code/mode-registry.json:5] `The WORKFLOW axis (sk-code-quality/sk-code-review) is process`; [SOURCE: .skilled/skills/sk-code/mode-registry.json:5] `SURFACE axis (sk-code-ci/sk-code-skilled) is read-only domain evidence`.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, sections 6 and 7.",
+        "`.skilled/repo-rules/skill-hub-routing.md`, sections 1 and 2.",
+        "`.skilled/skills/sk-code/mode-registry.json`, `hub-router.json`, and `leaf-manifest.json`.",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md`, surface alignment and output contract.",
+        "`.skilled/skills/sk-code/ROUTER.md`, surface-first and intent-second routing."
+      ]
+    },
+    {
+      "id": "finding-9-2-inferred-a-security-surface-should-give-review-bounded-domain-specific-checks-or",
+      "text": "[INFERRED] A security surface should give review bounded, domain-specific checks or evidence and clear scope hints. The surface itself is read-only, so it does not need review output. A separate user workflow that consumes review results should accept the existing findings contract, including a concrete case, risk, finding class, scope proof, and one fixed final status. The current review report labels surface evidence only as SKILLED or UNKNOWN and documents no arbitrary user-mode payload, so this exchange needs an explicit contract and a live route plus review scenario to confirm it. [SOURCE: .skilled/skills/sk-code/mode-registry.json:18] `read-only domain-evidence packets`; [SOURCE: .skilled/skills/sk-code/hub-router.json:11] `one workflow mode primary plus zero-or-more surface packets`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:312] `Baseline security/correctness minimums always apply`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:350] `Surface evidence used: [SKILLED | UNKNOWN]`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:356] `A finding with no case is not reported`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:360] `grep/test evidence proving class coverage`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:380] `Every review MUST end with exactly one`.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, sections 6 and 7.",
+        "`.skilled/repo-rules/skill-hub-routing.md`, sections 1 and 2.",
+        "`.skilled/skills/sk-code/mode-registry.json`, `hub-router.json`, and `leaf-manifest.json`.",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md`, surface alignment and output contract.",
+        "`.skilled/skills/sk-code/ROUTER.md`, surface-first and intent-second routing."
+      ]
+    },
+    {
+      "id": "finding-9-1-observed-classify-a-user-authored-security-capability-by-what-it-adds-use-a-work",
+      "text": "[OBSERVED] Classify a user-authored security capability by what it adds. Use a workflow packet when it changes the review lifecycle, output contract, tool permissions, or primary routing. Use a surface packet when it provides read-only security rules or checklists for an existing review workflow to load as evidence. If a capability needs both, register its workflow first and attach the surface evidence. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:182] `Choose a workflow packet when`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:191] `Choose a surface packet when`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:196] `A workflow mode remains primary`; [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:207] `register the workflow first and attach surfaces`.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, sections 6 and 7.",
+        "`.skilled/repo-rules/skill-hub-routing.md`, sections 1 and 2.",
+        "`.skilled/skills/sk-code/mode-registry.json`, `hub-router.json`, and `leaf-manifest.json`.",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md`, surface alignment and output contract.",
+        "`.skilled/skills/sk-code/ROUTER.md`, surface-first and intent-second routing."
+      ]
+    },
+    {
+      "id": "finding-10-5-derived-prove-a-routing-change-at-both-stages-with-a-real-request-stage-one-is-t",
+      "text": "**DERIVED — Prove a routing change at both stages with a real request.** Stage one is the advisor selecting the `sk-code` hub from its `graph-metadata.json`; stage two is `hub-router.json` plus `ROUTER.md` selecting `sk-code-review` and its resources. For a later policy-loader or routing change, run the representative request through the real advisor, then replay it through the hub router and assert the review mode and local policy resource are reached. Run the per-hub gate with the changed hub path, read its subject line, and use an out-of-domain prompt as a negative control; registry presence or a green gate alone does not prove reachability. [SOURCE: .skilled/repo-rules/skill-hub-routing.md:58] `the advisor, reading the hub's graph-metadata.json`; [SOURCE: .skilled/repo-rules/skill-hub-routing.md:59] `the hub's hub-router.json and root ROUTER.md`; [SOURCE: .skilled/repo-rules/skill-hub-routing.md:87] `Then replay both stages with a real request`; [SOURCE: .skilled/repo-rules/skill-hub-routing.md:121] `I replayed a real request through both stages`; [SOURCE: .skilled/skills/sk-code/hub-router.json:29] `resources\": [\"sk-code-review/SKILL.md\"]`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-inferred-add-one-repo-owned-policy-file-and-let-the-shared-mode-consume-it-a-can",
+      "text": "**INFERRED — Add one repo-owned policy file and let the shared mode consume it.** A candidate location is `.skilled/repo-rules/code-review-policy.json`, with bounded `severityOverrides`, additive `mandatoryChecks`, and `ignorePaths` fields. The shared review mode would validate and read this file so repositories keep their own values without copying or forking the hub. Overrides may raise severity or adjust non-floor rules; mandatory checks only add obligations; ignore paths may filter optional checks but cannot skip baseline security/correctness review or files explicitly in the requested scope. The docs read here do not establish that this loader already exists. [SOURCE: specs/sk-code/013-private-surface-skills/spec.md:101] `Four slash-less root ignore rules cover`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:108] `Always enforced; never relaxed by surface guidance`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-observed-repository-policy-can-live-outside-the-shared-hub-the-private-surface-s",
+      "text": "**OBSERVED — Repository policy can live outside the shared hub.** The private-surface spec places repo-specific ignore rules and a blocking staged-path guard at repository level. That is a useful placement precedent for a review policy file owned by the checkout. [SOURCE: specs/sk-code/013-private-surface-skills/spec.md:101] `Four slash-less root ignore rules cover`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-observed-review-and-evidence-floors-are-binding-review-requires-baseline-securit",
+      "text": "**OBSERVED — Review and evidence floors are binding.** Review requires baseline security and correctness regardless of surface, and it forbids approval with an unaddressed P0. The universal quality standard says restraint cannot cut P0 items or user-requested work. Actionable findings still need file-and-line evidence, and the copy checker pins the evidence labels for confirmed versus inferred claims, observed command output, findings as hypotheses, and the limits of one reviewer’s read. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:418] `Enforce baseline security/correctness minimums regardless of surface`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:426] `Approve code with unaddressed P0 security/correctness defects`; [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:54] `Restraint never cuts a P0 item`; [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:54] `or anything the user asked for`; [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:419] `Include file:line evidence for actionable findings`; [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:74] `**Confirmed vs inferred**`; [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:75] `**Observed command evidence**`; [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:76] `**Finding = hypothesis**`; [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:77] `**Your own read is also one lens**`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-observed-the-copy-checker-protects-shared-wording-not-repo-overrides-it-describe",
+      "text": "**OBSERVED — The copy checker protects shared wording, not repo overrides.** It describes itself as a canary rather than a generator and says it locks wording rather than paths; the inspected checker contains fixed shared invariants, not a repository policy loader. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:19] `It is a canary, not a generator`; [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:20] `It locks wording, not file paths`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-13-8-derived-the-21-matches-for-riskscore-scope-proof-finding-class-scopeproof-across",
+      "text": "DERIVED. The 21 matches for `riskScore|Scope proof|Finding class|scopeProof` across the packet land in `references/review-core.md`, `SKILL.md`, `README.md`, `assets/fix-completeness-checklist.md` and five `manual-testing-playbook/` files. Not one lands under `scripts/`. Combined with the full read of the findings checker, no executable checker reads the three fields.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-11-derived-the-same-line-is-the-only-statement-of-the-relationship-and-it-names-no-",
+      "text": "DERIVED. The same line is the *only* statement of the relationship, and it names no fields. \"Read-only evidence\" is a category, not a schema. Nothing in `hub-router.json` says what a surface hands review — no bounded-check list, no scope-hint field, no severity-override slot. So E-3's \"a security surface should hand review bounded checks and scope hints\" is a proposal with no current counterpart on disk: **NOT TESTED** as a documented contract, and INFERRED as a design.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-4-derived-the-whole-skilled-grep-for-code-quality-result-checklists-loaded-and-che",
+      "text": "DERIVED. The whole-`.skilled/` grep for `CODE_QUALITY_RESULT`, `checklists_loaded` and `checker_outputs` returned exactly three matches, all three at lines 210, 215 and 216 of the producer file. Zero matches in `sk-code-review/`, zero in `.skilled/agents/`, zero in `.skilled/commands/`, zero in the hub router files. A consumer that named the envelope would have matched one of those three tokens.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-13-not-tested-e-3-s-other-citation-skilled-skills-sk-code-mode-registry-json-18-rea",
+      "text": "NOT TESTED. E-3's other citation, `.skilled/skills/sk-code/mode-registry.json:18` `read-only domain-evidence packets`, was not opened this iteration. The hub-router line independently supports the same reading, so the conclusion is not at risk, but the citation itself is unverified by this lens.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-12-not-tested-the-review-side-requirements-in-e-3-keep-the-code-review-marker-keep-",
+      "text": "NOT TESTED. The review-side requirements in E-3 (keep the `CODE-REVIEW` marker, keep the shared severity meanings, keep the baseline minimums) rest on I-7 and I-8. Neither was re-opened this iteration, and the marker question in particular is the one that needs a route replay, not a read.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-9-observed-and-this-is-the-refinement-the-manual-playbook-does-read-them-as-pass-f",
+      "text": "OBSERVED, and this is the refinement. The manual playbook does read them, as pass/fail criteria. [SOURCE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33] `FAIL if no scopeProof is provided`, and [SOURCE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49] `Add findingClass and scopeProof`. The fields are also a required artifact of the fix-completeness asset. [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101] `- Finding class table.`",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-10-observed-confirmed-the-router-declares-the-surface-relationship-as-strictly-one-",
+      "text": "OBSERVED, CONFIRMED. The router declares the surface relationship as strictly one-directional: surfaces travel with a workflow mode as read-only evidence, ordered after it. [SOURCE: .skilled/skills/sk-code/hub-router.json:11] `\"surfaceBundle\": \"one workflow mode primary plus zero-or-more surface packets as read-only evidence, workflow ordered first then surfaces\"`. A surface has no return channel by construction, which is the structural basis for E-3's \"a security surface needs nothing back\".",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-7-observed-failure-is-emitted-only-for-skipped-numbering-and-a-missing-case-line-s",
+      "text": "OBSERVED. Failure is emitted only for skipped numbering and a missing Case line. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:75] `if (!finding.hasCase) {`",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-1-observed-the-envelope-is-defined-in-the-producer-only-source-skilled-skills-sk-c",
+      "text": "OBSERVED. The envelope is defined in the producer only. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:210] `CODE_QUALITY_RESULT v1` — and the field list begins immediately below it.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-5-observed-the-findings-checker-s-parsed-record-has-exactly-two-fields-and-neither",
+      "text": "OBSERVED. The findings checker's parsed record has exactly two fields, and neither is class, scope proof or riskScore. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:52] `findings.push({ number: Number(numbered[1]), hasCase: false });`",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-6-observed-the-only-content-regex-besides-numbering-is-the-case-line-source-skille",
+      "text": "OBSERVED. The only content regex besides numbering is the Case line. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23] `const CASE_LINE = /^\\s*- Case: \\S/;`",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-3-observed-the-producer-forbids-the-envelope-from-reading-as-a-verdict-which-is-wh",
+      "text": "OBSERVED. The producer forbids the envelope from reading as a verdict, which is why a reader would have to interpret rather than match it. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:223] ``its `status` is fixed to `advisory` ``.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-13-2-observed-the-two-fields-i-3-cites-are-real-and-named-exactly-as-claimed-source-s",
+      "text": "OBSERVED. The two fields I-3 cites are real and named exactly as claimed. [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:215] `checklists_loaded: <checklist paths loaded, or none>` and [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:216] `checker_outputs: <comment-hygiene and dist-staleness results, or N/A>`.",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:210`, `:215`, `:216`, `:223`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js:23`, `:52`, `:75` (full file read)",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:106`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:101`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md:33`",
+        "`.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md:49`",
+        "`.skilled/skills/sk-code/hub-router.json:7`, `:11` (full file read)"
+      ]
+    },
+    {
+      "id": "finding-14-12-confirmed-the-never-skip-list-is-fixed-within-9-2-and-has-no-repository-extensio",
+      "text": "CONFIRMED. The never-skip list is fixed within §9.2 and has no repository extension point.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-11-derived-go-mod-build-gradle-pom-xml-and-csproj-match-no-row-lock-catches-lockfil",
+      "text": "DERIVED. `go.mod`, `build.gradle`, `pom.xml` and `*.csproj` match no row. `*.lock` catches lockfiles but not those manifests, so a Go, Gradle, Maven or .NET dependency change can be skipped when the diff is below the threshold and no other row matches.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-16-derived-a-reader-assembling-the-floor-set-must-collect-statements-from-at-least-",
+      "text": "DERIVED. A reader assembling the floor set must collect statements from at least the surface section, the never-approve rule, the shared standards file and §9.3. The scatter half of rank 2 is corroborated.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-5-derived-because-line-496-carries-no-pathspec-every-package-in-a-monorepo-contrib",
+      "text": "DERIVED. Because line 496 carries no pathspec, every package in a monorepo contributes to one signature under one `<repo-ref>`, so an unrelated package change invalidates a package review.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-4-derived-with-no-origin-git-remote-get-url-origin-has-no-url-to-hash-and-the-spec",
+      "text": "DERIVED. With no `origin`, `git remote get-url origin` has no URL to hash, and the spec assigns no substitute. The `<repo-ref>` is therefore undefined for that repository. This is a gap in the written spec, not a claim about runtime failure.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-7-not-tested-the-row-s-effort-split-s-for-the-fallback-m-for-pathspec-scope-its-ri",
+      "text": "NOT TESTED. The row's effort split (S for the fallback, M for pathspec scope), its risk rating and its `pr-state-dedup.md` hub-file claim.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-19-not-tested-the-row-s-proposed-hub-file-sk-code-review-scripts-check-rule-copies-",
+      "text": "NOT TESTED. The row's proposed hub file `sk-code-review/scripts/check-rule-copies.js`, its effort rating and its readiness.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-17-not-tested-the-row-s-three-cited-anchors-skill-md-108-skill-md-418-skill-md-426-",
+      "text": "NOT TESTED. The row's three cited anchors — `SKILL.md:108`, `SKILL.md:418`, `SKILL.md:426` — and `shared/references/universal/code-quality-standards.md:54` were not opened this iteration. The broad grep hit its 80-match cap before reaching them.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-18-not-tested-the-second-half-not-as-one-extension-rule-needs-a-full-file-section-r",
+      "text": "NOT TESTED. The second half, \"not as one extension rule\", needs a full-file section read of the 562-line `SKILL.md`; this iteration read only 488–562. A consolidated rule elsewhere in the file would refute it, and nothing read here rules that out.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-13-not-tested-whether-references-pr-state-dedup-md-restates-or-extends-the-taxonomy",
+      "text": "NOT TESTED. Whether `references/pr-state-dedup.md` restates or extends the taxonomy, and the row's effort/risk/readiness columns.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-6-not-tested-whether-another-layer-supplies-a-fallback-references-pr-state-dedup-m",
+      "text": "NOT TESTED. Whether another layer supplies a fallback — `references/pr-state-dedup.md` was not opened, and the live gate was not run. `research.md` already flags the live confirmation as open.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-3-observed-9-1-runs-from-line-490-to-line-514-and-ends-on-the-cache-write-source-s",
+      "text": "OBSERVED. §9.1 runs from line 490 to line 514 and ends on the cache write. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:514] `**Cache write:** After each full review completes, write the current signature + timestamp + HEAD SHA to the cache file.` No sentence between 494 and 514 names a substitute key when `origin` is absent.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-10-observed-9-2-s-only-configuration-knob-is-the-line-threshold-source-skilled-skil",
+      "text": "OBSERVED. §9.2's only configuration knob is the line threshold. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:522] `export SK_CODE_REVIEW_MIN_CHANGED_LINES=50 # >0 enables; default 0 = disabled`. No key in §9.2 adds patterns to the taxonomy.",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-14-observed-floor-language-is-restated-inside-9-3-a-subsection-about-routing-depth-",
+      "text": "OBSERVED. Floor language is restated inside §9.3, a subsection about routing depth rather than about floors. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:556] `it NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract`",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-2-observed-the-cache-identity-is-derived-from-the-origin-remote-source-skilled-ski",
+      "text": "OBSERVED. The cache identity is derived from the `origin` remote. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:503] `sha256(git remote get-url origin).slice(0, 12)`",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-9-observed-the-dependency-manifest-row-lists-npm-rust-python-and-ruby-names-only-s",
+      "text": "OBSERVED. The dependency-manifest row lists npm, Rust, Python and Ruby names only. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:537] `package.json`, `package-lock.json`, `Cargo.toml`, `Cargo.lock`, `pyproject.toml`, `poetry.lock`, `requirements.txt`, `*.lock`, `Gemfile`, `Gemfile.lock`",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-15-observed-the-same-subsection-repeats-the-prohibition-one-paragraph-later-source-",
+      "text": "OBSERVED. The same subsection repeats the prohibition one paragraph later. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:558] `The depth alias is advisory routing only; it must never be read as permission to relax a floor.`",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-1-observed-the-signature-hashes-the-whole-base-to-head-diff-with-no-pathspec-sourc",
+      "text": "OBSERVED. The signature hashes the whole base-to-HEAD diff with no pathspec. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:496] `diff_content_hash = sha256(git diff <base-ref>...HEAD)`",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-14-8-observed-the-taxonomy-is-introduced-as-a-closed-instruction-source-skilled-skill",
+      "text": "OBSERVED. The taxonomy is introduced as a closed instruction. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:530] `**Conservative skip taxonomy — NEVER skip when diff touches:**`",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:490-514` (§9.1, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:516-548` (§9.2, full section)",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:550-558` (§9.3)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-013.md`"
+      ]
+    },
+    {
+      "id": "finding-15-5-caveat-carried-from-iteration-13-s-method-note-a-zero-match-proves-no-file-names",
+      "text": "Caveat, carried from iteration 13's method note: a zero-match proves no file *names* the literal, not that no reader parses the fourth header line by position. The conclusion is safe here because the consumers that exist by contract parse the final line and the marker, not the header block.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-8-derived-not-one-row-names-a-data-payload-exchanged-between-a-user-authored-mode-",
+      "text": "DERIVED. Not one row names a data payload exchanged between a user-authored mode and review — what a security surface supplies, or what a consuming workflow may rely on. E-2's \"no row says what review reads from it\" survives a full read of the table, not a sample of it.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-14-derived-the-143-line-file-contains-no-reference-to-overall-assessment-a-report-w",
+      "text": "DERIVED. The 143-line file contains no reference to `Overall assessment`. A report whose summary says APPROVED and whose final line says REQUESTED_CHANGES passes every check the script runs. U-7's \"a contradictory summary passes\" is therefore confirmed against the implementation, not just the prose.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-4-derived-the-three-i-7-consumers-are-the-final-status-line-the-code-review-marker",
+      "text": "DERIVED. The three I-7 consumers are the final status line, the `CODE-REVIEW` marker and the shared severity doctrine. None of them reads the Surface line. Replacing it therefore touches only the packet's own example and fixtures, which the row already lists as hub files touched.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-18-not-tested-the-d4-unscored-claim-the-empty-provider-model-column-the-missing-dur",
+      "text": "NOT TESTED. The D4-unscored claim, the empty `provider_model` column, the missing duration/token columns and the playbook's 30-versus-31 count. Those live in the per-run reports and the playbook, which this iteration did not reopen. The row's action — add live finding-accuracy scenarios — remains a proposal.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-9-not-tested-the-row-s-effort-rating-m-risk-rating-low-and-its-decision-status-inc",
+      "text": "NOT TESTED. The row's effort rating (M), risk rating (Low) and its \"Decision\" status, including whether section 7 should gain a twelfth row. Those are assessments, not file facts.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-20-not-tested-the-row-s-second-example-class-root-relative-skilled-skills-script-co",
+      "text": "NOT TESTED. The row's second example class — root-relative `.skilled/skills/...` script commands. That evidence lives in `scripts/README.md:31` under RA-4, which was not opened this iteration.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-12-observed-after-the-final-line-match-the-checker-adds-only-blank-line-and-not-che",
+      "text": "OBSERVED. After the final-line match, the checker adds only blank-line and `Not checked:` presence/uniqueness rules. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:82] `/^Not checked: +\\S/`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-17-observed-both-rows-record-no-provenance-source-skilled-skills-sk-code-sk-code-re",
+      "text": "OBSERVED. Both rows record no provenance. [SOURCE: .skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md:27] `not recorded`. This corroborates U-2's cost-provenance gap at index level: the curated index itself says the source is not recorded.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-10-observed-the-accepted-vocabulary-is-the-three-status-values-only-source-skilled-",
+      "text": "OBSERVED. The accepted vocabulary is the three status values only. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:18] `const EXACT_STATUS = /^Review status: (APPROVED|REQUESTED_CHANGES|COMMENTED)$/;`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-6-observed-the-authoring-guide-s-both-kinds-rule-is-cited-correctly-source-skilled",
+      "text": "OBSERVED. The authoring guide's both-kinds rule is cited correctly. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:207] `register the workflow first and attach surfaces`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-7-observed-the-eleven-row-table-at-lines-221-233-covers-registration-mode-registry",
+      "text": "OBSERVED. The eleven-row table at lines 221–233 covers registration (`mode-registry.json`), stage-one signals and tie-break (`hub-router.json`), stage-two intent and inventory (`ROUTER.md`), advisor vocabulary (`graph-metadata.json`), the human-facing contract (`hub SKILL.md` mode table), doctor metadata (`description.json`), the leaf manifest, projection maps/scorer and command mirrors. Row 7 is explicitly a visibility surface: [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:229] `Human-facing contract`.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-3-observed-the-four-output-fixtures-carry-unknown-source-skilled-skills-sk-code-sk",
+      "text": "OBSERVED. The four output fixtures carry `UNKNOWN`. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/review-output-fixture/list-shape-valid.md:6] `**Surface evidence used**: UNKNOWN`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-15-observed-the-index-row-the-recommendation-cites-still-reads-as-claimed-source-sk",
+      "text": "OBSERVED. The index row the recommendation cites still reads as claimed. [SOURCE: .skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md:27] `7 PASS`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-19-observed-the-integration-section-names-the-repo-bound-agent-path-verbatim-source",
+      "text": "OBSERVED. The integration section names the repo-bound agent path verbatim. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:472] `Primary review baseline for `@review` agents in `.skilled/agents/review.md``.",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-2-observed-the-packet-s-own-readme-example-uses-the-single-value-form-source-skill",
+      "text": "OBSERVED. The packet's own README example uses the single value form. [SOURCE: .skilled/skills/sk-code/sk-code-review/README.md:74] `**Surface evidence used**: SKILLED`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-13-observed-the-report-template-separately-carries-an-overall-assessment-line-sourc",
+      "text": "OBSERVED. The report template separately carries an Overall assessment line. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:348] `**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-1-observed-the-report-template-still-offers-two-values-only-source-skilled-skills-",
+      "text": "OBSERVED. The report template still offers two values only. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:350] `**Surface evidence used**: [SKILLED | UNKNOWN]`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-16-observed-the-second-run-reports-the-same-result-source-skilled-skills-sk-code-sk",
+      "text": "OBSERVED. The second run reports the same result. [SOURCE: .skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md:28] `7 PASS`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    },
+    {
+      "id": "finding-15-11-observed-the-test-is-applied-to-the-last-line-alone-source-skilled-skills-sk-cod",
+      "text": "OBSERVED. The test is applied to the last line alone. [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:59] `const finalLine = lines[lines.length - 1];` and [SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js:61] `final line is not an exact status line`",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.skilled/agents/deep-research.md` (agent definition)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/research.md` (claim text only, not evidence)",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-strategy.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/deep-research-config.json`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-011.md`",
+        "`specs/sk-code/014-code-modes-research/002-review-mode-research/research/iterations/iteration-014.md`",
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:330-479`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` (full file)",
+        "`.skilled/skills/sk-code/sk-code-review/benchmark/reports/README.md` (full file)",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:175-239`",
+        "Grep of `.skilled/` for `Surface evidence used` (six matches, all inside `sk-code-review/`)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-fb5f2cf352b0",
+      "text": "**Re-reading `research.md` to check the claims.** Rejected: the point of a second-model pass is to test the claim against disk, not against the prior model's prose. `research.md` was read once for claim text and not used as evidence.",
+      "contentHash": "fb5f2cf352b0",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-01e57a5acd90",
+      "text": "**Reading `mode-registry.json` for E-3.** Deferred to stay inside the tool budget. The hub-router line covers the same question, so the deferred read costs confidence in a citation, not in the conclusion.",
+      "contentHash": "01e57a5acd90",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-464aba1f1a99",
+      "text": "**Treating the grep's zero-match as proof of no reader.** Rejected as stated, kept as evidence with a caveat: a zero match proves no file *names* those tokens. A reader that consumes the envelope under a different name would not be caught. The conclusion is safe here only because the envelope's own token is distinctive and the producer's surrounding prose names no alias.",
+      "contentHash": "464aba1f1a99",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-5a8fced80012",
+      "text": "**Re-reading `research.md` as evidence.** Rejected per the strategy's blocked direction: the second-model pass tests claims against disk, not against the prior model's prose.",
+      "contentHash": "5a8fced80012",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-8cecdb47b4b1",
+      "text": "**Reading the whole 562-line `SKILL.md`.** Not attempted: it would have spent the remaining tool budget and left an artifact unwritten. Recorded as NOT TESTED instead of inferred from the section read.",
+      "contentHash": "8cecdb47b4b1",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-cdcbd3364cbc",
+      "text": "**Treating the capped grep as evidence.** Rejected. The 80-match cap returned unrelated `extension` hits before the review anchors, so the grep neither confirms nor refutes rank 2's citations.",
+      "contentHash": "cdcbd3364cbc",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-7a33eda59fdc",
+      "text": "The `extension` alternation polluted the grep. In a hub with several extension tables, a token search cannot surface the absence of an extension rule. Negative claims need the section boundary, not a match count.",
+      "contentHash": "7a33eda59fdc",
+      "addedAtIteration": 14
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "carriedForwardOpenQuestions": 58,
+    "keyFindings": 89,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.35,
+    "coverageBySources": {
+      "code": 32,
+      "other": 28
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/specs/sk-code/014-code-modes-research/002-review-mode-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

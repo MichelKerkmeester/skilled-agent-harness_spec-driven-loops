@@ -110,6 +110,7 @@ The session-relaunch concern's tuning variables are read directly by `.skilled/h
 | `SESSION_RELAUNCH_MAX_HOPS` | `10` | number (non-negative int) | Relaunches allowed per `skilled-loop` run. The cap is enforced at three points: the wrapper declines a record at or above it, `prepare` writes no record and exits 3 with the manual claim command, and the killer unarms the record with reason `hop-cap` and sends no signal. Adapters stop nudging at the cap. Zero is accepted and declines every hop. | `.skilled/hooks/session-relaunch/` |
 | `SESSION_RELAUNCH_MAX_AGE_MIN` | `10` | number (minutes) | Minutes an armed relaunch file stays valid. | `.skilled/hooks/session-relaunch/` |
 | `SESSION_RELAUNCH_NOTIFY_HOPS` | (unset) | boolean | Set to `1` for a macOS notice each time a session hands over to a fresh one. Off by default. Also read from `.skilled/hooks/hook-flags.env`. | `.skilled/hooks/session-relaunch/lib/hop-history.cjs` |
+| `SESSION_RELAUNCH_GOAL` | (unset, on) | boolean | Set to `0`, `false`, `off` or `no` to stop a hand-over from carrying the sender's goal. `prepare` and `keep` then write, replace and remove no `goal_packet` note field, and `claim` and the wrapper pass no packet on. With it on, the two commands rewrite the field on every call from a goal they can prove, and a Codex sender has none. Also read from `.skilled/hooks/hook-flags.env`. | `.skilled/hooks/session-relaunch/` |
 | `SESSION_RELAUNCH_REPO_ROOT` | (unset) | string (absolute path) | Repository root that planned handoff note paths resolve under. Unset falls back to the install root that holds the concern, so a runtime started in a subdirectory still writes under the repo root. The generic `REPO_ROOT` is not read. | `.skilled/hooks/session-relaunch/` |
 | `SYSTEM_SPEC_FOLDER` | (unset) | string (repo-relative packet path) | Spec packet the session is bound to. The Cursor spec-gate prebind satisfies Gate 3 from it at session start. Every session-relaunch nudge writes it into a planned handoff note's `spec_folder` so the relaunched session resumes that packet; a hook payload `spec_folder`, which only the Hermes plugin bridge sends, takes precedence. A value that is not a valid packet path is dropped and the field prints empty. | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/`, `.skilled/hooks/session-relaunch/lib/nudge.cjs` |
 | `CLAUDE_PID` | (set by Claude Code) | number (process id) | Claude's own process id. Session relaunch `prepare` uses it for the live-shell-child check and the Claude Stop hook as the killer target, both only while it descends from the `skilled-loop` process; otherwise each walks to the loop's direct child. A value that is not a positive integer makes `prepare` exit 2. | `.skilled/hooks/session-relaunch/` |
@@ -124,6 +125,7 @@ The session-relaunch concern's tuning variables are read directly by `.skilled/h
 | `SKILLED_LOOP_HOPS` | Relaunches so far in this loop, starting at `0` | The CLI, the nudge and the killer, against `SESSION_RELAUNCH_MAX_HOPS` |
 | `SKILLED_LOOP_MODEL`, `SKILLED_LOOP_PROVIDER` | The first launch's model and provider flags | The wrapper itself, which carries them into the relaunch and the manual command |
 | `SKILLED_LOOP_NAME` | The first launch's session name flag | The wrapper and the CLI |
+| `SESSION_RELAUNCH_GOAL_PACKET` | The consumed note's `goal_packet` (a repo-relative directory holding `goal.md`), on a relaunch only and only while `SESSION_RELAUNCH_GOAL` is on. Absent on a first launch and on a hop whose note carries no packet | The receiving session's goal binding. Never set it by hand |
 | `SKILLED_LOOP_MANUAL_TEMPLATE` | The manual claim command for this runtime, with a placeholder for the note path | The core's manual claim command and the killer's timeout notice |
 
 ### Hook-level lifecycle flags
@@ -378,7 +380,7 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 
 ## OPENCODE GOAL PLUGIN
 
-Environment variables consumed by the local `.skilled/plugins/opencode-goal.js` plugin. These are plugin-level controls, not runtime flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`. Status output includes `remaining_auto_turns`, `remaining_wall_ms`, `provider_retry_after_ms`, and verifier provenance via `verifier_source` alongside the existing budget fields.
+Environment variables consumed by the local `.skilled/plugins/opencode-goal.js` plugin. These are plugin-level controls, not runtime flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`. Status output includes `provider_retry_after_ms` and verifier provenance via `verifier_source` alongside the existing budget fields. No budget, turn count or elapsed time limits a goal.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -390,8 +392,6 @@ Environment variables consumed by the local `.skilled/plugins/opencode-goal.js` 
 | `OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | number (positive int, clamped to 4000) | Maximum generated `goalPrompt` length. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_MAX_INJECTION_CHARS` | `4800` | number (positive int) | Maximum `[active_goal]` system-injection block length. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_MAX_EVIDENCE_CHARS` | `1200` | number (positive int) | Maximum verifier evidence retained in goal state. | `.skilled/plugins/opencode-goal.js` |
-| `OPENCODE_GOAL_MAX_AUTO_TURNS` | `8` | number (positive int) | Maximum guarded auto-continuation turns for new and normalized goal state. `/goal show` reports `remaining_auto_turns`. | `.skilled/plugins/opencode-goal.js` |
-| `OPENCODE_GOAL_MAX_WALL_MS` | `1800000` | number (positive int, ms) | Maximum guarded auto-continuation wall-clock duration. `/goal show` reports `remaining_wall_ms`. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | number (positive int, days) | Retention window before an archived goal-state file is pruned. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | number (positive int, days) | Age threshold before an orphaned active-state file is swept and archived. | `.skilled/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-active-state sweep passes. | `.skilled/plugins/opencode-goal.js` |

@@ -1,7 +1,7 @@
 ---
 title: "DOC-382 -- Doctor sk-code setup"
 description: "Manual scenario validating that /doctor:sk-code setup runs the eight-leg read-only setup battery, maps its exit codes to STATUS=OK, STATUS=FAIL and STATUS=ERROR, and writes nothing."
-version: 1.1.0.0
+version: 1.1.1.0
 id: doctor-commands-doctor-sk-code-setup
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -45,17 +45,17 @@ Run the doctor sk-code setup check and tell me whether the sk-code surface passe
 1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing. Run every step below inside the environment.
 2. If the environment has no dependencies yet, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .`.
 3. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the header line, the eight PASS lines, the last line and the exit code.
-4. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs --prompt="Rename the .db-* classes in my Obsidian plugin"` and confirm the probe line carries the prompt.
+4. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs --prompt="review my typescript module for jank"` and confirm the probe line carries the prompt.
 5. Run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs --bogus` and capture the usage line and the exit code.
-6. Add the probe: run `echo '{}' > .skilled/skills/sk-code/sk-code-webflow/graph-metadata.json`.
+6. Add the probe: run `echo '{}' > .skilled/skills/sk-code/sk-code-skilled/graph-metadata.json`.
 7. Rerun `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the parent-skill failure, its `repair:` line and the exit code.
-8. Restore: run `rm .skilled/skills/sk-code/sk-code-webflow/graph-metadata.json` and confirm the battery returns to `STATUS=OK legs=8`.
+8. Restore: run `rm .skilled/skills/sk-code/sk-code-skilled/graph-metadata.json` and confirm the battery returns to `STATUS=OK legs=8`.
 9. Run `SPECKIT_COMPILED_ROUTING=0 node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` and capture the probe failure, its `repair:` line and the exit code.
 10. Confirm `git status --porcelain` prints nothing after every step.
 
 ### Expected
 
-The battery runs its eight legs in order from the repository root and prints one verdict line per leg with the command it ran. The clean tree passes every leg, so the run ends `STATUS=OK legs=8` and the route exits 0. The prompt flag is the only accepted argument, and the probe line shows the operator's own prompt.
+The battery runs its eight legs in order from the repository root and prints one verdict line per leg with the command it ran. The parent-skill leg prints `PASS: 3b: mode-registry.json declares 3 modes` and `PASS: 3g: all 1 surface packet(s) are read-only evidence-base and advisor-invisible` for `sk-code-quality`, `sk-code-review` and `sk-code-skilled`. The clean tree passes every leg, so the run ends `STATUS=OK legs=8` and the route exits 0. The prompt flag is the only accepted argument, and the probe line shows the operator's own prompt.
 
 A bad argument fails before any leg runs, prints the usage line on standard error and exits 2, which the route maps to `STATUS=ERROR`. The nested metadata probe is reported rather than deleted, the repair command names the checker to rerun, and the restore step returns the tree to its passing state. The kill-switch run keeps the other seven legs passing and fails only the probe, because the flag deliberately serves the legacy stub. No step writes a file, so the working tree is identical after the run.
 

@@ -1,18 +1,20 @@
 {
+  "level": "3",
   "specFolder": "sk-code/013-private-surface-skills/002-hub-surface-removal",
   "description": "Phase 2: hub-surface-removal",
   "keywords": [
     "phase",
     "hub-surface-removal"
   ],
-  "lastUpdated": "2026-10-23T07:03:39.394Z",
+  "lastUpdated": "2026-10-24T09:24:08.647Z",
   "specId": "002",
   "folderSlug": "hub-surface-removal",
   "parentChain": [
     "sk-code",
     "013-private-surface-skills"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-10-26_10-24__t044-t049-are-deleted-and-their-proofs-matched.md"
+  ]
 }

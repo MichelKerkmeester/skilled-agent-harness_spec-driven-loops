@@ -1,0 +1,10 @@
+feat(doctor): scaffold and toggle ci workflows
+
+The scaffold creates a new workflow from the sk-code-ci templates
+after an explicit yes. The toggle accepts only the six documented
+switch variables and writes a repository variable after an explicit
+yes. It refuses to turn off the message contract switch, because a
+skipped job reports Success to the ruleset. Three routes and three
+advisor bridges register the command.
+
+Spec: system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring

@@ -1,0 +1,2 @@
+autonomy=off idle_events=3 promptAsync_calls=0 status=active continuation_attempts=0 continuation_suppressed=false reason=""
+autonomy=on idle_events=12 promptAsync_calls=12 status=active continuation_attempts=12 continuation_suppressed=false reason=""

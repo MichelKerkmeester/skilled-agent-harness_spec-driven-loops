@@ -12,7 +12,7 @@
 // re-stamping it, so a freshly rebuilt skill with old derived metadata stays
 // honestly penalized.
 
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -82,6 +82,29 @@ describe('derived-content freshness projection contract', () => {
       const alpha = projection.skills.find((entry) => entry.id === 'alpha');
 
       expect(alpha?.derivedGeneratedAt).toBe('2026-04-20T00:00:00.000Z');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('reads a private skill linked from inside the skills root and ignores one linked from outside', () => {
+    const root = mkdtempSync(join(tmpdir(), 'advisor-projection-private-'));
+    try {
+      const skills = join(root, '.skilled', 'skills');
+      const writeSkillAt = (dir: string, id: string): void => {
+        mkdirSync(dir, { recursive: true });
+        writeFileSync(join(dir, 'SKILL.md'), `---\nname: ${id}\ndescription: ${id} skill\n---\n`, 'utf8');
+        writeFileSync(join(dir, 'graph-metadata.json'), JSON.stringify({ skill_id: id, family: 'system', category: 'test' }), 'utf8');
+      };
+      writeSkillAt(join(skills, '.private', 'private-beta'), 'local-beta');
+      writeSkillAt(join(root, 'outside', 'private-evil'), 'local-evil');
+      symlinkSync(join(skills, '.private', 'private-beta'), join(skills, 'local-beta'));
+      symlinkSync(join(root, 'outside', 'private-evil'), join(skills, 'local-evil'));
+
+      const ids = loadAdvisorProjection(root).skills.map((entry) => entry.id);
+
+      expect(ids).toContain('local-beta');
+      expect(ids).not.toContain('local-evil');
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

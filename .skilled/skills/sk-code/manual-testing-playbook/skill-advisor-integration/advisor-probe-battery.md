@@ -1,14 +1,14 @@
 ---
 title: "SA-001: Skill Advisor Probe Battery"
-description: "Run a labeled probe set (>=15 positives + >=5 negatives) through the skill advisor and verify sk-code routing accuracy meets threshold."
-version: 1.5.1.0
+description: "Run a labeled probe set (12 positives + >=5 negatives) through the skill advisor and verify sk-code routing accuracy meets threshold."
+version: 1.5.2.0
 ---
 
 # SA-001: Skill Advisor Probe Battery
 
 ## 1. OVERVIEW
 
-This scenario verifies the END-TO-END accuracy of sk-code routing via the skill advisor. Unlike SD-* / LS-* / RD-* scenarios that test single prompts, SA-001 runs a battery of ≥15 positive controls (should win sk-code at ≥0.80) and ≥5 negative controls (should NOT win sk-code).
+This scenario verifies the END-TO-END accuracy of sk-code routing via the skill advisor. Unlike SD-* / LS-* / RD-* scenarios that test single prompts, SA-001 runs a battery of 12 positive controls (should win sk-code at ≥0.80) and ≥5 negative controls (should NOT win sk-code).
 
 Baseline: per `.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
 
@@ -16,11 +16,11 @@ Baseline: per `.skilled/skills/system-spec-kit/runtime/cli/observability/smart-r
 
 ## 2. SCENARIO CONTRACT
 
-Prompt: this scenario runs the full P1-P17 / N1-N5 probe battery listed below through the skill advisor; there is no single canonical prompt.
+Prompt: this scenario runs the surviving P1-P11 and P15 / N1-N5 probe battery listed below through the skill advisor; there is no single canonical prompt.
 
 ### Probe Set Construction Rules
 
-**Positive controls (n=15+)** — should win sk-code at ≥0.80:
+**Positive controls (n=12)** — should win sk-code at ≥0.80:
 
 | ID | Surface | Sub-language | Prompt |
 |---|---|---|---|
@@ -35,12 +35,7 @@ Prompt: this scenario runs the full P1-P17 / N1-N5 probe battery listed below th
 | P9 | SKILLED | TypeScript | `Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.` (golden set rr-iter3-065) |
 | P10 | SKILLED | Shell | `Build a tiny script that counts how many prompts mention /speckit:resume.` (golden set rr-iter3-070) |
 | P11 | SKILLED | Shell | `Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.` |
-| P12 | WEBFLOW | n/a | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver.` |
-| P13 | WEBFLOW | n/a | `Wire up a GSAP timeline that animates the hero section on page load with motion.dev fallback.` |
-| P14 | WEBFLOW | n/a | `Initialize an HLS.js video player on .video-hero with adaptive bitrate fallback.` |
 | P15 | SKILLED | Python | `Add a --threshold flag to verify_alignment_drift.py that adjusts the failure threshold for missing module headers.` |
-| P16 | OBSIDIAN | TypeScript | `Rename the table cell classes in src/views/DatabaseView.ts of the Note Database Obsidian plugin to the .db-* naming convention.` |
-| P17 | OBSIDIAN | TypeScript | `Add a status column to the Obsidian plugin data layer and register the view with the plugin's onload in src/main.ts.` |
 
 **Negative controls (n=5+)** — should NOT win sk-code:
 
@@ -57,8 +52,8 @@ Prompt: this scenario runs the full P1-P17 / N1-N5 probe battery listed below th
 - **Positive accuracy**: positive controls won at ≥0.80 / total positive controls
 - **Negative false-positive rate**: negative controls where sk-code was top-1 / total negative controls
 
-**PASS** iff: positive accuracy ≥ 0.80 (≥14 of 17) AND negative false-positive rate == 0 (0 of 5).
-**FAIL** iff: positive accuracy < 0.80 (fewer than 14 of 17) OR negative false-positive rate > 0 (any of the 5 negatives incorrectly won by sk-code).
+**PASS** iff: positive accuracy ≥ 0.80 (≥10 of 12) AND negative false-positive rate == 0 (0 of 5).
+**FAIL** iff: positive accuracy < 0.80 (fewer than 10 of 12) OR negative false-positive rate > 0 (any of the 5 negatives incorrectly won by sk-code).
 
 ---
 
@@ -71,7 +66,7 @@ Prompt: this scenario runs the full P1-P17 / N1-N5 probe battery listed below th
 
 ### Exact Command Sequence
 
-1. **For each prompt in the battery** (P1-P17, N1-N5):
+1. **For each prompt in the battery** (P1-P11, P15, N1-N5):
    ```
    bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
    ```

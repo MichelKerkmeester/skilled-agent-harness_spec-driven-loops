@@ -1,0 +1,6 @@
+2026-10-25T00:30:40Z env: SESSION_RELAUNCH_GOAL_PACKET=specs/demo/001-demo
+exit=0
+reply: [active_goal:goal-43dcf9cc-423a-405e-8696-5c3b4323f748]
+stderr: 
+goal records: 1
+record=42becf839235 goalId=goal-43dcf9cc-423a-405e-8696-5c3b4323f748 runtime=devin status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T00:30:40.936Z

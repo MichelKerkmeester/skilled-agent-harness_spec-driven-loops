@@ -1,0 +1,4 @@
+relaunch exit=0 # tests 833 # pass 833 # fail 0 
+plugins exit=0 # tests 551 # pass 551 # fail 0 
+goal+hook-flags exit=0 # tests 208 # pass 208 # fail 0 
+rule-copies exit=0 PASS canary_example_missing_not_checked_output All rule-canary test cases passed 

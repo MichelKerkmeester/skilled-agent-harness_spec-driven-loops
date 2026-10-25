@@ -1,5 +1,5 @@
 {
-  "manifestHash": "23d3f687945a21c2e6c9589839cd14d4190f07d6b2b94a1b22ad52d63c3b085f",
+  "manifestHash": "5b6967866f1ee28aa99ab94553ce789961d180250134b7da893cacd183cd3705",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7193,9 +7193,6 @@
     "16384 byte cut": [
       "16384 byte cut"
     ],
-    "17 modals no scenario": [
-      "17 modals no scenario"
-    ],
     "178 recommendation bijective ledger": [
       "178 recommendation bijective ledger"
     ],
@@ -7592,6 +7589,9 @@
     "ac 005 restatement": [
       "ac-005 restatement"
     ],
+    "ac 011 sibling path narrowing": [
+      "ac-011 sibling path narrowing"
+    ],
     "ac closure adr": [
       "ac closure adr"
     ],
@@ -7763,17 +7763,11 @@
     "accessibility audit checklist": [
       "accessibility audit checklist"
     ],
-    "accessibility class naming": [
-      "accessibility class naming"
-    ],
     "accessibility contract checklist": [
       "accessibility contract checklist"
     ],
     "accessibility detection": [
       "accessibility detection"
-    ],
-    "accessibilitydefects test ts coverage": [
-      "accessibilitydefects.test.ts coverage"
     ],
     "accessible before after report": [
       "accessible before after report"
@@ -7997,20 +7991,11 @@
     "add a comment to a notion page": [
       "add a comment to a Notion page"
     ],
-    "add a modal screenshot scenario": [
-      "add a modal screenshot scenario"
-    ],
-    "add a new renderer": [
-      "add a new renderer"
-    ],
     "add a phase binding row": [
       "add a phase binding row"
     ],
     "add a project rule": [
       "add a project rule"
-    ],
-    "add a screenshot scenario": [
-      "add a screenshot scenario"
     ],
     "add a style reference": [
       "add a style reference"
@@ -10768,9 +10753,6 @@
     "analytics and learning remediation tasks": [
       "analytics and learning remediation tasks"
     ],
-    "analytics deferral pattern": [
-      "analytics deferral pattern"
-    ],
     "analyzed created updated removed paths": [
       "analyzed created updated removed paths"
     ],
@@ -10894,20 +10876,8 @@
     "angle driven review tasks": [
       "angle driven review tasks"
     ],
-    "animate keyframes options": [
-      "animate keyframes options"
-    ],
-    "animation bundle size": [
-      "animation bundle size"
-    ],
     "animation duration for ui": [
       "animation duration for ui"
-    ],
-    "animation initialization safeguards": [
-      "animation initialization safeguards"
-    ],
-    "animation layout thrashing": [
-      "animation layout thrashing"
     ],
     "animation performance test": [
       "animation performance test"
@@ -10915,14 +10885,8 @@
     "animation principles reference": [
       "animation principles reference"
     ],
-    "animation regression playbook": [
-      "animation regression playbook"
-    ],
     "animation testing script": [
       "animation testing script"
-    ],
-    "animation timing vocabulary": [
-      "animation timing vocabulary"
     ],
     "annotate inert forms": [
       "annotate inert forms"
@@ -10941,9 +10905,6 @@
     ],
     "annotated changelog sample": [
       "annotated changelog sample"
-    ],
-    "annotated tag release notes": [
-      "annotated tag release notes"
     ],
     "annotation callout": [
       "annotation callout"
@@ -10981,9 +10942,6 @@
     "anti pattern catalog": [
       "anti-pattern catalog"
     ],
-    "anti patterns checklist": [
-      "anti patterns checklist"
-    ],
     "anti slop design": [
       "anti-slop design"
     ],
@@ -10993,9 +10951,6 @@
     ],
     "anti verdict softening": [
       "anti-verdict-softening"
-    ],
-    "anticipation overshoot arc": [
-      "anticipation overshoot arc"
     ],
     "anticonvergence": [
       "antiConvergence"
@@ -11727,9 +11682,6 @@
     "argv positional subsystem route": [
       "argv-positional subsystem route"
     ],
-    "aria state sync": [
-      "aria state sync"
-    ],
     "arm withdrawal on new turn": [
       "arm withdrawal on new turn"
     ],
@@ -12075,9 +12027,6 @@
     "asset name check": [
       "asset name check"
     ],
-    "asset optimization checklist": [
-      "asset optimization checklist"
-    ],
     "asset templates and folder readmes acceptance criteria": [
       "asset templates and folder readmes acceptance criteria"
     ],
@@ -12251,9 +12200,6 @@
     ],
     "attached image": [
       "attached image"
-    ],
-    "attachlongpress passive listener": [
-      "attachlongpress passive listener"
     ],
     "attachment metadata": [
       "attachment metadata"
@@ -12660,9 +12606,6 @@
     "auto update daemon watcher": [
       "auto update daemon watcher"
     ],
-    "autofill validation override": [
-      "autofill validation override"
-    ],
     "automate lane rules": [
       "automate lane rules"
     ],
@@ -12882,9 +12825,6 @@
     "background enrichment observability": [
       "background enrichment observability"
     ],
-    "background primary text normal interactive accent": [
-      "background-primary text-normal interactive-accent"
-    ],
     "background scan uncancellable wedge": [
       "background scan uncancellable wedge"
     ],
@@ -13044,9 +12984,6 @@
     "baseline implementation summary": [
       "baseline implementation summary"
     ],
-    "baseline metrics capture": [
-      "baseline metrics capture"
-    ],
     "baseline reconciliation": [
       "baseline reconciliation"
     ],
@@ -13151,15 +13088,6 @@
     ],
     "batch learning reformulation negative": [
       "batch learning reformulation negative"
-    ],
-    "batch rules and related": [
-      "batch rules and related"
-    ],
-    "batch rules and related reference": [
-      "batch rules and related reference"
-    ],
-    "batch rules and related webflow": [
-      "batch rules and related webflow"
     ],
     "batched rescue hydration": [
       "batched rescue hydration"
@@ -13416,12 +13344,6 @@
     "below floor truncation edge": [
       "below floor truncation edge"
     ],
-    "bem kebab case naming": [
-      "bem kebab case naming"
-    ],
-    "bem naming enforcement": [
-      "bem naming enforcement"
-    ],
     "bench gate calibration": [
       "bench gate calibration"
     ],
@@ -13572,12 +13494,6 @@
     "benchmarks promotion summary": [
       "benchmarks promotion summary"
     ],
-    "best practices library": [
-      "best practices library"
-    ],
-    "best practices patterns": [
-      "best practices patterns"
-    ],
     "beta posterior procedural adapter": [
       "beta posterior procedural adapter"
     ],
@@ -13676,6 +13592,12 @@
     ],
     "bind every phase goal": [
       "bind every phase goal"
+    ],
+    "bind goal after hand over": [
+      "bind goal after hand-over"
+    ],
+    "bind if unbound goal": [
+      "bind if unbound goal"
     ],
     "bind or resend a session goal": [
       "bind or resend a session goal"
@@ -14070,12 +13992,6 @@
     "both canvas modes ship html that has": [
       "both canvas modes ship html that has"
     ],
-    "botpoison spam patterns": [
-      "botpoison spam patterns"
-    ],
-    "botpoison spam protection": [
-      "botpoison spam protection"
-    ],
     "boundaries containment and naming decisions": [
       "boundaries containment and naming decisions"
     ],
@@ -14150,9 +14066,6 @@
     ],
     "box art diagram spec kit": [
       "box-art diagram spec-kit"
-    ],
-    "box drawing section banner target state": [
-      "box drawing section banner target state"
     ],
     "box plot html carries a working hover": [
       "box plot html carries a working hover"
@@ -14304,9 +14217,6 @@
     "broken reference paths": [
       "broken reference paths"
     ],
-    "broken zero": [
-      "broken zero"
-    ],
     "brokenpipeerror double crash synthesis": [
       "BrokenPipeError double-crash synthesis"
     ],
@@ -14343,9 +14253,6 @@
     "browser automation scripts": [
       "browser automation scripts"
     ],
-    "browser compatibility webflow": [
-      "browser compatibility webflow"
-    ],
     "browser console errors": [
       "browser console errors"
     ],
@@ -14364,9 +14271,6 @@
     "browser developer tools workflows": [
       "browser developer tools workflows"
     ],
-    "browser devtools profiling": [
-      "browser devtools profiling"
-    ],
     "browser launch fails": [
       "browser launch fails"
     ],
@@ -14378,15 +14282,6 @@
     ],
     "browser tests in ci": [
       "browser tests in ci"
-    ],
-    "browser verification checklist": [
-      "browser verification checklist"
-    ],
-    "browser verification commands": [
-      "browser verification commands"
-    ],
-    "browser verification mandatory": [
-      "browser verification mandatory"
     ],
     "bucket contents": [
       "bucket contents"
@@ -14409,11 +14304,11 @@
     "budget handoff acceptance": [
       "budget handoff acceptance"
     ],
+    "budget limited goal status": [
+      "budget_limited goal status"
+    ],
     "budget novelty coverage wall time stop": [
       "budget novelty coverage wall-time stop"
-    ],
-    "budgets anti patterns": [
-      "budgets anti patterns"
     ],
     "bug surface remediation backlog": [
       "bug surface remediation backlog"
@@ -14747,9 +14642,6 @@
     ],
     "cache invalidation order": [
       "cache invalidation order"
-    ],
-    "cache management workflow": [
-      "cache management workflow"
     ],
     "cache measurement provenance": [
       "cache measurement provenance"
@@ -15325,9 +15217,6 @@
     "capture website css": [
       "capture website css"
     ],
-    "card field renderer parameter classes": [
-      "card field renderer parameter classes"
-    ],
     "card pilot decision": [
       "card pilot decision"
     ],
@@ -15817,17 +15706,8 @@
     "ccc subcommand removal manage md": [
       "ccc subcommand removal manage.md"
     ],
-    "cdn safe init checklist": [
-      "cdn safe init checklist"
-    ],
     "cdn safe initialization": [
       "cdn safe initialization"
-    ],
-    "cdn upload failure recovery": [
-      "cdn upload failure recovery"
-    ],
-    "cdn version cache busting": [
-      "cdn version cache busting"
     ],
     "cdp capability surface": [
       "cdp capability surface"
@@ -15960,9 +15840,6 @@
     ],
     "change commit rules": [
       "change commit rules"
-    ],
-    "change gate obsidian plugin": [
-      "change gate obsidian plugin"
     ],
     "change icon color": [
       "change icon color"
@@ -17568,9 +17445,6 @@
     "chinese character census": [
       "chinese character census"
     ],
-    "chinese cjk cheat sheet styles css": [
-      "chinese cjk cheat sheet styles.css"
-    ],
     "chinese source defects": [
       "chinese source defects"
     ],
@@ -17895,6 +17769,9 @@
     "ci switch adr": [
       "ci switch adr"
     ],
+    "ci switch condition": [
+      "ci switch condition"
+    ],
     "ci switch tasks": [
       "ci switch tasks"
     ],
@@ -17945,6 +17822,12 @@
     ],
     "ci workflow rule data": [
       "ci workflow rule data"
+    ],
+    "ci workflow rules": [
+      "ci workflow rules"
+    ],
+    "ci workflow standards": [
+      "ci workflow standards"
     ],
     "ci workflow status report": [
       "ci workflow status report"
@@ -18171,9 +18054,6 @@
     "cite with caveat tier": [
       "cite with caveat tier"
     ],
-    "cjk comment preamble": [
-      "cjk comment preamble"
-    ],
     "cjs jsdoc documentation drift": [
       "cjs jsdoc documentation drift"
     ],
@@ -18224,6 +18104,24 @@
     ],
     "claim corrections tasks": [
       "claim corrections tasks"
+    ],
+    "claim error per state": [
+      "claim error per state"
+    ],
+    "claim error per state acceptance criteria": [
+      "claim error per state acceptance criteria"
+    ],
+    "claim error per state goal": [
+      "claim error per state goal"
+    ],
+    "claim error per state implementation summary": [
+      "claim error per state implementation summary"
+    ],
+    "claim error per state plan": [
+      "claim error per state plan"
+    ],
+    "claim error per state tasks": [
+      "claim error per state tasks"
     ],
     "claim guard anchors": [
       "claim guard anchors"
@@ -18594,6 +18492,21 @@
     "claude gemini codex devin hook adapter results": [
       "claude gemini codex devin hook adapter results"
     ],
+    "claude goal as start prompt": [
+      "claude goal as start prompt"
+    ],
+    "claude goal copy block": [
+      "claude goal copy block"
+    ],
+    "claude goal copy block implementation summary": [
+      "claude goal copy block implementation summary"
+    ],
+    "claude goal copy block plan": [
+      "claude goal copy block plan"
+    ],
+    "claude goal copy block tasks": [
+      "claude goal copy block tasks"
+    ],
     "claude hook": [
       "claude hook"
     ],
@@ -18693,6 +18606,9 @@
     "claude session relaunch": [
       "Claude session relaunch"
     ],
+    "claude start hook goal": [
+      "claude start hook goal"
+    ],
     "claude user prompt submit": [
       "claude user-prompt-submit"
     ],
@@ -18761,9 +18677,6 @@
     ],
     "cleanup cli": [
       "cleanup CLI"
-    ],
-    "cleanup destroy pattern": [
-      "cleanup destroy pattern"
     ],
     "cleanup old snapshots": [
       "cleanup old snapshots"
@@ -22025,12 +21938,6 @@
     "cloud reranker footgun removal": [
       "cloud reranker footgun removal"
     ],
-    "cloudflare r2 deploy": [
-      "cloudflare r2 deploy"
-    ],
-    "cloudflare worker upload proxy": [
-      "cloudflare worker upload proxy"
-    ],
     "cluster a to e code graph": [
       "cluster a to e code graph"
     ],
@@ -22054,9 +21961,6 @@
     ],
     "coaching marker waiver adr": [
       "coaching marker waiver adr"
-    ],
-    "coarse pointer narrow container": [
-      "coarse pointer narrow container"
     ],
     "coarse to fine retrieval grounding": [
       "coarse to fine retrieval grounding"
@@ -23912,20 +23816,11 @@
     "code standards research outcome": [
       "code standards research outcome"
     ],
-    "code style enforcement gate": [
-      "code style enforcement gate"
-    ],
     "code tuned reranker investigation": [
       "code-tuned reranker investigation"
     ],
     "code vs sk code alignment": [
       "code vs sk-code alignment"
-    ],
-    "code webflow benchmark index": [
-      "code-webflow benchmark index"
-    ],
-    "code webflow benchmark reports": [
-      "code-webflow benchmark reports"
     ],
     "code webflow debugging css javascript hygiene": [
       "code-webflow debugging css javascript hygiene"
@@ -24152,6 +24047,9 @@
     "codex goal nesting": [
       "codex goal nesting"
     ],
+    "codex goal seed deferred": [
+      "codex goal seed deferred"
+    ],
     "codex gpt 5 6 terra": [
       "codex gpt-5.6 terra"
     ],
@@ -24311,6 +24209,9 @@
     "codex search exec fanout": [
       "codex search exec fanout"
     ],
+    "codex seed goal": [
+      "codex seed goal"
+    ],
     "codex session relaunch": [
       "Codex session relaunch"
     ],
@@ -24365,6 +24266,9 @@
     "codex web search flag": [
       "codex web search flag"
     ],
+    "codex withdraw reply evidence": [
+      "codex withdraw reply evidence"
+    ],
     "codex write containment": [
       "codex write containment"
     ],
@@ -24416,9 +24320,6 @@
     "collect session data": [
       "collect session data"
     ],
-    "collection list patterns": [
-      "collection list patterns"
-    ],
     "collection matches writer rules": [
       "collection matches writer rules"
     ],
@@ -24445,9 +24346,6 @@
     ],
     "color frequency interpretation": [
       "color frequency interpretation"
-    ],
-    "color mix state interpolation": [
-      "color mix state interpolation"
     ],
     "color role assignment": [
       "color role assignment"
@@ -24885,9 +24783,6 @@
     "commands cleanup tasks": [
       "commands cleanup tasks"
     ],
-    "comment banner convention": [
-      "comment banner convention"
-    ],
     "comment checker fixtures": [
       "comment checker fixtures"
     ],
@@ -25142,9 +25037,6 @@
     "common evaluator event vocabulary tasks": [
       "common evaluator event vocabulary tasks"
     ],
-    "common patterns troubleshooting": [
-      "common patterns troubleshooting"
-    ],
     "common service parity tasks": [
       "common service parity tasks"
     ],
@@ -25283,6 +25175,24 @@
     "compaction fixtures canary": [
       "compaction fixtures canary"
     ],
+    "compaction pointer staleness": [
+      "compaction pointer staleness"
+    ],
+    "compaction pointer staleness acceptance criteria": [
+      "compaction pointer staleness acceptance criteria"
+    ],
+    "compaction pointer staleness goal": [
+      "compaction pointer staleness goal"
+    ],
+    "compaction pointer staleness implementation summary": [
+      "compaction pointer staleness implementation summary"
+    ],
+    "compaction pointer staleness plan": [
+      "compaction pointer staleness plan"
+    ],
+    "compaction pointer staleness tasks": [
+      "compaction pointer staleness tasks"
+    ],
     "compaction recall census": [
       "compaction recall census"
     ],
@@ -25387,9 +25297,6 @@
     ],
     "compatibility shadow runtime evidence": [
       "compatibility shadow runtime evidence"
-    ],
-    "compatibility webflow timing": [
-      "compatibility webflow timing"
     ],
     "compatibility window tasks": [
       "compatibility window tasks"
@@ -25667,12 +25574,6 @@
     "completion claim label gate": [
       "completion claim label gate"
     ],
-    "completion claim obsidian plugin": [
-      "completion claim obsidian plugin"
-    ],
-    "completion claim proof plugin": [
-      "completion claim proof plugin"
-    ],
     "completion claim reconciliation": [
       "completion claim reconciliation"
     ],
@@ -25811,9 +25712,6 @@
     "component choice agent skill command": [
       "component choice agent skill command"
     ],
-    "component cleanup pattern": [
-      "component cleanup pattern"
-    ],
     "component decision logic": [
       "component decision logic"
     ],
@@ -25886,6 +25784,9 @@
     "composite convergence vote": [
       "composite convergence vote"
     ],
+    "composite setup action": [
+      "composite setup action"
+    ],
     "composite setup action cache": [
       "composite setup action cache"
     ],
@@ -25912,9 +25813,6 @@
     ],
     "compute global worktree number": [
       "compute global worktree number"
-    ],
-    "computedevaluator formula fields": [
-      "computedevaluator formula fields"
     ],
     "computememoryqualityscore authored docs": [
       "computeMemoryQualityScore authored docs"
@@ -25990,9 +25888,6 @@
     ],
     "concurrent sigterm compound shutdown review": [
       "concurrent SIGTERM compound shutdown review"
-    ],
-    "condition based waiting": [
-      "condition based waiting"
     ],
     "conditional branching diagram": [
       "conditional branching diagram"
@@ -26105,9 +26000,6 @@
     "config setupfiles reconciled": [
       "config setupFiles reconciled"
     ],
-    "config testing integration": [
-      "config testing integration"
-    ],
     "configurable worktree base": [
       "configurable worktree base"
     ],
@@ -26218,9 +26110,6 @@
     ],
     "consecutive probe failure reap summary": [
       "consecutive probe failure reap summary"
-    ],
-    "consent script deferral": [
-      "consent script deferral"
     ],
     "conservative defaults pass": [
       "conservative defaults pass"
@@ -26455,6 +26344,24 @@
     ],
     "consultant scenario matrix": [
       "consultant scenario matrix"
+    ],
+    "consume locked withdraw": [
+      "consume locked withdraw"
+    ],
+    "consume locked withdraw acceptance criteria": [
+      "consume locked withdraw acceptance criteria"
+    ],
+    "consume locked withdraw goal": [
+      "consume locked withdraw goal"
+    ],
+    "consume locked withdraw implementation summary": [
+      "consume locked withdraw implementation summary"
+    ],
+    "consume locked withdraw plan": [
+      "consume locked withdraw plan"
+    ],
+    "consume locked withdraw tasks": [
+      "consume locked withdraw tasks"
     ],
     "consumer access role normalization": [
       "consumer access role normalization"
@@ -26722,12 +26629,6 @@
     ],
     "content type freshness tasks": [
       "content type freshness tasks"
-    ],
-    "content visibility optimization": [
-      "content visibility optimization"
-    ],
-    "content visibility performance": [
-      "content visibility performance"
     ],
     "context": [
       "context"
@@ -27466,6 +27367,9 @@
     "copy skill advisor dist data": [
       "copy-skill-advisor-dist-data"
     ],
+    "copyable goal slice": [
+      "copyable goal slice"
+    ],
     "core addendum": [
       "core addendum"
     ],
@@ -27486,12 +27390,6 @@
     ],
     "core template marker tasks": [
       "core template marker tasks"
-    ],
-    "core web vitals budgets": [
-      "core web vitals budgets"
-    ],
-    "core web vitals remediation": [
-      "core web vitals remediation"
     ],
     "core workflow": [
       "core workflow"
@@ -28294,6 +28192,9 @@
     "create commands inventory extract implementation summary": [
       "create commands inventory extract implementation summary"
     ],
+    "create commands name acceptance criteria": [
+      "create commands name acceptance criteria"
+    ],
     "create commands presentation markdown complete": [
       "create commands presentation markdown complete"
     ],
@@ -28750,9 +28651,6 @@
     "criterion superseded not fabricated": [
       "criterion superseded not fabricated"
     ],
-    "critical resource prioritization": [
-      "critical resource prioritization"
-    ],
     "cron replaced by block gate": [
       "cron replaced by block gate"
     ],
@@ -29012,9 +28910,6 @@
     "cross reference integrity": [
       "cross-reference integrity"
     ],
-    "cross repo drift guard": [
-      "cross-repo drift guard"
-    ],
     "cross role handoff": [
       "cross role handoff"
     ],
@@ -29171,51 +29066,6 @@
     "cross validate": [
       "cross-validate"
     ],
-    "csrf protection checklist": [
-      "csrf protection checklist"
-    ],
-    "css accessibility checklist": [
-      "css accessibility checklist"
-    ],
-    "css accessibility patterns": [
-      "css accessibility patterns"
-    ],
-    "css animation properties webflow": [
-      "css animation properties webflow"
-    ],
-    "css attribute selector flag": [
-      "css attribute selector flag"
-    ],
-    "css autofill override patterns": [
-      "css autofill override patterns"
-    ],
-    "css component state patterns": [
-      "css component state patterns"
-    ],
-    "css custom property prefix": [
-      "css custom property prefix"
-    ],
-    "css custom property prefixes": [
-      "css custom property prefixes"
-    ],
-    "css data attribute selectors": [
-      "css data attribute selectors"
-    ],
-    "css decision matrix": [
-      "css decision matrix"
-    ],
-    "css deployment checklist": [
-      "css deployment checklist"
-    ],
-    "css export workflow": [
-      "css export workflow"
-    ],
-    "css first animation": [
-      "css first animation"
-    ],
-    "css has parent selector": [
-      "css has parent selector"
-    ],
     "css html quality guidance": [
       "css html quality guidance"
     ],
@@ -29225,26 +29075,14 @@
     "css snippet customization": [
       "css snippet customization"
     ],
-    "css state machines": [
-      "css state machines"
-    ],
-    "css state trigger table": [
-      "css state trigger table"
-    ],
     "css style checks": [
       "css style checks"
     ],
     "css token extraction": [
       "css token extraction"
     ],
-    "css validation architecture": [
-      "css validation architecture"
-    ],
     "css variable naming": [
       "css variable naming"
-    ],
-    "css vs motion dev": [
-      "css vs motion dev"
     ],
     "csstheme": [
       "csstheme"
@@ -29698,9 +29536,6 @@
     ],
     "cursor worktree": [
       "cursor worktree"
-    ],
-    "custom embed validation": [
-      "custom embed validation"
     ],
     "custom fields": [
       "custom fields"
@@ -30365,9 +30200,6 @@
     "dashed leader callout": [
       "dashed leader callout"
     ],
-    "data attribute hygiene": [
-      "data attribute hygiene"
-    ],
     "data canonicalization plan": [
       "data canonicalization plan"
     ],
@@ -30440,9 +30272,6 @@
     "database directory convention": [
       "database directory convention"
     ],
-    "database file order migration": [
-      "database file order migration"
-    ],
     "database icon": [
       "database icon"
     ],
@@ -30464,21 +30293,6 @@
     "database schema diagram": [
       "database schema diagram"
     ],
-    "databaseview dispatch": [
-      "databaseview dispatch"
-    ],
-    "datasource change batch operation": [
-      "datasource change batch operation"
-    ],
-    "datasource vault read write": [
-      "datasource vault read write"
-    ],
-    "db class grammar": [
-      "db class grammar"
-    ],
-    "db class rename checklist": [
-      "db class rename checklist"
-    ],
     "db consistency audit": [
       "DB consistency audit"
     ],
@@ -30499,12 +30313,6 @@
     ],
     "db state circular import tdz": [
       "db-state circular import tdz"
-    ],
-    "db table header top sticky offset": [
-      "db-table-header-top sticky offset"
-    ],
-    "db view frontmatter storage model": [
-      "db_view frontmatter storage model"
     ],
     "de claude lifecycle scripts": [
       "de-claude lifecycle scripts"
@@ -34447,6 +34255,9 @@
     "deep review readme nine section pattern": [
       "deep-review readme nine-section pattern"
     ],
+    "deep review reads acceptance criteria": [
+      "deep review reads acceptance criteria"
+    ],
     "deep review receipt contract plan": [
       "deep-review receipt contract plan"
     ],
@@ -35035,20 +34846,11 @@
     "defect ledger schema": [
       "defect ledger schema"
     ],
-    "defense in depth": [
-      "defense in depth"
-    ],
-    "defense in patterns": [
-      "defense in patterns"
-    ],
     "defer active reducers ledger quality": [
       "defer active reducers ledger quality"
     ],
     "defer by design bucket": [
       "defer-by-design bucket"
-    ],
-    "defer scripts first interaction": [
-      "defer scripts first interaction"
     ],
     "deferred candidate record": [
       "deferred candidate record"
@@ -35079,9 +34881,6 @@
     ],
     "deferred followups decisions": [
       "deferred followups decisions"
-    ],
-    "deferred loading verification": [
-      "deferred loading verification"
     ],
     "deferred orca implementation": [
       "deferred Orca implementation"
@@ -36031,9 +35830,6 @@
     "design thresholds": [
       "design thresholds"
     ],
-    "design token system webflow": [
-      "design token system webflow"
-    ],
     "design token vocabulary": [
       "design token vocabulary"
     ],
@@ -36195,15 +35991,6 @@
     ],
     "deterministic scenario matrix": [
       "deterministic scenario matrix"
-    ],
-    "dev advanced patterns": [
-      "dev advanced patterns"
-    ],
-    "development best patterns": [
-      "development best patterns"
-    ],
-    "development best practices": [
-      "development best practices"
     ],
     "device and inode comparison": [
       "device and inode comparison"
@@ -36409,6 +36196,9 @@
     "devin hooks migration": [
       "devin hooks migration"
     ],
+    "devin hop waived": [
+      "devin hop waived"
+    ],
     "devin long running task": [
       "devin long-running task"
     ],
@@ -36580,9 +36370,6 @@
     "devpass llm gateway route": [
       "devpass llm gateway route"
     ],
-    "devtools quick commands": [
-      "devtools quick commands"
-    ],
     "df idf corpus": [
       "df-idf corpus"
     ],
@@ -36753,9 +36540,6 @@
     ],
     "diagram upgrade research goal": [
       "diagram upgrade research goal"
-    ],
-    "dialog role aria modal panel": [
-      "dialog role aria-modal panel"
     ],
     "diff budget": [
       "diff budget"
@@ -37773,9 +37557,6 @@
     ],
     "docs catalogs phase parent": [
       "docs catalogs phase parent"
-    ],
-    "docs change gate obsidian surface": [
-      "docs change gate obsidian surface"
     ],
     "docs closeout": [
       "docs closeout"
@@ -39324,9 +39105,6 @@
     "dqi hvr security": [
       "dqi hvr security"
     ],
-    "dqi score target reference file": [
-      "dqi score target reference file"
-    ],
     "dqi scoring bands": [
       "dqi scoring bands"
     ],
@@ -39936,9 +39714,6 @@
     "durable write boundaries implementation": [
       "durable write boundaries implementation"
     ],
-    "dynamic db class construction site": [
-      "dynamic db class construction site"
-    ],
     "dynamic fan in implementation plan": [
       "dynamic fan-in implementation plan"
     ],
@@ -40032,9 +39807,6 @@
     ],
     "ears requirements tasks": [
       "ears requirements tasks"
-    ],
-    "easing perceived physics": [
-      "easing perceived physics"
     ],
     "ece brier aggregation layer decision": [
       "ECE Brier aggregation layer decision"
@@ -41932,12 +41704,6 @@
     "everything competes for attention": [
       "everything competes for attention"
     ],
-    "evidence before claims": [
-      "evidence before claims"
-    ],
-    "evidence before claims obsidian plugin": [
-      "evidence before claims obsidian plugin"
-    ],
     "evidence boundary fix": [
       "evidence boundary fix"
     ],
@@ -42519,6 +42285,9 @@
     "expected 6a handoff": [
       "expected 6a handoff"
     ],
+    "expected 9 records got 8": [
+      "expected 9 records got 8"
+    ],
     "expected daemon classifier and process sweep": [
       "expected-daemon-classifier-and-process-sweep"
     ],
@@ -42660,9 +42429,6 @@
     "external cli manual testing playbook": [
       "external CLI manual testing playbook"
     ],
-    "external library integration": [
-      "external library integration"
-    ],
     "external mcp classification fix": [
       "external MCP classification fix"
     ],
@@ -42797,9 +42563,6 @@
     ],
     "extract structure allowed tools commands": [
       "extract structure allowed-tools commands"
-    ],
-    "extract structure script obsidian": [
-      "extract structure script obsidian"
     ],
     "extract tokens from skill": [
       "extract tokens from skill"
@@ -44770,9 +44533,6 @@
     "file header checklist": [
       "file header checklist"
     ],
-    "file header checks webflow": [
-      "file header checks webflow"
-    ],
     "file layer operating model": [
       "file layer operating model"
     ],
@@ -44800,9 +44560,6 @@
     "file swap vs row copy restore": [
       "file swap vs row copy restore"
     ],
-    "file upload state management": [
-      "file upload state management"
-    ],
     "file watcher queue cap": [
       "file-watcher queue cap"
     ],
@@ -44811,15 +44568,6 @@
     ],
     "filename conventions markdown": [
       "filename conventions markdown"
-    ],
-    "filepond file patterns": [
-      "filepond file patterns"
-    ],
-    "filepond file upload": [
-      "filepond file upload"
-    ],
-    "filepond r2 pipeline": [
-      "filepond r2 pipeline"
     ],
     "files touched 012": [
       "files touched 012"
@@ -45280,12 +45028,6 @@
     "finite state logic": [
       "finite state logic"
     ],
-    "finsweet custom patterns": [
-      "finsweet custom patterns"
-    ],
-    "finsweet custom select": [
-      "finsweet custom select"
-    ],
     "fires when router parity": [
       "fires when router parity"
     ],
@@ -45592,6 +45334,9 @@
     "fix the gap detector over capping": [
       "fix the gap detector over-capping"
     ],
+    "fix the stale lock reclaim race": [
+      "fix the stale lock reclaim race"
+    ],
     "fix write recipe backfill flag": [
       "fix write recipe backfill flag"
     ],
@@ -45699,9 +45444,6 @@
     ],
     "fixture audit probe 10 research": [
       "fixture audit probe 10 research"
-    ],
-    "fixture authoring checklist": [
-      "fixture authoring checklist"
     ],
     "fixture calibration": [
       "fixture calibration"
@@ -45949,12 +45691,6 @@
     "flowchart validator pitfalls": [
       "flowchart validator pitfalls"
     ],
-    "fluid typography deep dive": [
-      "fluid typography deep dive"
-    ],
-    "fluid typography webflow": [
-      "fluid typography webflow"
-    ],
     "flywheel diagram": [
       "flywheel diagram"
     ],
@@ -45973,29 +45709,8 @@
     "focus dimension dispatch": [
       "focus dimension dispatch"
     ],
-    "focus restoration pattern": [
-      "focus restoration pattern"
-    ],
-    "focus restoration patterns": [
-      "focus restoration patterns"
-    ],
-    "focus restoration touch": [
-      "focus restoration touch"
-    ],
-    "focus ring 9 surface roots": [
-      "focus ring 9 surface roots"
-    ],
     "focus ring and keyboard navigation": [
       "focus ring and keyboard navigation"
-    ],
-    "focus trap modal": [
-      "focus trap modal"
-    ],
-    "focus visible discipline": [
-      "focus visible discipline"
-    ],
-    "focusable selector accessibility": [
-      "focusable selector accessibility"
     ],
     "focuses on git workflows": [
       "focuses on git workflows"
@@ -46057,12 +45772,6 @@
     "folder discovery weak signal gate": [
       "folder discovery weak signal gate"
     ],
-    "folder docs checklist obsidian plugin": [
-      "folder docs checklist obsidian plugin"
-    ],
-    "folder documentation threshold obsidian": [
-      "folder documentation threshold obsidian"
-    ],
     "folder icon colors": [
       "folder icon colors"
     ],
@@ -46080,12 +45789,6 @@
     ],
     "folder nesting visualization": [
       "folder nesting visualization"
-    ],
-    "folder owes a readme": [
-      "folder owes a readme"
-    ],
-    "folder owes readme code md obsidian plugin": [
-      "folder owes readme code md obsidian plugin"
     ],
     "folder readme yaml references": [
       "folder readme yaml references"
@@ -46381,12 +46084,6 @@
     "forkable prompt framework engine": [
       "forkable prompt-framework engine"
     ],
-    "form validation class reference": [
-      "form validation class reference"
-    ],
-    "form validation classes": [
-      "form validation classes"
-    ],
     "format decision acceptance criteria": [
       "format decision acceptance criteria"
     ],
@@ -46575,9 +46272,6 @@
     ],
     "four part semantic version changelog": [
       "four part semantic version changelog"
-    ],
-    "four phase debugging": [
-      "four phase debugging"
     ],
     "four phase debugging workflow": [
       "four phase debugging workflow"
@@ -46878,24 +46572,6 @@
     ],
     "frontend disconnect logging": [
       "frontend disconnect logging"
-    ],
-    "frontend error patterns": [
-      "frontend error patterns"
-    ],
-    "frontend issue investigation": [
-      "frontend issue investigation"
-    ],
-    "frontend standards": [
-      "frontend standards"
-    ],
-    "frontend timing validation": [
-      "frontend timing validation"
-    ],
-    "frontend validation snippets": [
-      "frontend validation snippets"
-    ],
-    "frontend workflow decision matrix": [
-      "frontend workflow decision matrix"
     ],
     "frontmatter audit": [
       "frontmatter audit"
@@ -47420,9 +47096,6 @@
     "full task record": [
       "full task record"
     ],
-    "function purpose comments": [
-      "function purpose comments"
-    ],
     "functional engine": [
       "Functional Engine"
     ],
@@ -47797,9 +47470,6 @@
     ],
     "gate filter trace plan": [
       "gate filter trace plan"
-    ],
-    "gate function completion claims": [
-      "gate function completion claims"
     ],
     "gate index and deletions": [
       "gate index and deletions"
@@ -48573,6 +48243,9 @@
     "github actions schedule": [
       "github actions schedule"
     ],
+    "github actions workflow rules": [
+      "github actions workflow rules"
+    ],
     "github actions workflow standards": [
       "github actions workflow standards"
     ],
@@ -48801,6 +48474,21 @@
     "goal binding gaps": [
       "goal binding gaps"
     ],
+    "goal binding record launcher": [
+      "goal binding record launcher"
+    ],
+    "goal binding record launcher acceptance criteria": [
+      "goal binding record launcher acceptance criteria"
+    ],
+    "goal binding record launcher implementation summary": [
+      "goal binding record launcher implementation summary"
+    ],
+    "goal binding record launcher plan": [
+      "goal binding record launcher plan"
+    ],
+    "goal binding record launcher tasks": [
+      "goal binding record launcher tasks"
+    ],
     "goal binding research": [
       "goal binding research"
     ],
@@ -48812,6 +48500,9 @@
     ],
     "goal budget handoff summary": [
       "goal budget handoff summary"
+    ],
+    "goal budget reading only notice": [
+      "goal budget reading only notice"
     ],
     "goal capability probes": [
       "goal capability probes"
@@ -48836,6 +48527,9 @@
     ],
     "goal chat slice": [
       "goal chat slice"
+    ],
+    "goal chat slice fenced block": [
+      "goal chat slice fenced block"
     ],
     "goal chat slice handoff": [
       "goal chat slice handoff"
@@ -49272,6 +48966,21 @@
     "goal legacy cutover": [
       "goal legacy cutover"
     ],
+    "goal legacy resume budget notice": [
+      "goal legacy resume budget notice"
+    ],
+    "goal legacy resume budget notice acceptance criteria": [
+      "goal legacy resume budget notice acceptance criteria"
+    ],
+    "goal legacy resume budget notice implementation summary": [
+      "goal legacy resume budget notice implementation summary"
+    ],
+    "goal legacy resume budget notice plan": [
+      "goal legacy resume budget notice plan"
+    ],
+    "goal legacy resume budget notice tasks": [
+      "goal legacy resume budget notice tasks"
+    ],
     "goal line length standard": [
       "goal line length standard"
     ],
@@ -49365,6 +49074,24 @@
     "goal nesting pointers": [
       "goal nesting pointers"
     ],
+    "goal never stops on a budget": [
+      "goal never stops on a budget"
+    ],
+    "goal no budget stop": [
+      "goal no budget stop"
+    ],
+    "goal no budget stop acceptance criteria": [
+      "goal no budget stop acceptance criteria"
+    ],
+    "goal no budget stop implementation summary": [
+      "goal no budget stop implementation summary"
+    ],
+    "goal no budget stop plan": [
+      "goal no budget stop plan"
+    ],
+    "goal no budget stop tasks": [
+      "goal no budget stop tasks"
+    ],
     "goal non utf8 refusal": [
       "goal non-utf8 refusal"
     ],
@@ -49416,8 +49143,20 @@
     "goal packet budget check": [
       "goal packet budget check"
     ],
+    "goal packet decision record": [
+      "goal_packet decision record"
+    ],
+    "goal packet field ownership": [
+      "goal packet field ownership"
+    ],
+    "goal packet handoff note field": [
+      "goal_packet handoff note field"
+    ],
     "goal packet tree check": [
       "goal packet tree check"
+    ],
+    "goal persistence playbook": [
+      "goal persistence playbook"
     ],
     "goal phase continuation": [
       "goal phase continuation"
@@ -49472,6 +49211,72 @@
     ],
     "goal re verification follow ups tasks": [
       "goal re-verification follow-ups tasks"
+    ],
+    "goal rebind claude codex": [
+      "goal rebind claude codex"
+    ],
+    "goal rebind claude codex acceptance criteria": [
+      "goal rebind claude codex acceptance criteria"
+    ],
+    "goal rebind claude codex implementation summary": [
+      "goal rebind claude codex implementation summary"
+    ],
+    "goal rebind claude codex plan": [
+      "goal rebind claude codex plan"
+    ],
+    "goal rebind claude codex tasks": [
+      "goal rebind claude codex tasks"
+    ],
+    "goal rebind claude start prompt decision": [
+      "goal rebind claude start prompt decision"
+    ],
+    "goal rebind live proof": [
+      "goal rebind live proof"
+    ],
+    "goal rebind live proof acceptance criteria": [
+      "goal rebind live proof acceptance criteria"
+    ],
+    "goal rebind live proof decision": [
+      "goal rebind live proof decision"
+    ],
+    "goal rebind live proof implementation summary": [
+      "goal rebind live proof implementation summary"
+    ],
+    "goal rebind live proof plan": [
+      "goal rebind live proof plan"
+    ],
+    "goal rebind live proof tasks": [
+      "goal rebind live proof tasks"
+    ],
+    "goal rebind probes": [
+      "goal rebind probes"
+    ],
+    "goal rebind probes acceptance criteria": [
+      "goal rebind probes acceptance criteria"
+    ],
+    "goal rebind probes implementation summary": [
+      "goal rebind probes implementation summary"
+    ],
+    "goal rebind probes plan": [
+      "goal rebind probes plan"
+    ],
+    "goal rebind probes tasks": [
+      "goal rebind probes tasks"
+    ],
+    "goal rebind shared core opencode": [
+      "goal rebind shared core opencode"
+    ],
+    "goal rebind shared core opencode acceptance criteria": [
+      "goal rebind shared core opencode acceptance criteria"
+    ],
+    "goal rebind shared core opencode implementation summary": [
+      "goal rebind shared core opencode implementation summary"
+    ],
+    "goal rebind shared core opencode plan": [
+      "goal rebind shared core opencode plan"
+    ],
+    "goal rebind shared core opencode tasks": [
+      "goal rebind shared core opencode tasks"
     ],
     "goal reminder cadence": [
       "goal reminder cadence"
@@ -49604,6 +49409,9 @@
     ],
     "goal surfaces inventory": [
       "goal surfaces inventory"
+    ],
+    "goal survives hand over live test": [
+      "goal survives hand-over live test"
     ],
     "goal system comparison": [
       "goal system comparison"
@@ -50018,12 +49826,6 @@
     ],
     "gpt followup audit t2 remediation": [
       "gpt followup audit T2 remediation"
-    ],
-    "gpu accelerated properties": [
-      "gpu accelerated properties"
-    ],
-    "gpu composited animation properties": [
-      "gpu composited animation properties"
     ],
     "gr fact embedding on edge": [
       "GR-fact-embedding-on-edge"
@@ -50645,9 +50447,6 @@
     "gte cross encoder reranker": [
       "GTE cross-encoder reranker"
     ],
-    "gtm delay requestidlecallback": [
-      "gtm delay requestidlecallback"
-    ],
     "guard comment canonical card": [
       "guard comment canonical card"
     ],
@@ -50848,9 +50647,6 @@
     ],
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
-    ],
-    "hand fixture vs real renderer": [
-      "hand fixture vs real renderer"
     ],
     "hand rolled env flag parsing": [
       "hand-rolled env flag parsing"
@@ -51209,9 +51005,6 @@
     ],
     "hash verified edits pi": [
       "hash verified edits pi"
-    ],
-    "head footer panel structure": [
-      "head footer panel structure"
     ],
     "header add template source": [
       "header-add template source"
@@ -52150,9 +51943,6 @@
     "history rewrite tasks": [
       "history rewrite tasks"
     ],
-    "hls js video streaming": [
-      "hls js video streaming"
-    ],
     "hol plugin scanner": [
       "hol plugin scanner"
     ],
@@ -52656,6 +52446,9 @@
     ],
     "hop history tasks": [
       "hop history tasks"
+    ],
+    "hop keeps model": [
+      "hop keeps model"
     ],
     "hop notice": [
       "hop notice"
@@ -53479,12 +53272,6 @@
     "idf debounced": [
       "idf debounced"
     ],
-    "idle time script loading": [
-      "idle time script loading"
-    ],
-    "ids safe access": [
-      "ids safe access"
-    ],
     "ignore and commit guard": [
       "ignore and commit guard"
     ],
@@ -53517,9 +53304,6 @@
     ],
     "ignoredeprecations ts5103": [
       "ignoreDeprecations TS5103"
-    ],
-    "iife wrapper webflow": [
-      "iife wrapper webflow"
     ],
     "ikigai frame": [
       "ikigai frame"
@@ -54073,9 +53857,6 @@
     "ingest worker shutdown fence fix": [
       "ingest worker shutdown fence fix"
     ],
-    "init flag webflow": [
-      "init flag webflow"
-    ],
     "init skill workflow": [
       "init skill workflow"
     ],
@@ -54084,9 +53865,6 @@
     ],
     "initialization": [
       "initialization"
-    ],
-    "initialization common patterns": [
-      "initialization common patterns"
     ],
     "initialize coverage graph": [
       "initialize coverage graph"
@@ -54382,9 +54160,6 @@
     "install guides trigger index corpus": [
       "install guides trigger index corpus"
     ],
-    "install motion dev": [
-      "install motion dev"
-    ],
     "install obsidian theme": [
       "install obsidian theme"
     ],
@@ -54393,9 +54168,6 @@
     ],
     "install opencode v2 and v1": [
       "install opencode v2 and v1"
-    ],
-    "install plugin into vault manually": [
-      "install plugin into vault manually"
     ],
     "install scripts doctor research": [
       "install scripts doctor research"
@@ -54462,9 +54234,6 @@
     ],
     "integration lifecycle contract": [
       "integration lifecycle contract"
-    ],
-    "integration performance optimization": [
-      "integration performance optimization"
     ],
     "integration protocol wires": [
       "integration protocol wires"
@@ -54559,6 +54328,9 @@
     "intent signals resource map": [
       "intent signals resource map"
     ],
+    "intentional trigger exception": [
+      "intentional trigger exception"
+    ],
     "intentional use of flat resources": [
       "intentional use of flat resources"
     ],
@@ -54567,12 +54339,6 @@
     ],
     "interaction capture ts": [
       "interaction-capture.ts"
-    ],
-    "interaction gated checklist": [
-      "interaction gated checklist"
-    ],
-    "interaction gated loading": [
-      "interaction gated loading"
     ],
     "interactive auth": [
       "interactive auth"
@@ -54615,21 +54381,6 @@
     ],
     "interrupted session reconstruction": [
       "interrupted session reconstruction"
-    ],
-    "intersectionobserver autoplay": [
-      "intersectionobserver autoplay"
-    ],
-    "intersectionobserver autoplay accessibility": [
-      "intersectionobserver autoplay accessibility"
-    ],
-    "intersectionobserver autoplay patterns": [
-      "intersectionobserver autoplay patterns"
-    ],
-    "intersectionobserver visibility": [
-      "intersectionobserver visibility"
-    ],
-    "intersectionobserver webflow": [
-      "intersectionobserver webflow"
     ],
     "introduces sk code review": [
       "introduces sk code review"
@@ -54742,9 +54493,6 @@
     "ipc socket tmp fix": [
       "IPC socket /tmp fix"
     ],
-    "iron law evidence": [
-      "iron law evidence"
-    ],
     "is hook output visible": [
       "is hook output visible"
     ],
@@ -54753,12 +54501,6 @@
     ],
     "is phase parent helper": [
       "is_phase_parent helper"
-    ],
-    "is phone body class": [
-      "is-phone body class"
-    ],
-    "is phone body class capture": [
-      "is-phone body class capture"
     ],
     "is the vision model loaded": [
       "is the vision model loaded"
@@ -54771,12 +54513,6 @@
     ],
     "isdefaultenduserscope predicate": [
       "isDefaultEndUserScope predicate"
-    ],
-    "isdesktoponly false": [
-      "isdesktoponly false"
-    ],
-    "isdesktoponly false minappversion": [
-      "isdesktoponly false minappversion"
     ],
     "isembeddingmodelready removal": [
       "isEmbeddingModelReady removal"
@@ -54874,8 +54610,8 @@
     "isrespawnlockstale orphaned holder": [
       "isRespawnLockStale orphaned holder"
     ],
-    "istouchdevice touchenvironment": [
-      "istouchdevice touchenvironment"
+    "iswriterlockstale enoent": [
+      "isWriterLockStale ENOENT"
     ],
     "italic serif aside": [
       "italic serif aside"
@@ -55012,38 +54748,17 @@
     "jaccard delta axis flip rate": [
       "jaccard delta axis flip rate"
     ],
-    "javascript animation timeline": [
-      "javascript animation timeline"
-    ],
     "javascript async patterns": [
       "javascript async patterns"
-    ],
-    "javascript brace style": [
-      "javascript brace style"
     ],
     "javascript checklist module header": [
       "javascript checklist module header"
     ],
-    "javascript cleanup destroy": [
-      "javascript cleanup destroy"
-    ],
-    "javascript comment density": [
-      "javascript comment density"
-    ],
-    "javascript commenting webflow": [
-      "javascript commenting webflow"
-    ],
     "javascript css style compliance": [
       "javascript css style compliance"
     ],
-    "javascript deployment checklist": [
-      "javascript deployment checklist"
-    ],
     "javascript error handling standards": [
       "javascript error handling standards"
-    ],
-    "javascript event delegation webflow": [
-      "javascript event delegation webflow"
     ],
     "javascript exemption tiers": [
       "javascript exemption tiers"
@@ -55056,12 +54771,6 @@
     ],
     "javascript formatting checks": [
       "javascript formatting checks"
-    ],
-    "javascript formatting webflow": [
-      "javascript formatting webflow"
-    ],
-    "javascript indentation rules": [
-      "javascript indentation rules"
     ],
     "javascript module organization": [
       "javascript module organization"
@@ -55087,17 +54796,11 @@
     "javascript testing patterns": [
       "javascript testing patterns"
     ],
-    "javascript trailing commas": [
-      "javascript trailing commas"
-    ],
     "javascript typescript coexistence": [
       "javascript typescript coexistence"
     ],
     "javascript typescript migration": [
       "javascript typescript migration"
-    ],
-    "javascript validation patterns": [
-      "javascript validation patterns"
     ],
     "jev advisor census first slice": [
       "jev advisor census first slice"
@@ -55681,9 +55384,6 @@
     "jq parse error bdg output": [
       "jq parse error bdg output"
     ],
-    "jquery webflow js constraint": [
-      "jquery webflow js constraint"
-    ],
     "js box header check": [
       "js box header check"
     ],
@@ -55698,9 +55398,6 @@
     ],
     "jsdoc template pattern": [
       "jsdoc template pattern"
-    ],
-    "jsdoc webflow usage": [
-      "jsdoc webflow usage"
     ],
     "json": [
       "--json"
@@ -55776,6 +55473,9 @@
     ],
     "jsonl repair corrupt trailing": [
       "jsonl repair corrupt trailing"
+    ],
+    "jsonl repair intermittent failure": [
+      "jsonl repair intermittent failure"
     ],
     "jsonl repair ts": [
       "jsonl-repair.ts"
@@ -55855,9 +55555,6 @@
     "keep saturation from washing out": [
       "keep saturation from washing out"
     ],
-    "keep screenshots current after a change": [
-      "keep screenshots current after a change"
-    ],
     "keep sk git as a single skill": [
       "keep sk-git as a single skill"
     ],
@@ -55866,12 +55563,6 @@
     ],
     "key questions generated projection": [
       "key-questions generated projection"
-    ],
-    "keyboard focus detection": [
-      "keyboard focus detection"
-    ],
-    "keyboard mouse focus detection": [
-      "keyboard mouse focus detection"
     ],
     "keyed runtime discovery": [
       "keyed runtime discovery"
@@ -55911,6 +55602,9 @@
     ],
     "killer notice subtitle": [
       "killer notice subtitle"
+    ],
+    "killer target pid opencode": [
+      "killer target pid opencode"
     ],
     "killer test harness": [
       "killer test harness"
@@ -56734,9 +56428,6 @@
     "lazy init process exit daemon": [
       "lazy init process exit daemon"
     ],
-    "lazy loading code splitting": [
-      "lazy loading code splitting"
-    ],
     "lazy sibling child spawn": [
       "lazy sibling-child spawn"
     ],
@@ -56778,9 +56469,6 @@
     ],
     "lc 005": [
       "lc-005"
-    ],
-    "lcp fcp remediation webflow": [
-      "lcp fcp remediation webflow"
     ],
     "leaf agent direct append": [
       "leaf agent direct append"
@@ -57474,9 +57162,6 @@
     "lenient manual field extraction": [
       "lenient manual field extraction"
     ],
-    "lenis scrollto snippet": [
-      "lenis scrollto snippet"
-    ],
     "lens dispatch tasks": [
       "lens dispatch tasks"
     ],
@@ -57637,9 +57322,6 @@
     ],
     "lib persist artifacts cjs": [
       "lib/persist-artifacts.cjs"
-    ],
-    "library loading pattern webflow": [
-      "library loading pattern webflow"
     ],
     "library writer call sequence": [
       "library writer call sequence"
@@ -57989,9 +57671,6 @@
     "links scan registry rule tasks": [
       "links scan registry rule tasks"
     ],
-    "lint baseline 115 problems": [
-      "lint baseline 115 problems"
-    ],
     "lint goal criteria": [
       "lint-goal-criteria"
     ],
@@ -58006,9 +57685,6 @@
     ],
     "lint goal criteria tasks": [
       "lint-goal-criteria tasks"
-    ],
-    "lint known baseline 115 problems": [
-      "lint known baseline 115 problems"
     ],
     "list a notion page s child blocks": [
       "list a Notion page's child blocks"
@@ -58522,9 +58198,6 @@
     "load tier resource loading": [
       "load tier resource loading"
     ],
-    "loaddata savedata migration": [
-      "loaddata savedata migration"
-    ],
     "loader path fix": [
       "loader path fix"
     ],
@@ -58536,9 +58209,6 @@
     ],
     "loading level semantics": [
       "loading level semantics"
-    ],
-    "loading strategy webflow": [
-      "loading strategy webflow"
     ],
     "loadnativeadvisormodules direct compat": [
       "loadNativeAdvisorModules direct compat"
@@ -59225,9 +58895,6 @@
     "main field removed": [
       "main field removed"
     ],
-    "main js manifest json styles css release assets": [
-      "main.js manifest.json styles.css release assets"
-    ],
     "main protection ruleset relax plan": [
       "main-protection ruleset relax plan"
     ],
@@ -59498,12 +59165,6 @@
     "manifest isolation plan": [
       "manifest isolation plan"
     ],
-    "manifest json app compatibility": [
-      "manifest.json app compatibility"
-    ],
-    "manifest json minappversion": [
-      "manifest.json minappversion"
-    ],
     "manifest lazyaddondocs": [
       "manifest lazyAddonDocs"
     ],
@@ -59533,6 +59194,42 @@
     ],
     "manual call templates array": [
       "manual call templates array"
+    ],
+    "manual claim goal binding": [
+      "manual claim goal binding"
+    ],
+    "manual claim goal binding acceptance criteria": [
+      "manual claim goal binding acceptance criteria"
+    ],
+    "manual claim goal binding goal": [
+      "manual claim goal binding goal"
+    ],
+    "manual claim goal binding implementation summary": [
+      "manual claim goal binding implementation summary"
+    ],
+    "manual claim goal binding plan": [
+      "manual claim goal binding plan"
+    ],
+    "manual claim goal binding tasks": [
+      "manual claim goal binding tasks"
+    ],
+    "manual claim live settings": [
+      "manual claim live settings"
+    ],
+    "manual claim live settings acceptance criteria": [
+      "manual claim live settings acceptance criteria"
+    ],
+    "manual claim live settings goal": [
+      "manual claim live settings goal"
+    ],
+    "manual claim live settings implementation summary": [
+      "manual claim live settings implementation summary"
+    ],
+    "manual claim live settings plan": [
+      "manual claim live settings plan"
+    ],
+    "manual claim live settings tasks": [
+      "manual claim live settings tasks"
     ],
     "manual debug opt out": [
       "manual debug opt-out"
@@ -59839,9 +59536,6 @@
     ],
     "marker preservation": [
       "marker preservation"
-    ],
-    "marquee autoplay control": [
-      "marquee autoplay control"
     ],
     "masked reply baseline plan": [
       "masked reply baseline plan"
@@ -64304,9 +63998,6 @@
     "migrate notion to obsidian": [
       "migrate notion to obsidian"
     ],
-    "migratedatabasestofiles operation": [
-      "migratedatabasestofiles operation"
-    ],
     "migration acceptance criteria": [
       "migration acceptance criteria"
     ],
@@ -64363,12 +64054,6 @@
     ],
     "milestone timeline": [
       "milestone timeline"
-    ],
-    "mime types patterns": [
-      "mime types patterns"
-    ],
-    "mime types troubleshooting": [
-      "mime types troubleshooting"
     ],
     "mimo cline pass route": [
       "mimo cline pass route"
@@ -64450,18 +64135,6 @@
     ],
     "minideaobservations": [
       "minIdeaObservations"
-    ],
-    "minification cdn deployment": [
-      "minification cdn deployment"
-    ],
-    "minification failure recovery": [
-      "minification failure recovery"
-    ],
-    "minified ast verification": [
-      "minified ast verification"
-    ],
-    "minified js deploy": [
-      "minified js deploy"
     ],
     "minimal theme": [
       "minimal theme"
@@ -65114,9 +64787,6 @@
     "mobbin ux flow": [
       "mobbin ux flow"
     ],
-    "mobile browser css patterns": [
-      "mobile browser css patterns"
-    ],
     "mobile cli app work": [
       "mobile-cli app work"
     ],
@@ -65128,12 +64798,6 @@
     ],
     "mockup": [
       "mockup"
-    ],
-    "modal coverage checklist": [
-      "modal coverage checklist"
-    ],
-    "modal dialog screenshot escalation": [
-      "modal dialog screenshot escalation"
     ],
     "mode": [
       "mode"
@@ -65591,6 +65255,24 @@
     "model dispatch matrix": [
       "model dispatch matrix"
     ],
+    "model effort atomic replay": [
+      "model effort atomic replay"
+    ],
+    "model effort atomic replay acceptance criteria": [
+      "model effort atomic replay acceptance criteria"
+    ],
+    "model effort atomic replay goal": [
+      "model effort atomic replay goal"
+    ],
+    "model effort atomic replay implementation summary": [
+      "model effort atomic replay implementation summary"
+    ],
+    "model effort atomic replay plan": [
+      "model effort atomic replay plan"
+    ],
+    "model effort atomic replay tasks": [
+      "model effort atomic replay tasks"
+    ],
     "model guidance": [
       "model guidance"
     ],
@@ -65726,12 +65408,6 @@
     "modular lib structure": [
       "modular lib structure"
     ],
-    "module banner checklist": [
-      "module banner checklist"
-    ],
-    "module banner comment obsidian plugin": [
-      "module banner comment obsidian plugin"
-    ],
     "module component headers": [
       "MODULE COMPONENT headers"
     ],
@@ -65759,83 +65435,8 @@
     "most contested council topics": [
       "most contested council topics"
     ],
-    "motion animatemini usage": [
-      "motion animatemini usage"
-    ],
-    "motion animation snippets": [
-      "motion animation snippets"
-    ],
-    "motion api smoke test": [
-      "motion api smoke test"
-    ],
-    "motion cdn npm install": [
-      "motion cdn npm install"
-    ],
-    "motion cdn script tag": [
-      "motion cdn script tag"
-    ],
-    "motion dev advanced": [
-      "motion dev advanced"
-    ],
-    "motion dev animate api": [
-      "motion dev animate api"
-    ],
-    "motion dev animate snippet": [
-      "motion dev animate snippet"
-    ],
-    "motion dev animation principles": [
-      "motion dev animation principles"
-    ],
     "motion dev cross stack category": [
       "motion_dev cross-stack category"
-    ],
-    "motion dev decision matrix": [
-      "motion dev decision matrix"
-    ],
-    "motion dev install card": [
-      "motion dev install card"
-    ],
-    "motion dev integration": [
-      "motion dev integration"
-    ],
-    "motion dev integration patterns": [
-      "motion dev integration patterns"
-    ],
-    "motion dev patterns": [
-      "motion dev patterns"
-    ],
-    "motion dev performance pitfalls": [
-      "motion dev performance pitfalls"
-    ],
-    "motion dev playbook entries": [
-      "motion dev playbook entries"
-    ],
-    "motion dev quick start": [
-      "motion dev quick start"
-    ],
-    "motion dev scroll linked": [
-      "motion dev scroll linked"
-    ],
-    "motion dev timeline sequence": [
-      "motion dev timeline sequence"
-    ],
-    "motion dev webflow sequences": [
-      "motion dev webflow sequences"
-    ],
-    "motion es module import": [
-      "motion es module import"
-    ],
-    "motion hover press gestures": [
-      "motion hover press gestures"
-    ],
-    "motion import modes": [
-      "motion import modes"
-    ],
-    "motion import verification": [
-      "motion import verification"
-    ],
-    "motion inview viewport trigger": [
-      "motion inview viewport trigger"
     ],
     "motion layer acceptance criteria": [
       "motion layer acceptance criteria"
@@ -65845,15 +65446,6 @@
     ],
     "motion token extraction": [
       "motion token extraction"
-    ],
-    "motion version pin": [
-      "motion version pin"
-    ],
-    "motion vs gsap choice": [
-      "motion vs gsap choice"
-    ],
-    "motion webflow integration": [
-      "motion webflow integration"
     ],
     "move 7 946 files as renames fold": [
       "move 7 946 files as renames fold"
@@ -66050,9 +65642,6 @@
     "multi viewport test": [
       "multi viewport test"
     ],
-    "multi viewport testing": [
-      "multi viewport testing"
-    ],
     "multihop tail appends benchmark": [
       "multihop tail appends benchmark"
     ],
@@ -66142,9 +65731,6 @@
     ],
     "mutation validation test doc": [
       "mutation validation test doc"
-    ],
-    "mutationobserver cms content": [
-      "mutationobserver cms content"
     ],
     "mxbai causal lm vs cross encoder": [
       "mxbai causal LM vs cross-encoder"
@@ -66602,11 +66188,11 @@
     "never fatal untracked tasks": [
       "never fatal untracked tasks"
     ],
-    "never invent a db class": [
-      "never invent a db class"
-    ],
     "never run test files wired or deleted": [
       "never-run test files wired or deleted"
+    ],
+    "never switch off workflow": [
+      "never switch off workflow"
     ],
     "new broken citation blocks": [
       "new broken citation blocks"
@@ -66785,9 +66371,6 @@
     "no completion claim timestamp": [
       "no completion claim timestamp"
     ],
-    "no component scoped styles": [
-      "no component scoped styles"
-    ],
     "no consumer for reference trigger phrases": [
       "no consumer for reference trigger_phrases"
     ],
@@ -66867,14 +66450,8 @@
     "no sandbox flag": [
       "no-sandbox flag"
     ],
-    "no screen reader session has run": [
-      "no screen reader session has run"
-    ],
     "no script interpretation ruling": [
       "no-script interpretation ruling"
-    ],
-    "no spec ids in comments": [
-      "no spec ids in comments"
     ],
     "no such table errors": [
       "no such table errors"
@@ -67011,9 +66588,6 @@
     "nomic stella benchmark": [
       "nomic stella benchmark"
     ],
-    "non blocking browser scheduling": [
-      "non blocking browser scheduling"
-    ],
     "non canonical template continuity": [
       "non-canonical template continuity"
     ],
@@ -67068,9 +66642,6 @@
     "non numeric levels": [
       "non-numeric levels"
     ],
-    "non recursing ls missed modals": [
-      "non-recursing ls missed modals"
-    ],
     "non saas exemplar": [
       "non-SaaS exemplar"
     ],
@@ -67109,18 +66680,6 @@
     ],
     "not yet filed marker": [
       "not-yet-filed marker"
-    ],
-    "note database class prefix": [
-      "note-database class prefix"
-    ],
-    "note database container root inheritance": [
-      "note-database-container root inheritance"
-    ],
-    "note database plugin evidence": [
-      "note database plugin evidence"
-    ],
-    "note database plugin gate baseline": [
-      "note database plugin gate baseline"
     ],
     "notesmd cli": [
       "notesmd cli",
@@ -67499,14 +67058,8 @@
     "npm audit remediation tasks": [
       "npm audit remediation tasks"
     ],
-    "npm install obsidian plugin": [
-      "npm install obsidian plugin"
-    ],
     "npm run build mcp server": [
       "npm run build mcp-server"
-    ],
-    "npm run dev esbuild watch": [
-      "npm run dev esbuild watch"
     ],
     "npm run rebuild freshness": [
       "npm run rebuild freshness"
@@ -67526,9 +67079,6 @@
     "numbered all caps sections": [
       "numbered all caps sections"
     ],
-    "numbered box drawing sections obsidian plugin": [
-      "numbered box drawing sections obsidian plugin"
-    ],
     "numbered branch grammar": [
       "numbered branch grammar"
     ],
@@ -67546,9 +67096,6 @@
     ],
     "numbered review findings reducer": [
       "numbered review findings reducer"
-    ],
-    "numbered section banner": [
-      "numbered section banner"
     ],
     "numbered worktree branch convention": [
       "numbered worktree branch convention"
@@ -67684,9 +67231,6 @@
     ],
     "obsidian appearance json": [
       "obsidian appearance json"
-    ],
-    "obsidian asset list": [
-      "obsidian asset list"
     ],
     "obsidian banners and folder docs": [
       "obsidian banners and folder docs"
@@ -67854,35 +67398,20 @@
     "obsidian measurement tasks": [
       "obsidian measurement tasks"
     ],
-    "obsidian mobile ios android desktop": [
-      "obsidian mobile ios android desktop"
-    ],
     "obsidian mode registry entry": [
       "obsidian mode-registry entry"
     ],
     "obsidian on demand checklists": [
       "obsidian on-demand checklists"
     ],
-    "obsidian plugin accessibility": [
-      "obsidian plugin accessibility"
-    ],
     "obsidian plugin api": [
       "obsidian plugin api"
-    ],
-    "obsidian plugin api boundary": [
-      "obsidian plugin api boundary"
     ],
     "obsidian plugin baseline": [
       "obsidian plugin baseline"
     ],
     "obsidian plugin code conventions": [
       "obsidian plugin code conventions"
-    ],
-    "obsidian plugin code standards summary": [
-      "obsidian plugin code standards summary"
-    ],
-    "obsidian plugin conventions": [
-      "obsidian plugin conventions"
     ],
     "obsidian plugin coverage remediation": [
       "obsidian plugin coverage remediation"
@@ -67908,35 +67437,11 @@
     "obsidian plugin manifest": [
       "obsidian plugin manifest"
     ],
-    "obsidian plugin mobile support": [
-      "obsidian plugin mobile support"
-    ],
-    "obsidian plugin platform support": [
-      "obsidian plugin platform support"
-    ],
     "obsidian plugin quality checklists": [
       "obsidian plugin quality checklists"
     ],
-    "obsidian plugin release workflow": [
-      "obsidian plugin release workflow"
-    ],
-    "obsidian plugin settings persistence": [
-      "obsidian plugin settings persistence"
-    ],
-    "obsidian plugin setup": [
-      "obsidian plugin setup"
-    ],
-    "obsidian plugin verification checklist": [
-      "obsidian plugin verification checklist"
-    ],
-    "obsidian plugin verification gate": [
-      "obsidian plugin verification gate"
-    ],
     "obsidian plugins list": [
       "obsidian plugins list"
-    ],
-    "obsidian plugins note database folder": [
-      "obsidian plugins note-database folder"
     ],
     "obsidian pre 1 0 renumber": [
       "obsidian pre-1.0 renumber"
@@ -67946,9 +67451,6 @@
     ],
     "obsidian readme conformance": [
       "obsidian readme conformance"
-    ],
-    "obsidian reference routing": [
-      "obsidian reference routing"
     ],
     "obsidian references authored": [
       "obsidian references authored"
@@ -67998,9 +67500,6 @@
     ],
     "obsidian surface detection": [
       "obsidian surface detection"
-    ],
-    "obsidian surface established": [
-      "Obsidian Surface Established"
     ],
     "obsidian surface manifest refresh": [
       "obsidian surface manifest refresh"
@@ -68074,17 +67573,11 @@
     "obsidian surface subfolder authoring": [
       "obsidian surface subfolder authoring"
     ],
-    "obsidian test layout": [
-      "obsidian test layout"
-    ],
     "obsidian theme": [
       "obsidian theme"
     ],
     "obsidian theme css": [
       "obsidian theme.css"
-    ],
-    "obsidian theme css variables": [
-      "obsidian theme css variables"
     ],
     "obsidian theme dark light": [
       "obsidian theme dark light"
@@ -68587,9 +68080,6 @@
     "one voice for every skill readme": [
       "One Voice for Every Skill README"
     ],
-    "onload onunload lifecycle": [
-      "onload onunload lifecycle"
-    ],
     "onnx backend rejected": [
       "onnx backend rejected"
     ],
@@ -68692,9 +68182,6 @@
     "open knowledge format": [
       "open knowledge format"
     ],
-    "open the changed png": [
-      "open the changed png"
-    ],
     "open the obsidian daily note headlessly": [
       "open the Obsidian daily note headlessly"
     ],
@@ -68754,6 +68241,9 @@
     ],
     "opencode 2 primary v1 fallback tasks": [
       "opencode 2 primary v1 fallback tasks"
+    ],
+    "opencode 2 relaunch hop": [
+      "opencode 2 relaunch hop"
     ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
@@ -68960,8 +68450,17 @@
     "opencode goal state migration": [
       "opencode goal state migration"
     ],
+    "opencode goal suppressed record resume": [
+      "opencode goal suppressed record resume"
+    ],
+    "opencode goal turn cap": [
+      "opencode goal turn cap"
+    ],
     "opencode goal verifier accuracy": [
       "opencode goal verifier accuracy"
+    ],
+    "opencode goal wall clock cap": [
+      "opencode goal wall clock cap"
     ],
     "opencode hook adapter": [
       "opencode hook adapter"
@@ -69314,6 +68813,18 @@
     "opencode upgrade major": [
       "opencode upgrade major"
     ],
+    "opencode v1 pin 1 19 4": [
+      "opencode v1 pin 1.19.4"
+    ],
+    "opencode v1 pin 1 19 4 implementation summary": [
+      "opencode v1 pin 1.19.4 implementation summary"
+    ],
+    "opencode v1 pin 1 19 4 plan": [
+      "opencode v1 pin 1.19.4 plan"
+    ],
+    "opencode v1 pin 1 19 4 tasks": [
+      "opencode v1 pin 1.19.4 tasks"
+    ],
     "opencode v1 v2 dual compat research": [
       "opencode v1 v2 dual compat research"
     ],
@@ -69322,6 +68833,30 @@
     ],
     "opencode v1 v2 open questions": [
       "opencode v1 v2 open questions"
+    ],
+    "opencode v2 default name": [
+      "opencode v2 default name"
+    ],
+    "opencode v2 default name implementation summary": [
+      "opencode v2 default name implementation summary"
+    ],
+    "opencode v2 default name plan": [
+      "opencode v2 default name plan"
+    ],
+    "opencode v2 default name tasks": [
+      "opencode v2 default name tasks"
+    ],
+    "opencode v2 pin 2 1 4": [
+      "opencode v2 pin 2.1.4"
+    ],
+    "opencode v2 pin 2 1 4 implementation summary": [
+      "opencode v2 pin 2.1.4 implementation summary"
+    ],
+    "opencode v2 pin 2 1 4 plan": [
+      "opencode v2 pin 2.1.4 plan"
+    ],
+    "opencode v2 pin 2 1 4 tasks": [
+      "opencode v2 pin 2.1.4 tasks"
     ],
     "opencode v2 plugin migration": [
       "opencode v2 plugin migration"
@@ -69353,8 +68888,23 @@
     "opencode worktree isolation dispatch": [
       "opencode worktree isolation dispatch"
     ],
-    "opencode2 launcher": [
-      "opencode2 launcher"
+    "opencode1 launcher": [
+      "opencode1 launcher"
+    ],
+    "opencode2 killer target": [
+      "opencode2 killer target"
+    ],
+    "opencode2 killer target acceptance criteria": [
+      "opencode2 killer target acceptance criteria"
+    ],
+    "opencode2 killer target implementation summary": [
+      "opencode2 killer target implementation summary"
+    ],
+    "opencode2 killer target plan": [
+      "opencode2 killer target plan"
+    ],
+    "opencode2 killer target tasks": [
+      "opencode2 killer target tasks"
     ],
     "opencode2 models provider check": [
       "opencode2 models provider check"
@@ -69370,6 +68920,21 @@
     ],
     "opencode2 models standalone": [
       "opencode2 models standalone"
+    ],
+    "opencode2 standalone replay": [
+      "opencode2 standalone replay"
+    ],
+    "opencode2 standalone replay acceptance criteria": [
+      "opencode2 standalone replay acceptance criteria"
+    ],
+    "opencode2 standalone replay implementation summary": [
+      "opencode2 standalone replay implementation summary"
+    ],
+    "opencode2 standalone replay plan": [
+      "opencode2 standalone replay plan"
+    ],
+    "opencode2 standalone replay tasks": [
+      "opencode2 standalone replay tasks"
     ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
@@ -69598,9 +69163,6 @@
     ],
     "operator tooling worktree per session automation changelog": [
       "operator tooling worktree per session automation changelog"
-    ],
-    "operator verified physical device": [
-      "operator verified physical device"
     ],
     "operator view": [
       "operator view"
@@ -70226,12 +69788,6 @@
     "orphaned build artifact detection": [
       "orphaned build artifact detection"
     ],
-    "orphaned db class rename": [
-      "orphaned db class rename"
-    ],
-    "orphaned db classes": [
-      "orphaned db classes"
-    ],
     "orphaned files diagnosis": [
       "orphaned files diagnosis"
     ],
@@ -70478,15 +70034,6 @@
     "overview renumbering": [
       "overview renumbering"
     ],
-    "owasp coverage patterns": [
-      "owasp coverage patterns"
-    ],
-    "owasp coverage prototype": [
-      "owasp coverage prototype"
-    ],
-    "owasp top ten frontend": [
-      "owasp top ten frontend"
-    ],
     "owned assets presentation boundary": [
       "owned assets presentation boundary"
     ],
@@ -70583,9 +70130,6 @@
     ],
     "p0 p1 p2 severity tiers": [
       "p0 p1 p2 severity tiers"
-    ],
-    "p0 p1 p2 violations": [
-      "p0 p1 p2 violations"
     ],
     "p0 regression dataset": [
       "p0 regression dataset"
@@ -71016,12 +70560,6 @@
     "packets filed under tracks": [
       "packets filed under tracks"
     ],
-    "pagespeed before after": [
-      "pagespeed before after"
-    ],
-    "pagespeed evidence verification": [
-      "pagespeed evidence verification"
-    ],
     "pain point diagram": [
       "pain point diagram"
     ],
@@ -71039,9 +70577,6 @@
     ],
     "paired allowlist copies": [
       "paired allowlist copies"
-    ],
-    "paired readme and code markdown": [
-      "paired readme and code markdown"
     ],
     "palette and luminance check": [
       "palette and luminance check"
@@ -71475,9 +71010,6 @@
     "partitioned review passes": [
       "partitioned review passes"
     ],
-    "pascalcase dominant naming": [
-      "pascalcase dominant naming"
-    ],
     "pascalcase types check": [
       "pascalcase types check"
     ],
@@ -71884,9 +71416,6 @@
     "per entry git mv verification": [
       "per entry git mv verification"
     ],
-    "per environment custom code": [
-      "per environment custom code"
-    ],
     "per feature file example": [
       "per-feature file example"
     ],
@@ -72067,29 +71596,8 @@
     "performance baseline script": [
       "performance baseline script"
     ],
-    "performance budgets anti": [
-      "performance budgets anti"
-    ],
-    "performance budgets patterns": [
-      "performance budgets patterns"
-    ],
-    "performance debugging": [
-      "performance debugging"
-    ],
-    "performance debugging reference": [
-      "performance debugging reference"
-    ],
-    "performance debugging webflow": [
-      "performance debugging webflow"
-    ],
-    "performance loading checklist": [
-      "performance loading checklist"
-    ],
     "performance regression capture": [
       "performance regression capture"
-    ],
-    "performance verification protocol": [
-      "performance verification protocol"
     ],
     "periodic refreshownerlease": [
       "periodic refreshOwnerLease"
@@ -72150,6 +71658,24 @@
     ],
     "persist workspace id": [
       "persist workspace id"
+    ],
+    "persisted hops validation": [
+      "persisted hops validation"
+    ],
+    "persisted hops validation acceptance criteria": [
+      "persisted hops validation acceptance criteria"
+    ],
+    "persisted hops validation goal": [
+      "persisted hops validation goal"
+    ],
+    "persisted hops validation implementation summary": [
+      "persisted hops validation implementation summary"
+    ],
+    "persisted hops validation plan": [
+      "persisted hops validation plan"
+    ],
+    "persisted hops validation tasks": [
+      "persisted hops validation tasks"
     ],
     "persisted wait crash resume": [
       "persisted-wait crash resume"
@@ -72664,6 +72190,9 @@
     "phase 1 model benchmark inventory": [
       "phase 1 model benchmark inventory"
     ],
+    "phase 1 model effort atomic replay": [
+      "phase 1 model effort atomic replay"
+    ],
     "phase 1 package strict": [
       "phase 1 package strict"
     ],
@@ -72672,6 +72201,9 @@
     ],
     "phase 1 ponytail deep research": [
       "phase 1 ponytail deep research"
+    ],
+    "phase 1 quality mode research": [
+      "phase 1 quality mode research"
     ],
     "phase 1 removal research": [
       "phase 1 removal research"
@@ -72820,6 +72352,9 @@
     "phase 126 tasks": [
       "phase 126 tasks"
     ],
+    "phase 13 claude goal copy block": [
+      "phase 13 claude goal copy block"
+    ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
     ],
@@ -72840,6 +72375,9 @@
     ],
     "phase 14 gate index and deletions": [
       "phase 14 gate index and deletions"
+    ],
+    "phase 14 goal no budget stop": [
+      "phase 14 goal no budget stop"
     ],
     "phase 14 handover docs promotion": [
       "phase 14 handover docs promotion"
@@ -72864,6 +72402,9 @@
     ],
     "phase 15 freshness strict content": [
       "phase 15 freshness strict content"
+    ],
+    "phase 15 goal legacy resume and budget notice": [
+      "phase 15 goal legacy resume and budget notice"
     ],
     "phase 15 lane rules as heal modes": [
       "phase 15 lane rules as heal modes"
@@ -72982,6 +72523,9 @@
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
+    "phase 2 consume locked withdraw": [
+      "phase 2 consume locked withdraw"
+    ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
     ],
@@ -73053,6 +72597,9 @@
     ],
     "phase 2 review mode": [
       "phase 2 review mode"
+    ],
+    "phase 2 review mode research": [
+      "phase 2 review mode research"
     ],
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
@@ -73141,6 +72688,12 @@
     "phase 23 readme freshness research": [
       "phase 23 readme freshness research"
     ],
+    "phase 23 relaunch cancel and test isolation": [
+      "phase 23 relaunch cancel and test isolation"
+    ],
+    "phase 24 goal rebind claude codex hermes probes": [
+      "phase 24 goal rebind claude codex hermes probes"
+    ],
     "phase 24 implementation summary": [
       "phase 24 implementation summary"
     ],
@@ -73162,17 +72715,32 @@
     "phase 25 external surface priority research": [
       "phase 25 external surface priority research"
     ],
+    "phase 25 goal binding record and launcher": [
+      "phase 25 goal binding record and launcher"
+    ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
+    "phase 26 goal rebind shared core and opencode": [
+      "phase 26 goal rebind shared core and opencode"
+    ],
+    "phase 27 goal rebind claude and codex": [
+      "phase 27 goal rebind claude and codex"
+    ],
     "phase 27 opencode2 models provider check": [
       "phase 27 opencode2 models provider check"
+    ],
+    "phase 28 goal rebind live proof and docs": [
+      "phase 28 goal rebind live proof and docs"
     ],
     "phase 28 plugin kill switch coverage": [
       "phase 28 plugin kill switch coverage"
     ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
+    ],
+    "phase 29 relaunch evidence gaps and playbook drift": [
+      "phase 29 relaunch evidence gaps and playbook drift"
     ],
     "phase 29 unrun tests ci coverage": [
       "phase 29 unrun tests ci coverage"
@@ -73231,6 +72799,9 @@
     "phase 3 improvement research": [
       "phase 3 improvement research"
     ],
+    "phase 3 manual claim live settings": [
+      "phase 3 manual claim live settings"
+    ],
     "phase 3 markdown reference sweep": [
       "phase 3 markdown reference sweep"
     ],
@@ -73273,14 +72844,23 @@
     "phase 30 nested worktree battery": [
       "phase 30 nested worktree battery"
     ],
+    "phase 30 opencode2 killer target": [
+      "phase 30 opencode2 killer target"
+    ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
     ],
     "phase 31 plugin scanner ast": [
       "phase 31 plugin scanner ast"
     ],
+    "phase 31 relaunch model and effort": [
+      "phase 31 relaunch model and effort"
+    ],
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
+    ],
+    "phase 32 opencode2 standalone replay": [
+      "phase 32 opencode2 standalone replay"
     ],
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
@@ -73347,6 +72927,9 @@
     ],
     "phase 4 leftover template comments": [
       "phase 4 leftover template comments"
+    ],
+    "phase 4 manual claim goal binding": [
+      "phase 4 manual claim goal binding"
     ],
     "phase 4 pi ambiguous denial": [
       "phase 4 pi ambiguous denial"
@@ -73458,6 +73041,9 @@
     ],
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
+    ],
+    "phase 5 persisted hops validation": [
+      "phase 5 persisted hops validation"
     ],
     "phase 5 readme node floor": [
       "phase 5 readme node floor"
@@ -73588,6 +73174,9 @@
     "phase 6 plan": [
       "phase 6 plan"
     ],
+    "phase 6 relaunch coverage gaps": [
+      "phase 6 relaunch coverage gaps"
+    ],
     "phase 6 release conformance review": [
       "phase 6 release conformance review"
     ],
@@ -73639,6 +73228,18 @@
     "phase 65 drop old deepseek from pi": [
       "phase 65 drop old deepseek from pi"
     ],
+    "phase 66 opencode v2 default name": [
+      "phase 66 opencode v2 default name"
+    ],
+    "phase 67 opencode v2 pin": [
+      "phase 67 opencode v2 pin"
+    ],
+    "phase 68 retire opencode2": [
+      "phase 68 retire opencode2"
+    ],
+    "phase 69 opencode v1 pin": [
+      "phase 69 opencode v1 pin"
+    ],
     "phase 7 advisor and cross skill wiring": [
       "phase 7 advisor and cross skill wiring"
     ],
@@ -73647,6 +73248,9 @@
     ],
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
+    ],
+    "phase 7 compaction pointer staleness": [
+      "phase 7 compaction pointer staleness"
     ],
     "phase 7 dispatch wrapper scan": [
       "phase 7 dispatch wrapper scan"
@@ -73710,6 +73314,9 @@
     ],
     "phase 8 ci red check repairs": [
       "phase 8 ci red check repairs"
+    ],
+    "phase 8 claim error per state": [
+      "phase 8 claim error per state"
     ],
     "phase 8 consolidation decision": [
       "phase 8 consolidation decision"
@@ -73788,6 +73395,9 @@
     ],
     "phase 9 open items ledger": [
       "phase 9 open items ledger"
+    ],
+    "phase 9 pi arm on agent settled": [
+      "phase 9 pi arm on agent settled"
     ],
     "phase 9 pi guard classification": [
       "phase 9 pi guard classification"
@@ -74402,6 +74012,24 @@
     ],
     "pi api key": [
       "pi api key"
+    ],
+    "pi arm on agent settled": [
+      "pi arm on agent settled"
+    ],
+    "pi arm on agent settled acceptance criteria": [
+      "pi arm on agent settled acceptance criteria"
+    ],
+    "pi arm on agent settled goal": [
+      "pi arm on agent settled goal"
+    ],
+    "pi arm on agent settled implementation summary": [
+      "pi arm on agent settled implementation summary"
+    ],
+    "pi arm on agent settled plan": [
+      "pi arm on agent settled plan"
+    ],
+    "pi arm on agent settled tasks": [
+      "pi arm on agent settled tasks"
     ],
     "pi blackhole auto compacts": [
       "pi-blackhole auto-compacts"
@@ -75574,12 +75202,6 @@
     "platform consumer surfaces": [
       "platform consumer surfaces"
     ],
-    "platform imposed limitations": [
-      "platform imposed limitations"
-    ],
-    "platform ismobile istablet": [
-      "platform.ismobile istablet"
-    ],
     "playbook": [
       "playbook"
     ],
@@ -75717,6 +75339,9 @@
     ],
     "playbook implementation summary": [
       "playbook implementation summary"
+    ],
+    "playbook import smoke object function": [
+      "playbook import smoke object function"
     ],
     "playbook index stress test groups": [
       "playbook index stress-test groups"
@@ -76044,9 +75669,6 @@
     ],
     "plugin documentation removal": [
       "plugin documentation removal"
-    ],
-    "plugin entry point src main ts": [
-      "plugin entry point src main ts"
     ],
     "plugin hook standards alignment": [
       "plugin hook standards alignment"
@@ -76846,9 +76468,6 @@
     "pr1 pr11 packet summary": [
       "pr1 pr11 packet summary"
     ],
-    "practices library summary": [
-      "practices library summary"
-    ],
     "pre bound setup answers": [
       "pre-bound setup answers"
     ],
@@ -76872,9 +76491,6 @@
     ],
     "pre commit review guidance": [
       "pre commit review guidance"
-    ],
-    "pre completion gate": [
-      "pre completion gate"
     ],
     "pre confirmation margin analysis": [
       "pre-confirmation margin analysis"
@@ -77080,9 +76696,6 @@
     "precompact authored continuity snapshot shipped": [
       "precompact authored continuity snapshot shipped"
     ],
-    "preconnect resource hints": [
-      "preconnect resource hints"
-    ],
     "predicate ownership decision": [
       "predicate ownership decision"
     ],
@@ -77133,12 +76746,6 @@
     ],
     "prefers color scheme chart": [
       "prefers color scheme chart"
-    ],
-    "prefers reduced motion": [
-      "prefers reduced motion"
-    ],
-    "prefers reduced motion scenario": [
-      "prefers reduced motion scenario"
     ],
     "prefetch cache": [
       "prefetch cache"
@@ -77341,12 +76948,6 @@
     "priority based checklist items": [
       "priority-based checklist items"
     ],
-    "priority timing decision": [
-      "priority timing decision"
-    ],
-    "priority timing patterns": [
-      "priority timing patterns"
-    ],
     "private local skills": [
       "private local skills"
     ],
@@ -77454,9 +77055,6 @@
     ],
     "procedure card guidelines": [
       "procedure card guidelines"
-    ],
-    "procedures common issues": [
-      "procedures common issues"
     ],
     "process cleanup audit plan": [
       "process cleanup audit plan"
@@ -78104,8 +77702,11 @@
     "prose wall rewrite": [
       "prose wall rewrite"
     ],
-    "protection finsweet attributes": [
-      "protection finsweet attributes"
+    "protected workflow": [
+      "protected workflow"
+    ],
+    "protected workflow set": [
+      "protected workflow set"
     ],
     "protocol and catalog alignment": [
       "protocol and catalog alignment"
@@ -78287,9 +77888,6 @@
     ],
     "provisional verdict display": [
       "provisional verdict display"
-    ],
-    "proxy form integration": [
-      "proxy form integration"
     ],
     "proxy only benchmark gate adr": [
       "proxy only benchmark gate adr"
@@ -78561,6 +78159,9 @@
     "quality gate obsidian coverage": [
       "quality gate obsidian coverage"
     ],
+    "quality gate ranked recommendations": [
+      "quality gate ranked recommendations"
+    ],
     "quality gate resources": [
       "quality gate resources"
     ],
@@ -78585,6 +78186,9 @@
     "quality mode established": [
       "Quality Mode Established"
     ],
+    "quality mode external user modes": [
+      "quality mode external-user modes"
+    ],
     "quality mode implementation summary": [
       "quality mode implementation summary"
     ],
@@ -78593,6 +78197,27 @@
     ],
     "quality mode plan": [
       "quality mode plan"
+    ],
+    "quality mode research": [
+      "quality mode research"
+    ],
+    "quality mode research acceptance criteria": [
+      "quality mode research acceptance criteria"
+    ],
+    "quality mode research decision record": [
+      "quality mode research decision record"
+    ],
+    "quality mode research goal": [
+      "quality mode research goal"
+    ],
+    "quality mode research implementation summary": [
+      "quality mode research implementation summary"
+    ],
+    "quality mode research plan": [
+      "quality mode research plan"
+    ],
+    "quality mode research tasks": [
+      "quality mode research tasks"
     ],
     "quality mode scripts list": [
       "quality mode scripts list"
@@ -78827,18 +78452,6 @@
     ],
     "quick check failure unreachable repair": [
       "quick_check failure unreachable repair"
-    ],
-    "quick reference and lenis": [
-      "quick reference and lenis"
-    ],
-    "quick reference and lenis reference": [
-      "quick reference and lenis reference"
-    ],
-    "quick reference and lenis webflow": [
-      "quick reference and lenis webflow"
-    ],
-    "quick reference sharedobservers": [
-      "quick reference sharedobservers"
     ],
     "quick start css tailwind": [
       "quick start css tailwind"
@@ -79457,9 +79070,6 @@
     ],
     "readme code md folder documentation plugin": [
       "readme code md folder documentation plugin"
-    ],
-    "readme code md threshold": [
-      "readme code md threshold"
     ],
     "readme code template": [
       "readme code template"
@@ -80097,6 +79707,9 @@
     "reclaim deepseek direct ownership tasks": [
       "reclaim deepseek direct ownership tasks"
     ],
+    "reclaim removes only the file it judged stale": [
+      "reclaim removes only the file it judged stale"
+    ],
     "recommend level sh": [
       "recommend-level.sh"
     ],
@@ -80402,12 +80015,6 @@
     ],
     "reduce spec kit doc templates": [
       "reduce spec-kit doc templates"
-    ],
-    "reduced motion compliance": [
-      "reduced motion compliance"
-    ],
-    "reduced motion support": [
-      "reduced motion support"
     ],
     "reducer config message": [
       "reducer config message"
@@ -80977,9 +80584,6 @@
     "registered tool no layer definition": [
       "registered tool no layer definition"
     ],
-    "registerview workspaceleaf": [
-      "registerview workspaceleaf"
-    ],
     "registration drift fix": [
       "registration drift fix"
     ],
@@ -81281,6 +80885,57 @@
     "relative import census": [
       "relative import census"
     ],
+    "relaunch cancel and test isolation": [
+      "relaunch cancel and test isolation"
+    ],
+    "relaunch cancel and test isolation acceptance criteria": [
+      "relaunch cancel and test isolation acceptance criteria"
+    ],
+    "relaunch cancel and test isolation implementation summary": [
+      "relaunch cancel and test isolation implementation summary"
+    ],
+    "relaunch cancel and test isolation plan": [
+      "relaunch cancel and test isolation plan"
+    ],
+    "relaunch cancel and test isolation tasks": [
+      "relaunch cancel and test isolation tasks"
+    ],
+    "relaunch coverage gaps": [
+      "relaunch coverage gaps"
+    ],
+    "relaunch coverage gaps acceptance criteria": [
+      "relaunch coverage gaps acceptance criteria"
+    ],
+    "relaunch coverage gaps goal": [
+      "relaunch coverage gaps goal"
+    ],
+    "relaunch coverage gaps implementation summary": [
+      "relaunch coverage gaps implementation summary"
+    ],
+    "relaunch coverage gaps plan": [
+      "relaunch coverage gaps plan"
+    ],
+    "relaunch coverage gaps tasks": [
+      "relaunch coverage gaps tasks"
+    ],
+    "relaunch effort flag": [
+      "relaunch effort flag"
+    ],
+    "relaunch evidence gaps": [
+      "relaunch evidence gaps"
+    ],
+    "relaunch evidence gaps acceptance criteria": [
+      "relaunch evidence gaps acceptance criteria"
+    ],
+    "relaunch evidence gaps implementation summary": [
+      "relaunch evidence gaps implementation summary"
+    ],
+    "relaunch evidence gaps plan": [
+      "relaunch evidence gaps plan"
+    ],
+    "relaunch evidence gaps tasks": [
+      "relaunch evidence gaps tasks"
+    ],
     "relaunch gap register": [
       "relaunch gap register"
     ],
@@ -81289,6 +80944,24 @@
     ],
     "relaunch loop test suite": [
       "relaunch loop test suite"
+    ],
+    "relaunch model and effort": [
+      "relaunch model and effort"
+    ],
+    "relaunch model and effort acceptance criteria": [
+      "relaunch model and effort acceptance criteria"
+    ],
+    "relaunch model and effort implementation summary": [
+      "relaunch model and effort implementation summary"
+    ],
+    "relaunch model and effort plan": [
+      "relaunch model and effort plan"
+    ],
+    "relaunch model and effort tasks": [
+      "relaunch model and effort tasks"
+    ],
+    "relaunch research remediation": [
+      "relaunch research remediation"
     ],
     "relaunch takeover lock identity": [
       "relaunch takeover lock identity"
@@ -82212,9 +81885,6 @@
     "release updater over rebuild": [
       "release updater over rebuild"
     ],
-    "release yml github actions": [
-      "release.yml github actions"
-    ],
     "relevance aware detector redesign": [
       "relevance-aware detector redesign"
     ],
@@ -82665,9 +82335,6 @@
     "removed process derived root source": [
       "removed process-derived root source"
     ],
-    "rename a db class": [
-      "rename a db- class"
-    ],
     "rename a vault note": [
       "rename a vault note"
     ],
@@ -83038,8 +82705,17 @@
     "repo agnostic": [
       "repo agnostic"
     ],
+    "repo agnostic code review mode": [
+      "repo-agnostic code review mode"
+    ],
     "repo agnostic commit message hook": [
       "repo-agnostic commit message hook"
+    ],
+    "repo agnostic quality gate": [
+      "repo-agnostic quality gate"
+    ],
+    "repo agnostic sk code modes": [
+      "repo-agnostic sk-code modes"
     ],
     "repo convention audit": [
       "repo convention audit"
@@ -83312,6 +82988,9 @@
     "repository root resolution": [
       "repository root resolution"
     ],
+    "reproduce the writer lock race": [
+      "reproduce the writer lock race"
+    ],
     "reproduce then repair": [
       "reproduce then repair"
     ],
@@ -83390,12 +83069,6 @@
     "request timed out 32001": [
       "request timed out -32001"
     ],
-    "requestanimationframe pattern": [
-      "requestanimationframe pattern"
-    ],
-    "requestidlecallback scheduling": [
-      "requestidlecallback scheduling"
-    ],
     "requestquality citation robustness": [
       "requestQuality citation robustness"
     ],
@@ -83417,6 +83090,9 @@
     "required section validation": [
       "required section validation"
     ],
+    "required status check": [
+      "required status check"
+    ],
     "required templates by level": [
       "required templates by level"
     ],
@@ -83425,15 +83101,6 @@
     ],
     "requirements and scope": [
       "requirements and scope"
-    ],
-    "requirements rules and checklist": [
-      "requirements rules and checklist"
-    ],
-    "requirements rules and checklist reference": [
-      "requirements rules and checklist reference"
-    ],
-    "requirements rules and checklist webflow": [
-      "requirements rules and checklist webflow"
     ],
     "rerank ab benchmark hold": [
       "rerank ab benchmark hold"
@@ -84190,6 +83857,12 @@
     "research registry fingerprint": [
       "research registry fingerprint"
     ],
+    "research remediation goal": [
+      "research remediation goal"
+    ],
+    "research remediation phase parent spec": [
+      "research remediation phase parent spec"
+    ],
     "research remediation plan": [
       "research remediation plan"
     ],
@@ -84447,15 +84120,6 @@
     ],
     "resilient resource discovery": [
       "resilient resource discovery"
-    ],
-    "resizeobserver best patterns": [
-      "resizeobserver best patterns"
-    ],
-    "resizeobserver best practices": [
-      "resizeobserver best practices"
-    ],
-    "resizeobserver cleanup": [
-      "resizeobserver cleanup"
     ],
     "resolution based consumers inventory": [
       "resolution based consumers inventory"
@@ -84997,6 +84661,18 @@
     ],
     "retire memory learn": [
       "retire memory:learn"
+    ],
+    "retire opencode2 name": [
+      "retire opencode2 name"
+    ],
+    "retire opencode2 name implementation summary": [
+      "retire opencode2 name implementation summary"
+    ],
+    "retire opencode2 name plan": [
+      "retire opencode2 name plan"
+    ],
+    "retire opencode2 name tasks": [
+      "retire opencode2 name tasks"
     ],
     "retire sidecar": [
       "retire sidecar"
@@ -85880,6 +85556,27 @@
     "review mode plan": [
       "review mode plan"
     ],
+    "review mode research": [
+      "review mode research"
+    ],
+    "review mode research acceptance criteria": [
+      "review mode research acceptance criteria"
+    ],
+    "review mode research decision record": [
+      "review mode research decision record"
+    ],
+    "review mode research goal": [
+      "review mode research goal"
+    ],
+    "review mode research implementation summary": [
+      "review mode research implementation summary"
+    ],
+    "review mode research plan": [
+      "review mode research plan"
+    ],
+    "review mode research tasks": [
+      "review mode research tasks"
+    ],
     "review mode tasks": [
       "review mode tasks"
     ],
@@ -86589,14 +86286,8 @@
     "root cause and ux research tasks": [
       "root cause and ux research tasks"
     ],
-    "root cause before fix": [
-      "root cause before fix"
-    ],
     "root cause diagnosis": [
       "root-cause diagnosis"
-    ],
-    "root cause investigation": [
-      "root cause investigation"
     ],
     "root claude md claim corrected": [
       "root claude.md claim corrected"
@@ -87352,12 +87043,6 @@
     "routingcalibration typed slots": [
       "RoutingCalibration typed slots"
     ],
-    "row pipeline data source": [
-      "row pipeline data source"
-    ],
-    "rowpipeline search filter limit": [
-      "rowpipeline search filter limit"
-    ],
     "rrf fusion": [
       "RRF fusion"
     ],
@@ -87589,15 +87274,6 @@
     "ruledout array": [
       "ruledOut array"
     ],
-    "rules and root cause": [
-      "rules and root cause"
-    ],
-    "rules and root cause reference": [
-      "rules and root cause reference"
-    ],
-    "rules and root cause webflow": [
-      "rules and root cause webflow"
-    ],
     "rules content relocation": [
       "rules content relocation"
     ],
@@ -87657,9 +87333,6 @@
     ],
     "run doctor subsystem diagnostic": [
       "run doctor subsystem diagnostic"
-    ],
-    "run dqi scorer obsidian packet": [
-      "run dqi scorer obsidian packet"
     ],
     "run extraction phase": [
       "run extraction phase"
@@ -87744,9 +87417,6 @@
     ],
     "run tests mjs process group kill": [
       "run-tests.mjs process group kill"
-    ],
-    "run the five gates": [
-      "run the five gates"
     ],
     "run time overage accepted": [
       "run time overage accepted"
@@ -88372,9 +88042,6 @@
     "runtime teardown": [
       "runtime teardown"
     ],
-    "runtime test depth cap warning": [
-      "runtime test depth cap warning"
-    ],
     "runtime test helpers": [
       "runtime test helpers"
     ],
@@ -88395,12 +88062,6 @@
     ],
     "runtime upsert cli idempotency and self loop rejection": [
       "runtime upsert cli idempotency and self-loop rejection"
-    ],
-    "runtime vars css stand in": [
-      "runtime-vars.css stand in"
-    ],
-    "runtime vars stand in gap": [
-      "runtime-vars stand-in gap"
     ],
     "runtime vitest tmpdir": [
       "runtime vitest tmpdir"
@@ -88599,9 +88260,6 @@
     ],
     "safe concurrent writers and resume": [
       "safe concurrent writers and resume"
-    ],
-    "safe javascript minification": [
-      "safe javascript minification"
     ],
     "safe model switch dim drift warn": [
       "safe model switch dim drift warn"
@@ -89035,9 +88693,6 @@
     "scan scope remediation": [
       "scan scope remediation"
     ],
-    "scan skill references": [
-      "scan skill references"
-    ],
     "scan skill references obsidian": [
       "scan-skill-references obsidian"
     ],
@@ -89116,14 +88771,8 @@
     "scenario prompt voice guidelines": [
       "scenario prompt voice guidelines"
     ],
-    "scenario sources list accuracy": [
-      "scenario sources list accuracy"
-    ],
     "scenarios by failure mode": [
       "scenarios by failure mode"
-    ],
-    "scenarios mjs registration": [
-      "scenarios.mjs registration"
     ],
     "schedulebackgroundenrichment unbounded": [
       "scheduleBackgroundEnrichment unbounded"
@@ -89794,20 +89443,11 @@
     "screenshot capture cookie handling": [
       "screenshot capture cookie handling"
     ],
-    "screenshot coverage checklist": [
-      "screenshot coverage checklist"
-    ],
     "screenshot coverage checklist obsidian": [
       "screenshot coverage checklist obsidian"
     ],
     "screenshot decisions": [
       "screenshot decisions"
-    ],
-    "screenshot fixture guard test": [
-      "screenshot fixture guard test"
-    ],
-    "screenshot fixture harness": [
-      "screenshot fixture harness"
     ],
     "screenshot ocr": [
       "screenshot OCR"
@@ -89815,17 +89455,8 @@
     "screenshot without puppeteer": [
       "screenshot without puppeteer"
     ],
-    "screenshotfixtures test class guard": [
-      "screenshotfixtures test class guard"
-    ],
     "screenshots review surface": [
       "screenshots review surface"
-    ],
-    "screenshots verify entry count": [
-      "screenshots verify entry count"
-    ],
-    "screenshots verify freshness gate": [
-      "screenshots verify freshness gate"
     ],
     "script directory structure": [
       "script directory structure"
@@ -89889,21 +89520,6 @@
     ],
     "scripts workspace resolution": [
       "scripts workspace resolution"
-    ],
-    "scroll interceptor and related": [
-      "scroll interceptor and related"
-    ],
-    "scroll interceptor and related reference": [
-      "scroll interceptor and related reference"
-    ],
-    "scroll interceptor and related webflow": [
-      "scroll interceptor and related webflow"
-    ],
-    "scroll progress animation": [
-      "scroll progress animation"
-    ],
-    "scroll triggered effects": [
-      "scroll triggered effects"
     ],
     "scrubber promotion disposition": [
       "scrubber promotion disposition"
@@ -90292,6 +89908,9 @@
     "second lineage findings": [
       "second lineage findings"
     ],
+    "second model pass deepseek devin": [
+      "second-model pass deepseek devin"
+    ],
     "second opinion": [
       "second opinion"
     ],
@@ -90369,9 +89988,6 @@
     ],
     "section fragment tasks": [
       "section fragment tasks"
-    ],
-    "section grammar target state": [
-      "section grammar target state"
     ],
     "section headings renumbered": [
       "section headings renumbered"
@@ -90462,9 +90078,6 @@
     ],
     "segment group plus to star": [
       "segment group plus to star"
-    ],
-    "select bridge pattern": [
-      "select bridge pattern"
     ],
     "select page close page": [
       "select page close page"
@@ -91072,6 +90685,9 @@
     "session relaunch at 80 percent": [
       "session relaunch at 80 percent"
     ],
+    "session relaunch cancel command": [
+      "session relaunch cancel command"
+    ],
     "session relaunch claude": [
       "session-relaunch-claude"
     ],
@@ -91089,6 +90705,9 @@
     ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
+    ],
+    "session relaunch goal": [
+      "SESSION_RELAUNCH_GOAL"
     ],
     "session relaunch history command": [
       "session relaunch history command"
@@ -91165,6 +90784,9 @@
     ],
     "session start context": [
       "session start context"
+    ],
+    "session start hook goal command": [
+      "session start hook goal command"
     ],
     "session start orphan sweep flag": [
       "session-start orphan sweep flag"
@@ -91429,6 +91051,9 @@
     ],
     "sgqs test runner": [
       "sgqs test runner"
+    ],
+    "sha pinned actions": [
+      "sha pinned actions"
     ],
     "shadcn adoptions": [
       "shadcn adoptions"
@@ -91714,9 +91339,6 @@
     ],
     "shared design tokens": [
       "shared design tokens"
-    ],
-    "shared document listener": [
-      "shared document listener"
     ],
     "shared embedder adapters": [
       "shared embedder adapters"
@@ -92784,12 +92406,6 @@
     "single source continuity": [
       "single-source continuity"
     ],
-    "single stylesheet css ownership standard": [
-      "single stylesheet css ownership standard"
-    ],
-    "single stylesheet ownership": [
-      "single stylesheet ownership"
-    ],
     "single tenant identity hardening refused": [
       "single-tenant identity hardening refused"
     ],
@@ -92967,6 +92583,9 @@
     "sk code 2 3 0 0": [
       "sk-code 2.3.0.0"
     ],
+    "sk code 2 4 0 0": [
+      "sk-code 2.4.0.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -93060,23 +92679,8 @@
     "sk code architecture decision tasks": [
       "sk-code architecture decision tasks"
     ],
-    "sk code assets animation snippets": [
-      "sk-code assets/animation/snippets"
-    ],
     "sk code assets scripts": [
       "sk-code assets/scripts"
-    ],
-    "sk code assets webflow integrations": [
-      "sk-code assets/webflow/integrations"
-    ],
-    "sk code assets webflow patterns": [
-      "sk-code assets/webflow/patterns"
-    ],
-    "sk code assets webflow scripts": [
-      "sk-code assets/webflow/scripts"
-    ],
-    "sk code assets webflow templates": [
-      "sk-code assets/webflow/templates"
     ],
     "sk code benchmark": [
       "sk-code benchmark"
@@ -93117,6 +92721,9 @@
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
     ],
+    "sk code ci 1 0 0 0": [
+      "sk-code-ci 1.0.0.0"
+    ],
     "sk code ci registration plan": [
       "sk-code-ci registration plan"
     ],
@@ -93127,7 +92734,8 @@
       "sk-code-ci research"
     ],
     "sk code ci surface": [
-      "sk code ci surface"
+      "sk code ci surface",
+      "sk-code-ci surface"
     ],
     "sk code ci surface acceptance criteria": [
       "sk code ci surface acceptance criteria"
@@ -93146,6 +92754,9 @@
     ],
     "sk code ci surface tasks": [
       "sk code ci surface tasks"
+    ],
+    "sk code ci v1 0 0 0": [
+      "sk-code-ci v1.0.0.0"
     ],
     "sk code close out": [
       "sk-code close-out"
@@ -93370,35 +92981,23 @@
     "sk code mobile cli mode": [
       "sk-code mobile-cli mode"
     ],
+    "sk code mode registry extension": [
+      "sk-code mode registry extension"
+    ],
     "sk code mode registry obsidian entry": [
       "sk-code mode-registry obsidian entry"
     ],
     "sk code mode skill contracts": [
       "sk-code mode SKILL contracts"
     ],
+    "sk code modes research": [
+      "sk-code modes research"
+    ],
     "sk code no ephemeral artifact pointers fix": [
       "sk-code no ephemeral-artifact pointers fix"
     ],
     "sk code no ephemeral pointers": [
       "sk-code no ephemeral pointers"
-    ],
-    "sk code obsidian": [
-      "sk-code-obsidian"
-    ],
-    "sk code obsidian 0 1 0 0": [
-      "sk-code-obsidian 0.1.0.0"
-    ],
-    "sk code obsidian 0 1 1 0": [
-      "sk-code-obsidian 0.1.1.0"
-    ],
-    "sk code obsidian 0 1 2 0": [
-      "sk-code-obsidian 0.1.2.0"
-    ],
-    "sk code obsidian 0 1 3 0": [
-      "sk-code-obsidian 0.1.3.0"
-    ],
-    "sk code obsidian 0 1 4 0": [
-      "sk-code-obsidian 0.1.4.0"
     ],
     "sk code obsidian assets checklists": [
       "sk-code-obsidian assets checklists"
@@ -93420,9 +93019,6 @@
     ],
     "sk code obsidian design plan tasks": [
       "sk-code-obsidian design plan tasks"
-    ],
-    "sk code obsidian doc quality gate": [
-      "sk-code-obsidian doc quality gate"
     ],
     "sk code obsidian goal": [
       "sk-code-obsidian goal"
@@ -93513,18 +93109,6 @@
     ],
     "sk code obsidian v0 1 0 0 release note": [
       "sk-code-obsidian v0.1.0.0 release note"
-    ],
-    "sk code obsidian v0 1 1 0": [
-      "sk-code-obsidian v0.1.1.0"
-    ],
-    "sk code obsidian v0 1 2 0": [
-      "sk-code-obsidian v0.1.2.0"
-    ],
-    "sk code obsidian v0 1 3 0": [
-      "sk-code-obsidian v0.1.3.0"
-    ],
-    "sk code obsidian v0 1 4 0": [
-      "sk-code-obsidian v0.1.4.0"
     ],
     "sk code onboard implement": [
       "sk-code onboard implement"
@@ -93652,6 +93236,21 @@
     ],
     "sk code quality 1 2 0 0": [
       "sk-code-quality 1.2.0.0"
+    ],
+    "sk code quality mode research": [
+      "sk-code quality mode research"
+    ],
+    "sk code quality research": [
+      "sk-code-quality research"
+    ],
+    "sk code quality research angles": [
+      "sk-code-quality research angles"
+    ],
+    "sk code quality research strategy": [
+      "sk-code-quality research strategy"
+    ],
+    "sk code quality research synthesis": [
+      "sk-code-quality research synthesis"
     ],
     "sk code quality v1 0 0 0": [
       "sk-code-quality v1.0.0.0"
@@ -93791,11 +93390,29 @@
     "sk code review frontmatter tasks": [
       "sk-code-review frontmatter tasks"
     ],
+    "sk code review mode research": [
+      "sk-code review mode research"
+    ],
     "sk code review name ref map": [
       "sk-code-review NAME-ref map"
     ],
+    "sk code review ranked recommendations": [
+      "sk-code-review ranked recommendations"
+    ],
     "sk code review reference frontmatter": [
       "sk-code-review reference frontmatter"
+    ],
+    "sk code review research": [
+      "sk-code-review research"
+    ],
+    "sk code review research angles": [
+      "sk-code-review research angles"
+    ],
+    "sk code review research strategy": [
+      "sk-code-review research strategy"
+    ],
+    "sk code review research synthesis": [
+      "sk-code-review research synthesis"
     ],
     "sk code review v1 0 0 0": [
       "sk-code-review v1.0.0.0"
@@ -94151,38 +93768,11 @@
     "sk code v2 3 0 0": [
       "sk-code v2.3.0.0"
     ],
+    "sk code v2 4 0 0": [
+      "sk-code v2.4.0.0"
+    ],
     "sk code verification workflow": [
       "sk-code verification workflow"
-    ],
-    "sk code webflow 1 0 0 0": [
-      "sk-code-webflow 1.0.0.0"
-    ],
-    "sk code webflow 1 1 0 0": [
-      "sk-code-webflow 1.1.0.0"
-    ],
-    "sk code webflow 1 1 1 0": [
-      "sk-code-webflow 1.1.1.0"
-    ],
-    "sk code webflow 1 1 2 0": [
-      "sk-code-webflow 1.1.2.0"
-    ],
-    "sk code webflow 1 1 3 0": [
-      "sk-code-webflow 1.1.3.0"
-    ],
-    "sk code webflow v1 0 0 0": [
-      "sk-code-webflow v1.0.0.0"
-    ],
-    "sk code webflow v1 1 0 0": [
-      "sk-code-webflow v1.1.0.0"
-    ],
-    "sk code webflow v1 1 1 0": [
-      "sk-code-webflow v1.1.1.0"
-    ],
-    "sk code webflow v1 1 2 0": [
-      "sk-code-webflow v1.1.2.0"
-    ],
-    "sk code webflow v1 1 3 0": [
-      "sk-code-webflow v1.1.3.0"
     ],
     "sk code workflow and surface axis": [
       "sk-code workflow and surface axis"
@@ -95375,6 +94965,9 @@
     "sk doc 2 3 10 0": [
       "sk-doc 2.3.10.0"
     ],
+    "sk doc 2 3 11 0": [
+      "sk-doc 2.3.11.0"
+    ],
     "sk doc 2 3 2 0": [
       "sk-doc 2.3.2.0"
     ],
@@ -95707,6 +95300,9 @@
     ],
     "sk doc v2 3 10 0": [
       "sk-doc v2.3.10.0"
+    ],
+    "sk doc v2 3 11 0": [
+      "sk-doc v2.3.11.0"
     ],
     "sk doc v2 3 2 0": [
       "sk-doc v2.3.2.0"
@@ -98601,9 +98197,6 @@
     "skill reference frontmatter findings": [
       "skill reference frontmatter findings"
     ],
-    "skill reference integrity": [
-      "skill reference integrity"
-    ],
     "skill reference templates": [
       "skill reference templates"
     ],
@@ -99334,9 +98927,6 @@
     "small model prompt craft profiles retired": [
       "small-model prompt-craft profiles retired"
     ],
-    "smallest animation tool": [
-      "smallest animation tool"
-    ],
     "smart embedder precedence chain": [
       "smart embedder precedence chain"
     ],
@@ -99397,9 +98987,6 @@
     ],
     "snake case function naming": [
       "snake case function naming"
-    ],
-    "snake case javascript webflow": [
-      "snake case javascript webflow"
     ],
     "snapshot churn supersede": [
       "snapshot churn supersede"
@@ -100351,9 +99938,6 @@
     ],
     "spec graph metadata": [
       "spec graph metadata"
-    ],
-    "spec id in code comment": [
-      "spec id in code comment"
     ],
     "spec kit": [
       "spec kit"
@@ -102134,9 +101718,6 @@
     "split review references index": [
       "split review references index"
     ],
-    "splitting styles css": [
-      "splitting styles.css"
-    ],
     "spring versus easing curve": [
       "spring versus easing curve"
     ],
@@ -102175,15 +101756,6 @@
     ],
     "sqlite3 shell out replacement": [
       "sqlite3 shell-out replacement"
-    ],
-    "src data pipeline obsidian plugin": [
-      "src data pipeline obsidian plugin"
-    ],
-    "src views modals owes docs": [
-      "src views modals owes docs"
-    ],
-    "src views modals unphotographed": [
-      "src views modals unphotographed"
     ],
     "stable advisor entrypoint": [
       "stable advisor entrypoint"
@@ -102371,9 +101943,6 @@
     ],
     "stagger and overshoot": [
       "stagger and overshoot"
-    ],
-    "stagger follow through": [
-      "stagger follow through"
     ],
     "stale advisor references sweep": [
       "stale advisor references sweep"
@@ -102871,9 +102440,6 @@
     "startup scan yield": [
       "startup scan yield"
     ],
-    "startup wins measurement": [
-      "startup wins measurement"
-    ],
     "state change logging": [
       "state change logging"
     ],
@@ -102904,17 +102470,11 @@
     "state log unattributed": [
       "state log unattributed"
     ],
-    "state machine cloudflare": [
-      "state machine cloudflare"
-    ],
     "state machine diagram": [
       "state machine diagram"
     ],
     "state machine layout": [
       "state machine layout"
-    ],
-    "state machine patterns": [
-      "state machine patterns"
     ],
     "state matrix generation": [
       "state matrix generation"
@@ -103020,9 +102580,6 @@
     ],
     "status cjs recovery payload": [
       "status.cjs recovery payload"
-    ],
-    "status class prefix": [
-      "status class prefix"
     ],
     "status classifier implemented blind spot": [
       "status classifier implemented blind spot"
@@ -103809,17 +103366,8 @@
     "style search refero": [
       "style search refero"
     ],
-    "styles css cjk cheat sheet": [
-      "styles.css cjk cheat sheet"
-    ],
-    "styles css class rename obsidian plugin": [
-      "styles.css class rename obsidian plugin"
-    ],
     "styles css numbered sections box drawing": [
       "styles.css numbered sections box drawing"
-    ],
-    "styles css one file": [
-      "styles.css one file"
     ],
     "styles css sectioning folder readmes obsidian": [
       "styles.css sectioning folder readmes obsidian"
@@ -103832,15 +103380,6 @@
     ],
     "styles screens flows walkthrough": [
       "styles screens flows walkthrough"
-    ],
-    "sub agent verification": [
-      "sub agent verification"
-    ],
-    "sub agent verification reference": [
-      "sub agent verification reference"
-    ],
-    "sub agent verification webflow": [
-      "sub agent verification webflow"
     ],
     "sub folder versioning": [
       "sub-folder versioning"
@@ -104205,9 +103744,6 @@
     "surface bundle precedence": [
       "surface bundle precedence"
     ],
-    "surface cites a dead path": [
-      "surface cites a dead path"
-    ],
     "surface comparison checklist": [
       "surface comparison checklist"
     ],
@@ -104456,9 +103992,6 @@
     ],
     "swimlane diagram layout": [
       "swimlane diagram layout"
-    ],
-    "swiper carousel configuration": [
-      "swiper carousel configuration"
     ],
     "symbol bm25 add idempotency": [
       "symbol bm25 add idempotency"
@@ -104754,6 +104287,9 @@
     "system deep loop 1 6 5 0": [
       "system-deep-loop 1.6.5.0"
     ],
+    "system deep loop 1 6 6 0": [
+      "system-deep-loop 1.6.6.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -104894,6 +104430,9 @@
     ],
     "system deep loop v1 6 5 0": [
       "system-deep-loop v1.6.5.0"
+    ],
+    "system deep loop v1 6 6 0": [
+      "system-deep-loop v1.6.6.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -105969,9 +105508,6 @@
     "system to embedder mapping": [
       "system to embedder mapping"
     ],
-    "systematic frontend debugging": [
-      "systematic frontend debugging"
-    ],
     "systemmessage contents": [
       "systemMessage contents"
     ],
@@ -105998,9 +105534,6 @@
     ],
     "t1 t2 t3 t4 peck teachings": [
       "T1 T2 T3 T4 peck teachings"
-    ],
-    "table board gallery list calendar timeline chart renderer": [
-      "table board gallery list calendar timeline chart renderer"
     ],
     "table disclosure open every form": [
       "table-disclosure open every form"
@@ -106221,9 +105754,6 @@
     ],
     "taxonomy tree": [
       "taxonomy tree"
-    ],
-    "tbt cls fixes": [
-      "tbt cls fixes"
     ],
     "team filter slow": [
       "team filter slow"
@@ -106973,9 +106503,6 @@
     "terse arch conform": [
       "terse arch conform"
     ],
-    "terser minification workflow": [
-      "terser minification workflow"
-    ],
     "test bloat": [
       "test bloat"
     ],
@@ -107113,12 +106640,6 @@
     ],
     "test versus code": [
       "test versus code"
-    ],
-    "testing debugging patterns": [
-      "testing debugging patterns"
-    ],
-    "testing debugging procedures": [
-      "testing debugging procedures"
     ],
     "testing doc alignment plan": [
       "testing doc alignment plan"
@@ -107396,9 +106917,6 @@
     "the validator checks backticked paths": [
       "the validator checks backticked paths"
     ],
-    "the webflow surface is established": [
-      "The Webflow Surface Is Established"
-    ],
     "theme a diagram delivery from a local v3": [
       "theme a diagram delivery from a local v3"
     ],
@@ -107407,9 +106925,6 @@
     ],
     "theme charts from style reference": [
       "theme charts from style reference"
-    ],
-    "theme css runtime vars css stand in": [
-      "theme.css runtime-vars.css stand in"
     ],
     "theme dark theme light": [
       "theme-dark theme-light"
@@ -107468,9 +106983,6 @@
     "third lineage task breakdown": [
       "third lineage task breakdown"
     ],
-    "third party performance webflow": [
-      "third party performance webflow"
-    ],
     "third research lineage advisor": [
       "third research lineage advisor"
     ],
@@ -107503,9 +107015,6 @@
     ],
     "three digit prefix rule": [
       "three digit prefix rule"
-    ],
-    "three direct source files rule": [
-      "three direct source files rule"
     ],
     "three directives contract": [
       "three directives contract"
@@ -108997,9 +108506,6 @@
     "tsc incremental build dist": [
       "tsc incremental build dist"
     ],
-    "tsc noemit build vitest baseline": [
-      "tsc noemit build vitest baseline"
-    ],
     "tsc noemit typecheck": [
       "tsc noemit typecheck"
     ],
@@ -109074,6 +108580,9 @@
     ],
     "twenty seven packet task list": [
       "twenty seven packet task list"
+    ],
+    "twin path filter rule": [
+      "twin path filter rule"
     ],
     "two advisories warned about problems that did": [
       "two advisories warned about problems that did"
@@ -109246,6 +108755,9 @@
     "two version proof and closeout tasks": [
       "two version proof and closeout tasks"
     ],
+    "two writers hold the lock": [
+      "two writers hold the lock"
+    ],
     "type annotation patterns": [
       "type annotation patterns"
     ],
@@ -109384,12 +108896,6 @@
     "typed retrieval traces": [
       "typed retrieval traces"
     ],
-    "typekit adobe fonts limitation": [
-      "typekit adobe fonts limitation"
-    ],
-    "types troubleshooting deployment": [
-      "types troubleshooting deployment"
-    ],
     "typesafe api key": [
       "typesafe api key"
     ],
@@ -109440,9 +108946,6 @@
     ],
     "typescript naming cheat sheet": [
       "typescript naming cheat sheet"
-    ],
-    "typescript only plugin conventions": [
-      "typescript only plugin conventions"
     ],
     "typescript project references": [
       "typescript project references"
@@ -109758,9 +109261,6 @@
     ],
     "unnecessary loops": [
       "unnecessary loops"
-    ],
-    "unphotographed surface obsidian plugin": [
-      "unphotographed surface obsidian plugin"
     ],
     "unproven feature proof acceptance criteria": [
       "unproven feature proof acceptance criteria"
@@ -110164,9 +109664,6 @@
     "upstream rebase spike summary": [
       "upstream rebase spike summary"
     ],
-    "urgency glyph deuteranope": [
-      "urgency glyph deuteranope"
-    ],
     "use strict checklist": [
       "use strict checklist"
     ],
@@ -110190,6 +109687,12 @@
     ],
     "user authored dispatch override": [
       "user-authored dispatch override"
+    ],
+    "user authored mode integration": [
+      "user-authored mode integration"
+    ],
+    "user authored sk code mode": [
+      "user-authored sk-code mode"
     ],
     "user flow reference": [
       "user flow reference"
@@ -111053,9 +110556,6 @@
     "validation and memory remediation": [
       "validation and memory remediation"
     ],
-    "validation class patterns": [
-      "validation class patterns"
-    ],
     "validation command reference": [
       "validation command reference"
     ],
@@ -111160,9 +110660,6 @@
     ],
     "validation packaging gate": [
       "validation packaging gate"
-    ],
-    "validation prompts remediation": [
-      "validation prompts remediation"
     ],
     "validation quality dimensions": [
       "validation quality dimensions"
@@ -111797,9 +111294,6 @@
     "verify before acting on a finding": [
       "verify before acting on a finding"
     ],
-    "verify class rename against fixtures": [
-      "verify class rename against fixtures"
-    ],
     "verify doc claims": [
       "verify doc claims"
     ],
@@ -111866,9 +111360,6 @@
     "verify first tasks": [
       "verify first tasks"
     ],
-    "verify in browser before claiming": [
-      "verify in browser before claiming"
-    ],
     "verify integrity cleanfiles": [
       "verify_integrity cleanFiles"
     ],
@@ -111886,9 +111377,6 @@
     ],
     "verify iteration dispatch failure": [
       "verify iteration dispatch failure"
-    ],
-    "verify mjs freshness gate": [
-      "verify.mjs freshness gate"
     ],
     "verify premise evidence": [
       "verify premise evidence"
@@ -111995,9 +111483,6 @@
     "version flag": [
       "version flag"
     ],
-    "version mismatch recovery": [
-      "version mismatch recovery"
-    ],
     "version on skill md only": [
       "version on skill md only"
     ],
@@ -112046,9 +111531,6 @@
     "versioned sub folders": [
       "versioned sub-folders"
     ],
-    "versions json minappversion mapping": [
-      "versions.json minappversion mapping"
-    ],
     "vertical chevron strip": [
       "vertical chevron strip"
     ],
@@ -112073,14 +111555,8 @@
     "vi usefaketimers envelope latency": [
       "vi.useFakeTimers envelope latency"
     ],
-    "view renderer architecture": [
-      "view renderer architecture"
-    ],
     "viewport emulation": [
       "viewport emulation"
-    ],
-    "viewport entry loading": [
-      "viewport entry loading"
     ],
     "vision cli vision cli js": [
       "Vision CLI (vision-cli.js)"
@@ -112422,14 +111898,8 @@
     "w8 w13 runtime wiring": [
       "w8 w13 runtime wiring"
     ],
-    "waitforelement helper": [
-      "waitforelement helper"
-    ],
     "waitforembeddingmodel gate cleanup": [
       "waitForEmbeddingModel gate cleanup"
-    ],
-    "waitforlibrary helper": [
-      "waitforlibrary helper"
     ],
     "waiting on": [
       "waiting on"
@@ -112675,18 +112145,6 @@
     "weak retrieval refusal contract": [
       "weak retrieval refusal contract"
     ],
-    "weakmap caching webflow": [
-      "weakmap caching webflow"
-    ],
-    "weakmap webflow caching": [
-      "weakmap webflow caching"
-    ],
-    "weakset processed elements": [
-      "weakset processed elements"
-    ],
-    "web animations api choice": [
-      "web animations api choice"
-    ],
     "web interface guidelines": [
       "web interface guidelines"
     ],
@@ -112714,42 +112172,6 @@
     "webflow and obsidian tasks": [
       "webflow and obsidian tasks"
     ],
-    "webflow animation quality": [
-      "webflow animation quality"
-    ],
-    "webflow animation workflows": [
-      "webflow animation workflows"
-    ],
-    "webflow api limits": [
-      "webflow api limits"
-    ],
-    "webflow aria basics": [
-      "webflow aria basics"
-    ],
-    "webflow asset templates": [
-      "webflow asset templates"
-    ],
-    "webflow async patterns": [
-      "webflow async patterns"
-    ],
-    "webflow best practices": [
-      "webflow best practices"
-    ],
-    "webflow botpoison spam": [
-      "webflow botpoison spam"
-    ],
-    "webflow browser automation": [
-      "webflow browser automation"
-    ],
-    "webflow browser compatibility": [
-      "webflow browser compatibility"
-    ],
-    "webflow browser testing matrix": [
-      "webflow browser testing matrix"
-    ],
-    "webflow cdn deployment": [
-      "webflow cdn deployment"
-    ],
     "webflow checker fix": [
       "webflow checker fix"
     ],
@@ -112761,147 +112183,6 @@
     ],
     "webflow checker fix tasks": [
       "webflow checker fix tasks"
-    ],
-    "webflow cms limits": [
-      "webflow cms limits"
-    ],
-    "webflow code patterns": [
-      "webflow code patterns"
-    ],
-    "webflow code quality checklist": [
-      "webflow code quality checklist"
-    ],
-    "webflow comment style": [
-      "webflow comment style"
-    ],
-    "webflow common commands": [
-      "webflow common commands"
-    ],
-    "webflow conditional visibility": [
-      "webflow conditional visibility"
-    ],
-    "webflow cross language rules": [
-      "webflow cross language rules"
-    ],
-    "webflow css pattern quick reference": [
-      "webflow css pattern quick reference"
-    ],
-    "webflow css patterns": [
-      "webflow css patterns"
-    ],
-    "webflow css quality standards": [
-      "webflow css quality standards"
-    ],
-    "webflow css quick reference": [
-      "webflow css quick reference"
-    ],
-    "webflow css style guide": [
-      "webflow css style guide"
-    ],
-    "webflow custom embed conventions": [
-      "webflow custom embed conventions"
-    ],
-    "webflow data attribute naming": [
-      "webflow data attribute naming"
-    ],
-    "webflow debugging checklist": [
-      "webflow debugging checklist"
-    ],
-    "webflow debugging workflows": [
-      "webflow debugging workflows"
-    ],
-    "webflow defense in": [
-      "webflow defense in"
-    ],
-    "webflow designer preview mode": [
-      "webflow designer preview mode"
-    ],
-    "webflow designer tokens": [
-      "webflow designer tokens"
-    ],
-    "webflow dev workflow": [
-      "webflow dev workflow"
-    ],
-    "webflow development best": [
-      "webflow development best"
-    ],
-    "webflow devtools commands": [
-      "webflow devtools commands"
-    ],
-    "webflow devtools reference": [
-      "webflow devtools reference"
-    ],
-    "webflow error patterns": [
-      "webflow error patterns"
-    ],
-    "webflow error recovery": [
-      "webflow error recovery"
-    ],
-    "webflow file header banner": [
-      "webflow file header banner"
-    ],
-    "webflow filepond file": [
-      "webflow filepond file"
-    ],
-    "webflow finsweet custom": [
-      "webflow finsweet custom"
-    ],
-    "webflow focus management": [
-      "webflow focus management"
-    ],
-    "webflow focus restoration": [
-      "webflow focus restoration"
-    ],
-    "webflow form upload": [
-      "webflow form upload"
-    ],
-    "webflow form validation state": [
-      "webflow form validation state"
-    ],
-    "webflow frontend": [
-      "webflow frontend"
-    ],
-    "webflow guard flag": [
-      "webflow guard flag"
-    ],
-    "webflow html quality standards": [
-      "webflow html quality standards"
-    ],
-    "webflow html style guide": [
-      "webflow html style guide"
-    ],
-    "webflow implementation": [
-      "webflow implementation"
-    ],
-    "webflow implementation workflows": [
-      "webflow implementation workflows"
-    ],
-    "webflow initialization common": [
-      "webflow initialization common"
-    ],
-    "webflow initialization enforcement": [
-      "webflow initialization enforcement"
-    ],
-    "webflow integration assets": [
-      "webflow integration assets"
-    ],
-    "webflow intersectionobserver autoplay": [
-      "webflow intersectionobserver autoplay"
-    ],
-    "webflow io subdomain": [
-      "webflow io subdomain"
-    ],
-    "webflow javascript quality standards": [
-      "webflow javascript quality standards"
-    ],
-    "webflow javascript quick reference": [
-      "webflow javascript quick reference"
-    ],
-    "webflow javascript style guide": [
-      "webflow javascript style guide"
-    ],
-    "webflow jsdoc usage": [
-      "webflow jsdoc usage"
     ],
     "webflow labels and playbook": [
       "webflow labels and playbook"
@@ -112918,74 +112199,11 @@
     "webflow language specific references": [
       "webflow language-specific references"
     ],
-    "webflow link labels": [
-      "webflow link labels"
-    ],
-    "webflow maintenance scripts": [
-      "webflow maintenance scripts"
-    ],
-    "webflow mime types": [
-      "webflow mime types"
-    ],
-    "webflow minification guide": [
-      "webflow minification guide"
-    ],
-    "webflow motion dev": [
-      "webflow motion dev"
-    ],
-    "webflow naming enforcement": [
-      "webflow naming enforcement"
-    ],
-    "webflow observer patterns": [
-      "webflow observer patterns"
-    ],
-    "webflow opencode detection": [
-      "webflow opencode detection"
-    ],
-    "webflow owasp coverage": [
-      "webflow owasp coverage"
-    ],
     "webflow patterns swiper observer split": [
       "webflow patterns swiper observer split"
     ],
-    "webflow performance budgets": [
-      "webflow performance budgets"
-    ],
-    "webflow performance constraints": [
-      "webflow performance constraints"
-    ],
-    "webflow performance patterns": [
-      "webflow performance patterns"
-    ],
-    "webflow performance verification": [
-      "webflow performance verification"
-    ],
-    "webflow platform patterns": [
-      "webflow platform patterns"
-    ],
-    "webflow print stylesheet": [
-      "webflow print stylesheet"
-    ],
-    "webflow priority timing": [
-      "webflow priority timing"
-    ],
-    "webflow promotion workflow": [
-      "webflow promotion workflow"
-    ],
-    "webflow push pattern": [
-      "webflow push pattern"
-    ],
-    "webflow readme rewritten": [
-      "Webflow README Rewritten"
-    ],
     "webflow reference split debugging workflows": [
       "webflow reference split debugging_workflows"
-    ],
-    "webflow resizeobserver best": [
-      "webflow resizeobserver best"
-    ],
-    "webflow resource loading": [
-      "webflow resource loading"
     ],
     "webflow routing removed": [
       "Webflow Routing Removed"
@@ -113005,44 +112223,8 @@
     "webflow runtime and references tasks": [
       "webflow runtime and references tasks"
     ],
-    "webflow security patterns": [
-      "webflow security patterns"
-    ],
-    "webflow staging production": [
-      "webflow staging production"
-    ],
-    "webflow state machine": [
-      "webflow state machine"
-    ],
-    "webflow state management": [
-      "webflow state management"
-    ],
-    "webflow style enforcement": [
-      "webflow style enforcement"
-    ],
-    "webflow swiper patterns": [
-      "webflow swiper patterns"
-    ],
-    "webflow template pointers": [
-      "webflow template pointers"
-    ],
-    "webflow testing automation": [
-      "webflow testing automation"
-    ],
-    "webflow testing debugging": [
-      "webflow testing debugging"
-    ],
-    "webflow third party libraries": [
-      "webflow third party libraries"
-    ],
     "webflow underscore labels": [
       "webflow underscore labels"
-    ],
-    "webflow verification checklist": [
-      "webflow verification checklist"
-    ],
-    "webflow verification workflows": [
-      "webflow verification workflows"
     ],
     "wedged but loading detection": [
       "wedged but loading detection"
@@ -113221,9 +112403,6 @@
     "when to make a command": [
       "when to make a command"
     ],
-    "when to recommend motion": [
-      "when to recommend motion"
-    ],
     "when to split flowchart": [
       "when to split flowchart"
     ],
@@ -113250,9 +112429,6 @@
     ],
     "where does this content belong": [
       "where does this content belong"
-    ],
-    "where does this css rule go obsidian plugin": [
-      "where does this css rule go obsidian plugin"
     ],
     "where does this image come from": [
       "where does this image come from"
@@ -113298,9 +112474,6 @@
     ],
     "which findings survived verification": [
       "which findings survived verification"
-    ],
-    "which folders owe readme and code": [
-      "which folders owe readme and code"
     ],
     "which frontmatter fields do i need": [
       "which frontmatter fields do i need"
@@ -113437,9 +112610,6 @@
     "why flowchart passes validation": [
       "why flowchart passes validation"
     ],
-    "why not what comments": [
-      "why not what comments"
-    ],
     "why ranked actual ranker": [
       "why_ranked actual ranker"
     ],
@@ -113463,9 +112633,6 @@
     ],
     "wikilink registry row": [
       "wikilink registry row"
-    ],
-    "will change management": [
-      "will change management"
     ],
     "winner short slug benchmark": [
       "{{WINNER_SHORT_SLUG}} benchmark"
@@ -113502,6 +112669,9 @@
     ],
     "with goal flag shipped": [
       "with goal flag shipped"
+    ],
+    "withdraw deferred hand over": [
+      "withdraw deferred hand-over"
     ],
     "withdrawn acceptance criterion": [
       "withdrawn acceptance criterion"
@@ -113563,6 +112733,9 @@
     "workflow assets literal replacement": [
       "workflow assets literal replacement"
     ],
+    "workflow concurrency": [
+      "workflow concurrency"
+    ],
     "workflow concurrency and path filter plan": [
       "workflow concurrency and path filter plan"
     ],
@@ -113605,6 +112778,15 @@
     "workflow packet acceptance": [
       "workflow packet acceptance"
     ],
+    "workflow path filters": [
+      "workflow path filters"
+    ],
+    "workflow permissions": [
+      "workflow permissions"
+    ],
+    "workflow rule index": [
+      "workflow rule index"
+    ],
     "workflow run failed emails": [
       "workflow run failed emails"
     ],
@@ -113623,17 +112805,14 @@
     "workflow support clearer": [
       "workflow support clearer"
     ],
+    "workflow timeout": [
+      "workflow timeout"
+    ],
     "workflow trigger index fresh": [
       "workflow trigger index fresh"
     ],
-    "workflow verification and debugging": [
-      "workflow verification and debugging"
-    ],
-    "workflow verification and debugging reference": [
-      "workflow verification and debugging reference"
-    ],
-    "workflow verification and debugging webflow": [
-      "workflow verification and debugging webflow"
+    "workflow trigger rules": [
+      "workflow trigger rules"
     ],
     "workflow vs transport routing": [
       "workflow vs transport routing"
@@ -113649,6 +112828,9 @@
     ],
     "workflow yaml audit plan": [
       "workflow yaml audit plan"
+    ],
+    "workflow yaml evidence": [
+      "workflow yaml evidence"
     ],
     "workflow yaml schema": [
       "workflow yaml schema"
@@ -113965,9 +113147,6 @@
     "write a readme": [
       "write a readme"
     ],
-    "write a screenshot scenario fixture": [
-      "write a screenshot scenario fixture"
-    ],
     "write a spec packet": [
       "write a spec packet"
     ],
@@ -114157,6 +113336,24 @@
     "writer freeze plan": [
       "writer freeze plan"
     ],
+    "writer lock reproduction tasks": [
+      "writer lock reproduction tasks"
+    ],
+    "writer lock stale reclaim race": [
+      "writer lock stale reclaim race"
+    ],
+    "writer lock stale reclaim race acceptance criteria": [
+      "writer lock stale reclaim race acceptance criteria"
+    ],
+    "writer lock stale reclaim race implementation summary": [
+      "writer lock stale reclaim race implementation summary"
+    ],
+    "writer lock stale reclaim race plan": [
+      "writer lock stale reclaim race plan"
+    ],
+    "writer lock stale reclaim race tasks": [
+      "writer lock stale reclaim race tasks"
+    ],
     "writer regex widen task": [
       "writer regex widen task"
     ],
@@ -114219,9 +113416,6 @@
     ],
     "xiaomi v2 6 models": [
       "xiaomi v2.6 models"
-    ],
-    "xss prevention frontend": [
-      "xss prevention frontend"
     ],
     "yaml frontmatter templates": [
       "yaml frontmatter templates"
@@ -114364,9 +113558,6 @@
     "zero feature loss": [
       "zero feature loss"
     ],
-    "zero folder docs exist in plugin tree": [
-      "zero folder docs exist in plugin tree"
-    ],
     "zero javascript diff report": [
       "zero javascript diff report",
       "zero-JavaScript diff report"
@@ -114376,9 +113567,6 @@
     ],
     "zero node scan rejected fix": [
       "zero_node_scan_rejected fix"
-    ],
-    "zero of 249 files carry a banner": [
-      "zero of 249 files carry a banner"
     ],
     "zero section 1 tables": [
       "zero section 1 tables"

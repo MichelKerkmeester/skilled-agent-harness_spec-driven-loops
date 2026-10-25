@@ -26,8 +26,15 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 // two implementations cannot disagree on where the frontmatter ends.
 const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
 // The locked packet-log append lives in the runtime-neutral core so both
-// implementations serialize on the same lock; nothing else is imported.
-const { appendPacketLog: appendPacketLogShared } = require('../hooks/goal/lib/goal-core.cjs');
+// implementations serialize on the same lock. The hand-over switch and the packet
+// shape check live there too, so every runtime reads the same environment the same way.
+const {
+  appendPacketLog: appendPacketLogShared,
+  relaunchGoalEnabled,
+  relaunchSessionIsChild,
+  relaunchPacketShapeOk,
+  RELAUNCH_GOAL_PACKET_ENV,
+} = require('../hooks/goal/lib/goal-core.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -45,9 +52,7 @@ const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
 const DEFAULT_MAX_INJECTION_CHARS = 4800;
 const DEFAULT_MAX_REASON_CHARS = 280;
 const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
-const DEFAULT_MAX_AUTO_TURNS = 8;
 const DEFAULT_CONTINUATION_COOLDOWN_MS = 1500;
-const DEFAULT_MAX_WALL_MS = 30 * 60 * 1000;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
@@ -92,8 +97,6 @@ const DEFAULT_VERIFIER_MODE = 'heuristic';
 const ARCHIVE_RETENTION_DAYS_ENV = 'OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS';
 const ACTIVE_RETENTION_DAYS_ENV = 'OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS';
 const SWEEP_INTERVAL_MS_ENV = 'OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS';
-const MAX_AUTO_TURNS_ENV = 'OPENCODE_GOAL_MAX_AUTO_TURNS';
-const MAX_WALL_MS_ENV = 'OPENCODE_GOAL_MAX_WALL_MS';
 const VERIFIER_TIMEOUT_MS_ENV = 'OPENCODE_GOAL_VERIFIER_TIMEOUT_MS';
 const CONTINUATION_TIMEOUT_MS_ENV = 'OPENCODE_GOAL_CONTINUATION_TIMEOUT_MS';
 const JSONL_MAX_BYTES_ENV = 'OPENCODE_GOAL_JSONL_MAX_BYTES';
@@ -197,6 +200,16 @@ const STATUS_TRANSITIONS = Object.freeze({
   budget_limited: new Set(['active', 'budget_limited', 'complete']),
   complete: new Set(['complete']),
 });
+// Reasons an older version recorded when a turn cap, a wall-clock cap or a token
+// budget stopped continuation. Nothing writes them now, but a record saved
+// before those stops were removed can still carry one, and resume has to be
+// able to release it. Any other reason on an active record is left alone.
+const RETIRED_SUPPRESSION_REASONS = new Set([
+  'auto_turn_cap_reached',
+  'wall_clock_cap_reached',
+  'budget_exhausted',
+  'token budget reached',
+]);
 const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
 const EMPTY_INJECTION_PREVIEW = '';
 const GOAL_ACTIONS = ['set', 'bind', 'unbind', 'resent', 'log', 'packet', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
@@ -261,8 +274,6 @@ function normalizeOptions(rawOptions = {}) {
   const envMaxGoalPromptChars = Number(process.env.OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS);
   const envMaxInjectionChars = Number(process.env.OPENCODE_GOAL_MAX_INJECTION_CHARS);
   const envMaxEvidenceChars = Number(process.env.OPENCODE_GOAL_MAX_EVIDENCE_CHARS);
-  const envMaxAutoTurns = Number(process.env[MAX_AUTO_TURNS_ENV]);
-  const envMaxWallMs = Number(process.env[MAX_WALL_MS_ENV]);
   const envVerifierTimeoutMs = Number(process.env[VERIFIER_TIMEOUT_MS_ENV]);
   const envContinuationTimeoutMs = Number(process.env[CONTINUATION_TIMEOUT_MS_ENV]);
   const envJsonlMaxBytes = Number(process.env[JSONL_MAX_BYTES_ENV]);
@@ -291,14 +302,6 @@ function normalizeOptions(rawOptions = {}) {
     maxEvidenceChars: normalizePositiveInt(
       options.maxEvidenceChars,
       normalizePositiveInt(envMaxEvidenceChars, DEFAULT_MAX_EVIDENCE_CHARS),
-    ),
-    maxAutoTurns: normalizePositiveInt(
-      options.maxAutoTurns,
-      normalizePositiveInt(envMaxAutoTurns, DEFAULT_MAX_AUTO_TURNS),
-    ),
-    maxWallMs: normalizePositiveInt(
-      options.maxWallMs,
-      normalizePositiveInt(envMaxWallMs, DEFAULT_MAX_WALL_MS),
     ),
     verifierTimeoutMs: normalizePositiveInt(
       options.verifierTimeoutMs,
@@ -783,9 +786,9 @@ function disabledAutonomyReason(mode) {
   return mode === 'passive' ? 'autonomy_passive' : 'autonomy_disabled';
 }
 
-function normalizeAutoTurns(value, maxAutoTurns = DEFAULT_MAX_AUTO_TURNS) {
+function normalizeAutoTurns(value) {
   if (!Number.isFinite(value)) return 0;
-  return Math.max(0, Math.min(maxAutoTurns, Math.trunc(value)));
+  return Math.max(0, Math.trunc(value));
 }
 
 function normalizeDeadlineMs(value) {
@@ -1251,10 +1254,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
     createdAt: typeof rawGoal.createdAt === 'string' ? rawGoal.createdAt : isoFromMs(createdAtMs),
     updatedAt: typeof rawGoal.updatedAt === 'string' ? rawGoal.updatedAt : isoFromMs(updatedAtMs),
     continuationSuppressed: rawGoal.continuationSuppressed === true,
-    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed, options.maxAutoTurns),
-    maxAutoTurns: Number.isFinite(rawGoal.maxAutoTurns)
-      ? Math.max(0, Math.min(options.maxAutoTurns, Math.trunc(rawGoal.maxAutoTurns)))
-      : options.maxAutoTurns,
+    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed),
     startedAtMs: Number.isFinite(rawGoal.startedAtMs) ? Math.max(0, Math.trunc(rawGoal.startedAtMs)) : createdAtMs,
     activeWallMs: Number.isFinite(rawGoal.activeWallMs) ? Math.max(0, Math.trunc(rawGoal.activeWallMs)) : 0,
     lastActivityAtMs: Number.isFinite(rawGoal.lastActivityAtMs) ? Math.max(0, Math.trunc(rawGoal.lastActivityAtMs)) : 0,
@@ -2035,7 +2035,6 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     updatedAt: isoFromMs(timestamp),
     continuationSuppressed: false,
     autoTurnsUsed: 0,
-    maxAutoTurns: options.maxAutoTurns,
     startedAtMs: timestamp,
     activeWallMs: 0,
     lastActivityAtMs: 0,
@@ -2140,6 +2139,32 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
 }
 
 /**
+ * Point a goal record at a packet: the packet's objective becomes the record's operator
+ * copy and the pointer, bind time and resend bookkeeping are set. Pure; writes nothing.
+ *
+ * @param {Object} base - Record to build on, an existing one or a fresh one
+ * @param {{packet: Object, objective: string, tokenBudget: number|null, workspace: string, options: Object}} input
+ * @returns {Object} The record bound to the packet
+ */
+function packetBoundRecord(base, { packet, objective, tokenBudget, workspace, options }) {
+  const timestamp = nowMs(options);
+  const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
+  return {
+    ...base,
+    objective,
+    goalPrompt: promptFields.goalPrompt,
+    promptEnhancement: promptFields.promptEnhancement,
+    tokenBudget,
+    packetPath: packet.packetPath,
+    workspace: resolvePath(workspace),
+    boundAtMs: timestamp,
+    lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
+    updatedAtMs: timestamp,
+    updatedAt: isoFromMs(timestamp),
+  };
+}
+
+/**
  * Bind the session to a packet. The packet goal.md becomes the directive; the
  * record keeps the pointer, an operator copy derived from it, and bookkeeping.
  * The path must resolve inside the workspace and the document must exist.
@@ -2183,31 +2208,65 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
         writeDebugStderr('bindGoal.archivePrior', error);
       }
     }
-    const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
-    const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
     const base = current && (current.status === 'active' || current.status === 'paused')
       ? { ...current, status: 'active' }
       : buildNewGoal(sessionID, objective, tokenBudget, options);
     if (current) mutation = 'rebound';
-    return {
-      ...base,
-      objective,
-      goalPrompt: promptFields.goalPrompt,
-      promptEnhancement: promptFields.promptEnhancement,
-      tokenBudget,
-      packetPath: packet.packetPath,
-      workspace: resolvePath(workspace),
-      boundAtMs: timestamp,
-      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
-      updatedAtMs: timestamp,
-      updatedAt: isoFromMs(timestamp),
-    };
+    return packetBoundRecord(base, { packet, objective, tokenBudget, workspace, options });
   }, options);
   if (goal && typeof goal === 'object') {
     Object.defineProperty(goal, 'mutation', { value: mutation, enumerable: false, configurable: true });
   }
   return goal;
+}
+
+/**
+ * Bind the packet a relaunch hand-over named to a session that has no goal of its own.
+ *
+ * Nothing happens without `SESSION_RELAUNCH_GOAL_PACKET`, in a dispatched child session
+ * (`AI_SESSION_CHILD=1`), with the switch off, or when the session has a record of any status
+ * or an archived one (a cleared or completed goal leaves one, and the session must not be
+ * handed a second goal after it ended its first). A record that cannot be read counts as a
+ * goal. The check and the write share one turn of the session's mutation lock, so a goal set
+ * in between is kept and the bind never replaces a record. No text is sent: the system
+ * transform injects from the packet's goal.md like any bound session. Never throws.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {Object} [rawOptions] - State helper options; `directory` is the workspace
+ * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default
+ * @returns {Promise<{bound: boolean, reason: string}>} `bound` is true only when a record was written
+ */
+async function bindRelaunchGoal(sessionID, rawOptions = {}, env = process.env) {
+  const packetPath = typeof env[RELAUNCH_GOAL_PACKET_ENV] === 'string' ? env[RELAUNCH_GOAL_PACKET_ENV].trim() : '';
+  if (!packetPath) return { bound: false, reason: 'no-packet' };
+  if (relaunchSessionIsChild(env)) return { bound: false, reason: 'child-session' };
+  if (!relaunchGoalEnabled(env)) return { bound: false, reason: 'switched-off' };
+  try {
+    const options = normalizeOptions(rawOptions);
+    if (!options.enabled) return { bound: false, reason: 'plugin-disabled' };
+    if (!relaunchPacketShapeOk(packetPath)) return { bound: false, reason: 'packet-invalid' };
+    const workspace = goalSlice.resolveWorkspaceRoot(options.directory || process.cwd());
+    const packet = goalSlice.readPacketGoal(workspace, packetPath);
+    if (!packet) return { bound: false, reason: 'packet-invalid' };
+    const objective = sanitizeInlineText(packet.objectiveSlice, options.maxObjectiveChars);
+    const archiveKey = `${sessionKeyForSession(sessionID)}.`;
+    let outcome = 'has-goal';
+    await mutateGoal(sessionID, async (current) => {
+      if (current) return null;
+      const archived = await readDirectoryEntries(join(options.stateDir, '.archive'));
+      if (archived.some((entry) => entry.name.startsWith(archiveKey))) return null;
+      outcome = 'bound';
+      return packetBoundRecord(
+        buildNewGoal(sessionID, objective, null, options),
+        { packet, objective, tokenBudget: null, workspace, options },
+      );
+    }, options);
+    return { bound: outcome === 'bound', reason: outcome };
+  } catch (error) {
+    writeDebugStderr('bindRelaunchGoal', error);
+    return { bound: false, reason: 'error' };
+  }
 }
 
 /**
@@ -2283,16 +2342,17 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
     : null;
   return mutateGoal(sessionID, (current) => {
     if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set for this session');
-    if (allowedFrom && !allowedFrom.has(current.status)) {
+    const legacySuppressed = rawOptions.allowRetiredSuppression === true
+      && current.status === 'active'
+      && current.continuationSuppressed === true
+      && RETIRED_SUPPRESSION_REASONS.has(current.continuationSuppressedReason);
+    if (allowedFrom && !allowedFrom.has(current.status) && !legacySuppressed) {
       throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
     }
     if (!STATUS_TRANSITIONS[current.status]?.has(status)) {
       throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
     }
     const timestamp = nowMs(rawOptions);
-    if (current.status === 'budget_limited' && status === 'active' && budgetWasCrossed(current.tokensUsed, current.tokenBudget)) {
-      throw new GoalError('INVALID_STATUS_TRANSITION', 'Cannot resume goal while token budget is still exhausted');
-    }
     const activeWallMs = current.status !== 'paused' && status === 'paused'
       ? Math.max(0, (current.activeWallMs || 0) + (timestamp - current.startedAtMs))
       : current.activeWallMs || 0;
@@ -2318,6 +2378,7 @@ async function resumeGoal(sessionID, rawOptions = {}) {
   return markGoalStatus(sessionID, 'active', {
     ...rawOptions,
     allowedFrom: ['paused', 'usage_limited', 'budget_limited'],
+    allowRetiredSuppression: true,
   });
 }
 
@@ -2328,10 +2389,6 @@ async function recoverProviderUsageLimitIfDue(sessionID, rawOptions = {}) {
   const deadline = normalizeDeadlineMs(goal?.providerRetryAfterMs);
   if (!goal || goal.status !== 'usage_limited' || deadline === null || nowMs(rawOptions) < deadline) return goal;
   return resumeGoal(normalizedSessionID, rawOptions);
-}
-
-function budgetWasCrossed(nextTokensUsed, tokenBudget) {
-  return Number.isFinite(tokenBudget) && tokenBudget > 0 && nextTokensUsed >= tokenBudget;
 }
 
 async function patchGoalIfCurrent(sessionID, goalID, patch, rawOptions = {}) {
@@ -2390,20 +2447,15 @@ async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = 
       };
     }
 
-    const nextTokensUsed = current.tokensUsed + chargeTokenDelta;
-    const nextStatus = budgetWasCrossed(nextTokensUsed, current.tokenBudget) ? 'budget_limited' : current.status;
     return {
       ...current,
-      status: nextStatus,
-      tokensUsed: nextTokensUsed,
+      tokensUsed: current.tokensUsed + chargeTokenDelta,
       timeUsedSeconds: current.timeUsedSeconds + timeDeltaSeconds,
       lastAccountedMessageID: messageID || current.lastAccountedMessageID,
       accountedMessageUsage: messageID
         ? rememberAccountedMessage(accountedMessageUsage, messageID, tokenDelta)
         : accountedMessageUsage,
       usageSource,
-      continuationSuppressed: nextStatus === 'budget_limited' ? true : current.continuationSuppressed,
-      continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : current.continuationSuppressedReason,
       updatedAtMs: timestamp,
       updatedAt: isoFromMs(timestamp),
     };
@@ -2480,20 +2532,15 @@ async function recordMessageUpdated(sessionID, event, rawOptions = {}) {
       };
     }
 
-    const nextTokensUsed = afterActivity.tokensUsed + chargeTokenDelta;
-    const nextStatus = budgetWasCrossed(nextTokensUsed, afterActivity.tokenBudget) ? 'budget_limited' : afterActivity.status;
     return {
       ...afterActivity,
-      status: nextStatus,
-      tokensUsed: nextTokensUsed,
+      tokensUsed: afterActivity.tokensUsed + chargeTokenDelta,
       timeUsedSeconds: afterActivity.timeUsedSeconds + timeDeltaSeconds,
       lastAccountedMessageID: messageID || afterActivity.lastAccountedMessageID,
       accountedMessageUsage: messageID
         ? rememberAccountedMessage(accountedMessageUsage, messageID, tokenDelta)
         : accountedMessageUsage,
       usageSource,
-      continuationSuppressed: nextStatus === 'budget_limited' ? true : afterActivity.continuationSuppressed,
-      continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : afterActivity.continuationSuppressedReason,
     };
   }, options);
 }
@@ -2831,21 +2878,6 @@ function continuationRuntimeStatus(runtimeState, sessionID) {
   return sanitizeInlineText(rawStatus?.type || rawStatus || '', 80).toLowerCase() || null;
 }
 
-function continuationCapReason(goal, timestamp, rawOptions = {}) {
-  const options = normalizeOptions(rawOptions);
-  const maxAutoTurns = Math.min(goal.maxAutoTurns || options.maxAutoTurns, options.maxAutoTurns);
-  if (goal.autoTurnsUsed >= maxAutoTurns) return 'auto_turn_cap_reached';
-  if (timestamp - goal.startedAtMs >= options.maxWallMs) return 'wall_clock_cap_reached';
-  return null;
-}
-
-function continuationBudgetReason(goal) {
-  if (Number.isFinite(goal.tokenBudget) && goal.tokenBudget > 0 && goal.tokensUsed >= goal.tokenBudget) {
-    return 'budget_exhausted';
-  }
-  return null;
-}
-
 async function recordContinuationReason(sessionID, goalID, reason, rawOptions = {}, suppress = false, errorText = null) {
   return patchGoalIfCurrent(sessionID, goalID, (current) => ({
     continuationSuppressed: suppress ? true : current.continuationSuppressed,
@@ -2854,14 +2886,6 @@ async function recordContinuationReason(sessionID, goalID, reason, rawOptions = 
       ? sanitizeInlineText(errorText, DEFAULT_MAX_REASON_CHARS)
       : current.lastContinuationError,
   }), rawOptions);
-}
-
-async function recordContinuationBudgetStop(sessionID, goalID, rawOptions = {}) {
-  return patchGoalIfCurrent(sessionID, goalID, {
-    status: 'budget_limited',
-    continuationSuppressed: true,
-    continuationSuppressedReason: 'budget_exhausted',
-  }, rawOptions);
 }
 
 async function recordProviderUsageLimit(sessionID, goalID, error = null, rawOptions = {}) {
@@ -2875,8 +2899,6 @@ async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
   let previousReservation = null;
   const goal = await mutateGoal(sessionID, (current) => {
     if (!current || current.goalId !== normalizedGoalID || current.status !== 'active') return undefined;
-    const maxAutoTurns = Math.min(current.maxAutoTurns || rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS);
-    if (current.autoTurnsUsed >= maxAutoTurns) return undefined;
     const timestamp = nowMs(rawOptions);
     didReserve = true;
     previousReservation = {
@@ -3014,18 +3036,6 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
       return decision('suppressed', 'cooldown', autoTurnsUsed);
     }
 
-    const capReason = continuationCapReason(goal, timestamp, options);
-    if (capReason) {
-      await recordContinuationReason(normalizedSessionID, goal.goalId, capReason, options, true);
-      return decision('suppressed', capReason, autoTurnsUsed);
-    }
-
-    const budgetReason = continuationBudgetReason(goal);
-    if (budgetReason) {
-      await recordContinuationBudgetStop(normalizedSessionID, goal.goalId, options);
-      return decision('suppressed', budgetReason, autoTurnsUsed);
-    }
-
     if (autonomyMode === 'smoke') return decision('would_fire', 'smoke_mode', autoTurnsUsed);
 
     const promptAsync = rawOptions.client?.session?.promptAsync;
@@ -3036,7 +3046,7 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
 
     const reserved = await reserveContinuationTurn(normalizedSessionID, goal.goalId, options);
     if (!reserved.didReserve) {
-      return decision('suppressed', 'auto_turn_cap_reached', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
+      return decision('suppressed', 'goal_not_active', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
     }
 
     try {
@@ -3151,7 +3161,6 @@ function renderGoalInjection(goal, rawOptions = {}) {
   const tokensUsed = Number.isFinite(goal.tokensUsed) ? Math.max(0, Math.trunc(goal.tokensUsed)) : 0;
   const timeUsedSeconds = Number.isFinite(goal.timeUsedSeconds) ? Math.max(0, Math.trunc(goal.timeUsedSeconds)) : 0;
   const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
-  const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : DEFAULT_MAX_AUTO_TURNS;
   const verdict = sanitizeInlineText(goal.lastVerifierVerdict || 'not_evaluated', 80) || 'not_evaluated';
   const goalId = normalizeGoalID(goal.goalId);
   const directive = 'directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.';
@@ -3165,9 +3174,10 @@ function renderGoalInjection(goal, rawOptions = {}) {
     `last_check: ${verdict} ; reason: ${reason}`,
     // Every label here is shared with the runtime-neutral renderer and pinned
     // by a parity test. The one intended difference is this line's content:
-    // OpenCode has a native token feed and an auto-turn cap, so it reports
-    // real counts and a ratio where the other runtimes report a turn estimate.
-    `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}/${maxAutoTurns}`,
+    // OpenCode has a native token feed, so it reports real counts where the
+    // other runtimes report a turn estimate. The budget figure is a reading
+    // only: nothing ends or pauses a goal when usage passes it.
+    `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}`,
     directive,
     '[/active_goal]',
   ].join('\n');
@@ -3294,12 +3304,6 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
 
   const stateAgeMs = Math.max(0, nowMs(rawOptions) - goal.updatedAtMs);
   const options = normalizeOptions(rawOptions);
-  const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : options.maxAutoTurns;
-  const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
-  const wallElapsedMs = goal.status === 'active'
-    ? Math.max(0, nowMs(options) - goal.startedAtMs)
-    : Math.max(0, goal.activeWallMs || 0);
-  const remainingWallMs = Math.max(0, options.maxWallMs - wallElapsedMs);
   const lines = [
     `STATUS=OK ACTION=${action}`,
     'goal_present=true',
@@ -3323,10 +3327,6 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
     `token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
     `tokens_used=${goal.tokensUsed}`,
     `time_used_seconds=${goal.timeUsedSeconds}`,
-    `max_auto_turns=${maxAutoTurns}`,
-    `remaining_auto_turns=${Math.max(0, maxAutoTurns - autoTurnsUsed)}`,
-    `max_wall_ms=${options.maxWallMs}`,
-    `remaining_wall_ms=${remainingWallMs}`,
     `provider_retry_after_ms=${goal.providerRetryAfterMs === null || goal.providerRetryAfterMs === undefined ? 'none' : goal.providerRetryAfterMs}`,
     `usage_source=${goal.usageSource || 'unavailable'}`,
     `budget_tokens_used=${goal.tokensUsed}`,
@@ -3347,6 +3347,16 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
   if (includeInjectionPreview) lines.push(`injection_preview=${JSON.stringify(injectionPreview)}`);
   if (mutation) lines.splice(1, 0, `mutation=${mutation}`);
   return lines.join('\n');
+}
+
+// The budget figure is stored and shown but never ends, pauses or silences a
+// goal, so a caller that passes one is told so once, when it is recorded.
+function budgetNoticeLine(tokenBudget) {
+  if (tokenBudget === undefined || tokenBudget === null) return '';
+  const recorded = normalizeTokenBudget(tokenBudget);
+  const text = `token budget ${recorded} is recorded as a reading only and is never enforced; `
+    + 'no budget ends or pauses a goal';
+  return `\nnotice=${quoteValue(text)}`;
 }
 
 function historyLines(records) {
@@ -3425,7 +3435,9 @@ async function executeGoalAction(args, context, rawOptions = {}) {
       const budgetLine = packet && packet.budgetState === 'over'
         ? `\npacket_budget=${packet.budgetState}\nwarning=${quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budget.errorChars}-character limit`)}`
         : (packet ? `\npacket_budget=${packet.budgetState}` : '');
-      return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions) + budgetLine;
+      return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions)
+        + budgetLine
+        + budgetNoticeLine(args?.tokenBudget);
     }
     if (action === 'resent') {
       const goal = await noteResent(sessionID, { ...options, directory: options.directory || context?.directory });
@@ -3473,7 +3485,9 @@ async function executeGoalAction(args, context, rawOptions = {}) {
       const truncationLine = rawLength > options.maxObjectiveChars
         ? `\nwarning=${quoteValue(`objective was ${rawLength} characters and was truncated to ${options.maxObjectiveChars}; the tail is lost`)}`
         : '';
-      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions) + truncationLine;
+      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions)
+        + truncationLine
+        + budgetNoticeLine(args?.tokenBudget);
     }
     if (action === 'clear') {
       await clearGoal(sessionID, options);
@@ -3537,6 +3551,7 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
     inFlightContinuations: new Set(),
     blockedByPromptSessions: new Set(),
     sessionStatuses: new Map(),
+    handOverGoalAttempted: false,
     lastSweepAtMs: 0,
   };
 
@@ -3564,6 +3579,12 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
     await logDebugEvent(eventType, sessionID, eventOptions);
 
     if (eventType === 'session.created') {
+      // The first top-level session of a relaunched process is the receiver. A child
+      // session the agent opens later, or a second session in the same process, is not.
+      if (sessionID && !eventPropertiesFrom(event).info?.parentID && !runtimeState.handOverGoalAttempted) {
+        runtimeState.handOverGoalAttempted = true;
+        await bindRelaunchGoal(sessionID, { ...eventOptions, directory: ctx?.directory });
+      }
       if (sessionID) await restoreActiveGoal(sessionID, eventOptions);
       try {
         await sweepOrphanedActiveStates(eventOptions, runtimeState);

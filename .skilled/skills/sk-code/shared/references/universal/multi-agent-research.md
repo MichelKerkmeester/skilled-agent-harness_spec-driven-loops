@@ -8,7 +8,7 @@ trigger_phrases:
   - "performance audit agents"
 importance_tier: normal
 contextType: research
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Multi-Agent Research Patterns
@@ -47,7 +47,6 @@ Comprehensive coverage through specialization + parallel execution + synthesis p
 ### Key Sources
 
 - Phase 0 (Research) entry point in the sk-code lifecycle: [`../phase-detection.md`](../phase-detection.md).
-- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. SKILLED performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-skilled/references/`.
 
 ---
 
@@ -169,7 +168,7 @@ Each agent should return a section with these subsections: Key Findings (with ev
 
 ## 5. EXAMPLE — PERFORMANCE OPTIMIZATION
 
-A WEBFLOW project's performance audit illustrates how cross-cutting findings emerge from agent synthesis.
+A frontend performance audit illustrates how cross-cutting findings emerge from agent synthesis.
 
 **Root cause identified:** Page hidden until hero JS completes.
 **Discovery agent:** Agent 5 (LCP / Images).
@@ -213,4 +212,3 @@ The cross-cutting nature of the finding — visibility gating tied to LCP, anima
 - [`../phase-detection.md`](../phase-detection.md) - Phase 0 Research position in the sk-code lifecycle.
 - [`./code-quality-standards.md`](./code-quality-standards.md) - severity tiers for findings reported by agents.
 - [`./error-recovery.md`](./error-recovery.md) - decision tree when agent investigation hits a dead end.
-- `.skilled/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md` and `.skilled/skills/sk-code/sk-code-webflow/references/performance/resource-loading.md` - Webflow performance refs.

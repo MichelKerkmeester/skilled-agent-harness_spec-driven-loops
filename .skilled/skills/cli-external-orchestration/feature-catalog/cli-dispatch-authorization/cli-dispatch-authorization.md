@@ -6,7 +6,7 @@ trigger_phrases:
   - "dispatch inspector classification"
   - "quote-safe executor normalization"
   - "shouldDenyPiDispatch pi authorization gate"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)
@@ -15,11 +15,11 @@ version: 1.4.1.0
 
 The dispatch hooks share one runtime-neutral inspector that decides whether a Bash command is an external-CLI dispatch, and under Pi whether that dispatch is authorized. The inspector (`inspectDispatch` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`) tokenizes a bounded command without evaluating it and returns exactly one classification:
 
-- `direct`: exactly one proven command-position executor (e.g. `devin -p x`, `codex exec -p x`, `opencode run x`, `opencode2 run x`).
+- `direct`: exactly one proven command-position executor (e.g. `devin -p x`, `codex exec -p x`, `opencode run x`, `opencode run x`).
 - `ambiguous`: an executor-shaped candidate that cannot be pinned to a single direct executor, such as a variable (`$CLI -p x`), an alias, a command substitution, an unknown wrapper, a variable prompt, or two dispatch segments.
 - `none`: no dispatch evidence.
 
-The OpenCode executor name is a version family rather than a fixed binary. `OPENCODE_EXECUTOR_RE` in the same module admits any `opencode<digits>` basename, and the `DISPATCH_SHAPES` row `\bopencode\d*\s+run\b` maps that shape to `cli-opencode`, so `opencode2 run x` is `direct cli-opencode` exactly as `opencode run x` is. The name decides only which packet owns the dispatch. Which OpenCode generation the run reaches is a separate question, answered by the rule checks from the binary's own `--version` output (see Version-Aware Rule Checks).
+The OpenCode executor name is a version family rather than a fixed binary. `OPENCODE_EXECUTOR_RE` in the same module admits any `opencode<digits>` basename, and the `DISPATCH_SHAPES` row `\bopencode\d*\s+run\b` maps that shape to `cli-opencode`, so `opencode run x` is `direct cli-opencode` exactly as `opencode run x` is. The name decides only which packet owns the dispatch. Which OpenCode generation the run reaches is a separate question, answered by the rule checks from the binary's own `--version` output (see Version-Aware Rule Checks).
 
 A shell `-c` wrapper (`bash -c`, `sh -c`, `zsh -c` or `dash -c`) is not an unknown wrapper: the inspector classifies the quoted command it runs, so `bash -c 'devin -p task'` is `direct cli-devin`. A variable counts as an executor only in command position, so `mkdir -p "$DIR"` and `node -p "$EXPR"` are `none`.
 
@@ -76,7 +76,7 @@ The `cli-opencode` sidecar at `.skilled/skills/cli-external-orchestration/cli-op
 |---|---|---|
 | `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Inspector classification table, including the quote-safe executor rows and prose/argument controls, plus the OpenCode version-resolution rows and the `DISPATCH_SHAPES` registry test. |
 | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` | Automated test | `shouldDenyPiDispatch` authorization contract and the `tool_call` gate. |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | Sidecar reading, the check-registry bijection, the `appliesTo` version filter, the unknown-version severity downgrade, and `opencode2 run` evaluation. |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | Sidecar reading, the check-registry bijection, the `appliesTo` version filter, the unknown-version severity downgrade, and `opencode run` evaluation. |
 
 ---
 

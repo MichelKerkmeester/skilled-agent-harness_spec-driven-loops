@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # sk-code-quality
@@ -23,7 +23,7 @@ version: 1.2.1.0
 |---|---|
 | **Use it for** | Post-implementation quality checks, P0/P1/P2 author-side fixes, comment hygiene and OpenCode target-path checklists |
 | **Invoke with** | `quality gate`, `code quality`, `comment hygiene`, `authoring checklist`, `check before done` |
-| **Works on** | Webflow frontend files, Obsidian plugin source and screenshot fixtures, and OpenCode skills, agents, commands, specs, MCP servers, scripts, config and language files |
+| **Works on** | OpenCode skills, agents, commands, specs, MCP servers, scripts, config and language files |
 | **Produces** | In-place quality fixes plus a handoff that states the checklist used, the comment-hygiene result and any remaining risk |
 
 ---
@@ -44,21 +44,19 @@ The mode's headline strength is routing by target path: every surface family lan
 
 | Target family | What the mode knows how to check |
 |---|---|
-| **Webflow frontend files** | applies the code quality checklist and the shared universal standards |
 | **OpenCode skills** | loads the skill-authoring checklist by target path |
 | **OpenCode agents and commands** | routes to the agent-authoring and command-authoring checklists |
 | **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |
 | **MCP servers** | routes to the MCP-server-authoring checklist |
 | **Language files and config** | applies the language-specific and config checklists |
-| **Obsidian plugin files** | routes to the comment-banner, folder-docs, `.db-*` class-rename and fixture-authoring checklists that `sk-code-obsidian` owns |
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
+**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-skilled`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
 
-**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/). For Obsidian plugin targets it loads the matching checklist under [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
 
 **Step 3: Run comment hygiene per modified file.**
 
@@ -86,7 +84,7 @@ The mode sits between implementation and verification. It reads the changed file
 
 ### Target-Path Routing
 
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards. Obsidian plugin targets route to the four quality checklists under `sk-code-obsidian`, for comment banners, folder docs, `.db-*` class renames and screenshot fixtures.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns.
 
 ### The Mutation Boundary
 
@@ -105,7 +103,7 @@ Use it when a change is already written and needs standards enforcement before f
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Parent hub that routes the quality workflow here |
-| `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |
+| `sk-code-skilled` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |
 | `sk-code-review` | Produces findings-first reports when no author-side editing is wanted |
 
 ---
@@ -130,7 +128,6 @@ Use it when a change is already written and needs standards enforcement before f
 | [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md) | Required quality checklist before implementation completion claims |
 | [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
 | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
-| [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/) | Obsidian plugin quality checklists for comment banners, folder docs, `.db-*` class renames and screenshot fixtures |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Per-file comment-hygiene checker |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |
 | [`scripts/ceiling-report.sh`](./scripts/ceiling-report.sh) | Ceiling-marker report for debt passes and release checks |

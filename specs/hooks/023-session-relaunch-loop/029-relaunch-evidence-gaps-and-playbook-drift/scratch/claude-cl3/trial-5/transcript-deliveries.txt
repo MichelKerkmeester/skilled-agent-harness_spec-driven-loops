@@ -1,0 +1,12 @@
+nudge	line=42	type=attachment	role=	hook_success/PostToolUse	ts=2026-10-24T22:39:05.102Z
+nudge	line=43	type=attachment	role=	hook_additional_context/PostToolUse	ts=2026-10-24T22:39:05.102Z
+nudge	line=45	type=api-request-blob	role=system		ts=undefined
+nudge	line=59	type=attachment	role=	hook_success/PostToolUse	ts=2026-10-24T22:39:10.509Z
+nudge	line=60	type=attachment	role=	hook_additional_context/PostToolUse	ts=2026-10-24T22:39:10.510Z
+nudge	line=61	type=api-request-blob	role=system		ts=undefined
+withdraw-notice	line=92	type=attachment	role=	hook_additional_context/UserPromptSubmit	ts=2026-10-24T22:39:20.460Z
+withdraw-notice	line=94	type=api-request-blob	role=system		ts=undefined
+withdraw-notice	line=103	type=assistant	role=assistant		ts=2026-10-24T22:39:25.815Z
+nudge	line=116	type=attachment	role=	hook_additional_context/UserPromptSubmit	ts=2026-10-24T22:40:45.550Z
+nudge	line=119	type=api-request-blob	role=system		ts=undefined
+total_lines=125

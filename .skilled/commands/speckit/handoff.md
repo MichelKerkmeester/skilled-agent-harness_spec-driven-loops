@@ -12,7 +12,7 @@ Manual entry point for the session relaunch loop. Writes this session's handoff 
 
 ## 1. PURPOSE
 
-The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. Inside `skilled-loop` the automatic nudge asks for a hop. Outside the loop it asks only for a note the session keeps with `session-relaunch.cjs keep` and claims after auto-compaction, and the session runs this command only when the operator explicitly asks for a manual handoff. Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every interactive runtime launch inside the loop, so nobody has to start the wrapper by hand. The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
+The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed, on the sender's model and effort where the runtime takes them at launch. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. Inside `skilled-loop` the automatic nudge asks for a hop. Outside the loop it asks only for a note the session keeps with `session-relaunch.cjs keep` and claims after auto-compaction, and the session runs this command only when the operator explicitly asks for a manual handoff. Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every interactive runtime launch inside the loop, so nobody has to start the wrapper by hand. The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
 
 ---
 
@@ -22,7 +22,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 **Outputs:**
 
-- A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<first 8 chars of the session id>.md`.
+- A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<session id>.md`, with the full session id because Pi and OpenCode ids share a time-based prefix.
 - One `STATUS=` line per the exit code in Step 5: `STATUS=OK RESULT=prepared HANDOFF=<path>`, `STATUS=OK RESULT=manual HANDOFF=<path>` or `STATUS=FAIL ERROR="<reason>"`.
 - When a spec packet is bound: save continuity before `prepare` runs. The nudge asks for the note first, and either order works. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
 
@@ -33,6 +33,8 @@ The relaunch loop carries work into a fresh session near the end of this session
 | `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
+| `keep --handoff <path> --session <id> [--runtime <name>]` | Outside the loop only: validate the note, record it in the hop history and print the claim command to run after auto-compaction | `0` kept, `2` refused, including a call from inside the loop |
+| `cancel [--loop-id <id>]` | Call off the prepared hand-over so the session keeps running. The note stays open. The loop id defaults to `SKILLED_LOOP_ID` | `0` cancelled, `1` nothing to cancel or the record changed meanwhile, `2` refused |
 
 ---
 
@@ -70,7 +72,7 @@ Create the directory first:
 mkdir -p .skilled/skills/.state/session-relaunch/handoffs
 ```
 
-Name the file `<UTC yyyymmddThhmmssZ>-<first 8 chars of session id>.md`. `date -u +%Y%m%dT%H%M%SZ` produces the stamp and `${SESSION_ID:0:8}` the suffix. The note format is exact:
+Name the file `<UTC yyyymmddThhmmssZ>-<session id>.md`. `date -u +%Y%m%dT%H%M%SZ` produces the stamp and the full session id is the suffix. Do not shorten it, because Pi and OpenCode ids share a time-based prefix and a short form would collide. The note format is exact:
 
 ```markdown
 ---
@@ -92,7 +94,7 @@ created_at: <ISO-8601 UTC>
 <non-empty>
 ```
 
-Frontmatter is flat `key: value` lines only: no nesting, no lists. `loop_id` is `$SKILLED_LOOP_ID`, empty when the session is not running under the wrapper. `runtime` is the runtime that wrote the note. Every section must be non-empty. Goal states what the work is for. Done records finished work. Remaining work lists the claimable tail. In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
+Frontmatter is flat `key: value` lines only: no nesting, no lists. `loop_id` is `$SKILLED_LOOP_ID`, empty when the session is not running under the wrapper. `runtime` is the runtime that wrote the note. `goal_packet` is an optional field that the template leaves out. `prepare` and `keep` set it, never you: each call writes the repo-relative directory of the packet whose `goal.md` holds the goal the session works under, and removes the field when that goal cannot be proven, so Codex notes never carry it. Leave it out of the note, because a value you write is replaced or removed. `SESSION_RELAUNCH_GOAL=0` turns the field off. On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal. Every section must be non-empty. Goal states what the work is for. Done records finished work. Remaining work lists the claimable tail. In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
 
 ### Step 4: Prepare
 
@@ -128,7 +130,7 @@ The CLI and wrapper place each path `!` in single quotes outside the seed's doub
 
 A session seeded with `[session-relaunch] claim and continue handoff <path>` is on the other side of this protocol. It:
 
-1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body. Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`. A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
+1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body. When the note carries a `goal_packet`, the output ends with a `Goal packet: <path>` line. Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`. A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
 2. Reads the note's Goal, Done, Remaining work and In-flight state sections.
 3. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
 4. Continues the Remaining work.

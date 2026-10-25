@@ -1,0 +1,45 @@
+{
+  "topic": "Session relaunch loop after phase 008 (.skilled/hooks/session-relaunch, .skilled/bin/skilled-loop, /speckit:handoff, the OpenCode plugin and runtime adapters, their tests and docs): find remaining drift between code, docs and spec records; latent bugs and edge cases; refinements; the ideal architecture of the core and adapters; and alignment gaps against the sk-code-skilled surface standards and checklists and the sk-doc document standards. Each finding needs file:line evidence and a concrete fix.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/hooks/023-session-relaunch-loop",
+  "createdAt": "2026-10-19T17:14:56Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1792429886029-no7lpl",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "resource_map_present": false,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

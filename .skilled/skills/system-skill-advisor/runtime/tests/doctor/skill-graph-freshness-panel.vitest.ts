@@ -107,6 +107,21 @@ afterEach(() => {
 });
 
 describe('skill-graph freshness panel', () => {
+  it('skips a private skill on disk so it is never a missing node', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeSkill(root, 'local-webflow', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha'] });
+    writeDb(dbDir, [['alpha', 'hub']]);
+
+    const { status, output } = runPanel(root, dbDir);
+
+    expect(status, output).toBe(0);
+    expect(output).not.toContain('local-webflow');
+    expect(output).toContain('MISSING (on disk, not in SQLite): none');
+  });
+
   it('clean panel: compiled newer than every stamp, db matching, all diffs none', () => {
     const root = tempRoot();
     const dbDir = join(root, 'db');

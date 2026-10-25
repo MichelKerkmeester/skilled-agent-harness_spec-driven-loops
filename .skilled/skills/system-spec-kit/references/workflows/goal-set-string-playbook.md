@@ -12,7 +12,7 @@ trigger_phrases:
   - "durable slice"
 importance_tier: normal
 contextType: implementation
-version: 1.12.0.0
+version: 1.12.1.0
 ---
 
 # Goal Set-String Playbook
@@ -73,8 +73,9 @@ The goal document is the source, so the agent working the packet owns the resync
 
 1. Whenever anything above the log changes (the objective, a decision, the
    binding table, a criterion), resend the parent's `chat_slice`, unprompted,
-   so the operator can paste it over the session objective. `node
-   .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <repo root>`
+   so the operator can paste it over the session objective. On Claude Code,
+   send it as one fenced code block that holds the slice and nothing else.
+   `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <repo root>`
    prints it, JSON-quoted. What that slice contains, and the `packet_budget=ok`
    check before it is sent, are section 4 of [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md). It
    is a different payload from the Section 2 shape, which is what a runtime

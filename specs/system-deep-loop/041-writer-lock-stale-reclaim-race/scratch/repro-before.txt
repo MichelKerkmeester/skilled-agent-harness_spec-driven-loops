@@ -1,0 +1,47 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/218-ci-efficiency-build/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/cli-guards-writer-lock.vitest.ts (9 tests | 2 failed) 83ms
+     × does not remove a peer lock created after the lock it tried to read had vanished 6ms
+     × does not remove a peer lock that replaced the stale lock it judged 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/cli-guards-writer-lock.vitest.ts > acquireWriterLock reclaim removes only the lock it judged > does not remove a peer lock created after the lock it tried to read had vanished
+AssertionError: expected 'a9e685bf-2cbf-4791-8078-d41e86e5648e' to be 'peer-holder' // Object.is equality
+
+Expected: "peer-holder"
+Received: "a9e685bf-2cbf-4791-8078-d41e86e5648e"
+
+ ❯ tests/unit/cli-guards-writer-lock.vitest.ts:202:62
+    200|     const outcome = tryAcquire(lockPath);
+    201|     // The peer's lock survives, so this writer must not hold the lock…
+    202|     expect(JSON.parse(readFileSync(lockPath, 'utf8')).nonce).toBe('pee…
+       |                                                              ^
+    203|     expect(outcome.error).toEqual(expect.objectContaining({ code: 'DB_…
+    204|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/cli-guards-writer-lock.vitest.ts > acquireWriterLock reclaim removes only the lock it judged > does not remove a peer lock that replaced the stale lock it judged
+AssertionError: expected '0e7666a8-fc4d-4266-b6f2-29c9d550b51e' to be 'peer-holder' // Object.is equality
+
+Expected: "peer-holder"
+Received: "0e7666a8-fc4d-4266-b6f2-29c9d550b51e"
+
+ ❯ tests/unit/cli-guards-writer-lock.vitest.ts:222:62
+    220|     const outcome = tryAcquire(lockPath);
+    221|     // The peer's lock survives, so this writer must not hold the lock…
+    222|     expect(JSON.parse(readFileSync(lockPath, 'utf8')).nonce).toBe('pee…
+       |                                                              ^
+    223|     expect(outcome.error).toEqual(expect.objectContaining({ code: 'DB_…
+    224|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 7 passed (9)
+   Start at  15:34:48
+   Duration  189ms (transform 22ms, setup 15ms, import 20ms, tests 83ms, environment 0ms)
+

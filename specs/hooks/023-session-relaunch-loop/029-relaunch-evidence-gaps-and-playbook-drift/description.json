@@ -1,0 +1,18 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift",
+  "description": "Phase 29: relaunch-evidence-gaps-and-playbook-drift",
+  "keywords": [
+    "phase",
+    "relaunch-evidence-gaps-and-playbook-drift"
+  ],
+  "lastUpdated": "2026-10-24T19:03:16.258Z",
+  "specId": "029",
+  "folderSlug": "relaunch-evidence-gaps-and-playbook-drift",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

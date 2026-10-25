@@ -55,7 +55,7 @@ function buildHub(t) {
   write(path.join(hub, 'sk-code-demo', 'SKILL.md'), [
     '# demo',
     'See [alpha](../shared/references/universal/alpha.md), `shared/references/universal/beta.md`',
-    'and `references/local.md`. The sibling sk-code-webflow packet and `sk-code-review` stay valid.',
+    'and `references/local.md`. The `sk-code-review` mode stays valid.',
     '',
   ].join('\n'));
   write(path.join(hub, 'sk-code-quality', 'SKILL.md'), '<!-- Keywords: code-quality, code-webflow -->\n');

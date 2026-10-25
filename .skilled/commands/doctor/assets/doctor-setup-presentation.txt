@@ -23,6 +23,7 @@ Render this table first, before any leg runs.
 | `/doctor:git hooks` | Which shipped git hook gates are on or off, and switching one |
 | `/doctor:git standards` | The commit, PR and branch rules in .sk-git/ |
 | `/doctor:sk-code setup` | The sk-code setup battery, with a repair command per failing leg |
+| `/doctor:ci report` | Lists every workflow with its switch state, trigger, filters and drift flags; `scaffold` and `toggle` are the confirmed action routes |
 | `/doctor:speckit` | The generated trigger index, its lookup and the ripgrep recipes |
 | `/doctor:runtime-mirrors` | Whether each runtime's agent, command, prompt and hook mirrors match .skilled |
 | `/doctor:skill-advisor tune` | Advisor recommendation quality and scoring tuning |

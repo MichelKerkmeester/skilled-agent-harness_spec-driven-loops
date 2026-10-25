@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+  "spec_folder": "hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relaunch cancel and test isolation",
+      "phase 23 relaunch cancel and test isolation",
+      "session relaunch cancel command",
+      "withdraw deferred hand-over",
+      "relaunch cancel and test isolation plan",
+      "relaunch cancel and test isolation tasks",
+      "relaunch cancel and test isolation acceptance criteria",
+      "relaunch cancel and test isolation implementation summary"
+    ],
+    "key_topics": [
+      "relaunch",
+      "cancel",
+      "test",
+      "isolation",
+      "phase",
+      "session",
+      "command",
+      "withdraw",
+      "deferred",
+      "hand-over",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/lib/withdraw.cjs",
+      ".skilled/hooks/session-relaunch/codex/shared.mjs",
+      ".opencode/plugins/session-relaunch.js",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/bin/README.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      ".devin/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/withdraw.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "shared.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hop-history.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
+    "created_at": "2026-10-24T09:00:16Z",
+    "last_save_at": "2026-10-24T16:58:02.945Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13e941e6f51defce9225d6f383a4124e13c1973f545780bf807b7ebcba549884",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c986e75a2c16492b6452ce1c7160d3df18f4f2380d59fa4eb330043233365ffd",
+      "plan.md": "126e827808f922ecbd5e6113f1dd265dba4e388ba2511197b807df3d6cc93b6b",
+      "tasks.md": "4f65c2df608f307ac0106523010bfc399c10610ec53b2aeec4af29e57a982fa5",
+      "implementation-summary.md": "83a478587a788293c5a3aa0f3d32c1a2f84054014a010963a2b77001044daf43"
+    },
+    "last_active_at": null
+  }
+}

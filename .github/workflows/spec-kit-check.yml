@@ -7,6 +7,9 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The rebuild workflow's own suite pins the commit message it writes, so a
+      # change to that workflow has to run the suite that guards it.
+      - '.github/workflows/trigger-index-rebuild.yml'
       # The mirror-parity job compares generated mirrors against their sources.
       # Triggering on the spec-kit runtime alone let a mirror drift on a command
       # or agent commit, ship unseen, and fail here later on whoever next touched
@@ -35,6 +38,9 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # The rebuild workflow's own suite pins the commit message it writes, so a
+      # change to that workflow has to run the suite that guards it.
+      - '.github/workflows/trigger-index-rebuild.yml'
       # The mirror-parity job compares generated mirrors against their sources.
       # Triggering on the spec-kit runtime alone let a mirror drift on a command
       # or agent commit, ship unseen, and fail here later on whoever next touched
@@ -61,10 +67,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   check:
     name: Typecheck, import policy and test suites for the spec-kit packages
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 51
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -121,11 +133,23 @@ jobs:
       - name: Install ripgrep
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
 
+      # One file, upgrade-legacy, takes about half of the project's serial time,
+      # so the project runs as two processes: that file alone, and every other
+      # file. Splitting by file count instead left the heavy file's half several
+      # times slower than the other. If the heavy file is renamed, the first
+      # process finds no test file and fails, so the split cannot silently drop it.
       - name: CLI vitest project
         run: |
-          set -euo pipefail
+          set -uo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
-          npx vitest run --config ../../vitest.config.ts --project cli
+          npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts &
+          first=$!
+          npx vitest run --config ../../vitest.config.ts --project cli --exclude tests/upgrade-legacy.vitest.ts &
+          second=$!
+          status=0
+          wait "$first" || status=1
+          wait "$second" || status=1
+          exit "$status"
 
       - name: Legacy module lanes and the bash validation suites
         # These lanes are what `npm test` runs after the vitest project, and they
@@ -145,7 +169,9 @@ jobs:
 
   mirrors:
     name: Runtime mirrors agree with their sources
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -181,7 +207,9 @@ jobs:
 
   doctor-scripts:
     name: Doctor script test suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -194,6 +222,8 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.11'
+          cache: pip
+          cache-dependency-path: .github/workflows/spec-kit-check.yml
 
       # The mutation-class guard parses its manifest with PyYAML. The mirror
       # checks require @spec-kit/shared through the workspace link, the hub

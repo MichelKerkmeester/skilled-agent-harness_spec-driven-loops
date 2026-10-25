@@ -30,6 +30,7 @@ script_path=$(resolve_script_path)
 script_directory=$(dirname "$script_path")
 relaunch_cli="$script_directory/../hooks/session-relaunch/bin/session-relaunch.cjs"
 relaunch_core="$script_directory/../hooks/session-relaunch/lib/relaunch-core.cjs"
+goal_handover="$script_directory/../hooks/session-relaunch/lib/goal-handover.cjs"
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
 consumed_record_json=''
@@ -77,6 +78,17 @@ consume_record() {
   return 0
 }
 
+# Records the hand-over once the wrapper is about to relaunch, in a call of its own, so a
+# consume whose output could not be read never leaves a line for a hop the wrapper declined.
+# The history is a record for the operator: its status never holds the relaunch back.
+record_hand_over() {
+  local handoff_path="$1"
+  local hop="$2"
+
+  node "$relaunch_cli" hand-over --handoff "$handoff_path" --hop "$hop" --runtime "$runtime" \
+    >/dev/null || true
+}
+
 # Prints the consumed note state, or nothing when consume failed or printed no JSON.
 consumed_note_state() {
   local note_state=''
@@ -102,6 +114,125 @@ consumed_spec_folder() {
     ' <<< "$consumed_record_json") || spec_folder=''
   fi
   printf '%s' "$spec_folder"
+}
+
+# Prints the goal packet consume reported, or nothing. The CLI applies the goal switch and
+# the packet checks, so an empty answer covers a switch that is off as well as no goal.
+consumed_goal_packet() {
+  local goal_packet=''
+  if [[ -n "$consumed_record_json" ]]; then
+    goal_packet=$(node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      process.stdout.write(
+        typeof record.goal_packet === "string" ? record.goal_packet : "",
+      );
+    ' <<< "$consumed_record_json") || goal_packet=''
+  fi
+  printf '%s' "$goal_packet"
+}
+
+# Prints one string field of the consumed record, or nothing. Used for the sender's live
+# model and effort, which the CLI records only when the sender's own state proves them.
+consumed_field() {
+  local field_value=''
+  if [[ -n "$consumed_record_json" ]]; then
+    field_value=$(node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      const value = record[process.argv[1]];
+      process.stdout.write(typeof value === "string" ? value : "");
+    ' -- "$1" <<< "$consumed_record_json" 2>/dev/null) || field_value=''
+  fi
+  printf '%s' "$field_value"
+}
+
+# Codex reads the value of -c as TOML, so an operator may quote the level.
+strip_value_quotes() {
+  local value="$1"
+  value=${value#\"}
+  value=${value%\"}
+  value=${value#\'}
+  value=${value%\'}
+  printf '%s' "$value"
+}
+
+# Succeeds when the runtime's own help lists the level, so a value the runtime would reject
+# is dropped here instead of ending the relaunch at a usage error.
+effort_is_valid() {
+  case "$1:$2" in
+    claude:low|claude:medium|claude:high|claude:xhigh|claude:max)
+      return 0
+      ;;
+    codex:none|codex:minimal|codex:low|codex:medium|codex:high|codex:xhigh|codex:max)
+      return 0
+      ;;
+    pi:off|pi:minimal|pi:low|pi:medium|pi:high|pi:xhigh|pi:max)
+      return 0
+      ;;
+    hermes:none|hermes:minimal|hermes:low|hermes:medium|hermes:high|hermes:xhigh|hermes:max|\
+      hermes:ultra)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+# A model id the sender's own log reported becomes one argument of the relaunch, so it must
+# look like an id: no leading dash, no whitespace, a bounded length. Cursor's bracketed
+# parameters are part of an id.
+model_is_valid() {
+  local model_pattern='^[A-Za-z0-9][][A-Za-z0-9._:/@=,+-]*$'
+  ((${#1} <= 128)) && [[ "$1" =~ $model_pattern ]]
+}
+
+# Appends the carried effort in the runtime's own flag syntax, when the level is one that
+# runtime accepts.
+append_effort_arguments() {
+  if [[ -z "${SKILLED_LOOP_EFFORT:-}" ]] || ! effort_is_valid "$runtime" "$SKILLED_LOOP_EFFORT"; then
+    return 0
+  fi
+  case "$runtime" in
+    claude)
+      launch_arguments+=(--effort "$SKILLED_LOOP_EFFORT")
+      ;;
+    codex)
+      launch_arguments+=(-c "model_reasoning_effort=\"$SKILLED_LOOP_EFFORT\"")
+      ;;
+    pi)
+      launch_arguments+=(--thinking "$SKILLED_LOOP_EFFORT")
+      ;;
+    hermes)
+      launch_arguments+=(--reasoning "$SKILLED_LOOP_EFFORT")
+      ;;
+  esac
+}
+
+# Prints the packet's chat slice for a receiver that sets its goal from the start prompt. When
+# no slice can be sent it prints one warning line and returns 1, so the receiver still starts
+# on its claim seed and the operator sees why the goal was left out.
+render_goal_slice() {
+  local goal_packet="$1"
+
+  node -e '
+    const [helperPath, packet] = process.argv.slice(1);
+    let reason = "";
+    try {
+      const { renderGoalSlice } = require(helperPath);
+      const result = renderGoalSlice({ packet });
+      if (result.ok) {
+        process.stdout.write(result.slice);
+        process.exit(0);
+      }
+      reason = result.reason;
+    } catch (error) {
+      reason = "could not render the goal packet";
+    }
+    process.stderr.write(
+      "warning: the goal was not set in the relaunched session: " + reason + "\n",
+    );
+    process.exit(1);
+  ' -- "$goal_handover" "$goal_packet"
 }
 
 # Prints the note's state through the core, so the wrapper judges a note exactly as a
@@ -194,6 +325,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
@@ -207,6 +339,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       if ((pi_extension_arguments_set == 1)); then
         launch_arguments+=("${pi_extension_arguments[@]}")
       fi
@@ -217,7 +350,13 @@ build_relaunch_arguments() {
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
     opencode)
-      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+      # OpenCode 2 starts on a private server only with --standalone, and its root command
+      # has no model flag, so a replayed -m would end the launch with a usage error.
+      if ((opencode_two == 1)); then
+        if ((opencode_server_seen == 0)); then
+          launch_arguments+=(--standalone)
+        fi
+      elif [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
       fi
       launch_arguments+=(--prompt "$seed")
@@ -227,6 +366,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
@@ -245,6 +385,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       launch_arguments+=(-q "$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
@@ -324,7 +465,21 @@ pi_extension_arguments=()
 pi_extension_arguments_set=0
 pi_no_extensions_seen=0
 codex_no_daemon_seen=0
-unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER
+opencode_two=0
+opencode_standalone_seen=0
+opencode_server_seen=0
+# The packet and the claim belong to one hop, so a value from an outer session never reaches a
+# first launch.
+unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
+  SESSION_RELAUNCH_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
+# A Hermes receiver binds the goal packet from this variable, so the operator's own value is
+# kept to put back on a hop that carries no goal.
+hermes_spec_folder_set=0
+hermes_spec_folder_value=''
+if [[ -n "${HERMES_SPEC_FOLDER+x}" ]]; then
+  hermes_spec_folder_set=1
+  hermes_spec_folder_value=$HERMES_SPEC_FOLDER
+fi
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -387,8 +542,39 @@ while ((index < original_argument_count)); do
             export SKILLED_LOOP_PROVIDER
           fi
           ;;
+        claude:--effort|pi:--thinking|hermes:--reasoning)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            SKILLED_LOOP_EFFORT="$next_argument"
+            export SKILLED_LOOP_EFFORT
+            skip_next_option=1
+          fi
+          ;;
+        claude:--effort=*|pi:--thinking=*|hermes:--reasoning=*)
+          if [[ "${argument#*=}" != -* ]]; then
+            SKILLED_LOOP_EFFORT="${argument#*=}"
+            export SKILLED_LOOP_EFFORT
+          fi
+          ;;
+        codex:-c|codex:--config)
+          if ((index + 1 < original_argument_count)) \
+            && [[ "$next_argument" == model_reasoning_effort=* ]]; then
+            SKILLED_LOOP_EFFORT=$(strip_value_quotes "${next_argument#model_reasoning_effort=}")
+            export SKILLED_LOOP_EFFORT
+            skip_next_option=1
+          fi
+          ;;
+        codex:--config=model_reasoning_effort=*)
+          SKILLED_LOOP_EFFORT=$(strip_value_quotes "${argument#--config=model_reasoning_effort=}")
+          export SKILLED_LOOP_EFFORT
+          ;;
         codex:--no-daemon)
           codex_no_daemon_seen=1
+          ;;
+        opencode:--standalone)
+          opencode_standalone_seen=1
+          ;;
+        opencode:--server|opencode:--server=*)
+          opencode_server_seen=1
           ;;
         pi:-ne|pi:--no-extensions)
           if ((pi_no_extensions_seen == 0)); then
@@ -428,6 +614,26 @@ if [[ "$runtime" == 'codex' && "$codex_no_daemon_seen" == 0 ]]; then
   fi
 fi
 
+# OpenCode 2 is told apart by its help listing --standalone, not by a version number, so a
+# build that drops or renames the flag falls back to the plain launch.
+if [[ "$runtime" == 'opencode' ]]; then
+  opencode_help=$("$runtime_command" --help 2>&1 || true)
+  if [[ "$opencode_help" == *'--standalone'* ]]; then
+    opencode_two=1
+  fi
+fi
+if ((opencode_two == 1 && opencode_server_seen == 1)); then
+  printf '%s\n' \
+    'warning: --server attaches to a shared server, so the loop cannot arm and no relaunch follows' >&2
+fi
+if ((opencode_two == 1 && opencode_server_seen == 0 && opencode_standalone_seen == 0)); then
+  if ((original_argument_count > 0)); then
+    launch_arguments=(--standalone "${launch_arguments[@]}")
+  else
+    launch_arguments=(--standalone)
+  fi
+fi
+
 SKILLED_LOOP_MANUAL_TEMPLATE=$(build_manual_command_template)
 export SKILLED_LOOP_MANUAL_TEMPLATE
 manual_template_conflict=$(find_manual_template_conflict)
@@ -446,6 +652,10 @@ relaunched_handoff=''
 relaunched_spec_folder=''
 
 while true; do
+  # Cursor keeps one model selection for all its sessions, so the CLI counts a selection as
+  # this session's only when it changed after this launch.
+  SKILLED_LOOP_LAUNCHED_AT="$(date +%s)000"
+  export SKILLED_LOOP_LAUNCHED_AT
   # Keep the wrapper alive so it can inspect relaunch state after the runtime exits.
   # The guarded expansion keeps empty arguments safe under Bash 3.2 with nounset.
   if "$runtime_command" "${launch_arguments[@]+"${launch_arguments[@]}"}"; then
@@ -468,7 +678,8 @@ while true; do
           const record = JSON.parse(fs.readFileSync(0, "utf8"));
           const cwd = typeof record.cwd === "string" ? record.cwd : "";
           const handoff = typeof record.handoff === "string" ? record.handoff : "";
-          process.stdout.write(cwd + "\0" + handoff + "\0");
+          const signalled = record.signalled === true ? "1" : "0";
+          process.stdout.write(cwd + "\0" + handoff + "\0" + signalled + "\0");
         ' <<< "$decision_json" 2>/dev/null
       )
       if ! IFS= read -r -d '' relaunch_cwd <&3; then
@@ -483,6 +694,8 @@ while true; do
         consume_record
         exit 1
       fi
+      relaunch_signalled=0
+      IFS= read -r -d '' relaunch_signalled <&3 || relaunch_signalled=0
       exec 3<&-
 
       if [[ -z "$handoff_path" ]]; then
@@ -505,7 +718,9 @@ while true; do
         exit 1
       fi
 
-      if ((runtime_exit == 130)); then
+      # 130 is the operator's interrupt, unless the killer stamped the record before it
+      # signalled: some runtimes exit 130 on SIGTERM too.
+      if ((runtime_exit == 130)) && [[ "$relaunch_signalled" != 1 ]]; then
         consume_record
         spec_folder=$(consumed_spec_folder)
         print_manual_command "$handoff_path" "$spec_folder" || true
@@ -522,19 +737,96 @@ while true; do
         else
           printf 'warning: the handoff note is %s; not relaunching\n' "$note_state" >&2
         fi
-        spec_folder=$(consumed_spec_folder)
-        print_manual_command "$handoff_path" "$spec_folder" || true
+        # A claim throws on a claimed, done or missing note, so a command for one could
+        # never work. An invalid note can be repaired and an unread state may hide an open
+        # note, so those two keep the command.
+        case "$note_state" in
+          ''|invalid)
+            spec_folder=$(consumed_spec_folder)
+            print_manual_command "$handoff_path" "$spec_folder" || true
+            ;;
+        esac
         exit 1
       fi
       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
       export SKILLED_LOOP_HOPS
+      record_hand_over "$handoff_path" "$SKILLED_LOOP_HOPS"
 
       spec_folder=$(consumed_spec_folder)
+      # A hop without a goal must not inherit the previous hop's packet.
+      goal_packet=$(consumed_goal_packet)
+      if [[ -n "$goal_packet" ]]; then
+        export SESSION_RELAUNCH_GOAL_PACKET="$goal_packet"
+      else
+        unset SESSION_RELAUNCH_GOAL_PACKET
+      fi
       relaunched_handoff="$handoff_path"
       relaunched_spec_folder="$spec_folder"
       seed="[session-relaunch] claim and continue handoff $handoff_path"
       seed+=$(spec_folder_suffix "$spec_folder")
-      build_relaunch_arguments "$seed"
+      # Claude takes its goal from a start prompt that is the goal command and nothing else, so
+      # the claim seed travels in the environment for the start hook to deliver. A slice that
+      # cannot be sent leaves the claim seed as the start prompt.
+      launch_prompt="$seed"
+      unset SKILLED_LOOP_CLAIM_SEED
+      if [[ "$runtime" == 'claude' && -n "$goal_packet" ]] \
+        && goal_slice=$(render_goal_slice "$goal_packet"); then
+        launch_prompt="/goal $goal_slice"
+        SKILLED_LOOP_CLAIM_SEED="$seed"
+        export SKILLED_LOOP_CLAIM_SEED
+      fi
+      if [[ "$runtime" == 'hermes' ]]; then
+        if [[ -n "$goal_packet" ]]; then
+          export HERMES_SPEC_FOLDER="$goal_packet"
+        elif ((hermes_spec_folder_set == 1)); then
+          export HERMES_SPEC_FOLDER="$hermes_spec_folder_value"
+        else
+          unset HERMES_SPEC_FOLDER
+        fi
+      fi
+      # The sender's own latest turn beats what the launch line said, and a value that does
+      # not pass the runtime's check leaves the launch value in place.
+      live_model=$(consumed_field model)
+      live_model_accepted=0
+      if [[ -n "$live_model" ]]; then
+        if model_is_valid "$live_model"; then
+          SKILLED_LOOP_MODEL="$live_model"
+          export SKILLED_LOOP_MODEL
+          live_model_accepted=1
+        else
+          printf 'warning: ignoring the sender model %s; relaunching on the launch model\n' \
+            "$live_model" >&2
+        fi
+      fi
+      # Only Pi and Hermes take a provider beside the model, and a model from one provider is
+      # not valid under another, so the two move together.
+      live_provider=$(consumed_field provider)
+      if [[ "$runtime" == 'pi' || "$runtime" == 'hermes' ]] \
+        && [[ -n "$live_provider" && "$live_model_accepted" == 1 ]]; then
+        if model_is_valid "$live_provider"; then
+          SKILLED_LOOP_PROVIDER="$live_provider"
+          export SKILLED_LOOP_PROVIDER
+        else
+          printf 'warning: ignoring the sender provider %s; relaunching on the launch provider\n' \
+            "$live_provider" >&2
+        fi
+      fi
+      live_effort=$(consumed_field effort)
+      if [[ -n "$live_effort" ]]; then
+        if effort_is_valid "$runtime" "$live_effort"; then
+          SKILLED_LOOP_EFFORT="$live_effort"
+          export SKILLED_LOOP_EFFORT
+        else
+          printf 'warning: ignoring the sender effort %s; relaunching on the launch effort\n' \
+            "$live_effort" >&2
+        fi
+      fi
+      if [[ -n "${SKILLED_LOOP_EFFORT:-}" ]] && ! effort_is_valid "$runtime" "$SKILLED_LOOP_EFFORT"; then
+        printf 'warning: effort %s is not a level %s accepts; relaunching without it\n' \
+          "$SKILLED_LOOP_EFFORT" "$runtime" >&2
+        unset SKILLED_LOOP_EFFORT
+      fi
+      build_relaunch_arguments "$launch_prompt"
       if [[ "$runtime" == 'codex' ]]; then
         launch_arguments=(--no-daemon "${launch_arguments[@]}")
       fi
@@ -564,6 +856,19 @@ while true; do
           'warning: the handoff path contains a line break; no manual command printed' >&2
       elif [[ -n "$handoff_path" ]]; then
         case "$decision_reason" in
+          withdrawn)
+            # The session called the hand-over off and kept working, so no claim command
+            # applies: its note describes work that came before.
+            printf 'warning: the prepared hand-over was withdrawn in the session; %s stays open and out of date\n' \
+              "$handoff_path" >&2
+            # The line above already says what happened to this note, so the unclaimed-note
+            # warning for it would contradict it. A different note the relaunched session
+            # was seeded with is still open and keeps its warning. Both paths come from
+            # the same absolute form the prepare step records.
+            if [[ "$handoff_path" == "$relaunched_handoff" ]]; then
+              manual_command_printed=1
+            fi
+            ;;
           not-armed|stale|hop-cap|incomplete-record)
             spec_folder=$(consumed_spec_folder)
             # A clean exit must not read as success when the printed command is not the

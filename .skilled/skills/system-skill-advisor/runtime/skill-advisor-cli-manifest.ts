@@ -55,7 +55,7 @@ const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
             confidenceThreshold: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence a recommendation must reach to be surfaced (0-1); overrides the configured default.' },
             uncertaintyThreshold: { type: 'number', minimum: 0, maximum: 1, description: 'Maximum uncertainty a recommendation may carry to be surfaced (0-1); overrides the configured default.' },
             includeCompiledRoute: { type: 'boolean', description: 'Attach compiled-route metadata for compiled hubs (default true). Callers that never read it pass false to skip the per-hub compiled-route subprocess.' },
-            surfaceHint: { type: 'string', minLength: 1, maxLength: 64, description: 'Surface the caller already knows, such as WEBFLOW, forwarded to the compiled-route front door as --surface-hint. An unknown surface is ignored there.' },
+            surfaceHint: { type: 'string', minLength: 1, maxLength: 64, description: 'Surface the caller already knows, such as SKILLED, forwarded to the compiled-route front door as --surface-hint. An unknown surface is ignored there.' },
           },
         },
       },

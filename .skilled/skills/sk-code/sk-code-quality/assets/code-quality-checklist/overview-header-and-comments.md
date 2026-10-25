@@ -2,13 +2,11 @@
 title: Code Quality Checklist
 description: Validation checklist for JavaScript and CSS code quality and style compliance.
 trigger_phrases:
-  - "webflow code quality checklist"
   - "javascript css style compliance"
-  - "file header checks webflow"
   - "review baseline handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.17
+version: 1.5.1.0
 ---
 
 # Code Quality Checklist
@@ -47,11 +45,6 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 ### Source Standards (per-language tree)
 
-- [shared/cross-language-rules.md](../../../sk-code-webflow/references/shared/cross-language-rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
-- [javascript/style-guide/overview-naming-and-structure.md](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
-- [javascript/quality-standards/init-dom-error-and-async.md](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md) - JS defensive patterns + JS naming/init enforcement
-- [css/style-guide.md](../../../sk-code-webflow/references/css/style-guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
-- [css/quality-standards/patterns-and-naming-enforcement.md](../../../sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns + CSS enforcement subsections
 
 ---
 
@@ -59,7 +52,6 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 3](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### File Header Format
 
@@ -102,7 +94,6 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 3](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Section Headers
 
@@ -163,20 +154,18 @@ const INIT_FLAG = '__componentNameInit';
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 5](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Comment Principles
 
 - [ ] **[P0] CHK-CMT-01**: No commented-out code (delete unused code, git preserves history)
 - [ ] **[P1] CHK-CMT-02**: Comments explain WHY, not WHAT
 - [ ] **[P1] CHK-CMT-03**: Maximum 5 comments per 10 lines of code (not over-commented)
-- [ ] **[P1] CHK-CMT-04**: Platform constraints documented (WEBFLOW, MOTION, LENIS, HLS.JS)
+- [ ] **[P1] CHK-CMT-04**: Platform constraints documented (MOTION, LENIS, HLS.JS)
 
 - [ ] **[P1] CHK-CMT-07**: Each comment describes what the code does now, never how it got there, what it used to do or which change introduced it
 
 A comment that narrates its own history is wrong the moment the next change lands. On any collision, the root document's comment-hygiene hard block wins. This rule adds to it and does not soften it. Before: `// this check used to live in the old loader`. After: `// skips blank lines so the count stays true`.
 
-> **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../../sk-code-webflow/references/animation/quick-start.md`](../../../sk-code-webflow/references/animation/quick-start.md) and the documents in [`../../../sk-code-webflow/references/animation`](../../../sk-code-webflow/references/animation). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
 
 ### Function Comments
 
@@ -190,7 +179,7 @@ if (window.lenis) {
   window.lenis.stop();
 }
 
-// WEBFLOW: Page transitions may re-execute scripts
+// MOTION: Animation runs only when prefers-reduced-motion is not set
 if (window[INIT_FLAG]) return;
 
 // Add 10 second timeout to prevent infinite hang

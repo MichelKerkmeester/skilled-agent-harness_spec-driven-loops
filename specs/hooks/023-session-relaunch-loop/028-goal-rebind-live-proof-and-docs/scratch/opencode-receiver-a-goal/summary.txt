@@ -1,0 +1,9 @@
+2026-10-25T00:41:38Z env: SESSION_RELAUNCH_GOAL_PACKET=specs/demo/001-demo
+  ┃  If your context holds an active goal block, which starts with [active_goal:, reply with that first line exactly. Otherwise reply with the single word █
+  ┃  NONE.                                                                                                                                                 █    Context
+     active_goal:goal-14f90962-e58a-4b91-ab61-45e30c388933                                                                                                 █
+     Build · GPT-6 Luna · 2.1s · 14.6 tok/s                                                                                                                █
+  ┃  Build · GPT-6 Luna OpenAI
+goal records: 1
+record=40640897a066 goalId=goal-14f90962-e58a-4b91-ab61-45e30c388933 runtime=undefined status=active packetPath=specs/demo/001-demo createdAt=2026-10-25T00:41:41.438Z
+2026-10-25T00:42:58Z done

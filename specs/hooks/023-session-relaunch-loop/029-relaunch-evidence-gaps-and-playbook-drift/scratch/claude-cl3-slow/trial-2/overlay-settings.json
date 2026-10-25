@@ -1,0 +1,3 @@
+{"hooks":{
+ "UserPromptSubmit":[{"matcher":"","hooks":[{"type":"command","command":"node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch/harness/probe-hook.cjs","timeout":5}]}],
+ "PostToolUse":[{"matcher":"","hooks":[{"type":"command","command":"node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/220-relaunch-cancel-and-test-isolation/specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch/harness/probe-hook.cjs","timeout":5}]}]}}

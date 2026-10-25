@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: trigger and job hygiene"
-description: "The eleven decisions behind this phase: five operator choices (D2 main cancellation, D3 the parity filter, D4 the guard shape, D7 the deep-loop depth, D10 the changed-packet filter) and six design choices the plan freezes (the concurrency block's shape, how a filter is derived, how a suppression is removed, how a checkout depth is chosen, what the inventory records, and how the change is committed)."
+description: "The twelve decisions behind this phase: five operator choices (D2 main cancellation, D3 the parity filter, D4 the guard shape, D7 the deep-loop depth, D10 the changed-packet filter), six design choices the plan freezes (the concurrency block's shape, how a filter is derived, how a suppression is removed, how a checkout depth is chosen, what the inventory records and how the change is committed) and the closing ruling that reads the checkout-shortening criterion as a floor."
 trigger_phrases:
   - "trigger and job hygiene decision record"
   - "concurrency group decision"
@@ -11,12 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/003-trigger-and-job-hygiene"
-    last_updated_at: "2026-10-23T12:40:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Recorded eleven proposed ADRs for the planned phase"
-    next_safe_action: "Decisions answered; start at T006, the first non-decision task, then run the phase's tasks"
-    blockers:
-      - "002-rebuild-fanout-removal baseline pending"
+    last_updated_at: "2026-10-25T07:02:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Recorded ADR-012, which reads AC-009 as a floor"
+    next_safe_action: "Phase closed; no further work in this phase"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,11 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-003-trigger-and-job-hygiene"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does cancel-in-progress on pull requests leave the required message-contract context satisfied on the newest head?"
-      - "Do deep-loop-runtime's mode-event suites need anything older than the parent commit?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does cancel-in-progress on pull requests leave the required message-contract context satisfied on the newest head? Yes: the newest head read SUCCESS while the older pull_request run was cancelled (AC-002)."
+      - "Do deep-loop-runtime's mode-event suites need anything older than the parent commit? No: depth 2 is enough (ADR-004), and the probe run 40102189314 concluded success."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: trigger and job hygiene
@@ -567,7 +566,7 @@ The workflow is a protected guard: its failure invalidates other workflows' inpu
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -669,7 +668,7 @@ Thirty files need the same block. `trigger-index-rebuild.yml:21-23` is the only 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -776,7 +775,7 @@ Three filter changes land in this phase: `command-tree-parity.yml`, `agent-mirro
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -880,7 +879,7 @@ The `|| echo` branches carry the repair hint, so removing them naively would rem
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -982,7 +981,7 @@ Ten workflows check out `fetch-depth: 0`. Two of them run checkers that read no 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -1083,7 +1082,7 @@ No document records which CI jobs repeat a pre-commit gate (`research.md:309`). 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author |
 
@@ -1175,5 +1174,127 @@ The phase changes 30 workflow files plus a README table and three scratch docume
 **How to roll back**: `git reset --soft HEAD~6` restores the staged tree without losing a file.
 <!-- /ANCHOR:adr-011-impl -->
 <!-- /ANCHOR:adr-011 -->
+
+---
+
+<!-- ANCHOR:adr-012 -->
+## ADR-012: The checkout-shortening row reads as a floor
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-25 |
+| **Deciders** | Operator (ruling 2026-10-25, given through a question prompt: "AC-009's 'about 20 s shorter' is rewritten as a floor, 'at least about 20 s shorter'."), plan author |
+
+---
+
+<!-- ANCHOR:adr-012-context -->
+### Context
+
+AC-009 asked that each of the three changed checkouts be "about 20 s shorter than its 002 baseline sample" and that the `rule-canary-sync` job run under 60 s. The 20 s figure was the spec's estimate for dropping full history (`spec.md` NFR-P03: "Three checkouts drop by about 20 s each"). On 2026-10-25 the operator fixed the baseline as the 001 research dataset (`scratch/phase-baseline.md`), and the after-state is the phase's own observed runs.
+
+Against the medians of the five latest completed 001 runs, the checkouts shortened by 21 s for `repo-rules-corpus` (72 s to 51 s), by 23 s for `deep-loop-runtime` (74 s to 51 s) and by 52 s for `rule-canary-sync` (73 s to 21 s, pull-request run `40101304274`). The `rule-canary-sync` job took 24 s against a 78 s baseline median, under the 60 s limit. Two checkouts landed near the estimate and the canary overshot it by more than double. Read as a target, "about 20 s" therefore failed the canary, and the row stayed `Unmet`. The earlier pass could neither rewrite nor waive it without the operator.
+
+The operator then ruled, through a question prompt: "AC-009's 'about 20 s shorter' is rewritten as a floor, 'at least about 20 s shorter'."
+
+### Constraints
+
+- The measured shortenings stay exactly as `scratch/phase-result.md` records them. The ruling moves the criterion and never the data.
+- The 24 h window median for the canary checkout is 2 s. It follows a later sparse checkout (`ea39cd7b2c`) and is not this phase's effect, so the canary figure is the phase-only run's 52 s.
+- A `Waived` row means a criterion was deliberately not pursued. This one was pursued and cleared, so the row is rewritten and its Waiver cell stays `-`.
+<!-- /ANCHOR:adr-012-context -->
+
+---
+
+<!-- ANCHOR:adr-012-decision -->
+### Decision
+
+**We chose**: rewrite AC-009 as a floor, "each checkout step is at least about 20 s shorter than its baseline", and mark it `Met`.
+
+**How it works**: The baseline for each checkout is the median of the five latest completed runs of that workflow in the 001 research dataset: 73 s for `rule-canary-sync`, 72 s for `repo-rules-corpus` and 74 s for `deep-loop-runtime` (recomputed on 2026-10-25 from the job files under `../001-research/scratch/ci-run-data/jobs/`). The three observed shortenings are 21 s, 23 s and 52 s, so each sits at or above the floor. The under-60-s clause for the canary job is unchanged and holds at 24 s. The row still needs all three runs green and the seconds recorded in `scratch/phase-result.md`.
+<!-- /ANCHOR:adr-012-decision -->
+
+---
+
+<!-- ANCHOR:adr-012-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Rewrite as a floor (chosen)** | Closes the row on observed figures, treats a larger saving as the win it is, leaves the data untouched | The lower edge stays soft because the word "about" remains | 8/10 |
+| Keep the row `Unmet` | Preserves the original wording | The phase cannot close although every checkout shortened by at least 21 s and the job runs in 24 s | 2/10 |
+| Waive the row | Closes it with an ADR | A waiver says the criterion was not pursued, and this one was pursued and cleared | 3/10 |
+
+**Why this one**: The aim of the row is a shorter checkout, and a saving above the estimate serves that aim better than one on the estimate. The operator chose to correct the wording rather than the measurement.
+<!-- /ANCHOR:adr-012-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-012-consequences -->
+### Consequences
+
+**What improves**:
+- AC-009 closes on three observed numbers with their sources on file, and the phase closes with 17 of 17 rows `Met`.
+- A later reader sees why a 52 s saving counts as a pass against an "about 20 s" row.
+
+**What it costs**:
+- The floor rejects less than before. The word "about" keeps the lower edge soft, so a shortening of 17 s would be a judgment call. Mitigation: the three values and their sources are recorded, so the next measurement is compared with 21 s, 23 s and 52 s.
+- The baselines are medians of five samples and the samples spread (the canary's run from 51 s to 78 s). Mitigation: the five samples per workflow are listed in `scratch/phase-baseline.md`.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The canary's 52 s is read as this phase's effect when a later change inflates the figure | M | The row cites the phase-only run `40101304274` and this record names `ea39cd7b2c` as the cause of the 2 s window median |
+| Two of the three values sit close to the floor on small samples | L | The sample sizes are stated in `scratch/phase-result.md` (one run for the corpus, five for the deep-loop suite) |
+<!-- /ANCHOR:adr-012-consequences -->
+
+---
+
+<!-- ANCHOR:adr-012-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The row could not close on its own wording although every checkout shortened |
+| 2 | **Beyond Local Maxima?** | PASS | Keeping the row `Unmet` and waiving it were both weighed |
+| 3 | **Sufficient?** | PASS | One row, plus the two places that restate its wording, covers the change |
+| 4 | **Fits Goal?** | PASS | The goal is a checkout that reads only the history it needs, and all three are shorter |
+| 5 | **Open Horizons?** | PASS | Later phases that cite the shortening read a recorded floor and its sources |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-012-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-012-impl -->
+### Implementation
+
+**What changes**:
+- `acceptance-criteria.md`: AC-009 reads as a floor, carries a short observed-results summary, cites this record and is `Met`.
+- `spec.md` (NFR-P03) and `tasks.md` (the two T032 Expected lines) state the floor.
+- No workflow file changes.
+
+**Gated tasks**: T032 and T037.
+
+**How to roll back**: Restore the "about 20 s" wording and set AC-009 back to `Unmet`. No file outside this packet changes.
+<!-- /ANCHOR:adr-012-impl -->
+<!-- /ANCHOR:adr-012 -->
+
+---
+
+## Amendments
+
+- **Amendment (2026-10-24, T021 wording)**: the delivered `README.md:71` Why cell — "agent-mirror-sync.yml runs only when an agent file, the mirror checker or the shared package it loads changes" — names the filter's three input kinds, more accurate than the tasked "only when an agent file changes". Accepted; T021's expected text and grep and AC-015's check now match the delivered sentence.
+- **Amendment (2026-10-24, AC-011 count)**: the guard entry lands in both filter lists at both mirror roots, so AC-011's own regex returns `4`, not the planned `2`. The row and T019 now expect `4`.
+- **Amendment (2026-10-24, inventory shape)**: the installed pre-commit hook gained a thirteenth gate key, `private-skill`, in `7648ae8b56`, and the delivered `scratch/pre-commit-inventory.md` carries a sixth `Reason` column. T020, T035 and AC-012 now expect 13 keys and the six-column table; T035's verdict-row regex matches the verdict cell inside the row (the old end-anchored form returned `0`; the corrected form returns `13`, observed 2026-10-24).
+- **Amendment (2026-10-24, T007 anchor)**: the rewritten comment moved from `:47-50` to `:98-102` when T008 and T009 inserted the 48 filter lines above it; the task and AC-003 reference the post-filter position.
+- **Amendment (2026-10-24, T013 caveat)**: the local hooks vitest run fails 2 tests in `dispatch/codex/codex-shell-tool.test.mjs` while CI run 40026353792 is green; the divergence is recorded under T013 and queued for triage.
+- **Amendment (2026-10-24, T017 line position)**: the four-line concurrency block moved the delivered `fetch-depth: 2` from `:42` before the block to `:46` after it in [deep-loop-runtime.yml](../../../../.github/workflows/deep-loop-runtime.yml#L46); the original D7 decision text remains historical.
+- **Amendment (2026-10-24, AC-007 and T031 proof, operator ruling)**: the operator ruled that the report-only steps keep `continue-on-error: true` by design (T014 and T015 say so), and that AC-007 is proven by the step's error line and failure annotations while the job concludes `success`, plus the repair report text still printed by `strict-pass-freshness-report.yml`. The old proof `{"job":"success","steps":["failure"]}` was unobservable. GitHub's REST jobs API reports a failed `continue-on-error` step as `conclusion: success` and exposes the real result only in the `outcome` context, so the literal value can never appear for a step built this way. T031's Expected and Check, and AC-007's proof cell, now assert on `##[error]doc-model drift` in the run log (the `::error::` command prints as `##[error]` once it runs, and the bare `::error::` form also matches the echoed script source in every run, so it cannot tell a failure from a pass) and on the check run's failure annotations. Observed 2026-10-24 against Advisory Checks run `40101235126` (check run `120893637299`): the log grep returns `1`, the annotation count for `doc-model drift` returns `1`, and the job reads `success`. For `strict-pass-freshness-report.yml` run `40101537374`: the `Derived-repair drift report` step logs `175` `would repair` lines and one `##[error]Process completed with exit code 1.`, and the job reads `success`.
+- **Amendment (2026-10-24, AC-005 and AC-006 proof wording)**: found while closing the probes, and a drift correction, not a lowered bar. AC-005's log grep returns eight paths, not seven, because the rule-engine job's `SUITE=` line also names `dispatch/lib/dispatch-rule-checks.test.mjs`. In run `40026353792` each of the seven vitest suites appears exactly once, all in the `Every hook vitest suite passes` job. AC-005's command now filters to that job's lines before the `grep -oE`. AC-006 asks for `::error::Dispatch rule suite not found` in the log of the deleted-suite run, but a run that does not fail also echoes that source line, so the discriminating text is the printed `##[error]Dispatch rule suite not found` line plus the `failure` conclusion. The AC-006 proof now says so. The operator has not yet confirmed these two wording corrections.
+- **Amendment (2026-10-25, AC-009 floor, operator ruling)**: the operator ruled, through a question prompt, that AC-009's "about 20 s shorter" is rewritten as a floor, "at least about 20 s shorter". Measured against the medians of the 001 research dataset, the checkouts are 21 s shorter for `repo-rules-corpus`, 23 s for `deep-loop-runtime` and 52 s for `rule-canary-sync`. The `rule-canary-sync` job took 24 s against a 78 s baseline, under the 60 s limit. All three clear the floor, so AC-009 is `Met`. NFR-P03 in `spec.md` and the two T032 Expected lines in `tasks.md` carry the same floor. Recorded as ADR-012.
 
 ---

@@ -1,0 +1,47 @@
+[
+ {
+  "label": "d1",
+  "session_id": "20261025_001726_ca90e3",
+  "timestamp": "2026-10-25T00:17:30.683760",
+  "reason": "non_retryable_client_error",
+  "error": "{'type': 'invalid_request_error', 'message': 'Error code: 402 - {\\'error\\': {\\'message\\': \"You\\'ve reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for",
+  "request_keys": [
+   "method",
+   "url",
+   "headers",
+   "body"
+  ],
+  "system_prompt_has_active_goal_section": true,
+  "active_goal_excerpt": "o-guards-goal\\n<!-- hermes-plugin-section-chars:2204 -->\\n\\n[active_goal:goal-d184528c-6ec9-4f88-9c9f-88f64f05eb7f]\\nstatus: active\\nobjective: Execute specs/hooks/023-session-relaunch-loop/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summ"
+ },
+ {
+  "label": "d2",
+  "session_id": "20261025_001753_b46c7e",
+  "timestamp": "2026-10-25T00:17:56.047889",
+  "reason": "non_retryable_client_error",
+  "error": "{'type': 'invalid_request_error', 'message': 'Error code: 402 - {\\'error\\': {\\'message\\': \"You\\'ve reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for",
+  "request_keys": [
+   "method",
+   "url",
+   "headers",
+   "body"
+  ],
+  "system_prompt_has_active_goal_section": true,
+  "active_goal_excerpt": "o-guards-goal\\n<!-- hermes-plugin-section-chars:2204 -->\\n\\n[active_goal:goal-306ce1f6-22cf-4ab1-bffc-ee52931ff77e]\\nstatus: active\\nobjective: Execute specs/hooks/023-session-relaunch-loop/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summ"
+ },
+ {
+  "label": "d3",
+  "session_id": "20261025_001759_c64cd3",
+  "timestamp": "2026-10-25T00:18:01.678935",
+  "reason": "non_retryable_client_error",
+  "error": "{'type': 'invalid_request_error', 'message': 'Error code: 402 - {\\'error\\': {\\'message\\': \"You\\'ve reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for",
+  "request_keys": [
+   "method",
+   "url",
+   "headers",
+   "body"
+  ],
+  "system_prompt_has_active_goal_section": false,
+  "active_goal_excerpt": null
+ }
+]

@@ -1,0 +1,1 @@
+[session-relaunch] handoff prepared; stop now and end this turn. The loop ends this session when it goes idle and a fresh session continues from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/44420fbb-1005-400c-9fd3-59abf1e9e58d/scratchpad/sb031c/.skilled/skills/.state/session-relaunch/handoffs/note-effort.md.

@@ -1,0 +1,2 @@
+no hop recorded yet (/private/tmp/claude-501/ev030/sb-oc-a/.skilled/skills/.state/session-relaunch/hop-history.log)
+open notes: 1 handoff note not claimed yet, oldest note-a.md

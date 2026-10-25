@@ -1,0 +1,80 @@
+{
+  "version": "2.3.0.0",
+  "modes": [
+    "sk-code-quality",
+    "sk-code-review",
+    "sk-code-skilled"
+  ],
+  "surfaces": [
+    "sk-code-skilled"
+  ],
+  "tieBreak": [
+    "sk-code-quality",
+    "sk-code-review",
+    "sk-code-skilled"
+  ],
+  "routerSignals": [
+    "sk-code-quality",
+    "sk-code-review",
+    "sk-code-skilled"
+  ],
+  "vocabularyClasses": [
+    "hub-identity",
+    "quality-aliases",
+    "quality-gates",
+    "quality-restraint",
+    "code-review-aliases",
+    "code-review-findings",
+    "code-review-security",
+    "code-review-pr",
+    "code-skilled-aliases",
+    "code-skilled-runtime",
+    "code-skilled-authoring"
+  ],
+  "keywords": [
+    "sk-code",
+    "code",
+    "smart-router",
+    "code-surface-detection",
+    "surface-aware",
+    "frontend",
+    "html",
+    "css",
+    "javascript",
+    "motion.dev",
+    "motion-dev",
+    "motion_dev",
+    "cross-stack-animation",
+    "gsap",
+    "lenis",
+    "swiper",
+    "hls",
+    "filepond",
+    "cdn",
+    "browser-verification",
+    "opencode",
+    "system-code",
+    "mcp",
+    "typescript",
+    "python",
+    "shell",
+    "json",
+    "jsonc",
+    "alignment-verifier",
+    "skill_authoring",
+    "agent_authoring",
+    "command_authoring",
+    "mcp_server_authoring",
+    "code-quality",
+    "debugging",
+    "verification",
+    "sk-code-quality",
+    "sk-code-review",
+    "sk-code-skilled",
+    "restraint",
+    "yagni",
+    "over-engineering",
+    "simplification"
+  ],
+  "canaryCases": 7
+}

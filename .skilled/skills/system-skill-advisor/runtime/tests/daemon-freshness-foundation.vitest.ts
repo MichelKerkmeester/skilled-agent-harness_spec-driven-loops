@@ -266,6 +266,21 @@ describe('skill graph watcher foundation', () => {
     expect(targets.map((target) => target.path)).toContain(join(root, 'docs', 'alpha.md'));
   });
 
+  it('watches a private skill linked from inside the skills root and ignores one linked from outside', () => {
+    const root = workspace('skill-graph-private-link');
+    const outsideRoot = workspace('skill-graph-private-link-outside');
+    writeSkill(root, '.private/private-beta');
+    write(join(outsideRoot, 'private-evil', 'SKILL.md'), '---\nname: local-evil\ndescription: outside\n---\n');
+    const skills = join(root, '.skilled', 'skills');
+    symlinkSync(join(skills, '.private', 'private-beta'), join(skills, 'local-beta'));
+    symlinkSync(join(outsideRoot, 'private-evil'), join(skills, 'local-evil'));
+
+    const targetPaths = discoverWatchTargets(root).map((target) => target.path);
+
+    expect(targetPaths).toContain(join(skills, 'local-beta', 'SKILL.md'));
+    expect(targetPaths.some((path) => path.includes('local-evil'))).toBe(false);
+  });
+
   // drift: verified against shipped behavior during Unit H
   it('rejects absolute, escaping, and symlinked-out derived.key_files watch targets', () => {
     const root = workspace('skill-graph-key-files-contained');

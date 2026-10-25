@@ -1,0 +1,8 @@
+{
+  "type": "spec_mutation",
+  "event": "spec_synthesis_deferred",
+  "reason": "lineage_scope_excludes_parent_spec_writeback_and_validation",
+  "generatedFence": "deep-research/spec-findings",
+  "specPath": "specs/hooks/023-session-relaunch-loop/spec.md",
+  "timestamp": "2026-10-25T12:08:53Z"
+}

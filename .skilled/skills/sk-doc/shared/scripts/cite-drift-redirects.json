@@ -237,12 +237,6 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/skills/sk-code/code-implement/references/webflow/",
-      "to": ".opencode/skills/sk-code/webflow/references/",
-      "records": 56,
-      "agreement": 1
-    },
-    {
       "from": ".opencode/skills/sk-code/code-skilled/",
       "to": ".opencode/skills/sk-code/sk-code-skilled/",
       "records": 98,
@@ -255,12 +249,6 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/skills/sk-code/code-webflow/",
-      "to": ".opencode/skills/sk-code/sk-code-webflow/",
-      "records": 151,
-      "agreement": 1
-    },
-    {
       "from": ".opencode/skills/sk-code/opencode/",
       "to": ".opencode/skills/sk-code/code-skilled/",
       "records": 64,
@@ -270,12 +258,6 @@
       "from": ".opencode/skills/sk-code/review/",
       "to": ".opencode/skills/sk-code/code-review/",
       "records": 88,
-      "agreement": 1
-    },
-    {
-      "from": ".opencode/skills/sk-code/webflow/",
-      "to": ".opencode/skills/sk-code/code-webflow/",
-      "records": 116,
       "agreement": 1
     },
     {
@@ -3954,12 +3936,6 @@
       "from": "specs/sk-code/019-split-doc-template-alignment/",
       "to": "specs/sk-doc/032-split-doc-template-alignment/",
       "records": 164,
-      "agreement": 1
-    },
-    {
-      "from": "specs/sk-code/025-sk-code-obsidian-surface/",
-      "to": "specs/sk-code/007-sk-code-obsidian-surface/",
-      "records": 84,
       "agreement": 1
     },
     {

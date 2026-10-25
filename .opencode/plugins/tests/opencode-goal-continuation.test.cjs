@@ -528,34 +528,33 @@ test('stale verifier results suppress the old continuation without prompting', a
   assert.equal(entries.at(-1).reason, 'stale_verifier_result');
 }));
 
-test('auto-turn cap suppresses further continuation and preserves usage count', async () => withState(async ({ helpers, stateDir }) => {
+test('a long run of auto turns never suppresses continuation', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
-  const cappedGoal = await helpers.setGoal('session-cap', 'Stop at the auto-turn cap', {
+  const longRunGoal = await helpers.setGoal('session-cap', 'Keep going past any turn count', {
     stateDir,
     nowMs: 1000,
     goalIdFactory: () => 'cap-goal',
   });
   await helpers.writeGoalAtomic({
-    ...cappedGoal,
-    autoTurnsUsed: 8,
-    maxAutoTurns: 8,
+    ...longRunGoal,
+    autoTurnsUsed: 500,
   }, { stateDir });
-  const capClient = {
-    session: {
-      async promptAsync() {
-        throw new Error('cap test should not prompt');
-      },
-    },
-  };
+  let prompts = 0;
   const result = await helpers.maybeContinueGoal('session-cap', {
     stateDir,
     nowMs: 4000,
-    client: capClient,
+    client: { session: { async promptAsync() { prompts += 1; } } },
+    runtimeState: {
+      inFlightContinuations: new Set(),
+      blockedByPromptSessions: new Set(),
+      sessionStatuses: new Map([['session-cap', 'idle']]),
+    },
   });
-  assert.equal(result.decision, 'suppressed');
-  assert.equal(result.reason, 'auto_turn_cap_reached');
+  assert.equal(result.decision, 'fired');
+  assert.equal(prompts, 1);
   const goal = await helpers.readGoal('session-cap', { stateDir });
-  assert.equal(goal.autoTurnsUsed, 8);
+  assert.equal(goal.autoTurnsUsed, 501);
+  assert.equal(goal.continuationSuppressed, false);
 }));
 
 test('failed continuation write releases the in-flight reservation', async () => withState(async ({ helpers, stateDir }) => {
@@ -593,35 +592,6 @@ test('failed continuation write releases the in-flight reservation', async () =>
     await chmod(stateDir, 0o700);
   }
   assert.equal(reservationState.inFlightContinuations.has('session-reserve-error'), false);
-}));
-
-test('auto-turn cap remains unchanged on repeated suppression', async () => withState(async ({ helpers, stateDir }) => {
-  process.env.OPENCODE_GOAL_AUTONOMY = 'active';
-  const cappedGoal = await helpers.setGoal('session-cap', 'Stop at the auto-turn cap', {
-    stateDir,
-    nowMs: 1000,
-    goalIdFactory: () => 'cap-goal',
-  });
-  await helpers.writeGoalAtomic({
-    ...cappedGoal,
-    autoTurnsUsed: 8,
-    maxAutoTurns: 8,
-  }, { stateDir });
-  const capClient = {
-    session: {
-      async promptAsync() {
-        throw new Error('cap test should not prompt');
-      },
-    },
-  };
-  const result = await helpers.maybeContinueGoal('session-cap', {
-    stateDir,
-    nowMs: 5000,
-    client: capClient,
-  });
-  assert.equal(result.decision, 'suppressed');
-  const goal = await helpers.readGoal('session-cap', { stateDir });
-  assert.equal(goal.autoTurnsUsed, 8);
 }));
 
 test('missing session id suppresses continuation', async () => withState(async ({ helpers, stateDir }) => {
@@ -779,14 +749,14 @@ test('continuation cooldown suppresses too-soon retries', async () => withState(
   assert.equal(result.reason, 'cooldown');
 }));
 
-test('wall-clock cap suppresses continuation and records durable state', async () => withState(async ({ helpers, stateDir }) => {
+test('elapsed wall-clock time never suppresses continuation', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
   const activeClient = {
     session: {
       async promptAsync() {},
     },
   };
-  const wallClockGoal = await helpers.setGoal('session-wall-clock', 'Stop after the wall clock cap', {
+  const wallClockGoal = await helpers.setGoal('session-wall-clock', 'Keep going however long it runs', {
     stateDir,
     nowMs: 1000,
     goalIdFactory: () => 'wall-clock-goal',
@@ -797,7 +767,7 @@ test('wall-clock cap suppresses continuation and records durable state', async (
   }, { stateDir });
   const result = await helpers.maybeContinueGoal('session-wall-clock', {
     stateDir,
-    nowMs: 1000 + (30 * 60 * 1000),
+    nowMs: 1000 + (24 * 60 * 60 * 1000),
     client: activeClient,
     runtimeState: {
       inFlightContinuations: new Set(),
@@ -805,14 +775,13 @@ test('wall-clock cap suppresses continuation and records durable state', async (
       sessionStatuses: new Map([['session-wall-clock', 'idle']]),
     },
   });
-  assert.equal(result.decision, 'suppressed');
-  assert.equal(result.reason, 'wall_clock_cap_reached');
+  assert.equal(result.decision, 'fired');
+  assert.equal(result.reason, 'prompt_async_sent');
   const goal = await helpers.readGoal('session-wall-clock', { stateDir });
-  assert.equal(goal.continuationSuppressed, true);
-  assert.equal(goal.continuationSuppressedReason, 'wall_clock_cap_reached');
+  assert.equal(goal.continuationSuppressed, false);
 }));
 
-test('paused wall-clock time is not charged after resume', async () => withState(async ({ helpers, stateDir }) => {
+test('a resumed goal continues after a long pause', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
   const promptRequests = [];
   const activeClient = {
@@ -858,18 +827,17 @@ test('paused wall-clock time is not charged after resume', async () => withState
     { sessionID: 'session-paused-wall-clock' },
     { stateDir, nowMs: 100500, maxWallMs: 10000, includeInjectionPreview: false },
   );
-  assert.match(status, /remaining_wall_ms=1500/);
-  assert.doesNotMatch(status, /wall_clock_cap_reached/);
+  assert.doesNotMatch(status, /remaining_wall_ms|wall_clock_cap_reached/);
 }));
 
-test('token budget exhaustion suppresses continuation and logs the reason', async () => withState(async ({ helpers, stateDir }) => {
+test('token budget exhaustion never suppresses continuation', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
   const activeClient = {
     session: {
       async promptAsync() {},
     },
   };
-  const budgetGoal = await helpers.setGoal('session-budget', 'Stop when token budget is exhausted', {
+  const budgetGoal = await helpers.setGoal('session-budget', 'Keep going past the token budget', {
     stateDir,
     nowMs: 1000,
     goalIdFactory: () => 'budget-goal',
@@ -877,7 +845,7 @@ test('token budget exhaustion suppresses continuation and logs the reason', asyn
   });
   await helpers.writeGoalAtomic({
     ...budgetGoal,
-    tokensUsed: 100,
+    tokensUsed: 5000,
   }, { stateDir });
   const result = await helpers.maybeContinueGoal('session-budget', {
     stateDir,
@@ -889,17 +857,15 @@ test('token budget exhaustion suppresses continuation and logs the reason', asyn
       sessionStatuses: new Map([['session-budget', 'idle']]),
     },
   });
-  assert.equal(result.decision, 'suppressed');
-  assert.equal(result.reason, 'budget_exhausted');
+  assert.equal(result.decision, 'fired');
+  assert.equal(result.reason, 'prompt_async_sent');
   const goal = await helpers.readGoal('session-budget', { stateDir });
-  assert.equal(goal.status, 'budget_limited');
-  assert.equal(goal.continuationSuppressed, true);
-  assert.equal(goal.continuationSuppressedReason, 'budget_exhausted');
-  assert.equal(goal.autoTurnsUsed, 0);
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.continuationSuppressed, false);
+  assert.equal(goal.autoTurnsUsed, 1);
 
   const entries = await readContinuationEntries(stateDir);
-  assert.equal(entries.at(-1).reason, 'budget_exhausted');
-  assert.equal(entries.at(-1).autoTurnsUsed, 0);
+  assert.equal(entries.at(-1).decision, 'fired');
 }));
 
 test('debug mode surfaces swallowed append and orphan sweep errors without throwing', async () => withState(async ({ helpers, pluginModule, stateDir }) => {

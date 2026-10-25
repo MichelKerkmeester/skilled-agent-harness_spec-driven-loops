@@ -290,6 +290,19 @@ test('a malformed current record never falls through to the legacy scoped record
   );
 });
 
+test('a recorded token budget never ends or silences a goal that keeps running', () => {
+  const options = scopedOpts('pi', 'budget-session');
+  core.setGoal({ objective: 'Keep going past any budget', tokenBudget: 1 }, options);
+  for (let turn = 0; turn < 40; turn += 1) core.recordTurn({}, options);
+
+  const goal = core.showGoal(options);
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.turnsUsed, 40);
+  const block = core.renderGoalBrief({ goal, runtimeLabel: 'Pi', maxChars: 4800 });
+  assert.match(block, /^\[active_goal:/);
+  assert.match(block, /iteration 40 /);
+});
+
 test('explicit legacy migration binds one validated scope and quarantines the source', () => {
   const legacyPath = join(stateDir, 'active-goal.json');
   const legacy = {
@@ -1226,4 +1239,197 @@ test('a record written under the old status word is read back under the current 
   writeFileSync(statePath, JSON.stringify(stored), 'utf8');
   const read = core.showGoal(opts());
   assert.equal(read.status, 'complete', 'the pre-rename word is upgraded, not rejected');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HAND-OVER BIND (bind only when the session has no goal of its own)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const HAND_OVER_PACKET = 'specs/t/001-fixture';
+
+function handOverEnv(extra = {}) {
+  return { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET, ...extra };
+}
+
+test('a session with no goal is bound to the hand-over packet and the brief renders from it', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const outcome = core.bindRelaunchGoal(scopedOpts('pi', 'receiver'), handOverEnv());
+  assert.deepEqual(outcome, { bound: true, reason: 'bound' });
+  const record = core.showGoal(scopedOpts('pi', 'receiver'));
+  assert.equal(record.packetPath, HAND_OVER_PACKET);
+  assert.equal(record.boundBy, 'pi');
+  assert.equal(record.status, 'active');
+  const brief = core.renderGoalBrief({ goal: record, runtimeLabel: 'Pi', workspace: stateDir });
+  assert.ok(brief.includes(`objective: Execute ${HAND_OVER_PACKET}/goal.md.`));
+  assert.ok(!brief.includes('SECRET-SESSION'));
+});
+
+test('a second call changes nothing and a second session binds its own record', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  core.bindRelaunchGoal(scopedOpts('pi', 'receiver'), handOverEnv());
+  const first = core.showGoal(scopedOpts('pi', 'receiver'));
+  const again = core.bindRelaunchGoal(scopedOpts('pi', 'receiver'), handOverEnv());
+  assert.deepEqual(again, { bound: false, reason: 'has-goal' });
+  assert.deepEqual(core.showGoal(scopedOpts('pi', 'receiver')), first);
+  assert.equal(core.bindRelaunchGoal(scopedOpts('pi', 'other'), handOverEnv()).bound, true);
+});
+
+test('an active or paused goal of the session is kept byte for byte', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  for (const pause of [false, true]) {
+    const scoped = scopedOpts('pi', pause ? 'paused-session' : 'active-session');
+    core.setGoal({ objective: 'The operator own goal' }, scoped);
+    if (pause) core.pauseGoal({ reason: 'hold' }, scoped);
+    const path = core.resolveGoalScope(scoped).statePath;
+    const before = readFileSync(path, 'utf8');
+    assert.deepEqual(core.bindRelaunchGoal(scoped, handOverEnv()), { bound: false, reason: 'has-goal' });
+    assert.equal(readFileSync(path, 'utf8'), before);
+  }
+});
+
+test('a goal that was completed or cleared in this session is not replaced by the hand-over', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const done = scopedOpts('pi', 'done-session');
+  core.setGoal({ objective: 'finished work' }, done);
+  core.completeGoal(done);
+  assert.equal(core.showGoal(done), null);
+  assert.deepEqual(core.bindRelaunchGoal(done, handOverEnv()), { bound: false, reason: 'has-goal' });
+  assert.equal(core.showGoal(done), null);
+
+  const cleared = scopedOpts('pi', 'cleared-session');
+  core.setGoal({ objective: 'abandoned work' }, cleared);
+  core.clearGoal(cleared);
+  assert.deepEqual(core.bindRelaunchGoal(cleared, handOverEnv()), { bound: false, reason: 'has-goal' });
+  assert.equal(core.showGoal(cleared), null);
+});
+
+test('a record that cannot be parsed is treated as a goal and left alone', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const scoped = scopedOpts('pi', 'broken-session');
+  const path = core.resolveGoalScope(scoped).statePath;
+  mkdirSync(join(path, '..'), { recursive: true });
+  writeFileSync(path, '{not json', 'utf8');
+  assert.deepEqual(core.bindRelaunchGoal(scoped, handOverEnv()), { bound: false, reason: 'has-goal' });
+  assert.equal(readFileSync(path, 'utf8'), '{not json');
+});
+
+test('nothing is bound without the packet variable, with it empty, or with the switch off', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const scoped = scopedOpts('pi', 'quiet-session');
+  assert.deepEqual(core.bindRelaunchGoal(scoped, {}), { bound: false, reason: 'no-packet' });
+  assert.deepEqual(core.bindRelaunchGoal(scoped, { SESSION_RELAUNCH_GOAL_PACKET: '  ' }), { bound: false, reason: 'no-packet' });
+  for (const off of ['0', 'false', 'off', 'no', 'OFF']) {
+    assert.deepEqual(
+      core.bindRelaunchGoal(scoped, handOverEnv({ SESSION_RELAUNCH_GOAL: off })),
+      { bound: false, reason: 'switched-off' },
+      `SESSION_RELAUNCH_GOAL=${off}`,
+    );
+  }
+  assert.equal(core.showGoal(scoped), null);
+  assert.equal(core.bindRelaunchGoal(scoped, handOverEnv({ SESSION_RELAUNCH_GOAL: '1' })).bound, true);
+});
+
+test('a dispatched child session binds nothing, whatever packet its environment carries', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const child = scopedOpts('pi', 'child-session');
+  assert.deepEqual(core.bindRelaunchGoal(child, handOverEnv({ AI_SESSION_CHILD: '1' })), { bound: false, reason: 'child-session' });
+  assert.equal(core.showGoal(child), null);
+  assert.equal(core.relaunchSessionIsChild({ AI_SESSION_CHILD: '1' }), true);
+  assert.equal(core.relaunchSessionIsChild({ AI_SESSION_CHILD: '0' }), false);
+  assert.equal(core.relaunchSessionIsChild({}), false);
+  assert.equal(core.bindRelaunchGoal(scopedOpts('pi', 'not-a-child'), handOverEnv({ AI_SESSION_CHILD: '0' })).bound, true);
+});
+
+test('the live environment marks a child too, not only an environment passed in', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const previous = { packet: process.env.SESSION_RELAUNCH_GOAL_PACKET, child: process.env.AI_SESSION_CHILD };
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.AI_SESSION_CHILD = '1';
+  try {
+    assert.deepEqual(core.bindRelaunchGoal(scopedOpts('pi', 'live-child')), { bound: false, reason: 'child-session' });
+    assert.equal(core.showGoal(scopedOpts('pi', 'live-child')), null);
+  } finally {
+    for (const [name, value] of [['SESSION_RELAUNCH_GOAL_PACKET', previous.packet], ['AI_SESSION_CHILD', previous.child]]) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+});
+
+test('the switch is also read from the operator flags file, and the environment wins over it', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const flagsFile = join(stateDir, 'hook-flags.env');
+  writeFileSync(flagsFile, 'SESSION_RELAUNCH_GOAL=0\n', 'utf8');
+  const previous = process.env.HOOK_FLAGS_CONFIG;
+  const previousPacket = process.env.SESSION_RELAUNCH_GOAL_PACKET;
+  const previousSwitch = process.env.SESSION_RELAUNCH_GOAL;
+  const previousChild = process.env.AI_SESSION_CHILD;
+  process.env.HOOK_FLAGS_CONFIG = flagsFile;
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  delete process.env.SESSION_RELAUNCH_GOAL;
+  delete process.env.AI_SESSION_CHILD;
+  try {
+    assert.equal(core.relaunchGoalEnabled(), false);
+    assert.deepEqual(core.bindRelaunchGoal(scopedOpts('pi', 'flags-session')), { bound: false, reason: 'switched-off' });
+    process.env.SESSION_RELAUNCH_GOAL = '1';
+    assert.equal(core.relaunchGoalEnabled(), true);
+    assert.equal(core.bindRelaunchGoal(scopedOpts('pi', 'flags-session')).bound, true);
+  } finally {
+    for (const [name, value] of [['HOOK_FLAGS_CONFIG', previous], ['SESSION_RELAUNCH_GOAL_PACKET', previousPacket], ['SESSION_RELAUNCH_GOAL', previousSwitch], ['AI_SESSION_CHILD', previousChild]]) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+});
+
+test('a packet that is missing, outside the repository or without a goal.md binds nothing', () => {
+  const outside = mkdtempSync(join(tmpdir(), 'goal-core-outside-'));
+  try {
+    writeFileSync(join(outside, 'goal.md'), packetGoalDoc(), 'utf8');
+    mkdirSync(join(stateDir, 'specs', 't'), { recursive: true });
+    symlinkSync(outside, join(stateDir, 'specs', 't', 'linked-out'));
+    writePacketGoal('specs/t/goal-link', packetGoalDoc());
+    rmSync(join(stateDir, 'specs', 't', 'goal-link', 'goal.md'));
+    symlinkSync(join(outside, 'goal.md'), join(stateDir, 'specs', 't', 'goal-link', 'goal.md'));
+    mkdirSync(join(stateDir, 'specs', 't', 'empty'), { recursive: true });
+    const bad = [
+      'specs/t/missing',
+      'specs/t/empty',
+      '../outside',
+      'specs/t/../../../outside',
+      outside,
+      join(stateDir, 'specs', 't', 'empty'),
+      'specs/t/linked-out',
+      'specs/t/goal-link',
+      'specs//t',
+      'specs\\t\\001-fixture',
+      'specs/t/001\u0000-fixture',
+    ];
+    bad.forEach((packet, index) => {
+      const scoped = scopedOpts('pi', `bad-${index}`);
+      const outcome = core.bindRelaunchGoal(scoped, { SESSION_RELAUNCH_GOAL_PACKET: packet });
+      assert.equal(outcome.bound, false, `refused: ${JSON.stringify(packet)}`);
+      assert.equal(outcome.reason, 'packet-invalid', JSON.stringify(packet));
+      assert.equal(core.showGoal(scoped), null, JSON.stringify(packet));
+    });
+  } finally {
+    rmSync(outside, { recursive: true, force: true });
+  }
+});
+
+test('the kill switch stops the hand-over bind and the plain bind keeps its own semantics', () => {
+  writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
+  const scoped = scopedOpts('pi', 'killed-session');
+  const previous = process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
+  process.env.OPENCODE_GOAL_PLUGIN_DISABLED = '1';
+  try {
+    assert.deepEqual(core.bindRelaunchGoal(scoped, handOverEnv()), { bound: false, reason: 'plugin-disabled' });
+  } finally {
+    if (previous === undefined) delete process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
+    else process.env.OPENCODE_GOAL_PLUGIN_DISABLED = previous;
+  }
+  assert.equal(core.showGoal(scoped), null);
+  // An explicit bind still replaces, which the hand-over bind must never do.
+  core.setGoal({ objective: 'first' }, scoped);
+  assert.equal(core.bindGoal({ packetPath: HAND_OVER_PACKET }, scoped).mutation, 'rebound');
 });

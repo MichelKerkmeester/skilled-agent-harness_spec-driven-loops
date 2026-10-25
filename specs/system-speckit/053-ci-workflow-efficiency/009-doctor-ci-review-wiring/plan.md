@@ -157,6 +157,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - **The workflow count is read, never hard-coded.** The tree holds 33 files and 44 jobs today; phase 004's D5 removes `hooks-node-tests.yml`, leaving 32 files, and phase 008's D8 merge leaves 25 files on the D5-approved tree or 26 on the D5-rejected one. The report enumerates `glob('.github/workflows/*.yml')` and the acceptance checks the count against the same glob, so the report is correct in every state.
 - **The build is a prerequisite, not an afterthought.** This worktree has no `node_modules`: `derive-command-bridges.cjs` fails with `Cannot find module 'yaml'` and `doctor-phrase-reach.cjs` prints `advisor runtime is not built` until `.skilled` and the advisor runtime are installed and built. T002 runs the same install set the doctor CI job runs (`spec-kit-check.yml:205-215`), then the advisor build.
 - **The R28 probe is a repository-settings write and a stop-for-yes.** It uses a name no workflow reads, reads the value back, deletes it, reads the deletion back, and records all four exit codes. A failed delete is a blocker, not a note; the rollback is the delete itself.
+- **R30 is superseded by ADR-013 (2026-10-25).** The operator ruled "Drop R30, keep the hub." The hub removed the Webflow and Obsidian surfaces and bundles `sk-code-ci` from request vocabulary, so the surface-detection plan in this document is not built. That covers the CI value, the five-value precedence, the hub restatements, the version bumps, the compiled-route refresh and `surface-detection.test.cjs`, and T018 to T025 are closed as superseded. The R30 rows of the affected surfaces, the matrix axes, the algorithm invariant, the testing strategy, the dependency graph and milestone M5 stay as written for the record.
+
+D9: write
 <!-- /ANCHOR:phases -->
 
 ---
@@ -357,7 +360,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-The formal records, with context, constraints, alternatives, five checks and the tasks each choice gates, are `decision-record.md` ADR-001 to ADR-012. This table is the one-screen index.
+The formal records, with context, constraints, alternatives, five checks and the tasks each choice gates, are `decision-record.md` ADR-001 to ADR-013. This table is the one-screen index.
 
 | ADR | Decision | Rationale |
 |-----|----------|-----------|
@@ -366,13 +369,14 @@ The formal records, with context, constraints, alternatives, five checks and the
 | ADR-003 | The report resolves a switch from the job `if:` expression and `gh variable list` | The `if:` line is the durable source; a spec folder is mutable and must not be a runtime dependency |
 | ADR-004 | The newest non-rebuild SHA is excluded by commit-message trailer | A rebuild SHA carries downstream runs, so a workflow-name filter cannot exclude it |
 | ADR-005 | The scaffold creates new files only and refuses a protected name | A template must not replace a protected guard, and the final review names no customize route |
-| ADR-006 | `CI` sits second in the surface precedence, after `SKILLED` | A resolved `.skilled/` path is hub work; a workflow path is the next strongest explicit marker |
+| ADR-006 | Superseded by ADR-013. `CI` sits second in the surface precedence, after `SKILLED` | A resolved `.skilled/` path is hub work; a workflow path is the next strongest explicit marker |
 | ADR-007 | The toggle reads the message-contract prohibition from the workflows README | The rule is documented where a clone reads it, so the command enforces the same sentence |
 | ADR-008 | The report checks the syntactic rule subset and names the prose rules `notChecked` | A parsed prose rule would become a second copy of the packet |
 | ADR-009 | The report is a standalone Node script, not inline router prose | The switch parser and the SHA resolution need a fixture test with a `gh` stub |
 | ADR-010 | The compiled-route bundle proof is an observation, not a build task | Phase 006 owns the surface registration; editing it here would cross the phase boundary |
 | ADR-011 | No ephemeral id enters code, an asset or a test name | A spec id in code goes stale; the durable reason belongs in the comment |
 | ADR-012 | New CI trigger phrases are replaced when they fail, never an existing phrase | A new command must not make an existing doctor route harder to reach |
+| ADR-013 | R30 is superseded, so CI stays a vocabulary-bundled evidence surface and detection stays at `SKILLED > UNKNOWN` | The operator ruled "Drop R30, keep the hub." The hub no longer has the surfaces the frozen text assumed and its contract says detection does not select CI |
 
 ---
 

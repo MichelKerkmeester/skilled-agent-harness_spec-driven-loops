@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: doctor ci review wiring"
-description: "Twelve proposed decisions for the /doctor:ci phase: the R28 probe and its D9 answer, the declined-probe fallback, the switch resolver, the rebuild-SHA exclusion, the create-only scaffold, the CI precedence, the message-contract refusal, the syntactic drift subset, the standalone report script, the compiled-route observation, the no-ephemeral-id rule and the phrase replacement rule."
+description: "Thirteen decisions for the /doctor:ci phase: the R28 probe and its D9 answer, the declined-probe fallback, the switch resolver, the rebuild-SHA exclusion, the create-only scaffold, the CI precedence (superseded), the message-contract refusal, the syntactic drift subset, the standalone report script, the compiled-route observation, the no-ephemeral-id rule, the phrase replacement rule and the supersession of the CI surface value."
 trigger_phrases:
   - "doctor ci review wiring decision record"
   - "ci workflow report decisions"
@@ -10,13 +10,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/053-ci-workflow-efficiency/009-doctor-ci-review-wiring"
-    last_updated_at: "2026-10-23T15:40:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Authored twelve proposed decisions for the planned phase"
-    next_safe_action: "The R28 probe is pre-approved; execute T001, then T002"
-    blockers:
-      - "006-sk-code-ci-surface pending"
-      - "007-workflow-hygiene-on-off-control pending"
+    last_updated_at: "2026-10-25T10:20:00Z"
+    last_updated_by: "markdown"
+    recent_action: "Accepted nine decisions and marked ADR-002 not applied"
+    next_safe_action: "Phase closed; no further work in this phase"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -25,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-23-053-009-doctor-ci-review-wiring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,9 +32,12 @@ _memory:
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> Every record here is `Proposed`. A decision becomes `Accepted` only when the
-> task it gates has run and its check has passed. Each record names the tasks it
-> gates, so a change to a decision names the tasks that must be re-run.
+> Every record here started as `Proposed`. A decision became `Accepted` only
+> when the task it gates had run and its check had passed, or when the operator
+> ruled on it. Each record names the tasks it gates, so a change to a decision
+> names the tasks that must be re-run. ADR-013 supersedes ADR-006 and was
+> accepted on the operator's ruling of 2026-10-25. ADR-002 reads `Not applied`
+> because the probe answered write and no decline occurred.
 
 ---
 
@@ -148,7 +149,7 @@ The toggle route either writes a repository variable or prints the command for t
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Not applied: the operator approved the probe, it answered write and no decline occurred |
 | **Date** | 2026-10-23 |
 | **Deciders** | Operator, maintainer |
 
@@ -248,7 +249,7 @@ The probe changes repository settings, and the operator may decline it. A phase 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -348,7 +349,7 @@ Phase 007 puts a `vars.SKILLED_CI` switch on every job and records the group ass
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -448,7 +449,7 @@ After the rebuild fan-out removal, a rebuild commit's SHA carries no statuses of
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -548,7 +549,7 @@ The command reads the `sk-code-ci` templates and writes a workflow. A template a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded by ADR-013 |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -650,7 +651,7 @@ The command reads the `sk-code-ci` templates and writes a workflow. A template a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -749,7 +750,7 @@ The command reads the `sk-code-ci` templates and writes a workflow. A template a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -848,7 +849,7 @@ The `sk-code-ci` packet holds rules a parser can check and rules it cannot. A re
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -947,7 +948,7 @@ The report parses 33 YAML files, resolves six variables and walks a run list. Th
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -1045,7 +1046,7 @@ A workflow prompt should bundle `sk-code-ci`. `compiled-route.cjs` selects a sur
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -1144,7 +1145,7 @@ The phase's documents cite R28, R29, R30 and D9. A code comment that carries one
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-10-23 |
 | **Deciders** | Maintainer |
 
@@ -1169,7 +1170,7 @@ The doctor family has 18 bridges today. `doctor-phrase-reach.cjs` admits a phras
 
 **We chose**: When a new phrase fails, replace that phrase with a more specific new one and re-run. Never edit an existing phrase or an existing bridge.
 
-**How it works**: The three new routes carry twelve CI-specific phrases. A failure names the phrase; the replacement must still be three or more words and must name a doctor action.
+**How it works**: The three new routes carry ten CI-specific phrases. A failure names the phrase; the replacement must still be three or more words and must name a doctor action.
 <!-- /ANCHOR:adr-012-decision -->
 
 ---
@@ -1227,11 +1228,124 @@ The doctor family has 18 bridges today. `doctor-phrase-reach.cjs` admits a phras
 ### Implementation
 
 **What changes**:
-- The three new routes carry twelve CI-specific phrases.
+- The three new routes carry ten CI-specific phrases.
 - T027 re-runs the probe after each replacement.
 
 **How to roll back**: Delete the three route entries and their activations; the bridge count returns to 18.
 <!-- /ANCHOR:adr-012-impl -->
 <!-- /ANCHOR:adr-012 -->
+
+---
+
+<!-- ANCHOR:adr-013 -->
+## ADR-013: R30 is superseded, so CI stays a vocabulary-bundled evidence surface and detection stays at `SKILLED > UNKNOWN`
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-25 |
+| **Deciders** | Operator (LOGIC-SYNC ruling of 2026-10-25, relayed as "Drop R30, keep the hub."), executor |
+| **Supersedes** | ADR-006 |
+
+---
+
+<!-- ANCHOR:adr-013-context -->
+### Context
+
+R30 was frozen on 2026-10-23. It added `CI` as the fifth `detect_surface_evidence` value, with the precedence `SKILLED > CI > OBSIDIAN > WEBFLOW > UNKNOWN`, so that a workflow diff selects a surface that loads the `sk-code-ci` evidence packet. Tasks T018 to T025 would have carried it out.
+
+The hub changed before those tasks ran. Commit `e3beac65f4` removed the Webflow and Obsidian surfaces. Commit `028bd0f5cd` added `sk-code-ci` as an evidence surface that the hub bundles from request vocabulary. Three facts now contradict the frozen text, and all three were observed on 2026-10-25:
+
+- `.skilled/skills/sk-code/SKILL.md:138` says `sk-code-ci` is the one surface that stack detection does not select.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md:36` reads `SKILLED > UNKNOWN`, so four of the five anchors in T018 and the string `SKILLED > CI > OBSIDIAN > WEBFLOW > UNKNOWN` no longer exist in the tree.
+- `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review this github actions workflow diff"` returns the targets `sk-code-review` (workflow) then `sk-code-ci` (surface), with `selectionKind` `surfaceBundle`.
+
+T018 to T025 were recorded as blocked with nothing edited, and the contradiction went to the operator as a LOGIC-SYNC question. The operator answered "Drop R30, keep the hub."
+
+### Constraints
+
+- No sk-code file changes in this phase.
+- The hub's contract and its restatements must keep agreeing with each other, so this phase cannot add a detection value that the hub says it does not select.
+- The goal that a workflow review loads the `sk-code-ci` evidence has to stay observable and not assumed.
+<!-- /ANCHOR:adr-013-context -->
+
+---
+
+<!-- ANCHOR:adr-013-decision -->
+### Decision
+
+**We chose**: Supersede R30 and ADR-006, and leave the hub as it stands. The `sk-code-ci` evidence reaches a workflow review through request vocabulary bundling, and surface detection keeps its two values.
+
+**How it works**: No sk-code file is edited. T018 to T025 close as superseded. REQ-006, REQ-007, SC-005 and SC-007 in `spec.md` are marked superseded, and so are AC-012, AC-013, AC-014, AC-018 and AC-019 in `acceptance-criteria.md`. The compiled-route observation (T026 and AC-022) stays as the proof that a workflow review gets the CI evidence.
+
+**Known limitation**: The review router's own surface label, the value `detect_surface_evidence` returns, reads `UNKNOWN` for a workflow diff. This was observed on 2026-10-25 by running the inline block from `sk-code-review/SKILL.md` on `.github/workflows/spec-kit-check.yml`. It is recorded as a limitation and not as a task, because the bundle does not depend on that label.
+<!-- /ANCHOR:adr-013-decision -->
+
+---
+
+<!-- ANCHOR:adr-013-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Drop R30 and keep the hub (chosen)** | Matches the hub's own contract at `SKILL.md:138`, edits no sk-code file and the evidence already loads | The review router's surface label reads UNKNOWN for a workflow diff | 9/10 |
+| Amend R30 to `SKILLED > CI > UNKNOWN` | The surface label would read CI | Contradicts `SKILL.md:138`, needs edits to the contract, the router, the hub docs, the versions, the changelogs and the compiled manifest, and gives the evidence two ways in | 4/10 |
+| Keep R30 as written | The frozen text is honored to the letter | Needs the two deleted surfaces back to satisfy the precedence string | 1/10 |
+
+**Why this one**: The hub already delivers what R30 was for, by a path its own contract names. A second path would make the hub contradict itself.
+<!-- /ANCHOR:adr-013-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-013-consequences -->
+### Consequences
+
+**What improves**:
+- The phase no longer edits a hub that another packet owns.
+- The spec says what the hub says.
+- Six doc version bumps, two changelog entries, a manifest refresh and a new test file drop out of the phase.
+
+**What it costs**:
+- The review router's surface label reads UNKNOWN for a workflow diff. Mitigation: `implementation-summary.md` records it as a known limitation, and a later hub change can decide whether the label should change.
+- The five-value regression test is not written. Mitigation: the existing sk-code test glob and drift guards still run in the final gate.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later hub change drops the vocabulary bundling | M | `scratch/compiled-route.md` records the route output and its policy hash, so a rerun shows the change |
+| A reader takes the UNKNOWN label for a defect of this phase | L | The limitation is named here and in `implementation-summary.md` |
+<!-- /ANCHOR:adr-013-consequences -->
+
+---
+
+<!-- ANCHOR:adr-013-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Three hub facts contradict the frozen text and eight tasks were blocked on it |
+| 2 | **Beyond Local Maxima?** | PASS | An amendment and the frozen text were both weighed |
+| 3 | **Sufficient?** | PASS | A supersession changes only spec text, and the goal is met by observation |
+| 4 | **Fits Goal?** | PASS | The goal asks for a review with CI evidence, and the compiled route shows it |
+| 5 | **Open Horizons?** | PASS | A later packet can still add a detection value by amending the hub contract first |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-013-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-013-impl -->
+### Implementation
+
+**What changes**:
+- `decision-record.md` gains this record, and ADR-006 reads `Superseded by ADR-013`.
+- `spec.md`, `acceptance-criteria.md`, `tasks.md`, `goal.md` and `implementation-summary.md` mark the R30 items superseded without deleting their text.
+
+**How to roll back**: Revert the closure documentation commit. The R30 tasks return to blocked, and any later attempt starts from `stack-detection.md` as it reads then and not from the frozen text.
+<!-- /ANCHOR:adr-013-impl -->
+<!-- /ANCHOR:adr-013 -->
 
 ---

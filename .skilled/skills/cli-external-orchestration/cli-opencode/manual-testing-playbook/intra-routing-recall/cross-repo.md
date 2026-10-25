@@ -8,12 +8,12 @@ expected_intent: CROSS_REPO
 expected_resources: 
   - references/cli-reference.md
   - references/opencode-tools.md
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CO-R05: Cross-repo routing
 
-**Version note.** This scenario's routing prompt targets OpenCode 1 (1.19.3): it pins the cross-repo checkout with `--dir`. OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the target directory instead: `cd <path> && opencode2 run ...` (see the [install reference](../../references/install-and-versions.md)).
+**Version note.** This scenario's routing prompt targets OpenCode 1 (1.19.3): it pins the cross-repo checkout with `--dir`. OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the target directory instead: `cd <path> && opencode run ...` (see the [install reference](../../references/install-and-versions.md)).
 
 This document captures the routing-recall contract, execution process, source anchors, and metadata for `CO-R05`.
 
@@ -43,7 +43,7 @@ reference set or none at all.
 Run the same task in another repository by pointing --dir at that cross-repo checkout. (OpenCode 1 only)
 ```
 
-On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twin has no `--dir`, so it starts in the target directory instead: `cd <path> && opencode2 run ...` (see the [install reference](../../references/install-and-versions.md)).
+On OpenCode 1, `--dir` pins the cross-repo checkout. The OpenCode 2 (2.0.32) twin has no `--dir`, so it starts in the target directory instead: `cd <path> && opencode run ...` (see the [install reference](../../references/install-and-versions.md)).
 
 - Expected execution process: the hub scores the prompt against every `INTENT_SIGNALS` keyword list and resolves `CROSS_REPO` at its documented weight, then conditional-loads `RESOURCE_MAP["CROSS_REPO"]`.
 - Expected signals: SKILL.md's `INTENT_SIGNALS["CROSS_REPO"]` entry exists with its documented weight and keyword list, and `RESOURCE_MAP["CROSS_REPO"]` names `references/cli-reference.md` and `references/opencode-tools.md`. Both resource paths resolve on disk.

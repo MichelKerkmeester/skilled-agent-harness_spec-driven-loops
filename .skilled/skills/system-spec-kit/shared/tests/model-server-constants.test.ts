@@ -6,7 +6,7 @@
 //
 // The hf-local client and the process that binds the model-server socket live
 // in different packages and cannot import each other, so the socket directory
-// and the launcher's owner-lease file name are declared twice. This test is the
+// and the launcher's owner-lease file name and supervision field are declared twice. This test is the
 // only thing that keeps the two declarations equal: a drift here would make the
 // client wait on a socket nobody binds, silently.
 
@@ -38,6 +38,12 @@ const leaseClient = literal(client, 'ADVISOR_OWNER_LEASE_FILE_NAME');
 const leaseWriter = literal(launcher, 'OWNER_LEASE_FILE_NAME');
 if (leaseClient !== leaseWriter) {
   throw new Error(`owner lease file name drifted: client ${leaseClient} vs launcher ${leaseWriter}`);
+}
+
+const fieldClient = literal(client, 'ADVISOR_LEASE_SUPERVISION_FIELD');
+const fieldWriter = literal(launcher, 'OWNER_LEASE_SUPERVISION_FIELD');
+if (fieldClient !== fieldWriter) {
+  throw new Error(`owner lease supervision field drifted: client ${fieldClient} vs launcher ${fieldWriter}`);
 }
 
 process.stdout.write('model-server constants agree across packages\n');

@@ -99,6 +99,81 @@ function testGateExitsTwoOnBadInput() {
   assert.equal(code, 2);
 }
 
+// A private skill belongs to one checkout, so the all-roots listing never names it.
+function testListSkillRootsSkipsPrivateSkills() {
+  const tmpSkills = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'derived-roots-'));
+  try {
+    for (const name of ['alpha', 'local-private']) {
+      fs.mkdirSync(path.join(tmpSkills, name));
+      fs.writeFileSync(path.join(tmpSkills, name, 'graph-metadata.json'), '{}\n');
+    }
+    const roots = regen.listSkillRoots(tmpSkills).map((dir) => path.basename(dir));
+    assert.deepEqual(roots, ['alpha'], 'a local-* skill must never be listed for regeneration');
+  } finally {
+    fs.rmSync(tmpSkills, { recursive: true, force: true });
+  }
+}
+
+// An explicit --root must not reopen a private skill that --all skips: the run exits non-zero and writes nothing.
+function testExplicitRootRefusesPrivateSkill() {
+  const { spawnSync } = require('node:child_process');
+  const tmpSkills = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'derived-root-'));
+  try {
+    const privateDir = path.join(tmpSkills, 'local-private');
+    fs.mkdirSync(privateDir);
+    const metaPath = path.join(privateDir, 'graph-metadata.json');
+    fs.writeFileSync(metaPath, '{"derived":{}}\n');
+    const linkDir = path.join(tmpSkills, 'neutral-name');
+    fs.symlinkSync(privateDir, linkDir);
+    const script = path.join(__dirname, '..', 'regenerate-skill-derived.cjs');
+    for (const target of [privateDir, linkDir]) {
+      const result = spawnSync(process.execPath, [script, '--root', target, '--write'], { encoding: 'utf8' });
+      assert.equal(result.status, 2, 'a private root must exit non-zero');
+      assert.match(result.stderr, /private skill root/);
+      assert.equal(fs.readFileSync(metaPath, 'utf8'), '{"derived":{}}\n', 'a refused root must not be written');
+    }
+    assert.equal(regen.isPrivateSkillPath(SK_GIT_DIR), false, 'a tracked skill is not private');
+
+    // A case-insensitive disk resolves a differently cased name to the same private directory.
+    const shoutedDir = path.join(tmpSkills, 'LOCAL-Shouted');
+    fs.mkdirSync(shoutedDir);
+    const shoutedMeta = path.join(shoutedDir, 'graph-metadata.json');
+    fs.writeFileSync(shoutedMeta, '{"derived":{}}\n');
+    assert.equal(regen.isPrivateSkillPath(shoutedDir), true, 'the local- prefix must match in any case');
+    const shoutedResult = spawnSync(process.execPath, [script, '--root', shoutedDir, '--write'], { encoding: 'utf8' });
+    assert.equal(shoutedResult.status, 2, 'a differently cased private root must exit non-zero');
+    assert.match(shoutedResult.stderr, /private skill root/);
+    assert.equal(fs.readFileSync(shoutedMeta, 'utf8'), '{"derived":{}}\n', 'a refused root must not be written');
+  } finally {
+    fs.rmSync(tmpSkills, { recursive: true, force: true });
+  }
+}
+
+// The router-vocabulary writer rewrites hub metadata, so it must not open a private hub.
+// The script resolves the skills root from its own location, so it runs from a copy inside a temp tree.
+function testRouterIntentSignalsSkipsPrivateHubs() {
+  const { spawnSync } = require('node:child_process');
+  const tmpRepo = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'router-signals-'));
+  try {
+    const scriptDir = path.join(tmpRepo, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
+    fs.mkdirSync(scriptDir, { recursive: true });
+    const script = path.join(scriptDir, 'generate-router-intent-signals.cjs');
+    fs.copyFileSync(path.join(__dirname, '..', 'generate-router-intent-signals.cjs'), script);
+    for (const name of ['alpha-hub', 'local-hub']) {
+      const hubDir = path.join(tmpRepo, '.skilled', 'skills', name);
+      fs.mkdirSync(hubDir, { recursive: true });
+      fs.writeFileSync(path.join(hubDir, 'ROUTER.md'), 'INTENT_SIGNALS = {\n  "declared phrase here": 1\n}\n');
+      fs.writeFileSync(path.join(hubDir, 'hub-router.json'), '{}\n');
+      fs.writeFileSync(path.join(hubDir, 'graph-metadata.json'), JSON.stringify({ intent_signals: [] }));
+    }
+    const result = spawnSync(process.execPath, [script, '--check', '--json'], { encoding: 'utf8' });
+    const hubs = JSON.parse(result.stdout).map((entry) => entry.hub);
+    assert.deepEqual(hubs, ['alpha-hub'], 'a local-* hub must never be checked or written');
+  } finally {
+    fs.rmSync(tmpRepo, { recursive: true, force: true });
+  }
+}
+
 testValidRootIsNoOp();
 testAuthoredFieldsPreservedThroughRepair();
 testDeadKeyFilePrunedAndFlaggedStale();
@@ -106,5 +181,8 @@ testEmptiedRequiredArrayErrors();
 testGatePassesCleanFleet();
 testGateFailsOnStaleRoot();
 testGateExitsTwoOnBadInput();
+testListSkillRootsSkipsPrivateSkills();
+testExplicitRootRefusesPrivateSkill();
+testRouterIntentSignalsSkipsPrivateHubs();
 
 console.log('[sk-doc] skill-derived regenerator + freshness gate coverage passed');

@@ -1,0 +1,5 @@
+Billing or credits exhausted: HTTP 402: You've reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for the window to roll over — resets in 17 hours. Enable pay-as-you-go overflow in your DevPass dashboard to keep going past the daily pace.
+
+Custom reported that billing, credits, or account entitlement is exhausted for deepseek-v4.1-flash-1017.
+Add credits or update billing with that provider, then retry.
+You can switch providers temporarily with /model <model> --provider <provider>.

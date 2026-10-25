@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -73,7 +73,7 @@ opencode run \
 
 ```bash
 # OpenCode 2
-cd "<repo-root>" && opencode2 run --standalone \
+cd "<repo-root>" && opencode run --standalone \
   -m "<provider/model>#<effort>" \
   --agent general \
   --format json \
@@ -138,7 +138,7 @@ git worktree remove --force /Users/<you>/MEGA/Development/Code_Environment/<shor
 
 ```bash
 # OpenCode 2
-cd /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review && opencode2 run --standalone \
+cd /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
   "<prompt>" \

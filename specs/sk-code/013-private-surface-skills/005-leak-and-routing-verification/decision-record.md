@@ -456,11 +456,11 @@ Two checkouts route work through this hub. The operator checkout holds two symli
 <!-- ANCHOR:adr-005-context -->
 ### Context
 
-The removal commit preserves its parents, so every removed file stays reachable: 1814 reachable objects still carry an old path. Any of the 164 tags that points at an older tree preserves another copy, and a release archive built from such a tag preserves a third. None of that is measured today, and a reader who sees "removed" may assume the content is gone.
+The removal commit preserves its parents, so every removed file stays reachable: 1681 reachable objects still carry an old path (measured 2026-10-24, the 1814 first written was not reproduced). Any of the 157 remote tags that points at an older tree preserves another copy, and a release archive built from such a tag preserves a third. None of that is measured today, and a reader who sees "removed" may assume the content is gone.
 
 ### Constraints
 
-- Rewriting history changes every commit sha, which breaks 164 tags and every citation in `specs/`.
+- Rewriting history changes every commit sha, which breaks 157 remote tags (164 in the operator checkout, whose 7 extra tags are local-only) and every citation in `specs/`.
 - A force push is irreversible for anyone who already fetched.
 - The packet's scope excludes git history by the parent spec.
 <!-- /ANCHOR:adr-005-context -->
@@ -483,7 +483,7 @@ The removal commit preserves its parents, so every removed file stays reachable:
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Read-only inventory** | States the real exposure; changes nothing | Leaves the content reachable | 8/10 |
-| `filter-repo` inside this phase | Removes the content | Rewrites every sha, breaks 164 tags and every spec citation | 1/10 |
+| `filter-repo` inside this phase | Removes the content | Rewrites every sha, breaks 157 remote tags and every spec citation | 1/10 |
 | Squash and force push | Removes the content | Same breakage, plus a lost history | 1/10 |
 | Say nothing | No work | A reader assumes a scrub that never happened | 2/10 |
 

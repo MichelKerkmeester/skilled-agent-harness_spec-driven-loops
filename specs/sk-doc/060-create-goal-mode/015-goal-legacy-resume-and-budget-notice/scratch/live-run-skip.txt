@@ -1,0 +1,8 @@
+LIVE RUN: SKIP (provider quota). Recorded 2026-10-24 on OpenCode v2.1.4.
+Pre-flight: opencode models --standalone lists llmgateway/deepseek-v4.1-flash-1017 (run from a scratch dir with MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1; from the repo root without those two variables the same command exited 1 with 'ServiceUnavailableError: Location plugins did not finish activating').
+Command (scratch dir with a one-line re-export of the plugin; goal state in a scratch dir via OPENCODE_GOAL_STATE_DIR):
+  MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 OPENCODE_GOAL_AUTONOMY=active OPENCODE_GOAL_STATE_DIR=<scratch>/state-on opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<call opencode_goal set ...>" </dev/null
+Exit status: exit=1
+No goal record was created (state dir empty), so nothing is left active. No other model was substituted without approval.
+Output (--format json), one event:
+{"type":"error","timestamp":1792878634079,"sessionID":"ses_e901b1fb1ffeo3Nf7L3Vosv8Vk","error":{"type":"provider.quota","message":"You've reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for the window to roll over — resets in 17 hours. Enable pay-as-you-go overflow in your DevPass dashboard to keep going past the daily pace.","status":402,"response":{"body":"{\"error\":{\"message\":\"You've reached the daily pacing allowance on the pro plan. Upgrade for a higher daily allowance, or wait for the window to roll over — resets in 17 hours. Enable pay-as-you-go overflow in your DevPass dashboard to keep going past the daily pace.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"billing_error\"}}"}}}

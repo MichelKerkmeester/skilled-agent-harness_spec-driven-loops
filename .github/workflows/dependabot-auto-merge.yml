@@ -8,14 +8,21 @@ on:
     types: [opened, reopened, synchronize]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
-  auto-merge:
-    name: Auto-merge Dependabot security patch updates
+  metadata:
+    name: Read the Dependabot update metadata
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event.pull_request.user.login == 'dependabot[bot]'
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      package-ecosystem: ${{ steps.meta.outputs.package-ecosystem }}
+      dependency-group: ${{ steps.meta.outputs.dependency-group }}
+      update-type: ${{ steps.meta.outputs.update-type }}
     steps:
       - name: Read the update metadata
         id: meta
@@ -23,15 +30,26 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+  auto-merge:
+    name: Auto-merge Dependabot security patch updates
+    needs: metadata
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # This job holds the only write scopes in the workflow and runs no
+    # repository code: the metadata job reads the update, this one only merges.
+    permissions:
+      contents: write
+      pull-requests: write
+    if: >-
+      needs.metadata.outputs.package-ecosystem == 'npm_and_yarn'
+      && (needs.metadata.outputs.dependency-group == 'npm-security' || needs.metadata.outputs.dependency-group == '')
+      && needs.metadata.outputs.update-type == 'version-update:semver-patch'
+    steps:
       # A fix for one package in one directory arrives ungrouped rather than in
       # npm-security. It is still a security update: every npm version update
       # matches the catch-all npm-runtime group, so only a security fix lands
       # outside both groups.
       - name: Enable auto-merge for an npm security patch
-        if: >-
-          steps.meta.outputs.package-ecosystem == 'npm_and_yarn'
-          && (steps.meta.outputs.dependency-group == 'npm-security' || steps.meta.outputs.dependency-group == '')
-          && steps.meta.outputs.update-type == 'version-update:semver-patch'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}

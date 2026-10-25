@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "specs/sk-code/013-private-surface-skills/002-hub-surface-removal"
-    last_updated_at: "2026-10-23T12:40:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-24T11:01:04.139Z"
+    last_updated_by: "codex"
+    recent_action: "Updated phase progress and current acceptance evidence."
+    next_safe_action: "SWE-2 review (T105), validate (T106), commit and push (T108)."
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deepseek-v4.1-flash-1017-002-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -81,11 +81,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | `tasks.md` holds 108 tasks in execution order |
-
+| Phase opened | Done | tasks.md holds 108 tasks in execution order |
+| Setup, baselines and deletions | Done | T001-T004 evidence records hook trust, baselines and 226 deleted paths |
+| Registries and leaf manifest | Done | T005-T014 evidence records three modes, one surface and a clean leaf manifest |
+| Router and hub documents | Done | T015-T043 applied, including T039 |
+| Consumers, tests and generated artifacts | Done | T044-T095 evidence is recorded; T081 and T094 use D6-scoped corrected scans |
+| Verification and handoff | In progress (~90%) | T039-T104 and T107 applied; T103 partial; T105, T106 and T108 open
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | No task has run |
+| T103 partial | The advisor returns sk-code first, but the compiled route remains the legacy sentinel pending the T108 manifest refresh |
+| D6 proof drift | T081 and T094 retain five mcp-obsidian records; corrected scans find no removed sk-code paths |
+| T104 scope | One z_archive diff is an unrelated cli-external-orchestration manifest; the phase-scoped result is 20, 0 and 0 |
+| Work uncommitted | T108 has not run; the phase has not been committed or pushed |
 <!-- /ANCHOR:log -->

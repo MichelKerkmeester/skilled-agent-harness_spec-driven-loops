@@ -9,6 +9,7 @@ import { basename, dirname, join, resolve } from 'node:path';
 import type { SkillMetadataRecord } from './types.js';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
+const PRIVATE_SKILL_PREFIX = 'local-';
 
 // ───────────────────────────────────────────────────────────────
 // 1. DISCOVERY
@@ -32,6 +33,11 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
     const entries = readdirSync(currentDir, { withFileTypes: true });
     for (const entry of entries) {
       const entryPath = join(currentDir, entry.name);
+      // A private skill belongs to one checkout, and an applied edge would write
+      // its name into a tracked skill's metadata.
+      if (currentDir === skillDir && entry.name.startsWith(PRIVATE_SKILL_PREFIX)) {
+        continue;
+      }
       if (entry.isDirectory()) {
         stack.push(entryPath);
         continue;

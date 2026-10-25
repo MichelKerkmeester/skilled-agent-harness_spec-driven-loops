@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode dual-version dispatch"
   - "resolveOpencodeBinary version probe"
   - "OpenCode 1 and OpenCode 2 lineage argv"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # OpenCode Dual-Version Dispatch (cli-opencode)
@@ -15,7 +15,7 @@ version: 1.0.1.0
 
 A `cli-opencode` lineage runs whichever OpenCode major version the machine has installed. The runtime resolves the binary, parses its `--version` output into a version family, and composes the command line from that family, so one lineage kind reaches either generation without a per-machine branch in the caller.
 
-Two binaries can coexist. OpenCode 1 installs as `opencode` and OpenCode 2 installs as `opencode2`, and the family always comes from the parsed probe output. A binary named `opencode` that reports a 2.x version is dispatched with the OpenCode 2 command line, and a binary named `opencode2` that reports a 1.x version is dispatched with the OpenCode 1 command line. Install, side-by-side setup, the capability delta, and the irreducible gaps live in [`install-and-versions.md`](../../cli-opencode/references/install-and-versions.md).
+Two binaries can coexist. On the recommended side-by-side layout OpenCode 2 answers to `opencode` and OpenCode 1 to `opencode1`, reached through `OPENCODE_BIN`; an `opencode2` that a plain v2 install leaves on `PATH` is still accepted. The family always comes from the parsed probe output. A binary named `opencode` that reports a 2.x version is dispatched with the OpenCode 2 command line, and a binary named `opencode2` that reports a 1.x version is dispatched with the OpenCode 1 command line. Install, side-by-side setup, the capability delta, and the irreducible gaps live in [`install-and-versions.md`](../../cli-opencode/references/install-and-versions.md).
 
 ---
 

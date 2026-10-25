@@ -482,16 +482,9 @@ function selectIntents(scores) {
   return scores.filter((s) => top - s.score <= AMBIGUITY_DELTA).map((s) => s.intent);
 }
 
-// Which surface a resource belongs to, by its on-disk path prefix. Webflow and
-// OpenCode resources live under their code-<surface>/ packet folders, so the
-// prefix IS the surface. Motion.dev is a cross-stack overlay folded into
-// sk-code-webflow/{references,assets}/animation/; it is matched FIRST so it stays a
-// distinct overlay surface (kept regardless of the detected code surface) rather
-// than collapsing into WEBFLOW's broader sk-code-webflow/ prefix. Everything else
-// (universal refs, the detection/router preamble) is surface-agnostic.
+// Which surface a resource belongs to, by its on-disk path prefix.
+// The SKILLED prefix identifies system-code resources; other resources stay universal.
 const SURFACE_PREFIXES = {
-  MOTION: ['sk-code-webflow/references/animation/', 'sk-code-webflow/assets/animation/'],
-  WEBFLOW: ['sk-code-webflow/'],
   SKILLED: ['sk-code-skilled/'],
 };
 function resourceSurface(r) {
@@ -501,20 +494,15 @@ function resourceSurface(r) {
   return 'UNIVERSAL';
 }
 // Detect the task's code surface from path / extension / marker signals, mirroring
-// the prose stack-detection contract: OpenCode system code wins, then Webflow
-// markers, else UNKNOWN. A task that names both is MIXED (cross-surface).
+// the prose stack-detection contract: OpenCode system code wins.
 function detectSurface(taskLower) {
   const opencode = /\.opencode\/|\bskill\.md\b|\.cjs\b|\.mjs\b|\.tsx?\b|\.py\b|\.sh\b|\.rs\b|\bspec-folder\b|\bargparse\b|graph-metadata/.test(taskLower);
-  const webflow = /src\/2_javascript|\bwebflow\b|\.webflow\b|--vw-/.test(taskLower);
-  if (opencode && webflow) return 'MIXED';
   if (opencode) return 'SKILLED';
-  if (webflow) return 'WEBFLOW';
   return 'UNKNOWN';
 }
 // OpenCode-only language sub-detection (mirrors SKILL.md §2). A `.opencode/` task
 // is one language, so it needs only that language's guides — not every language
-// folder. Webflow deliberately has no sub-detection (a frontend task spans
-// css + html + js together).
+// folder. The surface deliberately has no sub-detection.
 const SKILLED_LANGUAGES = ['typescript', 'python', 'shell', 'config', 'javascript', 'rust'];
 // Returns the SET of languages a task touches. An interop parity task legitimately
 // touches more than one (e.g. a napi-rs/WASM sidecar over a TypeScript backend must
@@ -584,15 +572,14 @@ function registryPacketRoots(skillRoot) {
 }
 
 // Assemble each selected intent's resources, then apply surface-aware slicing
-// when the map uses a per-surface layout (sk-code): keep the universal tier +
-// Motion.dev overlay + only the DETECTED surface's slice, drop the other
-// surface's resources (the documented over-routing source). The default
+// when the map uses a surface layout (sk-code): keep the universal tier and the
+// DETECTED surface's slice. The default
 // resource joins the union only under legacy (undeclared) semantics: a router
 // that declares fallback-only treats its default as a defer-time suggestion,
 // never an assembled resource — a scored route carries exactly its intents'
 // declared resources and a zero-score route carries none. Assets are
-// deferred — never the routing gold. A MIXED task keeps both surfaces; UNKNOWN
-// falls back to the universal + Motion tier only. Existence is checked against the
+// deferred — never the routing gold. UNKNOWN falls back to the universal tier
+// only. Existence is checked against the
 // skill root plus any extra roots (a hub's packet roots), since a hub's surface
 // paths resolve under a packet rather than the hub root.
 function assembleResources({ skillRoot, taskLower, intents, router, extraRoots = [] }) {
@@ -607,8 +594,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
   let resources = [...resourceSet];
 
   const mapResources = Object.values(router.resourceMap).flat();
-  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('sk-code-webflow/references/'))
-    && mapResources.some((r) => r.startsWith('sk-code-skilled/references/'));
+  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('sk-code-skilled/references/'));
   let surface;
   if (hasSurfaceLayout) {
     surface = detectSurface(taskLower);
@@ -620,8 +606,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
     resources = resources.filter((r) => {
       if (r.includes('/assets/')) return false;
       const rs = resourceSurface(r);
-      if (rs === 'UNIVERSAL' || rs === 'MOTION') return true;
-      if (surface === 'MIXED') return true;
+      if (rs === 'UNIVERSAL') return true;
       if (surface === 'UNKNOWN') return false;
       if (rs !== surface) return false;
       if (skilledLangs.size) {

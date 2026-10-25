@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
+  "spec_folder": "hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal rebind live proof",
+      "phase 28 goal rebind live proof and docs",
+      "goal survives hand-over live test",
+      "goal persistence playbook",
+      "goal rebind live proof plan",
+      "goal rebind live proof tasks",
+      "goal rebind live proof acceptance criteria",
+      "goal rebind live proof decision",
+      "devin hop waived",
+      "goal rebind live proof implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "rebind",
+      "live",
+      "proof",
+      "phase",
+      "docs",
+      "survives",
+      "hand-over",
+      "test",
+      "persistence",
+      "playbook",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/opencode-process-tree.txt",
+      "scratch/availability/hermes-probe.txt",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+      "specs/hooks/023-session-relaunch-loop/spec.md",
+      ".opencode/cli.json",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/hooks/README.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-process-tree.txt",
+        "kind": "file",
+        "path": "scratch/opencode-process-tree.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hermes-probe.txt",
+        "kind": "file",
+        "path": "scratch/availability/hermes-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-pi-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-command-runtimes.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-loop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli.json",
+        "kind": "config",
+        "path": ".opencode/cli.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The goal-persistence work is only proven where a unit test can reach",
+    "created_at": "2026-10-24T19:03:14Z",
+    "last_save_at": "2026-10-25T07:38:41.824Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d53433ef29f72236c3dfc95f69d0fc86a94b67677ffce1748ae44cfad04e7fe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6ca0428d4c51fb04e1987b962e4764b7f3e2795af9d8fe641acd11961152aa33",
+      "plan.md": "92105af0fa418b5f296fe378b6e9d2a16bcbf40307880a6e58cceb5d1c8580db",
+      "tasks.md": "44bdd9632d431432c3b85ee1f3dc2d195352bf1170af03fb80e656aeab163c18",
+      "decision-record.md": "d8fb2a92497b1570eadb488ab9ca5a0487a475bb3818cd9449f93f30202852f4",
+      "implementation-summary.md": "4e93aa8f4a415e3339267ae7fc0d9e7faf5a8ad0e989db8c833f60b357e41106"
+    },
+    "last_active_at": null
+  }
+}

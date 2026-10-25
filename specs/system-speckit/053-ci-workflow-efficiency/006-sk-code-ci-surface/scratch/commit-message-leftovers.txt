@@ -1,0 +1,11 @@
+docs(sk-code): bring the CI job shape rules to the current workflows
+
+The job shape rules still described the workflows as they stood before the
+timeout, permissions and switch work, and they named a workflow that has since
+been merged away. Every "Today" count and table now matches the current tree.
+
+Each figure comes from a parse of the workflow files, with the file and line
+behind it. The rules and formulas are unchanged, and the document edition goes
+up one patch step because its body changed.
+
+Spec: system-speckit/053-ci-workflow-efficiency/006-sk-code-ci-surface

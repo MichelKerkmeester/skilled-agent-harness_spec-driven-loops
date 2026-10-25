@@ -8,7 +8,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 // Pinned force-local regime, set before the scorer import because the scorer
@@ -142,7 +142,22 @@ function stratifiedHoldout(rows: readonly CorpusRow[], target = 40): CorpusRow[]
   return selected.slice(0, target);
 }
 
+// The derived lane discounts each skill by its age at scoring time, so the pinned
+// counts below move with the calendar when the scorer reads the real clock. Score
+// at the instant they were derived at, which keeps a later day from turning the
+// gate red with no routing change.
+const SCORING_INSTANT = '2026-10-03T00:00:00Z';
+
 describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => {
+  beforeAll(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(SCORING_INSTANT));
+  });
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
   // drift: verified against shipped behavior during Unit H
   it('preserves all Python-correct corpus decisions while improving accuracy', () => {
     const rows = loadCorpus();

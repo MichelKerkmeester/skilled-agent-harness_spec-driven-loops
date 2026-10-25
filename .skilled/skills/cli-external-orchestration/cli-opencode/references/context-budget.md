@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode truncation marker"
 importance_tier: normal
 contextType: general
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # cli-opencode Context Budget Mirror
@@ -63,7 +63,7 @@ The active cli-opencode small-model set is registry-driven, not duplicated here.
 
 | Model | Context window | cli-opencode note |
 | --- | ---: | --- |
-| `llmgateway/deepseek-v4.1-flash-1017` (both versions) | Not verified | Default cli-opencode model on both OpenCode versions. The window is not re-verified on this install. Confirm via `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2, before budget-sensitive dispatches. |
+| `llmgateway/deepseek-v4.1-flash-1017` (both versions) | Not verified | Default cli-opencode model on both OpenCode versions. The window is not re-verified on this install. Confirm via `opencode models llmgateway` on OpenCode 1, or `opencode models --standalone` filtered for `llmgateway/` on OpenCode 2, before budget-sensitive dispatches. |
 | `kimi-k2.7-code` | 262,144 | Largest active window (256k via `kimi-for-coding/k2p7`, supersedes the retired `kimi-k2.6`). It is useful for long-file inspection and still follows the budget discipline. At `--variant high` (OpenCode 1 only) cap reads + budget 1200s+ (over-explores broad scopes, observed 2026-06-17). On OpenCode 2 the equivalent is `-m provider/model#high`. The over-exploration behavior is unverified on OpenCode 2.0.32. |
 | `qwen3.6` | 32,000 | Smallest active cli-opencode window. It needs the strictest scope and file anchors. |
 
