@@ -136,6 +136,68 @@ function readClaudeFill(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {})
   return { fillTokens, model: lastAssistant.message?.model ?? null };
 }
 
+// A model or effort comes back as a trimmed string, or '' when the entry holds none, so a
+// caller can tell "not proven" from a value without checking types.
+function settingText(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+/**
+ * Read the model and effort of the most recent main-chain Claude assistant turn.
+ *
+ * @param {string} transcriptPath - Claude JSONL transcript path.
+ * @param {{tailBytes?: number}} [options] - Maximum transcript bytes to read.
+ * @returns {{model: string, effort: string}|null} The values, or null when no assistant
+ * entry exists or the transcript cannot be read.
+ */
+function readClaudeSettings(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
+  let lastAssistant;
+  try {
+    lastAssistant = latestTailEntry(
+      transcriptPath,
+      tailBytes,
+      (entry) => entry.type === 'assistant' && entry.isSidechain !== true,
+    );
+  } catch {
+    return null;
+  }
+  if (lastAssistant === null) return null;
+  // The session's own request names the model it asked for, which is what a relaunch has
+  // to ask for too. The response model is the fallback, and a synthetic marker is no model.
+  const model = settingText(lastAssistant.requestedModel)
+    || settingText(lastAssistant.message?.model);
+  return {
+    model: model.startsWith('<') ? '' : model,
+    effort: settingText(lastAssistant.effort),
+  };
+}
+
+/**
+ * Read the model and effort of the latest Codex turn from a rollout tail.
+ *
+ * @param {string} rolloutPath - Codex rollout JSONL path.
+ * @param {{tailBytes?: number}} [options] - Maximum rollout bytes to read.
+ * @returns {{model: string, effort: string}|null} The values, or null when the rollout
+ * holds no turn context or cannot be read.
+ */
+function readCodexSettings(rolloutPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
+  let latestTurn;
+  try {
+    latestTurn = latestTailEntry(
+      rolloutPath,
+      tailBytes,
+      (entry) => entry.type === 'turn_context' && typeof entry.payload === 'object',
+    );
+  } catch {
+    return null;
+  }
+  if (latestTurn === null) return null;
+  return {
+    model: settingText(latestTurn.payload.model),
+    effort: settingText(latestTurn.payload.effort),
+  };
+}
+
 /** Read the latest Codex rollout token count from a transcript tail. */
 function readCodexUsage(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
   let latestCount;
@@ -255,6 +317,8 @@ function fillFromHermesUsage(usage) {
 
 module.exports = {
   readClaudeFill,
+  readClaudeSettings,
+  readCodexSettings,
   resolveWindow,
   fillRatio,
   fillFromPiUsage,

@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.13.0
+version: 1.0.14.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -465,7 +465,7 @@ PASS when both receivers have no goal block and `GOALENV.marker` holds `EMPTY`. 
 
 #### GR-O1 An OpenCode hop (Live, PASS 2026-10-25 on OpenCode 2.1.4)
 
-OpenCode 2 is a TUI that talks to a server, and the harness starts it with `--standalone` so the server is private. On its default shared background service the loop does not arm, because that service holds no `SKILLED_LOOP_ID`. The first run failed three ways in turn, each fixed before the next: the killer signalled the plugin's server instead of the TUI, the TUI exits 130 on SIGTERM and the wrapper read that as an interrupt, and the TUI took about six seconds to exit, past the old five-second grace. Run it with the harness:
+OpenCode 2 is a TUI that talks to a server, and the wrapper starts it with `--standalone` so the server is private. On its default shared background service the loop does not arm, because that service holds no `SKILLED_LOOP_ID`. The first run failed three ways in turn, each fixed before the next: the killer signalled the plugin's server instead of the TUI, the TUI exits 130 on SIGTERM and the wrapper read that as an interrupt, and the TUI took about six seconds to exit, past the old five-second grace. Run it with the harness:
 
 ~~~bash
 bash "$harness/build-sandbox.sh" opencode "$sandbox" 3990 "$repo_root"

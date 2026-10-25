@@ -95,6 +95,7 @@ function createSandbox(t) {
     'SESSION_RELAUNCH_GOAL_PACKET',
     'OPENCODE_GOAL_STATE_DIR',
     'CLAUDE_CONFIG_DIR',
+    'CODEX_HOME',
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
@@ -2283,6 +2284,119 @@ test('prepare under the loop records the goal packet and still arms the record',
   assert.equal(result.status, 0, result.stderr);
   assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
   assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
+});
+
+// The wrapper starts the receiver on the model and effort the sender was using, so the CLI
+// reads them from the sender's own session state when it prepares the hand-over and keeps
+// them on the relaunch record, never in the note a reader could edit.
+function writeCodexRollout(sandbox, entries) {
+  const codexHome = path.join(sandbox.root, 'codex-home');
+  const rolloutPath = path.join(
+    codexHome, 'sessions', '2026', '10', '25', `rollout-2026-10-25T00-00-00-${SESSION_ID}.jsonl`,
+  );
+  fs.mkdirSync(path.dirname(rolloutPath), { recursive: true });
+  fs.writeFileSync(rolloutPath, entries.map((entry) => JSON.stringify(entry)).join('\n'));
+  sandbox.env.CODEX_HOME = codexHome;
+}
+
+function prepareUnderLoop(sandbox, runtime) {
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = runtime;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(result.status, 0, result.stderr);
+  return JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
+}
+
+test('prepare records the Claude sender latest model and effort on the relaunch record', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-opus-5-5', effort: 'low' },
+    { type: 'assistant', isSidechain: true, requestedModel: 'claude-haiku-5-5', effort: 'low' },
+    { type: 'user', message: { content: 'hello' } },
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'assistant', isSidechain: true, requestedModel: 'claude-haiku-5-5', effort: 'low' },
+  ]);
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.model, 'claude-sonnet-5-5');
+  assert.equal(record.effort, 'high');
+  assert.equal(record.status, 'pending');
+});
+
+test('prepare falls back to the response model when the Claude entry names no requested model', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', message: { model: 'claude-sonnet-5-5' } },
+  ]);
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.model, 'claude-sonnet-5-5');
+  assert.equal(Object.hasOwn(record, 'effort'), false);
+});
+
+test('prepare records the Codex sender latest turn model and effort', (t) => {
+  const sandbox = createSandbox(t);
+  writeCodexRollout(sandbox, [
+    { type: 'turn_context', payload: { model: 'gpt-old', effort: 'low' } },
+    { type: 'event_msg', payload: { type: 'token_count' } },
+    { type: 'turn_context', payload: { model: 'gpt-6-luna', effort: 'max' } },
+  ]);
+
+  const record = prepareUnderLoop(sandbox, 'codex');
+
+  assert.equal(record.model, 'gpt-6-luna');
+  assert.equal(record.effort, 'max');
+});
+
+test('prepare records neither value when the sender log is missing or holds no turn', (t) => {
+  const missing = createSandbox(t);
+  const missingRecord = prepareUnderLoop(missing, 'claude');
+  assert.equal(Object.hasOwn(missingRecord, 'model'), false);
+  assert.equal(Object.hasOwn(missingRecord, 'effort'), false);
+
+  const empty = createSandbox(t);
+  writeCodexRollout(empty, [{ type: 'event_msg', payload: { type: 'token_count' } }]);
+  const emptyRecord = prepareUnderLoop(empty, 'codex');
+  assert.equal(Object.hasOwn(emptyRecord, 'model'), false);
+  assert.equal(emptyRecord.status, 'pending');
+});
+
+test('prepare records no live values for a runtime with no session log to read', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [{ type: 'assistant', requestedModel: 'claude-sonnet-5-5' }]);
+
+  const record = prepareUnderLoop(sandbox, 'devin');
+
+  assert.equal(Object.hasOwn(record, 'model'), false);
+});
+
+test('consume reports the model and effort the record holds and nothing it lacks', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    model: 'gpt-6-luna',
+    provider: 'openai',
+    effort: 'high',
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: handoffPath,
+    spec_folder: SPEC_FOLDER,
+    note: 'open',
+    model: 'gpt-6-luna',
+    provider: 'openai',
+    effort: 'high',
+  });
 });
 
 test('claim prints the goal packet after the note body', (t) => {

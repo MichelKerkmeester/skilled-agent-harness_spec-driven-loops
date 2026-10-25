@@ -550,6 +550,73 @@ function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
   });
 }
 
+// Codex names a rollout for its thread, under a folder per day, so the thread's own file is
+// found by that suffix.
+function codexRolloutPath(sessionId, env) {
+  if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
+  const sessionsDirectory = path.join(
+    env?.CODEX_HOME || path.join(os.homedir(), '.codex'),
+    'sessions',
+  );
+  const suffix = `-${sessionId}.jsonl`;
+  let latest = null;
+  for (const year of fs.readdirSync(sessionsDirectory)) {
+    for (const month of safeDirectory(path.join(sessionsDirectory, year))) {
+      for (const day of safeDirectory(path.join(sessionsDirectory, year, month))) {
+        const dayDirectory = path.join(sessionsDirectory, year, month, day);
+        for (const name of safeDirectory(dayDirectory)) {
+          if (!name.startsWith('rollout-') || !name.endsWith(suffix)) continue;
+          // A rollout name starts with its timestamp, so the greatest name is the newest.
+          if (latest === null || name > latest.name) {
+            latest = { name, file: path.join(dayDirectory, name) };
+          }
+        }
+      }
+    }
+  }
+  return latest === null ? null : latest.file;
+}
+
+function safeDirectory(directory) {
+  try {
+    return fs.readdirSync(directory);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Find the model and effort the sending session is using now, so the relaunched session can
+ * start on them. Only runtimes whose session log records both are read: Claude from the last
+ * main-chain assistant entry and Codex from the last turn context. Every reader fails
+ * closed, since a hand-over never fails for want of a setting, and an empty string means the
+ * value is not proven.
+ *
+ * @param {Object} options - The session to read.
+ * @param {string} options.runtime - Runtime that owns the session.
+ * @param {string} options.sessionId - The session's identifier.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
+ * @returns {{model: string, effort: string}} The values the log proves, '' for the rest.
+ */
+function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
+  const none = { model: '', effort: '' };
+  try {
+    if (!nonEmptyString(sessionId)) return none;
+    const usage = require('./context-usage.cjs');
+    let found = null;
+    if (runtime === 'claude') {
+      const logPath = claudeSessionLogPath(sessionId, env);
+      found = logPath === null ? null : usage.readClaudeSettings(logPath);
+    } else if (runtime === 'codex') {
+      const rolloutPath = codexRolloutPath(sessionId, env);
+      found = rolloutPath === null ? null : usage.readCodexSettings(rolloutPath);
+    }
+    return found ?? none;
+  } catch {
+    return none;
+  }
+}
+
 function recordedGoalPacket({ runtime, sessionId, roots }) {
   for (const root of roots) {
     let record = null;
@@ -632,6 +699,8 @@ function recordGoalPacket(filePath, goalPacket) {
  * @param {string|null} [options.name=null] - Optional named session.
  * @param {string} options.cwd - Working directory to resume.
  * @param {number} [options.hops=0] - Number of completed hops.
+ * @param {string} [options.model=''] - Model the sending session is using, when proven.
+ * @param {string} [options.effort=''] - Effort the sending session is using, when proven.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object} The persisted pending record.
@@ -644,6 +713,8 @@ function preparePending({
   name = null,
   cwd,
   hops = 0,
+  model = '',
+  effort = '',
   env = process.env,
   now,
 }) {
@@ -658,6 +729,8 @@ function preparePending({
     cwd,
     hops,
     preparedAt: toIsoTimestamp(now),
+    ...(nonEmptyString(model) ? { model } : {}),
+    ...(nonEmptyString(effort) ? { effort } : {}),
   };
   ensureStateDir(env);
   // The write shares the lock every other record writer takes, so it cannot land between a
@@ -674,15 +747,21 @@ function preparePending({
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
  * @param {string} [options.cwd=process.cwd()] - Live working directory.
+ * @param {{model?: string, provider?: string, effort?: string}} [options.settings] - The
+ *   session's current model, provider and effort, from an adapter whose host exposes them;
+ *   each non-empty value replaces what prepare recorded.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
  */
-function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
-  return withAppendLock(relaunchFilePath(loopId, env), () => armLocked({ loopId, cwd, env, now }));
+function arm({ loopId, cwd = process.cwd(), settings = {}, env = process.env, now }) {
+  return withAppendLock(
+    relaunchFilePath(loopId, env),
+    () => armLocked({ loopId, cwd, settings, env, now }),
+  );
 }
 
-function armLocked({ loopId, cwd, env, now }) {
+function armLocked({ loopId, cwd, settings = {}, env, now }) {
   let record;
   try {
     record = readRelaunchFile(loopId, env);
@@ -700,8 +779,13 @@ function armLocked({ loopId, cwd, env, now }) {
   // arm also carries an identity a killer can compare against the one it watched.
   // A signal stamp belongs to the arm its killer watched, so a new arm starts without one.
   const { signalledAt: _signalledAt, ...unsignalled } = record;
+  const liveSettings = {};
+  for (const key of ['model', 'provider', 'effort']) {
+    if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
+  }
   const armed = {
     ...unsignalled,
+    ...liveSettings,
     status: 'armed',
     armedAt: toIsoTimestamp(now),
     armId: randomUUID(),
@@ -1660,6 +1744,7 @@ module.exports = {
   goalPacketProblem,
   goalSwitchOn,
   resolveGoalPacket,
+  resolveSessionSettings,
   recordGoalPacket,
   parentMapFromTable,
   stateDir,

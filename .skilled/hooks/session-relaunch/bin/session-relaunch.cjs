@@ -521,6 +521,7 @@ function prepare(args) {
     return 3;
   }
 
+  const settings = core.resolveSessionSettings({ runtime, sessionId, env: process.env });
   const record = core.preparePending({
     loopId,
     handoffPath,
@@ -529,6 +530,8 @@ function prepare(args) {
     name: process.env.SKILLED_LOOP_NAME || null,
     cwd: process.cwd(),
     hops,
+    model: settings.model,
+    effort: settings.effort,
     env: process.env,
   });
   supersedeClaimedNotes(handoffPath, { loopId, sessionId });
@@ -727,6 +730,11 @@ function consume(args) {
   // A note with no goal packet keeps the output it always had.
   const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
   if (goalPacket !== '') consumed.goal_packet = goalPacket;
+  // The sender's own latest model, provider and effort, which the wrapper checks before it
+  // uses them.
+  for (const key of ['model', 'provider', 'effort']) {
+    if (typeof record?.[key] === 'string' && record[key] !== '') consumed[key] = record[key];
+  }
   process.stdout.write(`${JSON.stringify(consumed)}\n`);
   return 0;
 }

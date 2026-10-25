@@ -34,6 +34,7 @@ interface CoreModule {
   arm(options: {
     loopId: string;
     cwd: string;
+    settings?: { model?: string; provider?: string; effort?: string };
     env: NodeJS.ProcessEnv;
   }): RelaunchRecord | null;
   armableRecord(
@@ -395,10 +396,32 @@ async function spawnKiller(
   }
 }
 
+// The model and thinking level the session runs on now, so the relaunched session starts on
+// them. A host that exposes neither leaves the launch flags in charge.
+function liveSettings(
+  pi: ExtensionAPI,
+  ctx: ExtensionContext,
+): { model?: string; provider?: string; effort?: string } {
+  const settings: { model?: string; provider?: string; effort?: string } = {};
+  const model = (ctx as { model?: { id?: unknown; provider?: unknown } }).model;
+  if (typeof model?.id === 'string') settings.model = model.id;
+  if (typeof model?.provider === 'string') settings.provider = model.provider;
+  // Older hosts have no getThinkingLevel, and their type package does not declare it.
+  const host = pi as { getThinkingLevel?: () => unknown };
+  try {
+    const level = host.getThinkingLevel?.();
+    if (typeof level === 'string') settings.effort = level;
+  } catch {
+    // An unreadable level is an unproven one.
+  }
+  return settings;
+}
+
 // Pending arms here; an armed record belongs to a killer, so it respawns only
 // when no live killer owns the lock. The core's verdict decides both.
 async function armRelaunch(
   modules: AdapterModules,
+  pi: ExtensionAPI,
   ctx: ExtensionContext,
   sessionId: string,
 ): Promise<void> {
@@ -414,7 +437,12 @@ async function armRelaunch(
   });
   if (!verdict.armable) return;
 
-  const armed = modules.core.arm({ loopId, cwd: ctx.cwd, env: process.env });
+  const armed = modules.core.arm({
+    loopId,
+    cwd: ctx.cwd,
+    settings: liveSettings(pi, ctx),
+    env: process.env,
+  });
   if (armed?.status !== 'armed') return;
 
   let sessionFile: string | undefined;
@@ -503,7 +531,7 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       const sessionId = sessionIdOf(ctx, modules.nudge);
       if (!sessionId) return;
 
-      await armRelaunch(modules, ctx, sessionId);
+      await armRelaunch(modules, pi, ctx, sessionId);
 
       const held = heldNudges.get(sessionId);
       if (held === undefined) return;

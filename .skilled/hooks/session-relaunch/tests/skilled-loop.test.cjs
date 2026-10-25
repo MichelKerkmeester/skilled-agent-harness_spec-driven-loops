@@ -160,6 +160,7 @@ const record = {
     SKILLED_LOOP_NAME: process.env.SKILLED_LOOP_NAME || "",
     SKILLED_LOOP_MODEL: process.env.SKILLED_LOOP_MODEL || "",
     SKILLED_LOOP_PROVIDER: process.env.SKILLED_LOOP_PROVIDER || "",
+    SKILLED_LOOP_EFFORT: process.env.SKILLED_LOOP_EFFORT || "",
     SKILLED_LOOP_MANUAL_TEMPLATE: process.env.SKILLED_LOOP_MANUAL_TEMPLATE || "",
     hasModel: Object.hasOwn(process.env, "SKILLED_LOOP_MODEL"),
     hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER"),
@@ -201,7 +202,10 @@ if (markerPath && fs.existsSync(markerPath)) {
       armedAt,
       ...(process.env.SIGNALLED_ON_INVOCATION === String(invocation)
         ? { signalledAt: new Date().toISOString() }
-        : {})
+        : {}),
+      ...(process.env.RECORD_MODEL ? { model: process.env.RECORD_MODEL } : {}),
+      ...(process.env.RECORD_EFFORT ? { effort: process.env.RECORD_EFFORT } : {}),
+      ...(process.env.RECORD_PROVIDER ? { provider: process.env.RECORD_PROVIDER } : {})
     };
     fs.writeFileSync(path.join(stateDir, "relaunch-" + loopId + ".json"), JSON.stringify(relaunch));
   }
@@ -248,6 +252,7 @@ function createSandbox(t) {
     'SKILLED_LOOP_NAME',
     'SKILLED_LOOP_MODEL',
     'SKILLED_LOOP_PROVIDER',
+    'SKILLED_LOOP_EFFORT',
     'SESSION_RELAUNCH_MAX_HOPS',
     'SESSION_RELAUNCH_MAX_AGE_MIN',
     'SESSION_RELAUNCH_GOAL',
@@ -275,6 +280,11 @@ function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrid
   fs.writeFileSync(handoffPath, OPEN_NOTE);
   const shellProgram = `#!/usr/bin/env bash
 set -euo pipefail
+# A capability probe is answered from STUB_HELP and never recorded as a session.
+if [[ "\${1:-}" == "--help" ]]; then
+  printf '%s' "\${STUB_HELP:-}"
+  exit 0
+fi
 export SESSION_RELAUNCH_TEST_RUNTIME="$SKILLED_LOOP_RUNTIME"
 export SESSION_RELAUNCH_TEST_COMMAND="\${0##*/}"
 node -e '${RUNTIME_SOURCE}' -- "$@"
@@ -988,6 +998,84 @@ test('opencode normalizes --model=m before --prompt on relaunch', (t) => {
   ]);
 });
 
+// OpenCode 2 lists --standalone in its root help. Without it a session lands on the shared
+// background service, which carries no loop id, so the relaunch never arms.
+const OPENCODE_2_HELP = [
+  'FLAGS',
+  '  --standalone            Run with a private server instead of the background service',
+  '  --server string         Connect to a server URL instead of the background service',
+  '  --prompt string         Prompt to use',
+].join('\n');
+
+test('opencode 2 starts standalone on the first launch and on every relaunch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    STUB_HELP: OPENCODE_2_HELP,
+  });
+  const result = runWrapper(sandbox, ['opencode', 'initial prompt']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  const relaunch = ['--standalone', '--prompt', `${SEED} ${handoffPath}`];
+  assert.equal(records.length, 3);
+  assert.deepEqual(records[0].args, ['--standalone', 'initial prompt']);
+  assert.deepEqual(records[1].args, relaunch);
+  assert.deepEqual(records[2].args, relaunch);
+});
+
+test('opencode 2 does not duplicate an operator-supplied --standalone', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+  });
+  const result = runWrapper(sandbox, ['opencode', '--standalone', '--auto']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[0].args, ['--standalone', '--auto']);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
+test('opencode 2 relaunch drops -m because its root command has no model flag', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+  });
+  const result = runWrapper(sandbox, ['opencode', '--model', 'openai/gpt-6-luna']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
+test('opencode 2 on --server leaves the launch alone and warns the loop cannot arm', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { STUB_HELP: OPENCODE_2_HELP });
+  const result = runWrapper(sandbox, ['opencode', '--server', 'http://localhost:4096']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[0].args, ['--server', 'http://localhost:4096']);
+  assert.match(result.stderr, /warning: .*--server.*cannot arm/);
+});
+
+test('opencode without --standalone in its help keeps the launch and the -m replay', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: '  -m, --model   model to use',
+  });
+  const result = runWrapper(sandbox, ['opencode', '-m', 'p/m']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[0].args, ['-m', 'p/m']);
+  assert.deepEqual(records[1].args, ['-m', 'p/m', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
 test('wrapper declines a stale armed record and logs the decline', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
@@ -1129,6 +1217,158 @@ test('codex does not duplicate an operator-supplied --no-daemon option', (t) => 
     '--no-daemon', '-m', 'codex-model', `${SEED} ${handoffPath}`,
   ]);
   assert.equal(records[1].args.filter((argument) => argument === '--no-daemon').length, 1);
+});
+
+// Each runtime names its effort flag differently and accepts a different level list, so the
+// wrapper replays the operator's own flag in that runtime's syntax and drops a level the
+// runtime would reject, which would otherwise end the relaunch at a usage error.
+const EFFORT_CARRY_CASES = [
+  {
+    name: 'claude --effort',
+    runtime: 'claude',
+    first: ['--model', 'm', '--effort', 'high', 'p'],
+    relaunch: (seed) => ['--model', 'm', '--effort', 'high', seed],
+  },
+  {
+    name: 'claude --effort=',
+    runtime: 'claude',
+    first: ['--effort=max', 'p'],
+    relaunch: (seed) => ['--effort', 'max', seed],
+  },
+  {
+    name: 'codex quoted -c model_reasoning_effort',
+    runtime: 'codex',
+    first: ['-m', 'm', '-c', 'model_reasoning_effort="xhigh"', 'p'],
+    relaunch: (seed) => ['--no-daemon', '-m', 'm', '-c', 'model_reasoning_effort="xhigh"', seed],
+  },
+  {
+    name: 'codex bare --config model_reasoning_effort',
+    runtime: 'codex',
+    first: ['--config', 'model_reasoning_effort=low', 'p'],
+    relaunch: (seed) => ['--no-daemon', '-c', 'model_reasoning_effort="low"', seed],
+  },
+  {
+    name: 'pi --thinking',
+    runtime: 'pi',
+    first: ['--model', 'm', '--thinking', 'high', 'p'],
+    relaunch: (seed) => ['--model', 'm', '--thinking', 'high', seed],
+  },
+  {
+    name: 'hermes chat --reasoning',
+    runtime: 'hermes',
+    first: ['chat', '--reasoning', 'ultra', '-m', 'm', '-q', 'p'],
+    relaunch: (seed) => ['chat', '-m', 'm', '--reasoning', 'ultra', '-q', seed],
+  },
+];
+
+for (const effortCase of EFFORT_CARRY_CASES) {
+  test(`relaunch replays the launch effort: ${effortCase.name}`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    const result = runWrapper(sandbox, [effortCase.runtime, ...effortCase.first]);
+
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2);
+    assert.deepEqual(records[1].args, effortCase.relaunch(`${SEED} ${handoffPath}`));
+  });
+}
+
+test('relaunch drops a launch effort its runtime would reject', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '--model', 'm', '--effort', 'bogus', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, ['--model', 'm', `${SEED} ${handoffPath}`]);
+  assert.match(result.stderr, /warning: .*bogus.*relaunching without it/);
+});
+
+test('relaunch does not invent an effort for a runtime with no effort flag', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['devin', '--model', 'm', '--', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, ['--model', 'm', '--', `${SEED} ${handoffPath}`]);
+});
+
+test('the sender live model and effort replace the launch values for that hop', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'live-model',
+    RECORD_EFFORT: 'max',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'launch-model', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.deepEqual(records[1].args, [
+    '--model', 'live-model', '--effort', 'max', `${SEED} ${handoffPath}`,
+  ]);
+  assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'live-model');
+  assert.equal(records[1].env.SKILLED_LOOP_EFFORT, 'max');
+});
+
+test('a Pi sender live provider, model and thinking level replace the launch values', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: 'gpt-6-luna',
+    RECORD_PROVIDER: 'openai',
+    RECORD_EFFORT: 'high',
+  });
+  const result = runWrapper(sandbox, [
+    'pi', '--provider', 'anthropic', '--model', 'claude-sonnet-5-5', '--thinking', 'low',
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'high', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live provider is ignored on a runtime that does not take one', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PROVIDER: 'openai',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'm', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, ['--model', 'm', `${SEED} ${handoffPath}`]);
+});
+
+test('a live model or effort the runtime would reject falls back to the launch value', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_MODEL: '--evil',
+    RECORD_EFFORT: 'bogus',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'launch-model', '--effort', 'low', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--model', 'launch-model', '--effort', 'low', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live value is the next hop launch value when that hop records none', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    RECORD_MODEL: 'live-model',
+  });
+  const result = runWrapper(sandbox, ['claude', '--model', 'launch-model', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.deepEqual(records[2].args, ['--model', 'live-model', `${SEED} ${handoffPath}`]);
 });
 
 test('multi-hop relaunches carry each runtime model and provider on every invocation', (t) => {

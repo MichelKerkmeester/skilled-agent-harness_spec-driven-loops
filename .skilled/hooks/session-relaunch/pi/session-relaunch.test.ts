@@ -403,6 +403,57 @@ describe('session-relaunch Pi extension', () => {
     },
   );
 
+  it('agent_end hands the session model, provider and thinking level to the armed record', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-0002';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    Object.assign(api, { getThinkingLevel: () => 'high' });
+    sessionRelaunch(api);
+    await emit(handlers, 'agent_end', {}, {
+      ...makeContext(),
+      model: { id: 'gpt-6-luna', provider: 'openai' },
+    });
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+      status: 'armed',
+      model: 'gpt-6-luna',
+      provider: 'openai',
+      effort: 'high',
+    });
+  });
+
+  it('agent_end arms without live values when the host exposes none', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-0003';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    Object.assign(api, { getThinkingLevel: () => { throw new Error('no session'); } });
+    sessionRelaunch(api);
+    await emit(handlers, 'agent_end', {}, makeContext());
+
+    const record = readRelaunchFile(loopId, process.env);
+    expect(record).toMatchObject({ status: 'armed' });
+    expect(record).not.toHaveProperty('model');
+    expect(record).not.toHaveProperty('effort');
+  });
+
   it(
     'agent_end respawns one killer for an armed record whose killer is gone',
     async () => {

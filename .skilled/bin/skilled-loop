@@ -132,6 +132,82 @@ consumed_goal_packet() {
   printf '%s' "$goal_packet"
 }
 
+# Prints one string field of the consumed record, or nothing. Used for the sender's live
+# model and effort, which the CLI records only when the sender's own state proves them.
+consumed_field() {
+  local field_value=''
+  if [[ -n "$consumed_record_json" ]]; then
+    field_value=$(node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      const value = record[process.argv[1]];
+      process.stdout.write(typeof value === "string" ? value : "");
+    ' -- "$1" <<< "$consumed_record_json" 2>/dev/null) || field_value=''
+  fi
+  printf '%s' "$field_value"
+}
+
+# Codex reads the value of -c as TOML, so an operator may quote the level.
+strip_value_quotes() {
+  local value="$1"
+  value=${value#\"}
+  value=${value%\"}
+  value=${value#\'}
+  value=${value%\'}
+  printf '%s' "$value"
+}
+
+# Succeeds when the runtime's own help lists the level, so a value the runtime would reject
+# is dropped here instead of ending the relaunch at a usage error.
+effort_is_valid() {
+  case "$1:$2" in
+    claude:low|claude:medium|claude:high|claude:xhigh|claude:max)
+      return 0
+      ;;
+    codex:none|codex:minimal|codex:low|codex:medium|codex:high|codex:xhigh|codex:max)
+      return 0
+      ;;
+    pi:off|pi:minimal|pi:low|pi:medium|pi:high|pi:xhigh|pi:max)
+      return 0
+      ;;
+    hermes:none|hermes:minimal|hermes:low|hermes:medium|hermes:high|hermes:xhigh|hermes:max|\
+      hermes:ultra)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+# A model id the sender's own log reported becomes one argument of the relaunch, so it must
+# look like an id: no leading dash, no whitespace, a bounded length. Cursor's bracketed
+# parameters are part of an id.
+model_is_valid() {
+  local model_pattern='^[A-Za-z0-9][][A-Za-z0-9._:/@=,+-]*$'
+  ((${#1} <= 128)) && [[ "$1" =~ $model_pattern ]]
+}
+
+# Appends the carried effort in the runtime's own flag syntax, when the level is one that
+# runtime accepts.
+append_effort_arguments() {
+  if [[ -z "${SKILLED_LOOP_EFFORT:-}" ]] || ! effort_is_valid "$runtime" "$SKILLED_LOOP_EFFORT"; then
+    return 0
+  fi
+  case "$runtime" in
+    claude)
+      launch_arguments+=(--effort "$SKILLED_LOOP_EFFORT")
+      ;;
+    codex)
+      launch_arguments+=(-c "model_reasoning_effort=\"$SKILLED_LOOP_EFFORT\"")
+      ;;
+    pi)
+      launch_arguments+=(--thinking "$SKILLED_LOOP_EFFORT")
+      ;;
+    hermes)
+      launch_arguments+=(--reasoning "$SKILLED_LOOP_EFFORT")
+      ;;
+  esac
+}
+
 # Prints the packet's chat slice for a receiver that sets its goal from the start prompt. When
 # no slice can be sent it prints one warning line and returns 1, so the receiver still starts
 # on its claim seed and the operator sees why the goal was left out.
@@ -249,6 +325,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
@@ -262,6 +339,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       if ((pi_extension_arguments_set == 1)); then
         launch_arguments+=("${pi_extension_arguments[@]}")
       fi
@@ -272,7 +350,13 @@ build_relaunch_arguments() {
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
     opencode)
-      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+      # OpenCode 2 starts on a private server only with --standalone, and its root command
+      # has no model flag, so a replayed -m would end the launch with a usage error.
+      if ((opencode_two == 1)); then
+        if ((opencode_server_seen == 0)); then
+          launch_arguments+=(--standalone)
+        fi
+      elif [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
       fi
       launch_arguments+=(--prompt "$seed")
@@ -282,6 +366,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
@@ -300,6 +385,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
       fi
+      append_effort_arguments
       launch_arguments+=(-q "$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
@@ -379,10 +465,13 @@ pi_extension_arguments=()
 pi_extension_arguments_set=0
 pi_no_extensions_seen=0
 codex_no_daemon_seen=0
+opencode_two=0
+opencode_standalone_seen=0
+opencode_server_seen=0
 # The packet and the claim belong to one hop, so a value from an outer session never reaches a
 # first launch.
-unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SESSION_RELAUNCH_GOAL_PACKET \
-  SKILLED_LOOP_CLAIM_SEED
+unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
+  SESSION_RELAUNCH_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
 # A Hermes receiver binds the goal packet from this variable, so the operator's own value is
 # kept to put back on a hop that carries no goal.
 hermes_spec_folder_set=0
@@ -453,8 +542,39 @@ while ((index < original_argument_count)); do
             export SKILLED_LOOP_PROVIDER
           fi
           ;;
+        claude:--effort|pi:--thinking|hermes:--reasoning)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            SKILLED_LOOP_EFFORT="$next_argument"
+            export SKILLED_LOOP_EFFORT
+            skip_next_option=1
+          fi
+          ;;
+        claude:--effort=*|pi:--thinking=*|hermes:--reasoning=*)
+          if [[ "${argument#*=}" != -* ]]; then
+            SKILLED_LOOP_EFFORT="${argument#*=}"
+            export SKILLED_LOOP_EFFORT
+          fi
+          ;;
+        codex:-c|codex:--config)
+          if ((index + 1 < original_argument_count)) \
+            && [[ "$next_argument" == model_reasoning_effort=* ]]; then
+            SKILLED_LOOP_EFFORT=$(strip_value_quotes "${next_argument#model_reasoning_effort=}")
+            export SKILLED_LOOP_EFFORT
+            skip_next_option=1
+          fi
+          ;;
+        codex:--config=model_reasoning_effort=*)
+          SKILLED_LOOP_EFFORT=$(strip_value_quotes "${argument#--config=model_reasoning_effort=}")
+          export SKILLED_LOOP_EFFORT
+          ;;
         codex:--no-daemon)
           codex_no_daemon_seen=1
+          ;;
+        opencode:--standalone)
+          opencode_standalone_seen=1
+          ;;
+        opencode:--server|opencode:--server=*)
+          opencode_server_seen=1
           ;;
         pi:-ne|pi:--no-extensions)
           if ((pi_no_extensions_seen == 0)); then
@@ -491,6 +611,26 @@ if [[ "$runtime" == 'codex' && "$codex_no_daemon_seen" == 0 ]]; then
     launch_arguments=(--no-daemon "${launch_arguments[@]}")
   else
     launch_arguments=(--no-daemon)
+  fi
+fi
+
+# OpenCode 2 is told apart by its help listing --standalone, not by a version number, so a
+# build that drops or renames the flag falls back to the plain launch.
+if [[ "$runtime" == 'opencode' ]]; then
+  opencode_help=$("$runtime_command" --help 2>&1 || true)
+  if [[ "$opencode_help" == *'--standalone'* ]]; then
+    opencode_two=1
+  fi
+fi
+if ((opencode_two == 1 && opencode_server_seen == 1)); then
+  printf '%s\n' \
+    'warning: --server attaches to a shared server, so the loop cannot arm and no relaunch follows' >&2
+fi
+if ((opencode_two == 1 && opencode_server_seen == 0 && opencode_standalone_seen == 0)); then
+  if ((original_argument_count > 0)); then
+    launch_arguments=(--standalone "${launch_arguments[@]}")
+  else
+    launch_arguments=(--standalone)
   fi
 fi
 
@@ -639,6 +779,47 @@ while true; do
         else
           unset HERMES_SPEC_FOLDER
         fi
+      fi
+      # The sender's own latest turn beats what the launch line said, and a value that does
+      # not pass the runtime's check leaves the launch value in place.
+      live_model=$(consumed_field model)
+      live_model_accepted=0
+      if [[ -n "$live_model" ]]; then
+        if model_is_valid "$live_model"; then
+          SKILLED_LOOP_MODEL="$live_model"
+          export SKILLED_LOOP_MODEL
+          live_model_accepted=1
+        else
+          printf 'warning: ignoring the sender model %s; relaunching on the launch model\n' \
+            "$live_model" >&2
+        fi
+      fi
+      # Only Pi takes a provider beside its model, and a model from one provider is not valid
+      # under another, so the two move together.
+      live_provider=$(consumed_field provider)
+      if [[ "$runtime" == 'pi' && -n "$live_provider" && "$live_model_accepted" == 1 ]]; then
+        if model_is_valid "$live_provider"; then
+          SKILLED_LOOP_PROVIDER="$live_provider"
+          export SKILLED_LOOP_PROVIDER
+        else
+          printf 'warning: ignoring the sender provider %s; relaunching on the launch provider\n' \
+            "$live_provider" >&2
+        fi
+      fi
+      live_effort=$(consumed_field effort)
+      if [[ -n "$live_effort" ]]; then
+        if effort_is_valid "$runtime" "$live_effort"; then
+          SKILLED_LOOP_EFFORT="$live_effort"
+          export SKILLED_LOOP_EFFORT
+        else
+          printf 'warning: ignoring the sender effort %s; relaunching on the launch effort\n' \
+            "$live_effort" >&2
+        fi
+      fi
+      if [[ -n "${SKILLED_LOOP_EFFORT:-}" ]] && ! effort_is_valid "$runtime" "$SKILLED_LOOP_EFFORT"; then
+        printf 'warning: effort %s is not a level %s accepts; relaunching without it\n' \
+          "$SKILLED_LOOP_EFFORT" "$runtime" >&2
+        unset SKILLED_LOOP_EFFORT
       fi
       build_relaunch_arguments "$launch_prompt"
       if [[ "$runtime" == 'codex' ]]; then
