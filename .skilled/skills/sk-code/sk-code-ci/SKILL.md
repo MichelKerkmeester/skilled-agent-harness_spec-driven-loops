@@ -2,14 +2,14 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.0.0
+version: 1.0.0.0
 metadata:
   author: OpenCode
   family: sk-code
   packetKind: surface
 ---
 
-<!-- Keywords: github-actions, ci-workflow, workflow-yaml, path-filters, timeout-minutes, concurrency, permissions, protected-workflow, required-status-check, composite-action, surface-evidence, sk-code -->
+<!-- Keywords: github-actions, ci-workflow, workflow-yaml, path-filters, timeout-minutes, ci-job, concurrency, concurrency-group, sha-pinned-action, permissions, protected-workflow, required-status-check, composite-action, surface-evidence, sk-code -->
 
 # CI Surface: GitHub Actions Workflow Evidence
 
@@ -58,7 +58,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"]},
+    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "concurrency group", "action to a sha", "sha-pinned action"]},
 }
 
 RESOURCE_MAP = {

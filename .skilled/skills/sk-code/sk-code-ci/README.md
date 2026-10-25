@@ -1,11 +1,11 @@
 ---
-title: sk-code-ci
-description: GitHub Actions workflow rules with their evidence, the protected workflow set, the recorded trigger exception and two scaffold templates: read-only evidence for the sk-code hub, bundled beside a workflow mode and never routed as a primary.
+title: "sk-code-ci"
+description: "GitHub Actions workflow rules with their evidence, the protected workflow set, the recorded trigger exception and two scaffold templates: read-only evidence for the sk-code hub, bundled beside a workflow mode and never routed as a primary."
 trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code-ci
@@ -32,7 +32,7 @@ version: 1.0.0.0
 
 ### Why This Surface Exists
 
-The repository's workflows follow a set of rules that live mostly in review memory. Only path parity between the two source roots is checked by a machine. SHA pinning, a README row per workflow, timeouts, least-privilege permissions, concurrency and the cached setup action are conventions that nothing enforces. Two further facts are easy to misread: a rebuild commit must not start the downstream workflows, and `message-contract.yml` deliberately pushes on every branch.
+The repository's workflows follow a set of rules that live mostly in review memory. Only path parity between the two source roots is checked by a machine. SHA pinning, a README row per workflow, timeouts, least-privilege permissions, concurrency and the cached setup action are conventions that nothing enforces. Two further facts are easy to misread: a rebuild commit must not start the downstream workflows, and `.github/workflows/message-contract.yml` deliberately pushes on every branch.
 
 Without one written source a reviewer cannot tell a deliberate trigger from drift, and an author starts a new workflow from a copy of the nearest one, inheriting its gaps.
 
@@ -68,3 +68,15 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | Drift guards | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 |
 | Compiled route | `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` exits 0 |
 | Playbook replay | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 4` exits 0 |
+
+---
+
+## 5. RELATED DOCUMENTS
+
+| Document | Why to read it |
+|---|---|
+| [SKILL.md](SKILL.md) | The surface contract: when the hub bundles this packet, the reference map and the non-negotiables |
+| [../SKILL.md](../SKILL.md) | The `sk-code` hub that registers this surface and bundles it beside a workflow mode |
+| [../sk-code-review/README.md](../sk-code-review/README.md) | The review mode that applies these rules to a workflow diff |
+| [../sk-code-quality/README.md](../sk-code-quality/README.md) | The quality mode that applies these rules to a workflow being authored |
+| [../../../../.github/workflows/README.md](../../../../.github/workflows/README.md) | The workflow README the rules cite for the contents table and the trigger table |

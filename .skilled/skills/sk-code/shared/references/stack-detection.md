@@ -7,7 +7,7 @@ trigger_phrases:
   - "language sub detection"
 importance_tier: important
 contextType: general
-version: 2.2.2.0
+version: 2.2.3.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -26,8 +26,6 @@ Detect **where the work is happening** before deciding which standards apply.
 | --- | --- | --- |
 | SKILLED | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | browser-behavior work for another stack |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
-
-Motion.dev is a peer resource category rather than a surface. Surface detection chooses SKILLED or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 
 ---
 

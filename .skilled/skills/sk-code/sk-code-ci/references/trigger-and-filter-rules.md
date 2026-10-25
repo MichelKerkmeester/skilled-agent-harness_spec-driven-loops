@@ -8,7 +8,7 @@ trigger_phrases:
   - "intentional trigger exception"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Trigger and Filter Rules
@@ -77,7 +77,7 @@ A trigger that departs from the norm for a reason is recorded here so a review o
 
 | Label | Workflow | Trigger | Norm departed from | Why | Evidence |
 |---|---|---|---|---|---|
-| intentional-exception | `message-contract.yml` | `push` on `branches: ['**']` | Push to `main` and `skilled/**` only | Every pushed branch's name and commits are checked, because a local hook can be skipped on any branch. The workflow also holds the only required status context in the branch ruleset | `.github/workflows/message-contract.yml:9`, the comment at `.github/workflows/message-contract.yml:2-6` and the row at `.github/workflows/README.md:73` |
+| intentional-exception | `message-contract.yml` | `push` on `branches: ['**']` | Push to `main` and `skilled/**` only | Every pushed branch's name and commits are checked, because a local hook can be skipped on any branch. The workflow also holds the only required status context in the branch ruleset | `.github/workflows/message-contract.yml:9`, the comment at `.github/workflows/message-contract.yml:2-6` and the row at `.github/workflows/README.md:72` |
 
 No YAML change is made for this row. The workflow file is correct as written. A report route reads this row before it flags the trigger, so the every-branch push is never reported as drift.
 

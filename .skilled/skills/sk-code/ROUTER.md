@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.15.0
+version: 2.2.16.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -34,7 +34,7 @@ The smart router maps a detected surface (SKILLED / UNKNOWN) plus a classified i
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (SKILLED vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (SKILLED vs UNKNOWN); intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
 
 ### Key Sources
 
@@ -50,20 +50,16 @@ Intent classification scores task text against weighted keyword signals to pick 
 
 | Intent | Strong Signals |
 | --- | --- |
-| IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module`, `smooth-scroll`, `IntersectionObserver` |
+| IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module` |
 | CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards`, `restraint`, `yagni`, `simplify`, `simplification`, `over-engineering`, `bloat` |
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
 | TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |
-| DEPLOYMENT | `deploy`, `cdn`, `wrangler`, `release`, `metadata`, `skill graph` |
 | PERFORMANCE | `lighthouse`, `lcp`, `tbt`, `inp`, `cls`, `pagespeed`, `performance` |
-| ANIMATION | `animation`, `motion`, `transition`, `easing`, `stagger`, `motion principles`, `motion language`, `gsap`, `lenis`, `swiper` |
-| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `Motion demo`, `Motion CDN`, `animate()`, `inView`, `in-view`, `scroll()`, `stagger`, `stagger()`, `animation principles`, `snippet`, `cross-stack animation` |
-| FORMS | `form`, `validation`, `filepond`, `schema`, `zod` |
-| VIDEO | `hls`, `video`, `stream`, `player` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
 | LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
+| CI_WORKFLOW | `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `concurrency group`, `action to a sha`, `sha-pinned action` |
 
 ### Scoring algorithm
 
@@ -87,13 +83,10 @@ Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc
 
 Do not apply this anti-signal when the same request asks to modify executable code, parser logic, tests, shell behavior, TypeScript/Python entrypoints, JSON schema behavior, or routing algorithms. In that case, keep SKILLED surface detection and load `sk-code`.
 
-Multi-symptom prompts like `fix animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load SKILLED plus LANGUAGE_STANDARDS and CODE_QUALITY.
-
-Motion.dev API or decision prompts should load MOTION_DEV as a resource intent alongside the detected surface. When the target is `.skilled/`, keep the surface as SKILLED and load Motion only as reference material.
+Multi-symptom prompts like `debug the broken jsonc descriptor` should load both DEBUGGING and CONFIG. Prompts like `update TypeScript advisor fixture` should load SKILLED plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
 ### Surface-specific intent notes
 
-- **MOTION_DEV** intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision_matrix terms; it supplements the detected surface rather than replacing it.
 - **SKILLED** intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
 - Unsupported surfaces stay UNKNOWN even if intent scoring is strong.
 
@@ -188,7 +181,7 @@ If no supported surface matches, ask:
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
 
-Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code owns the SKILLED surface plus the MOTION_DEV resource category.
+Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code owns the SKILLED surface plus the `sk-code-ci` GitHub Actions surface.
 
 ### UNKNOWN fallback checklist
 
@@ -207,13 +200,11 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 - Load only references needed for current intent + surface
 - Use exact canonical file paths in playbook result YAML (never directory placeholders)
-- Load Motion.dev peer resources after the surface decision, not as a substitute
 - Cite surface + top-1 intent + loaded resource paths + verification command in your final answer
 
 ### DON'T
 
 - Load all of `sk-code-skilled/` indiscriminately ("just in case")
-- Treat MOTION_DEV as a surface (it's a peer resource category)
 - Load Go/NextJS/React Native resources (those live in the Barter fork)
 - Drop directory placeholders in playbook result YAML
 
@@ -248,7 +239,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring", "smooth-scroll", "intersectionobserver"]},
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
     "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
@@ -260,7 +251,7 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
-    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow"]},
+    "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "concurrency group", "action to a sha", "sha-pinned action"]},
 }
 
 RESOURCE_MAP = {

@@ -1,12 +1,17 @@
 ---
 title: "sk-code-ci: Manual Testing Playbook"
 description: "Routing-recall corpus for the sk-code-ci surface: the scenario that exercises its CI_WORKFLOW intent signal and resource map."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code-ci: Manual Testing Playbook
 
 Routing-recall corpus for the `sk-code-ci` surface.
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and
+> reason are recorded into `sk-code/benchmark/reports/<dated-run-label>/`. The packet carries no
+> `benchmark/` of its own, so its runs land in the hub's report tree.
 
 ---
 
@@ -51,3 +56,12 @@ A scenario's verdict is `PASS` when every path in its `expected_resources` resol
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 Commands are written as numbered steps with the exact shell line in backticks. A step passes when its output matches the scenario's Expected text and its exit status is `0`.
+
+---
+
+## 5. AUTOMATED TEST CROSS-REFERENCE
+
+| Test Module | Coverage | Playbook Overlap |
+|---|---|---|
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` (check `4`) | Replays every packet-level routing scenario against its `expected_resources` | ci-surface-ci-standards |
+| `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | Asserts this scenario's prompt resolves to the `surfaceBundle` `[sk-code-review, sk-code-ci]` and that near-miss prompts never bundle `sk-code-ci` | ci-surface-ci-standards |
