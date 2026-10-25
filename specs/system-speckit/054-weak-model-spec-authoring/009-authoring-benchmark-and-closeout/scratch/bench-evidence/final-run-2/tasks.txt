@@ -1,0 +1,239 @@
+---
+title: "Tasks: Add a quiet flag to recommend-level.sh"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "recommend level quiet flag tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
+# Tasks: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+**Shell variables used below**: `S` = `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh`; `P` = `specs/zz-bench-authoring/001-recommend-level-quiet-flag`.
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Read the parser loop, `output_text`, and the output dispatch in `recommend-level.sh` (globals near line 122, parser near line 656, dispatch near line 770). Verify: `rg -n 'JSON_OUTPUT|output_text|output_json' $S` prints the global, the two functions, and the dispatch.
+- [ ] T002 [P] Capture baseline outputs into the packet scratch dir. Verify: `bash $S --loc 500 --files 15 > $P/scratch/baseline-text.txt && bash $S --loc 500 --files 15 --json > $P/scratch/baseline-json.txt && wc -l < $P/scratch/baseline-text.txt` prints `16`.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T003 Add `QUIET_OUTPUT=false` to the globals block and a `--quiet|-q` case that sets it to `true` in the parser loop (`$S`). Verify: `bash -n $S` exits 0 and `bash $S --quiet --loc 50 --files 2` exits 0 (no `Unknown option` error).
+- [ ] T004 Add the quiet branch at the top of the output dispatch so `QUIET_OUTPUT=true` prints `Recommended Level: ${RECOMMENDED_LEVEL} (${LEVEL_NAME})` and skips the text/JSON selection (`$S`). Verify: `bash $S --quiet --loc 500 --files 15` prints exactly `Recommended Level: 2 (Verification)` on one line.
+- [ ] T005 [P] Document `--quiet, -q` in `show_help` OPTIONS with one usage example (`$S`). Verify: `bash $S --help | rg -c 'quiet'` prints `2` or more.
+- [ ] T006 [P] Document `--quiet, -q` in the header comment OPTIONS list (`$S`). Verify: `sed -n '13,35p' $S | rg -c 'quiet'` prints `1` or more.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T007 Diff default text output against baseline. Verify: `bash $S --loc 500 --files 15 | diff - $P/scratch/baseline-text.txt` prints nothing and exits 0.
+- [ ] T008 Diff default JSON output against baseline. Verify: `bash $S --loc 500 --files 15 --json | diff - $P/scratch/baseline-json.txt` prints nothing and exits 0.
+- [ ] T009 Pin the quiet line format. Verify: `bash $S --quiet --loc 500 --files 15 | rg -c '^Recommended Level: [0-3] \((Quick|Baseline|Verification|Full)\)$'` prints `1`.
+- [ ] T010 Verify quiet wins over `--json`. Verify: `bash $S --quiet --json --loc 500 --files 15 | wc -l` prints `1` and the line does not start with `{`.
+- [ ] T011 Verify the `-q` alias and the error paths. Verify: `bash $S -q --loc 50 --files 2` prints `Recommended Level: 0 (Quick)`; `bash $S --quiet` exits 1 with `ERROR:` on stderr.
+- [ ] T012 Run the existing test scripts that consume `--json`. Verify: `cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-phase-system.js && node tests/test-phase-validation.js` both exit 0.
+- [ ] T013 Run strict packet validation. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed — `--quiet` prints one line and both default diffs are empty
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Acceptance Criteria**: See `acceptance-criteria.md`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+
+Rule this packet uses for a blocked task: P0 blocks close; a P1 deferral needs a recorded reason in this file.
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented: `rg -c 'REQ-0' $P/spec.md` prints `6` or more
+- [ ] CHK-002 [P0] Technical approach defined in `plan.md` §1 and §3
+- [ ] CHK-003 [P1] Dependencies identified — bash only, no new package
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] `bash -n $S` exits 0
+- [ ] CHK-011 [P0] No stderr noise on success: `bash $S --quiet --loc 50 --files 2 2>$P/scratch/stderr.txt; wc -c < $P/scratch/stderr.txt` prints `0`
+- [ ] CHK-012 [P1] Error handling unchanged: `bash $S --quiet` exits 1 and writes `ERROR:` to stderr
+- [ ] CHK-013 [P1] Follows script patterns: uppercase global, `case` arm, same `echo` label as `output_text`
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] Every row of `acceptance-criteria.md` is `Met` with observed evidence
+- [ ] CHK-021 [P0] Both baseline diffs (T007, T008) print nothing
+- [ ] CHK-022 [P1] `-q` alias and `--quiet --json` verified (T010, T011)
+- [ ] CHK-023 [P1] Missing-input error path verified (T011)
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+N/A — this is a feature addition, not a fix packet; there are no actionable findings to classify or inventory.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets — `rg -n 'key|token|secret' $S` shows none
+- [ ] CHK-031 [P0] Input validation unchanged — `--quiet` takes no value, so no new input surface
+- [ ] CHK-032 [P1] N/A — the script has no auth/authz surface
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] spec/plan/tasks agree on the `--quiet|-q` spelling and the quiet-wins rule
+- [ ] CHK-041 [P1] Header comment and `show_help` document the flag (T005, T006)
+- [ ] CHK-042 [P2] `runtime/cli/spec/README.md` one-liner stays accurate — no edit needed
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Baseline and stderr captures live under `$P/scratch/` only
+- [ ] CHK-051 [P1] `scratch/` cleaned before completion
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 9 | 0/9 |
+| P1 Items | 14 | 0/14 |
+| P2 Items | 2 | 0/2 |
+
+**Verification Date**: 2026-10-25
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: Architecture Verification
+
+- [ ] CHK-100 [P0] ADR-001 and ADR-002 in `plan.md` are implemented by T003 and T004
+- [ ] CHK-101 [P1] Both ADRs carry a status (Accepted)
+- [ ] CHK-102 [P1] Alternatives documented with rejection rationale in `plan.md`
+- [ ] CHK-103 [P2] N/A — no migration path needed; the flag is additive
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: Performance Verification
+
+- [ ] CHK-110 [P1] `time bash $S --quiet --loc 500 --files 15` runs within noise of the default invocation (NFR-P01)
+
+N/A — no throughput, load, or benchmark claims are made; NFR-P02 does not exist for this packet.
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: Deployment Readiness
+
+N/A — the packet ships no deployable service; rollback is a single-file revert (`plan.md` §7).
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: Compliance Verification
+
+- [ ] CHK-130 [P1] No license or dependency changes — the flag adds no imports or packages
+
+N/A — no other compliance surface: no user data, no network, no auth.
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: Documentation Verification
+
+- [ ] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md`, and `acceptance-criteria.md` agree on flag spelling, alias, and precedence
+
+N/A — no API docs or user-facing docs exist for this internal script beyond help text (covered by CHK-041).
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: Sign-Off
+
+N/A — single-author packet; no separate approver roles apply.
+<!-- /ANCHOR:sign-off -->

@@ -1,0 +1,9 @@
+Files in this folder (all under the T019-input folder):
+diff-stat.txt, diff.txt: tracked changes since commit 14cd9aabcf (graph-metadata.json diffs left out)
+untracked-new-files.txt: the new files the diff cannot show
+p009-acceptance-criteria.md, p009-tasks.md, p009-goal.md, p009-implementation-summary.md: final phase 009 records
+parent-goal.md, parent-spec.md: the parent records
+report-README.md, report-source.md: the benchmark report
+criteria.txt, delta.json, diagnostic.txt, census-counts.txt: evidence for the parent criteria and the C5 record
+T016.txt, T016.check.txt, T016.last.txt: the earlier review and its count check
+bench-evidence-README.txt, c2-probe.sh, criteria-c2.txt: the copied bench packet notes and the C2 probe

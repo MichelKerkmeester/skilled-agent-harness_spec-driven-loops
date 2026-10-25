@@ -18,6 +18,7 @@ This map names where the raw evidence behind this folder lives. The folder holds
 | Run and metric script | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/tools/run-final.sh` |
 | Delta | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json` |
 | Run briefs and replies | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/briefs/` and `scratch/runs/` |
+| Packet copies | `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/bench-evidence/` holds the final `spec`, `plan` and `tasks` and the baseline `tasks` of each run as `.txt` files |
 | Model | cli-devin `swe-2-max` |
 
 ---

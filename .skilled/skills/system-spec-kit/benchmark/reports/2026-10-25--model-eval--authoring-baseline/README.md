@@ -12,7 +12,7 @@ Three baseline runs and three final runs of one frozen Level 3 authoring brief. 
 
 C5 FAIL on the frozen metric, and the verdict stays FAIL. Run 3 deleted the six optional Level 3 verification sections in `tasks.md`: `arch-verify`, `perf-verify`, `deploy-ready`, `compliance-verify`, `docs-verify` and `sign-off`.
 
-Diagnostic, chosen after the result and not a verdict. Scored against the anchors the Level 3 `tasks.md` contract requires (`template-structure.js contract 3 tasks.md`: 15 required, and these 6 optional), all six runs, three baseline and three final, miss 0 required anchors. The six deleted sections are the optional ones. Three of the deletions went against the template's own fill notes: the packet records ADR-001 (`plan.md` line 239), it states NFR-P01 (`spec.md` line 133), and it holds paired documents. The run's reply says 'L3+ optional sections dropped (this is Level 3, not 3+)', so it read the `## L3+:` heading prefix as meaning Level 3+ only. Leftover hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429 for the other two, and the cause is unknown.
+Diagnostic, chosen after the result and not a verdict. Scored against the anchors the Level 3 `tasks.md` contract requires (`template-structure.js contract 3 tasks.md`: 15 required, and these 6 optional), all six runs, three baseline and three final, miss 0 required anchors. The six deleted sections are the optional ones. Three of the deletions went against the template's own fill notes: the packet records ADR-001 (`plan.md` line 239 of run 3, kept as `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/bench-evidence/final-run-3/plan.txt`), it states NFR-P01 (`spec.md` line 133 of run 3, kept as `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/bench-evidence/final-run-3/spec.txt`), and it holds paired documents. The run's reply says 'L3+ optional sections dropped (this is Level 3, not 3+)', so it read the `## L3+:` heading prefix as meaning Level 3+ only. Leftover hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429 for the other two, and the cause is unknown.
 
 The operator chose to keep the frozen metric and the FAIL, and to add this diagnostic ("Option 3 + diagnostic").
 
@@ -78,7 +78,7 @@ Time rose. Seconds per run ranged from 429 to 1822 on the final side against 317
 
 Three runs per side cannot support a significance claim. One run produced the whole regression, so the sample cannot say whether the omission comes from the template change or from ordinary run-to-run variation. The fixture is one small feature and four documents. The model is one model at one setting. A template change and a card change landed together, so this report cannot separate their effects.
 
-The final packets were copied to the conductor scratchpad outside the worktree and are not part of the repository. The raw run logs and audit files are in the source packet named in `source.md`.
+The `spec.md`, `plan.md` and `tasks.md` of the three final packets, and the `tasks.md` of the three baseline packets, are kept as `.txt` copies under `specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/bench-evidence/`. The rest of each final packet was copied to the conductor scratchpad outside the worktree and is not part of the repository. The raw run logs and audit files are in the source packet named in `source.md`.
 
 ---
 

@@ -319,7 +319,7 @@ MD
   rg -c '^version: 2\.9\.0\.0$' $S/SKILL.md
   ```
 
-- [x] T010 Close this phase's own documents (`spec.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`). Set `spec.md` Status to `Complete` and the `**Status:**` line in `acceptance-criteria.md` to `**Status:** Complete`. Replace every `| Unmet | - |` cell in `acceptance-criteria.md` with `| Met | - |`. Set `**Closeable:** No` to `**Closeable:** Yes` and replace the sentence under it with one sentence naming the seven parent proofs and the fifteen acceptance rows. Replace the planned `implementation-summary.md` with the block below, removing the two-space list indent so the first line `---` starts in column 0, then substitute the four `__` tokens with `perl -pi -e` from `delta.json`. Verify: `head -1 "$PHASE/implementation-summary.md"` prints `---`, `rg -c '\| Met \| - \|' "$PHASE/acceptance-criteria.md"` prints `15`, `rg -c '\| Unmet \| - \|' "$PHASE/acceptance-criteria.md"` prints `0`, `rg -c '^\*\*Closeable:\*\* Yes$' "$PHASE/acceptance-criteria.md"` prints `1`, `rg -c '^\*\*Status:\*\* Complete$' "$PHASE/acceptance-criteria.md"` prints `1`, and `rg -c '^__' "$PHASE/implementation-summary.md"` prints `0`.
+- [ ] T010 Close this phase's own documents (`spec.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md`). Set `spec.md` Status to `Complete` and the `**Status:**` line in `acceptance-criteria.md` to `**Status:** Complete`. Replace every `| Unmet | - |` cell in `acceptance-criteria.md` with `| Met | - |`. Set `**Closeable:** No` to `**Closeable:** Yes` and replace the sentence under it with one sentence naming the seven parent proofs and the fifteen acceptance rows. Replace the planned `implementation-summary.md` with the block below, removing the two-space list indent so the first line `---` starts in column 0, then substitute the four `__` tokens with `perl -pi -e` from `delta.json`. Verify: `head -1 "$PHASE/implementation-summary.md"` prints `---`, `rg -c '\| Met \| - \|' "$PHASE/acceptance-criteria.md"` prints `15`, `rg -c '\| Unmet \| - \|' "$PHASE/acceptance-criteria.md"` prints `0`, `rg -c '^\*\*Closeable:\*\* Yes$' "$PHASE/acceptance-criteria.md"` prints `1`, `rg -c '^\*\*Status:\*\* Complete$' "$PHASE/acceptance-criteria.md"` prints `1`, and `rg -c '^__' "$PHASE/implementation-summary.md"` prints `0`. **Not done as written (record reconcile on 2026-10-25).** The operator decision "Option 3 + diagnostic" keeps this phase In Progress, so the step to set Status Complete, turn every Unmet row to Met and set Closeable to Yes did not run. Done instead: acceptance-criteria.md holds 12 Met rows and 3 Unmet rows (AC-010, AC-011, AC-015) with Closeable No, spec.md reads In Progress, and implementation-summary.md was written with the C5 FAIL result.
 
   ```markdown
   ---
@@ -495,7 +495,7 @@ MD
   cmp "$SC/index/children-json.txt" "$SC/index/children-disk.txt" && echo CHILDREN_MATCH
   ```
 
-- [x] T014 Reconcile the parent maps and the parent goal log (`../spec.md`, `../goal.md`, `specs/system-speckit/041-write-recipe-fixes/spec.md`). Run the block below. It changes only the nine `Pending` rows inside the parent phase map, the parent spec Status row, the 041 row that names `006-fix-write-recipe-move-destination`, and the `last_updated_at` and `last_updated_by` fields of the six continuity blocks. Then update the parent goal progress rows with the list after the block, matching each existing row exactly and appending the new rows after the `BASE_REF` row so no row is duplicated. Verify: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs "$PKT"` prints `RESULT: PASSED (5/5 checks)`, the loop over the nine children prints nine `RESULT: PASSED (5/5 checks)` lines, `sed -n '/ANCHOR:phase-map/,/\/ANCHOR:phase-map/p' "$PKT/spec.md" | rg -c '\| Complete \|$'` prints `9`, the same range prints `0` for `Pending`, `rg -c '006-fix-write-recipe-move-destination.*Complete' specs/system-speckit/041-write-recipe-fixes/spec.md` prints `1`.
+- [x] T014 Reconcile the parent maps and the parent goal log (`../spec.md`, `../goal.md`, `specs/system-speckit/041-write-recipe-fixes/spec.md`). Run the block below. It changes only the nine `Pending` rows inside the parent phase map, the parent spec Status row, the 041 row that names `006-fix-write-recipe-move-destination`, and the `last_updated_at` and `last_updated_by` fields of the six continuity blocks. Then update the parent goal progress rows with the list after the block, matching each existing row exactly and appending the new rows after the `BASE_REF` row so no row is duplicated. Verify: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs "$PKT"` prints `RESULT: PASSED (5/5 checks)`, the loop over the nine children prints nine `RESULT: PASSED (5/5 checks)` lines, `sed -n '/ANCHOR:phase-map/,/\/ANCHOR:phase-map/p' "$PKT/spec.md" | rg -c '\| Complete \|$'` prints `9`, the same range prints `0` for `Pending`, `rg -c '006-fix-write-recipe-move-destination.*Complete' specs/system-speckit/041-write-recipe-fixes/spec.md` prints `1`. **Partly met (record reconcile on 2026-10-25).** The verify line asks for nine Complete phase map rows, but after "Option 3 + diagnostic" the parent map reads eight Complete rows and phase 9 In Progress. Everything else in this task ran: check-goal.cjs printed 5/5 checks ten times and the 041 row reads Complete.
 
   ```bash
   cd "$WORKTREE"
@@ -535,7 +535,7 @@ MD
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T015 Prove each of the seven criteria in `../goal.md` section 3 (`scratch/closeout/criteria.txt`). Write the script below and run it. Each block prints one line, `C<n> PASS <evidence>` or `C<n> FAIL <reason>`. Verify: `grep -c '^C[1-7] PASS ' "$SC/closeout/criteria.txt"` prints `7` and `rg -c '^\| Parent criteria \| Done \| 7 PASS lines' "$PKT/goal.md"` prints `1`. When a line reads FAIL, write it in `goal.md` section 4, leave the matching parent box unticked in T017 and do not claim the packet is closeable.
+- [x] T015 Prove each of the seven criteria in `../goal.md` section 3 (`scratch/closeout/criteria.txt`). Write the script below and run it. Each block prints one line, `C<n> PASS <evidence>` or `C<n> FAIL <reason>`. Verify: `grep -c '^C[1-7] PASS ' "$SC/closeout/criteria.txt"` prints `7` and `rg -c '^\| Parent criteria \| Done \| 7 PASS lines' "$PKT/goal.md"` prints `1`. When a line reads FAIL, write it in `goal.md` section 4, leave the matching parent box unticked in T017 and do not claim the packet is closeable. **Partly met (record reconcile on 2026-10-25).** The verify line asks for seven PASS lines, but criteria.txt holds six PASS lines and the C5 FAIL line, which is the contingency this task describes. The task text only asks to record a FAIL and leave its parent box unticked, which was done.
 
   ```bash
   cd "$WORKTREE"
@@ -616,7 +616,7 @@ MD
   echo "CRITERIA_LOGGED passes=$PASSES"
   ```
 
-- [x] T016 Frontier review of the closeout diff (`scratch/review/T016.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Save the block below as `$SC/review/T016-brief.txt`, then run the command. Verify: the file exists, the format check below prints `T016_FORMAT ... bad=0` with exactly one of `findings` or `no_findings` non-zero. Apply each finding or record it in `goal.md` section 4 as `T016-APPLIED <finding>` or `T016-RECORDED <finding> <reason>`, and check `test "$(grep -cE '^(P0|P1|P2) ' "$SC/review/T016.txt")" -eq "$(grep -cE '^T016-(APPLIED|RECORDED) ' "$PHASE/goal.md")" && echo T016_COUNTS_MATCH` prints `T016_COUNTS_MATCH`.
+- [x] T016 Frontier review of the closeout diff (`scratch/review/T016.txt`). Read `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` first. Save the block below as `$SC/review/T016-brief.txt`, then run the command. Verify: the file exists, the format check below prints `T016_FORMAT ... bad=0` with exactly one of `findings` or `no_findings` non-zero. Apply each finding or record it in `goal.md` section 4 as `T016-APPLIED <finding>` or `T016-RECORDED <finding> <reason>`, and check `test "$(grep -cE '^(P0|P1|P2) ' "$SC/review/T016.txt")" -eq "$(grep -cE '^T016-(APPLIED|RECORDED) ' "$PHASE/goal.md")" && echo T016_COUNTS_MATCH` prints `T016_COUNTS_MATCH`. **Ran with adapted file names (record reconcile on 2026-10-25).** The reviewer ran on cli-codex gpt-6-luna as written, from scratch/briefs/T016.txt, with the raw reply in scratch/review/T016.last.txt. scratch/review/T016.txt holds the extracted P1 and P2 lines, and scratch/review/T016.check.txt shows T016_FORMAT findings=3 bad=0 and T016_COUNTS_MATCH. The count check reads the T016-APPLIED rows as goal.md table rows. That review saw the diff before this reconcile; the review of the final records is the follow-up listed under T019 in goal.md section 4.
 
   ```bash
   mkdir -p "$PHASE/scratch/review"
@@ -654,7 +654,7 @@ MD
   Return the single line NO FINDINGS when there are none.
   ```
 
-- [x] T017 Close the phase and tick the parent goal (this folder, `../goal.md`). Run the block below. It runs strict validation on this folder and on the packet, compares the final status with the start status, and ticks the seven completion boxes only when all seven `C<n>` lines read PASS. When one line reads FAIL it ticks none and writes `PARENT_NOT_TICKED` in `goal.md` section 4. Verify: both validations print `RESULT: PASSED`, `bash $S/runtime/cli/rules/check-placeholders.sh "$PHASE"` prints nothing and exits 0, the parent completion anchor holds seven `[x]` rows and zero `[ ]` rows, this phase's goal holds six `[x]` rows, and the undeclared count line in the block prints `0` for a status delta that lists only paths under this phase folder and the declared paths in `spec.md` section 3.
+- [ ] T017 Close the phase and tick the parent goal (this folder, `../goal.md`). Run the block below. It runs strict validation on this folder and on the packet, compares the final status with the start status, and ticks the seven completion boxes only when all seven `C<n>` lines read PASS. When one line reads FAIL it ticks none and writes `PARENT_NOT_TICKED` in `goal.md` section 4. Verify: both validations print `RESULT: PASSED`, `bash $S/runtime/cli/rules/check-placeholders.sh "$PHASE"` prints nothing and exits 0, the parent completion anchor holds seven `[x]` rows and zero `[ ]` rows, this phase's goal holds six `[x]` rows, and the undeclared count line in the block prints `0` for a status delta that lists only paths under this phase folder and the declared paths in `spec.md` section 3. **Not done as written (record reconcile on 2026-10-25).** Under the operator decision "Option 3 + diagnostic" the block's seven-PASS branch did not run: criteria.txt holds six PASS lines and C5 FAIL, so the parent boxes for C1 to C4, C6 and C7 are ticked (six of seven), the C5 box stays unticked, completion_pct is not set to 100, and the parent and this phase stay In Progress. The validations and the status delta ran, and the recursive strict run on the packet prints RESULT: PASSED.
 
   ```bash
   cd "$WORKTREE"
@@ -689,7 +689,7 @@ MD
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [ ] All tasks marked `[x]` (T010 and T017 stay open under the operator decision "Option 3 + diagnostic")
 - [x] No `[B]` blocked tasks remaining
 - [ ] Every acceptance criterion marked `Met` with its evidence
 - [ ] Seven parent criteria carry a PASS line and seven parent boxes are ticked
@@ -736,7 +736,7 @@ MD
 ## Code Quality
 
 - [x] CHK-010 [P0] The five metric commands are copied from `tasks.md` T006 with no edit
-- [x] CHK-011 [P0] Every number in the report is written from `delta.json`, never by hand
+- [x] CHK-011 [P0] Every metric value in the report is written from `delta.json` and the run files, never by hand (the 121 baseline hint patterns come from `hints-l3.txt` and the 15 required anchors from `scratch/closeout/contract-3-tasks.json`)
 - [x] CHK-012 [P1] Every run brief matches the Level 3 baseline brief, shown by `TASK_FROZEN` with no `BRIEF_CHANGED` line
 - [x] CHK-013 [P1] No script embeds a packet path, phase number or task id in a code comment
 <!-- /ANCHOR:code-quality -->
@@ -862,7 +862,7 @@ MD
 - [x] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` agree at close
 - [x] CHK-141 [P1] `implementation-summary.md` cites `delta.json` and the report folder
 - [x] CHK-142 [P2] The changelog entry names one path per changed surface
-- [x] CHK-143 [P2] The seven PASS lines name the command that proved each criterion
+- [x] CHK-143 [P2] The six PASS lines and the C5 FAIL line in `criteria.txt` each name the command or the reason that proved the criterion
 <!-- /ANCHOR:docs-verify -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Make system-spec-kit templates and authoring docs followable by a DeepSeek V4.1 Flash agent swarm"
-description: "Nine phases that repair the spec-kit templates, gate unfilled placeholders on new docs, add per-section fill guidance and an authoring card, then measure whether a DeepSeek V4.1 Flash worker authors better packets."
+description: "Nine phases that repair the spec-kit templates, gate unfilled placeholders on new docs, add per-section fill guidance and an authoring card, then measure whether a weak-model worker, benchmarked on cli-devin swe-2-max, authors better packets."
 trigger_phrases:
   - "weak model spec authoring phase parent spec"
   - "deepseek flash spec authoring"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 86
     open_questions: []
     answered_questions: []
 ---
@@ -63,10 +63,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A DeepSeek V4.1 Flash worker that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`. A fresh Level 2 scaffold holds 97 bracketed hint occurrences and validates clean. The hand-written examples the worker imitates carry leaked description text and stale lines. The authoring guidance is a 1,200-line template guide that a weak model cannot follow in one pass. Together these let a swarm produce packets that look finished and are not.
+A weak-model worker (the benchmark subject is cli-devin `swe-2-max`, and single-change swarm lanes run on DeepSeek V4.1 Flash) that authors a spec packet from the system-spec-kit templates leaves scaffold hints in place and still passes `validate.sh --strict`. A fresh Level 2 scaffold holds 97 bracketed hint occurrences and validates clean. The hand-written examples the worker imitates carry leaked description text and stale lines. The authoring guidance is a 1,200-line template guide that a weak model cannot follow in one pass. Together these let a swarm produce packets that look finished and are not.
 
 ### Purpose
-Make the templates, the examples, the validator and the authoring docs good enough that a DeepSeek V4.1 Flash swarm authors a valid, filled packet without a frontier model correcting it. Phase 001 measures the starting point and the last phase measures the result, so the claim rests on numbers.
+Make the templates, the examples, the validator and the authoring docs good enough that a weak-model swarm, measured on cli-devin `swe-2-max`, authors a valid, filled packet without a frontier model correcting it. Phase 001 measures the starting point and the last phase measures the result, so the claim rests on numbers.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -114,7 +114,7 @@ The operator meets all four before the first phase runs. The conductor records e
 1. **Workspace.** The operator chooses A) a git worktree or B) the current branch, following `sk-git`. The conductor never chooses. The chosen path becomes `WORKTREE` in `goal.md` section 4.
 2. **Provider login.** `devin auth status` reports a Devin login. A rate limit or refusal on cli-devin stops the run.
 3. **Lane authorization.** At most 3 parallel lanes and never two on one file. The operator has already given this.
-4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`. The benchmark subject is cli-devin `swe-2-max`.
+4. **Conductor placement.** The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash for single-change lanes, and every review runs on cli-devin `swe-2-max`, except the phase 009 closeout review, which the operator moved to cli-codex `gpt-6-luna` at max effort on the fast tier (approved 2026-10-25, recorded in the phase 009 `goal.md` section 4). The benchmark subject is cli-devin `swe-2-max`.
 <!-- /ANCHOR:scope -->
 
 ---

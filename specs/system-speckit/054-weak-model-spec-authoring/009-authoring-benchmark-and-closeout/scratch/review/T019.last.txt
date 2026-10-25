@@ -1,0 +1,3 @@
+P1 p009-acceptance-criteria.md:AC-001 | Marked Met for a Level 2 scaffold, but tasks.md:T004 says it created a Level 3 scaffold, and goal.md says AC-001 was amended to Level 3 | Amend AC-001 to Level 3 or provide evidence of a Level 2 run
+P1 p009-tasks.md:CHK-011 | The tick says every report number came from delta.json, but report-README.md §§3, 6 includes values such as 121 hint patterns and 15 required anchors that delta.json does not contain | Limit the check to delta-derived metric values or record the sources for the other numbers
+P1 p009-tasks.md:CHK-143 | Ticked as having seven PASS lines, but criteria.txt has six PASS lines and C5 FAIL | Untick it or revise it to describe the six PASS lines and the C5 failure

@@ -34,7 +34,7 @@ Phase 009 reran the frozen Level 3 authoring task three times on the final tree,
 
 ### Fixed
 
-- No product file changed in this phase.
+- No template, validator or runtime code was fixed in this phase. Two product files carry the version bump: `.skilled/skills/system-spec-kit/SKILL.md` and its mirror `.hermes/skills/system-spec-kit/SKILL.md` moved from 2.8.5.0 to 2.9.0.0, and the global changelog `.skilled/skills/system-spec-kit/changelog/v2.9.0.0.md` was added.
 
 ### Verification
 
@@ -50,6 +50,7 @@ Phase 009 reran the frozen Level 3 authoring task three times on the final tree,
 |---|---|---|
 | `.skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/` | Created | Report, results and source map |
 | `.skilled/changelog/system-spec-kit/v2.9.0.0.md` | Created | Global changelog entry |
+| `.skilled/skills/system-spec-kit/SKILL.md` and `.hermes/skills/system-spec-kit/SKILL.md` | Modified | Version 2.8.5.0 to 2.9.0.0 |
 | `specs/system-speckit/054-weak-model-spec-authoring/changelog/` | Created | Nested changelogs |
 | `specs/system-speckit/054-weak-model-spec-authoring/spec.md` and `goal.md` | Modified | Status, map and log |
 | `specs/system-speckit/041-write-recipe-fixes/spec.md` | Modified | One map row |

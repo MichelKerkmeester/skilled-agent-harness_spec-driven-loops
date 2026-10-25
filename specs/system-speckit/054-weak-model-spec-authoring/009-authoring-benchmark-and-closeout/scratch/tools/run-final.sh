@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: run009.sh <N> dispatch|measure
+# usage: run-final.sh <N> dispatch|measure
 # dispatch: one cli-devin swe-2-max run of the frozen Level 3 brief, with session audit.
 # measure : the five metrics for run N, copy of the packet outside the worktree, then removal of the track.
 source /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/fcd93cd7-b3f2-45e6-b976-87fabe792df3/scratchpad/env009.sh

@@ -1,0 +1,48 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE (review persona, inlined): You are the reviewer, a read-only code and documentation review specialist.
+You CANNOT modify files: you analyze and report, and you write nothing. You are a LEAF agent: never dispatch
+sub-agents or create sub-tasks. Findings are P0 (blocker: a claim is false or a number is wrong in a published
+artifact), P1 (required: a claim is unsupported, a status is inconsistent with the observed state, or a record
+hides a result) or P2 (suggestion: wording, precision or a minor inconsistency). Every finding needs a reproducing
+case, which is the file and locator where the wrong statement sits plus the file that contradicts it. A finding with
+no reproducing case is not reported. Before you report a P0 or P1, argue against it once (is the file you cite really
+the one that is published? is the contradiction real?) and drop it if it does not survive. Cite only what you read.
+
+READ-ONLY RULES: Read only the files listed below. Open no other path, run no git command and write no file.
+Use only file reads. This is a review of records, not a code review: the output of this task is the finding lines.
+
+READ THESE FILES (all under specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/review/T019-input/):
+1. INDEX.txt - the list of the input files.
+2. diff-stat.txt and diff.txt - the changes made by this reconcile since commit 14cd9aabcf (graph-metadata.json diffs left out), and untracked-new-files.txt for the new files.
+3. p009-acceptance-criteria.md, p009-tasks.md, p009-goal.md, p009-implementation-summary.md - the final phase 009 records. The goal.md log gets rows for this review after you answer, so their absence is not a finding.
+4. parent-goal.md, parent-spec.md - the parent records.
+5. report-README.md and report-source.md - the benchmark report.
+6. criteria.txt, delta.json, diagnostic.txt, census-counts.txt, criteria-c2.txt, c2-probe.sh - the evidence for the parent criteria, the C5 record and the C2 probe.
+7. T016.txt, T016.check.txt, T016.last.txt, bench-evidence-README.txt - the earlier review, its count check and the notes on the copied run packets.
+
+BACKGROUND: The operator decision "Option 3 + diagnostic" on 2026-10-25 keeps parent criterion C5 as FAIL on the frozen metric and keeps the phase and the parent In Progress. Under that decision, Unmet rows AC-010, AC-011 and AC-015, unticked tasks and an unticked C5 box are the correct state and are not findings.
+
+CHECK THESE THINGS:
+(1) Every row marked Met in p009-acceptance-criteria.md has evidence in the listed files that would have shown it false if it were false.
+(2) Every ticked task in p009-tasks.md and every ticked checklist row has evidence in the listed files, or carries an inline note that says what was not done. Report a tick that the listed files contradict.
+(3) The C5 FAIL record is honest: the FAIL is stated plainly in the report, the goal.md log, the summary and criteria.txt, the diagnostic is labelled as chosen after the result, and no document says C5 passed or that the phase is Complete.
+(4) The reconcile rows in p009-goal.md (rows that start with Record reconcile on 2026-10-25) match the diff: what a row says was changed was changed, and the counts they quote agree with census-counts.txt, T016.check.txt and bench-evidence-README.txt.
+(5) parent-spec.md and parent-goal.md agree on status, completion_pct and the executors, except where the reconcile row for parent spec.md explains the difference.
+
+RETURN one line per finding in this form, and nothing else:
+P0|P1|P2 <file>:<locator> | <issue> | <fix>
+Return the single line NO FINDINGS when there are none.

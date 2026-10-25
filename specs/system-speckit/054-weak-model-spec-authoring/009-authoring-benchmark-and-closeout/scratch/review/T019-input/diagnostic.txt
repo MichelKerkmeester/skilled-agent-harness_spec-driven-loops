@@ -1,0 +1,6 @@
+baseline-1 required_missing=0 (of 15) optional_missing=0
+baseline-2 required_missing=0 (of 15) optional_missing=0
+baseline-3 required_missing=0 (of 15) optional_missing=0
+final-1 required_missing=0 (of 15) optional_missing=0
+final-2 required_missing=0 (of 15) optional_missing=0
+final-3 required_missing=0 (of 15) optional_missing=6 arch-verify perf-verify deploy-ready compliance-verify docs-verify sign-off

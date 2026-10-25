@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/bench-evidence/final-run-3/plan.txt",
+      "scratch/bench-evidence/final-run-3/spec.txt",
       "scratch/baseline/runs.jsonl",
       "scratch/baseline/delta.json",
       "scratch/closeout/criteria.txt",
       ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
       ".skilled/changelog/system-spec-kit/v2.9.0.0.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
       "specs/system-speckit/041-write-recipe-fixes/spec.md",
-      "scratch/tools/run-final.sh",
-      "scratch/baseline/baseline.json",
-      "scratch/baseline/hints-v2.3.txt",
-      "scratch/baseline/anchors-v2.3.txt",
-      "scratch/baseline/delta.md"
+      "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
+      "specs/system-speckit/041-write-recipe-fixes/graph-metadata.json"
     ],
     "entities": [
       {
@@ -97,6 +97,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.txt",
+        "kind": "file",
+        "path": "scratch/bench-evidence/final-run-3/plan.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.txt",
+        "kind": "file",
+        "path": "scratch/bench-evidence/final-run-3/spec.txt",
         "source": "derived"
       },
       {
@@ -142,33 +154,9 @@
         "source": "derived"
       },
       {
-        "name": "run-final.sh",
-        "kind": "script",
-        "path": "scratch/tools/run-final.sh",
-        "source": "derived"
-      },
-      {
-        "name": "baseline.json",
+        "name": "graph-metadata.json",
         "kind": "config",
-        "path": "scratch/baseline/baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "hints-v2.3.txt",
-        "kind": "file",
-        "path": "scratch/baseline/hints-v2.3.txt",
-        "source": "derived"
-      },
-      {
-        "name": "anchors-v2.3.txt",
-        "kind": "file",
-        "path": "scratch/baseline/anchors-v2.3.txt",
-        "source": "derived"
-      },
-      {
-        "name": "delta.md",
-        "kind": "doc",
-        "path": "scratch/baseline/delta.md",
+        "path": "specs/system-speckit/054-weak-model-spec-authoring/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -206,11 +194,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
     "created_at": "2026-10-23T11:27:27Z",
-    "last_save_at": "2026-10-25T09:19:03.866Z",
+    "last_save_at": "2026-10-25T09:37:58.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f55ed5d0d13618799ce592888c23d687074de76c0ba2842fe0d136b21fa48ccf",
+    "source_fingerprint": "sha256:348b39a70d31859cff8010e38e35849240d5960f7475f3592e539a3d42cb7fc5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "462523b55c6fe98ff7e924742630f3dbf6f581e9520d996958a82f8a6891fc9b",
       "plan.md": "1169d7ec60672e7bf8070beed6ffad3a0c01b777ea44b1c75666f6a1c1d9fbb5",
-      "tasks.md": "9ce8ee8bb69d4184e538995b3e16f7172211f947c013c4c95a4b9f1dd7d9a07f",
-      "implementation-summary.md": "1925409415d0eb34558fe8516a51a701081f059415a58aaa7e18db33fe41194d"
+      "tasks.md": "e612f4da32b9a6571af041d118e380ffb60c3189ea659208824dea2749991581",
+      "implementation-summary.md": "804ef55c26ff8006bf4a1d811a3c7578df47e9669eef43cc42f1fe3af6ce5e9c"
     },
     "last_active_at": null
   }
