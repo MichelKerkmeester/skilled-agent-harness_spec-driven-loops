@@ -1,0 +1,6 @@
+Each mutation was applied to a copy of the final tree and the matching suite rerun; each made exactly one test fail, and the unmutated copy passed 59 of 59 and 131 of 131.
+1 drop the AI_SESSION_CHILD check in compact-pointer.mjs        -> claude-adapters test 58 fails
+2 drop dropNestedLoop in compact-pointer.mjs                    -> claude-adapters test 59 fails
+3 drop the goal switch check in compact-pointer.mjs             -> claude-adapters test 58 fails
+4 skilled-loop never unsets SKILLED_LOOP_CLAIM_SEED per hop     -> skilled-loop test 128 fails
+5 skilled-loop never restores HERMES_SPEC_FOLDER                -> skilled-loop test 131 fails

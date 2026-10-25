@@ -1,0 +1,21 @@
+== old code: goal-handover
+not ok 1 - .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs
+# tests 1
+# pass 0
+# fail 1
+== old code: claude-adapters
+not ok 56 - compact-pointer delivers the claim at the start of a goal-command receiver
+not ok 58 - compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook
+not ok 59 - compact-pointer adds no start claim to a runtime started from the loop session shell
+# tests 59
+# pass 56
+# fail 3
+== old code: skilled-loop
+not ok 125 - a Claude hop with a goal starts on the goal command and carries the claim in the environment
+not ok 126 - a Claude hop keeps the claim seed as its start prompt when no goal can be sent
+not ok 128 - the claim variable never leaks from an outer session or into the next hop
+not ok 129 - a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes
+not ok 131 - a Hermes hop restores the operator folder once a hop carries no goal
+# tests 131
+# pass 126
+# fail 5

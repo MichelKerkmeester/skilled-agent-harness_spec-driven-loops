@@ -1,0 +1,3 @@
+PASS: doc-claims       (verify-doc-claims.cjs)
+
+run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)

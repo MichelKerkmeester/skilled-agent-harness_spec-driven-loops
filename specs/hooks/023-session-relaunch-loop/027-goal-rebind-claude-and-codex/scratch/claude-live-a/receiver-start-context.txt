@@ -1,0 +1,8 @@
+[session-relaunch] This session was started with the goal command, which leaves no room for the hand-over in the prompt, so it arrives here. Do these steps first, before any work on the goal:
+[session-relaunch] claim and continue handoff /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bf59c2c4-b852-41a2-886d-00232422ac9e/scratchpad/live/sb/.skilled/skills/.state/session-relaunch/handoffs/note-a.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)
+[session-relaunch] This session was opened to continue a handoff note. Work it in order:
+1. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bf59c2c4-b852-41a2-886d-00232422ac9e/scratchpad/live/sb/.skilled/skills/.state/session-relaunch/handoffs/note-a.md' --session '063c884d-15c4-4874-8558-cec5b95ac81b'`; it prints the note body.
+2. Read the note.
+3. Gate 3 is already answered Skip for this session, carried from the handoff.
+4. Continue the work under "Remaining work". Do not run prepare for this note; its handoff is already done. If Remaining work names only handoff steps, treat it as empty.
+5. When the remaining work is done, run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bf59c2c4-b852-41a2-886d-00232422ac9e/scratchpad/live/sb/.skilled/skills/.state/session-relaunch/handoffs/note-a.md'` to close the note.

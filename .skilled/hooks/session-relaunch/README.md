@@ -157,7 +157,17 @@ A note can carry an optional `goal_packet` frontmatter field: the repo-relative 
 
 A written value is checked the way `spec_folder` is: a repo-relative packet path whose directory and `goal.md` stay inside the repository once links are followed, in this checkout or in the working directory the note names. A resolver that finds nothing, cannot prove the goal or cannot read its source leaves the field out and never fails the hand-over. The note carries the path and never the goal text, because a copy would go stale while `goal.md` changes. A note written before this field claims and hands over unchanged.
 
-`claim` ends its output with a `Goal packet: <path>` line when the packet still holds a `goal.md`. `consume` reports the packet as `goal_packet`, and `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session only. The wrapper removes the variable from the first launch and from any hop whose note carries no packet. Binding the goal in the receiving runtime is the receiving adapter's work: this layer records the packet and passes it on. `SESSION_RELAUNCH_GOAL=0` turns all of it off. `prepare` and `keep` then neither write, replace nor remove the field, and `claim` and the wrapper pass nothing on.
+`claim` ends its output with a `Goal packet: <path>` line when the packet still holds a `goal.md`. `consume` reports the packet as `goal_packet`, and `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session only. The wrapper removes the variable from the first launch and from any hop whose note carries no packet. Binding the goal in the receiving runtime is the receiving adapter's work: this layer records the packet and passes it on, and the wrapper itself acts for Claude and Hermes as described below. `SESSION_RELAUNCH_GOAL=0` turns all of it off. `prepare` and `keep` then neither write, replace nor remove the field, and `claim` and the wrapper pass nothing on.
+
+### Goal In A Claude Or Hermes Receiver
+
+Claude has no goal record a hook can bind, so a Claude receiver gets its goal as the start prompt: `/goal <slice>`. The slice is read from `goal.md` at launch with `goal.cjs packet <packet> --workspace <root>`, so it is the file as it is now and never a copy. Only the `chat_slice` is sent, with no frontmatter, comments or anchors, and only when the command reports `packet_budget=ok` and the slice fits 4,000 characters, the limit Claude puts on a goal condition. A start prompt can be the command and nothing else, and a start hook cannot send the command in an interactive session, so the claim seed moves out of the prompt. `skilled-loop` exports it as `SKILLED_LOOP_CLAIM_SEED`, and the `SessionStart` hook in `claude/compact-pointer.mjs` delivers the claim instructions as start context, with the seed's spec folder and Gate 3 answer, before any goal work. The hook acts only on the `startup` source, only while the switch is on, never in a dispatched child (`AI_SESSION_CHILD=1`) and never in a runtime started from the loop session's shell, because the variable carries the `SKILLED_LOOP_` prefix the nested-run check strips.
+
+When no slice can be sent, the receiver keeps the claim seed as its start prompt and the hop works as it did before this section. The wrapper prints one `warning: the goal was not set in the relaunched session: <reason>` line when a packet was named and the slice is refused: the packet lost its `goal.md`, the slice is over the limit, the repository has no budget to check it against or `goal.md` has no durable slice. A hop with the switch off or no packet prints nothing. A Claude receiver is a new session with no goal, so nothing replaces an existing one.
+
+A Hermes receiver binds from its environment: while the switch is on and the note carries a packet, the wrapper exports the packet as `HERMES_SPEC_FOLDER` for that hop. A hop with no packet restores whatever value the wrapper first saw, or removes the variable. Hermes children dispatched from the receiver inherit the variable, because the Hermes plugin has no child marker.
+
+Codex gets neither. Its start prompt cannot be the goal command, and a seed that asks the model to call `create_goal` is only reachable when a Codex sender can name a packet. It cannot yet (see the Goal Packet table), and a hop always relaunches the runtime it left, so no Codex receiver is ever handed a packet. The seed instruction waits for a Codex goal reader.
 
 ### Outside The Loop
 
@@ -233,6 +243,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 | `SESSION_RELAUNCH_NOTIFY_HOPS` | unset, off | Set to `1` for a macOS notice titled "Session handed over" each time the wrapper relaunches a session. It names the runtime, the session folder and the note's goal. Off by default, so a clone shows no notice until its owner sets it. |
 | `SESSION_RELAUNCH_GOAL` | unset, on | Set to `0`, `false`, `off` or `no` to stop the hand-over from carrying the sender's goal packet. Also read from `.skilled/hooks/hook-flags.env`. |
 | `SESSION_RELAUNCH_GOAL_PACKET` | wrapper-managed | Exported by `skilled-loop` to the relaunched session when the consumed note carries a usable goal packet. Never set it by hand. |
+| `SKILLED_LOOP_CLAIM_SEED` | wrapper-managed | Exported by `skilled-loop` to a Claude receiver that starts on the goal command, so the start hook can deliver the claim. Never set it by hand. |
 | `SESSION_RELAUNCH_REPO_ROOT` | unset, the install root | Absolute path to the repository that holds the concern. Planned handoff note paths resolve under it, so a runtime started in a subdirectory still writes under the repo root. The generic `REPO_ROOT` is not read. |
 | `SKILLED_LOOP_HOPS` | `0` | Wrapper-managed completed-hop count. It must be a non-negative integer. |
 
@@ -284,7 +295,7 @@ node --test .skilled/hooks/session-relaunch/tests/*.test.cjs
 session-relaunch/
 +-- bin/session-relaunch.cjs
 +-- claude/
-|   +-- compact-pointer.mjs  (SessionStart after a compaction)
+|   +-- compact-pointer.mjs  (SessionStart: after a compaction, and the claim of a goal-command receiver)
 |   +-- context-nudge.mjs
 |   +-- stop-arm.mjs
 |   +-- subagent-guard.mjs  (PreToolUse, Bash from a sub-agent)
@@ -303,6 +314,7 @@ session-relaunch/
 |   `-- session-relaunch.js (browsability symlink -> ../../../plugins/session-relaunch.js)
 +-- lib/
 |   +-- context-usage.cjs
+|   +-- goal-handover.cjs
 |   +-- hop-history.cjs
 |   +-- killer.cjs
 |   +-- nudge.cjs

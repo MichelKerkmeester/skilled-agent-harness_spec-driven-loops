@@ -30,6 +30,7 @@ script_path=$(resolve_script_path)
 script_directory=$(dirname "$script_path")
 relaunch_cli="$script_directory/../hooks/session-relaunch/bin/session-relaunch.cjs"
 relaunch_core="$script_directory/../hooks/session-relaunch/lib/relaunch-core.cjs"
+goal_handover="$script_directory/../hooks/session-relaunch/lib/goal-handover.cjs"
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
 consumed_record_json=''
@@ -129,6 +130,33 @@ consumed_goal_packet() {
     ' <<< "$consumed_record_json") || goal_packet=''
   fi
   printf '%s' "$goal_packet"
+}
+
+# Prints the packet's chat slice for a receiver that sets its goal from the start prompt. When
+# no slice can be sent it prints one warning line and returns 1, so the receiver still starts
+# on its claim seed and the operator sees why the goal was left out.
+render_goal_slice() {
+  local goal_packet="$1"
+
+  node -e '
+    const [helperPath, packet] = process.argv.slice(1);
+    let reason = "";
+    try {
+      const { renderGoalSlice } = require(helperPath);
+      const result = renderGoalSlice({ packet });
+      if (result.ok) {
+        process.stdout.write(result.slice);
+        process.exit(0);
+      }
+      reason = result.reason;
+    } catch (error) {
+      reason = "could not render the goal packet";
+    }
+    process.stderr.write(
+      "warning: the goal was not set in the relaunched session: " + reason + "\n",
+    );
+    process.exit(1);
+  ' -- "$goal_handover" "$goal_packet"
 }
 
 # Prints the note's state through the core, so the wrapper judges a note exactly as a
@@ -351,8 +379,18 @@ pi_extension_arguments=()
 pi_extension_arguments_set=0
 pi_no_extensions_seen=0
 codex_no_daemon_seen=0
-# The packet belongs to one hop, so a value from an outer session never reaches a first launch.
-unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SESSION_RELAUNCH_GOAL_PACKET
+# The packet and the claim belong to one hop, so a value from an outer session never reaches a
+# first launch.
+unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SESSION_RELAUNCH_GOAL_PACKET \
+  SKILLED_LOOP_CLAIM_SEED
+# A Hermes receiver binds the goal packet from this variable, so the operator's own value is
+# kept to put back on a hop that carries no goal.
+hermes_spec_folder_set=0
+hermes_spec_folder_value=''
+if [[ -n "${HERMES_SPEC_FOLDER+x}" ]]; then
+  hermes_spec_folder_set=1
+  hermes_spec_folder_value=$HERMES_SPEC_FOLDER
+fi
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -577,7 +615,27 @@ while true; do
       relaunched_spec_folder="$spec_folder"
       seed="[session-relaunch] claim and continue handoff $handoff_path"
       seed+=$(spec_folder_suffix "$spec_folder")
-      build_relaunch_arguments "$seed"
+      # Claude takes its goal from a start prompt that is the goal command and nothing else, so
+      # the claim seed travels in the environment for the start hook to deliver. A slice that
+      # cannot be sent leaves the claim seed as the start prompt.
+      launch_prompt="$seed"
+      unset SKILLED_LOOP_CLAIM_SEED
+      if [[ "$runtime" == 'claude' && -n "$goal_packet" ]] \
+        && goal_slice=$(render_goal_slice "$goal_packet"); then
+        launch_prompt="/goal $goal_slice"
+        SKILLED_LOOP_CLAIM_SEED="$seed"
+        export SKILLED_LOOP_CLAIM_SEED
+      fi
+      if [[ "$runtime" == 'hermes' ]]; then
+        if [[ -n "$goal_packet" ]]; then
+          export HERMES_SPEC_FOLDER="$goal_packet"
+        elif ((hermes_spec_folder_set == 1)); then
+          export HERMES_SPEC_FOLDER="$hermes_spec_folder_value"
+        else
+          unset HERMES_SPEC_FOLDER
+        fi
+      fi
+      build_relaunch_arguments "$launch_prompt"
       if [[ "$runtime" == 'codex' ]]; then
         launch_arguments=(--no-daemon "${launch_arguments[@]}")
       fi

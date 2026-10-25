@@ -22,14 +22,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-24 |
 | **Branch** | `worktrees/220-relaunch-cancel-and-test-isolation` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 27 of 29 |
 | **Predecessor** | 026-goal-rebind-shared-core-and-opencode |
 | **Successor** | 028-goal-rebind-live-proof-and-docs |
-| **Handoff Criteria** | Claude and Codex receivers set or request the goal on the proven path, never over the limit and never for a hop with no sender goal, with the relaunch gate green |
+| **Handoff Criteria** | A Claude receiver sets the goal on the proven path and a Hermes receiver binds from its environment, never over the limit and never for a hop with no sender goal, with the relaunch gate green. The Codex part is deferred (ADR-002) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -73,7 +73,7 @@ After a hop, a Claude or Codex receiver has the goal set from `goal.md`, or is t
 
 ### In Scope
 - Claude: the path phase 24 selects. A start hook sends the command, or the start prompt becomes the command with the claim moved into hook context, or the seed asks the receiver to send the fenced slice the GOAL POSTURE RULE already requires.
-- Codex: a seed instruction in `prompt-seed.mjs` that asks the model to create the goal from the slice, within the limit probe C showed.
+- Codex: a seed instruction in `prompt-seed.mjs` that asks the model to create the goal from the slice, within the limit probe C showed. **Deferred, not built:** a hop always restarts the runtime it left and a Codex sender never carries a goal packet, so no Codex receiver can be handed one (ADR-002 in `decision-record.md`).
 - Render the slice with `goal.cjs packet <packet> --workspace <repo root>` and send only the `chat_slice`, only at `packet_budget=ok`, with no frontmatter.
 - Do nothing when `SESSION_RELAUNCH_GOAL=0`, when the note holds no packet, or when the slice is over budget, and say why in one line.
 - Hermes: `skilled-loop` exports the note's goal packet as `HERMES_SPEC_FOLDER` to a Hermes receiver while `SESSION_RELAUNCH_GOAL` is on, because phase 24 probe D showed the Hermes plugin binds from that variable and phase 26 added no Hermes code. Added after phase 26 named it as a required follow-up.
@@ -87,9 +87,9 @@ After a hop, a Claude or Codex receiver has the goal set from `goal.md`, or is t
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .skilled/hooks/session-relaunch/claude/ (a new start hook, named after the phase 24 verdict) and the hook registry rows | Create and modify | Send or request the goal on the proven path |
-| .skilled/hooks/session-relaunch/codex/prompt-seed.mjs | Modify | The seed instruction to create the goal |
-| .skilled/hooks/session-relaunch/lib/ | Modify | A helper that renders the slice and applies the budget check |
+| .skilled/hooks/session-relaunch/claude/compact-pointer.mjs | Modify | Deliver the claim at the start of a receiver whose prompt is the goal command. The existing `SessionStart` registration already covers it, so no new hook and no registry row (ADR-001) |
+| .skilled/hooks/session-relaunch/codex/prompt-seed.mjs | Unchanged | The seed instruction is deferred (ADR-002) |
+| .skilled/hooks/session-relaunch/lib/goal-handover.cjs | Create | A helper that renders the slice and applies the budget check |
 | .skilled/hooks/session-relaunch/tests/*.test.cjs | Modify | Failing-first tests per path |
 | .skilled/hooks/session-relaunch/README.md | Modify | Describe the path and its limits |
 | .skilled/bin/skilled-loop | Modify | Launch a Claude receiver with the rendered `/goal` start prompt, and export `HERMES_SPEC_FOLDER` for a Hermes receiver |
@@ -105,7 +105,7 @@ After a hop, a Claude or Codex receiver has the goal set from `goal.md`, or is t
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | A Claude receiver of a hop with a goal packet has the goal set from `goal.md` or is asked to send the fenced slice, on the path phase 24 selected |
-| REQ-002 | A Codex receiver of the same hop is asked, through the seed, to create the goal from the slice |
+| REQ-002 | A Codex receiver of the same hop is asked, through the seed, to create the goal from the slice. Deferred under ADR-002: no Codex receiver can be handed a packet |
 | REQ-003 | Nothing is sent when the slice is over 4,000 characters, when the note holds no packet, or when `SESSION_RELAUNCH_GOAL=0`, and the receiver is told why in one line |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -196,7 +196,7 @@ After a hop, a Claude or Codex receiver has the goal set from `goal.md`, or is t
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the receiver set the goal without being asked, or ask the operator to send the fenced slice? The recommendation is to set it, because the sender had an active goal, with the switch as the off ramp. The phase 24 verdict can still force the fenced-slice path.
+- Resolved: the receiver sets the goal without being asked, because the sender had an active goal, with the switch as the off ramp. The phase 24 verdict supported the start-prompt path, so the fenced-slice path was not needed.
 <!-- /ANCHOR:questions -->
 
 ---

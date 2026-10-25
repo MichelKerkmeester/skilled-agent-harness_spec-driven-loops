@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Claude Session Compaction Pointer
+// MODULE: Claude Session Note Pointer
 // ───────────────────────────────────────────────────────────────────
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -7,11 +7,21 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
-import { appendLog, isEntrypoint, parseHandoff, payloadEventName } from '../lib/relaunch-core.cjs';
+import {
+  appendLog,
+  dropNestedLoop,
+  goalSwitchOn,
+  isEntrypoint,
+  parseHandoff,
+  payloadEventName,
+} from '../lib/relaunch-core.cjs';
 import nudge from '../lib/nudge.cjs';
+
+const require = createRequire(import.meta.url);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -23,6 +33,13 @@ const CONCERN = 'session-relaunch';
 const FORK_COMPACTION_WINDOW_MS = 5000;
 const FORK_TRANSCRIPT_MTIME_WINDOW_MS = 10000;
 const TRANSCRIPT_TAIL_BYTES = 64 * 1024;
+// The wrapper's per-hop claim for a receiver whose start prompt had to be the goal command.
+// It carries the loop prefix so a runtime started from the loop session's shell never sees it.
+const CLAIM_SEED_ENV = 'SKILLED_LOOP_CLAIM_SEED';
+// The text sent with the claim says why it did not arrive as the operator's first message.
+const GOAL_START_LEAD = '[session-relaunch] This session was started with the goal command, which'
+  + ' leaves no room for the hand-over in the prompt, so it arrives here. Do these steps first,'
+  + ' before any work on the goal:';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -107,6 +124,33 @@ function lastCompactBoundaryTimestamp(filePath) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The receiver of a hop that carries a goal starts on the goal command, because the command
+// has to be the whole start prompt and a start hook cannot send it. The claim moves to the
+// start context, which the first turn the goal command begins reads. Only the receiver the
+// wrapper started gets it: the wrapper's variable is dropped for a runtime started from the
+// loop session's shell, and a dispatched child session never takes the parent's note.
+function claimAfterGoalStart(payload) {
+  if (!process.env[CLAIM_SEED_ENV]) return done();
+  dropNestedLoop(process.env);
+  const seed = process.env[CLAIM_SEED_ENV];
+  if (!seed) return done();
+
+  const { relaunchSessionIsChild } = require('../../goal/lib/goal-core.cjs');
+  if (relaunchSessionIsChild(process.env)) return done();
+  if (!goalSwitchOn({ ...loadConfigFile(configPath()), ...process.env })) return done();
+
+  const sessionId = payload.session_id;
+  if (!nudge.validSessionId(sessionId)) return done();
+  const instructions = nudge.seedInstructions({ prompt: seed, sessionId });
+  if (instructions === null) return done();
+
+  logEvent('goal-start-claim', { sessionId, note: nudge.notePathFromSeed(seed) });
+  return emit(
+    payloadEventName(payload, { runtime: 'claude' }),
+    [GOAL_START_LEAD, seed, instructions].join('\n'),
+  );
+}
+
 // A compacted session keeps its id but loses the detail its handoff note holds, so the
 // session is pointed back at that note. Compaction also frees the context the spent
 // nudge level was measured against, so the level resets and the next fill nudges again.
@@ -119,6 +163,7 @@ async function main() {
 
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null || typeof payload !== 'object') return done();
+  if (payload.source === 'startup') return claimAfterGoalStart(payload);
   if (payload.source !== 'compact') return done();
 
   const sessionId = payload.session_id;

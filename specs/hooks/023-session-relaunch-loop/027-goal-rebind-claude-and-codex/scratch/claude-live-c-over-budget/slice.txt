@@ -1,0 +1,53 @@
+# Goal: Pong keeper
+
+Packet: specs/demo/001-demo
+
+Reply to every operator message with the single word PONG and do nothing else.
+This goal is met only when the operator sends the word FINISH.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+Filler line that only pads this goal toward its size limit and asks for nothing.
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

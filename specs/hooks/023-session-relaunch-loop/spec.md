@@ -129,7 +129,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 24 | 024-goal-rebind-claude-codex-hermes-probes/ | Run four recorded probes with controls: Claude start prompt as a command, a Claude start hook sending `/goal`, a Codex goal from seed or hook context, and Hermes with `HERMES_SPEC_FOLDER`, then name the phase 27 path | Complete |
 | 25 | 025-goal-binding-record-and-launcher/ | The hand-over note records the sender's goal packet, claim and `skilled-loop` pass it to the receiver, and `SESSION_RELAUNCH_GOAL=0` turns it off | Complete |
 | 26 | 026-goal-rebind-shared-core-and-opencode/ | Pi, Devin, Cursor, Hermes and OpenCode bind the hand-over goal packet on the first turn when they have no goal of their own | Complete |
-| 27 | 027-goal-rebind-claude-and-codex/ | A Claude or Codex receiver sets the hand-over goal from `goal.md` on the path phase 24 proved, within the 4,000-character slice limit, or asks for the fenced slice | Pending |
+| 27 | 027-goal-rebind-claude-and-codex/ | A Claude or Codex receiver sets the hand-over goal from `goal.md` on the path phase 24 proved, within the 4,000-character slice limit, or asks for the fenced slice | Complete |
 | 28 | 028-goal-rebind-live-proof-and-docs/ | Live hops prove the goal survives a hand-over on each runtime, with switch-off and no-goal controls, playbook scenarios and doc updates | Pending |
 | 29 | 029-relaunch-evidence-gaps-and-playbook-drift/ | Capture the thin Codex and Claude live evidence, find the cause of the Claude nudge retry, record a Pi baseline and correct two playbook lines that disagree with a run | Complete |
 

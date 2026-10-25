@@ -1,0 +1,50 @@
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+◯ Goal not yet met… continuing
+
+⏺ PONG
+
+· Skedaddling… (running Stop hooks… 4/5 · 21s · ↓ 30 tokens)
+                                                                                                                                                                                  ◎ /goal active (21s)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

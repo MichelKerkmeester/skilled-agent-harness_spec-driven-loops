@@ -1,0 +1,13 @@
+# c2282780-4c29-4ca0-a3f8-c772ab3f0ca9
+line=7 ts=2026-10-24T23:50:38.215Z hook_context type=instructions event= chars=27524 head="{\"type\":\"instructions\",\"files\":[{\"path\":\"/Users/michelkerkmeester/.claude/CLAUDE.md\",\"type\":\"User\",\"content\":\"# AI Assistant Framework (Universal Template)\\n\\n>"
+line=20 ts=2026-10-24T23:50:37.447Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=22 ts=2026-10-24T23:50:37.447Z user_prompt#1 chars=4118 head="<command-name>/goal</command-name>\n            <command-message>goal</command-me"
+line=23 ts=2026-10-24T23:50:37.447Z user_prompt#2 chars=4045 head="<local-command-stdout>Goal set: # Goal: Pong keeper\n\nPacket: specs/demo/001-demo"
+line=24 ts=2026-10-24T23:50:37.447Z user_prompt#3 chars=4422 head="A session-scoped Stop hook is now active with condition: \"# Goal: Pong keeper\n\nP"
+line=45 ts=2026-10-24T23:50:42.440Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=58 ts=2026-10-24T23:50:46.026Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=64 ts=2026-10-24T23:50:49.648Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=75 ts=2026-10-24T23:50:53.082Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=81 ts=2026-10-24T23:50:56.077Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=92 ts=2026-10-24T23:50:59.795Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"
+line=99 ts=2026-10-24T23:51:02.434Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Pong keeper\n\nPacket: specs/demo/"

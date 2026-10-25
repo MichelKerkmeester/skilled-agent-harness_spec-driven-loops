@@ -18,6 +18,8 @@
       "goal rebind claude codex plan",
       "goal rebind claude codex tasks",
       "goal rebind claude codex acceptance criteria",
+      "goal rebind claude start prompt decision",
+      "codex goal seed deferred",
       "goal rebind claude codex implementation summary"
     ],
     "key_topics": [
@@ -35,13 +37,23 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/goal-handover.cjs",
+      ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "tests/README.md",
+      ".claude/settings.json",
+      "scratch/claude-live-a/slice.txt"
     ],
     "entities": [
       {
@@ -69,9 +81,63 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/goal-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-handover.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "slice.txt",
+        "kind": "file",
+        "path": "scratch/claude-live-a/slice.txt",
         "source": "derived"
       },
       {
@@ -99,13 +165,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "The Codex",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -133,65 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Claude has a built-in `/goal` command and Codex creates a goal through the model, so a hop receiver on either has no way to bind a record",
     "created_at": "2026-10-24T19:03:14Z",
-    "last_save_at": "2026-10-24T22:48:23.909Z",
+    "last_save_at": "2026-10-25T00:08:44.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,15 +211,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81b6c416c3cee99b6246a285b07340a75c1050ab24dfa713a9cf946e4fba6d70",
+    "source_fingerprint": "sha256:3a153f55b19f914089fa42220b7e2b100e643fb385ce549baa7d19e54991af57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "115b6d3607c77d606121c25b4a8fa651a98a6351529123d94a7b51834cf86d31",
-      "plan.md": "90d63be815f04ae2dc5a4578ec97f7b0ae368e345e155990b19bc18a0c168c0c",
-      "tasks.md": "641774757a5faa8a12f1ff524b36952cea719964d11735c4020aea2016580a50",
-      "implementation-summary.md": "214909b47336522eb4fb17214988923407c6ab08972a9d10cbdcc42f2d3cb12c"
+      "spec.md": "03419fcd56baa483df314f282ca47c4e8a4c7ff08213916284970bd9bdfefedf",
+      "plan.md": "e825049305f2537fda4a121f1198eb4129aa4b6f89050af40a959fa3ac438d7d",
+      "tasks.md": "614f9c63cb6f09322793487096c9b9d4d034da9ba3ff3b1307655de3a526847d",
+      "decision-record.md": "21088724b841dad6f655827553b04cf7bdd4417c24440760094ba645ed41eb8b",
+      "implementation-summary.md": "09caada4645d9163093dd808abddb3680adf76a49e2efb5fa50f0a9af160ce55"
     },
     "last_active_at": null
   }

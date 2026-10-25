@@ -164,7 +164,11 @@ const record = {
     hasModel: Object.hasOwn(process.env, "SKILLED_LOOP_MODEL"),
     hasProvider: Object.hasOwn(process.env, "SKILLED_LOOP_PROVIDER"),
     SESSION_RELAUNCH_GOAL_PACKET: process.env.SESSION_RELAUNCH_GOAL_PACKET || "",
-    hasGoalPacket: Object.hasOwn(process.env, "SESSION_RELAUNCH_GOAL_PACKET")
+    hasGoalPacket: Object.hasOwn(process.env, "SESSION_RELAUNCH_GOAL_PACKET"),
+    SKILLED_LOOP_CLAIM_SEED: process.env.SKILLED_LOOP_CLAIM_SEED || "",
+    hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED"),
+    HERMES_SPEC_FOLDER: process.env.HERMES_SPEC_FOLDER || "",
+    hasHermesSpecFolder: Object.hasOwn(process.env, "HERMES_SPEC_FOLDER")
   }
 };
 fs.appendFileSync(recordPath, JSON.stringify(record) + "\\n");
@@ -245,6 +249,8 @@ function createSandbox(t) {
     'SESSION_RELAUNCH_MAX_AGE_MIN',
     'SESSION_RELAUNCH_GOAL',
     'SESSION_RELAUNCH_GOAL_PACKET',
+    'SKILLED_LOOP_CLAIM_SEED',
+    'HERMES_SPEC_FOLDER',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, binDir, recordedCwd, env };
@@ -2295,10 +2301,25 @@ test('wrapper declines a record without a cwd and keeps the runtime exit code', 
 
 const GOAL_PACKET = 'specs/hooks/023-session-relaunch-loop';
 
-function writeGoalNote(sandbox, handoffPath, { packetHoldsGoal = true } = {}) {
+const BUDGET_MANIFEST = path.join(
+  '.skilled', 'skills', 'system-spec-kit', 'templates', 'spec-kit-docs.json',
+);
+const GOAL_TEXT = '---\ntitle: "Goal: Example"\n---\n# Goal: Example\n\nShip the example.\n';
+const GOAL_SLICE = '# Goal: Example\n\nShip the example.';
+
+function writeGoalNote(sandbox, handoffPath, {
+  packetHoldsGoal = true, goalText = GOAL_TEXT, budget = true,
+} = {}) {
   const packetPath = path.join(sandbox.repoRoot, GOAL_PACKET);
   fs.mkdirSync(packetPath, { recursive: true });
-  if (packetHoldsGoal) fs.writeFileSync(path.join(packetPath, 'goal.md'), '# Goal: Example\n');
+  if (packetHoldsGoal) fs.writeFileSync(path.join(packetPath, 'goal.md'), goalText);
+  // The budget check reads the spec kit's manifest from the checkout, so a sandbox without it
+  // cannot call any slice ok.
+  const manifestPath = path.join(sandbox.repoRoot, BUDGET_MANIFEST);
+  fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
+  if (budget) {
+    fs.writeFileSync(manifestPath, JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }));
+  }
   fs.writeFileSync(
     handoffPath,
     `---\nstatus: open\nspec_folder: ${GOAL_PACKET}\ngoal_packet: ${GOAL_PACKET}\n---\n`,
@@ -2391,4 +2412,172 @@ test('wrapper drops the previous hop goal packet when the next note carries none
   assert.equal(records[0].env.hasGoalPacket, false);
   assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
   assert.equal(records[2].env.hasGoalPacket, false);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL START PROMPT AND HERMES EXPORT
+// ─────────────────────────────────────────────────────────────────────────────
+
+function claimSeedFor(handoffPath) {
+  return `${SEED} ${handoffPath} | Spec folder: ${GOAL_PACKET}${SPEC_FOLDER_SUFFIX}`;
+}
+
+function warningLines(result) {
+  return result.stderr.split('\n').filter((line) => /goal/i.test(line));
+}
+
+test('a Claude hop with a goal starts on the goal command and carries the claim in the environment', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude', '--model', 'opus', '--name', 'Work']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasClaimSeed, false);
+  assert.deepEqual(records[1].args, ['--model', 'opus', `/goal ${GOAL_SLICE}`, '--name', 'Work']);
+  assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, claimSeedFor(handoffPath));
+  assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
+  assert.deepEqual(warningLines(result), []);
+});
+
+test('a Claude hop keeps the claim seed as its start prompt when no goal can be sent', (t) => {
+  const cases = [
+    ['switch off', { env: { SESSION_RELAUNCH_GOAL: '0' }, note: {}, warns: false }],
+    ['no packet in the note', { env: {}, note: 'none', warns: false }],
+    ['packet lost its goal.md', { env: {}, note: { packetHoldsGoal: false }, warns: false }],
+    ['slice over budget', {
+      env: {},
+      note: { goalText: `---\ntitle: x\n---\n# Goal\n\n${'x'.repeat(4001)}` },
+      warns: /over the 4000-character limit/,
+    }],
+    ['no budget to check against', { env: {}, note: { budget: false }, warns: /no budget/ }],
+    ['empty durable slice', {
+      env: {}, note: { goalText: '---\ntitle: x\n---\n<!-- ANCHOR:log -->\n' }, warns: /no durable slice/,
+    }],
+  ];
+
+  for (const [label, { env, note, warns }] of cases) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1', ...env });
+    if (note === 'none') writeSpecFolderNote(handoffPath, GOAL_PACKET);
+    else writeGoalNote(sandbox, handoffPath, note);
+
+    const result = runWrapper(sandbox, ['claude']);
+
+    assert.equal(result.status, 0, `${label}: ${result.stderr}`);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, label);
+    assert.deepEqual(records[1].args, [claimSeedFor(handoffPath)], label);
+    assert.equal(records[1].env.hasClaimSeed, false, label);
+    const lines = warningLines(result);
+    if (warns === false) {
+      assert.deepEqual(lines, [], label);
+    } else {
+      assert.equal(lines.length, 1, `${label}: one line, got ${JSON.stringify(lines)}`);
+      assert.match(lines[0], warns, label);
+    }
+  }
+});
+
+test('a hop on another runtime keeps its claim seed and gets no claim variable', (t) => {
+  for (const runtime of ['pi', 'opencode', 'codex', 'cursor', 'devin']) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    writeGoalNote(sandbox, handoffPath);
+
+    const result = runWrapper(sandbox, [runtime]);
+
+    assert.equal(result.status, 0, `${runtime}: ${result.stderr}`);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, runtime);
+    assert.ok(records[1].args.includes(claimSeedFor(handoffPath)), runtime);
+    assert.ok(!records[1].args.some((argument) => argument.startsWith('/goal')), runtime);
+    assert.equal(records[1].env.hasClaimSeed, false, runtime);
+    assert.equal(records[1].env.hasHermesSpecFolder, false, runtime);
+    assert.deepEqual(warningLines(result), [], runtime);
+  }
+});
+
+test('the claim variable never leaks from an outer session or into the next hop', (t) => {
+  const sandbox = createSandbox(t);
+  const nextNote = path.join(sandbox.root, 'next-note.md');
+  writeSpecFolderNote(nextNote, GOAL_PACKET);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    SKILLED_LOOP_CLAIM_SEED: `${SEED} /outer/note.md`,
+    NOTE_REWRITE_ON_INVOCATION: '2',
+    NOTE_REWRITE_SOURCE: nextNote,
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.equal(records[0].env.hasClaimSeed, false);
+  assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, claimSeedFor(handoffPath));
+  assert.equal(records[2].env.hasClaimSeed, false);
+  assert.ok(records[2].args[0].startsWith(SEED));
+});
+
+test('a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['hermes', 'chat']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.equal(records[0].env.hasHermesSpecFolder, false);
+  assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
+  assert.deepEqual(records[1].args, ['chat', '-q', claimSeedFor(handoffPath)]);
+  assert.equal(records[1].env.hasClaimSeed, false);
+});
+
+test('a Hermes hop exports no folder with the switch off or without a packet', (t) => {
+  for (const [label, env, noteWithoutGoal] of [
+    ['switch off', { SESSION_RELAUNCH_GOAL: '0' }, false],
+    ['no packet', {}, true],
+  ]) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1', ...env });
+    if (noteWithoutGoal) writeSpecFolderNote(handoffPath, GOAL_PACKET);
+    else writeGoalNote(sandbox, handoffPath);
+
+    assert.equal(runWrapper(sandbox, ['hermes']).status, 0, label);
+
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, label);
+    assert.equal(records[1].env.hasHermesSpecFolder, false, label);
+  }
+});
+
+test('a Hermes hop restores the operator folder once a hop carries no goal', (t) => {
+  const sandbox = createSandbox(t);
+  const nextNote = path.join(sandbox.root, 'next-note.md');
+  writeSpecFolderNote(nextNote, GOAL_PACKET);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '*',
+    SESSION_RELAUNCH_MAX_HOPS: '2',
+    HERMES_SPEC_FOLDER: 'specs/operator-chosen',
+    NOTE_REWRITE_ON_INVOCATION: '2',
+    NOTE_REWRITE_SOURCE: nextNote,
+  });
+  writeGoalNote(sandbox, handoffPath);
+
+  const result = runWrapper(sandbox, ['hermes']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.equal(records[0].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
+  assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
+  assert.equal(records[2].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
 });

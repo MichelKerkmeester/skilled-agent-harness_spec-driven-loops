@@ -1405,3 +1405,122 @@ test('compact-pointer clears a pending re-arm along with the nudge level', async
   assert.equal(result.code, 0, result.stderr);
   assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
 });
+
+// A receiver whose start prompt is the goal command cannot also be sent its claim as a prompt,
+// so the wrapper passes the claim it would have sent and the start hook delivers it as context.
+const START_SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/027-goal-start';
+
+function claimSeedFor(sandbox) {
+  const notePath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs', 'note.md',
+  );
+  const suffix = ` | Spec folder: ${START_SPEC_FOLDER}`
+    + ' (carried from the handoff; Gate 3 answered in the sending session)';
+  return {
+    notePath,
+    seed: `[session-relaunch] claim and continue handoff ${notePath}${suffix}`,
+  };
+}
+
+test('compact-pointer delivers the claim at the start of a goal-command receiver', async (t) => {
+  const sandbox = createSandbox(t);
+  const { notePath, seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.ok(output.additionalContext.includes(seed), 'the carried seed keeps the Gate 3 answer');
+  assert.ok(
+    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
+    output.additionalContext,
+  );
+  assert.ok(output.additionalContext.includes(`/speckit:resume ${START_SPEC_FOLDER}`));
+  assert.match(fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8',
+  ), /goal-start-claim/);
+});
+
+test('compact-pointer adds no start claim without the seed, off the start event or for a bad seed', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+
+  const without = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.equal(without.stdout, '');
+
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  for (const source of ['resume', 'clear']) {
+    const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload(source));
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '', source);
+  }
+
+  for (const badSeed of [
+    '[session-relaunch] claim and continue handoff relative/note.md',
+    '[session-relaunch] claim and continue handoff ',
+    'claim and continue handoff /tmp/note.md',
+    '',
+  ]) {
+    sandbox.env.SKILLED_LOOP_CLAIM_SEED = badSeed;
+    const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '', badSeed);
+  }
+});
+
+test('compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+
+  const child = await runAdapter(
+    { ...sandbox, env: { ...sandbox.env, AI_SESSION_CHILD: '1' } },
+    COMPACT_POINTER,
+    compactPayload('startup'),
+  );
+  assert.equal(child.code, 0, child.stderr);
+  assert.equal(child.stdout, '');
+
+  const switchedOff = await runAdapter(
+    { ...sandbox, env: { ...sandbox.env, SESSION_RELAUNCH_GOAL: '0' } },
+    COMPACT_POINTER,
+    compactPayload('startup'),
+  );
+  assert.equal(switchedOff.stdout, '');
+
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SESSION_RELAUNCH_GOAL=off\n');
+  const flagsOff = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.equal(flagsOff.stdout, '');
+  fs.rmSync(sandbox.env.HOOK_FLAGS_CONFIG);
+
+  const disabled = await runAdapter(
+    { ...sandbox, env: { ...sandbox.env, SYSTEM_SESSION_RELAUNCH_DISABLED: '1' } },
+    COMPACT_POINTER,
+    compactPayload('startup'),
+  );
+  assert.equal(disabled.stdout, '');
+
+  const control = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.notEqual(control.stdout, '', 'the same environment without the switches claims');
+});
+
+test('compact-pointer adds no start claim to a runtime started from the loop session shell', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  sandbox.env.SKILLED_LOOP_ID = String(process.pid);
+
+  const nested = await runNested({
+    argv: [COMPACT_POINTER],
+    env: sandbox.env,
+    cwd: sandbox.repoRoot,
+    input: JSON.stringify(compactPayload('startup')),
+  });
+  assert.equal(nested.code, 0, nested.stderr);
+  assert.equal(nested.stdout, '');
+
+  const own = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.notEqual(own.stdout, '', 'the loop runtime itself still receives its claim');
+});

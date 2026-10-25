@@ -35,17 +35,17 @@ Render the slice, check its budget, and hand it over on the path the probes prov
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Phase 024 verdicts read
-- [ ] Phase 025 export exists
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Phase 024 verdicts read
+- [x] Phase 025 export exists
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] The gate passes in all three environments against the baseline
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
+- [x] The gate passes in all three environments against the baseline
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -111,8 +111,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 024 verdicts | Internal | Yellow | Seed path only |
-| Phase 025 export | Internal | Yellow | Tests set the variable by hand |
+| Phase 024 verdicts | Internal | Green | Start-prompt path chosen (ADR-001) |
+| Phase 025 export | Internal | Green | Consumed through `consume` |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -162,9 +162,9 @@ Slice helper ──► Claude hook
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline gate recorded
-- [ ] Phase 024 verdicts read
-- [ ] Hook registry and generated settings rows identified
+- [x] Baseline gate recorded
+- [x] Phase 024 verdicts read
+- [x] Hook registry and generated settings rows identified
 
 ### Rollback Procedure
 1. Revert the diff and the registry rows.
