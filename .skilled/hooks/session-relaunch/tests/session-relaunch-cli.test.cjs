@@ -74,6 +74,8 @@ function createSandbox(t) {
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
     PATH: [binDir, process.env.PATH || ''].join(path.delimiter),
     SESSION_RELAUNCH_TEST_PS_OUTPUT: '',
     SESSION_RELAUNCH_TEST_PS_EXIT_CODE: '0',
@@ -410,6 +412,38 @@ test('prepare still arms a pending record below the hop limit', (t) => {
   const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
   assert.equal(record.status, 'pending');
   assert.equal(record.hops, 0);
+});
+
+// The loop can end a running session, so a checkout that never opted in must not
+// arm a record even inside the wrapper.
+test('prepare arms nothing under the loop when nothing enables the relaunch concern', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /session relaunch is disabled by hook flags/);
+  assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+});
+
+test('prepare arms a record when the flags file opts in to the relaunch concern', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_ENABLED=1\n');
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
 });
 
 test('prepare records the runtime from SKILLED_LOOP_RUNTIME', (t) => {

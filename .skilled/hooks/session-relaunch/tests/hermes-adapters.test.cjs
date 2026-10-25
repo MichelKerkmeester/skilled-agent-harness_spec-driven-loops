@@ -30,6 +30,8 @@ function sandbox(t) {
     ...process.env,
     XDG_RUNTIME_DIR: path.join(root, 'runtime'),
     HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
   };
   for (const key of [
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
@@ -580,4 +582,42 @@ test('session end ignores mismatched, non-Hermes, and disabled records', async (
   sandboxed.env.SYSTEM_SESSION_RELAUNCH_DISABLED = '1';
   assert.equal(await module.armPendingRecord({ session_id: 'session-a' }, deps), null);
   assert.deepEqual(calls, []);
+});
+
+// The production hook calls the arm with no env seam, so the resolver reads the
+// live environment and the flags file. A child process keeps the resolver's
+// once-per-process file cache from leaking between the two cases.
+function armInProductionShape(env, payload) {
+  const script = [
+    `const mod = await import(${JSON.stringify(pathToFileURL(armAdapter).href)});`,
+    'let spawns = 0;',
+    `const result = await mod.armPendingRecord(${JSON.stringify(payload)}, {`,
+    '  targetPid: 4321,',
+    '  spawn() { spawns += 1; return { unref() {} }; },',
+    '});',
+    'process.stdout.write(JSON.stringify({ status: result ? result.status : null, spawns }));',
+  ].join('\n');
+  const { spawnSync } = require('node:child_process');
+  const child = spawnSync(process.execPath, ['--input-type=module', '-e', script], { env, encoding: 'utf8' });
+  assert.equal(child.status, 0, child.stderr);
+  return JSON.parse(child.stdout);
+}
+
+test('session end arms from a flags-file opt-in alone and arms nothing without it', (t) => {
+  for (const [fileText, expected] of [
+    ['SYSTEM_SESSION_RELAUNCH_ENABLED=1\n', { status: 'armed', spawns: 1, record: 'armed' }],
+    ['', { status: null, spawns: 0, record: 'pending' }],
+  ]) {
+    const sandboxed = sandbox(t);
+    delete sandboxed.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+    fs.writeFileSync(sandboxed.env.HOOK_FLAGS_CONFIG, fileText);
+    const loopId = '5150';
+    sandboxed.env.SKILLED_LOOP_ID = loopId;
+    makePending(sandboxed.env, loopId, 'session-f');
+
+    const result = armInProductionShape(sandboxed.env, { session_id: 'session-f', cwd: process.cwd() });
+
+    assert.deepEqual(result, { status: expected.status, spawns: expected.spawns }, JSON.stringify(fileText));
+    assert.equal(core.readRelaunchFile(loopId, sandboxed.env).status, expected.record, JSON.stringify(fileText));
+  }
 });

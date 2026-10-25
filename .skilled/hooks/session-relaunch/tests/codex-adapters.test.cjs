@@ -63,6 +63,8 @@ function createSandbox(t) {
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
     PATH: `${binDir}${path.delimiter}${process.env.PATH || ''}`,
     CODEX_TEST_PARENT_PID: String(process.pid),
     CODEX_TEST_GRANDPARENT_PID: String(process.ppid),

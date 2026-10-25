@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.12.0
+version: 1.0.13.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -29,6 +29,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 - Objective: Verify threshold context, note validation, Stop arming, process shutdown, wrapper relaunch, note status changes, hop and age limits, the hop history and calling off a prepared hand-over with an operator prompt or `cancel`.
 - Real user request: Carry this task into a new Claude session before context compaction, then finish the remaining work.
 - Prompt: Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session.
+- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. The kill-switch check sets `SYSTEM_SESSION_RELAUNCH_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own environment.
 - Expected execution process: Run Claude inside tmux with `SESSION_RELAUNCH_THRESHOLD=0.05`, prepare the note when the nudge appears, wait for Stop to arm the record when the transcript path is present and background tasks have drained, then confirm the wrapper relaunches with the claim seed.
 - Expected signals: The relaunch record moves from pending to armed and is consumed by the wrapper. The receiving session starts with a `[session-relaunch]` claim seed. The note moves from open to claimed to done. `history` shows `handed-over`, `claimed ... by <id>` and `done` for that note. A hand-over the operator calls off ends disarmed with reason `user-message` or `cancelled`, `should-relaunch` reports `withdrawn`, the session earns one more context nudge and the wrapper prints one warning and no manual claim command.
 - Pass/fail: PASS if the new session claims the same note and completes its remaining work after an armed handoff, and a called-off hand-over keeps its session running with the signals above. FAIL if Stop arms without a transcript path, the wrapper declines an eligible record, the receiving session cannot claim the note, an operator prompt leaves an armed or deferred record in place or a `<task-notification>` prompt withdraws a deferred one.
@@ -41,7 +42,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. `history --last 3` shows `handed-over` with `(hop 1)`, `claimed` with `by <id>` and `done` (CL-1). | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries and the output of `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 3`. | PASS when the same handoff reaches done after a new Claude process starts with the seed and the three history lines name that note. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
+| session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. `history --last 3` shows `handed-over` with `(hop 1)`, `claimed` with `by <id>` and `done` (CL-1). | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries and the output of `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 3`. | PASS when the same handoff reaches done after a new Claude process starts with the seed and the three history lines name that note. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
 
 Three 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for this live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed, and [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md) records the run with no Gate 3 answer.
 
@@ -52,7 +53,7 @@ Three 2026-10-19 benchmark reports hold the outcomes, operator inputs and eviden
 Start a Claude session through `skilled-loop` with a small context window in a repository where the Claude hooks are installed. Inside the loop the nudge asks for a hop. Continue turns until the latest assistant usage reaches the configured threshold. Confirm that Claude receives a context nudge with a handoff path and that the nudge level is recorded once in nudge-<session-id>.json. Exit without preparing a note so this check does not request a wrapper hop.
 
 ~~~bash
-SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 bash .skilled/bin/skilled-loop claude "Tell me when the handoff nudge arrives, then wait."
+SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 bash .skilled/bin/skilled-loop claude "Tell me when the handoff nudge arrives, then wait."
 ~~~
 
 Evidence: the model responds to the nudge and the per-session nudge state records the reached level. PASS when the first eligible level arrives once. FAIL when no context is injected at or above the threshold or repeated events send the same level again.
@@ -422,7 +423,7 @@ linked_repo="$(mktemp -d)/linked-repo"
 mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
 ln -s "$repo_root/.skilled" "$linked_repo/.skilled"
 ln -s "$repo_root/.claude" "$linked_repo/.claude"
-tmux new-session -d -s shim-claude "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 && claude \"Carry this short task through the handoff and finish it in the receiving session.\"'"
+tmux new-session -d -s shim-claude "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 && claude \"Carry this short task through the handoff and finish it in the receiving session.\"'"
 tmux attach -t shim-claude
 ~~~
 
@@ -459,7 +460,7 @@ cli() { node "$repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cj
 session_name="relaunch-claude-$$"
 
 start_claude() {
-  tmux new-session -d -s "$session_name" "cd '$repo_root' && env -u SKILLED_LOOP_HOPS SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude"
+  tmux new-session -d -s "$session_name" "cd '$repo_root' && env -u SKILLED_LOOP_HOPS SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude"
   tmux set-option -w -t "$session_name" remain-on-exit on
 }
 say() { tmux send-keys -t "$session_name" -l "$1"; sleep 0.5; tmux send-keys -t "$session_name" Enter; }
@@ -647,7 +648,7 @@ repo_root="$(git rev-parse --show-toplevel)"
 sandbox="$(mktemp -d)"
 trap 'rm -rf "$sandbox"' EXIT
 unset SKILLED_LOOP_HOPS SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER
-export XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo" SKILLED_LOOP_ID=$$ SKILLED_LOOP_RUNTIME=claude
+export SYSTEM_SESSION_RELAUNCH_ENABLED=1 XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo" SKILLED_LOOP_ID=$$ SKILLED_LOOP_RUNTIME=claude
 mkdir -p "$XDG_RUNTIME_DIR" "$SESSION_RELAUNCH_REPO_ROOT/.skilled/skills/.state/session-relaunch/handoffs"
 hooks="$repo_root/.skilled/hooks/session-relaunch"
 cli() { node "$hooks/bin/session-relaunch.cjs" "$@"; }

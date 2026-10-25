@@ -1,0 +1,20 @@
+$ resolver one-liner (cjs, explicit env, empty config)
+default off: false
+enabled with flag: true
+enabled + kill switch: false
+spec-gate default: true
+spec-gate kill switch: false
+exit 0
+
+$ four-reader matrix
+mjs.isHookEnabled === cjs.isHookEnabled: true
+ts.isHookEnabled === cjs.isHookEnabled: true
+default (nothing set)      cjs=off,on mjs=off,on ts=off,on sh=off,on SAME
+enabled in env             cjs=on,on mjs=on,on ts=on,on sh=on,on SAME
+enabled in file            cjs=on,on mjs=on,on ts=on,on sh=on,on SAME
+env 0 over file 1          cjs=off,on mjs=off,on ts=off,on sh=off,on SAME
+enabled + kill switch      cjs=off,on mjs=off,on ts=off,on sh=off,on SAME
+enabled + master switch    cjs=off,off mjs=off,off ts=off,off sh=off,off SAME
+spec-gate kill switch      cjs=off,off mjs=off,off ts=off,off sh=off,off SAME
+mismatching rows: 0
+exit 0

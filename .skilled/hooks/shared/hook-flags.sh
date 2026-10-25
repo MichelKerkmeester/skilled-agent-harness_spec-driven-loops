@@ -5,7 +5,8 @@
 # Shared hook kill-switch guard - POSIX sh mirror of hook-flags.cjs / .mjs.
 # Usage:  . "<repo>/.skilled/hooks/shared/hook-flags.sh"; hook_enabled <concern> || exit 0
 # ENABLED (return 0) unless master SYSTEM_HOOKS_DISABLED or per-concern SYSTEM_<CONCERN>_DISABLED
-# is truthy (1/true/yes/on, case-insensitive). Default-on, dependency-free.
+# is truthy (1/true/yes/on, case-insensitive). Default-on, dependency-free, except
+# session-relaunch, which also needs SYSTEM_SESSION_RELAUNCH_ENABLED truthy.
 # Flags resolve from the live environment first, then an optional operator config
 # file (hook-flags.env); the environment always wins so a persisted default can
 # still be overridden per session.
@@ -76,5 +77,13 @@ hook_enabled() {
   [ -n "${1:-}" ] || return 0
   __hf_flag="SYSTEM_$(printf '%s' "$1" | tr 'a-z' 'A-Z' | sed 's/[^A-Z0-9][^A-Z0-9]*/_/g')_DISABLED"
   __hook_flags_truthy "$(__hook_flags_resolve "$__hf_flag")" && return 1
+  # Concerns that act on the session itself stay off until the operator opts in,
+  # as in DEFAULT_OFF in hook-flags.cjs; the kill switches above still win.
+  case "$1" in
+    session-relaunch)
+      __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_SESSION_RELAUNCH_ENABLED)"
+      return
+      ;;
+  esac
   return 0
 }

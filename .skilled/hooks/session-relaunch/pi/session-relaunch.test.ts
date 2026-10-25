@@ -32,6 +32,7 @@ type Handler = (event: ExtensionEvent, ctx: ExtensionContext) => unknown;
 
 const envKeys = [
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
+  'SYSTEM_SESSION_RELAUNCH_ENABLED',
   'SESSION_RELAUNCH_THRESHOLD',
   'SESSION_RELAUNCH_WINDOW_TOKENS',
   'SKILLED_LOOP_ID',
@@ -66,6 +67,8 @@ function setupEnv() {
   process.env.SESSION_RELAUNCH_REPO_ROOT = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
   process.env.SESSION_RELAUNCH_THRESHOLD = '0.8';
+  // The relaunch hooks are off until opted in; these cases exercise them on.
+  process.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
   delete process.env.SYSTEM_SESSION_RELAUNCH_DISABLED;
   delete process.env.SESSION_RELAUNCH_WINDOW_TOKENS;
   delete process.env.SKILLED_LOOP_ID;

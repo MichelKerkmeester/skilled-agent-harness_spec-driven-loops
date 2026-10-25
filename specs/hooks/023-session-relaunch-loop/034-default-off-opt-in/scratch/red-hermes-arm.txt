@@ -1,0 +1,46 @@
+$ mutation: DEFAULT_OFF entry removed from hook-flags.cjs
+104:const DEFAULT_OFF = {
+105-};
+106-
+$ node --test --test-name-pattern="flags-file opt-in alone" .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs
+✖ session end arms from a flags-file opt-in alone and arms nothing without it (118.5625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 162.957375
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:606:1
+✖ session end arms from a flags-file opt-in alone and arms nothing without it (118.5625ms)
+  AssertionError [ERR_ASSERTION]: ""
+  + actual - expected
+  
+    {
+  +   spawns: 1,
+  +   status: 'armed'
+  -   spawns: 0,
+  -   status: null
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:620:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { status: 'armed', spawns: 1 },
+    expected: { status: null, spawns: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit 1
+$ restore check: cmp backup vs restored
+cmp exit 0
+ .skilled/hooks/shared/hook-flags.cjs | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)

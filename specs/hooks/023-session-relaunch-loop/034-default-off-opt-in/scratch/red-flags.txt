@@ -1,0 +1,144 @@
+✔ enabled by default when no flag is set (0.75975ms)
+✔ master switch disables every concern (0.106375ms)
+✔ canonical per-concern switch disables only that concern (0.074125ms)
+✔ concernFlag derives the canonical env name (0.079042ms)
+✔ legacy aliases still disable their concern (0.186542ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.12925ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.086167ms)
+✔ .mjs and .ts facades re-export identical behavior (24.069708ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.153459ms)
+✔ environment overrides the config file both ways (0.183666ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (1.140125ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.712625ms)
+✖ session-relaunch is off by default while every other concern stays on (0.811917ms)
+✖ session-relaunch turns on when its enable flag is set in the environment (0.182166ms)
+✖ session-relaunch turns on from the config file, and the environment still wins (0.183125ms)
+✔ a kill switch beats the session-relaunch enable flag (0.077792ms)
+✖ the facades carry the session-relaunch default (0.186459ms)
+✖ the node and shell resolvers give the same session-relaunch answers (80.224875ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.139333ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.845833ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (112.880041ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.158125ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (102.356958ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (188.693292ms)
+✔ a byte order mark before the first line hides nothing from any reader (127.227959ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (764.011583ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (48.648291ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 22
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1516.096875
+
+✖ failing tests:
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:141:1
+✖ session-relaunch is off by default while every other concern stays on (0.811917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/shared/hook-flags.test.cjs:142:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:150:1
+✖ session-relaunch turns on when its enable flag is set in the environment (0.182166ms)
+  AssertionError [ERR_ASSERTION]: 0
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/shared/hook-flags.test.cjs:155:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:159:1
+✖ session-relaunch turns on from the config file, and the environment still wins (0.183125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/shared/hook-flags.test.cjs:162:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:199:1
+✖ the facades carry the session-relaunch default (0.186459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/shared/hook-flags.test.cjs:201:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/shared/hook-flags.test.cjs:208:1
+✖ the node and shell resolvers give the same session-relaunch answers (80.224875ms)
+  AssertionError [ERR_ASSERTION]: nothing set: hook-flags.cjs
+  + actual - expected
+  
+    [
+  -   'off',
+      'on',
+  +   'on'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/shared/hook-flags.test.cjs:234:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'on', 'on' ],
+    expected: [ 'off', 'on' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit 1

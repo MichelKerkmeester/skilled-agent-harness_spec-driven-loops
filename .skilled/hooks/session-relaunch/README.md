@@ -88,7 +88,9 @@ The wrapper exports one loop id and starts `SKILLED_LOOP_HOPS` at 0. It relaunch
 
 ### Run every session under the loop
 
-Add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of the checkout that owns `.skilled`:
+The session-relaunch hooks ship off. Set `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in `.skilled/hooks/hook-flags.env` or the environment first. Without it no session is nudged and auto-compaction stays the fallback.
+
+Then add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of the checkout that owns `.skilled`:
 
 ~~~bash
 source /path/to/repo/.skilled/bin/skilled-loop-shell.sh
@@ -260,7 +262,8 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 
 | Switch | Default | Behavior |
 |---|---|---|
-| `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset, enabled | Set to `1` to disable the context-nudge, Stop-arm and compact-pointer hooks. |
+| `SYSTEM_SESSION_RELAUNCH_ENABLED` | unset, off | Set to `1` to turn on the context-nudge, Stop-arm and compact-pointer hooks, which ship off. While they are off, auto-compaction stays the fallback. |
+| `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset | Set to `1` to disable the same hooks. It wins over `SYSTEM_SESSION_RELAUNCH_ENABLED`. |
 | `SYSTEM_HOOKS_DISABLED` | unset, off | A truthy value disables hooks across the repository. `MK_HOOKS_DISABLED` is a supported alias. |
 | `SESSION_RELAUNCH_THRESHOLD` | `0.80` | Context fill ratio that triggers the first nudge. Invalid values use `0.80`. Valid values are greater than 0 and at most 1. |
 | `SESSION_RELAUNCH_WINDOW_TOKENS` | unset, resolved automatically | A positive value overrides Claude settings. Otherwise the resolver checks the project-local settings override, then the project settings, from the session cwd up to the repository root, and the settings file in the home directory for `autoCompactWindow`. Outside a repository only the cwd is checked. If none is usable, a model name containing `[1m]` uses a one-million-token fallback. Other models use a 200-thousand-token fallback. |
@@ -291,7 +294,7 @@ A prepare exit code of 2 means the note or loop cannot be prepared. Common reaso
 - The note's `spec_folder` is a packet path that does not exist as a directory in the repository. `keep` refuses it the same way.
 - The receiving session shows no `Goal packet:` line, or the note has no `goal_packet`. `prepare` and `keep` write it only when the sender's goal can be proven, so a Codex sender, a Claude session whose log cannot be read and a session whose goal has ended all leave it out. A `goal_packet` the note carried is removed on the next call in the same cases.
 - No session id reached `prepare` or `claim`. Only Claude can fall back to `CLAUDE_CODE_SESSION_ID`. Other runtimes must pass `--session`.
-- `SYSTEM_SESSION_RELAUNCH_DISABLED` or the master hook switch disables the concern.
+- `SYSTEM_SESSION_RELAUNCH_ENABLED` is unset, or `SYSTEM_SESSION_RELAUNCH_DISABLED` or the master hook switch disables the concern.
 - Inside `skilled-loop`, the runtime still has a live child shell from the list in section 3. The prepare command does not run this check outside the loop.
 - `SKILLED_LOOP_HOPS` is not a non-negative integer.
 

@@ -36,6 +36,7 @@ const ARM_PROCESS_TABLE = '41 50\n50 60\n60 100\n100 1\n';
 const STALE_ARM_AGE_MS = 20 * 60 * 1000;
 const ENV_KEYS = [
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
+  'SYSTEM_SESSION_RELAUNCH_ENABLED',
   'SYSTEM_HOOKS_DISABLED',
   'MK_HOOKS_DISABLED',
   'SESSION_RELAUNCH_THRESHOLD',
@@ -61,6 +62,8 @@ function createSandbox(t) {
     XDG_RUNTIME_DIR: path.join(root, 'runtime'),
     SESSION_RELAUNCH_REPO_ROOT: root,
     HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
     SESSION_RELAUNCH_THRESHOLD: '0.8',
     SESSION_RELAUNCH_WINDOW_TOKENS: String(WINDOW_TOKENS),
   });

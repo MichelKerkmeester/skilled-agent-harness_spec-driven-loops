@@ -1,0 +1,604 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts (54 tests | 34 failed) 233ms
+   ❯ session-relaunch Pi extension (36)
+     × agent_end delivers the nudge held from message_end exactly once 3ms
+     × sends threshold nudges once, including the 0.05 reminder, then stays quiet 1ms
+     × delivers the nudge without waiting for an operator turn 1ms
+     × includes the save step when SYSTEM_SPEC_FOLDER is unset 2ms
+     × injects seedText in before_agent_start for a relaunch seed prompt 1ms
+     × uses the carried spec folder and keeps the suffixed note path intact 1ms
+     × agent_end arms the matching session and spawns a killer for this process 6ms
+     × agent_end hands the session model, provider and thinking level to the armed record 6ms
+     × agent_end arms without live values when the host exposes none 9ms
+     × agent_end respawns one killer for an armed record whose killer is gone 10ms
+     × spawns the killer from the repo lib when cwd is a repo subdirectory 6ms
+     × agent_end logs a killer spawn error and leaves the record armed 6ms
+     × agent_end logs a synchronous killer spawn throw and leaves the record armed 7ms
+     × retries module loading after a dynamic import failure 5ms
+     × plans the handoff note under the resolved repo root 1ms
+     × resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path 0ms
+     × reads the hook flags file once per message_end event 25ms
+     × round-trips a literal backslash in the seed handoff path 0ms
+     × drops the loop variables when the extension runs nested 8ms
+     × agent_start disarms the armed record this session owns 6ms
+     × agent_start leaves another session's armed record alone 6ms
+     × agent_start lists the withdrawn note in the hop history 5ms
+     × agent_start grants one more nudge a step above the fill it next sees 6ms
+   ❯ session_compact pointer (6)
+     × points a compacted session at its open note 2ms
+     × adds nothing without an open note but resets the level 1ms
+     × tells a session whose arm a new turn withdrew not to claim the stale note 10ms
+     × logs compact-pointer to relaunch.log 2ms
+   ❯ session-relaunch Pi extension conformance (12)
+     × a well-formed seed adds the claim command and resumes the carried packet 1ms
+     × a seed carrying an invalid spec folder claims without resuming it 0ms
+     × a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note 1ms
+     × a nudge drops an invalid spec folder instead of writing it into the note 1ms
+     × a nudge outside skilled-loop asks for keep and never prepare 1ms
+     × an arm turns this session's pending record armed from the live cwd and starts one killer 5ms
+     × a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it 9ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 34 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end delivers the nudge held from message_end exactly once
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:223:29
+    221|
+    222|     await emit(handlers, 'agent_end', {}, ctx);
+    223|     expect(api.sendMessage).toHaveBeenCalledOnce();
+       |                             ^
+    224|     const [, options] = api.sendMessage.mock.calls[0];
+    225|     expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > sends threshold nudges once, including the 0.05 reminder, then stays quiet
+AssertionError: expected "vi.fn()" to be called 2 times, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:276:31
+    274|       await emit(handlers, 'agent_end', {}, ctx);
+    275|
+    276|       expect(api.sendMessage).toHaveBeenCalledTimes(2);
+       |                               ^
+    277|       for (const [message, options] of api.sendMessage.mock.calls) {
+    278|         expect(message).toMatchObject({ customType: 'session-relaunch'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > delivers the nudge without waiting for an operator turn
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:297:29
+    295|
+    296|     await emit(handlers, 'agent_end', {}, makeContext());
+    297|     expect(api.sendMessage).toHaveBeenCalledOnce();
+       |                             ^
+    298|     const [, options] = api.sendMessage.mock.calls[0];
+    299|     expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > includes the save step when SYSTEM_SPEC_FOLDER is unset
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…}, …(1) ]
+
+Number of calls: 0
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:313:29
+    311|     await emit(handlers, 'agent_end', {}, makeContext());
+    312|
+    313|     expect(api.sendMessage).toHaveBeenCalledWith(
+       |                             ^
+    314|       expect.objectContaining({
+    315|         content: expect.stringMatching(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > injects seedText in before_agent_start for a relaunch seed prompt
+AssertionError: expected undefined to match object { systemPrompt: StringContaining{…} }
+
+- Expected:
+{
+  "systemPrompt": StringContaining "claim '/workspace/note.md'",
+}
+
++ Received:
+undefined
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:338:20
+    336|     }, makeContext());
+    337|
+    338|     expect(result).toMatchObject({
+       |                    ^
+    339|       systemPrompt: expect.stringContaining("claim '/workspace/note.md…
+    340|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > uses the carried spec folder and keeps the suffixed note path intact
+TypeError: Cannot read properties of undefined (reading 'systemPrompt')
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:357:63
+    355|     }, makeContext());
+    356|
+    357|     const systemPrompt = (result as { systemPrompt: string }).systemPr…
+       |                                                               ^
+    358|     expect(systemPrompt).toContain("claim '/workspace/note.md'");
+    359|     expect(systemPrompt).toContain(`/speckit:resume ${SPEC_FOLDER}`);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end arms the matching session and spawns a killer for this process
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed', …(1) }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "cwd": "/workspace/pi",
+-   "status": "armed",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:381:53
+    379|       await emit(handlers, 'agent_end', {}, makeContext());
+    380|
+    381|       expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+       |                                                     ^
+    382|         status: 'armed',
+    383|         cwd: '/workspace/pi',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end hands the session model, provider and thinking level to the armed record
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed', …(3) }
+(9 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "effort": "high",
+-   "model": "gpt-6-luna",
+-   "provider": "openai",
+-   "status": "armed",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:426:51
+    424|     });
+    425|
+    426|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+       |                                                   ^
+    427|       status: 'armed',
+    428|       model: 'gpt-6-luna',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end arms without live values when the host exposes none
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed' }
+(9 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "armed",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:452:20
+    450|
+    451|     const record = readRelaunchFile(loopId, process.env);
+    452|     expect(record).toMatchObject({ status: 'armed' });
+       |                    ^
+    453|     expect(record).not.toHaveProperty('model');
+    454|     expect(record).not.toHaveProperty('effort');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end respawns one killer for an armed record whose killer is gone
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:476:25
+    474|
+    475|       await emit(handlers, 'agent_end', {}, makeContext());
+    476|       expect(spawnMock).toHaveBeenCalledTimes(1);
+       |                         ^
+    477|
+    478|       // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > spawns the killer from the repo lib when cwd is a repo subdirectory
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:510:23
+    508|     await emit(handlers, 'agent_end', {}, makeContext('pi-session-0001…
+    509|
+    510|     expect(spawnMock).toHaveBeenCalledTimes(1);
+       |                       ^
+    511|     const [, args] = spawnMock.mock.calls[0];
+    512|     const expectedKiller = path.join(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end logs a killer spawn error and leaves the record armed
+Error: spawn denied
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:542:25
+    540|     await emit(handlers, 'agent_end', {}, makeContext());
+    541|
+    542|     child.emit('error', new Error('spawn denied'));
+       |                         ^
+    543|
+    544|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ stat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_end logs a synchronous killer spawn throw and leaves the record armed
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed' }
+(9 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "armed",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:582:53
+    580|       ).resolves.toBeUndefined();
+    581|
+    582|       expect(readRelaunchFile(loopId, process.env)).toMatchObject({ st…
+       |                                                     ^
+    583|       const logPath = path.join(
+    584|         // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > retries module loading after a dynamic import failure
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:626:31
+    624|       await emit(handlers, 'message_end', event, ctx);
+    625|       await emit(handlers, 'agent_end', {}, ctx);
+    626|       expect(api.sendMessage).toHaveBeenCalledOnce();
+       |                               ^
+    627|     } finally {
+    628|       vi.doUnmock('../lib/nudge.cjs');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > plans the handoff note under the resolved repo root
+TypeError: Cannot read properties of undefined (reading '0')
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:695:55
+    693|     await emit(handlers, 'agent_end', {}, makeContext());
+    694|
+    695|     const nudgeMessage = api.sendMessage.mock.calls[0][0] as { content…
+       |                                                       ^
+    696|     const match = nudgeMessage.content.match(/Write the handoff note a…
+    697|     expect(match).not.toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path
+TypeError: Cannot read properties of undefined (reading '0')
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:721:55
+    719|     await emit(handlers, 'agent_end', {}, makeContext());
+    720|
+    721|     const nudgeMessage = api.sendMessage.mock.calls[0][0] as { content…
+       |                                                       ^
+    722|     const match = nudgeMessage.content.match(/Write the handoff note a…
+    723|     expect(match).not.toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > reads the hook flags file once per message_end event
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:777:31
+    775|
+    776|       await emit(handlers, 'agent_end', {}, makeContext());
+    777|       expect(api.sendMessage).toHaveBeenCalledOnce();
+       |                               ^
+    778|     } finally {
+    779|       vi.doUnmock('../../.skilled/hooks/shared/hook-flags.mjs');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > round-trips a literal backslash in the seed handoff path
+TypeError: Cannot read properties of undefined (reading 'systemPrompt')
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:794:49
+    792|     }, makeContext());
+    793|
+    794|     expect((result as { systemPrompt: string }).systemPrompt)
+       |                                                 ^
+    795|       .toContain('/tmp/we\\"ird.md');
+    796|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > drops the loop variables when the extension runs nested
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:836:30
+    834|       await emit(handlers, 'session_compact', {}, makeContext());
+    835|
+    836|       expect(dropNestedLoop).toHaveBeenCalledOnce();
+       |                              ^
+    837|       expect(dropNestedLoop).toHaveBeenCalledWith(process.env, { hostP…
+    838|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_start disarms the armed record this session owns
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed' }
+(9 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "armed",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:867:51
+    865|     const ctx = makeContext();
+    866|     await emit(handlers, 'agent_end', {}, ctx);
+    867|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ stat…
+       |                                                   ^
+    868|
+    869|     // Pi writes the assistant message only once a turn completes, so …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_start leaves another session's armed record alone
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed' }
+(9 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "armed",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:895:51
+    893|     sessionRelaunch(api);
+    894|     await emit(handlers, 'agent_end', {}, makeContext());
+    895|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ stat…
+       |                                                   ^
+    896|
+    897|     await emit(handlers, 'agent_start', {}, makeContext('pi-session-00…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_start lists the withdrawn note in the hop history
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-pi-zhOtK1/.skilled/skills/.state/session-relaunch/hop-history.log'
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:950:19
+    948|       '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history…
+    949|     );
+    950|     const lines = readFileSync(historyFile, 'utf8').trim().split('\n')…
+       |                   ^
+    951|     expect(lines).toHaveLength(1);
+    952|     expect(lines[0][1]).toBe('withdrawn');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_start grants one more nudge a step above the fill it next sees
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:987:25
+    985|     await fillAt(85);
+    986|     await emit(handlers, 'agent_end', {}, ctx);
+    987|     expect(delivered()).toBe(1);
+       |                         ^
+    988|   });
+    989| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session_compact pointer > points a compacted session at its open note
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1027:29
+    1025|     await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID…
+    1026|
+    1027|     expect(api.sendMessage).toHaveBeenCalledOnce();
+       |                             ^
+    1028|     const message = api.sendMessage.mock.calls[0][0] as { content: str…
+    1029|     expect(message).toMatchObject({ customType: 'session-relaunch', di…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session_compact pointer > adds nothing without an open note but resets the level
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1045:48
+    1043|
+    1044|     expect(api.sendMessage).not.toHaveBeenCalled();
+    1045|     expect(readState(SESSION_ID, process.env)).toBe(0);
+       |                                                ^
+    1046|   });
+    1047|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session_compact pointer > tells a session whose arm a new turn withdrew not to claim the stale note
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1087:29
+    1085|     await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID…
+    1086|
+    1087|     expect(api.sendMessage).toHaveBeenCalledOnce();
+       |                             ^
+    1088|     const message = api.sendMessage.mock.calls[0][0] as { content: str…
+    1089|     expect(message.content).toBe(staleNoteText({ notePath }));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session_compact pointer > logs compact-pointer to relaunch.log
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-pi-jbEhTC/skilled-relaunch/relaunch.log'
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1127:26
+    1125|       'relaunch.log',
+    1126|     );
+    1127|     const pointerLines = readFileSync(logPath, 'utf8')
+       |                          ^
+    1128|       .split(/\r?\n/)
+    1129|       .filter((line) => line.includes('compact-pointer'));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > a well-formed seed adds the claim command and resumes the carried packet
+AssertionError: expected '' to contain 'claim \'/workspace/handoffs/note.md\'…'
+
+- Expected
++ Received
+
+- claim '/workspace/handoffs/note.md' --session 'pi-session-0001'
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1170:18
+    1168|   it('a well-formed seed adds the claim command and resumes the carrie…
+    1169|     const text = await seedPrompt(`${SEED} | Spec folder: ${SPEC_FOLDE…
+    1170|     expect(text).toContain(`claim '${NOTE_PATH}' --session '${SESSION_…
+       |                  ^
+    1171|     expect(text).toContain(`/speckit:resume ${SPEC_FOLDER}`);
+    1172|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > a seed carrying an invalid spec folder claims without resuming it
+AssertionError: expected '' to contain 'claim \'/workspace/handoffs/note.md\''
+
+- Expected
++ Received
+
+- claim '/workspace/handoffs/note.md'
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1181:18
+    1179|   it('a seed carrying an invalid spec folder claims without resuming i…
+    1180|     const text = await seedPrompt(`${SEED} | Spec folder: specs/not-a-…
+    1181|     expect(text).toContain(`claim '${NOTE_PATH}'`);
+       |                  ^
+    1182|     expect(text).not.toContain('/speckit:resume');
+    1183|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note
+AssertionError: expected '' to match /^ +spec_folder: specs\/hooks\/0…/hooks\
+
+- Expected:
+/^ +spec_folder: specs\/hooks\/023-session-relaunch-loop\/002-pi-opencode-adapters$/m
+
++ Received:
+""
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1190:18
+    1188|       process.env.SYSTEM_SPEC_FOLDER = SPEC_FOLDER;
+    1189|     });
+    1190|     expect(text).toMatch(new RegExp(`^ +spec_folder: ${SPEC_FOLDER}$`,…
+       |                  ^
+    1191|     expect(text).toContain("--runtime 'pi'");
+    1192|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > a nudge drops an invalid spec folder instead of writing it into the note
+AssertionError: expected '' to match /^ +spec_folder: $/m
+
+- Expected:
+/^ +spec_folder: $/m
+
++ Received:
+""
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1199:18
+    1197|       process.env.SYSTEM_SPEC_FOLDER = `${SPEC_FOLDER}\nstatus: done`;
+    1198|     });
+    1199|     expect(text).toMatch(/^ +spec_folder: $/m);
+       |                  ^
+    1200|     expect(text).not.toMatch(/^ +status: done$/m);
+    1201|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > a nudge outside skilled-loop asks for keep and never prepare
+AssertionError: expected '' to contain ' keep --handoff '
+
+- Expected
++ Received
+
+-  keep --handoff 
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1222:18
+    1220|   it('a nudge outside skilled-loop asks for keep and never prepare', a…
+    1221|     const text = await nudgeAtNinety(() => { delete process.env.SKILLE…
+    1222|     expect(text).toContain(' keep --handoff ');
+       |                  ^
+    1223|     expect(text).toContain("--runtime 'pi'");
+    1224|     expect(text).not.toContain(' prepare --handoff');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > an arm turns this session's pending record armed from the live cwd and starts one killer
+AssertionError: expected { version: 1, status: 'pending', …(8) } to match object { status: 'armed', …(1) }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "cwd": "/workspace/pi-live",
+-   "status": "armed",
++   "cwd": "/workspace/pi",
++   "status": "pending",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1279:56
+    1277|     prepareArmRecord();
+    1278|     await stopEvent();
+    1279|     expect(readRelaunchFile(ARM_LOOP_ID, process.env)).toMatchObject({
+       |                                                        ^
+    1280|       status: 'armed',
+    1281|       cwd: LIVE_CWD,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/34]⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension conformance > a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it
+AssertionError: expected { version: 1, status: 'armed', …(10) } to match object { status: 'armed', …(1) }
+(10 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "cwd": "/workspace/pi-live",
++   "cwd": "/workspace/pi",
+    "status": "armed",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1294:20
+    1292|     await stopEvent();
+    1293|     const record = readRelaunchFile(ARM_LOOP_ID, process.env);
+    1294|     expect(record).toMatchObject({ status: 'armed', cwd: LIVE_CWD });
+       |                    ^
+    1295|     expect(shouldRelaunch(record)).toEqual({ relaunch: true });
+    1296|     expect(spawnMock).toHaveBeenCalledTimes(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/34]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  34 failed | 20 passed (54)
+   Start at  18:54:15
+   Duration  344ms (tests 86%, import 7%, transform 6%, worker 1%)
+
+exit 1

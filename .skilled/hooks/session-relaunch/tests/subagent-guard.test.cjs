@@ -36,6 +36,8 @@ function createSandbox(t) {
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
   };
   // Kill-switches are operator state. A machine that disabled them must not turn
   // a deny case into a silent pass, so the child starts with all three cleared;

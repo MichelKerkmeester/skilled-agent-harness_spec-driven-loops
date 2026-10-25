@@ -30,6 +30,7 @@ const hookFlags = require('../../hooks/shared/hook-flags.cjs');
 const nudge = require('../../hooks/session-relaunch/lib/nudge.cjs');
 const ENV_KEYS = [
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
+  'SYSTEM_SESSION_RELAUNCH_ENABLED',
   'SYSTEM_HOOKS_DISABLED',
   'MK_HOOKS_DISABLED',
   'SESSION_RELAUNCH_THRESHOLD',
@@ -53,6 +54,8 @@ function setupEnv(t) {
   // The note root is the repo root, never the session directory, so each test points
   // the repo root at its own sandbox to keep note files out of the real state dir.
   process.env.SESSION_RELAUNCH_REPO_ROOT = root;
+  // The relaunch hooks are off until opted in; these cases exercise them on.
+  process.env.SYSTEM_SESSION_RELAUNCH_ENABLED = '1';
   delete process.env.SYSTEM_SESSION_RELAUNCH_DISABLED;
   delete process.env.SYSTEM_HOOKS_DISABLED;
   delete process.env.MK_HOOKS_DISABLED;

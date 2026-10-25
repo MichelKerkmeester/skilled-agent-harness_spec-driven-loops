@@ -67,7 +67,7 @@ cat > "$out/launch.sh" <<LAUNCH
 #!/usr/bin/env bash
 cd '$sb'
 $clean_prefix
-exec env "\${unset_args[@]}" XDG_RUNTIME_DIR='$XDG_RUNTIME_DIR' SESSION_RELAUNCH_MAX_HOPS=1$env_args $runtime_cmd
+exec env "\${unset_args[@]}" XDG_RUNTIME_DIR='$XDG_RUNTIME_DIR' SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_MAX_HOPS=1$env_args $runtime_cmd
 LAUNCH
 chmod +x "$out/launch.sh"
 tm new-session -d -x 200 -y 50 -s "$session_name" "bash '$out/launch.sh'"
@@ -147,7 +147,7 @@ Run the shell command printenv SESSION_RELAUNCH_GOAL_PACKET and write its output
 ## In-flight state
 Nothing is running.
 NOTE
-( cd "$sb" && env -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID -u SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_RUNTIME="$runtime" SKILLED_LOOP_HOPS=0 SKILLED_LOOP_ID="$pane_pid" node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff "$note" --session "$sender_id" --runtime "$runtime" ) > "$out/prepare.txt" 2>&1
+( cd "$sb" && env -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID -u SKILLED_LOOP_MANUAL_TEMPLATE SYSTEM_SESSION_RELAUNCH_ENABLED=1 SKILLED_LOOP_RUNTIME="$runtime" SKILLED_LOOP_HOPS=0 SKILLED_LOOP_ID="$pane_pid" node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff "$note" --session "$sender_id" --runtime "$runtime" ) > "$out/prepare.txt" 2>&1
 log "prepare exit=$? ; $(head -c 300 "$out/prepare.txt")"
 log "note goal_packet line: $(grep -E '^goal_packet' "$note" || echo '<none>')"
 

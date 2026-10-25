@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.14.0
+version: 1.0.15.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -34,6 +34,7 @@ Operators run five automatable checks and one live hop in each runtime. They ver
 - Objective: Verify Pi and OpenCode adapter loading, event handling, seed injection, matching record arming and wrapper relaunch behavior, plus the hop history and calling off a prepared hand-over with a new turn or `cancel`.
 - Real user request: Carry a short task through a context handoff in Pi or OpenCode, then finish it in the new session.
 - Prompt: `Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready.`
+- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. The goal carry-over runs need it in the environment their scripts start from. The `node --test` suites set their own environment.
 - Expected execution process: Run the Pi extension smoke with -ne -e, the OpenCode import smoke, both adapter suites and the wrapper runtime suite. Start Pi with its provider, model and explicit extension selection. Start OpenCode with its model selection. Use separate tmux sessions with a low hop cap, follow each generated handoff and observe the wrapper relaunch.
 - Expected signals: Automatable commands exit 0. Pi loads the extension with `-ne -e`. OpenCode import prints `object`. Adapter suites pass. Wrapper tests record `SKILLED_LOOP_RUNTIME` and the Pi and OpenCode seed arguments. Each live handoff is prepared and armed for its matching runtime, then the wrapper starts a fresh runtime with the claim seed.
 - Desired user-visible outcome: The receiving session claims the same handoff and continues the unfinished task.
@@ -151,7 +152,7 @@ Run from the repository root:
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-pi-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop pi"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop pi"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -166,7 +167,7 @@ Run from the repository root:
 set -euo pipefail
 repo_root=$PWD
 session_name="session-relaunch-opencode-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop opencode"
+tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop opencode"
 tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
@@ -191,7 +192,7 @@ runtime=pi   # or opencode
 session_name="relaunch-$runtime-$$"
 
 start_runtime() {
-  tmux new-session -d -s "$session_name" "cd '$repo_root' && env -u SKILLED_LOOP_HOPS SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop $runtime"
+  tmux new-session -d -s "$session_name" "cd '$repo_root' && env -u SKILLED_LOOP_HOPS SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop $runtime"
   tmux set-option -w -t "$session_name" remain-on-exit on
 }
 say() { tmux send-keys -t "$session_name" -l "$1"; sleep 0.5; tmux send-keys -t "$session_name" Enter; }
@@ -350,7 +351,7 @@ For Pi, `--session-id` creates a session with the id you name, so the record can
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 sandbox="$(mktemp -d)"
-export XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo"
+export SYSTEM_SESSION_RELAUNCH_ENABLED=1 XDG_RUNTIME_DIR="$sandbox/run" SESSION_RELAUNCH_REPO_ROOT="$sandbox/repo"
 mkdir -p "$XDG_RUNTIME_DIR" "$sandbox/sessions" "$SESSION_RELAUNCH_REPO_ROOT/.skilled/skills/.state/session-relaunch/handoffs"
 sid=11111111-2222-4333-8444-555555555555
 note="$SESSION_RELAUNCH_REPO_ROOT/.skilled/skills/.state/session-relaunch/handoffs/20260101T000000Z-$sid.md"
@@ -364,7 +365,7 @@ probe_field() { grep -oE "\"$1\":\"[^\"]*\"" "$state/relaunch-probe-loop.json"; 
 probe_field status
 
 # run 1: a new turn starts over the armed record
-env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_ID=probe-loop SKILLED_LOOP_RUNTIME=pi SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 \
+env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_ID=probe-loop SKILLED_LOOP_RUNTIME=pi SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 \
   pi --offline --approve -ne -e .pi/extensions/session-relaunch.ts --session-dir "$sandbox/sessions" --session-id "$sid" -p "Reply with the single word STAYING." </dev/null
 probe_field status; probe_field disarmReason
 cat "$state/relaunch.log"
@@ -376,7 +377,7 @@ Expected after run 1: `"status":"armed"` before and `"status":"disarmed"` with `
 
 ~~~bash
 printf '{"level":2,"rearm":{"floor":%s}}\n' "$(grep -oE '"floor":[0-9.]+' "$state/nudge-$sid.json" | cut -d: -f2)" > "$state/nudge-$sid.json"
-env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_ID=probe-loop SKILLED_LOOP_RUNTIME=pi SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 \
+env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_MANUAL_TEMPLATE SKILLED_LOOP_ID=probe-loop SKILLED_LOOP_RUNTIME=pi SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 \
   pi --offline --approve -ne -e .pi/extensions/session-relaunch.ts --session-dir "$sandbox/sessions" --session-id "$sid" -p "Run the shell command 'echo staying' and then reply with the single word DONE." </dev/null
 cat "$state/nudge-$sid.json"
 grep -c "Context is past the configured window" "$sandbox"/sessions/*.jsonl
@@ -417,7 +418,7 @@ mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
 ln -s "$repo_root/.skilled" "$linked_repo/.skilled"
 ln -s "$repo_root/.pi" "$linked_repo/.pi"
 ln -s "$repo_root/.opencode" "$linked_repo/.opencode"
-tmux new-session -d -s shim-pi "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 && pi'"
+tmux new-session -d -s shim-pi "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 && pi'"
 tmux attach -t shim-pi
 ~~~
 

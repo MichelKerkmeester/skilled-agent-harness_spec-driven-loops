@@ -5,7 +5,9 @@
 
 // Central kill-switch resolver for every repo-authored runtime hook. A hook is
 // enabled by default and only goes silent when the operator sets a kill-switch,
-// so adding this guard changes no behavior until a flag is set. The master
+// so adding this guard changes no behavior until a flag is set. The few concerns
+// in DEFAULT_OFF invert that and stay silent until their enable switch is set,
+// though a kill-switch still silences them. The master
 // switch disables the whole enforcement layer at once; a per-concern switch
 // disables one hook family across every runtime that carries it. Names that
 // predate this convention are honored as aliases so existing operator config
@@ -94,6 +96,15 @@ const LEGACY_ALIASES = {
   "post-edit-quality": ["MK_POST_EDIT_QUALITY_DISABLED"],
 };
 
+// concern -> the switch that turns it on. A concern listed here is off until the
+// operator opts in, because it acts on the session itself (the relaunch loop can
+// end a running session and start a new one), which nobody should get by just
+// checking out the repo. The opt-in resolves like every other flag, environment
+// over file, and the master and kill switches still win over it.
+const DEFAULT_OFF = {
+  "session-relaunch": "SYSTEM_SESSION_RELAUNCH_ENABLED",
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -166,6 +177,7 @@ function _resetConfigCache() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // True unless the master switch or one of this concern's kill-switches is set.
+// A concern in DEFAULT_OFF also needs its enable switch set before it is true.
 // `env` is injectable for testing; it defaults to the live process environment.
 // When `env` is passed explicitly, the config file is skipped so tests stay
 // isolated — unless a `config` object is also injected to exercise the merge.
@@ -191,6 +203,9 @@ function isHookEnabled(concern, env, config) {
   const keys = (flag ? [flag] : []).concat(LEGACY_ALIASES[concern] || []);
   for (const key of keys) {
     if (isTruthy(resolve(key))) return false;
+  }
+  if (Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) {
+    return isTruthy(resolve(DEFAULT_OFF[concern]));
   }
   return true;
 }
@@ -238,6 +253,7 @@ module.exports = {
   MASTER_ALIASES,
   CONCERN_CANONICAL,
   LEGACY_ALIASES,
+  DEFAULT_OFF,
   configPath,
   _resetConfigCache,
 };

@@ -1,0 +1,50 @@
+✖ context-nudge emits nothing when nothing enables the relaunch concern (40.09125ms)
+✖ prepare arms nothing under the loop when nothing enables the relaunch concern (68.650166ms)
+✔ prepare arms a record when the flags file opts in to the relaunch concern (67.432792ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.776792
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:349:1
+✖ context-nudge emits nothing when nothing enables the relaunch concern (40.09125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"[session-relaunch] Context is about 95% full. This session runs outside the skilled-loop wrapper, so it cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize. If the remaining work fits in a few more steps, finish it instead and skip these steps. Otherwise do these steps now, before any other work:\\n1. Write the handoff note at \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-xMHJce/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T175800Z-session-adapter-00000001.md\' in exactly this shape:\\n   ---\\n   status: open\\n   session_id: session-adapter-00000001\\n   loop_id: \\n   runtime: claude\\n   cwd: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-xMHJce/repo\\n   spec_folder: \\n   created_at: 2026-10-25T17:58:00.781Z\\n   ---\\n   followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.\\n   Under ## Remaining work list only the task\'s own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.\\n   spec_folder is a repo-relative packet path, \\"none\\" for Gate 3 D) Skip, or empty if unanswered.\\n2. When a spec packet is bound to this session, run `/speckit:save` first so its continuity is current.\\n3. Then run: node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs keep --handoff \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-xMHJce/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T175800Z-session-adapter-00000001.md\' --session \'session-adapter-00000001\' --runtime \'claude\'\\n4. Keep working in this session once it exits 0. After auto-compaction, claim the note with the command keep prints before you continue.\\nException: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback."}}'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:363:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"[session-relaunch] Context is about 95% full. This session runs outside the skilled-loop wrapper, so it cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize. If the remaining work fits in a few more steps, finish it instead and skip these steps. Otherwise do these steps now, before any other work:\\n1. Write the handoff note at \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-xMHJce/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T175800Z-session-adapter-00000001.md\' in exactly this shape:\\n   ---\\n   status: open\\n   session_id: session-adapter-00000001\\n   loop_id: \\n   runtime: claude\\n   cwd: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-xMHJce/repo\\n   spec_folder: \\n   created_at: 2026-10-25T17:58:00.781Z\\n   ---\\n   followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.\\n   Under ## Remaining work list only the task\'s own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.\\n   spec_folder is a repo-relative packet path, \\"none\\" for Gate 3 D) Skip, or empty if unanswered.\\n2. When a spec packet is bound to this session, run `/speckit:save` first so its continuity is current.\\n3. Then run: node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs keep --handoff \'/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-xMHJce/repo/.skilled/skills/.state/session-relaunch/handoffs/20261025T175800Z-session-adapter-00000001.md\' --session \'session-adapter-00000001\' --runtime \'claude\'\\n4. Keep working in this session once it exits 0. After auto-compaction, claim the note with the command keep prints before you continue.\\nException: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback."}}',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:419:1
+✖ prepare arms nothing under the loop when nothing enables the relaunch concern (68.650166ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: 0
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/225-session-relaunch-default-off/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:429:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+exit 1

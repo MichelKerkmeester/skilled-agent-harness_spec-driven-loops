@@ -1,0 +1,36 @@
+✔ enabled by default when no flag is set (0.592125ms)
+✔ master switch disables every concern (0.066ms)
+✔ canonical per-concern switch disables only that concern (0.049958ms)
+✔ concernFlag derives the canonical env name (0.054958ms)
+✔ legacy aliases still disable their concern (0.077083ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.064583ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.0515ms)
+✔ .mjs and .ts facades re-export identical behavior (19.225542ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.096167ms)
+✔ environment overrides the config file both ways (0.096375ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.742042ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (0.534917ms)
+✔ session-relaunch is off by default while every other concern stays on (0.057375ms)
+✔ session-relaunch turns on when its enable flag is set in the environment (0.040625ms)
+✔ session-relaunch turns on from the config file, and the environment still wins (0.442917ms)
+✔ a kill switch beats the session-relaunch enable flag (0.045791ms)
+✔ the facades carry the session-relaunch default (0.111458ms)
+✔ the node and shell resolvers give the same session-relaunch answers (249.935ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.17925ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (0.550875ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (56.344958ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.173041ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (50.444625ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (126.999042ms)
+✔ a byte order mark before the first line hides nothing from any reader (99.138167ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (510.352916ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (27.00125ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1188.678333
+exit 0

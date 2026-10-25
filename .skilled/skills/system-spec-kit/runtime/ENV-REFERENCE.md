@@ -63,7 +63,7 @@ Publication-facing metric rows now use the shared measurement contract from `lib
 
 ### Hook kill-switches
 
-All repo-authored hook concerns are enabled by default. Set the master flag or one canonical concern flag to a truthy value (`1`, `true`, `yes`, or `on`, case-insensitive) to disable that surface. Resolver failures are fail-open.
+Every repo-authored hook concern is enabled by default except `session-relaunch`, which ships off and runs only once `SYSTEM_SESSION_RELAUNCH_ENABLED` is truthy. Set the master flag or one canonical concern flag to a truthy value (`1`, `true`, `yes`, or `on`, case-insensitive) to disable that surface. Resolver failures are fail-open.
 
 Flags can be set as environment variables **or** in a config file: copy `.skilled/hooks/hook-flags.env.example` to `.skilled/hooks/hook-flags.env` (gitignored) and set the same `KEY=value` names there. A real environment variable always overrides the file, so a persisted default can be flipped back for one session. `HOOK_FLAGS_CONFIG` overrides the config file path.
 
@@ -95,7 +95,8 @@ Flags can be set as environment variables **or** in a config file: copy `.skille
 | `SYSTEM_LIVE_SYNC_DISABLED` | unset (enabled) | truthy disable flag | Master switch for the whole live-sync loop: post-commit autosync publish, SessionStart primary reconcile, IDE follower auto-start, and self-heal hook auto-install. No aliases. | `.skilled/scripts/git-hooks/post-commit`, `.skilled/bin/check-git-hooks.sh`, `.skilled/bin/git-primary-reconcile.sh`, `.skilled/bin/git-live-follow.sh` |
 | `SYSTEM_PRIMARY_RECONCILE_DISABLED` | unset (enabled) | truthy disable flag | Disables SessionStart reconciliation of the clean primary live checkout only. Publish, follower, and self-heal legs keep running. No aliases. | `.skilled/bin/git-primary-reconcile.sh` |
 | `SYSTEM_LIVE_FOLLOW_DISABLED` | unset (enabled) | truthy disable flag | Disables the IDE checkout follower auto-start only. The publish and self-heal legs keep running. No aliases. | `.skilled/bin/git-live-follow.sh` |
-| `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset (enabled) | truthy disable flag | Disables the session-relaunch hooks: context nudge, stop arm and the Claude compact pointer. No aliases. | `.skilled/hooks/session-relaunch/` |
+| `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset (no effect, the concern is off by default) | truthy disable flag | Disables the session-relaunch hooks: context nudge, stop arm and the Claude compact pointer. Wins over `SYSTEM_SESSION_RELAUNCH_ENABLED`. No aliases. Also read from `.skilled/hooks/hook-flags.env`. | `.skilled/hooks/session-relaunch/` |
+| `SYSTEM_SESSION_RELAUNCH_ENABLED` | unset (off) | truthy enable flag | Turns on the session-relaunch hooks, which ship off: context nudge, stop arm and the Claude compact pointer. `SYSTEM_SESSION_RELAUNCH_DISABLED` and the master switch still win over it. While it is off, auto-compaction stays the fallback. No aliases. Also read from `.skilled/hooks/hook-flags.env`. | `.skilled/hooks/shared/hook-flags.cjs`, `.skilled/hooks/session-relaunch/` |
 | `SPECKIT_AUTOSYNC` | unset (defaults to 1 in wrapper sessions) | truthy flag | Per-launch publish opt-out for the live-sync loop. Wrapper sessions export 1 unless a pre-set 0 overrides it. With `SPECKIT_LIVE_BRANCH` it also lets pre-push update that exact branch without approval. Creating it still needs approval. | `.skilled/bin/worktree-session.sh`, `.skilled/scripts/git-hooks/post-commit` |
 | `SPECKIT_LIVE_BRANCH` | (unset) | string | The live branch a wrapper session publishes its commits to, resolved from the primary checkout. Pre-push lets an update to exactly this branch through the remote gate when `SPECKIT_AUTOSYNC=1`. | `.skilled/bin/worktree-session.sh` |
 

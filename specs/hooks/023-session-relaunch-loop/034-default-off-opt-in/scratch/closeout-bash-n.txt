@@ -1,0 +1,2 @@
+bash -n run-hop.sh exit 0
+bash -n run-codex.sh exit 0

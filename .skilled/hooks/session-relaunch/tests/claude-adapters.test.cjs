@@ -32,6 +32,8 @@ function createSandbox(t) {
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
   };
   for (const key of [
     'SKILLED_LOOP_ID',
@@ -342,6 +344,29 @@ test('context-nudge emits nothing when the relaunch concern is disabled', async 
   });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
+});
+
+test('context-nudge emits nothing when nothing enables the relaunch concern', async (t) => {
+  const sandbox = createSandbox(t);
+  delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 950);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const silent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(silent.code, 0, silent.stderr);
+  assert.equal(silent.stdout, '');
+
+  // The same fill nudges once the flags file opts in, so the silence above is the default.
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_ENABLED=1\n');
+  const optedIn = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(optedIn.code, 0, optedIn.stderr);
+  assert.notEqual(optedIn.stdout, '');
 });
 
 test('context-nudge emits nothing when session_id fails the charset gate', async (t) => {

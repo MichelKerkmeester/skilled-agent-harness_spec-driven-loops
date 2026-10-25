@@ -1,0 +1,20 @@
+✔ a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md (55.095708ms)
+✔ a second session start with the same id changes nothing (13.769417ms)
+✔ an active or paused goal of the session is kept byte for byte (30.679208ms)
+✔ a goal that was cleared in this session is not handed back at the next start (16.484167ms)
+✔ a record that cannot be parsed counts as a goal and is left alone (4.086917ms)
+✔ no variable, an empty one or the switch off binds nothing (3.674583ms)
+✔ a missing, escaping or linked-out packet binds nothing (5.764834ms)
+✔ only the first top-level session of the process is the receiver (12.443041ms)
+✔ a dispatched child process binds nothing, even as the first top-level session it sees (2.4795ms)
+✔ a goal set while the bind waits for the session lock is kept, never replaced (340.267208ms)
+✔ the plugin kill switch stops the hand-over bind (2.889166ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 527.635083
+exit 0

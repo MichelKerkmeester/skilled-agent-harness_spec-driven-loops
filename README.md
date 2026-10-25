@@ -68,8 +68,8 @@ A long task keeps going when the context window fills. The session writes a hand
 
 - Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
 - When a spec packet is bound, the old session saves its continuity first and the new session resumes that packet
-- One line in your shell profile turns it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
-- Without that line no session is nudged, so nothing stalls and auto-compaction stays the fallback
+- It ships off. One flag and one line in your shell profile turn it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
+- Until you turn it on no session is nudged, so nothing stalls and auto-compaction stays the fallback
 
 ### 🤖 Agent Library
 
@@ -84,7 +84,7 @@ Eleven specialized agents own focused roles, and seven CLI bridges let a runtime
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects a pointer to it plus its completion criteria on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
-- **In-Session Handover:** hooks on five runtimes watch the context window and hand the work to a fresh session in the same terminal near its limit, see [In-Session Handover](#in-session-handover)
+- **In-Session Handover:** hooks on five runtimes watch the context window and hand the work to a fresh session in the same terminal near its limit. Off until you set `SYSTEM_SESSION_RELAUNCH_ENABLED=1`, see [In-Session Handover](#in-session-handover)
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -220,7 +220,13 @@ Every setting has a working default. To change one, see [Environment Settings](#
 
 ### Turn On Endless Sessions
 
-Add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path, then open a new terminal:
+The session-relaunch hooks ship off. Turn them on for your machine in `.skilled/hooks/hook-flags.env`, which git ignores, or export the same flag from your shell profile:
+
+```bash
+echo 'SYSTEM_SESSION_RELAUNCH_ENABLED=1' >> .skilled/hooks/hook-flags.env
+```
+
+Then add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path, and open a new terminal:
 
 ```bash
 source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
@@ -230,7 +236,7 @@ Interactive `claude`, `codex`, `pi`, `opencode`, `hermes`, `cursor-agent` and `d
 
 - **Hermes** also needs `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml`
 - **Another repository** that links this checkout's `.skilled` hops too when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`
-- **To switch it off**, set `SYSTEM_SESSION_RELAUNCH_DISABLED=1` or leave the line out. `/doctor:env` shows and saves switches like this one, and auto-compaction stays the fallback
+- **To switch it off**, remove `SYSTEM_SESSION_RELAUNCH_ENABLED=1` or set `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, which wins over the enable flag. `/doctor:env` shows and saves switches like these, and auto-compaction stays the fallback
 
 `/doctor:setup` shows the last hop and any note nobody claimed, so you can confirm it works without watching the terminal. The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
 
@@ -1013,7 +1019,8 @@ Each runtime's hook reads how full its context window is. Near 80% it asks the s
 - **Sessions outside the loop:** one started before the shell line was added cannot relaunch. At 80% it writes the same note and runs `keep`, then carries on. After auto-compaction, Claude Code, Pi and OpenCode point the session back at the note, so decisions the summary dropped are not lost
 - **Safe by design:** only a session inside `skilled-loop` is asked to hop, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, the watcher only ever signals a process the loop started, a new turn on Pi or OpenCode cancels a pending hop, and sub-agents and runtimes started from inside a session never hand over the session that started them
 - **Hop history:** every hand-over, kept note, claim, completion and timeout is logged in `.skilled/skills/.state/session-relaunch/hop-history.log`. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` to read it, along with any note nobody claimed, and set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice on each hand-over
-- **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, and auto-compaction stays the fallback
+- **Switches:** off by default. `SYSTEM_SESSION_RELAUNCH_ENABLED=1` turns it on, in `.skilled/hooks/hook-flags.env` or the environment. `SYSTEM_SESSION_RELAUNCH_DISABLED=1` turns it off and wins over the enable flag. While it is off, auto-compaction stays the fallback
+- **Manual hops need the flag too:** inside the loop, a `/speckit:handoff` hop on any runtime, Cursor and Devin included, needs `SYSTEM_SESSION_RELAUNCH_ENABLED=1`, because `prepare` refuses while the concern is off
 
 [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup, and the [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, the per-runtime adapters and troubleshooting.
 
@@ -1535,7 +1542,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 # then uncomment the switches you want on
 ```
 
-- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
+- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-relaunch hooks are the one exception to on-by-default: they stay off until you set `SYSTEM_SESSION_RELAUNCH_ENABLED=1`
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
 - **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
 - **Git hooks, for good.** `/doctor:git hooks` lists the optional gates and switches one off in git config as `speckit.hooks.<key>`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once
@@ -1608,10 +1615,10 @@ Gate 3 blocks file modifications until a spec folder answer is provided.
 
 **Q: What happens when a session runs out of context?**
 
-With the shell shim sourced, the session hands off before it runs out. It writes a handoff note, saves its spec packet if one is bound and ends, and a fresh session starts in the same terminal and picks up the remaining work.
+With `SYSTEM_SESSION_RELAUNCH_ENABLED=1` set and the shell shim sourced, the session hands off before it runs out. It writes a handoff note, saves its spec packet if one is bound and ends, and a fresh session starts in the same terminal and picks up the remaining work.
 
 - Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
-- Without the shim or a hand-started `skilled-loop`, the runtime's own auto-compaction takes over, as it always did
+- Without the enable flag, or without the shim or a hand-started `skilled-loop`, the runtime's own auto-compaction takes over, as it always did
 - [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup
 
 &nbsp;
