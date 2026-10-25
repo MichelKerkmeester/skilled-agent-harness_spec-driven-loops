@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f06caf76ac62581395e2156ed2e10a058550ff7ffe522f97f49fa4b9133d9e5e",
+  "corpusHash": "3ab1895a6b8723f5d17afccde7fb03f44b61c5931b2a4c8818815c24fad92ac0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26038,
+  "includedPathCount": 26043,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -26066,10 +26066,15 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
-    "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/acceptance-criteria.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/plan.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/spec.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "78cccffc683bc1a0205280245222d1f40f40a25402ef0257dbf70170ff9eeb41",
+  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33241,6 +33246,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/055-ci-efficiency-release-docs/scratch",
       "reason": "excluded directory"
     },
     {

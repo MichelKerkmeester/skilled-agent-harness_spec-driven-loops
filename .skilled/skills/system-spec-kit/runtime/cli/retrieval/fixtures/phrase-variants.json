@@ -1,5 +1,5 @@
 {
-  "manifestHash": "78cccffc683bc1a0205280245222d1f40f40a25402ef0257dbf70170ff9eeb41",
+  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17661,6 +17661,21 @@
     "ci efficiency final synthesis review": [
       "ci efficiency final synthesis review"
     ],
+    "ci efficiency release docs": [
+      "ci efficiency release docs"
+    ],
+    "ci efficiency release docs acceptance criteria": [
+      "ci efficiency release docs acceptance criteria"
+    ],
+    "ci efficiency release docs implementation summary": [
+      "ci efficiency release docs implementation summary"
+    ],
+    "ci efficiency release docs plan": [
+      "ci efficiency release docs plan"
+    ],
+    "ci efficiency release docs tasks": [
+      "ci efficiency release docs tasks"
+    ],
     "ci efficiency synthesis deepseek review": [
       "ci efficiency synthesis deepseek review"
     ],
@@ -17801,6 +17816,9 @@
     ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
+    ],
+    "ci workflow efficiency changelogs": [
+      "ci workflow efficiency changelogs"
     ],
     "ci workflow efficiency phase parent spec": [
       "ci workflow efficiency phase parent spec"

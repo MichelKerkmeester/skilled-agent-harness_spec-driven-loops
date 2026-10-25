@@ -1,5 +1,5 @@
 {
-  "manifestHash": "78cccffc683bc1a0205280245222d1f40f40a25402ef0257dbf70170ff9eeb41",
+  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -15263,7 +15263,12 @@
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md",
     "specs/system-speckit/054-weak-model-spec-authoring/changelog/changelog-054-root.md",
     "specs/system-speckit/054-weak-model-spec-authoring/goal.md",
-    "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
+    "specs/system-speckit/054-weak-model-spec-authoring/spec.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/acceptance-criteria.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/implementation-summary.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/plan.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/spec.md",
+    "specs/system-speckit/055-ci-efficiency-release-docs/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -33759,6 +33764,21 @@
     "ci efficiency final synthesis review": [
       15123
     ],
+    "ci efficiency release docs": [
+      15257
+    ],
+    "ci efficiency release docs acceptance criteria": [
+      15254
+    ],
+    "ci efficiency release docs implementation summary": [
+      15255
+    ],
+    "ci efficiency release docs plan": [
+      15256
+    ],
+    "ci efficiency release docs tasks": [
+      15258
+    ],
     "ci efficiency synthesis deepseek review": [
       15122
     ],
@@ -33899,6 +33919,9 @@
     ],
     "ci visual regression pipeline": [
       515
+    ],
+    "ci workflow efficiency changelogs": [
+      15257
     ],
     "ci workflow efficiency phase parent spec": [
       15187

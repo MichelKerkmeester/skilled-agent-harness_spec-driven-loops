@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7284,
-    "ok": 15206,
+    "ok": 15211,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26038,
+  "documentsScanned": 26043,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "78cccffc683bc1a0205280245222d1f40f40a25402ef0257dbf70170ff9eeb41",
+  "manifestHash": "a162209ec7884876330b8ee97afd2558eeaae092961550156752e8480de9853e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37660,
+      "ok": 37666,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -75757,6 +75757,10 @@
     },
     {
       "path": "specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/055-ci-efficiency-release-docs/scratch",
       "reason": "excluded directory"
     },
     {
