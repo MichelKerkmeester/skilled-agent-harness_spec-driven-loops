@@ -1,5 +1,5 @@
 {
-  "corpusHash": "036cc4c52a590ea5609df1962d804085249a30eb5ff8295190fe4f37e65cb5ef",
+  "corpusHash": "ed9758641766b3f236e0d2a982c678e73ecaaf123f8acd095aee5aae72a76cc8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26017,
+  "includedPathCount": 26023,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10496,6 +10496,12 @@
     "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/plan.md",
     "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/spec.md",
     "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/goal.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/plan.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/spec.md",
+    "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -26048,7 +26054,7 @@
     "specs/system-speckit/054-weak-model-spec-authoring/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "14d6f956f2b834c5dffcde32ab9b9d4c98adb51da10bc6925bb47c393ae78247",
+  "manifestHash": "b4ff3ff622099cabd12ab19b39544e173edd4d984aff3c1778a2ea0c2e5d396b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28160,6 +28166,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/scratch",
       "reason": "excluded directory"
     },
     {

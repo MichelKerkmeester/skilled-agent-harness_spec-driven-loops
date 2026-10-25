@@ -1,5 +1,5 @@
 {
-  "manifestHash": "14d6f956f2b834c5dffcde32ab9b9d4c98adb51da10bc6925bb47c393ae78247",
+  "manifestHash": "b4ff3ff622099cabd12ab19b39544e173edd4d984aff3c1778a2ea0c2e5d396b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -55684,6 +55684,24 @@
     "knowledge graph production methodology deep loop": [
       "knowledge graph production methodology deep loop"
     ],
+    "known gap fixes": [
+      "known gap fixes"
+    ],
+    "known gap fixes acceptance criteria": [
+      "known gap fixes acceptance criteria"
+    ],
+    "known gap fixes goal": [
+      "known gap fixes goal"
+    ],
+    "known gap fixes implementation summary": [
+      "known gap fixes implementation summary"
+    ],
+    "known gap fixes plan": [
+      "known gap fixes plan"
+    ],
+    "known gap fixes tasks": [
+      "known gap fixes tasks"
+    ],
     "known row move destination": [
       "known row move destination"
     ],
@@ -71631,6 +71649,12 @@
     ],
     "per runtime pre write hook": [
       "per runtime pre write hook"
+    ],
+    "per runtime session relaunch switch": [
+      "per-runtime session relaunch switch"
+    ],
+    "per runtime switch plan": [
+      "per-runtime switch plan"
     ],
     "per runtime symlink map": [
       "per runtime symlink map"
@@ -90829,6 +90853,9 @@
     "session relaunch keep command": [
       "session relaunch keep command"
     ],
+    "session relaunch known gaps": [
+      "session relaunch known gaps"
+    ],
     "session relaunch lanes": [
       "session relaunch lanes"
     ],
@@ -104627,6 +104654,9 @@
     ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
+    ],
+    "system session relaunch claude enabled": [
+      "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED"
     ],
     "system session relaunch enabled": [
       "SYSTEM_SESSION_RELAUNCH_ENABLED"

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7283,
-    "ok": 15186,
+    "ok": 15192,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 26017,
+  "documentsScanned": 26023,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "14d6f956f2b834c5dffcde32ab9b9d4c98adb51da10bc6925bb47c393ae78247",
+  "manifestHash": "b4ff3ff622099cabd12ab19b39544e173edd4d984aff3c1778a2ea0c2e5d396b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37601,
+      "ok": 37611,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -70691,6 +70691,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/scratch",
       "reason": "excluded directory"
     },
     {
