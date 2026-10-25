@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Workflow Reference - Verification
@@ -110,10 +110,6 @@ Climb from cheapest to most authoritative and name what each rung cannot see:
 ### Mutation Check And Claim Falsifier
 
 After green evidence for a new or modified test, confirm the test can fail for the right reason when feasible. A true red result is an assertion failing against intended behavior. A compile error or command that never reached the assertion is not a satisfying red. If a test stays green after the guarded behavior is broken, report it as a verification defect and hand back. The negative-control floor is owned by `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL).
-
-### Performance And Loading Claims
-
-Use the performance-loading checklist substance when deferring non-critical work or claiming startup wins: capture before/after data, verify gated paths, check first-use latency, exclude critical first-paint or compliance paths from deferral, and stop if measurement shows the win shifted cost into a worse first interaction.
 
 ---
 

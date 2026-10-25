@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.16.0
+version: 2.2.17.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -55,7 +55,6 @@ Intent classification scores task text against weighted keyword signals to pick 
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
 | TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |
-| PERFORMANCE | `lighthouse`, `lcp`, `tbt`, `inp`, `cls`, `pagespeed`, `performance` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
 | CONFIG | `json`, `jsonc`, `schema`, `descriptor`, `config` |
 | LANGUAGE_STANDARDS | `typescript`, `python`, `shell`, `commonjs`, `strict`, `docstring` |
@@ -98,7 +97,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 | --- | --- | --- |
 | ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |
 | SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
-| INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
+| INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
 | ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md` for boundary templates) |
 
@@ -243,7 +242,6 @@ INTENT_SIGNALS = {
     "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
-    "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "web vitals", "largest contentful", "lcp", "interaction to next paint", "inp", "cumulative layout shift", "cls", "pagespeed", "jank", "frame budget"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
     "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
     "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", "vanilla js", ".js", "commonjs", ".cjs", ".mjs"]},
@@ -293,9 +291,6 @@ RESOURCE_MAP = {
         "shared/references/universal-verification-checklist.md",
         "sk-code-skilled/assets/scripts/README.md",
 
-    ],
-    "PERFORMANCE": [
-        "shared/references/performance-loading-checklist.md",
     ],
     "HOOKS": [
         "sk-code-skilled/references/shared/hooks.md",
@@ -375,7 +370,6 @@ SHARED_CONTROL_RESOURCES = [
     "shared/references/universal/error-recovery.md",
     "shared/references/universal-debugging-checklist.md",
     "shared/references/universal-verification-checklist.md",
-    "shared/references/performance-loading-checklist.md",
 ]
 ```
 

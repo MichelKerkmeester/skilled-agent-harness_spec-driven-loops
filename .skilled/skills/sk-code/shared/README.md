@@ -3,7 +3,7 @@ title: sk-code shared
 description: Shared surface-router and cross-mode reference index for sk-code: navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references consumed by every sk-code mode.
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk-code shared
@@ -51,7 +51,6 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 |---|---|
 | [`references/universal-verification-checklist.md`](./references/universal-verification-checklist.md) | Stack-agnostic verification gate to walk before any done / works / complete / passing claim across SKILLED. |
 | [`references/universal-debugging-checklist.md`](./references/universal-debugging-checklist.md) | Stack-agnostic 4-phase debugging workflow: reproduce reliably → identify root cause → test one hypothesis at a time → fix at source. |
-| [`references/performance-loading-checklist.md`](./references/performance-loading-checklist.md) | Release gate for interaction-, viewport-, or idle-gated deferred loading: proves startup wins without a worse first-use experience. |
 
 ---
 
