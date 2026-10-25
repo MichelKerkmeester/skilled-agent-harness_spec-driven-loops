@@ -1,18 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-code/014-code-modes-research/002-review-mode-research",
   "description": "Phase 2: review-mode-research",
   "keywords": [
     "phase",
     "review-mode-research"
   ],
-  "lastUpdated": "2026-10-25T08:24:48.858Z",
+  "lastUpdated": "2026-10-25T13:10:25.381Z",
   "specId": "002",
   "folderSlug": "review-mode-research",
   "parentChain": [
     "sk-code",
     "014-code-modes-research"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "25-10-26_11-53__deep-research-completed-ten-iterations-on-sk-code.md",
+    "25-10-26_14-10__ran-the-second-model-pass-iterations-11-to-15-on.md"
+  ]
 }

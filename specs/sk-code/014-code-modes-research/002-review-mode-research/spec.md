@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: review-mode-research"
-description: "Ten iterations of deep research on how to make sk-code-review more repo-agnostic, more useful and better integrated with its sibling modes and with modes a user adds to the hub. Findings only."
+description: "Fifteen iterations of deep research, ten on one model and five on a second, on how to make sk-code-review more repo-agnostic, more useful and better integrated with its sibling modes and with modes a user adds to the hub. Findings only."
 trigger_phrases:
   - "review mode research"
   - "phase 2 review mode research"
@@ -23,14 +23,14 @@ contextType: "research"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `worktrees/218-ci-efficiency-build` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 2 |
 | **Predecessor** | 001-quality-mode-research |
 | **Successor** | None |
-| **Handoff Criteria** | Ten iteration records in `research/deep-research-state.jsonl`, a ranked `research/research.md` of at least eight rows and no changed file under `.skilled/` |
+| **Handoff Criteria** | Fifteen iteration records in `research/deep-research-state.jsonl` (ten first-pass, five second-model per ADR-002), a ranked `research/research.md` of at least eight rows and no changed file under `.skilled/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,8 +52,8 @@ This is **Phase 2** of the sk-code Quality and Review Modes Research specificati
 
 **Deliverables**:
 - `research/research.md` with the sections Repo-Agnostic Findings, Usefulness Findings, Integration Findings (with an External-User Modes subsection) and Ranked Recommendations
-- `research/iterations/iteration-001.md` through `iteration-010.md`
-- `research/deep-research-state.jsonl` with ten iteration records and one synthesis_complete record
+- `research/iterations/iteration-001.md` through `iteration-015.md`. Iterations 11 to 15 are the second-model pass that `decision-record.md` ADR-002 added
+- `research/deep-research-state.jsonl` with fifteen iteration records and a synthesis_complete record for each synthesis
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -99,7 +99,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `research/research.md` | Create | The synthesis with the ranked recommendations |
-| `research/iterations/iteration-001.md` through `iteration-010.md` | Create | One record per iteration |
+| `research/iterations/iteration-001.md` through `iteration-015.md` | Create | One record per iteration, with 11 to 15 added by ADR-002 |
 | `research/deep-research-state.jsonl` | Create | Loop state and the stop reason |
 <!-- /ANCHOR:scope -->
 
@@ -122,7 +122,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | Run integrity: ten iteration files, ten iteration records in the state log, a recorded stop reason, source tags that resolve and no read of the sibling phase's `research/` folder. |
+| REQ-006 | Run integrity: fifteen iteration files and fifteen iteration records in the state log (ten before ADR-002 raised the count), a recorded stop reason, source tags that resolve and no read of the sibling phase's `research/` folder. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -133,7 +133,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `research/deep-research-state.jsonl` holds ten iteration records and a synthesis_complete record that names its stop reason.
+- **SC-001**: `research/deep-research-state.jsonl` holds fifteen iteration records and a synthesis_complete record that names its stop reason.
 - **SC-002**: `research/research.md` ranks at least eight recommendations and every row carries an evidence label.
 - **SC-003**: Three source tags opened by the orchestrator resolve to the quoted text.
 <!-- /ANCHOR:success-criteria -->
@@ -173,7 +173,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 
 ### Data Boundaries
 - Empty input: an iteration that writes no record file is a failed iteration, not a converged one.
-- Maximum length: ten iterations, no more.
+- Maximum length: ten iterations in the first pass, plus the five second-model iterations ADR-002 added, so fifteen in all.
 - Invalid format: a source tag that does not resolve is dropped at synthesis or relabelled INFERRED.
 
 ### Error Scenarios
@@ -182,7 +182,7 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 - Concurrent access: the sibling phase may run at the same time, and each run writes only under its own `research/` folder.
 
 ### State Transitions
-- Partial completion: fewer than ten records means the phase is not closeable and the next relaunch resumes from state.
+- Partial completion: fewer than fifteen records means the phase is not closeable and the next relaunch resumes from state.
 - Session expiry: the state log and the strategy file carry everything a fresh session needs.
 <!-- /ANCHOR:edge-cases -->
 
@@ -206,6 +206,19 @@ When this phase is done, a ranked list of OBSERVED, DERIVED or INFERRED recommen
 
 - Does the executor alternation run per iteration or per child? The parent spec holds the default and the question.
 - Are the `@review` and `@deep-review` agent files read as consumers only, or are their dispatch steps also in scope for recommendations? The default is as consumers, with a recommendation allowed to name them as files a later packet touches.
+- How to make sk-code-review more repo-agnostic, more useful and better integrated with sibling and user-authored modes?
+
+**Research Context**: deep-research is active for this topic. `research/research.md` remains the canonical findings document.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md` (fifteen iterations, ten on Luna and five second-model iterations on DeepSeek V4.1 Flash Max, stop reason maxIterationsReached). The second model confirmed the facts behind 9 of 12 rows. Refreshed top five:
+
+1. One written list of extension floors no profile, surface or user mode may change (first-pass rank 2).
+2. A repo-owned review profile at a framework-neutral path that may only add or raise (rank 1).
+3. Make a path-only workflow review bundle the CI surface, a defect the replay confirmed (rank 12).
+4. An additive-only extension of the never-skip sensitive-path list (rank 5).
+5. A final-line checker that compares the Overall assessment line with the status line (rank 9).
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

@@ -77,12 +77,21 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase documents written | Done | Created 2026-10-25, status Planned |
-| Iterations 1 to 10 | Pending | Not launched |
-| Synthesis | Pending | Not run |
+| Iterations 1 to 10 | Done | Ten records, all on `gpt-6-luna` (cli-codex, effort max, tier fast). Each passed `verify-iteration.cjs` |
+| Synthesis | Done | `research/research.md`, twelve ranked rows, `synthesis_complete` with `stopReason` `maxIterationsReached` |
+| Second-model pass | Done | ADR-002: iterations 11 to 15 on cli-devin `deepseek-v4-1-flash-max`, run after child 001 finished. 15 iteration records, each verified on the first dispatch, and a second `synthesis_complete` with `totalIterations` 15 |
+| Refreshed synthesis | Done | `research/research.md` sections 6a and 6b: 9 rows confirmed, 1 refuted in part, 2 untested in their decisive claim. Refreshed top five led by the extension-floors list |
+| Closure | Done | AC-011 closed on the operator's ruling of 2026-10-25, recorded in ADR-001: the narrowed check may skip a line that only states the sibling folder was not read. The amended check prints nothing |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | Nothing has run. |
+| DeepSeek unavailable | `llmgateway/deepseek-v4.1-flash-1017` refused three times with HTTP 402 `billing_error` (DevPass daily pacing), so even iterations ran on Luna |
+| AC-011 | The runtime write-containment guard copied the sibling run's files into `research/containment/quarantine/`. The operator approved deleting them and ruled to narrow the check, recorded as ADR-001 |
+| I-6 replayed | After today's router change, a path-only workflow review still routes without `sk-code-ci`, so rank 12 is a confirmed defect |
+| Completion criteria amended | ADR-002 raised the iteration count from 10 to 15. The directive text is left as written |
+| Reopen route | The workflow halts on a completed session and its `completed-continue` branch is not wired, so the config's `status` and `maxIterations` were edited to take the `resume` branch. ADR-002 records it |
+| Stray dispatch file | Iteration 12 left `research/.tmp-iter-012-event.json`. Kept for the operator to decide on |
+| Boundary scope | Concurrent CI wiring edited hub files, so the boundary check covers only `sk-code-quality/` and `sk-code-review/`, both unchanged |
 <!-- /ANCHOR:log -->
