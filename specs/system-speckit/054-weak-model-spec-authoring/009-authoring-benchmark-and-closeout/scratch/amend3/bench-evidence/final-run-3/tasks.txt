@@ -1,0 +1,276 @@
+---
+title: "Tasks: Add a quiet flag to recommend-level.sh"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "recommend level quiet flag tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.3 -->
+# Tasks: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+**Path variables**: `S` = `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh`; `P` = `specs/zz-bench-authoring/001-recommend-level-quiet-flag`
+<!-- /ANCHOR:notation -->
+
+---
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+Before starting any task, verify:
+1. [ ] `spec.md`, `plan.md` and this file were read in full
+2. [ ] The task's file is `$S`; packet docs change only when observed output contradicts them
+3. [ ] The verification command and its expected output are known before the first edit
+4. [ ] No earlier task left an uncommitted change outside the packet
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Run T001-T011 in order; T001-T002 produce the baseline that T007-T009 compare against |
+| TASK-SCOPE | Modify only `$S`; record anything else as a finding instead of editing it |
+| TASK-VERIFY | Run the task's Verify command and read its output before marking the task complete |
+| TASK-DOC | Record any deviation from this plan in `implementation-summary.md` at completion |
+
+### Status Reporting Format
+
+`[T###] [DONE | IN PROGRESS | BLOCKED] - one line naming the command and its observed result`
+
+### Blocked Task Protocol
+1. Mark the task `[B]` and state the blocking fact in one line
+2. Record the fact beside the completion criteria in this file
+3. Continue with the next unblocked task; escalate after two blocked tasks
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Read `output_text()`, `show_help()` and the argument loop in `$S`. Verify: `rg -n 'Recommended Level:|--json|-j|show_help' "$S"` prints the level line, the `--json` case and the help function
+- [ ] T002 Capture the pre-change baselines under `$P/scratch/`: `bash "$S" --loc 500 --files 15 --auth --api --db --architectural > "$P/scratch/baseline-default.txt"` and the same invocation with `--json > "$P/scratch/baseline-json.txt"`. Verify: `wc -l < "$P/scratch/baseline-default.txt"` prints 17 and `head -1 "$P/scratch/baseline-json.txt"` prints `{`
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T003 Add `QUIET=false` to the globals block in `$S`, beside `JSON_OUTPUT`. Verify: `bash -n "$S"` exits 0
+- [ ] T004 Add a `--quiet` case arm to the argument loop in `$S`, setting `QUIET=true` and shifting one argument. Verify: `rg -n 'quiet' "$S"` prints the case arm
+- [ ] T005 Add the early quiet branch at the top of `output_text()` in `$S`: print the same `Recommended Level:` line and return before the report body. Verify: `bash "$S" --loc 500 --files 15 --auth --api --db --architectural --quiet | wc -l` prints 1
+- [ ] T006 Document the flag in the header OPTIONS block and in `show_help()` in `$S`. Verify: `rg -n -- '--quiet' "$S"` prints both documentation sites
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T007 Verify the default report is unchanged. Verify: `diff "$P/scratch/baseline-default.txt" <(bash "$S" --loc 500 --files 15 --auth --api --db --architectural)` prints nothing
+- [ ] T008 Verify JSON is unchanged with and without the flag. Verify: `diff "$P/scratch/baseline-json.txt" <(bash "$S" --loc 500 --files 15 --auth --api --db --architectural --json --quiet)` prints nothing
+- [ ] T009 Verify the error path: `bash "$S" --quiet` and `bash "$S" --quiet --bogus` each exit 1, write the unchanged error to stderr, and write nothing to stdout. Verify: captured stdout is empty and `$?` is 1 for both
+- [ ] T010 Verify the quiet line matches the report. Verify: `diff <(grep -m1 '^Recommended Level:' "$P/scratch/baseline-default.txt") <(bash "$S" --loc 500 --files 15 --auth --api --db --architectural --quiet)` prints nothing
+- [ ] T011 Reconcile the packet docs with the observed output; change `spec.md`, `plan.md` or this file only where the observation contradicts them
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+- [ ] `$P/scratch/` holds the baseline and quiet captures that T007-T010 compare against
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [ ] CHK-003 [P1] Dependencies identified and available
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] `bash -n "$S"` exits 0 after every edit
+- [ ] CHK-011 [P0] No new stderr text appears in any mode
+- [ ] CHK-012 [P1] The quiet branch cannot fail independently: it prints one line and returns
+- [ ] CHK-013 [P1] The change follows the existing case-arm and global-variable patterns in `$S`
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-021 [P0] A valid `--quiet` run prints exactly one line and exits 0
+- [ ] CHK-022 [P1] The mode matrix (default, `--quiet`, `--json`, `--json --quiet`) is verified
+- [ ] CHK-023 [P1] Invalid input exits 1 with unchanged stderr and empty stdout in both modes
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+N/A - this packet adds a feature and closes no finding, so no finding class, producer inventory or adversarial table applies. The consumer inventory that does apply is recorded in `plan.md` under Affected Surfaces.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets or credentials added
+- [ ] CHK-031 [P0] Input validation is unchanged; `--quiet` adds one boolean switch and no new input surface
+- [ ] CHK-032 [P1] Auth/authz: N/A - the script reads no identity and calls no service
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] `spec.md`, `plan.md` and this file agree on the flag name, the precedence rule and the expected output
+- [ ] CHK-041 [P1] The header comment and `show_help()` both list `--quiet`
+- [ ] CHK-042 [P2] README: N/A - the script's own help is the documented surface
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Baseline captures live under `scratch/` only
+- [ ] CHK-051 [P1] `scratch/` holds no temporary file that verification still needs after the packet closes
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 10 | 0/10 |
+| P1 Items | 18 | 0/18 |
+| P2 Items | 12 | 0/12 |
+
+**Verification Date**: 2026-10-25
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: Architecture Verification
+
+- [ ] CHK-100 [P0] ADR-001 is followed: the quiet line renders from the same format site as the default report
+- [ ] CHK-101 [P1] ADR-002 is followed: `--json --quiet` emits the JSON document unchanged
+- [ ] CHK-102 [P1] Both ADRs carry a status and a rejected alternative with a reason
+- [ ] CHK-103 [P2] Migration path: N/A - no stored state or caller contract changes
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: Performance Verification
+
+- [ ] CHK-110 [P1] The flag adds no measurable runtime (NFR-P01)
+- [ ] CHK-111 [P2] Throughput: N/A - single-shot CLI with no sustained load
+- [ ] CHK-112 [P2] Load testing: N/A - no service or shared resource
+- [ ] CHK-113 [P2] Benchmarks: not recorded; the flag adds one string comparison
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: Deployment Readiness
+
+- [ ] CHK-120 [P0] Rollback procedure documented in `plan.md` and rerun against the three baseline comparisons
+- [ ] CHK-121 [P1] Feature flag: N/A - `--quiet` is itself the opt-in and defaults off
+- [ ] CHK-122 [P2] Monitoring: N/A - no service is deployed
+- [ ] CHK-123 [P2] Runbook: the rollback procedure in `plan.md` section 7 is the runbook
+- [ ] CHK-124 [P2] Deployment runbook review: N/A - no deploy step exists
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: Compliance Verification
+
+- [ ] CHK-130 [P1] Security review: N/A - no credential, network or data path is touched
+- [ ] CHK-131 [P1] Dependency licenses: no new dependency is added
+- [ ] CHK-132 [P2] OWASP Top 10: N/A - CLI with no web surface
+- [ ] CHK-133 [P2] Data handling: N/A - the script stores and transmits nothing
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: Documentation Verification
+
+- [ ] CHK-140 [P1] All packet documents agree on the flag name, precedence and one-line output
+- [ ] CHK-141 [P1] API documentation: N/A - `--help` is the CLI contract
+- [ ] CHK-142 [P2] User-facing documentation updated in the script header and help text
+- [ ] CHK-143 [P2] Knowledge transfer: the two ADRs in `plan.md` record why the branch lives in `output_text()` and why JSON wins
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: Sign-Off
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| Packet operator | Technical Lead | [ ] Approved | |
+| Packet operator | Product Owner | [ ] Approved | |
+| Packet operator | QA Lead | [ ] Approved | |
+<!-- /ANCHOR:sign-off -->
+

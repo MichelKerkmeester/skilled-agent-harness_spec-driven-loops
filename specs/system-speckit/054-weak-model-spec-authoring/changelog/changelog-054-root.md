@@ -72,5 +72,5 @@ A weak model can now author a filled spec packet from the system-spec-kit templa
 
 ### Follow-Ups
 
-- Parent criterion 5 is FAIL and the packet is In Progress. Make the `## L3+:` heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase.
+- Parent criterion 5 is FAIL and the packet is In Progress. The label fix shipped (the fill notes of the six `## L3+:` sections of the `tasks.md` template say they stay at Level 3) and the rerun on cli-devin deepseek-v4-1-flash-1017-max failed again, with missing_anchors 3 against 0. The operator decides whether the metric should count the optional sections or the fill notes should change.
 - Three runs per side cannot support a significance claim.

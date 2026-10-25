@@ -1,0 +1,272 @@
+---
+title: "Implementation Plan: Add a quiet flag to recommend-level.sh"
+description: "Add a boolean --quiet flag to recommend-level.sh and a single-line render branch that reuses the default report's level format, leaving scoring, JSON output and exit codes untouched."
+trigger_phrases:
+  - "recommend level quiet flag plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.3 -->
+# Implementation Plan: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Bash 3.2+ (macOS default `/bin/bash`) |
+| **Framework** | SpecKit CLI runtime (`runtime/cli/spec/`) |
+| **Storage** | None |
+| **Testing** | Shell assertions: `bash -n`, `wc -l`, `diff` against captured baselines |
+
+### Overview
+Change one script: add a `QUIET` global, a `--quiet` case arm in the existing argument loop, and an early branch in `output_text()` that prints the level line and returns. The branch reuses the same `Recommended Level:` format string as the default report, so the two cannot drift, and the scoring, JSON and error paths are left untouched.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Single-script CLI with a render-time mode branch
+
+### Key Components
+- **`recommend-level.sh` argument loop**: owns flag parsing; gains one `--quiet` case arm that sets `QUIET=true`
+- **`output_text()` renderer**: owns the human report and the level-line format; gains an early quiet branch that prints the same line and returns
+- **`show_help()` and the header OPTIONS block**: own the documented CLI surface; both gain one `--quiet` line
+
+### Data Flow
+Arguments populate globals (`LOC`, `FILES`, risk flags, `JSON_OUTPUT`, `QUIET`) → the scoring functions read those globals → `determine_level()` sets `RECOMMENDED_LEVEL` and `LEVEL_NAME` → section 7 dispatches to `output_json()` or `output_text()`, and `output_text()` returns the one-line form when `QUIET` is true.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+This packet adds a feature rather than fixing a finding, so the inventory below records the producer, the consumers and the matrix the verification must cover.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `recommend-level.sh` | Sole producer of the recommendation and both output formats | update: add the flag, the render branch and the help text | `bash -n` exits 0; `--quiet` prints one line |
+| Default text report consumers | Read the human report; operators read it directly | unchanged: output stays byte-identical | `diff` against the pre-change baseline |
+| `--json` consumers | Parse the JSON document | unchanged: `--json` and `--json --quiet` emit the same document | `diff` against the JSON baseline |
+| `show_help()` and the header comment | Document the CLI surface | update: list `--quiet` in both | `rg -n -- '--quiet'` finds both sites |
+
+Required inventories:
+- Same-class producers: `rg -n 'Recommended Level:' .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` — the level line is emitted in `output_text()` only, so quiet mode must reuse that site.
+- Consumers of the changed surface: `rg -n 'recommend-level' .skilled --glob '*.sh' --glob '*.md'` — enumerate callers before changing output.
+- Matrix axes: mode (default, `--quiet`, `--json`, `--json --quiet`) crossed with input validity (valid, invalid); every row is required.
+- Algorithm invariant: N/A — no path, redaction, parser or resolver logic changes. Scoring and thresholds are untouched.
+<!-- /ANCHOR:affected-surfaces -->
+
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | No test harness exists for this script; the flag is covered by shell assertions in Phase 3 | `bash -n`, direct invocation |
+| Integration | The mode matrix (default, `--quiet`, `--json`, `--json --quiet`) against the real script | `bash`, `wc -l`, `diff` |
+| Manual | An operator runs `--quiet` in a spec workflow and reads the line | Terminal |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Bash 3.2+ | Internal | Green | The script already requires it; no new runtime |
+| Existing `output_text()` renderer | Internal | Green | The quiet branch calls the same format site; no new renderer |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: Any change to default or JSON stdout, or a non-zero exit on an invocation that previously succeeded
+- **Procedure**: Revert the single commit that carries the change (`git revert <commit>`), then rerun the three baseline comparisons in `tasks.md` T007-T009
+<!-- /ANCHOR:rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 1 (Setup) ──────────► Phase 2 (Implementation) ──────────► Phase 3 (Verification)
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | None |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Low | 10 minutes |
+| Core Implementation | Low | 20 minutes |
+| Verification | Low | 15 minutes |
+| **Total** | | **~45 minutes (assumption)** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Backup created (if data changes) — N/A, the change touches no data
+- [ ] Feature flag configured — N/A, the flag itself is the opt-in
+- [ ] Monitoring alerts set — N/A, no service is deployed
+
+### Rollback Procedure
+1. Stop using `--quiet`; the default path is untouched and needs no action
+2. Revert the single commit with `git revert <commit>`
+3. Rerun the default, JSON and error-path comparisons from `tasks.md` Phase 3
+4. Notify callers only if they already adopted `--quiet`
+
+### Data Reversal
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+┌─────────────┐     ┌──────────────────┐     ┌─────────────┐
+│   Phase 1   │────►│   Phase 2        │────►│   Phase 3   │
+│   Setup     │     │   Implementation │     │   Verify    │
+└─────────────┘     └──────────────────┘     └─────────────┘
+```
+
+### Dependency Matrix
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Baseline capture | None | Pre-change stdout for default and JSON runs | Verification |
+| Flag parsing | Baseline capture | `QUIET` global set from `--quiet` | Quiet render branch |
+| Quiet render branch | Flag parsing | One-line stdout under `--quiet` | Verification |
+| Help text | Flag parsing | Documented flag in header and `--help` | Verification |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Capture the pre-change baselines** - 10 minutes - CRITICAL
+2. **Add the flag and the render branch** - 20 minutes - CRITICAL
+3. **Run the mode-matrix comparisons** - 15 minutes - CRITICAL
+
+**Total Critical Path**: ~45 minutes (assumption)
+
+**Parallel Opportunities**:
+- The header comment and the `show_help()` entry can be written together with the case arm
+- The JSON comparison can run as soon as the flag parses, without waiting for the quiet branch
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Flag parses | `--quiet` sets the quiet mode; `bash -n` exits 0 | Phase 2 start |
+| M2 | Quiet output works | A valid `--quiet` run prints exactly one line and exits 0 | Phase 2 end |
+| M3 | No regression | Default and JSON output `diff` clean against the baselines | Phase 3 end |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: Render the quiet form inside `output_text()`
+
+**Status**: Proposed
+
+**Context**: The `Recommended Level: <N> (<Name>)` line is formatted in one place, `output_text()`. A quiet mode that formats the same line anywhere else creates a second format string that can drift from the report operators read.
+
+**Decision**: Add an early branch at the top of `output_text()`: when `QUIET` is true, print the same level line and return before the report body.
+
+**Consequences**:
+- The quiet line and the default report's level line share one format site and cannot diverge
+- `output_text()` gains a mode branch; the function name still describes what it does
+
+**Alternatives Rejected**:
+- A separate `output_quiet()` function: duplicates the format string, which is the exact drift risk this decision avoids
+- Branching in the section 7 dispatch: same duplication, with the format string further from the report it must match
+
+---
+
+### ADR-002: `--json` takes precedence over `--quiet`
+
+**Status**: Proposed
+
+**Context**: `--quiet` and `--json` are both output selectors, and a caller may pass both through a generic flag set. The combination has no obvious meaning: JSON is already machine-readable and holds more than the level.
+
+**Decision**: When `JSON_OUTPUT` is true, emit the JSON document unchanged and ignore `QUIET`.
+
+**Consequences**:
+- One documented precedence rule; `--json --quiet` never produces the text line
+- Scripts that pass both flags keep their JSON contract instead of failing
+
+**Alternatives Rejected**:
+- Erroring on the combination: breaks callers that assemble flags generically
+- Quiet wins: would need a JSON-to-line path and would silently drop the fields the caller asked for
+
+---
+

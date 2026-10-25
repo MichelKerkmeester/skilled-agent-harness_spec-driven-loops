@@ -1,0 +1,1 @@
+attempt1: hung 38 min in 'git ls-files' waiting on the git fsmonitor daemon socket (0% CPU), killed; rerun with GIT_CONFIG core.fsmonitor=false

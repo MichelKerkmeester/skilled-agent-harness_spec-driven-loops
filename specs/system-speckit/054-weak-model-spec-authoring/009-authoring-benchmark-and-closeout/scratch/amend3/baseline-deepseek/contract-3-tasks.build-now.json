@@ -1,0 +1,167 @@
+{
+  "supported": true,
+  "basename": "tasks.md",
+  "templatePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/217-weak-model-spec-authoring/.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+  "headerRules": [
+    {
+      "raw": "Task Notation",
+      "normalized": "TASK NOTATION",
+      "dynamic": false
+    },
+    {
+      "raw": "Phase 1: Setup",
+      "normalized": "PHASE 1: SETUP",
+      "dynamic": false
+    },
+    {
+      "raw": "Phase 2: Implementation",
+      "normalized": "PHASE 2: IMPLEMENTATION",
+      "dynamic": false
+    },
+    {
+      "raw": "Phase 3: Verification",
+      "normalized": "PHASE 3: VERIFICATION",
+      "dynamic": false
+    },
+    {
+      "raw": "Completion Criteria",
+      "normalized": "COMPLETION CRITERIA",
+      "dynamic": false
+    },
+    {
+      "raw": "Cross-References",
+      "normalized": "CROSS-REFERENCES",
+      "dynamic": false
+    },
+    {
+      "raw": "Verification Checklist",
+      "normalized": "VERIFICATION CHECKLIST",
+      "dynamic": false
+    },
+    {
+      "raw": "Verification Protocol",
+      "normalized": "VERIFICATION PROTOCOL",
+      "dynamic": false
+    },
+    {
+      "raw": "Pre-Implementation",
+      "normalized": "PRE-IMPLEMENTATION",
+      "dynamic": false
+    },
+    {
+      "raw": "Code Quality",
+      "normalized": "CODE QUALITY",
+      "dynamic": false
+    },
+    {
+      "raw": "Testing Checklist",
+      "normalized": "TESTING CHECKLIST",
+      "dynamic": false
+    },
+    {
+      "raw": "Fix Completeness",
+      "normalized": "FIX COMPLETENESS",
+      "dynamic": false
+    },
+    {
+      "raw": "Security",
+      "normalized": "SECURITY",
+      "dynamic": false
+    },
+    {
+      "raw": "Documentation",
+      "normalized": "DOCUMENTATION",
+      "dynamic": false
+    },
+    {
+      "raw": "File Organization",
+      "normalized": "FILE ORGANIZATION",
+      "dynamic": false
+    },
+    {
+      "raw": "Verification Summary",
+      "normalized": "VERIFICATION SUMMARY",
+      "dynamic": false
+    }
+  ],
+  "optionalHeaderRules": [
+    {
+      "raw": "L3+: Architecture Verification",
+      "normalized": "L3+: ARCHITECTURE VERIFICATION",
+      "dynamic": false
+    },
+    {
+      "raw": "L3+: Performance Verification",
+      "normalized": "L3+: PERFORMANCE VERIFICATION",
+      "dynamic": false
+    },
+    {
+      "raw": "L3+: Deployment Readiness",
+      "normalized": "L3+: DEPLOYMENT READINESS",
+      "dynamic": false
+    },
+    {
+      "raw": "L3+: Compliance Verification",
+      "normalized": "L3+: COMPLIANCE VERIFICATION",
+      "dynamic": false
+    },
+    {
+      "raw": "L3+: Documentation Verification",
+      "normalized": "L3+: DOCUMENTATION VERIFICATION",
+      "dynamic": false
+    },
+    {
+      "raw": "L3+: Sign-Off",
+      "normalized": "L3+: SIGN-OFF",
+      "dynamic": false
+    }
+  ],
+  "requiredAnchors": [
+    "notation",
+    "phase-1",
+    "phase-2",
+    "phase-3",
+    "completion",
+    "cross-refs",
+    "protocol",
+    "pre-impl",
+    "code-quality",
+    "testing",
+    "fix-completeness",
+    "security",
+    "docs",
+    "file-org",
+    "summary"
+  ],
+  "optionalAnchors": [
+    "arch-verify",
+    "perf-verify",
+    "deploy-ready",
+    "compliance-verify",
+    "docs-verify",
+    "sign-off"
+  ],
+  "allowedAnchors": [
+    "notation",
+    "phase-1",
+    "phase-2",
+    "phase-3",
+    "completion",
+    "cross-refs",
+    "protocol",
+    "pre-impl",
+    "code-quality",
+    "testing",
+    "fix-completeness",
+    "security",
+    "docs",
+    "file-org",
+    "summary",
+    "arch-verify",
+    "perf-verify",
+    "deploy-ready",
+    "compliance-verify",
+    "docs-verify",
+    "sign-off"
+  ]
+}

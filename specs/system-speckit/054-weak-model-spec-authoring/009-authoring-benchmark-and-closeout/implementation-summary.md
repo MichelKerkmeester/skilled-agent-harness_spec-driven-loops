@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 9 ran the benchmark and closed the packet's records with one failed criterion: three final runs of the frozen Level 3 authoring task left fewer hints but one run deleted six optional verification sections."
+description: "Phase 9 ran the benchmark twice and closed the packet's records with one failed criterion: after the L3+ label fix, three DeepSeek runs of the frozen Level 3 task left no hints but one run deleted three optional verification sections."
 trigger_phrases:
   - "authoring benchmark and closeout implementation summary"
 importance_tier: "normal"
@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
     last_updated_at: "2026-10-25T09:10:15Z"
     last_updated_by: "worker"
-    recent_action: "Ran the benchmark, recorded criterion 5 as FAIL"
+    recent_action: "Shipped the L3+ label fix, reran the benchmark on DeepSeek, recorded criterion 5 as FAIL again"
     next_safe_action: "Operator reviews the local commit and decides the follow-up phase"
     blockers: []
     key_files:
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 009-authoring-benchmark-and-closeout |
 | **Status** | In Progress (acceptance rows AC-010, AC-011 and AC-015 unmet because parent criterion 5 failed) |
-| **Completed** | Not complete: parent criterion 5 is FAIL |
+| **Completed** | Not complete: parent criterion 5 is FAIL on both final sets |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,6 +50,10 @@ _memory:
 The packet now ends with a measured before and after, and the measurement found one failure. Three final runs of the frozen Level 3 authoring task are recorded beside the SWE 2 Max baseline. Every final run passed strict validation, the final maximum of `leftover_hints` is 0 against a baseline maximum of 1, and no run wrote outside its track. Parent criterion 5 is FAIL on the frozen metric, because run 3 left 15 anchors in `tasks.md` where the baseline expects 21, so `missing_anchors` has a final maximum of 6 against 0.
 
 The six anchors run 3 deleted are the optional Level 3 verification sections: `arch-verify`, `perf-verify`, `deploy-ready`, `compliance-verify`, `docs-verify` and `sign-off`. A diagnostic, chosen after the result and not a verdict, scores all six runs against the anchors the contract requires (`template-structure.js contract 3 tasks.md` lists 15 required and these 6 optional), and every run misses none. Three of the deletions went against the template's own fill notes, because the packet records ADR-001 (`plan.md` line 239 of run 3, kept as `scratch/bench-evidence/final-run-3/plan.txt`), states NFR-P01 (`spec.md` line 133 of run 3, kept as `scratch/bench-evidence/final-run-3/spec.txt`) and holds paired documents. The run's reply says "L3+ optional sections dropped (this is Level 3, not 3+)", so it read the `## L3+:` heading prefix as Level 3+ only. Run 3 also took 1822 seconds against 437 and 429, and the cause is unknown. The run log is `scratch/baseline/runs.jsonl`, the extras are in `runs-meta.jsonl` and the delta is `scratch/baseline/delta.json`.
+
+### Third amendment: label fix and second final set
+
+The fill note under each of the six `## L3+:` headings of the `tasks.md` template now opens with 'L3+ means Level 3 and above, so this section stays at Level 3.' The phase 004 plan rows, the golden snapshot and the guards match it, and the full suite passed again with the same counts. The operator ruled out the swe-2 models, so a new DeepSeek baseline of three runs at the packet start commit was taken by a separate agent, and three final runs ran on cli-devin `deepseek-v4-1-flash-1017-max` on the amended tree. Strict validation passed in all three and leftover hints were 0 in all three, but run 1 wrote a `tasks.md` without `deploy-ready`, `compliance-verify` and `sign-off`, so `missing_anchors` has a final maximum of 3 against a baseline maximum of 0 and criterion 5 fails again. Run 2 is contaminated, because its session read the frozen vocabulary files, and it is kept in the numbers and labelled. The first final set stays on record as history, measured on the earlier tree on swe-2-max.
 
 ### Phase 9: authoring-benchmark-and-closeout
 
@@ -82,8 +86,8 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 ### Operator handoff
 
 - This phase made one local commit on the worktree branch. Nothing was pushed.
-- The follow-up is open: make the `## L3+:` heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase.
-- The parent `spec.md` and this phase are In Progress, not Complete, until that rerun passes criterion 5.
+- The label fix shipped and the rerun failed criterion 5 again. The open decision is the operator's: whether `missing_anchors` should count the optional Level 3 verification sections, or whether the delete-when clauses in those fill notes should change, before any further rerun.
+- The parent `spec.md` and this phase are In Progress, not Complete, until a rerun passes criterion 5.
 - No generated artifact needs a hand edit before review.
 <!-- /ANCHOR:how-delivered -->
 
@@ -98,6 +102,8 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 | Count bare hints plus value tokens for M2 | The two patterns are disjoint, so each unfilled instruction counts once on both sides |
 | Use Level 3 for the final runs | The SWE 2 Max baseline is Level 3 |
 | Prove parent criterion 3 on the frozen folder list | A live walk would compare different populations |
+| Keep the first final set as history and label the second set as the final one | The sets differ in model and tree, so each is reported with its own baseline |
+| Keep a contaminated run in the numbers | Dropping it would hide what the session read, and the verdict does not depend on it |
 | Do not mark the phase or the parent Complete | The validator reads a Complete status with an unmet acceptance row as a failed closure |
 <!-- /ANCHOR:decisions -->
 
@@ -112,7 +118,9 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 | Strict validation on this phase folder | `RESULT: PASSED` |
 | Parent criteria | C1, C2, C3, C4, C6 and C7 PASS, C5 FAIL |
 | Census over 4688 folders | 4496 PASS and 192 FAIL before and after, 0 differing rows |
-| Report rows | 6 |
+| Report rows | 6 in `results.csv` (first set) and 6 in `results-amend3.csv` (second set) |
+| Full suite after the label fix | exit=0, 276 and 184 files passed, 4162 and 2085 tests passed |
+| Criterion 3 sample after the label fix | 20 of 20 rows equal the census rows |
 | Benchmark report markdown | `Total issues: 0` |
 <!-- /ANCHOR:verification -->
 
@@ -121,8 +129,8 @@ One Claude Code worker ran the phase and spawned no subagent. It ran three seria
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Parent criterion 5 is FAIL.** `missing_anchors` has a final maximum of 6 against a baseline maximum of 0, and the phase and the parent stay In Progress.
-2. **Open follow-up.** Make the `## L3+:` heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase.
+1. **Parent criterion 5 is FAIL on both final sets.** `missing_anchors` has a final maximum of 6 against 0 on the first set and 3 against 0 on the second, and the phase and the parent stay In Progress.
+2. **Open decision.** The label sentence did not remove the omission. The three sections run 1 dropped each carry a delete-when clause in their fill note, and whether the run acted on it is UNKNOWN. A further rerun should use a worktree that holds no earlier benchmark evidence.
 3. **Three runs per side cannot support a significance claim.** One run produced the whole failure, so the sample cannot separate the template change from run-to-run variation.
 4. **The fixture is one small feature and four documents.** A different feature shape or a Level 1 packet is not measured.
 5. **Acceptance rows AC-010, AC-011 and AC-015 are Unmet.** They need nine Complete map rows, seven PASS lines and a Complete status, which criterion 5 prevents.

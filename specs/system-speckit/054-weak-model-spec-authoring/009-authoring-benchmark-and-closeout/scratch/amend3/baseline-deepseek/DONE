@@ -1,0 +1,4 @@
+run 1: {"run":1,"subject":"deepseek-v4-1-flash-1017-max-baseline","level":3,"rc":0,"strict_passed":1,"leftover_hints":1,"missing_anchors":0,"out_of_scope_writes":0,"seconds":242} | m2_token=0 | session foil-curtain tool_calls 79
+run 2: {"run":2,"subject":"deepseek-v4-1-flash-1017-max-baseline","level":3,"rc":0,"strict_passed":1,"leftover_hints":0,"missing_anchors":0,"out_of_scope_writes":0,"seconds":217} | m2_token=0 | session nice-jury tool_calls 75
+run 3: {"run":3,"subject":"deepseek-v4-1-flash-1017-max-baseline","level":3,"rc":0,"strict_passed":1,"leftover_hints":0,"missing_anchors":0,"out_of_scope_writes":0,"seconds":298} | m2_token=0 | session statuesque-saturn tool_calls 106
+diagnostic: required_missing 0 of 15 and optional_missing 0 of 6 for all three runs

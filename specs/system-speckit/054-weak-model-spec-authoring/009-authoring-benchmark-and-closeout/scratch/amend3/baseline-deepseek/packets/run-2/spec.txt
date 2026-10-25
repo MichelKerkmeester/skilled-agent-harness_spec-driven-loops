@@ -1,0 +1,249 @@
+---
+title: "Feature Specification: Add a quiet flag to recommend-level.sh"
+description: "recommend-level.sh offers a verbose text report or a full JSON object, so a caller that needs only the recommendation must parse one of them. Add an opt-in --quiet flag that prints exactly the recommended-level line while leaving default text output, JSON output, scoring, and exit codes unchanged."
+trigger_phrases:
+  - "recommend level quiet flag"
+  - "recommend-level --quiet"
+  - "quiet level recommendation"
+  - "add a quiet flag to recommend level sh"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+# Feature Specification: Add a quiet flag to recommend-level.sh
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## EXECUTIVE SUMMARY
+
+`recommend-level.sh` is the spec-kit helper that turns LOC, file count, and risk flags into a documentation-level recommendation. It always prints a multi-section human report unless `--json` is supplied, so a caller that wants only the level must grep the report or parse JSON.
+
+This packet specifies a minimal, opt-in `--quiet` flag. With the flag the script prints one line, `Recommended Level: 0 (Quick)` for a Level 0 result, and nothing else on stdout; without the flag every existing output path stays byte-identical.
+
+**Key Decisions**: Keep the flag long-form only; route quiet output through a dedicated function rather than modifying `output_text`; let `--json` take precedence when both flags are present.
+
+**Critical Dependencies**: None outside the script itself. The change uses the existing bash 3.2-compatible parser and output dispatch, with no new libraries, services, or data.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P2 |
+| **Status** | Draft |
+| **Created** | 2026-10-25 |
+| **Branch** | `scaffold/001-recommend-level-quiet-flag` |
+| **Component** | `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+The script's text mode opens with a blank line, prints the recommendation, a score and confidence line, a per-factor breakdown, and a phase section. A shell caller that needs only the recommendation must either grep for `Recommended Level:` or invoke `--json` and parse the object with a JSON tool. Both approaches are heavier than the task and couple the caller to the report layout.
+
+There is no compact text mode. Adding one by changing the default report would break every human reader and any caller that compares output, so the capability has to be opt-in.
+
+### Purpose
+
+Provide a stable, one-line text result through `--quiet` so scripts and workflow prompts can capture the recommendation directly, while every existing invocation keeps its current output.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- Accept a boolean `--quiet` option in the existing argument loop, in any position relative to the other options.
+- In text mode, write exactly one stdout line in the default report's format, for example `Recommended Level: 0 (Quick)`.
+- Document the flag in the file-header OPTIONS block and in `show_help` output.
+- Preserve the current default text report, `--json` object, scoring, confidence, phase calculation, exit codes, and stderr messages.
+- Add a focused regression test that exercises quiet text, default text, JSON, JSON plus quiet, and the error path.
+
+### Out of Scope
+
+- Changing scoring thresholds, level names, confidence, or phase recommendation logic.
+- Adding a short `-q` alias, a `--verbose` counterpart, or any new output format such as key=value or level-only numeric output.
+- Refactoring `output_text`, `output_json`, or the argument parser beyond the new branch.
+- Editing callers or workflow reference documents outside the script's own header and help text.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh` | Modify | Add `--quiet`, document it, and emit the single-line text result. |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/recommend-level-quiet.vitest.ts` | Create | Regression coverage for quiet, default, JSON, and error behavior. |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | The argument parser must accept `--quiet` as a boolean flag regardless of option order, and must continue to reject unknown options with the existing message and exit code 1. |
+| REQ-002 | In text mode with `--quiet`, stdout must contain exactly one line in the default report's format, for example `Recommended Level: 0 (Quick)`, followed by a newline, with no leading blank line and no score, breakdown, or phase sections. |
+| REQ-003 | Without `--quiet`, the default text report and the `--json` object for a given input must remain byte-identical to their pre-change output. |
+| REQ-004 | `--quiet` must not change the computed level, total score, confidence, phase fields, exit status, or stderr text for any input; validation errors must still go to stderr only. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-005 | The file-header OPTIONS block and `show_help` must document `--quiet`; `--quiet --help` must still print help and exit 0. |
+| REQ-006 | When `--quiet` and `--json` are both supplied, the unchanged JSON object must be emitted and no text line must appear. |
+| REQ-007 | A focused regression test must cover quiet single-line output, unchanged default text output, JSON with and without quiet, help precedence, and an error path. |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `recommend-level.sh --loc 50 --files 2 --quiet` prints exactly `Recommended Level: 0 (Quick)` and exits 0.
+- **SC-002**: The same invocation without `--quiet` produces output byte-identical to the captured pre-change baseline, including the leading and trailing blank lines.
+- **SC-003**: `recommend-level.sh --loc 500 --files 15 --auth --api --db --architectural --quiet` prints exactly `Recommended Level: 3 (Full)`.
+- **SC-004**: The focused test passes and `validate.sh` reports `RESULT: PASSED` for this packet.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Bash 3.2 compatibility on macOS | New syntax could break the script on the default shell | Use the existing `[[ ]]` and `case` patterns; run `bash -n` and the real script under `/bin/bash`. |
+| Risk | Quiet output inherits the leading blank line from `output_text` | A consumer capturing the output gets an empty first line | Use a dedicated output function and assert the exact line count and content. |
+| Risk | A refactor of the dispatch changes default output | Existing callers and snapshots break | Capture baselines before editing and diff every default path after. |
+| Risk | The `--json` and `--quiet` combination is ambiguous | Two consumers expect different output | ADR-001 fixes JSON precedence and the test covers it. |
+| Risk | The quiet line drifts from the default recommendation line | Two formats for one value | Assert the quiet line equals the default report's recommendation line in the test. |
+<!-- /ANCHOR:risks -->
+
+---
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+
+- **NFR-P01**: The change adds one boolean check to the output dispatch and must not introduce measurable runtime cost or new subprocesses.
+- **NFR-P02**: Quiet output must be newline-terminated and safe to capture with `$(...)` without stripping meaningful content.
+
+### Security
+
+- **NFR-S01**: The flag adds no new input parsing beyond a boolean and introduces no secrets, environment reads, file writes, or network access.
+- **NFR-S02**: Existing validation errors must remain on stderr so quiet stdout stays machine-safe.
+
+### Reliability
+
+- **NFR-R01**: Exit codes must remain `0` for success and `1` for user error, matching the script's documented taxonomy.
+- **NFR-R02**: Output selection must be deterministic and exclusive: JSON first, then quiet text, then the default text report.
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+
+- Empty or missing `--loc`/`--files`: the existing error path applies unchanged, with or without `--quiet`.
+- Zero values for both inputs: the existing error path applies unchanged.
+- Very large values: scoring is unchanged; quiet prints the same level the default report would print.
+- Repeated `--quiet`: the flag is idempotent and sets the same boolean.
+
+### Error Scenarios
+
+- `--quiet` with no `--loc` or `--files`: stderr message and exit 1 unchanged; stdout stays empty.
+- `--quiet` with a non-numeric value: the existing numeric validation error and exit 1 apply.
+- `--quiet=true`: not a supported form; the unknown-option error applies.
+- `--quiet --json`: JSON output wins, per ADR-001 in `plan.md`.
+- `--quiet --help`: help wins because `show_help` exits during parsing; exit 0.
+- `--no-recommend-phases --quiet`: quiet output is identical, since the phase section is suppressed in quiet mode either way.
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 8/25 | One shell script, one test file, no systems or data. |
+| Risk | 5/25 | Output-regression risk only; no auth, API, DB, or schema. |
+| Research | 3/20 | Parser and output paths are local and already mapped. |
+| Multi-Agent | 0/15 | Single owner; no parallel workstreams. |
+| Coordination | 4/15 | Script, test, and help text move together. |
+| **Total** | **20/100** | **Level 3 packet; implementation complexity is Level 0-1.** |
+
+The score measures implementation complexity, not documentation depth. The packet carries Level 3 because the authoring contract requires the full planning set; the code change itself is small and isolated.
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Default text or JSON output changes unintentionally. | High | Low | Capture baselines before editing and diff both paths after. |
+| R-002 | Quiet output includes a blank line or extra section. | Medium | Medium | Dedicated function plus exact one-line assertion. |
+| R-003 | `--json` plus `--quiet` produces mixed output. | Low | Medium | JSON precedence recorded in ADR-001 and tested. |
+| R-004 | New option parsing breaks an existing flag. | Low | Low | Keep the parser change to one case arm and rerun the flag matrix. |
+
+---
+
+## 11. USER STORIES
+
+### US-001: Capture a One-Line Recommendation (Priority: P0)
+
+**As a** workflow or shell script author, **I want** `recommend-level.sh --quiet` to print only the recommended level line, **so that** I can capture the recommendation without parsing a report or invoking a JSON tool.
+
+**Acceptance criteria:** see `acceptance-criteria.md` rows AC-001, AC-002, and AC-005.
+
+---
+
+### US-002: Keep Existing Consumers Unchanged (Priority: P0)
+
+**As a** maintainer of existing spec-kit callers, **I want** default text and JSON output to stay byte-identical, **so that** adding the flag cannot break current integrations.
+
+**Acceptance criteria:** see `acceptance-criteria.md` rows AC-003, AC-004, and AC-007.
+
+---
+
+### US-003: Understand and Verify the Flag (Priority: P1)
+
+**As a** maintainer, **I want** the flag documented in help and covered by a focused test, **so that** its interaction with `--json` and the error paths stays predictable.
+
+**Acceptance criteria:** see `acceptance-criteria.md` rows AC-006, AC-008, and AC-009.
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- None blocking. ADR-001 in `plan.md` resolves the `--json` interaction.
+- A short `-q` alias is deliberately out of scope; it can be considered as a separate change if callers ask for it.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `tasks.md`
+- **Decision Records**: See ADR-001 and ADR-002 in `plan.md`
+- **Closure Gate**: See `acceptance-criteria.md`
+
+---

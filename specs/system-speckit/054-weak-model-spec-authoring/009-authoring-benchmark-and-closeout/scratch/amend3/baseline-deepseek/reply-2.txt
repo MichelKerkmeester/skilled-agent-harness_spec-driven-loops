@@ -1,0 +1,123 @@
+I'll start by loading the spec-kit skill and reading the target script to understand the feature.
+
+Let me read the rest of the script and the spec-kit skill guidance.
+
+Now I'll create the spec packet with the required command.
+
+The packet was created. Let me read all the scaffolded documents.
+
+Let me check the validator's expectations and run a baseline validation to see the failure surface.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me map consumers and existing tests for the script so the plan is grounded.
+
+
+
+
+
+
+
+Let me check the complexity and sufficiency rules so the filled docs stay consistent with the declared Level 3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me capture the current output behavior to ground the plan and criteria.
+
+
+
+
+
+
+
+
+
+The behavior is confirmed. Now I'll author the four planning documents, starting with `spec.md`.
+
+
+
+The quality hook flagged angle-bracket placeholders. Let me replace them with a concrete example format.
+
+
+
+Now `plan.md`, including the AI execution protocol and both architecture decisions.
+
+Now `tasks.md` with the ordered task plan and verification checklist.
+
+
+
+Now the closure gate, `acceptance-criteria.md`.
+
+All four documents are authored. Running strict validation now.
+
+Validation flags stale generated metadata from the edited spec. Let me preview the canonical repair before applying it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The drift comes from generated metadata summarizing the old placeholder problem statement. I'll sync `description.json` to the derived synopsis, then re-derive graph metadata with the canonical backfill.
+
+
+
+
+
+
+
+Validation passes with zero errors and zero warnings. Let me confirm the final scope: only the allowed packet path changed, and `implementation-summary.md` is untouched.
+
+
+
+
+
+specs/zz-bench-authoring/001-recommend-level-quiet-flag RESULT: PASSED

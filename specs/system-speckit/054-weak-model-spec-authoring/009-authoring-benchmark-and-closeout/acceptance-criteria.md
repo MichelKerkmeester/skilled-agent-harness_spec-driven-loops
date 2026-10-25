@@ -92,5 +92,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-Twelve of the fifteen rows are Met. AC-010 stays Unmet because the parent phase map holds eight Complete rows and phase 9 reads In Progress, AC-011 stays Unmet because `scratch/closeout/criteria.txt` holds six PASS lines and the C5 FAIL line, and AC-015 stays Unmet because the phase cannot read Complete while criterion 5 is FAIL. The packet closes only after the follow-up benchmark rerun passes criterion 5.
+Twelve of the fifteen rows are Met. AC-010 stays Unmet because the parent phase map holds eight Complete rows and phase 9 reads In Progress, AC-011 stays Unmet because `scratch/closeout/criteria.txt` holds six PASS lines and the C5 FAIL line, and AC-015 stays Unmet because the phase cannot read Complete while criterion 5 is FAIL. The label fix shipped and the second final set (cli-devin deepseek-v4-1-flash-1017-max, run 2 contaminated) also failed criterion 5, with missing_anchors 3 against 0. The packet closes only after a rerun passes criterion 5.
 <!-- /ANCHOR:closure -->

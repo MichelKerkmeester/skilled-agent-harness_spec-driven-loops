@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** A weak-model swarm authors valid, filled spec packets from the system-spec-kit templates, proved by a before and after measured on SWE 2 Max, with no change to the verdict of any existing packet.
+**Objective:** A weak-model swarm authors valid, filled spec packets from the system-spec-kit templates, proved by a before and after measured on DeepSeek V4.1 Flash, with no change to the verdict of any existing packet.
 
 ### Decisions
 
@@ -44,14 +44,14 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phases 001 to 009, plus one write-recipe child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
-| D2 | The placeholder gate applies to new docs only, through the v2.3 template marker. No existing or external packet gets a new failure. |
-| D3 | At most 3 parallel lanes, never two on one file. |
-| D4 | Every phase closes on scripted gates plus one read-only review (cli-devin, swe-2-max). |
+| D1 | Phases 001 to 009 plus one child under `041-write-recipe-fixes`. All logic lives in system-spec-kit, never sk-prompt. |
+| D2 | The placeholder gate applies to new docs only, via the v2.3 template marker. No existing or external packet gets a new failure. |
+| D3 | At most 3 parallel lanes, never two on a file. |
+| D4 | Every phase closes on scripted gates plus one read-only review (cli-devin, then cli-codex luna). |
 | D5 | Phase 008 runs the playbooks in a disposable sk-git worktree. |
 | D6 | Every phase is Level 3 with its own goal, bound below. |
-| D7 | The conductor is a Claude Code session. Execution and verification run on Sonnet 5.5 high subagents, plus cli-pi DeepSeek V4.1 Flash 1017 max for single-change lanes. |
-| D8 | The benchmark subject is cli-devin swe-2-max. Its 3 baseline runs rerun at the start commit, and phases 005 and 009 compare against them. |
+| D7 | A Claude Code session conducts. Sonnet 5.5 high subagents execute and verify, plus cli-codex luna and DeepSeek V4.1 Flash max as needed. |
+| D8 | The benchmark subject is cli-devin `deepseek-v4-1-flash-1017-max`. Phase 009 compares 3 final-tree runs with 3 start-commit runs. |
 
 <!-- /ANCHOR:directive -->
 
@@ -91,7 +91,7 @@ string, not these files.
 - [x] A new v2.3 core doc with an unfilled `[YOUR_VALUE_HERE: ...]` token passes strict validation while its status is Draft and fails it at any other status, and a v2.2 doc validates as it did before
 - [x] Recursive strict validation over `specs/` gives the same pass and fail counts before phase 003 and after phase 009
 - [x] `check-example-drift.sh` and `check-card-sync.sh` both exit 0 on the final tree
-- [ ] The 3 final Level 3 runs all pass strict validation, and none is worse than the SWE 2 Max baseline's worst on leftover_hints, missing_anchors or out_of_scope_writes. The phase 009 report lists min and max for five metrics
+- [ ] The 3 final Level 3 runs all pass strict validation, and none is worse than the DeepSeek baseline's worst on leftover_hints, missing_anchors (optional sections deleted as their fill notes allow do not count) or out_of_scope_writes. The phase 009 report lists min and max for five metrics
 - [x] Every playbook scenario this packet added has a recorded PASS in the phase 008 report, or a FAIL logged with its escalation
 - [x] The swarm commits only on the build worktree and never pushes
 <!-- /ANCHOR:completion -->
@@ -134,6 +134,7 @@ and findings belong here.
 | Benchmark report | Done | .skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/ with verdict FAIL |
 | Track roots | Done | system-speckit: up to date (apply and dry run both exit 0), children match the numbered folders on disk |
 | Open follow-up: L3+ heading label | Open | Make the L3+ heading label unambiguous for Level 3 authors, then rerun the authoring benchmark in a new phase. Source: C5 FAIL, run 3 read the ## L3+: prefix as Level 3+ only and deleted six optional Level 3 verification sections. |
+| Third amendment result (phase 009) | Done, C5 FAIL | The label fix is local commit 23657e227e. The second final set on cli-devin deepseek-v4-1-flash-1017-max (baseline of 3 runs at ac2be31ec6: hints 1, 0, 0, anchors 0, 0, 0, seconds 242, 217, 298) gave strict_passed 1, 1, 1, leftover_hints 0, 0, 0, missing_anchors 3, 0, 0, out_of_scope_writes 0, 0, 0 and seconds 259, 198, 243. Run 1 lacks deploy-ready, compliance-verify and sign-off, so C5 is FAIL and its box stays unticked. Run 2 is contaminated (its session read the frozen vocabulary files) and is kept and labelled. The full suite passed again with equal counts after one environmental retry. Detail in the phase 009 goal log and the report README. |
 | Parent criteria | Done | 6 PASS lines (C1, C2, C3, C4, C6, C7) and 1 FAIL line (C5) in specs/system-speckit/054-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/closeout/criteria.txt. Boxes for C1 to C4, C6 and C7 are ticked. C5 stays unticked. |
 | Trigger index | Done | check exit=0 after the last doc edit of phase 009 |
 | Changelogs | Done | .skilled/skills/system-spec-kit/changelog/v2.9.0.0.md and the nested files under specs/system-speckit/054-weak-model-spec-authoring/changelog/ for phases 001 to 009 and the root |
@@ -160,6 +161,8 @@ and findings belong here.
 | Scenario 483 executor on 2026-10-24 | Scenario 483 named a DeepSeek worker through an OpenCode Task subagent. Phase 007 switched it to cli-devin swe-2-max, the D8 benchmark subject, because cli-pi DeepSeek returned a 402 daily billing limit the same day |
 | cli-pi DeepSeek outage on 2026-10-24 | The LLM Gateway route returned a 402 daily pacing limit during the first amendment. That single-change lane was done by script and checked as a pure move. No later lane uses cli-pi until the allowance resets |
 | Phase 008 worktree removal on 2026-10-24 | The operator pre-approved removing the disposable playbook worktree and its branch only when `RUNS_RECORDED 8` and `PATCH_GATE_COVERED` print, the branch holds no commit beyond BASE_REF, and `fix.patch` and `status.txt` are saved. Otherwise the worktree stays and `REMOVAL_REFUSED` is recorded |
+| DeepSeek benchmark subject on 2026-10-25 | Criterion 5 failed on the first final set, and the conductor started a third amendment that clarifies the `L3+:` label. The operator then directed "use LUNA 6 MAX FAST cli codex and deepseek v4.1 flash max cli devin", "as needed" and "dont use swe-2", and chose "Re-baseline on DeepSeek" over keeping swe-2-max for the benchmark. D8 now names cli-devin `deepseek-v4-1-flash-1017-max`: 3 new baseline runs at start commit `ac2be31ec6` in a disposable sk-git worktree, then 3 final runs on the amended tree, same brief and measures. The objective and criterion 5 now name the DeepSeek baseline, D4 and D7 name the new executors, and D3 lost one word without a change in meaning to keep the slice under 4000 characters. The swe-2-max baseline and the first swe-2-max final set stay on record as history |
+| Anchor rule set before fresh runs on 2026-10-25 | The second final set (DeepSeek, label fix) failed criterion 5 only because run 1 deleted deploy-ready, compliance-verify and sign-off, which their fill notes allow when the packet ships no service, has no compliance surface or needs no sign-off. Run 2 of that set read benchmark evidence in the build worktree and is contaminated. The operator chose "New rule, fresh runs". Criterion 5 now excludes optional sections deleted as their fill notes allow, and D1, D2, D4 and D7 lost words without a change in meaning to keep the slice under 4000 characters. The rule, fixed before any fresh run: a frozen anchor missing from a final packet counts unless it is optional at Level 3 in `template-structure.js contract 3 tasks.md` and its fill-note condition holds for that packet. arch-verify holds when no `ADR-<n>` appears in the packet's spec.md, plan.md or decision-record.md. perf-verify holds when spec.md has no `NFR-P<n>`. deploy-ready, compliance-verify and sign-off hold by task definition, because the frozen brief adds a flag to one shell script, ships no service, changes no license, dependency or data handling and names no approver. docs-verify never holds, because every Level 3 packet pairs spec, plan and tasks. Three fresh final runs decide the box, run in a disposable sk-git worktree whose working tree holds none of this packet's files. Both earlier final sets stay on record and are scored under both rules: the swe-2-max set scores 3 under the new rule (run 3 deleted arch-verify, perf-verify and docs-verify while recording ADR-001 and NFR-P01), and the second DeepSeek set scores 0 but cannot decide the box after its result was seen |
 | Takeover on 2026-10-24 | LLM Gateway ran out of usage after phase 001. The operator moved every remaining run to cli-codex gpt-6-luna max fast and cli-devin swe-2-max, the benchmark subject included, and the review to swe-2-max. D3, D4, D7, D8, the objective and criterion 5 changed. The DeepSeek baseline in phase 001 stays as history. |
 | C5 FAIL on the frozen metric (phase 009) | Operator quote: "Option 3 + diagnostic". C5 stays FAIL and its box stays unticked. Run 3 deleted the six optional Level 3 verification sections in tasks.md (arch-verify, perf-verify, deploy-ready, compliance-verify, docs-verify, sign-off). Diagnostic, chosen after the result and not a verdict: against the anchors the contract requires (template-structure.js contract 3 tasks.md reports 15 required and these 6 optional), all six runs score 0 missing. Three deletions contradicted their fill notes, because the packet records ADR-001, states NFR-P01 and holds paired documents. The run's reply said 'L3+ optional sections dropped (this is Level 3, not 3+)'. leftover_hints improved from a baseline maximum of 1 to 0. Run 3 took 1822 seconds against 437 and 429, and the cause is unknown. Follow-up: make the L3+ heading label unambiguous for Level 3 authors, then rerun the benchmark in a new phase. |
 | Parent status after phase 009 | The operator directed that neither the parent spec.md nor phase 009 be set to Complete while C5 is FAIL. The parent spec.md Status reads In Progress, phases 1 to 8 read Complete in the phase map, and phase 009 reads In Progress. Criteria 1 to 4, 6 and 7 are ticked once each C line printed PASS. |
