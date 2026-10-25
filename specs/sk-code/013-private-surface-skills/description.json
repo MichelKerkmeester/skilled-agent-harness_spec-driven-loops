@@ -1,30 +1,31 @@
 {
+  "level": "2",
   "specFolder": "sk-code/013-private-surface-skills",
-  "description": "Move the Webflow and Obsidian surfaces out of the shipped sk-code hub into gitignored local-* private skills that only the operator's local advisor ro",
+  "description": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`,",
   "keywords": [
-    "move",
-    "webflow",
-    "obsidian",
-    "surfaces",
     "shipped",
     "sk-code",
     "hub",
-    "gitignored",
-    "local",
-    "private",
-    "skills",
-    "only",
+    "still",
+    "carries",
+    "two",
+    "surface",
+    "packets",
     "operator",
-    "advisor",
-    "routes"
+    "alone",
+    "webflow",
+    "skilled",
+    "skills",
+    "sk-code-webflow"
   ],
-  "lastUpdated": "2026-10-23T07:03:38.026Z",
+  "lastUpdated": "2026-10-24T22:11:06.676Z",
   "specId": "013",
   "folderSlug": "private-surface-skills",
   "parentChain": [
     "sk-code"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-10-26_17-20__a-five-iteration-deep-review-is-underway-in-the.md"
+  ]
 }

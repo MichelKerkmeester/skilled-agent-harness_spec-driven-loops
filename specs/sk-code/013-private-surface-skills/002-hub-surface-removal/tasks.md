@@ -2391,7 +2391,9 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 - **Stop if:** the first count is not `12`, or the second command prints any path, or the third count is not `4`.
 - **Evidence:** `git show 42b41dd286:.skilled/skills/sk-code/SKILL.md | grep -cE 'sk-code-(webflow|obsidian)' && rg -c 'sk-code-webflow|sk-code-obsidian' .skilled/skills/sk-code .skilled/bin .skilled/commands/doctor .skilled/skills/sk-doc README.md .skilled/skills/README.txt --glob '!**/changelog/**' --glob '!**/benchmark/reports/**' || echo 0 && rg -n 'WEBFLOW|OBSIDIAN' .skilled/skills/sk-code .hermes/skills/sk-code* --glob '!**/changelog/**' --glob '!**/benchmark/reports/**' | wc -l` → closure greps returned 12, 0 and 4.
 
-### T108 — Commit and push last
+### [x] T108 — Commit and push last
+
+- **Evidence:** `e3beac65f4` and its compiled-graph follow-up `1218b94938` are ancestors of `origin/main` (`git merge-base --is-ancestor`, exit 0, 2026-10-25). The empty `git status --porcelain` and the `HEAD` equals `origin/main` lines were delivery-moment checks and cannot be replayed, so commit ancestry stands in for them.
 
 - **File:** `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json`
 - **Anchor:** the manifest pair named in the hub README at `.skilled/skills/sk-code/README.md:114`.
@@ -2426,15 +2428,15 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `verify-doc-claims.cjs` prints `doc-claims: 4/4 checks passed`
-- [ ] Every suite in T096 to T102 exits 0
-- [ ] T104 shows the D6 records byte-identical
-- [ ] T105 reports every acceptance criterion `Met` or names the waiver
-- [ ] T106 prints `RESULT: PASSED`
-- [ ] T107 prints `12`, then `0`, then `4`
-- [ ] T108 ran last: the commit is pushed to `main`, `git status --porcelain` is empty, and `git rev-parse HEAD` equals `git rev-parse origin/main`
+- [x] All tasks marked `[x]`. Evidence 2026-10-25: 108 task headings carry `[x]`.
+- [x] No `[B]` blocked tasks remaining. Evidence 2026-10-25: no task heading carries `[B]`.
+- [x] `verify-doc-claims.cjs` prints `doc-claims: 4/4 checks passed`. Evidence: CHK-021.
+- [x] Every suite in T096 to T102 exits 0. Evidence: CHK-022.
+- [x] T104 shows the D6 records byte-identical. Evidence: T104 returned 20, 0 and 0.
+- [x] T105 reports every acceptance criterion `Met` or names the waiver. Evidence 2026-10-25: AC-001 to AC-014 read `Met` in `acceptance-criteria.md`.
+- [x] T106 prints `RESULT: PASSED`. Evidence 2026-10-25: the recursive strict run printed `RESULT: PASSED` for this folder.
+- [x] T107 prints `12`, then `0`, then `4`. Evidence: T107.
+- [x] T108 ran last: the commit is pushed to `main`, `git status --porcelain` is empty, and `git rev-parse HEAD` equals `git rev-parse origin/main`. Evidence 2026-10-25: both phase commits are ancestors of `origin/main`. The clean-tree and in-sync halves were delivery-moment checks and cannot be replayed.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -2472,7 +2474,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 
 - [x] CHK-001 [P0] Requirements documented in spec.md — Evidence: spec.md documents REQ-001 through REQ-010 in the requirements section.
 - [x] CHK-002 [P0] Technical approach defined in plan.md — Evidence: plan.md defines the technical context, ordered approach, architecture and data flow.
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-003 [P1] Dependencies identified and available. Evidence: the spec risk table names the hook-trusted checkout, and AC-013 shows the compiled-routing manifest it re-mints reached `origin/main`.
 - [x] CHK-004 [P0] All three baselines from T003 captured before the first edit — Evidence: T003 recorded 158, 164 and 1338; 164 = 158 + 6.
 <!-- /ANCHOR:pre-impl -->
 
@@ -2482,8 +2484,8 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 ## Code Quality
 
 - [x] CHK-010 [P0] `mode-registry.json` and `hub-router.json` parse and name only the three shipped packets — Evidence: AC-002 records the registry command output with only sk-code-quality, sk-code-review and sk-code-skilled, and one surface-axis entry.
-- [ ] CHK-011 [P0] No hand edit to a generated file: `leaf-manifest.json`, the derived metadata, the README manifest, the Hermes copies and the compiled-routing manifest
-- [ ] CHK-012 [P1] No planned code comment names a spec path, packet number or phase number
+- [x] CHK-011 [P0] No hand edit to a generated file: `leaf-manifest.json`, the derived metadata, the README manifest, the Hermes copies and the compiled-routing manifest. Evidence: AC-004 and AC-010 record `leaf-manifest.json OK` and `manifest=reproducible`, and `1218b94938` regenerated the compiled graph with its compiler.
+- [x] CHK-012 [P1] No planned code comment names a spec path, packet number or phase number. Evidence 2026-10-25: a scan of the comment lines added by `e3beac65f4` and `1218b94938` outside `specs/` for task, criterion, phase and packet ids came back empty.
 - [x] CHK-013 [P1] `ROUTER.md` section 11 has no key left with an empty path list — Evidence: router-sync reported 5/5 checks passed.
 <!-- /ANCHOR:code-quality -->
 
@@ -2492,7 +2494,7 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence 2026-10-25: AC-001 to AC-014 read `Met`.
 - [x] CHK-021 [P0] `verify-doc-claims.cjs` prints `doc-claims: 4/4 checks passed` — Evidence: verify-doc-claims.cjs printed doc-claims: 4/4 checks passed.
 - [x] CHK-022 [P1] Every suite in T096 to T102 exits 0 — Evidence: T096-T102 reports show each suite exited 0.
 - [x] CHK-023 [P1] The D6 kept records are byte-identical to `42b41dd286` — Evidence: T104 phase-scoped D6 comparisons returned 20, 0 and 0.
@@ -2503,13 +2505,13 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each finding has a class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed: both registries, the leaf manifest, `ROUTER.md` and every hub document that names a surface, grepped with both `sk-code-(webflow|obsidian)` and `WEBFLOW|OBSIDIAN`.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed: the doctor, the sk-doc fixtures and references, the baselines, the redirects, the allowlists and the README surface lines.
+- [ ] CHK-FIX-001 [P0] Each finding has a class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Not done: no finding class appears anywhere in this folder.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed: both registries, the leaf manifest, `ROUTER.md` and every hub document that names a surface, grepped with both `sk-code-(webflow|obsidian)` and `WEBFLOW|OBSIDIAN`. Evidence: T107 runs both patterns and returned 12, 0 and 4.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed: the doctor, the sk-doc fixtures and references, the baselines, the redirects, the allowlists and the README surface lines. Evidence: AC-010 records the doctor, sk-doc and manifest suites passing, and AC-007 the consumer scan at 0.
 - [x] CHK-FIX-004 [P0] The router-projection invariant is tested: the parent map equals the union of the remaining surface maps, with no orphan key and no path that fails to resolve. — Evidence: router-sync reported 5/5 checks passed, including projection reconciliation.
-- [ ] CHK-FIX-005 [P1] Matrix axes listed before completion: two surfaces x six consumer classes, every cell owned by a task.
-- [ ] CHK-FIX-006 [P1] Hostile-state variant executed: `git add -f` of a removed-packet path is refused by the phase 001 guard.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA, not a moving branch range.
+- [ ] CHK-FIX-005 [P1] Matrix axes listed before completion: two surfaces x six consumer classes, every cell owned by a task. Not done: the phase recorded no matrix, and the consumer scans in AC-007 and AC-010 stand in for it.
+- [ ] CHK-FIX-006 [P1] Hostile-state variant executed: `git add -f` of a removed-packet path is refused by the phase 001 guard. Not applicable: the phase 001 guard matches `local-*` names, not removed-packet paths, so this variant was never run.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase commit SHA, not a moving branch range. Evidence: AC-001 and AC-011 pin the base at `42b41dd286`, and AC-014 pins `e3beac65f4` and `1218b94938`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -2517,9 +2519,9 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] No private content is written by this phase; the only content movement is a deletion from the tracked tree
-- [ ] CHK-032 [P1] The commit guard from phase 001 is present and active before the commit
+- [x] CHK-030 [P0] No hardcoded secrets. Evidence 2026-10-25: a credential-pattern scan of the lines added by both phase commits came back empty.
+- [x] CHK-031 [P0] No private content is written by this phase; the only content movement is a deletion from the tracked tree. Evidence: phase 005 counted 0 live private paths in a fresh clone of `origin/main`.
+- [x] CHK-032 [P1] The commit guard from phase 001 is present and active before the commit. Evidence 2026-10-25: `7648ae8b56` is an ancestor of `e3beac65f4`.
 <!-- /ANCHOR:security -->
 
 ---
@@ -2527,9 +2529,9 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan, tasks and acceptance criteria synchronized
-- [ ] CHK-041 [P1] No planned code comment names this packet or phase
-- [ ] CHK-042 [P2] The hub README's own removal procedure still describes what was done
+- [x] CHK-040 [P1] Spec, plan, tasks and acceptance criteria synchronized. Evidence 2026-10-25: status, criteria and checklist reconciled to Complete.
+- [x] CHK-041 [P1] No planned code comment names this packet or phase. Evidence: CHK-012.
+- [ ] CHK-042 [P2] The hub README's own removal procedure still describes what was done. Deferred: not rechecked, and the hub README belongs to another worker this round.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -2537,8 +2539,8 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files live in `/tmp`, never in the repo tree, because `scratch/` is not gitignored and T108's proof requires an empty `git status --porcelain`
-- [ ] CHK-051 [P1] `scratch/` holds nothing but its `.gitkeep` before completion
+- [x] CHK-050 [P1] Temp files live in `/tmp`, never in the repo tree, because `scratch/` is not gitignored and T108's proof requires an empty `git status --porcelain`. Evidence: CHK-051.
+- [x] CHK-051 [P1] `scratch/` holds nothing but its `.gitkeep` before completion. Evidence 2026-10-25: `ls -A scratch` lists only `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -2548,11 +2550,11 @@ Every scenario in this phase presents a removed surface or the Motion.dev overla
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 6/13 |
-| P1 Items | 13 | 3/13 |
+| P0 Items | 13 | 12/13 |
+| P1 Items | 13 | 11/13 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: 2026-10-24
+**Verification Date**: 2026-10-25
 <!-- /ANCHOR:summary -->
 
 ---

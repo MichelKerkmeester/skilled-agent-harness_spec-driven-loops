@@ -6,6 +6,7 @@
         "feature-catalog/auto-indexing/derived-extraction.md",
         "feature-catalog/auto-indexing/df-idf-corpus.md",
         "feature-catalog/auto-indexing/doc-frontmatter-harvest.md",
+        "feature-catalog/auto-indexing/private-skill-containment.md",
         "feature-catalog/auto-indexing/provenance-and-trust-lanes.md",
         "feature-catalog/auto-indexing/sanitizer.md",
         "feature-catalog/auto-indexing/sync.md",

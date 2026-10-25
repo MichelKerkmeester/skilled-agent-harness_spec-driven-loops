@@ -201,6 +201,11 @@ def walk_skills(repo: Path) -> List[Item]:
     if not base.is_dir():
         return items
     for skill_dir in sorted(base.iterdir()):
+        # A local-* skill is private to one checkout, so it never counts toward
+        # the shipped description budget. The name is judged before any probe,
+        # because is_file() would follow a local-* symlink into the private tree.
+        if skill_dir.name.startswith("local-"):
+            continue
         skill_md = skill_dir / "SKILL.md"
         if not skill_md.is_file():
             continue

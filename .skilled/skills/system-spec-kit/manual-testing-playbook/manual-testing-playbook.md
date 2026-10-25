@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-25"
-version: 2.1.4.0
+version: 2.1.5.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -220,6 +220,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | PHASE-001 | Phase detection scoring | [PHASE-001](tooling-and-scripts/phase-detection-scoring.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
 | PHASE-002 | Phase folder creation | [PHASE-002](tooling-and-scripts/phase-folder-creation.md) | [spec-lifecycle-automation](../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) |
 | 236 | Phase-system knowledge node | [236](tooling-and-scripts/phase-system-knowledge-node.md) | [phase-system-knowledge-node](../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md) |
+| 484 | Private skill commit guard | [484](tooling-and-scripts/private-skill-commit-guard.md) | — |
 | 062 | Progressive validation for spec documents | [062](tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md) | [progressive-validation-for-spec-documents](../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md) |
 | PHASE-003 | Recursive phase validation | [PHASE-003](tooling-and-scripts/recursive-phase-validation.md) | [spec-validation-rule-engine](../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md) |
 | 472 | Repository era report | [472](tooling-and-scripts/repo-era-report.md) | [repo-era-report](../feature-catalog/tooling-and-scripts/repo-era-report.md) |

@@ -108,6 +108,16 @@ class AuditDescriptionsTest(unittest.TestCase):
         self.assertEqual(payload["totalChars"], len("Helps with things."))
         self.assertEqual(payload["items"][0]["mirrored"], 2)
 
+    def test_private_local_skills_are_skipped(self) -> None:
+        self.seed(skills={"alpha": "Short skill.", "local-private": "x" * 2000})
+        outside = self.repo / "outside" / "local-linked"
+        write_md(outside / "SKILL.md", "Linked private skill.")
+        (self.repo / ".skilled" / "skills" / "local-linked").symlink_to(outside, target_is_directory=True)
+        payload = self.run_json()
+        self.assertEqual([item["name"] for item in payload["items"]], ["alpha"])
+        self.assertEqual(payload["totalChars"], len("Short skill."))
+        self.assertEqual(payload["hardFails"], [])
+
     def test_negative_top_n_is_rejected(self) -> None:
         self.seed(skills={"alpha": "Short skill."})
         proc = self.run_audit("--top-n", "-3")

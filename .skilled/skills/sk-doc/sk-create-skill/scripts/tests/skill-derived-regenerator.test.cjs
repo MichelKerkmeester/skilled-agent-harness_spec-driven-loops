@@ -99,6 +99,23 @@ function testGateExitsTwoOnBadInput() {
   assert.equal(code, 2);
 }
 
+// The fleet gate never checks a private skill, even a stale one, so it cannot fail CI on a file only one checkout has.
+function testGateSkipsPrivateSkills() {
+  const tmpSkills = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'derived-gate-private-'));
+  const privateDir = path.join(tmpSkills, 'local-private');
+  fs.mkdirSync(privateDir);
+  const derived = clone(SK_GIT_DERIVED);
+  derived.key_files = ['.skilled/skills/sk-git/SKILL.md', '.skilled/skills/sk-git/GHOST.md'];
+  fs.writeFileSync(path.join(privateDir, 'graph-metadata.json'), JSON.stringify({ schema_version: 2, derived }, null, 2));
+  const original = process.stdout.write.bind(process.stdout);
+  let out = '';
+  process.stdout.write = (chunk) => { out += chunk; return true; };
+  let code;
+  try { code = gate.run(['--skills-dir', tmpSkills, '--format', 'json']); } finally { process.stdout.write = original; fs.rmSync(tmpSkills, { recursive: true, force: true }); }
+  assert.equal(code, 0, 'a stale local-* root must not fail the gate');
+  assert.equal(JSON.parse(out).checked, 0, 'a local-* root must never be checked');
+}
+
 // A private skill belongs to one checkout, so the all-roots listing never names it.
 function testListSkillRootsSkipsPrivateSkills() {
   const tmpSkills = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'derived-roots-'));
@@ -181,6 +198,7 @@ testEmptiedRequiredArrayErrors();
 testGatePassesCleanFleet();
 testGateFailsOnStaleRoot();
 testGateExitsTwoOnBadInput();
+testGateSkipsPrivateSkills();
 testListSkillRootsSkipsPrivateSkills();
 testExplicitRootRefusesPrivateSkill();
 testRouterIntentSignalsSkipsPrivateHubs();

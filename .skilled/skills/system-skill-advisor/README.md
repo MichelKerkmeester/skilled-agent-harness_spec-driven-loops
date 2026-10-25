@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.3.0
+version: 0.12.4.0
 ---
 
 # system-skill-advisor
@@ -144,6 +144,12 @@ The advisor ships a package-local SQLite database that stores cross-skill edges 
 With `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` also harvests frontmatter (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`) from every markdown file under each skill's `references/` and `assets/` (READMEs excluded) into a `skill_docs` table. The watcher registers those docs so edits re-index the owning skill. Doc phrases score inside the `derived_generated` lane: top-3 docs per skill, tier-weighted, contribution capped at 0.45, so they assist ranking but cannot hard-route alone. Matching recommendations carry an optional `matchedDocs` field (max 3 sanitized skill-relative paths) pointing at the exact doc to open.
 
 Flag unset (the default) changes nothing: no harvest, no watch targets, identical scoring. Deployment note: the launcher forwards only allowlisted env to the daemon child, so the flag works because it sits in `CHILD_ENV_ALLOWLIST` in `system-skill-advisor-launcher.cjs`. Any future advisor env flag needs the same entry.
+
+### Private Local Skills
+
+A skill whose folder name starts with `local-` belongs to one checkout. It is usually a gitignored symlink under `.skilled/skills/` that points at a folder in another repository. The local advisor scans include it, so it can route, and every tracked-output writer skips it by name before its first probe, so it never reaches the fallback graph, the Hermes mirror, a CI gate or a doctor finding.
+
+A scan follows a top-level `local-*` link only when the link's real path resolves to a directory inside the skills root or inside a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. That variable holds absolute paths joined by the platform path delimiter, which is `:` on macOS and Linux. A link to any other place is skipped. `runtime/lib/private-skill-target.ts` holds this containment rule and `runtime/scripts/skill_advisor_runtime.py` holds its Python mirror. The variable sits in `CHILD_ENV_ALLOWLIST`, so the launcher forwards it to the daemon child. Every advisor process needs it, and a daemon started without it indexes no private skill.
 
 ### The Embedder
 

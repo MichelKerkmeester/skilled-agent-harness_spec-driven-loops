@@ -1071,5 +1071,17 @@ git -C "$TMP" update-index --add --cacheinfo 160000,1111111111111111111111111111
 run_hook; RC=$?
 check "a staged gitlink named local-* is refused" 1 "$RC" ".skilled/skills/local-sub"
 
+# ── 81. a tracked local-* file that changes type to a symlink is refused ──
+setup_gate_fixture
+stage_new ".skilled/skills/local-tc/SKILL.md" "private"
+git -C "$TMP" commit -q --no-verify -m "force-tracked private file"
+mkdir -p "$TMP/outside"
+printf 'private\n' > "$TMP/outside/SKILL.md"
+rm "$TMP/.skilled/skills/local-tc/SKILL.md"
+ln -s ../../../outside/SKILL.md "$TMP/.skilled/skills/local-tc/SKILL.md"
+git -C "$TMP" add -- ".skilled/skills/local-tc/SKILL.md"
+run_hook; RC=$?
+check "a staged type change named local-* is refused" 1 "$RC" ".skilled/skills/local-tc/SKILL.md"
+
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

@@ -1,0 +1,224 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-luna-1792944728998-cwb2cp",
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": [
+    "correctness"
+  ],
+  "filesReviewed": [
+    "specs/sk-code/013-private-surface-skills/spec.md:50",
+    "specs/sk-code/013-private-surface-skills/spec.md:133",
+    "specs/sk-code/013-private-surface-skills/spec.md:136",
+    "specs/sk-code/013-private-surface-skills/spec.md:137",
+    "specs/sk-code/013-private-surface-skills/spec.md:138",
+    "specs/sk-code/013-private-surface-skills/spec.md:139",
+    "specs/sk-code/013-private-surface-skills/spec.md:143",
+    "specs/sk-code/013-private-surface-skills/spec.md:144",
+    "specs/sk-code/013-private-surface-skills/goal.md:89",
+    "specs/sk-code/013-private-surface-skills/goal.md:111",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:33",
+    "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34",
+    "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33",
+    "specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md:43",
+    "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md:33"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingDetails": [
+    {
+      "id": "LUNA-R1-P1-001",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "title": "Packet completion status contradicts active phase records",
+      "dimension": "correctness",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md:50",
+      "evidence": [
+        "specs/sk-code/013-private-surface-skills/spec.md:50",
+        "specs/sk-code/013-private-surface-skills/spec.md:136",
+        "specs/sk-code/013-private-surface-skills/spec.md:137",
+        "specs/sk-code/013-private-surface-skills/goal.md:89",
+        "specs/sk-code/013-private-surface-skills/goal.md:111",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:33",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34",
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33"
+      ],
+      "recommendation": "Reconcile the parent status, phase map, goal checklist, and child phase metadata against current task state; make the parent progress record use one consistent source of truth.",
+      "disposition": "active",
+      "findingClass": "phase_status_drift",
+      "scopeProof": {
+        "reviewTarget": "specs/sk-code/013-private-surface-skills",
+        "reviewTargetType": "spec-folder",
+        "inScope": true,
+        "evidenceRefs": [
+          "specs/sk-code/013-private-surface-skills/spec.md:50",
+          "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34"
+        ]
+      },
+      "affectedSurfaceHints": [
+        "packet-status",
+        "phase-transition",
+        "completion-gate"
+      ],
+      "claim": "The packet's progress records disagree: the root spec says Complete and the goal marks completion criteria and phases as done, while the root phase map and active child records show incomplete work. This can cause an operator to stop or advance phases using an incorrect completion state.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/spec.md:50",
+        "specs/sk-code/013-private-surface-skills/spec.md:136",
+        "specs/sk-code/013-private-surface-skills/spec.md:137",
+        "specs/sk-code/013-private-surface-skills/goal.md:89",
+        "specs/sk-code/013-private-surface-skills/goal.md:111",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:33",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34",
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33"
+      ],
+      "counterevidenceSought": "The goal marks its completion checklist and phases 2 and 3 done; phase 4 and phase 5 child specs also say Complete, and the root phase map marks phase 5 Done. Those claims conflict with the root phase map's phase 2 In progress and phase 3 Pending plus the phase 2 child's explicit open tasks.",
+      "alternativeExplanation": "The status fields may have been updated at different times or may intend to distinguish document completeness from implementation completion, but the packet does not label those separate meanings and its phase-transition rules make the current state ambiguous.",
+      "confidence": 0.88,
+      "downgradeTrigger": "Downgrade to P2 if root Status is defined as documentation-only and the phase 2 open-task metadata is proven stale."
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": {
+      "status": "partial",
+      "notes": "Parent status, goal progress, and child phase metadata disagree on implementation completion."
+    },
+    "checklist_evidence": {
+      "status": "partial",
+      "notes": "Goal completion boxes are checked, but phase 2 child metadata still records partial and open tasks."
+    },
+    "skill_agent": {
+      "status": "pending",
+      "notes": "Not covered in this correctness-focused status pass."
+    },
+    "agent_cross_runtime": {
+      "status": "pending",
+      "notes": "Not covered in this correctness-focused status pass."
+    },
+    "feature_catalog_code": {
+      "status": "pending",
+      "notes": "Not covered in this correctness-focused status pass."
+    },
+    "playbook_capability": {
+      "status": "pending",
+      "notes": "Not covered in this correctness-focused status pass."
+    },
+    "scope_boundary": {
+      "status": "conflict",
+      "notes": "Packet-root graph seed/upsert was skipped because writes are bound to the lineage; runtime continuity directives had already caused writes outside that boundary, recorded under SCOPE VIOLATIONS."
+    }
+  },
+  "newFindingsRatio": 1,
+  "noveltyJustification": "This is the first pass and the status-invariant comparison produced one independently supported P1 finding.",
+  "ruledOut": [],
+  "sessionId": "fanout-luna-1792944728998-cwb2cp",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-25T16:25:43Z",
+  "durationMs": 120000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "The parent packet spans five phases, multiple completion gates, and code and documentation surfaces, so status invariants merit explicit cross-file search coverage.",
+    "evidenceRefs": [
+      "specs/sk-code/013-private-surface-skills/spec.md:133",
+      "specs/sk-code/013-private-surface-skills/spec.md:143"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "specs/sk-code/013-private-surface-skills/spec.md",
+      "specs/sk-code/013-private-surface-skills/goal.md",
+      "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md",
+      "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+      "specs/sk-code/013-private-surface-skills/004-private-local-skills/spec.md",
+      "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/spec.md"
+    ],
+    "selectionReason": "The parent status, transition table, goal checklist, and child phase status are the producer and consumers of the packet's completion state.",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_grep"
+    ],
+    "omittedHighRiskTargets": [
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "specs/sk-code/013-private-surface-skills/spec.md:133",
+      "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "phase_status_drift"
+    ],
+    "covered": [
+      "phase_status_drift"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/spec.md",
+        "specs/sk-code/013-private-surface-skills/goal.md",
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md",
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md"
+      ],
+      "bugClass": "phase_status_drift",
+      "hypothesis": "A phase or packet can be marked complete in one progress surface while its authoritative phase task status remains incomplete.",
+      "invariant": "Parent, goal, and child phase status must agree with task evidence and fixed phase order.",
+      "searchActions": [
+        {
+          "method": "exact_grep",
+          "queryOrPath": "status and phase-state terms across the parent spec, goal, and five child specs",
+          "result": "Found conflicting parent status, phase map, goal completion marks, and child phase 2 and 3 status values.",
+          "evidenceRefs": [
+            "specs/sk-code/013-private-surface-skills/spec.md:50",
+            "specs/sk-code/013-private-surface-skills/spec.md:136",
+            "specs/sk-code/013-private-surface-skills/goal.md:111",
+            "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34",
+            "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "parent phase map, transition rules, goal completion table, and phase 2/3 metadata",
+          "result": "The phase map says phase 2 In progress and phase 3 Pending; phase 2 lists unfinished tasks; the goal says phases 2 and 3 Done.",
+          "evidenceRefs": [
+            "specs/sk-code/013-private-surface-skills/spec.md:136",
+            "specs/sk-code/013-private-surface-skills/spec.md:137",
+            "specs/sk-code/013-private-surface-skills/goal.md:111",
+            "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/spec.md:34",
+            "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The phase 2 task summary conflicts with independent completion claims; later phase metadata does not resolve that direct mismatch.",
+      "linkedFindingId": "LUNA-R1-P1-001"
+    }
+  ]
+}

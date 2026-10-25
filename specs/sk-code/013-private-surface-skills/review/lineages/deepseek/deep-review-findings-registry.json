@@ -1,0 +1,1035 @@
+{
+  "sessionId": "fanout-deepseek-1792944728998-cwb2cp",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-10-25T16:37:05.102Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "The parent spec contradicts itself on whether the packet is complete",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 50,
+      "description": "spec.md:50 states Status Complete while the same document marks phases 2-4 In progress/Pending/Pending at :136-138 and its continuity block says phase 002 is uncommitted at :13.",
+      "findingClass": "doc-state-contradiction",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/spec.md:50",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "contentHash": "286812cc55b538087283ad91fef0f1f86d8441d3755c25be52b0df6de9e22037",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P1",
+      "title": "One acceptance row says Met and the same file's evidence says Unmet",
+      "file": "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md",
+      "line": 69,
+      "description": "AC-013 ends its table row Met while the evidence paragraph at :86 says Unmet and the frontmatter at :13 says AC-013-014 Unmet.",
+      "findingClass": "closure-gate-contradiction",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md:69",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md"
+      ],
+      "contentHash": "9aead92e25cee092d99e9f0ef173e6be13126df6b6633a9f0a9fd0f7e59f9b9a",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-003",
+      "severity": "P1",
+      "title": "The closure gate still blocks a phase whose commits are on origin/main",
+      "file": "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md",
+      "line": 70,
+      "description": "AC-014 is Unmet and its evidence says commit/push remains open, while e3beac65f4 and 1218b94938 are ancestors of origin/main and HEAD equals origin/main.",
+      "findingClass": "stale-closure-gate",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md:70",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/acceptance-criteria.md"
+      ],
+      "contentHash": "4de8dae9fc0528e5cbf4b75f97c248ce90239c91a166455cb01ea139b2d9dbdc",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-004",
+      "severity": "P1",
+      "title": "Phase 3's closure gate is unmet while the goal reports the phase done",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+      "line": 79,
+      "description": "AC-026 and AC-027 are Unmet and the status line says the phase waits on review, commit and push, while goal.md:112 records the phase Done and e00fef3e76 is in origin/main history.",
+      "findingClass": "stale-closure-gate",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md:79",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md"
+      ],
+      "contentHash": "e9eedf2e4fe1456584add9ea360d1a0f3d618cb9b30740d18f84fad6ab82b53a",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "A completion criterion's command no longer produces its stated output",
+      "file": "specs/sk-code/013-private-surface-skills/goal.md",
+      "line": 91,
+      "description": "goal.md:91 requires `git status --porcelain .skilled` to print nothing; it prints two unrelated untracked paths, so the stated proof no longer reproduces.",
+      "findingClass": "stale-verification-command",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/goal.md:91",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/goal.md"
+      ],
+      "contentHash": "25a9187bbc32f2dca8e8e30a0338c8ac49cae2cf2906041477f8c299eef07128",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The symlink half of the same criterion is unverifiable outside the operator checkout",
+      "file": "specs/sk-code/013-private-surface-skills/goal.md",
+      "line": 91,
+      "description": "goal.md:91 asserts the two local-* symlinks exist, but no local-* entry exists in this worktree and the checkout scope is stated only in spec.md's handoff block.",
+      "findingClass": "unscoped-completion-criterion",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/goal.md:91",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/goal.md"
+      ],
+      "contentHash": "6dd34cafac69615b5133a351013825beffe6492b8f23959d58ce52fcfbbd0bd1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "D3 records four limits but not the one that decides whether the guard runs at all",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 102,
+      "description": "D3 lists four guard limits but omits that the guard only runs where the repo hooks are installed and trusted, so a fresh clone on an unconfigured machine has no blocking guard.",
+      "findingClass": "unrecorded-guard-limit",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/spec.md:102",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "contentHash": "38adb9271cbe24d0fe49e4dc7e5c6577e8ae3b9406a26746e51b2aea8d7d0405",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Phase 2's implementation summary still calls the work uncommitted",
+      "file": "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md",
+      "line": 41,
+      "description": "The summary states In progress (~90%); implementation remains uncommitted at :41 and :54 while the commits are on origin/main.",
+      "findingClass": "stale-narrative",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md:41",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md"
+      ],
+      "contentHash": "57c5f6cf1867754c2ca844a7120237e6b961c9dcca2bdf418108a358ad6fc551",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Phase 3's own spec and summary still point at commit-and-push work",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md",
+      "line": 33,
+      "description": "The phase spec says Status In Progress and the summary next action is run the next review then commit and push, while the goal says the phase is done and committed.",
+      "findingClass": "stale-narrative",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md:33",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/spec.md"
+      ],
+      "contentHash": "e867055b85d8a013a9a6681587895ba05c7fd5b7ff845f4f2e507b682473d1c6",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "The 003-to-004 handoff expected test count no longer matches the suite",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 188,
+      "description": "The handoff expects 16 tests from two vitest files that now define eight and eleven cases, nineteen in total.",
+      "findingClass": "stale-verification-command",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/spec.md:188",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "contentHash": "c027e646f05df558b2093caa7373efa837cb22acab2f223feced66c9b0235426",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-004",
+      "severity": "P2",
+      "title": "AC-027's proof is an ephemeral temp file",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+      "line": 347,
+      "description": "AC-027 is proven by tailing /tmp/phase3-review.txt, a path that cannot survive the session, and no review report exists in the packet.",
+      "findingClass": "non-durable-evidence",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md:347",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md"
+      ],
+      "contentHash": "7802889c3d3ab263b843a3fc6e58f8789c6568ddeda867774dff11cbbf3c5736",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-005",
+      "severity": "P2",
+      "title": "D1's hub composition predates a fourth packet",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 100,
+      "description": "D1 says the hub keeps three packets; mode-registry.json now declares four modes, adding sk-code-ci as a second surface packet.",
+      "findingClass": "stale-frozen-decision",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/spec.md:100",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "contentHash": "62ea91a5d97350d8e54847f62a640379b177dccf9f9111141c9cd203ddfe33a5",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Sixteen scan sites each restate the rule, and nothing detects one that omits it",
+      "file": "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/implementation-summary.md",
+      "line": 58,
+      "description": "Eight name-only skips and eight trust-checked scans each restate the local-* rule; only the containment half is shared and no check detects a scan that omits the rule.",
+      "findingClass": "rule-duplication",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/implementation-summary.md:58",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/implementation-summary.md"
+      ],
+      "contentHash": "0590717811eb3443f2aae3504ee3c746f0d5402ae5d133fe7011e880af327f48",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The two root inventories are hand-maintained and the reason they differ is not recorded at the guard",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 105,
+      "description": "Four ignore rules, eight guard roots and eight hardcoded harness roots must be kept consistent by hand, and the guard does not say why only four roots need ignore rules.",
+      "findingClass": "hand-maintained-inventory",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: .skilled/scripts/git-hooks/pre-commit:105",
+      "affectedSurfaceHints": [
+        ".skilled/scripts/git-hooks/pre-commit"
+      ],
+      "contentHash": "4875e5e6bebaa8dbe64c024e344f26ac5ba4c6ee9bd946b0fe79fd46babef97d",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Evidence durability is uneven, and the two contested phases are the ones with no durable proof",
+      "file": "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md",
+      "line": 82,
+      "description": "Phase 005 keeps 15 tracked evidence files; phases 001 and 002 keep only .gitkeep and cite worker reports that are not in the tree; phase 003 scratch is empty.",
+      "findingClass": "uneven-evidence-standard",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md:82",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/002-hub-surface-removal/implementation-summary.md"
+      ],
+      "contentHash": "8fd0b35d7ef32efdf570d4d7547c5fc579fe2841740fe563dc7581b0f888c54b",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The hooks README gate inventory omits the new blocking gate",
+      "file": ".skilled/scripts/git-hooks/README.md",
+      "line": 24,
+      "description": "The README says pre-commit runs ten blocking sub-gates and lists ten; the private-skill guard runs as an eleventh blocking gate with no bypass and is not named.",
+      "findingClass": "undocumented-capability",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: .skilled/scripts/git-hooks/README.md:24",
+      "affectedSurfaceHints": [
+        ".skilled/scripts/git-hooks/README.md"
+      ],
+      "contentHash": "0da53007e1f006d664416333f5c218f254f16c299346b5dce0de867186192c8f",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The parent related-documents pointer names a field that does not exist",
+      "file": "specs/sk-code/013-private-surface-skills/spec.md",
+      "line": 223,
+      "description": "spec.md:223 points readers to graph-metadata.json derived.last_active_child_id, a key the parent metadata file does not contain.",
+      "findingClass": "dangling-pointer",
+      "deltaStatus": null,
+      "scopeProof": "within review scope: specs/sk-code/013-private-surface-skills/spec.md:223",
+      "affectedSurfaceHints": [
+        "specs/sk-code/013-private-surface-skills/spec.md"
+      ],
+      "contentHash": "1972c8527607419659e05ae3d14b575649dacd35a33ab0dfe4ace174a3097a1e",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 13
+  },
+  "openFindingsCount": 17,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "claim_command_drift",
+      "containment_escape",
+      "dangling-pointer",
+      "doc_state_contradiction",
+      "guard_bypass",
+      "hand-maintained-inventory",
+      "rule-duplication",
+      "stale_closure_gate",
+      "stale_verification_command",
+      "tracked_path_leak",
+      "tracked_writer_leak",
+      "undocumented-capability",
+      "uneven-evidence-standard",
+      "unscoped_criterion"
+    ],
+    "ruledOut": [
+      "closure_row_drift",
+      "containment_escape",
+      "cross_runtime_drift",
+      "test-parity",
+      "tracked_path_leak",
+      "tracked_writer_leak",
+      "waiver_without_adr"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "claim_command_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "tracked_path_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unscoped_criterion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "tracked_writer_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "guard_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "containment_escape": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_state_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_closure_gate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_verification_command": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "closure_row_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "rule-duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hand-maintained-inventory": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "uneven-evidence-standard": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test-parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "undocumented-capability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "dangling-pointer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "waiver_without_adr": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "cross_runtime_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-1-03",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+      ],
+      "bugClass": "tracked_path_leak",
+      "disposition": "ruled_out",
+      "rationale": "The 69 sk-code-obsidian hits are retained specs/ document paths, which the packet keeps by design.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:287"
+      ],
+      "reason": "No private path is present and the walker cannot follow a directory symlink."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts"
+      ],
+      "bugClass": "tracked_writer_leak",
+      "disposition": "ruled_out",
+      "rationale": "No leak path found.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py:203",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:59",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ],
+      "reason": "All tracked writers skip the name and the compiled graph is clean."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "containment_escape",
+      "disposition": "ruled_out",
+      "rationale": "No escape path found.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155"
+      ],
+      "reason": "Both implementations reject traversal, absolute results and a self-link."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-05",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md"
+      ],
+      "bugClass": "closure_row_drift",
+      "disposition": "ruled_out",
+      "rationale": "The defect is localized.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md"
+      ],
+      "reason": "Only phases 002 and 003 carry unmet or contradictory rows."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests"
+      ],
+      "bugClass": "test-parity",
+      "disposition": "ruled_out",
+      "rationale": "No one-sided rule.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2215"
+      ],
+      "reason": "Both implementations carry dedicated coverage."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-03",
+      "dimension": "completeness",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/decision-record.md"
+      ],
+      "bugClass": "waiver_without_adr",
+      "disposition": "ruled_out",
+      "rationale": "The waiver is backed.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/decision-record.md:541"
+      ],
+      "reason": "ADR-008 exists and explains the gap at ADR-007."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-04",
+      "dimension": "completeness",
+      "targetRefs": [
+        ".skilled/agents/code.md",
+        ".claude/agents/code.md",
+        ".opencode/agents/code.md"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "No cross-runtime drift in the packet content.",
+      "evidenceRefs": [
+        ".claude/agents/code.md:95"
+      ],
+      "reason": "Both mirrors carry the routing doctrine."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-1-03",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+      ],
+      "bugClass": "tracked_path_leak",
+      "disposition": "ruled_out",
+      "rationale": "The 69 sk-code-obsidian hits are retained specs/ document paths, which the packet keeps by design.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:287"
+      ],
+      "proof": "No private path is present and the walker cannot follow a directory symlink."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-01",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts"
+      ],
+      "bugClass": "tracked_writer_leak",
+      "disposition": "ruled_out",
+      "rationale": "No leak path found.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py:203",
+        ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs:59",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ],
+      "proof": "All tracked writers skip the name and the compiled graph is clean."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
+      ],
+      "bugClass": "containment_escape",
+      "disposition": "ruled_out",
+      "rationale": "No escape path found.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/private-skill-target.ts:21",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py:155"
+      ],
+      "proof": "Both implementations reject traversal, absolute results and a self-link."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-05",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/001-ignore-and-commit-guard/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/004-private-local-skills/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md"
+      ],
+      "bugClass": "closure_row_drift",
+      "disposition": "ruled_out",
+      "rationale": "The defect is localized.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/005-leak-and-routing-verification/acceptance-criteria.md"
+      ],
+      "proof": "Only phases 002 and 003 carry unmet or contradictory rows."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-04",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests"
+      ],
+      "bugClass": "test-parity",
+      "disposition": "ruled_out",
+      "rationale": "No one-sided rule.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2215"
+      ],
+      "proof": "Both implementations carry dedicated coverage."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-03",
+      "dimension": "completeness",
+      "targetRefs": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/decision-record.md"
+      ],
+      "bugClass": "waiver_without_adr",
+      "disposition": "ruled_out",
+      "rationale": "The waiver is backed.",
+      "evidenceRefs": [
+        "specs/sk-code/013-private-surface-skills/003-advisor-vocabulary-cleanup/decision-record.md:541"
+      ],
+      "proof": "ADR-008 exists and explains the gap at ADR-007."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-04",
+      "dimension": "completeness",
+      "targetRefs": [
+        ".skilled/agents/code.md",
+        ".claude/agents/code.md",
+        ".opencode/agents/code.md"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "No cross-runtime drift in the packet content.",
+      "evidenceRefs": [
+        ".claude/agents/code.md:95"
+      ],
+      "proof": "Both mirrors carry the routing doctrine."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "undocumented-capability",
+      "dangling-pointer"
+    ],
+    "covered": [
+      "undocumented-capability",
+      "dangling-pointer"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

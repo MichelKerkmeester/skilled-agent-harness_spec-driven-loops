@@ -472,7 +472,7 @@ agent_availability:
       - "system-spec-kit/references/workflows/spec-authoring-card.md (read first, for every spec-doc target)"
       - "system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under .opencode/specs/)"
     precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
-    not_for: "Webflow stack writes (separate path), motion_dev work (cross-stack), or non-.opencode/ targets."
+    not_for: "targets outside .skilled/, or a target an advisor-named local-* skill owns."
   debug:
     available_at_step: 10
     condition: "ONLY surface a prompted offer when 3+ task failures observed during Step 10 development. Never auto-dispatch — the user opts in via Task tool."
